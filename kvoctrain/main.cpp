@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/16 08:37:22  howells
+    Use I18N_NOOP()
+
     Revision 1.10  2001/12/08 15:22:57  arnold
     added contributors
 
@@ -85,7 +88,7 @@ static const char *description =
 static const char *version = "0.8.0";
 
   KAboutData aboutData("kvoctrain",
-                       I18N_NOOP("KVocTrain",)
+                       "KVocTrain",
                        version,
                        description,
                        KAboutData::License_GPL,

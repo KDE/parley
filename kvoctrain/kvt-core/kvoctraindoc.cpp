@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.10  2001/11/24 11:45:03  arnold
     added std prefix for clean namespace
 
@@ -222,7 +225,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
           Init();
           return;
         }
-        QString format = i18n("Could not load \"%1\"\nDo you want to repeat ?");
+        QString format = i18n("Could not load \"%1\"\nDo you want to try again?");
         QString msg = format.arg(mainfile);
         QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
             msg,
@@ -315,7 +318,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     QApplication::restoreOverrideCursor();
 
     if (!saved) {
-      QString format = i18n("Could not save \"%1\"\nDo you want to repeat ?");
+      QString format = i18n("Could not save \"%1\"\nDo you want to try again?");
       QString msg = format.arg(tmp);
       QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
           msg,
