@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
 static KCmdLineOptions options[] =
 {
   { I18N_NOOP("+[file]"),   I18N_NOOP("Document file to open."), 0 },
-  { 0, 0, 0}
+  KCmdLineLastOption
 };
 
 static const char *description =
@@ -108,5 +108,5 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
     kva->show();
   }
   return app.exec();
-}  
- 
+}
+
