@@ -1,0 +1,23 @@
+Hi!
+
+Hab die neue Version des Parsers fertig und ein neues Language file gener=
+iert.
+Ich attache auch den parser selbst.
+
+nachdem man ihn kompiliert hat einfach das html file durch pipen
+#> cat englangn.html | ./extractlang > languages.txt
+
+Leider sind noch ein paar Duplikate drin (zB Spanish, Castillian und
+Castillian, Spanish)
+
+Die Namen hab ich diesmal nicht ge=E4ndert, die meisten passen sowieso, n=
+ur bei=20
+einigen steht Zusatzinformationen dabei.
+
+ciao,
+kev
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Kevin Krammer <kevin.krammer@gmx.at>
+Developer at the Kmud Project http://www.kmud.de/
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
