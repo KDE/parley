@@ -1,0 +1,21 @@
+> Ok, I added a nice flag to indicate that an entry is "marked". I'm still
+> searching for the proper phrase for this, isMarked? isTagged?
+
+yes, hard choice :-) originally I chose "tagged" for the other one because 
+the user "tags" manually and "selected" was because the user "selected" it 
+for his query.
+
+"isInQuery/setInQuery" indicates what's really happening.
+
+> While I was doing a multi-choce query I noticed two small incoveniences:
+> *) The dialog disappears and re-appears between each question, that's
+> annoying
+
+> *) Slightly related to the previous, when I select the correct radiobutton,
+> the dialog disappears without giving me any feedback about what is
+> happening. My first reaction was "Help, what is happening?". IMO it would
+
+Yes, I know. It's even worse on slow machines. Currently the dialog is new'd 
+and delete'd every time. Faster and not flickering should it be just to 
+update the dialog. This way the second topic above could also be solved 
+better.
