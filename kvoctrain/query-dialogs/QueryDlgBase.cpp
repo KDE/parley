@@ -37,8 +37,9 @@
 
 #include <klocale.h>
 
-QueryDlgBase::QueryDlgBase ()
+QueryDlgBase::QueryDlgBase (QFont &font)
 {
+  word_font = font;
   kv_doc = 0;
   kv_exp = 0;
   type_timeout = kvq_notimeout;

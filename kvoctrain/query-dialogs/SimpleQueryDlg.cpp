@@ -48,6 +48,7 @@ SimpleQueryDlg::SimpleQueryDlg(
         int q_cycle,
         int q_num,
         int q_start,
+	QFont &font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         int mqtime,
@@ -58,7 +59,7 @@ SimpleQueryDlg::SimpleQueryDlg(
 )
 	:
 	SimpleQueryDlgForm( parent, name, false),
-        QueryDlgBase()
+        QueryDlgBase(font)
 {
    connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
@@ -105,6 +106,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    showCounter = _show,
    timebar->setEnabled(showCounter);
    timelabel->setEnabled(showCounter);
+   queryField->setFont(word_font);
+   answerField->setFont(word_font);
    answerField->setText ("");
 
    QString s;

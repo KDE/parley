@@ -52,6 +52,7 @@ ArtQueryDlg::ArtQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
+	QFont &font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Article &articles,
@@ -62,7 +63,7 @@ ArtQueryDlg::ArtQueryDlg
         char    *name)
 	:
 	ArtQueryDlgForm( parent, name, false),
-        QueryDlgBase()
+        QueryDlgBase(font)
 {
    qtimer = 0;
 

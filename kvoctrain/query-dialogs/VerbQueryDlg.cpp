@@ -52,6 +52,7 @@ VerbQueryDlg::VerbQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
+	QFont &font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Conjugation &prefix,
@@ -63,7 +64,7 @@ VerbQueryDlg::VerbQueryDlg
         char *name)
 	:
 	VerbQueryDlgForm( parent, name, false),
-        QueryDlgBase()
+        QueryDlgBase(font)
 {
 	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
         connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );

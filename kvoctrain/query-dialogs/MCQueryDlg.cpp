@@ -58,6 +58,7 @@ MCQueryDlg::MCQueryDlg(
                    int q_cycle,
                    int q_num,
                    int q_start,
+		   QFont &font,
                    kvoctrainExpr *exp,
                    kvoctrainDoc  *doc,
                    int mqtime,
@@ -66,7 +67,7 @@ MCQueryDlg::MCQueryDlg(
                    QWidget *parent,
                    char *name)
 	: MCQueryDlgForm(parent, name, false),
-	  QueryDlgBase()
+	  QueryDlgBase(font)
 {
    transgroup->insert(rb_trans1);
    transgroup->insert(rb_trans2);
@@ -118,6 +119,7 @@ void MCQueryDlg::setQuery(QString org,
    showCounter = _show,
    timebar->setEnabled(showCounter);
    timelabel->setEnabled(showCounter);
+   orgField->setFont(word_font);
    orgField->setText (org);
    show_all->setDefault(true);
    QString s;
@@ -243,10 +245,15 @@ void MCQueryDlg::setQuery(QString org,
    button_ref[4].label->setEnabled(!strings[4].isEmpty() );
 
    button_ref[0].label->setText(strings[0]);
+   button_ref[0].label->setFont(word_font);
    button_ref[1].label->setText(strings[1]);
+   button_ref[1].label->setFont(word_font);
    button_ref[2].label->setText(strings[2]);
+   button_ref[2].label->setFont(word_font);
    button_ref[3].label->setText(strings[3]);
+   button_ref[3].label->setFont(word_font);
    button_ref[4].label->setText(strings[4]);
+   button_ref[4].label->setFont(word_font);
 
    rb_trans1->setChecked (false);
    rb_trans2->setChecked (false);

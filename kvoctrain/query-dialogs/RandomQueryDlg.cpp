@@ -55,10 +55,10 @@ RandomQueryDlg::RandomQueryDlg(
                    int entry,
                    int orgcol,
                    int transcol,
-		   QFont & word_font,
                    int q_cycle,
                    int q_num,
                    int q_start,
+		   QFont & font,
                    kvoctrainExpr *exp,
                    kvoctrainDoc  *doc,
                    int mqtime,
@@ -67,7 +67,7 @@ RandomQueryDlg::RandomQueryDlg(
                    QWidget *parent,
                    char *name)
 	: QueryDlgForm(parent, name, false),
-	  QueryDlgBase()
+	  QueryDlgBase(font)
 {
    connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
    connect( c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
@@ -84,7 +84,7 @@ RandomQueryDlg::RandomQueryDlg(
    kv_doc = 0;
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Random Query")));
-   setQuery (org, trans, word_font, entry, orgcol, transcol,
+   setQuery (org, trans, entry, orgcol, transcol,
              q_cycle, q_num, q_start,
              exp, doc, mqtime, show, type_to);
    setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
@@ -93,7 +93,6 @@ RandomQueryDlg::RandomQueryDlg(
 
 void RandomQueryDlg::setQuery(QString org,
                          QString trans,
-			 QFont &font,     
                          int entry,
                          int orgcol,
                          int transcol,
@@ -115,9 +114,9 @@ void RandomQueryDlg::setQuery(QString org,
    showCounter = _show,
    timebar->setEnabled(showCounter);
    timelabel->setEnabled(showCounter);
-   transField->setFont(font);
+   transField->setFont(word_font);
    transField->setText ("");
-   orgField->setFont(font);
+   orgField->setFont(word_font);
    orgField->setText (org);
    show_all->setDefault(true);
    QString s;

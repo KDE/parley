@@ -54,6 +54,7 @@ AdjQueryDlg::AdjQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
+	QFont &font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Comparison &_comp,
@@ -65,7 +66,7 @@ AdjQueryDlg::AdjQueryDlg
 )
 	:
 	AdjQueryDlgForm( parent, name, false),
-        QueryDlgBase()
+        QueryDlgBase(font)
 {
    connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );

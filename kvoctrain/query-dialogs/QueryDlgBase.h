@@ -51,7 +51,7 @@ public:
 
    enum Result { Unknown, Known, Timeout, StopIt };
 
-   QueryDlgBase ();
+   QueryDlgBase (QFont & font);
 
    virtual ~QueryDlgBase ();
 
@@ -90,6 +90,8 @@ protected:
       QRadioButton  *rb;
       QLabel        *label;
    };
+
+   QFont word_font;
 
    kvq_timeout_t  type_timeout;
    int            q_row,
