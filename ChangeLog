@@ -87,7 +87,9 @@ kvoctrain history
   - lesson which are included for the next query are now stored with the
     document instead of the global configuration file.
   - as always: fixed some bugs...
-  
+  - thanks to a contribution there is a new converter script langen2kvtml to
+    convert *.voc files from http://www.vokabeln.de/files.htm
+    
 Happy learning,
 Ewald Arnold
 
