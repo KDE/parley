@@ -104,7 +104,7 @@ void readToMem (QTextStream &is, QString month, QString year)
      bool head_line = (!line.stripWhiteSpace().isEmpty() && line == line.upper() );
 
      if (first_line && !head_line) {
-       line = is.readLine(); 
+       line = is.readLine();
        head_line = (!line.stripWhiteSpace().isEmpty() && line == line.upper() );
      }
      first_line = false;
@@ -143,7 +143,7 @@ void readToMem (QTextStream &is, QString month, QString year)
 
        if (head_line) {
          lesson_pending = true;
-         lesson_str = line + ", "+month+" "+year;;
+         lesson_str = line + ", "+month+" "+year;
        }
        else {
          pos = line.find ('\t');
@@ -154,12 +154,12 @@ void readToMem (QTextStream &is, QString month, QString year)
              lesson_pending = false;
              lesson_names.push_back(lesson_str.stripWhiteSpace());
            }
-  
+
            spot.lesson = lesson_names.size();
            spot.type = "";
            spot.en_rem = "";
            spot.de_rem = "";
-  
+
            if (line.left (3) == "to ") {
              spot.type = QM_VERB;
              line.remove (0, 3);
@@ -167,7 +167,7 @@ void readToMem (QTextStream &is, QString month, QString year)
            }
            spot.en = line.mid(0, pos);
            spot.de = line.mid(pos+1, line.length()-pos-1);
-  
+
            if ((pos = spot.en.find(" UK") ) >= 0) {
              spot.en_rem+= i18n("UK ").local8Bit();
              spot.en.remove (pos, 3);
@@ -176,7 +176,7 @@ void readToMem (QTextStream &is, QString month, QString year)
              spot.en_rem+= i18n("UK ").local8Bit();
              spot.en.remove (pos, 4);
            }
-  
+
            if ((pos = spot.en.find(" N. Am.") ) >= 0) {
              spot.en_rem+= i18n("N. Am. ").local8Bit();
              spot.en.remove (pos, 7);
@@ -185,7 +185,7 @@ void readToMem (QTextStream &is, QString month, QString year)
              spot.en_rem+= i18n("N. Am. ").local8Bit();
              spot.en.remove (pos, 8);
            }
-  
+
            if ((pos = spot.en.find(" US") ) >= 0) {
              spot.en_rem+= i18n("US ").local8Bit();
              spot.en.remove (pos, 3);
@@ -194,7 +194,7 @@ void readToMem (QTextStream &is, QString month, QString year)
              spot.en_rem+= i18n("US ").local8Bit();
              spot.en.remove (pos, 4);
            }
-  
+
            if ((pos = spot.en.find("ifml.") ) >= 0) {
              spot.en_rem+= i18n("ifml. ").local8Bit();
              spot.en.remove (pos, 5);
@@ -203,7 +203,7 @@ void readToMem (QTextStream &is, QString month, QString year)
              spot.en_rem+= i18n("ifml. ").local8Bit();
              spot.en.remove (pos, 7);
            }
-  
+
            if ((pos = spot.en.find("vulg.") ) >= 0) {
              spot.en_rem+= i18n("vulg. ").local8Bit();
              spot.en.remove (pos, 5);
@@ -212,7 +212,7 @@ void readToMem (QTextStream &is, QString month, QString year)
              spot.en_rem+= i18n("vulg. ").local8Bit();
              spot.en.remove (pos, 7);
            }
-  
+
            if (!spot.en.isEmpty() && !spot.de.isEmpty())
              spottys.push_back(spot);
          }
@@ -286,7 +286,7 @@ void writeToKvtml(QTextStream &os, QString month, QString year)
                 << lesson_names[i] << "</desc>\n";
            }
            os << " </lesson>\n\n";
-      
+
    if (spottys.size() != 0)
      writeSpotty (os, spottys[0], true);
 

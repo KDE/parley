@@ -7,7 +7,7 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : taken from klpq and modified as needed
     email                : kvoctrain@ewald-arnold.de
 
@@ -360,8 +360,8 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
         return;
 
    QColorGroup cg = colorGroup();
-  
-#if 0  
+
+#if 0
    if ( /*(focusStl == SpreadSheet) && */ selected &&
 	 (row == currentRow()) &&
 	 (col == currentColumn()) && ( hasFocus() || viewport()->hasFocus() ) )
@@ -413,7 +413,7 @@ void RowTable::setCurrentRow( int row, int col )
 
 void RowTable::setSelectColumn( int col )
 {
-        setCurrentRow(currentRow(), col);;
+        setCurrentRow(currentRow(), col);
 }
 
 
