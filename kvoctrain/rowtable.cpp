@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.7  2001/11/02 17:50:23  arnold
     fixed sorting basically
 
@@ -335,19 +338,20 @@ void RowTable::keyPressEvent( QKeyEvent *e )
 }
 
 
-void RowTable::headerPressEvent(int sec)
+void RowTable::headerPressEvent(int sect)
 {
-   triggerSect = sec;
+   triggerSect = sect;
    delayTimer->stop();
    delayTimer->start(POPUP_DELAY, true);
 }
 
 
-void RowTable::headerReleaseEvent(int sec)
+void RowTable::headerReleaseEvent(int sect)
 {
    delayTimer->stop();
-   if(triggerSect == -1 )  // long enough pressed for popup menu
-   	return;
+   if(triggerSect == -1 ) {             // long enough pressed for popup menu
+     return;
+   }
    int mt = triggerSect;
    triggerSect = -1;
    emit selected(mt);

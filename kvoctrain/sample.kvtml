@@ -72,11 +72,11 @@ Valid xml means:
   remark="doc remark&nl;line2">
 
  <lesson width="177">
-  <desc no="1">- 1</desc>
+  <desc no="1" current="1">- 1</desc>
   <desc no="2">- 2</desc>
   <desc no="3">- 3</desc>
   <desc no="4">- 4</desc>
-  <desc no="5" current="1">- 5</desc>
+  <desc no="5">- 5</desc>
   <desc no="6">- 6</desc>
   <desc no="7">- 7</desc>
   <desc no="8">- 8</desc>
