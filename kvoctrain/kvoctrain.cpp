@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.37  2002/01/20 11:41:01  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.36  2002/01/19 11:24:47  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -233,8 +236,10 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
     if (type_label != 0)
       type_label->setText (i18n (PREFIX_Type));
 
-    if (entryDlg != 0)
+    if (entryDlg != 0) {
+      slotEditEntryModeless(row, col+KV_EXTRA_COLS);
       entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+    }
 
     return;
   }
@@ -440,88 +445,113 @@ void kvoctrainApp::createEntryDlg(int row, int col)
      return;
    }
 
-   QString s1,
-           s2,
-           text,
-           lang;
-
-   if ((row < 0) ||
-       (col < 0))
+   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
      return;
 
-   if (col < KV_EXTRA_COLS)
-      return;
-
-   if (view->getTable()->numRows() <= 0)
-     return;
-
-   col -= KV_EXTRA_COLS;
-
-   s1.setNum(row);
-   s2.setNum(col);
-
-   if (col == 0) {
-     lang = doc->getOriginalIdent();
-     text = doc->getEntry(row)->getOriginal();
-   }
-   else {
-     lang = doc->getIdent(col);
-     text = doc->getEntry(row)->getTranslation(col);
-   }
+   QString title, text, lang;
 
    int lesson = doc->getEntry(row)->getLesson();
    if (lesson >= lessons->count())
      lesson = QMAX (0, lessons->count()-1);
 
-   QString title;
-   if (col == 0)
-     title = i18n("Edit properties for original");
-   else
-     title = i18n("Edit properties of translation");
+   if (col < KV_EXTRA_COLS) {
+     title = i18n("Edit general properties");
+     entryDlg = new EntryDlg (
+                    this,
+                    doc,
+                    hasSelection(),
+                    true,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0,
+                    QString::null,
+                    QString::null,
+                    QString::null,
+                    lesson,
+                    lessons,
+                    doc->getOriginalIdent(),
+                    langset,
+                    QString::null,
+                    doc->getEntry(row)->getType(col),
+                    QString::null,
+                    QString::null,
+                    QString::null,
+                    QString::null,
+                    QString::null,
+                    QString::null,
+                    doc->getConjugation(0),
+                    Conjugation(),
+                    doc->getArticle(0),
+                    Comparison(),
+                    MultipleChoice(),
+                    querymanager,
+                    title,
+                    doc->getEntry(row)->isActive(),
+                    ipafont);
+   }
+   else {
+     col -= KV_EXTRA_COLS;
 
-   opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
-   view->getTable()->setEditorBlocked(true);
+     if (col == 0) {
+       lang = doc->getOriginalIdent();
+       text = doc->getEntry(row)->getOriginal();
+       title = i18n("Edit properties for original");
+     }
+     else {
+       lang = doc->getIdent(col);
+       text = doc->getEntry(row)->getTranslation(col);
+       title = i18n("Edit properties of a translation");
+     }
 
-   entryDlg = new EntryDlg (
-                  this,
-                  doc,
-                  hasSelection(),
-                  col==0,
-                  doc->getEntry(row)->getGrade(col, false),
-                  doc->getEntry(row)->getGrade(col, true),
-                  doc->getEntry(row)->getQueryCount(col, false),
-                  doc->getEntry(row)->getQueryCount(col, true),
-                  doc->getEntry(row)->getBadCount(col, false),
-                  doc->getEntry(row)->getBadCount(col, true),
-                  doc->getEntry(row)->getQueryDate(col, false),
-                  doc->getEntry(row)->getQueryDate(col, true),
-                  doc->getEntry(row)->getFauxAmi(col, false),
-                  doc->getEntry(row)->getFauxAmi(col, true),
-                  text,
-                  lesson,
-                  lessons,
-                  lang,
-                  langset,
-                  doc->getEntry(row)->getRemark(col),
-                  doc->getEntry(row)->getType(col),
-                  doc->getEntry(row)->getPronunce(col),
-                  doc->getEntry(row)->getSynonym(col),
-                  doc->getEntry(row)->getAntonym(col),
-                  doc->getEntry(row)->getExample(col),
-                  doc->getEntry(row)->getUsageLabel(col),
-                  doc->getEntry(row)->getParaphrase(col),
-                  doc->getConjugation(col),
-                  doc->getEntry(row)->getConjugation(col),
-                  doc->getArticle(col),
-                  doc->getEntry(row)->getComparison(col),
-                  doc->getEntry(row)->getMultipleChoice(col),
-                  querymanager,
-                  title,
-                  doc->getEntry(row)->isActive(),
-                  ipafont);
+     entryDlg = new EntryDlg (
+                    this,
+                    doc,
+                    hasSelection(),
+                    col==0,
+                    doc->getEntry(row)->getGrade(col, false),
+                    doc->getEntry(row)->getGrade(col, true),
+                    doc->getEntry(row)->getQueryCount(col, false),
+                    doc->getEntry(row)->getQueryCount(col, true),
+                    doc->getEntry(row)->getBadCount(col, false),
+                    doc->getEntry(row)->getBadCount(col, true),
+                    doc->getEntry(row)->getQueryDate(col, false),
+                    doc->getEntry(row)->getQueryDate(col, true),
+                    doc->getEntry(row)->getFauxAmi(col, false),
+                    doc->getEntry(row)->getFauxAmi(col, true),
+                    text,
+                    lesson,
+                    lessons,
+                    lang,
+                    langset,
+                    doc->getEntry(row)->getRemark(col),
+                    doc->getEntry(row)->getType(col),
+                    doc->getEntry(row)->getPronunce(col),
+                    doc->getEntry(row)->getSynonym(col),
+                    doc->getEntry(row)->getAntonym(col),
+                    doc->getEntry(row)->getExample(col),
+                    doc->getEntry(row)->getUsageLabel(col),
+                    doc->getEntry(row)->getParaphrase(col),
+                    doc->getConjugation(col),
+                    doc->getEntry(row)->getConjugation(col),
+                    doc->getArticle(col),
+                    doc->getEntry(row)->getComparison(col),
+                    doc->getEntry(row)->getMultipleChoice(col),
+                    querymanager,
+                    title,
+                    doc->getEntry(row)->isActive(),
+                    ipafont);
+   }
    entryDlg->setAutoApply(autoentryApply);
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
+
+   opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
+   view->getTable()->setEditorBlocked(true);
 
    cout << "ce 1\n";
    vector<QTableSelection> tabsel;
@@ -554,7 +584,7 @@ void kvoctrainApp::slotEditEntryModeless (int row, int col)
      return;
    }
 
-   entryDlg->raise();
+//   entryDlg->raise();
 
    if (entryDlg->isModified()) {
      commitEntryDlg(false);
@@ -571,88 +601,110 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
      return;
    }
 
-   QString s1,
-           s2,
-           text,
-           lang;
-
-   if ((row < 0) ||
-       (col < 0))
+   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
      return;
 
-   if (col < KV_EXTRA_COLS)
-      return;
-
-   if (view->getTable()->numRows() <= 0)
-     return;
-
-   col -= KV_EXTRA_COLS;
-
-   s1.setNum(row);
-   s2.setNum(col);
-
-   if (col == 0) {
-     lang = doc->getOriginalIdent();
-     text = doc->getEntry(row)->getOriginal();
-   }
-   else {
-     lang = doc->getIdent(col);
-     text = doc->getEntry(row)->getTranslation(col);
-   }
+   QString text, lang, title;
 
    int lesson = doc->getEntry(row)->getLesson();
    if (lesson >= lessons->count())
      lesson = QMAX (0, lessons->count()-1);
 
-   QString title;
-   if (col == 0)
-     title = i18n("Edit properties for original");
-   else
-     title = i18n("Edit properties of translation");
-
    bool hasSel = hasSelection();
+
+   if (col < KV_EXTRA_COLS) {
+     title = i18n("Edit general properties");
+     entryDlg->setData(doc,
+                       hasSel,
+                       true,
+                       0,
+                       0,
+                       0,
+                       0,
+                       0,
+                       0,
+                       0,
+                       0,
+                       QString::null,
+                       QString::null,
+                       QString::null,
+                       lesson,
+                       lessons,
+                       doc->getOriginalIdent(),
+                       langset,
+                       QString::null,
+                       doc->getEntry(row)->getType(col),
+                       QString::null,
+                       QString::null,
+                       QString::null,
+                       QString::null,
+                       QString::null,
+                       QString::null,
+                       doc->getConjugation(0),
+                       Conjugation(),
+                       doc->getArticle(0),
+                       Comparison(),
+                       MultipleChoice(),
+                       querymanager,
+                       title,
+                       doc->getEntry(row)->isActive());
+   }
+   else {
+     col -= KV_EXTRA_COLS;
+
+     if (col == 0) {
+       title = i18n("Edit properties for original");
+       lang = doc->getOriginalIdent();
+       text = doc->getEntry(row)->getOriginal();
+     }
+     else {
+       lang = doc->getIdent(col);
+       text = doc->getEntry(row)->getTranslation(col);
+       title = i18n("Edit properties of a translation");
+     }
+
+     entryDlg->setData(doc,
+                       hasSel,
+                       col==0,
+                       doc->getEntry(row)->getGrade(col, false),
+                       doc->getEntry(row)->getGrade(col, true),
+                       doc->getEntry(row)->getQueryCount(col, false),
+                       doc->getEntry(row)->getQueryCount(col, true),
+                       doc->getEntry(row)->getBadCount(col, false),
+                       doc->getEntry(row)->getBadCount(col, true),
+                       doc->getEntry(row)->getQueryDate(col, false),
+                       doc->getEntry(row)->getQueryDate(col, true),
+                       doc->getEntry(row)->getFauxAmi(col, false),
+                       doc->getEntry(row)->getFauxAmi(col, true),
+                       text,
+                       lesson,
+                       lessons,
+                       lang,
+                       langset,
+                       doc->getEntry(row)->getRemark(col),
+                       doc->getEntry(row)->getType(col),
+                       doc->getEntry(row)->getPronunce(col),
+                       doc->getEntry(row)->getSynonym(col),
+                       doc->getEntry(row)->getAntonym(col),
+                       doc->getEntry(row)->getExample(col),
+                       doc->getEntry(row)->getUsageLabel(col),
+                       doc->getEntry(row)->getParaphrase(col),
+                       doc->getConjugation(col),
+                       doc->getEntry(row)->getConjugation(col),
+                       doc->getArticle(col),
+                       doc->getEntry(row)->getComparison(col),
+                       doc->getEntry(row)->getMultipleChoice(col),
+                       querymanager,
+                       title,
+                       doc->getEntry(row)->isActive());
+   }
+   view->getTable()->updateCell(row, col);
    vector<QTableSelection> tabsel;
    if (hasSel) {
      for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
    }
-
    entryDlg->setCell(row, col, tabsel);
-   entryDlg->setData(doc,
-                     hasSel,
-                     col==0,
-                     doc->getEntry(row)->getGrade(col, false),
-                     doc->getEntry(row)->getGrade(col, true),
-                     doc->getEntry(row)->getQueryCount(col, false),
-                     doc->getEntry(row)->getQueryCount(col, true),
-                     doc->getEntry(row)->getBadCount(col, false),
-                     doc->getEntry(row)->getBadCount(col, true),
-                     doc->getEntry(row)->getQueryDate(col, false),
-                     doc->getEntry(row)->getQueryDate(col, true),
-                     doc->getEntry(row)->getFauxAmi(col, false),
-                     doc->getEntry(row)->getFauxAmi(col, true),
-                     text,
-                     lesson,
-                     lessons,
-                     lang,
-                     langset,
-                     doc->getEntry(row)->getRemark(col),
-                     doc->getEntry(row)->getType(col),
-                     doc->getEntry(row)->getPronunce(col),
-                     doc->getEntry(row)->getSynonym(col),
-                     doc->getEntry(row)->getAntonym(col),
-                     doc->getEntry(row)->getExample(col),
-                     doc->getEntry(row)->getUsageLabel(col),
-                     doc->getEntry(row)->getParaphrase(col),
-                     doc->getConjugation(col),
-                     doc->getEntry(row)->getConjugation(col),
-                     doc->getArticle(col),
-                     doc->getEntry(row)->getComparison(col),
-                     doc->getEntry(row)->getMultipleChoice(col),
-                     querymanager,
-                     title,
-                     doc->getEntry(row)->isActive());
-     view->getTable()->updateCell(row, col);
 }
 
 
@@ -1242,17 +1294,6 @@ void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
   statusBar()->clear();
   statusBar()->changeItem(text, ID_STATUS_MSG );
 */
-}
-
-
-void kvoctrainApp::invokeHelp( void )
-{
-  QFile helpfile (locate ("data", "default/kvoctrain/index.html"));
-  if (helpfile.exists() )
-    kapp->invokeHTMLHelp("kvoctrain/index.html", QString() );
-  else
-//   fall back to english if no native !
-    kapp->invokeHTMLHelp("../en/kvoctrain/index.html", QString());
 }
 
 

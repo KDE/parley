@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/01/18 04:40:08  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.20  2002/01/02 11:38:27  arnold
     fixed displaying of modified doc
 
@@ -636,6 +640,8 @@ void kvoctrainApp::slotFileMerge()
 
 void kvoctrainApp::slotFileSave()
 {
+  commitEntryDlg(false);
+
   if (doc->getFileName().isEmpty() ) {
     slotFileSaveAs();
     return;
@@ -731,6 +737,8 @@ void kvoctrainApp::slotFileSaveAs()
 {
   slotStatusMsg(i18n("Saving file under new filename..."));
 
+  commitEntryDlg(false);
+
   QString s;
   if (recent_files.count() > 0)
     s = recent_files[0];
@@ -775,6 +783,8 @@ void kvoctrainApp::slotFileSaveAs()
 
 void kvoctrainApp::slotSaveSelection ()
 {
+  commitEntryDlg(false);
+
   slotStatusMsg(i18n("Saving selected area under new filename..."));
 
   kvoctrainDoc seldoc(this, "");

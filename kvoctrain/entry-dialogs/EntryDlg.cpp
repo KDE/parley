@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/20 11:41:01  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.14  2002/01/19 10:33:09  arnold
     made entry dialog modeless
 
@@ -225,6 +228,7 @@ EntryDlg::EntryDlg(
         chk_autoapply->setChecked(false);
         applyButton->setEnabled(false);
         undoButton->setEnabled(false);
+        applyButton->setDefault(true);
         initFocus();
         setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
@@ -266,6 +270,8 @@ void EntryDlg::setData(
 	const QString &title,
         bool           active)
 {
+	setCaption (kapp->makeStdCaption(title));
+
         QString s;
         if (langset.findLongId(lang).isEmpty() )
           s = lang;
@@ -360,13 +366,21 @@ void EntryDlg::setModified(bool mod)
 
 void EntryDlg::setEnabled(int enable)
 {
+   QString type = comm_page->getType();
+   QString main;
+   int pos;
+   if ((pos = type.find (QM_TYPE_DIV)) < 0)  // only use main type
+     main = type;
+   else
+     main = type.left(pos);
+
   if (enable == EnableOnlyOriginal) {
     comm_page->setEnabled(EnableAll);
     aux_page->setEnabled(EnableAll);
     mc_page->setEnabled(EnableAll);
-    tense_page->setEnabled(EnableAll);
+    tense_page->setEnabled(main == QM_VERB ? EnableAll : EnableNone);
     mc_page->setEnabled(EnableAll);
-    adj_page->setEnabled(EnableAll);
+    adj_page->setEnabled(main == QM_ADJ ? EnableAll : EnableNone);
     if (from_page != 0)
       from_page->setEnabled(EnableNone);
     if (to_page != 0)
@@ -376,9 +390,9 @@ void EntryDlg::setEnabled(int enable)
     comm_page->setEnabled(enable);
     aux_page->setEnabled(enable);
     mc_page->setEnabled(enable);
-    tense_page->setEnabled(enable);
+    tense_page->setEnabled(main == QM_VERB ? enable : EnableNone);
     mc_page->setEnabled(enable);
-    adj_page->setEnabled(enable);
+    adj_page->setEnabled(main == QM_ADJ ? enable : EnableNone);
     if (from_page != 0)
       from_page->setEnabled(enable);
     if (to_page != 0)

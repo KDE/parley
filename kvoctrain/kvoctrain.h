@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.21  2002/01/04 17:28:51  arnold
     fixed resuming a query
 
@@ -228,7 +231,6 @@ public:
   void slotHeaderCallBack (int cmd_and_id);
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
-  void invokeHelp();
   /** append language to table */
   void slotAppendLang(int header);
   /** exit query mode */
