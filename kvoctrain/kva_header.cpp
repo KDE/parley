@@ -30,6 +30,13 @@
 #define SORT_NUM    I18N_NOOP("Sort by &index")
 
 #include "kvoctrain.h"
+#include "query-dialogs/RandomQueryDlg.h"
+#include "query-dialogs/MCQueryDlg.h"
+#include "query-dialogs/AdjQueryDlg.h"
+#include "query-dialogs/VerbQueryDlg.h"
+#include "query-dialogs/ArtQueryDlg.h"
+#include "query-dialogs/SimpleQueryDlg.h"
+
 
 #include <kcombobox.h>
 #include <klocale.h>
