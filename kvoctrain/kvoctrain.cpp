@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.43  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.42  2002/02/03 08:39:19  arnold
     moved checkbox to options dialog
 
@@ -1012,9 +1015,8 @@ void kvoctrainApp::slotCreateLesson(int header)
   }
 
   int cnt = 0;
-  srand((unsigned int)time((time_t *)NULL));
   while (cnt < MAX_LESSON && sel.size() != 0) {
-    int nr = (int) (sel.size() * ((1.0*rand())/RAND_MAX));
+    int nr = random.getLong(sel.size());
     kvoctrainExpr *kv = view->getTable()->getRow(sel[nr]);
     // include non-lesson and non-empty string
     if (kv->getLesson() == 0) {
@@ -1067,22 +1069,21 @@ void kvoctrainApp::slotCreateRandom()
    slotStatusMsg(i18n("Creating random lessons..."));
    QApplication::setOverrideCursor( waitCursor );
 
-   vector<kvoctrainExpr*> random;
+   vector<kvoctrainExpr*> randomList;
    for (int i = 0; i < doc->numEntries(); i++) {
      kvoctrainExpr *expr = doc->getEntry(i);
      if (expr->getLesson() == 0)
-       random.push_back(expr);
+       randomList.push_back(expr);
    }
 
-   if (random.size () != 0) {
-     srand((unsigned int)time((time_t *)NULL));
+   if (randomList.size () != 0) {
      int less_no = lessons->count() /* +1 anyway */ ;
      QString s;
      s.setNum (less_no);
      s.insert (0, "- ");
      lessons->insertItem (s);
      int less_cnt = entriesPerLesson;
-     while (random.size () != 0) {
+     while (randomList.size () != 0) {
        if (--less_cnt <= 0) {
          less_cnt = entriesPerLesson;
          less_no++;
@@ -1090,9 +1091,9 @@ void kvoctrainApp::slotCreateRandom()
          s.insert (0, "- ");
          lessons->insertItem (s);
        }
-       int nr = (int) (random.size() * ((1.0*rand())/RAND_MAX));
-       random[nr]->setLesson (less_no);
-       random.erase(&random[nr], &random[nr+1]);
+       int nr = random.getLong(randomList.size());
+       randomList[nr]->setLesson(less_no);
+       randomList.erase(&randomList[nr], &randomList[nr+1]);
      }
 
      vector<QString> new_lessonStr;

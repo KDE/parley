@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.27  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.26  2002/01/30 17:26:55  arnold
     added some tooltips, fixed capitalisation
 
@@ -706,6 +709,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
 {
   fillLessonBox(the_doc);
 
+qWarning("kvoctrainApp::loadDocProps: random_expr1.clear()");
   random_expr1.clear();
   random_expr2.clear();
   queryList.clear();

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.24  2002/01/26 15:51:08  arnold
+    fixes due to new entry dialog
+
     Revision 1.23  2002/01/21 18:56:15  arnold
     fixed disabling of dialog pages
 
@@ -122,6 +125,7 @@
 #include <ktoolbar.h>
 #include <kiconloader.h>
 #include <kmessagebox.h>
+#include <krandomsequence.h>
 
 // application specific includes
 #include "kvoctrainview.h"
@@ -425,6 +429,7 @@ private:
   int              showcounter;
   bool             autosaveopts;
   bool             autoentryApply;
+  KRandomSequence  random;
 };
  
 #endif // KVOCTRAIN_H

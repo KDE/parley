@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/01/27 07:17:44  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.21  2002/01/20 11:41:01  arnold
     fixed issues with modeless dialogs
 
@@ -221,7 +224,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
   hide();
   querymode = true;
 
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  random_query_nr = random.getLong(random_expr1.size());
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg = new SimpleQueryDlg (
@@ -333,7 +336,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     return;
   }
 
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  random_query_nr = random.getLong(random_expr1.size());
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg->setQuery(queryType,
@@ -395,7 +398,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
      return;
   }
 
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  random_query_nr = random.getLong(random_expr1.size());
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   hide();
@@ -553,7 +556,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     return;
   }
 
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  random_query_nr = random.getLong(random_expr1.size());
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   if (queryType == QT_Conjugation) {
@@ -629,11 +632,11 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotRestartQuery()
 {
-  slotStartQuery(act_query_trans, act_query_org, false);
   if (random_expr1.size() != 0) {
     queryList.insert(queryList.begin(), random_expr1);
     random_expr1.clear();
   }
+  slotStartQuery(act_query_trans, act_query_org, false);
 }
 
 
@@ -694,7 +697,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
   hide();
   querymode = true;
 
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  random_query_nr = random.getLong(random_expr1.size());
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   QString q_org,
@@ -779,6 +782,7 @@ void kvoctrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
 void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 {
   doc->setModified();
+
 
   int tindex = view->getTable()->findIdent(act_query_trans);
   int oindex = view->getTable()->findIdent(act_query_org);
@@ -901,8 +905,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     slotStopQuery(true);
     return;
   }
-
-  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  
+  random_query_nr = random.getLong(random_expr1.size());
   exp = random_expr1[random_query_nr].exp;
 
   tindex = view->getTable()->findIdent(act_query_trans);
@@ -911,8 +915,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
           q_trans;
 
   if (swap_querydir) {
-    float rnd = ((1.0*rand())/RAND_MAX);
-    bool rand_swap = rnd >= 0.5 ? true : false;
+    bool rand_swap = random.getBool();
 
     if (rand_swap) {        // random direction
       int tmp = oindex;
