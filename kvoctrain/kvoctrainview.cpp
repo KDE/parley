@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.6  2001/11/01 11:26:12  arnold
     fixed some editing actions
 
@@ -104,12 +107,15 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  if (the_doc->numLangs() == 0)
    the_doc->appendLang (i18n("Original"));
 
+ connect( lb_list, SIGNAL(selected(int)),
+          lb_list, SLOT(sortByColumn_alpha(int)) );
+ connect( lb_list, SIGNAL(rightButtonClicked(int,int,int)),
+          parent, SLOT(slotHeaderMenu(int,int,int)) );
+
  connect( lb_list, SIGNAL(edited(int,int)),
           parent, SLOT(slotEditEntry(int,int)) );
  connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
           parent, SLOT(slotEditEntry(int,int)) );
-//connect( lb_list, SIGNAL(currentChanged(int, int)),
-//          parent, SLOT(slotCurrentChanged(int, int)) );
  connect( lb_list, SIGNAL(sigModified(bool)),
           parent, SLOT(slotModifiedDoc(bool)) );
  connect( lb_list, SIGNAL(sigCancelSelection()),
@@ -118,10 +124,6 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
           parent, SLOT(slotCurrentCellChanged(int, int)) );
  connect( lb_list, SIGNAL(selected(int,int,int)),
           parent, SLOT(slotSelectEntry(int,int,int)) );
-/*
- connect( lb_list, SIGNAL(sigCancelSelection()),
-          parent, SLOT(slotCancelSelection()) );
-*/
 
  list_layout = new QGridLayout( f_list, 2, 1, 4 );
  list_layout->addWidget( lb_list, 1, 0 );
@@ -129,7 +131,6 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  list_layout->activate();
 
  setView(the_doc, ls, gradecols);
-
 }
 
 
@@ -144,8 +145,8 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
   f_list->resize (r_ev->size());
   QHeader *header = lb_list->horizontalHeader();
   int remain = lb_list->clipper()->width();
-  cout << "remain: " << remain << endl;
-  cout << "ev width: " << r_ev->size().width() << endl;
+//  cout << "remain: " << remain << endl;
+//  cout << "ev width: " << r_ev->size().width() << endl;
 /*
   switch (header_resizer) {
     case Automatic: {
@@ -153,7 +154,7 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
     // lesson is only half as wide as a original/translation
     // exclude fixed size of "mark"-column
       int x = (remain -20) / ((lb_list->numCols()-1)*2-1);
-      cout << "x: " << remain << endl;
+//      cout << "x: " << remain << endl;
       header->resizeSection( KV_COL_LESS, x);
       lb_list->setColumnWidth (KV_COL_LESS, x);
       remain -= x;
@@ -311,6 +312,9 @@ void kvoctrainTable::setCurrentItem(int row)
 
 void kvoctrainTable::sortByColumn_alpha(int header)
 {
+  if (header == KV_COL_MARK)
+   return;
+
   if (m_rows && !m_rows->isAllowedSorting() ) {
      KMessageBox::information(this, 
                i18n("Sorting is currently turned off for this document.\n"
@@ -321,13 +325,15 @@ void kvoctrainTable::sortByColumn_alpha(int header)
   }
 
 //  emit sigCancelSelection();
+  bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );
   if (m_rows) {
     if (header >= KV_COL_ORG)
-      m_rows->sort (header-KV_EXTRA_COLS);
+      sortdir = m_rows->sort (header-KV_EXTRA_COLS);
     else
-      m_rows->sortByLesson_alpha();
+      sortdir = m_rows->sortByLesson_alpha();
   }
+  horizontalHeader()->setSortIndicator ( header, sortdir);
   updateContents(0, currentColumn());
   m_rows->setModified();
   QApplication::restoreOverrideCursor();
@@ -336,6 +342,9 @@ void kvoctrainTable::sortByColumn_alpha(int header)
 
 void kvoctrainTable::sortByColumn_index(int header)
 {
+  if (header == KV_COL_MARK)
+   return;
+
   if (m_rows && !m_rows->isAllowedSorting() ) {
      KMessageBox::information(this, 
                i18n("Sorting is currently turned off for this document.\n"
@@ -346,13 +355,15 @@ void kvoctrainTable::sortByColumn_index(int header)
   }
 
 //  emit sigCancelSelection();
+  bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );
   if (m_rows) {
     if (header >= KV_COL_ORG)
-      m_rows->sort (header-KV_EXTRA_COLS);
+      sortdir = m_rows->sort (header-KV_EXTRA_COLS);
     else
-      m_rows->sortByLesson_index();
+      sortdir = m_rows->sortByLesson_index();
   }
+  horizontalHeader()->setSortIndicator ( header, sortdir);
   updateContents(0, currentColumn());
   m_rows->setModified();
   QApplication::restoreOverrideCursor();

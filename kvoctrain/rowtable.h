@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/01 11:26:12  arnold
+    fixed some editing actions
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -54,6 +57,7 @@ class kvoctrainDoc;
 class kvoctrainExpr;
 class GradeCols;
 class QKeyEvent;
+class QTimer;
 
 /**
   * This class provides the container for your complete
@@ -107,10 +111,17 @@ protected:
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
 
+protected slots:
+        void menuTriggerTimeout();
+        void headerReleaseEvent(int sec);
+        void headerPressEvent(int sec);
+
 signals:
         void cellMoved(int, int);
         void edited(int, int);
 	void selected(int row, int col, int key_state);
+	void selected(int row);
+        void rightButtonClicked(int header, int x, int y);
 
 protected:
 	kvoctrainDoc    *m_rows;
@@ -120,7 +131,8 @@ private:
 
 	vector<SpecFont_t> m_colFonts;
 	int                m_flags;
-
+	QTimer            *delayTimer;
+        int                triggerSect;
 	const GradeCols   *gradecols;
 
   friend class kvoctrainView;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -662,19 +665,24 @@ public:
 };
 
 
-void kvoctrainDoc::sort (int index)
+bool kvoctrainDoc::sort (int index)
 {
-  if (index >= numLangs())
-    return;
+  if (!sort_allowed)
+    return false;
 
-  for (int i = 0; i < (int) langs.size(); i++)
-    sort_lang.push_back(false);
+  if (index >= numLangs())
+    return false;
+
+  if (sort_lang.size() < langs.size())
+    for (int i = sort_lang.size(); i < (int) langs.size(); i++)
+      sort_lang.push_back(false);
 
   if (index == 0)
     ::sort (vocabulary.begin(), vocabulary.end(), sortByOrg(sort_lang[0]));
   else
     ::sort (vocabulary.begin(), vocabulary.end(), sortByTrans(index, sort_lang[index]));
   sort_lang[index] = !sort_lang[index];
+  return sort_lang[index];
 }
 
 
@@ -685,8 +693,7 @@ bool kvoctrainDoc::sortByLesson_alpha ()
 
   ::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_alpha(sort_lesson, *this ));
   sort_lesson = !sort_lesson;
-
-  return true;
+  return sort_lesson;
 }
 
 
@@ -695,10 +702,14 @@ bool kvoctrainDoc::sortByLesson_index ()
   if (!sort_allowed)
     return false;
 
+  if (sort_lang.size() < langs.size())
+    for (int i = sort_lang.size(); i < (int) langs.size(); i++)
+      sort_lang.push_back(false);
+
   ::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_index(sort_lesson, *this ));
   sort_lesson = !sort_lesson;
-
-  return true;
+  sort_lang[0] = sort_lesson;
+  return sort_lesson;
 }
 
 

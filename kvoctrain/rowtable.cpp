@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.5  2001/11/01 11:26:12  arnold
     fixed some editing actions
 
@@ -40,6 +43,7 @@
 #include <qkeycode.h>
 #include <qscrollbar.h>
 #include <qpainter.h>
+#include <qtimer.h>
 #include <kapp.h>
 
 #include <iostream.h>
@@ -49,6 +53,10 @@
 #include "kv_resource.h"
 #include "langset.h"
 
+// delay im ms (microsoft seconds) before delayed popup pops up
+#define POPUP_DELAY 500
+
+
 RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
                    const LangSet *ls, const GradeCols *gc,
                    QWidget *parent, const char *name )
@@ -57,6 +65,13 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
 	init(flags);
         setDoc (rows, ls, gc);
         setFocus();
+        triggerSect = -1;
+        delayTimer = new QTimer (this);
+        connect (delayTimer, SIGNAL(timeout ()), this, SLOT(menuTriggerTimeout()));
+        QHeader *header = horizontalHeader();
+
+        connect (header, SIGNAL(pressed(int)), this, SLOT(headerPressEvent(int)));
+        connect (header, SIGNAL(released(int)), this, SLOT(headerReleaseEvent(int)));
 }
 
 
@@ -127,6 +142,7 @@ void RowTable::setLangSet (const LangSet *ls)
   }
 }
 
+
 void RowTable::setDoc(kvoctrainDoc *rows, const LangSet  *ls,
                       const GradeCols *gc)
 {
@@ -163,7 +179,9 @@ void RowTable::init(Flags flags)
         setColumnMovingEnabled(false);
         setRowMovingEnabled(false);
         setSorting(false);
+//        horizontalHeader()->setClickEnabled(false);
 }
+
 
 void RowTable::setNumCols( int cols )
 {
@@ -344,6 +362,7 @@ bool RowTable::createMenuNames (QString forbidden_chars,
 
 void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
 {
+  delayTimer->stop();
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
 
@@ -360,6 +379,7 @@ void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
 
 void RowTable::contentsMousePressEvent( QMouseEvent *e )
 {
+  delayTimer->stop();
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
 
@@ -385,6 +405,7 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
 
 void RowTable::keyPressEvent( QKeyEvent *e )
 {
+  delayTimer->stop();
   switch( e->key() ) {
       case Key_Right: {
         int topCell = rowAt(0);
@@ -432,5 +453,43 @@ void RowTable::keyPressEvent( QKeyEvent *e )
     break;
   }
 }
+
+
+void RowTable::headerPressEvent(int sec)
+{
+   triggerSect = sec;
+   delayTimer->stop();
+   delayTimer->start(POPUP_DELAY, true);
+}
+
+
+void RowTable::headerReleaseEvent(int sec)
+{
+   delayTimer->stop();
+   if(triggerSect == -1 )  // long enough pressed for popup menu
+   	return;
+   int mt = triggerSect;
+   triggerSect = -1;
+   emit selected(mt);
+}
+
+
+void RowTable::menuTriggerTimeout()
+{
+   delayTimer->stop();
+   if(triggerSect == -1 )
+     return;
+
+   int mt = triggerSect;
+   triggerSect = -1;
+
+   QHeader *header = horizontalHeader();
+   int x = leftMargin();
+   for (int i = 0; i < mt; ++i )
+     x += header->sectionSize(i);
+   QPoint mpos = mapToGlobal(QPoint(x, topMargin()));
+   emit rightButtonClicked(mt, mpos.x(), mpos.y() );
+}
+
 
 #include "rowtable.moc"

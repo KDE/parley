@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -306,9 +309,10 @@ class kvoctrainDoc : public QObject
 
   /** sorts vocabulary alphabetically
    *
-   * @param index            index expression
+   * @param  index            index expression
+   * @result direction of sorting: true = ascending
    */
-  void sort (int index);
+  bool sort (int index);
 
   /** removes equal entries (orig + all translations)
    *
@@ -317,10 +321,12 @@ class kvoctrainDoc : public QObject
   int cleanUp();
 
   /** sorts vocabulary by lesson indices
+   * @result direction of sorting: true = ascending
    */
   bool sortByLesson_index ();
 
   /** sorts vocabulary by lesson name
+   * @result direction of sorting: true = ascending
    */
   bool sortByLesson_alpha ();
 
