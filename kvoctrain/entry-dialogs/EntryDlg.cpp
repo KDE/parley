@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/03/05 18:33:44  arnold
+    fix for display problems
+
     Revision 1.20  2002/02/03 08:39:20  arnold
     moved checkbox to options dialog
 
@@ -107,7 +110,6 @@
 #include <qpushbutton.h>
 #include <qapplication.h>
 
-#include <kvoctraindoc.h>
 #include <kv_resource.h>
 #include <langset.h>
 #include <klocale.h>
