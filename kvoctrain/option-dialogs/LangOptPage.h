@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/10 21:00:15  mueller
+    fix compilation
+
     Revision 1.4  2001/11/10 17:35:03  arnold
     fixed language property dialog page
 
@@ -110,5 +113,7 @@ protected:
     vector <LangRef> globalLangs;
     LangSet          global_langset;
     QPopupMenu      *langset_popup;
+
+    friend class sortByRegion;
 };
 #endif // LangOptPage_included

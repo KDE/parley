@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/16 18:53:21  arnold
+    added possibility to disacble expressions
+
     Revision 1.5  2001/11/02 17:50:44  arnold
     fixed sorting basically
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/01 11:28:13  arnold
+    fixed flickering in query dialogs
+
     Revision 1.15  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -119,6 +122,7 @@ class VerbQueryDlg;
 class RandomQueryDlg;
 class AdjQueryDlg;
 class ArtQueryDlg;
+class EntryDlg;
 
 class KLineEdit;
 class KComboBox;
@@ -369,6 +373,7 @@ private:
   bool             useCurrent;
   int              entriesPerLesson;
   QFont            tablefont;
+  QFont            ipafont;
   QueryManager     querymanager;
   bool             controlActive;
   bool             shiftActive;
@@ -396,6 +401,7 @@ private:
   kvq_timeout_t    type_querytimeout;
   int              showcounter;
   bool             autosaveopts;
+  EntryDlg        *entrydialog;
 };
  
 #endif // KVOCTRAIN_H

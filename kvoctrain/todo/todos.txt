@@ -3,6 +3,13 @@ $Date$
                    kvoctrain roadmap and todo
                   ----------------------------
 
+
+Reference and Introduction to Phonetic Symbols
+http://esl.about.com/library/weekly/aa040998.htm
+
+IPA-enabled font
+http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html
+
 still left flaws:
 =================
 

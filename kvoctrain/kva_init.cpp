@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/12/05 09:07:21  howells
+    Fix some spelling/gramattical errors, and make the program fit better with the style guide
+
     Revision 1.16  2001/12/01 11:28:13  arnold
     fixed flickering in query dialogs
 
@@ -405,12 +408,12 @@ void kvoctrainApp::initStatusBar()
 
   pron_label = new QLabel (i18n(PREFIX_Pronunce), statusBar());
   pron_label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  pron_label->setFont(ipafont);
   statusBar()->addWidget(pron_label, 200);
 
   rem_label = new QLabel (i18n(PREFIX_Remark), statusBar());
   rem_label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
   statusBar()->addWidget(rem_label, 150);
-
 }
 
 

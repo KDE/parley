@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/07 19:20:50  arnold
+    included multiple choice fields and false friend into query
+
     Revision 1.10  2001/12/01 11:28:13  arnold
     fixed flickering in query dialogs
 
@@ -49,7 +52,6 @@
 
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -203,6 +205,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 {
 
+    kdDebug() << "to prop\n";
   if (simpleQueryDlg == 0) {
     kdError() << "simpleQueryDlg == 0\n";
     slotStopQuery(true);
@@ -248,6 +251,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     break;
 
     case QueryDlgBase::StopIt :
+      kdDebug() << "stopint\n";
         num_queryTimeout = 0;
         slotStopQuery(true);
     break;
@@ -920,6 +924,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotStopQuery(bool )
 {
+    kdDebug() << "sdtopquery\n";
     delete simpleQueryDlg;
     delete mcQueryDlg;
     delete verbQueryDlg;
@@ -927,6 +932,7 @@ void kvoctrainApp::slotStopQuery(bool )
     delete adjQueryDlg;
     delete artQueryDlg;
 
+    kdDebug() << "sdtopquery 2\n";
     simpleQueryDlg = 0;
     mcQueryDlg = 0;
     verbQueryDlg = 0;
@@ -937,6 +943,8 @@ void kvoctrainApp::slotStopQuery(bool )
     querying = false;
     querymode = false;
     show();
+    kdDebug() << "sdtopquery 3\n";
     kapp->setTopWidget(this);
     kapp->setMainWidget( this );
+    kdDebug() << "sdtopquery 4\n";
 }

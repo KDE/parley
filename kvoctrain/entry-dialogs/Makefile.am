@@ -7,6 +7,8 @@ INCLUDES = -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
 noinst_LTLIBRARIES = libentrydlg.la
 
 libentrydlg_la_SOURCES =  \
+  PhoneticEntryPage.cpp  \
+  PhoneticEntryPageForm.ui  \
   FromToEntryPage.cpp    CommonEntryPage.cpp     AuxInfoEntryPage.cpp \
   FromToEntryPageForm.ui CommonEntryPageForm.ui  AuxInfoEntryPageForm.ui \
   TenseEntryPage.cpp     AdjEntryPage.cpp        MCEntryPage.cpp \

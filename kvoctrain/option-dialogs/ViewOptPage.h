@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.1  2001/10/05 15:44:04  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -48,14 +51,16 @@ public:
 
     ViewOptPage
     (
-        QFont        &_font,
+        QFont        &_tablefont,
+        QFont        &_ipa_font,
         GradeCols    &cols,
         QueryManager *manager,
         QWidget      *parent = NULL,
         const char   *name = NULL
     );
 
-    QFont     getFont()       const { return font; }
+    QFont     getIPAFont()    const { return ipa_font; }
+    QFont     getFont()       const { return tablefont; }
     GradeCols getGradeCols()  const { return gc; }
 
 protected:
@@ -66,6 +71,7 @@ public slots:
 
 protected slots:
     void slotChooseFont();
+    void slotChooseIPAFont();
     void slotCol0(const QColor&);
     void slotCol1(const QColor&);
     void slotCol2(const QColor&);
@@ -79,6 +85,7 @@ protected slots:
 
 protected:
     GradeCols     gc;
-    QFont         font;
+    QFont         tablefont;
+    QFont         ipa_font;
 };
 #endif // ViewOptPage_included

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/23 18:16:08  mueller
+    compile fixes (builddir != stddir, --enable-final)
+
     Revision 1.9  2001/11/17 17:58:55  arnold
     added inline editing of all columns
 
@@ -72,6 +75,7 @@
 #include <qgroupbox.h>
 
 #include <kapp.h>
+#include <kdebug.h>
 #include <klocale.h>
 #include <kstddirs.h>
 
@@ -82,6 +86,8 @@
 #include "DocPropDlg.h"
 #include "LessOptPage.h"
 #include "blockall.h"
+#include "PhoneticEntryPage.h"
+
 
 CommonEntryPage::CommonEntryPage
 (
@@ -98,6 +104,7 @@ CommonEntryPage::CommonEntryPage
         QString       label,
         QueryManager &_querymanager,
         bool          active,
+        const QFont&  _ipafont,
 	QWidget      *parent,
 	const char   *name
 )
@@ -111,8 +118,11 @@ CommonEntryPage::CommonEntryPage
         dlgbook(_dlgbook),
         doc(_doc),
         querymanager(_querymanager),
-        entry_active(active)
+        entry_active(active),
+        ipafont(_ipafont)
 {
+        phoneticDlg = 0;
+
 	connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
 	connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
 	connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );
@@ -128,6 +138,7 @@ CommonEntryPage::CommonEntryPage
 	connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
 	connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
+    pronunce_line->setFont(ipafont);
     setLessonBox (lessbox, less);
     lesson_label->setBuddy(lesson_box);
 
@@ -208,14 +219,18 @@ CommonEntryPage::CommonEntryPage
     b_pronDlg->setGeometry( b_pronDlg->x()-2, b_pronDlg->y()-2,
                    pron_pm.width()+x_add, pron_pm.height()+y_add );
     b_pronDlg->setPixmap(pron_pm);
-    b_pronDlg->setEnabled (false);
-
 }
 
 
 void CommonEntryPage::initFocus() const
 {
   expr_line->setFocus();
+}
+
+
+CommonEntryPage::~CommonEntryPage()
+{
+  deletePronDlg();
 }
 
 
@@ -359,9 +374,30 @@ void CommonEntryPage::slotTypeSelected(int idx)
 }
 
 
+void CommonEntryPage::deletePronDlg()
+{
+  delete phoneticDlg;
+  phoneticDlg = 0;
+}
+
+
+void CommonEntryPage::phoneticSelected(wchar_t wc)
+{
+  pronunce += QChar(wc);
+  pronunce_line->setText(pronunce);
+}
+
+
 void CommonEntryPage::invokePronDlg()
 {
-   cout << "Pron-dlg\n";
+  if (phoneticDlg == 0) {
+    phoneticDlg = new PhoneticEntryPage (ipafont, this);
+    connect (phoneticDlg, SIGNAL(wantClose()), SLOT(deletePronDlg()) );
+    connect (phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)) );
+    phoneticDlg->show();
+  }
+  else
+    phoneticDlg->show();
 }
 
 

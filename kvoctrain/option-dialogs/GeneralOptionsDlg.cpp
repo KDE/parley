@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:29:11  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/10 21:13:42  arnold
     removed icons and compatibilty for kde1
 
@@ -80,7 +83,8 @@ GeneralOptionsDlg::GeneralOptionsDlg
         QStringList  &paste_list,
         bool          useCurrent,
         kvoctrainDoc *doc,
-        QFont        &font,
+        QFont        &tablefont,
+        QFont        &ipafont,
         QueryManager *manager,
         GradeCols    &gradecols,
         kvoctrainView::Resizer resizer,
@@ -100,7 +104,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
 
   genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, this, name);
   langOptPage = new LangOptPage (deflang, langset, lastPix, this, name);
-  viewOptPage = new ViewOptPage (font, gradecols, manager, this, name);
+  viewOptPage = new ViewOptPage (tablefont, ipafont, gradecols, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);
 
   addTab( genOptPage,  i18n( "&General" ));

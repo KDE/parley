@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/17 17:58:55  arnold
+    added inline editing of all columns
+
     Revision 1.9  2001/11/10 22:28:25  arnold
     removed compatibility for kde1
 
@@ -111,11 +114,12 @@ EntryDlg::EntryDlg
         QueryManager  &querymanager,
 	const QString &title,
         bool           active,
+        const QFont&  ipafont,
 	QWidget    *parent,
 	const char *name
 )
 	:
-	Inherited( parent, name, true )
+	Inherited( parent, name, true)
 {
 	setCaption (kapp->makeStdCaption( name));
 
@@ -130,7 +134,8 @@ EntryDlg::EntryDlg
           to_page = 0;
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Original &expression in %1:").arg(s), querymanager, active);
+                                           i18n("Original &expression in %1:").arg(s), querymanager, active,
+                                           ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
@@ -139,7 +144,8 @@ EntryDlg::EntryDlg
         else {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Translated &expression in %1:").arg(s), querymanager, active);
+                                           i18n("Translated &expression in %1:").arg(s), querymanager, active,
+                                           ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());

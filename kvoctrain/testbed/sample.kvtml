@@ -71,7 +71,7 @@ Valid xml means:
   license="GPL"
   remark="doc remark&nl;line2">
 
- <lesson width="180">
+ <lesson width="163">
   <desc no="1">- 1</desc>
   <desc no="2">- 2</desc>
   <desc no="3">- 3</desc>
@@ -87,6 +87,10 @@ Valid xml means:
 
  <article>
   <e l="en">
+   <fd>the</fd>
+   <fi>a</fi>
+  </e>
+  <e l="de">
    <fd>die</fd>
    <fi>eine</fi>
    <md>der</md>
@@ -94,14 +98,20 @@ Valid xml means:
    <nd>das</nd>
    <ni>ein</ni>
   </e>
-  <e l="de">
-   <fd>the</fd>
-   <fi>a</fi>
-  </e>
  </article>
 
  <conjugation>
   <e l="en">
+   <s1>I</s1>
+   <s2>you</s2>
+   <s3f>he</s3f>
+   <s3m>she</s3m>
+   <s3n>it</s3n>
+   <p1>we</p1>
+   <p2>you</p2>
+   <p3f common="1">they</p3f>
+  </e>
+  <e l="de">
    <s1>ich</s1>
    <s2>du</s2>
    <s3f>sie</s3f>
@@ -112,16 +122,6 @@ Valid xml means:
    <p3f common="1">sie</p3f>
    <p3m>sie</p3m>
    <p3n>sie</p3n>
-  </e>
-  <e l="de">
-   <s1>I</s1>
-   <s2>you</s2>
-   <s3f>he</s3f>
-   <s3m>she</s3m>
-   <s3n>it</s3n>
-   <p1>we</p1>
-   <p2>you</p2>
-   <p3f common="1">they</p3f>
   </e>
  </conjugation>
 
@@ -141,7 +141,7 @@ Valid xml means:
   <desc no="1">#20 3</desc>
  </usage>
 
- <e m="2"><o width="360" l="en" q="t">aback (taken ~)</o><t width="360" l="de" q="o">verblüfft</t></e>
+ <e m="2"><o width="326" l="en" q="t">aback (taken ~)</o><t width="327" l="de" q="o">verblüfft</t></e>
  <e m="1" t="aj"><o r="bem">balmy</o><t>mild</t></e>
  <e m="2"><o>chunk</o><t r="Klotz">Klotz</t></e>
  <e m="3"><o>decline</o><t>Niedergang, Verfall</t></e>
@@ -152,7 +152,7 @@ Valid xml means:
    <t n="PrPr"><s1>pp</s1></t>
    <t n="PrPe"><s1>pperf</s1></t>
   </conjugation>
-  encumber</o><t>behindern</t></e>
+  encumber</o><t p="ʒʏɲʖʪʬʭˊħʧðɜʇ">behindern</t></e>
  <e m="5" i="1" t="v:ir"><o y="-">favour</o><t>Gunst, Gefallen</t></e>
  <e m="6"><o>genuflect</o><t>Kniebeugen</t></e>
  <e m="2" t="v:ir"><o y="-" u="#1">
@@ -177,7 +177,7 @@ Valid xml means:
  <e m="2" t="n"><o r="dfgh" y="-" p="mischief">mischief</o><t r="remark">Unheil, Schaden</t></e>
  <e m="5"><o y="-">neat</o><t>niedlich, ordentlich</t></e>
  <e m="2"><o>opinionated</o><t>starrsinnig</t></e>
- <e m="10" t="#1"><o y="-">
+ <e m="10" s="1" t="n:f"><o y="-">
   <multiplechoice>
    <mc1>pi1</mc1><mc2>pi2</mc2><mc3>pi3</mc3><mc4>pi4</mc4><mc5>pi5</mc5>
   </multiplechoice>

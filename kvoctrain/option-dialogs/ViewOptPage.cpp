@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/24 11:47:59  arnold
+    fix for color buttons
+
     Revision 1.8  2001/11/10 22:29:11  arnold
     removed compatibility for kde1
 
@@ -76,7 +79,8 @@
 
 ViewOptPage::ViewOptPage
 (
-        QFont        &_font,
+        QFont        &_tablefont,
+        QFont        &_ipa_font,
         GradeCols    &cols,
         QueryManager *manager,
 	QWidget      *parent,
@@ -85,7 +89,8 @@ ViewOptPage::ViewOptPage
 	:
 	ViewOptPageForm( parent, name ),
         gc(cols),
-        font(_font)
+        tablefont(_tablefont),
+        ipa_font(_ipa_font)
 {
    connect( b_col0, SIGNAL(changed(const QColor&)), SLOT(slotCol0(const QColor&)) );
    connect( b_col1, SIGNAL(changed(const QColor&)), SLOT(slotCol1(const QColor&)) );
@@ -97,10 +102,12 @@ ViewOptPage::ViewOptPage
    connect( b_col7, SIGNAL(changed(const QColor&)), SLOT(slotCol7(const QColor&)) );
    connect( c_use, SIGNAL(toggled(bool)), SLOT(slotColUsed(bool)) );
    connect( b_choose, SIGNAL(clicked()), SLOT(slotChooseFont()) );
+   connect( b_choose_ipa, SIGNAL(clicked()), SLOT(slotChooseIPAFont()) );
 
    setCaption( kapp->makeStdCaption(i18n("Document properties" )));
 
-   e_font->setText (QString("%1 %2pt").arg(font.family()).arg(font.pointSize()));
+   e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
+   e_ipa_font->setText (QString("%1 %2pt").arg(ipa_font.family()).arg(ipa_font.pointSize()));
 
    b_col0->setColor (cols.col0);
    b_col1->setColor (cols.col1);
@@ -126,13 +133,29 @@ void ViewOptPage::slotChooseFont()
    KFontDialog fdlg (0L, 0L, false, true);
    fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    fdlg.setCaption(i18n("Choose table font"));
-   fdlg.setFont(font);
+   fdlg.setFont(tablefont);
    if (fdlg.exec() == QDialog::Accepted ) {
-     font = fdlg.font();
-     font.setWeight(QFont::Normal);
-     font.setStrikeOut(false);
-     font.setUnderline(false);
-     e_font->setText (QString("%1 %2pt").arg(font.family()).arg(font.pointSize()));
+     tablefont = fdlg.font();
+     tablefont.setWeight(QFont::Normal);
+     tablefont.setStrikeOut(false);
+     tablefont.setUnderline(false);
+     e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
+   }
+}
+
+
+void ViewOptPage::slotChooseIPAFont()
+{
+   KFontDialog fdlg (0L, 0L, false, true);
+   fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+   fdlg.setCaption(i18n("Choose IPA font"));
+   fdlg.setFont(ipa_font);
+   if (fdlg.exec() == QDialog::Accepted ) {
+     ipa_font = fdlg.font();
+     ipa_font.setWeight(QFont::Normal);
+     ipa_font.setStrikeOut(false);
+     ipa_font.setUnderline(false);
+     e_ipa_font->setText (QString("%1 %2pt").arg(ipa_font.family()).arg(ipa_font.pointSize()));
    }
 }
 

@@ -15,7 +15,10 @@
 
     -----------------------------------------------------------------------
 
-    $Log: $
+    $Log$
+    Revision 1.2  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
  ***************************************************************************/
 
 /***************************************************************************
@@ -42,6 +45,8 @@
 #define       CFG_XMLOPS_R             "XmlOps_R"
 #define       CFG_XMLOPS_W             "XmlOps_W"
 #define       CFG_XMLOPS_S             "XmlOps_S"
+#define       CFG_IPA_FSIZE            "IPAFontSize"
+#define       CFG_IPA_FFAMILY          "IPAFontFamily"
 #define       CFG_FSIZE                "FontSize"
 #define       CFG_FFAMILY              "FontFamily"
 #define       CFG_FCHARSET             "FontCharSet"

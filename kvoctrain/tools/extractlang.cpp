@@ -45,8 +45,8 @@ void parseLanguage(QString name, QString three, QString two)
 
   slash = three.find('/');
   if (slash > 0) {
-    two.append(", ");
-    two.append(three.mid(slash));
+    if (two.length() == 0)
+      two = three.mid(slash+1);
     three.remove(slash, three.length());
   }
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/17 17:58:55  arnold
+    added inline editing of all columns
+
     Revision 1.4  2001/11/09 14:18:49  arnold
     fixed and improved some dialog pages
 
@@ -115,6 +118,7 @@ public:
         QueryManager  &querymanager,
 	const QString &title,
         bool           active,
+        const QFont&   ipafont,
         QWidget    *parent = 0,
 	const char *name = 0
     );

@@ -12,7 +12,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>560</width>
+            <width>556</width>
             <height>480</height>
         </rect>
     </property>
@@ -48,7 +48,7 @@
                     <name>spacing</name>
                     <number>6</number>
                 </property>
-                <widget row="0"  column="1"  rowspan="2"  colspan="1" >
+                <widget row="0"  column="3"  rowspan="3"  colspan="1" >
                     <class>QGroupBox</class>
                     <property stdset="1">
                         <name>name</name>
@@ -316,7 +316,7 @@
                         </widget>
                     </grid>
                 </widget>
-                <spacer row="1"  column="0" >
+                <spacer row="2"  column="1" >
                     <property>
                         <name>name</name>
                         <cstring>Spacer2</cstring>
@@ -337,99 +337,121 @@
                         </size>
                     </property>
                 </spacer>
-                <widget row="0"  column="0" >
-                    <class>QFrame</class>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
-                        <cstring>Frame3</cstring>
+                        <cstring>TextLabel1_2</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>IPA font:</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="2" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>b_choose_ipa</cstring>
                     </property>
                     <property stdset="1">
                         <name>sizePolicy</name>
                         <sizepolicy>
                             <hsizetype>1</hsizetype>
-                            <vsizetype>3</vsizetype>
+                            <vsizetype>1</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>C&amp;hange</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="2" >
+                    <class>QPushButton</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>b_choose</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>1</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>&amp;Change</string>
+                    </property>
+                </widget>
+                <widget row="0"  column="1" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>e_font</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>1</vsizetype>
                         </sizepolicy>
                     </property>
                     <property stdset="1">
                         <name>frameShape</name>
-                        <enum>NoFrame</enum>
+                        <enum>WinPanel</enum>
                     </property>
                     <property stdset="1">
                         <name>frameShadow</name>
-                        <enum>Raised</enum>
+                        <enum>Sunken</enum>
                     </property>
-                    <hbox>
-                        <property stdset="1">
-                            <name>margin</name>
-                            <number>11</number>
-                        </property>
-                        <property stdset="1">
-                            <name>spacing</name>
-                            <number>6</number>
-                        </property>
-                        <widget>
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>TextLabel1</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>Table font:</string>
-                            </property>
-                        </widget>
-                        <widget>
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>e_font</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShape</name>
-                                <enum>WinPanel</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShadow</name>
-                                <enum>Sunken</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string></string>
-                            </property>
-                        </widget>
-                        <widget>
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>b_choose</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>C&amp;hange</string>
-                            </property>
-                        </widget>
-                    </hbox>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string></string>
+                    </property>
+                </widget>
+                <widget row="0"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Table font:</string>
+                    </property>
+                </widget>
+                <widget row="1"  column="1" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>e_ipa_font</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>1</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>frameShape</name>
+                        <enum>WinPanel</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>frameShadow</name>
+                        <enum>Sunken</enum>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string></string>
+                    </property>
                 </widget>
             </grid>
         </widget>
     </vbox>
 </widget>
 <tabstops>
-    <tabstop>b_choose</tabstop>
     <tabstop>c_use</tabstop>
     <tabstop>b_col7</tabstop>
     <tabstop>b_col6</tabstop>

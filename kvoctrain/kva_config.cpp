@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/25 11:11:02  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.11  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -111,6 +114,8 @@ void kvoctrainApp::saveOptions(bool all)
     }
   
     config->setGroup(CFG_APPEARANCE);
+    config->writeEntry(CFG_IPA_FFAMILY, ipafont.family());
+    config->writeEntry(CFG_IPA_FSIZE, ipafont.pointSize());
     config->writeEntry(CFG_FFAMILY, tablefont.family());
     config->writeEntry(CFG_FSIZE, tablefont.pointSize());
     config->writeEntry(CFG_GC_USE, gradecols.use);
@@ -194,12 +199,22 @@ void kvoctrainApp::readOptions()
   bViewStatusbar = config->readBoolEntry(CFG_SHOW_STATUSBAR, true);
   inline_edit = config->readBoolEntry(CFG_INLINE_EDIT, false);
   tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry(CFG_TOOLBAR_POS, KToolBar::Top);
+
   QFont fdefault;
   QString family = config->readEntry(CFG_FFAMILY, fdefault.family());
-  int size = config->readNumEntry(CFG_FSIZE, fdefault.pointSize());
+  int size = config->readNumEntry(CFG_FSIZE, 12);
   tablefont.setPointSize(size);
   tablefont.setFamily(family);
   tablefont.setWeight(QFont::Normal);
+
+  family = config->readEntry(CFG_IPA_FFAMILY, fdefault.family());
+  size = config->readNumEntry(CFG_IPA_FSIZE, 14);
+  ipafont.setPointSize(size);
+  ipafont.setFamily(family);
+  ipafont.setWeight(QFont::Normal);
+  if (pron_label != 0)
+    pron_label->setFont(ipafont);
+
   gradecols.use = config->readBoolEntry(CFG_GC_USE, true);
   QColor qc = KV_NORM_COLOR;
   gradecols.col0 = config->readColorEntry(CFG_GCOL0, &qc);

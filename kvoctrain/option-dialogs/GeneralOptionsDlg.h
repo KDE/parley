@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/02 10:18:58  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -77,7 +80,8 @@ public:
         QStringList  &list,
         bool          useCurrent,
         kvoctrainDoc *_doc,
-        QFont        &font,
+        QFont        &table_font,
+        QFont        &ipa_font,
         QueryManager *manager,
         GradeCols    &gradecols,
         kvoctrainView::Resizer resizer,
@@ -88,6 +92,7 @@ public:
     );
 
     QFont getFont()           const { return viewOptPage->getFont(); }
+    QFont getIPAFont()        const { return viewOptPage->getIPAFont(); }
     GradeCols getGradeCols()  const { return viewOptPage->getGradeCols(); }
 
     int getBackupTime()       const { return genOptPage->getBackupTime(); }

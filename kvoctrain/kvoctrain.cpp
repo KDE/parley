@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.24  2001/12/01 11:28:13  arnold
+    fixed flickering in query dialogs
+
     Revision 1.23  2001/11/25 11:11:02  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -297,6 +300,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
 
    bool hasSel = hasSelection();
 
+   int res;
    EntryDlg edlg (doc,
                   hasSel,
                   col==0,
@@ -330,10 +334,11 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
                   doc->getEntry(row)->getMultipleChoice(col),
                   querymanager,
                   title,
-                  doc->getEntry(row)->isActive());
+                  doc->getEntry(row)->isActive(),
+                  ipafont);
 
 //   edlg.initFocus();
-   int res = edlg.exec();
+   res = edlg.exec();
 
    if (res != QDialog::Accepted)
       return false;
@@ -635,8 +640,10 @@ void kvoctrainApp::slotAppendRow ()
                    MultipleChoice(),
                    querymanager,
                    i18n("Enter new original expression"),
-                   true);
+                   true,
+                   ipafont);
     res = edlg.exec();
+
     if (res == QDialog::Accepted) {
       fillLessonBox(doc);
       kvoctrainExpr expr (edlg.getExpr(), edlg.getLesson());
@@ -909,6 +916,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
                     useCurrent,
                     doc,
                     tablefont,
+                    ipafont,
                     &querymanager,
                     gradecols,
                     header_resizer,
@@ -930,6 +938,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       paste_order = godlg.getPasteOrder();
       useCurrent = godlg.getUseCurrent(),
       tablefont = godlg.getFont();
+      ipafont = godlg.getIPAFont();
       gradecols = godlg.getGradeCols();
       header_resizer = godlg.getResizer();
 
@@ -938,6 +947,8 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       config->setGroup(CFG_GENERAL);
       config->writeEntry(CFG_USECURRENT, useCurrent);
 
+      if (pron_label)
+        pron_label->setFont(ipafont);
       view->getTable()->setFont(tablefont);
       view->setResizer (header_resizer);
       view->getTable()->updateContents();

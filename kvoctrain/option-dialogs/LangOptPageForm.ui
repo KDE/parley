@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>548</width>
+            <width>540</width>
             <height>480</height>
         </rect>
     </property>
@@ -195,18 +195,26 @@
                             <name>spacing</name>
                             <number>6</number>
                         </property>
-                        <widget row="0"  column="0" >
-                            <class>QLineEdit</class>
+                        <widget row="1"  column="0"  rowspan="1"  colspan="2" >
+                            <class>QPushButton</class>
                             <property stdset="1">
                                 <name>name</name>
-                                <cstring>e_newName</cstring>
+                                <cstring>b_lang_kde</cstring>
                             </property>
                             <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                </sizepolicy>
+                                <name>text</name>
+                                <string>Add language data from &amp;KDE data base</string>
+                            </property>
+                        </widget>
+                        <widget row="2"  column="0"  rowspan="1"  colspan="2" >
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_lang_iso1</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>Add language data from ISO639-&amp;1</string>
                             </property>
                         </widget>
                         <widget row="0"  column="1" >
@@ -220,15 +228,18 @@
                                 <string>&amp;Add</string>
                             </property>
                         </widget>
-                        <widget row="1"  column="0"  rowspan="1"  colspan="2" >
-                            <class>QPushButton</class>
+                        <widget row="0"  column="0" >
+                            <class>QLineEdit</class>
                             <property stdset="1">
                                 <name>name</name>
-                                <cstring>b_lang_kde</cstring>
+                                <cstring>e_newName</cstring>
                             </property>
                             <property stdset="1">
-                                <name>text</name>
-                                <string>Add language data from &amp;KDE data base</string>
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                </sizepolicy>
                             </property>
                         </widget>
                     </grid>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/17 17:58:55  arnold
+    added inline editing of all columns
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -45,6 +48,8 @@
 #include <QueryManager.h>
 #include <UsageManager.h>
 
+class PhoneticEntryPage;
+
 class CommonEntryPage : public CommonEntryPageForm
 {
     Q_OBJECT
@@ -66,9 +71,13 @@ public:
         QString       label,
         QueryManager &querymanager,
         bool          active,
+        const QFont&  ipafont,
         QWidget* parent = NULL,
         const char* name = NULL
     );
+
+    ~CommonEntryPage ();
+
 
     bool    lessonDirty  () const { return lesson_dirty; }
     bool    activeDirty  () const { return active_dirty; }
@@ -99,6 +108,8 @@ protected slots:
     void slotPronunceSelected (const QString&);
     void slotUsageChanged();
     void slotActiveChanged(bool state);
+    void phoneticSelected(wchar_t);
+    void deletePronDlg();
 
     void invokeLessDlg();
     void invokeTypeDlg();
@@ -118,10 +129,13 @@ protected:
     bool          entry_active;
     bool          active_dirty;
 
+    PhoneticEntryPage  *phoneticDlg;
+
     vector<TypeRelation>  all_maintypes;
     vector<TypeRelation>  all_types;
     vector<UsageRelation> usages;
     vector<QString>       current_subtypes;
     QueryManager         &querymanager;
+    QFont                 ipafont;
 };
 #endif // CommonEntryPage_included
