@@ -77,9 +77,6 @@
                             <property name="text">
                                 <string>&amp;Show solution</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+S</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="2" column="0">
                             <property name="name">
@@ -95,9 +92,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;No time limitation</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+N</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Check this if you don't want any time limitation per query.</string>
@@ -120,9 +114,6 @@
                             </property>
                             <property name="text">
                                 <string>S&amp;how remaining time</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+H</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, activate a progress bar to show the remaining time.</string>
@@ -221,9 +212,6 @@
                             <property name="text">
                                 <string>As&amp;k subproperties when vocable was known</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+K</string>
-                            </property>
                         </widget>
                         <widget class="QCheckBox" row="1" column="1">
                             <property name="name">
@@ -234,9 +222,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Conjugation of verbs</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+C</string>
                             </property>
                         </widget>
                         <widget class="QCheckBox" row="1" column="2">
@@ -249,9 +234,6 @@
                             <property name="text">
                                 <string>&amp;Synonyms</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+S</string>
-                            </property>
                         </widget>
                         <widget class="QCheckBox" row="2" column="1">
                             <property name="name">
@@ -262,9 +244,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Articles</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+A</string>
                             </property>
                         </widget>
                         <widget class="QCheckBox" row="2" column="2">
@@ -320,9 +299,6 @@
                     <property name="text">
                         <string>S&amp;wap direction randomly</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+W</string>
-                    </property>
                 </widget>
                 <widget class="QCheckBox">
                     <property name="name">
@@ -330,9 +306,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Use alternative learning method</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+U</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Use the Leitner learning method</string>

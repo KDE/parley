@@ -117,9 +117,6 @@
                             <property name="text">
                                 <string>&amp;Delete</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+D</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Delete the selected language</string>
                             </property>
@@ -241,9 +238,6 @@
                             <property name="text">
                                 <string>Add Language Data From &amp;KDE Database</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+K</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Brings the languages choices from the KDE database</string>
                             </property>
@@ -258,9 +252,6 @@
                             <property name="text">
                                 <string>Add Language Data From ISO639-&amp;1</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+1</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>List of languages covered by ISO639-1</string>
                             </property>
@@ -274,9 +265,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Add</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+A</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Allow to add the language you typed.</string>

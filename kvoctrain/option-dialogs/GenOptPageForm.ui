@@ -63,9 +63,6 @@
                             <property name="text">
                                 <string>Automatic &amp;backup interval (min):</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+B</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Allow automatic savings of your work</string>
                             </property>
@@ -79,9 +76,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Save options automatically </string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+S</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, KVocTrain will save automatically all your changes when quitting</string>
@@ -133,9 +127,6 @@
                             <property name="text">
                                 <string>Smart a&amp;ppending</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+P</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, the entry dialog will popup repeatedly</string>
                             </property>
@@ -149,9 +140,6 @@
                             </property>
                             <property name="text">
                                 <string>Apply changes &amp;without asking</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+W</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Your changes will be applied automatically.</string>
@@ -186,9 +174,6 @@
                             <property name="text">
                                 <string>A&amp;utomatic</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+U</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>KVocTrain decides of the resizing of the columns</string>
                             </property>
@@ -203,9 +188,6 @@
                             <property name="text">
                                 <string>P&amp;ercentage</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+E</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>The columns resize whith the same factor the window is resized to.</string>
                             </property>
@@ -219,9 +201,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Fixed</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+F</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>There is no resizing of the columns</string>

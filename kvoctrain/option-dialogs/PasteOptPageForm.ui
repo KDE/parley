@@ -114,9 +114,6 @@
                             <property name="text">
                                 <string>Use cu&amp;rrent document</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+R</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Check this if you want the items in the clipboard to be in the same language order as the current document.</string>
                             </property>
