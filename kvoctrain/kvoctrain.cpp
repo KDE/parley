@@ -36,6 +36,7 @@
 #include <kdebug.h>
 
 #include <qinputdialog.h>
+#include <qtimer.h>
 
 #include <time.h>
 #include <ctype.h>
