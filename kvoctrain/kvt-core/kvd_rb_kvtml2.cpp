@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -105,7 +108,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
   if (elem.tag() == KV_EXPR && !elem.isEndTag() ) {
     errorKvtMl (xml.lineNumber(),
-                (QString)i18n("unallowed occurence of tag <")+elem.tag()+">");
+                i18n("unallowed occurence of tag <%1>").arg(elem.tag()));
     return false;
   }
 
@@ -120,7 +123,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     if (elem.tag() == KV_ORG && !elem.isEndTag() ) {
       if (org_found) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       org_found = true;
@@ -152,14 +155,14 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       if (vocabulary.size() == 0) {  // only accept in first entry
         if (width >= 0)
           setSizeHint (count, width);
-  
+
         if (query_id == KV_O)
           q_org = lang;
-  
+
         if (query_id == KV_T)
           q_trans = lang;
       }
-  
+
       if (langs.size() == 0) {          // first entry
         if (lang == "")                 // no definition in first entry
           lang = "original";
@@ -224,14 +227,14 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
         if (elem.tag() != KV_ORG || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_ORG+">");
+                      i18n("expected ending tag <%1>").arg(KV_ORG));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_ORG || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_ORG+">");
+                      i18n("expected ending tag <%1>").arg(KV_ORG));
           return false;
         }
         textstr = "";
@@ -278,7 +281,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     else if (elem.tag() == KV_TRANS && !elem.isEndTag() ) {
       if (!org_found) {   // must be preceeded by "original"
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("missing starting tag <")+KV_ORG+">");
+                    i18n("starting tag <%1> is mssing").arg(KV_ORG));
         return false;
       }
 
@@ -309,13 +312,13 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       if (vocabulary.size() == 0) {  // only accept in first entry
         if (width >= 0)
           setSizeHint (count, width);
-  
+
         if (query_id == KV_O)
           q_org = lang;
-  
+
         if (query_id == KV_T)
           q_trans = lang;
-  
+
       }
 
       if (langs.size() <= count) {      // new translation
@@ -351,7 +354,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
           return false;
         }
       }
-  
+
       comparison.clear();
       if (elem.tag () == KV_COMPARISON_GRP && !elem.isEndTag() ) {
         if (!loadComparison (comparison, elem, xml))
@@ -385,7 +388,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
         if (elem.tag() != KV_TRANS || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TRANS+">");
+                      i18n("expected ending tag <%1>").arg(KV_TRANS));
           return false;
         }
         // expr ...
@@ -393,7 +396,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       else {
         if (elem.tag() != KV_TRANS || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TRANS+">");
+                      i18n("expected ending tag <%1>").arg(KV_TRANS));
           return false;
         }
         textstr = "";
@@ -403,7 +406,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
       if (!org_found) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("missing starting tag <")+KV_ORG+">");
+                    i18n("starting tag <%1> is mssing").arg(KV_ORG));
         return false;
       }
 /*
@@ -459,7 +462,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
         return false;
       }
       else {

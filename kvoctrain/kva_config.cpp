@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.6  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -152,24 +155,6 @@ void kvoctrainApp::saveOptions(bool all)
     config->setGroup(CFG_QUERYMANAG);
     querymanager.saveConfig (config);
   }
-}
-
-
-static char **getXFontNames( const char *pattern, int *count )
-// from qfont_x11.cpp
-// Get an array of X font names that matches a pattern
-{
-    static int maxFonts = 256;
-    char **list;
-    while( 1 ) {
-	list = XListFonts( QPaintDevice::x11AppDisplay(), (char*)pattern,
-			   maxFonts, count );
-	// I know precisely why 32768 is 32768.
-	if ( *count != maxFonts || maxFonts >= 32768 )
-	    return list;
-	XFreeFontNames( list );
-	maxFonts *= 2;
-    }
 }
 
 

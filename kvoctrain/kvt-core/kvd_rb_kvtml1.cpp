@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -103,7 +106,7 @@ bool kvoctrainDoc::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_TYPE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+KV_TYPE_GRP+">");
+                    i18n("expected ending tag <%1>").arg(KV_TYPE_GRP));
         return false;
       }
       else
@@ -129,14 +132,14 @@ bool kvoctrainDoc::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_TYPE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TYPE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_TYPE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_TYPE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TYPE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_TYPE_DESC));
           return false;
         }
 
@@ -147,7 +150,7 @@ bool kvoctrainDoc::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
         return false;
       }
       else {
@@ -177,7 +180,7 @@ bool kvoctrainDoc::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_TENSE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+KV_TENSE_GRP+">");
+                    i18n("expected ending tag <%1>").arg(KV_TENSE_GRP));
         return false;
       }
       else
@@ -203,14 +206,14 @@ bool kvoctrainDoc::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_TENSE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TENSE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_TENSE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_TENSE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_TENSE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_TENSE_DESC));
           return false;
         }
 
@@ -221,7 +224,7 @@ bool kvoctrainDoc::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
         return false;
       }
       else {
@@ -251,7 +254,7 @@ bool kvoctrainDoc::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_USAGE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+KV_USAGE_GRP+">");
+                    i18n("expected ending tag <%1>").arg(KV_USAGE_GRP));
         return false;
       }
       else
@@ -277,14 +280,14 @@ bool kvoctrainDoc::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_USAGE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_USAGE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_USAGE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_USAGE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      (QString)i18n("expected ending tag <")+KV_USAGE_DESC+">");
+                      i18n("expected ending tag <%1>").arg(KV_USAGE_DESC));
           return false;
         }
 
@@ -295,7 +298,7 @@ bool kvoctrainDoc::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
         return false;
       }
       else {
@@ -569,7 +572,7 @@ bool kvoctrainDoc::loadComparison (Comparison &comp, XmlElement elem,
     if (elem.tag () == KV_COMPARISON_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+elem.tag()+">");
+                    i18n("expected ending tag <%1>").arg(elem.tag()));
         return false;
       }
       else
@@ -598,7 +601,7 @@ bool kvoctrainDoc::loadComparison (Comparison &comp, XmlElement elem,
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>").arg(elem.tag()));
         return false;
       }
       else {
@@ -636,7 +639,7 @@ bool kvoctrainDoc::loadMultipleChoice (MultipleChoice &mc, XmlElement elem,
     if (elem.tag () == KV_MULTIPLECHOICE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+elem.tag()+">");
+                    i18n("expected ending tag <%1>").arg(elem.tag()));
         return false;
       }
       else
@@ -677,7 +680,7 @@ bool kvoctrainDoc::loadMultipleChoice (MultipleChoice &mc, XmlElement elem,
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>").arg(elem.tag()));
         return false;
       }
       else {
@@ -718,7 +721,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_DOCTYPE) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("expected ending tag <")+elem.tag()+">");
+                    i18n("expected ending tag <%1>").arg(elem.tag()));
         return false;
       }
       else
@@ -728,7 +731,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_LESS_GRP && !elem.isEndTag() ) {
       if (lessgroup) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       lessgroup = true;
@@ -739,7 +742,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ARTICLE_GRP && !elem.isEndTag() ) {
       if (articlegroup) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       articlegroup = true;
@@ -750,7 +753,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_CONJUG_GRP && !elem.isEndTag() ) {
       if (conjuggroup) {
          errorKvtMl (xml.lineNumber(),
-                     (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                     i18n("repeated occurence of tag <%1>").arg(elem.tag()));
          return false;
       }
       conjuggroup = true;
@@ -761,7 +764,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_OPTION_GRP && !elem.isEndTag() ) {
       if (optgroup)  {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       optgroup = true;
@@ -772,7 +775,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TYPE_GRP && !elem.isEndTag() ) {
       if (attrgroup) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       attrgroup = true;
@@ -783,7 +786,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TENSE_GRP && !elem.isEndTag() ) {
       if (tensegroup) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       tensegroup = true;
@@ -795,7 +798,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_USAGE_GRP && !elem.isEndTag() ) {
       if (usagegroup) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("repeated occurence of tag <")+elem.tag()+">");
+                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
         return false;
       }
       usagegroup = true;
@@ -817,7 +820,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
         return false;
       }
       else {
