@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/12/13 18:40:12  arnold
+    added phonetic alphabet stuff
+
     Revision 1.13  2001/12/08 10:28:31  arnold
     added structure with iso language names
 
@@ -108,6 +111,9 @@ struct KV_ISO639_Code {
    const char *iso2code;
    const char *langname;
 };
+
+// german language names at:
+//    http://www.rn.inf.tu-dresden.de/scripts_lsrn/lehre/rnd/www/iso639.htm
 
 KV_ISO639_Code kv_iso639_1[] = {
 	{{"aa"}, {"aar"}, {I18N_NOOP("Afar")}},
@@ -211,7 +217,6 @@ KV_ISO639_Code kv_iso639_1[] = {
 	{{"ng"}, {"ndo"}, {I18N_NOOP("Ndonga")}},
 	{{"nl"}, {"dut"}, {I18N_NOOP("Dutch")}},
 	{{"nn"}, {"nno"}, {I18N_NOOP("Norwegian Nynorsk")}},
-	{{"nn"}, {"nno"}, {I18N_NOOP("Nynorsk, Norwegian")}},
 	{{"no"}, {"nor"}, {I18N_NOOP("Norwegian")}},
 	{{"nr"}, {"nbl"}, {I18N_NOOP("Ndebele, South")}},
 	{{"nv"}, {"nav"}, {I18N_NOOP("Navajo")}},
@@ -796,6 +801,9 @@ LangOptPage::LangOptPage
   label_langPixmap->setBuddy(b_langPixmap);
 
   b_lang_iso1->setEnabled(false);
+
+  // FIXME enable after kde3 release
+  b_lang_iso1->hide();
 }
 
 
