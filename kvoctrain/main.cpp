@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,7 +41,6 @@
 #include "kvoctrain.h" 
 #include <iostream.h>
 
-//# include <kwm.h>
 # include <kcmdlineargs.h>
 # include <kaboutdata.h>
 
@@ -64,11 +70,12 @@ static const char *version = VERSION;
                        i18n_noop("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "kvoctrain@ewald-arnold.de");
-  aboutData.addAuthor("Ewald Arnold", i18n_noop("Maintainer"), "kvoctrain@ewald-arnold.de",
+  aboutData.addAuthor("Ewald Arnold", i18n_noop("Original author and naintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );
-  aboutData.addCredit("Andrea Marconi", i18n_noop("Localisator (it)"),  "kvoc_it@ewald-arnold.de");
-  aboutData.addCredit("Hans Kottmann", i18n_noop("Localisator (fr)"),   "kvoc_fr@ewald-arnold.de");
-  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Localisator (pl)"), "kvoc_pl@ewald-arnold.de");
+  aboutData.addCredit("Waldo Bastian", i18n_noop("Porting to Qt3/KDE3"),  "");
+  aboutData.addCredit("Andrea Marconi", i18n_noop("Initial localisator for italian"),  "");
+  aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"),   "");
+  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polsih"), "");
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;

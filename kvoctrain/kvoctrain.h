@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.4  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -80,7 +84,6 @@ class KLined;
 class ProgressDlg;
 class kvoctrainDoc;
 class QueryDlgBase;
-class CAboutDialog;
 
 class KLineEdit;
 class KComboBox;
@@ -168,7 +171,6 @@ public:
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
   void slotCurrentCellChanged(int row, int col);
-  void showAboutDialog( void );
   void invokeHelp();
   /** append language to table */
   void slotAppendLang(int header);
@@ -307,7 +309,6 @@ private:
   vector<QueryEntryRef> random_expr1, random_expr2;
   QuerySelection queryList;
 
-  vector<QString>  used_Menus;
   QTimer          *qtimer;
   QTimer          *btimer;
   int              maxqueryTime;
@@ -352,7 +353,6 @@ private:
   int              query_num;
   int              query_startnum;
   vector<PreSetting>  presettings;
-  CAboutDialog      *mAboutDialog;
   QueryType        queryType;
   kvq_timeout_t    type_querytimeout;
   int              showcounter;

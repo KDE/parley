@@ -17,6 +17,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.4  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -82,7 +86,6 @@
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "common-dialogs/ProgressDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"
-#include "common-dialogs/aboutdialog.h"
 #include "common-dialogs/NumLessonDlg.h"
 
 
@@ -984,44 +987,6 @@ void kvoctrainApp::slotResumeSearch(const QString& s) /*FOLD00*/
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }
-
-static void centerDialog( QWidget *widget, QWidget *centerParent ) /*FOLD00*/
-{ 
-  if( centerParent == 0 || widget == 0 )
-  {
-    return;
-  }
-
-  QPoint point = centerParent->mapToGlobal( QPoint(0,0) );
-  QRect pos    = centerParent->geometry();
- 
-  int new_x = QMAX (0, point.x() + pos.width()/2  - widget->width()/2);
-  int new_y = QMAX (0, point.y() + pos.height()/2 - widget->height()/2);
-  widget->setGeometry( new_x,
-		       new_y,
-		       widget->width(), widget->height() );
-}
-
-
-void kvoctrainApp::showAboutDialog( void ) /*FOLD00*/
-{
-  if( mAboutDialog == 0 )
-  {
-    mAboutDialog = new CAboutDialog( 0, "About" );
-    if( mAboutDialog == 0 ) { return; }
-  }
-
-  if( mAboutDialog->isVisible() == false )
-  {
-    centerDialog( mAboutDialog, topLevelWidget() );
-    mAboutDialog->show();
-  }
-  else
-  {
-    mAboutDialog->raise();
-  }
-}
-
 
 void kvoctrainApp::slotViewToolBar() /*FOLD00*/
 {

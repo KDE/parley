@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -51,6 +55,7 @@
 #include <kcombobox.h>
 #include <kstatusbar.h>
 #include <kpopupmenu.h>
+#include <khelpmenu.h>
 
 kvoctrainApp::kvoctrainApp(const QString &name)
 {
@@ -69,9 +74,8 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   pdlg = 0;
   pbar = 0;
   queryDlg = 0;
-  mAboutDialog = 0;
 
-  setCaption(kvoctrainApp::generateCaption(""));
+//  setCaption(kapp->makeStdCaption(i18n("")));
 
   ///////////////////////////////////////////////////////////////////
   // read the config file options
@@ -136,7 +140,6 @@ void kvoctrainApp::disableCommand(int id_)
 void kvoctrainApp::initMenuBar()
 {
 
-  used_Menus.clear();
   header_m = 0;
 
   ///////////////////////////////////////////////////////////////////
@@ -241,55 +244,22 @@ void kvoctrainApp::initMenuBar()
   opts_menu->setItemChecked(ID_VIEW_STATUSBAR, bViewStatusbar);
 
   ///////////////////////////////////////////////////////////////////
-  // menuBar entry help_menu
-  help_menu = new QPopupMenu();
-
-  help_menu = customHelpMenu();
-  help_menu->setId( 0, 0);
-  help_menu->setId( 5, 5 );
-  help_menu->setId( 6, 6 );
-  help_menu->connectItem( 5, this, SLOT(showAboutDialog()) );
-  help_menu->removeItem( 0 );
-
-  help_menu->insertItem(i18n("&Contents"), this, SLOT(invokeHelp()),
-		        Key_F1, 0, 0 );
-
-  help_menu->changeItem ( QPixmap (EA_KDEDATADIR("",  "kvoctrain/contents.xpm" )),
-			   help_menu->text(0),
-			   0 ); 
-  help_menu->changeItem ( QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )),
-			   help_menu->text(5),
-			   5 );
-  help_menu->changeItem ( QPixmap (EA_KDEDATADIR("",  "kvoctrain/kde.xpm" )),
-			   help_menu->text(6),
-			   6 );
-
-
-  ///////////////////////////////////////////////////////////////////
   // MENUBAR CONFIGURATION
   // set menuBar() the current menuBar and the position due to config file
 
   menuBar()->insertItem(i18n("&File"), file_menu);
-  used_Menus.push_back(i18n("&File"));
 
   menuBar()->insertItem(i18n("&Edit"), edit_menu);
-  used_Menus.push_back(i18n("&Edit"));
 
 //  menuBar()->insertItem(i18n("&View"), view_menu);
-//used_Menus.push_back(i18n("&View"));
 
   menuBar()->insertItem(i18n("Vo&cabulary"), voc_menu);
-  used_Menus.push_back(i18n("Vo&cabulary"));
 
   menuBar()->insertItem(i18n("&Learning"), learn_menu);
-  used_Menus.push_back(i18n("&Learning"));
 
   menuBar()->insertItem(i18n("&Options"), opts_menu);
-  used_Menus.push_back(i18n("&Options"));
 
-  ///////////////////////////////////////////////////////////////////
-  // INSERT YOUR APPLICATION SPECIFIC MENUENTRIES HERE
-
+  help_menu = helpMenu();
   menuBar()->insertSeparator();
   menuBar()->insertItem(i18n("&Help"), help_menu);
 
