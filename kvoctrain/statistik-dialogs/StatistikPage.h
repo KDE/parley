@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                          statistics dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Sep 21 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Sep 21 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -26,12 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef Statistik_included
 #define Statistik_included
-
-#include <vector>
-using namespace std;
 
 #include "StatistikPageForm.h"
 
@@ -41,57 +34,41 @@ using namespace std;
 
 class kvoctrainDoc;
 class GradeCols;
-class QVBoxLayout;
-class QHBoxLayout;
-class QGridLayout;
 
 class StatistikPage : public StatistikPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
+  StatistikPage(int col, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent = NULL, const char *name = NULL);
 
-    StatistikPage
-    (
-        int           col,
-        kvoctrainDoc *doc,
-        GradeCols    *gc,
-        QWidget      *parent = NULL,
-        const char   *name = NULL
-    );
+public slots:
+  void slotPopupMenu(int row, int col);
+  void slotRMB( QListViewItem* Item, const QPoint & point, int );
 
-    ~StatistikPage();
+protected:
+  void setupPixmaps();
 
- public slots:
-    void slotPopupMenu(int row, int col);
-    void slotRMB( QListViewItem* Item, const QPoint & point, int );
+  struct stat_counter
+  {
+    stat_counter() {
+    for (int i = 0; i <= KV_MAX_GRADE; i++)
+      grade[i] = 0;
+    num = 0;
+    }
 
- protected:
-   void setupPixmaps();
+    int grade [KV_MAX_GRADE+1];
+    int num;
+  };
 
-   struct stat_counter
-   {
-     stat_counter() {
-       for (int i = 0; i <= KV_MAX_GRADE; i++)
-         grade[i] = 0;
-       num = 0;
-     }
-   
-     int grade [KV_MAX_GRADE+1];
-     int num;
-   };
-   
-   int calc_width (struct StatistikPage::stat_counter *gc,
-                   int grade, int max_width);
+  int calc_width (struct StatistikPage::stat_counter *gc, int grade, int max_width);
 
-   vector<QPixmap>  from_pix, to_pix;
-   kvoctrainDoc    *doc;
+  vector<QPixmap>  from_pix, to_pix;
+  kvoctrainDoc    *doc;
 
-   vector<stat_counter>  fsc;
-   vector<stat_counter>  tsc;
-   GradeCols            *gcol;
-   QListView            *lessonbox;
-   QGridLayout          *layout;
-
+  vector<stat_counter>  fsc;
+  vector<stat_counter>  tsc;
+  GradeCols            *gcol;
 };
+
 #endif // StatistikPage_included

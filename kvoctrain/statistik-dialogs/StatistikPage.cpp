@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                        statistics dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Sep 21 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Sep 21 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -35,7 +32,6 @@
 #include <kvoctraindoc.h>
 
 #include <qcursor.h>
-#include <qlayout.h>
 #include <qpainter.h>
 
 #define MIN_COL_WIDTH      2
@@ -52,224 +48,203 @@
 
 class GradeListItem : public QListViewItem
 {
- public:
-   inline GradeListItem (QListView* parent, int _lesson)
-      : QListViewItem(parent), lesson(_lesson) {}
+public:
+  inline GradeListItem (QListView* parent, int _lesson): QListViewItem(parent), lesson(_lesson) {}
+  inline int getLesson() const { return lesson; }
 
-   inline int getLesson() const { return lesson; }
-
- private:
-   int lesson;
+private:
+  int lesson;
 };
 
 
-StatistikPage::StatistikPage
-(
-        int            col,
-        kvoctrainDoc  *_doc,
-        GradeCols     *_gcol,
-	QWidget       *parent,
-	const char    *name
-)
-	:
-	StatistikPageForm( parent, name ),
-        doc(_doc),
-        gcol(_gcol)
+StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, GradeCols *_gcol, QWidget *parent, const char *name)
+  : StatistikPageForm( parent, name ), doc(_doc), gcol(_gcol)
 {
+  StatListView->setColumnWidth(0, SIZE_GRADE + 10);
+  StatListView->setColumnWidth(1, SIZE_GRADE + 10);
+  StatListView->setColumnWidth(2, SIZE_COUNT);
+  StatListView->setColumnWidth(3, SIZE_LESSON);
 
-   lessonbox = new QListView( this, "QListView_1" );
+  vector<QString> lesson = doc->getLessonDescr();
 
-   layout = new QGridLayout( this );
-   layout->setSpacing( 6 );
-   layout->setMargin( 11 );
-   layout->addWidget( lessonbox, 0, 0 );
+  fsc.resize(lesson.size()+1);
+  tsc.resize(lesson.size()+1);
 
-   lessonbox->addColumn (i18n("Grade FROM"), SIZE_GRADE+10);
-   lessonbox->addColumn (i18n("Grade TO"), SIZE_GRADE+10);
-   lessonbox->addColumn (i18n("Entries"), SIZE_COUNT);
-   lessonbox->addColumn (i18n("Lesson"), SIZE_LESSON);
-
-   vector<QString> lesson = doc->getLessonDescr();
-
-   fsc.resize(lesson.size()+1);
-   tsc.resize(lesson.size()+1);
-
-   // accumulate numbers of grades per lesson
-   for (int i = 0; i < (int) doc->numEntries(); i++) {
-     kvoctrainExpr *expr = doc->getEntry(i);
-     int fg = QMIN(KV_MAX_GRADE, expr->getGrade(col, false));
-     int tg = QMIN(KV_MAX_GRADE, expr->getGrade(col, true));
-     int l = expr->getLesson();
-     if (l >= 0 && l <= (int) lesson.size() ) {
-       fsc[l].grade[fg]++;
-       fsc[l].num++;
-       tsc[l].grade[tg]++;
-       tsc[l].num++;
-     }
-   }
-   setupPixmaps();
-   connect(lessonbox, SIGNAL( rightButtonPressed( QListViewItem *, const QPoint& , int ) ),
-	    this, SLOT( slotRMB( QListViewItem *, const QPoint &, int ) ) );
-   lessonbox->setSelectionMode( QListView::NoSelection );
+  // accumulate numbers of grades per lesson
+  for (int i = 0; i < (int) doc->numEntries(); i++) {
+    kvoctrainExpr *expr = doc->getEntry(i);
+    int fg = QMIN(KV_MAX_GRADE, expr->getGrade(col, false));
+    int tg = QMIN(KV_MAX_GRADE, expr->getGrade(col, true));
+    int l = expr->getLesson();
+    if (l >= 0 && l <= (int) lesson.size() ) {
+      fsc[l].grade[fg]++;
+      fsc[l].num++;
+      tsc[l].grade[tg]++;
+      tsc[l].num++;
+    }
+  }
+  setupPixmaps();
+  connect(StatListView, SIGNAL( rightButtonPressed( QListViewItem *, const QPoint& , int ) ),
+          this, SLOT( slotRMB( QListViewItem *, const QPoint &, int ) ) );
 }
 
 
 void StatistikPage::setupPixmaps()
 {
-   // create pixmaps with bar charts of numbers of grades
-   int height;
-   GradeListItem lvi (lessonbox, 0);
-   height = lvi.height();
-   for (int entry = 0; entry < (int) fsc.size(); entry++) {
-     QPainter p;
-     QColor color;
-     QPixmap fpix (SIZE_GRADE, height);
-     p.begin( &fpix);
-     p.eraseRect (0, 0, fpix.width(), fpix.height());
-     p.setPen( black );
-     if (fsc[entry].num != 0) {
+  // create pixmaps with bar charts of numbers of grades
+  int height;
+  GradeListItem lvi (StatListView, 0);
+  height = lvi.height();
+  for (int entry = 0; entry < (int) fsc.size(); entry++) {
+    QPainter p;
+    QColor color;
+    QPixmap fpix (SIZE_GRADE, height);
+    p.begin( &fpix);
+    p.eraseRect (0, 0, fpix.width(), fpix.height());
+    p.setPen( black );
+    if (fsc[entry].num != 0) {
 
-       int num = 0;
-       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
-         if (fsc[entry].grade[j] != 0)
-           num++;
+      int num = 0;
+      for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
+        if (fsc[entry].grade[j] != 0)
+          num++;
 
-       int maxw = fpix.width() -PIX_SHIFT -PIX_SHIFT -1;
-       int w = maxw;
-       int widths [KV_MAX_GRADE+1];
-       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
-         if (fsc[entry].grade[j] == 0)
-            widths[j] = 0;
-         else {
-           if (num <= 1) {
-              widths[j] = w;
-              w = 0;
-           }
-           else {
-             --num;
-             widths[j] = QMAX(MIN_COL_WIDTH, fsc[entry].grade[j] * maxw / fsc[entry].num);
-             w -= widths[j];
-           }
-         }
-       }
+      int maxw = fpix.width() -PIX_SHIFT -PIX_SHIFT -1;
+      int w = maxw;
+      int widths [KV_MAX_GRADE+1];
+      for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
+        if (fsc[entry].grade[j] == 0)
+          widths[j] = 0;
+        else {
+          if (num <= 1) {
+            widths[j] = w;
+            w = 0;
+          }
+          else {
+            --num;
+            widths[j] = QMAX(MIN_COL_WIDTH, fsc[entry].grade[j] * maxw / fsc[entry].num);
+            w -= widths[j];
+          }
+        }
+      }
 
-       int x = 0;
-       int x2 = 1+PIX_SHIFT;
-       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
-         switch (j) {
-           case KV_NORM_GRADE: color = gcol->col0;    break;
-           case KV_LEV1_GRADE: color = gcol->col1;    break;
-           case KV_LEV2_GRADE: color = gcol->col2;    break;
-           case KV_LEV3_GRADE: color = gcol->col3;    break;
-           case KV_LEV4_GRADE: color = gcol->col4;    break;
-           case KV_LEV5_GRADE: color = gcol->col5;    break;
-           case KV_LEV6_GRADE: color = gcol->col6;    break;
-           case KV_LEV7_GRADE: color = gcol->col7;    break;
-           default           : color = gcol->col1;
-         }
-         if (widths[j] != 0) {
-           x2 += widths[j];
-           p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
-           p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
-           x = x2-1;
-         }
-       }
-     }
-     else {
-       p.fillRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1, gcol->col0);
-       p.drawRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1);
-     }
-     p.end();
-     from_pix.push_back(fpix);
+      int x = 0;
+      int x2 = 1+PIX_SHIFT;
+      for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
+        switch (j) {
+          case KV_NORM_GRADE: color = gcol->col0;    break;
+          case KV_LEV1_GRADE: color = gcol->col1;    break;
+          case KV_LEV2_GRADE: color = gcol->col2;    break;
+          case KV_LEV3_GRADE: color = gcol->col3;    break;
+          case KV_LEV4_GRADE: color = gcol->col4;    break;
+          case KV_LEV5_GRADE: color = gcol->col5;    break;
+          case KV_LEV6_GRADE: color = gcol->col6;    break;
+          case KV_LEV7_GRADE: color = gcol->col7;    break;
+          default           : color = gcol->col1;
+        }
+        if (widths[j] != 0) {
+          x2 += widths[j];
+          p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
+          p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
+          x = x2-1;
+        }
+      }
+    }
+    else {
+      p.fillRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1, gcol->col0);
+      p.drawRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1);
+    }
+    p.end();
+    from_pix.push_back(fpix);
 
-     QPixmap tpix (SIZE_GRADE, height);
-     p.begin( &tpix );
-     p.eraseRect (0, 0, tpix.width(), tpix.height());
-     p.setPen( black );
-     if (tsc[entry].num != 0) {
-       int num = 0;
-       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
-         if (tsc[entry].grade[j] != 0)
-           num++;
+    QPixmap tpix (SIZE_GRADE, height);
+    p.begin( &tpix );
+    p.eraseRect (0, 0, tpix.width(), tpix.height());
+    p.setPen( black );
+    if (tsc[entry].num != 0) {
+      int num = 0;
+      for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
+        if (tsc[entry].grade[j] != 0)
+          num++;
 
-       int maxw = tpix.width() -PIX_SHIFT -PIX_SHIFT -1;
-       int w = maxw;
-       int widths [KV_MAX_GRADE+1];
-       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
-         if (tsc[entry].grade[j] == 0)
-            widths[j] = 0;
-         else {
-           if (num <= 1) {
-              widths[j] = w;
-              w = 0;
-           }
-           else {
-             --num;
-             widths[j] = QMAX(MIN_COL_WIDTH, tsc[entry].grade[j] * maxw / tsc[entry].num);
-             w -= widths[j];
-           }
-         }
-       }
+      int maxw = tpix.width() -PIX_SHIFT -PIX_SHIFT -1;
+      int w = maxw;
+      int widths [KV_MAX_GRADE+1];
+      for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
+        if (tsc[entry].grade[j] == 0)
+          widths[j] = 0;
+        else {
+          if (num <= 1) {
+            widths[j] = w;
+            w = 0;
+          }
+          else {
+            --num;
+            widths[j] = QMAX(MIN_COL_WIDTH, tsc[entry].grade[j] * maxw / tsc[entry].num);
+            w -= widths[j];
+          }
+        }
+      }
 
-       int x = 0;
-       int x2 = 1+PIX_SHIFT;
-       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
-         switch (j) {
-           case KV_NORM_GRADE: color = gcol->col0;    break;
-           case KV_LEV1_GRADE: color = gcol->col1;    break;
-           case KV_LEV2_GRADE: color = gcol->col2;    break;
-           case KV_LEV3_GRADE: color = gcol->col3;    break;
-           case KV_LEV4_GRADE: color = gcol->col4;    break;
-           case KV_LEV5_GRADE: color = gcol->col5;    break;
-           case KV_LEV6_GRADE: color = gcol->col6;    break;
-           case KV_LEV7_GRADE: color = gcol->col7;    break;
-           default           : color = gcol->col1;
-         }
-         if (widths[j] != 0) {
-           x2 += widths[j];
-           p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
-           p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
-           x = x2-1;
-         }
-       }
-     }
-     else {
-       p.fillRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1, gcol->col0);
-       p.drawRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1);
-     }
-     p.end();
-     to_pix.push_back(tpix);
-   }
+      int x = 0;
+      int x2 = 1+PIX_SHIFT;
+      for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
+        switch (j) {
+          case KV_NORM_GRADE: color = gcol->col0;    break;
+          case KV_LEV1_GRADE: color = gcol->col1;    break;
+          case KV_LEV2_GRADE: color = gcol->col2;    break;
+          case KV_LEV3_GRADE: color = gcol->col3;    break;
+          case KV_LEV4_GRADE: color = gcol->col4;    break;
+          case KV_LEV5_GRADE: color = gcol->col5;    break;
+          case KV_LEV6_GRADE: color = gcol->col6;    break;
+          case KV_LEV7_GRADE: color = gcol->col7;    break;
+          default           : color = gcol->col1;
+        }
+        if (widths[j] != 0) {
+          x2 += widths[j];
+          p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
+          p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
+          x = x2-1;
+        }
+      }
+    }
+    else {
+      p.fillRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1, gcol->col0);
+      p.drawRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1);
+    }
+    p.end();
+    to_pix.push_back(tpix);
+  }
 
-   // setup rows with pixmaps and strings
-   vector<QString> lesson = doc->getLessonDescr();
+  // setup rows with pixmaps and strings
+  vector<QString> lesson = doc->getLessonDescr();
 
-   QString s;
+  QString s;
 
-   GradeListItem *plvi = new GradeListItem(lessonbox, 0);
-   plvi->setPixmap (TB_FGRADE, from_pix[0]);
-   plvi->setPixmap (TB_TGRADE, to_pix[0]);
-   s.setNum (tsc[0].num);
-   plvi->setText (TB_COUNT, s);
-   plvi->setText (TB_LESSON, i18n("<no lesson>"));
-   lessonbox->insertItem (plvi);
+  GradeListItem *plvi = new GradeListItem(StatListView, 0);
+  plvi->setPixmap (TB_FGRADE, from_pix[0]);
+  plvi->setPixmap (TB_TGRADE, to_pix[0]);
+  s.setNum (tsc[0].num);
+  plvi->setText (TB_COUNT, s);
+  plvi->setText (TB_LESSON, i18n("<no lesson>"));
+  StatListView->insertItem (plvi);
 
-   for (int i = 0; i < (int) lesson.size(); i++) {
-     plvi = new GradeListItem(lessonbox, i+1);
-     plvi->setPixmap (TB_FGRADE, from_pix[i+1]);
-     plvi->setPixmap (TB_TGRADE, to_pix[i+1]);
-     s.setNum (tsc[i+1].num);
-     plvi->setText (TB_COUNT, s);
-     plvi->setText (TB_LESSON, lesson[i]);
-     lessonbox->insertItem (plvi);
-   }
+  for (int i = 0; i < (int) lesson.size(); i++) {
+    plvi = new GradeListItem(StatListView, i+1);
+    plvi->setPixmap (TB_FGRADE, from_pix[i+1]);
+    plvi->setPixmap (TB_TGRADE, to_pix[i+1]);
+    s.setNum (tsc[i+1].num);
+    plvi->setText (TB_COUNT, s);
+    plvi->setText (TB_LESSON, lesson[i]);
+    StatListView->insertItem (plvi);
+  }
 }
 
 
-void StatistikPage::slotRMB( QListViewItem* Item, const QPoint & point, int col)
+void StatistikPage::slotRMB( QListViewItem* Item, const QPoint & /*point*/, int col)
 {
-    if( Item != 0)
-      slotPopupMenu(((GradeListItem*)Item)->getLesson(), col);
+  if( Item != 0)
+    slotPopupMenu(((GradeListItem*)Item)->getLesson(), col);
 }
 
 
@@ -307,12 +282,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
   header_m->insertItem (i18n(KV_LEV6_TEXT) + "\t" + QString::number(sc->grade[KV_LEV6_GRADE]) );
   header_m->insertItem (i18n(KV_LEV7_TEXT) + "\t" + QString::number(sc->grade[KV_LEV7_GRADE]) );
 
-
   header_m->exec(QCursor::pos()+QPoint(10, 0));
 }
 
-
-StatistikPage::~StatistikPage()
-{
-}
 #include "StatistikPage.moc"

@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                      general statistics dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Sep 21 20:50:53 MET 1999
+    begin          : Thu Sep 21 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -31,6 +28,7 @@
 #include <kvoctraindoc.h>
 
 #include <qlabel.h>
+#include <qvaluevector.h>
 
 GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent, const char* name): GenStatPageForm( parent, name )
 {
@@ -45,19 +43,4 @@ GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent, const char* name): 
   l_lessons->setText(s);
 }
 
-
-void GenStatPage::keyPressEvent( QKeyEvent *e )
-{
-  if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
-    if (  e->key() == Key_Escape )
-      emit reject();
-    else if (  e->key() == Key_Enter
-            ||e->key() == Key_Return)
-      emit accept();
-    else
-      e->ignore();
-  }
-  else
-    e->ignore();
-}
 #include "GenStatPage.moc"

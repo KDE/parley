@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                         show document statistics
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Sep 19 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sun Sep 19 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -29,7 +26,7 @@
 #ifndef StatistikDlg_included
 #define StatistikDlg_included
 
-#include <qtabdialog.h>
+#include <kdialogbase.h>
 
 #include <vector>
 using namespace std;
@@ -38,26 +35,12 @@ class kvoctrainDoc;
 class LangSet;
 class GradeCols;
 
-class StatistikDlg : public QTabDialog
+class StatistikDlg : public KDialogBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-
-    StatistikDlg
-    (
-        LangSet         &langset,
-        kvoctrainDoc    *doc,
-        GradeCols       *gc,
-        QWidget         *parent = NULL,
-        const char      *name = NULL
-    );
-
-protected slots:
-
-    void okButton();
-
-protected:
+  StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
 };
 

@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                       general statistics dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Sep 21 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Sep 21 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -36,19 +33,11 @@ class kvoctrainDoc;
 
 class GenStatPage : public GenStatPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
 
-    GenStatPage
-    (
-        kvoctrainDoc *doc,
-        QWidget* parent = NULL,
-        const char* name = NULL
-    );
-
-protected:
-  void keyPressEvent( QKeyEvent *e );
+  GenStatPage(kvoctrainDoc *doc, QWidget* parent = NULL, const char* name = NULL);
 
 };
 #endif // GenStatPage_included

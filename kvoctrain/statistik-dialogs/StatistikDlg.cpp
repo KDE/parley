@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Sep 19 20:50:53 MET 1999
+    begin          : Sun Sep 19 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -24,51 +23,42 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <qlayout.h>
 
 #include "StatistikDlg.h"
 #include "StatistikPage.h"
 #include "GenStatPage.h"
 
-#include <kapplication.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
-
 
 #include <langset.h>
 #include <kvoctraindoc.h>
 
-#define Inherited QTabDialog
-
-StatistikDlg::StatistikDlg
-(
-        LangSet         &langset,
-        kvoctrainDoc    *doc,
-        GradeCols       *gc,
-	QWidget         *parent,
-	const char      *name
-)
-	:
-	Inherited( parent, name, true )
+StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent, const char *name, bool modal)
+  : KDialogBase(Tabbed, i18n("Document Statistics"), Close, Close, parent, name, modal)
 {
-  setCaption( kapp->makeStdCaption(i18n("Document Statistics")));
-  GenStatPage *gspage = new GenStatPage (doc, this, name);
-  addTab( gspage, i18n("General"));
-  setOkButton(i18n("&OK"));
+  QFrame * page;
+  QVBoxLayout * topLayout;
+  StatistikPage *spage;
 
-  for (int i = 1; i < (int) doc->numLangs(); i++) {
-    StatistikPage *spage = new StatistikPage (i, doc, gc, this, name);
+  page = addPage(i18n("General"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  GenStatPage *gspage = new GenStatPage (doc, page, name);
+  topLayout->addWidget(gspage);
+
+  for (int i = 1; i < (int) doc->numLangs(); i++) 
+  {
     QString s = langset.findLongId(doc->getIdent(i));
     if (s.isEmpty() )
       s = doc->getIdent(i);
     else
       s = i18n(s.local8Bit());
-    addTab( spage, s);
+
+    page = addPage(s);
+    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+    spage = new StatistikPage (i, doc, gc, page, name);
+    topLayout->addWidget(spage);
   }
 }
 
-
-void StatistikDlg::okButton()
-{
-  emit accept();
-}
 #include "StatistikDlg.moc"

@@ -1,6 +1,6 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>GenStatPageForm</class>
-<widget class="QDialog">
+<widget class="QWidget">
     <property name="name">
         <cstring>Form1</cstring>
     </property>
@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>583</width>
-            <height>609</height>
+            <width>423</width>
+            <height>190</height>
         </rect>
     </property>
     <property name="caption">
@@ -20,7 +20,7 @@
             <cstring>unnamed</cstring>
         </property>
         <property name="margin">
-            <number>11</number>
+            <number>0</number>
         </property>
         <property name="spacing">
             <number>6</number>
