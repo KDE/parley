@@ -1150,10 +1150,7 @@ void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
 
 void kvoctrainApp::aboutToShowLearn()
 {
-  //learn_menu = (QPopupMenu*) this->child( "learning", "KPopupMenu" );
   learn_menu->clear();
-  //KActionMenu * am = dynamic_cast<KActionMenu*>(actionCollection()->action("learning"));
-  //learn_menu = (QPopupMenu*) am->popupMenu();
 
   vector<QString> set_names;
   for (int i = 0; i < (int) langset.size(); i++) {

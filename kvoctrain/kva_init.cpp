@@ -249,7 +249,7 @@ void kvoctrainApp::initActions()
   configToolbar->setWhatsThis(i18n("Toggles display of the toolbars"));
   configToolbar->setToolTip(configToolbar->whatsThis());
 
-  learn_menu = (QPopupMenu*) this->child( "learning", "KPopupMenu" );
+  learn_menu = (QPopupMenu*) child( "learning", "KPopupMenu" );
   connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
