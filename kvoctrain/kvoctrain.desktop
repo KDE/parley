@@ -1,7 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 GenericName=Vocabulary Trainer
-GenericName[af]=Woordeskat Afrigter
+GenericName[af]=Woordeskat-afrigter
 GenericName[ar]=مدرب الكلمات
 GenericName[bg]=Речникови тренировки
 GenericName[bs]=Učitelj rječnika
@@ -50,7 +50,6 @@ GenericName[xx]=xxVocabulary Trainerxx
 GenericName[zh_CN]=单词练习
 GenericName[zh_TW]=字彙訓練師
 GenericName[zu]=Umlolongi Wokusetshenziswa kwamagama
-BinaryPattern=kvoctrain;
 Name=KVocTrain
 Name[af]=K-woord-leerder
 Name[ar]=معلم الكلمات ك
@@ -67,8 +66,8 @@ Exec=kvoctrain
 Icon=kvoctrain
 DocPath=kvoctrain/index.html
 Type=Application
-Terminal=0
+Terminal=false
 MimeType=text/x-kvtml
 #ServiceTypes=Browser/View
 #X-KDE-Library=libkorganizer
-Categories=Qt;KDE;Education;X-KDE-Edu-Language
+Categories=Qt;KDE;Education;X-KDE-Edu-Language;
