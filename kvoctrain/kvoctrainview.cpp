@@ -185,8 +185,8 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
  if (the_doc) {
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
-   setHeaderProp( KV_COL_LESS, i18n("Lesson"),  locate("data", "kvoctrain/lesson.xpm"));
-   setHeaderProp( KV_COL_MARK, QString::null,  QString::null);
+   setHeaderProp(KV_COL_LESS, i18n("Lesson"),  QString::null);
+   setHeaderProp(KV_COL_MARK, "",  QString::null);
    lb_list->setColumnWidth(KV_COL_MARK, KV_COLWIDTH_MARK);
 
    if (id < 0 )

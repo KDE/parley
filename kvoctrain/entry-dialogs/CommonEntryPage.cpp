@@ -37,7 +37,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
+#include <kiconloader.h>
 
 #include <QueryManager.h>
 #include <langset.h>
@@ -106,7 +106,7 @@ CommonEntryPage::CommonEntryPage
 
     // list-win and pron-win have same size
     // buttons also have same size
-    QPixmap list_pm = QPixmap(locate("data", "kvoctrain/list-win.xpm"));
+    QPixmap list_pm = SmallIcon("view_text");
     int x_add = b_LessDlg->width() - list_pm.width() +4;
     int y_add = b_LessDlg->height() - list_pm.height() +4;
 
@@ -122,7 +122,7 @@ CommonEntryPage::CommonEntryPage
                    list_pm.width()+x_add, list_pm.height()+y_add );
     b_usageDlg->setPixmap(list_pm);
 
-    QPixmap pron_pm = QPixmap(locate("data", "kvoctrain/pron-win.xpm"));
+    QPixmap pron_pm = SmallIcon("view_icon");
     b_pronDlg->setGeometry( b_pronDlg->x()-2, b_pronDlg->y()-2,
                    pron_pm.width()+x_add, pron_pm.height()+y_add );
     b_pronDlg->setPixmap(pron_pm);

@@ -33,6 +33,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <kiconloader.h>
 
 #include <kinputdialog.h>
 #include <qtimer.h>
@@ -1165,21 +1166,21 @@ void kvoctrainApp::aboutToShowLearn()
     int j;
     header_m = new QPopupMenu();
     if (header != 0 ) {
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
+      header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
+      header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
 
       header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, doc->numLangs() > 1);
       header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  doc->numLangs() > 1);
       header_m->insertSeparator();
 
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("&Verbs"), (header << 16) | IDH_START_VERB);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison Forms"), (header << 16) | IDH_START_ADJECTIVE);
+      header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
+      header_m->insertItem(i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
+      header_m->insertItem(i18n("&Comparison Forms"), (header << 16) | IDH_START_ADJECTIVE);
       header_m->insertSeparator();
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
+      header_m->insertItem(i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
+      header_m->insertItem(i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
+      header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
+      header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     }
     else {
       QPopupMenu *query_m =  new QPopupMenu();
@@ -1199,7 +1200,7 @@ void kvoctrainApp::aboutToShowLearn()
         }
       }
 
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
+      header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
       connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
@@ -1216,17 +1217,17 @@ void kvoctrainApp::aboutToShowLearn()
           multiple_m->insertItem(i18n("from %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
+      header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
       header_m->insertSeparator();
 
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison Training"), (header << 16) | IDH_START_ADJECTIVE);
+      header_m->insertItem(i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
+      header_m->insertItem(i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
+      header_m->insertItem(i18n("&Comparison Training"), (header << 16) | IDH_START_ADJECTIVE);
       header_m->insertSeparator();
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
+      header_m->insertItem(i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
+      header_m->insertItem(i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
+      header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
+      header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
 
       connect (multiple_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -1248,8 +1249,8 @@ void kvoctrainApp::aboutToShowLearn()
   }
 
   learn_menu->insertSeparator();
-  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Resume &Query"), ID_RESUME_QUERY );
-  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
+  learn_menu->insertItem(SmallIconSet("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
+  learn_menu->insertItem(SmallIconSet("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
 
   learn_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
   learn_menu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);

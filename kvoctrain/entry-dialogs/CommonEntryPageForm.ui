@@ -165,6 +165,12 @@
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>30</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
                             <property name="maximumSize">
                                 <size>
                                     <width>30</width>
@@ -189,6 +195,12 @@
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>30</width>
+                                    <height>0</height>
+                                </size>
                             </property>
                             <property name="maximumSize">
                                 <size>
@@ -288,6 +300,12 @@
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>30</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
                             <property name="maximumSize">
                                 <size>
                                     <width>30</width>
@@ -334,16 +352,22 @@
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
-                                    <hsizetype>0</hsizetype>
+                                    <hsizetype>1</hsizetype>
                                     <vsizetype>0</vsizetype>
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>30</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
                             <property name="maximumSize">
                                 <size>
                                     <width>30</width>
-                                    <height>30</height>
+                                    <height>24</height>
                                 </size>
                             </property>
                             <property name="text">
@@ -432,6 +456,9 @@
                     </property>
                     <property name="text">
                         <string>Acti&amp;ve</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+V</string>
                     </property>
                 </widget>
             </vbox>

@@ -148,15 +148,15 @@ void kvoctrainApp::initActions()
   editSearchFromClipboard->setWhatsThis(i18n("Searches for clipboard content in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
-  editAppend = new KAction(i18n("&Append New Entry"), QPixmap(locate("data", "kvoctrain/append-row.xpm")), "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
+  editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
   editAppend->setWhatsThis(i18n("Appends a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
-  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), QPixmap(locate("data", "kvoctrain/edit-row.xpm")), "Ctrl+Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
+  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), "edit_table_row", "Ctrl+Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
   editEditSelectedArea->setWhatsThis(i18n("Edits the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
-  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), QPixmap(locate("data", "kvoctrain/delete-row.xpm")), "Delete", this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
+  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), "delete_table_row", "Delete", this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
   editRemoveSelectedArea->setWhatsThis(i18n("Deletes the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
@@ -164,27 +164,27 @@ void kvoctrainApp::initActions()
   editSaveSelectedArea->setWhatsThis(i18n("Saves the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
-  vocabShowStatistics = new KAction(i18n("Show &Statistics..."), QPixmap(locate("data", "kvoctrain/statist.xpm")), 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
+  vocabShowStatistics = new KAction(i18n("Show &Statistics..."), "statistics", 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
   vocabShowStatistics->setWhatsThis(i18n("Shows statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
-  vocabAssignLessons = new KAction(i18n("Assign L&essons..."), QPixmap(locate("data", "kvoctrain/rand-less.xpm")), 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
+  vocabAssignLessons = new KAction(i18n("Assign L&essons..."), "rand_less", 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
   vocabAssignLessons->setWhatsThis(i18n("Creates random lessons with unassigned entries"));
   vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
 
-  vocabCleanUp = new KAction(i18n("&Clean Up"), QPixmap(locate("data", "kvoctrain/cleanup.xpm")), 0, this, SLOT(slotCleanVocabulary()), actionCollection(),"vocab_clean_up");
+  vocabCleanUp = new KAction(i18n("&Clean Up"), "cleanup", 0, this, SLOT(slotCleanVocabulary()), actionCollection(),"vocab_clean_up");
   vocabCleanUp->setWhatsThis(i18n("Removes entries with same content from vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
 
-  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), QPixmap(locate("data", "kvoctrain/append-col.xpm")), 0, actionCollection(), "vocab_append_language");
+  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), "insert_table_col", 0, actionCollection(), "vocab_append_language");
   connect(vocabAppendLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
   connect (vocabAppendLanguage->popupMenu(), SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
   connect (vocabAppendLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), QPixmap(locate("data", "kvoctrain/flags.xpm")), 0, actionCollection(), "vocab_set_language");
+  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), "set_language", 0, actionCollection(), "vocab_set_language");
   connect(vocabSetLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
-  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), QPixmap(locate("data", "kvoctrain/delete-col.xpm")), 0, actionCollection(), "vocab_remove_language");
+  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), "delete_table_col", 0, actionCollection(), "vocab_remove_language");
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -216,11 +216,11 @@ void kvoctrainApp::initActions()
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   /*
-  learningResumeQuery = new KAction(i18n("Resume &Query..."), QPixmap(locate("data", "kvoctrain/run-query.xpm")), 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_query");
+  learningResumeQuery = new KAction(i18n("Resume &Query..."), "run_query", 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_query");
   //learningResumeQuery->setWhatsThis(i18n(""));
   learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
 
-  learningResumeMultipleChoice = new KAction(i18n("&Resume Multiple Choice..."), QPixmap(locate("data", "kvoctrain/run-multi.xpm")), 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_multiple_choice");
+  learningResumeMultipleChoice = new KAction(i18n("&Resume Multiple Choice..."), "run_multi", 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_multiple_choice");
   //learningResumeMultipleChoice->setWhatsThis(i18n(""));
   learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
   */
@@ -228,7 +228,7 @@ void kvoctrainApp::initActions()
   configApp->setWhatsThis(i18n("Shows the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
 
-  configQueryOptions = new KAction(i18n("Configure &Query..."), QPixmap(locate("data", "kvoctrain/query-conf.xpm")), 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
+  configQueryOptions = new KAction(i18n("Configure &Query..."), "configure_query", 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
   configQueryOptions->setWhatsThis(i18n("Shows the query configuration dialog"));
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());
 
