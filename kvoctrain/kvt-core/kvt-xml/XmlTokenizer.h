@@ -7,12 +7,6 @@
 
   modified for kvoctrain by Ewald Arnold kvoctrain@ewald-arnold.dein April ´99
 
-  -----------------------------------------------------------------------
-
-  $Log$
-
-  -----------------------------------------------------------------------
-
 */
 
 #ifndef XmlTokenizer_h_

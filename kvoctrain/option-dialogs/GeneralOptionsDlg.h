@@ -15,27 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.5  2002/02/03 08:39:23  arnold
-    moved checkbox to options dialog
-
-    Revision 1.4  2001/12/13 18:40:12  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.3  2001/11/02 10:18:58  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:44:04  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

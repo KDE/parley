@@ -15,34 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.7  2003/02/27 00:41:22  antlarr
-    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
-    some _very_ strange uses of QString and i18n, together with some very wrong
-    and strange usages.
-
-    CCMAIL:ewald@ewald-arnold.de
-
-    Revision 1.6  2002/01/04 17:29:59  arnold
-    fixed resuming a query
-
-    Revision 1.5  2001/12/26 15:13:19  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.4  2001/11/10 22:30:21  arnold
-    removed compatibility for kde1
-
-    Revision 1.3  2001/10/19 17:52:18  arnold
-    replaced dialog files from qtarch by qtdesigner
-
-    Revision 1.2  2001/10/13 11:45:30  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:47:12  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

@@ -15,16 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.3  2002/01/19 10:33:09  arnold
-    made entry dialog modeless
-
-    Revision 1.2  2001/11/09 10:40:05  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.1  2001/10/30 14:53:34  arnold
-    added property 'multiple choice'
-
  ***************************************************************************/
 
 /***************************************************************************

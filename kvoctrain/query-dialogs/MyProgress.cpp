@@ -14,23 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.5  2001/12/26 15:12:38  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.4  2001/12/07 19:21:36  arnold
-    included multiple choice fields and false friend into query
-
-    Revision 1.3  2001/11/24 17:16:08  arnold
-    fixes for table view and query
-
-    Revision 1.2  2001/11/10 22:29:40  arnold
-    removed compatibility for kde1
-
-    Revision 1.1  2001/10/05 15:45:05  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

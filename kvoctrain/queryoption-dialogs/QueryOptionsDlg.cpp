@@ -15,40 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.9  2002/03/21 00:50:15  staikos
-    Build fix for gcc 3.1 approved by dirk
-
-    Revision 1.8  2001/12/30 18:42:19  arnold
-    improved reaction upon 'empty' query selections
-
-    Revision 1.7  2001/12/26 15:12:58  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.6  2001/11/10 22:30:01  arnold
-    removed compatibility for kde1
-
-    Revision 1.5  2001/11/10 21:14:50  arnold
-    removed icons and compatibility for kde1
-
-    Revision 1.4  2001/10/28 16:56:56  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.3  2001/10/17 21:41:16  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:46:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

@@ -15,40 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.9  2001/12/30 10:37:29  arnold
-    fixed and improved dialogs
-
-    Revision 1.8  2001/12/26 15:12:13  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.7  2001/11/10 22:29:11  arnold
-    removed compatibility for kde1
-
-    Revision 1.6  2001/11/02 10:18:58  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.5  2001/10/25 17:34:19  arnold
-    replaced qtarch dialog files by qtdesigner
-
-    Revision 1.4  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.3  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.2  2001/10/05 17:34:55  arnold
-    FIX: slot signature changed to KDE2
-
-    Revision 1.1  2001/10/05 15:44:04  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -56,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 

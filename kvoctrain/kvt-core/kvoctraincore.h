@@ -15,19 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.5  2002/01/19 10:33:10  arnold
-    made entry dialog modeless
-
-    Revision 1.4  2001/12/22 09:01:46  arnold
-    fixed version string handling
-
-    Revision 1.3  2001/12/13 18:39:52  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.2  2001/11/25 11:11:23  arnold
-    switch for inline edit, splitted kv_resource.h
-
  ***************************************************************************/
 
 /***************************************************************************

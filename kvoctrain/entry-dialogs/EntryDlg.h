@@ -15,49 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.14  2002/05/09 09:19:04  arnold
-    fixed missing entry dialog
-
-    Revision 1.13  2002/02/03 08:39:20  arnold
-    moved checkbox to options dialog
-
-    Revision 1.12  2002/01/27 07:17:47  binner
-    CVS_SILENT Fixed capitalisation.
-
-    Revision 1.11  2002/01/26 15:51:26  arnold
-    fixes due to new entry dialog
-
-    Revision 1.10  2002/01/23 18:17:40  arnold
-    fix for multiple selections
-
-    Revision 1.9  2002/01/20 11:41:01  arnold
-    fixed issues with modeless dialogs
-
-    Revision 1.8  2002/01/19 10:33:09  arnold
-    made entry dialog modeless
-
-    Revision 1.7  2001/12/30 12:12:57  arnold
-    fixed smart appending and editing
-
-    Revision 1.6  2001/12/13 18:39:29  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.5  2001/11/17 17:58:55  arnold
-    added inline editing of all columns
-
-    Revision 1.4  2001/11/09 14:18:49  arnold
-    fixed and improved some dialog pages
-
-    Revision 1.3  2001/11/09 10:40:05  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.2  2001/10/30 14:10:32  arnold
-    added property 'multiple choice'
-
-    Revision 1.1  2001/10/05 15:40:37  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************
 
  ***************************************************************************
@@ -65,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 

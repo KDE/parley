@@ -15,44 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.9  2003/02/27 00:41:21  antlarr
-    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
-    some _very_ strange uses of QString and i18n, together with some very wrong
-    and strange usages.
-
-    CCMAIL:ewald@ewald-arnold.de
-
-    Revision 1.8  2002/01/04 21:07:58  binner
-    CVS_SILENT Fixed capitalisation.
-
-    Revision 1.7  2001/12/26 15:11:08  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.6  2001/11/10 22:27:55  arnold
-    removed compatibility for kde1
-
-    Revision 1.5  2001/11/10 21:12:40  arnold
-    removed icons and compatibility for kde1
-
-    Revision 1.4  2001/10/21 15:22:00  arnold
-    replaced qtarch dialog files by qtdesigner
-
-    Revision 1.3  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:38:38  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************
@@ -60,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 

@@ -15,22 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.5  2002/02/08 19:24:02  arnold
-    fixed sleeping dialog, applied patches for Tru64 unix
-
-    Revision 1.4  2002/01/07 17:54:59  arnold
-    fixed typo
-
-    Revision 1.3  2002/01/07 17:20:56  arnold
-    fixed i18n() issues
-
-    Revision 1.2  2001/10/21 15:22:00  arnold
-    replaced qtarch dialog files by qtdesigner
-
-    Revision 1.1  2001/10/05 15:38:38  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************
 
  ***************************************************************************

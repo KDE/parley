@@ -15,31 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.8  2002/01/19 10:33:09  arnold
-    made entry dialog modeless
-
-    Revision 1.7  2002/01/06 15:57:07  arnold
-    fixed handling of usage labels
-
-    Revision 1.6  2001/12/30 12:12:57  arnold
-    fixed smart appending and editing
-
-    Revision 1.5  2001/12/13 18:39:29  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.4  2001/11/17 17:58:55  arnold
-    added inline editing of all columns
-
-    Revision 1.3  2001/11/09 10:40:05  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.2  2001/10/23 18:15:39  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.1  2001/10/05 15:40:37  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 /***************************************************************************

@@ -14,28 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.6  2002/04/12 10:09:56  coolo
-    replacing tons of these (for gcc 3):
-    -      queryList.erase(&queryList[i], &queryList[i+1]);
-    +      queryList.erase(queryList.begin() + i);
-
-    Revision 1.5  2002/01/07 17:22:45  arnold
-    fixed i18n() issues
-
-    Revision 1.4  2001/12/29 10:40:24  arnold
-    merged fixes from POST-branch
-
-    Revision 1.3  2001/12/26 15:11:52  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.2  2001/11/10 22:28:46  arnold
-    removed compatibility for kde1
-
-    Revision 1.1  2001/10/05 15:42:00  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************

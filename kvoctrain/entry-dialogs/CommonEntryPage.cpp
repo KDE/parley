@@ -11,88 +11,9 @@
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
                          
-    email                : kvoctrain@ewald-arnold.de                                    
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
-
-    $Log$
-    Revision 1.23  2003/02/27 00:41:21  antlarr
-    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
-    some _very_ strange uses of QString and i18n, together with some very wrong
-    and strange usages.
-
-    CCMAIL:ewald@ewald-arnold.de
-
-    Revision 1.22  2002/04/20 12:55:48  binner
-    CVS_SILENT Capitalisation fixes.
-
-    Revision 1.21  2002/02/08 19:24:02  arnold
-    fixed sleeping dialog, applied patches for Tru64 unix
-
-    Revision 1.20  2002/01/26 15:51:26  arnold
-    fixes due to new entry dialog
-
-    Revision 1.19  2002/01/19 10:33:09  arnold
-    made entry dialog modeless
-
-    Revision 1.18  2002/01/08 13:19:46  mhunter
-    CVS_SILENT Corrected typographical errors
-
-    Revision 1.17  2002/01/07 17:55:19  arnold
-    fixed typo
-
-    Revision 1.16  2002/01/07 17:22:05  arnold
-    fixed i18n() issues
-
-    Revision 1.15  2002/01/06 15:57:07  arnold
-    fixed handling of usage labels
-
-    Revision 1.14  2002/01/05 18:50:23  arnold
-    fixed i18n() related isuses
-
-    Revision 1.13  2002/01/04 21:08:27  binner
-    CVS_SILENT Fixed capitalisation.
-
-    Revision 1.12  2001/12/26 15:11:29  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.11  2001/12/13 18:39:29  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.10  2001/11/23 18:16:08  mueller
-    compile fixes (builddir != stddir, --enable-final)
-
-    Revision 1.9  2001/11/17 17:58:55  arnold
-    added inline editing of all columns
-
-    Revision 1.8  2001/11/10 22:28:25  arnold
-    removed compatibility for kde1
-
-    Revision 1.7  2001/11/10 21:13:00  arnold
-    removed icons and compatibility for kde1
-
-    Revision 1.6  2001/11/09 14:18:49  arnold
-    fixed and improved some dialog pages
-
-    Revision 1.5  2001/11/09 10:40:05  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.4  2001/10/23 18:15:39  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.3  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:40:37  arnold
-    import of version 0.7.0pre8 to kde-edu
 
  ***************************************************************************/
 
@@ -101,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 

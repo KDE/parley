@@ -14,37 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.8  2002/01/18 04:40:09  waba
-    Remove linbreaks from messageboxes.
-    Use KMessageBox.
-
-    Revision 1.7  2001/12/26 15:11:53  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.6  2001/11/25 11:11:23  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.5  2001/11/10 22:28:46  arnold
-    removed compatibility for kde1
-
-    Revision 1.4  2001/10/21 16:19:32  arnold
-    fixed detecting for latin1 or utf8
-
-    Revision 1.3  2001/10/21 15:29:27  arnold
-    removed all the 'charset' stuff
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:42:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -52,7 +21,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 

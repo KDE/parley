@@ -14,29 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.7  2001/12/29 10:40:45  arnold
-    merged fixes from POST-branch
-
-    Revision 1.6  2001/12/13 18:40:12  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.5  2001/12/10 21:00:15  mueller
-    fix compilation
-
-    Revision 1.4  2001/11/10 17:35:03  arnold
-    fixed language property dialog page
-
-    Revision 1.3  2001/11/09 10:40:46  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.2  2001/10/25 17:34:19  arnold
-    replaced qtarch dialog files by qtdesigner
-
-    Revision 1.1  2001/10/05 15:44:04  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************

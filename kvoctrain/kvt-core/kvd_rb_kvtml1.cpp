@@ -14,49 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.12  2002/01/19 11:24:52  mhunter
-    CVS_SILENT Corrected typographical errors
-
-    Revision 1.11  2002/01/18 04:40:09  waba
-    Remove linbreaks from messageboxes.
-    Use KMessageBox.
-
-    Revision 1.10  2001/12/26 15:11:53  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.9  2001/11/25 11:11:23  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.8  2001/11/17 17:59:20  arnold
-    added inline editing of all columns
-
-    Revision 1.7  2001/11/16 18:53:21  arnold
-    added possibility to disable expressions
-
-    Revision 1.6  2001/11/10 22:28:46  arnold
-    removed compatibility for kde1
-
-    Revision 1.5  2001/11/09 15:52:20  arnold
-    fixed error messages for correct i18n use
-
-    Revision 1.4  2001/10/30 14:10:53  arnold
-    added property 'multiple choice'
-
-    Revision 1.3  2001/10/21 15:29:27  arnold
-    removed all the 'charset' stuff
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:42:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************

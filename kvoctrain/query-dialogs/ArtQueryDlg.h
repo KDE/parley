@@ -14,27 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.5  2001/12/01 11:28:54  arnold
-    fixed flickering in query dialogs
-
-    Revision 1.4  2001/11/09 10:41:18  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.3  2001/10/28 09:17:06  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:45:05  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

@@ -15,21 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.3  2001/11/09 10:39:45  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:38:38  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

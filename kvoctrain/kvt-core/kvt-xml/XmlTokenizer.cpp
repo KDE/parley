@@ -9,13 +9,6 @@
 
   -----------------------------------------------------------------------
 
-  $Log$
-  Revision 1.1  2001/10/05 15:43:20  arnold
-  import of version 0.7.0pre8 to kde-edu
-
-
-  -----------------------------------------------------------------------
-
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU Library General Public License as
   published by  

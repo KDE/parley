@@ -15,21 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.4  2001/11/10 22:27:55  arnold
-    removed compatibility for kde1
-
-    Revision 1.3  2001/10/21 15:22:00  arnold
-    replaced qtarch dialog files by qtdesigner
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:38:38  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************
 
  ***************************************************************************

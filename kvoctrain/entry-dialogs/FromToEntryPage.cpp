@@ -15,44 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.12  2002/01/26 15:51:28  arnold
-    fixes due to new entry dialog
-
-    Revision 1.11  2002/01/19 10:33:09  arnold
-    made entry dialog modeless
-
-    Revision 1.10  2001/12/30 10:36:45  arnold
-    fixed and improved dialogs
-
-    Revision 1.9  2001/12/26 15:11:29  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.8  2001/11/10 22:28:25  arnold
-    removed compatibility for kde1
-
-    Revision 1.7  2001/11/09 10:40:05  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.6  2001/11/02 10:18:08  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.5  2001/10/23 18:15:39  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.4  2001/10/13 21:15:49  arnold
-    tested and fixed changes from previous cvs updatecd
-
-    Revision 1.3  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.2  2001/10/05 17:33:17  arnold
-    FIX: slot signature changed to KDE2
-
-    Revision 1.1  2001/10/05 15:40:37  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 /***************************************************************************
