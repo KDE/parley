@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -41,6 +44,7 @@
 
 #include <klineedit.h>
 #include <kcombobox.h>
+#include <kprogress.h>
 #include <kapp.h>
 #include <qtimer.h>
 #include <qfile.h>
