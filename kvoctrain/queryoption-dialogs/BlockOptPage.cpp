@@ -104,8 +104,8 @@ BlockOptPage::BlockOptPage
    connect( block6, SIGNAL(activated(int)), SLOT(slotSetSetBlock6(int)) );
    connect( expire7, SIGNAL(activated(int)), SLOT(slotSetExpire7(int)) );
    connect( block7, SIGNAL(activated(int)), SLOT(slotSetBlock7(int)) );
-   connect( c_expire, SIGNAL(toggled(bool)), SLOT(slotCheckExpire(bool)) );
-   connect( c_blocking, SIGNAL(toggled(bool)), SLOT(slotCheckBlock(bool)) );
+   connect( kcfg_expire, SIGNAL(toggled(bool)), SLOT(slotCheckExpire(bool)) );
+   connect( kcfg_block, SIGNAL(toggled(bool)), SLOT(slotCheckBlock(bool)) );
  
    l_lev7->setBuddy(block7);
    l_lev6->setBuddy(block6);
@@ -125,8 +125,8 @@ void BlockOptPage::setStates(QueryManager *_manager, bool _block, bool _expire)
    manager = _manager;
    block = _block;
    expire = _expire;
-   c_blocking->setChecked(block);
-   c_expire->setChecked(expire);
+   kcfg_block->setChecked(block);
+   kcfg_expire->setChecked(expire);
                                   
    setBlockBox (manager->blockItem(KV_LEV1_GRADE), block1);
    setBlockBox (manager->blockItem(KV_LEV2_GRADE), block2);
@@ -160,14 +160,14 @@ void BlockOptPage::setStates(QueryManager *_manager, bool _block, bool _expire)
    expire6->setEnabled(expire);
    expire7->setEnabled(expire);
 
-   emit blockExpire (c_blocking->isChecked(),
-                     c_expire->isChecked() );
+   emit blockExpire (kcfg_block->isChecked(),
+                     kcfg_expire->isChecked() );
 }
 
 
 void BlockOptPage::initFocus() const
 {
-  c_blocking->setFocus();
+  kcfg_block->setFocus();
 }
 
 

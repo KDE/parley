@@ -82,12 +82,7 @@
 #define       CFG_LESSONSIZE           "LessonSize"
 
 #define      CFG_QUERYPROP            "QueryProperties"
-#define       CFG_MAXTIME_PER          "MaxTimePer"
 #define       CFG_QUERYMODE            "QueryMode"
-#define       CFG_SWAP_DIR             "SwapDir"
-#define       CFG_ALT_LEARN            "AltLearn"
-#define       CFG_EXPIRE               "Expire"
-#define       CFG_BLOCK                "Block"
 #define       CFG_DEFTRANS             "DefaultTranslation"
 #define       CFG_DEFORG               "DefaultOriginal"
 #define       CFG_QUERYTIMEOUT         "QueryTimeout"

@@ -3,6 +3,14 @@
 <kcfg>
   <kcfgfile name="kvoctrainrc"/>
   <group name="QueryProperties">
+   <entry name="Block" type="Bool">
+      <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
+      <default code="true">true</default>
+    </entry>
+    <entry name="Expire" type="Bool">
+      <label>In Blocking Query Tab Dialog, if checked then the Query accepts an expiring time</label>
+      <default code="true">true</default>
+    </entry>
     <entry name="AltLearn" type="Bool">
       <label>Use the Leitner learning method</label>
       <default code="true">false</default>
@@ -10,6 +18,10 @@
     <entry name="SwapDir" type="Bool">
       <label>Swap direction randomly</label>
       <default code="true">false</default>
+    </entry>
+        <entry name="MaxTimePer" type="Int">
+      <label>Swap direction randomly</label>
+      <default code="true">20*1000</default>
     </entry>
   </group>
 </kcfg>

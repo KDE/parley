@@ -29,9 +29,12 @@
 #include "kvoctrain.h"
 #include <kvoctraincore.h>
 
+#include <qmessagebox.h>
 #include <qfile.h>
 
+#include <kconfig.h>
 #include <kstatusbar.h>
+#include <klocale.h>
 
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
@@ -119,13 +122,14 @@ void kvoctrainApp::saveOptions(bool all)
     }
 
     config->setGroup(CFG_QUERYPROP);
-    config->writeEntry(CFG_MAXTIME_PER, maxqueryTime);
+    Prefs::setMaxTimePer(maxqueryTime);
     config->writeEntry(CFG_SHOWCOUNTER, showcounter);
     Prefs::setSwapDir(swap_querydir);
     Prefs::setAltLearn(alt_learn);
+    Prefs::setBlock(block);
+    Prefs::setExpire(expire);
     Prefs::writeConfig();
-    config->writeEntry(CFG_BLOCK, block);
-    config->writeEntry(CFG_EXPIRE, expire);
+   
     config->writeEntry(CFG_QUERYTIMEOUT, type_querytimeout);
     config->setGroup(CFG_QUERYMANAG);
     querymanager.saveConfig (config);
@@ -241,13 +245,12 @@ void kvoctrainApp::readOptions()
 
   config->setGroup(CFG_QUERYPROP);
   type_querytimeout = (kvq_timeout_t) config->readNumEntry(CFG_QUERYTIMEOUT, (int) kvq_notimeout);
-  maxqueryTime = config->readNumEntry(CFG_MAXTIME_PER, 20*1000);
+  maxqueryTime = Prefs::maxTimePer();
   showcounter = config->readNumEntry(CFG_SHOWCOUNTER, false);
   swap_querydir= Prefs::swapDir();
   alt_learn= Prefs::altLearn();
-  block = config->readBoolEntry(CFG_BLOCK, true);
-  expire = config->readBoolEntry(CFG_EXPIRE, true);
-
+  block = Prefs::block();
+  expire = Prefs::expire();
   config->setGroup(CFG_QUERYMANAG);
   querymanager.loadConfig (config);
 }

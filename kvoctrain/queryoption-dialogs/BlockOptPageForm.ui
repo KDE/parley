@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>BlockOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -44,7 +44,7 @@
                 </property>
                 <widget class="QCheckBox" row="0" column="1">
                     <property name="name">
-                        <cstring>c_blocking</cstring>
+                        <cstring>kcfg_block</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
@@ -57,10 +57,13 @@
                     <property name="text">
                         <string>Bl&amp;ocking</string>
                     </property>
+                    <property name="accel">
+                        <string>Alt+O</string>
+                    </property>
                 </widget>
                 <widget class="QCheckBox" row="0" column="2">
                     <property name="name">
-                        <cstring>c_expire</cstring>
+                        <cstring>kcfg_expire</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
@@ -72,6 +75,9 @@
                     </property>
                     <property name="text">
                         <string>E&amp;xpiring</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+X</string>
                     </property>
                 </widget>
                 <widget class="QLabel" row="1" column="0">
@@ -247,13 +253,19 @@
                     <property name="sizeType">
                         <enum>Minimum</enum>
                     </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
                 </spacer>
             </grid>
         </widget>
     </hbox>
 </widget>
 <tabstops>
-    <tabstop>c_blocking</tabstop>
+    <tabstop>kcfg_block</tabstop>
     <tabstop>block7</tabstop>
     <tabstop>block6</tabstop>
     <tabstop>block5</tabstop>
@@ -261,7 +273,7 @@
     <tabstop>block3</tabstop>
     <tabstop>block2</tabstop>
     <tabstop>block1</tabstop>
-    <tabstop>c_expire</tabstop>
+    <tabstop>kcfg_expire</tabstop>
     <tabstop>expire7</tabstop>
     <tabstop>expire6</tabstop>
     <tabstop>expire5</tabstop>

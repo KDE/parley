@@ -61,7 +61,13 @@
                         </property>
                         <widget class="QLineEdit" row="0" column="2">
                             <property name="name">
-                                <cstring>e_mqtime</cstring>
+                                <cstring>kcfg_maxTimePer</cstring>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Set the maximum time allowed per query.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
                             </property>
                         </widget>
                         <widget class="QRadioButton" row="1" column="0">
@@ -112,7 +118,7 @@
                                 <string>&amp;Max. time (s):</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>e_mqtime</cstring>
+                                <cstring>kcfg_maxTimePer</cstring>
                             </property>
                         </widget>
                         <spacer row="2" column="1">
@@ -322,7 +328,7 @@
     <tabstop>r_nolimit_to</tabstop>
     <tabstop>r_show_to</tabstop>
     <tabstop>r_cont_to</tabstop>
-    <tabstop>e_mqtime</tabstop>
+    <tabstop>kcfg_maxTimePer</tabstop>
     <tabstop>showrem</tabstop>
     <tabstop>ask_sub</tabstop>
     <tabstop>ask_verbcon</tabstop>

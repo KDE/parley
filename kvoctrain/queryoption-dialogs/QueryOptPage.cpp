@@ -27,8 +27,10 @@
 
 #include "QueryOptPage.h"
 
+#include <qkeycode.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
+#include <qgroupbox.h>
 #include <qradiobutton.h>
 #include <qbuttongroup.h>
 #include <qlineedit.h>
@@ -36,6 +38,7 @@
 
 #include <stdlib.h>
 
+#include <kapplication.h>
 
 QueryOptPage::QueryOptPage
 (
@@ -62,15 +65,15 @@ QueryOptPage::QueryOptPage
    connect( kcfg_SwapDir, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
    connect( kcfg_AltLearn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
 
-   connect( e_mqtime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
+   connect( kcfg_maxTimePer, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
 
    manager = *_manager;
    setCaption(i18n("Options" ));
 
    validator = new QIntValidator (0, 60*60*24*7, 0); // at least once a week
 
-   e_mqtime->setValidator (validator);
-   label_mqtime->setBuddy(e_mqtime);
+   kcfg_maxTimePer->setValidator (validator);
+  // label_mqtime->setBuddy(kcfg_maxTimePer);
 
    setStates(_mqtime, _swapdir, _altlearn, show, type_to);
 
@@ -107,23 +110,23 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    QString s;
 
    s.setNum (mqtime);
-   e_mqtime->setText (s);
+   kcfg_maxTimePer->setText (s);
    kcfg_SwapDir->setChecked(swapdir);
    kcfg_AltLearn->setChecked(altlearn);
    showrem->setChecked(show);
 
    if (type_to == kvq_show) {
-     e_mqtime->setEnabled(true);
+     kcfg_maxTimePer->setEnabled(true);
      showrem->setEnabled(true);
      r_show_to->setChecked (true);
    }
    else if (type_to == kvq_cont) {
-     e_mqtime->setEnabled(true);
+     kcfg_maxTimePer->setEnabled(true);
      showrem->setEnabled(true);
      r_cont_to->setChecked (true);
    }
    else {
-     e_mqtime->setEnabled(false);
+     kcfg_maxTimePer->setEnabled(false);
      showrem->setEnabled(false);
      r_nolimit_to->setChecked (true);
    }
@@ -132,7 +135,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
 
 void QueryOptPage::initFocus() const
 {
-  e_mqtime->setFocus();
+  kcfg_maxTimePer->setFocus();
 }
 
 
@@ -158,7 +161,7 @@ void QueryOptPage::slotAltLearn(bool state)
 
 void QueryOptPage::slotShowTimeout()
 {
-   e_mqtime->setEnabled(true);
+   kcfg_maxTimePer->setEnabled(true);
    showrem->setEnabled(true);
    type_timeout = kvq_show;
 }
@@ -166,7 +169,7 @@ void QueryOptPage::slotShowTimeout()
 
 void QueryOptPage::slotContTimeOut()
 {
-   e_mqtime->setEnabled(true);
+   kcfg_maxTimePer->setEnabled(true);
    showrem->setEnabled(true);
    type_timeout = kvq_cont;
 }
@@ -174,7 +177,7 @@ void QueryOptPage::slotContTimeOut()
 
 void QueryOptPage::slotNoTimeout()
 {
-   e_mqtime->setEnabled(false);
+   kcfg_maxTimePer->setEnabled(false);
    showrem->setEnabled(false);
    type_timeout = kvq_notimeout;
 }
