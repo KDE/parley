@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>LangOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>536</width>
-            <height>480</height>
+            <height>482</height>
         </rect>
     </property>
     <property name="caption">
@@ -92,19 +92,6 @@
                                 <cstring>b_langPixmap</cstring>
                             </property>
                         </widget>
-                        <widget class="QComboBox" row="0" column="1">
-                            <property name="name">
-                                <cstring>d_shortName</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                        </widget>
                         <widget class="QPushButton" row="0" column="2">
                             <property name="name">
                                 <cstring>b_langDel</cstring>
@@ -149,6 +136,14 @@
                             <property name="buddy" stdset="0">
                                 <cstring>d_shortName</cstring>
                             </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
                         </widget>
                         <widget class="QPushButton" row="3" column="1">
                             <property name="name">
@@ -156,6 +151,11 @@
                             </property>
                             <property name="text">
                                 <string></string>
+                            </property>
+                        </widget>
+                        <widget class="KComboBox" row="0" column="1">
+                            <property name="name">
+                                <cstring>d_shortName</cstring>
                             </property>
                         </widget>
                     </grid>
@@ -232,4 +232,7 @@
     <tabstop>b_lang_iso1</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcombobox.h</includehint>
+</includehints>
 </UI>

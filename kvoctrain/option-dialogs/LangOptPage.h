@@ -58,11 +58,22 @@ public:
 
     virtual ~LangOptPage ();
 
-    struct LangRef {
-      LangRef (const QString& reg, const LangSet &ls)
-        : region(reg), langs(ls) {}
-       QString region;
-       LangSet langs;
+    struct Country {
+      Country(const QString& c, const QValueList<int> l, const QString& p, int i)
+        : country(c), langs(l), pixmap(p), id(i) { }
+      Country() { }
+      QString country;
+      QValueList<int> langs;
+      QString pixmap;
+      int id;
+    };
+
+    struct Region {
+      Region (const QString& reg)
+        : region(reg) {}
+      Region() {}
+      QString region;
+      QValueList<Country> countries;
     };
 
 protected:
@@ -87,6 +98,7 @@ protected:
     void enableLangWidgets();
     void loadCountryData();
     void loadISO6391Data();
+    void createISO6391Menus();
 
     QString     deflang;
     LangSet    &langset;
@@ -94,15 +106,9 @@ protected:
     QValidator *validator;
     QString    &lastPixName;
 
-    QStringList      countrylist;
-    QStringList      regionlist;
-
-
-    vector <LangRef> globalLangs;
-    LangSet          global_langset;
-    QPopupMenu      *langset_popup;
-    QPopupMenu      *iso6391_popup;
-
-    friend class sortByRegion;
+    LangSet                global_langset;
+    QMap<int, Country>     countryIdMap;
+    QPopupMenu            *langset_popup;
+    QPopupMenu            *iso6391_popup;
 };
 #endif // LangOptPage_included
