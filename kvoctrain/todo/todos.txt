@@ -4,9 +4,10 @@ $Id$
                   ----------------------------
 
 tofix now:
+  - Entry-Dialog Schiebeeffekt
+  - Qccel 1 -7 Viewopt
+  - doc Entrydlg
   - percentage %x done in query-statusbar
-  - spot2 utf8
-  - smart appending
 
 todo post-release ?
   - copy cell / copy row
