@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                              manage queries
 
     -----------------------------------------------------------------------
@@ -266,7 +264,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
      kvoctrainExpr *expr = doc->getEntry(i);
      unsigned int lessonno;
      if (altlearn)
-       lessonno = 1; //We only use a single array in Leitner style
+       lessonno = 0; //We only use a single array in Leitner style
      else
        lessonno = expr->getLesson();
 
@@ -608,7 +606,7 @@ bool QueryManager::compareDate (CompType type, time_t qd, time_t limit)
     case Within: erg = qd >= now-limit;           // newer date
     break;
 
-    case NotQueried: erg = qd == 0;    
+    case NotQueried: erg = qd == 0;
     break;
 
     default:
@@ -640,7 +638,7 @@ bool QueryManager::compareQuery (CompType type, int qgrade, int limit)
     case LessEqThan: erg = qgrade <= limit;   // sel has less count
     break;
 
-    case LessThan: erg = qgrade < limit;   
+    case LessThan: erg = qgrade < limit;
     break;
 
     default:
@@ -660,7 +658,7 @@ bool QueryManager::compareBad (CompType type, int bcount, int limit)
     case MoreThan: erg = bcount > limit;    // sel has higher bad count
     break;
 
-    case MoreEqThan: erg = bcount >= limit; 
+    case MoreEqThan: erg = bcount >= limit;
     break;
 
     case EqualTo: erg = bcount == limit;
@@ -672,7 +670,7 @@ bool QueryManager::compareBad (CompType type, int bcount, int limit)
     case LessEqThan: erg = bcount <= limit;   // sel has less count
     break;
 
-    case LessThan: erg = bcount < limit; 
+    case LessThan: erg = bcount < limit;
     break;
 
     default:
