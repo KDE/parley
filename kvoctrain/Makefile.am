@@ -33,11 +33,17 @@ kde_kcfg_DATA = kvoctrain.kcfg
 INCLUDES= -I$(srcdir)/.. \
  -I$(srcdir)/kvt-core \
  -I$(srcdir)/option-dialogs \
+ -Ioption-dialogs \
+ -Icommon-dialogs \
  -I$(srcdir)/common-dialogs \
  -I$(srcdir)/docprop-dialogs \
+ -Idocprop-dialogs \
  -I$(srcdir)/queryoption-dialogs \
+ -Iqueryoption-dialogs \
  -I$(srcdir)/query-dialogs \
+ -Iquery-dialogs \
  -I$(srcdir)/entry-dialogs \
+ -Ientry-dialogs \
  $(all_includes)
 
 bin_PROGRAMS = kvoctrain spotlight2kvtml
