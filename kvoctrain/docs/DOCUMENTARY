@@ -1,0 +1,387 @@
+
+                Documentary to Magic-Dic
+
+
+Magic-Dic is a mulit lingual dictionary program. It supports
+simultaneous search in more than one language pair, global and user
+dictionaries. It can create user dictionaries in single and multi
+lingual mode, and mails the new inserted words to a word centre, that
+others can benefit from your work. The user dictionaries can be updated
+to the actual collection of word of the word centre. This will hopefully
+create a large and actual database of dictionaries, as more people use
+this. Especially for multi lingual people it will be easy to create
+automatically cross linked dictionaries just by translating one word in
+more than one language. The program will create all dictionaries by all
+possible language pairs. All dictionaries are keep as easy ASCII files
+open for all to read out or modify.
+
+
+THE BASIC IDEA OF THIS PROJECT:
+
+Commercal dictionary are expensive and are mostly limited in their
+translations, especially in the scientific area. Although the need of
+translations of rarely used words is still there. Most dictionary
+programs offer functions to create personal dictionaries as addition to
+their base. Unfortunately this uniq work stays mainly unused on a single
+PC, only usable for ONE user and how likely will the information get
+lost by the next system crash. So it is not really worth to create a
+large personal dictionary. Why not sharing the done work and saving it
+that way by spredding it? Why not supporting others with your entries
+and get support from others in return? This is the main idea of the
+project: Share and save your input and create an actual lively database
+for translations. Every new translation has an identifer of creation
+time and user, so that users can communicate with each other and correct
+their translations. The dictionary format is in simple ASCII, readable
+and usable for all people. This opens the limitations that have
+encrypeted commecial dictionaries. Go for open source dicitonaries!
+
+Magic-Dic is written as simple bash skipt to be simply used in
+terminals, because entering a simple command line is finally faster and
+easier, than opening a graphical program every time one needs a
+translation.
+
+
+How does Magic-Dic work now?
+
+1.) Searching for Words and Phrases
+2.) Searching in different Dictionaries
+3.) About Dictionaries, How to Get and Convert for Magic-Dic
+4.) How to Create/Delete an Entry to a Personal Dictionary?
+5.) Files and Directores and Important Variables
+
+
+------------------------------------------------------------------------
+
+
+1.) SEARCHING FOR WORDS AND PHRASES:
+
+The simplest way to search for a word is to call the program with the
+word as option. Example: "dic work". All matches are shown, containing
+"work" surrounded by non-alphanumeric characters. The word "pieceworker"  
+will not be found, "job-work" will be. To open the exact match on one 
+side, use a ´*´. Example: "dic work*" will find "worker". "*work*" finds
+"pieceworker also.
+
+If you do not know, how to spell a word correctly, set with "+N" the
+number of possible wrong characters. Example: "dic +1 worck" will find
+"work" then. Maximal number is 8 or half of the number of characters of
+a word. Combine this opening the exact match sides: "dic *worck* +1"  
+will find then "pieceworker", next to all possible other combinations.  
+Searches using this function will of course take longer, depending on 
+the ammount of combinations.
+
+You can search for phrases also and you do NOT need to encapsulate them
+in `"`. Example: "dic where the devil"  There is no order of setting
+word and other options. The space separates them and all single entered 
+words are combined to a phrase. So "dic where +1 the devil" will search 
+then for "where the devil". So you can enter very chaotic everything. 
+Valid options will be filtered out.
+
+If you are looking for more than one word or phrase, you can search for
+them one after another with one program call. Set `,` directly at the
+end of word or last word of the phrase with no space, directly infront
+of the next word, inbetween them spaceless or as single option. There is
+no rule for, so you can feel free to add anything to a already written
+line to your desires. Example: "dic work, worker , job,labor ,piece"  
+will search first for "work", then for "worker", and "job", and "labor"
+and finally for "piece". Another complex example for a phrase: "dic
+where +1 the devil, where the hell, work" will search for "where the
+devil" and "where the hell". The `+1` option is filtered out.
+
+If you want to limit your search to a special thematic subject such as
+"chemistry" or "history", you can specify it indicating with `/`.  Get a
+list of all set thematic subject with "dic -t" or add your personal ones
+in the config file. Example: "dic /chem crystal" will look for entries
+being thematically indicated with "chemistry". Only one thematic subject
+is permitted to be set. If you specify more, the last specified in the
+commmand line will be taken. A single `/` at the end of the line will
+hence stop searching in thematic subject. Useful if your search was
+successless and you have to restart the search by recalling the command
+line. It is just faster to put a `/` at the end than deleting `/chem` in
+the line.
+
+
+
+2.) SEARCHING IN DIFFERENT DICTIONARIES
+
+
+If no language is specified, the default language pair is used as set in
+the config file, otherwise german-english is used. For every language
+pair, global and user dictionaries are both used in a search. Global
+dictionaries should be in "/usr/local/lib/dic/" on a multi user system
+to save disk space, personally dictionaries should be in "~/.magic-dic".
+The order of the language pair does not matter. If "german-english" is
+set with `-de-uk`, also a "english-german" dictionary will be found.
+
+To specify a language name in the command line is rather simple by using 
+the country domain names. Get a list of all yet set up languages with 
+"dic -L" or add your own to the config file.
+
+If a language is specified, the default dictionary is replaced.
+For looking in a "german-latin" dictionary, set `-de-lat` that is 
+equivalent to `-lat-de`. If you just set `-de` the missing second 
+language for the pair is complemented by the default language as 
+specified in the config file, otherwise it is english.
+
+You can check simultaneously for several language pairs, as many as you 
+specify. Use just `-a` for all installed dictionaries. You will get ONE 
+output containing all your search results, but every out put line 
+indicates its language pair.
+
+As example, if you want to have the translation of the word "work" for
+German, Frensh, Latin, Spanish and Portuguese in one search, start with:
+"dic work -de-uk -fr-uk -lat-uk -es-uk -pt-uk" or if English is set to 
+your default language it becomes easier: "dic work -de -fr -lat -es -pt"
+
+If you want to write that output into a file, you need to disable the
+escape sequences for the colors with `-NC`, because they will disturb.
+"dic work -NC > foo.work" will write the output in a readable way into
+the file "foo.work".
+
+You can selective disable looking up in user dictionaries with `-NU` or 
+in global dictionaries with `-NG`.
+
+To find out, which dictionaries are installed, use `-l`.
+
+Use `-L` to list all yet set languages. 
+
+To access dictionaries of languages not listed, please set them in your
+config file "~/.magic-dic/magic-dic.conf". The format is such as:
+"lat=latin dk=danish ..."
+
+Dictionary names look then like: "latin-danish.magic-dic"
+
+
+
+3.) ABOUT DICTIONARIES, HOW TO GET AND CONVERT FOR MAGIC-DIC
+
+Magic-Dic uses two types of dictionaries: the global and user
+dictionaries. Global dictionaries are from a foreign source and are just
+a basis of words to start with. This should be installed system wide to
+save disk space (/usr/local/lib/dic). User dictionaries are located in
+(~/.magic-dic) directory and mainly contain mainly contain the input of
+the personal inputs, that are shared between all users, just simply by
+emailing a new translation to the word centre by the program. In the
+word centre, all new translations are united to one user dictionary.  
+You can receive and update your user dictionary from the web page.  
+Magic-Dic supports this also.
+
+You can simply get dictionaries downloading them from the Magic-Dic web
+page by using "wget" (you may have to set in the config file the
+variable WPROXY=on/off) via option `-g` or `-G`. "dic -g" will download
+and automatically install the default user dictionary, respectively
+updates it. Your personal settings will be added and duble lines will be
+removed. If you specify a language as explained in the chapter
+"Searching in Different Dictionaries" you can download that specific
+dictionary. "dic -g -lat-uk" will download a latin-english user
+dictionary. To update all installed dictionaries with new user
+dictionaries, use "dic -a -g". The `-G` option allows to get the global
+dictionaries and with that you can install a new dictionary for not yet
+installed language, if available on the web-server. The new dictionary
+will be then in your (~/.magic-dic) directory and you have to move it by
+hand to the global directory.
+
+You can convert dictionaries of a foreign source to be usable in
+Magic-Dic. "dic -convert=:: -de-lat sourcefile" will convert an ASCII
+source file into the format used by Magic-Dic. To use the "convert"  
+skrip, the source has to be in pure ASCII and containing word of
+language1 being separated from language2 by a field separator, `::` in
+the example above. Each word pair has to be in one line, or say
+differently each word pair needs its own line. The main problem will be,
+to find dictionaries in that format. Most dictionaries are in a
+non-readable binary file format.
+
+Magic-Dic itself uses a simple ASCII file format, using as field 
+separator `::`. To every entry a few more informations are stored, to 
+allow more complex use of the program and communication between the 
+users itself, to discuss or correct false translations.
+
+The format of a Magic-Dic dictionary file is:
+
+1   2    3     4     5     6     7     8     9      10    11       
+
+W1  W2  lang1 lang2 thema ident email status count source pass
+
+W1=word of language 1
+W2=word of language 2
+lang1=country domain name of language 1     (dic -L)
+lang2=country domain name of language 2
+thema=the thematic subject of the word      (dic -t)
+ident=personal identifer, containing the time, nick and random number
+email=email of user who created that entry
+status=the status of the entry,ok, to mail, mailed, delete, ...
+count=count of reported errors
+source=the soure of that entry, found in internet, usercreated, ...
+pass=the users password
+
+
+The additional informations as identifer, email and password will be 
+needed for user communication and the possibility to delete false 
+entries from the data base. Users who wish to keep their email anonym 
+will only be known by the word centre. The itentifer is uniq for an 
+entry, so that users can communicate then with that key via the word 
+centre with each other. In the first level only a user can delete his 
+entry from the word centre. But if a false entry is not deleted by a 
+user himself, it will be after a certain amount of other users who did 
+complain about this entry.
+
+This way the database is lively, can grow and be corrected by shared 
+work.
+
+
+4.) HOW TO CREATE/DELETE AN ENTRY TO A PERSONAL DICTIONARY?
+
+Create:
+-------
+
+Magic-Dic offers a simple mask to insert new words into the data 
+base. The big advantage for multi lingual people is to create all 
+possible combinations of dictionaries, when the translations allow it.
+
+Simply call the program without giving "word", BUT specify a language!
+Even for the default language you have to do: "dic -def" will open the
+user default dictionary to enter new words in. "dic -lat-uk" will open a
+user latin-english dictionary. "dic -de -fr -lat" will open dictionaries
+of the default set language. If this is english=uk it is the same as
+"dic -de-uk -fr-uk -lat-uk" Magic-Dic allows to create with one entry
+step seval dictionaries very easy. Especially multi lingual people can
+translate a word in more than one language using the multi lingual input
+mode. If the translation allows it, cross linked dictionaries can be
+created. If you translate a word from English to German and Frensh, a
+german-english, fresh-english and german-frensh dictionary will be
+created. As more languages you speak, as more the Magic-Dic project will
+benefit from providing others with a variaty of different dictionaries.
+
+Someone who speaks five languages, can create all dictionary 
+cominations, by translating one word into the other four languages once.
+The skipt will ask the user if this special translation allows it or if 
+it shall keep strickly the initial start.
+
+Before finishing the insert mode, Magic-Dic wants to email the new words
+to the word centre, so others can benefit from that quickly, just by
+updating their user dics with "dic -g". That way the database can grow
+easily. Please allow Magic-Dic to email your words and you will benefit
+from this also finally. 
+
+The email is created using the program "mail" in a pipe. To use this, 
+you need to have your sendmail or a similar program configured. In the 
+config file you can set this to yes or no. If sendmail does not work, 
+Magic-Dic will write the output in a normal file stored in 
+(~/magic-dic-mail) and you can send this file by hand to the database.
+
+
+Delete:
+-------
+
+To delete a false entry, search for it as usual but with the option `-d` 
+or `-D` in addition. `-d` will delete an entry only in the user 
+dicitionaries, `-D` will also try to delete it from the global 
+dictionaries, if you have write permission to the global directory. 
+
+When a line shall be deleted, it will be removed from all dictionaries 
+it is found in, as specified. 
+
+Same as when you create a new entry, Magic-dic want to email the changes
+to the word centre. If you are the owner of that entry, it will be
+deleted from the word centres data base. If you are not the owner, it
+will be marked as possibly false. When enough people report this to be
+false, the entry will be removed. If you find a false translation in the 
+global dicionary and do not have permission to delete this, you can 
+still report this to the word centre using the `-D` option. Just ignore 
+the warnings then.
+
+Using the delete funktion:
+
+When using option `-d` or `-D` all output lines will be counted and be
+shown with a line number. When you are asked, just give in all the line
+numbers you wish to be deleted. You have to verify again the deleting
+for every entry. Please use the choice to set a replacement for the
+delted line.
+
+
+Please support this project by translating words. For example very
+simply, insert a word you had to look up in a standard dictionary,
+because they were not in here. To put in is pretty easy here and if you
+need to look it up again it will be much faster by using Magic-Dic.
+Hence, Magic-Dic uses simple ascii source files for dictionaries
+everything is open for everybody and easy to modify. Please support this
+open source software.
+
+        Thank you. JR
+--- 
+
+
+5.) FILES AND DIRECTORIES AND IMPORTANT VARIABLES
+
+Files and Directories:
+
+
+        global directory   : /usr/local/lib/dic/
+        user directory     : ~/.magic-dic/
+        config file        : ~/.magic-dic/magic-dic.conf
+        mail tmp directory : ~/.magic-dic/mail-tmp/
+        last search results: ~/.magic-dic/result.tmp
+        mail out directory : ~/magic-dic-mail
+
+
+
+global directory:
+-----------------
+ 
+contains the basic dictionaries for system wide installation, in order 
+to save disk space. The name of the dictionaries to be processes are:
+
+                {language1}-{language2}.magic-dic
+
+example:        german-english.magic-dic
+
+Check for valid languages with "dic -L"
+
+If you need a language that is not specified, set it in your config file
+in the variable LANDER. To set it globaly, check in the "dic" skript
+itself at in its head for the variable LANDER. Although this setting
+there will only take effect, when the users will recall their user
+confic skript with "dic -C".
+
+
+user directory:
+---------------
+
+contains the personal created dicitonaries and from the web page 
+downloaded users and global dictionaries. Global dictionaries should 
+then be moved to the global directory, but if you do not have permission 
+for, you can leave them locally.
+
+config file:
+------------
+
+contains all user specific settings. Configure it with "dic -C". Some 
+variables however need been edited by hand, such LANDER and WPROXY.
+
+mail tmp directory:
+-------------------
+
+stores temporarily the mail data that shall be sent to the word centre 
+ 
+
+last search results:
+--------------------
+
+The results of the last search are stored in that file and can be 
+recalled with `-r`.
+
+
+mail out directory:
+-------------------
+
+when your sendmail or a similar program is not configured to allow using
+the "mail" program in a pipe, the information that should be sent to the
+word centre, will be written to a file and stored in that directory. The
+user can then send it with his email program of his choice.
+
+----
+6.11.2001 by Jens Röder   email: alex.borodin@gmx.de
+
+
+
+
