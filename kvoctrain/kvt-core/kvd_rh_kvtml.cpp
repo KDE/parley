@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -46,6 +49,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   // important, first action
   // switch to actual encoding afterwards, otherwise blocked
   is.setCodec(QTextCodec::codecForName("UTF-8"));
+  is.setEncoding(QTextStream::UnicodeUTF8);
 
   langs.clear();
   vocabulary.clear();
@@ -84,12 +88,15 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   
       if ((*first).stringValue().upper() == (QString)"UTF-8" ) {
         is.setCodec(QTextCodec::codecForName("UTF-8"));
+        is.setEncoding(QTextStream::UnicodeUTF8);
       }
       else if ((*first).stringValue().upper() == (QString)"8BIT" ) {  // old compatibility mode
         is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
+        is.setEncoding(QTextStream::Latin1);
       }
       else {
         is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
+        is.setEncoding(QTextStream::Latin1);
         QString format = i18n("Encountered unknown document encoding \"%1\"\n\n"
                          "This will just be ignored. Encoding is now \"%2\".");
         QString msg =format.arg((*first).stringValue ().upper()).arg("ISO 8859-1");

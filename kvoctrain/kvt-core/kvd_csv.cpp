@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -90,7 +93,7 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString title,
   vector<kvoctrainExpr>::const_iterator first =  vocabulary.begin ();
   QString exp;
 
-  bool utf8_mode = false;
+  os.setCodec(QTextCodec::codecForName("UTF-8"));
   while (first != vocabulary.end ()) {
 
     ent_no++;
@@ -134,6 +137,11 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
   loadTypeNameCsv (is);
   loadLessonCsv (is);
 
+  // autodetect utf8
+  // FIXME: provide choice for Latinx?
+  is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
+  is.setEncoding(QTextStream::Latin1);
+
   int size = is.device()->size ();
   int ln = size / 20 / 100;  // assume each line about 20 chars
   float f_ent_percent = size / 100.0;
@@ -150,9 +158,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
         ushort trigger = s[i].unicode();
         if (trigger >= 0x80) {
           int remain = s.length() - i;
-          cout << "trigger " << hex << trigger << endl;
           if ((trigger & 0xE0) == 0xC0){         // 110x xxxx
-            cout << "trigger1a " << hex << s[i+1].unicode() << endl;
             if (   (remain > 1)
                 && (s[i+1].unicode() & 0xC0) == 0x80)
               utf8_mode = true;
@@ -192,6 +198,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
 
       if (utf8_mode) {
         is.setCodec(QTextCodec::codecForName("UTF-8"));
+        is.setEncoding(QTextStream::UnicodeUTF8);
         s = QString::fromUtf8(s.ascii());
       }
 
