@@ -1,4 +1,3 @@
-
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = kva_io.cpp \
@@ -42,7 +41,9 @@ APPS_FILES = \
  pics/sort_alpha.xpm pics/sort_num.xpm pics/cleanup.xpm \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
  pics/entry-in-query.png  pics/entry-inactive.png
- 
+
+EXTRA_DIST = $(APPS_FILES) $(XMP_FILES)
+
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/
 	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/kvoctrain.desktop

@@ -3,15 +3,6 @@ $Date$
 
         helps you train your own vocabulary in different languages
         
-==================================================================
-
-This package is compilable for KDE1 *AND* KDE2.
-
-To determine the target version for compilation for see
-README.kde1x-kde2x.
-
-==================================================================
-
 This tool is intended as a replacement for the old recommendation, to
 excercise your vocabulary with little sheets of paper and a box.
 

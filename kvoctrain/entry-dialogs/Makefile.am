@@ -1,8 +1,14 @@
-INCLUDES = -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
-	   -I$(top_srcdir)/kvoctrain/kvoctrain/docprop-dialogs \
-	   -I$(top_builddir)/kvoctrain/kvoctrain/docprop-dialogs \
- -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
- $(all_includes)
+# please provide kvoctrain/* AND kvoctrain/kvoctrain/*
+# this enables me to create a personal tar ball
+
+INCLUDES = -I$(top_srcdir)/kvoctrain \
+           -I$(top_srcdir)/kvoctrain/kvoctrain \
+           -I$(top_srcdir)/kvoctrain/kvt-core \
+           -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
+           -I$(top_srcdir)/kvoctrain/docprop-dialogs \
+           -I$(top_srcdir)/kvoctrain/kvoctrain/docprop-dialogs \
+           -I$(top_builddir)/kvoctrain/kvoctrain/docprop-dialogs \
+           $(all_includes)
 
 noinst_LTLIBRARIES = libentrydlg.la
 

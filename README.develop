@@ -29,45 +29,6 @@ They are grouped in according subdirectories. Most important kvt-core which
 might be used as a base for a shared library for voabulary related things in the kde
 edu project. Maybe just to show how #not# to do it :-)
 
-required tools
-==============
-
-qtarch
-------
-
-Currently all dialogs are maintained with my patched version of qtarchitect V1.4
-which can be obtained from the files area on http://kvoctrain.sourceforge.net.
-
-If  you want to modify existing files you should save the following lines as ".QtArchitect"
-in your home dir:
-
---snip
-GridSize = 10
-I18nMacro = i18n
-UseI18n = 1
-I18nCreate = 1
-I18nInclude = kapp.h
-PureVirtual = 0
-MinimizeCode = 1
-OmitPropagation = 1
-OmitMinMaxSize = 1
-OmitFocus = 1
-OmitBackGround = 1
-OmitDefaults = 1
-QAppModule = 0
-QtStrName = EA_QTSTR
-QtStrType = 2
-QtStrInclude = compat_2x.h
-OmitDtor = 1
-OmitFrame = 1
-OmitLabel = 1
-OmitButtonGroup = 1
-[WidgetModules]
-0 = /usr/local/lib/KDEModule.so
---snap
-
-In the long run this should be replaced by qtdesigner.
-
 happy coding
 Ewald Arnold
 
