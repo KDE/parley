@@ -41,10 +41,8 @@ static KCmdLineOptions options[] =
   KCmdLineLastOption
 };
 
-static const char *description =
-	I18N_NOOP("Vocabulary Trainer");
-
-static const char *version = KVOCTRAIN_VERSION_STRING;
+static const char description[] = I18N_NOOP("Vocabulary Trainer");
+static const char version[]     = KVOCTRAIN_VERSION_STRING;
 
   KAboutData aboutData("kvoctrain",
                        "KVocTrain",

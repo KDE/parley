@@ -15,55 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.14  2002/01/04 17:28:51  arnold
-    fixed resuming a query
-
-    Revision 1.13  2001/12/13 18:39:09  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.12  2001/11/25 11:11:02  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.11  2001/11/11 12:51:45  arnold
-    fixed some strings for i18n purposes
-
-    Revision 1.10  2001/11/10 22:27:08  arnold
-    removed compatibility for kde1
-
-    Revision 1.9  2001/11/10 21:11:57  arnold
-    removed icons and compatibilty for kde1
-
-    Revision 1.8  2001/11/09 15:52:00  arnold
-    fixed error messages for correct i18n use
-
-    Revision 1.7  2001/11/09 10:39:25  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.6  2001/11/02 10:17:48  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.5  2001/10/21 16:22:07  arnold
-    removed all the 'charset' stuff
-
-    Revision 1.4  2001/10/21 15:28:43  arnold
-    removed all the 'charset' stuff
-
-    Revision 1.3  2001/10/20 00:58:26  waba
-    * Selection fixes
-    * Compile fixes
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -92,7 +43,7 @@ void kvoctrainApp::saveOptions(bool all)
   KConfig *config = KApplication::kApplication()->config();
 
   config->setGroup(CFG_GENERAL);
-  config->writeEntry(CFG_RECENT, recent_files);
+  config->writePathEntry(CFG_RECENT, recent_files);
   config->writeEntry(CFG_AUTOSAVEOPT, autosaveopts);
   config->writeEntry(CFG_ENTRYAUTOAPPLY, autoentryApply);
 
@@ -194,10 +145,10 @@ void kvoctrainApp::readOptions()
 
   for (int i = 0; i < ls; i++) {
     num.setNum(i);
-    QString name = config->readEntry(QString(CFG_QP_NAME)+num, "");
-    QString query = config->readEntry(QString(CFG_QP_QUERY)+num, "");
-    QString thresh = config->readEntry(QString(CFG_QP_THRESH)+num, "");
-    QString blockset = config->readEntry(QString(CFG_QP_BLOCK)+num, "");
+    QString name = config->readEntry(QString(CFG_QP_NAME)+num);
+    QString query = config->readEntry(QString(CFG_QP_QUERY)+num);
+    QString thresh = config->readEntry(QString(CFG_QP_THRESH)+num);
+    QString blockset = config->readEntry(QString(CFG_QP_BLOCK)+num);
     presettings.push_back(PreSetting(name, query, thresh, blockset));
   }
 
@@ -244,7 +195,7 @@ void kvoctrainApp::readOptions()
   smartAppend = config->readNumEntry(CFG_SMART_APPEND, 0);
   header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
   // initialize the recent file list
-  recent_files = config->readListEntry(CFG_RECENT);
+  recent_files = config->readPathListEntry(CFG_RECENT);
   autosaveopts = config->readBoolEntry(CFG_AUTOSAVEOPT, true);
   autoentryApply = config->readBoolEntry(CFG_ENTRYAUTOAPPLY, false);
 
@@ -263,7 +214,7 @@ void kvoctrainApp::readOptions()
   for (int i = 0; i < ls; i++) {
     s.setNum (i);
     s.insert (0, CFG_L_SHORT);
-    QString shortId = config->readEntry(s, "");
+    QString shortId = config->readEntry(s);
     if (shortId.stripWhiteSpace().length() == 0) {
       shortId.setNum (i);
       shortId.insert (0, "id");
@@ -271,11 +222,11 @@ void kvoctrainApp::readOptions()
 
     s.setNum (i);
     s.insert (0, CFG_L_SHORT2);
-    QString shortId2 = config->readEntry(s, "");
+    QString shortId2 = config->readEntry(s);
 
     s.setNum (i);
     s.insert (0, CFG_L_LANG);
-    QString longId = config->readEntry(s, "");
+    QString longId = config->readEntry(s);
     if (longId.stripWhiteSpace().length() == 0) {
       longId.setNum (i);
       longId.insert (0, "ident");
@@ -283,7 +234,7 @@ void kvoctrainApp::readOptions()
 
     s.setNum (i);
     s.insert (0, CFG_L_PIXMAP);
-    QString PixMapFile = config->readEntry(s, "");
+    QString PixMapFile = config->readEntry(s);
 
     langset.addSet (shortId, shortId2, longId, PixMapFile);
   }
@@ -322,8 +273,8 @@ void kvoctrainApp::readProperties(KConfig *config)
 {
   querymode = config->readBoolEntry(CFG_QUERYMODE, 0);
 
-  QString filename = config->readEntry(CFG_FILENAME,"");
-  QString title = config->readEntry(CFG_TITLE,"");
+  QString filename = config->readEntry(CFG_FILENAME);
+  QString title = config->readEntry(CFG_TITLE);
   bool modified = config->readBoolEntry(CFG_MODIFIED,false);
   if( modified ){
     bool b_canRecover;

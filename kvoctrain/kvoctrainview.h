@@ -15,37 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.8  2002/01/02 11:38:27  arnold
-    fixed displaying of modified doc
-
-    Revision 1.7  2001/12/14 16:05:49  arnold
-    fixed handling of table font
-
-    Revision 1.6  2001/11/25 11:11:03  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.5  2001/11/24 17:15:45  arnold
-    fixes for table view and query
-
-    Revision 1.4  2001/11/02 10:17:48  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.3  2001/10/20 00:58:26  waba
-    * Selection fixes
-    * Compile fixes
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************

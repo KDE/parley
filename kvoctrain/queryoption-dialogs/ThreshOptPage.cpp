@@ -15,38 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.10  2002/02/08 19:24:03  arnold
-    fixed sleeping dialog, applied patches for Tru64 unix
-
-    Revision 1.9  2001/12/29 10:41:06  arnold
-    merged fixes from POST-branch
-
-    Revision 1.8  2001/12/26 15:12:58  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.7  2001/11/23 18:16:48  mueller
-    compile fixes (builddir != stddir, --enable-final)
-
-    Revision 1.6  2001/11/10 22:30:01  arnold
-    removed compatibility for kde1
-
-    Revision 1.5  2001/11/09 14:19:54  arnold
-    fixed and improved some dialog pages
-
-    Revision 1.4  2001/10/28 16:56:56  arnold
-    replaced qtarch dialog files with qtdesigner
-
-    Revision 1.3  2001/10/13 21:11:02  arnold
-    tested and fixed changes from previous cvs update
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:46:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -61,7 +29,7 @@
 
 #include "ThreshOptPage.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <vector>
 using namespace std;
 

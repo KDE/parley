@@ -15,42 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.9  2002/04/12 10:09:55  coolo
-    replacing tons of these (for gcc 3):
-    -      queryList.erase(&queryList[i], &queryList[i+1]);
-    +      queryList.erase(queryList.begin() + i);
-
-    Revision 1.8  2002/02/08 19:24:02  arnold
-    fixed sleeping dialog, applied patches for Tru64 unix
-
-    Revision 1.7  2001/11/25 11:11:02  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.6  2001/11/10 22:27:08  arnold
-    removed compatibility for kde1
-
-    Revision 1.5  2001/11/10 21:11:57  arnold
-    removed icons and compatibilty for kde1
-
-    Revision 1.4  2001/10/20 08:10:34  arnold
-    fixed copying multiple lines to clipboard
-
-    Revision 1.3  2001/10/20 00:58:26  waba
-    * Selection fixes
-    * Compile fixes
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************

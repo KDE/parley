@@ -13,79 +13,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.22  2002/01/19 10:33:08  arnold
-    made entry dialog modeless
-
-    Revision 1.21  2002/01/06 16:10:15  arnold
-    fixed crash when loading a second doc
-
-    Revision 1.20  2001/12/26 15:10:25  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.19  2001/12/26 13:15:21  arnold
-    fixed header buttons and kbd handling
-
-    Revision 1.18  2001/12/24 13:37:46  arnold
-    fixed misbehaviour with inline editing
-
-    Revision 1.17  2001/12/16 16:51:25  arnold
-    fixed keyboard handling in main view
-
-    Revision 1.16  2001/12/14 16:05:49  arnold
-    fixed handling of table font
-
-    Revision 1.15  2001/11/25 11:11:03  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.14  2001/11/24 17:15:45  arnold
-    fixes for table view and query
-
-    Revision 1.13  2001/11/19 20:05:16  arnold
-    fixed warning message
-
-    Revision 1.12  2001/11/18 12:28:25  arnold
-    provided menu entry for example files
-
-    Revision 1.11  2001/11/17 17:58:22  arnold
-    added inline editing of all columns
-
-    Revision 1.10  2001/11/16 18:52:59  arnold
-    added possibility to disable expressions
-
-    Revision 1.9  2001/11/09 11:06:40  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.8  2001/11/09 10:39:25  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.7  2001/11/02 17:50:23  arnold
-    fixed sorting basically
-
-    Revision 1.6  2001/11/02 10:17:48  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.5  2001/11/01 11:26:12  arnold
-    fixed some editing actions
-
-    Revision 1.4  2001/10/20 00:58:26  waba
-    * Selection fixes
-    * Compile fixes
-
-    Revision 1.3  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.2  2001/10/13 11:45:29  coolo
-    includemocs and other smaller cleanups. I tried to fix it, but as it's still
-    qt2 I can't test :(
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 #include <qkeycode.h>
@@ -101,7 +28,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 
-#include <iostream.h>
+#include <iostream>
 
 #include "kvoctraindoc.h"
 #include "rowtable.h"

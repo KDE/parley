@@ -14,83 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.23  2002/03/13 08:22:29  waba
-    * Use KRandomSequence instead of rand()
-    * Fix crash in "resume query".
-
-    Revision 1.22  2002/01/27 07:17:44  binner
-    CVS_SILENT Fixed capitalisation.
-
-    Revision 1.21  2002/01/20 11:41:01  arnold
-    fixed issues with modeless dialogs
-
-    Revision 1.20  2002/01/19 11:06:46  mhunter
-    CVS_SILENT Corrected typographical errors
-
-    Revision 1.19  2002/01/19 10:33:08  arnold
-    made entry dialog modeless
-
-    Revision 1.18  2002/01/18 04:40:08  waba
-    Remove linbreaks from messageboxes.
-    Use KMessageBox.
-
-    Revision 1.17  2002/01/07 17:19:44  arnold
-    fixed i18n() issues
-
-    Revision 1.16  2002/01/04 17:28:51  arnold
-    fixed resuming a query
-
-    Revision 1.15  2002/01/04 13:17:06  mhunter
-    CVS_SILENT Corrected typographical errors
-
-    Revision 1.14  2001/12/30 18:41:38  arnold
-    improved reaction upon 'empty' query selections
-
-    Revision 1.13  2001/12/29 10:40:03  arnold
-    merged fixes from POST-branch
-
-    Revision 1.12  2001/12/13 18:39:09  arnold
-    added phonetic alphabet stuff
-
-    Revision 1.11  2001/12/07 19:20:50  arnold
-    included multiple choice fields and false friend into query
-
-    Revision 1.10  2001/12/01 11:28:13  arnold
-    fixed flickering in query dialogs
-
-    Revision 1.9  2001/11/16 18:52:59  arnold
-    added possibility to disable expressions
-
-    Revision 1.8  2001/11/11 12:51:45  arnold
-    fixed some strings for i18n purposes
-
-    Revision 1.7  2001/11/10 22:27:08  arnold
-    removed compatibility for kde1
-
-    Revision 1.6  2001/11/09 14:18:00  arnold
-    fixed and improved some dialog pages
-
-    Revision 1.5  2001/11/09 10:39:25  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.4  2001/10/28 10:15:46  arnold
-    quick 'n dirty fixes for new query dialogs
-
-    Revision 1.3  2001/10/20 00:58:26  waba
-    * Selection fixes
-    * Compile fixes
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -120,13 +43,13 @@
 #define MAX_QUERY_TIMEOUT 3
 
 
-static const char * not_answered = I18N_NOOP(
+static const char not_answered[] = I18N_NOOP(
     "The query dialog was not answered several times in a row.\n"
     "It is assumed that there is currently noone in front of "
     "the screen, and for that reason the query is stopped.");
 
 
-static const char * not_contain = I18N_NOOP(
+static const char not_contain[] = I18N_NOOP(
     "There are currently no suitable expressions for the "
     "query you started.\n"
     "Several reasons can cause this. Maybe you don't have "

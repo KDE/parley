@@ -15,42 +15,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.2  2002/04/22 19:12:15  binner
-    CVS_SILENT Capitalisation fixes.
-
-    Revision 1.1  2001/11/25 11:12:24  arnold
-    splitted kv_resource.h
-
-    Revision 1.8  2001/11/18 12:28:46  arnold
-    provided menu entry for example files
-
-    Revision 1.7  2001/11/16 19:50:26  arnold
-    added submenu to set language to main menu
-
-    Revision 1.6  2001/11/10 17:34:43  arnold
-    fixed language property dialog page
-
-    Revision 1.5  2001/11/02 10:18:31  arnold
-    fixed colum resizing and diplaying of grade colors
-
-    Revision 1.4  2001/10/28 10:16:08  arnold
-    quick 'n dirty fixes for new query dialogs
-
-    Revision 1.3  2001/10/22 06:39:21  waba
-    Show a cute little marker to indicate marked entries.
-    (Instead of using a bold type-face)
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:42:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 /***************************************************************************

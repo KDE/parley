@@ -14,50 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.12  2003/02/27 00:41:21  antlarr
-    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
-    some _very_ strange uses of QString and i18n, together with some very wrong
-    and strange usages.
-
-    CCMAIL:ewald@ewald-arnold.de
-
-    Revision 1.11  2002/07/21 04:27:09  binner
-    CVS_SILENT Style guide fixes
-
-    Revision 1.10  2002/04/12 10:09:56  coolo
-    replacing tons of these (for gcc 3):
-    -      queryList.erase(&queryList[i], &queryList[i+1]);
-    +      queryList.erase(queryList.begin() + i);
-
-    Revision 1.9  2002/02/08 19:24:03  arnold
-    fixed sleeping dialog, applied patches for Tru64 unix
-
-    Revision 1.8  2001/12/29 10:40:24  arnold
-    merged fixes from POST-branch
-
-    Revision 1.7  2001/12/26 15:11:53  mueller
-    CVSSILINT: fixincludes
-
-    Revision 1.6  2001/12/01 11:28:34  arnold
-    fixed flickering in query dialogs
-
-    Revision 1.5  2001/11/25 11:11:23  arnold
-    switch for inline edit, splitted kv_resource.h
-
-    Revision 1.4  2001/11/16 18:53:21  arnold
-    added possibility to disable expressions
-
-    Revision 1.3  2001/11/10 22:28:46  arnold
-    removed compatibility for kde1
-
-    Revision 1.2  2001/11/09 14:19:13  arnold
-    fixed and improved some dialog pages
-
-    Revision 1.1  2001/10/05 15:42:01  arnold
-    import of version 0.7.0pre8 to kde-edu
-
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -78,7 +34,7 @@
 
 #include "kvoctraindoc.h"
 
-#include <iostream.h>
+#include <iostream>
 #include <vector>
 using namespace std;
 
@@ -145,7 +101,7 @@ QString QueryManager::getSubType (QString type)
     return type;
   }
   else
-    return "";
+    return QString::null;
 }
 
 
@@ -171,7 +127,7 @@ QueryManager::QueryManager ()
   dateitem = 0;
   queryitem = 0;
   baditem = 0;
-  typeitem = "";
+  typeitem = QString::null;
   gradeitem = 0;
   lessonitems.clear();
 }
@@ -190,8 +146,8 @@ void QueryManager::loadConfig (KConfig *config)
   baditem = (CompType) config->readNumEntry(CFG_QM_BAD_ITEM, 0);
   queryitem = (CompType) config->readNumEntry(CFG_QM_QUERY_ITEM, 0);
   gradeitem = (CompType) config->readNumEntry(CFG_QM_GRADE_ITEM, 0);
-  typeitem = config->readEntry(CFG_QM_TYPE_ITEM, "");
-//  setLessonItemStr (config->readEntry(CFG_QM_LESSON_ITEM, ""));
+  typeitem = config->readEntry(CFG_QM_TYPE_ITEM);
+//  setLessonItemStr (config->readEntry(CFG_QM_LESSON_ITEM));
 
   blockItems.clear();
   blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"1", 1 *      60*60*24));
@@ -593,7 +549,7 @@ QString QueryManager::typeStr (const QString id)
     if (i >= 0 && i < (int) userTypes.size() )
       return userTypes[i];
     else
-      return "";
+      return QString::null;
   }
   else {
     t_type_rel *type = InternalTypeRelations;
@@ -603,7 +559,7 @@ QString QueryManager::typeStr (const QString id)
       type++;
     }
   }
-  return "";
+  return QString::null;
 }
 
 

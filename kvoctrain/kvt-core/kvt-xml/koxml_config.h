@@ -6,6 +6,9 @@
   $Id$
 
   $Log$
+  Revision 1.1  2001/10/05 15:43:20  arnold
+  import of version 0.7.0pre8 to kde-edu
+
 
   -----------------------------------------------------------------------
 */
@@ -27,7 +30,8 @@
 
 #else
 
-# include <iostream.h>
+# include <iostream>
+using namespace std;
 # define KOXML_ISTREAM istream
 # define KOXML_OSTREAM ostream
 

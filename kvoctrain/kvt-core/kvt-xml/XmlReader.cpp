@@ -9,25 +9,6 @@
 
   -----------------------------------------------------------------------
 
-  $Log$
-  Revision 1.5  2002/04/21 13:18:51  arnold
-  fixed escaping from "<" to &lt;
-
-  Revision 1.4  2002/04/19 09:12:11  arnold
-  xml structure now more conforming
-
-  Revision 1.3  2002/04/12 10:09:56  coolo
-  replacing tons of these (for gcc 3):
-  -      queryList.erase(&queryList[i], &queryList[i+1]);
-  +      queryList.erase(queryList.begin() + i);
-
-  Revision 1.2  2002/02/08 19:24:03  arnold
-  fixed sleeping dialog, applied patches for Tru64 unix
-
-  Revision 1.1  2001/10/05 15:43:20  arnold
-  import of version 0.7.0pre8 to kde-edu
-
-
   -----------------------------------------------------------------------
 
   This program is free software; you can redistribute it and/or modify
@@ -47,7 +28,8 @@
 
 */
 
-#include <iostream.h>
+#include <iostream>
+using namespace std;
 #include "XmlReader.h"
 
 XmlReader::XmlReader (KOXML_ISTREAM& is)
