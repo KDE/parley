@@ -1,0 +1,13 @@
+> Inzwischen habe ich den Grund gefunden: Ist unter der KDE1-Version bei
+> "Aktuelle Lektion auswählen" der Eintrag "<Keine Lektion>" ausgewählt,
+> werden alle Lektionen der Reihe nach abgefragt (was Sinn macht). Ist diese
+> Einstellung bei der KDE2-Version ausgewählt, wird nichts abgefragt. Daher
+> rührte mein obiges "Problem".
+>
+
+> Bei Wiederholungen von länger zurückliegenden Lektionen bevorzuge ich es
+> eher gemischt. Ist aber vielleicht nur mein persönlicher Geschmack und eher
+> unbedeutend. Ich habe das Empfinden, die Vokabeln dann tatsächlich zu
+> wissen, ohne den durch eine Lektion erstellten Zusammenhang (schließlich
+> sind die meisten Lektionen ja aus einem gewissen Zusammenhang erstellt -
+> Flughafen, Restaurant usw.).

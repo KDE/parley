@@ -1,0 +1,196 @@
+$Date$
+
+                   kvoctrain roadmap and todo
+                  ----------------------------
+
+still left flaws:
+=================
+
+# shp-bug
+
+# crash "recent files"
+
+= kde2: accel in dialogen??
+
+- percentage resizing bug
+
+- aktion nach query-timeout: statt show wird weitergemacht
+
+- multiline input anon-query
+
+- loading: missing charsets?
+
+= tabreihenfolge in dialogen testen
+
+
+common
+======
+
+multiple choice: faux ami immer mit anzeigen, auf gleiche Wortarten achten
+
+>Wenn ich meine (bereits 2!) Vokabeln schon gewußt habe, werde sie
+>wohl durch Sperren erfaßt. Die Fehlermeldung ergibt aber dann "keine
+#Sinnig wäre vermutlich einey Angabe des Grundes, z.B. alle Wörter in der Sperrzeit.
+
+groups: Liste neutral wenn neue Option manuell
+
+- conjugation entry dlg: show base form on top and I, you, he, she ... on the left
+- correctly restore cursor position on startup, setTopCell
+- Beispielkonfiguration de/en zum Snapshots erzeugen
+
+doc
+===
+
+- header menu: alt (shift)
+- faq compile problems, script bug-report
+
+- encoding
+
+  uft8 for kde2x envs
+  8859-x/koi if special
+
+  Use of fonts in general
+
+KDE2 : pixmaps, Identifier neu eingeben, sind getrennt von KDE1
+
+wishes from users
+=================
+
+>BTW: Gibt es eine Moeglichkeit Vokabel zu deaktivieren? In meiner Liste
+>sind einige so exotische Vokabeln drin, dass ich sie nicht immer lernen
+>moechte, aber der Vollstaendigkeit halber moechte ich sie auch nciht
+>gleich loeschen.
+
+-- Anregung: Der Mehrfachauswahl-Abfragedialog kann derzeit Wörter zur
+Auswahl enthalten, deren Wortart nicht der (angegebenen!) Wortart des
+gefragten Wortes entspricht, so dass man diese Wörter auf jeden Fall nicht
+wählen wird (siehe zum Beispiel den Screenhot des Abfragedialogs in der
+deutschen Dokumentation: das Nomen »chunk« ist gefragt, ein Verb und ein
+Adjektiv werden als Übersetzungsalternativen angegeben. Damit alle zur
+Auswahl stehenden Wörter echte Alternativen sind, muss also die Angabe
+der Wortart des gefragten Wortes ausgeblendet werden oder (besser) es
+dürfen nur solche Wörter zur Auswahl angezeigt werden, deren Wortart
+der Wortart des gefragten Wortes entspricht.
+
+Ah so. Prima! Was mir in dem Zusammenhang einfaellt: Bei Substantiven
+koennte es hilfreich sein, ein Feld fuer den Plural zu haben (und den
+auch abzufragen). Gerade bei Sprachen wie Deutsch oder Hollaendisch kann
+das helfen, da die Pluralbildung nicht immer regelmaessig ist (z.B.
+Vokalverschiebung (D) Mann -> Maenner oder Unregelmaessigkeiten a la
+(NL) ei -> eieren).
+
+
+  einander naeher liegt. Was ich persoenlich jetzt toll faende, waere
+  die Moeglichkeit, mich bei Zufallsabfragen zufaellig in
+  Hollaendisch<->Deutsch *und* Hollaendisch<->Englisch abfragen zu
+
+- Synonyme: Die Synonymabfrage ist auch eine prima Idee, allerdings
+  wuerde ich es manchmal vorziehen, wenn der Rechner einfach alle
+  Synonyme als korrekte Antwort akzeptieren wuerde. Beispiel:
+  engl. "the" -> dtsch. "der/die/das". Wenn ich hier drei Eintraege
+
+- Artikelabfrage: Prima Idee! Allerdings faende ich es noch besser, wenn
+  es die Moeglichkeit gaebe, Artikelabfrage und Zufallsabfrage zu
+  kombinieren, d.h. immer wenn nach einem Substantiv gefragt wird,
+  taucht auch gleich die box mit den Artikeln auf und man muss nicht nur
+  das Wort wissen, sondern auch den Artikel. Das waere fuer mich noch
+  effektiver, als eine getrennte Abfrage.
+  Evtl. koennte man das auch mit Adjektivformen oder Verbformen machen,
+  aber das wird wahrscheinlich zu umstaendlich bei der Abfrage.
+
+>Und als Enduser, wäre es toll, wenn ich das auf der Homepage
+>nachlesen könnte. Nicht jeder verwendet ja kde, hätte aber dann doch
+>gerne ein paar Programme aus der K-Welt.  Das zum Kompilieren nur die
+>kdelibs, qt und ein paar andere Zerquetschte notwendig sind, läßt das
+>Enduser-Das-Kann-Ich-Doch-Auch-Rasch-Schaffen Herz  hochschlagen ;-).
+
+--  Wenn bei mehreren selektierten Einträgen über Return das
+Eingabefeld zur Bearbeitung der Eigenschaften des Ursrungs aufgerufen
+wird, ist das Feld »Bemerkung« deaktiviert, die Felder »Synonym«,
+»Falscher Freund« und »Antonym« aber aktiviert. Brauchbarer wäre es
+andersherum: man wird kaum einen false friend für eine ganze Wortgruppe
+einstellen, ich hatte aber schon den Fall, dass ich dieselbe Bemerkung
+für eine Wortgruppe einstellen wollte (nämlich die Quelle der Wörter,
+in diesem Fall ein einziger Text). Letzteres sollte aber nur erlaubt
+werden, wenn noch bei keinem selektierten Eintrag eine Bemerkung steht,
+um nicht versehentlich eigene Arbeit zunichte zu machen.
+
+-  4. Ein Feature erlaubt das Drucken von doppelseitigen Blättern mit
+Vokabeln und Gitterraster, so dass man die Vokabeln einer
+Selektionsmenge zum Lernen unterwegs und zwischendurch ausschneiden
+kann. Die Rückübertragung des so erzielten Lernstatus muss schnell
+möglich sein: Setzen des Status für die gesamte gedruckte
+Selektionsmenge, eventuell muss ein kleiner Teil der Selektionsmenge
+ausgewählt werden und einen anderen Status bekommen.
+
+Ich dachte an eine Liste, die man sich einstecken kann, um mal im Bus zu lernen. So
+Laptop unterm Arm ist doch manchmal etwas laestig ;-) Ausserdem wollte ich meiner
+Freundin eine Liste zur Korrektur schicken. Die hat leider (noch) kein Linux (aber ich
+arbeite daran ;-) ).
+
+o    when I create a new entry in English, let's say a verb, it'd be
+nice if KVoctrain would remember the part of speech when I enter the
+translated word.
+
+--  Beim alphabetischen Sortieren in der Tabelle sollen die deutschen
+Umlaute nicht ganz um Schluss kommen, sondern bei den entsprechenden
+Buchstaben im Alphabet.
+
+>5) Laesst sich die Reihenfolge der Lektionen im nachhinein noch aendern?
+
+* Je nach Sprache sollte es moeglich sein, die Artikelformen
+zusammenzufassen, d.h. z.B. fuer Schwedisch/Daenisch/Italienisch Utrum
+und Neutrum, fuer Englisch nur Neutrum etc (so wie fuer die 3. Person
+bei den Verben).
+
+personal ideas
+==============
+
+- configure keys, option for the two keys to determine known/unknown
+- improve searching from within other apps (hotkey/mouseklick + bubble text)
+- tolerant searching (regex / "uniform comparison")
+- Vokabeltest mit Note am Ende
+- Zieltermin/Umfang lernen
+- phonetic alphabet
+- drag and drop
+- 2. Statuszeile mit false friends und andere
+- tooltips auf dialog-elemente
+- speed up cleaning function and make it find all entries with first try
+
+>a) keine Trennung von benutzerspezifischen Informationen und
+>   dein eigentlichen Daten. Sehr schlecht. Insbesondere unter
+
+>Aua. Gute MC-Aufgaben beinhalten nicht zufällig ausgewählte
+>Wörter sondern welche, die "nah dran" sind um abzulenken,
+>mehrere richtige Lösungen
+
+====>
+<e> ...
+  mc1="text21"    x Text für MC-Abfragen
+  mc2="text22"
+  mc3="text23"
+</e>
+
+current feature list to implement
+=================================
+
+
+feature list following release
+==============================
+
+false friends query
+
+printing
+
+createheadernames beschleunigen
+
+z.B. Eingabe :    "der Mann"  ==>   setzt Nomen/männlich  und Text "Mann"
+
+4. geschlecht für schwedisch
+
+>1) Allgemein habe ich den Eindruck, du magst modale Dialoge zu gern. Oftmals wird
+>die Eingabe dadurch sehr umstaendlich. Kann man die Eintrage in der Tabelle nicht
+>direkt editieren (ist bestimmt schwer zu programmieren)?
+
+standardabfrage zusätzlich spezialdaten abfragen wenn gewünscht,
+geht dann ins ergebnis ein

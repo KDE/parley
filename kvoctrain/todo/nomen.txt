@@ -1,0 +1,32 @@
+> > > - Für einige Sprachen wird analog zur Konjugation der Verben auch etwas
+> > > für die Beugung der Substantive benötigt. So gibt es z. B. im
+> > > Russischen 6 Fälle mit einigen Ausnahmen
+> >
+> > Kannst du das mit ein paar Beispielen genauer erläutern?
+>
+> Im Russischen ist einiges ein wenig anders:
+> - es gibt keine Artikel
+> - Substantive werden nach bestimmten Präpositionen konjugiert, es gibt
+> dabei sechs Fälle, nachfolgend ein Beispiel (zawod = Werk)
+>
+> Singular	Nominativ	zawod
+> Singular	Genitiv		zawoda
+> Singular	Dativ		zawodu
+> Singular	Akkusativ	zawod
+> Singular	Instrumental	zawodom
+> Singular	Präpositiv	zawode
+>
+> Plural		Nominativ	zawody
+> Plural		Genitiv		zawodow
+> Plural		Dativ		zawodam
+> Plural		Akkusativ	zawody
+> Plural		Instrumental	zawodami
+> Plural		Präpositiv	zawodjach
+>
+> Dabei unterscheidet man noch die 3 Geschlechter (männlich, weiblich,
+> sächlich) sowie einige Ausnahmen. (So was ähnlich gibt es ja auch im
+> Deutschen, allerdings haben wir nur 4 Fälle und außerdem hat lediglich der
+> Genitiv dabei eine abweichende Form.) Etwas einfacher ist es im Russischen
+> allerdings mit den Verben, zwar gibt es auch hier die übliche Konjugation,
+> dafür aber wesentlich weniger Zeitformen als in den lateinischen Sprachen
+> (mal von Englisch abgesehen, dort hält sich das ja auch in Grenzen ;-) ).
