@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:29:50  arnold
+    removed all the 'charset' stuff
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -46,6 +49,9 @@
 #include <qpixmap.h>
 #include <qkeycode.h>
 #include <qfileinfo.h>
+#include <qlabel.h>
+#include <qcombobox.h>
+#include <qradiobutton.h>
 
 #include <kfiledialog.h>
 #include <kapp.h>
@@ -60,9 +66,6 @@
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
 
-#define Inherited LangOptPageData
-
-
 LangOptPage::LangOptPage
 (
         QString    _deflang,
@@ -72,13 +75,10 @@ LangOptPage::LangOptPage
 	const char* name
 )
 	:
-	Inherited( parent, name ),
+	LangOptPageForm( parent, name ),
         langset (_langset),
         lastPixName(lastPix)
 {
-  lang_group->insert(r_stand);
-  lang_group->insert(r_spec);
-
   connect( r_spec, SIGNAL(clicked()), SLOT(slotSpecFont()) );
   connect( r_stand, SIGNAL(clicked()), SLOT(slotStdFont()) );
   connect( b_chooseFont, SIGNAL(clicked()), SLOT(slotChooseFont()) );

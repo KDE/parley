@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,13 +34,13 @@
 #ifndef ViewOptPage_included
 #define ViewOptPage_included
 
-#include "ViewOptPageData.h"
+#include "ViewOptPageForm.h"
 
 #include <kvoctrainexpr.h>
 
 class QueryManager;
 
-class ViewOptPage : public ViewOptPageData
+class ViewOptPage : public ViewOptPageForm
 {
     Q_OBJECT
 

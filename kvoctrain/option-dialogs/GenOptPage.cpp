@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -41,12 +48,15 @@
 #include "GenOptPage.h"
 #include <qvalidator.h>
 #include <qkeycode.h>
+#include <qlabel.h>
+#include <qlineedit.h>
+#include <qcheckbox.h>
+#include <qvalidator.h>
+
 #include <stdlib.h>
 #include <kapp.h>
 
 #include <QueryManager.h>
-
-#define Inherited GenOptPageData
 
 GenOptPage::GenOptPage
 (
@@ -57,7 +67,7 @@ GenOptPage::GenOptPage
 	const char *name
 )
 	:
-	Inherited( parent, name )
+	GenOptPageForm( parent, name )
 {
   setCaption(i18n("Options" ));
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -30,12 +33,12 @@
 #ifndef LangOptPage_included
 #define LangOptPage_included
 
-#include "LangOptPageData.h"
+#include "LangOptPageForm.h"
 #include <qvalidator.h>
 
 #include <langset.h>
 
-class LangOptPage : public LangOptPageData
+class LangOptPage : public LangOptPageForm
 {
     Q_OBJECT
 

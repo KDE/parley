@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -32,13 +35,13 @@
 #ifndef PasteOptPage_included
 #define PasteOptPage_included
 
-#include "PasteOptPageData.h"
+#include "PasteOptPageForm.h"
 #include <qstrlist.h>
 
 class LangSet;
 class kvoctrainDoc;
 
-class PasteOptPage : public PasteOptPageData
+class PasteOptPage : public PasteOptPageForm
 {
     Q_OBJECT
 

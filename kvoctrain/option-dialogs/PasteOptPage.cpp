@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:44:04  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -31,9 +35,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#define Inherited PasteOptPageData
-
 #include <qkeycode.h>
+#include <qlistbox.h>
+#include <qlabel.h>
+#include <qpushbutton.h>
+#include <qgroupbox.h>
+#include <qcombobox.h>
+#include <qcheckbox.h>
 
 #include <iostream.h>
 
@@ -88,7 +96,7 @@ PasteOptPage::PasteOptPage
 	const char   *name
 )
 	:
-	Inherited( parent, name ),
+	PasteOptPageForm( parent, name ),
         langset(_langset),
         doc(_doc)
 {
@@ -145,7 +153,7 @@ PasteOptPage::PasteOptPage
   item_skip->setEnabled(!useCurrent);
   item_up->setEnabled(!useCurrent);
   label_order->setEnabled(!useCurrent);
-  label_order->setBuddy(order_list);
+//  label_order->setBuddy(order_list);
   slotEnableCursor();
 }
 
