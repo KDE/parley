@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>VerbQueryDlgForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,14 +8,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>594</width>
-            <height>507</height>
+            <width>580</width>
+            <height>429</height>
         </rect>
     </property>
     <property name="caption">
         <string>-</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -25,9 +25,17 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>GroupBox4</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>3</hsizetype>
+                    <vsizetype>7</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
             </property>
             <property name="frameShape">
                 <enum>Box</enum>
@@ -48,109 +56,13 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget class="QLabel" row="4" column="0">
-                    <property name="name">
-                        <cstring>p3sfLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="2" column="0">
-                    <property name="name">
-                        <cstring>p1sLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="2" column="1">
-                    <property name="name">
-                        <cstring>p1sField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="5" column="0">
-                    <property name="name">
-                        <cstring>p3smLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="6" column="0">
-                    <property name="name">
-                        <cstring>p3snLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="2" column="2">
-                    <property name="name">
-                        <cstring>p1pLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="2">
-                    <property name="name">
-                        <cstring>p2pLabel</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>1</hsizetype>
-                            <vsizetype>1</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>MShape</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>MShadow</enum>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="2">
-                    <property name="name">
-                        <cstring>p3pfLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="5" column="2">
-                    <property name="name">
-                        <cstring>p3pmLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="6" column="2">
-                    <property name="name">
-                        <cstring>p3pnLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="6" column="3">
-                    <property name="name">
-                        <cstring>p3pnField</cstring>
-                    </property>
-                </widget>
-                <widget class="QFrame" row="7" column="0" rowspan="1" colspan="4">
+                <widget class="QFrame" row="1" column="0">
                     <property name="name">
                         <cstring>Frame19</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>5</hsizetype>
+                            <hsizetype>3</hsizetype>
                             <vsizetype>1</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
@@ -167,7 +79,7 @@
                             <cstring>unnamed</cstring>
                         </property>
                         <property name="margin">
-                            <number>11</number>
+                            <number>0</number>
                         </property>
                         <property name="spacing">
                             <number>6</number>
@@ -369,195 +281,298 @@
                         </widget>
                     </grid>
                 </widget>
-                <widget class="QFrame" row="0" column="0" rowspan="1" colspan="4">
+                <widget class="QGroupBox" row="0" column="0">
                     <property name="name">
-                        <cstring>Frame5</cstring>
+                        <cstring>groupBox83</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>7</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
                     </property>
                     <property name="frameShape">
                         <enum>NoFrame</enum>
                     </property>
-                    <property name="frameShadow">
-                        <enum>Raised</enum>
+                    <property name="title">
+                        <string></string>
                     </property>
-                    <property name="layoutMargin" stdset="0">
-                    </property>
-                    <property name="layoutSpacing" stdset="0">
-                    </property>
-                    <hbox>
+                    <grid>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
                         <property name="margin">
                             <number>0</number>
                         </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QLabel">
+                        <widget class="QLabel" row="5" column="2">
                             <property name="name">
-                                <cstring>TextLabel2</cstring>
+                                <cstring>p3pmLabel</cstring>
                             </property>
                             <property name="text">
-                                <string>Base form:</string>
+                                <string>-</string>
                             </property>
                         </widget>
-                        <widget class="QLabel">
+                        <widget class="QLabel" row="2" column="2">
                             <property name="name">
-                                <cstring>baseLabel</cstring>
+                                <cstring>p1pLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="3" column="2">
+                            <property name="name">
+                                <cstring>p2pLabel</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
-                                    <hsizetype>7</hsizetype>
+                                    <hsizetype>1</hsizetype>
                                     <vsizetype>1</vsizetype>
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
                             <property name="frameShape">
-                                <enum>WinPanel</enum>
+                                <enum>MShape</enum>
                             </property>
                             <property name="frameShadow">
-                                <enum>Sunken</enum>
+                                <enum>MShadow</enum>
                             </property>
                             <property name="text">
                                 <string>-</string>
                             </property>
                         </widget>
-                    </hbox>
-                </widget>
-                <widget class="QLineEdit" row="5" column="3">
-                    <property name="name">
-                        <cstring>p3pmField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="3" column="3">
-                    <property name="name">
-                        <cstring>p2pField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="2" column="3">
-                    <property name="name">
-                        <cstring>p1pField</cstring>
-                    </property>
-                </widget>
-                <widget class="QFrame" row="1" column="0" rowspan="1" colspan="4">
-                    <property name="name">
-                        <cstring>Frame6</cstring>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>Plain</enum>
-                    </property>
-                    <hbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <property name="margin">
-                            <number>11</number>
-                        </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QLabel">
+                        <widget class="QFrame" row="0" column="0" rowspan="1" colspan="4">
                             <property name="name">
-                                <cstring>lab1</cstring>
+                                <cstring>Frame5</cstring>
                             </property>
-                            <property name="font">
-                                <font>
-                                    <bold>1</bold>
-                                </font>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Raised</enum>
+                            </property>
+                            <property name="layoutMargin" stdset="0">
+                            </property>
+                            <property name="layoutSpacing" stdset="0">
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>0</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>TextLabel2</cstring>
+                                    </property>
+                                    <property name="text">
+                                        <string>Base form:</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>baseLabel</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>1</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="frameShape">
+                                        <enum>WinPanel</enum>
+                                    </property>
+                                    <property name="frameShadow">
+                                        <enum>Sunken</enum>
+                                    </property>
+                                    <property name="text">
+                                        <string>-</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                        <widget class="QLabel" row="6" column="2">
+                            <property name="name">
+                                <cstring>p3pnLabel</cstring>
                             </property>
                             <property name="text">
-                                <string>Enter the correct conjugation forms.</string>
+                                <string>-</string>
                             </property>
                         </widget>
-                        <widget class="QLabel">
+                        <widget class="QLabel" row="4" column="2">
                             <property name="name">
-                                <cstring>instructionLabel</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="font">
-                                <font>
-                                    <bold>1</bold>
-                                </font>
+                                <cstring>p3pfLabel</cstring>
                             </property>
                             <property name="text">
-                                <string>Current tense is %1.</string>
+                                <string>-</string>
                             </property>
                         </widget>
-                    </hbox>
-                </widget>
-                <widget class="QLineEdit" row="5" column="1">
-                    <property name="name">
-                        <cstring>p3smField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="6" column="1">
-                    <property name="name">
-                        <cstring>p3snField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="3">
-                    <property name="name">
-                        <cstring>p3pfField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="0">
-                    <property name="name">
-                        <cstring>p2sLabel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="3" column="1">
-                    <property name="name">
-                        <cstring>p2sField</cstring>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="4" column="1">
-                    <property name="name">
-                        <cstring>p3sfField</cstring>
-                    </property>
+                        <widget class="QFrame" row="1" column="0" rowspan="1" colspan="4">
+                            <property name="name">
+                                <cstring>Frame6</cstring>
+                            </property>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="frameShadow">
+                                <enum>Plain</enum>
+                            </property>
+                            <hbox>
+                                <property name="name">
+                                    <cstring>unnamed</cstring>
+                                </property>
+                                <property name="margin">
+                                    <number>11</number>
+                                </property>
+                                <property name="spacing">
+                                    <number>6</number>
+                                </property>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>lab1</cstring>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <bold>1</bold>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>Enter the correct conjugation forms.</string>
+                                    </property>
+                                </widget>
+                                <widget class="QLabel">
+                                    <property name="name">
+                                        <cstring>instructionLabel</cstring>
+                                    </property>
+                                    <property name="sizePolicy">
+                                        <sizepolicy>
+                                            <hsizetype>7</hsizetype>
+                                            <vsizetype>1</vsizetype>
+                                            <horstretch>0</horstretch>
+                                            <verstretch>0</verstretch>
+                                        </sizepolicy>
+                                    </property>
+                                    <property name="font">
+                                        <font>
+                                            <bold>1</bold>
+                                        </font>
+                                    </property>
+                                    <property name="text">
+                                        <string>Current tense is %1.</string>
+                                    </property>
+                                </widget>
+                            </hbox>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
+                                <cstring>p1sLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="3" column="0">
+                            <property name="name">
+                                <cstring>p2sLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="4" column="0">
+                            <property name="name">
+                                <cstring>p3sfLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="5" column="0">
+                            <property name="name">
+                                <cstring>p3smLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="6" column="0">
+                            <property name="name">
+                                <cstring>p3snLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="2" column="1">
+                            <property name="name">
+                                <cstring>p1sField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="3" column="1">
+                            <property name="name">
+                                <cstring>p2sField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="4" column="1">
+                            <property name="name">
+                                <cstring>p3sfField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="5" column="1">
+                            <property name="name">
+                                <cstring>p3smField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="6" column="1">
+                            <property name="name">
+                                <cstring>p3snField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="2" column="3">
+                            <property name="name">
+                                <cstring>p1pField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="3" column="3">
+                            <property name="name">
+                                <cstring>p2pField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="4" column="3">
+                            <property name="name">
+                                <cstring>p3pfField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="5" column="3">
+                            <property name="name">
+                                <cstring>p3pmField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="6" column="3">
+                            <property name="name">
+                                <cstring>p3pnField</cstring>
+                            </property>
+                        </widget>
+                    </grid>
                 </widget>
             </grid>
         </widget>
-        <widget class="QFrame">
+        <widget class="QLayoutWidget" row="1" column="0">
             <property name="name">
-                <cstring>Frame6_2</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="frameShape">
-                <enum>NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Raised</enum>
+                <cstring>layout17</cstring>
             </property>
             <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
-                </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
                 </property>
                 <widget class="QPushButton">
                     <property name="name">
@@ -574,6 +589,9 @@
                     <property name="text">
                         <string>&amp;Edit Expression...</string>
                     </property>
+                    <property name="accel">
+                        <string>Alt+E</string>
+                    </property>
                 </widget>
                 <spacer>
                     <property name="name">
@@ -584,6 +602,12 @@
                     </property>
                     <property name="sizeType">
                         <enum>MinimumExpanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>180</width>
+                            <height>20</height>
+                        </size>
                     </property>
                 </spacer>
                 <widget class="QPushButton">
@@ -604,7 +628,7 @@
                 </widget>
             </hbox>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <customwidgets>
     <customwidget>
@@ -626,26 +650,18 @@
 </customwidgets>
 <images>
     <image name="image0">
-        <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b7229d1be245fc04c5a3201e4615f430059d0711ff5ddb2e6bb236ec90eed134cb5a19d8ef36602af5ecdbfeeac05dda0798d3abebde87e3faa374d3807fa0d633a52d38d8de6f679fe33fc776e196f53cd010188256a3600a292882096246517815ca99884606e18044a3a40d91824820924265a7923a2e8bcd05f33db1173e002913175f2a6be6d3294871a2d95fa00e8a94ee017b69d339d90df1e77c57ea072ede6758</data>
+        <data format="PNG" length="256">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000c749444154789cad55db1184200c4c180bb81a28c73aad811228c356f42b3792db3cc0db2fc724bb7901dc7b270f27ed17fa5fa9b117b7cd90211f4ba0ac906a7f1453b4d30ca917bb590681552af23f69bfc4ffa71519d2c8f62546ea5ea03738b1c18c33a4d156f0d13f43b61952e4af6d6e8fb3a408f080448419a433d6486d85052fdba892a295f5d45785cd8c51a9d6de6a814a8d2131da51f98e7a3b64ec9da04a8db53d43be3c3c0b22cacf17e4cdb5a931649ceddf34b190cf0aa019f03f1fd3e7457f03b5a66c9e1f13d0b20000000049454e44ae426082</data>
     </image>
 </images>
 <tabstops>
-    <tabstop>p1sField</tabstop>
-    <tabstop>p2sField</tabstop>
-    <tabstop>p3sfField</tabstop>
-    <tabstop>p3smField</tabstop>
-    <tabstop>p3snField</tabstop>
-    <tabstop>p1pField</tabstop>
-    <tabstop>p2pField</tabstop>
-    <tabstop>p3pfField</tabstop>
-    <tabstop>p3pmField</tabstop>
-    <tabstop>p3pnField</tabstop>
     <tabstop>show_all</tabstop>
     <tabstop>know_it</tabstop>
     <tabstop>verify</tabstop>
     <tabstop>dont_know</tabstop>
-    <tabstop>b_edit</tabstop>
-    <tabstop>stop_it</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>myprogressbar.h</includehint>
+    <includehint>myprogressbar.h</includehint>
+</includehints>
 </UI>

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ArtQueryDlgForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>607</width>
-            <height>414</height>
+            <width>587</width>
+            <height>435</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -23,7 +23,7 @@
     <property name="caption">
         <string>-</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -33,7 +33,7 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>GroupBox3</cstring>
             </property>
@@ -59,7 +59,7 @@
             </property>
             <property name="layoutSpacing" stdset="0">
             </property>
-            <vbox>
+            <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
@@ -69,98 +69,7 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget class="QButtonGroup">
-                    <property name="name">
-                        <cstring>artGroup</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>7</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="title">
-                        <string></string>
-                    </property>
-                    <property name="layoutSpacing" stdset="0">
-                    </property>
-                    <vbox>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <property name="margin">
-                            <number>11</number>
-                        </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>TextLabel1</cstring>
-                            </property>
-                            <property name="font">
-                                <font>
-                                    <bold>1</bold>
-                                </font>
-                            </property>
-                            <property name="text">
-                                <string>Select the correct article for this noun:</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel">
-                            <property name="name">
-                                <cstring>orgField</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="frameShape">
-                                <enum>WinPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                                <enum>Sunken</enum>
-                            </property>
-                            <property name="text">
-                                <string></string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton">
-                            <property name="name">
-                                <cstring>rb_fem</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;female</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton">
-                            <property name="name">
-                                <cstring>male</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;male</string>
-                            </property>
-                        </widget>
-                        <widget class="QRadioButton">
-                            <property name="name">
-                                <cstring>natural</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;neutral</string>
-                            </property>
-                        </widget>
-                    </vbox>
-                </widget>
-                <widget class="QFrame">
+                <widget class="QFrame" row="3" column="0">
                     <property name="name">
                         <cstring>Frame19</cstring>
                     </property>
@@ -183,7 +92,7 @@
                             <cstring>unnamed</cstring>
                         </property>
                         <property name="margin">
-                            <number>11</number>
+                            <number>0</number>
                         </property>
                         <property name="spacing">
                             <number>6</number>
@@ -388,35 +297,115 @@
                         </widget>
                     </grid>
                 </widget>
-            </vbox>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>orgField</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>WinPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Sunken</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>TextLabel1</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <bold>1</bold>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Select the correct article for this noun:</string>
+                    </property>
+                </widget>
+                <widget class="QButtonGroup" row="2" column="0">
+                    <property name="name">
+                        <cstring>artGroup</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>7</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="title">
+                        <string></string>
+                    </property>
+                    <property name="layoutSpacing" stdset="0">
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QRadioButton" row="0" column="0">
+                            <property name="name">
+                                <cstring>rb_fem</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;female</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+F</string>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="1" column="0">
+                            <property name="name">
+                                <cstring>male</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;male</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+M</string>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="2" column="0">
+                            <property name="name">
+                                <cstring>natural</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;neutral</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+N</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </grid>
         </widget>
-        <widget class="QFrame">
+        <widget class="QLayoutWidget" row="1" column="0">
             <property name="name">
-                <cstring>Frame6</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>0</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="frameShape">
-                <enum>NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Raised</enum>
+                <cstring>layout12</cstring>
             </property>
             <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
-                </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
                 </property>
                 <widget class="QPushButton">
                     <property name="name">
@@ -433,6 +422,9 @@
                     <property name="text">
                         <string>&amp;Edit Expression...</string>
                     </property>
+                    <property name="accel">
+                        <string>Alt+E</string>
+                    </property>
                 </widget>
                 <spacer>
                     <property name="name">
@@ -443,6 +435,12 @@
                     </property>
                     <property name="sizeType">
                         <enum>MinimumExpanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>183</width>
+                            <height>20</height>
+                        </size>
                     </property>
                 </spacer>
                 <widget class="QPushButton">
@@ -463,7 +461,7 @@
                 </widget>
             </hbox>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <customwidgets>
     <customwidget>
@@ -485,7 +483,7 @@
 </customwidgets>
 <images>
     <image name="image0">
-        <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b7229d1be245fc04c5a3201e4615f430059d0711ff5ddb2e6bb236ec90eed134cb5a19d8ef36602af5ecdbfeeac05dda0798d3abebde87e3faa374d3807fa0d633a52d38d8de6f679fe33fc776e196f53cd010188256a3600a292882096246517815ca99884606e18044a3a40d91824820924265a7923a2e8bcd05f33db1173e002913175f2a6be6d3294871a2d95fa00e8a94ee017b69d339d90df1e77c57ea072ede6758</data>
+        <data format="PNG" length="256">89504e470d0a1a0a0000000d4948445200000016000000160806000000c4b46c3b000000c749444154789cad55db1184200c4c180bb81a28c73aad811228c356f42b3792db3cc0db2fc724bb7901dc7b270f27ed17fa5fa9b117b7cd90211f4ba0ac906a7f1453b4d30ca917bb590681552af23f69bfc4ffa71519d2c8f62546ea5ea03738b1c18c33a4d156f0d13f43b61952e4af6d6e8fb3a408f080448419a433d6486d85052fdba892a295f5d45785cd8c51a9d6de6a814a8d2131da51f98e7a3b64ec9da04a8db53d43be3c3c0b22cacf17e4cdb5a931649ceddf34b190cf0aa019f03f1fd3e7457f03b5a66c9e1f13d0b20000000049454e44ae426082</data>
     </image>
 </images>
 <tabstops>
@@ -496,8 +494,10 @@
     <tabstop>know_it</tabstop>
     <tabstop>verify</tabstop>
     <tabstop>dont_know</tabstop>
-    <tabstop>b_edit</tabstop>
-    <tabstop>stop_it</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>myprogressbar.h</includehint>
+    <includehint>myprogressbar.h</includehint>
+</includehints>
 </UI>
