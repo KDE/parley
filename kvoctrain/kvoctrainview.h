@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.5  2001/11/24 17:15:45  arnold
     fixes for table view and query
 
@@ -101,6 +104,7 @@ class kvoctrainView : public QWidget
   void setHeaderProp (int id, const QString &name, const QString &pixfile=QString::null);
 
   void setInlineEnabled(bool state);
+  void adjustContent();
 
  private:
 

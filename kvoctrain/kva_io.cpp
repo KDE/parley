@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/12/07 19:20:50  arnold
+    included multiple choice fields and false friend into query
+
     Revision 1.14  2001/11/25 11:11:02  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -235,6 +238,8 @@ void kvoctrainApp::slotFileOpenRecent(int id_)
         setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       addRecentFile(name);
       view->setView(doc, langset, gradecols);
+      view->getTable()->setFont(tablefont);
+      view->adjustContent();
     }
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -300,6 +305,8 @@ void kvoctrainApp::slotFileNew()
       doc->appendLang("en");
     setCaption(kapp->makeStdCaption("", false, doc->isModified()));
     view->setView(doc, langset, gradecols);
+    view->getTable()->setFont(tablefont);
+    view->adjustContent();
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -343,6 +350,8 @@ void kvoctrainApp::loadfileFromPath(QString &name)
       else
         setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       view->setView(doc, langset, gradecols);
+      view->getTable()->setFont(tablefont);
+      view->adjustContent();
       addRecentFile (name);
     }
 }
@@ -606,6 +615,8 @@ void kvoctrainApp::slotFileMerge()
   }
 
   view->setView(doc, langset, gradecols);
+  view->getTable()->setFont(tablefont);
+  view->adjustContent();
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }

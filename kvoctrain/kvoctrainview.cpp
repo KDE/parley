@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.16  2001/11/24 17:15:45  arnold
     fixes for table view and query
 
@@ -172,6 +175,13 @@ void kvoctrainView::showEvent (  QShowEvent * s_ev)
 }
 
 
+void kvoctrainView::adjustContent()
+{
+  QResizeEvent r_ev(size(), size());
+  resizeEvent (&r_ev);
+}
+
+
 void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
 {
   QWidget::resizeEvent(r_ev);
@@ -279,7 +289,7 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
    setHeaderProp( KV_COL_LESS, i18n("Lesson"),  locate("data", "kvoctrain/lesson.xpm"));
-   setHeaderProp( KV_COL_MARK, QString::null,  QString::null); //locate("data", "kvoctrain/mark.png"));
+   setHeaderProp( KV_COL_MARK, QString::null,  QString::null);
    lb_list->setColumnWidth(KV_COL_MARK, 20);
 
    if (id < 0 )

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.14  2001/11/24 17:15:45  arnold
     fixes for table view and query
 
@@ -286,8 +289,8 @@ void RowTable::updateContents(int row, int col)
         setNumRows(nrows);
       if (ncols != numCols())
         setNumCols(ncols);
-      current_row = QMIN (current_row, numRows()-1);
-      current_col = QMIN (current_col, numCols()-1); 
+      current_row = QMIN (current_row, QMAX(0, numRows()-1));
+      current_col = QMIN (current_col, QMAX(0, numCols()-1));
       bool b = signalsBlocked();
       blockSignals(true);
       setCurrentRow (current_row, current_col);
@@ -302,7 +305,9 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
   if (defaultItem)
     endEdit(defaultItem->row(), defaultItem->col(), true, false);
 
+      cout << "sd 2\n";
   delete defaultItem;
+      cout << "sd 3\n";
   defaultItem = 0;
   if (rows) {
      m_rows = rows;
@@ -342,6 +347,15 @@ void RowTable::init(Flags flags)
         setRowMovingEnabled(false);
         setSorting(false);
 //        horizontalHeader()->setClickEnabled(false);
+}
+
+
+void RowTable::setFont( const QFont &font)
+{
+  QTable::setFont(font);
+  horizontalHeader()->setFont(QFont());
+  for (unsigned i = 0; i < numRows(); ++i)
+    setRowHeight(i, fontMetrics().lineSpacing() );
 }
 
 

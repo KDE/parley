@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.10  2001/11/24 17:15:45  arnold
     fixes for table view and query
 
@@ -93,6 +96,7 @@ public:
                  QWidget *parent = NULL, const char *name = NULL );
 	~RowTable();
 
+	void setFont( const QFont &);
 	void setNumCols( int cols );
 	void setNumRows( int rows );
 
