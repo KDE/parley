@@ -1,0 +1,71 @@
+<?xml version="1.0" ?>
+<!DOCTYPE refentry PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+<!ENTITY % English "INCLUDE">
+]>
+
+<refentry lang="&language;">
+<refentryinfo>
+<author><personname><firstname>Ben</firstname><surname>Burton</surname></personname><email>bab@debian.org</email></author>
+<date>April 7, 2003</date>
+</refentryinfo>
+
+<refmeta>
+<refentrytitle><command>spotlight2kvtml</command></refentrytitle>
+<manvolnum>1</manvolnum>
+</refmeta>
+
+<refnamediv>
+<refname><command>spotlight2kvtml</command></refname>
+<refpurpose>Convert a Spotlight Online vocabularly list to a &kvoctrain; data file.</refpurpose>
+</refnamediv>
+
+<refsynopsisdiv>
+<cmdsynopsis>
+<command>spotlight2kvtml</command>
+
+<group><option><replaceable>spotfile</replaceable> <replaceable>month</replaceable> <replaceable>year</replaceable></option></group>
+<group><option>KDE Generic Options</option></group>
+<group><option>Qt Generic Options</option></group>
+
+</cmdsynopsis>
+</refsynopsisdiv>
+
+<refsect1>
+<title>Description</title>
+
+<para><command>spotlight2kvtml</command> is used to convert a
+Spotlight Online vocabulary list to a &kvoctrain; data file (<literal
+role="extension">*.kvtml</literal>).</para>
+
+<para>The given vocabulary list (spotfile) must be in plain text
+format (&ie;, you will need to convert the downloaded RTF or Word
+document into a plain text file). The name of the new &kvoctrain; data
+file will be derived from the given spotfile.</para>
+
+<para>The given month and year will be used in the title and lesson
+names in the new &kvoctrain; data file.</para>
+
+<para>Note that Spotlight Online changes its vocabulary list format
+from time to time, so <command>spotlight2kvtml</command> might be out
+of date and might not behave correctly.</para>
+
+<para>This package is part of the official KDE edutainment module.</para>
+
+</refsect1>
+
+<refsect1>
+<title>See Also</title>
+
+<para>kvoctrain(1), langen2kvtml(1)</para>
+
+</refsect1>
+
+<refsect1>
+<title>Authors</title>
+
+<para><command>spotlight2kvtml</command> was written by &Ewald.Arnold;
+&Ewald.Arnold.mail;.</para> <para>This manual page was prepared by
+<personname><firstname>Ben</firstname><surname>Burton</surname></personname><email>bab@debian.org</email>
+</para> </refsect1>
+
+</refentry>
