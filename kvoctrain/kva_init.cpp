@@ -164,7 +164,7 @@ void kvoctrainApp::initActions()
   editSaveSelectedArea->setWhatsThis(i18n("Saves the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
-  vocabShowStatistics = new KAction(i18n("Show &Statistics..."), "statistics", 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
+  vocabShowStatistics = new KAction(i18n("Show &Statistics"), "statistics", 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
   vocabShowStatistics->setWhatsThis(i18n("Shows statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
@@ -189,11 +189,11 @@ void kvoctrainApp::initActions()
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  vocabDocumentProperties = new KAction(i18n("Document &Properties..."), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
+  vocabDocumentProperties = new KAction(i18n("Document &Properties"), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
   vocabDocumentProperties->setWhatsThis(i18n("Edits document properties"));
   vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
 
-  vocabLanguageProperties = new KAction(i18n("Lan&guage Properties..."), 0, 0, this, SLOT(slotDocPropsLang()), actionCollection(), "vocab_language_properties");
+  vocabLanguageProperties = new KAction(i18n("Lan&guage Properties"), 0, 0, this, SLOT(slotDocPropsLang()), actionCollection(), "vocab_language_properties");
   vocabLanguageProperties->setWhatsThis(i18n("Edits language properties in current document"));
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
 
