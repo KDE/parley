@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/22 06:39:21  waba
+    Show a cute little marker to indicate marked entries.
+    (Instead of using a bold type-face)
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -134,9 +138,9 @@
 #define PREFIX_Pronunce             "P:"
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-     i18n(PREFIX_Type)
-     i18n(PREFIX_Remark)
-     i18n(PREFIX_Pronunce)
+     i18n("Abbreviation for T)ype of word",  PREFIX_Type)
+     i18n("Abbreviation for R)emark",        PREFIX_Remark)
+     i18n("Abbreviation for P)ronouncation", PREFIX_Pronunce)
 #endif
 
 //#define IDS_DEFAULT                 (doc && doc->isModified() ? " * Ready." : " Ready.")

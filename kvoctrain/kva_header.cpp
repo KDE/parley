@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -49,6 +53,12 @@
 #include "kvoctrain.h"
 #include "compat_2x.h"
 #include "query-dialogs/QueryDlgBase.h"
+#include "query-dialogs/RandomQueryDlg.h"
+#include "query-dialogs/MCQueryDlg.h"
+#include "query-dialogs/VerbQueryDlg.h"
+#include "query-dialogs/ArtQueryDlg.h"
+#include "query-dialogs/AdjQueryDlg.h"
+#include "query-dialogs/SimpleQueryDlg.h"
 
 #include <kcombobox.h>
 
@@ -477,69 +487,69 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     case IDH_START_QUERY:
-      delete queryDlg;
-      queryDlg = 0;
+      delete randomQueryDlg;
+      randomQueryDlg = 0;
       queryType = QT_Random;
       slotStartQuery(header1 ? doc->getIdent(header1) : doc->getOriginalIdent(),
                      header2 ? doc->getIdent(header2) : doc->getOriginalIdent());
     break;
 
     case IDH_START_MULTIPLE:
-      delete queryDlg;
-      queryDlg = 0;
+      delete mcQueryDlg;
+      mcQueryDlg = 0;
       queryType = QT_Multiple;
       slotStartQuery(header1 ? doc->getIdent(header1) : doc->getOriginalIdent(),
                      header2 ? doc->getIdent(header2) : doc->getOriginalIdent());
     break;
 
     case IDH_START_VERB: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete verbQueryDlg;
+      verbQueryDlg = 0;
       queryType = QT_Conjugation;
       slotStartTypeQuery (header1, QM_VERB);
     }
     break;
 
     case IDH_START_ARTICLE: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete artQueryDlg;
+      artQueryDlg = 0;
       queryType = QT_Articles;
       slotStartTypeQuery (header1, QM_NOUN);
     }
     break;
 
     case IDH_START_ADJECTIVE: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete adjQueryDlg;
+      adjQueryDlg = 0;
       queryType = QT_Comparison;
       slotStartTypeQuery (header1, QM_ADJ);
     }
     break;
 
     case IDH_START_SYNONYM: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
       slotStartPropertyQuery (header1, QT_Synonym);
     }
     break;
 
     case IDH_START_ANTONYM: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
       slotStartPropertyQuery (header1, QT_Antonym);
     }
     break;
 
     case IDH_START_EXAMPLE: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
       slotStartPropertyQuery (header1, QT_Example);
     }
     break;
 
     case IDH_START_PARAPHRASE: {
-      delete queryDlg;
-      queryDlg = 0;
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
       slotStartPropertyQuery (header1, QT_Paraphrase);
     }
     break;

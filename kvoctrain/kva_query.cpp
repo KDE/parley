@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -42,7 +46,7 @@
 #include "compat_2x.h"
 #include "eadebug.h"
 #include "kvoctrain.h"
-#include "query-dialogs/QueryDlg.h"
+#include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"
 #include "query-dialogs/VerbQueryDlg.h"
 #include "query-dialogs/ArtQueryDlg.h"
@@ -183,7 +187,7 @@ void kvoctrainApp::slotTimeOutProperty()
   kvoctrainExpr *exp = random_expr1[nr].exp;
 
   SpecFont_t font = view->getTable()->getColFont(act_query_col+KV_EXTRA_COLS);
-  queryDlg = new SimpleQueryDlg (&font,
+  simpleQueryDlg = new SimpleQueryDlg (&font,
                            queryType,
                            random_expr1[nr].nr,
                            act_query_col,
@@ -196,19 +200,17 @@ void kvoctrainApp::slotTimeOutProperty()
                            showcounter,
                            type_querytimeout);
 
-  queryDlg->initFocus();
-  connect( queryDlg, SIGNAL(sigEditEntry(int,int)),
+  simpleQueryDlg->initFocus();
+  connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
            this, SLOT(slotEditEntry(int,int)));
-  connect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  int res = queryDlg->exec();
-  disconnect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  delete queryDlg;
-  queryDlg = 0;
+  int res = simpleQueryDlg->exec();
+  delete simpleQueryDlg;
+  simpleQueryDlg = 0;
 
   // FIXME: keep track of knowledge ?
 
   switch (res) {
-    case QueryDlg::Timeout:
+    case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, 
                     i18n("The query dialog was not answered for several times in series.\n"
@@ -225,7 +227,7 @@ void kvoctrainApp::slotTimeOutProperty()
       }
     break;
 
-    case QueryDlg::Unknown :
+    case QueryDlgBase::Unknown :
 //      doc->setModified();
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[nr]);
@@ -233,7 +235,7 @@ void kvoctrainApp::slotTimeOutProperty()
       qtimer->start(0, TRUE);
     break;
 
-    case QueryDlg::Known :
+    case QueryDlgBase::Known :
 //      doc->setModified();
       num_queryTimeout = 0;
       query_num--;
@@ -249,7 +251,7 @@ void kvoctrainApp::slotTimeOutProperty()
       }
     break;
 
-    case QueryDlg::StopIt :
+    case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
         slotStopQuery(true);
     break;
@@ -348,8 +350,9 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
   kvoctrainExpr *exp = random_expr1[nr].exp;
 
   SpecFont_t font = view->getTable()->getColFont(act_query_col+KV_EXTRA_COLS);
+  int res = 0;
   if (queryType == QT_Conjugation) {
-    queryDlg = new VerbQueryDlg (&font,
+    verbQueryDlg = new VerbQueryDlg (&font,
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -363,9 +366,17 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              maxqueryTime,
                              showcounter,
                              type_querytimeout);
+
+           verbQueryDlg->initFocus();
+           connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
+                    this, SLOT(slotEditEntry(int,int)));
+           res = verbQueryDlg->exec();
+           delete verbQueryDlg;
+           verbQueryDlg = 0;
+
   }
   else if (queryType == QT_Articles) {
-    queryDlg = new ArtQueryDlg (&font,
+    artQueryDlg = new ArtQueryDlg (&font,
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -378,9 +389,16 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              maxqueryTime,
                              showcounter,
                              type_querytimeout);
+           artQueryDlg->initFocus();
+           connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
+                    this, SLOT(slotEditEntry(int,int)));
+           res = artQueryDlg->exec();
+           delete artQueryDlg;
+           artQueryDlg = 0;
+
   }
   else if (queryType == QT_Comparison) {
-    queryDlg = new AdjQueryDlg (&font,
+    adjQueryDlg = new AdjQueryDlg (&font,
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -393,6 +411,14 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              maxqueryTime,
                              showcounter,
                              type_querytimeout);
+
+           adjQueryDlg->initFocus();
+           connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
+                    this, SLOT(slotEditEntry(int,int)));
+           res = adjQueryDlg->exec();
+           delete adjQueryDlg;
+           adjQueryDlg = 0;
+
   }
   else {
 //  KDEBUG (KDEBUG_ERROR, 0, "[kvoctrainApp::slotTimeOutType]: unknown type");
@@ -400,19 +426,10 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
     return;
   }
 
-  queryDlg->initFocus();
-  connect( queryDlg, SIGNAL(sigEditEntry(int,int)),
-           this, SLOT(slotEditEntry(int,int)));
-  connect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  int res = queryDlg->exec();
-  disconnect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  delete queryDlg;
-  queryDlg = 0;
-
   // FIXME: keep track of knowledge ?
 
   switch (res) {
-    case QueryDlg::Timeout:
+    case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, 
                     i18n("The query dialog was not answered for several times in series.\n"
@@ -429,7 +446,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
       }
     break;
 
-    case QueryDlg::Unknown :
+    case QueryDlgBase::Unknown :
 //      doc->setModified();
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[nr]);
@@ -437,7 +454,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
       qtimer->start(0, TRUE);
     break;
 
-    case QueryDlg::Known :
+    case QueryDlgBase::Known :
 //      doc->setModified();
       num_queryTimeout = 0;
       query_num--;
@@ -453,7 +470,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
       }
     break;
 
-    case QueryDlg::StopIt :
+    case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
         slotStopQuery(true);
     break;
@@ -618,8 +635,9 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
 
   SpecFont_t transfont = view->getTable()->getColFont(tindex+KV_EXTRA_COLS);
   SpecFont_t orgfont = view->getTable()->getColFont(oindex+KV_EXTRA_COLS);
+  int res;
   if (queryType == QT_Random) {
-    queryDlg = new QueryDlg (&transfont,
+    randomQueryDlg = new RandomQueryDlg (&transfont,
                              &orgfont,
                              q_org,
                              q_trans,
@@ -634,9 +652,17 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
                              maxqueryTime,
                              showcounter,
                              type_querytimeout);
+      randomQueryDlg->initFocus();
+      connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
+               this, SLOT(slotEditEntry(int,int)));
+
+      res = randomQueryDlg->exec();
+      delete randomQueryDlg;
+      randomQueryDlg = 0;
+
   }
   else if (queryType == QT_Multiple) {
-    queryDlg = new MCQueryDlg(&transfont,
+    mcQueryDlg = new MCQueryDlg(&transfont,
                              &orgfont,
                              q_org,
                              q_trans,
@@ -651,19 +677,17 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
                              maxqueryTime,
                              showcounter,
                              type_querytimeout);
+      mcQueryDlg->initFocus();
+      connect( mcQueryDlg, SIGNAL(sigEditEntry(int,int)),
+               this, SLOT(slotEditEntry(int,int)));
+
+      res = mcQueryDlg->exec();
+      delete mcQueryDlg;
+      mcQueryDlg = 0;
+
   }
 
-  queryDlg->initFocus();
-  connect( queryDlg, SIGNAL(sigEditEntry(int,int)),
-           this, SLOT(slotEditEntry(int,int)));
-
-  connect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  int res = queryDlg->exec();
-  disconnect( queryDlg, SIGNAL(sigOptions()), this, SLOT(slotQueryOptions()) );
-  delete queryDlg;
-  queryDlg = 0;
-
-  if (res != QueryDlg::StopIt) {
+  if (res != QueryDlgBase::StopIt) {
     doc->setModified();
     time_t now = time(0);
     if (oindex == 0) {
@@ -677,7 +701,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
   }
 
   switch (res) {
-    case QueryDlg::Timeout:
+    case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         QString _mesg =
            i18n("The query dialog was not answered for several times in series.\n"
@@ -705,7 +729,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       }
     break;
 
-    case QueryDlg::Unknown :
+    case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[nr]);
       random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
@@ -722,7 +746,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       qtimer->start(0, TRUE);
     break;
 
-    case QueryDlg::Known :
+    case QueryDlgBase::Known :
       num_queryTimeout = 0;
       query_num--;
       if (query_cycle <= 1) {
@@ -754,7 +778,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       }
     break;
 
-    case QueryDlg::StopIt :
+    case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
         slotStopQuery(true);
     break;

@@ -142,27 +142,31 @@ Valid xml means:
   <desc no="2">#20 3</desc>
  </usage>
 
- <e m="11"><o width="262" l="en" q="t" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
- <e m="10"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
- <e m="2"><o r="dfgh">mischief</o><t c="1;1" d="0;992361258">Unheil, Schaden</t></e>
- <e m="7"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
- <e m="10"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
- <e m="6"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
- <e m="9"><o y="-" u="#1">go</o><t c="1;1" d="0;992361256">schwimmen</t></e>
- <e m="7"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
- <e m="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
- <e m="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
- <e m="11"><o>balmy</o><t c="1;1" d="0;992361257">mild</t></e>
- <e m="3"><o>knuckles</o><t g="0;1" c="1;2" d="0;1003212935">Knöchel</t></e>
- <e m="3"><o>genuflect</o><t g="0;1" c="1;2" d="0;1003212929">Kniebeugen</t></e>
- <e m="5"><o>chunk</o><t c="1;1" d="0;992361258" r="Klotz">Klotz</t></e>
- <e m="8"><o r="rema">itch</o><t c="1;1" d="0;992361254">jucken, darauf brennen</t></e>
- <e m="8"><o y="-">utterly</o><t c="1;1" d="0;992361255">gänzlich</t></e>
- <e m="2"><o y="-">good</o><t c="1;1" d="0;992361258">gut</t></e>
- <e m="4"><o y="-">favour</o><t c="1;1">Gunst, Gefallen</t></e>
- <e m="6" t="#1"><o>pea</o><t c="1;1" d="0;992361258">Erbse</t></e>
- <e m="5"><o>quell</o><t c="1;1" d="0;992361257">bezwingen</t></e>
- <e m="4" t="v"><o y="-">
+ <e m="11" s="1"><o width="262" l="en" q="t" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
+ <e m="10" s="1"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
+ <e m="2" s="1" t="n:m"><o r="dfgh" y="-">mischief</o><t c="1;1" d="0;992304000">Unheil, Schaden</t></e>
+ <e m="7" s="1"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
+ <e m="10" s="1"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
+ <e m="6" s="1"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
+ <e m="9" s="1"><o y="-" u="#1">go</o><t c="1;1" d="0;992361256">schwimmen</t></e>
+ <e m="7" s="1"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
+ <e m="1" s="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
+ <e m="1" s="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
+ <e m="11" s="1"><o>balmy</o><t c="1;1" d="0;992361257">mild</t></e>
+ <e m="3" s="1"><o y="-">knuckles</o><t g="0;1" c="1;2" d="0;1003190400" r="rem" y="sysbsefgr" x="xmplr Knöchel" h="asdf knöchel sdfg" a="asdf">Knöchel</t></e>
+ <e m="3" s="1"><o>genuflect</o><t g="0;1" c="1;2" d="0;1003212929">Kniebeugen</t></e>
+ <e m="5" s="1"><o>chunk</o><t c="1;1" d="0;992361258" r="Klotz">Klotz</t></e>
+ <e m="8" s="1"><o r="rema">itch</o><t c="1;1" d="0;992361254">jucken, darauf brennen</t></e>
+ <e m="8" s="1"><o y="-">utterly</o><t c="1;1" d="0;992361255">gänzlich</t></e>
+ <e m="2" s="1" t="aj"><o y="-">good</o><t c="1;1" d="0;992304000">
+   <comparison>
+    <l1>gut</l1><l2>besser</l2><l3>am besten</l3>
+   </comparison>
+   gut</t></e>
+ <e m="4" s="1"><o y="-">favour</o><t c="1;1">Gunst, Gefallen</t></e>
+ <e m="6" s="1" t="#1"><o>pea</o><t c="1;1" d="0;992361258">Erbse</t></e>
+ <e m="5" s="1"><o>quell</o><t c="1;1" d="0;992361257">bezwingen</t></e>
+ <e m="4" s="1" t="v"><o y="-">
   <conjugation>
    <t n="#1"><s1>1</s1><s2>1</s2></t>
    <t n="PrSi"><s1>sp</s1><s2>sdfg</s2><s3f>dsfg</s3f><s3m>sdfg</s3m><s3n>sdfg</s3n><p1>sdg</p1><p2>sdg</p2><p3f>sdg</p3f><p3m>dfg</p3m><p3n>dg</p3n></t>

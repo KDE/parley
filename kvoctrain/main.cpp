@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:28:43  arnold
+    removed all the 'charset' stuff
+
     Revision 1.3  2001/10/20 12:09:40  arnold
     removed aboutdialog files
 
@@ -75,10 +78,11 @@ static const char *version = "0.7.0";
                       "kvoctrain@ewald-arnold.de");
   aboutData.addAuthor("Ewald Arnold", i18n_noop("Original author and maintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );
-  aboutData.addCredit("Waldo Bastian", i18n_noop("Porting to Qt3/KDE3"));
+  aboutData.addCredit("Waldo Bastian", i18n_noop("Helping in porting to Qt3/KDE3"));
   aboutData.addCredit("Andrea Marconi", i18n_noop("Initial localisator for italian"));
   aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"));
   aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polish"));
+  aboutData.addCredit("Eric Bischoff", i18n_noop("Converting my oldstyle documentation to docbook"));
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;

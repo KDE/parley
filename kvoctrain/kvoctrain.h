@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/10/21 15:28:43  arnold
+    removed all the 'charset' stuff
+
     Revision 1.6  2001/10/20 12:07:44  arnold
     removed aboutdialog files
 
@@ -86,7 +89,12 @@ class QTimer;
 class KLined;
 class ProgressDlg;
 class kvoctrainDoc;
-class QueryDlgBase;
+class SimpleQueryDlg;
+class MCQueryDlg;
+class VerbQueryDlg;
+class RandomQueryDlg;
+class AdjQueryDlg;
+class ArtQueryDlg;
 
 class KLineEdit;
 class KComboBox;
@@ -342,7 +350,12 @@ private:
   QLabel          *pron_label;
   QLabel          *rem_label;
   QLabel          *type_label;
-  QueryDlgBase    *queryDlg;
+  SimpleQueryDlg  *simpleQueryDlg;
+  MCQueryDlg      *mcQueryDlg;
+  VerbQueryDlg    *verbQueryDlg;
+  RandomQueryDlg  *randomQueryDlg;
+  AdjQueryDlg     *adjQueryDlg;
+  ArtQueryDlg     *artQueryDlg;
   int              num_queryTimeout;
   int              query_cycle;
   int              query_num;

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/22 06:38:58  waba
+    Show a cute little marker to indicate marked entries.
+    (Instead of using a bold type-face)
+
     Revision 1.4  2001/10/20 12:06:28  arnold
     removed aboutdialog files
 
@@ -76,7 +80,12 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   type_label = 0;
   pdlg = 0;
   pbar = 0;
-  queryDlg = 0;
+  simpleQueryDlg = 0;
+  mcQueryDlg = 0;
+  verbQueryDlg = 0;
+  randomQueryDlg = 0;
+  adjQueryDlg = 0;
+  artQueryDlg = 0;
 
 //  setCaption(kapp->makeStdCaption(i18n("")));
 

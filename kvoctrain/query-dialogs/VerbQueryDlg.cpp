@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 09:17:09  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.3  2001/10/17 21:41:16  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -85,7 +88,7 @@ VerbQueryDlg::VerbQueryDlg
         QWidget *parent,
         char *name)
 	:
-	VerbQueryDlgForm( parent, name ),
+	VerbQueryDlgForm( parent, name, true ),
         QueryDlgBase()
 {
 	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
