@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 10:18:31  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.4  2001/10/28 10:16:08  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -312,6 +315,8 @@
 #define THRESH_LESSON    KV_MIN_GRADE
 #define MAX_LANGSET      100
 
+#define KVOCTRAIN_DEBUG_AREA  12002
+#define KVTLIB_DEBUG_AREA     12003
 
 #endif // RESOURCE_H
 

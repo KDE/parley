@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/09 10:40:46  arnold
+    removed ability to display a different font for each column
+
     Revision 1.6  2001/11/02 04:31:42  waba
     Add include to make it work with KDE CVS.
 
@@ -64,6 +67,7 @@
 
 #include <kfiledialog.h>
 #include <kapp.h>
+#include <kdebug.h>
 
 #include <kmessagebox.h>
 #include <kstddirs.h>
@@ -89,6 +93,9 @@ LangOptPage::LangOptPage
         langset (_langset),
         lastPixName(lastPix)
 {
+  langset_popup = 0;
+  deflang = _deflang;
+
   connect( b_langDel, SIGNAL(clicked()), SLOT(slotDeleteClicked()) );
   connect( b_langNew, SIGNAL(clicked()), SLOT(slotNewClicked()) );
   connect( b_langPixmap, SIGNAL(clicked()), SLOT(slotPixmapClicked()) );
@@ -98,19 +105,19 @@ LangOptPage::LangOptPage
   connect( e_langLong, SIGNAL(textChanged(const QString&)), SLOT(slotLangChanged(const QString&)) );
   connect( e_shortName2, SIGNAL(textChanged(const QString&)), SLOT(slotShort2Changed(const QString&)) );
 
-  deflang = _deflang;
+  loadCountryData();
+  b_lang_kde->setPopup(langset_popup);
+  b_langNew->setEnabled(false); // activate after data is entered
 
   setCaption(i18n("Options" ));
 
   for (int i = 0; i < (int) langset.size() && i < MAX_LANGSET; i++)
     d_shortName->insertItem (langset.shortId(i));
 
-  b_langNew->setEnabled(false);
   enableLangWidgets();
 
   if (d_shortName->count() ) {
     d_shortName->setCurrentItem(0);
-
     e_langLong->setText(langset.longId(0));
     e_shortName2->setText(langset.shortId2(0));
     if (!langset.PixMapFile(0).isEmpty() ) {
@@ -120,20 +127,27 @@ LangOptPage::LangOptPage
         b_langPixmap->setPixmap (pix);
       }
       else
-        b_langPixmap->setText (i18n("invalid"));
+        b_langPixmap->setText (i18n("Picture is invalid"));
     }
-
+    else
+      b_langPixmap->setText  (i18n("No picture selected"));
   }
   else {
-    b_langPixmap->setText (i18n("not selected"));
+    b_langPixmap->setText  (i18n("No picture selected"));
     b_langPixmap->setEnabled(false);
   }
 
-  label_newName->setBuddy(e_newName);
+//  label_newName->setBuddy(e_newName);
   label_shortName2->setBuddy(e_shortName2);
   label_shortName->setBuddy(d_shortName);
   label_langLong->setBuddy(e_langLong);
   label_langPixmap->setBuddy(b_langPixmap);
+}
+
+
+LangOptPage::~LangOptPage ()
+{
+ delete langset_popup;
 }
 
 
@@ -145,21 +159,20 @@ void LangOptPage::initFocus() const
 
 void LangOptPage::slotDeleteClicked()
 {
-  if (d_shortName->count() ) {
+  if (d_shortName->count() != 0) {
     langset.erase (d_shortName->currentItem());
     d_shortName->removeItem (d_shortName->currentItem());
     if (d_shortName->count() != 0)
       d_shortName->setCurrentItem (0);
   }
 
-  if (d_shortName->count() ) {
+  if (d_shortName->count() != 0) {
     setPixmap(langset.PixMapFile(d_shortName->currentItem()));
     e_langLong->setText(langset.longId(d_shortName->currentItem()));
     e_shortName2->setText(langset.shortId2(d_shortName->currentItem()));
-
   }
   else {
-    b_langPixmap->setText (i18n("not selected"));
+    b_langPixmap->setText (i18n("No picture selected"));
     e_langLong->setText("");
     e_shortName2->setText("");
     b_langPixmap->setEnabled(false);
@@ -182,7 +195,7 @@ void LangOptPage::enableLangWidgets()
 void LangOptPage::slotNewNameChanged(const QString& _s)
 {
    QString s = _s;
-   b_langNew->setEnabled(s.stripWhiteSpace().length() != 0);
+   b_langNew->setEnabled(s.stripWhiteSpace().length() >= 2);
 }
 
 
@@ -200,19 +213,18 @@ void LangOptPage::slotNewClicked()
 
 void LangOptPage::slotShortActivated(const QString& _id)
 {
-   QString id = _id;
    int i = 0;
-   id = id.stripWhiteSpace();
+   QString id = _id.stripWhiteSpace();
    if (d_shortName->count() > (int) langset.size() ) {
      // avoid doublettes with language code
      for (i = 0; i < d_shortName->count(); i++)
-       if (QString(d_shortName->text(i)) == "") {
+       if (d_shortName->text(i).isNull() ) {
          d_shortName->removeItem(d_shortName->currentItem());
          d_shortName->setCurrentItem(0);
        }
   
      for (i = 0; i < d_shortName->count()-1; i++)  // omit last
-       if (id == QString(d_shortName->text(i))) {
+       if (id == d_shortName->text(i)) {
          d_shortName->removeItem(d_shortName->currentItem());
          d_shortName->setCurrentItem(i);
          return;
@@ -235,24 +247,26 @@ void LangOptPage::slotShortActivated(const QString& _id)
        if (!pix.isNull() )
          b_langPixmap->setPixmap (pix);
        else
-         b_langPixmap->setText (i18n("invalid"));
+         b_langPixmap->setText (i18n("Picture is invalid"));
      }
      else
-       b_langPixmap->setText (i18n("not selected"));
+       b_langPixmap->setText (i18n("No picture selected"));
    }
 }
 
 
 void LangOptPage::slotLangChanged(const QString& s)
 {
-  if (d_shortName->currentItem() < (int) langset.size() )
+  if (   d_shortName->count() != 0
+      && d_shortName->currentItem() < (int) langset.size() )
     langset.setLongId(s, d_shortName->currentItem());
 }
 
 
 void LangOptPage::slotShort2Changed(const QString& s)
 {
-  if (d_shortName->currentItem() < (int) langset.size() )
+  if (   d_shortName->count() != 0
+      && d_shortName->currentItem() < (int) langset.size() )
     langset.setShortId2(s, d_shortName->currentItem());
 }
 
@@ -275,14 +289,18 @@ bool LangOptPage::setPixmap(QString pm)
 void LangOptPage::slotPixmapClicked()
 {
   if (langset.size() > 0 ) {
-    if (lastPixName.isNull() ) {
+    if (lastPixName.isNull() || QPixmap(lastPixName).isNull()) {
       QString s;
       if (!langset.shortId(d_shortName->currentItem()).isNull() ) {
         s = langset.shortId(d_shortName->currentItem());
-        lastPixName = EA_KDEDATADIR ("", "share/locale/l10n/"+s+"/flag.png");
+        lastPixName = locate ("locale", "l10n/"+s+"/flag.png");
+        if (lastPixName.isNull()) {
+          lastPixName = locate ("locale", "l10n/");
+        }
       }
-      else
-        lastPixName = EA_KDEDATADIR ("", "share/locale/l10n/");
+      else {
+        lastPixName = locate ("locale", "l10n/");
+      }
     }
     else {
       QFileInfo fi (lastPixName);
@@ -293,7 +311,7 @@ void LangOptPage::slotPixmapClicked()
       if (setPixmap (s) )
         lastPixName = s;
       else {
-        b_langPixmap->setText (i18n("invalid"));
+        b_langPixmap->setText (i18n("Picture is invalid"));
         KMessageBox::sorry(this,
            i18n("File does not contain a valid graphics format\n"),
            kapp->makeStdCaption(QString::null),
@@ -385,6 +403,10 @@ void LangOptPage::loadCountryData()
     index = tag.findRev('/');
     tag = tag.mid(index+1);
 
+    QString all_langs = entry.readEntry(QString::fromLatin1("Languages"));
+    if (tag == all_langs)
+      all_langs = "";
+
     QString pixmap = *it;
     index = pixmap.findRev('/');
     pixmap.truncate(index);
@@ -392,24 +414,55 @@ void LangOptPage::loadCountryData()
 
     regionmap_t::const_iterator it = regionmap.find(submenu);
     if (it != regionmap.end())
-      globalLangs[(*it).second].langs.addSet (tag, name, pixmap);
+      globalLangs[(*it).second].langs.addSet (tag, all_langs, name, pixmap);
   }
 
-  int loffs = 0;
-  QPopupMenu *lang_m = new QPopupMenu();
-  for ( int i = 0; i < globalLangs.size(); ++i) {
+  int idx = 0;
+  global_langset.clear();
+  delete langset_popup;
+  langset_popup = new QPopupMenu();
+  connect(langset_popup, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
+  for ( unsigned i = 0; i < globalLangs.size(); ++i) {
     QPopupMenu *regpop = new QPopupMenu();
-    lang_m->insertItem(globalLangs[i].region, regpop);
-    for ( int j = 0; j < globalLangs[i].langs.size(); ++j) {
+    connect(regpop, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
+    langset_popup->insertItem(globalLangs[i].region, regpop);
+    for (unsigned j = 0; j < globalLangs[i].langs.size(); ++j) {
       regpop->insertItem(QPixmap(globalLangs[i].langs.PixMapFile(j)),
                                  globalLangs[i].langs.longId(j),
-                                 (loffs << 16) | IDH_APPEND);
-      ++loffs;
+                                 idx++);
+      global_langset.addSet(globalLangs[i].langs.shortId(j),
+                            globalLangs[i].langs.shortId2(j),
+                            globalLangs[i].langs.longId(j),
+                            globalLangs[i].langs.PixMapFile(j));
     }
   }
 
   // restore the old global locale
   KGlobal::_locale = lsave;
 }
+
+
+void LangOptPage::slotLangFromGlobalActivated(int i)
+{
+  if (i < (int)global_langset.size()) {
+    QString s = global_langset.shortId(i);
+    d_shortName->insertItem(s.stripWhiteSpace());
+    d_shortName->setCurrentItem(d_shortName->count()-1);
+    slotShortActivated(s);
+    enableLangWidgets();
+
+    e_shortName2->setText(global_langset.shortId2(i));
+    slotShort2Changed(global_langset.shortId2(i));
+
+    e_langLong->setText(global_langset.longId(i));
+    slotLangChanged(global_langset.longId(i));
+
+    setPixmap(global_langset.PixMapFile(i));
+    e_newName->setText("");
+    e_langLong->setFocus();
+    e_langLong->selectAll();
+  }
+}
+
 
 #include "LangOptPage.moc"

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:46  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -41,6 +44,8 @@
 
 #include <langset.h>
 
+class QPopupMenu;
+
 class LangOptPage : public LangOptPageForm
 {
     Q_OBJECT
@@ -59,6 +64,8 @@ public:
     QString getDefaultLang () const { return deflang; }
     LangSet getLangSet ()     const;
 
+    virtual ~LangOptPage ();
+
 protected:
     void keyPressEvent( QKeyEvent *e );
 
@@ -73,6 +80,7 @@ protected slots:
     void slotShort2Changed(const QString&);
     void slotShortActivated(const QString&);
     void slotNewNameChanged(const QString&);
+    void slotLangFromGlobalActivated(int);
 
 protected:
     bool setPixmap(QString pm);
@@ -95,5 +103,7 @@ protected:
        LangSet langs;
     };
     vector <LangRef> globalLangs;
+    LangSet          global_langset;
+    QPopupMenu      *langset_popup;
 };
 #endif // LangOptPage_included

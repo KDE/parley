@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.10  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -67,7 +70,6 @@
 
 #ifndef KVOCTRAIN_H
 #define KVOCTRAIN_H 
- 
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
