@@ -1,5 +1,6 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
+  <!ENTITY package "kdeedu">
   <!ENTITY kappname "&kvoctrain;">
   <!ENTITY kvoctrain "kvoctrain">
   <!ENTITY % addindex "IGNORE">
@@ -14,13 +15,15 @@
 <author>
 <firstname>Ewald</firstname>
 <surname>Arnold</surname>
-<affiliation><address><email>ewald@ewald-arnold.de</email></address></affiliation>
+<affiliation><address><email>ewald@ewald-arnold.de</email>
+</address></affiliation>
 </author>
 
 <othercredit role="reviewer">
 <firstname>Eric</firstname>
 <surname>Bischoff</surname>
-<affiliation><address><email>e.bischoff@noos.fr</email></address></affiliation>
+<affiliation><address><email>e.bischoff@noos.fr</email>
+</address></affiliation>
 <contrib>Reviewer</contrib>
 </othercredit>
 
@@ -28,8 +31,8 @@
 </authorgroup>
 
 <copyright>
-<year>2000-2001</year>
-<holder>Ewald Arnold <ulink url="mailto:ewald@ewald-arnold.de">ewald@ewald-arnold.de</ulink></holder>
+<year>2000</year><year>2001</year>
+<holder>Ewald Arnold</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
@@ -53,7 +56,8 @@ when you are trying to learn a foreign language.</para></abstract>
 <title>Introduction</title>
 
 <mediaobject>
-<imageobject><imagedata fileref="logo-kvoctrain.png" format="PNG" /></imageobject>
+<imageobject><imagedata fileref="logo-kvoctrain.png" format="PNG"
+ /></imageobject>
 </mediaobject>
 
 <sect1 id="what-is-it">
@@ -65,9 +69,10 @@ own database with the words you need.</para>
 
 <para>It is intended as a replacement for index (flash) cards.</para>
 
-<para>You remember: write the original expression on the front side of
-the card and the translation on the back. Then look at the cards one
-after another. If you knew the translation, put it away. If you failed,
+<para>You probably remember flashcards from school.  The teacher would
+write the original expression on the front side of the card and the
+translation on the back. Then look at the cards one after another. If
+you knew the translation, you could put it away. If you failed, you
 put it back to try again.</para>
 
 <para>&kvoctrain; is not intended to teach you grammer or other
@@ -76,6 +81,7 @@ of this application.</para>
 
 </sect1>
 
+<!--
 <sect1 id="changes">
 <title>Changes</title>
 
@@ -83,70 +89,104 @@ of this application.</para>
 <varlistentry>
 <term>0.7.0 2001 January 2.</term>
 <listitem><para><itemizedlist>
-      <listitem><para>further steps towards KDE 2. Runs almost as reliable as previous
+      <listitem><para>further steps towards KDE 2. Runs almost as
+ reliable as previous
             versions under KDE1</para></listitem>
       <listitem><para>new file format for vocabbox</para></listitem>
-      <listitem><para>new doc properties "license" and "remark"</para></listitem>
-      <listitem><para>new vocabulary properties "usage label" and "paraphrase"</para></listitem>
-      <listitem><para>experimental unicode support with utf-8 encoding of kvtml files
+      <listitem><para>new doc properties "license" and
+ "remark"</para></listitem>
+      <listitem><para>new vocabulary properties "usage label" and
+ "paraphrase"</para></listitem>
+      <listitem><para>experimental unicode support with utf-8 encoding
+ of kvtml files
             (QT2.x only)</para></listitem>
-      <listitem><para>invoke header menu with left mouse button (instead right mouse button)
+      <listitem><para>invoke header menu with left mouse button (instead
+ right mouse button)
             similar to menu buttons in toolbars</para></listitem>
-      <listitem><para>customizable action after query timeout</para></listitem>
-      <listitem><para>provide the possibility to enable different charsets and fonts per
+      <listitem><para>customizable action after query
+ timeout</para></listitem>
+      <listitem><para>provide the possibility to enable different
+ charsets and fonts per
             language</para></listitem>
-      <listitem><para>query dialogs for synonyms, antonyms, examples and paraphrases.</para></listitem>
-      <listitem><para>Synonyms and antonys may form a list of several lines and answering
+      <listitem><para>query dialogs for synonyms, antonyms, examples and
+ paraphrases.</para></listitem>
+      <listitem><para>Synonyms and antonys may form a list of several
+ lines and answering
             one of them is good.</para></listitem>
-      <listitem><para>reduced size of executable by almost 1000kb ;-) by eleminating
+      <listitem><para>reduced size of executable by almost 1000kb ;-) by
+ eleminating
             multiple instatiations of templates.</para></listitem>
-      <listitem><para>query may contain arbitrary many lessons, not just one (or all).</para></listitem>
-      <listitem><para>user defined names for conjugations</para></listitem>
+      <listitem><para>query may contain arbitrary many lessons, not just
+ one (or all).</para></listitem>
+      <listitem><para>user defined names for
+ conjugations</para></listitem>
       <listitem><para>found some minor bugs</para></listitem>
-      <listitem><para>adopted spotlight2kvtml to differing file format</para></listitem>
-      <listitem><para>several properties may spawn multiple lines</para></listitem>
-      <listitem><para>switch to have settings always saved on exit (not only upon request)</para></listitem>
-      <listitem><para>Thanks to Hans Kottmann there is also a localisation for french and
+      <listitem><para>adopted spotlight2kvtml to differing file
+ format</para></listitem>
+      <listitem><para>several properties may spawn multiple
+ lines</para></listitem>
+      <listitem><para>switch to have settings always saved on exit (not
+ only upon request)</para></listitem>
+      <listitem><para>Thanks to Hans Kottmann there is also a
+ localisation for french and
             Grzegorz Ilzuk has created one for polish.</para></listitem>
-      <listitem><para>lesson which are included for the next query are now stored with the
-             document instead of the global configuration file.</para></listitem>
-      <listitem><para>as always: fixed a bunch of new and old bugs...</para></listitem>
+      <listitem><para>lesson which are included for the next query are
+ now stored with the
+             document instead of the global configuration
+ file.</para></listitem>
+      <listitem><para>as always: fixed a bunch of new and old
+ bugs...</para></listitem>
 </itemizedlist></para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term>0.6.0 2000 February 6.</term>
 <listitem><para><itemizedlist>
-      <listitem><para>extended query dialog (properties and progress chart)</para></listitem>
+      <listitem><para>extended query dialog (properties and progress
+ chart)</para></listitem>
       <listitem><para>support up to 7 levels</para></listitem>
       <listitem><para>new property "faux ami"</para></listitem>
-      <listitem><para>added blocking/expiring query dates</para></listitem>
+      <listitem><para>added blocking/expiring query
+ dates</para></listitem>
       <listitem><para>setting groups for the query</para></listitem>
-      <listitem><para>new properties "article", "conjugation" and "comparison"
+      <listitem><para>new properties "article", "conjugation" and
+ "comparison"
             for querying</para></listitem>
       <listitem><para>reorganized source tree</para></listitem>
-      <listitem><para>first preparations for KDE 2.x: compiles but does not
+      <listitem><para>first preparations for KDE 2.x: compiles but does
+ not
             run correctly</para></listitem>
-      <listitem><para>substituted all pictures *.gif by *.png</para></listitem>
-      <listitem><para>simple verify functions in query dialogs</para></listitem>
+      <listitem><para>substituted all pictures *.gif by
+ *.png</para></listitem>
+      <listitem><para>simple verify functions in query
+ dialogs</para></listitem>
 </itemizedlist></para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term>0.5.0 1999 October 24.</term>
 <listitem><para><itemizedlist>
-      <listitem><para>show progress while loading/saving</para></listitem>
-      <listitem><para>customize resizing strategy of columns</para></listitem>
+      <listitem><para>show progress while
+ loading/saving</para></listitem>
+      <listitem><para>customize resizing strategy of
+ columns</para></listitem>
       <listitem><para>mark arbitrary ranges to work on</para></listitem>
-      <listitem><para>binary file format (for my testing purposes only)</para></listitem>
-      <listitem><para>added import/export filter for *.lex and *.csv files</para></listitem>
+      <listitem><para>binary file format (for my testing purposes
+ only)</para></listitem>
+      <listitem><para>added import/export filter for *.lex and *.csv
+ files</para></listitem>
       <listitem><para>limit time for each query</para></listitem>
-      <listitem><para>tried to be more conforming to the style guidelines</para></listitem>
-      <listitem><para>some minor corrections and improvements</para></listitem>
-      <listitem><para>user defined expression types, revised internal types</para></listitem>
-      <listitem><para>added converter for <ulink url="http://spotlight-online.de">Spotlight-Online</ulink>
+      <listitem><para>tried to be more conforming to the style
+ guidelines</para></listitem>
+      <listitem><para>some minor corrections and
+ improvements</para></listitem>
+      <listitem><para>user defined expression types, revised internal
+ types</para></listitem>
+      <listitem><para>added converter for <ulink
+ url="http://spotlight-online.de">Spotlight-Online</ulink>
             vocabulary list ==> spotlight2kvtml</para></listitem>
-      <listitem><para>access header buttons and lesson box also with keyboard</para></listitem>
+      <listitem><para>access header buttons and lesson box also with
+ keyboard</para></listitem>
 </itemizedlist></para></listitem>
 </varlistentry>
 
@@ -188,6 +228,8 @@ of this application.</para>
 
 </variablelist>
 </sect1>
+-->
+
 </chapter>
 
 <chapter id="usage">
@@ -200,11 +242,13 @@ of this application.</para>
 similar to a spreadsheet. Each column represents an expression or word
 in one language. The leftmost column contains the name of the lesson
 this entry belongs to. The second is always the original word and the
-others to the right of it represent the respective translations.</para>
+others to the right of it represent the respective
+translations.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="mainview.png" format="PNG" /></imageobject>
+<imageobject><imagedata fileref="mainview.png" format="PNG"
+ /></imageobject>
 <textobject><phrase>[main view]</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -213,16 +257,19 @@ others to the right of it represent the respective translations.</para>
 the vocabulary have a visual representation:</para>
 
 <itemizedlist>
-  <listitem><para>colors show the grade (Level 1 to 7) of your knowledge</para></listitem>
-  <listitem><para>bold face lines are currently selected for a query</para></listitem>
-  <listitem><para>if you mark a range of entries to work with, they appear with a
-        different background.</para></listitem>
+<listitem><para>colors show the grade (Level 1 to 7) of your
+knowledge</para></listitem>
+<listitem><para>bold face lines are currently selected for a
+query</para></listitem>
+<listitem><para>if you mark a range of entries to work with, they
+appear with a different background.</para></listitem>
 </itemizedlist>
 
-<para>The color in the column with the original will vary if you have two
-columns with translations. If the cursor is in one of the translations
-the color represents its grade "to the original". See section <link
-linkend="entry2-dlg">entry dialog</link> for more on this.</para>
+<para>The color in the column with the original will vary if you have
+two columns with translations. If the cursor is in one of the
+translations the color represents its grade <quote>to the
+original</quote>. See section <link linkend="entry2-dlg">entry
+dialog</link> for more on this.</para>
 
 <para>Of course it is also possible to use it as an ordinary dictionary
 and <link linkend="smart-search">lookup manually</link>.</para>
@@ -234,7 +281,8 @@ current expression if available:</para>
 <variablelist>
 <varlistentry>
 <term>T:</term>
-<listitem><para>the <link linkend="types">type</link> of this word</para></listitem>
+<listitem><para>the <link linkend="types">type</link> of this
+word</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -261,7 +309,7 @@ So all of the functions are reachable this way.</para>
 
 <variablelist id="smart-search">
 <varlistentry>
-<term><keycap>TAB</keycap></term>
+<term><keycap>Tab</keycap></term>
 <listitem><para>The cursor is moved to the smart search input field. If
 you start typing an expression in this field, &kvoctrain; will search
 the next best match after each key. The cursor in the vocabulary is then
@@ -271,17 +319,18 @@ moved to this location.</para>
 match.</para>
 
 <para>If you additionally keep &Shift; pressed while entering the next
-letter of your word (or press <keycap>Return</keycap> for the next match)
+letter of your word (or press <keycap>Return</keycap> for the next
+ match)
 only entries that match from the <emphasis>beginning</emphasis> of the
 expressions are recognized.</para>
     
 <para>Pressing <keycombo action="simul">&Shift;
-<keycap>tab</keycap></keycombo> will move back to the
+<keycap>Tab</keycap></keycombo> will move back to the
 vocabulary.</para></listitem>
 </varlistentry>
     
 <varlistentry>
-<term><keycap>SPACE</keycap></term>
+<term><keycap>Space</keycap></term>
 <listitem><para>There are two possibilities:</para>
 
 <itemizedlist>
@@ -291,63 +340,65 @@ from) the next query. When selected, the row appears in a bold face
 font.</para></listitem>
       
 <listitem><para>
-If you press a shift key (one of &Shift;, %Ctrl; or &Alt;) together
-with the <keycap>SPACE</keycap> key, the current entry is assigned the
-lesson which is shown in the lessons listbox in the toolbar. If the entry
+If you press a shift key (one of &Shift;, &Ctrl; or &Alt;) together
+with the <keycap>Space</keycap> key, the current entry is assigned the
+lesson which is shown in the lessons listbox in the toolbar. If the
+ entry
 was already assigned a lesson, it will belong to no lesson
 afterwards.</para></listitem>
 </itemizedlist></listitem>
 </varlistentry>
   
 <varlistentry>
-<term><keycap>Cursor LEFT</keycap></term>
+<term><keycap>Left Arrow</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one column
 to the left. If it has reached the leftmost column, nothing
 happens.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Cursor RIGHT</keycap></term>
+<term><keycap>Right Arrow</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one column
 to the right. If it has reached the rightmost column, nothing
 happens.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Cursor UP</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one row upwards. If
+<term><keycap>Up Arrow</keycap></term>
+<listitem><para>The cursor in the vocabulary is moved one row upwards.
+ If
 it has reached the topmost row, nothing happens.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Cursor DOWN</keycap></term>
+<term><keycap>Down Arrow</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one row
 downwards. If it has reached the bottommost row, nothing
 happens.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Cursor PAGE UP</keycap></term>
+<term><keycap>Page Up</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one page (the
 amount of visible lines -1) upwards. If the cursor would exceed the
 first possible row, nothing happens.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Cursor PAGE DOWN</keycap></term>
+<term><keycap>Page Down</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one page
 downwards. If the cursor would exceed the last possible row, nothing
 happens.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-enter">
-<term><keycap>ENTER</keycap></term>
+<term><keycap>Enter</keycap></term>
 <listitem><para>Invoke dialog for modification of this
 entry.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-insert">
-<term><keycap>INS</keycap></term>
+<term><keycap>Ins</keycap></term>
 <listitem><para>Invokes a dialog to enter a new original expression and
 appends a new row with this expression at the end of the vocabulary. The
 cursor is moved to the end of the vocabulary afterwards.</para>
@@ -357,18 +408,19 @@ key.</para></listitem>
 </varlistentry>
     
 <varlistentry id="key-delete">
-<term><keycap>DEL</keycap></term>
+<term><keycap>Del</keycap></term>
 <listitem><para>After confirmation of a safety dialog,
 the currently selected row or selection is removed from the
 vocabulary.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>+</keycap> <keycap>-</keycap></term>
+<term><keycap>+</keycap> or <keycap>-</keycap></term>
 <listitem><para>Pressing the control key and one of the two number pad
-keys, + or -, you can choose the previous or next item in the combo box
-determinig the current lesson. If you don't have a number pad ypu may
-also use the normal + or - keys.</para></listitem>
+keys, <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
+previous or next item in the combo box determinig the current
+lesson. If you don't have a number pad you may also use the normal
+<keycap>+</keycap> or <keycap>-</keycap> keys.</para></listitem> 
 </varlistentry>
 
 </variablelist>
@@ -378,7 +430,7 @@ the according entry on the right side.</para>
 
 <para>The buttons on top of the rows are acessible by the keyboard. To
 avoid clashes with the shortcuts for the main menu you have to press
-<keycombo action="simul">&Shift; &Alt;</keycombo> and the key of
+<keycombo action="simul">&Shift;&Alt;</keycombo> and the key of
 underlined letter in the button text. Then the corresponding <link
 linkend="header-menu">header menu</link> will pop up.</para>
 
@@ -390,12 +442,13 @@ linkend="header-menu">header menu</link> will pop up.</para>
 <para>Double clicking an expression in the table will invoke the
 <link linkend="entry-dlg">dialog</link> to modify this entry.</para>
     
-<para>Left mouse click in of the header buttons will sort this column
-in ascending order. The next click will sort in descending order.</para>
+<para><mousebutton>Left</mousebutton> mouse click in of the header
+buttons will sort this column in ascending order. The next click will
+sort in descending order.</para> 
 
-<para>Keeping pressed the left mouse button for about 1
-second in on of the table header buttons will pop up its <link
-linkend="header-menu">header menu</link>.</para>
+<para>Keeping pressed the <mousebutton>left</mousebutton> mouse button
+for about 1 second in on of the table header buttons will pop up its
+<link linkend="header-menu">header menu</link>.</para>
 
 </sect1>
 
@@ -403,24 +456,28 @@ linkend="header-menu">header menu</link>.</para>
 <title>Working on multiple selections</title>
 
 <para>It is possible to mark arbitrary ranges. You can then modify one
-or more properties for the selection or save them as a new file.</para>
+or more properties for the selection or save them as a new
+file.</para>
 
-<para>If you keep the control key pressed while clicking on an entry,
+<para>If you keep the &Ctrl; key pressed while clicking on an entry,
 the whole row is marked for further processing. A click on a marked
 entry will remove this type of selection.</para>
 
-<para>When you additionally press a shift key when clicking on an entry,
-the selection will be extended (or shrunk if you additionally press
-the control key) from the current entry to the point where the cursor
-was previously.</para>
+<para>When you additionally press a &Shift; key when clicking on an
+entry, the selection will be extended (or shrunk if you additionally
+press the &Ctrl; key) from the current entry to the point where the
+cursor was previously.</para>
 
 <para>The selection will disappear after a simple mouse click in a table
 cell without a key pressed.</para>
 
 <para>It is also possible to create multiple selections with the cursor
-keys. The &Shift; and &Ctrl; keys have the same function here. If you want
-to move the cursor to an other area you have to keep the alt key depressed
-to prevent the selection from disappearing. If you want to select several
+keys. The &Shift; and &Ctrl; keys have the same function here. If you
+ want
+to move the cursor to an other area you have to keep the alt key
+ depressed
+to prevent the selection from disappearing. If you want to select
+ several
 areas you will have to press a lot of keys, but it works.</para>
 
 <para>If you invoke the edit dialog to modify a selection the dialog
@@ -441,58 +498,66 @@ selection.</para>
 <para>&kvoctrain; can read and write the following file formats:</para>
 
 <itemizedlist>
-   <listitem><para>Its native xml-style document type with the extension "kvtml".</para>
+<listitem><para>Its native xml-style document type with the extension
+<literal role="extension">.kvtml</literal>.</para>
 
-   <para>If you want to share documents with others use this one as it
-     is the only file format that is capable of containing <emphasis>all</emphasis> the
-     properties in &kvoctrain;.</para></listitem>
+<para>If you want to share documents with others use this one as it is
+the only file format that is capable of containing
+<emphasis>all</emphasis> the properties in
+&kvoctrain;.</para></listitem>
 
-<!--     
-   <listitem><para>Its native binary format with the extension "kvtbin". Although it is
-     also a native format, you should <emphasis>not use it</emphasis> at the moment. It is just
-     for me to play around and test some things.</para>
+<!-- <listitem><para>Its native binary format with the extension
+   "kvtbin". Although it is also a native format, you should
+   <emphasis>not use it</emphasis> at the moment. It is just for me to
+   play around and test some things.</para>
 
-     <warning><para>No version of &kvoctrain; will ever be able to read binary files
-     from previous or later versions! This (mis-)behaviour is intended!</para></warning>
+<warning><para>No version of &kvoctrain; will ever be able to read
+     binary files from previous or later versions! This (mis-)behaviour
+ is intended!</para></warning>
    </listitem>
 -->
 
-   <listitem><para>Vocabulary files from <ulink
-     url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> which is
-     the leanest vocabulary trainer I know. I recommend this application
-     if you need a really compact one.</para></listitem>
+<listitem><para>Vocabulary files from <ulink
+url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> which is the
+leanest vocabulary trainer I know. I recommend this application if you
+need a really compact one.</para></listitem>
 
-   <listitem><para>Files created by <ulink
-     url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabulary
-     Trainer</ulink> This is an application for M$ Windoze. It uses
-     the file extension "lex". Link seems to be dead. See the section
-     about <link linkend="dictionary">available dictionaries</link>
-     to download these files.</para></listitem>
+<listitem><para>Files created by <ulink
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
+ary
+Trainer</ulink> This is an application for &Microsoft; &Windows;. It
+uses the file extension <literal role="extension">lex</literal>. Link
+seems to be dead. See the section about <link
+linkend="dictionary">available dictionaries</link> to download these
+files.</para></listitem>
 
-   <listitem><para>Simple text files with special delimiters between
-     the entries which are also used by simpled database programs. The
-     extension is "csv" in this case.</para>
+<listitem><para>Simple text files with special delimiters between the
+entries which are also used by simpled database programs. The
+extension is <literal role="extension">csv</literal> in this
+case.</para>
 
-     <para>There are a lot of dictionaries on the internet which use the
-     tabular character or one or two colons to separate the different
-     languages.</para>
+<para>There are a lot of dictionaries on the internet which use the
+tabular character or one or two colons to separate the different
+languages.</para>
 
-     <para>To select this separator use the dialog for setting the 
-     <link linkend="options2-dlg">clipboard options</link>.</para></listitem>
+<para>To select this separator use the dialog for setting the <link
+linkend="options2-dlg">clipboard options</link>.</para></listitem>
 
 </itemizedlist>
 
-<para>&kvoctrain; reads the first few bytes from a file and makes a guess
-about the file format. When none of the special types like kvtml or lex
-are recognized, it uses the csv format.</para>
+<para>&kvoctrain; reads the first few bytes from a file and makes a
+guess about the file format. When none of the special types like
+<literal role="extension">kvtml</literal> or <literal
+role="extension">lex</literal> are recognized, it uses the <literal
+role="extension">csv</literal> format.</para>
 
 </sect1>
 
 <sect1 id="types">
 <title>Available word types</title>
 
-<para>&kvoctrain; has the following internal word types. Furthermore every
-document can contain user derfined types.</para>
+<para>&kvoctrain; has the following internal word types. Furthermore
+every document can contain user derfined types.</para>
 
 <informaltable><tgroup cols="3">
 <thead>
@@ -537,8 +602,10 @@ document can contain user derfined types.</para>
 </row>
 
 <row>
-<entry><para>Name</para></entry>
-<entry><para>name of a person, a creature, sometimes a thing</para></entry>
+<entry><para>Proper Noun</para></entry>
+<!-- This was name - does this need changing in the app too? -->
+<entry><para>name of a person, a creature, sometimes a
+ thing</para></entry>
 <entry><para>Big Ben, Tom</para></entry>
 </row>
 
@@ -550,7 +617,8 @@ document can contain user derfined types.</para>
      <listitem><para>neutral</para></listitem>
   </itemizedlist></para></entry>
 <entry><para>naming of things, feelings</para></entry>
-<entry><para>table, coffee (english does not distinguish here)</para></entry>
+<entry><para>table, coffee (english does not distinguish
+ here)</para></entry>
 </row>
 
 <row>
@@ -587,8 +655,10 @@ document can contain user derfined types.</para>
    </itemizedlist></para></entry>
 <entry><para>
   <itemizedlist>
-      <listitem><para>tells about the ownership of something</para></listitem>
-      <listitem><para>stands as a replacement for a noun</para></listitem>
+      <listitem><para>tells about the ownership of
+ something</para></listitem>
+      <listitem><para>stands as a replacement for a
+ noun</para></listitem>
   </itemizedlist></para></entry>
 <entry><para>
   <itemizedlist>
@@ -622,34 +692,38 @@ document can contain user derfined types.</para>
 </sect1>
 
 <sect1 id="encodings">
-<title>About charsets, encodings, unicode and such strange things</title>
+<title>About charsets, encodings, unicode and such strange
+ things</title>
 
 <para>Every human-readable text file is represented by a sequence of
-"bytes" or "octets". The actual meaning of those bytes can happen in a
-lot of different ways, depending on the system where it is displayed or
-which language the text is intended for.</para>
+<quote>bytes</quote> or <quote>octets</quote>. The actual meaning of
+those bytes can happen in a lot of different ways, depending on the
+system where it is displayed or which language the text is intended
+for.</para>
 
-<para>Since usually a "byte" is the smallest common unit for data on
-computers each "character" you see on a screen is represented by exactly
-one byte. Each byte can stand for a value from 0 to 255 and therefore you
-are able to display up to 256 different characters within one file.</para>
+<para>Since usually a <quote>byte</quote> is the smallest common unit
+for data on computers each <quote>character</quote> you see on a
+screen is represented by exactly one byte. Each byte can stand for a
+value from 0 to 255 and therefore you are able to display up to 256
+different characters within one file.</para>
 
-<para>Usually you have the "ascii" characters, e.g. a..Z, A..Z, 0..9
-and additional language dependent characters. E.g. the German umlauts
-&auml; or &uuml; or a lot of other special symbols from Russian, Greek,
-Hebrew or even Chinese. All this tots up to fare more than 256 different
+<para>Usually you have the <quote>ascii</quote> characters, &eg; a
+through Z, A through Z, 0 through 9 and additional language dependent
+characters. For example, the German umlauts &auml; or &uuml; or a lot
+of other special symbols from Russian, Greek, Hebrew or even
+Chinese. All this total up to far more than 256 different
 symbols.</para>
 
 <para>At this point it should be obvious that you have to take care to
-select the correct "charset", which is needed to display the bytes in
-the same way as they are intended.</para>
+select the correct <quote>charset</quote>, which is needed to display
+the bytes in the same way as they are intended.</para>
 
 <para>A better approach is to combine two ore more bytes into a
-representation for a single character on the screen. This is for example
-what Unicode does. Unicode is a standard that currently uses a range from
-0 to 65535 to designate a given symbol. Almost each symbol of almost
-each language on earth (and even a lot more, e.g. well known icons)
-is assigned a unique and unabiguous number.</para>
+representation for a single character on the screen. This is for
+example what Unicode does. Unicode is a standard that currently uses a
+range from 0 to 65535 to designate a given symbol. Almost each symbol
+of almost each language on earth (and even a lot more, &eg; well known
+icons) is assigned a unique and unabiguous number.</para>
 
 <para>Unfortunately the handling of Unicode is a bit more complicated
 and does not work with most of the current tools. Texts in unicode
@@ -660,27 +734,34 @@ set and switches to 2, 3 or even 4 or more bytes if needed.</para>
 <para>Every vocabulary file for &kvoctrain; is basically such a simple
 text file.</para>
 
-<para>To support as many languages as possible  &kvoctrain; offers
-the possibility to choose a special charset for a 8 or 16 bit based
-representation as well as the storage of the files and in the computers
-memory in UTF-8.</para>
+<para>To support as many languages as possible &kvoctrain; offers the
+possibility to choose a special charset for a 8 or 16 bit based
+representation as well as the storage of the files and in the
+computers memory in UTF-8.</para>
 
-<para>Unicode is only supported on QT2 based systems since this only
-works well if the underlying system works with uncode.</para>
+<para>Unicode is only supported on &Qt; 2.x or later based systems
+since this only works well if the underlying system works with
+unicode.</para>
 
 <para>If you want to learn more about this issue you should visit the
 following links:</para>
 
 <itemizedlist>
-   <listitem><para>
-     <ulink url="http://www.hut.fi/u/jkorpela/chars.html">http://www.hut.fi/u/jkorpela/chars.html</ulink>
-   </para></listitem>
-   <listitem><para>
-     <ulink url="http://linuxdoc.org/HOWTO/Unicode-HOWTO.html">http://linuxdoc.org/HOWTO/Unicode-HOWTO.html</ulink>
-   </para></listitem>
-   <listitem><para>
-     <ulink url="http://czyborra.com/charsets/codepages.html">http://czyborra.com/charsets/codepages.html</ulink>
-   </para></listitem>
+<listitem><para>
+<ulink
+url="http://www.hut.fi/u/jkorpela/chars.html">http://www.hut.fi/u/jkorpe
+la/chars.html</ulink>
+</para></listitem>
+<listitem><para>
+<ulink
+ url="http://linuxdoc.org/HOWTO/Unicode-HOWTO.html">http://linuxdoc.org/
+HOWTO/Unicode-HOWTO.html</ulink>
+</para></listitem>
+<listitem><para>
+<ulink
+ url="http://czyborra.com/charsets/codepages.html">http://czyborra.com/c
+harsets/codepages.html</ulink>
+</para></listitem>
 </itemizedlist>
               
 </sect1>
@@ -688,58 +769,61 @@ following links:</para>
 <sect1 id="learning">
 <title>And how should I learn?</title>
 
-<para>The usual way to learn with &kvoctrain; is to use one of its random
+<para>The usual way to learn with &kvoctrain; is to use one of its
+ random 
 query functions.</para>
 
 <para>It keeps track of your knowledge of the expressions by assigning
-them one of seven grades ranging from "Level 1" to "Level 7".</para>
+them one of seven grades ranging from <quote>Level 1</quote> to
+<quote>Level 7</quote>.</para>
 
-<para>Several possibilities are implemented which can be configured in the
-dialog for the query options.</para>
+<para>Several possibilities are implemented which can be configured in
+the dialog for the query options.</para>
 
 <itemizedlist>
-   <listitem><para>To keep the amount of expressions reasonable,
-   restrict the query to a lesson and/or a word type. I personally
-   prefer about 50 words per cycle and subdivide the lessons
-   accordingly.</para></listitem>
+<listitem><para>To keep the amount of expressions reasonable, restrict
+the query to a lesson and/or a word type. I personally prefer about 50
+words per cycle and subdivide the lessons accordingly.</para></listitem>
 
-   <listitem><para>Furthermore, the range for the query can depend
-   on the current grade, the number of queries and the last query
-   date.</para></listitem>
+<listitem><para>Furthermore, the range for the query can depend on the
+current grade, the number of queries and the last query
+date.</para></listitem>
 
-   <listitem><para>Learning is efficient, if you don't repeat the
-   words for a certain length of time, dependig on the current
-   grade.</para></listitem>
- 
-   <listitem><para>There is a blocking and expiring mechanism for
-   that case, so you are not obliged to modify the settings after each
-   cycle. The known expression is blocked at least for the given time
-   and will be shown after the expiration time.</para></listitem>
-    
-   <listitem><para>The direction of the learning can be changed randomly to avoid
-    one way learning.</para></listitem>
+<listitem><para>Learning is efficient, if you don't repeat the words
+for a certain length of time, dependig on the current
+grade.</para></listitem>
 
-   <listitem><para>For your personal taste or just for becoming
-   acquainted with a new word, you can choose a query that shows the
-   solution together with several other randomly chosen words (called
-   multiple choice).</para></listitem>
-    
-   <listitem><para>Special word types need special queries.</para>
-   <para>For this reason there are queries for the conjugation of verbs,
-   comparision form of adjectives and the articles of nouns.</para></listitem>
+<listitem><para>There is a blocking and expiring mechanism for that
+case, so you are not obliged to modify the settings after each
+cycle. The known expression is blocked at least for the given time and
+will be shown after the expiration time.</para></listitem>
+
+<listitem><para>The direction of the learning can be changed randomly
+to avoid one way learning.</para></listitem>
+
+<listitem><para>For your personal taste or just for becoming
+acquainted with a new word, you can choose a query that shows the
+solution together with several other randomly chosen words (called
+multiple choice).</para></listitem>
+
+<listitem><para>Special word types need special queries.</para>
+<para>For this reason there are queries for the conjugation of verbs,
+comparision form of adjectives and the articles of
+nouns.</para></listitem>
 </itemizedlist>
 
-<para>All these settings can be summarized into query groups and retained
+<para>All these settings can be summarized into query groups and
+ retained
 under an arbitrarily name.</para>
 
 <para>When querying &kvoctrain; shows the expressions in random order
-until you confirm all as "known". If you did not select a special lesson,
-all lessons are queried one after the other.</para>
+until you confirm all as <quote>known</quote>. If you did not select a
+special lesson, all lessons are queried one after the other.</para>
 
-<para>Remaining expressions of a currently running query are accordingly
-stored when you leave &kvoctrain;. After a later restart you can resume
-the query (currently does not apply to special queries with verbs,
-articles and comparisons).</para>
+<para>Remaining expressions of a currently running query are
+accordingly stored when you leave &kvoctrain;. After a later restart
+you can resume the query (currently does not apply to special queries
+with verbs, articles and comparisons).</para>
 
 </sect1>
 </chapter>
@@ -750,55 +834,78 @@ articles and comparisons).</para>
 <sect1 id="file-menu">
 <title>The <guimenu>File</guimenu> Menu</title>
 
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="filemenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[file menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
 <variablelist>
 <varlistentry>
-<term><guimenuitem>New</guimenuitem></term>
-<listitem><para>Creates a new document.</para></listitem>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>New</guimenuitem>
+</menuchoice>
+</term>
+<listitem><para><action>Creates</action> a new
+ document.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Open</guimenuitem></term>
-<listitem><para>Opens an existing
-document. <filename>sample-en.kvtml</filename> is included as an
+<term>
+<menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Open...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens an existing document.</action>
+<filename>sample-en.kvtml</filename> is included as an
 example.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Open recent</guimenuitem></term>
-<listitem><para>Opens one of the recently opened documents.</para></listitem>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open recent...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens one of the recently opened
+ documents.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Merge..</guimenuitem></term>
-<listitem><para>Merges another vocabulary to the current.</para>
-<para>Only those parts of the second
-vocabulary are merged, that have the same <ulink
-url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">international
+<term>
+<menuchoice><guimenu>File</guimenu>
+<guimenuitem>Merge..</guimenuitem></menuchoice></term>
+<listitem><para><action>Merges another vocabulary to the
+ current.</action></para>
+<para>Only those parts of the second vocabulary are merged, that have
+ the same 
+<ulink
+ url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">in
+ternational 
 language code</ulink> as your current one.</para>
 <para>So always use the correct codes. This helps you share vocabularies
 with others.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Save</guimenuitem></term>
-<listitem><para>Saves the document.</para></listitem>
+<term>
+<menuchoice>
+<shortcut><keycombo
+ action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Save</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the document.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Save as</guimenuitem></term>
-<listitem><para>Saves the document under another name.</para></listitem>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Save as</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the document under another
+ name.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Quit</guimenuitem></term>
-<listitem><para>Exits &kvoctrain;.</para></listitem>
+<term>
+<menuchoice><guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem></menuchoice></term>
+<listitem><para><action>Exits</action> &kvoctrain;.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -807,127 +914,173 @@ with others.</para></listitem>
 <sect1 id="edit-menu">
 <title>The <guimenu>Edit</guimenu> Menu</title>
 
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="editmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[edit menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Copy</guimenuitem></term>
-<listitem><para>Copies the current row to the clipboard. The entries
-are separated by a special sequence of characters which can be chosen in
-the <link linkend="options2-dlg">options dialog</link>.</para></listitem>
+<term>
+<menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>C</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Copy</guimenuitem></menuchoice></term>
+<listitem><para><action>Copies the current row to the
+ clipboard.</action> The entries are separated by a special sequence of
+ characters which can be chosen in the <link
+ linkend="options2-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Paste</guimenuitem></term>
-<listitem><para>Pastes from clipboard. The entries are divided by
+<term><menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>V</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Paste</guimenuitem></menuchoice></term>
+<listitem><para><action>Pastes from clipboard.</action> The entries are
+ divided by
 the above mentioned <link linkend="cut-n-paste">separator</link>
 character and inserted as a new row with one or more columns. You can
 also <link linkend="options2-dlg">adjust the order</link> in which the
 columns are concatenated bofore copying all to the clipboard.</para>
-<para>Pasting multiple lines (e.g. from a CSV data base file) will append
-them all as new rows one after another.</para></listitem>
+<para>Pasting multiple lines (&eg; from a CSV data base file) will
+ append them all as new rows one after another.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Select all</guimenuitem></term>
-<listitem><para>Marks the whole vocabulary as "selected" for further
-processing.</para></listitem>
+<term><menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>A</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Select all</guimenuitem></menuchoice></term>
+<listitem><para><action>Marks the whole vocabulary</action> as
+ <quote>selected</quote>
+ for further processing.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Remove</guimenuitem></term>
-<listitem><para>Removes all multiple selection marks.</para></listitem>
+<term>
+<menuchoice>
+<shortcut><keycombo action="simul">&Ctrl;
+<keycap>Del</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Clear selection</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes all multiple selection
+ marks.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Search from clipboard</guimenuitem></term>
-<listitem><para>Pastes the clipboard content into the <link
+<term>
+<menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>F</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Search from clipboard</guimenuitem></menuchoice></term>
+<listitem><para><action>Pastes the clipboard content</action> into the
+ <link
 linkend="smart-search">smart search</link> entry field and search this
 expression in all the entries in the current column.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Append new entry</guimenuitem></term>
-<listitem><para>Appends one or more new expressions. See
+<term><menuchoice>
+<shortcut><keycap>Ins</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Append new entry</guimenuitem></menuchoice></term>
+<listitem><para><action>Appends one or more new expressions.</action>
+ See
 <link linkend="key-insert">Insert key</link> section for more
 information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Edit selected area</guimenuitem></term>
-<listitem><para>Edits current expression. See <link
+<term>
+<menuchoice><shortcut><keycap>Enter</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Edit selected area</guimenuitem></menuchoice></term>
+<listitem><para><action>Edits current expression.</action> See <link
 linkend="key-enter">Enter key</link> section for more
 information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Remove selected area</guimenuitem></term>
-<listitem><para>Removes selection. See <link linkend="key-delete">Delete
+<term>
+<menuchoice><shortcut><keycap>Del</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Remove selected area</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes selection.</action> See <link
+ linkend="key-delete">Delete
 key</link> for more information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Save selected area</guimenuitem></term>
-<listitem><para>Saves the selection to a file.</para></listitem>
+<term><menuchoice>
+<guimenu>Edit</guimenu>
+<guimenuitem>Save selected area...</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the selection to a
+ file.</action></para></listitem>
 </varlistentry>
 </variablelist>
-  
+
 </sect1>
 
 <sect1 id="voc-menu">
 <title>The <guimenu>Vocabulary</guimenu> Menu</title>
 
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="vocmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[vocabulary menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Show statistics</guimenuitem></term>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Show statistics</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="stat-dlg">statistics
-dialog</link> to display the most important facts about your
-vocabulary.</para></listitem>
+dialog</link> to <action>display the most important facts about your
+vocabulary.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Assign lessons</guimenuitem></term>
-<listitem><para>Searches the vocabulary for entries that are
-not yet assigned a lesson. They are randomly assigned new
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Assign lessons</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches the vocabulary for entries that are
+not yet assigned a lesson.</action> They are randomly assigned new
 lessons.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Clean up</guimenuitem></term>
-<listitem><para>Searches for entries which are exactly the same (original
-and all translations) and removes all but one.</para></listitem>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Clean up</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches for entries which are exactly the
+ same</action>
+(original and all translations) and removes all but
+ one.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Append language</guimenuitem></term>
-<listitem><para>Appends a new column (a new language).</para></listitem>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Append language</guimenuitem></menuchoice></term>
+<listitem><para><action>Appends a new column</action> (a new
+ language).</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Remove language</guimenuitem></term>
-<listitem><para>Removes one of the translations.</para></listitem>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Remove language</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes one of the
+ translations.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Document properties</guimenuitem></term>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Document properties</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="docprop-dlg">document
 properties dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Language properties</guimenuitem></term>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Language properties</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="langprop-dlg">language
 properties dialog</link>.</para></listitem>
 </varlistentry>
@@ -938,31 +1091,36 @@ properties dialog</link>.</para></listitem>
 <sect1 id="learn-menu">
 <title>The <guimenu>Learn</guimenu> Menu</title>
 
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="learnmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[learn menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Column menu</guimenuitem></term>
+<term>
+<menuchoice>
+<guimenu>Learn</guimenu>
+<guimenuitem><replaceable>Language Names</replaceable></guimenuitem>
+</menuchoice></term>
 <listitem><para>Provides a submenu for each language with all the
 query dialogs. Exactly the same as the menu appearing in a <link
 linkend="header-menu">table header button</link>.</para></listitem>
 </varlistentry>
-         
+
 <varlistentry>
-<term><guimenuitem>Resume random query</guimenuitem></term>
-<listitem><para>Resumes the previous random query if you terminated one
-before. Selected entries appear in a bold face font.</para></listitem>
+<term>
+<menuchoice>
+<guimenu>Learn</guimenu>
+<guimenuitem>Resume random query</guimenuitem></menuchoice></term>
+<listitem><para><action>Resumes the previous random query if you
+ terminated one
+before.</action> Selected entries appear in a bold face
+ font.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Resume multiple choice</guimenuitem></term>
-<listitem><para>Same as the previous topic but query with multiple
-choice.</para></listitem>
+<term><menuchoice>
+<guimenu>Learn</guimenu><guimenuitem>Resume multiple
+ choice</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Resumes the previous random query with multiple
+choice.</action></para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -971,65 +1129,62 @@ choice.</para></listitem>
 <sect1 id="opt-menu">
 <title>The <guimenu>Options</guimenu> Menu</title>
 
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="optmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[options menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Toolbar</guimenuitem></term>
-<listitem><para>Toggles the visibility of the toolbar
-buttons.</para></listitem>
+<term><menuchoice>
+<guimenu>Options</guimenu>
+<guimenuitem>Toolbar</guimenuitem></menuchoice></term>
+<listitem><para><action>Toggles the visibility of the toolbar
+buttons.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Statusbar</guimenuitem></term>
-<listitem><para>The same for the status line at the
-bottom.</para></listitem>
+<term>
+<menuchoice><guimenu>Options</guimenu>
+<guimenuitem>Statusbar</guimenuitem></menuchoice></term>
+<listitem><para><action>Toggles on or off the status line at the
+bottom.</action></para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>General options</guimenuitem></term>
+<term>
+<menuchoice><guimenu>Options</guimenu>
+<guimenuitem>General options</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="options-dlg">general options
 dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query options</guimenuitem></term>
+<term><menuchoice><guimenu>Options</guimenu>
+<guimenuitem>Query options</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="options-dlg">query options
 dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Save options</guimenuitem></term>
-<listitem><para>Saves the options. Only selectable if the options are
+<term>
+<menuchoice><guimenu>Options</guimenu>
+<guimenuitem>Save options</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the options.</action> Only selectable if
+ the options are
 not already saved automatically.</para></listitem>
 </varlistentry>
 </variablelist>
-  
-</sect1>
 
+</sect1>
 
 <sect1 id="header-menu">
 <title>Table header</title>
 
-<para>The following menu will appear when you keep one of the buttons
+<para>The following context menu will appear when you keep one of the
+ buttons
 in the table header pressed for half a second.</para>
 
+<!-- I completely don't understand this paragraph
 <para>The menu for the original is almost the same. The last two items
 are missing. The item to start the random query resp. its variant with
 multiple choice contains all languages from the vocabulary as you have
-to choose which of the translations you want learn from.</para>
-
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="headmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[header menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
+to choose which of the translations you want learn from.</para> -->
 
 <variablelist>
 <varlistentry>
@@ -1042,8 +1197,9 @@ linkend="threshholds">threshholds</link>.</para></listitem>
 <varlistentry>
 <term><guimenuitem>Create multiple choice</guimenuitem></term>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
-choice query</link> on this column with all unknown expressions according
-to your <link linkend="threshholds">threshholds</link>.</para></listitem>
+choice query</link> on this column with all unknown expressions
+ according to your <link
+ linkend="threshholds">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1107,9 +1263,19 @@ affected.</para></listitem>
 
 <varlistentry>
 <term><guimenuitem>Remove language</guimenuitem></term>
-<listitem><para>Removes this column and all its entries.</para></listitem>
+<listitem><para>Removes this column and all its
+ entries.</para></listitem>
 </varlistentry>
 </variablelist>
+
+</sect1>
+
+<sect1 id="help-menu">
+<title>The <guimenu>Help</guimenu> menu</title>
+
+<!-- I'm assuming this app has or will very soon have a standard Help
+ menu -->
+&help.menu.documentation;
 
 </sect1>
 </chapter>
@@ -1120,17 +1286,20 @@ affected.</para></listitem>
 <sect1 id="docprop-dlg">
 <title>Document properties dialog</title>
 
-<para>This dialog also consists of several pages the determine properties
-that belong only to the current document. They are stored with the
+<para>This dialog also consists of several pages the determine
+ properties that belong only to the current document. They are stored
+ with the
 vocabulary.</para>
 
 <sect2 id="docprop1-dlg">
 <title>General properties</title>
 
 <screenshot>
+<screeninfo>General document properties screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="docprop1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[general document properties]</phrase></textobject>
+<imageobject>
+<imagedata fileref="docprop1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>General document properties</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1150,11 +1319,11 @@ person.</para></listitem>
 
 <varlistentry>
 <term><guilabel>License</guilabel></term>
-<listitem><para>If you want to restrict (or better allow :-) the use
+<listitem><para>If you want to restrict (or better allow) the use
 of you vocabulary you should enter the according permission or license
 here.</para>
 <para>I recommend something like the Open Content
-License.</para></listitem>
+ License.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1170,24 +1339,27 @@ one of the other categories.</para></listitem>
 <title>Lesson descriptions</title>
 
 <screenshot>
+<screeninfo>Lesson descriptions dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="docprop2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[lesson descriptions]</phrase></textobject>
+<imageobject><imagedata fileref="docprop2-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Lesson descriptions</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>Here you add, modify or delete descriptions of your lessons.</para>
+<para>Here you add, modify or delete descriptions of your
+ lessons.</para>
 
-<para>The buttons should be pretty self explaining except <guibutton>Clean
-up</guibutton>. This one will remove all lesson descriptions that are
-currently unused.</para>
+<para>The buttons should be pretty selfexplanatory except
+ <guibutton>Clean up</guibutton>. This one will remove all lesson
+ descriptions that are currently unused.</para>
 
 </sect2>
 
 <sect2 id="docprop3-dlg">
 <title>Type descriptions</title>
 
-<para>Similar to the previous section about lessons you can edit our
+<para>Similar to the previous section about lessons, you can edit our
 own expression types on this page.</para>
 
 <para>Since the dialog page looks the same as the one before there is
@@ -1205,7 +1377,8 @@ no picture.</para>
 <sect2 id="docprop5-dlg">
 <title>Usage labels</title>
 
-<para>The last page provides the possibilty to enter your own usage labels.</para>
+<para>The last page provides the possibilty to enter your own usage
+ labels.</para>
 
 <important><para>If you think an important item is missing (from the
 above tense, type or usage label section) you should tell me, so I can
@@ -1218,32 +1391,34 @@ include them in the application as standard item.</para>
 <title>Document options</title>
 
 <screenshot>
+<screeninfo>Document options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="docprop6-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[document options]</phrase></textobject>
+<imageobject><imagedata fileref="docprop6-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Document Options</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>allow sorting</guilabel></term>
-<listitem><para>If you have created your vocabulary with a certain order,
-you can use this checkbox to turn sorting off for this document. A click
+<listitem><para>If you have created your vocabulary with a certain
+ order, you can use this checkbox to turn sorting off for this document. A click
 in the header button will then no longer sort the row.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Encoding</guilabel></term>
-<listitem><para>Useful only on KDE2 systems. Here you choose the encoding
+<listitem><para>Useful only on &kde; 2.x systems. Here you choose the encoding
 used to store the vocabulary files.</para>
 <para>Choose <guilabel>8Bit</guilabel> if possible. UTF-8 is only
-possible on QT2 based systems and should therefore only be used if
+possible on &Qt; based systems and should therefore only be used if
 really needed.</para>
 <para>Take also into account that you might have to select a
 certain charset in the <link linkend="langprop-dlg">language
 properties dialog</link> if you want to share your vocabulary
-files with others <emphasis>(and I really recommend that you do ;-)
-)</emphasis>.</para></listitem>
+files with others <emphasis>(and I really recommend that you do)</emphasis>.
+</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1254,9 +1429,11 @@ files with others <emphasis>(and I really recommend that you do ;-)
 <title>Language properties dialog</title>
 
 <screenshot>
+<screeninfo>Language Properties dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="lang1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[language elements]</phrase></textobject>
+<imageobject><imagedata fileref="lang1-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Language Elements</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1275,9 +1452,9 @@ field empty.</para></listitem>
 <varlistentry>
 <term><guilabel>Conjugation</guilabel></term>
 <listitem><para>In the similar manner you input the descriptor for the
-1., 2. and 3. person each in plural and singular.</para>
-<para>Because many languages do not distinguish in the 3rd person plural,
-there is a checkbox to determine this.</para>
+first, second and third person each in plural and singular.</para>
+<para>Because many languages do not distinguish in the third person
+ plural, there is a checkbox to determine this.</para>
 <para>Leave the uneccessary fields empty.</para></listitem>
 </varlistentry>
 
@@ -1287,7 +1464,7 @@ there is a checkbox to determine this.</para>
 symbols. ISO8859-1 is most common, at least on western european
 systems. Unicode is basically independent but most fonts do not
 contain all available characters and Unicode is only supported under
-QT2/KDE2.</para>
+&Qt; 2/&kde; 2.</para>
 <para>If you try to load a file with a an unavailable charset on your
 system you will be warned.</para></listitem>
 </varlistentry>
@@ -1305,9 +1482,11 @@ equally.</para>
 <title>General options</title>
 
 <screenshot>
+<screeninfo>General options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[general options dialog]</phrase></textobject>
+<imageobject><imagedata fileref="options1-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>General Options Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1316,11 +1495,12 @@ equally.</para>
 <term><guilabel>Backup interval</guilabel></term>
 <listitem><para>&kvoctrain; will automatically save the document if it
 was modified after the period you enter here.</para>
-<para>As a side effect it also does not ask for confirmation to save when
-quiting with modified data but saves the vocabulary without asking.</para>
+<para>As a side effect it also does not ask for confirmation to save
+ when quiting with modified data but saves the vocabulary without
+ asking.</para>
 <para>A number of 0 stops this behaviour.</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Smart appending</guilabel></term>
 <listitem><para>If this feature is activated, you will repeatedly be
@@ -1338,10 +1518,10 @@ document settings.</para></listitem>
 <varlistentry>
 <term><guilabel>save options automatically</guilabel></term>
 <listitem><para>When check, all options are save upon termination
-of &kvoctrain;. Otherwise you have to select the according menu
+of &kvoctrain;. Otherwise you have to select the appropriate menu
 item.</para></listitem>
 </varlistentry>
- 
+
 <varlistentry>
 <term><guilabel>Column resizing</guilabel></term>
 <listitem><para>When you resize your main window it is convenient,
@@ -1361,7 +1541,7 @@ if the columns resize automatically, too.</para>
   factor the main window grew or shrunk.</para></listitem>
   </varlistentry>
   </variablelist></para>
-<para>If the last button labeled "fixed" is set, no resizing is
+<para>If the last button labeled <quote>fixed</quote> is set, no resizing is
 done.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1372,9 +1552,11 @@ done.</para></listitem>
 <title>Available languages</title>
 
 <screenshot>
+<screeninfo>Language options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[language options dialog]</phrase></textobject>
+<imageobject><imagedata fileref="options2-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Language options dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1384,18 +1566,17 @@ done.</para></listitem>
 <listitem><para>Each column can be assigned a
 language. This is internally done with the usual <ulink
 url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">international
-language codes</ulink> e.g. <literal>en</literal>, <literal>de</literal>,
-<literal>it</literal>. These codes are also stored with the
-document.</para>
+language codes</ulink> &eg; <literal>en</literal>, <literal>de</literal>,
+<literal>it</literal>. These codes are also stored with the document.</para>
 <para>You should always use the correct codes to be able to share
-vocabularies with others. Merging vocabularies also relies on the correct
-language codes.</para></listitem>
+vocabularies with others. Merging vocabularies also relies on the
+ correct language codes.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Alternative</guilabel></term>
-<listitem><para>Sometimes it may be useful to have a second language code
-because some languages have the usual short code and one or two longer
+<listitem><para>Sometimes it may be useful to have a second language
+ code because some languages have the usual short code and one or two longer
 codes. For German for example it is common to use <literal>de</literal>
 but either <literal>deu</literal> or <literal>ger</literal> is also
 possible according to ISO639-2.</para></listitem>
@@ -1404,20 +1585,22 @@ possible according to ISO639-2.</para></listitem>
 <varlistentry>
 <term><guilabel>Language</guilabel></term>
 <listitem><para>Here you can give the language code a descriptive name
-in your own language which is shown in the table header.</para></listitem>
+in your own language which is shown in the table
+ header.</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Picture in header</guilabel></term>
 <listitem><para>Additionally you can add a nice icon to your language
 which is shown in the table header button.</para>
-<para>KDE2 stores those pixmaps under
-<filename>$<envar>KDEDIR</envar>/share/locale/l10n/<replaceable>language-code</replaceable></filename>.</para></listitem>
+<para>&kde; 2 stores those pixmaps under
+<filename>$<envar>KDEDIR</envar>/share/locale/l10n/<replaceable>language
+-code</replaceable></filename>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>New</guilabel></term>
-<listitem><para>After entering a new language in the according field,
+<listitem><para>After entering a new language in the appropriate field,
 you use this button to append it to your list. After that you need to
 fill in the fields for the long name and the picture for the header
 button.</para></listitem>
@@ -1437,7 +1620,8 @@ list.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
+<imageobject><imagedata fileref="options3-dlg.png" format="PNG"
+ /></imageobject>
 <textobject><phrase>[view options dialog]</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1447,7 +1631,7 @@ list.</para></listitem>
 <term><guilabel>Choose Font</guilabel></term>
 <listitem><para>Lets you choose a font to display the vocabulary.</para>
 <para>Take into account that not all fonts provide bold face which is
-used to represent the "selected" state.</para></listitem>
+used to represent the <quote>selected</quote> state.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1465,9 +1649,11 @@ according check box.</para></listitem>
 <title>Clipboard</title>
 
 <screenshot>
+<screeninfo>Clipboard options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[clipboard options dialog]</phrase></textobject>
+<imageobject><imagedata fileref="options4-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Clipboard options dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1481,17 +1667,17 @@ other application over the clipboard.</para>
 character. Another possibility is to use the semicolon, if you want to
 export data to a database file in CSV format.</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Order</guilabel></term>
 <listitem><para>When pasting via the clipboard &kvoctrain; does not know
 which languages the different fields belong to and just would insert
 them from left to right.</para>
-<para>To facilitate correct behaviour, if you arranged your vocabulary in
-an other way, you can determine your desired order with this area.</para>
+<para>To facilitate correct behaviour, if you arranged your vocabulary
+ in an other way, you can determine your desired order with this area.</para>
 <para>The buttons right to the list box move the current language up or
-down. <guibutton>Skip</guibutton> will insert a hole which means that the
-later calculated field from the clipboard is skipped.</para></listitem>
+down. <guibutton>Skip</guibutton> will insert a hole which means that
+ the later calculated field from the clipboard is skipped.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1511,9 +1697,11 @@ be in the same language order as the current document.</para></listitem>
 <title>Option groups</title>
 
 <screenshot>
+<screeninfo>Option groups dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[option groups]</phrase></textobject>
+<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Option groups</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1521,7 +1709,7 @@ be in the same language order as the current document.</para></listitem>
 vocabulary different settings may be optimal.</para>
 
 <para>For that reason all the settings of the pages of this dialog can
-be summarized under an arbitrarilly chosen name.  You can store the
+be summarized under an arbitrarily chosen name.  You can store the
 settings and recall them whenever you want.</para>
 
 <variablelist>
@@ -1557,9 +1745,11 @@ settings.</para></listitem>
 <title>General query options</title>
 
 <screenshot>
+<screeninfo>General query options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[general query options]</phrase></textobject>
+<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>General query options</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1585,9 +1775,9 @@ and stop the query.</para></listitem>
 
 <varlistentry>
 <term><guilabel>Swap direction randomly</guilabel></term>
-<listitem><para>Usually a query is only in one direction, depending on the
-column you used to start the query. With this checkbox you can determine,
-that the directions are altered randomly.</para></listitem>
+<listitem><para>Usually a query is only in one direction, depending on
+ the column you used to start the query. With this checkbox you can
+ determine, that the directions are altered randomly.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1597,9 +1787,11 @@ that the directions are altered randomly.</para></listitem>
 <title>Query threshholds</title>
 
 <screenshot>
+<screeninfo>Query threshholds dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[query threshholds]</phrase></textobject>
+<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Query threshholds</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1642,14 +1834,15 @@ known.</para></listitem>
     
 <varlistentry>
 <term><guilabel>Last query</guilabel></term>
-<listitem><para>Include queries before or within the given time span.</para>
+<listitem><para>Include queries before or within the given time
+ span.</para>
 <para>Entries which have not been queried are always included if you
 choose <emphasis>before</emphasis>.</para></listitem>
 </varlistentry>
 </variablelist>
 
 <para>Entries are only included if all conditions are fulfilled. If you
-want a property to be ignored, choose "Dont care" for it.</para>
+want a property to be ignored, choose <guilabel>Dont care </guilabel>for it.</para>
 
 </sect2>
 
@@ -1657,9 +1850,11 @@ want a property to be ignored, choose "Dont care" for it.</para>
 <title>Blocking and expiring</title>
 
 <screenshot>
+<screeninfo>Query blocking dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[query blocking]</phrase></textobject>
+<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Query blocking</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1670,8 +1865,7 @@ queries resp. when it must be queried at the latest.</para>
 will be shown an according warning:</para>
 
 <itemizedlist>
-<listitem><para>The time must increase from level to
-level</para></listitem>
+<listitem><para>The time must increase from level to level</para></listitem>
 
 <listitem><para>The time for blocking must be less than for expiring in
 the same level.</para></listitem>
@@ -1690,13 +1884,15 @@ taken into account.</para>
 <sect2 id="entry1-dlg">
 <title>General properties</title>
 
-<para>Here you enter a new expression into a table cell or modify existing
-entries and their properties.</para>
+<para>Here you enter a new expression into a table cell or modify
+ existing entries and their properties.</para>
 
 <screenshot>
+<screeninfo>Entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[entry dialog]</phrase></textobject>
+<imageobject><imagedata fileref="entry1-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1730,7 +1926,7 @@ available this field is disabled.</para>
 <para>Every entry in a row can have a different subtype. This is
 useful for nouns as the gender of a noun may be different in different
 languages.</para>
-<para>The button right to this field invokes the according page
+<para>The button to the right of this field invokes the according page
 from the document properties dialog so you can enter a new type
 immediately.</para></listitem>
 </varlistentry>
@@ -1738,16 +1934,16 @@ immediately.</para></listitem>
 <varlistentry>
 <term><guilabel>Usage label</guilabel></term>
 <listitem><para>One or more usage labels can be selected to describe
-the usual usage of the expression, e.g. medicine or chemistry.</para>
-<para>The button on the right also invokes the document properties dialog
-to enter a new usage label.</para></listitem>
+the usual usage of the expression, &eg; medicine or chemistry.</para>
+<para>The button on the right also invokes the document properties
+ dialog to enter a new usage label.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Lesson</guilabel></term>
 <listitem><para>Selects the desired lesson.</para>
-<para>The button on the right also invokes the document properties dialog
-to enter a new lesson.</para></listitem>
+<para>The button on the right also invokes the document properties
+ dialog to enter a new lesson.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1762,16 +1958,18 @@ page are located here.</para>
 <para>For most of these fields there are special queries, too.</para>
 
 <screenshot>
+<screeninfo>Additional entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[additional entry dialog]</phrase></textobject>
+<imageobject><imagedata fileref="entry2-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Additional entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Synonym</guilabel></term>
-<listitem><para>Here you max enter words that have the same
+<listitem><para>Here you may enter words that have the same
 meaning as the expression. There is also a query type for this
 expression.</para></listitem>
 </varlistentry>
@@ -1781,7 +1979,7 @@ expression.</para></listitem>
 <listitem><para>This is for words that have the opposite meaning. This
 field can also be queried.</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Example</guilabel></term>
 <listitem><para>Additionally you may enter here an example sentence
@@ -1789,7 +1987,7 @@ for the expression. There is a simple query type which prompts you
 with the content of this field but with dots instead of the word in
 question.</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Remark</guilabel></term>
 <listitem><para>This is an optional field to store additional
@@ -1798,8 +1996,8 @@ information.</para></listitem>
 
 <varlistentry>
 <term><guilabel>Paraphrase</guilabel></term>
-<listitem><para>Here you may enter a description in different words. There
-is also a query type for this expression.</para></listitem>
+<listitem><para>Here you may enter a description in different words.
+ There is also a query type for this expression.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1812,19 +2010,21 @@ is also a query type for this expression.</para></listitem>
 <guilabel>verb</guilabel> as word type.</para>
 
 <screenshot>
+<screeninfo>Verb entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[verb entry dialog]</phrase></textobject>
+<imageobject><imagedata fileref="entry3-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Verb entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>For every tense &kvoctrain; knows you can enter the conjugations
-of the verb for the different persons. The tense can be selected from the
-list. After doing this the entry fields are updated accordingly.</para>
+of the verb for the different persons. The tense can be selected from
+ the list. After doing this the entry fields are updated accordingly.</para>
 
 <para>Because some languages don't distinguish in the 3rd person of the
 plural you may use the according checkbox.</para>
- 
+
 <para><guibutton>Next</guibutton> searches for the next tense with
 already entered conjugations.</para>
 
@@ -1837,13 +2037,16 @@ already entered conjugations.</para>
 <guilabel>adjective</guilabel> as word type.</para>
 
 <screenshot>
+<screeninfo>Comparison entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[comparison entry dialog]</phrase></textobject>
+<imageobject><imagedata fileref="entry4-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Comparison entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>Here you just enter the the comparison forms of the adjective.</para>
+<para>Here you just enter the the comparison forms of the
+ adjective.</para>
 
 </sect2>
 
@@ -1857,9 +2060,11 @@ original. For example you can have a grade when querying the translation
 one of the translations is given (=> to).</para>
 
 <screenshot>
+<screeninfo>From/to entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry5-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[from/to entry dialog]</phrase></textobject>
+<imageobject><imagedata fileref="entry5-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>From/to entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1884,15 +2089,14 @@ same meaning. But in fact, it is not.</para>
 last queried. If it was never queried yet you only see
 <computeroutput>--</computeroutput>.</para>
 <para>For convinience reasons there are two buttons to set the current
-date or reset to "never queried".</para>
+date or reset to <quote>never queried</quote>.</para>
 <para>Due to internal reasons, it is not possible to store dates before
-Aug. 12 1999 with every version of &kvoctrain;!</para></listitem>
+August 12 1999 with every version of &kvoctrain;!</para></listitem>
 </varlistentry>
-    
+
 <varlistentry>
 <term><guilabel>Query count</guilabel></term>
-<listitem><para>Designates how often this entry was
-queried.</para></listitem>
+<listitem><para>Designates how often this entry was queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1911,17 +2115,20 @@ answer.</para></listitem>
 <sect2 id="norm-query-dlg">
 <title>Normal random query</title>
 
-<para>After selecting "Create random query" from the <link
-linkend="header-menu">header menu</link> the vocabulary disappers.</para>
+<para>After selecting <guimenuitem>Create random query </guimenuitem>from the <link
+linkend="header-menu"><guimenu>Header</guimenu> menu</link> the vocabulary
+ disappers.</para>
 
 <para>Then all entries that match your current <link
 linkend="threshholds">threshholds</link>.  are put into a list and shown
 in random order with the following dialog box.</para>
 
 <screenshot>
+<screeninfo>Random query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[random query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Random query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1934,19 +2141,19 @@ you can enable to give you some hints.</para>
 <listitem><para>If you find a mistake with a query you can invoke the
 edit dialog immediately and correct it.</para></listitem>
 </varlistentry>
-   
+
 <varlistentry>
 <term><guilabel>Show more</guilabel></term>
 <listitem><para>Each click on this button will show one more character
 of the solution to give you a little help.</para></listitem>
 </varlistentry>
-   
+
 <varlistentry>
 <term><guilabel>Show all</guilabel></term>
-<listitem><para>Shows the complete solution in the "Translation"
+<listitem><para>Shows the complete solution in the <guilabel>Translation</guilabel>
 field.</para></listitem>
 </varlistentry>
-   
+
 <varlistentry>
 <term><guilabel>Verify</guilabel></term>
 <listitem><para>Not implemented yet. Later version will take the
@@ -1963,10 +2170,10 @@ that the according grade must be lowered.</para></listitem>
 <varlistentry>
 <term><guilabel>Know it</guilabel></term>
 <listitem><para>Click this button to tell &kvoctrain; that you
-knew the answer correctly. This entry is then removed from the "bad
-list".</para></listitem>
+knew the answer correctly. This entry is then removed from the <quote>bad
+list</quote>.</para></listitem>
 </varlistentry>
-   
+
 <varlistentry>
 <term><guilabel>Stop query</guilabel></term>
 <listitem><para>Stop query mode and show vocabulary
@@ -1987,13 +2194,13 @@ the remaining time and the amount of queries to come.</para>
 expressions are known. The amount of retries of the current lesson is
 shown below the progress indicator.</para>
 
-<para>I regret to admit, but usually I don`t know the solution :-(. For
-that reason the <keycap>Return</keycap> key has special behaviour,
+<para>I regret to admit, but usually I don`t know the solution. For
+this reason the <keycap>Return</keycap> key has special behaviour,
 which I found convenient:
 
 <itemizedlist>
-<listitem><para>First pressing <keycap>Return</keycap> shows the complete
-solution (at the beginning the button <guibutton>Show more</guibutton>
+<listitem><para>First pressing <keycap>Return</keycap> shows the
+ complete solution (at the beginning the button <guibutton>Show more</guibutton>
 is the default button) and makes <guibutton>Don`t know</guibutton>
 the default button.</para></listitem>
 
@@ -2002,7 +2209,7 @@ will leave this dialog and tell &kvoctrain; you did not know the
 answer.</para></listitem>
 </itemizedlist></para>
 
-<para>At the moment you must decide for your own, if you knew the answer
+<para>At the moment you must decide for yourself, if you knew the answer
 or failed. Later versions may provide a more or less smart algorithm to
 make this decision from a string you entered.</para>
 
@@ -2015,15 +2222,17 @@ step. If you did not know it, the grade is reset to level 1.</para>
 <title>Random query with multiple choice</title>
 
 <screenshot>
+<screeninfo>Multiple choice query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="mu-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[multiple choice query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="mu-query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Multiple choice query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>This type of query works similar to the previous one. The solution
 is shown together with random other expressions and you have to choose
-"1 out of 5".</para>
+one answer from the five provided.</para>
 
 </sect2>
 
@@ -2031,9 +2240,11 @@ is shown together with random other expressions and you have to choose
 <title>Query of conjugations</title>
 
 <screenshot>
+<screeninfo>Conjugation query dialog</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="verb-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[conjugation query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="verb-query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Conjugation query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -2048,9 +2259,11 @@ course you must know all of them for a successful result.</para>
 <title>Query of articles</title>
 
 <screenshot>
+<screeninfo>Article query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="art-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[article query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="art-query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Article query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -2065,9 +2278,11 @@ entry dialog.</para>
 <title>Query of comparison forms</title>
 
 <screenshot>
+<screeninfo>Comparison query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="comp-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[comparison query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="comp-query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Comparison query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -2077,12 +2292,15 @@ word is chosen randomly and you must complete the remaining two.</para>
 </sect2>
 
 <sect2 id="syn-query-dlg">
-<title>Query of synonyms, antonyms, paraphrases and example sentences.</title>
+<title>Query of synonyms, antonyms, paraphrases and example
+ sentences.</title>
 
 <screenshot>
+<screeninfo>Synonym query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="syn-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[synonym query dialog]</phrase></textobject>
+<imageobject><imagedata fileref="syn-query-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Synonym query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -2104,20 +2322,23 @@ this is mainly useful when your expression is a single word.</para>
 <title>General</title>
 
 <screenshot>
+<screeninfo>General document statistics screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="stat1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[general document statistics]</phrase></textobject>
+<imageobject><imagedata fileref="stat1-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>General document statistics</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>On this page you find the most important general information about
-your document:
+your document:</para>
+
 <itemizedlist>
 <listitem><para>The filename</para></listitem>
 <listitem><para>The title</para></listitem>
 <listitem><para>The name of the author</para></listitem>
 <listitem><para>and the number of entries and lessons.</para></listitem>
-</itemizedlist></para>
+</itemizedlist>
 
 </sect2>
 
@@ -2125,18 +2346,20 @@ your document:
 <title>All languages in the dictionary</title>
 
 <screenshot>
+<screeninfo>Per language statistics screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="stat2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[per language statistics]</phrase></textobject>
+<imageobject><imagedata fileref="stat2-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Per language statistics</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>Depending on the amount of translations your document contains,
 you will have none, one or more additional pages. Each page contains
-two pixmaps for each lesson describing the amount of entries per grade
+two pictures for each lesson describing the amount of entries per grade
 in each lesson.</para>
 
-<para>A click with the right mouse button on one of the pixmaps will
+<para>A click with the <mousebutton>right</mousebutton> mouse button on one of the pixmaps will
 popup a menu which shows the exact numbers.</para>
 
 </sect2>
@@ -2149,8 +2372,7 @@ popup a menu which shows the exact numbers.</para>
 <sect1 id="dictionary">
 <title>Contributing a dictionary to &kvoctrain;</title>
 
-<para>If you have created a dictionary, please send <ulink
-url="mailto:kvoctrain at ewald-arnold.de">me</ulink> an email and tell
+<para>If you have created a dictionary, please send an email to <email>kvoctrain@ewald-arnold.de</email> and tell
 me about it. I plan to collect pointers to those files and include
 them in this handbook. If I find an electronic abode for &kvoctrain;
 with enough space, I might also store them there.</para>
@@ -2161,7 +2383,7 @@ or <ulink
 url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">KVoclearn</ulink>
 as I will write converters if necessary.</para>
 
-<para>But please:
+<para>But please:</para>
 <itemizedlist>
 <listitem><para>Don't send me any files before asking me. Maybe someone
 else has already contributed this type of dictionary.</para></listitem>
@@ -2170,7 +2392,7 @@ as I don't want to do any revision.</para></listitem>
 <listitem><para>If you modify existing vocabularies or create
 vocabularies based on copyrighted material ask the author or for
 permission.</para></listitem>
-</itemizedlist></para>
+</itemizedlist>
 
 </sect1>
 
@@ -2184,38 +2406,47 @@ list provided by the German magazine <ulink url=
 "http://spotlight-online.de">Spotlight-Online</ulink>.</para>
 <para>The &kvoctrain; distribution contains an executable called
 <command>spotlight2kvtml</command> to transform those lists
-in kvtml format. The original files come as WinWord DOC-files
+in kvtml format. The original files come as &Windows; Word DOC-files
 so you have to save them as ANSI-TXT files before starting
-conversion. <application>StarOffice</application> can do this job.</para>
+conversion. <application>StarOffice</application> can do this
+ job.</para> <!-- so can kword -->
 <para><command>spotlight2kvtml</command> needs the 3 parameters
 <parameter>filename</parameter>, <parameter>month</parameter> and
 <parameter>year</parameter> and produces a file in the same directory
-with the same name and the extension "kvtml":</para>
+with the same name and the extension <literal role="extension">kvtml</literal>:</para>
 <para><userinput><command>spotlight2kvtml</command>
 <replaceable>0199.txt 01 99</replaceable></userinput></para></listitem>
 
-<listitem><para>Dictionaries in ascii-format are for example available at:
+<listitem><para>Dictionaries in ascii-format are for example available
+ at:</para>
   <itemizedlist>
   <listitem><para>
-  <ulink url="ftp://ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz</ulink> (approx. 350 kB)
+  <ulink
+ url="ftp://ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">ftp.uni-
+ulm.de/pub/misc/dict/english_german.tar.gz</ulink> (approx. 350 kB)
   </para></listitem>
   <listitem><para>
-  <ulink url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.de/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
+  <ulink
+ url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.d
+e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
   </para></listitem>
   <listitem><para>
-  <ulink url="ftp://sable.ox.ac.uk/pub/wordlists">sable.ox.ac.uk/pub/wordlists</ulink>
+  <ulink
+ url="ftp://sable.ox.ac.uk/pub/wordlists">
+ sable.ox.ac.uk/pub/wordlists</ulink>
   </para></listitem>
   </itemizedlist>
-</para></listitem>
+</listitem>
 
 <listitem><para>Another possibility is to download
 the files that are available on the homepage of <ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabulary
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
+ary
 Trainer</ulink>.</para>
-<para>These are in the "lex" format which can also be read by
+<para>These are in the <quote>lex</quote> format which can also be read by
 &kvoctrain;. As I also implemented the ability to write this format,
-you should also send your vocabulary files in "lex" format to the <ulink
-url="mailto:100700.1757@compuserve.com">author</ulink>.</para></listitem>
+you should also send your vocabulary files in <quote>lex</quote> format to the
+author at <email>100700.1757@compuserve.com</email>.</para></listitem>
 </itemizedlist>
 
 </sect1>
@@ -2226,27 +2457,32 @@ url="mailto:100700.1757@compuserve.com">author</ulink>.</para></listitem>
 <para>If you don't want to learn but just need quick translations of
 expressions in larger dictionaries you might be unhappy with &kvoctrain;
 if your computer doesn't have much memory and MHz. A 150000 entry
-file consumes about 60M and takes ages to load if your system starts
-swapping.</para>
+file consumes about 60M and takes ages to load if your system is short of memory.</para>
 
-<para>In this case  you might want to try one of the following:
+<para>In this case  you might want to try one of the following:</para>
 <itemizedlist>
 <listitem><para>
-<ulink url="http://www.franken.de/users/duffy1/rjakob/">kdsing</ulink> (KDE).
+<ulink url="http://www.franken.de/users/duffy1/rjakob/">kdsing</ulink>
+ (&kde;).
 </para></listitem>
 
 <listitem><para>
-<ulink url="http://www.tm.informatik.uni-frankfurt.de/~razi/steak/steak.html">steak/xsteak</ulink> (console/X).
+<ulink
+ url="http://www.tm.informatik.uni-frankfurt.de/~razi/steak/steak.html">
+steak/xsteak</ulink> (console/X).
 </para></listitem>
 
 <listitem><para>
-<ulink url="http://www.tu-chemnitz.de/urz/netz/forms/ding.html">Ding</ulink> (TCL).
+<ulink
+ url="http://www.tu-chemnitz.de/urz/netz/forms/ding.html">Ding</ulink>
+ (TCL).
 </para></listitem>
 
 <listitem><para>
-<ulink url="http://digilander.iol.it/merlim/english.html">qtrans</ulink> (QT 2.x).
+<ulink url="http://digilander.iol.it/merlim/english.html">qtrans</ulink>
+ (&Qt; 2.x).
 </para></listitem>
-</itemizedlist></para>
+</itemizedlist>
 
 </sect1>
 </chapter>
@@ -2258,37 +2494,41 @@ swapping.</para>
 <title>Similar projects</title>
 
 <para>You might also want to try one of the other vocabulary trainers
-I have found (sorted by the time when I found them):
+I have found (sorted by the time when I found them):</para>
 <itemizedlist>
 <listitem><para><ulink
-url="HTTP://www.daniel-graefe.de">QVocab</ulink> (Qt)</para></listitem>
+url="HTTP://www.daniel-graefe.de">QVocab</ulink> (&Qt;)</para></listitem>
 
 <listitem><para><ulink
 url="http://pweb.uunet.de/reger.kuen/">Vokabel-Trainer</ulink>
 (Tcl/Tk)</para></listitem>
 
 <listitem><para><ulink
-url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvisto</ulink>
+url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvi
+sto</ulink>
 (X)</para></listitem>
 
 <listitem><para><ulink
-url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">KVoclearn</ulink>
-(KDE)</para></listitem>
+url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">
+KVoclearn</ulink> (&kde;)</para></listitem>
 
 <listitem><para><ulink
 url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
 (console)</para></listitem>
 
 <listitem><para><ulink
-url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz">chflashcard</ulink>
+url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz
+">chflashcard</ulink>
 (X11, for Chinese)</para></listitem>
 
 <listitem><para><ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabulary
-Trainer</ulink> (freeware, all flavours of Windows)</para></listitem>
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
+ary
+Trainer</ulink> (freeware, all flavours of &Windows;)</para></listitem>
 
 <listitem><para><ulink
-url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.html">Acavoc
+url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.ht
+ml">Acavoc
 (Java)</ulink></para>
 <para>The author of this application has also written a theoretical
 article about learning languages (German only).</para></listitem>
@@ -2299,27 +2539,29 @@ url="http://www.daniel-graefe.de/">wordtrain</ulink>
 
 <listitem><para><ulink
 url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> (Python
-QT/KDE)</para></listitem>
+&Qt;/&kde;)</para></listitem>
 
 <listitem><para><ulink
 url="http://rcswww.urz.tu-dresden.de/~kossebau/dokvok">DokVok</ulink>
-(KDE)</para></listitem>
+(&kde;)</para></listitem>
 
 <listitem><para><ulink
-url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml">gvoc</ulink></para></listitem>
+url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml">
+gvoc</ulink></para></listitem>
 
 <listitem><para><ulink
 url="http://www.brainsystems.com/english/index.html">Wordlearn</ulink>
-(Win32/commercial)</para></listitem>
+(&Windows; 32/commercial)</para></listitem>
 
 <listitem><para><ulink
-url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">GVoctra</ulink>
+url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">
+GVoctra</ulink>
 (DOS)</para></listitem>
 
 <listitem><para><ulink
 url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer</ulink>
 (Mac/Win32, commercial)</para></listitem>
-</itemizedlist></para>
+</itemizedlist>
 
 </sect1>
 
@@ -2327,19 +2569,19 @@ url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer</ulink>
 <title>Other interesting links</title>
 
 <para>Maybe you are interrested in the one or the other links I found
-while working on &kvoctrain;.
+while working on &kvoctrain;.</para>
 <itemizedlist>
-<listitem><para><ulink url="http://czyborra.com/unifont/">GNU Unifont
+<listitem><para><ulink url="http://czyborra.com/unifont/">&GNU; Unifont
 Projekt</ulink></para></listitem>
 
 <listitem><para><ulink url="http://www.seul.org/edu/projects.html">SEUL
 Educational Projects</ulink></para></listitem>
 
 <listitem><para><ulink
-url="http://www.lxschule.de/txt/software.html">Linux Schulserver</ulink>
+url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
 (Linux at school, German)</para></listitem>
 
-</itemizedlist></para>
+</itemizedlist>
 
 </sect1>
 </chapter>
@@ -2350,26 +2592,28 @@ url="http://www.lxschule.de/txt/software.html">Linux Schulserver</ulink>
 <sect1 id="credits">
 <title>Thanks</title>
 
-<para>&kvoctrain; is my first GUI application for &kde;, so I had to
+<para>&kvoctrain; is my first &GUI; application for &kde;, so I had to
 borrow a lot of code from other applications. The biggest chunks are
-taken from
+taken from</para>
 <itemizedlist>
 <listitem><para>&klpq; (table functionality)</para></listitem>
 <listitem><para>&killustrator; (XML reading/writing).</para></listitem>
-<listitem><para>&khexedit; ("about" dialog).</para></listitem>
-</itemizedlist></para>
+<listitem><para>&khexedit; (<quote>about</quote> dialog).</para></listitem>
+</itemizedlist>
 
 <para>I'd like to thank the following people personally for their
-contribution to &kvoctrain;:
+contribution to &kvoctrain;:</para>
 <itemizedlist>
-<listitem><para>Andrea Marconi for localisation to Italian</para></listitem>
-<listitem><para>Hans Kottman for localisation to French</para></listitem>
+<listitem><para>Andrea Marconi for localisation to
+ Italian</para></listitem>
+<listitem><para>Hans Kottman for localisation to
+ French</para></listitem>
 <listitem><para>Eric Bischoff for converting the documentation to
 DocBook</para></listitem>
-</itemizedlist></para>
-      
-<para>I also want to thank all the other unamed persons for their constructive
-criticisim, suggestions or bug-reports.</para>
+</itemizedlist>
+
+<para>I also want to thank all the other unamed persons for their
+ constructive criticisim, suggestions or bug-reports.</para>
 
 </sect1>
 
@@ -2396,9 +2640,7 @@ criticisim, suggestions or bug-reports.</para>
 <sect1 id="obtaining">
 <title>How to obtain kvoctrain</title>
 
-<para>Major releases of &kvoctrain; can be found on
-the &kde; server at the appropriate place in <ulink
-url="ftp://ftp.kde.org/pub/kde/unstable/apps/education/">ftp.kde.org/pub/kde/unstable/apps/education/</ulink>.</para>
+&install.intro.documentation;
 
 <para>Current snapshots, dictionary files  and tools
 needed to make modifications can be found on the <ulink
@@ -2414,7 +2656,8 @@ url="http://www.suse.de/download/LinuKS/">LinuKS: SuSE Linux KDE
 Service</ulink>.</para>
 
 <para>Another place for precompiled packages is <ulink
-url="http://xmission.linuxberg.com/kdehtml/ent_educational.html#kvoctrain">Linuxberg</ulink>.</para>
+url="http://xmission.linuxberg.com/kdehtml/ent_educational.html#kvoctrai
+n">Linuxberg</ulink>.</para>
 
 </sect1>
 
@@ -2434,20 +2677,7 @@ as &kde; 2.0 and &Qt; 2.2.3.</para>
 <sect1 id="compilation">
 <title>Compilation and installation</title>
 
-<para>In order to compile and install &kvoctrain; on your system, type
-the following in the base directory of the &kvoctrain; distribution:</para>
-
-<screen width="40">
-<prompt>%</prompt> <userinput><command>./configure</command></userinput>
-<prompt>%</prompt> <userinput><command>make</command></userinput>
-<prompt>%</prompt> <userinput><command>su</command></userinput>
-<prompt>%</prompt> <userinput><command>make</command> <option>install</option></userinput>  
-<prompt>%</prompt> <userinput><command>make</command> <option>distclean</option></userinput>
-</screen>
-
-<para>Since &kvoctrain; uses <command>autoconf</command> you should have
-no trouble compiling it. Should you run into problems please report them
-to the the author <email>ewald@ewald-arnold.de</email>.</para>
+&install.compile.documentation;
 
 </sect1>
 </appendix>
