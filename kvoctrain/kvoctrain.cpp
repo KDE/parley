@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.52  2002/09/17 20:24:59  binner
+    CVS_SILENT Style guide fix, use "cvslastchange" or X-WebCVS header line to view
+
     Revision 1.51  2002/07/23 12:39:19  binner
     CVS_SILENT Style guide fixes
 
@@ -1094,8 +1097,8 @@ void kvoctrainApp::slotCreateRandom()
 {
    bool ok = FALSE;
    int res = QInputDialog::getInteger(
-                tr( "Entries in Lesson" ),
-                tr( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );
+                i18n( "Entries in Lesson" ),
+                i18n( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );
    if (!ok)
      return;
 
