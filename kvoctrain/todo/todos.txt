@@ -11,7 +11,6 @@ tofix now:
   - percentage %x done in query-statusbar
 
 todo post-release ?
-  - Queryoptions aufrufen, wenn keine Selections in der query
   - modeless entry dialog, smart appending, initFocus beachten!
   - multiple selections in main view
   - translator hint iso names "language name aa:"

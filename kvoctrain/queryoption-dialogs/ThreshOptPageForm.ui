@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>572</width>
+            <width>568</width>
             <height>480</height>
         </rect>
     </property>
@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Query threshholds</string>
+                <string>Query thresholds</string>
             </property>
             <grid>
                 <property stdset="1">

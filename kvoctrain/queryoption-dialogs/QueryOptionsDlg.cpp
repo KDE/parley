@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:12:58  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:30:01  arnold
     removed compatibility for kde1
 
@@ -58,6 +61,7 @@
 
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <kdebug.h>
 #include <kapplication.h>
 #include <kcombobox.h>
 
@@ -110,7 +114,7 @@ QueryOptionsDlg::QueryOptionsDlg
   connect (this, SIGNAL(aboutToShow()), queryOptPage, SLOT(initFocus() ));
   connect(queryOptPage, SIGNAL(modifySetting(int)), SLOT(slotModifyGroup(int)) );
 
-  addTab( threshOptPage, i18n("&Threshholds"));
+  addTab( threshOptPage, i18n("&Thresholds"));
   connect (this, SIGNAL(aboutToShow()), threshOptPage, SLOT(initFocus() ));
   connect(threshOptPage, SIGNAL(modifySetting(int)), SLOT(slotModifyGroup(int)) );
 
@@ -342,4 +346,27 @@ void QueryOptionsDlg::slotNewGroup(const QString &name)
   settings.push_back(PreSetting(name, "", "", ""));
   slotModifyGroup(settings.size()-1);
 }
+
+
+void QueryOptionsDlg::selectPage(int index)
+{
+  switch (index) {
+    case 0: showPage(groupOptPage);
+    break;
+
+    case 1: showPage(queryOptPage);
+    break;
+
+    case 2: showPage(threshOptPage);
+    break;
+
+    case 3: showPage(blockOptPage);
+    break;
+
+   default:
+     kdError() << "QueryOptionsDlg::selectPage(int) index out of range" << endl;
+  }
+}
+
+
 #include "QueryOptionsDlg.moc"

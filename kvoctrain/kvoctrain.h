@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.18  2001/12/16 16:51:25  arnold
     fixed keyboard handling in main view
 
@@ -229,6 +232,7 @@ public:
   void slotGeneralOptionsPage(int index);
   void slotGeneralOptions();
   void slotQueryOptions();
+  void slotQueryOptions(int pageindex);
   void slotSaveOptions();
   void slotDocProps();
   void slotDocPropsLang();

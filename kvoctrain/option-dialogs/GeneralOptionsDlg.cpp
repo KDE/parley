@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/26 15:12:15  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.8  2001/12/13 18:40:12  arnold
     added phonetic alphabet stuff
 
@@ -64,6 +67,7 @@
 #include <langset.h>
 
 #include <klocale.h>
+#include <kdebug.h>
 #include <kstandarddirs.h>
 #include <kapplication.h>
 
@@ -143,6 +147,8 @@ void GeneralOptionsDlg::selectPage(int index)
     case 3: showPage(pasteOptPage);
     break;
 
+    default:
+      kdError() << "GeneralOptionsDlg::selectPage(int) index out of range" << endl;
   }
 }
 

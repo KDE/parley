@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/29 10:40:03  arnold
+    merged fixes from POST-branch
+
     Revision 1.12  2001/12/13 18:39:09  arnold
     added phonetic alphabet stuff
 
@@ -84,21 +87,34 @@
 
 #define MAX_QUERY_TIMEOUT 3
 
+
 static const char * not_answered = I18N_NOOP(
     "The query dialog was not answered for several times in series.\n"
     "\n"
     "It is assumed that there is currently no person in front of\n"
     "the screen and for that reason the query is stopped.\n\n");
 
+
 static const char * not_contain = I18N_NOOP(
-    "Your selection does not contain any\n"
-    "expressions for the query\n"
+    "There are currently no suitable expressions for the\n"
+    "query you started.\n"
     "\n"
-    "There may be several reasons for this.\n"
-    "Please check your settings in the query options.\n");
+    "Several reasons can cause this. Maybe you don't\n"
+    "have any expressions with the word type you requested.\n"
+    "\n"
+    "Most likely you should adjust your settings refering to\n"
+    "thresholds and blocking values in the query options.\n"
+    "\n"
+    "Should the query options dialog be invoked now ?\n");
 
 
 void kvoctrainApp::slotQueryOptions()
+{
+   slotQueryOptions(-1);
+}
+
+
+void kvoctrainApp::slotQueryOptions(int pageindex)
 {
    vector<int> old_liq = doc->getLessonsInQuery();
    QueryOptionsDlg qodlg (
@@ -112,6 +128,9 @@ void kvoctrainApp::slotQueryOptions()
                     block,
                     expire,
                     presettings);
+
+   if (pageindex >= 0)
+     qodlg.selectPage(pageindex);
 
    int res = qodlg.exec();
    if (res == QDialog::Accepted) {
@@ -170,9 +189,11 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this, not_contain,
-      kapp->makeStdCaption(i18n("Starting query")));
-    return;
+    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
+                                not_contain,
+                                kapp->makeStdCaption(i18n("Starting query"))))
+       slotQueryOptions(2);
+     return;
   }
 
   hide();
@@ -209,7 +230,6 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 {
 
-    kdDebug() << "to prop\n";
   if (simpleQueryDlg == 0) {
     kdError() << "simpleQueryDlg == 0\n";
     slotStopQuery(true);
@@ -251,18 +271,19 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       }
       else {
         slotStopQuery (true);
+        return;
       }
     break;
 
     case QueryDlgBase::StopIt :
-      kdDebug() << "stopint\n";
         num_queryTimeout = 0;
         slotStopQuery(true);
+        return;
     break;
 
     default :
-     slotStopQuery(true);
       kdError() << "unknown result from QueryDlg\n";
+      slotStopQuery(true);
       return;
   }
 
@@ -345,9 +366,11 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this, not_contain,
-      kapp->makeStdCaption(i18n("Starting query")));
-    return;
+    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
+                                not_contain,
+                                kapp->makeStdCaption(i18n("Starting query"))))
+       slotQueryOptions(2);
+     return;
   }
 
   random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
@@ -420,8 +443,8 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
     adjQueryDlg->exec();
   }
   else {
-    slotStopQuery(true);
     kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    slotStopQuery(true);
     return;
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -477,8 +500,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     break;
 
     default :
-      slotStopQuery(true);
       kdError() << "unknown result from QueryDlg\n";
+      slotStopQuery(true);
       return;
   }
 
@@ -575,8 +598,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     adjQueryDlg->initFocus();
   }
   else {
-    slotStopQuery(true);
     kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    slotStopQuery(true);
     return;
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -633,9 +656,11 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this, not_contain,
-      kapp->makeStdCaption(i18n("Starting query")));
-    return;
+    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
+                                not_contain,
+                                kapp->makeStdCaption(i18n("Starting query"))))
+       slotQueryOptions(2);
+     return;
   }
 
   hide();
@@ -801,6 +826,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
             || random_expr2.size() != 0
             || queryList.size() != 0 )) {
         slotStopQuery (true);
+        return;
       }
     break;
 
@@ -811,8 +837,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     break;
 
     default :
-      slotStopQuery(true);
       kdError() << "unknown result from QueryDlg\n";
+      slotStopQuery(true);
       return;
   }
 
@@ -924,7 +950,6 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotStopQuery(bool )
 {
-    kdDebug() << "sdtopquery\n";
     delete simpleQueryDlg;
     delete mcQueryDlg;
     delete verbQueryDlg;
@@ -932,7 +957,6 @@ void kvoctrainApp::slotStopQuery(bool )
     delete adjQueryDlg;
     delete artQueryDlg;
 
-    kdDebug() << "sdtopquery 2\n";
     simpleQueryDlg = 0;
     mcQueryDlg = 0;
     verbQueryDlg = 0;
@@ -943,8 +967,6 @@ void kvoctrainApp::slotStopQuery(bool )
     querying = false;
     querymode = false;
     show();
-    kdDebug() << "sdtopquery 3\n";
     kapp->setTopWidget(this);
     kapp->setMainWidget( this );
-    kdDebug() << "sdtopquery 4\n";
 }
