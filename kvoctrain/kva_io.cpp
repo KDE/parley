@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/11/20 01:38:03  jsinger
+    Proofreading changes for grammar and spelling. No functional changes.
+
     Revision 1.12  2001/11/19 20:05:16  arnold
     fixed warning message
 
@@ -85,6 +88,7 @@
 #include <kstddirs.h>
 #include <kdebug.h>
 
+#include <kvoctraincore.h>
 #include "kvoctrain.h"
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"

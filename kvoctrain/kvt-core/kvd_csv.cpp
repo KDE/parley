@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/10/21 16:19:32  arnold
     fixed detecting for latin1 or utf8
 
@@ -48,7 +51,7 @@
 
 #include "kvoctraindoc.h"
 #include "kvoctrain.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 
 #include <qtextstream.h>
 #include <qtextcodec.h>

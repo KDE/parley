@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.13  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -269,6 +272,7 @@ public:
   void slotViewToolBar();
   /** toggle the statusbar*/
   void slotViewStatusBar();
+  void slotViewInline();
   /** change the status message to text */
   void slotStatusMsg(const QString &text);
   /** change the status message of the whole statusbar temporary */
@@ -320,6 +324,7 @@ private:
     */
   bool bViewToolbar;
   bool bViewStatusbar;
+  bool inline_edit;
   /** used for KConfig to store and restore menubar position. Same with
     * tool_bar_pos. If more menubars or toolbars are created, you should add
     * positions as well and implement them in saveOptions() and readOptions().

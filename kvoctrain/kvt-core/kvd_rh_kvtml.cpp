@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/20 01:38:26  jsinger
+    Proofreading changes for grammar and spelling. No functional changes.
+
     Revision 1.5  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -43,7 +46,7 @@
  ***************************************************************************/
 
 #include "kvoctraindoc.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 #include "QueryManager.h"
 
 #include <kapp.h>

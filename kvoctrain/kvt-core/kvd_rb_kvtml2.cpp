@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/20 01:38:26  jsinger
+    Proofreading changes for grammar and spelling. No functional changes.
+
     Revision 1.7  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -54,7 +57,7 @@
 
 
 #include "kvoctraindoc.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 #include "QueryManager.h"
 
 #include <kapp.h>

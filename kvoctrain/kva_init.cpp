@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.13  2001/11/16 19:50:06  arnold
     added submenu to set language to main menu
 
@@ -73,6 +76,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <kvoctraincore.h>
 #include "kvoctrain.h"
 
 #include "common-dialogs/ProgressDlg.h"
@@ -278,6 +282,7 @@ void kvoctrainApp::initMenuBar()
   opts_menu->setCheckable(true);
   opts_menu->insertItem(i18n("Tool&bar"), ID_VIEW_TOOLBAR);
   opts_menu->insertItem(i18n("St&atusbar"), ID_VIEW_STATUSBAR );
+  opts_menu->insertItem(i18n("&Inline editing"), ID_VIEW_INLINE );
   opts_menu->insertSeparator();
   opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/gen-conf.xpm")), i18n("General &options"), ID_GENERAL_OPTIONS );
   opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/query-conf.xpm")), i18n("&Query options"), ID_QUERY_OPTIONS );
@@ -286,6 +291,7 @@ void kvoctrainApp::initMenuBar()
 
   opts_menu->setItemChecked(ID_VIEW_TOOLBAR, bViewToolbar);
   opts_menu->setItemChecked(ID_VIEW_STATUSBAR, bViewStatusbar);
+  opts_menu->setItemChecked(ID_VIEW_INLINE, inline_edit);
 
   ///////////////////////////////////////////////////////////////////
   // MENUBAR CONFIGURATION

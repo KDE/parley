@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -41,7 +44,7 @@
 #include <kapp.h>
 
 #include "kvoctraindoc.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 
 #include <qtextstream.h>
 #include <qmessagebox.h>

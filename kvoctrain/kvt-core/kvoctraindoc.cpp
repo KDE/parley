@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/24 11:45:03  arnold
+    added std prefix for clean namespace
+
     Revision 1.9  2001/11/19 20:05:39  arnold
     fixed warning message
 
@@ -85,7 +88,7 @@
 #include <values.h>
 #endif
 
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 
 //********************************************************
 //  kvoctrainDoc

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -49,6 +52,7 @@
  ***************************************************************************/
 
 #include "kvoctrain.h"
+#include <kvoctraincore.h>
 
 #include <qclipboard.h>
 

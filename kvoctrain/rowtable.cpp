@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/24 17:15:45  arnold
+    fixes for table view and query
+
     Revision 1.13  2001/11/19 20:05:16  arnold
     fixed warning message
 
@@ -114,7 +117,6 @@ void KvoctrainItem::setPosition(int curr_row, int curr_col)
 
 QWidget *KvoctrainItem::createEditor() const
 {
-  kdDebug() << "crea     " << endl;
    if (kv_doc != 0 && kv_doc->numEntries() != 0 && row() >= 0 && col() >= 0) {
      switch (col()) {
        case KV_COL_LESS: {
@@ -146,7 +148,6 @@ QWidget *KvoctrainItem::createEditor() const
        break;
 
        default: {
-  kdDebug() << "edit1 " << endl;
          QLineEdit *edit = new QLineEdit(table()->viewport() );
          if (col() == KV_COL_ORG)
            edit->setText(kv_doc->getEntry(row())->getOriginal());
@@ -208,7 +209,7 @@ void KvoctrainItem::setContentFromEditor( QWidget *w )
        }
      }
    }
-}	
+}
 
 
 RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
@@ -232,6 +233,35 @@ RowTable::~RowTable()
 {
   delete defaultItem;
   defaultItem = 0;
+}
+
+
+void RowTable::setInlineEnabled(bool state)
+{
+   if (defaultItem != 0) {
+     QTableItem::EditType type = defaultItem->editType();
+     if (!(   (type == QTableItem::WhenCurrent && state)
+           || (type == QTableItem::OnTyping && !state)
+          )) {
+       endEdit(defaultItem->row(), defaultItem->col(), true, false);
+       delete defaultItem;
+       defaultItem = 0;
+       if (state) {
+         defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, m_rows);
+         beginEdit (currentRow(), currentColumn(), true);
+       }
+       else
+         defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
+     }
+   }
+   else {
+     if (state) {
+       defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, m_rows);
+       beginEdit (currentRow(), currentColumn(), true);
+     }
+     else
+       defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
+   }
 }
 
 

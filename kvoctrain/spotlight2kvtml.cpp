@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -42,7 +45,7 @@
 #define KVD_VERS_PREFIX " v"     //#include "kvoctraindoc.h"
 #define QM_VERB         "v"      //#include "QueryManager.h"
 
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 
 #define SPOT_VERSION   "v0.2.1"
 

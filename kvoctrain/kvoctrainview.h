@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/24 17:15:45  arnold
+    fixes for table view and query
+
     Revision 1.4  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -97,6 +100,8 @@ class kvoctrainView : public QWidget
   kvoctrainTable* getTable() { return lb_list; }
   void setHeaderProp (int id, const QString &name, const QString &pixfile=QString::null);
 
+  void setInlineEnabled(bool state);
+
  private:
 
  protected:
@@ -135,7 +140,6 @@ class kvoctrainTable : public RowTable
   QString getIdent (int i) const { return m_rows->getIdent(i); }
   QString getOriginalIdent () const { return m_rows->getOriginalIdent(); }
   int findIdent (QString id) const { return m_rows->findIdent(id); }
-
 signals:
   void sigModified(bool mod);
   void sigCancelSelection();

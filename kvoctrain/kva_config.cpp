@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.10  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -64,8 +67,7 @@
  ***************************************************************************/
 
 #include "kvoctrain.h"
-
-#include <X11/Xlib.h>
+#include <kvoctraincore.h>
 
 #include <qmessagebox.h>
 #include <qfile.h>
@@ -85,9 +87,10 @@ void kvoctrainApp::saveOptions(bool all)
   config->writeEntry(CFG_AUTOSAVEOPT, autosaveopts);
 
   config->setGroup(CFG_APPEARANCE);
-  config->writeEntry("ShowToolbar",toolBar()->isVisible());
-  config->writeEntry("ShowStatusbar",statusBar()->isVisible());
-  config->writeEntry("ToolBar_Pos", (int)toolBar()->barPos());
+  config->writeEntry(CFG_SHOW_TOOLBAR,toolBar()->isVisible());
+  config->writeEntry(CFG_SHOW_STATUSBAR,statusBar()->isVisible());
+  config->writeEntry(CFG_TOOLBAR_POS, (int)toolBar()->barPos());
+  config->writeEntry(CFG_INLINE_EDIT, inline_edit);
 
   if (view) {
     config->setGroup(CFG_GENERAL);
@@ -187,9 +190,10 @@ void kvoctrainApp::readOptions()
   }
 
   config->setGroup(CFG_APPEARANCE);
-  bViewToolbar = config->readBoolEntry("ShowToolbar", true);
-  bViewStatusbar = config->readBoolEntry("ShowStatusbar", true);
-  tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry("ToolBar_Pos", KToolBar::Top);
+  bViewToolbar = config->readBoolEntry(CFG_SHOW_TOOLBAR, true);
+  bViewStatusbar = config->readBoolEntry(CFG_SHOW_STATUSBAR, true);
+  inline_edit = config->readBoolEntry(CFG_INLINE_EDIT, false);
+  tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry(CFG_TOOLBAR_POS, KToolBar::Top);
   QFont fdefault;
   QString family = config->readEntry(CFG_FFAMILY, fdefault.family());
   int size = config->readNumEntry(CFG_FSIZE, fdefault.pointSize());

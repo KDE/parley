@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/17 17:59:20  arnold
+    added inline editing of all columns
+
     Revision 1.7  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -54,7 +57,7 @@
 
 
 #include "kvoctraindoc.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 #include "QueryManager.h"
 #include "UsageManager.h"
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/24 11:46:21  arnold
+    fix for kde3, better sorting of regions
+
     Revision 1.10  2001/11/21 18:30:17  arnold
     quick fix for change in KLocale class
 
@@ -85,6 +88,7 @@
 
 #include <langset.h>
 #include <kv_resource.h>
+#include <kvoctraincore.h>
 #include <kvoctraindoc.h>
 
 #include <map.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/11/24 17:15:45  arnold
+    fixes for table view and query
+
     Revision 1.15  2001/11/19 20:05:16  arnold
     fixed warning message
 
@@ -81,6 +84,7 @@
  ***************************************************************************/
 
 
+#include <kvoctraincore.h>
 #include "kv_resource.h"
 #include "kvoctrain.h"
 #include "rowtable.h"
@@ -296,6 +300,12 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
      lb_list->setCurrentRow(lb_list->currentRow(), KV_COL_ORG);
  }
  lb_list->updateContents();
+}
+
+
+void kvoctrainView::setInlineEnabled(bool state)
+{
+  lb_list->setInlineEnabled(state);
 }
 
 

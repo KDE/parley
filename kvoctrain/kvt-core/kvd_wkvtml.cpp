@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/16 18:53:21  arnold
+    added possibility to disable expressions
+
     Revision 1.5  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -47,7 +50,7 @@
  ***************************************************************************/
 
 #include "kvoctraindoc.h"
-#include "kv_resource.h"
+#include "kvoctraincore.h"
 #include "QueryManager.h"
 
 #include <kdebug.h>

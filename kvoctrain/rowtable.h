@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/24 17:15:45  arnold
+    fixes for table view and query
+
     Revision 1.9  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -111,6 +114,7 @@ protected:
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
         virtual void setItem ( int row, int col, QTableItem * item );
+        void setInlineEnabled(bool state);
 
 protected slots:
         void menuTriggerTimeout();

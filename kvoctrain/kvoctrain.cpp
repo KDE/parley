@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2001/11/20 01:38:03  jsinger
+    Proofreading changes for grammar and spelling. No functional changes.
+
     Revision 1.21  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -126,6 +129,7 @@
 #include <time.h>
 #include <ctype.h>
 
+#include <kvoctraincore.h>
 #include "kvoctraindoc.h"
 #include "langset.h"
 #include "kvoctrain.h"
@@ -1068,6 +1072,15 @@ void kvoctrainApp::slotViewToolBar()
 }
 
 
+void kvoctrainApp::slotViewInline()
+{
+  inline_edit = !inline_edit;
+  menuBar()->setItemChecked(ID_VIEW_INLINE, inline_edit);
+  view->setInlineEnabled(inline_edit);
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+
 void kvoctrainApp::slotViewStatusBar()
 {
   ///////////////////////////////////////////////////////////////////
@@ -1381,6 +1394,7 @@ void kvoctrainApp::commandCallback(int id_){
 //    ON_CMD(ID_RESUME_QUERY,             slotTimeOutRandomQuery())
 //    ON_CMD(ID_RESUME_MULTIPLE,          slotTimeOutMultipleChoice())
 
+    ON_CMD(ID_VIEW_INLINE,              slotViewInline())
     ON_CMD(ID_VIEW_TOOLBAR,             slotViewToolBar())
     ON_CMD(ID_VIEW_STATUSBAR,           slotViewStatusBar())
     ON_CMD(ID_SAVE_OPTIONS,             slotSaveOptions())
@@ -1410,8 +1424,9 @@ void kvoctrainApp::statusCallback(int id_){
     ON_STATUS_MSG(ID_SEL_ALL,           i18n("Selects all entries"))
     ON_STATUS_MSG(ID_CLR_SEL,           i18n("Deselects all entries"))
 
-    ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables / disables the current Toolbar"))
-    ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables / disables the Statusbar"))
+    ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables / disables the current toolbar"))
+    ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables / disables the statusbar"))
+    ON_STATUS_MSG(ID_VIEW_INLINE,       i18n("Enables / disables inline editing in the table view"))
     ON_STATUS_MSG(ID_SAVE_OPTIONS,      i18n("Saves options"))
     ON_STATUS_MSG(ID_DOC_PROPS,         i18n("Edits document properties"))
     ON_STATUS_MSG(ID_DOC_PROPS_LANG,    i18n("Edits language properties in current document"))
