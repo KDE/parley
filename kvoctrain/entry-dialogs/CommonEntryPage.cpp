@@ -344,7 +344,7 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
 
-  KDialogBase usageOpt(KDialogBase::Swallow, i18n("usage (area) of an expression", "Edit User Defined Usage Labels"),
+  KDialogBase usageOpt(KDialogBase::Swallow, i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
     KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, dlgbook, "usage", true);
 
   UsageOptPage *usageOptPage = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
