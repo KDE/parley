@@ -95,7 +95,7 @@ void LessOptPage::slotNewLesson()
 {
      bool ok;
      QString getLesson = KInputDialog::getText(
-                 i18n( "Lesson Description" ), i18n( "Enter lesson description" ), QString::null, &ok );
+                 i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), QString::null, &ok );
      if( !ok )
        return;
      QString str;
@@ -121,7 +121,7 @@ void LessOptPage::slotModifyLesson()
      str.remove (0, pos+strlen (LESS_TAG));
      bool ok;
      QString getLesson = KInputDialog::getText(
-                 i18n( "Lesson Description" ), i18n( "Enter lesson description" ), str, &ok );
+                 i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), str, &ok );
      if( !ok )
        return;
      QString str2;
@@ -159,7 +159,7 @@ void LessOptPage::slotDeleteLesson()
        if (doc->getEntry(ent)->getLesson() == lessonIndex[act_lesson]+1) {
          KMessageBox::information(this,
                    i18n("This lesson could not be deleted\nbecause it is in use."),
-                   kapp->makeStdCaption(i18n("Deleting a Lesson")));
+                   kapp->makeStdCaption(i18n("Deleting Lesson")));
          return;
        }
      }

@@ -97,7 +97,7 @@ void TenseOptPage::slotNewTense()
 {
      bool ok;
      QString getTense = KInputDialog::getText(
-                 i18n( "Tense Description" ), i18n( "Enter tense description" ), QString::null, &ok );
+                 i18n( "Tense Description" ), i18n( "Enter tense description:" ), QString::null, &ok );
          if( !ok )
                  return;
        QString str;
@@ -123,7 +123,7 @@ void TenseOptPage::slotModifyTense()
      str.remove (0, pos+strlen (TENSE_TAG));
      bool ok;
      QString getTense = KInputDialog::getText(
-                i18n( "Tense Description" ), i18n( "Enter tense description" ), str, &ok );
+                i18n( "Tense Description" ), i18n( "Enter tense description:" ), str, &ok );
      if( !ok )
            return;
        QString str2;
@@ -168,7 +168,7 @@ void TenseOptPage::slotDeleteTense()
            if (conj.getType(con) == t) {
              KMessageBox::information(this,
                        i18n("This user defined tense could not be deleted\nbecause it is in use."),
-                       kapp->makeStdCaption(i18n("Deleting a Tense Description")));
+                       kapp->makeStdCaption(i18n("Deleting Tense Description")));
              return;
            }
          }

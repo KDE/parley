@@ -95,7 +95,7 @@ void TypeOptPage::slotNewType()
 {
      bool ok;
      QString getType = KInputDialog::getText(
-                 i18n( "Type Description" ), i18n( "Enter type description" ), QString::null, &ok );
+                 i18n( "Type Description" ), i18n( "Enter type description:" ), QString::null, &ok );
      if( !ok )
        return;
      QString str;
@@ -121,7 +121,7 @@ void TypeOptPage::slotModifyType()
      str.remove (0, pos+strlen (TYPE_TAG));
      bool ok;
      QString getType = KInputDialog::getText(
-                 i18n( "Type Description" ), i18n( "Enter type description" ), str, &ok );
+                 i18n( "Type Description" ), i18n( "Enter type description:" ), str, &ok );
      if( !ok )
        return;
      QString str2;
@@ -164,7 +164,7 @@ void TypeOptPage::slotDeleteType()
          if (exp->getType(lang) == t) {
            KMessageBox::information(this,
                      i18n("This user defined type could not be deleted\nbecause it is in use."),
-                     kapp->makeStdCaption(i18n("Deleting a Type Description")));
+                     kapp->makeStdCaption(i18n("Deleting Type Description")));
            return;
          }
        }

@@ -87,7 +87,7 @@ void GroupOptPage::slotNewGroup()
 {
   bool ok;
   QString getGroup = KInputDialog::getText(
-            i18n( "Group Description" ), i18n( "Enter group description" ), QString::null, &ok );
+            i18n( "Group Description" ), i18n( "Enter group description:" ), QString::null, &ok );
   if( !ok )
        return;
   ps_name->insertItem(getGroup.stripWhiteSpace());

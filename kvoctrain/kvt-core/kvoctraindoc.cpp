@@ -237,9 +237,8 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     QFile f( tmp);
 
     if (!f.open( IO_WriteOnly )) {               // open file for writing
-      QString format = i18n("File \"%1\" is not writable, probably you do not have permission to do this.\n");
-      QString msg = format.arg(tmp);
-      KMessageBox::error(0, msg, kapp->makeStdCaption(i18n("I/O Failure")));
+      QString msg = i18n("File \"%1\" is not writable, probably you do not have permission to do this.");
+      KMessageBox::error(0, msg.arg(tmp), kapp->makeStdCaption(i18n("I/O Failure")));
       return false;
     }
 

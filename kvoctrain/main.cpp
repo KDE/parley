@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
 static KCmdLineOptions options[] =
 {
-  { I18N_NOOP("+[file]"),   I18N_NOOP("Document file to open."), 0 },
+  { I18N_NOOP("+[file]"),   I18N_NOOP("Document file to open"), 0 },
   KCmdLineLastOption
 };
 
