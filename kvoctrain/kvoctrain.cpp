@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.38  2002/01/21 18:56:15  arnold
+    fixed disabling of dialog pages
+
     Revision 1.37  2002/01/20 11:41:01  arnold
     fixed issues with modeless dialogs
 
@@ -237,7 +240,7 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
       type_label->setText (i18n (PREFIX_Type));
 
     if (entryDlg != 0) {
-      slotEditEntryModeless(row, col+KV_EXTRA_COLS);
+      slotEditEntry(row, col+KV_EXTRA_COLS);
       entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
     }
 
@@ -259,15 +262,15 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
       entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
     else
       entryDlg->setEnabled(EntryDlg::EnableAll);
-    slotEditEntryModeless(row, col+KV_EXTRA_COLS);
+    slotEditEntry(row, col+KV_EXTRA_COLS);
   }
 }
 
 
 void kvoctrainApp::slotEditRow()
 {
-  slotEditEntryModeless (view->getTable()->currentRow(),
-                         view->getTable()->currentColumn());
+  slotEditEntry (view->getTable()->currentRow(),
+                 view->getTable()->currentColumn());
 }
 
 
@@ -306,7 +309,7 @@ void kvoctrainApp::slotEditCallBack(int res)
       int row, col;
       vector<QTableSelection> tabsel;
       entryDlg->getCell(row, col, tabsel);
-      setDataEntryDlg(row, col + KV_EXTRA_COLS);
+      setDataEntryDlg(row, col);
     break;
   }
 }
@@ -332,109 +335,114 @@ void kvoctrainApp::commitEntryDlg(bool force)
    int row, col;
    vector<QTableSelection> tabsel;
    entryDlg->getCell(row, col, tabsel);
-/*
-   if (hasSel) {
-     for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
-       tabsel.push_back(view->getTable()->selection(i);
-   }
-*/
-
-//   commitEntryDlg->autoApply();
+   int hasSel = tabsel.size() > 1;
+   if (tabsel.size() == 1)
+     hasSel = (tabsel[0].bottomRow() - tabsel[0].topRow()) > 0;
 
    fillLessonBox(doc);
-   if (tabsel.size() <= 1) {
+   if (!hasSel) {
      kvoctrainExpr *expr = doc->getEntry(row);
-     if (col == 0)
-       expr->setOriginal(entryDlg->getExpr());
-     else
-       expr->setTranslation(col, entryDlg->getExpr());
+     if (col >= KV_COL_ORG) {
+       col -= KV_EXTRA_COLS;
+       if (col == 0)
+         expr->setOriginal(entryDlg->getExpr());
+       else
+         expr->setTranslation(col, entryDlg->getExpr());
 
-     expr->setRemark (col, entryDlg->getRemark());
-     expr->setPronunce (col, entryDlg->getPronunce());
+       expr->setRemark (col, entryDlg->getRemark());
+       expr->setPronunce (col, entryDlg->getPronunce());
 
-     expr->setSynonym (col, entryDlg->getSynonym());
-     expr->setAntonym (col, entryDlg->getAntonym());
-     expr->setExample (col, entryDlg->getExample());
-     expr->setUsageLabel (col, entryDlg->getUsageLabel());
-     expr->setParaphrase (col, entryDlg->getParaphrase());
-     expr->setConjugation (col, entryDlg->getConjugation());
-     expr->setComparison(col, entryDlg->getComparison() );
-     expr->setMultipleChoice(col, entryDlg->getMultipleChoice() );
+       expr->setSynonym (col, entryDlg->getSynonym());
+       expr->setAntonym (col, entryDlg->getAntonym());
+       expr->setExample (col, entryDlg->getExample());
+       expr->setUsageLabel (col, entryDlg->getUsageLabel());
+       expr->setParaphrase (col, entryDlg->getParaphrase());
+       expr->setConjugation (col, entryDlg->getConjugation());
+       expr->setComparison(col, entryDlg->getComparison() );
+       expr->setMultipleChoice(col, entryDlg->getMultipleChoice() );
 
-     expr->setFauxAmi (col, entryDlg->getFromFauxAmi(), false);
-     expr->setFauxAmi (col, entryDlg->getToFauxAmi(), true);
-     expr->setGrade(col, entryDlg->getFromGrade(), false);
-     expr->setGrade(col, entryDlg->getToGrade(), true);
-     expr->setQueryCount(col, entryDlg->getFromQCount(), false);
-     expr->setQueryCount(col, entryDlg->getToQCount(), true);
-     expr->setBadCount(col, entryDlg->getFromBCount(), false);
-     expr->setBadCount(col, entryDlg->getToBCount(), true);
-     expr->setQueryDate(col, entryDlg->getFromDate(), false);
-     expr->setQueryDate(col, entryDlg->getToDate(), true);
+       expr->setFauxAmi (col, entryDlg->getFromFauxAmi(), false);
+       expr->setFauxAmi (col, entryDlg->getToFauxAmi(), true);
+       expr->setGrade(col, entryDlg->getFromGrade(), false);
+       expr->setGrade(col, entryDlg->getToGrade(), true);
+       expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+       expr->setQueryCount(col, entryDlg->getToQCount(), true);
+       expr->setBadCount(col, entryDlg->getFromBCount(), false);
+       expr->setBadCount(col, entryDlg->getToBCount(), true);
+       expr->setQueryDate(col, entryDlg->getFromDate(), false);
+       expr->setQueryDate(col, entryDlg->getToDate(), true);
+       expr->setType (col, entryDlg->getType());
+
+       for (int j = 0; j <= expr->numTranslations(); j++)
+         if (expr->getType(j).isEmpty() )
+           expr->setType(j, entryDlg->getType());
+
+       for (int j = 0; j <= expr->numTranslations(); j++)
+         if (QueryManager::getMainType(expr->getType(j))
+               !=
+             QueryManager::getMainType(entryDlg->getType()) )
+           expr->setType(j, entryDlg->getType());
+     }
      expr->setLesson (entryDlg->getLesson());
      expr->setActive(entryDlg->getActive());
-     expr->setType (col, entryDlg->getType());
 
-     for (int i = 0; i <= expr->numTranslations(); i++)
-       if (expr->getType(i).isEmpty() )
-         expr->setType(i, entryDlg->getType());
-
-     for (int i = 0; i <= expr->numTranslations(); i++)
-       if (QueryManager::getMainType(expr->getType(i))
-             !=
-           QueryManager::getMainType(entryDlg->getType()) )
-         expr->setType(i, entryDlg->getType());
-
+     entryDlg->setModified(false);
+     doc->setModified(true);
      view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
    }
    else {
+     col -= KV_EXTRA_COLS;
      for (int ts = 0; ts < tabsel.size(); ++ts) {
-       for (int i = tabsel[ts].topRow(); i < tabsel[ts].bottomRow(); ++i) {
-         kvoctrainExpr *expr = doc->getEntry(i);
-         // only updated "common" props in multimode
-         if (entryDlg->fromGradeDirty() )
-           expr->setGrade(col, entryDlg->getFromGrade(), false);
-         if (entryDlg->toGradeDirty() )
-           expr->setGrade(col, entryDlg->getToGrade(), true);
+       for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
+         kvoctrainExpr *expr = doc->getEntry(er);
 
-         if (entryDlg->fromQCountDirty() )
-           expr->setQueryCount(col, entryDlg->getFromQCount(), false);
-         if (entryDlg->toQCountDirty() )
-            expr->setQueryCount(col, entryDlg->getToQCount(), true);
+         if (col >= 0) {
+           // only updated "common" props in multimode
+           if (entryDlg->fromGradeDirty() )
+             expr->setGrade(col, entryDlg->getFromGrade(), false);
+           if (entryDlg->toGradeDirty() )
+             expr->setGrade(col, entryDlg->getToGrade(), true);
 
-         if (entryDlg->fromBCountDirty() )
-           expr->setBadCount(col, entryDlg->getFromBCount(), false);
-         if (entryDlg->toBCountDirty() )
-           expr->setBadCount(col, entryDlg->getToBCount(), true);
+           if (entryDlg->fromQCountDirty() )
+             expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+           if (entryDlg->toQCountDirty() )
+              expr->setQueryCount(col, entryDlg->getToQCount(), true);
 
-         if (entryDlg->fromDateDirty() )
-           expr->setQueryDate(col, entryDlg->getFromDate(), false);
-         if (entryDlg->toDateDirty() )
-           expr->setQueryDate(col, entryDlg->getToDate(), true);
+           if (entryDlg->fromBCountDirty() )
+             expr->setBadCount(col, entryDlg->getFromBCount(), false);
+           if (entryDlg->toBCountDirty() )
+             expr->setBadCount(col, entryDlg->getToBCount(), true);
 
-         if (entryDlg->lessonDirty() )
-           expr->setLesson (entryDlg->getLesson());
+           if (entryDlg->fromDateDirty() )
+             expr->setQueryDate(col, entryDlg->getFromDate(), false);
+           if (entryDlg->toDateDirty() )
+             expr->setQueryDate(col, entryDlg->getToDate(), true);
 
-         if (entryDlg->usageDirty() )
-           for (int i = 0; i <= expr->numTranslations(); i++)
-             expr->setUsageLabel (i, entryDlg->getUsageLabel());
+           if (entryDlg->usageDirty() ) {
+             for (int j = 0; j <= expr->numTranslations(); j++)
+               expr->setUsageLabel (j, entryDlg->getUsageLabel());
+           }
 
-         if (entryDlg->typeDirty() )
-         {
-           for (int i = 0; i <= expr->numTranslations(); i++)
-             expr->setType(i, entryDlg->getType());
+           if (entryDlg->typeDirty() )
+             for (int j = 0; j <= expr->numTranslations(); j++)
+               expr->setType(j, entryDlg->getType());
          }
 
          if (entryDlg->activeDirty() )
            expr->setActive(entryDlg->getActive());
 
+         if (entryDlg->lessonDirty() )
+           expr->setLesson (entryDlg->getLesson());
        }
      }
-     view->getTable()->updateContents();
-   }
+     entryDlg->setModified(false);
+     doc->setModified(true);
+     for (int ts = 0; ts < tabsel.size(); ++ts)
+       for (int r = tabsel[ts].topRow(); r <= tabsel[ts].bottomRow(); ++r)
+         for (int c = 0; c < view->getTable()->numCols(); ++c)
+           view->getTable()->updateCell(r, c);
 
-   entryDlg->setModified(false);
-   doc->setModified(true);
+   }
 }
 
 
@@ -456,6 +464,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit general properties");
+     col -= KV_EXTRA_COLS;
      entryDlg = new EntryDlg (
                     this,
                     doc,
@@ -553,11 +562,8 @@ void kvoctrainApp::createEntryDlg(int row, int col)
    opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
    view->getTable()->setEditorBlocked(true);
 
-   cout << "ce 1\n";
    vector<QTableSelection> tabsel;
-   cout << "ce 2\n";
-   entryDlg->setCell(row, col, tabsel);
-   cout << "ce 3\n";
+   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
    entryDlg->initFocus();
    entryDlg->show();
 }
@@ -577,14 +583,12 @@ void kvoctrainApp::removeEntryDlg()
 }
 
 
-void kvoctrainApp::slotEditEntryModeless (int row, int col)
+void kvoctrainApp::slotEditEntry (int row, int col)
 {
    if (entryDlg == 0) {
      createEntryDlg(row, col);
      return;
    }
-
-//   entryDlg->raise();
 
    if (entryDlg->isModified()) {
      commitEntryDlg(false);
@@ -614,6 +618,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
 
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit general properties");
+     col -= KV_EXTRA_COLS;
      entryDlg->setData(doc,
                        hasSel,
                        true,
@@ -633,7 +638,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
                        doc->getOriginalIdent(),
                        langset,
                        QString::null,
-                       doc->getEntry(row)->getType(col),
+                       doc->getEntry(row)->getType(0),
                        QString::null,
                        QString::null,
                        QString::null,
@@ -704,14 +709,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
      for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
    }
-   entryDlg->setCell(row, col, tabsel);
-}
-
-
-bool kvoctrainApp::slotEditEntry (int row, int col)
-{
-   slotEditEntryModeless (row, col);
-   return false;
+   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
 }
 
 

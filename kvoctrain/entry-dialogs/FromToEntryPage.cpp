@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.10  2001/12/30 10:36:45  arnold
     fixed and improved dialogs
 
@@ -134,6 +137,11 @@ FromToEntryPage::FromToEntryPage
         month_spin->setData (&monthnames, 1, 12);
         day_spin->setData ((QStringList *) 0, 1, 31);
 
+        QString s;
+        for (int i = 0; i <= KV_MAX_GRADE; i++) {
+          s.setNum (i);
+          gradebox->insertItem( QueryManager::gradeStr(i) );
+        }
         gradebox->setValidator (new BlockAllValidator() );
 
         setTabOrder(fauxami_line, year_spin);
@@ -188,18 +196,13 @@ void FromToEntryPage::setData(
           year_spin->setSpecial("----");
           month_spin->setSpecial("----");
           day_spin->setSpecial("--");
-
         }
 
         direc_label->setTitle (label);
 
-        QString s;
-        for (int i = 0; i <= KV_MAX_GRADE; i++) {
-          s.setNum (i);
-          gradebox->insertItem( QueryManager::gradeStr(i) );
-        }
         gradebox->setCurrentItem (grade);
 
+        QString s;
         s.setNum (qcount);
         qcount_line->setText (s);
 

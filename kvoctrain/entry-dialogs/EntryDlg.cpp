@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/01/21 21:13:27  arnold
+    calculate 'docked' size correctly
+
     Revision 1.16  2002/01/21 18:56:17  arnold
     fixed disabling of dialog pages
 
@@ -452,7 +455,7 @@ void EntryDlg::setCell(int row, int col, const vector<QTableSelection>& sel)
 {
   edit_row = row;
   edit_col = col;
-//  selections = sel;
+  selections = sel;
 }
 
 
@@ -460,7 +463,7 @@ void EntryDlg::getCell(int &row, int &col, vector<QTableSelection>& sel) const
 {
   row = edit_row;
   col = edit_col;
-//  sel = selections;
+  sel = selections;
 }
 
 

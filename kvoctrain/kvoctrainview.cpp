@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.28  2002/01/23 18:17:40  arnold
+    fix for multiple selections
+
     Revision 1.27  2002/01/21 21:13:26  arnold
     calculate 'docked' size correctly
 
@@ -181,11 +184,11 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  connect( lb_list, SIGNAL(edited(int,int)),
           parent, SLOT(slotEditEntry(int,int)) );
 
- connect( lb_list, SIGNAL(sigCancelSelection()),
-          parent, SLOT(slotCancelSelection()) );
-
  connect( lb_list, SIGNAL(currentChanged(int, int)),
           parent, SLOT(slotCurrentCellChanged(int, int)) );
+
+ connect( lb_list, SIGNAL(selectionChanged()),
+          lb_list, SLOT(slotSelectionChanged()) );
 
  connect( lb_list, SIGNAL(forwardKeyPressEvent (QKeyEvent*)),
           parent, SLOT(keyPressEvent(QKeyEvent *)) );
@@ -433,8 +436,7 @@ void kvoctrainTable::sortByColumn_alpha(int header)
     return;
   }
 
-  while (numSelections() != 0)
-    removeSelection(0);
+  clearSelection();
 
   bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );
@@ -449,6 +451,12 @@ void kvoctrainTable::sortByColumn_alpha(int header)
   m_rows->setModified();
   emit currentChanged(currentRow(), currentColumn());
   QApplication::restoreOverrideCursor();
+}
+
+
+void kvoctrainTable::slotSelectionChanged()
+{
+  emit currentChanged(currentRow(), currentColumn());
 }
 
 
@@ -471,8 +479,7 @@ void kvoctrainTable::sortByColumn_index(int header)
     return;
   }
 
-  while (numSelections() != 0)
-    removeSelection(0);
+  clearSelection();
 
   bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/01/21 18:56:15  arnold
+    fixed disabling of dialog pages
+
     Revision 1.22  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -206,8 +209,7 @@ public:
 //  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */
-  bool slotEditEntry(int row, int col);
-  void slotEditEntryModeless(int row, int col);
+  void slotEditEntry(int row, int col);
   void slotEditCallBack(int res);
 
   void commitEntryDlg(bool force);

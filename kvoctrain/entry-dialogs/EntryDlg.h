@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/01/23 18:17:40  arnold
+    fix for multiple selections
+
     Revision 1.9  2002/01/20 11:41:01  arnold
     fixed issues with modeless dialogs
 
@@ -267,7 +270,7 @@ protected:
     int               edit_row, edit_col;
     QTabWidget       *tabber;
 
-//    vector<QTableSelection>& selections;
+    vector<QTableSelection> selections;
     KMainWindow     *mainwin;
     QSize            oldMainSize;
     QPoint           oldMainPos;

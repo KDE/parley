@@ -1,4 +1,4 @@
-$Date$
+$Id$
 
                    kvoctrain roadmap and todo
                   ----------------------------
@@ -15,9 +15,6 @@ todo post-release ?
     durchlauf noch mal fragen
 
 todoc:
-
-
-neue shots: query-options-2
 
 still left flaws:
 =================

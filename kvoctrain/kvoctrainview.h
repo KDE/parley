@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/02 11:38:27  arnold
+    fixed displaying of modified doc
+
     Revision 1.7  2001/12/14 16:05:49  arnold
     fixed handling of table font
 
@@ -149,15 +152,14 @@ class kvoctrainTable : public RowTable
   int findIdent (QString id) const { return m_rows->findIdent(id); }
 
 signals:
-  void sigCancelSelection();
 
 public slots:
   void sortByColumn_alpha (int index);
   void sortByColumn_index (int index);
+  void slotSelectionChanged();
 
 protected:
   int             current;
-
 
 };
 

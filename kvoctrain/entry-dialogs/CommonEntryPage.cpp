@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.18  2002/01/08 13:19:46  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -258,8 +261,8 @@ void CommonEntryPage::setData(
 
     lesson_dirty = false;
     type_dirty = false;
-    lesson_dirty = false;
     usage_dirty = false;
+    active_dirty = false;
 
     setModified(false);
 }
@@ -325,6 +328,7 @@ void CommonEntryPage::slotUsageChanged()
 {
    setModified(true);
    usageCollection = "";
+   usage_dirty = true;
    QString s;
    for (int i = 0; i < (int) usage_box->count(); i++) {
      if (usage_box->isSelected(i)) {
@@ -374,7 +378,7 @@ void CommonEntryPage::slotPronunceSelected (const QString& s)
 
 void CommonEntryPage::slotSubTypeSelected(int i)
 {
-  setModified(true);
+   setModified(true);
    if (i < (int) current_subtypes.size()) {
      type = current_subtypes[i];
      emit typeSelected(type);
