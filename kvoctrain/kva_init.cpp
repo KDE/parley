@@ -88,6 +88,7 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 
   configInlineEditing->setChecked(Prefs::enableInlineEdit());
   configSaveOptions->setEnabled(!autosaveopts);
+  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 
   querying = false;
   btimer = new QTimer( this );

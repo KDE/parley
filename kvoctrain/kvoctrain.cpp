@@ -737,6 +737,7 @@ void kvoctrainApp::slotRemoveRow()
       table->updateContents();
     }
   }
+  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
   view->setInlineEnabled(Prefs::enableInlineEdit());
 }
 
@@ -750,6 +751,7 @@ void kvoctrainApp::slotAppendRow ()
     int row = doc->numEntries()-1;
     view->getTable()->updateContents(row, KV_COL_ORG);
     view->getTable()->setCurrentRow(row, KV_COL_ORG);
+    editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 }
 
 
