@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:40:46  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -149,14 +152,6 @@ ViewOptPage::ViewOptPage
    c_use->setChecked (gc.use);
    slotColUsed(gc.use);
 
-/* trick, as QtArchitect does not know this groupbox type
-   EACheckGroupBox *eabox = new EACheckGroupBox("titel", this, "eagroup");
-   eabox->setMaximumSize(gradegroup->maximumSize());
-   eabox->setMinimumSize(gradegroup->minimumSize());
-   QRect geom = gradegroup->geometry();
-   eabox->setGeometry( geom.x(), geom.y(), geom.width(), geom.height() );
-   delete gradegroup;
-*/
 }
 
 

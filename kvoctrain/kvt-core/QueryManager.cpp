@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -90,6 +93,7 @@ static t_type_rel InternalTypeRelations [] =
 
   { QM_VERB,                          i18n_noop("verb") },   // old type "1"
   { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, i18n_noop("verb irregular") },
+  { QM_VERB  QM_TYPE_DIV QM_VERB_REG, i18n_noop("verb regular") },
 
   { 0, 0 }  // the end
 };

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:39:45  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -74,6 +77,7 @@ LangPropPage::LangPropPage
         ,conjugations(conjug)
         ,articles(art)
 {
+   l_langcode->setText(curr_lang);
    connect( indef_female, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( def_female, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( def_male, SIGNAL(returnPressed()), SLOT(accept()) );

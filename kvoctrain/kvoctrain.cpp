@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.11  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -278,7 +281,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
                   doc->getEntry(row)->getComparison(col),
                   doc->getEntry(row)->getMultipleChoice(col),
                   querymanager,
-                  0, title);
+                  title);
 
 //   edlg.initFocus();
    int res = edlg.exec();
@@ -584,7 +587,6 @@ void kvoctrainApp::slotAppendRow ()
                    Comparison(),
                    MultipleChoice(),
                    querymanager,
-                   0,
                    i18n("Enter new original expression")
                    );
     res = edlg.exec();

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -42,6 +45,7 @@ class kvoctrainExpr;
 
 #define QM_VERB           "v"    // go
 #define   QM_VERB_IRR     "ir"
+#define   QM_VERB_REG     "re"
 #define QM_NOUN           "n"    // table, coffee
 #define   QM_NOUN_F       "f"
 #define   QM_NOUN_M       "m"

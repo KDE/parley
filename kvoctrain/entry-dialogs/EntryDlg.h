@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/30 14:10:32  arnold
     added property 'multiple choice'
 
@@ -107,8 +110,9 @@ public:
         const       Comparison &comp,
         const       MultipleChoice &mc,
         QueryManager &querymanager,
-        QWidget    *parent,
-        QString     name
+	const QString &title,
+        QWidget    *parent = 0,
+	const char *name = 0
     );
 
     bool  fromDateDirty   () const { return from_page ? from_page->dateDirty() : false; }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:39:45  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -103,13 +106,11 @@ DocPropsLangDlg::DocPropsLangDlg
       own_tabs.push_back (s);
   }
 
-  int accel;
   for (int i = 0; i < (int) own_tabs.size(); i++) {
     QString s = own_tabs[i];
     QPixmap pix (own_pixmaps[i]);
     QIconSet iconset (pix);
     addTab (langPages[i], iconset, s);
-
   }
 
   setCancelButton(i18n("&Cancel"));
@@ -117,10 +118,6 @@ DocPropsLangDlg::DocPropsLangDlg
 
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
-
-  resize( 600+16,290+76 );
-  setMinimumSize( 600+16,370+76 );
-  setMaximumSize( 600+16,370+76 );
 
   setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 }

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/10/30 14:10:32  arnold
     added property 'multiple choice'
 
@@ -96,11 +99,12 @@ EntryDlg::EntryDlg
         const       Comparison &comp,
         const       MultipleChoice &mc,
         QueryManager &querymanager,
+	const QString &title,
 	QWidget    *parent,
-	QString     name
+	const char *name
 )
 	:
-	Inherited( parent, name.local8Bit(), true )
+	Inherited( parent, name, true )
 {
 	setCaption (kapp->makeStdCaption( name));
 
@@ -115,7 +119,7 @@ EntryDlg::EntryDlg
           to_page = 0;
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Original &expression in ")+s, querymanager);
+                                           i18n("Original &expression in %1:").arg(s), querymanager);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
@@ -124,7 +128,7 @@ EntryDlg::EntryDlg
         else {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Translated &expression in ")+s, querymanager);
+                                           i18n("Translated &expression in %1:").arg(s), querymanager);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());

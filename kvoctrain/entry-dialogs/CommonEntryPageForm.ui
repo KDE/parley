@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
-            <height>480</height>
+            <width>600</width>
+            <height>373</height>
         </rect>
     </property>
     <property stdset="1">
@@ -120,7 +120,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Expression</string>
+                                <string>&amp;Expression:</string>
                             </property>
                         </widget>
                         <widget row="2"  column="0" >
@@ -131,7 +131,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Pronounciation</string>
+                                <string>&amp;Pronounciation:</string>
                             </property>
                         </widget>
                         <widget row="1"  column="0" >
@@ -142,7 +142,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Lesson</string>
+                                <string>&amp;Lesson:</string>
                             </property>
                         </widget>
                         <widget row="1"  column="2" >
@@ -311,7 +311,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>&amp;Usage label</string>
+                        <string>&amp;Usage labels</string>
                     </property>
                     <grid>
                         <property stdset="1">
@@ -332,7 +332,7 @@
                                 <name>sizePolicy</name>
                                 <sizepolicy>
                                     <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
+                                    <vsizetype>3</vsizetype>
                                 </sizepolicy>
                             </property>
                             <property stdset="1">
@@ -344,8 +344,14 @@
                                 <enum>Sunken</enum>
                             </property>
                             <property stdset="1">
-                                <name>text</name>
-                                <string>TextLabel5   mit mehr worten</string>
+                                <name>alignment</name>
+                                <set>WordBreak|AlignTop|AlignLeft</set>
+                            </property>
+                            <property>
+                                <name>vAlign</name>
+                            </property>
+                            <property>
+                                <name>wordwrap</name>
                             </property>
                         </widget>
                         <spacer row="1"  column="2" >
@@ -396,12 +402,6 @@
                         </widget>
                         <widget row="0"  column="0"  rowspan="2"  colspan="1" >
                             <class>QListBox</class>
-                            <item>
-                                <property>
-                                    <name>text</name>
-                                    <string>New Item</string>
-                                </property>
-                            </item>
                             <property stdset="1">
                                 <name>name</name>
                                 <cstring>usage_box</cstring>
@@ -409,9 +409,13 @@
                             <property stdset="1">
                                 <name>sizePolicy</name>
                                 <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>7</vsizetype>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>3</vsizetype>
                                 </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>selectionMode</name>
+                                <enum>Multi</enum>
                             </property>
                         </widget>
                     </grid>
@@ -421,12 +425,15 @@
     </vbox>
 </widget>
 <tabstops>
+    <tabstop>expr_line</tabstop>
+    <tabstop>lesson_box</tabstop>
+    <tabstop>b_LessDlg</tabstop>
+    <tabstop>pronunce_line</tabstop>
+    <tabstop>b_pronDlg</tabstop>
     <tabstop>type_box</tabstop>
     <tabstop>subtype_box</tabstop>
     <tabstop>b_TypeDlg</tabstop>
     <tabstop>usage_box</tabstop>
     <tabstop>b_usageDlg</tabstop>
-    <tabstop>lesson_box</tabstop>
-    <tabstop>b_LessDlg</tabstop>
 </tabstops>
 </UI>

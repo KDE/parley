@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/28 10:15:46  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -59,6 +62,17 @@
 #include "queryoption-dialogs/QueryOptionsDlg.h"
 
 #define MAX_QUERY_TIMEOUT 3
+
+#ifndef i18n_noop
+#define i18n_noop
+#endif
+
+static const char * not_answered = i18n_noop(
+    "The query dialog was not answered for several times in series.\n"
+    "\n"
+    "It is assumed that there is currently no person in front of\n"
+    "the screen and for that reason the query is stopped.\n");
+
 
 void kvoctrainApp::slotQueryOptions() /*FOLD00*/
 {
@@ -214,12 +228,8 @@ void kvoctrainApp::slotTimeOutProperty()
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-        KMessageBox::information(this, 
-                    i18n("The query dialog was not answered for several times in series.\n"
-                         "\n"
-                         "kvoctrain assumes that there is currently no person in front of\n"
-                         "the screen and stops the query.\n"),
-                         kvoctrainApp::generateCaption(""), i18n("&OK"));
+        KMessageBox::information(this, i18n(not_answered),
+                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {
@@ -432,12 +442,8 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-        KMessageBox::information(this, 
-                    i18n("The query dialog was not answered for several times in series.\n"
-                         "\n"
-                         "kvoctrain assumes that there is currently no person in front of\n"
-                         "the screen and stops the query.\n"),
-                         kvoctrainApp::generateCaption(""), i18n("&OK"));
+        KMessageBox::information(this, i18n(not_answered),
+                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {
@@ -700,14 +706,8 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-        QString _mesg =
-           i18n("The query dialog was not answered for several times in series.\n"
-                "\n"
-                "kvoctrain assumes that there is currently no person in front of\n"
-                "the screen and stops the query.\n");
-
-        KMessageBox::information(this, _mesg,
-              kvoctrainApp::generateCaption(""), i18n("&OK"));
+        KMessageBox::information(this, i18n(not_answered),
+                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -348,11 +351,6 @@ void CommonEntryPage::invokeUsageDlg()
   usageOpt.addTab( usageOptPage, _DocDlg_USAGES);
 
   usageOpt.setCancelButton();
-  //FIXME: avoid this
-  usageOpt.resize( 600+16,370+76 );
-  usageOpt.setMinimumSize( 600+16,370+76 );
-  usageOpt.setMaximumSize( 600+16,370+76 );
-
   connect( &usageOpt, SIGNAL(applyButtonPressed()),  &usageOpt, SLOT(accept()) );
   connect( &usageOpt, SIGNAL(cancelButtonPressed()), &usageOpt, SLOT(reject()) );
 
@@ -384,11 +382,6 @@ void CommonEntryPage::invokeLessDlg()
   lessOpt.addTab( lessOptPage, _DocDlg_LESSONS);
 
   lessOpt.setCancelButton();
-  //FIXME: avoid this
-  lessOpt.resize( 600+16,370+76 );
-  lessOpt.setMinimumSize( 600+16,370+76 );
-  lessOpt.setMaximumSize( 600+16,370+76 );
-
   connect( &lessOpt, SIGNAL(applyButtonPressed()),  &lessOpt, SLOT(accept()) );
   connect( &lessOpt, SIGNAL(cancelButtonPressed()), &lessOpt, SLOT(reject()) );
 
@@ -420,11 +413,6 @@ void CommonEntryPage::invokeTypeDlg()
   typeOpt.addTab( typeOptPage, _DocDlg_TYPES);
 
   typeOpt.setCancelButton();
-  //FIXME: avoid this
-  typeOpt.resize( 600+16,370+76 );
-  typeOpt.setMinimumSize( 600+16,370+76 );
-  typeOpt.setMaximumSize( 600+16,370+76 );
-
   connect( &typeOpt, SIGNAL(applyButtonPressed()),  &typeOpt, SLOT(accept()) );
   connect( &typeOpt, SIGNAL(cancelButtonPressed()), &typeOpt, SLOT(reject()) );
 

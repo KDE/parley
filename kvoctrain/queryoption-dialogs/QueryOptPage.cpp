@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -89,6 +92,15 @@ QueryOptPage::QueryOptPage
 
 void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool show, kvq_timeout_t type_to)
 {
+   ask_sub->setEnabled(false);
+   ask_verbcon->setEnabled(false);
+   ask_article->setEnabled(false);
+   ask_compare->setEnabled(false);
+   ask_syno->setEnabled(false);
+   ask_anto->setEnabled(false);
+   ask_examp->setEnabled(false);
+   ask_para->setEnabled(false);
+
    swapdir = _swapdir;
    mqtime = _mqtime;
    showCounter = show;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.3  2001/10/13 21:11:02  arnold
     tested and fixed changes from previous cvs update
 
@@ -265,7 +268,6 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    badlist->setCurrentItem (index);
 
    index = 0;
-
    ref = query_itemlist;
    querylist->clear();
    while (ref->text != 0 ) {
@@ -522,19 +524,19 @@ void ThreshOptPage::slotBlockExpire (bool block, bool expire)
   bool enable = ! (block | expire);
 
   gradecomp->setEnabled(enable);
-  gradelist->setEnabled(enable);
+  gradelist->setEnabled(enable && gradecomp->currentItem() != 0);
   label_grade->setEnabled(enable);
 
   datecomp->setEnabled(enable);
-  datelist->setEnabled(enable);
+  datelist->setEnabled(enable && datecomp->currentItem() != 0);
   label_qdate->setEnabled(enable);
 
   querycomp->setEnabled(enable);
-  querylist->setEnabled(enable);
+  querylist->setEnabled(enable && querycomp->currentItem() != 0);
   label_qcount->setEnabled(enable);
 
   badcomp->setEnabled(enable);
-  badlist->setEnabled(enable);
+  badlist->setEnabled(enable && badcomp->currentItem() != 0);
   label_bcount->setEnabled(enable);
 }
 
