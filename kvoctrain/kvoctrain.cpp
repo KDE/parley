@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.20  2001/11/17 17:58:22  arnold
     added inline editing of all columns
 
@@ -970,8 +973,8 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
    int lang_id = (header_and_cmd >> 16) & 0xFF;
 
    if (lang_id == 0xFF) {
-     QString msg = i18n("To append a new language, which is not listed in\n"
-                        "the submenu, you must first add it\'s data in the\n"
+     QString msg = i18n("To append a new language which is not listed in\n"
+                        "the submenu, you must first add its data in the\n"
                         "general options dialog.\n"
                         "\n"
                         "Should this dialog be invoked now ?\n");
@@ -1397,7 +1400,7 @@ void kvoctrainApp::statusCallback(int id_){
     ON_STATUS_MSG(ID_FILE_SAVE_AS,      i18n("Saves the document as..."))
     ON_STATUS_MSG(ID_FILE_QUIT,         i18n("Exits the program"))
 
-    ON_STATUS_MSG(ID_EDIT_COPY,         i18n("Copys the selected section to the clipboard"))
+    ON_STATUS_MSG(ID_EDIT_COPY,         i18n("Copies the selected section to the clipboard"))
     ON_STATUS_MSG(ID_EDIT_PASTE,        i18n("Pastes the clipboard contents to the end"))
     ON_STATUS_MSG(ID_SEARCH_CLIP,       i18n("Searches clipboard contents in vocabulary"))
     ON_STATUS_MSG(ID_APPEND_ROW,        i18n("Appends new entry to vocabulary"))
@@ -1405,7 +1408,7 @@ void kvoctrainApp::statusCallback(int id_){
     ON_STATUS_MSG(ID_EDIT_ROW,          i18n("Edits properties of current selection"))
     ON_STATUS_MSG(ID_SAVE_ROW,          i18n("Writes selected rows to a file"))
     ON_STATUS_MSG(ID_SEL_ALL,           i18n("Selects all entries"))
-    ON_STATUS_MSG(ID_CLR_SEL,           i18n("Un-Selects all entries"))
+    ON_STATUS_MSG(ID_CLR_SEL,           i18n("Deselects all entries"))
 
     ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables / disables the current Toolbar"))
     ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables / disables the Statusbar"))

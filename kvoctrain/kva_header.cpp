@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.7  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -466,7 +469,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
           && !langset.longId(i).isEmpty() )
         name = langset.longId(i);
 
-      QString format = i18n("You are about to delete a language completely\n\n"
+      QString format = i18n("You are about to delete a language completely.\n\n"
                             "Do you really want to delete \"%1\" ?");
       msg = format.arg(name);
 
@@ -567,12 +570,12 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
           name = langset.longId(i);
 
         format = i18n("You are about to reset the knowledge data of a "
-                      "whole language\n\nDo you really want to reset \"%1\" ?");
+                      "whole language.\n\nDo you really want to reset \"%1\" ?");
       }
       else {
         name = lessons->text(act_lesson);
         format = i18n("You are about to reset the knowledge data of a "
-                      "lesson\n\nDo you really want to reset \"%1\" ?");
+                      "lesson.\n\nDo you really want to reset \"%1\" ?");
       }
 
       msg = format.arg(name);

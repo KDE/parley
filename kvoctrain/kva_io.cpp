@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/19 20:05:16  arnold
+    fixed warning message
+
     Revision 1.11  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -160,7 +163,7 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
   }
 
   int exit = KMessageBox::warningYesNoCancel(this, 
-            i18n("Vocabulary is modified\n\nSave file before exit ?\n"),
+            i18n("Vocabulary is modified.\n\nSave file before exit ?\n"),
             kapp->makeStdCaption(""));
   if(exit==KMessageBox::Yes) {
     slotFileSave();   // save and exit
@@ -388,7 +391,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
     vector<QString> old_usages = doc->getUsageDescr();
     vector<QString> new_usages = new_doc->getUsageDescr();
 
-    format = i18n("Mergeing %1");
+    format = i18n("Merging %1");
     msg = format.arg(name);
     slotStatusMsg(msg);
 

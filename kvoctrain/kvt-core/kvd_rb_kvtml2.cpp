@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/16 18:53:21  arnold
+    added possibility to disable expressions
+
     Revision 1.6  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -180,7 +183,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       else {
         if (lang != langs[0] && lang != "") {  // different originals ?
           errorKvtMl (xml.lineNumber(),
-                      i18n("ambigous definition of language code"));
+                      i18n("ambiguous definition of language code"));
           return false;
         }
       }
@@ -341,7 +344,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       else {
         if (lang != langs[count] && lang != "") { // different language ?
           errorKvtMl (xml.lineNumber(),
-                      i18n("ambigous definition of language code"));
+                      i18n("ambiguous definition of language code"));
           return false;
         }
       }

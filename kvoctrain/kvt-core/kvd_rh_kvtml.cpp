@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/11/09 15:52:20  arnold
     fixed error messages for correct i18n use
 
@@ -104,7 +107,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
         is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
         is.setEncoding(QTextStream::Latin1);
         QString format = i18n("Unknown document encoding \"%1\" was encountered.\n\n"
-                         "This will just be ignored. Encoding is now \"%2\".");
+				"It will be ignored. Encoding is now \"%2\".");
         QString msg =format.arg((*first).stringValue ().upper()).arg("ISO 8859-1");
         warningKvtMl (xml.lineNumber(), msg);
       }
@@ -320,7 +323,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
         else {
           if (lang != langs[count] && lang != "") {  // different originals ?
             errorKvtMl (xml.lineNumber(),
-                        i18n("ambigous definition of language code"));
+                        i18n("ambiguous definition of language code"));
             return false;
           }
         }
@@ -556,7 +559,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
           else {
             if (lang != langs[count] && lang != "") {  // different originals ?
               errorKvtMl (xml.lineNumber(),
-                          i18n("ambigous definition of language code"));
+                          i18n("ambiguous definition of language code"));
               return false;
             }
           }
