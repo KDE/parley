@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:40:26  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/30 14:10:53  arnold
     added property 'multiple choice'
 
@@ -49,39 +52,41 @@
 #ifndef KVOCTRAINEXPR_H
 #define KVOCTRAINEXPR_H
 
+# include <qnamespace.h>
+
 #define KV_MAX_GRADE       7
 #define KV_MIN_GRADE       0
 
 #define KV_NORM_GRADE      0       // not queried yet
-#define KV_NORM_COLOR      EA_QtNS(black)
+#define KV_NORM_COLOR      Qt::black
 #define KV_NORM_TEXT       i18n("not queried yet")
 
 #define KV_LEV1_GRADE      1
-#define KV_LEV1_COLOR      EA_QtNS(red)
+#define KV_LEV1_COLOR      Qt::red
 #define KV_LEV1_TEXT       i18n("Level 1")
 
 #define KV_LEV2_GRADE      2
-#define KV_LEV2_COLOR      EA_QtNS(red)
+#define KV_LEV2_COLOR      Qt::red
 #define KV_LEV2_TEXT       i18n("Level 2")
 
 #define KV_LEV3_GRADE      3
-#define KV_LEV3_COLOR      EA_QtNS(red)
+#define KV_LEV3_COLOR      Qt::red
 #define KV_LEV3_TEXT       i18n("Level 3")
 
 #define KV_LEV4_GRADE      4
-#define KV_LEV4_COLOR      EA_QtNS(red)
+#define KV_LEV4_COLOR      Qt::red
 #define KV_LEV4_TEXT       i18n("Level 4")
 
 #define KV_LEV5_GRADE      5
-#define KV_LEV5_COLOR      EA_QtNS(green)
+#define KV_LEV5_COLOR      Qt::green
 #define KV_LEV5_TEXT       i18n("Level 5")
 
 #define KV_LEV6_GRADE      6
-#define KV_LEV6_COLOR      EA_QtNS(green)
+#define KV_LEV6_COLOR      Qt::green
 #define KV_LEV6_TEXT       i18n("Level 6")
 
 #define KV_LEV7_GRADE      7
-#define KV_LEV7_COLOR      EA_QtNS(green)
+#define KV_LEV7_COLOR      Qt::green
 #define KV_LEV7_TEXT       i18n("Level 7")
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
@@ -95,7 +100,6 @@
   KV_LEV7_TEXT
 #else
 
-#include "compat_2x.h"
 #include "langset.h"
 
 #include <time.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 21:13:42  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.5  2001/11/02 10:18:58  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -53,9 +56,11 @@
 
 #include <kv_resource.h>
 #include <langset.h>
-#include <compat_2x.h>
 
+#include <klocale.h>
+#include <kstddirs.h>
 #include <kapp.h>
+
 #include <qcombobox.h>
 #include <qpixmap.h>
 

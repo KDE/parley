@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.6  2001/11/02 10:18:08  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -58,6 +61,7 @@
 #include <qgroupbox.h>
 
 #include <kapp.h>
+#include <klocale.h>
 
 #include <kvoctraindoc.h>
 #include <QueryManager.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 14:19:54  arnold
+    fixed and improved some dialog pages
+
     Revision 1.4  2001/10/28 16:56:56  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -42,17 +45,19 @@
  ***************************************************************************/
 
 #include "ThreshOptPage.h"
+
 #include <iostream.h>
 #include <vector.h>
 
 #include <qkeycode.h>
-
 #include <qcheckbox.h>
 #include <qlabel.h>
 #include <qcombobox.h>
 #include <qlistbox.h>
 #include <qbuttongroup.h>
 #include <qpushbutton.h>
+
+#include <klocale.h>
 
 #define _QM  QueryManager
 #define _QT(x) QueryManager::CompType(x)

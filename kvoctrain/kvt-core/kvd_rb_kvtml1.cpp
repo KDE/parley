@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 15:52:20  arnold
+    fixed error messages for correct i18n use
+
     Revision 1.4  2001/10/30 14:10:53  arnold
     added property 'multiple choice'
 
@@ -44,13 +47,14 @@
  ***************************************************************************/
 
 
-#include "compat_2x.h"
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
 #include "QueryManager.h"
 #include "UsageManager.h"
 
 #include <kapp.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 #include <qmessagebox.h>
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -32,7 +35,8 @@
 #include <qpainter.h>
 #include <qframe.h>
 
-#include <compat_2x.h>
+#include <kstddirs.h>
+#include <klocale.h>
 
 #include <iostream.h>
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 21:13:42  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.6  2001/11/09 14:19:33  arnold
     fixed and improved some dialog pages
 
@@ -53,6 +56,7 @@
 #include <kapp.h>
 #include <kfontdialog.h>
 #include <kcolorbutton.h>
+#include <klocale.h>
 
 #include <qkeycode.h>
 #include <qlabel.h>
@@ -63,6 +67,9 @@
 
 #include <QueryManager.h>
 #include <kv_resource.h>
+
+#include <kstddirs.h>
+#include  <kconfig.h>
 
 ViewOptPage::ViewOptPage
 (

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/10/21 15:28:43  arnold
     removed all the 'charset' stuff
 
@@ -60,6 +63,7 @@
 #include <kprogress.h>
 #include <krecentdocument.h>
 #include <kstatusbar.h>
+#include <klocale.h>
 
 #include "kvoctrain.h"
 #include "UsageManager.h"
@@ -91,7 +95,7 @@ static QString getFileName(const QString &caption,
 			   QWidget* parent = 0, const QString &name = 0)
 {
     QString filename;
-    KFileDialog dlg(dir, filter, parent, EA_LOCAL(name), true /*, false*/);
+    KFileDialog dlg(dir, filter, parent, name.local8Bit(), true /*, false*/);
 
     dlg.setCaption(caption);
 
@@ -569,9 +573,9 @@ void kvoctrainApp::slotFileSave() /*FOLD00*/
   slotStatusMsg(msg);
 
   // remove previous backup
-  QFile::remove(EA_ENCODEFILE(doc->getFileName()+"~"));
-  ::rename (EA_ENCODEFILE(doc->getFileName()),
-            EA_ENCODEFILE(doc->getFileName()+"~"));
+  QFile::remove(QFile::encodeName(doc->getFileName()+"~"));
+  ::rename (QFile::encodeName(doc->getFileName()),
+            QFile::encodeName(doc->getFileName()+"~"));
 
   prepareProgressBar();
   saveDocProps(doc);
@@ -683,8 +687,8 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
       QString msg = format.arg(name);
       slotStatusMsg(msg);
 
-      QFile::remove(EA_ENCODEFILE(name+"~"));         // remove previous backup
-      ::rename (EA_ENCODEFILE(name), EA_ENCODEFILE(QString(name+"~")));
+      QFile::remove(QFile::encodeName(name+"~"));         // remove previous backup
+      ::rename (QFile::encodeName(name), QFile::encodeName(QString(name+"~")));
       saveDocProps(doc);
 
       prepareProgressBar();
@@ -737,7 +741,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
 
     QFile::remove(name+"~");         // remove previous backup
     // FIXME: check error
-    ::rename (EA_ENCODEFILE(name), EA_ENCODEFILE(name+"~"));
+    ::rename (QFile::encodeName(name), QFile::encodeName(name+"~"));
     saveDocProps(&seldoc);
  
     prepareProgressBar();

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 14:18:00  arnold
+    fixed and improved some dialog pages
+
     Revision 1.5  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -49,8 +52,8 @@
 
 #include <qtimer.h>
 
-#include "compat_2x.h"
-#include "eadebug.h"
+#include <klocale.h>
+
 #include "kvoctrain.h"
 #include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"

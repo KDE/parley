@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 21:12:18  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -46,7 +49,8 @@
 #include <qlabel.h>
 
 #include <kvoctraindoc.h>
-#include <compat_2x.h>
+#include <kstddirs.h>
+#include <klocale.h>
 
 ProgressDlg::ProgressDlg
 (

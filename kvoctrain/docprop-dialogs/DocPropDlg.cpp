@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 21:12:40  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -55,8 +58,9 @@
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
 #include <langset.h>
-#include <compat_2x.h>
 
+#include <klocale.h>
+#include <kstddirs.h>
 #include <kapp.h>
 #include <qcombobox.h>
 #include <qpixmap.h>

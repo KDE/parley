@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.13  2001/11/09 14:18:00  arnold
     fixed and improved some dialog pages
 
@@ -89,6 +92,9 @@
 #include <kcombobox.h>
 #include <kprogress.h>
 #include <kapp.h>
+#include <kconfig.h>
+#include <kstddirs.h>
+#include <klocale.h>
 
 #include <qcursor.h>
 #include <qtimer.h>
@@ -99,8 +105,6 @@
 #include <time.h>
 #include <ctype.h>
 
-#include "compat_2x.h"
-#include "eadebug.h"
 #include "kvoctraindoc.h"
 #include "langset.h"
 #include "kvoctrain.h"

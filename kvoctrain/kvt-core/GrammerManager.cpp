@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:00  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -28,13 +31,12 @@
  ***************************************************************************/
 
 #include "GrammerManager.h"
-#include "eadebug.h"
-#include "compat_2x.h"
 
 #ifndef i18n_noop
 # define i18n_noop(x) (x)
 #endif
 
+#include <klocale.h>
 #include <kapp.h>
 
 Conjugation::conjug_name_t

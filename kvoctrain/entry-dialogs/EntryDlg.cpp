@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 21:13:00  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.7  2001/11/09 14:18:49  arnold
     fixed and improved some dialog pages
 
@@ -66,7 +69,8 @@
 #include <kvoctraindoc.h>
 #include <kv_resource.h>
 #include <langset.h>
-#include <compat_2x.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 EntryDlg::EntryDlg
 (

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/09 15:52:20  arnold
+    fixed error messages for correct i18n use
+
     Revision 1.3  2001/10/21 16:19:32  arnold
     fixed detecting for latin1 or utf8
 
@@ -36,15 +39,15 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "compat_2x.h"
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
 #include "QueryManager.h"
 
 #include <kapp.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 #include <qmessagebox.h>
-
 #include <qtextcodec.h>
 
 bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.4  2001/10/20 08:10:34  arnold
     fixed copying multiple lines to clipboard
 
@@ -48,7 +51,10 @@
 #include "kvoctrain.h"
 
 #include <qclipboard.h>
+
 #include <klineedit.h>
+#include <klocale.h>
+#include <kconfig.h>
 
 #include <algo.h>
 

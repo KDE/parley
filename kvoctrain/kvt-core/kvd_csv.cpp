@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 16:19:32  arnold
+    fixed detecting for latin1 or utf8
+
     Revision 1.3  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -40,7 +43,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "compat_2x.h"
+#include <klocale.h>
 #include <kapp.h>
 
 #include "kvoctraindoc.h"

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
  
  ***************************************************************************/
 
@@ -29,10 +32,10 @@
 
 #include "UsageManager.h"
 #include "kv_resource.h"
-#include "eadebug.h"
-#include "compat_2x.h"
 
 #include <kapp.h>
+#include <klocale.h>
+
 #include <kvoctraindoc.h>
 #include <iostream.h>
 #include <vector.h>

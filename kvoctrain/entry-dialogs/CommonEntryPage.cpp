@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 21:13:00  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.6  2001/11/09 14:18:49  arnold
     fixed and improved some dialog pages
 
@@ -62,6 +65,8 @@
 #include <qgroupbox.h>
 
 #include <kapp.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 #include <QueryManager.h>
 #include <kv_resource.h>

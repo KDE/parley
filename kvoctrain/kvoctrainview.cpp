@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.9  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -74,6 +77,7 @@
 #include <kmessagebox.h>
 #include <kstddirs.h>
 #include <kconfig.h>
+#include <klocale.h>
 
 #include <qwidget.h>
 #include <qlayout.h>

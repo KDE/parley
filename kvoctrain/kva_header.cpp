@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.5  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -57,7 +60,6 @@
 #else
 
 #include "kvoctrain.h"
-#include "compat_2x.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"
@@ -69,6 +71,8 @@
 #include <kcombobox.h>
 #include <kglobal.h>
 #include <ksimpleconfig.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 {

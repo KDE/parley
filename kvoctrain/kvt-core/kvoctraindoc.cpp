@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 17:50:44  arnold
+    fixed sorting basically
+
     Revision 1.4  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -47,9 +50,9 @@
 
 
 #include "kvoctraindoc.h"
+
 #include <kapp.h>
-#include <eadebug.h>
-#include "compat_2x.h"
+#include <klocale.h>
 
 #include <qmessagebox.h>
 #include <qfile.h>
@@ -566,10 +569,10 @@ public:
     {
       return
         !dir
-        ? (EA_STRICMP (x.getOriginal(),
-                       y.getOriginal() ) < 0)
-        : (EA_STRICMP (x.getOriginal(),
-                       y.getOriginal() ) > 0);
+        ? (QString::compare(x.getOriginal().upper(),
+                            y.getOriginal().upper() ) < 0)
+        : (QString::compare(x.getOriginal(),
+                            y.getOriginal().upper() ) > 0);
     }
 
  private:
@@ -591,17 +594,17 @@ public:
       if (x.getLesson() != y.getLesson() )
         return
           !dir
-          ? (EA_STRICMP (doc.getLessonDescr(x.getLesson()),
-                         doc.getLessonDescr(y.getLesson()) ) < 0)
-          : (EA_STRICMP (doc.getLessonDescr(x.getLesson()),
-                         doc.getLessonDescr(y.getLesson()) ) > 0);
+          ? (QString::compare(doc.getLessonDescr(x.getLesson()).upper(),
+                              doc.getLessonDescr(y.getLesson()).upper() ) < 0)
+          : (QString::compare(doc.getLessonDescr(x.getLesson()).upper(),
+                              doc.getLessonDescr(y.getLesson()).upper() ) > 0);
       else
         return
           !dir
-          ? (EA_STRICMP (x.getOriginal(),
-                         y.getOriginal() ) < 0)
-          : (EA_STRICMP (x.getOriginal(),
-                         y.getOriginal() ) > 0);
+          ? (QString::compare(x.getOriginal().upper(),
+                              y.getOriginal().upper() ) < 0)
+          : (QString::compare(x.getOriginal().upper(),
+                              y.getOriginal().upper() ) > 0);
     }
 
  private:
@@ -629,10 +632,10 @@ public:
       else
         return
           !dir
-          ? (EA_STRICMP (x.getOriginal(),
-                         y.getOriginal() ) < 0)
-          : (EA_STRICMP (x.getOriginal(),
-                         y.getOriginal() ) > 0);
+          ? (QString::compare(x.getOriginal().upper(),
+                              y.getOriginal().upper() ) < 0)
+          : (QString::compare(x.getOriginal().upper(),
+                              y.getOriginal().upper() ) > 0);
     }
 
  private:
@@ -653,10 +656,10 @@ public:
     {
       return
         !dir
-        ? (EA_STRICMP (x.getTranslation(index),
-                       y.getTranslation(index) ) < 0)
-        : (EA_STRICMP (x.getTranslation(index),
-                       y.getTranslation(index) ) > 0);
+        ? (QString::compare(x.getTranslation(index).upper(),
+                            y.getTranslation(index).upper() ) < 0)
+        : (QString::compare(x.getTranslation(index).upper(),
+                            y.getTranslation(index).upper() ) > 0);
     }
 
  private:
@@ -997,7 +1000,7 @@ public:
     {
       QString s1 = exp->getOriginal();
       QString s2 = y.exp->getOriginal();
-      int cmp = EA_STRICMP (s1, s2);
+      int cmp = QString::compare(s1.upper(), s2.upper());
       if (cmp != 0)
         return cmp < 0;
 
@@ -1005,7 +1008,7 @@ public:
 
         s1 = exp->getTranslation(i);
         s2 = y.exp->getTranslation(i);
-        cmp = EA_STRICMP (s1, s2 );
+        cmp = QString::compare(s1.upper(), s2.upper() );
         if (cmp != 0)
           return cmp < 0;
       }

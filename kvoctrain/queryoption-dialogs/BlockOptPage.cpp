@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.4  2001/10/17 21:41:16  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -51,6 +54,7 @@
 
 #include <kapp.h>
 #include <kmessagebox.h>
+#include <klocale.h>
 
 #include <qkeycode.h>
 #include <qcombobox.h>

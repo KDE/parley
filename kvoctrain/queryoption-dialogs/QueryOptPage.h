@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.1  2001/10/05 15:46:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,7 +40,9 @@
 #include "QueryOptPageForm.h"
 
 #include <QueryManager.h>
-#include <compat_2x.h>
+
+#include <kstddirs.h>
+#include <klocale.h>
 
 class QValidator;
 

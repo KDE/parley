@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/02 10:18:58  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.5  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -60,6 +63,7 @@
 
 #include <stdlib.h>
 #include <kapp.h>
+#include <klocale.h>
 
 #include <QueryManager.h>
 

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:40:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/11/02 10:18:31  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -55,7 +58,8 @@
 #include <vector.h>
 
 #include "kv_resource.h"
-#include "compat_2x.h"
+#include <klocale.h>
+#include <kstddirs.h>
 
 QPixmap * kvoctrainExpr::s_pm_mark = 0;
 
@@ -813,7 +817,7 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
   }
 
   if (cell_selected)
-    p->setPen (EA_QtNS(white));
+    p->setPen (Qt::white);
   else
     p->setPen (color);
 
@@ -827,7 +831,7 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
         if (voc_doc != 0 && getLesson() != 0)
           less_str = voc_doc->getLessonDescr(getLesson() );
 	p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-		     EA_QtNS(AlignLeft),
+		     Qt::AlignLeft,
 		     less_str);
       }
     break;
@@ -845,7 +849,7 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
     case KV_COL_ORG: // original
       {
 	p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-		     EA_QtNS(AlignLeft),
+		     Qt::AlignLeft,
 		     getOriginal() );
 	break;
       }
@@ -853,7 +857,7 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 
     default: // translation x
       p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-		     EA_QtNS(AlignLeft),
+                   Qt::AlignLeft,
 		   getTranslation(col-KV_COL_ORG) );
       break;
   }

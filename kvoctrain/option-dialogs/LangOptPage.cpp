@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 17:35:03  arnold
+    fixed language property dialog page
+
     Revision 1.7  2001/11/09 10:40:46  arnold
     removed ability to display a different font for each column
 
@@ -68,7 +71,7 @@
 #include <kfiledialog.h>
 #include <kapp.h>
 #include <kdebug.h>
-
+#include <klocale.h>
 #include <kmessagebox.h>
 #include <kstddirs.h>
 

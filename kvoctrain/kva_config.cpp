@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.8  2001/11/09 15:52:00  arnold
     fixed error messages for correct i18n use
 
@@ -58,15 +61,15 @@
  ***************************************************************************/
 
 #include "kvoctrain.h"
-#include "compat_2x.h"
-#include <qfile.h>
 
 #include <X11/Xlib.h>
 
 #include <qmessagebox.h>
+#include <qfile.h>
 
 #include <kconfig.h>
 #include <kstatusbar.h>
+#include <klocale.h>
 
 #include "common-dialogs/ProgressDlg.h"
 

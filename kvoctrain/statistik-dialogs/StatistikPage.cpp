@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/19 17:52:18  arnold
+    replaced dialog files from qtarch by qtdesigner
+
     Revision 1.2  2001/10/13 11:45:30  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -37,16 +40,15 @@
 
 #include "StatistikPage.h"
 
-#include <qpainter.h>
-
 #include <kpopupmenu.h>
-
 #include <kapp.h>
+#include <klocale.h>
 
 #include <kvoctraindoc.h>
 
 #include <qcursor.h>
 #include <qlayout.h>
+#include <qpainter.h>
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -33,7 +36,7 @@
 
 #include <vector.h>
 
-#include "compat_2x.h"
+#include <klocale.h>
 #include <kapp.h>
 
 #define KVD_VERS_PREFIX " v"     //#include "kvoctraindoc.h"
@@ -168,47 +171,47 @@ void readToMem (QTextStream &is, QString month, QString year)
            spot.de = line.mid(pos+1, line.length()-pos-1);
   
            if ((pos = spot.en.find(" UK") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("UK "));
+             spot.en_rem+= i18n("UK ").local8Bit();
              spot.en.remove (pos, 3);
            }
            if ((pos = spot.en.find("(UK)") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("UK "));
+             spot.en_rem+= i18n("UK ").local8Bit();
              spot.en.remove (pos, 4);
            }
   
            if ((pos = spot.en.find(" N. Am.") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("N. Am. "));
+             spot.en_rem+= i18n("N. Am. ").local8Bit();
              spot.en.remove (pos, 7);
            }
            if ((pos = spot.en.find("(N. Am.)") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("N. Am. "));
+             spot.en_rem+= i18n("N. Am. ").local8Bit();
              spot.en.remove (pos, 8);
            }
   
            if ((pos = spot.en.find(" US") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("US "));
+             spot.en_rem+= i18n("US ").local8Bit();
              spot.en.remove (pos, 3);
            }
            if ((pos = spot.en.find("(US)") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("US "));
+             spot.en_rem+= i18n("US ").local8Bit();
              spot.en.remove (pos, 4);
            }
   
            if ((pos = spot.en.find("ifml.") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("ifml. "));
+             spot.en_rem+= i18n("ifml. ").local8Bit();
              spot.en.remove (pos, 5);
            }
            if ((pos = spot.en.find("(ifml.)") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("ifml. "));
+             spot.en_rem+= i18n("ifml. ").local8Bit();
              spot.en.remove (pos, 7);
            }
   
            if ((pos = spot.en.find("vulg.") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("vulg. "));
+             spot.en_rem+= i18n("vulg. ").local8Bit();
              spot.en.remove (pos, 5);
            }
            if ((pos = spot.en.find("(vulg.)") ) >= 0) {
-             spot.en_rem+= EA_LOCAL(i18n("vulg. "));
+             spot.en_rem+= i18n("vulg. ").local8Bit();
              spot.en.remove (pos, 7);
            }
   
@@ -275,8 +278,8 @@ void writeToKvtml(QTextStream &os, QString month, QString year)
            "  generator=\"spotlight2kvtml " SPOT_VERSION " kvoctrain" KVD_VERS_PREFIX "0.5.0\"\n"
            "  cols=\"2\"\n"
            "  lines=\""  << spottys.size() << "\"\n" <<
-           "  title=\"" << EA_LOCAL(i18n("Spotlight Online, issue ")) << month << " " << "\'" << year << "\"\n"
-           << "  author=" << EA_LOCAL(i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)"))
+           "  title=\"" << i18n("Spotlight Online, issue ").local8Bit() << month << " " << "\'" << year << "\"\n"
+           << "  author=" << i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)").local8Bit()
            << "\">\n\n"
            << " <lesson>\n";
 
@@ -305,7 +308,7 @@ int main(int argc, char **argv)
   KApplication app(argc,argv, "kvoctrain");
 
   if (argc != 4) {
-    cerr << EA_LOCAL(i18n("usage: spotlight2kvtml spotfile month year\n\n"));
+    cerr << i18n("usage: spotlight2kvtml spotfile month year\n\n").local8Bit();
     exit (1);
   }
 
@@ -329,7 +332,7 @@ int main(int argc, char **argv)
   fs.close();
 
   if (is.device()->status() != IO_Ok ) {
-    cerr << EA_LOCAL(i18n("Could not read ")) << EA_LOCAL(spot) << endl;
+    cerr << i18n("Could not read ").local8Bit() << spot.local8Bit() << endl;
     exit (1);
   }
 
@@ -340,7 +343,7 @@ int main(int argc, char **argv)
   fk.close();
 
   if (os.device()->status() != IO_Ok ) {
-    cerr << EA_LOCAL(i18n("Could not write ")) << EA_LOCAL(kvtml) << endl;
+    cerr << i18n("Could not write ").local8Bit() << kvtml.local8Bit() << endl;
     exit (1);
   }
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/21 15:29:27  arnold
     removed all the 'charset' stuff
 
@@ -43,9 +46,10 @@
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
 #include "QueryManager.h"
-#include "compat_2x.h"
 
 #include <kapp.h>
+#include <klocale.h>
+#include <kstddirs.h>
 
 #include <qtextcodec.h>
 

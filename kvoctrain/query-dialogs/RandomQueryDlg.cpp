@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 21:14:30  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.3  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column
 
@@ -57,9 +60,10 @@
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
-#include <compat_2x.h>
 
-#include <kapp.h> 
+#include <kstddirs.h>
+#include <klocale.h>
+#include <kapp.h>
 
 #include <qtimer.h>
 #include <qdialog.h>

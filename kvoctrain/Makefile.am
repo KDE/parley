@@ -27,10 +27,10 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
 
 APPS_FILES = \
  pics/16x16-kvoctrain.xpm pics/new.xpm pics/lesson.xpm\
- pics/list-win.xpm pics/pron-win.xpm pics/contents.xpm \
+ pics/list-win.xpm pics/pron-win.xpm\
  pics/delete-row.xpm pics/append-row.xpm pics/edit-row.xpm \
  pics/conf-save.xpm pics/gen-conf.xpm pics/query-conf.xpm \
- pics/flags.xpm pics/reset.xpm  pics/statist.xpm \
+ pics/flags.xpm pics/reset.xpm pics/statist.xpm \
  pics/delete-col.xpm pics/append-col.xpm \
  pics/rand-less.xpm \
  pics/run-verb.xpm  pics/run-art.xpm  pics/run-adj.xpm \

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/09 14:19:13  arnold
+    fixed and improved some dialog pages
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -32,10 +35,11 @@
 
 #include "QueryManager.h"
 #include "kv_resource.h"
-#include "eadebug.h"
-#include "compat_2x.h"
 
+#include <klocale.h>
 #include <kapp.h>
+#include <kconfig.h>
+
 #include <kvoctraindoc.h>
 #include <iostream.h>
 #include <vector.h>

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 21:12:18  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.4  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -51,10 +54,11 @@
 
 #include <klocale.h>
 #include <kapp.h>
+#include <kstddirs.h>
+#include <klocale.h>
 
 #include <kv_resource.h>
 
-#include <compat_2x.h>
 
 LessonInputDlg::LessonInputDlg
 (

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/10 21:16:47  arnold
+    removed icons and compatibility for kde1
+
     Revision 1.8  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -59,7 +62,7 @@
  ***************************************************************************/
 
 #include "kvoctrain.h"
-#include "compat_2x.h"
+
 #include "common-dialogs/ProgressDlg.h"
 
 #include <qclipboard.h>
@@ -73,6 +76,9 @@
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>
+#include <kstddirs.h>
+#include <klocale.h>
+#include <kconfig.h>
 
 kvoctrainApp::kvoctrainApp(const QString &name)
 {
