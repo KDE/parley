@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -35,18 +42,24 @@
  ***************************************************************************/
 
 #include "MCQueryDlg.h"
-#include "QueryDlg.h"
+#include "QueryDlgBase.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include <eadebug.h>
 #include <compat_2x.h>
+#include "MyProgress.h"
 
-#include <kapp.h> 
+#include <kapp.h>
 
 #include <qtimer.h>
 #include <qkeycode.h>
+#include <qlabel.h>
+#include <qradiobutton.h>
+#include <qgroupbox.h>
+#include <qbuttongroup.h>
+#include <qpushbutton.h>
 
 #include <iostream.h>
 #include <algo.h>
@@ -72,7 +85,8 @@ MCQueryDlg::MCQueryDlg(
                    kvq_timeout_t type_to,
                    QWidget *parent,
                    char *name)
-	: MCQueryDlgData(parent,name)
+	: MCQueryDlgForm(parent,name),
+	  QueryDlgBase()
 {
    transgroup->insert(rb_trans1);
    transgroup->insert(rb_trans2);
@@ -80,7 +94,6 @@ MCQueryDlg::MCQueryDlg(
    transgroup->insert(rb_trans4);
    transgroup->insert(rb_trans5);
 
-   connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -145,16 +158,16 @@ void MCQueryDlg::setQuery(QString org,
    QString s;
    s.setNum (q_cycle);
    progCount->setText (s);
-   remark->setText (exp->getRemark(orgcol));
-   falseFriend->setText (exp->getFauxAmi(orgcol));
-
+//   remark->setText (exp->getRemark(orgcol));
+//   falseFriend->setText (exp->getFauxAmi(orgcol));
+/*
    type->setText ("");
    vector<TypeRelation> all_types = QueryManager::getRelation(false);
    for (int i = 0; i < (int) all_types.size(); i++) {
      if ( exp->getType(orgcol) == all_types[i].shortStr())
        type->setText(all_types[i].longStr());
    }
-
+*/
    countbar->setData (q_start, q_start-q_num+1, true);
    countbar->repaint();
 
@@ -267,12 +280,6 @@ void MCQueryDlg::setQuery(QString org,
 void MCQueryDlg::initFocus() const
 {
   rb_trans1->setFocus();
-}
-
-
-void MCQueryDlg::optionsClicked()
-{
-   emit sigOptions();
 }
 
 

@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -41,10 +48,12 @@
 
 #include "QueryDlgBase.h"
 
-#define Inherited SimpleQueryDlgData
-
 #include <qtimer.h>
 #include <qkeycode.h>
+#include <qmultilineedit.h>
+#include <qlabel.h>
+#include <qgroupbox.h>
+#include <qpushbutton.h>
 
 #include <iostream.h>
 
@@ -67,10 +76,10 @@ SimpleQueryDlg::SimpleQueryDlg(
 	const char* name
 )
 	:
-	Inherited( parent, name )
+	SimpleQueryDlgForm( parent, name ),
+        QueryDlgBase()
 {
    connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-   connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -127,7 +136,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      case QT_Synonym: {
        answerLabel->setText (i18n("Synonym"));
        queryLabel->setText (i18n("Expression"));
-       s = i18n("Query of synonym");
+       s = i18n("Enter the synonym");
        groupName->setTitle (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getSynonym(column);
@@ -139,7 +148,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      case QT_Antonym: {
        answerLabel->setText(i18n("Antonym"));
        queryLabel->setText (i18n("Expression"));
-       s = i18n("Query of antonym");
+       s = i18n("Enter the antonym");
        groupName->setTitle (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getAntonym(column);
@@ -151,7 +160,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      case QT_Paraphrase: {
        answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Paraphrase"));
-       s = i18n("Query by paraphrase");
+       s = i18n("Enter the paraphrase");
        groupName->setTitle (s);
        setCaption (kapp->makeStdCaption(s));
        queryField->setText (exp->getParaphrase(column));
@@ -163,7 +172,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      case QT_Example: {
        answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Example sentence"));
-       s = i18n("Query by example");
+       s = i18n("Fill in the gap");
        groupName->setTitle (s);
        setCaption (kapp->makeStdCaption(s));
        QString s = exp->getExample(column);
@@ -286,12 +295,6 @@ void SimpleQueryDlg::dontKnowClicked()
 void SimpleQueryDlg::stopItClicked()
 {
    done (QueryDlgBase::StopIt);
-}
-
-
-void SimpleQueryDlg::optionsClicked()
-{
-   emit sigOptions();
 }
 
 

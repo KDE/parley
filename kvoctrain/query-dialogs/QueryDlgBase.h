@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -50,14 +57,13 @@ class QMultiLineEdit;
 class QLabel;
 class QRadioButton;
 
-class QueryDlgBase : public QDialog
+class QueryDlgBase
 {
-  Q_OBJECT
 public:
 
    enum Result { Unknown, Known, Timeout, StopIt };
 
-   QueryDlgBase ( QWidget * parent=0, const char * name=0, bool modal = true);
+   QueryDlgBase ();
 
    bool smartCompare (const QString&, const QString&, int level) const;
 
@@ -77,12 +83,9 @@ public:
         return (int) (range * ((1.0*rand())/RAND_MAX));
      }
 
-public slots:
    virtual void initFocus() const;
 
-signals:
-   void sigOptions();
-   void sigEditEntry(int row, int col);
+//   void sigEditEntry(int row, int col);
 
 protected:
 

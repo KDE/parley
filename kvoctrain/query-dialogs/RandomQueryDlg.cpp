@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -35,7 +42,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "QueryDlg.h"
+#include "RandomQueryDlg.h"
+#include "MyProgress.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
@@ -48,15 +56,18 @@
 #include <qdialog.h>
 #include <qwidget.h>
 #include <qpushbutton.h>
+#include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qlineedit.h>
+#include <qmultilineedit.h>
+#include <qlabel.h>
 #include <qkeycode.h>
 #include <qpainter.h>
 
 #include <iostream.h>
 
 
-QueryDlg::QueryDlg(
+RandomQueryDlg::RandomQueryDlg(
                    SpecFont_t *transfont,
                    SpecFont_t *orgfont,
                    QString org,
@@ -74,20 +85,20 @@ QueryDlg::QueryDlg(
                    kvq_timeout_t type_to,
                    QWidget *parent,
                    char *name)
-	: QueryDlgData(parent,name)
+	: QueryDlgForm(parent,name),
+	  QueryDlgBase()
 {
    connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
    connect( c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
    connect( c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()) );
-   connect( b_edittrans, SIGNAL(clicked()), SLOT(editTransClicked()) );
-   connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
+// connect( b_edittrans, SIGNAL(clicked()), SLOT(editTransClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
    connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
    connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
    connect( show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
-   connect( b_editorg, SIGNAL(clicked()), SLOT(editOrgClicked()) );
+// connect( b_editorg, SIGNAL(clicked()), SLOT(editOrgClicked()) );
 
    connect( transField, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)) );
 
@@ -112,7 +123,7 @@ QueryDlg::QueryDlg(
 }
 
 
-void QueryDlg::	setQuery(QString org,
+void RandomQueryDlg::	setQuery(QString org,
                          QString trans,
                          int entry,
                          int orgcol,
@@ -184,19 +195,13 @@ void QueryDlg::	setQuery(QString org,
 }
 
 
-void QueryDlg::initFocus() const
+void RandomQueryDlg::initFocus() const
 {
   transField->setFocus();
 }
 
 
-void QueryDlg::optionsClicked()
-{
-   emit sigOptions();
-}
-
-
-void QueryDlg::verifyClicked()
+void RandomQueryDlg::verifyClicked()
 {
   if (verifyField (transField, translation))
 //    know_it->setDefault(true);
@@ -206,7 +211,7 @@ void QueryDlg::verifyClicked()
 }
 
 
-void QueryDlg::showMoreClicked()
+void RandomQueryDlg::showMoreClicked()
 {
   resetField (transField);
   if (QString(transField->text()).length() < translation.length() ) {
@@ -216,7 +221,7 @@ void QueryDlg::showMoreClicked()
 }
 
 
-void QueryDlg::showAllClicked()
+void RandomQueryDlg::showAllClicked()
 {
   transField->setText (translation);
   verifyField (transField, translation);
@@ -224,20 +229,20 @@ void QueryDlg::showAllClicked()
 }
 
 
-void QueryDlg::slotTransChanged(const QString&)
+void RandomQueryDlg::slotTransChanged(const QString&)
 {
   verify->setDefault(true);
   resetField (transField);
 }
 
 
-void QueryDlg::knowItClicked()
+void RandomQueryDlg::knowItClicked()
 {
-   done (QueryDlg::Known);
+   done (RandomQueryDlg::Known);
 }
 
 
-void QueryDlg::timeoutReached()
+void RandomQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
@@ -255,24 +260,24 @@ void QueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)
-       done (QueryDlg::Timeout);
+       done (RandomQueryDlg::Timeout);
    }
 }
 
 
-void QueryDlg::dontKnowClicked()
+void RandomQueryDlg::dontKnowClicked()
 {
-   done (QueryDlg::Unknown);
+   done (RandomQueryDlg::Unknown);
 }
 
 
-void QueryDlg::stopItClicked()
+void RandomQueryDlg::stopItClicked()
 {
-   done (QueryDlg::StopIt);
+   done (RandomQueryDlg::StopIt);
 }
 
 
-void QueryDlg::editOrgClicked()
+void RandomQueryDlg::editOrgClicked()
 {
    if (qtimer != 0)
      qtimer->stop();
@@ -295,7 +300,7 @@ void QueryDlg::editOrgClicked()
 }
 
 
-void QueryDlg::editTransClicked()
+void RandomQueryDlg::editTransClicked()
 {
 
    if (qtimer != 0)
@@ -311,7 +316,7 @@ void QueryDlg::editTransClicked()
 }
 
 
-void QueryDlg::slotFFClicked()
+void RandomQueryDlg::slotFFClicked()
 {
    if (c_falsefriend->isChecked() )
      falseFriend->show();
@@ -320,7 +325,7 @@ void QueryDlg::slotFFClicked()
 }
 
 
-void QueryDlg::slotRemClicked()
+void RandomQueryDlg::slotRemClicked()
 {
    if (c_remark->isChecked())
      remark->show();
@@ -329,7 +334,7 @@ void QueryDlg::slotRemClicked()
 }
 
 
-void QueryDlg::slotTypeClicked()
+void RandomQueryDlg::slotTypeClicked()
 {
    if (c_type->isChecked() )
      type->show();
@@ -338,7 +343,7 @@ void QueryDlg::slotTypeClicked()
 }
 
 
-void QueryDlg::keyPressEvent( QKeyEvent *e )
+void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
 {
   switch( e->key() )
   {
@@ -364,4 +369,4 @@ void QueryDlg::keyPressEvent( QKeyEvent *e )
   }
 }
 
-#include "QueryDlg.moc"
+#include "RandomQueryDlg.moc"

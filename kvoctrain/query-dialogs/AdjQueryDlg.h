@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,12 +41,14 @@
 #ifndef AdjQueryDlg_included
 #define AdjQueryDlg_included
 
-#include "AdjQueryDlgData.h"
+#include "AdjQueryDlgForm.h"
+#include "QueryDlgBase.h"
 #include <GrammerManager.h>
 
 struct SpecFont_t;
 
-class AdjQueryDlg : public AdjQueryDlgData
+class AdjQueryDlg : public AdjQueryDlgForm,
+    		    public QueryDlgBase
 {
     Q_OBJECT
 
@@ -83,6 +92,9 @@ public slots:
 protected:
     void keyPressEvent( QKeyEvent *e );
     void resetAllFields();
+
+signals:
+    void sigEditEntry(int row, int col);
 
 protected slots:
 

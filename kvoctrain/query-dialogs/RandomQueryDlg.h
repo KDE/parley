@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -35,7 +42,8 @@
 #ifndef Query_Dlg_H
 #define Query_Dlg_H
 
-#include "QueryDlgData.h"
+#include "RandomQueryDlgForm.h"
+#include "QueryDlgBase.h"
 
 /* Library Includes */
 
@@ -44,16 +52,18 @@
 #include <qpushbutton.h>
 #include <qbuttongroup.h>
 #include <qlineedit.h>
+#include <qmultilineedit.h>
 
 class kvoctrainDoc;
 struct SpecFont_t;
 
-class QueryDlg : public QueryDlgData
+class RandomQueryDlg : public QueryDlgForm,
+                       public QueryDlgBase
 {
   Q_OBJECT
 
 public:
-	QueryDlg(
+	RandomQueryDlg(
                  SpecFont_t *transfont,
                  SpecFont_t *orgfont,
                  QString org,
@@ -92,6 +102,9 @@ public slots:
 protected:
     void keyPressEvent( QKeyEvent *e );
 
+signals:
+    void sigEditEntry(int row, int col);
+
 public slots:
     void verifyClicked();
     void showMoreClicked();
@@ -99,7 +112,6 @@ public slots:
     void knowItClicked();
     void dontKnowClicked();
     void stopItClicked();
-    void optionsClicked();
     void timeoutReached();
     void editOrgClicked();
     void editTransClicked();

@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -35,7 +42,8 @@
  ***************************************************************************/
 
 #include "VerbQueryDlg.h"
-#include "QueryDlg.h"
+#include "QueryDlgBase.h"
+#include "MyProgress.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
@@ -48,11 +56,12 @@
 
 #include <qtimer.h>
 #include <qkeycode.h>
+#include <qpushbutton.h>
+#include <qlabel.h>
+#include <qgroupbox.h>
+#include <qlineedit.h>
 
 #include <iostream.h>
-
-
-#define Inherited VerbQueryDlgData
 
 
 #include <kapp.h>
@@ -76,9 +85,9 @@ VerbQueryDlg::VerbQueryDlg
         QWidget *parent,
         char *name)
 	:
-	Inherited( parent, name )
+	VerbQueryDlgForm( parent, name ),
+        QueryDlgBase()
 {
-       	connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
 	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
         connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
 	connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
@@ -117,7 +126,6 @@ VerbQueryDlg::VerbQueryDlg
 
    if (font != 0 && font->specfont) {
      QFont specfont = font->limitedFont();
-     groupVerb->setFont (specfont);
      p1sLabel->setFont (specfont);
      p2sLabel->setFont (specfont);
      p3sfLabel->setFont (specfont);
@@ -192,12 +200,13 @@ void VerbQueryDlg::setQuery(QString type,
    p3pfLabel->setText (prefix.pers3FemalePlural(CONJ_PREFIX));
    p3pmLabel->setText (prefix.pers3MalePlural(CONJ_PREFIX));
    p3pnLabel->setText (prefix.pers3NaturalPlural(CONJ_PREFIX));
-
+/*
    p1sAccel->setBuddy(p1sField);
    p2sAccel->setBuddy(p2sField);
    p3snAccel->setBuddy(p3snField);
    p3smAccel->setBuddy(p3smField);
    p3sfAccel->setBuddy(p3sfField);
+*/
 /*
    p1pLabel->setBuddy(p1pField);
    p2pLabel->setBuddy(p2pField);
@@ -244,11 +253,10 @@ bool VerbQueryDlg::next()
     current++;
 
   type = conjugations.getType(current);
-  QString format = i18n("Enter %1 of:");
-  QString msg = format.arg(conjugations.getName(type));
+  QString format = i18n("Enter %1 for \"%2\"");
+  QString msg = format.arg(conjugations.getName(type)).arg(s);
 
-  groupTitle->setText (msg);
-  groupVerb->setText (s);
+  groupTitle->setTitle (msg);
 
   p1sField->setText("");
   p1sField->setEnabled (!conjugations.pers1Singular(type).isEmpty());
@@ -293,12 +301,6 @@ bool VerbQueryDlg::next()
   }
 
   return false;
-}
-
-
-void VerbQueryDlg::optionsClicked()
-{
-   emit sigOptions();
 }
 
 

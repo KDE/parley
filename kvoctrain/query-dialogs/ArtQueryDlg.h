@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -33,12 +40,14 @@
 #ifndef ArtQueryDlg_included
 #define ArtQueryDlg_included
 
-#include "ArtQueryDlgData.h"
+#include "ArtQueryDlgForm.h"
+#include "QueryDlgBase.h"
 #include <GrammerManager.h>
 
 struct SpecFont_t;
 
-class ArtQueryDlg : public ArtQueryDlgData
+class ArtQueryDlg : public ArtQueryDlgForm,
+		    public QueryDlgBase
 {
     Q_OBJECT
 
@@ -80,8 +89,10 @@ public slots:
 protected:
     void keyPressEvent( QKeyEvent *e );
 
-protected slots:
+signals:
+    void sigEditEntry(int row, int col);
 
+protected slots:
     void stopItClicked();
     void showMoreClicked();
     void showAllClicked();
@@ -91,7 +102,6 @@ protected slots:
     void slotNaturalClicked();
     void slotMaleClicked();
     void dontKnowClicked();
-    void optionsClicked();
     void verifyClicked();
     void returnPressed();
     void timeoutReached();

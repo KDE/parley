@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,13 +41,15 @@
 #ifndef VerbQueryDlg_included
 #define VerbQueryDlg_included
 
-#include "VerbQueryDlgData.h"
+#include "VerbQueryDlgForm.h"
+#include "QueryDlgBase.h"
 
 #include <GrammerManager.h>
 
 struct SpecFont_t;
 
-class VerbQueryDlg : public VerbQueryDlgData
+class VerbQueryDlg : public VerbQueryDlgForm,
+                     public QueryDlgBase
 {
     Q_OBJECT
 
@@ -86,8 +95,10 @@ protected:
     void keyPressEvent( QKeyEvent *e );
     void resetAllFields();
 
-protected slots:
+signals:
+    void sigEditEntry(int row, int col);
 
+protected slots:
     void editClicked();
     void stopItClicked();
     void slotP3pfChanged(const QString&);
@@ -98,7 +109,6 @@ protected slots:
     void knowItClicked();
     void dontKnowClicked();
     void slotP3pnChanged(const QString&);
-    void optionsClicked();
     void slotP3sfChanged(const QString&);
     void slotP1sChanged(const QString&);
     void slotP2sChanged(const QString&);

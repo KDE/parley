@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -37,8 +44,8 @@
 
 
 #include "AdjQueryDlg.h"
-
-#include "QueryDlg.h"
+#include "QueryDlgBase.h"
+#include "MyProgress.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
@@ -50,10 +57,10 @@
 #include <kapp.h> 
 
 #include <qtimer.h>
+#include <qpushbutton.h>
 #include <qkeycode.h>
-
-
-#define Inherited AdjQueryDlgData
+#include <qlineedit.h>
+#include <qlabel.h>
 
 AdjQueryDlg::AdjQueryDlg
 (
@@ -74,10 +81,10 @@ AdjQueryDlg::AdjQueryDlg
         const char* name
 )
 	:
-	Inherited( parent, name )
+	AdjQueryDlgForm( parent, name ),
+        QueryDlgBase()
 {
 	connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-	connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
 	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
 	connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
 	connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -181,12 +188,6 @@ void AdjQueryDlg::setQuery(QString type,
 void AdjQueryDlg::initFocus() const
 {
   lev1Field->setFocus();
-}
-
-
-void AdjQueryDlg::optionsClicked()
-{
-   emit sigOptions();
 }
 
 

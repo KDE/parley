@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -46,8 +53,7 @@
 
 #include <LineList.h>
 
-QueryDlgBase::QueryDlgBase ( QWidget * parent, const char * name, bool modal)
-     : QDialog (parent, name, true, 0)
+QueryDlgBase::QueryDlgBase ()
 {
   kv_doc = 0;
   kv_exp = 0;
@@ -327,4 +333,4 @@ void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
     }
   }
 }
-#include "QueryDlgBase.moc"
+//#include "QueryDlgBase.moc"

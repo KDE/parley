@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -35,7 +42,8 @@
 #ifndef MCQuery_Dlg_H
 #define MCQuery_Dlg_H
 
-#include "MCQueryDlgData.h"
+#include "MCQueryDlgForm.h"
+#include "QueryDlgBase.h"
 
 /* Library Includes */
 
@@ -43,7 +51,8 @@ class kvoctrainExpr;
 class kvoctrainDoc;
 struct SpecFont_t;
 
-class MCQueryDlg : public MCQueryDlgData
+class MCQueryDlg : public MCQueryDlgForm,
+		   public QueryDlgBase
 {
   Q_OBJECT
 
@@ -84,6 +93,9 @@ public:
 public slots:
         virtual void initFocus() const;
 
+signals:
+        void sigEditEntry(int row, int col);
+
 protected:
         void keyPressEvent( QKeyEvent *e );
 
@@ -92,7 +104,6 @@ public slots:
         void knowItClicked();
         void dontKnowClicked();
         void stopItClicked();
-        void optionsClicked();
         void timeoutReached();
         void editOrgClicked();
         void editTransClicked();

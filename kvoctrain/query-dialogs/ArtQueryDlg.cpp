@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -36,10 +43,8 @@
 
 
 #include "ArtQueryDlg.h"
-
-#define Inherited ArtQueryDlgData
-
-#include "QueryDlg.h"
+#include "QueryDlgBase.h"
+#include "MyProgress.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
@@ -51,6 +56,12 @@
 
 #include <qtimer.h>
 #include <qkeycode.h>
+#include <qkeycode.h>
+#include <qradiobutton.h>
+#include <qlabel.h>
+#include <qpushbutton.h>
+#include <qbuttongroup.h>
+
 
 
 ArtQueryDlg::ArtQueryDlg
@@ -71,15 +82,15 @@ ArtQueryDlg::ArtQueryDlg
         QWidget *parent,
         char    *name)
 	:
-	Inherited( parent, name )
+	ArtQueryDlgForm( parent, name ),
+        QueryDlgBase()
 {
    qtimer = 0;
 
-   art_group->insert (natural);
-   art_group->insert (male);
-   art_group->insert (rb_fem);
+   artGroup->insert (natural);
+   artGroup->insert (male);
+   artGroup->insert (rb_fem);
 
-   connect( options, SIGNAL(clicked()), SLOT(optionsClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -205,12 +216,6 @@ void ArtQueryDlg::setQuery(QString type,
 void ArtQueryDlg::initFocus() const
 {
   rb_fem->setFocus();
-}
-
-
-void ArtQueryDlg::optionsClicked()
-{
-   emit sigOptions();
 }
 
 

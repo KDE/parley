@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,10 +41,12 @@
 #ifndef SimpleQueryDlg_included
 #define SimpleQueryDlg_included
 
-#include "SimpleQueryDlgData.h"
+#include "SimpleQueryDlgForm.h"
+#include "QueryDlgBase.h"
 #include "MyProgress.h"
 
-class SimpleQueryDlg : public SimpleQueryDlgData
+class SimpleQueryDlg : public SimpleQueryDlgForm,
+                       public QueryDlgBase
 {
     Q_OBJECT
 
@@ -76,6 +85,9 @@ public:
 public slots:
     virtual void initFocus() const;
 
+signals:
+    void sigEditEntry(int row, int col);
+
 protected:
     void keyPressEvent( QKeyEvent *e );
 
@@ -85,7 +97,6 @@ public slots:
     void showAllClicked();
     void knowItClicked();
     void dontKnowClicked();
-    void optionsClicked();
     void slotAnswerChanged();
     void editClicked();
     void verifyClicked();
