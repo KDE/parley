@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -30,12 +33,13 @@
 
 #include "CharSetDlg.h"
 
-#define Inherited CharSetDlgData
-
 #include <kapp.h>
 
 #include <kvoctraindoc.h>
 #include "../kvoctrain.h"
+
+#include <qlistbox.h>
+#include <qlineedit.h>
 
 CharSetDlg::CharSetDlg
     (
@@ -44,7 +48,7 @@ CharSetDlg::CharSetDlg
         QStrList     &rawnames,
         QWidget      *parent,
         const char   *name
-    )  : Inherited( parent, name )
+    )  : CharSetDlgForm( parent, name, true )
 {
    setCaption (kvoctrainApp::generateCaption(i18n("Choose charset"), true));
    connect( listbox, SIGNAL(selected(int)), SLOT(slotSelected(int)));
@@ -131,7 +135,3 @@ void CharSetDlg::slotSelected(int)
    accept();
 }
 
-
-//CharSetDlg::~CharSetDlg()
-//{
-//}

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -29,9 +32,9 @@
 #ifndef NumLessonDlg_included
 #define NumLessonDlg_included
 
-#include "NumLessonDlgData.h"
+#include "NumLessonDlgForm.h"
 
-class NumLessonDlg : public NumLessonDlgData
+class NumLessonDlg : public NumLessonDlgForm
 {
     Q_OBJECT
 

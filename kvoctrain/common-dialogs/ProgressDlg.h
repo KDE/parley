@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -32,11 +35,11 @@
 #ifndef ProgressDlg_included
 #define ProgressDlg_included
 
-#include "ProgressDlgData.h"
+#include "ProgressDlgForm.h"
 
 class kvoctrainDoc;
 
-class ProgressDlg : public ProgressDlgData
+class ProgressDlg : public ProgressDlgForm
 {
     Q_OBJECT
 

@@ -14,28 +14,30 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
 #include "NumLessonDlg.h"
 
-#define Inherited NumLessonDlgData
-
 #include <kapp.h>
 
 #include <kv_resource.h>
 #include <compat_2x.h>
-
 #include "../kvoctrain.h"
+
+#include <qlineedit.h>
 
 NumLessonDlg::NumLessonDlg
 (
-        int         num,
+  int         num,
 	QWidget    *parent,
 	const char *name
 )
 	:
-	Inherited( parent, name )
+	NumLessonDlgForm( parent, name )
 {
       input = num;
       connect( e_title, SIGNAL(textChanged(const QString&)), SLOT(slotInputChanged(const QString&)) );

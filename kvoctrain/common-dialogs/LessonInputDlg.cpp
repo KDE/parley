@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -28,12 +31,9 @@
 
 #include "LessonInputDlg.h"
 
-#define Inherited LessonInputDlgData
-
 #include <qpixmap.h>
 
 #include <kv_resource.h>
-#include <compat_2x.h>
 #include "../kvoctrain.h"
 
 LessonInputDlg::LessonInputDlg
@@ -45,7 +45,7 @@ LessonInputDlg::LessonInputDlg
 	const char* name
 )
 	:
-	Inherited( parent, name )
+	LessonInputDlgForm( parent, name, true )
 {
 	connect( e_title, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( b_cancel, SIGNAL(clicked()), SLOT(reject()) );

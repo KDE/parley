@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,13 +34,13 @@
 #ifndef CharSetDlg_included
 #define CharSetDlg_included
 
-#include "CharSetDlgData.h"
+#include "CharSetDlgForm.h"
 
 #include <qstrlist.h>
 
 #include <vector.h>
 
-class CharSetDlg : public CharSetDlgData
+class CharSetDlg : public CharSetDlgForm
 {
     Q_OBJECT
 
@@ -51,8 +54,6 @@ public:
         QWidget      *parent = NULL,
         const char   *name = NULL
     );
-
-//  virtual ~CharSetDlg();
 
     QFont getFont () const;
 

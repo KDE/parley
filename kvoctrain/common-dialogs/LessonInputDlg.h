@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -29,10 +32,11 @@
 #ifndef LessonInputDlg_included
 #define LessonInputDlg_included
 
-#include "LessonInputDlgData.h"
-#include <compat_2x.h>
+#include "LessonInputDlgForm.h"
 
-class LessonInputDlg : public LessonInputDlgData
+#include <qlineedit.h>
+
+class LessonInputDlg : public LessonInputDlgForm
 {
     Q_OBJECT
 

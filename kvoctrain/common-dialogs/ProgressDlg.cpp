@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -30,10 +33,10 @@
 
 #include "ProgressDlg.h"
 
-#define Inherited ProgressDlgData
-
-
 #include <kapp.h>
+
+#include <qprogressbar.h>
+#include <qlabel.h>
 
 #include <kvoctraindoc.h>
 #include <compat_2x.h>
@@ -47,19 +50,20 @@ ProgressDlg::ProgressDlg
 	const char* name
 )
 	:
-	Inherited( parent, name )
+	ProgressDlgForm( parent, name )
 {
      doc = 0;
      setCaption (title);
      l_title->setText (doctitle);
      l_file->setText (filename);
      setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+     progress-> setTotalSteps(100);
 }
 
 
 void ProgressDlg::setValue( kvoctrainDoc *new_doc, int val)
 {
-   progress->setValue(val);
+   progress->setProgress(val);
    if (doc == 0 && new_doc != 0) {
      doc = new_doc;
      QString s = doc->getFileName();
