@@ -68,6 +68,4 @@ DocPath=kvoctrain/index.html
 Type=Application
 Terminal=false
 MimeType=text/x-kvtml
-#ServiceTypes=Browser/View
-#X-KDE-Library=libkorganizer
 Categories=Qt;KDE;Education;X-KDE-Edu-Language;
