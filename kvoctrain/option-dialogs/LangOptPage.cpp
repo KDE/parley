@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.20  2002/01/27 07:17:47  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -813,7 +816,7 @@ LangOptPage::LangOptPage
       b_langPixmap->setText  (i18n("No Picture Selected"));
   }
   else {
-    b_langPixmap->setText  (i18n("No Picture Selected"));
+    b_langPixmap->setText  (i18n("No Picture Selected..."));
     b_langPixmap->setEnabled(false);
   }
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/05/09 09:19:04  arnold
+    fixed missing entry dialog
+
     Revision 1.22  2002/04/03 15:19:29  mlaurent
     Fix header
 
@@ -202,10 +205,10 @@ EntryDlg::EntryDlg(
 
         from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
                                          f_faux_ami,
-                                         i18n("Properties from original"));
+                                         i18n("Properties From Original"));
         to_page   = new FromToEntryPage (this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
                                          t_faux_ami,
-                                         i18n("Properties to original"));
+                                         i18n("Properties to Original"));
 
         QVBoxLayout *tablay = new QVBoxLayout(tabframe);
         tabber = new QTabWidget(tabframe);
@@ -314,11 +317,11 @@ void EntryDlg::setData(
         if (from_page != 0)
           from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
                              f_faux_ami,
-                             i18n("Properties from original"));
+                             i18n("Properties From Original"));
         if (to_page != 0)
           to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
                            t_faux_ami,
-                           i18n("Properties to original"));
+                           i18n("Properties to Original"));
 
         setModified(false);
         updatePages (type);

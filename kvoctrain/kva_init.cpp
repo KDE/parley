@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.28  2002/04/19 09:12:10  arnold
+    xml structure now more conforming
+
     Revision 1.27  2002/04/16 17:54:09  binner
     Capitalisation fixes.
 
@@ -240,7 +243,7 @@ void kvoctrainApp::initMenuBar()
   file_menu->insertItem(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Small),
                         i18n("&Open..."), ID_FILE_OPEN );
 
-  file_menu->insertItem(i18n("&Open an Example..."), ID_FILE_OPEN_XMP );
+  file_menu->insertItem(i18n("&Open Example..."), ID_FILE_OPEN_XMP );
 
   recent_files_menu = new QPopupMenu();
   connect(recent_files_menu, SIGNAL(activated(int)),   SLOT(slotFileOpenRecent(int)) );
@@ -281,9 +284,9 @@ void kvoctrainApp::initMenuBar()
   edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("&Search From Clipboard"), ID_SEARCH_CLIP );
   edit_menu->insertSeparator();
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append New Entry"), ID_APPEND_ROW );
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit Selected Area"), ID_EDIT_ROW );
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove Selected Area"), ID_REMOVE_ROW );
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), i18n("Sa&ve Selected Area.."), ID_SAVE_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit Selected Area..."), ID_EDIT_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove Selected Area..."), ID_REMOVE_ROW );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), i18n("Sa&ve Selected Area..."), ID_SAVE_ROW );
   connect( edit_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEdit()));
   connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
   clipboardChanged();
@@ -303,7 +306,7 @@ void kvoctrainApp::initMenuBar()
   // menuBar entry voc_menu
   voc_menu = new QPopupMenu();
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/statist.xpm")), i18n("Show &Statistics"), ID_SHOW_STAT );
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/rand-less.xpm")), i18n("Assign &Lessons"), ID_RAND_CREATE );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/rand-less.xpm")), i18n("Assign &Lessons..."), ID_RAND_CREATE );
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/cleanup.xpm")), i18n("&Clean Up"), ID_CLEANUP );
   voc_menu->insertSeparator();
   QPopupMenu *add_m = new QPopupMenu();
@@ -314,8 +317,8 @@ void kvoctrainApp::initMenuBar()
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove Language"), remove_m, ID_REMOVE_LANG);
 
   voc_menu->insertSeparator();
-  voc_menu->insertItem(i18n("Document &Properties"), ID_DOC_PROPS );
-  voc_menu->insertItem(i18n("Lan&guage Properties"), ID_DOC_PROPS_LANG );
+  voc_menu->insertItem(i18n("Document &Properties..."), ID_DOC_PROPS );
+  voc_menu->insertItem(i18n("Lan&guage Properties..."), ID_DOC_PROPS_LANG );
   connect( voc_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabulary()));
 
   ///////////////////////////////////////////////////////////////////
@@ -329,8 +332,8 @@ void kvoctrainApp::initMenuBar()
   opts_menu->insertItem(i18n("St&atusbar"), ID_VIEW_STATUSBAR );
   opts_menu->insertItem(i18n("&Inline Editing"), ID_VIEW_INLINE );
   opts_menu->insertSeparator();
-  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/gen-conf.xpm")), i18n("General &Options"), ID_GENERAL_OPTIONS );
-  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/query-conf.xpm")), i18n("&Query Options"), ID_QUERY_OPTIONS );
+  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/gen-conf.xpm")), i18n("General &Options..."), ID_GENERAL_OPTIONS );
+  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/query-conf.xpm")), i18n("&Query Options..."), ID_QUERY_OPTIONS );
   opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/conf-save.xpm")),i18n("&Save Options"), ID_SAVE_OPTIONS );
   connect( opts_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowOptions()));
 

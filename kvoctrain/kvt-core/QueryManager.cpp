@@ -15,6 +15,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/04/12 10:09:56  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.9  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -83,40 +88,40 @@ struct t_type_rel
 
 static t_type_rel InternalTypeRelations [] =
 {
-  { QM_ADJ,                           I18N_NOOP("adjective") },
+  { QM_ADJ,                           I18N_NOOP("Adjective") },
 
-  { QM_ADV,                           I18N_NOOP("adverb") },
+  { QM_ADV,                           I18N_NOOP("Adverb") },
 
-  { QM_ART,                           I18N_NOOP("article") },
-  { QM_ART QM_TYPE_DIV QM_ART_DEF,    I18N_NOOP("article definite") },
-  { QM_ART QM_TYPE_DIV QM_ART_IND,    I18N_NOOP("article indefinite") },
+  { QM_ART,                           I18N_NOOP("Article") },
+  { QM_ART QM_TYPE_DIV QM_ART_DEF,    I18N_NOOP("Article Definite") },
+  { QM_ART QM_TYPE_DIV QM_ART_IND,    I18N_NOOP("Article Indefinite") },
 
-  { QM_CON,                           I18N_NOOP("conjunction") },
+  { QM_CON,                           I18N_NOOP("Conjunction") },
 
-  { QM_NAME,                          I18N_NOOP("name") },   // old type "3"
+  { QM_NAME,                          I18N_NOOP("Name") },   // old type "3"
 
-  { QM_NOUN,                          I18N_NOOP("noun") },   // old type "2"
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    I18N_NOOP("noun male") },
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    I18N_NOOP("noun female") },
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    I18N_NOOP("noun neutral") },
+  { QM_NOUN,                          I18N_NOOP("Noun") },   // old type "2"
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    I18N_NOOP("Noun Male") },
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    I18N_NOOP("Noun Female") },
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    I18N_NOOP("Noun Neutral") },
 
-  { QM_NUM,                           I18N_NOOP("numeral") },
-  { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    I18N_NOOP("numeral ordinal") },
-  { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   I18N_NOOP("numeral cardinal") },
+  { QM_NUM,                           I18N_NOOP("Numeral") },
+  { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    I18N_NOOP("Numeral Ordinal") },
+  { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   I18N_NOOP("Numeral Cardinal") },
 
-  { QM_PHRASE,                        I18N_NOOP("phrase") },
+  { QM_PHRASE,                        I18N_NOOP("Phrase") },
 
-  { QM_PREP,                          I18N_NOOP("preposition") },
+  { QM_PREP,                          I18N_NOOP("Preposition") },
 
-  { QM_PRON,                          I18N_NOOP("pronoun") },
-  { QM_PRON QM_TYPE_DIV QM_PRON_POS,  I18N_NOOP("pronoun possessive") },
-  { QM_PRON QM_TYPE_DIV QM_PRON_PER,  I18N_NOOP("pronoun personal") },
+  { QM_PRON,                          I18N_NOOP("Pronoun") },
+  { QM_PRON QM_TYPE_DIV QM_PRON_POS,  I18N_NOOP("Pronoun Possessive") },
+  { QM_PRON QM_TYPE_DIV QM_PRON_PER,  I18N_NOOP("Pronoun Personal") },
 
-  { QM_QUEST,                         I18N_NOOP("question") },
+  { QM_QUEST,                         I18N_NOOP("Question") },
 
-  { QM_VERB,                          I18N_NOOP("verb") },   // old type "1"
-  { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, I18N_NOOP("verb irregular") },
-  { QM_VERB  QM_TYPE_DIV QM_VERB_REG, I18N_NOOP("verb regular") },
+  { QM_VERB,                          I18N_NOOP("Verb") },   // old type "1"
+  { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, I18N_NOOP("Verb Irregular") },
+  { QM_VERB  QM_TYPE_DIV QM_VERB_REG, I18N_NOOP("Verb Regular") },
 
   { 0, 0 }  // the end
 };
@@ -502,28 +507,28 @@ QString QueryManager::compStr (CompType type)
 {
    QString str = "???";
    switch (type) {
-    case DontCare: str = i18n("don`t care"); break;
-    case WorseThan: str = i18n("worse than"); break;
-    case WorseEqThan: str = i18n("equal/worse than"); break;
+    case DontCare: str = i18n("Don`t Care"); break;
+    case WorseThan: str = i18n("Worse Than"); break;
+    case WorseEqThan: str = i18n("Equal/Worse Than"); break;
     case MoreThan: str = i18n(">"); break;
     case MoreEqThan: str = i18n(">="); break;
-    case BetterEqThan: str = i18n("equal/better than"); break;
-    case BetterThan: str = i18n("better than"); break;
+    case BetterEqThan: str = i18n("Equal/Better Than"); break;
+    case BetterThan: str = i18n("Better Than"); break;
     case LessEqThan: str = i18n("<="); break;
     case LessThan: str = i18n("<"); break;
 
-    case EqualTo : str = i18n("equal to"); break;
-    case NotEqual: str = i18n("not equal"); break;
+    case EqualTo : str = i18n("Equal To"); break;
+    case NotEqual: str = i18n("Not Equal"); break;
 
-    case OneOf   : str = i18n("contained in"); break;
-    case NotOneOf: str = i18n("not contained in"); break;
+    case OneOf   : str = i18n("Contained In"); break;
+    case NotOneOf: str = i18n("Not Contained In"); break;
 
-    case Within    : str = i18n("within last"); break;
-    case Before    : str = i18n("before"); break;
-    case NotQueried: str = i18n("not queried"); break;
+    case Within    : str = i18n("Within Last"); break;
+    case Before    : str = i18n("Before"); break;
+    case NotQueried: str = i18n("Not Queried"); break;
 
-    case Current    : return i18n("current lesson"); break;
-    case NotAssigned: return i18n("not assigned"); break;
+    case Current    : return i18n("Current Lesson"); break;
+    case NotAssigned: return i18n("Not Assigned"); break;
     default:
       ;
    }

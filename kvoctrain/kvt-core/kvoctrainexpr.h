@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.8  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -64,7 +67,7 @@
 
 #define KV_NORM_GRADE      0       // not queried yet
 #define KV_NORM_COLOR      Qt::black
-#define KV_NORM_TEXT       i18n("not queried yet")
+#define KV_NORM_TEXT       i18n("Not Queried Yet")
 
 #define KV_LEV1_GRADE      1
 #define KV_LEV1_COLOR      Qt::red

@@ -66,7 +66,7 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>&amp;New</string>
+                        <string>&amp;New...</string>
                     </property>
                 </widget>
                 <widget class="QPushButton" row="1" column="1">
@@ -82,7 +82,7 @@
                         </sizepolicy>
                     </property>
                     <property name="text">
-                        <string>&amp;Modify</string>
+                        <string>&amp;Modify...</string>
                     </property>
                 </widget>
                 <widget class="QPushButton" row="1" column="2">

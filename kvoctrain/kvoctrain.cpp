@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.48  2002/05/09 09:48:55  arnold
+    fixed i18n issue
+
     Revision 1.47  2002/05/09 09:18:27  arnold
     fixed missing entry dialog
 
@@ -1493,7 +1496,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
         add_m->insertItem(names[i],
           (i << 16) | IDH_APPEND);
     }
-    add_m->insertItem(i18n("Another Language"), (0xFF << 16) | IDH_APPEND);
+    add_m->insertItem(i18n("Another Language..."), (0xFF << 16) | IDH_APPEND);
 
     connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
     connect (add_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));

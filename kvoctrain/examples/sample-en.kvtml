@@ -141,9 +141,9 @@ Valid xml means:
  </options>
 
  <type>
-  <desc no="1">My type 1</desc>
-  <desc no="2">My type 2</desc>
-  <desc no="3">My type 3</desc>
+  <desc no="1">My Type 1</desc>
+  <desc no="2">My Type 2</desc>
+  <desc no="3">My Type 3</desc>
  </type>
 
  <e m="4" t="#2"><o width="246" l="de" q="t">gänzlich</o><t width="246" l="en" q="o" g="4;0" c="17;0" b="6;0" d="934731325;0">utterly</t><t width="249" l="fr" g="1;4" c="1;1" b="1;1">tout à fait</t></e>

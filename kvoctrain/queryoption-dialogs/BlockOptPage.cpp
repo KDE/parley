@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.8  2001/12/29 10:41:06  arnold
     merged fixes from POST-branch
 
@@ -76,36 +79,36 @@ struct ListRef {
        };
 
 static ListRef date_itemlist [] =
-      { {I18N_NOOP("don`t care"),    0},
+      { {I18N_NOOP("Don`t Care"),    0},
 
-        {I18N_NOOP("30 min"),        30*60   },
-        {I18N_NOOP("1 hour"),    1 * 60*60   },
-        {I18N_NOOP("2 hours"),   2 * 60*60   },
-        {I18N_NOOP("4 hours"),   4 * 60*60   },
-        {I18N_NOOP("8 hours"),   8 * 60*60   },
-        {I18N_NOOP("12 hours"), 12 * 60*60   },
-        {I18N_NOOP("18 hours"), 18 * 60*60   },
+        {I18N_NOOP("30 Min"),        30*60   },
+        {I18N_NOOP("1 Hour"),    1 * 60*60   },
+        {I18N_NOOP("2 Hours"),   2 * 60*60   },
+        {I18N_NOOP("4 Hours"),   4 * 60*60   },
+        {I18N_NOOP("8 Hours"),   8 * 60*60   },
+        {I18N_NOOP("12 Hours"), 12 * 60*60   },
+        {I18N_NOOP("18 Hours"), 18 * 60*60   },
 
-        {I18N_NOOP("1 day"),    1 * 60*60*24},
-        {I18N_NOOP("2 days"),   2 * 60*60*24},
-        {I18N_NOOP("3 days"),   3 * 60*60*24},
-        {I18N_NOOP("4 days"),   4 * 60*60*24},
-        {I18N_NOOP("5 days"),   5 * 60*60*24},
-        {I18N_NOOP("6 days"),   6 * 60*60*24},
+        {I18N_NOOP("1 Day"),    1 * 60*60*24},
+        {I18N_NOOP("2 Days"),   2 * 60*60*24},
+        {I18N_NOOP("3 Days"),   3 * 60*60*24},
+        {I18N_NOOP("4 Days"),   4 * 60*60*24},
+        {I18N_NOOP("5 Days"),   5 * 60*60*24},
+        {I18N_NOOP("6 Days"),   6 * 60*60*24},
 
-        {I18N_NOOP("1 week"),   1 * 60*60*24*7},
-        {I18N_NOOP("2 weeks"),  2 * 60*60*24*7},
-        {I18N_NOOP("3 weeks"),  3 * 60*60*24*7},
-        {I18N_NOOP("4 weeks"),  4 * 60*60*24*7},
+        {I18N_NOOP("1 Week"),   1 * 60*60*24*7},
+        {I18N_NOOP("2 Weeks"),  2 * 60*60*24*7},
+        {I18N_NOOP("3 Weeks"),  3 * 60*60*24*7},
+        {I18N_NOOP("4 Weeks"),  4 * 60*60*24*7},
 
-        {I18N_NOOP("1 month"),  1 * 60*60*24*7*30},
-        {I18N_NOOP("2 months"), 2 * 60*60*24*7*30},
-        {I18N_NOOP("3 months"), 3 * 60*60*24*7*30},
-        {I18N_NOOP("4 months"), 4 * 60*60*24*7*30},
-        {I18N_NOOP("5 months"), 5 * 60*60*24*7*30},
-        {I18N_NOOP("6 months"), 6 * 60*60*24*7*30},
-        {I18N_NOOP("10 months"), 10 * 60*60*24*7*30},
-        {I18N_NOOP("12 months"), 12 * 60*60*24*7*30},
+        {I18N_NOOP("1 Month"),  1 * 60*60*24*7*30},
+        {I18N_NOOP("2 Months"), 2 * 60*60*24*7*30},
+        {I18N_NOOP("3 Months"), 3 * 60*60*24*7*30},
+        {I18N_NOOP("4 Months"), 4 * 60*60*24*7*30},
+        {I18N_NOOP("5 Months"), 5 * 60*60*24*7*30},
+        {I18N_NOOP("6 Months"), 6 * 60*60*24*7*30},
+        {I18N_NOOP("10 Months"), 10 * 60*60*24*7*30},
+        {I18N_NOOP("12 Months"), 12 * 60*60*24*7*30},
         {0 ,  0}
       };
 

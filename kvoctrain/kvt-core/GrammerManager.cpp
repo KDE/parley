@@ -15,6 +15,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/04/12 10:09:56  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.5  2002/01/07 17:22:45  arnold
     fixed i18n() issues
 
@@ -50,13 +55,13 @@
 Conjugation::conjug_name_t
 Conjugation::names [] =
 {
-  { CONJ_SIMPLE_PRESENT,    I18N_NOOP("Simple preset") },
-  { CONJ_PRESENT_PROGR,     I18N_NOOP("Preset progressive") },
-  { CONJ_PRESENT_PERFECT,   I18N_NOOP("Preset perfect") },
+  { CONJ_SIMPLE_PRESENT,    I18N_NOOP("Simple Preset") },
+  { CONJ_PRESENT_PROGR,     I18N_NOOP("Preset Progressive") },
+  { CONJ_PRESENT_PERFECT,   I18N_NOOP("Preset Perfect") },
 
-  { CONJ_SIMPLE_PAST,       I18N_NOOP("Simple past") },
-  { CONJ_PAST_PROGR,        I18N_NOOP("Past progressive") },
-  { CONJ_PAST_PARTICIPLE,   I18N_NOOP("Past participle") },
+  { CONJ_SIMPLE_PAST,       I18N_NOOP("Simple Past") },
+  { CONJ_PAST_PROGR,        I18N_NOOP("Past Progressive") },
+  { CONJ_PAST_PARTICIPLE,   I18N_NOOP("Past Participle") },
 
   { CONJ_FUTURE,            I18N_NOOP("Future") }
 };
