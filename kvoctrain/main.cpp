@@ -14,69 +14,6 @@
 
     -----------------------------------------------------------------------
 
-    $Log$
-    Revision 1.19  2002/01/30 17:26:55  arnold
-    added some tooltips, fixed capitalisation
-
-    Revision 1.18  2002/01/04 17:28:51  arnold
-    fixed resuming a query
-
-    Revision 1.17  2002/01/04 13:17:07  mhunter
-    CVS_SILENT Corrected typographical errors
-
-    Revision 1.16  2001/12/29 10:40:03  arnold
-    merged fixes from POST-branch
-
-    Revision 1.15  2001/12/22 09:06:54  arnold
-    fixed version string handling
-
-    Revision 1.14  2001/12/18 21:17:05  howells
-    * Get rid of old "make install" message
-    * Use new bug dialog
-
-    Revision 1.13  2001/12/17 20:09:31  howells
-    Descriptions for all apps
-
-    Revision 1.12  2001/12/16 16:11:34  howells
-    Don't break
-
-    Revision 1.11  2001/12/16 08:37:22  howells
-    Use I18N_NOOP()
-
-    Revision 1.10  2001/12/08 15:22:57  arnold
-    added contributors
-
-    Revision 1.9  2001/12/05 09:07:21  howells
-    Fix some spelling/gramattical errors, and make the program fit better with the style guide
-
-    Revision 1.8  2001/11/24 11:43:58  arnold
-    updated credits
-
-    Revision 1.7  2001/11/18 12:28:25  arnold
-    provided menu entry for example files
-
-    Revision 1.6  2001/11/09 10:39:25  arnold
-    removed ability to display a different font for each column
-
-    Revision 1.5  2001/10/28 10:15:46  arnold
-    quick 'n dirty fixes for new query dialogs
-
-    Revision 1.4  2001/10/21 15:28:43  arnold
-    removed all the 'charset' stuff
-
-    Revision 1.3  2001/10/20 12:09:40  arnold
-    removed aboutdialog files
-
-    Revision 1.2  2001/10/17 21:41:15  waba
-    Cleanup & port to Qt3, QTableView -> QTable
-    TODO:
-    * Fix actions that work on selections
-    * Fix sorting
-    * Fix language-menu
-
-    Revision 1.1  2001/10/05 15:36:34  arnold
-    import of version 0.7.0pre8 to kde-edu
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -91,7 +28,6 @@
 
 #include "kvoctrain.h"
 #include "kvoctraincore.h"
-#include <iostream.h>
 
 # include <kcmdlineargs.h>
 # include <kaboutdata.h>

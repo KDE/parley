@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.53  2002/10/23 18:16:48  asserhal
+    Changed tr to i18n
+
     Revision 1.52  2002/09/17 20:24:59  binner
     CVS_SILENT Style guide fix, use "cvslastchange" or X-WebCVS header line to view
 
@@ -222,7 +225,6 @@
 
 #include <time.h>
 #include <ctype.h>
-#include <iostream.h>
 
 #include <kvoctraincore.h>
 #include "kvoctraindoc.h"

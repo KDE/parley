@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2002/04/12 10:09:56  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.2  2001/11/09 10:40:26  arnold
     removed ability to display a different font for each column
 
@@ -36,8 +41,6 @@
 
 
 #include "langset.h"
-#include <iostream.h>
-
 
 void LangSet::addSet (QString _shortId, QString _longId,
                       QString _PixMapFile)

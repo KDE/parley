@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.4  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -43,8 +46,8 @@
 #include <qfile.h>
 #include <qtextstream.h>
 
-#include <iostream.h>
 #include <vector>
+#include <iostream>
 using namespace std;
 
 

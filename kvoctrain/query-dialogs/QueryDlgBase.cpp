@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/07 19:21:36  arnold
+    included multiple choice fields and false friend into query
+
     Revision 1.5  2001/12/01 11:28:54  arnold
     fixed flickering in query dialogs
 
@@ -54,8 +57,6 @@
 #include <qmultilineedit.h>
 #include <qradiobutton.h>
 #include <qfont.h>
-
-#include <iostream.h>
 
 #include <LineList.h>
 

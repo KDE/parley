@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/09/24 15:07:40  binner
+    CVS_SILENT Style guide text fix, use "cvslastchange" or X-WebCVS header to view
+
     Revision 1.13  2002/01/20 11:41:02  arnold
     fixed issues with modeless dialogs
 
@@ -82,8 +85,6 @@
 #include <qlabel.h>
 #include <qgroupbox.h>
 #include <qpushbutton.h>
-
-#include <iostream.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>

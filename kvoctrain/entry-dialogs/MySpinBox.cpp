@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -33,10 +40,6 @@
 
 
 #include <qstringlist.h>
-
-#ifdef DEBUG
-#include <iostream.h>
-#endif
 
 #include "MySpinBox.h"
 

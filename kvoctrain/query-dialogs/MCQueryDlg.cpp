@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.15  2002/01/20 11:41:02  arnold
     fixed issues with modeless dialogs
 
@@ -97,7 +100,6 @@
 #include <qbuttongroup.h>
 #include <qpushbutton.h>
 
-#include <iostream.h>
 #include <algorithm>
 using namespace std;
 

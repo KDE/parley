@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.4  2001/12/07 19:21:36  arnold
     included multiple choice fields and false friend into query
 
@@ -46,8 +49,6 @@
 
 #include <kstandarddirs.h>
 #include <klocale.h>
-
-#include <iostream.h>
 
 #define Inherited QFrame
 

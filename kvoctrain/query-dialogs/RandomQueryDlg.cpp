@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/01/20 11:41:02  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.10  2002/01/04 21:09:16  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -94,9 +97,6 @@
 #include <qlabel.h>
 #include <qkeycode.h>
 #include <qpainter.h>
-
-#include <iostream.h>
-
 
 RandomQueryDlg::RandomQueryDlg(
                    QString org,

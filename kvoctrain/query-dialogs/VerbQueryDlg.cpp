@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/20 11:41:02  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.14  2002/01/07 18:36:50  arnold
     fixed query
 
@@ -91,10 +94,6 @@
 #include <qlabel.h>
 #include <qgroupbox.h>
 #include <qlineedit.h>
-
-#include <iostream.h>
-
-
 
 VerbQueryDlg::VerbQueryDlg
 (
