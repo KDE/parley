@@ -75,6 +75,24 @@ install=false
 install_location=
 type=DATA
 
+[AUTHORS]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[BUGS]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[ChangeLog]
+dist=true
+install=false
+install_location=
+type=DATA
+
 [Config for BinMakefileAm]
 addcxxflags=
 bin_program=kvoctrain
@@ -85,10 +103,11 @@ ldflags=
 [General]
 AMChanged=false
 author=earnold
+configure_args=
 email=earnold@presario
 kdevprj_version=1.3
 lfv_open_groups=
-makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,
+makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am
 project_name=kvoctrain
 project_type=normal_empty
 sub_dir=kvoctrain/
@@ -107,12 +126,44 @@ User Interface=*.ui,*.kdevdlg,*.rc,*.dlg
 groups=Headers,Sources,GNU,Translations,User Interface,Desktop,Others
 
 [Makefile.am]
+dist=true
+files=README,README.develop,AUTHORS,ChangeLog,TODO,BUGS,Makefile.am,kvoctrain.kdevprj
+install=false
+install_location=
 sub_dirs=kvoctrain
+type=DATA
+
+[README]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[README.develop]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[TODO]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain.kdevprj]
+dist=true
+install=false
+install_location=
+type=DATA
 
 [kvoctrain/Makefile.am]
-files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,
+dist=true
+files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,kvoctrain/Makefile.am
+install=false
+install_location=
 sub_dirs=docs,pics,docprop-dialogs,common-dialogs,queryoption-dialogs,kvt-core,testbed,option-dialogs,statistik-dialogs,entry-dialogs,query-dialogs,
-type=prog_main
+type=DATA
 
 [kvoctrain/common-dialogs/CharSetDlg.cpp]
 dist=true
@@ -180,10 +231,19 @@ install=false
 install_location=
 type=SOURCE
 
+[kvoctrain/common-dialogs/LessonInputDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/common-dialogs/Makefile.am]
-files=kvoctrain/common-dialogs/NumLessonDlg.cpp,kvoctrain/common-dialogs/NumLessonDlg.dlg,kvoctrain/common-dialogs/GroupOptPageData.h,kvoctrain/common-dialogs/GroupOptPageData.cpp,kvoctrain/common-dialogs/LessonInputDlg.cpp,kvoctrain/common-dialogs/ProgressDlg.h,kvoctrain/common-dialogs/CharSetDlg.cpp,kvoctrain/common-dialogs/CharSetDlg.dlg,kvoctrain/common-dialogs/GroupOptPage.h,kvoctrain/common-dialogs/GroupOptPage.cpp,kvoctrain/common-dialogs/aboutdialog.h,kvoctrain/common-dialogs/ProgressDlg.cpp,kvoctrain/common-dialogs/LessonInputDlg.h,kvoctrain/common-dialogs/NumLessonDlg.h,kvoctrain/common-dialogs/CharSetDlg.h,kvoctrain/common-dialogs/CharSetDlg.ui,kvoctrain/common-dialogs/aboutdialog.cpp,kvoctrain/common-dialogs/LessonInputDlg.ui
+dist=true
+files=kvoctrain/common-dialogs/NumLessonDlg.cpp,kvoctrain/common-dialogs/NumLessonDlg.dlg,kvoctrain/common-dialogs/GroupOptPageData.h,kvoctrain/common-dialogs/GroupOptPageData.cpp,kvoctrain/common-dialogs/LessonInputDlg.cpp,kvoctrain/common-dialogs/ProgressDlg.h,kvoctrain/common-dialogs/CharSetDlg.cpp,kvoctrain/common-dialogs/CharSetDlg.dlg,kvoctrain/common-dialogs/GroupOptPage.h,kvoctrain/common-dialogs/GroupOptPage.cpp,kvoctrain/common-dialogs/aboutdialog.h,kvoctrain/common-dialogs/ProgressDlg.cpp,kvoctrain/common-dialogs/LessonInputDlg.h,kvoctrain/common-dialogs/NumLessonDlg.h,kvoctrain/common-dialogs/CharSetDlg.h,kvoctrain/common-dialogs/CharSetDlg.ui,kvoctrain/common-dialogs/aboutdialog.cpp,kvoctrain/common-dialogs/LessonInputDlg.ui,kvoctrain/common-dialogs/LessonInputDlgForm.ui,kvoctrain/common-dialogs/NumLessonDlgForm.ui,kvoctrain/common-dialogs/ProgressDlgForm.ui,kvoctrain/common-dialogs/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=static_library
+type=DATA
 
 [kvoctrain/common-dialogs/NumLessonDlg.cpp]
 dist=true
@@ -203,6 +263,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/common-dialogs/NumLessonDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/common-dialogs/ProgressDlg.cpp]
 dist=true
 install=false
@@ -214,6 +280,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/common-dialogs/ProgressDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/common-dialogs/aboutdialog.cpp]
 dist=true
@@ -256,6 +328,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/docprop-dialogs/DocOptionsPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/docprop-dialogs/DocPropDlg.cpp]
 dist=true
@@ -311,6 +389,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/docprop-dialogs/LangPropPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/docprop-dialogs/LessOptPage.cpp]
 dist=true
 install=false
@@ -341,10 +425,19 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/docprop-dialogs/LessOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/docprop-dialogs/Makefile.am]
-files=kvoctrain/docprop-dialogs/DocPropLangDlg.cpp,kvoctrain/docprop-dialogs/UsageOptPageData.h,kvoctrain/docprop-dialogs/TypeOptPageData.cpp,kvoctrain/docprop-dialogs/DocPropDlg.h,kvoctrain/docprop-dialogs/DocOptionsPageData.h,kvoctrain/docprop-dialogs/TypeOptPageData.h,kvoctrain/docprop-dialogs/UsageOptPage.cpp,kvoctrain/docprop-dialogs/UsageOptPage.dlg,kvoctrain/docprop-dialogs/UsageOptPage.h,kvoctrain/docprop-dialogs/TenseOptPage.h,kvoctrain/docprop-dialogs/TitlePageData.cpp,kvoctrain/docprop-dialogs/TypeOptPage.h,kvoctrain/docprop-dialogs/DocOptionsPage.h,kvoctrain/docprop-dialogs/TitlePage.h,kvoctrain/docprop-dialogs/TypeOptPage.cpp,kvoctrain/docprop-dialogs/TypeOptPage.dlg,kvoctrain/docprop-dialogs/TitlePageData.h,kvoctrain/docprop-dialogs/UsageOptPageData.cpp,kvoctrain/docprop-dialogs/DocPropDlg.cpp,kvoctrain/docprop-dialogs/LangPropPage.h,kvoctrain/docprop-dialogs/LessOptPage.cpp,kvoctrain/docprop-dialogs/LessOptPage.dlg,kvoctrain/docprop-dialogs/LessOptPage.h,kvoctrain/docprop-dialogs/DocOptionsPage.cpp,kvoctrain/docprop-dialogs/DocOptionsPage.dlg,kvoctrain/docprop-dialogs/LangPropPageData.h,kvoctrain/docprop-dialogs/DocPropLangDlg.h,kvoctrain/docprop-dialogs/TitlePage.cpp,kvoctrain/docprop-dialogs/TitlePage.dlg,kvoctrain/docprop-dialogs/LessOptPageData.cpp,kvoctrain/docprop-dialogs/LangPropPageData.cpp,kvoctrain/docprop-dialogs/LessOptPageData.h,kvoctrain/docprop-dialogs/TenseOptPageData.h,kvoctrain/docprop-dialogs/TenseOptPage.cpp,kvoctrain/docprop-dialogs/TenseOptPage.dlg,kvoctrain/docprop-dialogs/TenseOptPageData.cpp,kvoctrain/docprop-dialogs/DocOptionsPageData.cpp,kvoctrain/docprop-dialogs/LangPropPage.cpp,kvoctrain/docprop-dialogs/LangPropPage.dlg,
+dist=true
+files=kvoctrain/docprop-dialogs/DocPropLangDlg.cpp,kvoctrain/docprop-dialogs/UsageOptPageData.h,kvoctrain/docprop-dialogs/TypeOptPageData.cpp,kvoctrain/docprop-dialogs/DocPropDlg.h,kvoctrain/docprop-dialogs/DocOptionsPageData.h,kvoctrain/docprop-dialogs/TypeOptPageData.h,kvoctrain/docprop-dialogs/UsageOptPage.cpp,kvoctrain/docprop-dialogs/UsageOptPage.dlg,kvoctrain/docprop-dialogs/UsageOptPage.h,kvoctrain/docprop-dialogs/TenseOptPage.h,kvoctrain/docprop-dialogs/TitlePageData.cpp,kvoctrain/docprop-dialogs/TypeOptPage.h,kvoctrain/docprop-dialogs/DocOptionsPage.h,kvoctrain/docprop-dialogs/TitlePage.h,kvoctrain/docprop-dialogs/TypeOptPage.cpp,kvoctrain/docprop-dialogs/TypeOptPage.dlg,kvoctrain/docprop-dialogs/TitlePageData.h,kvoctrain/docprop-dialogs/UsageOptPageData.cpp,kvoctrain/docprop-dialogs/DocPropDlg.cpp,kvoctrain/docprop-dialogs/LangPropPage.h,kvoctrain/docprop-dialogs/LessOptPage.cpp,kvoctrain/docprop-dialogs/LessOptPage.dlg,kvoctrain/docprop-dialogs/LessOptPage.h,kvoctrain/docprop-dialogs/DocOptionsPage.cpp,kvoctrain/docprop-dialogs/DocOptionsPage.dlg,kvoctrain/docprop-dialogs/LangPropPageData.h,kvoctrain/docprop-dialogs/DocPropLangDlg.h,kvoctrain/docprop-dialogs/TitlePage.cpp,kvoctrain/docprop-dialogs/TitlePage.dlg,kvoctrain/docprop-dialogs/LessOptPageData.cpp,kvoctrain/docprop-dialogs/LangPropPageData.cpp,kvoctrain/docprop-dialogs/LessOptPageData.h,kvoctrain/docprop-dialogs/TenseOptPageData.h,kvoctrain/docprop-dialogs/TenseOptPage.cpp,kvoctrain/docprop-dialogs/TenseOptPage.dlg,kvoctrain/docprop-dialogs/TenseOptPageData.cpp,kvoctrain/docprop-dialogs/DocOptionsPageData.cpp,kvoctrain/docprop-dialogs/LangPropPage.cpp,kvoctrain/docprop-dialogs/LangPropPage.dlg,kvoctrain/docprop-dialogs/DocOptionsPageForm.ui,kvoctrain/docprop-dialogs/LangPropPageForm.ui,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/docprop-dialogs/TenseOptPageForm.ui,kvoctrain/docprop-dialogs/TitlePageForm.ui,kvoctrain/docprop-dialogs/TypeOptPageForm.ui,kvoctrain/docprop-dialogs/UsageOptPageForm.ui,kvoctrain/docprop-dialogs/LessOptPageForm.ui
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=static_library
 
 [kvoctrain/docprop-dialogs/TenseOptPage.cpp]
 dist=true
@@ -376,6 +469,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/docprop-dialogs/TenseOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/docprop-dialogs/TitlePage.cpp]
 dist=true
 install=false
@@ -405,6 +504,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/docprop-dialogs/TitlePageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/docprop-dialogs/TypeOptPage.cpp]
 dist=true
@@ -436,6 +541,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/docprop-dialogs/TypeOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/docprop-dialogs/UsageOptPage.cpp]
 dist=true
 install=false
@@ -466,8 +577,14 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/docprop-dialogs/UsageOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/docs/Makefile.am]
-files=kvoctrain/docs/kvtml-aufbau.txt,kvoctrain/docs/elek.lex,kvoctrain/docs/lex-aufbau1.txt,kvoctrain/docs/lex-aufbau2.txt,
+files=kvoctrain/docs/kvtml-aufbau.txt,kvoctrain/docs/elek.lex,kvoctrain/docs/lex-aufbau1.txt,kvoctrain/docs/lex-aufbau2.txt,kvoctrain/docs/kvtml-structure.txt
 sub_dirs=
 type=normal
 
@@ -478,6 +595,12 @@ install_location=
 type=DATA
 
 [kvoctrain/docs/kvtml-aufbau.txt]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/docs/kvtml-structure.txt]
 dist=true
 install=false
 install_location=
@@ -525,6 +648,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/entry-dialogs/AdjEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp]
 dist=true
 install=false
@@ -554,6 +683,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/entry-dialogs/AuxInfoEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/entry-dialogs/CommonEntryPage.cpp]
 dist=true
@@ -590,6 +725,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/entry-dialogs/CommonEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/entry-dialogs/DocOptionsPage.cpp]
 dist=true
@@ -657,6 +798,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/entry-dialogs/FromToEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/entry-dialogs/LessOptPage.cpp]
 dist=true
 install=false
@@ -681,10 +828,31 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/entry-dialogs/MCEntryPage.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[kvoctrain/entry-dialogs/MCEntryPage.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[kvoctrain/entry-dialogs/MCEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/entry-dialogs/Makefile.am]
-files=kvoctrain/entry-dialogs/AuxInfoEntryPage.h,kvoctrain/entry-dialogs/FromToEntryPage.h,kvoctrain/entry-dialogs/UsageOptPageData.h,kvoctrain/entry-dialogs/TypeOptPageData.cpp,kvoctrain/entry-dialogs/DocOptionsPageData.h,kvoctrain/entry-dialogs/TenseEntryPage.cpp,kvoctrain/entry-dialogs/TenseEntryPage.dlg,kvoctrain/entry-dialogs/TypeOptPageData.h,kvoctrain/entry-dialogs/AdjEntryPageData.h,kvoctrain/entry-dialogs/FromToEntryPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.cpp,kvoctrain/entry-dialogs/UsageOptPage.cpp,kvoctrain/entry-dialogs/EntryDlg.cpp,kvoctrain/entry-dialogs/CommonEntryPageData.cpp,kvoctrain/entry-dialogs/AdjEntryPage.cpp,kvoctrain/entry-dialogs/AdjEntryPage.dlg,kvoctrain/entry-dialogs/UsageOptPage.h,kvoctrain/entry-dialogs/MySpinBox.cpp,kvoctrain/entry-dialogs/AdjEntryPageData.cpp,kvoctrain/entry-dialogs/TenseOptPage.h,kvoctrain/entry-dialogs/CommonEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.h,kvoctrain/entry-dialogs/TitlePageData.cpp,kvoctrain/entry-dialogs/TypeOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.h,kvoctrain/entry-dialogs/TitlePage.h,kvoctrain/entry-dialogs/TypeOptPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.dlg,kvoctrain/entry-dialogs/TitlePageData.h,kvoctrain/entry-dialogs/UsageOptPageData.cpp,kvoctrain/entry-dialogs/LessOptPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.ui,kvoctrain/entry-dialogs/LessOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.cpp,kvoctrain/entry-dialogs/FromToEntryPageData.cpp,kvoctrain/entry-dialogs/blockall.h,kvoctrain/entry-dialogs/CommonEntryPage.h,kvoctrain/entry-dialogs/TenseEntryPage.h,kvoctrain/entry-dialogs/AdjEntryPage.h,kvoctrain/entry-dialogs/blockall.cpp,kvoctrain/entry-dialogs/TitlePage.cpp,kvoctrain/entry-dialogs/LessOptPageData.cpp,kvoctrain/entry-dialogs/EntryDlg.h,kvoctrain/entry-dialogs/LessOptPageData.h,kvoctrain/entry-dialogs/TenseOptPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.dlg,kvoctrain/entry-dialogs/TenseOptPage.cpp,kvoctrain/entry-dialogs/TenseOptPageData.cpp,kvoctrain/entry-dialogs/MySpinBox.h,kvoctrain/entry-dialogs/DocOptionsPageData.cpp,kvoctrain/entry-dialogs/CommonEntryPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.dlg,
+dist=true
+files=kvoctrain/entry-dialogs/AuxInfoEntryPage.h,kvoctrain/entry-dialogs/FromToEntryPage.h,kvoctrain/entry-dialogs/UsageOptPageData.h,kvoctrain/entry-dialogs/TypeOptPageData.cpp,kvoctrain/entry-dialogs/DocOptionsPageData.h,kvoctrain/entry-dialogs/TenseEntryPage.cpp,kvoctrain/entry-dialogs/TenseEntryPage.dlg,kvoctrain/entry-dialogs/TypeOptPageData.h,kvoctrain/entry-dialogs/AdjEntryPageData.h,kvoctrain/entry-dialogs/FromToEntryPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.cpp,kvoctrain/entry-dialogs/UsageOptPage.cpp,kvoctrain/entry-dialogs/EntryDlg.cpp,kvoctrain/entry-dialogs/CommonEntryPageData.cpp,kvoctrain/entry-dialogs/AdjEntryPage.cpp,kvoctrain/entry-dialogs/AdjEntryPage.dlg,kvoctrain/entry-dialogs/UsageOptPage.h,kvoctrain/entry-dialogs/MySpinBox.cpp,kvoctrain/entry-dialogs/AdjEntryPageData.cpp,kvoctrain/entry-dialogs/TenseOptPage.h,kvoctrain/entry-dialogs/CommonEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.h,kvoctrain/entry-dialogs/TitlePageData.cpp,kvoctrain/entry-dialogs/TypeOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.h,kvoctrain/entry-dialogs/TitlePage.h,kvoctrain/entry-dialogs/TypeOptPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.dlg,kvoctrain/entry-dialogs/TitlePageData.h,kvoctrain/entry-dialogs/UsageOptPageData.cpp,kvoctrain/entry-dialogs/LessOptPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.ui,kvoctrain/entry-dialogs/LessOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.cpp,kvoctrain/entry-dialogs/FromToEntryPageData.cpp,kvoctrain/entry-dialogs/blockall.h,kvoctrain/entry-dialogs/CommonEntryPage.h,kvoctrain/entry-dialogs/TenseEntryPage.h,kvoctrain/entry-dialogs/AdjEntryPage.h,kvoctrain/entry-dialogs/blockall.cpp,kvoctrain/entry-dialogs/TitlePage.cpp,kvoctrain/entry-dialogs/LessOptPageData.cpp,kvoctrain/entry-dialogs/EntryDlg.h,kvoctrain/entry-dialogs/LessOptPageData.h,kvoctrain/entry-dialogs/TenseOptPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.dlg,kvoctrain/entry-dialogs/TenseOptPage.cpp,kvoctrain/entry-dialogs/TenseOptPageData.cpp,kvoctrain/entry-dialogs/MySpinBox.h,kvoctrain/entry-dialogs/DocOptionsPageData.cpp,kvoctrain/entry-dialogs/CommonEntryPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.dlg,kvoctrain/entry-dialogs/MCEntryPage.cpp,kvoctrain/entry-dialogs/MCEntryPage.h,kvoctrain/entry-dialogs/MCEntryPageForm.ui,kvoctrain/entry-dialogs/FromToEntryPageForm.ui,kvoctrain/entry-dialogs/CommonEntryPageForm.ui,kvoctrain/entry-dialogs/AuxInfoEntryPageForm.ui,kvoctrain/entry-dialogs/AdjEntryPageForm.ui,kvoctrain/entry-dialogs/TenseEntryPageForm.ui,kvoctrain/entry-dialogs/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=DATA
 
 [kvoctrain/entry-dialogs/MySpinBox.cpp]
 dist=true
@@ -727,6 +895,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/entry-dialogs/TenseEntryPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/entry-dialogs/TenseOptPage.cpp]
 dist=true
@@ -951,9 +1125,24 @@ install_location=
 type=HEADER
 
 [kvoctrain/kvt-core/Makefile.am]
-files=kvoctrain/kvt-core/kv_resource.h,kvoctrain/kvt-core/QueryManager.cpp,kvoctrain/kvt-core/compat_2x.h,kvoctrain/kvt-core/kvd_rh_kvtml.cpp,kvoctrain/kvt-core/kvd_vcb.cpp,kvoctrain/kvt-core/kvd_wkvtml.cpp,kvoctrain/kvt-core/UsageManager.h,kvoctrain/kvt-core/GrammerManager.cpp,kvoctrain/kvt-core/QueryManager.h,kvoctrain/kvt-core/kvd_rb_kvtml1.cpp,kvoctrain/kvt-core/kvd_rb_kvtml2.cpp,kvoctrain/kvt-core/UsageManager.cpp,kvoctrain/kvt-core/kvoctraindoc.h,kvoctrain/kvt-core/eadebug.h,kvoctrain/kvt-core/GrammerManager.h,kvoctrain/kvt-core/LineList.cpp,kvoctrain/kvt-core/LineList.h,kvoctrain/kvt-core/kvoctrainexpr.cpp,kvoctrain/kvt-core/kvoctraincore.h,kvoctrain/kvt-core/kvoctrainexpr.h,kvoctrain/kvt-core/kvd_csv.cpp,kvoctrain/kvt-core/kvd_lex.cpp,kvoctrain/kvt-core/langset.cpp,kvoctrain/kvt-core/kvoctraindoc.cpp,kvoctrain/kvt-core/langset.h,
+dist=true
+files=kvoctrain/kvt-core/kv_resource.h,kvoctrain/kvt-core/QueryManager.cpp,kvoctrain/kvt-core/compat_2x.h,kvoctrain/kvt-core/kvd_rh_kvtml.cpp,kvoctrain/kvt-core/kvd_vcb.cpp,kvoctrain/kvt-core/kvd_wkvtml.cpp,kvoctrain/kvt-core/UsageManager.h,kvoctrain/kvt-core/GrammerManager.cpp,kvoctrain/kvt-core/QueryManager.h,kvoctrain/kvt-core/kvd_rb_kvtml1.cpp,kvoctrain/kvt-core/kvd_rb_kvtml2.cpp,kvoctrain/kvt-core/UsageManager.cpp,kvoctrain/kvt-core/kvoctraindoc.h,kvoctrain/kvt-core/eadebug.h,kvoctrain/kvt-core/GrammerManager.h,kvoctrain/kvt-core/LineList.cpp,kvoctrain/kvt-core/LineList.h,kvoctrain/kvt-core/kvoctrainexpr.cpp,kvoctrain/kvt-core/kvoctraincore.h,kvoctrain/kvt-core/kvoctrainexpr.h,kvoctrain/kvt-core/kvd_csv.cpp,kvoctrain/kvt-core/kvd_lex.cpp,kvoctrain/kvt-core/langset.cpp,kvoctrain/kvt-core/kvoctraindoc.cpp,kvoctrain/kvt-core/langset.h,kvoctrain/kvt-core/MultipleChoice.cpp,kvoctrain/kvt-core/MultipleChoice.h,kvoctrain/kvt-core/Makefile.am
+install=false
+install_location=
 sub_dirs=kvt-xml,
-type=normal
+type=DATA
+
+[kvoctrain/kvt-core/MultipleChoice.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[kvoctrain/kvt-core/MultipleChoice.h]
+dist=true
+install=false
+install_location=
+type=HEADER
 
 [kvoctrain/kvt-core/QueryManager.cpp]
 dist=true
@@ -1070,9 +1259,24 @@ install_location=
 type=HEADER
 
 [kvoctrain/kvt-core/kvt-xml/Makefile.am]
-files=kvoctrain/kvt-core/kvt-xml/XmlElement.h,kvoctrain/kvt-core/kvt-xml/XmlTokenizer.cpp,kvoctrain/kvt-core/kvt-xml/XmlReader.h,kvoctrain/kvt-core/kvt-xml/XmlWriter.h,kvoctrain/kvt-core/kvt-xml/XmlElement.cpp,kvoctrain/kvt-core/kvt-xml/XmlWriter.cpp,kvoctrain/kvt-core/kvt-xml/XmlReader.cpp,kvoctrain/kvt-core/kvt-xml/koxml_config.h,kvoctrain/kvt-core/kvt-xml/XmlTokenizer.h,
+dist=true
+files=kvoctrain/kvt-core/kvt-xml/XmlElement.h,kvoctrain/kvt-core/kvt-xml/XmlTokenizer.cpp,kvoctrain/kvt-core/kvt-xml/XmlReader.h,kvoctrain/kvt-core/kvt-xml/XmlWriter.h,kvoctrain/kvt-core/kvt-xml/XmlElement.cpp,kvoctrain/kvt-core/kvt-xml/XmlWriter.cpp,kvoctrain/kvt-core/kvt-xml/XmlReader.cpp,kvoctrain/kvt-core/kvt-xml/koxml_config.h,kvoctrain/kvt-core/kvt-xml/XmlTokenizer.h,kvoctrain/kvt-core/kvt-xml/MultipleChoice.h,kvoctrain/kvt-core/kvt-xml/MultipleChoice.cpp,kvoctrain/kvt-core/kvt-xml/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=DATA
+
+[kvoctrain/kvt-core/kvt-xml/MultipleChoice.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[kvoctrain/kvt-core/kvt-xml/MultipleChoice.h]
+dist=true
+install=false
+install_location=
+type=HEADER
 
 [kvoctrain/kvt-core/kvt-xml/XmlElement.cpp]
 dist=true
@@ -1164,12 +1368,6 @@ install=false
 install_location=
 type=DATA
 
-[kvoctrain/option-dialogs/GenOptPage.dlg]
-dist=true
-install=false
-install_location=
-type=DATA
-
 [kvoctrain/option-dialogs/GenOptPage.h]
 dist=true
 install=false
@@ -1187,6 +1385,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/option-dialogs/GenOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/option-dialogs/GeneralOptionsDlg.cpp]
 dist=true
@@ -1230,10 +1434,19 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/option-dialogs/LangOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/option-dialogs/Makefile.am]
-files=kvoctrain/option-dialogs/PasteOptPage.cpp,kvoctrain/option-dialogs/PasteOptPage.dlg,kvoctrain/option-dialogs/GeneralOptionsDlg.cpp,kvoctrain/option-dialogs/PasteOptPage.h,kvoctrain/option-dialogs/GenOptPage.cpp,kvoctrain/option-dialogs/GenOptPage.dlg,kvoctrain/option-dialogs/LangOptPageData.cpp,kvoctrain/option-dialogs/ViewOptPage.h,kvoctrain/option-dialogs/GenOptPage.h,kvoctrain/option-dialogs/PasteOptPageData.h,kvoctrain/option-dialogs/PasteOptPageData.cpp,kvoctrain/option-dialogs/GenOptPage.cpp~,kvoctrain/option-dialogs/LangOptPage.h,kvoctrain/option-dialogs/GenOptPageData.cpp,kvoctrain/option-dialogs/ViewOptPageData.cpp,kvoctrain/option-dialogs/LangOptPageData.h,kvoctrain/option-dialogs/GenOptPageData.h,kvoctrain/option-dialogs/LangOptPage.cpp,kvoctrain/option-dialogs/LangOptPage.dlg,kvoctrain/option-dialogs/GeneralOptionsDlg.h,kvoctrain/option-dialogs/ViewOptPageData.h,kvoctrain/option-dialogs/ViewOptPage.cpp,kvoctrain/option-dialogs/ViewOptPage.dlg,
+dist=true
+files=kvoctrain/option-dialogs/PasteOptPage.cpp,kvoctrain/option-dialogs/PasteOptPage.dlg,kvoctrain/option-dialogs/GeneralOptionsDlg.cpp,kvoctrain/option-dialogs/PasteOptPage.h,kvoctrain/option-dialogs/GenOptPage.cpp,kvoctrain/option-dialogs/LangOptPageData.cpp,kvoctrain/option-dialogs/ViewOptPage.h,kvoctrain/option-dialogs/GenOptPage.h,kvoctrain/option-dialogs/PasteOptPageData.h,kvoctrain/option-dialogs/PasteOptPageData.cpp,kvoctrain/option-dialogs/GenOptPage.cpp~,kvoctrain/option-dialogs/LangOptPage.h,kvoctrain/option-dialogs/GenOptPageData.cpp,kvoctrain/option-dialogs/ViewOptPageData.cpp,kvoctrain/option-dialogs/LangOptPageData.h,kvoctrain/option-dialogs/GenOptPageData.h,kvoctrain/option-dialogs/LangOptPage.cpp,kvoctrain/option-dialogs/LangOptPage.dlg,kvoctrain/option-dialogs/GeneralOptionsDlg.h,kvoctrain/option-dialogs/ViewOptPageData.h,kvoctrain/option-dialogs/ViewOptPage.cpp,kvoctrain/option-dialogs/ViewOptPage.dlg,kvoctrain/option-dialogs/GenOptPageForm.ui,kvoctrain/option-dialogs/LangOptPageForm.ui,kvoctrain/option-dialogs/PasteOptPageForm.ui,kvoctrain/option-dialogs/ViewOptPageForm.ui,kvoctrain/option-dialogs/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=DATA
 
 [kvoctrain/option-dialogs/PasteOptPage.cpp]
 dist=true
@@ -1265,6 +1478,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/option-dialogs/PasteOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/option-dialogs/ViewOptPage.cpp]
 dist=true
 install=false
@@ -1294,6 +1513,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/option-dialogs/ViewOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/pics/16x16-kvoctrain.xcf]
 dist=true
@@ -1344,7 +1569,7 @@ install_location=
 type=DATA
 
 [kvoctrain/pics/Makefile.am]
-files=kvoctrain/pics/logo-kvoctrain.png,kvoctrain/pics/logo-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xpm,kvoctrain/pics/pron-win.xpm,kvoctrain/pics/kde.xpm,kvoctrain/pics/lesson.xcf,kvoctrain/pics/lesson.xpm,kvoctrain/pics/gen-conf.xcf,kvoctrain/pics/gen-conf.xpm,kvoctrain/pics/fonts.xpm,kvoctrain/pics/sf-bugs.xpm,kvoctrain/pics/sort_alpha.xcf,kvoctrain/pics/sort_alpha.xpm,kvoctrain/pics/run-multi.xcf,kvoctrain/pics/run-multi.xpm,kvoctrain/pics/22x22-kvoctrain.xcf,kvoctrain/pics/22x22-kvoctrain.xpm,kvoctrain/pics/run-anto.xcf,kvoctrain/pics/run-anto.xpm,kvoctrain/pics/save.xpm,kvoctrain/pics/rand-less.xpm,kvoctrain/pics/16x16-kvoctrain.xcf,kvoctrain/pics/16x16-kvoctrain.xpm,kvoctrain/pics/list-win.xpm,kvoctrain/pics/paste.xpm,kvoctrain/pics/flags.xpm,kvoctrain/pics/run.xpm,kvoctrain/pics/run-para.xcf,kvoctrain/pics/run-para.xpm,kvoctrain/pics/flags-pattern.xcf,kvoctrain/pics/conf-save.xcf,kvoctrain/pics/conf-save.xpm,kvoctrain/pics/32x32-kvoctrain.xcf,kvoctrain/pics/32x32-kvoctrain.xpm,kvoctrain/pics/configure.xpm,kvoctrain/pics/run-verb.xcf,kvoctrain/pics/run-verb.xpm,kvoctrain/pics/run-adj.xcf,kvoctrain/pics/run-adj.xpm,kvoctrain/pics/run-query.xcf,kvoctrain/pics/run-query.xpm,kvoctrain/pics/new.xcf,kvoctrain/pics/new.xpm,kvoctrain/pics/copy.xpm,kvoctrain/pics/edit-row.xpm,kvoctrain/pics/delete-col.xpm,kvoctrain/pics/run-syno.xcf,kvoctrain/pics/run-syno.xpm,kvoctrain/pics/reset.xpm,kvoctrain/pics/sort_num.xcf,kvoctrain/pics/sort_num.xpm,kvoctrain/pics/kvoctrain.xcf,kvoctrain/pics/kvoctrain.xpm,kvoctrain/pics/open.xpm,kvoctrain/pics/run-art.xcf,kvoctrain/pics/run-art.xpm,kvoctrain/pics/append-col.xpm,kvoctrain/pics/cleanup.xcf,kvoctrain/pics/cleanup.xpm,kvoctrain/pics/delete-row.xpm,kvoctrain/pics/sf-mail.xpm,kvoctrain/pics/statist.xcf,kvoctrain/pics/statist.xpm,kvoctrain/pics/stop.xpm,kvoctrain/pics/sf-home.xpm,kvoctrain/pics/append-row.xpm,kvoctrain/pics/query-conf.xcf,kvoctrain/pics/query-conf.xpm,kvoctrain/pics/exit.xpm,kvoctrain/pics/searchclip.xpm,kvoctrain/pics/run-exmp.xcf,kvoctrain/pics/run-exmp.xpm,kvoctrain/pics/contents.xpm,kvoctrain/pics/help.xpm,
+files=kvoctrain/pics/logo-kvoctrain.png,kvoctrain/pics/logo-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xpm,kvoctrain/pics/pron-win.xpm,kvoctrain/pics/kde.xpm,kvoctrain/pics/lesson.xcf,kvoctrain/pics/lesson.xpm,kvoctrain/pics/gen-conf.xcf,kvoctrain/pics/gen-conf.xpm,kvoctrain/pics/fonts.xpm,kvoctrain/pics/sf-bugs.xpm,kvoctrain/pics/sort_alpha.xcf,kvoctrain/pics/sort_alpha.xpm,kvoctrain/pics/run-multi.xcf,kvoctrain/pics/run-multi.xpm,kvoctrain/pics/22x22-kvoctrain.xcf,kvoctrain/pics/22x22-kvoctrain.xpm,kvoctrain/pics/run-anto.xcf,kvoctrain/pics/run-anto.xpm,kvoctrain/pics/save.xpm,kvoctrain/pics/rand-less.xpm,kvoctrain/pics/16x16-kvoctrain.xcf,kvoctrain/pics/16x16-kvoctrain.xpm,kvoctrain/pics/list-win.xpm,kvoctrain/pics/paste.xpm,kvoctrain/pics/flags.xpm,kvoctrain/pics/run.xpm,kvoctrain/pics/run-para.xcf,kvoctrain/pics/run-para.xpm,kvoctrain/pics/flags-pattern.xcf,kvoctrain/pics/conf-save.xcf,kvoctrain/pics/conf-save.xpm,kvoctrain/pics/32x32-kvoctrain.xcf,kvoctrain/pics/32x32-kvoctrain.xpm,kvoctrain/pics/configure.xpm,kvoctrain/pics/run-verb.xcf,kvoctrain/pics/run-verb.xpm,kvoctrain/pics/run-adj.xcf,kvoctrain/pics/run-adj.xpm,kvoctrain/pics/run-query.xcf,kvoctrain/pics/run-query.xpm,kvoctrain/pics/new.xcf,kvoctrain/pics/new.xpm,kvoctrain/pics/copy.xpm,kvoctrain/pics/edit-row.xpm,kvoctrain/pics/delete-col.xpm,kvoctrain/pics/run-syno.xcf,kvoctrain/pics/run-syno.xpm,kvoctrain/pics/reset.xpm,kvoctrain/pics/sort_num.xcf,kvoctrain/pics/sort_num.xpm,kvoctrain/pics/kvoctrain.xcf,kvoctrain/pics/kvoctrain.xpm,kvoctrain/pics/open.xpm,kvoctrain/pics/run-art.xcf,kvoctrain/pics/run-art.xpm,kvoctrain/pics/append-col.xpm,kvoctrain/pics/cleanup.xcf,kvoctrain/pics/cleanup.xpm,kvoctrain/pics/delete-row.xpm,kvoctrain/pics/sf-mail.xpm,kvoctrain/pics/statist.xcf,kvoctrain/pics/statist.xpm,kvoctrain/pics/stop.xpm,kvoctrain/pics/sf-home.xpm,kvoctrain/pics/append-row.xpm,kvoctrain/pics/query-conf.xcf,kvoctrain/pics/query-conf.xpm,kvoctrain/pics/exit.xpm,kvoctrain/pics/searchclip.xpm,kvoctrain/pics/run-exmp.xcf,kvoctrain/pics/run-exmp.xpm,kvoctrain/pics/contents.xpm,kvoctrain/pics/help.xpm,kvoctrain/pics/mark.png
 sub_dirs=
 type=normal
 
@@ -1505,6 +1730,12 @@ install_location=
 type=DATA
 
 [kvoctrain/pics/logo-kvoctrain.xcf]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/pics/mark.png]
 dist=true
 install=false
 install_location=
@@ -1780,6 +2011,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/query-dialogs/AdjQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/query-dialogs/ArtQueryDlg.cpp]
 dist=true
 install=false
@@ -1809,6 +2046,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/query-dialogs/ArtQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/query-dialogs/MCQueryDlg.cpp]
 dist=true
@@ -1840,10 +2083,19 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/query-dialogs/MCQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/query-dialogs/Makefile.am]
-files=kvoctrain/query-dialogs/QueryDlgData.cpp,kvoctrain/query-dialogs/AdjQueryDlg.h,kvoctrain/query-dialogs/MyProgress.h,kvoctrain/query-dialogs/ArtQueryDlgData.cpp,kvoctrain/query-dialogs/SimpleQueryDlg.h,kvoctrain/query-dialogs/SimpleQueryDlgData.cpp,kvoctrain/query-dialogs/QueryDlg.cpp,kvoctrain/query-dialogs/QueryDlg.dlg,kvoctrain/query-dialogs/MCQueryDlg.h,kvoctrain/query-dialogs/ArtQueryDlg.h,kvoctrain/query-dialogs/AdjQueryDlg.cpp,kvoctrain/query-dialogs/AdjQueryDlg.dlg,kvoctrain/query-dialogs/VerbQueryDlgData.cpp,kvoctrain/query-dialogs/MyProgress.cpp,kvoctrain/query-dialogs/QueryDlgBase.h,kvoctrain/query-dialogs/SimpleQueryDlgData.h,kvoctrain/query-dialogs/QueryDlgData.h,kvoctrain/query-dialogs/VerbQueryDlg.cpp,kvoctrain/query-dialogs/VerbQueryDlg.dlg,kvoctrain/query-dialogs/AdjQueryDlgData.h,kvoctrain/query-dialogs/VerbQueryDlg.h,kvoctrain/query-dialogs/MCQueryDlg.cpp,kvoctrain/query-dialogs/MCQueryDlg.dlg,kvoctrain/query-dialogs/AdjQueryDlgData.cpp,kvoctrain/query-dialogs/QueryDlgBase.cpp,kvoctrain/query-dialogs/MCQueryDlgData.h,kvoctrain/query-dialogs/SimpleQueryDlg.cpp,kvoctrain/query-dialogs/SimpleQueryDlg.dlg,kvoctrain/query-dialogs/ArtQueryDlg.cpp,kvoctrain/query-dialogs/ArtQueryDlg.dlg,kvoctrain/query-dialogs/VerbQueryDlgData.h,kvoctrain/query-dialogs/QueryDlg.h,kvoctrain/query-dialogs/ArtQueryDlgData.h,kvoctrain/query-dialogs/MCQueryDlgData.cpp,
+dist=true
+files=kvoctrain/query-dialogs/QueryDlgData.cpp,kvoctrain/query-dialogs/AdjQueryDlg.h,kvoctrain/query-dialogs/MyProgress.h,kvoctrain/query-dialogs/ArtQueryDlgData.cpp,kvoctrain/query-dialogs/SimpleQueryDlg.h,kvoctrain/query-dialogs/SimpleQueryDlgData.cpp,kvoctrain/query-dialogs/QueryDlg.cpp,kvoctrain/query-dialogs/QueryDlg.dlg,kvoctrain/query-dialogs/MCQueryDlg.h,kvoctrain/query-dialogs/ArtQueryDlg.h,kvoctrain/query-dialogs/AdjQueryDlg.cpp,kvoctrain/query-dialogs/AdjQueryDlg.dlg,kvoctrain/query-dialogs/VerbQueryDlgData.cpp,kvoctrain/query-dialogs/MyProgress.cpp,kvoctrain/query-dialogs/QueryDlgBase.h,kvoctrain/query-dialogs/SimpleQueryDlgData.h,kvoctrain/query-dialogs/QueryDlgData.h,kvoctrain/query-dialogs/VerbQueryDlg.cpp,kvoctrain/query-dialogs/VerbQueryDlg.dlg,kvoctrain/query-dialogs/AdjQueryDlgData.h,kvoctrain/query-dialogs/VerbQueryDlg.h,kvoctrain/query-dialogs/MCQueryDlg.cpp,kvoctrain/query-dialogs/MCQueryDlg.dlg,kvoctrain/query-dialogs/AdjQueryDlgData.cpp,kvoctrain/query-dialogs/QueryDlgBase.cpp,kvoctrain/query-dialogs/MCQueryDlgData.h,kvoctrain/query-dialogs/SimpleQueryDlg.cpp,kvoctrain/query-dialogs/SimpleQueryDlg.dlg,kvoctrain/query-dialogs/ArtQueryDlg.cpp,kvoctrain/query-dialogs/ArtQueryDlg.dlg,kvoctrain/query-dialogs/VerbQueryDlgData.h,kvoctrain/query-dialogs/QueryDlg.h,kvoctrain/query-dialogs/ArtQueryDlgData.h,kvoctrain/query-dialogs/MCQueryDlgData.cpp,kvoctrain/query-dialogs/AdjQueryDlgForm.ui,kvoctrain/query-dialogs/ArtQueryDlgForm.ui,kvoctrain/query-dialogs/MCQueryDlgForm.ui,kvoctrain/query-dialogs/RandomQueryDlgForm.ui,kvoctrain/query-dialogs/SimpleQueryDlgForm.ui,kvoctrain/query-dialogs/VerbQueryDlgForm.ui,kvoctrain/query-dialogs/Makefile.am,kvoctrain/query-dialogs/RandomQueryDlg.cpp,kvoctrain/query-dialogs/RandomQueryDlg.h
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=static_library
 
 [kvoctrain/query-dialogs/MyProgress.cpp]
 dist=true
@@ -1899,6 +2151,24 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/query-dialogs/RandomQueryDlg.cpp]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
+[kvoctrain/query-dialogs/RandomQueryDlg.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[kvoctrain/query-dialogs/RandomQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/query-dialogs/SimpleQueryDlg.cpp]
 dist=true
 install=false
@@ -1928,6 +2198,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/query-dialogs/SimpleQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/query-dialogs/VerbQueryDlg.cpp]
 dist=true
@@ -1959,6 +2235,12 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/query-dialogs/VerbQueryDlgForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/queryoption-dialogs/BlockOptPage.cpp]
 dist=true
 install=false
@@ -1988,6 +2270,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/queryoption-dialogs/BlockOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/queryoption-dialogs/GroupOptPage.cpp]
 dist=true
@@ -2019,10 +2307,16 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/queryoption-dialogs/GroupOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/queryoption-dialogs/Makefile.am]
-files=kvoctrain/queryoption-dialogs/QueryOptionsDlg.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.h,kvoctrain/queryoption-dialogs/GroupOptPageData.h,kvoctrain/queryoption-dialogs/BlockOptPageData.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPageData.cpp,kvoctrain/queryoption-dialogs/BlockOptPageData.cpp,kvoctrain/queryoption-dialogs/QueryOptPageData.h,kvoctrain/queryoption-dialogs/QueryOptPage.h,kvoctrain/queryoption-dialogs/QueryOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.h,kvoctrain/queryoption-dialogs/QueryOptionsDlg.h,kvoctrain/queryoption-dialogs/GroupOptPage.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.cpp,kvoctrain/queryoption-dialogs/BlockOptPage.dlg,kvoctrain/queryoption-dialogs/ThreshOptPage.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.dlg,kvoctrain/queryoption-dialogs/QueryOptPage.cpp,kvoctrain/queryoption-dialogs/QueryOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.h,
+files=kvoctrain/queryoption-dialogs/QueryOptionsDlg.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.h,kvoctrain/queryoption-dialogs/GroupOptPageData.h,kvoctrain/queryoption-dialogs/BlockOptPageData.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPageData.cpp,kvoctrain/queryoption-dialogs/BlockOptPageData.cpp,kvoctrain/queryoption-dialogs/QueryOptPageData.h,kvoctrain/queryoption-dialogs/QueryOptPage.h,kvoctrain/queryoption-dialogs/QueryOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.h,kvoctrain/queryoption-dialogs/QueryOptionsDlg.h,kvoctrain/queryoption-dialogs/GroupOptPage.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.cpp,kvoctrain/queryoption-dialogs/BlockOptPage.dlg,kvoctrain/queryoption-dialogs/ThreshOptPage.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.dlg,kvoctrain/queryoption-dialogs/QueryOptPage.cpp,kvoctrain/queryoption-dialogs/QueryOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.h,kvoctrain/queryoption-dialogs/BlockOptPageForm.ui,kvoctrain/queryoption-dialogs/GroupOptPageForm.ui,kvoctrain/queryoption-dialogs/QueryOptPageForm.ui,kvoctrain/queryoption-dialogs/ThreshOptPageForm.ui
 sub_dirs=
-type=normal
+type=static_library
 
 [kvoctrain/queryoption-dialogs/QueryOptPage.cpp]
 dist=true
@@ -2053,6 +2347,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/queryoption-dialogs/QueryOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/queryoption-dialogs/QueryOptionsDlg.cpp]
 dist=true
@@ -2095,6 +2395,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/queryoption-dialogs/ThreshOptPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/rowtable.cpp]
 dist=true
@@ -2162,22 +2468,25 @@ install=false
 install_location=
 type=HEADER
 
-[kvoctrain/statistik-dialogs/GenStatPageData.cpp]
-dist=true
-install=false
-install_location=
-type=SOURCE
-
 [kvoctrain/statistik-dialogs/GenStatPageData.h]
 dist=true
 install=false
 install_location=
 type=HEADER
 
+[kvoctrain/statistik-dialogs/GenStatPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
+
 [kvoctrain/statistik-dialogs/Makefile.am]
-files=kvoctrain/statistik-dialogs/GenStatPage.cpp,kvoctrain/statistik-dialogs/GenStatPage.dlg,kvoctrain/statistik-dialogs/GenStatPageData.h,kvoctrain/statistik-dialogs/StatistikPageData.h,kvoctrain/statistik-dialogs/StatistikDlg.cpp,kvoctrain/statistik-dialogs/GenStatPageData.cpp,kvoctrain/statistik-dialogs/StatistikDlg.h,kvoctrain/statistik-dialogs/StatistikPageData.cpp,kvoctrain/statistik-dialogs/StatistikPage.cpp,kvoctrain/statistik-dialogs/StatistikPage.dlg,kvoctrain/statistik-dialogs/StatistikPage.h,kvoctrain/statistik-dialogs/GenStatPage.h,
+dist=true
+files=kvoctrain/statistik-dialogs/GenStatPage.cpp,kvoctrain/statistik-dialogs/GenStatPage.dlg,kvoctrain/statistik-dialogs/GenStatPageData.h,kvoctrain/statistik-dialogs/StatistikPageData.h,kvoctrain/statistik-dialogs/StatistikDlg.cpp,kvoctrain/statistik-dialogs/StatistikDlg.h,kvoctrain/statistik-dialogs/StatistikPageData.cpp,kvoctrain/statistik-dialogs/StatistikPage.cpp,kvoctrain/statistik-dialogs/StatistikPage.dlg,kvoctrain/statistik-dialogs/StatistikPage.h,kvoctrain/statistik-dialogs/GenStatPage.h,kvoctrain/statistik-dialogs/GenStatPageForm.ui,kvoctrain/statistik-dialogs/StatistikPageForm.ui,kvoctrain/statistik-dialogs/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=normal
+type=DATA
 
 [kvoctrain/statistik-dialogs/StatistikDlg.cpp]
 dist=true
@@ -2220,6 +2529,12 @@ dist=true
 install=false
 install_location=
 type=HEADER
+
+[kvoctrain/statistik-dialogs/StatistikPageForm.ui]
+dist=true
+install=false
+install_location=
+type=SOURCE
 
 [kvoctrain/testbed/Makefile.am]
 files=kvoctrain/testbed/polska-svenska,kvoctrain/testbed/freedict-afr-deu,

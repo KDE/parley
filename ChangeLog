@@ -74,8 +74,6 @@ kvoctrain history
   - query dialogs for synonyms, antonyms, examples and paraphrases.
     Synonyms and antonys may form a list of several lines and answering
     one of them is good.
-  - reduced size of executable by almost 1000kb ;-) by eleminating 
-    multiple instatiations of templates. 
   - query may contain arbitrary many lessons, not just one (or all).
   - user defined names for conjugations
   - found some minor (and major ;-) bugs
@@ -89,6 +87,7 @@ kvoctrain history
   - as always: fixed some bugs...
   - thanks to a contribution there is a new converter script langen2kvtml to
     convert *.voc files from http://www.vokabeln.de/files.htm
+  - added expressions for multiple choice queries
     
 Happy learning,
 Ewald Arnold
