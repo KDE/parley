@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,14 +34,14 @@
 #ifndef TypeOptPage_included
 #define TypeOptPage_included
 
-#include "TypeOptPageData.h"
+#include "TypeOptPageForm.h"
 
 #include <vector.h>
 
 class kvoctrainDoc;
 class QStrList;
 
-class TypeOptPage : public TypeOptPageData
+class TypeOptPage : public TypeOptPageForm
 {
     Q_OBJECT
 

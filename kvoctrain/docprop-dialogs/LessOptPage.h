@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,14 +34,14 @@
 #ifndef LessOptPage_included
 #define LessOptPage_included
 
-#include "LessOptPageData.h"
+#include "LessOptPageForm.h"
 
 #include <vector.h>
 
 class kvoctrainDoc;
 class QComboBox;
 
-class LessOptPage : public LessOptPageData
+class LessOptPage : public LessOptPageForm
 {
     Q_OBJECT
 

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -40,10 +47,12 @@
 #include <kv_resource.h>
 
 #include <kapp.h>
+#include <klocale.h>
 
 #include <qkeycode.h>
-
-#define Inherited TitlePageData
+#include <qlineedit.h>
+#include <qmultilineedit.h>
+#include <qlabel.h>
 
 TitlePage::TitlePage
 (
@@ -55,7 +64,7 @@ TitlePage::TitlePage
 	const char* name
 )
 	:
-	Inherited( parent, name )
+	TitlePageForm( parent, name )
 {
 	connect( e_title, SIGNAL(returnPressed()), SLOT(accept()) );
 //	connect( e_remark, SIGNAL(returnPressed()), SLOT(accept()) );

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -37,13 +44,13 @@
 
 #include "TypeOptPage.h"
 
-#define Inherited TypeOptPageData
-
 #include <kapp.h>
 
 #include <kmessagebox.h>
 
 #include <qkeycode.h>
+#include <qlistbox.h>
+#include <qpushbutton.h>
 
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
@@ -61,7 +68,7 @@ TypeOptPage::TypeOptPage
         bool             modal
 )
 	:
-	Inherited( parent, name ),
+	TypeOptPageForm( parent, name ),
         doc(_doc)
 {
 	connect( typeList, SIGNAL(highlighted(int)), SLOT(slotTypeChosen(int)) );

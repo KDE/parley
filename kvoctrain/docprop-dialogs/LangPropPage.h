@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,14 +44,14 @@
 
 #include <qglobal.h>
 
-#include "LangPropPageData.h"
+#include "LangPropPageForm.h"
 
 #include <GrammerManager.h>
 
 class kvoctrainDoc;
 struct SpecFont_t;
 
-class LangPropPage : public LangPropPageData
+class LangPropPage : public LangPropPageForm
 {
     Q_OBJECT
 
@@ -57,18 +64,12 @@ public:
         QString            curr_lang,
         const Conjugation &conjugations,
         const Article     &article,
-#if QT_VERSION < 300
-        const              QFont::CharSet cs,
-#endif
         QWidget           *parent = NULL,
         const char        *name = NULL
     );
 
     Conjugation getConjugation();
     Article getArticle() const { return articles; }
-#if QT_VERSION < 300
-    QFont::CharSet getCharSet() const { return charset; }
-#endif
 
 protected:
     void keyPressEvent( QKeyEvent * );
@@ -98,16 +99,11 @@ protected slots:
     void indefFemaleChanged(const QString& );
     void defMaleChanged(const QString& );
 
-    void charsetChanged(int idx);
-
  protected:
 
    kvoctrainDoc  *doc;
    Conjugation    conjugations;
    Article        articles;
-#if QT_VERSION < 300
-   QFont::CharSet charset;
-#endif
 };
 
 #endif // LangPropPage_included

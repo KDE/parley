@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -32,14 +35,14 @@
 #ifndef TenseOptPage_included
 #define TenseOptPage_included
 
-#include "TenseOptPageData.h"
+#include "TenseOptPageForm.h"
 
 #include <vector.h>
 
 class kvoctrainDoc;
 class QStrList;
 
-class TenseOptPage : public TenseOptPageData
+class TenseOptPage : public TenseOptPageForm
 {
     Q_OBJECT
 

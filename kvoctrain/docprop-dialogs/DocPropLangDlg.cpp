@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -84,17 +91,9 @@ DocPropsLangDlg::DocPropsLangDlg
     else
       font.specfont = false; // FIXME:: use table font
 
-#if QT_VERSION < 300
-    if (doc->getCharSet(i) != QFont::AnyCharSet)
-      font.font.setCharSet (doc->getCharSet(i));
-#endif
-
     LangPropPage* lpp = new LangPropPage (&font, doc, s,
                                           doc->getConjugation(i),
                                           doc->getArticle(i)
-#if QT_VERSION < 300
-                                          ,doc->getCharSet(i)
-#endif
 					  );
     connect (this, SIGNAL(aboutToShow()), lpp, SLOT(initFocus() ));
 
@@ -148,16 +147,6 @@ Article DocPropsLangDlg::getArticle(int idx) const
    else
      return Article();
 }
-
-#if QT_VERSION < 300
-QFont::CharSet DocPropsLangDlg::getCharSet(int idx) const
-{
-   if (idx < (int) langPages.size() )
-     return langPages[idx]->getCharSet();
-   else
-     return QFont::AnyCharSet;
-}
-#endif
 
 void DocPropsLangDlg::cancelButton()
 {

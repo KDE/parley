@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 21:14:27  arnold
     tested and fixed changes from previous cvs updatecd
 
@@ -40,9 +47,9 @@
 
 #include "TenseOptPage.h"
 
-#define Inherited TenseOptPageData
-
 #include <qkeycode.h>
+#include <qlistbox.h>
+#include <qpushbutton.h>
 
 #include <kapp.h>
 
@@ -64,7 +71,7 @@ TenseOptPage::TenseOptPage
         bool             modal
 )
 	:
-	Inherited( parent, name )
+	TenseOptPageForm( parent, name )
 {
 	setCaption(i18n("Tenses" ));
 

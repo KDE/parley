@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -31,11 +34,11 @@
 #ifndef DocOptionsPage_included
 #define DocOptionsPage_included
 
-#include "DocOptionsPageData.h"
+#include "DocOptionsPageForm.h"
 
 #include <kvoctraindoc.h>
 
-class DocOptionsPage : public DocOptionsPageData
+class DocOptionsPage : public DocOptionsPageForm
 {
     Q_OBJECT
 
@@ -44,13 +47,11 @@ public:
     DocOptionsPage
     (
         bool         sort,
-        KV_Encoding  encoding,
 	QWidget     *parent,
 	const char  *name
     );
 
     bool getSorting () const { return sorter; }
-    KV_Encoding getEncoding()  const { return encoder; }
 
 public slots:
     void initFocus() const;
@@ -60,11 +61,9 @@ protected:
 
 protected slots:
     void docSortToggled(bool);
-    void slotEncSelected(int);
 
 private:
     bool        sorter;
-    KV_Encoding encoder;
 };
 
 #endif // DocOptionsPage_included

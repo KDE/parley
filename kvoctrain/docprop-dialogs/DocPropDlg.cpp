@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -81,8 +88,7 @@ DocPropsDlg::DocPropsDlg
   typeOptPage = new TypeOptPage (types, doc, this, name);
   tenseOptPage = new TenseOptPage (tenses, doc, this, name);
   useOptPage = new UsageOptPage (usages, doc, this, name);
-  docOptPage = new DocOptionsPage (doc->isAllowedSorting(),
-                                   doc->getEncoding(), this, name);
+  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), this, name);
   vector<QString> tabs;
   addTab( titleOptPage, _DocDlg_TITLE );
   tabs.push_back(_DocDlg_TITLE);
@@ -113,10 +119,6 @@ DocPropsDlg::DocPropsDlg
 
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
-
-  resize( 600+16,290+80 );
-  setMinimumSize( 600+16,370+80 );
-  setMaximumSize( 600+16,370+80 );
 
   setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 }

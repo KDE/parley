@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -36,8 +43,6 @@
  ***************************************************************************/
 
 
-#define Inherited LangPropPageData
-
 #include <langset.h>
 #include <kvoctraindoc.h>
 #include <GrammerManager.h>
@@ -47,59 +52,9 @@
 #include <kapp.h>
 
 #include <qkeycode.h>
-
-#if QT_VERSION < 300
-struct CharSetRef {
-          const char           *cs_str;
-          const char           *expl;
-          const QFont::CharSet  cs;
-       };
-#endif
-
-#ifndef i18n_noop
-# define i18n_noop(x) x
-#endif
-
-///////////////////////////////////////////////////////////////
-// also update kvoctraindoc.cpp kvoctrainDoc::charSet2String
-///////////////////////////////////////////////////////////////
-
-#if QT_VERSION < 300
-static CharSetRef charset_list [] =
-      {
-        {i18n_noop("Any"), 0, QFont::AnyCharSet},
-        {KES_8859_1, i18n_noop("(West Europe)"),                  QFont::ISO_8859_1},
-        {KES_8859_2, i18n_noop("(East Europe, less common)"),     QFont::ISO_8859_2},
-        {KES_8859_3, i18n_noop("(South Europe, less common)"),    QFont::ISO_8859_3},
-        {KES_8859_4, i18n_noop("(North Europe, less common)"),    QFont::ISO_8859_4},
-        {KES_8859_5, i18n_noop("(Cyrillic)"),                     QFont::ISO_8859_5},
-        {KES_8859_6, i18n_noop("(Arabic)"),                       QFont::ISO_8859_6},
-        {KES_8859_7, i18n_noop("(Greek)"),                        QFont::ISO_8859_7},
-        {KES_8859_8, i18n_noop("(Hebrew)"),                       QFont::ISO_8859_8},
-        {KES_8859_9, i18n_noop("(Western Europe, less common)"),  QFont::ISO_8859_9},
-        {KES_KOI8_R, i18n_noop("(Cyrillic, RFC1489)"),            QFont::KOI8R},
-
-        {KES_8859_10,   0,                                        QFont::ISO_8859_10},
-        {KES_8859_11,   0,                                        QFont::ISO_8859_11},
-        {KES_8859_12,   0,                                        QFont::ISO_8859_12},
-        {KES_8859_13,   0,                                        QFont::ISO_8859_13},
-        {KES_8859_14,   0,                                        QFont::ISO_8859_14},
-        {KES_8859_15,   0,                                        QFont::ISO_8859_15},
-        {KES_SET_JA,    0,                                        QFont::Set_Ja},
-        {KES_SET_KO,    0,                                        QFont::Set_Ko},
-        {KES_SET_TH_TH, 0,                                        QFont::Set_Th_TH},
-        {KES_SET_ZH,    0,                                        QFont::Set_Zh},
-        {KES_SET_ZH_TW, 0,                                        QFont::Set_Zh_TW},
-        {KES_UNICODE,   i18n_noop("(independent)"),               QFont::Unicode},
-        {KES_SET_BIG5,  0,                                        QFont::Set_Big5},
-
-        {0, 0,            (QFont::CharSet) 0}
-      };
-
-#endif
-#undef i18n_noop
-
-
+#include <qlineedit.h>
+#include <qcheckbox.h>
+#include <qlabel.h>
 
 LangPropPage::LangPropPage
 (
@@ -108,20 +63,14 @@ LangPropPage::LangPropPage
         QString            curr_lang,
         const Conjugation &conjug,
         const Article     &art,
-#if QT_VERSION < 300
-        const              QFont::CharSet _cs,
-#endif
         QWidget           *parent,
         const char        *name
 )
 	:
-	Inherited( parent, name )
+	LangPropPageForm( parent, name )
         ,doc(_doc)
         ,conjugations(conjug)
         ,articles(art)
-#if QT_VERSION < 300
-        ,charset (_cs)
-#endif
 {
    connect( indef_female, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( def_female, SIGNAL(returnPressed()), SLOT(accept()) );
@@ -139,9 +88,6 @@ LangPropPage::LangPropPage
    connect( thirdM_plural, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( thirdN_singular, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( thirdN_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-#if QT_VERSION < 300
-   connect( charset_box, SIGNAL(highlighted(int)), SLOT(charsetChanged(int)) );
-#endif
    connect( indef_female, SIGNAL(textChanged(const QString&)), SLOT(indefFemaleChanged(const QString&)) );
    connect( def_female, SIGNAL(textChanged(const QString&)), SLOT(defFemaleChanged(const QString&)) );
    connect( def_male, SIGNAL(textChanged(const QString&)), SLOT(defMaleChanged(const QString&)) );
@@ -162,7 +108,7 @@ LangPropPage::LangPropPage
    connect( thirdS_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
    connect( thirdP_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
 
-   setCaption(i18n("language properties" ));
+   setCaption(i18n("Language properties" ));
    conjugations = conjug;
 
    first_plural->setText (conjugations.pers1Plural (CONJ_PREFIX));
@@ -232,25 +178,6 @@ LangPropPage::LangPropPage
    def_natural->setText (def);
    indef_natural->setText (indef);
 
-#if QT_VERSION < 300
-   CharSetRef *ref = &charset_list[0];
-   int index = 0;
-   charset_box->clear();
-   while (ref->cs_str != 0 ) {
-     QString txt = i18n(ref->cs_str);
-     if (ref->expl != 0) {
-       txt += " ";
-       txt += i18n(ref->expl);
-     }
-     charset_box->insertItem (txt);
-     if (charset == ref->cs)
-       index = ref - charset_list;
-     ref++;
-   }
-   charset_box->setCurrentItem (index);
-   charsetChanged (index);
-   charset_label->setBuddy (charset_box);
-#endif
 }
 
 
@@ -390,13 +317,6 @@ void LangPropPage::indefNaturalChanged(const QString& s)
    articles.setNatural(def, s);
 }
 
-
-void LangPropPage::charsetChanged(int idx)
-{
-#if QT_VERSION < 300
-   charset = charset_list[idx].cs;
-#endif
-}
 
 
 void LangPropPage::keyPressEvent( QKeyEvent *e )

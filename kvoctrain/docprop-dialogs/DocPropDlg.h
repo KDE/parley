@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -66,6 +69,7 @@
 #define DocPropsDlg_included
 
 #include <qtabdialog.h>
+#include <qlabel.h>
 
 #include "DocOptionsPage.h"
 #include "LessOptPage.h"
@@ -105,7 +109,6 @@ public:
     );
 
     inline bool getSorting()  const { return docOptPage->getSorting(); }
-    inline KV_Encoding getEncoding()  const { return docOptPage->getEncoding(); }
 
     inline QString getTitle()      { return titleOptPage->getTitle(); }
     inline QString getAuthor()     { return titleOptPage->getAuthor(); }

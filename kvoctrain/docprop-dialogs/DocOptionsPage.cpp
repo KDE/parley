@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,55 +38,25 @@
 
 #include "DocOptionsPage.h"
 
-#define Inherited DocOptionsPageData
-
 #include <kapp.h>
 
 #include <qkeycode.h>
-
-struct EncRef {
-          const char        *text;
-          const KV_Encoding  num;
-       };
-
-static EncRef encode_list [] =
-      {
-        {KES_8BIT,      KE_8BIT},
-        {KES_UTF8,      KE_UTF8},
-        {0 ,            (KV_Encoding) 0}
-      };
+#include <qcheckbox.h>
 
 DocOptionsPage::DocOptionsPage
 (
         bool         sort,
-        KV_Encoding  encoding,
 	QWidget     *parent,
  	const char  *name
 )
 	:
-	Inherited( parent, name )
+	DocOptionsPageForm( parent, name )
 {
    setCaption(i18n("Options" ));
    sorter = sort;
-   encoder = encoding;
    docsort->setChecked(sort);
 
-   connect( c_coding, SIGNAL(highlighted(int)), SLOT(slotEncSelected(int)) );
    connect( docsort, SIGNAL(toggled(bool)), SLOT(docSortToggled(bool)) );
-
-   EncRef *ref = encode_list;
-   int index = 0;
-
-   c_coding->clear();
-   while (ref->text != 0 ) {
-     c_coding->insertItem (i18n(ref->text));
-     if (encoder == ref->num)
-       index = ref - encode_list;
-     ref++;
-   }
-   c_coding->setCurrentItem (index);
-   slotEncSelected (index);
-   l_coding->setBuddy (c_coding);
 }
 
 
@@ -95,12 +69,6 @@ void DocOptionsPage::initFocus() const
 void DocOptionsPage::docSortToggled(bool state)
 {
   sorter = state;
-}
-
-
-void DocOptionsPage::slotEncSelected(int i)
-{
-  encoder = encode_list[i].num;
 }
 
 

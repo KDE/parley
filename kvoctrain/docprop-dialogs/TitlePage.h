@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -32,9 +35,9 @@
 #ifndef TitleDialog_included
 #define TitleDialog_included
 
-#include "TitlePageData.h"
+#include "TitlePageForm.h"
 
-class TitlePage : public TitlePageData
+class TitlePage : public TitlePageForm
 {
     Q_OBJECT
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,7 +34,7 @@
 #ifndef UsageOptPage_included
 #define UsageOptPage_included
 
-#include "UsageOptPageData.h"
+#include "UsageOptPageForm.h"
 
 #include <UsageManager.h>
 
@@ -40,7 +43,7 @@
 class kvoctrainDoc;
 class QStrList;
 
-class UsageOptPage : public UsageOptPageData
+class UsageOptPage : public UsageOptPageForm
 {
     Q_OBJECT
 
