@@ -14,6 +14,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -60,22 +67,16 @@ public:
                  QWidget *parent = NULL, const char *name = NULL );
 	~RowTable();
 
-	kvoctrainExpr *selectedRow();
 	void setNumCols( int cols );
 	void setNumRows( int rows );
 
 	void setCurrentRow( int row, int col );
 	kvoctrainExpr *getRow( int row );
+	
 	void clear();
-//	void setCellWidth( int width );
-//	void setCellHeight( int height );
 	void setSelectColumn( int col );
-	int selectColumn() { return currentColumn(); }
-	int currentCol() { return currentColumn(); }
 
-        void updateViewPort();
-        void repaintCells(int firstRow=-1, int lastRow=-1,
-                          int firstCol=-1, int lastCol=-1);
+        void updateContents(int row = -1, int col = -1);
         void setDoc(kvoctrainDoc *rows, const LangSet  *langset,
                     const GradeCols *gc = 0);
 
@@ -99,7 +100,6 @@ protected:
         virtual QWidget *createEditor(int, int, bool) const;
 
 signals:
-	void selected(int row, int col, int key_state);
         void cellMoved(int, int, int);
 
 protected:

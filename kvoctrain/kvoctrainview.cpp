@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -88,10 +95,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
           parent, SLOT(slotEditEntry(int,int)) );
- connect( lb_list, SIGNAL(selected(int,int,int)),
-          parent, SLOT(slotSelectEntry(int,int,int)) );
-//connect( lb_list, SIGNAL(cellMoved(int, int, int)),
-//          parent, SLOT(slotCellMoved(int, int, int)) );
+//connect( lb_list, SIGNAL(currentChanged(int, int)),
+//          parent, SLOT(slotCurrentChanged(int, int)) );
  connect( lb_list, SIGNAL(sigModified(bool)),
           parent, SLOT(slotModifiedDoc(bool)) );
  connect( lb_list, SIGNAL(sigCancelSelection()),
@@ -131,11 +136,10 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
        setHeaderProp( i, ls.longId(id),  ls.PixMapFile(id));
    }
 
-   if (getTable()->currentCol() < KV_COL_ORG)
-     getTable()->setCurrentRow(getTable()->currentRow(), KV_COL_ORG);
-   emit getTable()->cellMoved (getTable()->currentRow(),
-                               getTable()->currentCol(), 0);
+   if (lb_list->currentColumn() < KV_COL_ORG)
+     lb_list->setCurrentRow(lb_list->currentRow(), KV_COL_ORG);
  }
+ lb_list->updateContents();
 }
 
 
@@ -190,58 +194,13 @@ kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
                                QWidget *parent, const char *name )
   : RowTable( doc, SelectCell, ls, gc, parent, name )
 {
-#if QT_VERSION < 300
-  bool update = autoUpdate();
-  setAutoUpdate(false);
-#endif
   setNumCols( doc->numLangs() );
   setNumRows( doc->numEntries() );
-#if QT_VERSION < 300
-  setAutoUpdate(update);
-  setCellHeight( fontMetrics().lineSpacing() );
-#endif
 }
-
-
-void kvoctrainTable::appendItem(kvoctrainExpr *expr)
-{
-  if (m_rows) {
-    m_rows->appendEntry (expr);
-    m_rows->setModified();
-    emit sigModified(true);
-  }
-  updateViewPort();
-  repaintCells();
-}
-
-
-void kvoctrainTable::appendCol()
-{
-  if (m_rows) {
-    m_rows->appendLang ("");
-    m_rows->setModified();
-    emit sigModified(true);
-  }
-  updateViewPort();
-  repaintCells();
-}
-
-
-void kvoctrainTable::removeCurrentItem()
-{
-  if (m_rows) {
-    m_rows->removeEntry (currentRow() );
-    m_rows->setModified();
-    emit sigModified(true);
-  }
-  updateViewPort();
-  repaintCells();
-}
-
 
 void kvoctrainTable::setCurrentItem(int row)
 {
-  setCurrentRow( row, currentCol() );
+  setCurrentRow( row, currentColumn() );
 }
 
 
@@ -264,9 +223,8 @@ void kvoctrainTable::sortByColumn_alpha(int header)
     else
       m_rows->sortByLesson_alpha();
   }
-  repaintCells();
+  updateContents(0, currentColumn());
   m_rows->setModified();
-  setCurrentRow(0, currentCol());
   QApplication::restoreOverrideCursor();
 }
 
@@ -290,9 +248,8 @@ void kvoctrainTable::sortByColumn_index(int header)
     else
       m_rows->sortByLesson_index();
   }
-  repaintCells();
+  updateContents(0, currentColumn());
   m_rows->setModified();
-  setCurrentRow(0, currentCol());
   QApplication::restoreOverrideCursor();
 }
 

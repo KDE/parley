@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 21:17:59  arnold
     tested and fixed changes from previous cvs update
 
@@ -145,7 +152,6 @@ public:
   bool slotEditEntry(int row, int col);
 
   /** select an entry */
-  void slotSelectEntry(int row, int col, int key_state);
   void slotSaveSelection ();
   void slotCancelSelection ();
   void slotSelectAll();
@@ -161,7 +167,7 @@ public:
   void slotHeaderCallBack (int cmd_and_id);
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
-  void slotCellMoved(int row, int col, int keys);
+  void slotCurrentCellChanged(int row, int col);
   void showAboutDialog( void );
   void invokeHelp();
   /** append language to table */

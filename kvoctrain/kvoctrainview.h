@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -105,9 +112,6 @@ class kvoctrainTable : public RowTable
                   const LangSet *ls, const GradeCols *gc = 0,
                   QWidget *parent = NULL, const char *name = NULL );
 
-  void appendItem(kvoctrainExpr *expr);
-  void appendCol();
-  void removeCurrentItem();
   int  currentItem() { return currentRow(); }
   void setCurrentItem(int row);
   int  count() { return numRows(); }

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -40,6 +47,7 @@
 #include <qmessagebox.h>
 
 #include <kconfig.h>
+#include <kstatusbar.h>
 
 #include "common-dialogs/ProgressDlg.h"
 #include "common-dialogs/CharSetDlg.h"
@@ -60,7 +68,7 @@ void kvoctrainApp::saveOptions(bool all)
   if (view) {
     config->setGroup(CFG_GENERAL);
     config->writeEntry(CFG_CUR_ROW, view->getTable()->currentRow());
-    config->writeEntry(CFG_CUR_COL, view->getTable()->currentCol());
+    config->writeEntry(CFG_CUR_COL, view->getTable()->currentColumn());
   }
 
   if (all || autosaveopts) {

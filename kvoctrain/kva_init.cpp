@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -42,6 +49,8 @@
 #include <kstdaccel.h>
 #include <klineedit.h>
 #include <kcombobox.h>
+#include <kstatusbar.h>
+#include <kpopupmenu.h>
 
 kvoctrainApp::kvoctrainApp(const QString &name)
 {
@@ -83,9 +92,7 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   if (cc <= KV_COL_LESS)
     cc = KV_COL_LESS+1;
 
-  view->getTable()->setCurrentRow (cr, cc);
-  view->getTable()->updateViewPort();
-  slotCellMoved(cr, cc, 0);
+  view->getTable()->updateContents(cr, cc);
 
   ///////////////////////////////////////////////////////////////////
   // enable bars dependend on config file setups

@@ -17,6 +17,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -49,6 +56,7 @@
 
 #else
 
+#include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kprogress.h>
@@ -111,7 +119,7 @@ void kvoctrainApp::slotSelectAll () /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotCellMoved(int row, int col, int keys) /*FOLD00*/
+void kvoctrainApp::slotCurrentCellChanged(int row, int col) /*FOLD00*/
 {
   col -= KV_EXTRA_COLS;
 
@@ -140,33 +148,10 @@ void kvoctrainApp::slotCellMoved(int row, int col, int keys) /*FOLD00*/
             +QueryManager::typeStr(expr->getType (col)));
 }
 
-void kvoctrainApp::slotSelectEntry (int row, int col, int key_state) /*FOLD00*/
-{
-   if (view->getTable()->numRows() <= 0
-       || row < 0
-       || col < 0)
-     return;
-
-   if (key_state != 0) { // some shift/ctrl key
-     if (doc->getEntry(row)->getLesson () == 0)
-       doc->getEntry(row)->setLesson (act_lesson);
-     else
-       doc->getEntry(row)->setLesson (0);
-   }
-   else
-     doc->getEntry(row)->setSelected (!doc->getEntry(row)->isSelected());
-
-   doc->setModified(true);
-   // update current row with all cols
-   for (int i = 0; i < view->getTable()->numCols(); i++)
-     view->getTable()->updateCell(view->getTable()->currentRow(), i);
-}
-
-
 void kvoctrainApp::slotEditRow() /*FOLD00*/
 {
   slotEditEntry (view->getTable()->currentRow(),
-             view->getTable()->currentCol());
+             view->getTable()->currentColumn());
 }
 
 
@@ -174,16 +159,18 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
 {
    QString s1,
            s2,
-           expr,
+           text,
            lang;
 
-   if ((col == KV_COL_LESS)
-       || row < 0
-       || col < 0)
+   if ((row < 0) ||
+       (col < 0))
      return false;
 
    SpecFont_t font = view->getTable()->getColFont(col);
-   col -= KV_EXTRA_COLS;
+   if (col < KV_EXTRA_COLS)
+      col = 0;
+   else 
+      col -= KV_EXTRA_COLS;
 
    if (view->getTable()->numRows() <= 0)
      return false;
@@ -193,11 +180,11 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
 
    if (col == 0) {
      lang = doc->getOriginalIdent();
-     expr = doc->getEntry(row)->getOriginal();
+     text = doc->getEntry(row)->getOriginal();
    }
    else {
      lang = doc->getIdent(col);
-     expr = doc->getEntry(row)->getTranslation(col);
+     text = doc->getEntry(row)->getTranslation(col);
    }
 
    int lesson = doc->getEntry(row)->getLesson();
@@ -210,9 +197,11 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
    else
      title = i18n("Edit properties of translation");
 
+   bool hasSel = hasSelection();
+
    EntryDlg edlg (&font,
                   doc,
-                  hasSelection(),
+                  hasSel,
                   col==0,
                   doc->getEntry(row)->getGrade(col, false),
                   doc->getEntry(row)->getGrade(col, true),
@@ -224,7 +213,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
                   doc->getEntry(row)->getQueryDate(col, true),
                   doc->getEntry(row)->getFauxAmi(col, false),
                   doc->getEntry(row)->getFauxAmi(col, true),
-                  expr,
+                  text,
                   lesson,
                   lessons,
                   lang,
@@ -247,100 +236,103 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
 //   edlg.initFocus();
    int res = edlg.exec();
 
-   if (res == QDialog::Accepted) {
+   if (res != QDialog::Accepted) 
+      return false;
 
-     fillLessonBox(doc);
+   fillLessonBox(doc);
+
+   if (!hasSel) 
+   {
      kvoctrainExpr *expr = doc->getEntry(row);
-
-     if (!hasSelection()) {
-       if (col == 0)
-         expr->setOriginal(edlg.getExpr());
-       else
-         expr->setTranslation(col, edlg.getExpr());
+     if (col == 0)
+       expr->setOriginal(edlg.getExpr());
+     else
+       expr->setTranslation(col, edlg.getExpr());
 
      // do the same for "append entry"
 
-       expr->setRemark (col, edlg.getRemark());
-       expr->setPronunce (col, edlg.getPronunce());
+     expr->setRemark (col, edlg.getRemark());
+     expr->setPronunce (col, edlg.getPronunce());
 
-       expr->setSynonym (col, edlg.getSynonym());
-       expr->setAntonym (col, edlg.getAntonym());
-       expr->setExample (col, edlg.getExample());
-       expr->setUsageLabel (col, edlg.getUsageLabel());
-       expr->setParaphrase (col, edlg.getParaphrase());
-       expr->setConjugation (col, edlg.getConjugation());
-       expr->setComparison(col, edlg.getComparison() );
+     expr->setSynonym (col, edlg.getSynonym());
+     expr->setAntonym (col, edlg.getAntonym());
+     expr->setExample (col, edlg.getExample());
+     expr->setUsageLabel (col, edlg.getUsageLabel());
+     expr->setParaphrase (col, edlg.getParaphrase());
+     expr->setConjugation (col, edlg.getConjugation());
+     expr->setComparison(col, edlg.getComparison() );
 
-       expr->setFauxAmi (col, edlg.getFromFauxAmi(), false);
-       expr->setFauxAmi (col, edlg.getToFauxAmi(), true);
-       expr->setGrade(col, edlg.getFromGrade(), false);
-       expr->setGrade(col, edlg.getToGrade(), true);
-       expr->setQueryCount(col, edlg.getFromQCount(), false);
-       expr->setQueryCount(col, edlg.getToQCount(), true);
-       expr->setBadCount(col, edlg.getFromBCount(), false);
-       expr->setBadCount(col, edlg.getToBCount(), true);
-       expr->setQueryDate(col, edlg.getFromDate(), false);
-       expr->setQueryDate(col, edlg.getToDate(), true);
-       expr->setLesson (edlg.getLesson());
-       expr->setType (col, edlg.getType());
+     expr->setFauxAmi (col, edlg.getFromFauxAmi(), false);
+     expr->setFauxAmi (col, edlg.getToFauxAmi(), true);
+     expr->setGrade(col, edlg.getFromGrade(), false);
+     expr->setGrade(col, edlg.getToGrade(), true);
+     expr->setQueryCount(col, edlg.getFromQCount(), false);
+     expr->setQueryCount(col, edlg.getToQCount(), true);
+     expr->setBadCount(col, edlg.getFromBCount(), false);
+     expr->setBadCount(col, edlg.getToBCount(), true);
+     expr->setQueryDate(col, edlg.getFromDate(), false);
+     expr->setQueryDate(col, edlg.getToDate(), true);
+     expr->setLesson (edlg.getLesson());
+     expr->setType (col, edlg.getType());
 
-       for (int i = 0; i <= expr->numTranslations(); i++)
-         if (expr->getType(i).isEmpty() )
-           expr->setType(i, edlg.getType());
+     for (int i = 0; i <= expr->numTranslations(); i++)
+       if (expr->getType(i).isEmpty() )
+         expr->setType(i, edlg.getType());
 
-       for (int i = 0; i <= expr->numTranslations(); i++)
-         if (QueryManager::getMainType(expr->getType(i))
+     for (int i = 0; i <= expr->numTranslations(); i++)
+       if (QueryManager::getMainType(expr->getType(i))
              !=
-             QueryManager::getMainType(edlg.getType()) )
-           expr->setType(i, edlg.getType());
-     }
-     else {
-       // TODO Make selections work
-       for (int i = 0; i < doc->numEntries(); i++) {
-         kvoctrainExpr *expr = doc->getEntry(i);
-         if (expr->isSelected()) {
-           // only updated "common" props in multimode
-           if (edlg.fromGradeDirty() )
-             expr->setGrade(col, edlg.getFromGrade(), false);
-           if (edlg.toGradeDirty() )
-             expr->setGrade(col, edlg.getToGrade(), true);
-  
-           if (edlg.fromQCountDirty() )
-             expr->setQueryCount(col, edlg.getFromQCount(), false);
-           if (edlg.toQCountDirty() )
-             expr->setQueryCount(col, edlg.getToQCount(), true);
-  
-           if (edlg.fromBCountDirty() )
-             expr->setBadCount(col, edlg.getFromBCount(), false);
-           if (edlg.toBCountDirty() )
-             expr->setBadCount(col, edlg.getToBCount(), true);
-  
-           if (edlg.fromDateDirty() )
-             expr->setQueryDate(col, edlg.getFromDate(), false);
-           if (edlg.toDateDirty() )
-             expr->setQueryDate(col, edlg.getToDate(), true);
-  
-           if (edlg.lessonDirty() )
-             expr->setLesson (edlg.getLesson());
+           QueryManager::getMainType(edlg.getType()) )
+         expr->setType(i, edlg.getType());
+     view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+   }
+   else 
+   {
+     RowTable *table = view->getTable();
 
-           if (edlg.typeDirty() ) {
-             for (int i = 0; i <= expr->numTranslations(); i++)
-               expr->setType(i, edlg.getType());
-           }
+     int numRows = table->numRows();
+     for (int i = 0; i < numRows; i++)
+     {
+       if (table->isRowSelected(i))
+       {
+         kvoctrainExpr *expr = table->getRow(i);
+         // only updated "common" props in multimode
+         if (edlg.fromGradeDirty() )
+           expr->setGrade(col, edlg.getFromGrade(), false);
+         if (edlg.toGradeDirty() )
+           expr->setGrade(col, edlg.getToGrade(), true);
+ 
+         if (edlg.fromQCountDirty() )
+           expr->setQueryCount(col, edlg.getFromQCount(), false);
+         if (edlg.toQCountDirty() )
+            expr->setQueryCount(col, edlg.getToQCount(), true);
+  
+         if (edlg.fromBCountDirty() )
+           expr->setBadCount(col, edlg.getFromBCount(), false);
+         if (edlg.toBCountDirty() )
+           expr->setBadCount(col, edlg.getToBCount(), true);
+  
+         if (edlg.fromDateDirty() )
+           expr->setQueryDate(col, edlg.getFromDate(), false);
+         if (edlg.toDateDirty() )
+           expr->setQueryDate(col, edlg.getToDate(), true);
+  
+         if (edlg.lessonDirty() )
+           expr->setLesson (edlg.getLesson());
+
+         if (edlg.typeDirty() ) 
+         {
+           for (int i = 0; i <= expr->numTranslations(); i++)
+             expr->setType(i, edlg.getType());
          }
        }
      }
-
-     doc->setModified(true);
-     // update current row with all cols
-     for (int i = 0; i < view->getTable()->numCols(); i++)
-       view->getTable()->updateCell(row, i);
-
-      slotCellMoved(view->getTable()->currentRow(),
-                    view->getTable()->currentCol(),
-                    -1);
+     table->updateContents();
    }
-   return res == QDialog::Accepted;
+
+   doc->setModified(true);
+
+   return true;
 }
 
 
@@ -418,10 +410,9 @@ void kvoctrainApp::slotDocProps () /*FOLD00*/
       querymanager.setLessonItems(new_lessoninquery);
 
       doc->setModified();
-      view->getTable()->repaintCells();
+      view->getTable()->updateContents();
 
       setCaption(generateCaption(doc->getTitle()), doc->isModified());
-      doc->setModified();
 
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
@@ -476,7 +467,7 @@ void kvoctrainApp::slotDocPropsLang ()
         view->getTable()->setLangSet (&langset);
 
         doc->setModified();
-        view->getTable()->repaintCells();
+        view->getTable()->updateContents();
 
         setCaption(generateCaption(doc->getTitle()), doc->isModified());
       }
@@ -515,10 +506,10 @@ void kvoctrainApp::slotRemoveRow() /*FOLD00*/
                   generateCaption(""),
                   i18n("&Yes"), i18n("&No")))
     {
+      RowTable *table = view->getTable();
+      doc->removeEntry(table->currentRow());
       doc->setModified();
-      view->getTable()->removeCurrentItem ();
-      view->getTable()->updateViewPort();
-      view->getTable()->repaintCells();
+      table->updateContents();
     }
   }
   else {
@@ -528,13 +519,16 @@ void kvoctrainApp::slotRemoveRow() /*FOLD00*/
                   i18n("&Yes"),
                   i18n("&No")))
     {
-      // TODO Make selections work
-      for (int i = doc->numEntries()-1; i >= 0; i--)
-        if (doc->getEntry(i)->isSelected() )
+      RowTable *table = view->getTable();
+
+      int numRows = table->numRows();
+      // Must count backwards otherwise entry-numbering goes wrong when
+      // deleting.
+      for (int i = numRows-1; i >= 0; i--)
+        if (table->isRowSelected(i) )
           doc->removeEntry(i);
-      view->getTable()->updateViewPort();
-      view->getTable()->repaintCells();
       doc->setModified();
+      table->updateContents();
     }
   }
 }
@@ -596,15 +590,13 @@ void kvoctrainApp::slotAppendRow () /*FOLD00*/
       expr.setLesson (edlg.getLesson());
       expr.setType (0, edlg.getType());
 
-      view->getTable()->appendItem (&expr);
-      int row = view->getTable()->numRows()-1;
-      view->getTable()->setCurrentRow (row, KV_COL_ORG);
-      view->getTable()->updateViewPort();
-      slotCellMoved(view->getTable()->currentRow(),
-                    view->getTable()->currentCol(),
-                    0);
       for (int i = 1; i <= doc->numLangs(); i++)
          expr.setType (i, edlg.getType());
+
+      doc->appendEntry(&expr);
+      doc->setModified();
+      int row = doc->numEntries()-1;
+      view->getTable()->updateContents(row, KV_COL_ORG);
   
       // enter all new translations
       if (smartAppend) {
@@ -749,12 +741,7 @@ void kvoctrainApp::slotCreateLesson(int header) /*FOLD00*/
       cnt++;
     }
   }
-  view->getTable()->setCurrentRow(view->getTable()->currentRow(),
-                                  view->getTable()->currentCol());
-  slotCellMoved(view->getTable()->currentRow(),
-                view->getTable()->currentCol(),
-                0);
-  view->getTable()->updateViewPort();
+  view->getTable()->updateContents();
 }
 
 
@@ -777,17 +764,8 @@ void kvoctrainApp::slotCleanVocabulary () /*FOLD00*/
 
    if (num != 0) {
      view->setView(doc, langset, gradecols);
-     view->getTable()->repaintCells();
-     if (view->getTable()->currentRow() > doc->numEntries()) {
-       view->getTable()->setCurrentRow (doc->numEntries(),
-                                        view->getTable()->currentCol());
-       slotCellMoved(view->getTable()->currentRow(),
-                     view->getTable()->currentCol(),
-                     0);
-     }
-     QString s;
-     s.setNum (num);
-     s += i18n(" entries with same content have been found and removed");
+     QString s = 
+        i18n("%1 entries with same content have been found and removed").arg(num);
 
      KMessageBox::information(this,
        s,
@@ -839,7 +817,7 @@ void kvoctrainApp::slotCreateRandom() /*FOLD00*/
      for (int i = 1; i < lessons->count(); i++)
        new_lessonStr.push_back(lessons->text(i));
      doc->setLessonDescr (new_lessonStr);
-     view->getTable()->repaintCells();
+     view->getTable()->updateContents();
      doc->setModified ();
    }
    QApplication::restoreOverrideCursor();
@@ -897,8 +875,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 
       view->getTable()->setFont(tablefont);
       view->getTable()->setLangSet (&langset);
-      view->getTable()->updateViewPort();
-      view->getTable()->repaintCells();
+      view->getTable()->updateContents();
      
       // update header buttons
       for (int i = 0; i < (int) doc->numLangs(); i++) {
@@ -945,7 +922,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd) /*FOLD00*/
    if (lang_id >= (int) langset.size())
      return;
 
-   view->getTable()->appendCol();
+   doc->appendLang("");
    int num = doc->numEntries()-1;
    for (int i = 0; i < (int) num; i++) {
       kvoctrainExpr *expr = doc->getEntry(i);
@@ -988,24 +965,16 @@ void kvoctrainApp::slotResumeSearch(const QString& s) /*FOLD00*/
   // search in current col from current row till end
   // SHIFT means start search from beginning of word
   bool word_beg = shiftActive;
-  int idx = doc->search(s, view->getTable()->currentCol()-KV_EXTRA_COLS, searchpos, -1, word_beg, false);
+  int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg, false);
   if (idx >= 0) {
-    view->getTable()->setCurrentRow(idx, view->getTable()->currentCol());
-    view->getTable()->updateViewPort();
+    view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
     searchpos = idx+1;
-    slotCellMoved(view->getTable()->currentRow(),
-                  view->getTable()->currentCol(),
-                  0);
   }
   else { // try again from beginning up to current pos
-    int idx = doc->search(s, view->getTable()->currentCol()-KV_EXTRA_COLS, 0, searchpos, word_beg, false);
+    int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg, false);
     if (idx >= 0) {
-      view->getTable()->setCurrentRow(idx, view->getTable()->currentCol());
-      view->getTable()->updateViewPort();
+      view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
       searchpos = idx+1;
-      slotCellMoved(view->getTable()->currentRow(),
-                    view->getTable()->currentCol(),
-                    0);
     }
     else
       searchpos = 0;

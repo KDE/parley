@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/12 19:28:13  arnold
     removed references to obsolete binary format
 
@@ -45,6 +52,7 @@
 #include <kcombobox.h>
 #include <kprogress.h>
 #include <krecentdocument.h>
+#include <kstatusbar.h>
 
 #include "kvoctrain.h"
 #include "UsageManager.h"
@@ -634,7 +642,6 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
 
   view->getTable()->setLangSet (&langset);
   view->setView(doc, langset, gradecols);
-  view->getTable()->updateViewPort();
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -692,15 +699,19 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
   the_doc->getQueryLang (act_query_org, act_query_trans);
   if (!act_query_org.isEmpty() && !act_query_trans.isEmpty() ) {
     for (int i = 0; i < the_doc->numEntries(); i++)
-      if (the_doc->getEntry(i)->isSelected()) {
-        int less = the_doc->getEntry(i)->getLesson();
-        for (int l = (int) queryList.size(); l <= less; l++) {
-          vector<QueryEntryRef> ref_vec;
-          queryList.push_back(ref_vec);
-        }
-        QueryEntryRef ref(the_doc->getEntry(i), i);
-        queryList[less].push_back(ref);
+    {
+      kvoctrainExpr *entry = the_doc->getEntry(i);
+      if (entry->isSelected())
+      {
+         int less = entry->getLesson();
+         for (int l = (int) queryList.size(); l <= less; l++) {
+            vector<QueryEntryRef> ref_vec;
+            queryList.push_back(ref_vec);
+         }
+         QueryEntryRef ref(entry, i);
+         queryList[less].push_back(ref);
       }
+    }
   }
 
   QueryManager::setTypeNames (doc->getTypeDescr() );
@@ -796,9 +807,6 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
 
 void kvoctrainApp::slotSaveSelection () /*FOLD00*/
 {
-  if (view->getTable()->numSelections() == 0)
-    return;
-
   slotStatusMsg(i18n("Saving selected area under new filename..."));
 
   kvoctrainDoc seldoc(this, "");
@@ -810,7 +818,6 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
   seldoc.setLessonDescr(doc->getLessonDescr());
   seldoc.setTypeDescr(doc->getTypeDescr());
 
-  // FIXME!
   for (int i = doc->numEntries()-1; i >= 0; i--)
     if (doc->getEntry(i)->isSelected() )
       seldoc.appendEntry(doc->getEntry(i));
@@ -826,9 +833,8 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
                             "Do you want to overwrite \"%1\"?");
       QString msg = format.arg(name);
 
-      int exit = KMessageBox::warningYesNo(this,
-                 kvoctrainApp::generateCaption(i18n("File exists")),
-                 kvoctrainApp::generateCaption(""));
+      int exit = KMessageBox::warningYesNo(this, msg,
+                 kvoctrainApp::generateCaption(i18n("File exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }

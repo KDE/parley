@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -80,7 +87,7 @@ void kvoctrainApp::slotQueryOptions() /*FOLD00*/
         querymanager.setLessonItems(qodlg.getQueryManager().lessonItems() );
       }
 
-//      view->getTable()->repaintCells();
+//      view->getTable()->updateContents();
      
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -119,7 +126,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->repaintCells();
+  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?
@@ -284,7 +291,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->repaintCells();
+  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?
@@ -505,7 +512,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang) /*FOLD00*/
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->repaintCells();
+  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?

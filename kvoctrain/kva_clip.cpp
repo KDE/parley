@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -147,21 +154,27 @@ void kvoctrainApp::slotEditCopy()
 
   vector <int> csv_order = getCsvOrder(doc, &paste_order);
 
-    kvoctrainExpr *expr = view->getTable()->selectedRow();
-    if (expr == 0 ) return;
+  RowTable *table = view->getTable();
 
-    bool sep =  false;
-    for (int i = 0; i < (int) csv_order.size(); i++) {
-      if (!sep)
-        sep = true;
-      else
-        exp += separator;
-  
-      if (csv_order[i] >= 0) {
-        if (csv_order[i] == 0)
-          exp += expr->getOriginal();
+  for (int j = table->numRows()-1; j >= 0; j--)
+    if (table->isRowSelected(j))
+    {
+      kvoctrainExpr *expr = table->getRow(j);
+      if (expr == 0 ) return;
+
+      bool sep =  false;
+      for (int i = 0; i < (int) csv_order.size(); i++) {
+        if (!sep)
+          sep = true;
         else
-          exp += expr->getTranslation(csv_order[i]);
+          exp += separator;
+  
+        if (csv_order[i] >= 0) {
+          if (csv_order[i] == 0)
+            exp += expr->getOriginal();
+          else
+            exp += expr->getTranslation(csv_order[i]);
+        }
       }
     }
 
@@ -243,9 +256,7 @@ void kvoctrainApp::slotEditPaste()
 
   if (changed) {
     doc->setModified();
-//  view->setView(doc, langset, gradecols);
-    view->getTable()->setCurrentRow (view->getTable()->numRows()-1, KV_COL_ORG);
-    view->getTable()->updateViewPort();
+    view->getTable()->updateContents(view->getTable()->numRows()-1, KV_COL_ORG);
   }
 
   QApplication::restoreOverrideCursor();

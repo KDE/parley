@@ -14,6 +14,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -57,43 +64,35 @@ RowTable::~RowTable()
 {
 }
 
-
-void RowTable::repaintCells(int firstRow, int lastRow, int firstCol, int lastCol)
+void RowTable::updateContents(int row, int col)
 {
-   int frow,
-       lrow,
-       fcol,
-       lcol;
-
-   frow = firstRow;
-   lrow = lastRow;
-
-   fcol = firstRow;
-   lcol = lastCol;
-
-   if (   frow > lrow
-       || fcol > lcol
-      )
-     return;
-
-   for (int r = frow; r <= lrow; r++)
-     for (int c = fcol; c <= lcol; c++)
-        updateCell (r, c);
-}
-
-
-void RowTable::updateViewPort()
-{
+      int current_row = row;
+      if (current_row < 0)
+         current_row = currentRow();
+      int current_col = col;
+      if (current_col < 0)
+         current_col = currentColumn();
+      int ncols, nrows;
       if (m_rows) {
-        setNumRows( m_rows->numEntries());
-        setNumCols( QMAX (1, m_rows->numLangs()+KV_EXTRA_COLS) );
+        nrows = m_rows->numEntries();
+        ncols = QMAX (1, m_rows->numLangs())+KV_EXTRA_COLS;
       }
       else {
-        setNumRows( 0 );
-        setNumCols( 1+KV_EXTRA_COLS );
+        nrows = 0;
+        ncols = 1+KV_EXTRA_COLS;
       }
-      int current_row = QMIN (currentRow(), numRows()-1);
-      setCurrentRow (current_row, currentColumn());
+      if (nrows != numRows())
+        setNumRows(nrows);
+      if (ncols != numCols())
+        setNumCols(ncols);
+      current_row = QMIN (current_row, numRows()-1);
+      current_col = QMIN (current_col, numCols()-1); 
+      bool b = signalsBlocked();
+      blockSignals(true);
+      setCurrentRow (current_row, current_col);
+      blockSignals(b);
+      update();
+      emit currentChanged(current_row, current_col);
 }
 
 
@@ -231,12 +230,6 @@ QWidget *RowTable::createEditor(int, int, bool) const
 {
    return 0; // No inline editing
 }
-
-kvoctrainExpr *RowTable::selectedRow()
-{
-	return getRow( currentRow() );
-}
-
 
 kvoctrainExpr *RowTable::getRow( int row )
 {

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -570,8 +577,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       if(exit==KMessageBox::Yes) {
         doc->resetEntry (header1, act_lesson);
         doc->setModified();
-        view->getTable()->updateViewPort();
-        view->getTable()->repaintCells();
+        view->getTable()->updateContents();
       }
     }
     break;
