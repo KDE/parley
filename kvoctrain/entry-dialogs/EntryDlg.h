@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/05/09 09:19:04  arnold
+    fixed missing entry dialog
+
     Revision 1.13  2002/02/03 08:39:20  arnold
     moved checkbox to options dialog
 
@@ -65,24 +68,6 @@
  *   (at your option) any later version.                                   * 
  *                                                                         *
  ***************************************************************************/
-
-#ifndef _EntryDlg_CONJUGATION
-#define _EntryDlg_CONJUGATION i18n("Con&jugation")
-#endif
-
-#ifndef _EntryDlg_ADJECTIVE
-#define _EntryDlg_ADJECTIVE i18n("Compar&ison")
-#endif
-
-#ifndef _EntryDlg_MULTIPLECHOICE
-#define _EntryDlg_MULTIPLECHOICE i18n("&Multiple Choice")
-#endif
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-  _EntryDlg_CONJUGATION
-  _EntryDlg_ADJECTIVE
-  _EntryDlg_MULTIPLECHOICE
-#else
 
 #ifndef EntryDlg_included
 #define EntryDlg_included
@@ -286,4 +271,3 @@ protected:
 
 #endif // EntryDlg_included
 
-#endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT

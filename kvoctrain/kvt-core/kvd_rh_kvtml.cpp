@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.9  2002/01/18 04:40:09  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -329,12 +332,12 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
           return false;
 
         if ((int)langs.size() <= count) {      // first entry
-          if (lang == "")                      // no definition in first entry
+          if (lang.isEmpty())                      // no definition in first entry
             lang = "original";
           langs.push_back(lang);
         }
         else {
-          if (lang != langs[count] && lang != "") {  // different originals ?
+          if (lang != langs[count] && !lang.isEmpty()) {  // different originals ?
             errorKvtMl (xml.lineNumber(),
                         i18n("ambiguous definition of language code"));
             return false;
@@ -565,12 +568,12 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
             return false;
 
           if ((int)langs.size() <= count) { // first entry
-            if (lang == "")                 // no definition in first entry
+            if (lang.isEmpty())                 // no definition in first entry
               lang = "original";
             langs.push_back(lang);
           }
           else {
-            if (lang != langs[count] && lang != "") {  // different originals ?
+            if (lang != langs[count] && !lang.isEmpty()) {  // different originals ?
               errorKvtMl (xml.lineNumber(),
                           i18n("ambiguous definition of language code"));
               return false;

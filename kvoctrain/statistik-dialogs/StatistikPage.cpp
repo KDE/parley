@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/01/04 17:29:59  arnold
+    fixed resuming a query
+
     Revision 1.5  2001/12/26 15:13:19  mueller
     CVSSILINT: fixincludes
 
@@ -316,47 +319,16 @@ void StatistikPage::slotPopupMenu(int row, int col)
     return;
 
   KPopupMenu *header_m = new KPopupMenu(i18n("Number of entries per grade"));
-  QString s;
 
-  s.setNum (sc->grade[KV_NORM_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_NORM_TEXT);
-  header_m->insertItem (s);
+  header_m->insertItem (i18n(KV_NORM_TEXT) + "\t" + QString::number(sc->grade[KV_NORM_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV1_TEXT) + "\t" + QString::number(sc->grade[KV_LEV1_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV2_TEXT) + "\t" + QString::number(sc->grade[KV_LEV2_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV3_TEXT) + "\t" + QString::number(sc->grade[KV_LEV3_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV4_TEXT) + "\t" + QString::number(sc->grade[KV_LEV4_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV5_TEXT) + "\t" + QString::number(sc->grade[KV_LEV5_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV6_TEXT) + "\t" + QString::number(sc->grade[KV_LEV6_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV7_TEXT) + "\t" + QString::number(sc->grade[KV_LEV7_GRADE]) );
 
-  s.setNum (sc->grade[KV_LEV1_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV1_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV2_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV2_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV3_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV3_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV4_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV4_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV5_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV5_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV6_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV6_TEXT);
-  header_m->insertItem (s);
-
-  s.setNum (sc->grade[KV_LEV7_GRADE]);
-  s.insert(0, "\t");
-  s.insert(0, KV_LEV7_TEXT);
-  header_m->insertItem (s);
 
   header_m->exec(QCursor::pos()+QPoint(10, 0));
 }

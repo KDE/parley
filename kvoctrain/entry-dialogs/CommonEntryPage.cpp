@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/04/20 12:55:48  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.21  2002/02/08 19:24:02  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -473,7 +476,7 @@ void CommonEntryPage::invokeUsageDlg()
                                                  "Edit User-Defined Usage Labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
-  usageOpt.addTab( usageOptPage, _DocDlg_USAGES);
+  usageOpt.addTab( usageOptPage, i18n("usage (area) of an expression", "&Usage"));
 
   usageOpt.setCancelButton();
   connect( &usageOpt, SIGNAL(applyButtonPressed()),  &usageOpt, SLOT(accept()) );
@@ -504,7 +507,7 @@ void CommonEntryPage::invokeLessDlg()
 
   lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit Lesson Names")));
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
-  lessOpt.addTab( lessOptPage, _DocDlg_LESSONS);
+  lessOpt.addTab( lessOptPage, i18n("L&essons"));
 
   lessOpt.setCancelButton();
   connect( &lessOpt, SIGNAL(applyButtonPressed()),  &lessOpt, SLOT(accept()) );
@@ -535,7 +538,7 @@ void CommonEntryPage::invokeTypeDlg()
   typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit User Defined Types")));
   TypeOptPage *typeOptPage
     = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");
-  typeOpt.addTab( typeOptPage, _DocDlg_TYPES);
+  typeOpt.addTab( typeOptPage, i18n("word types","T&ypes"));
 
   typeOpt.setCancelButton();
   connect( &typeOpt, SIGNAL(applyButtonPressed()),  &typeOpt, SLOT(accept()) );

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/07/21 04:27:09  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.10  2002/04/12 10:09:56  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -539,15 +542,15 @@ QString QueryManager::compStr (CompType type)
 QString QueryManager::gradeStr (int i)
 {
   switch (i) {
-    case KV_NORM_GRADE:    return KV_NORM_TEXT; break;
-    case KV_LEV1_GRADE:    return KV_LEV1_TEXT; break;
-    case KV_LEV2_GRADE:    return KV_LEV2_TEXT; break;
-    case KV_LEV3_GRADE:    return KV_LEV3_TEXT; break;
-    case KV_LEV4_GRADE:    return KV_LEV4_TEXT; break;
-    case KV_LEV5_GRADE:    return KV_LEV5_TEXT; break;
-    case KV_LEV6_GRADE:    return KV_LEV6_TEXT; break;
-    case KV_LEV7_GRADE:    return KV_LEV7_TEXT; break;
-    default:               return KV_LEV1_TEXT; break;
+    case KV_NORM_GRADE:    return i18n(KV_NORM_TEXT); break;
+    case KV_LEV1_GRADE:    return i18n(KV_LEV1_TEXT); break;
+    case KV_LEV2_GRADE:    return i18n(KV_LEV2_TEXT); break;
+    case KV_LEV3_GRADE:    return i18n(KV_LEV3_TEXT); break;
+    case KV_LEV4_GRADE:    return i18n(KV_LEV4_TEXT); break;
+    case KV_LEV5_GRADE:    return i18n(KV_LEV5_TEXT); break;
+    case KV_LEV6_GRADE:    return i18n(KV_LEV6_TEXT); break;
+    case KV_LEV7_GRADE:    return i18n(KV_LEV7_TEXT); break;
+    default:               return i18n(KV_LEV1_TEXT); break;
   }
 }
 

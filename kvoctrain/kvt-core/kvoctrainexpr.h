@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/07/21 04:27:09  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.9  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -67,46 +70,35 @@
 
 #define KV_NORM_GRADE      0       // not queried yet
 #define KV_NORM_COLOR      Qt::black
-#define KV_NORM_TEXT       i18n("Not Queried Yet")
+#define KV_NORM_TEXT       I18N_NOOP("Not Queried Yet")
 
 #define KV_LEV1_GRADE      1
 #define KV_LEV1_COLOR      Qt::red
-#define KV_LEV1_TEXT       i18n("Level 1")
+#define KV_LEV1_TEXT       I18N_NOOP("Level 1")
 
 #define KV_LEV2_GRADE      2
 #define KV_LEV2_COLOR      Qt::red
-#define KV_LEV2_TEXT       i18n("Level 2")
+#define KV_LEV2_TEXT       I18N_NOOP("Level 2")
 
 #define KV_LEV3_GRADE      3
 #define KV_LEV3_COLOR      Qt::red
-#define KV_LEV3_TEXT       i18n("Level 3")
+#define KV_LEV3_TEXT       I18N_NOOP("Level 3")
 
 #define KV_LEV4_GRADE      4
 #define KV_LEV4_COLOR      Qt::red
-#define KV_LEV4_TEXT       i18n("Level 4")
+#define KV_LEV4_TEXT       I18N_NOOP("Level 4")
 
 #define KV_LEV5_GRADE      5
 #define KV_LEV5_COLOR      Qt::green
-#define KV_LEV5_TEXT       i18n("Level 5")
+#define KV_LEV5_TEXT       I18N_NOOP("Level 5")
 
 #define KV_LEV6_GRADE      6
 #define KV_LEV6_COLOR      Qt::green
-#define KV_LEV6_TEXT       i18n("Level 6")
+#define KV_LEV6_TEXT       I18N_NOOP("Level 6")
 
 #define KV_LEV7_GRADE      7
 #define KV_LEV7_COLOR      Qt::green
-#define KV_LEV7_TEXT       i18n("Level 7")
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-  KV_NORM_TEXT
-  KV_LEV1_TEXT
-  KV_LEV2_TEXT
-  KV_LEV3_TEXT
-  KV_LEV4_TEXT
-  KV_LEV5_TEXT
-  KV_LEV6_TEXT
-  KV_LEV7_TEXT
-#else
+#define KV_LEV7_TEXT       I18N_NOOP("Level 7")
 
 #include "langset.h"
 
@@ -546,8 +538,6 @@ class kvoctrainExpr
   static QPixmap   *s_pm_mark;
   static QPixmap   *s_pm_inactive;
 };
-
-#endif  // ONLY XGETTEXT
 
 #endif // KVOCTRAINEXPR_H
 

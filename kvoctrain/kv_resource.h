@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.1  2001/11/25 11:12:24  arnold
     splitted kv_resource.h
 
@@ -153,24 +156,16 @@
 #define ID_REM_MSG                  2003
 #define ID_TYPE_MSG                 2004
 
-#define PREFIX_Type                 "T:"
-#define PREFIX_Remark               "R:"
-#define PREFIX_Pronunce             "P:"
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-     i18n("Abbreviation for T)ype of word",  PREFIX_Type)
-     i18n("Abbreviation for R)emark",        PREFIX_Remark)
-     i18n("Abbreviation for P)ronouncation", PREFIX_Pronunce)
+#ifndef I18N_NOOP2
+#define I18N_NOOP2(context, str) context, str
 #endif
+
+#define PREFIX_Type                 I18N_NOOP2("Abbreviation for T)ype of word", "T:")
+#define PREFIX_Remark               I18N_NOOP2("Abbreviation for R)emark","R:")
+#define PREFIX_Pronunce             I18N_NOOP2("Abbreviation for P)ronouncation","P:")
 
 //#define IDS_DEFAULT                 (doc && doc->isModified() ? " * Ready." : " Ready.")
-#define IDS_DEFAULT                 i18n("Ready.")
-
-///////////////////////////////////////////////////////////////////
-// General application values
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-     IDS_DEFAULT
-#endif
+#define IDS_DEFAULT                 I18N_NOOP("Ready.")
 
 ///////////////////////////////////////////////////////////////////
 // header-menu entries
@@ -217,10 +212,6 @@
 // other strings
 //#define KVOCTRAIN_TITLE i18n("Vocabulary Trainer")
 #define KVOCTRAIN_NAME "kvoctrain"
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-  KVOCTRAIN_TITLE
-#endif
 
 #define MAX_RECENTFILES  10
 

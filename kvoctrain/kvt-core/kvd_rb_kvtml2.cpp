@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.9  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -181,13 +184,13 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       }
 
       if (langs.size() == 0) {          // first entry
-        if (lang == "")                 // no definition in first entry
+        if (lang.isEmpty())                 // no definition in first entry
           lang = "original";
         langs.push_back(lang);
 
       }
       else {
-        if (lang != langs[0] && lang != "") {  // different originals ?
+        if (lang != langs[0] && !lang.isEmpty()) {  // different originals ?
           errorKvtMl (xml.lineNumber(),
                       i18n("ambiguous definition of language code"));
           return false;
@@ -340,7 +343,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       }
 
       if (langs.size() <= count) {      // new translation
-        if (lang == "") {               // no definition in first entry ?
+        if (lang.isEmpty()) {               // no definition in first entry ?
           lang.setNum (langs.size() );
           lang.insert (0, "translation ");
         }
@@ -348,7 +351,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
       }
       else {
-        if (lang != langs[count] && lang != "") { // different language ?
+        if (lang != langs[count] && !lang.isEmpty()) { // different language ?
           errorKvtMl (xml.lineNumber(),
                       i18n("ambiguous definition of language code"));
           return false;

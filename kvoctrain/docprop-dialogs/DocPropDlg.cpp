@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/04 21:07:58  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.7  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -102,29 +105,22 @@ DocPropsDlg::DocPropsDlg
   tenseOptPage = new TenseOptPage (tenses, doc, this, name);
   useOptPage = new UsageOptPage (usages, doc, this, name);
   docOptPage = new DocOptionsPage (doc->isAllowedSorting(), this, name);
-  vector<QString> tabs;
-  addTab( titleOptPage, _DocDlg_TITLE );
-  tabs.push_back(_DocDlg_TITLE);
+  addTab( titleOptPage, i18n("&General"));
   connect (this, SIGNAL(aboutToShow()), titleOptPage, SLOT(initFocus() ));
 
-  addTab( lessOptPage, _DocDlg_LESSONS);
-  tabs.push_back(_DocDlg_LESSONS);
+  addTab( lessOptPage, i18n("L&essons"));
   connect (this, SIGNAL(aboutToShow()), lessOptPage, SLOT(initFocus() ));
 
-  addTab( typeOptPage, _DocDlg_TYPES);
-  tabs.push_back(_DocDlg_TYPES );
+  addTab( typeOptPage, i18n("word types","T&ypes"));
   connect (this, SIGNAL(aboutToShow()), typeOptPage, SLOT(initFocus() ));
 
-  addTab( tenseOptPage, _DocDlg_TENSES);
-  tabs.push_back(_DocDlg_TENSES );
+  addTab( tenseOptPage, i18n("Te&nses"));
   connect (this, SIGNAL(aboutToShow()), tenseOptPage, SLOT(initFocus() ));
 
-  addTab( useOptPage, _DocDlg_USAGES);
-  tabs.push_back(_DocDlg_USAGES );
+  addTab( useOptPage, i18n("usage (area) of an expression", "&Usage"));
   connect (this, SIGNAL(aboutToShow()), useOptPage, SLOT(initFocus() ));
 
-  addTab( docOptPage, _DocDlg_OPTIONS);
-  tabs.push_back(_DocDlg_OPTIONS );
+  addTab( docOptPage, i18n("&Options"));
   connect (this, SIGNAL(aboutToShow()), docOptPage, SLOT(initFocus() ));
 
   setCancelButton(i18n("&Cancel"));

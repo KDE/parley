@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/29 10:40:45  arnold
+    merged fixes from POST-branch
+
     Revision 1.6  2001/12/26 15:12:15  mueller
     CVSSILINT: fixincludes
 
@@ -175,13 +178,13 @@ void PasteOptPage::initFocus() const
 void PasteOptPage::slotSyncLangSet(const QString& dlg_name)
 {
   // skip "skip" elements at tail
-  if (dlg_name == _OptDlg_CLIPBOARD) {
+  if (dlg_name == i18n("&Clipboard")) {
     // order_list contains doublettes??
     for (int j = (int) order_list->count()-1; j > 1; j--) {
       QString comp = order_list->text(j);
       for (int i = (int) j-1; i >=0; i--) {
         if (   order_list->text(i) == comp
-            && !QString (order_list->text(i)).isEmpty()) {
+            && !order_list->text(i).isEmpty()) {
 //          cout << "remove " << j << " " << order_list->text(j).latin1() << endl;
           order_list->removeItem(j);
           break;
@@ -191,7 +194,7 @@ void PasteOptPage::slotSyncLangSet(const QString& dlg_name)
     // order_list contains elements unknown in language set? remove them
     for (int i = (int) order_list->count()-1; i >=0; i--) {
 //      cout << order_list->text(i).latin1() << endl;
-      if (!QString (order_list->text(i)).isEmpty())
+      if (!order_list->text(i).isEmpty())
         if (langset.indexLongId(order_list->text(i)) < 0) {
           order_list->removeItem(i);
         }
@@ -216,7 +219,7 @@ void PasteOptPage::slotSyncLangSet(const QString& dlg_name)
 
   int i;
   for (i = (int) order_list->count()-1;
-       i >= 0 && QString(order_list->text(i)).isEmpty();
+       i >= 0 && order_list->text(i).isEmpty();
        i--) {
    if (order_list->currentItem() > (int) order_list->count()-2)
      order_list->setCurrentItem(order_list->count()-2);
@@ -239,20 +242,20 @@ void PasteOptPage::slotSelectOrder(int idx)
 
 QStringList PasteOptPage::getPasteOrder()
 {
-  slotSyncLangSet(_OptDlg_CLIPBOARD);
+  slotSyncLangSet(i18n("&Clipboard"));
   QStringList sl;
   // skip "skip" elements at tail
   int i;
   for (i = (int) order_list->count()-1;
-       i >= 0 && QString(order_list->text(i)).isEmpty();
+       i >= 0 && order_list->text(i).isEmpty();
        i--);
 
   // insert language codes and "skips" between them
   for ( /**/; i >= 0; i--) {
     QString code = langset.findShortId(order_list->text(i));
-    if (code == "")
+    if (code.isEmpty())
       code = order_list->text(i); // no longId previously available
-    if (QString(order_list->text(i)).isEmpty())
+    if (order_list->text(i).isEmpty())
       sl.insert (sl.begin(), "");
     else
       sl.insert (sl.begin(), code);
@@ -266,7 +269,7 @@ void PasteOptPage::slotItemSkip()
   int pos = order_list->currentItem();
   order_list->insertItem("", order_list->currentItem());
   order_list->setCurrentItem(pos);
-  slotSyncLangSet(_OptDlg_CLIPBOARD);
+  slotSyncLangSet(i18n("&Clipboard"));
   order_list->setFocus();
   slotEnableCursor();
 }
@@ -297,7 +300,7 @@ void PasteOptPage::slotItemUp()
     order_list->removeItem(pos);
     order_list->insertItem(item, pos-1);
     order_list->setCurrentItem(pos-1);
-    slotSyncLangSet(_OptDlg_CLIPBOARD);
+    slotSyncLangSet(i18n("&Clipboard"));
     order_list->setFocus();
   }
   slotEnableCursor();
@@ -313,7 +316,7 @@ void PasteOptPage::slotItemDown()
     order_list->removeItem(pos);
     order_list->insertItem(item, pos+1);
     order_list->setCurrentItem(pos+1);
-    slotSyncLangSet(_OptDlg_CLIPBOARD);
+    slotSyncLangSet(i18n("&Clipboard"));
     order_list->setFocus();
   }
   slotEnableCursor();

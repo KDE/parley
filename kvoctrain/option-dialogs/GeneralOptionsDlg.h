@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2002/02/03 08:39:23  arnold
+    moved checkbox to options dialog
+
     Revision 1.4  2001/12/13 18:40:12  arnold
     added phonetic alphabet stuff
 
@@ -43,14 +46,6 @@
  *   (at your option) any later version.                                   * 
  *                                                                         *
  ***************************************************************************/
-
-#ifndef _OptDlg_CLIPBOARD 
-#define _OptDlg_CLIPBOARD i18n("&Clipboard")
-#endif
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-  _OptDlg_CLIPBOARD
-#else
 
 #ifndef GeneralOptionsDlg_included
 #define GeneralOptionsDlg_included
@@ -130,4 +125,3 @@ protected:
 
 #endif // GeneralOptionsDlg_included
 
-#endif  // __ONLY_TO_BE_SEEN_BY_XGETTEXT

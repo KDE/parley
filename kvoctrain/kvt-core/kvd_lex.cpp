@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.6  2002/01/18 04:40:09  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -160,7 +163,7 @@ bool kvoctrainDoc::loadTypeNameLex (QTextStream &is)
     s = is.readLine();
     attr = extract (s);
 /*
-    if (attr.stripWhiteSpace() == "") {
+    if (attr.stripWhiteSpace().isEmpty()) {
       attr.setNum (i+1);
       attr.insert (0, "#");
     }
@@ -195,9 +198,8 @@ bool kvoctrainDoc::loadLessonLex (QTextStream &is)
   for (int i = 0; i < LEX_MAX_LESSON; i++) {
     s = is.readLine();
     lesson = extract (s);
-    if (lesson.stripWhiteSpace() == "") {
-      lesson.setNum (i+1);
-      lesson.insert (0, "#");
+    if (lesson.stripWhiteSpace().isEmpty()) {
+      lesson = "#" + QString::number(i+1);
     }
     lesson_descr.push_back (lesson);
   }
@@ -295,11 +297,11 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
   ident = extract (info1);
 
   orgID = extract (info1);
-  if (orgID == "")
+  if (orgID.isEmpty())
     orgID = "original";
 
   transID = extract (info1);
-  if (transID == "")
+  if (transID.isEmpty())
     transID = "translation";
 
   if (ident != "LEX" || version != LEX_IDENT_50) {
@@ -382,14 +384,14 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
     QString original = extract (line);
     for (int i = 0; i < 3; i++) {
       s = extract (line);
-      if (s != "")
+      if (!s.isEmpty())
         original += ", " +s;
     }
 
     QString translation = extract (line);
     for (int i = 0; i < 3; i++) {
       s = extract (line);
-      if (s != "")
+      if (!s.isEmpty())
         translation += ", " +s;
     }
 

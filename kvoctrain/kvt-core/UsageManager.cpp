@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.7  2002/01/05 18:51:36  arnold
     fixed i18n() related isuses
 
@@ -72,11 +75,9 @@ struct internalRelation_t
              *longId;
 };
 
-#ifdef I18N_NOOP2
-#error conflict: I18N_NOOP2
-#endif
-
+#ifndef I18N_NOOP2
 #define I18N_NOOP2(context, str) context, str
+#endif
 
 static internalRelation_t InternalUsageRelations [] =
 {

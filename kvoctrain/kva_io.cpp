@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.33  2003/02/24 21:14:20  antlarr
+    QString(i18n())
+
     Revision 1.32  2002/05/09 09:17:20  arnold
     fixed problem with filename handling
 
@@ -157,24 +160,19 @@
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"
 
-#define PATTERN_ALL  "*"            "|All files (*)\n"
-#define PATTERN_ML   "*." KVTML_EXT   "|KVocTrain Markup (*.kvtml)\n"
-#define PATTERN_LEX  "*." VT5_LEX_EXT "|Vocabulary Trainer 5.0 (*.lex)\n"
-#define PATTERN_VL   "*." KVL_EXT     "|KVoclearn (*.vl)\n"
-#define PATTERN_QVO  "*." QVOCAB_EXT  "|QVocab (*.qvo)\n"
-#define PATTERN_CSV  "*." CSV_EXT     "|Text (*.csv)\n"
-#define PATTERN_VCB  "*." VCB_EXT     "|Vocabbox (*.vocab)\n"
+#define PATTERN_ALL  I18N_NOOP("*|All files (*)\n")
+#define PATTERN_ML   I18N_NOOP("*.kvtml|KVocTrain Markup (*.kvtml)\n")
+#define PATTERN_LEX  I18N_NOOP("*.lex|Vocabulary Trainer 5.0 (*.lex)\n")
+#define PATTERN_VL   I18N_NOOP("*.vl|KVoclearn (*.vl)\n")
+#define PATTERN_QVO  I18N_NOOP("*.qvo|QVocab (*.qvo)\n")
+#define PATTERN_CSV  I18N_NOOP("*.csv|Text (*.csv)\n")
+#define PATTERN_VCB  I18N_NOOP("*.vocab|Vocabbox (*.vocab)\n")
 
 // we can read these
-#define FILTER_RPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_ALL
+#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
 
 // we can write these
-#define FILTER_WPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_ALL
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
- i18n(FILTER_RPATTERN)
- i18n(FILTER_WPATTERN)
-#endif
+#define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
 
 
 // helper that gets a file name (it only differs in the caption of the dialog)

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/02/03 08:39:23  arnold
+    moved checkbox to options dialog
+
     Revision 1.10  2001/12/30 18:41:58  arnold
     improved reaction upon 'empty' query selections
 
@@ -118,10 +121,10 @@ GeneralOptionsDlg::GeneralOptionsDlg
   viewOptPage = new ViewOptPage (tablefont, ipafont, gradecols, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);
 
-  addTab( genOptPage,  i18n( "&General" ));
-  addTab( langOptPage, i18n( "L&anguage" ));
-  addTab( viewOptPage, i18n( "&View " ));   // keep SPACE after "View"
-  addTab( pasteOptPage, _OptDlg_CLIPBOARD);
+  addTab( genOptPage,  i18n("&General"));
+  addTab( langOptPage, i18n("L&anguage"));
+  addTab( viewOptPage, i18n("&View "));   // keep SPACE after "View"
+  addTab( pasteOptPage, i18n("&Clipboard"));
 
   connect (this, SIGNAL(aboutToShow()), genOptPage, SLOT(initFocus() ));
   connect (this, SIGNAL(aboutToShow()), langOptPage, SLOT(initFocus() ));

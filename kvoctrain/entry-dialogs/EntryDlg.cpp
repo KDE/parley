@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.24  2002/07/21 04:27:09  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.23  2002/05/09 09:19:04  arnold
     fixed missing entry dialog
 
@@ -188,9 +191,9 @@ EntryDlg::EntryDlg(
                                            i18n("Original &expression in %1:").arg(s), querymanager, active,
                                            ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
-          mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
-          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
-          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
+          mc_page = new MCEntryPage (this, multi_sel, mc, 0, "MultipleChoice");
+          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, "Conjugation");
+          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, "Comparison");
         }
         else {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
@@ -198,9 +201,9 @@ EntryDlg::EntryDlg(
                                            i18n("Translated &expression in %1:").arg(s), querymanager, active,
                                            ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
-          mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
-          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
-          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
+          mc_page = new MCEntryPage (this, multi_sel, mc, 0, "MultipleChoice");
+          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, "Conjugation");
+          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, "Comparison");
         }
 
         from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
@@ -216,9 +219,9 @@ EntryDlg::EntryDlg(
 
         tabber->addTab( comm_page,  i18n( "Co&mmon" ));
         tabber->addTab( aux_page,   i18n( "&Additional" ));
-        tabber->addTab( mc_page,   _EntryDlg_MULTIPLECHOICE);
-        tabber->addTab( tense_page, _EntryDlg_CONJUGATION);
-        tabber->addTab( adj_page,   _EntryDlg_ADJECTIVE);
+        tabber->addTab( mc_page,    i18n( "&Multiple Choice" ));
+        tabber->addTab( tense_page, i18n( "Con&jugation"));
+        tabber->addTab( adj_page,   i18n( "Compar&ison"));
         tabber->addTab( from_page, i18n( "&From Original" ));
         tabber->addTab( to_page, i18n( "&To Original" ));
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/05/09 09:48:55  arnold
+    fixed i18n issue
+
     Revision 1.17  2002/04/23 12:47:52  binner
     CVS_SILENT Capitalisation fixes.
 
@@ -85,13 +88,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#define SORT_ALPHA  i18n("&Sort alphabetically")
-#define SORT_NUM    i18n("Sort by &index")
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-   SORT_ALPHA
-   SORT_NUM
-#else
+#define SORT_ALPHA  I18N_NOOP("&Sort alphabetically")
+#define SORT_NUM    I18N_NOOP("Sort by &index")
 
 #include "kvoctrain.h"
 #include "query-dialogs/QueryDlgBase.h"
@@ -116,8 +114,8 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
   if (header == KV_COL_LESS) {
     header_m = new QPopupMenu();
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_num.xpm")), SORT_NUM, (header << 16) | IDH_SORT_COL_NUM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), i18n(SORT_ALPHA), (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_num.xpm")), i18n(SORT_NUM), (header << 16) | IDH_SORT_COL_NUM);
 
     connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -176,7 +174,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
     header_m->insertSeparator();
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/reset.xpm")), i18n("Reset &Grades"), (header << 16) | IDH_RESET_GRADE);
@@ -238,7 +236,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
   }
 
@@ -635,4 +633,3 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 }
 
 
-#endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT

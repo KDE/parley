@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.4  2002/01/07 17:54:59  arnold
     fixed typo
 
@@ -38,40 +41,6 @@
  *   (at your option) any later version.                                   * 
  *                                                                         *
  ***************************************************************************/
-
-#ifndef _DocDlg_TYPES
-#define _DocDlg_TYPES i18n("word types","T&ypes")
-#endif
-
-#ifndef _DocDlg_TENSES
-#define _DocDlg_TENSES i18n("Te&nses")
-#endif
-
-#ifndef _DocDlg_USAGES
-#define _DocDlg_USAGES i18n("usage (area) of an expression", "&Usage")
-#endif
-
-#ifndef _DocDlg_TITLE
-#define _DocDlg_TITLE i18n("&General")
-#endif
-
-#ifndef _DocDlg_LESSONS
-#define _DocDlg_LESSONS i18n("L&essons")
-#endif
-
-#ifndef _DocDlg_OPTIONS
-#define _DocDlg_OPTIONS i18n("&Options" )
-#endif
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-  _DocDlg_USAGES
-  _DocDlg_TENSES
-  _DocDlg_TITLE
-  _DocDlg_TYPES
-  _DocDlg_LESSONS
-  _DocDlg_OPTIONS
-#else
-
 
 #ifndef DocPropsDlg_included
 #define DocPropsDlg_included
@@ -153,4 +122,3 @@ protected:
 
 #endif // DocPropsDlg_included
 
-#endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT

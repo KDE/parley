@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.55  2003/02/24 21:14:20  antlarr
+    QString(i18n())
+
     Revision 1.54  2002/11/14 22:52:35  mueller
     compiler warning fixes
 
@@ -198,16 +201,6 @@
  *   (at your option) any later version.                                   * 
  *                                                                         *
  ***************************************************************************/
-
-#define S_RESUME_QUERY i18n("Resume &Query")
-#define S_RESUME_MULTI i18n("Resume &Multiple Choice")
-
-#ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
-
-  S_RESUME_QUERY
-  S_RESUME_MULTI
-
-#else
 
 #include <kstatusbar.h>
 #include <klineedit.h>
@@ -1472,16 +1465,13 @@ void kvoctrainApp::aboutToShowLearn()
   }
 
   learn_menu->insertSeparator();
-  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), S_RESUME_QUERY, ID_RESUME_QUERY );
-  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), S_RESUME_MULTI, ID_RESUME_MULTIPLE );
+  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Resume &Query"), ID_RESUME_QUERY );
+  learn_menu->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
+
   learn_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
   learn_menu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);
 
 }
-
-
-#undef  S_RESUME_QUERY
-#undef  S_RESUME_MULTI
 
 
 void kvoctrainApp::aboutToShowOptions()
@@ -1688,5 +1678,4 @@ void kvoctrainApp::statusCallback(int id_){
 
 #include "kvoctrain.moc"
 
-#endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT
 
