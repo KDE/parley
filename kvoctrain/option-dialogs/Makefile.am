@@ -26,41 +26,5 @@ CLEANFILES += *.rpo  *~
 %Data.cpp %Data.h: %.dlg
 	-qtarch -g $<
 
+METASOURCES = AUTO
 
-doc:
-
-
-messages:
-
-  
-GenOptPage.moc.cpp: $(srcdir)/GenOptPage.h
-	$(MOC) $< -o GenOptPage.moc.cpp
-
-GenOptPageData.moc.cpp: $(srcdir)/GenOptPageData.h
-	$(MOC) $< -o GenOptPageData.moc.cpp
-
-LangOptPage.moc.cpp: $(srcdir)/LangOptPage.h
-	$(MOC) $< -o LangOptPage.moc.cpp
-
-LangOptPageData.moc.cpp: $(srcdir)/LangOptPageData.h
-	$(MOC) $< -o LangOptPageData.moc.cpp
-
-ViewOptPage.moc.cpp: $(srcdir)/ViewOptPage.h
-	$(MOC) $< -o ViewOptPage.moc.cpp
-
-ViewOptPageData.moc.cpp: $(srcdir)/ViewOptPageData.h
-	$(MOC) $< -o ViewOptPageData.moc.cpp
-
-PasteOptPage.moc.cpp: $(srcdir)/PasteOptPage.h
-	$(MOC) $< -o PasteOptPage.moc.cpp
-
-PasteOptPageData.moc.cpp: $(srcdir)/PasteOptPageData.h
-	$(MOC) $< -o PasteOptPageData.moc.cpp
-
-GeneralOptionsDlg.moc.cpp: $(srcdir)/GeneralOptionsDlg.h
-	$(MOC) $< -o GeneralOptionsDlg.moc.cpp
-
-clean-metasources:
-	-rm -f $(liboptiondlg_a_METASOURCES) *.moc.*
-
-release: 

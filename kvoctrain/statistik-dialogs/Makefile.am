@@ -25,29 +25,5 @@ CLEANFILES += *.rpo  *~
 %Data.cpp %Data.h: %.dlg
 	-qtarch -g $<
 
+METASOURCES = AUTO
 
-doc:
-
-
-messages:
-
-
-StatistikPage.moc.cpp: $(srcdir)/StatistikPage.h
-	$(MOC) $< -o StatistikPage.moc.cpp
-
-StatistikPageData.moc.cpp: $(srcdir)/StatistikPageData.h
-	$(MOC) $< -o StatistikPageData.moc.cpp
-
-StatistikDlg.moc.cpp: $(srcdir)/StatistikDlg.h
-	$(MOC) $< -o StatistikDlg.moc.cpp
-
-GenStatPage.moc.cpp: $(srcdir)/GenStatPage.h
-	$(MOC) $< -o GenStatPage.moc.cpp
-
-GenStatPageData.moc.cpp: $(srcdir)/GenStatPageData.h
-	$(MOC) $< -o GenStatPageData.moc.cpp
-
-clean-metasources:
-	-rm -f $(libstatdlg_a_METASOURCES) *.moc.*
-
-release: 

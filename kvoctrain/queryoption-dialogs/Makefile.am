@@ -26,41 +26,5 @@ CLEANFILES += *.rpo  *~
 %Data.cpp %Data.h: %.dlg
 	-qtarch -g $<
 
+METASOURCES = AUTO
 
-doc:
-
-
-messages:
-
-
-GroupOptPage.moc.cpp: $(srcdir)/GroupOptPage.h
-	$(MOC) $< -o GroupOptPage.moc.cpp
-
-GroupOptPageData.moc.cpp: $(srcdir)/GroupOptPageData.h
-	$(MOC) $< -o GroupOptPageData.moc.cpp
-
-QueryOptPage.moc.cpp: $(srcdir)/QueryOptPage.h
-	$(MOC) $< -o QueryOptPage.moc.cpp
-
-QueryOptPageData.moc.cpp: $(srcdir)/QueryOptPageData.h
-	$(MOC) $< -o QueryOptPageData.moc.cpp
-
-ThreshOptPage.moc.cpp: $(srcdir)/ThreshOptPage.h
-	$(MOC) $< -o ThreshOptPage.moc.cpp
-
-ThreshOptPageData.moc.cpp: $(srcdir)/ThreshOptPageData.h
-	$(MOC) $< -o ThreshOptPageData.moc.cpp
-
-BlockOptPage.moc.cpp: $(srcdir)/BlockOptPage.h
-	$(MOC) $< -o BlockOptPage.moc.cpp
-
-BlockOptPageData.moc.cpp: $(srcdir)/BlockOptPageData.h
-	$(MOC) $< -o BlockOptPageData.moc.cpp
-
-QueryOptionsDlg.moc.cpp: $(srcdir)/QueryOptionsDlg.h
-	$(MOC) $< -o QueryOptionsDlg.moc.cpp
-
-clean-metasources:
-	-rm -f $(libqueryoptiondlg_a_METASOURCES) *.moc.*
-
-release: 
