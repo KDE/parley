@@ -87,7 +87,7 @@ ArtQueryDlg::ArtQueryDlg
 }
 
 
-void ArtQueryDlg::setQuery(QString type,
+void ArtQueryDlg::setQuery(QString,
                            int entry,
                            int col,
                            int q_cycle,
@@ -361,7 +361,7 @@ void ArtQueryDlg::slotNaturalClicked()
 }
 
 
-void ArtQueryDlg::closeEvent (QCloseEvent*e)
+void ArtQueryDlg::closeEvent (QCloseEvent*)
 {
    emit sigQueryChoice (StopIt);
 }

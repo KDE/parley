@@ -57,7 +57,7 @@ void QueryDlgBase::initFocus() const
 
 
 bool QueryDlgBase::smartCompare (const QString& s1, const QString &s2,
-                                 int level) const
+                                 int ) const
 {
   return s1.stripWhiteSpace() == s2.stripWhiteSpace();
 }

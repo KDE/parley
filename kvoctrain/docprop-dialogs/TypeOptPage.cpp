@@ -45,7 +45,7 @@ TypeOptPage::TypeOptPage
         kvoctrainDoc    *_doc,
 	QWidget         *parent,
 	const char      *name,
-        bool             modal
+        bool           
 )
 	:
 	TypeOptPageForm( parent, name ),

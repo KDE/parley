@@ -44,7 +44,7 @@ ViewOptPage::ViewOptPage
         QFont        &_tablefont,
         QFont        &_ipa_font,
         GradeCols    &cols,
-        QueryManager *manager,
+        QueryManager *,
 	QWidget      *parent,
 	const char   *name
 )
@@ -92,17 +92,17 @@ void ViewOptPage::initFocus() const
 
 void ViewOptPage::slotChooseFont()
 {
-   KFontDialog fdlg (0L, 0L, false, true);
-   fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-   fdlg.setCaption(i18n("Choose Table Font"));
-   fdlg.setFont(tablefont);
-   if (fdlg.exec() == QDialog::Accepted ) {
-     tablefont = fdlg.font();
-     tablefont.setWeight(QFont::Normal);
-     tablefont.setStrikeOut(false);
-     tablefont.setUnderline(false);
-     e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
-   }
+        KFontDialog fdlg (0L, 0L, false, true);
+        fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+        fdlg.setCaption(i18n("Choose Table Font"));
+        fdlg.setFont(tablefont);
+        if (fdlg.exec() == QDialog::Accepted ) {
+        tablefont = fdlg.font();
+        tablefont.setWeight(QFont::Normal);
+        tablefont.setStrikeOut(false);
+        tablefont.setUnderline(false);
+        e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
+       }
 }
 
 
