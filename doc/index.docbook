@@ -127,7 +127,7 @@ of this application.</para>
       <listitem><para>switch to have settings always saved on exit (not
  only upon request)</para></listitem>
       <listitem><para>Thanks to Hans Kottmann there is also a
- localisation for french and
+ localization for french and
             Grzegorz Ilzuk has created one for polish.</para></listitem>
       <listitem><para>lesson which are included for the next query are
  now stored with the
@@ -262,7 +262,7 @@ the vocabulary have a visual representation:</para>
 knowledge</para></listitem>
 <listitem><para>A green check mark in the second colums means that this
 line is in use for a query (when you did not finish last time) whereas a
-red cross appeares when you deactivated the line.</para></listitem>
+red cross appears when you deactivated the line.</para></listitem>
 
 <listitem><para>if you mark a range of entries to work with, they
 appear with a different background.</para></listitem>
@@ -290,7 +290,7 @@ word</para></listitem>
 
 <varlistentry>
 <term>P:</term>
-<listitem><para>how to pronunce this expression. If you have a
+<listitem><para>how to pronounce this expression. If you have a
 font installed, that contains <acronym>IPA</acronym> characters you can also use the characters from 
 the phonetic alphabet. See more about this in the according
 <link linkend="opt-dlg-ipa">options dialog page</link>.
@@ -468,7 +468,7 @@ linkend="header-menu">header menu</link> will pop up.</para>
     
 <para><mousebutton>Left</mousebutton> mouse click in of the header
 buttons will sort this column in ascending order. The next click will
-sort in descending order. When the colum is sorted you can see a triangle
+sort in descending order. When the column is sorted you can see a triangle
 in the button that shows the direction.</para>
 
 <para>Keeping pressed the <mousebutton>left</mousebutton> mouse button
@@ -560,7 +560,7 @@ role="extension">csv</literal> format.</para>
 <title>Available word types</title>
 
 <para>&kvoctrain; has the following internal word types. Furthermore
-every document can contain user derfined types.</para>
+every document can contain user defined types.</para>
 
 <informaltable><tgroup cols="3">
 <thead>
@@ -728,7 +728,7 @@ example what <quote>Unicode</quote> does. Unicode is a standard that
 currently uses a range from 0 to 65535 (and even more) to designate a
 given symbol. Almost each symbol
 of almost any language on earth (and even a lot more, &eg; well known
-icons or klingon) is assigned a unique and unabiguous number.</para>
+icons or klingon) is assigned a unique and unambiguous number.</para>
 
 <para>Unfortunately the handling of Unicode is a bit more complicated
 and does not work with most of the current tools. Texts in unicode
@@ -794,7 +794,7 @@ current grade, the number of queries and the last query
 date.</para></listitem>
 
 <listitem><para>Learning is efficient, if you don't repeat the words
-for a certain length of time, dependig on the current
+for a certain length of time, depending on the current
 grade.</para>
 
 <para>There is a blocking and expiring mechanism for that
@@ -953,7 +953,7 @@ according <link linkend="options2-dlg">options page</link>
 the above mentioned <link linkend="cut-n-paste">separator</link>
 character and inserted as a new row with one or more columns. You can
 also <link linkend="options4-dlg">adjust the order</link> in which the
-columns are concatenated bofore copying all to the clipboard.</para>
+columns are concatenated before copying all to the clipboard.</para>
 <para>Pasting multiple lines (&eg; from a <literal role="extension">CSV</literal>
  data base file) will
  append them all as new rows one after another.</para></listitem>
@@ -1407,7 +1407,7 @@ no picture.</para>
 <sect2 id="docprop5-dlg">
 <title>Usage labels</title>
 
-<para>The last page provides the possibilty to enter your own usage
+<para>The last page provides the possibility to enter your own usage
  labels.</para>
 
 <important><para>If you think an important item is missing (from the
@@ -1526,7 +1526,7 @@ equally.</para>
 was modified after the period you enter here when the option is
 checked.</para>
 <para>As a side effect it also does not ask for confirmation to save
- when quiting with modified data but saves the vocabulary without
+ when quitting with modified data but saves the vocabulary without
  asking.</para>
 <para>An interval of 0 also stops this behavior.</para></listitem>
 </varlistentry>
@@ -1540,7 +1540,7 @@ with the next original and its translations until you stop by pressing
 the <keycap>ESC</keycap> key.</para>
 <para>When you are in this mode and modify the lesson in the dialog it
 has the same meaning as selecting the lesson in the toolbar.  This way
-it is preselected when the next entry dialag appears.</para>
+it is preselected when the next entry dialog appears.</para>
 <para>The required lessons will have to be created in advance in the
 document settings.</para></listitem>
 </varlistentry>
@@ -1698,7 +1698,7 @@ in the
 <varlistentry id="opt-dlg-ipa">
 <term><guilabel>IPA Font</guilabel></term>
 <listitem><para>Lets you choose a font to display the characters from the international
-phonetic alphabet. This is used to show the pronounciation of the expression
+phonetic alphabet. This is used to show the pronunciation of the expression
 on the bottom in the statusbar.</para>
 <para>Probably you don't have an IPA enabled font since those characters are seldom used.
 You may download a free font from
@@ -1770,7 +1770,7 @@ down. <guibutton>Skip</guibutton> will insert a hole which means that
 
 <varlistentry>
 <term><guilabel>Use current document</guilabel></term>
-<listitem><para>When checked, the items in the clipboard are assumend to
+<listitem><para>When checked, the items in the clipboard are assumed to
 be in the same language order as the current document.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1855,7 +1855,7 @@ when you don't know the answer in time.
   when this limit is reached. Besides of waiting unlimited time you may
   select to be shown the solution or to continue immediately with the next
   question.</para></listitem>
-  <listitem><para>Furthermore you can activate a little progess bar to
+  <listitem><para>Furthermore you can activate a little progress bar to
   show the remaining time for the current answer.</para></listitem>
   </itemizedlist></para>
 <para>If you exceed the time limit several times in series in continuous mode
@@ -1970,7 +1970,7 @@ want a property to be ignored, choose <guilabel>Dont care </guilabel>for it.</pa
 <para>On this page you select the time, an known entry is excluded from
 queries resp. when it must be queried at the latest.</para>
 
-<para>There are two conditions which must be fullfilled, otherwise you
+<para>There are two conditions which must be fulfilled, otherwise you
 will be shown an according warning:</para>
 
 <itemizedlist>
@@ -2024,7 +2024,7 @@ properties page</link> where you can enter a new lesson.</para></listitem>
 <varlistentry>
 <term><guilabel>Pronunciation</guilabel></term>
 <listitem><para>In this field you can describe how the word is
-pronunciated.</para>
+pronounciated.</para>
 <para>This is possible either by using simple ascii characters and maybe an fancy
 and very personal phonetic description or better by using the international
 phonetic alphabet.
@@ -2156,7 +2156,7 @@ information.</para></listitem>
 is good to offer expressions that are similar to the solution to make
 it more difficult. If you don't offer them, &kvoctrain; has only
 the possibility
-to create such queries with randomly chosen expresions which are rather
+to create such queries with randomly chosen expressions which are rather
 easy to guess.
 You can enter up to five expressions for this purpose.</para>
 
@@ -2244,7 +2244,7 @@ same meaning. But in fact, it is not.</para>
 <listitem><para>This is the date when this entry was
 last queried. If it was never queried yet you only see
 <computeroutput>--</computeroutput>.</para>
-<para>For convinience reasons there are two buttons to set the current
+<para>For convenience reasons there are two buttons to set the current
 date or reset to <quote>never queried</quote>.</para>
 <para>Due to internal reasons, it is not possible to store dates before
 August 12 1999 with every version of &kvoctrain;. Versions 0.8 and later
@@ -2383,7 +2383,7 @@ answer.</para></listitem>
 or failed. Later versions may provide a more or less smart algorithm to
 make this decision from the answer you entered.</para>
 
-<para>If you knew the corrent answer, the grade is increased by one
+<para>If you knew the correct answer, the grade is increased by one
 step. If you did not know it, the grade is reset to level 1 which is worst.</para>
 
 </sect2>
@@ -2710,7 +2710,7 @@ url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz
 <listitem><para><ulink
 url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
 ary
-Trainer</ulink> (freeware, all flavours of &Windows;)</para></listitem>
+Trainer</ulink> (freeware, all flavors of &Windows;)</para></listitem>
 
 <listitem><para><ulink
 url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.ht
@@ -2797,19 +2797,19 @@ taken from</para>
 <para>I'd like to thank the following people personally for their
 contribution to &kvoctrain;:</para>
 <itemizedlist>
-<listitem><para>Andrea Marconi for localisation to
+<listitem><para>Andrea Marconi for localization to
  Italian</para></listitem>
-<listitem><para>Hans Kottman for localisation to
+<listitem><para>Hans Kottman for localization to
  French</para></listitem>
-<listitem><para>Grzegorz Ilczuk for localisation to
+<listitem><para>Grzegorz Ilczuk for localization to
  Polish</para></listitem>
 <listitem><para>Eric Bischoff for converting the documentation to
 DocBook</para></listitem>
 </itemizedlist>
 
-<para>I also want to thank all the other unamed persons, especially the
+<para>I also want to thank all the other unnamed persons, especially the
 whole &kde; team,
-for their help, constructive criticisim, suggestions or bug-reports.</para>
+for their help, constructive criticism, suggestions or bug-reports.</para>
 
 </sect1>
 
