@@ -1,4 +1,4 @@
-INCLUDES = -I$(srcdir)/.. \
+INCLUDES = -I$(srcdir)/.. -I../queryoption-dialogs \
  -I$(srcdir)/../queryoption-dialogs $(all_includes)
  
 noinst_LTLIBRARIES = libkvoctraincore.la
