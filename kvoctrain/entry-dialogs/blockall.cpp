@@ -36,6 +36,6 @@ BlockAllValidator::BlockAllValidator ()
 BlockAllValidator::State BlockAllValidator::validate (QString&, int& ) const
 {
     return Invalid;
-};
+}
 
 
