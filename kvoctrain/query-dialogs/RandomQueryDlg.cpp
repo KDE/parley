@@ -1,17 +1,15 @@
 /***************************************************************************
 
-    $Id$
-
                     dialog when in query mode
 
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+                           (C) 2004 Peter Hedlund
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -27,7 +25,6 @@
  ***************************************************************************/
 
 #include "RandomQueryDlg.h"
-#include "MyProgress.h"
 #include "common-dialogs/ProgressDlg.h"
 
 #include <kv_resource.h>
@@ -36,6 +33,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
+#include <kprogress.h>
 
 #include <qcheckbox.h>
 #include <qgroupbox.h>
@@ -215,6 +213,8 @@ RandomQueryDlg::RandomQueryDlg(
    setCaption (kapp->makeStdCaption(i18n("Random Query")));
    setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show, type_to);
    setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+   countbar->setFormat("%v/%m");
+   timebar->setFormat("%v");
 
    if ( suggestions )
    {
@@ -327,8 +327,8 @@ void RandomQueryDlg::setQuery(QString org,
    c_type->setChecked(false);
    setHintFields();
 
-   countbar->setData (q_start, q_start-q_num+1, true);
-   countbar->repaint();
+   countbar->setTotalSteps(q_start);
+   countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -338,8 +338,8 @@ void RandomQueryDlg::setQuery(QString org,
 
      if (type_timeout != kvq_notimeout) {
        timercount = mqtime/1000;
-       timebar->setData (timercount, timercount, false);
-       timebar->repaint();
+       timebar->setTotalSteps(timercount);
+       timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -383,14 +383,16 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      status->setText(getOKComment(countbar->getPercentage()));
+      int percent = (countbar->progress()/countbar->totalSteps()) * 100;
+      //status->setText(getOKComment(countbar->getPercentage()));
+      status->setText(getOKComment(percent));
       knowItClicked();
     }
     else
     {
       for ( i = 0; i < combos.count(); i ++ )
         verifyField (combos.at(i) -> lineEdit(), "a\na"); // always fail
-      status->setText(getNOKComment(countbar->getPercentage()));
+      status->setText(getNOKComment((countbar->progress()/countbar->totalSteps()) * 100));
       dont_know->setDefault(true);
     }
   }
@@ -410,14 +412,14 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      status->setText(getOKComment(countbar->getPercentage()));
+      status->setText(getOKComment((countbar->progress()/countbar->totalSteps()) * 100));
       knowItClicked();
     }
     else
     {
       for ( i = 0; i < fields.count(); i ++ )
         verifyField (fields.at(i), trans[i]);
-      status->setText(getNOKComment(countbar->getPercentage()));
+      status->setText(getNOKComment((countbar->progress()/countbar->totalSteps()) * 100));
       dont_know->setDefault(true);
     }
   }
@@ -535,14 +537,12 @@ void RandomQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setData (-1, timercount, false);
-     timebar->repaint();
+     timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setData (-1, 0, false);
-     timebar->repaint();
+     timebar->setProgress(0);
      if (type_timeout == kvq_show) {
        showAllClicked();
        dont_know->setDefault(true);
@@ -550,7 +550,7 @@ void RandomQueryDlg::timeoutReached()
      else if (type_timeout == kvq_cont) {
        emit sigQueryChoice (Timeout);
      }
-     status->setText(getTimeoutComment(countbar->getPercentage()));
+     status->setText(getTimeoutComment((countbar->progress()/countbar->totalSteps()) * 100));
    }
 
    suggestion_hint = false;

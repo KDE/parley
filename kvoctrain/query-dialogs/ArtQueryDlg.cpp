@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                      query dialog for articles
 
     -----------------------------------------------------------------------
@@ -10,6 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
+                           (C) 2004 Peter Hedlund
     email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
@@ -27,7 +26,6 @@
 
 
 #include "ArtQueryDlg.h"
-#include "MyProgress.h"
 
 #include <kv_resource.h>
 #include <QueryManager.h>
@@ -35,6 +33,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
+#include <kprogress.h>
 
 #include <qtimer.h>
 #include <qradiobutton.h>
@@ -84,6 +83,8 @@ ArtQueryDlg::ArtQueryDlg
              query_cycle, query_num, query_startnum,
              exp, doc, articles, mqtime, _show, type_to);
    setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+   countbar->setFormat("%v/%m");
+   timebar->setFormat("%v");
 }
 
 
@@ -160,8 +161,8 @@ void ArtQueryDlg::setQuery(QString,
    s.setNum (q_cycle);
    progCount->setText (s);
 
-   countbar->setData (q_start, q_start-q_num+1, true);
-   countbar->repaint();
+   countbar->setTotalSteps(q_start);
+   countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -171,8 +172,8 @@ void ArtQueryDlg::setQuery(QString,
 
      if (type_timeout != kvq_notimeout) {
        timercount = mqtime/1000;
-       timebar->setData (timercount, timercount, false);
-       timebar->repaint();
+       timebar->setTotalSteps(timercount);
+       timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -262,14 +263,12 @@ void ArtQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setData (-1, timercount, false);
-     timebar->repaint();
+     timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setData (-1, 0, false);
-     timebar->repaint();
+     timebar->setProgress(0);
      if (type_timeout == kvq_show) {
        showAllClicked();
        dont_know->setDefault(true);

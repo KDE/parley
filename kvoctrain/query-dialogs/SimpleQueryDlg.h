@@ -31,7 +31,6 @@
 
 #include "SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
-#include "MyProgress.h"
 
 class SimpleQueryDlg : public SimpleQueryDlgForm,
                        public QueryDlgBase
