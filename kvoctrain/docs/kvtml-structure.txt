@@ -5,7 +5,7 @@ This is a machine generated file.
 Be careful when editing here.
 
 Short definition:   <!--  The level of indentation shows the relation: right is "owned" by left -->
-                    <!-- attributes are preceeded by %  ->
+                    <!-- attributes are preceded by %  ->
 
 lesson       lesson group
  desc        name
@@ -164,7 +164,7 @@ Valid xml means:
      <o width="208"           <!-- original expression, width of column when last saved  -->
       l="de"                  <!-- language code de: german     -->
       charset="ISO 8859-1"    <!-- charset needed for correct displaing  -->
-      y="laufen">             <!-- synonyms, seperated by commas currently  -->
+      y="laufen">             <!-- synonyms, separated by commas currently  -->
       
   <conjugation                      <!-- list the conjugations for the current verb  -->
 
