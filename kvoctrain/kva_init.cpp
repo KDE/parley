@@ -241,7 +241,11 @@ void kvoctrainApp::initActions()
   //connect(actionCollection(), SIGNAL(actionHighlighted(KAction *, bool)), this, SLOT(slotActionHighlighted(KAction *, bool)));
 
   //setupGUI(ToolBar|Keys|StatusBar|Save|Create, "/home/kdedev/src/kde/kdeedu/kvoctrain/kvoctrain/kvoctrainui.rc");
-  setupGUI();
+
+  if (!initialGeometrySet())
+      resize( QSize(550, 400).expandedTo(minimumSizeHint()));
+  setupGUI(ToolBar | Keys | StatusBar | Create);
+  setAutoSaveSettings();
 
   configToolbar = actionCollection()->action("options_configure_toolbars");
   configToolbar->setWhatsThis(i18n("Toggles display of the toolbars"));
