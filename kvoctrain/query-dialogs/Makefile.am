@@ -1,6 +1,6 @@
 INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
 
-noinst_LIBRARIES = libquerydlg.a
+noinst_LTLIBRARIES = libquerydlg.la
 
 
 libquerydlg_a_DLG_SOURCES = \
@@ -17,7 +17,7 @@ libquerydlg_a_QOBJ_SOURCES =   \
   $(libquerydlg_a_DLG_SOURCES:.dlg=Data.cpp) \
   QueryDlgBase.cpp
 
-libquerydlg_a_SOURCES = $(libquerydlg_a_QOBJ_SOURCES) 
+libquerydlg_la_SOURCES = $(libquerydlg_a_QOBJ_SOURCES) \
                         MyProgress.cpp
                         
 EXTRA_DIST = \
@@ -26,11 +26,11 @@ EXTRA_DIST = \
   MyProgress.h
 
 
-CLEANFILES += *.rpo  *~
+CLEANFILES += *~
 
 
-%Data.cpp %Data.h: %.dlg
-	-qtarch -g $<
+#%Data.cpp %Data.h: %.dlg
+#	-qtarch -g $<
 
 METASOURCES = AUTO
 

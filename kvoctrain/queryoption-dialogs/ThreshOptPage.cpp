@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:46:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -541,4 +545,5 @@ void ThreshOptPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
 #include "ThreshOptPage.moc"
