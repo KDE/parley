@@ -4,8 +4,6 @@ $Date$
                   ----------------------------
 
 tofix now:
-  - triangle "menu button" in table header buttons
-  - [modified], warum?
   - resume query
   - copy cell / copy row
   - percentage %x done in query-statusbar
@@ -16,6 +14,30 @@ todo post-release ?
   - translator hint iso names "language name aa:"
   - quickhelp/tooltipps
   - entry dialog kleiner
+
+/*
+  - triangle "menu button" in table header buttons
+
+     QPixmap arrow(w, w);
+     QBitmap mask(arrow.width(), arrow.height());
+     arrow.fill();
+     mask.fill();
+     QPainter p;
+     QPainter pm;
+     p.begin( &arrow);
+     pm.begin( &mask);
+     style().drawPrimitive (QStyle::PE_ArrowDown,
+                            &p,
+                            QRect(0, 0, w, w),
+                            colorGroup(), QStyle::Style_Enabled);
+     style().drawPrimitive (QStyle::PE_ArrowDown,
+                            &pm,
+                            QRect(0, 0, w, w),
+                            colorGroup());
+     p.end();
+     pm.end();
+  // arrow.setMask(mask);
+*/
 
 todoc:
 

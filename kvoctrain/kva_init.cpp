@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2001/12/30 10:36:04  arnold
+    fixed and improved dialogs
+
     Revision 1.20  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -464,9 +467,7 @@ void kvoctrainApp::initView(const QString &name)
   if (!name.isEmpty()) {
     doc = new kvoctrainDoc(this, name, separator, &paste_order);
     if (doc) {
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
       addRecentFile(name);
-      slotModifiedDoc(false);
     }
   }
   else {
@@ -474,22 +475,15 @@ void kvoctrainApp::initView(const QString &name)
       doc = new kvoctrainDoc(this, recent_files[0], separator, &paste_order);
     else
       doc = new kvoctrainDoc(this, "", separator, &paste_order);
-    if (doc)
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    slotModifiedDoc(false);
   }
   removeProgressBar();
-
   loadDocProps(doc);
-
   if (doc->numLangs() == 0)
     doc->appendLang("en");
-  if (!doc->getTitle().isEmpty())
-    setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
-  else
-    setCaption(kapp->makeStdCaption("", false, doc->isModified()));
 
   view = new kvoctrainView(doc, langset, gradecols, this);
+  connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+  doc->setModified(false);
 
   view->setResizer (header_resizer);
   view->getTable()->setFont(tablefont);

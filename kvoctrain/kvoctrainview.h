@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/14 16:05:49  arnold
+    fixed handling of table font
+
     Revision 1.6  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -144,8 +147,8 @@ class kvoctrainTable : public RowTable
   QString getIdent (int i) const { return m_rows->getIdent(i); }
   QString getOriginalIdent () const { return m_rows->getOriginalIdent(); }
   int findIdent (QString id) const { return m_rows->findIdent(id); }
+
 signals:
-  void sigModified(bool mod);
   void sigCancelSelection();
 
 public slots:

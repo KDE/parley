@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/12/30 10:36:04  arnold
+    fixed and improved dialogs
+
     Revision 1.18  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -177,7 +180,7 @@ bool kvoctrainApp::queryExit()
   saveOptions(false);
   if (!doc || !doc->isModified() ) return true;
 
-  if (backupTime != 0) {  // autobackup on: save without asking
+  if (backupTime > 0) {  // autobackup on: save without asking
     slotFileSave();       // save and exit
     return true;
   }
@@ -238,18 +241,14 @@ void kvoctrainApp::slotFileOpenRecent(int id_)
       slotStatusMsg(msg);
       prepareProgressBar();
       doc = new kvoctrainDoc (this, name, separator, &paste_order);
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-      slotModifiedDoc(false);
       removeProgressBar();
       loadDocProps(doc);
-      if (!doc->getTitle().isEmpty() )
-        setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
-      else
-        setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       addRecentFile(name);
       view->setView(doc, langset, gradecols);
       view->getTable()->setFont(tablefont);
       view->adjustContent();
+      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+      doc->setModified(false);
     }
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -313,16 +312,14 @@ void kvoctrainApp::slotFileNew()
     view->setView (0, langset, gradecols);
     delete doc;
     doc = new kvoctrainDoc (this, "", separator, &paste_order);
-    connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    slotModifiedDoc(false);
     loadDocProps(doc);
-
     if (doc->numLangs() == 0)
       doc->appendLang("en");
-    setCaption(kapp->makeStdCaption("", false, doc->isModified()));
     view->setView(doc, langset, gradecols);
     view->getTable()->setFont(tablefont);
     view->adjustContent();
+    connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    doc->setModified(false);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -357,18 +354,14 @@ void kvoctrainApp::loadfileFromPath(QString &name)
       slotStatusMsg(msg);
       prepareProgressBar();
       doc = new kvoctrainDoc (this, name, separator, &paste_order);
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-      slotModifiedDoc(false);
       removeProgressBar();
       loadDocProps(doc);
-      if (!doc->getTitle().isEmpty() )
-        setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
-      else
-        setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       view->setView(doc, langset, gradecols);
       view->getTable()->setFont(tablefont);
       view->adjustContent();
       addRecentFile (name);
+      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+      doc->setModified(false);
     }
 }
 
@@ -405,7 +398,7 @@ void kvoctrainApp::slotFileMerge()
     prepareProgressBar();
     kvoctrainDoc *new_doc = new kvoctrainDoc (this, name, separator, &paste_order);
     connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    slotModifiedDoc(false);
+    doc->setModified(false);
     removeProgressBar();
 
     vector<QString> old_names = doc->getLessonDescr();
@@ -722,7 +715,6 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
   for (int i = 0; i < (int) queryList.size(); i++)
     query_startnum += queryList[i].size();
   query_num = query_startnum;
-
 }
 
 

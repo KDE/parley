@@ -146,19 +146,30 @@ Valid xml means:
   <desc no="3">Mein Typ 3</desc>
  </type>
 
- <e m="3" s="1" t="v"><o width="159" l="de">
+ <e m="1" s="1" t="v"><o width="159" l="de">behindern</o><t width="159" l="en">
+   <conjugation>
+    <t n="PrSi"><s1>encumber</s1><s2>encumber</s2><p1>encumber</p1></t>
+   </conjugation>
+   encumber</t><t width="299" l="fr" g="2;3" c="1;1" b="1;1">gêner</t></e>
+ <e m="4" s="1" t="v"><o>bezwingen</o><t>
+   <conjugation>
+    <t n="PrSi"><s1>quell</s1></t>
+   </conjugation>
+   quell</t><t g="4;1" c="1;1" b="1;1">vaincre</t></e>
+ <e m="3" s="1"><o t="n:f">Erbse</o><t p="pi" t="n">pea</t><t g="1;4" c="1;1" b="1;1" t="n:m">pois</t></e>
+ <e m="3" i="1" t="v"><o>
   <conjugation>
    <t n="PrSi"><s1>schwimme</s1><s2>du schwimmst</s2><p1>schwimmen</p1></t>
    <t n="PaSi"><s1>schwamm</s1><s2>schwammst</s2></t>
   </conjugation>
-  gehen</o><t width="159" l="en">
+  gehen</o><t>
    <conjugation>
     <t n="PrSi"><s1>go</s1></t>
     <t n="PaSi"><s1>went</s1></t>
     <t n="PaPa"><s1>have gone</s1></t>
    </conjugation>
-   go</t><t width="297" l="fr">aller</t></e>
- <e m="1"><o t="n:m">Klotz</o><t p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
+   go</t><t>aller</t></e>
+ <e m="2" t="n"><o>Gunst, Gefallen</o><t>favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
  <e m="4" s="1" t="aj"><o>
   <comparison>
    <l1>gut</l1><l2>besser</l2><l3>am besten</l3>
@@ -172,33 +183,22 @@ Valid xml means:
      <l1>bon</l1><l2>meilleur</l2><l3>le meilleur</l3>
     </comparison>
     bon</t></e>
+ <e m="4" s="1" t="#2"><o>gänzlich</o><t>utterly</t><t g="1;4" c="1;1" b="1;1">tout á fait</t></e>
+ <e m="4"><o t="n:m">Klotz</o><t p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
+ <e m="2"><o t="n:f">Kniebeugen</o><t t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
  <e m="2"><o t="n:m">Knöchel</o><t p="nackls" t="n">knuckles</t><t g="2;3" c="1;1" b="1;1" t="n">cheville</t></e>
  <e m="1" t="aj"><o>
   <comparison>
    <l1>mild</l1><l2>milder</l2><l3>am mildesten</l3>
   </comparison>
   mild</o><t>balmy</t><t g="2;4" c="1;1" b="1;1">doux</t></e>
- <e m="3" s="1" t="n"><o>Unheil, Schaden</o><t p="mistschif">mischief</t><t g="4;1" c="1;1" b="1;1">détriment</t></e>
- <e m="3" s="1" t="#1"><o>starrsinnig</o><t>opinionated</t><t g="2;3" c="1;1" b="1;1">entêté</t></e>
- <e m="2" t="n"><o>Gunst, Gefallen</o><t>favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
- <e m="2"><o t="n:f">Kniebeugen</o><t t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
- <e m="1" s="1" t="v"><o>behindern</o><t>
-   <conjugation>
-    <t n="PrSi"><s1>encumber</s1><s2>encumber</s2><p1>encumber</p1></t>
-   </conjugation>
-   encumber</t><t g="2;3" c="1;1" b="1;1">gêner</t></e>
- <e m="4" s="1"><o>stattlich</o><t>handsome</t><t g="3;2" c="1;1" b="1;1">imposant</t></e>
+ <e m="3" s="1"><o>niedlich, ordentlich</o><t p="niit">neat</t><t g="3;2" c="1;1" b="1;1">mignon</t></e>
  <e m="4" s="1"><o t="n:m">Saft</o><t t="n">sap</t><t g="3;2" c="1;1" b="1;1" t="n:m">jus</t></e>
  <e m="2" t="#2"><o>schwerfällig, mühsam</o><t p="leibrd">laboured</t><t g="1;4" c="1;1" b="1;1">lourd</t></e>
- <e m="3" s="1"><o>niedlich, ordentlich</o><t p="niit">neat</t><t g="3;2" c="1;1" b="1;1">mignon</t></e>
- <e m="3" s="1"><o t="n:f">Erbse</o><t p="pi" t="n">pea</t><t g="1;4" c="1;1" b="1;1" t="n:m">pois</t></e>
+ <e m="3" s="1" t="#1"><o>starrsinnig</o><t>opinionated</t><t g="2;3" c="1;1" b="1;1">entêté</t></e>
+ <e m="4" s="1"><o>stattlich</o><t>handsome</t><t g="3;2" c="1;1" b="1;1">imposant</t></e>
  <e m="4" s="1"><o t="n:m">Talg</o><t t="n">tallow</t><t g="2;3" c="2;3" b="1;1" t="n">suif</t></e>
- <e m="4" s="1" t="#2"><o>gänzlich</o><t>utterly</t><t g="1;4" c="1;1" b="1;1">tout á fait</t></e>
- <e m="4" s="1" t="v"><o>bezwingen</o><t>
-   <conjugation>
-    <t n="PrSi"><s1>quell</s1></t>
-   </conjugation>
-   quell</t><t g="4;1" c="1;1" b="1;1">vaincre</t></e>
+ <e m="1" s="1" t="n"><o>Unheil, Schaden</o><t p="mistschif">mischief</t><t g="4;1" c="1;1" b="1;1">détriment</t></e>
  <e m="1"><o>verblüfft</o><t>taken aback</t><t g="1;0" c="1;0" b="1;0">ébahi</t></e>
  <e m="1"><o t="n:m">Verfall</o><t t="n">decline</t><t g="1;4" c="1;1" b="1;1" t="n">échéance</t></e>
 </kvtml>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2001/12/29 15:49:12  arnold
+    fixed kmessagebox calls
+
     Revision 1.22  2001/12/29 10:40:03  arnold
     merged fixes from POST-branch
 
@@ -164,9 +167,6 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  connect( lb_list, SIGNAL(edited(int,int)),
           parent, SLOT(slotEditEntry(int,int)) );
-
- connect( lb_list, SIGNAL(sigModified(bool)),
-          parent, SLOT(slotModifiedDoc(bool)) );
 
  connect( lb_list, SIGNAL(sigCancelSelection()),
           parent, SLOT(slotCancelSelection()) );
