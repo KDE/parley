@@ -49,7 +49,6 @@ install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/
 	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
-	$(INSTALL_DATA) $(srcdir)/pics/kvoctrain.xpm $(DESTDIR)$(kde_icondir)/kvoctrain.xpm
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/
