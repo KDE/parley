@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -36,6 +39,7 @@
 #include <qmessagebox.h>
 
 #include <kcombobox.h>
+#include <kprogress.h>
 #include <krecentdocument.h>
 
 #include "kvoctrain.h"
@@ -44,11 +48,6 @@
 
 #define PATTERN_ALL  "*.*"            "|All files (*.*)\n"
 #define PATTERN_ML   "*." KVTML_EXT   "|KVoctrain Markup (*.kvtml)\n"
-#ifdef EA_USE_KVTBIN
-#define PATTERN_BIN  "*." KVTBIN_EXT  "|KVoctrain Binary (*.kvtbin)\n"
-#else
-#define PATTERN_BIN
-#endif
 #define PATTERN_LEX  "*." VT5_LEX_EXT "|Vocabulary Trainer 5.0 (*.lex)\n"
 #define PATTERN_VL   "*." KVL_EXT     "|KVoclearn (*.vl)\n"
 #define PATTERN_QVO  "*." QVOCAB_EXT  "|QVocab (*.qvo)\n"
@@ -56,10 +55,10 @@
 #define PATTERN_VCB  "*." VCB_EXT     "|Vocabbox (*.vocab)\n"
 
 // we can read these
-#define FILTER_RPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_BIN PATTERN_ALL
+#define FILTER_RPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_ALL
 
 // we can write these
-#define FILTER_WPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_BIN PATTERN_ALL
+#define FILTER_WPATTERN  PATTERN_ML PATTERN_VCB PATTERN_CSV PATTERN_LEX PATTERN_ALL
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
  i18n(FILTER_RPATTERN)
