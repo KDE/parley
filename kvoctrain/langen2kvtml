@@ -57,6 +57,13 @@
 #	corrections:
 #		instead of "en" was "it" used for English articles
 #
+# Updated 22/11/02 - Ben Burton
+#	corrections:
+#		default proxy is now no proxy, not http://proxy:8080/
+#		proxy option is now --proxy=http://..., not --proxy="-p http://..."
+#		changed location of rcfile from $HOME/.kde2/... to $HOME/.kde/...
+#		updated usage string
+#
 ####################################################################
 chomp($cwd = `pwd`);
 #
@@ -71,7 +78,7 @@ $outdir 	= $cwd;		 		# Where the output should go
 $langdefault	= "en";		# My favorite is English
 $trans		= "de";		# My favorite is Deutsch
 $longlesson	= 0;		# as you like
-$proxy		= "-p http://proxy:8080/";
+$proxy		= "";
 
 #######################################################################
 # No User configurable parameters below here
@@ -84,7 +91,7 @@ $/="\r\n";	# we work with dos files
 #
 # Initialise internal global variables
 #
-$rcfile		= "$ENV{HOME}/.kde2/share/config/kvoctrainrc" ;
+$rcfile		= "$ENV{HOME}/.kde/share/config/kvoctrainrc" ;
 $vocfile 	= "";		# Passed from command line
 $kvtfile 	= "";		# adopt to command line
 $lang		= "";		# initially unset
@@ -137,9 +144,15 @@ if ( ! &GetOptions(
 		"outdir=s" => \$outdir,
 		"country=s" => \$country,
 		"longlesson" => \$longlesson) ) {
-   print "Usage:\tlangen2kvtml [--lang=xx] [--trans=xx] [--autor=<name>]\n";
-   print "\t\t [--longsession] [--outdir=<dir>] { --country=x | vocfile }\n";
+   print "Usage:\tlangen2kvtml [--lang=xx] [--trans=xx] [--author=<name>]\n";
+   print "\t\t [--longlesson] [--outdir=<dir>] [--proxy=<proxy>]\n";
+   print "\t\t { --country=x | vocfile }\n";
    exit 1;
+}
+
+# Fix the proxy option if it has been given
+if ($proxy) {
+    $proxy = "-p $proxy";
 }
 
 # Get input file name if it has been given
@@ -159,7 +172,9 @@ $tmp1=$#ARGV+1;
 
 if ( $country ne "" ) {
     &printflush(STDOUT,"... fetching http://www.vokabeln.de/files/Voc-$country.zip ...\n");
-    &printflush(STDOUT,"... using proxy service $proxy ...\n");
+    if ($proxy) {
+        &printflush(STDOUT,"... using proxy service $proxy ...\n");
+    }
     `lwp-request $proxy http://www.vokabeln.de/files/Voc-$country.zip >/tmp/Voc-$country.zip`;
     # unzip -u update only!
     # unzip -o overwrite!
