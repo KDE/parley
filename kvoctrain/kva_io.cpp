@@ -676,7 +676,7 @@ void kvoctrainApp::saveDocProps(kvoctrainDoc *the_doc)
 
 void kvoctrainApp::slotFileSaveAs()
 {
-  slotStatusMsg(i18n("Saving file under new filename..."));
+  slotStatusMsg(i18n("Saving file under new file name..."));
 
   if (entryDlg != 0)
     commitEntryDlg(false);
@@ -728,7 +728,7 @@ void kvoctrainApp::slotSaveSelection ()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  slotStatusMsg(i18n("Saving selected area under new filename..."));
+  slotStatusMsg(i18n("Saving selected area under new file name..."));
 
   kvoctrainDoc seldoc(this, "", "\t");
   // transfer most important parts
