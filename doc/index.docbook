@@ -990,172 +990,197 @@ choice.</para></listitem>
 
 <!-- Here, the explained items are missing. Please add them -->
 <variablelist>
-   <listitem><para>Toggles the visibility of the toolbar buttons.</para></listitem>
-   <p>
-   <listitem><para>The same for the status line at the bottom.</para></listitem>
-   <p>
-   <listitem><para>Invokes the <htmlurl url="#options-dlg"  name="general options dialog">.</para></listitem>
-   <p>
-   <listitem><para>Invokes the <htmlurl url="#options-dlg"  name="query options dialog">.</para></listitem>
-   <p>
-   <listitem><para>Saves the options. Only selectable if the options are not already saved</para></listitem>
-         automatically.
-   <p>
-  </itemizedlist>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Toggles the visibility of the toolbar
+buttons.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>The same for the status line at the
+bottom.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Invokes the <link linkend="options-dlg">general options
+dialog</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Invokes the <link linkend="options-dlg">query options
+dialog</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Saves the options. Only selectable if the options are
+not already saved automatically.</para></listitem>
+</varlistentry>
+</variablelist>
   
+</sect1>
 
- </tabular>
-</table>
+<sect1 id="help-menu">
+<title>Help</title>
 
-<p>&nbsp;<p>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="helpmenu.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="helpmenu.png" format="PNG" /></imageobject>
+<textobject><phrase>[help menu]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-<sect1>Help<p>
+<!-- Here, the explained items are missing. Please add them -->
+<variablelist>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Invokes &kvoctrain; online help in the
+current language. If this is not possible, english invoked as
+default.</para></listitem>
+</varlistentry>
 
-<label id="help-menu">
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Only KDE2 and currently unused.</para></listitem>
+</varlistentry>
 
-<table border="0">
- <tabular ca="">
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Only KDE2: invoke a dialog to send a bug report.</para>
+<para>To submit bug reports you should use the <ulink url=
+"http://sourceforge.net/bugs/?group_id=9265">bug tracking system</ulink>
+on sourceforge instead.</para></listitem>
+</varlistentry>
 
-  <figure>
-    <eps file="helpmenu.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="217"
-     HEIGHT="106"
-     SRC="helpmenu.png"
-     ALT="[help menu]">
-  </figure>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Shows some information about &kvoctrain;.</para></listitem>
+</varlistentry>
 
-  <colsep>
-   &nbsp;
-  <colsep>
-
-  <itemizedlist>
-   <listitem><para>Invokes &kvoctrain; online help in the current language.</para></listitem>
-    If this is not possible, english invoked as default.
-   <p>
-
-   <listitem><para>Only KDE2 and currently unused.</para></listitem>
-   <p>
-
-   <listitem><para>Only KDE2: invoke a dialog to send a bug report.</para></listitem>
-   <p>
-         To submit bug reports you should use the
-        <htmlurl name="bug tracking system"
-                 url= "http://sourceforge.net/bugs/?group_id=9265">
-         on sourceforge instead.
-   <p>
-
-   <listitem><para>Shows some information about &kvoctrain;.</para></listitem>
-   <p>
-
-   <listitem><para>Shows some information about the <tt/KDE/ project.</para></listitem>
-   <p>
-  </itemizedlist>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Shows some information about the &kde; project.</para></listitem>
+</varlistentry>
+</variablelist>
   
- </tabular>
-</table>
+</sect1>
 
-<p>&nbsp;<p>
+<sect1 id="header-menu">
+<title>Table header</title>
 
-<label id="header-menu">
+<para>The following menu will appear when you keep one of the buttons
+in the table header pressed for half a second.</para>
 
-<sect1>Table header<p>
+<para>The menu for the original is almost the same. The last two items
+are missing. The item to start the random query resp. its variant with
+multiple choice contains all languages from the vocabulary as you have
+to choose which of the translations you want learn from.</para>
 
-The following menu will appear when you keep one of the buttons
-in the table header pressed for half a second.
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="headmenu.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="headmenu.png" format="PNG" /></imageobject>
+<textobject><phrase>[header menu]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-The menu for the original is almost the same. The last two items are missing.
-The item to start the random query resp. its variant with multiple choice
-contains all languages from the vocabulary as you
-have to choose which of the translations you want learn from.
+<!-- Here, the explained items are missing. Please add them -->
+<variablelist>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Creates a <link linkend="query-dlg">random query</link>
+on this column with all unknown expressions according to your <link
+linkend="options6-dlg">threshholds</link>.</para></listitem>
+</varlistentry>
 
-<table border="0">
- <tabular ca="">
-  <figure>
-    <eps file="headmenu.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="210"
-     HEIGHT="264"
-     SRC="headmenu.png"
-     ALT="[header menu]">
-  </figure>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
+choice query</link> on this column with all unknown expressions according
+to your <link linkend="options6-dlg">threshholds</link>.</para></listitem>
+</varlistentry>
 
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>All of the verbs with its conjugations are
+queried.</para></listitem>
+</varlistentry>
 
-  <colsep>
-   &nbsp;
-  <colsep>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries the articles if the gender of the nouns is
+defined.</para></listitem>
+</varlistentry>
 
-   <p>
-   &nbsp;
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries comparison forms.</para></listitem>
+</varlistentry>
 
-  <itemizedlist>
-   <listitem><para>Creates a <htmlurl url="#query-dlg"  name="random query"></para></listitem>
-         on this column with all unknown expressions according to your
-         <htmlurl url="#options6-dlg" name="threshholds">.
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries the synonyms.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Creates a <htmlurl url="#mu-query-dlg"  name="random multiple choice query"></para></listitem>
-         on this column with all unknown expressions according to your
-         <htmlurl url="#options6-dlg" name="threshholds">.
-   <p>&nbsp;<p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries the synonyms.</para></listitem>
+</varlistentry>
 
-   <listitem><para>All of the verbs with its conjugations are queried.</para></listitem>
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries the examples.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Queries the articles if the gender of the nouns is defined.</para></listitem>
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Queries the paraphrases.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Queries comparison forms.</para></listitem>
-   <p>&nbsp;<p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Sorts this row in ascending resp. descending
+order.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Queries the synonyms.</para></listitem>
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Chooses a language for this column. If your desired
+language does not yet exists in this menu, you have to add it with the
+<link linkend="options2-dlg">options dialog</link>.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Queries the synonyms.</para></listitem>
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Resets the properties of all the selected entries to
+their initial state as if you just had appended them.</para>
+<para>If you have chosen a lesson in the appropriate box in the toolbar,
+then only those lesson members are reset. Otherwise all entries are
+affected.</para></listitem>
+</varlistentry>
 
-   <listitem><para>Queries the examples.</para></listitem>
-   <p>
+<varlistentry>
+<term><guimenuitem></guimenuitem></term>
+<listitem><para>Removes this column and all its entries.</para></listitem>
+</varlistentry>
+</variablelist>
 
-   <listitem><para>Queries the paraphrases.</para></listitem>
-   <p>&nbsp;<p>
+</sect1>
+</chapter>
 
-   <listitem><para>Sorts this row in ascending resp. descending order.</para></listitem>
-   <p>
+<chapter id="dialogs">
+<title>Dialogs</title>
 
-   <listitem><para>Chooses a language for this column. If your desired language does not</para></listitem>
-      yet exists in this menu, you have to add it with the
-      <htmlurl url="#options2-dlg" name="options dialog">.
-   <p>&nbsp;<p>
+<sect1 id="docprop-dlg">
+<title>Document properties dialog</title>
 
-   <listitem><para>Resets the properties of all the selected entries to their initial</para></listitem>
-         state as if you just had appended them.
-
-         If you have chosen a lesson in the appropriate box in the toolbar,
-         then only those lesson members are reset. Otherwise all entries are
-         affected.
-   <p>
-
-   <listitem><para>Removes this column and all it´s entries.</para></listitem>
-   <p>
-  </itemizedlist>
-  
- </tabular>
-</table>
-
-
-
-<sect>Document properties dialog<p>
-
-<label id="docprop-dlg">
-
- This dialog also consists of several pages the determine properties
- that belong only to the current document. They are stored with the
- vocabulary.
-<p>
+<para>This dialog also consists of several pages the determine properties
+that belong only to the current document. They are stored with the
+vocabulary.</para>
 
 <sect1>General properties<p>
 
@@ -1279,7 +1304,7 @@ item.</bf>
     and should therefor only used if really needed.
 
     Take also into account that you might have to select a certain charset in the
-    <htmlurl url="#langprop-dlg"
+    <link linkend="langprop-dlg">
             name="language properties dialog"> if you want to share your vocabulary
     files with others <bf/(and I really recommend that you do ;-)/.        
  
@@ -1437,7 +1462,7 @@ several elements that are used in the according queries.
     Each column can be assigned a language. This is internally done
     with the usual
     <htmlurl url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html"
-    name="international language codes"> e.g. <tt/en/, <tt/de/, <tt/it/.
+    name="international language codes"> e.g. <literal>en</literal>, <literal>de</literal>, <literal>it</literal>.
     These codes are also stored with the document.
 
     You should always use the correct codes to be able to share
@@ -1449,7 +1474,7 @@ several elements that are used in the according queries.
 <listitem><para>
     Sometimes it may be useful to have a second language code because
     some languages have the usual short code and one or two longer codes.
-    For german for example it is common to use "de" but either "deu" or "ger"
+    For german for example it is common to use <literal>de</literal> but either <literal>deu</literal> or <literal>ger</literal>
     is also possible according to ISO639-2.
 
 <varlistentry>
@@ -2018,10 +2043,10 @@ when querying the original when one of the translations is given(=> to).
 <sect1>Normal random query<p>
 
 After selecting "Create random query" from the
-<htmlurl url="#header-menu" name="header menu"> the vocabulary disappers.
+<link linkend="header-menu">header menu</link> the vocabulary disappers.
 
 Then all entries that match your current
-<htmlurl url="#options6-dlg" name="threshholds">.
+<link linkend="options6-dlg">threshholds</link>.
 are put into a
 list and shown in random order with the following dialog box.
 
@@ -2084,7 +2109,7 @@ list and shown in random order with the following dialog box.
 <varlistentry>
 <term>Options</term>
 <listitem><para>
-   Invoke <htmlurl url="#options-dlg"  name="options dialog">.
+Invoke <link linkend="options-dlg">options dialog</link>.
    
 </descrip>
 
