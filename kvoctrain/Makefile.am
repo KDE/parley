@@ -44,22 +44,28 @@ APPS_FILES = \
  pics/entry-in-query.png  pics/entry-inactive.png
  
 install-data-local:
-	$(mkinstalldirs) $(kde_appsdir)/Edutainment/
-	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(kde_appsdir)/Edutainment/kvoctrain.desktop
-	$(mkinstalldirs) $(kde_icondir)/
-	$(INSTALL_DATA) $(srcdir)/pics/kvoctrain.xpm $(kde_icondir)/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/48x48-kvoctrain.xpm $(kde_icondir)/hicolor/48x48/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/32x32-kvoctrain.xpm $(kde_icondir)/hicolor/32x32/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/22x22-kvoctrain.xpm $(kde_icondir)/hicolor/22x22/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/16x16-kvoctrain.xpm $(kde_icondir)/locolor/16x16/apps/kvoctrain.xpm
+	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/
+	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/kvoctrain.desktop
+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
+	$(INSTALL_DATA) $(srcdir)/pics/kvoctrain.xpm $(DESTDIR)$(kde_icondir)/kvoctrain.xpm
+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/
+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/
+	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
+	$(INSTALL_DATA) $(srcdir)/pics/48x48-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kvoctrain.xpm
+	$(INSTALL_DATA) $(srcdir)/pics/32x32-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kvoctrain.xpm
+	$(INSTALL_DATA) $(srcdir)/pics/22x22-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kvoctrain.xpm
+	$(INSTALL_DATA) $(srcdir)/pics/16x16-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/kvoctrain.xpm
 	$(mkinstalldirs) $(kde_datadir)/kvoctrain
 	for pic in $(APPS_FILES); do \
           file=`echo $$pic | sed 's,.*/,,'`; \
+	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/; \
           $(INSTALL_DATA) $(srcdir)/pics/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/$$file; \
 	done
 	$(mkinstalldirs) $(kde_datadir)/kvoctrain/examples
 	for kvt in $(XMP_FILES); do \
           file=`echo $$kvt | sed 's,.*/,,'`; \
+	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/examples/ ; \
           $(INSTALL_DATA) $(srcdir)/examples/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/examples/$$file; \
 	done
 	@echo ""
