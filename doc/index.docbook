@@ -2265,6 +2265,23 @@ answer.</para></listitem>
 </variablelist>
 
 </sect2>
+
+<sect2>
+<title>Docking to the main window</title>
+
+<para>If you have to enter or change a lot of words you may want to place the main
+window next to the entry dialog and occupy the whole screen.
+
+You may do this manually or use one of the two
+buttons in the bottom left corner. The left one resizes the windows to an optimal
+height and places them one upon the other. The second places them accordingly
+side by side.</para>
+
+<para>After closing the entry dialog the main window returns to it's previous
+position and size.</para>
+
+</sect2>
+
 </sect1>
 
 <sect1 id="query-dlg">
