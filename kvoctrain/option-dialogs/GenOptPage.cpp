@@ -59,7 +59,7 @@ GenOptPage::GenOptPage
   group_resize->insert(hb_fixed);
 
   connect( chk_autoapply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
-  connect( c_smart, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
+  connect( kcfg_smartAppend, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_btime, SIGNAL(toggled(bool)), SLOT(slotBTimeUsed(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
   connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
@@ -71,7 +71,7 @@ GenOptPage::GenOptPage
   smart = _smart;
   autosaveopts = _autosaveopts;
 
-  c_smart->setChecked(smart);
+  kcfg_smartAppend->setChecked(smart);
   c_saveopt->setChecked(autosaveopts);
 
   QString s;

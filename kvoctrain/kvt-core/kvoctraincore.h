@@ -72,7 +72,6 @@
 #define       CFG_RECENT               "RecentFiles"
 #define       CFG_HEADER_RESIZER       "HeaderResizer"
 #define       CFG_FIRST_TIME           "FirstTime"
-#define       CFG_SMART_APPEND         "SmartAppend"
 #define       CFG_AUTOSAVEOPT          "AutoSaveOptions"
 #define       CFG_ENTRYAUTOAPPLY       "EntryAutomaticApply"
 
@@ -85,7 +84,6 @@
 #define       CFG_QUERYMODE            "QueryMode"
 #define       CFG_DEFTRANS             "DefaultTranslation"
 #define       CFG_DEFORG               "DefaultOriginal"
-#define       CFG_SHOWCOUNTER          "Showcounter"
 
 #define      CFG_NUMLANGSET           "NumLangSet"
 #define       CFG_L_SHORT              "ShortId"

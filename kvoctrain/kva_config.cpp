@@ -88,7 +88,7 @@ void kvoctrainApp::saveOptions(bool all)
     config->writeEntry(CFG_GCOL7, gradecols.col7);
   
     config->setGroup(CFG_GENERAL);
-    config->writeEntry(CFG_SMART_APPEND, (bool) smartAppend);
+    Prefs::setSmartAppend((bool) smartAppend);
     config->writeEntry(CFG_HEADER_RESIZER, (int) header_resizer);
 
     s = separator;
@@ -123,7 +123,7 @@ void kvoctrainApp::saveOptions(bool all)
 
     config->setGroup(CFG_QUERYPROP);
     Prefs::setMaxTimePer(maxqueryTime);
-    config->writeEntry(CFG_SHOWCOUNTER, showcounter);
+    Prefs::setShowcounter(showcounter);
     Prefs::setSwapDir(swap_querydir);
     Prefs::setAltLearn(alt_learn);
     Prefs::setBlock(block);
@@ -196,7 +196,7 @@ void kvoctrainApp::readOptions()
   gradecols.col7 = config->readColorEntry(CFG_GCOL7, &qc);
 
   config->setGroup(CFG_GENERAL);
-  smartAppend = config->readNumEntry(CFG_SMART_APPEND, 0);
+  smartAppend = Prefs::smartAppend();
   header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
   // initialize the recent file list
   recent_files = config->readPathListEntry(CFG_RECENT);
@@ -246,7 +246,7 @@ void kvoctrainApp::readOptions()
   config->setGroup(CFG_QUERYPROP);
   type_querytimeout = (kvq_timeout_t) Prefs::queryTimeout();
   maxqueryTime = Prefs::maxTimePer();
-  showcounter = config->readNumEntry(CFG_SHOWCOUNTER, false);
+  showcounter = Prefs::showcounter();
   swap_querydir= Prefs::swapDir();
   alt_learn= Prefs::altLearn();
   block = Prefs::block();

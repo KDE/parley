@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>QueryOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -77,6 +77,9 @@
                             <property name="text">
                                 <string>&amp;Show solution</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+S</string>
+                            </property>
                         </widget>
                         <widget class="QRadioButton" row="2" column="0">
                             <property name="name">
@@ -105,7 +108,7 @@
                         </widget>
                         <widget class="QCheckBox" row="2" column="2">
                             <property name="name">
-                                <cstring>showrem</cstring>
+                                <cstring>kcfg_showcounter</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
@@ -117,6 +120,15 @@
                             </property>
                             <property name="text">
                                 <string>S&amp;how remaining time</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+H</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>If checked, activate a progress bar to show the remaining time.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="1">
@@ -338,7 +350,7 @@
     <tabstop>r_show_to</tabstop>
     <tabstop>r_cont_to</tabstop>
     <tabstop>kcfg_maxTimePer</tabstop>
-    <tabstop>showrem</tabstop>
+    <tabstop>kcfg_showcounter</tabstop>
     <tabstop>ask_sub</tabstop>
     <tabstop>ask_verbcon</tabstop>
     <tabstop>ask_article</tabstop>

@@ -58,7 +58,7 @@ QueryOptPage::QueryOptPage
    query_group->insert( r_cont_to );
    query_group->insert( kcfg_queryTimeout );
 
-   connect( showrem, SIGNAL(toggled(bool)), SLOT(slotShowRemTime(bool)) );
+   connect( kcfg_showcounter, SIGNAL(toggled(bool)), SLOT(slotShowRemTime(bool)) );
    connect( kcfg_queryTimeout, SIGNAL(clicked()), SLOT(slotNoTimeout()) );
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
@@ -112,21 +112,21 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    kcfg_maxTimePer->setText (s);
    kcfg_SwapDir->setChecked(swapdir);
    kcfg_AltLearn->setChecked(altlearn);
-   showrem->setChecked(show);
+   kcfg_showcounter->setChecked(show);
 
    if (type_to == kvq_show) {
      kcfg_maxTimePer->setEnabled(true);
-     showrem->setEnabled(true);
+     kcfg_showcounter->setEnabled(true);
      r_show_to->setChecked (true);
    }
    else if (type_to == kvq_cont) {
      kcfg_maxTimePer->setEnabled(true);
-     showrem->setEnabled(true);
+     kcfg_showcounter->setEnabled(true);
      r_cont_to->setChecked (true);
    }
    else {
      kcfg_maxTimePer->setEnabled(false);
-     showrem->setEnabled(false);
+     kcfg_showcounter->setEnabled(false);
      kcfg_queryTimeout->setChecked (true);
    }
 }
@@ -161,7 +161,7 @@ void QueryOptPage::slotAltLearn(bool state)
 void QueryOptPage::slotShowTimeout()
 {
    kcfg_maxTimePer->setEnabled(true);
-   showrem->setEnabled(true);
+   kcfg_showcounter->setEnabled(true);
    type_timeout = kvq_show;
 }
 
@@ -169,7 +169,7 @@ void QueryOptPage::slotShowTimeout()
 void QueryOptPage::slotContTimeOut()
 {
    kcfg_maxTimePer->setEnabled(true);
-   showrem->setEnabled(true);
+   kcfg_showcounter->setEnabled(true);
    type_timeout = kvq_cont;
 }
 
@@ -177,7 +177,7 @@ void QueryOptPage::slotContTimeOut()
 void QueryOptPage::slotNoTimeout()
 {
    kcfg_maxTimePer->setEnabled(false);
-   showrem->setEnabled(false);
+   kcfg_showcounter->setEnabled(false);
    type_timeout = kvq_notimeout;
 }
 

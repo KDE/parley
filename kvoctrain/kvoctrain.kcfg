@@ -2,6 +2,12 @@
 <!DOCTYPE kcfg SYSTEM "http://www.kde.org/standards/kcfg/1.0/kcfg.dtd">
 <kcfg>
   <kcfgfile name="kvoctrainrc"/>
+  <group name="General">
+   <entry name="SmartAppend" type="Bool">
+      <label>If true, the entry dialog will popup repeatedly</label>
+      <default code="true">false</default>
+    </entry>
+   </group>
   <group name="QueryProperties">
    <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
@@ -17,6 +23,10 @@
     </entry>
     <entry name="SwapDir" type="Bool">
       <label>Swap direction randomly</label>
+      <default code="true">false</default>
+    </entry>
+    <entry name="Showcounter" type="Bool">
+      <label>Get a progress bar to show remaining time if true.</label>
       <default code="true">false</default>
     </entry>
         <entry name="QueryTimeout" type="Int">
