@@ -4,5 +4,5 @@ noinst_LTLIBRARIES = libkvtxml.la
 
 libkvtxml_la_SOURCES = XmlReader.cpp XmlTokenizer.cpp XmlElement.cpp XmlWriter.cpp
 
-CLEANFILES += *~
+# CLEANFILES += *~ # This breaks badly with automake 1.5
 

@@ -3,7 +3,7 @@ INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/
 noinst_LTLIBRARIES = libquerydlg.la
 
 
-libquerydlg_a_DLG_SOURCES = \
+libquerydlg_a_DLG_sources = \
   VerbQueryDlg.dlg \
   AdjQueryDlg.dlg \
   ArtQueryDlg.dlg \
@@ -12,21 +12,21 @@ libquerydlg_a_DLG_SOURCES = \
   SimpleQueryDlg.dlg
 
 
-libquerydlg_a_QOBJ_SOURCES =   \
-  $(libquerydlg_a_DLG_SOURCES:.dlg=.cpp) \
-  $(libquerydlg_a_DLG_SOURCES:.dlg=Data.cpp) \
+libquerydlg_a_QOBJ_sources =   \
+  $(libquerydlg_a_DLG_sources:.dlg=.cpp) \
+  $(libquerydlg_a_DLG_sources:.dlg=Data.cpp) \
   QueryDlgBase.cpp
 
-libquerydlg_la_SOURCES = $(libquerydlg_a_QOBJ_SOURCES) \
+libquerydlg_la_SOURCES = $(libquerydlg_a_QOBJ_sources) \
                         MyProgress.cpp
                         
 EXTRA_DIST = \
-  $(libquerydlg_a_QOBJ_SOURCES:.cpp=.h) \
-  $(libquerydlg_a_DLG_SOURCES) \
+  $(libquerydlg_a_QOBJ_sources:.cpp=.h) \
+  $(libquerydlg_a_DLG_sources) \
   MyProgress.h
 
 
-CLEANFILES += *~
+# CLEANFILES += *~ # This breaks badly with automake 1.5
 
 
 #%Data.cpp %Data.h: %.dlg

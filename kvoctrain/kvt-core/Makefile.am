@@ -16,7 +16,7 @@ libkvoctraincore_la_SOURCES = \
  GrammerManager.cpp UsageManager.cpp \
  QueryManager.cpp 
 
-CLEANFILES += *~
+# CLEANFILES += *~ # This breaks badly with automake 1.5
 
 SUBDIRS = kvt-xml
 
