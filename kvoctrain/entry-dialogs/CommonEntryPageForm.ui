@@ -1,0 +1,356 @@
+<!DOCTYPE UI><UI>
+<class>CommonEntryPageData</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>CommonEntryPage</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>592</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>CommonEntryPage</string>
+    </property>
+    <vbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring>usage_box</cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>Common properties</string>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>expr_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>&amp;Expression</string>
+                    </property>
+                    <hbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QLineEdit</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>expr_line</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>pronunce_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>&amp;Pronounciation</string>
+                    </property>
+                    <hbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QLineEdit</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>pronunce_line</cstring>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_pronDlg</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>30</width>
+                                    <height>30</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>PushButton1</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>type_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>T&amp;ype</string>
+                    </property>
+                    <hbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QComboBox</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>type_box</cstring>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QLabel</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>subtype_label</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;Subtype:</string>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QComboBox</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>subtype_box</cstring>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_TypeDlg</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>30</width>
+                                    <height>30</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>PushButton1</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>usage_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>&amp;Usage label</string>
+                    </property>
+                    <grid>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget row="0"  column="1"  rowspan="2"  colspan="1" >
+                            <class>QLabel</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>usage_line</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>4</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>frameShape</name>
+                                <enum>WinPanel</enum>
+                            </property>
+                            <property stdset="1">
+                                <name>frameShadow</name>
+                                <enum>Sunken</enum>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>TextLabel5   mit mehr worten</string>
+                            </property>
+                        </widget>
+                        <spacer row="1"  column="2" >
+                            <property>
+                                <name>name</name>
+                                <cstring>Spacer1</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>orientation</name>
+                                <enum>Vertical</enum>
+                            </property>
+                            <property stdset="1">
+                                <name>sizeType</name>
+                                <enum>Expanding</enum>
+                            </property>
+                            <property>
+                                <name>sizeHint</name>
+                                <size>
+                                    <width>20</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget row="0"  column="2" >
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_usageDlg</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>30</width>
+                                    <height>30</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>PushButton1</string>
+                            </property>
+                        </widget>
+                        <widget row="0"  column="0"  rowspan="2"  colspan="1" >
+                            <class>QListBox</class>
+                            <item>
+                                <property>
+                                    <name>text</name>
+                                    <string>New Item</string>
+                                </property>
+                            </item>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>ListBox1</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>7</vsizetype>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>lesson_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>&amp;Lesson</string>
+                    </property>
+                    <hbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QComboBox</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>lesson_box</cstring>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_LessDlg</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>30</width>
+                                    <height>30</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>PushButton1</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+            </vbox>
+        </widget>
+    </vbox>
+</widget>
+<tabstops>
+    <tabstop>expr_line</tabstop>
+    <tabstop>pronunce_line</tabstop>
+    <tabstop>b_pronDlg</tabstop>
+    <tabstop>type_box</tabstop>
+    <tabstop>subtype_box</tabstop>
+    <tabstop>b_TypeDlg</tabstop>
+    <tabstop>ListBox1</tabstop>
+    <tabstop>b_usageDlg</tabstop>
+    <tabstop>lesson_box</tabstop>
+    <tabstop>b_LessDlg</tabstop>
+</tabstops>
+</UI>
