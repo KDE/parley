@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -92,6 +99,7 @@
 
 #include <qstring.h>
 #include <qcolor.h>
+#include <qpixmap.h>
 
 #include <GrammerManager.h>
 
@@ -455,10 +463,12 @@ class kvoctrainExpr
               kvoctrainDoc *doc, int current_col, const GradeCols *gc,
               const SpecFont_t *rowfont);
 
+  static void setPixmap(const QPixmap &pm);
+
  protected:
 
   void Init();
-
+  
  private:
   QString            origin;
 
@@ -489,6 +499,7 @@ class kvoctrainExpr
   bool               selected;
   bool               tagged;
 
+  static QPixmap *   s_pm_mark;
 };
 
 

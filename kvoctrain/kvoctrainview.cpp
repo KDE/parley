@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -121,6 +125,8 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
    setHeaderProp( KV_COL_LESS, i18n("Lesson"),  EA_KDEDATADIR("", "kvoctrain/lesson.xpm"));
+   setHeaderProp( KV_COL_MARK, QString::null,  EA_KDEDATADIR("", "kvoctrain/mark.png"));
+   lb_list->setColumnWidth(KV_COL_MARK, 20);
 
    if (id < 0 )
      setHeaderProp( KV_COL_ORG, the_doc->getOriginalIdent());

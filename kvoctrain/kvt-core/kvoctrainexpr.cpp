@@ -17,6 +17,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -39,6 +46,16 @@
 
 #include "kv_resource.h"
 #include "compat_2x.h"
+
+QPixmap * kvoctrainExpr::s_pm_mark = 0;
+
+// static
+void kvoctrainExpr::setPixmap(const QPixmap &pm)
+{
+  delete s_pm_mark;
+  s_pm_mark = new QPixmap(pm);
+}
+
 
 void kvoctrainExpr::Init()
 {
@@ -777,9 +794,6 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 
 //  cout << col << " " << ft.family() << " " << kvoctrainDoc::charSet2String (ft.charSet() ) << endl;
 
-  if (isSelected() )
-    ft.setWeight(QFont::DemiBold);
-  
   p->setFont(ft);
 
   int fontpos = ( p->fontMetrics().lineSpacing() - p->fontMetrics().lineSpacing())/2;
@@ -794,6 +808,16 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 	p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
 		     EA_QtNS(AlignLeft),
 		     less_str);
+      }
+    break;
+
+    case KV_COL_MARK: // mark 
+      {
+        if (isSelected() )
+        {
+	  p->drawPixmap((width - s_pm_mark->width()) / 2, 
+                        (p->fontMetrics().lineSpacing() - s_pm_mark->height())/2, *s_pm_mark);
+        }
       }
     break;
 

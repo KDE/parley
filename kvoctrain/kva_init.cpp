@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/20 12:06:28  arnold
+    removed aboutdialog files
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -390,6 +393,8 @@ void kvoctrainApp::initView(const QString &name)
   pdlg = new ProgressDlg (QString(), QString(),
                 kvoctrainApp::generateCaption("Loading vocabulary file"));
   pdlg->show();
+
+  kvoctrainExpr::setPixmap(QPixmap(EA_KDEDATADIR("", "kvoctrain/mark.png")));
 
   if (!name.isEmpty()) {
     doc = new kvoctrainDoc(this, name, separator, &paste_order);

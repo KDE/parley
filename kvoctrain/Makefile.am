@@ -22,7 +22,7 @@ kvoctrain_LDADD =   -lkfile -lkhtml \
                     ./common-dialogs/libcommondlg.la
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
-          option-dialogs entry-dialogs docprop-dialogs kvt-core \
+          option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs
 
 APPS_FILES = pics/exit.xpm pics/fonts.xpm pics/kde.xpm pics/stop.xpm \
@@ -38,7 +38,8 @@ APPS_FILES = pics/exit.xpm pics/fonts.xpm pics/kde.xpm pics/stop.xpm \
  pics/run-query.xpm  pics/run-multi.xpm \
  pics/sort_alpha.xpm pics/sort_num.xpm pics/cleanup.xpm \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
- pics/sf-mail.xpm pics/sf-bugs.xpm pics/sf-home.xpm
+ pics/sf-mail.xpm pics/sf-bugs.xpm pics/sf-home.xpm \
+ pics/mark.png
  
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Applications/

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -42,11 +49,12 @@
 ///////////////////////////////////////////////////////////////////
 // kv_resource.h  -- contains macros used for commands
 
-#define KV_EXTRA_COLS    1   // add col for lesson number
+#define KV_EXTRA_COLS    2   // add col for lesson number
 
 #define KV_COL_LESS      0   // col: lesson number
-#define KV_COL_ORG       1   // col: original
-#define KV_COL_TRANS     2   // col: first translation
+#define KV_COL_MARK      1   // col: mark
+#define KV_COL_ORG       2   // col: original
+#define KV_COL_TRANS     3   // col: first translation
 
 ///////////////////////////////////////////////////////////////////
 // COMMAND VALUES FOR MENUBAR AND TOOLBAR ENTRIES
