@@ -64,6 +64,9 @@
 #		changed location of rcfile from $HOME/.kde2/... to $HOME/.kde/...
 #		updated usage string
 #
+# Updated 05/05/03 - Ewald Arnold
+#	corrections: XML header in uppercase where needed
+#
 ####################################################################
 chomp($cwd = `pwd`);
 #
@@ -265,7 +268,7 @@ sub get_info {
 
   # Generate output file
   open(KVT, ">$kvtfile") || die "Cannot create $kvtfile: $!";
-  print KVT '<?xml version="1.0"?>'."\n".'<!doctype kvtml system "kvoctrain.dtd">'."\n\n";
+  print KVT '<?xml version="1.0"?>'."\n".'<!DOCTYPE kvtml SYSTEM "kvoctrain.dtd">'."\n\n";
   
   while (<VOC>) {
   
@@ -291,7 +294,7 @@ sub get_info {
     }
     if (/^.[sS]tandard.,. ./) {
         $filestage = 1;
-	print KVT '<kvtml generator="langen2kvtml v0.4.0"'."\n";
+	print KVT '<kvtml generator="langen2kvtml v0.4.1"'."\n";
 	print KVT 'title="'."$title".'" author="'."$author".'">'."\n\n";
 	# print "$tlang $ttrans\n";
     }
