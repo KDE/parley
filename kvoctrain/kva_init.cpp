@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/01 11:28:13  arnold
+    fixed flickering in query dialogs
+
     Revision 1.15  2001/11/25 11:11:02  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -203,7 +206,7 @@ void kvoctrainApp::initMenuBar()
   recent_files_menu = new QPopupMenu();
   connect(recent_files_menu, SIGNAL(activated(int)),   SLOT(slotFileOpenRecent(int)) );
   connect(recent_files_menu, SIGNAL(highlighted(int)), SLOT(statusCallback(int)));
-  file_menu->insertItem(i18n("Open Recen&t.."), recent_files_menu, ID_FILE_OPEN_RECENT);
+  file_menu->insertItem(i18n("Open &Recent"), recent_files_menu, ID_FILE_OPEN_RECENT);
   QString accel;
   for (uint i = 0 ; i < recent_files.count(); i++){
     accel.setNum (i);
@@ -218,9 +221,9 @@ void kvoctrainApp::initMenuBar()
 
   file_menu->insertSeparator();
   file_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small) ,i18n("&Save"), ID_FILE_SAVE );
-  file_menu->insertItem(i18n("Save &as..."), ID_FILE_SAVE_AS );
+  file_menu->insertItem(i18n("Save &As..."), ID_FILE_SAVE_AS );
   file_menu->insertSeparator();
-  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("exit", KIcon::Small), i18n("E&xit"), ID_FILE_QUIT );
+  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("exit", KIcon::Small), i18n("&Quit"), ID_FILE_QUIT );
 
   // file_menu key accelerators
   file_menu->setAccel(CTRL+Key_O, ID_FILE_OPEN);

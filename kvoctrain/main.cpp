@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/24 11:43:58  arnold
+    updated credits
+
     Revision 1.7  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -77,7 +80,7 @@ static const char *description =
 static const char *version = "0.8.0";
 
   KAboutData aboutData("kvoctrain",
-                       "kvoctrain",
+                       "KVocTrain",
                        version,
                        description,
                        KAboutData::License_GPL,
@@ -88,12 +91,12 @@ static const char *version = "0.8.0";
                       "kvoctrain@ewald-arnold.de");
   aboutData.addAuthor("Ewald Arnold", i18n_noop("Original author and maintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );
-  aboutData.addCredit("Waldo Bastian", i18n_noop("Helping in porting to Qt3/KDE3"));
-  aboutData.addCredit("Andrea Marconi", i18n_noop("Initial localisator for italian"));
-  aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"));
-  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polish"));
-  aboutData.addCredit("Eric Bischoff", i18n_noop("Converting my oldstyle documentation to docbook"));
-  aboutData.addCredit("The whole KDE team", i18n_noop("A lot of small improvements in the background"));
+  aboutData.addCredit("Waldo Bastian", i18n_noop("Help in port to Qt3/KDE3"));
+  aboutData.addCredit("Andrea Marconi", i18n_noop("Initial Italian localisaton"));
+  aboutData.addCredit("Hans Kottmann", i18n_noop("Initial French localisation"));
+  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial Polish localisation"));
+  aboutData.addCredit("Eric Bischoff", i18n_noop("Converting documentation to docbook format"));
+  aboutData.addCredit("The whole KDE team", i18n_noop("Many small enhancements"));
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;
