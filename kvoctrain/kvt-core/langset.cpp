@@ -60,13 +60,8 @@ void LangSet::addSet (QString _shortId, QString _longId,
 void LangSet::appendSet(const LangSet &set)
 {
   for (int i = 0; i < (int) set.size(); ++i) {
-    LangDef def;
-    def.shortId = set.langs[i].shortId;
-    def.shortId2 = set.langs[i].shortId2;
-    def.longId = set.langs[i].longId;
-    def.PixMapFile = set.langs[i].PixMapFile;
-    def.keyboardLayout = set.langs[i].keyboardLayout;
-    langs.push_back (def);
+    addSet(set.langs[i].shortId, set.langs[i].longId, set.langs[i].PixMapFile,
+	   set.langs[i].shortId2, set.langs[i].keyboardLayout);
   }
 }
 
@@ -89,7 +84,7 @@ QString LangSet::shortId (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].shortId;
 
-  return "";
+  return QString::null;
 }
 
 
@@ -98,7 +93,7 @@ QString LangSet::shortId2 (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].shortId2;
 
-  return "";
+  return QString::null;
 }
 
 
@@ -107,7 +102,7 @@ QString LangSet::longId (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].longId;
 
-  return "";
+  return QString::null;
 }
 
 
@@ -138,7 +133,7 @@ QString LangSet::findShortId (const QString &_longId) const
     if (_longId == langs[i].longId)
       return langs[i].shortId;
 
-  return "";
+  return QString::null;
 }
 
 
@@ -152,7 +147,7 @@ QString LangSet::findLongId (const QString &_shortId) const
         || _shortId == langs[i].shortId2)
       return langs[i].longId;
 
-  return "";
+  return QString::null;
 }
 
 
