@@ -106,73 +106,73 @@ void kvoctrainApp::initActions()
   fileOpen->setToolTip(fileOpen->whatsThis());
 
   fileOpenExample = new KAction(i18n("Open &Example..."), "fileopen", 0, this, SLOT(slotFileOpenExample()), actionCollection(), "file_open_example");
-  fileOpen->setWhatsThis(i18n("Opens an example vocabulary document"));
+  fileOpen->setWhatsThis(i18n("Open a vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
 
   fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KURL&)), actionCollection());
 
   fileMerge = new KAction(i18n("&Merge..."), 0, 0, this, SLOT(slotFileMerge()), actionCollection(), "file_merge");
-  fileMerge->setWhatsThis(i18n("Merges an existing vocabulary document with the current one"));
+  fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
   fileMerge->setToolTip(fileOpen->whatsThis());
 
   fileSave = KStdAction::save(this, SLOT(slotFileSave()), actionCollection());
-  fileSave->setWhatsThis(i18n("Saves the active vocabulary document"));
+  fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
   fileSave->setToolTip(fileSave->whatsThis());
 
   fileSaveAs = KStdAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
-  fileSaveAs->setWhatsThis(i18n("Saves the active vocabulary document with a different name"));
+  fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
   fileSaveAs->setToolTip(fileSaveAs->whatsThis());
 
   fileQuit = KStdAction::quit(this, SLOT(slotFileQuit()), actionCollection());
-  fileQuit->setWhatsThis(i18n("Quits KVocTrain"));
+  fileQuit->setWhatsThis(i18n("Quit KVocTrain"));
   fileQuit->setToolTip(fileQuit->whatsThis());
 
   editCopy = KStdAction::copy(this, SLOT(slotEditCopy()), actionCollection());
-  editCopy->setWhatsThis(i18n("Copies the text from the selected cells and places it on the clipboard"));
+  editCopy->setWhatsThis(i18n("Copy"));
   editCopy->setToolTip(editCopy->whatsThis());
 
   editPaste = KStdAction::paste(this, SLOT(slotEditPaste()), actionCollection());
-  editPaste->setWhatsThis(i18n("Pastes previously cut or copied text from the clipboard into the selected cells"));
+  editPaste->setWhatsThis(i18n("Paste"));
   editPaste->setToolTip(editPaste->whatsThis());
 
   editSelectAll = KStdAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
-  editSelectAll->setWhatsThis(i18n("Selects all rows"));
+  editSelectAll->setWhatsThis(i18n("Select all rows"));
   editSelectAll->setToolTip(editSelectAll->whatsThis());
 
   editClearSelection = KStdAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
-  editClearSelection->setWhatsThis(i18n("Deselects all rows"));
+  editClearSelection->setWhatsThis(i18n("Deselect all rows"));
   editClearSelection->setToolTip(editClearSelection->whatsThis());
 
   editSearchFromClipboard =  KStdAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
-  editSearchFromClipboard->setWhatsThis(i18n("Searches for clipboard content in the vocabulary"));
+  editSearchFromClipboard->setWhatsThis(i18n("Search for clipboard content in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
   editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
-  editAppend->setWhatsThis(i18n("Appends a new row to the vocabulary"));
+  editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
   editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), "edit_table_row", "Ctrl+Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
-  editEditSelectedArea->setWhatsThis(i18n("Edits the entries in the selected rows"));
+  editEditSelectedArea->setWhatsThis(i18n("Edit the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
   editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), "delete_table_row", "Delete", this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
-  editRemoveSelectedArea->setWhatsThis(i18n("Deletes the selected rows"));
+  editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
   editSaveSelectedArea = new KAction(i18n("Save E&ntries in Query As..."), KGlobal::iconLoader()->loadIcon("filesaveas", KIcon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
-  editSaveSelectedArea->setWhatsThis(i18n("Saves the entries in the query as a new vocabulary"));
+  editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
   vocabShowStatistics = new KAction(i18n("Show &Statistics"), "statistics", 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
-  vocabShowStatistics->setWhatsThis(i18n("Shows statistics for the current vocabulary"));
+  vocabShowStatistics->setWhatsThis(i18n("Show statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
   vocabAssignLessons = new KAction(i18n("Assign L&essons..."), "rand_less", 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
-  vocabAssignLessons->setWhatsThis(i18n("Creates random lessons with unassigned entries"));
+  vocabAssignLessons->setWhatsThis(i18n("Create random lessons with unassigned entries"));
   vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
 
   vocabCleanUp = new KAction(i18n("&Clean Up"), "cleanup", 0, this, SLOT(slotCleanVocabulary()), actionCollection(),"vocab_clean_up");
-  vocabCleanUp->setWhatsThis(i18n("Removes entries with same content from vocabulary"));
+  vocabCleanUp->setWhatsThis(i18n("Remove entries with same content from vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
 
   vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), "insert_table_col", 0, actionCollection(), "vocab_append_language");
@@ -189,11 +189,11 @@ void kvoctrainApp::initActions()
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
   vocabDocumentProperties = new KAction(i18n("Document &Properties"), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
-  vocabDocumentProperties->setWhatsThis(i18n("Edits document properties"));
+  vocabDocumentProperties->setWhatsThis(i18n("Edit document properties"));
   vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
 
   vocabLanguageProperties = new KAction(i18n("Lan&guage Properties"), 0, 0, this, SLOT(slotDocPropsLang()), actionCollection(), "vocab_language_properties");
-  vocabLanguageProperties->setWhatsThis(i18n("Edits language properties in current document"));
+  vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
 
   lessons = new KComboBox(this);
@@ -224,11 +224,11 @@ void kvoctrainApp::initActions()
   learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
   */
   configApp = KStdAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
-  configApp->setWhatsThis(i18n("Shows the configuration dialog"));
+  configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
 
   configQueryOptions = new KAction(i18n("Configure &Query..."), "configure_query", 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
-  configQueryOptions->setWhatsThis(i18n("Shows the query configuration dialog"));
+  configQueryOptions->setWhatsThis(i18n("Show the query configuration dialog"));
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());
 
   actionCollection()->setHighlightingEnabled(true);
@@ -241,7 +241,7 @@ void kvoctrainApp::initActions()
   setAutoSaveSettings();
 
   configToolbar = actionCollection()->action("options_configure_toolbars");
-  configToolbar->setWhatsThis(i18n("Toggles display of the toolbars"));
+  configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
   configToolbar->setToolTip(configToolbar->whatsThis());
 
   learn_menu = (QPopupMenu*) child( "learning", "KPopupMenu" );
