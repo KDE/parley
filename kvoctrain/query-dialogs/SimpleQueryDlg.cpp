@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/01/20 11:41:02  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.12  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -158,7 +161,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the synonym:");
        instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(s));
+       setCaption (kapp->makeStdCaption(i18n("Synonym Training")));
        answerstring = exp->getSynonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
@@ -169,7 +172,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the antonym:");
        instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(s));
+       setCaption (kapp->makeStdCaption(i18n("Antonym Training")));
        answerstring = exp->getAntonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
@@ -180,7 +183,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Paraphrase"));
        s = i18n("Enter the word:");
        instructionLabel->setText(s);
-       setCaption (kapp->makeStdCaption(s));
+       setCaption (kapp->makeStdCaption(i18n("Paraphrase Training")));
        queryField->setText (exp->getParaphrase(column));
        answerstring = column == 0 ? exp->getOriginal()
                                   : exp->getTranslation(column);
@@ -191,7 +194,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Example sentence"));
        s = i18n("Fill in the missing word:");
        instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(s));
+       setCaption (kapp->makeStdCaption(i18n("Example Training")));
        QString s = exp->getExample(column);
        answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace()
                                   : exp->getTranslation(column).stripWhiteSpace();
