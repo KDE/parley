@@ -21,75 +21,14 @@ kvoctrain_LDADD =   ./docprop-dialogs/libdocpropdlg.la \
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
-          statistik-dialogs
+          statistik-dialogs examples pics
 
-XMP_FILES = \
- examples/sample-de.kvtml \
- examples/sample-en.kvtml
+KDE_ICON = kvoctrain
 
-APPS_FILES = \
- pics/16x16-kvoctrain.xpm pics/new.xpm pics/lesson.xpm\
- pics/list-win.xpm pics/pron-win.xpm\
- pics/delete-row.xpm pics/append-row.xpm pics/edit-row.xpm \
- pics/conf-save.xpm pics/gen-conf.xpm pics/query-conf.xpm \
- pics/flags.xpm pics/reset.xpm pics/statist.xpm \
- pics/delete-col.xpm pics/append-col.xpm \
- pics/rand-less.xpm \
- pics/run-verb.xpm  pics/run-art.xpm  pics/run-adj.xpm \
- pics/run-query.xpm  pics/run-multi.xpm \
- pics/sort_alpha.xpm pics/sort_num.xpm pics/cleanup.xpm \
- pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
- pics/entry-in-query.png  pics/entry-inactive.png
+bin_SCRIPTS = langen2kvtml
 
-EXTRA_DIST = $(APPS_FILES) $(XMP_FILES) langen2kvtml
-
-install-data-local:
-	$(mkinstalldirs) $(DESTDIR)$(kde_bindir)
-	$(INSTALL_SCRIPT) $(srcdir)/langen2kvtml $(DESTDIR)$(kde_bindir)/langen2kvtml
-	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/
-	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/
-	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/
-	$(INSTALL_DATA) $(srcdir)/pics/48x48-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/32x32-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/22x22-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kvoctrain.xpm
-	$(INSTALL_DATA) $(srcdir)/pics/16x16-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/kvoctrain.xpm
-	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain
-	for pic in $(APPS_FILES); do \
-          file=`echo $$pic | sed 's,.*/,,'`; \
-	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/; \
-          $(INSTALL_DATA) $(srcdir)/pics/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/$$file; \
-	done
-	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/examples
-	for kvt in $(XMP_FILES); do \
-          file=`echo $$kvt | sed 's,.*/,,'`; \
-	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/examples/ ; \
-          $(INSTALL_DATA) $(srcdir)/examples/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/examples/$$file; \
-	done
-	@echo ""
-	@echo "***********************************************************"
-	@echo "* Installed. Enjoy KVOCTRAIN                              *"
-	@echo "* Please report bugs at http://bugs.kde.org               *"
-	@echo "***********************************************************"
-
-uninstall-local:
-	-rm -f $(DESTDIR)$(kde_bindir)/langen2kvtml
-	-rm -f $(DESTDIR)$(kde_icondir)/kvoctrain.xpm
-	-rm -f $(DESTDIR)$(kde_minidir)/kvoctrain.xpm
-	-rm -f $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
-	-rm -f $(DESTDIR)$(kde_icondir)/large/kvoctrain.xpm
-	-rm -f $(DESTDIR)$(kde_icondir)/mini/kvoctrain.xpm
-	for pic in $(APPS_FILES); do \
-          file=`echo $$pic | sed 's,.*/,,'`; \
-          rm -f "$(DESTDIR)$(kde_datadir)/kvoctrain/$$file"; \
-	done
-	for kvt in $(XMP_FILES); do \
-          file=`echo $$kvt | sed 's,.*/,,'`; \
-          rm -f "$(DESTDIR)$(kde_datadir)/kvoctrain/examples/$$file"; \
-	done
+apps_DATA = kvoctrain.desktop
+appsdir = $(kde_appsdir)/Edutainment/Languages
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
  -I$(top_srcdir)/kvoctrain/kvoctrain \
