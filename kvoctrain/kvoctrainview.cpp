@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/22 06:38:58  waba
+    Show a cute little marker to indicate marked entries.
+    (Instead of using a bold type-face)
+
     Revision 1.4  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -97,6 +101,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  if (the_doc->numLangs() == 0)
    the_doc->appendLang (i18n("Original"));
 
+ connect( lb_list, SIGNAL(edited(int,int)),
+          parent, SLOT(slotEditEntry(int,int)) );
  connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
           parent, SLOT(slotEditEntry(int,int)) );
 //connect( lb_list, SIGNAL(currentChanged(int, int)),
@@ -105,6 +111,14 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
           parent, SLOT(slotModifiedDoc(bool)) );
  connect( lb_list, SIGNAL(sigCancelSelection()),
           parent, SLOT(slotCancelSelection()) );
+ connect( lb_list, SIGNAL(cellMoved(int, int)),
+          parent, SLOT(slotCurrentCellChanged(int, int)) );
+ connect( lb_list, SIGNAL(selected(int,int,int)),
+          parent, SLOT(slotSelectEntry(int,int,int)) );
+/*
+ connect( lb_list, SIGNAL(sigCancelSelection()),
+          parent, SLOT(slotCancelSelection()) );
+*/
 
  list_layout = new QGridLayout( f_list, 2, 1, 4 );
  list_layout->addWidget( lb_list, 1, 0 );

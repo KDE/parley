@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/10/31 19:10:56  arnold
+    fixed generation of i18n messages
+
     Revision 1.8  2001/10/30 14:09:46  arnold
     added property 'multiple choice'
 
@@ -98,13 +101,13 @@
 #include "common-dialogs/NumLessonDlg.h"
 
 
-void kvoctrainApp::slotSaveOptions() /*FOLD00*/
+void kvoctrainApp::slotSaveOptions()
 {
    saveOptions(true);
 }
 
 
-kvoctrainApp::~kvoctrainApp() /*FOLD00*/
+kvoctrainApp::~kvoctrainApp()
 {
    delete header_m;
    delete qtimer;
@@ -114,13 +117,13 @@ kvoctrainApp::~kvoctrainApp() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotCancelSelection () /*FOLD00*/
+void kvoctrainApp::slotCancelSelection ()
 {
   view->getTable()->clearSelection();
 }
 
 
-void kvoctrainApp::slotSelectAll () /*FOLD00*/
+void kvoctrainApp::slotSelectAll ()
 {
   QTableSelection ts;
   RowTable *table = view->getTable();
@@ -131,8 +134,11 @@ void kvoctrainApp::slotSelectAll () /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotCurrentCellChanged(int row, int col) /*FOLD00*/
+void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 {
+  if (col < KV_EXTRA_COLS)
+    return;
+
   col -= KV_EXTRA_COLS;
 
   statusBar()->clear();
@@ -160,14 +166,38 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col) /*FOLD00*/
             +QueryManager::typeStr(expr->getType (col)));
 }
 
-void kvoctrainApp::slotEditRow() /*FOLD00*/
+
+void kvoctrainApp::slotEditRow()
 {
   slotEditEntry (view->getTable()->currentRow(),
-             view->getTable()->currentColumn());
+                 view->getTable()->currentColumn());
 }
 
 
-bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
+void kvoctrainApp::slotSelectEntry (int row, int col, int key_state)
+{
+   if (view->getTable()->numRows() <= 0
+       || row < 0
+       || col < 0)
+     return;
+
+   if (key_state != 0) { // some shift/ctrl key
+     if (doc->getEntry(row)->getLesson () == 0)
+       doc->getEntry(row)->setLesson (act_lesson);
+     else
+       doc->getEntry(row)->setLesson (0);
+   }
+   else
+     doc->getEntry(row)->setSelected (!doc->getEntry(row)->isSelected());
+
+   doc->setModified(true);
+   // update current row with all cols
+   for (int i = 0; i < view->getTable()->numCols(); i++)
+     view->getTable()->updateCell(row, i);
+}
+
+
+bool kvoctrainApp::slotEditEntry (int row, int col)
 {
    QString s1,
            s2,
@@ -179,13 +209,14 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
      return false;
 
    SpecFont_t font = view->getTable()->getColFont(col);
+
    if (col < KV_EXTRA_COLS)
-      col = 0;
-   else 
-      col -= KV_EXTRA_COLS;
+      return false;
 
    if (view->getTable()->numRows() <= 0)
      return false;
+
+   col -= KV_EXTRA_COLS;
 
    s1.setNum(row);
    s2.setNum(col);
@@ -249,12 +280,12 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
 //   edlg.initFocus();
    int res = edlg.exec();
 
-   if (res != QDialog::Accepted) 
+   if (res != QDialog::Accepted)
       return false;
 
    fillLessonBox(doc);
 
-   if (!hasSel) 
+   if (!hasSel)
    {
      kvoctrainExpr *expr = doc->getEntry(row);
      if (col == 0)
@@ -300,7 +331,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
          expr->setType(i, edlg.getType());
      view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
    }
-   else 
+   else
    {
      RowTable *table = view->getTable();
 
@@ -315,26 +346,26 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
            expr->setGrade(col, edlg.getFromGrade(), false);
          if (edlg.toGradeDirty() )
            expr->setGrade(col, edlg.getToGrade(), true);
- 
+
          if (edlg.fromQCountDirty() )
            expr->setQueryCount(col, edlg.getFromQCount(), false);
          if (edlg.toQCountDirty() )
             expr->setQueryCount(col, edlg.getToQCount(), true);
-  
+
          if (edlg.fromBCountDirty() )
            expr->setBadCount(col, edlg.getFromBCount(), false);
          if (edlg.toBCountDirty() )
            expr->setBadCount(col, edlg.getToBCount(), true);
-  
+
          if (edlg.fromDateDirty() )
            expr->setQueryDate(col, edlg.getFromDate(), false);
          if (edlg.toDateDirty() )
            expr->setQueryDate(col, edlg.getToDate(), true);
-  
+
          if (edlg.lessonDirty() )
            expr->setLesson (edlg.getLesson());
 
-         if (edlg.typeDirty() ) 
+         if (edlg.typeDirty() )
          {
            for (int i = 0; i <= expr->numTranslations(); i++)
              expr->setType(i, edlg.getType());
@@ -345,12 +376,14 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
    }
 
    doc->setModified(true);
+   slotCurrentCellChanged(view->getTable()->currentRow(),
+                          view->getTable()->currentColumn());
 
    return true;
 }
 
 
-void kvoctrainApp::slotDocProps () /*FOLD00*/
+void kvoctrainApp::slotDocProps ()
 {
    qtimer->stop();
    int old_lessons = (int) lessons->count();
@@ -501,10 +534,10 @@ bool kvoctrainApp::hasSelection()
 }
 
 
-void kvoctrainApp::slotRemoveRow() /*FOLD00*/
+void kvoctrainApp::slotRemoveRow()
 {
   if (!hasSelection()) {
-    if( KMessageBox::Yes == KMessageBox::questionYesNo(this, 
+    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected entry ?\n"),
                   generateCaption(""),
                   i18n("&Yes"), i18n("&No")))
@@ -537,7 +570,7 @@ void kvoctrainApp::slotRemoveRow() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotAppendRow () /*FOLD00*/
+void kvoctrainApp::slotAppendRow ()
 {
   int res;
   do {
@@ -602,11 +635,11 @@ void kvoctrainApp::slotAppendRow () /*FOLD00*/
       doc->setModified();
       int row = doc->numEntries()-1;
       view->getTable()->updateContents(row, KV_COL_ORG);
-  
+
       // enter all new translations
       if (smartAppend) {
         slotChooseLesson(edlg.getLesson());
-  
+
         bool nextcol = smartAppend;
         for (int i = 2; nextcol && i <= doc->numLangs(); i++) {
           if ((nextcol = slotEditEntry (row, i))) {
@@ -625,7 +658,7 @@ void kvoctrainApp::slotAppendRow () /*FOLD00*/
 }
 
 
-void kvoctrainApp::keyReleaseEvent( QKeyEvent *e ) /*FOLD00*/
+void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
 {
   switch( e->key() ) {
     case Key_Shift:  shiftActive = false;
@@ -640,14 +673,14 @@ void kvoctrainApp::keyReleaseEvent( QKeyEvent *e ) /*FOLD00*/
 }
 
 
-void kvoctrainApp::keyPressEvent( QKeyEvent *e ) /*FOLD00*/
+void kvoctrainApp::keyPressEvent( QKeyEvent *e )
 {
   controlActive = (e->state() & ControlButton) != 0;
   shiftActive = (e->state() & ShiftButton) != 0;
   altActive = (e->state() & AltButton) != 0;
 
   switch( e->key() ) {
-    case Key_Plus:  
+    case Key_Plus:
       if (controlActive) {
         int less = lessons->currentItem();
         if (less == lessons->count()-1)
@@ -688,7 +721,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e ) /*FOLD00*/
     break;
 
     case Key_Backtab:
-      if (searchLine->hasFocus() )  
+      if (searchLine->hasFocus() )
         view->getTable()->setFocus();
       else {
         searchLine->setFocus();
@@ -704,7 +737,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e ) /*FOLD00*/
       slotAppendRow();
     }
     break;
-      
+
     default:
       bool found = false;
       if (!found)
@@ -714,7 +747,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e ) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotChooseLesson(int idx) /*FOLD00*/
+void kvoctrainApp::slotChooseLesson(int idx)
 {
   act_lesson = idx;
   doc->setCurrentLesson(idx);
@@ -722,7 +755,7 @@ void kvoctrainApp::slotChooseLesson(int idx) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotCreateLesson(int header) /*FOLD00*/
+void kvoctrainApp::slotCreateLesson(int header)
 {
   vector <int> sel;
   doc->setModified();
@@ -750,14 +783,14 @@ void kvoctrainApp::slotCreateLesson(int header) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotShowStatist() /*FOLD00*/
+void kvoctrainApp::slotShowStatist()
 {
    StatistikDlg sdlg (langset, doc, &gradecols);
    sdlg.exec();
 }
 
 
-void kvoctrainApp::slotCleanVocabulary () /*FOLD00*/
+void kvoctrainApp::slotCleanVocabulary ()
 {
    prepareProgressBar();
    QApplication::setOverrideCursor( waitCursor );
@@ -769,7 +802,7 @@ void kvoctrainApp::slotCleanVocabulary () /*FOLD00*/
 
    if (num != 0) {
      view->setView(doc, langset, gradecols);
-     QString s = 
+     QString s =
         i18n("%1 entries with same content have been found and removed").arg(num);
 
      KMessageBox::information(this,
@@ -779,7 +812,7 @@ void kvoctrainApp::slotCleanVocabulary () /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotCreateRandom() /*FOLD00*/
+void kvoctrainApp::slotCreateRandom()
 {
    NumLessonDlg numDlg (entriesPerLesson, this, "name");
    if (numDlg.exec() != QDialog::Accepted)
@@ -817,7 +850,7 @@ void kvoctrainApp::slotCreateRandom() /*FOLD00*/
        random[nr]->setLesson (less_no);
        random.erase(&random[nr], &random[nr+1]);
      }
-  
+
      vector<QString> new_lessonStr;
      for (int i = 1; i < lessons->count(); i++)
        new_lessonStr.push_back(lessons->text(i));
@@ -881,12 +914,12 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       view->getTable()->setFont(tablefont);
       view->getTable()->setLangSet (&langset);
       view->getTable()->updateContents();
-     
+
       // update header buttons
       for (int i = 0; i < (int) doc->numLangs(); i++) {
         QString sid = i>0 ? doc->getIdent(i)
                           : doc->getOriginalIdent();
- 
+
         int idx = langset.indexShortId(sid);
         QString pm = "";
         QString lid = sid;;
@@ -904,7 +937,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 }
 
 
-void kvoctrainApp::slotAppendLang(int header_and_cmd) /*FOLD00*/
+void kvoctrainApp::slotAppendLang(int header_and_cmd)
 {
    int lang_id = (header_and_cmd >> 16) & 0xFF;
 
@@ -914,7 +947,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd) /*FOLD00*/
                         "general options dialog.\n"
                         "\n"
                         "Should this dialog be invoked now ?\n");
-    if( KMessageBox::Yes == KMessageBox::questionYesNo(this, 
+    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
                   generateCaption(""),
                   i18n("&Yes"), i18n("&No")))
@@ -940,20 +973,20 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotInitSearch() /*FOLD00*/
+void kvoctrainApp::slotInitSearch()
 {
   searchpos = 0;
   searchstr = "";
 }
 
 
-void kvoctrainApp::slotSearchNext() /*FOLD00*/
+void kvoctrainApp::slotSearchNext()
 {
   slotResumeSearch(searchstr);
 }
 
 
-void kvoctrainApp::slotResumeSearch(const QString& s) /*FOLD00*/
+void kvoctrainApp::slotResumeSearch(const QString& s)
 {
   if (s.length() == 0) {
     slotInitSearch();
@@ -990,7 +1023,7 @@ void kvoctrainApp::slotResumeSearch(const QString& s) /*FOLD00*/
   slotStatusMsg(IDS_DEFAULT);
 }
 
-void kvoctrainApp::slotViewToolBar() /*FOLD00*/
+void kvoctrainApp::slotViewToolBar()
 {
   ///////////////////////////////////////////////////////////////////
   // turn Toolbar on or off
@@ -1004,7 +1037,7 @@ void kvoctrainApp::slotViewToolBar() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotViewStatusBar() /*FOLD00*/
+void kvoctrainApp::slotViewStatusBar()
 {
   ///////////////////////////////////////////////////////////////////
   //turn Statusbar on or off
@@ -1018,7 +1051,7 @@ void kvoctrainApp::slotViewStatusBar() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotStatusMsg(const QString &text) /*FOLD00*/
+void kvoctrainApp::slotStatusMsg(const QString &text)
 {
 /*
   ///////////////////////////////////////////////////////////////////
@@ -1029,17 +1062,17 @@ void kvoctrainApp::slotStatusMsg(const QString &text) /*FOLD00*/
 }
 
 
-void kvoctrainApp::invokeHelp( void ) /*FOLD00*/
-{ 
+void kvoctrainApp::invokeHelp( void )
+{
   QFile helpfile (EA_KDEHTMLDIR ("", "default/kvoctrain/index.html"));
   if (helpfile.exists() )
     kapp->invokeHTMLHelp("kvoctrain/index.html", QString() );
   else
 //   fall back to english if no native !
     kapp->invokeHTMLHelp("../en/kvoctrain/index.html", QString());
-} 
+}
 
-void kvoctrainApp::aboutToShowLearn() /*FOLD00*/
+void kvoctrainApp::aboutToShowLearn()
 {
   learn_menu->clear();
 
@@ -1086,16 +1119,16 @@ void kvoctrainApp::aboutToShowLearn() /*FOLD00*/
     else {
       QPopupMenu *query_m =  new QPopupMenu();
       QPopupMenu *multiple_m =  new QPopupMenu();
-  
+
       vector<QString> names = main_names;
-  
+
       int accel;
       for (int i = 0; i < (int) names.size(); i++) {
         if (RowTable::createMenuNames("", names, i, accel)) {
           names[i].insert (accel, "&");
         }
       }
-  
+
       for (int i = 1; i < (int) doc->numLangs(); i++) {
         // show pixmap and long name if available
         int j;
@@ -1191,18 +1224,18 @@ void kvoctrainApp::aboutToShowOptions()
 }
 
 
-void kvoctrainApp::aboutToShowVocabulary() { /*FOLD00*/
+void kvoctrainApp::aboutToShowVocabulary() {
 //  voc_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
 
   if (doc != 0) {
     int pos = voc_menu->indexOf(ID_APPEND_LANG);
     voc_menu->removeItem (ID_APPEND_LANG);
     vector<QString> names;
-  
+
     // select one of the available languages for the column
     QPopupMenu *add_m = new QPopupMenu();
     // hack: ID => header-id + language
-  
+
     for (int i = 0; i < (int) langset.size(); i++) {
       if(langset.longId(i).isEmpty() )
         names.push_back(langset.shortId(i));
@@ -1232,7 +1265,7 @@ void kvoctrainApp::aboutToShowVocabulary() { /*FOLD00*/
     voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/append-col.xpm")),
                    i18n("&Append language"), add_m, ID_APPEND_LANG,
                    pos);
-  
+
 
     pos = voc_menu->indexOf(ID_REMOVE_LANG);
     voc_menu->removeItem (ID_REMOVE_LANG);
@@ -1245,14 +1278,14 @@ void kvoctrainApp::aboutToShowVocabulary() { /*FOLD00*/
      else
        names.push_back(doc->getIdent(j));
     }
-  
+
     int accel;
     for (int i = 0; i < (int) names.size(); i++) {
       if (RowTable::createMenuNames("", names, i, accel)) {
         names[i].insert (accel, "&");
       }
     }
-  
+
     for (int i = 1; i < (int) doc->numLangs(); i++) {
       // show pixmap and long name if available
       int j;
@@ -1275,7 +1308,7 @@ void kvoctrainApp::aboutToShowVocabulary() { /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotStatusHelpMsg(const QString &text) /*FOLD00*/
+void kvoctrainApp::slotStatusHelpMsg(const QString &text)
 {
   ///////////////////////////////////////////////////////////////////
   // change status message of whole statusbar temporary (text, msec)
@@ -1284,7 +1317,7 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text) /*FOLD00*/
 }
 
 
-void kvoctrainApp::commandCallback(int id_){ /*FOLD00*/
+void kvoctrainApp::commandCallback(int id_){
   switch (id_){
     ON_CMD(ID_FILE_NEW,                 slotFileNew())
     ON_CMD(ID_FILE_OPEN,                slotFileOpen())
@@ -1322,7 +1355,7 @@ void kvoctrainApp::commandCallback(int id_){ /*FOLD00*/
 }
 
 
-void kvoctrainApp::statusCallback(int id_){ /*FOLD00*/
+void kvoctrainApp::statusCallback(int id_){
   switch (id_){
     ON_STATUS_MSG(ID_FILE_NEW,          i18n("Creates a new document"))
     ON_STATUS_MSG(ID_FILE_OPEN,         i18n("Opens an existing document"))

@@ -14,6 +14,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -159,6 +163,9 @@ void RowTable::init(Flags flags)
 #endif
 
         setFocusPolicy( StrongFocus );
+        setColumnMovingEnabled(false);
+        setRowMovingEnabled(false);
+        setSorting(false);
 }
 
 void RowTable::setNumCols( int cols )
@@ -327,6 +334,86 @@ bool RowTable::createMenuNames (QString forbidden_chars,
      }
    }
    return false;
+}
+
+
+void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
+{
+  int cc = columnAt(e->x());
+  int cr = rowAt(e->y());
+
+  cout<< "dbl: "<< cc << " " << cr << endl;
+
+  if (cc == KV_COL_MARK) {
+    emit selected ( cr, KV_COL_MARK, 0);
+  }
+  else if (cc == KV_COL_LESS) {
+    emit selected ( cr, KV_COL_LESS, Qt::ControlButton);
+  }
+  else
+    QTable::contentsMouseDoubleClickEvent(e);
+}
+
+
+void RowTable::contentsMousePressEvent( QMouseEvent *e )
+{
+  int cc = columnAt(e->x());
+  int cr = rowAt(e->y());
+
+  if (cc >= KV_EXTRA_COLS) {
+    QTable::contentsMousePressEvent(e);
+
+    // update color of original when column changes and more than 1 translation
+    bool update_org = false;
+    if (cc != currentColumn() && numCols() > 2)
+      update_org = true;
+/* FIXME:
+    if (update_org)
+      for (int i = topCell(); i <= lastRowVisible(); i++)
+        updateCell(i, KV_COL_ORG);
+*/
+
+    if( e->button() == LeftButton )
+      emit cellMoved(cr, cc);
+  }
+}
+
+void RowTable::keyPressEvent( QKeyEvent *e )
+{
+  switch( e->key() ) {
+    case Key_Up:
+    case Key_Down:
+    case Key_Right:
+    case Key_Next:
+    case Key_Prior:
+      QTable::keyPressEvent(e);
+      emit cellMoved(currentRow(), currentColumn());
+    break;
+
+    case Key_Space:
+      QTable::keyPressEvent(e);
+      emit selected ( currentRow(), currentColumn(), e->state() );
+    break;
+
+    case Key_Left:
+      if (currentColumn() <= KV_EXTRA_COLS) {
+        e->ignore();
+      }
+      else
+        QTable::keyPressEvent(e);
+       emit cellMoved(currentRow(), currentColumn());
+    break;
+
+    case Key_Return:
+    case Key_Enter:
+      QTable::keyPressEvent(e);
+      emit edited( currentRow(), currentColumn() );
+    break;
+
+    default:
+      QTable::keyPressEvent(e);
+    break;
+  }
 }
 
 #include "rowtable.moc"

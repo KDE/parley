@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/10/28 10:15:46  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.7  2001/10/21 15:28:43  arnold
     removed all the 'charset' stuff
 
@@ -161,6 +164,8 @@ public:
 
  public slots:
   void slotModifiedDoc(bool mod);
+  void slotCurrentCellChanged(int row, int col);
+  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */
   bool slotEditEntry(int row, int col);
@@ -181,7 +186,6 @@ public:
   void slotHeaderCallBack (int cmd_and_id);
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
-  void slotCurrentCellChanged(int row, int col);
   void invokeHelp();
   /** append language to table */
   void slotAppendLang(int header);

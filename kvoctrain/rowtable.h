@@ -14,6 +14,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -49,6 +53,7 @@ class QPainter;
 class kvoctrainDoc;
 class kvoctrainExpr;
 class GradeCols;
+class QKeyEvent;
 
 /**
   * This class provides the container for your complete
@@ -98,9 +103,14 @@ protected:
         virtual void paintCell( QPainter *p, int row, int col, const QRect &cr, bool selected);
 	virtual void paletteChange( const QPalette &oldPalette );
         virtual QWidget *createEditor(int, int, bool) const;
+        virtual void keyPressEvent( QKeyEvent *e );
+        virtual void contentsMousePressEvent (QMouseEvent *e);
+        virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
 
 signals:
-        void cellMoved(int, int, int);
+        void cellMoved(int, int);
+        void edited(int, int);
+	void selected(int row, int col, int key_state);
 
 protected:
 	kvoctrainDoc    *m_rows;
