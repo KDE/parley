@@ -166,7 +166,7 @@ void kvoctrainApp::initActions()
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
   vocabShowStatistics = new KAction(i18n("Show &Statistics..."), QPixmap(locate("data", "kvoctrain/statist.xpm")), 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
-  vocabShowStatistics->setWhatsThis(i18n("Shows statisitcs for the current vocabulary"));
+  vocabShowStatistics->setWhatsThis(i18n("Shows statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
   vocabAssignLessons = new KAction(i18n("Assign L&essons..."), QPixmap(locate("data", "kvoctrain/rand-less.xpm")), 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
