@@ -1,0 +1,21 @@
+2002-05-11 ewald ewald@ewald-arnold.de
+
+The xml file has the following structure:
+
+An options group for document related settings.
+
+An entry is the second smallest unit.
+It contains the following elements:
+ - One or more general purpose "items". One of these items may be called
+   "original", the others may be "translations"
+ - a unique id to be able to store statistical data in a seperate file to keep
+   the words read-only and sort in a _defined_ manner.
+
+An item is the smallest unit. It contains the following properties:
+ - date of last access/query
+ - the word/sentence/paragraph itself
+ - a language id (iso code)
+ - pronounciation/antonyms ...
+ - a grade. Range 0 .. 10, 0 means unused.
+ - More statistic data: number of query, number wrong queries, ...
+ - links or content for pictures, sounds.

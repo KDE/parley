@@ -1,0 +1,18 @@
+2002-05-11 ewald ewald@ewald-arnold.de
+
+The following libary names might be used:
+
+  libkeduvocio    : - loading, saving in xml and plugin support for
+                      other file formats.
+                    - API for accessing the words and properties
+
+  libkeduvocpart  : kpart to display the words.
+                    - display table as in kvoctrain
+                    - display flip cards as in flashkard
+                    -
+
+  libkeduvocedit  : edit dialog to enter/modify the properties
+
+  libkeduvocquery : standard query and settings dialogs
+
+  libkeduvocsettings : standard settings dialogs
