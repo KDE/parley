@@ -25,11 +25,10 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs
 
-APPS_FILES = pics/stop.xpm \
+APPS_FILES = \
  pics/16x16-kvoctrain.xpm pics/new.xpm pics/lesson.xpm\
  pics/list-win.xpm pics/pron-win.xpm pics/contents.xpm \
  pics/delete-row.xpm pics/append-row.xpm pics/edit-row.xpm \
- pics/run.xpm \
  pics/conf-save.xpm pics/gen-conf.xpm pics/query-conf.xpm \
  pics/flags.xpm pics/reset.xpm  pics/statist.xpm \
  pics/delete-col.xpm pics/append-col.xpm \
