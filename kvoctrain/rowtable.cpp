@@ -30,6 +30,7 @@
 #include "kvoctraindoc.h"
 #include "rowtable.h"
 #include "kvoctraincore.h"
+#include "prefs.h"
 
 // delay im ms (microsoft seconds) before delayed popup pops up
 #define POPUP_DELAY 500
@@ -288,9 +289,9 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
   }
 
   if (d == 0) {
-    KConfig *config = KApplication::kApplication()->config();
-    config->setGroup(CFG_APPEARANCE);
-    if (config->readBoolEntry(CFG_INLINE_EDIT, false))
+    //KConfig *config = KApplication::kApplication()->config();
+    //config->setGroup(CFG_APPEARANCE);
+    if (Prefs::enableInlineEdit())
       defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, rows);
     else
       defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, rows);

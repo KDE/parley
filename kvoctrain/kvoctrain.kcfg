@@ -67,4 +67,10 @@
       <label>Files recently opened</label>
     </entry>
   </group>
+  <group name="Appearance">
+  <entry name="EnableInlineEdit" type="Bool">
+      <label>Enable or not Inline Editing</label>
+      <default code="true">false</default>
+    </entry>
+    </group>
 </kcfg>

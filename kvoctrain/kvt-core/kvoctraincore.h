@@ -58,7 +58,6 @@
 #define       CFG_SHOW_TOOLBAR         "ShowToolbar"
 #define       CFG_SHOW_STATUSBAR       "ShowStatusbar"
 #define       CFG_TOOLBAR_POS          "ToolBar_Pos"
-#define       CFG_INLINE_EDIT          "EnableInlineEdit"
 
 #define      CFG_GENERAL              "General"
 #define       CFG_LASTFILE             "LastFile"

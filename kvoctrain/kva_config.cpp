@@ -53,7 +53,7 @@ void kvoctrainApp::saveOptions(bool all)
   config->writeEntry(CFG_SHOW_TOOLBAR,toolBar()->isVisible());
   config->writeEntry(CFG_SHOW_STATUSBAR,statusBar()->isVisible());
   config->writeEntry(CFG_TOOLBAR_POS, (int)toolBar()->barPos());
-  config->writeEntry(CFG_INLINE_EDIT, inline_edit);
+  Prefs::setEnableInlineEdit(inline_edit);
 
   if (view) {
     kdDebug() << "Rows: " << view->getTable()->currentRow() << endl;
@@ -161,7 +161,7 @@ void kvoctrainApp::readOptions()
   config->setGroup(CFG_APPEARANCE);
   bViewToolbar = config->readBoolEntry(CFG_SHOW_TOOLBAR, true);
   bViewStatusbar = config->readBoolEntry(CFG_SHOW_STATUSBAR, true);
-  inline_edit = config->readBoolEntry(CFG_INLINE_EDIT, false);
+  inline_edit = Prefs::enableInlineEdit();;
   tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry(CFG_TOOLBAR_POS, KToolBar::Top);
 
   QFont fdefault;
