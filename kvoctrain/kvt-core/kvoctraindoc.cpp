@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/19 20:05:39  arnold
+    fixed warning message
+
     Revision 1.8  2001/11/19 19:43:24  arnold
     fixed crash while sorting (though I dont understand it)
 
@@ -691,9 +694,9 @@ bool kvoctrainDoc::sort (int index)
       sort_lang.push_back(false);
 
   if (index == 0)
-    ::sort (vocabulary.begin(), vocabulary.end(), sortByOrg(sort_lang[0]));
+    std::sort (vocabulary.begin(), vocabulary.end(), sortByOrg(sort_lang[0]));
   else
-    ::sort (vocabulary.begin(), vocabulary.end(), sortByTrans(index, sort_lang[index]));
+    std::sort (vocabulary.begin(), vocabulary.end(), sortByTrans(index, sort_lang[index]));
   sort_lang[index] = !sort_lang[index];
   return sort_lang[index];
 }
@@ -704,7 +707,7 @@ bool kvoctrainDoc::sortByLesson_alpha ()
   if (!sort_allowed)
     return false;
 
-  ::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_alpha(sort_lesson, *this ));
+  std::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_alpha(sort_lesson, *this ));
   sort_lesson = !sort_lesson;
   return sort_lesson;
 }
@@ -719,7 +722,7 @@ bool kvoctrainDoc::sortByLesson_index ()
     for (int i = sort_lang.size(); i < (int) langs.size(); i++)
       sort_lang.push_back(false);
 
-  ::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_index(sort_lesson, *this ));
+  std::sort (vocabulary.begin(), vocabulary.end(), sortByLessonAndOrg_index(sort_lesson, *this ));
   sort_lesson = !sort_lesson;
   sort_lang[0] = sort_lesson;
   return sort_lesson;
@@ -1042,7 +1045,7 @@ int kvoctrainDoc::cleanUp()
 
   for (int i = 0; i < (int) vocabulary.size(); i++)
     shadow.push_back (expRef (getEntry(i), i));
-  ::sort(shadow.begin(), shadow.end());
+  std::sort(shadow.begin(), shadow.end());
 
 #ifdef CLEAN_BUG
   ofstream sso ("shadow.out");
@@ -1087,7 +1090,7 @@ int kvoctrainDoc::cleanUp()
   f_ent_percent = to_delete.size () / 100.0;
   emit progressChanged(this, 0);
 
-  ::sort (to_delete.begin(), to_delete.end() );
+  std::sort (to_delete.begin(), to_delete.end() );
   for (int i = (int) to_delete.size()-1; i >= 0; i--) {
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
