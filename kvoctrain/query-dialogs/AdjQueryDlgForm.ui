@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>636</width>
+            <width>632</width>
             <height>387</height>
         </rect>
     </property>
@@ -352,10 +352,6 @@
                             <property stdset="1">
                                 <name>frameShadow</name>
                                 <enum>Sunken</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string></string>
                             </property>
                         </widget>
                         <widget row="0"  column="2"  rowspan="3"  colspan="1" >

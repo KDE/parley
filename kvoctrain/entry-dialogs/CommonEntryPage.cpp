@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/01/04 21:08:27  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.12  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -148,11 +151,9 @@ CommonEntryPage::CommonEntryPage
     setLessonBox (lessbox, less);
     lesson_label->setBuddy(lesson_box);
 
-//    usage_label->setBuddy(usage_box);
     setUsageBox (usageCollection);
 
     setTypeBox(act_type);
-//    type_label->setBuddy(type_box);
     subtype_label->setBuddy(subtype_box);
 
     int start = -1;
@@ -354,7 +355,6 @@ void CommonEntryPage::slotTypeSelected(int idx)
    else {
      type = all_maintypes[idx-1].shortStr();
      emit typeSelected(type);
-     int len = all_maintypes[idx-1].longStr().length(); // cut off main ident
      QString main_patt = all_maintypes[idx-1].shortStr()+QM_TYPE_DIV;
      int sub_idx;
      if ( idx-1 < (int) all_types.size() ){
@@ -366,7 +366,6 @@ void CommonEntryPage::slotTypeSelected(int idx)
              first = false;
            }
            QString s = all_types[sub_idx].longStr();
-           s.remove(0, len);
            subtype_box->insertItem (s.stripWhiteSpace());
            current_subtypes.push_back(all_types[sub_idx].shortStr());
          }

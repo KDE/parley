@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
+            <width>564</width>
             <height>390</height>
         </rect>
     </property>
@@ -167,7 +167,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>PushButton1</string>
+                                <string>-</string>
                             </property>
                         </widget>
                         <widget row="2"  column="2" >
@@ -192,7 +192,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>PushButton1</string>
+                                <string>-</string>
                             </property>
                         </widget>
                     </grid>
@@ -241,7 +241,7 @@
                             </property>
                             <property stdset="1">
                                 <name>sizeType</name>
-                                <enum>Expanding</enum>
+                                <enum>Minimum</enum>
                             </property>
                             <property>
                                 <name>sizeHint</name>
@@ -298,7 +298,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>PushButton1</string>
+                                <string>-</string>
                             </property>
                         </widget>
                     </hbox>
@@ -332,7 +332,7 @@
                                 <name>sizePolicy</name>
                                 <sizepolicy>
                                     <hsizetype>3</hsizetype>
-                                    <vsizetype>3</vsizetype>
+                                    <vsizetype>1</vsizetype>
                                 </sizepolicy>
                             </property>
                             <property stdset="1">
@@ -397,7 +397,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>PushButton1</string>
+                                <string>-</string>
                             </property>
                         </widget>
                         <widget row="0"  column="0"  rowspan="2"  colspan="1" >
@@ -409,8 +409,8 @@
                             <property stdset="1">
                                 <name>sizePolicy</name>
                                 <sizepolicy>
-                                    <hsizetype>5</hsizetype>
-                                    <vsizetype>3</vsizetype>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
                                 </sizepolicy>
                             </property>
                             <property stdset="1">

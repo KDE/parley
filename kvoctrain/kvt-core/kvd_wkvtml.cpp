@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -688,7 +691,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
   xml.addAttribute (KV_ENCODING, (QString)"UTF-8");
   xml.writeText ("\n ");
 
-  xml.addAttribute (KV_GENERATOR, (QString) "kvoctrain" KVD_VERS_PREFIX VERSION);
+  xml.addAttribute (KV_GENERATOR, (QString) "kvoctrain" KVD_VERS_PREFIX KVOCTRAIN_VERSION_STRING);
   xml.writeText ("\n ");
   xml.addAttribute (KV_COLS,  numLangs() );
   xml.writeText ("\n ");
