@@ -113,9 +113,6 @@
                             <property name="text">
                                 <string>Smart a&amp;ppending</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+P</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, the entry dialog will popup repeatedly</string>
                             </property>
@@ -129,9 +126,6 @@
                             </property>
                             <property name="text">
                                 <string>Appl&amp;y changes without asking</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+Y</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Your changes will be applied automatically.</string>

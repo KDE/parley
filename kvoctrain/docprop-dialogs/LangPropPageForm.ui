@@ -388,9 +388,6 @@
                             <property name="text">
                                 <string>C&amp;ommon</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+O</string>
-                            </property>
                         </widget>
                         <widget class="QLabel" row="4" column="0">
                             <property name="name">
@@ -447,9 +444,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Common</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+C</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="0" column="1">
