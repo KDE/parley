@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/29 10:40:03  arnold
+    merged fixes from POST-branch
+
     Revision 1.15  2001/12/22 09:06:54  arnold
     fixed version string handling
 
@@ -113,16 +116,16 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
 		      "http://www.ewald-arnold.de" );
 
   aboutData.addCredit("Waldo Bastian",
-                      I18N_NOOP("Help in port to Qt3/KDE3"));
+                      I18N_NOOP("Help with port to Qt3/KDE3"));
 
   aboutData.addCredit("Andrea Marconi",
-                      I18N_NOOP("Initial Italian localisation"));
+                      I18N_NOOP("Initial Italian localization"));
 
   aboutData.addCredit("Hans Kottmann",
-                      I18N_NOOP("Initial French localisation"));
+                      I18N_NOOP("Initial French localization"));
 
   aboutData.addCredit("Grzegorz Ilczuk",
-                      I18N_NOOP("Initial Polish localisation"));
+                      I18N_NOOP("Initial Polish localization"));
 
   aboutData.addCredit("Eric Bischoff",
                       I18N_NOOP("Converting documentation to docbook format"));

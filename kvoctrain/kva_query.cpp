@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/12/30 18:41:38  arnold
+    improved reaction upon 'empty' query selections
+
     Revision 1.13  2001/12/29 10:40:03  arnold
     merged fixes from POST-branch
 
@@ -102,10 +105,10 @@ static const char * not_contain = I18N_NOOP(
     "Several reasons can cause this. Maybe you don't\n"
     "have any expressions with the word type you requested.\n"
     "\n"
-    "Most likely you should adjust your settings refering to\n"
+    "Most likely you should adjust your settings referring to\n"
     "thresholds and blocking values in the query options.\n"
     "\n"
-    "Should the query options dialog be invoked now ?\n");
+    "Should the query options dialog be invoked now?\n");
 
 
 void kvoctrainApp::slotQueryOptions()

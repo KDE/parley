@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/29 10:40:24  arnold
+    merged fixes from POST-branch
+
     Revision 1.4  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -69,9 +72,9 @@ static internalRelation_t InternalUsageRelations [] =
   { UL_ASTR,      I18N_NOOP("astr."),    I18N_NOOP("astronomy")},
   { UL_BIOL,      I18N_NOOP("biol."),    I18N_NOOP("biology")},
   { UL_BS,        I18N_NOOP("b.s."),     I18N_NOOP("bad sense")},
-  { UL_CONTP,     I18N_NOOP("contp."),   I18N_NOOP("contemptously")},
+  { UL_CONTP,     I18N_NOOP("contp."),   I18N_NOOP("contemptuously")},
   { UL_ECCL,      I18N_NOOP("eccl."),    I18N_NOOP("ecclesiastical")},
-  { UL_FIG,       I18N_NOOP("fig."),     I18N_NOOP("figurativley")},
+  { UL_FIG,       I18N_NOOP("fig."),     I18N_NOOP("figuratively")},
   { UL_GEOL,      I18N_NOOP("geol."),    I18N_NOOP("geology")},
   { UL_HIST,      I18N_NOOP("hist."),    I18N_NOOP("historical")},
   { UL_ICHT,      I18N_NOOP("icht."),    I18N_NOOP("ichthyology")},
@@ -81,7 +84,7 @@ static internalRelation_t InternalUsageRelations [] =
   { UL_LIT,       I18N_NOOP("lit."),     I18N_NOOP("literary")},
   { UL_META,      I18N_NOOP("metall."),  I18N_NOOP("metallurgy")},
   { UL_METEO,     I18N_NOOP("meteor."),  I18N_NOOP("meteorology")},
-  { UL_MIN,       I18N_NOOP("min."),     I18N_NOOP("mineralogie")},
+  { UL_MIN,       I18N_NOOP("min."),     I18N_NOOP("mineralogy")},
   { UL_MOT,       I18N_NOOP("mot."),     I18N_NOOP("motoring")},
   { UL_MOUNT,     I18N_NOOP("mount."),   I18N_NOOP("mountaineering")},
   { UL_MYT,       I18N_NOOP("myth."),    I18N_NOOP("mythology")},
