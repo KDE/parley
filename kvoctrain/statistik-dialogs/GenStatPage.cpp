@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:30  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:47:12  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -33,13 +37,12 @@
 
 #include "GenStatPage.h"
 
-#define Inherited GenStatPageData
-
 #include <kvoctraindoc.h>
 
 #include <kapp.h>
 
 #include <qkeycode.h>
+#include <qlabel.h>
 
 GenStatPage::GenStatPage
 (
@@ -48,7 +51,7 @@ GenStatPage::GenStatPage
 	const char* name
 )
 	:
-	Inherited( parent, name )
+	GenStatPageForm( parent, name )
 {
     l_filename->setText(doc->getFileName());
     l_title->setText(doc->getTitle());

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:47:12  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -32,11 +35,11 @@
 #ifndef GenStatPage_included
 #define GenStatPage_included
 
-#include "GenStatPageData.h"
+#include "GenStatPageForm.h"
 
 class kvoctrainDoc;
 
-class GenStatPage : public GenStatPageData
+class GenStatPage : public GenStatPageForm
 {
     Q_OBJECT
 

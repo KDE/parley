@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:47:12  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -34,7 +37,7 @@
 
 #include <vector.h>
 
-#include "StatistikPageData.h"
+#include "StatistikPageForm.h"
 
 #include <kvoctrainexpr.h>
 
@@ -42,8 +45,11 @@
 
 class kvoctrainDoc;
 class GradeCols;
+class QVBoxLayout;
+class QHBoxLayout;
+class QGridLayout;
 
-class StatistikPage : public StatistikPageData
+class StatistikPage : public StatistikPageForm
 {
     Q_OBJECT
 
@@ -89,6 +95,7 @@ public:
    vector<stat_counter>  tsc;
    GradeCols            *gcol;
    QListView            *lessonbox;
+   QGridLayout          *layout;
 
 };
 #endif // StatistikPage_included

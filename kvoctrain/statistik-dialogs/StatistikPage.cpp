@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:30  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:47:12  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -33,8 +37,6 @@
 
 #include "StatistikPage.h"
 
-#define Inherited StatistikPageData
-
 #include <qpainter.h>
 
 #include <kpopupmenu.h>
@@ -42,7 +44,9 @@
 #include <kapp.h>
 
 #include <kvoctraindoc.h>
+
 #include <qcursor.h>
+#include <qlayout.h>
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2
@@ -78,14 +82,17 @@ StatistikPage::StatistikPage
 	const char    *name
 )
 	:
-	Inherited( parent, name ),
+	StatistikPageForm( parent, name ),
         doc(_doc),
         gcol(_gcol)
 {
 
    lessonbox = new QListView( this, "QListView_1" );
 
-   lessonbox->setGeometry( 20, 30, 550, 300 );
+   layout = new QGridLayout( this );
+   layout->setSpacing( 6 );
+   layout->setMargin( 11 );
+   layout->addWidget( lessonbox, 0, 0 );
 
    lessonbox->addColumn (i18n("Grade FROM"), SIZE_GRADE+10);
    lessonbox->addColumn (i18n("Grade TO"), SIZE_GRADE+10);
