@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/13 18:40:12  arnold
+    added phonetic alphabet stuff
+
     Revision 1.3  2001/11/02 10:18:58  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -87,6 +90,7 @@ public:
         kvoctrainView::Resizer resizer,
         bool          smartAppend,
         bool          autosaveopts,
+        bool          _autoapply,
         QWidget      *parent = NULL,
         const char   *name = NULL
     );
@@ -98,6 +102,7 @@ public:
     int getBackupTime()       const { return genOptPage->getBackupTime(); }
     int getSmartAppend()      const { return genOptPage->getSmartAppend(); }
     int getAutoSaveOpts()     const { return genOptPage->getAutoSaveOpts(); }
+    bool getAutoApply()       const { return genOptPage->getAutoApply(); }
     kvoctrainView::Resizer getResizer() const { return genOptPage->getResizer(); }
 
     QString getDefaultLang () const { return langOptPage->getDefaultLang(); }

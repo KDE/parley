@@ -154,9 +154,9 @@ Valid xml means:
    <t n="PrPe"><s1>pperf</s1></t>
   </conjugation>
   encumber</o><t g="1;2" p="ʒʏɲʖʪʬʭˊħʧðɜʇ">behindern</t></e>
- <e m="6" s="1" t="con"><o y="-sdfg" a="sdfg">favour</o><t g="1;2">Gunst, Gefallen</t></e>
+ <e m="5" s="1" t="con"><o y="-sdfg" a="sdfg">favour</o><t g="1;2" u="#1">Gunst,   Gefallen</t></e>
  <e m="7"><o y="-">genuflect</o><t g="1;2">Kniebeuge</t></e>
- <e m="8" s="1"><o y="-" u="#1">
+ <e m="6" s="1"><o y="-" u="#1">
   <multiplechoice>
    <mc1>go 1a</mc1><mc2>go 2a</mc2><mc3>go 3a</mc3><mc4>go 4a</mc4><mc5>go 5a</mc5>
   </multiplechoice>

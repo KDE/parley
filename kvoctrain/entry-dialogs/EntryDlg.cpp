@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.18  2002/01/26 15:51:26  arnold
     fixes due to new entry dialog
 
@@ -152,7 +155,6 @@ EntryDlg::EntryDlg(
 	:
 	EntryDlgForm( parent, name, false)
 {
-        setAutoApply (false);
         mainwin = main;
         docked = false;
         edit_row = -1;
@@ -217,7 +219,6 @@ EntryDlg::EntryDlg(
         connect(comm_page, SIGNAL(typeSelected(const QString&)),
                 SLOT(updatePages(const QString&)) );
 
-        connect( chk_autoapply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
         connect( undoButton, SIGNAL(clicked()), this, SLOT(slotUndo()) );
         connect( applyButton, SIGNAL(clicked()), this, SLOT(slotApply()) );
         connect( cancelButton, SIGNAL(clicked()), this, SLOT(slotCancel()) );
@@ -235,7 +236,6 @@ EntryDlg::EntryDlg(
         if (to_page != 0)
           connect (to_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
 
-        chk_autoapply->setChecked(false);
         applyButton->setEnabled(false);
         undoButton->setEnabled(false);
         applyButton->setDefault(true);
@@ -511,20 +511,6 @@ void EntryDlg::slotDockHorizontal()
    move(0, mainwin->frameGeometry().height());
    mainwin->move (0, 0);
 }
-
-
-void EntryDlg::setAutoApply (bool appl)
-{
-  autoapply = appl;
-  chk_autoapply->setChecked(autoapply);
-}
-
-
-void EntryDlg::slotAutoApplyChecked(bool ena)
-{
-  autoapply = ena;
-}
-
 
 
 EntryDlg::~EntryDlg()

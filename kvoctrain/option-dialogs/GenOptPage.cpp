@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/30 10:37:29  arnold
+    fixed and improved dialogs
+
     Revision 1.8  2001/12/26 15:12:13  mueller
     CVSSILINT: fixincludes
 
@@ -77,6 +80,7 @@ GenOptPage::GenOptPage
         kvoctrainView::Resizer res,
         bool        _smart,
         bool        _autosaveopts,
+        bool        _autoapply,
 	QWidget    *parent,
 	const char *name
 )
@@ -85,11 +89,13 @@ GenOptPage::GenOptPage
 {
   setCaption(i18n("Options" ));
   resizer = res;
+  chk_autoapply->setChecked(_autoapply);
 
   group_resize->insert(hb_auto);
   group_resize->insert(hb_percent);
   group_resize->insert(hb_fixed);
 
+  connect( chk_autoapply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
   connect( c_smart, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_btime, SIGNAL(toggled(bool)), SLOT(slotBTimeUsed(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
@@ -205,6 +211,12 @@ void GenOptPage::slotHBpercent()
 }
 
 
+void GenOptPage::slotAutoApplyChecked(bool ena)
+{
+  autoapply = ena;
+}
+
+
 void GenOptPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
@@ -219,4 +231,6 @@ void GenOptPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
 #include "GenOptPage.moc"

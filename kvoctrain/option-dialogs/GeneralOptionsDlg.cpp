@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/30 18:41:58  arnold
+    improved reaction upon 'empty' query selections
+
     Revision 1.9  2001/12/26 15:12:15  mueller
     CVSSILINT: fixincludes
 
@@ -97,6 +100,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
         kvoctrainView::Resizer resizer,
         bool          smartAppend,
         bool          autosaveopts,
+        bool          autoapply,
 	QWidget      *parent,
 	const char   *name
 )
@@ -109,7 +113,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
   setCancelButton(i18n("&Cancel"));
   setOkButton(i18n("&OK"));
 
-  genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, this, name);
+  genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, autoapply, this, name);
   langOptPage = new LangOptPage (deflang, langset, lastPix, this, name);
   viewOptPage = new ViewOptPage (tablefont, ipafont, gradecols, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);

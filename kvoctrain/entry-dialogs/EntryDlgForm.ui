@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>604</width>
+            <width>600</width>
             <height>473</height>
         </rect>
     </property>
@@ -113,6 +113,13 @@
                         </sizepolicy>
                     </property>
                     <property stdset="1">
+                        <name>maximumSize</name>
+                        <size>
+                            <width>30</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property stdset="1">
                         <name>text</name>
                         <string>-</string>
                     </property>
@@ -135,23 +142,19 @@
                         </sizepolicy>
                     </property>
                     <property stdset="1">
+                        <name>maximumSize</name>
+                        <size>
+                            <width>30</width>
+                            <height>30</height>
+                        </size>
+                    </property>
+                    <property stdset="1">
                         <name>text</name>
                         <string>-</string>
                     </property>
                     <property>
                         <name>toolTip</name>
                         <string>Places the main window and this dialog side by side</string>
-                    </property>
-                </widget>
-                <widget>
-                    <class>QCheckBox</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>chk_autoapply</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>apply &amp;without asking</string>
                     </property>
                 </widget>
                 <spacer>

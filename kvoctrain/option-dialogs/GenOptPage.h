@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/30 10:37:29  arnold
+    fixed and improved dialogs
+
     Revision 1.4  2001/11/02 10:18:58  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -64,6 +67,7 @@ public:
         kvoctrainView::Resizer res,
         bool        _smartAppend,
         bool        _autosaveopts,
+        bool        _autoapply,
         QWidget    *parent = NULL,
         const char *name = NULL
     );
@@ -73,6 +77,9 @@ public:
     int getBackupTime()       const { return btime; }
     int getSmartAppend()      const { return smart; }
     int getAutoSaveOpts()     const { return autosaveopts; }
+
+    bool getAutoApply () const { return autoapply; }
+
     kvoctrainView::Resizer getResizer() const { return resizer; }
 
 public slots:
@@ -89,12 +96,14 @@ protected slots:
     void slotSmartAppend(bool);
     void slotAutoSaveOpts(bool);
     void slotBTimeUsed(bool);
+    void slotAutoApplyChecked(bool);
 
 protected:
     QValidator              *validator;
     int                      btime;
     bool                     smart;
     bool                     autosaveopts;
+    bool                     autoapply;
     kvoctrainView::Resizer   resizer;
 };
 

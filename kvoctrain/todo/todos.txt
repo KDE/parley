@@ -16,6 +16,8 @@ todo post-release ?
 
 todoc:
 
+  entry-dlgs, option-1.dlg
+
 still left flaws:
 =================
 

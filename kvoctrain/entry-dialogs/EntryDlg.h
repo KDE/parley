@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.11  2002/01/26 15:51:26  arnold
     fixes due to new entry dialog
 
@@ -234,9 +237,6 @@ public:
 
     MultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
 
-    bool autoApply () const { return autoapply; }
-    void setAutoApply (bool apply);
-
     bool isModified();
     void setModified(bool mod);
     void setEnabled(int);
@@ -258,7 +258,6 @@ public slots:
 
 protected slots:
     void updatePages(const QString &type);
-    void slotAutoApplyChecked(bool);
 
 protected:
     virtual void closeEvent (QCloseEvent*e);
@@ -278,7 +277,6 @@ protected:
     QSize            oldMainSize;
     QPoint           oldMainPos;
     bool             docked;
-    bool             autoapply;
 };
 
 

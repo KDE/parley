@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.41  2002/01/30 17:26:55  arnold
+    added some tooltips, fixed capitalisation
+
     Revision 1.40  2002/01/27 07:17:44  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -330,7 +333,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
      return;
    }
 
-   if (!force && entryDlg->isModified() && !entryDlg->autoApply()) {
+   if (!force && entryDlg->isModified() && !autoentryApply) {
      if( KMessageBox::No == KMessageBox::warningYesNo(this,
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
@@ -563,7 +566,6 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     doc->getEntry(row)->isActive(),
                     ipafont);
    }
-   entryDlg->setAutoApply(autoentryApply);
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
 
@@ -581,7 +583,6 @@ void kvoctrainApp::removeEntryDlg()
 {
   cout << "red\n";
   if (entryDlg != 0) {
-    autoentryApply = entryDlg->autoApply();
     commitEntryDlg(false);
     delete entryDlg;
     entryDlg = 0;
@@ -1126,7 +1127,8 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
                     gradecols,
                     header_resizer,
                     smartAppend,
-                    autosaveopts);
+                    autosaveopts,
+                    autoentryApply);
 
    if (index >= 0)
      godlg.selectPage(index);
@@ -1138,6 +1140,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       backupTime = godlg.getBackupTime()*60*1000;
       smartAppend = godlg.getSmartAppend();
       autosaveopts = godlg.getAutoSaveOpts();
+      autoentryApply = godlg.getAutoApply();
       separator = godlg.getSeparator();
       langset = godlg.getLangSet();
       paste_order = godlg.getPasteOrder();
