@@ -155,17 +155,17 @@ void QueryManager::loadConfig (KConfig *config)
   blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"3", 4 *      60*60*24));
   blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"4", 1 *    7*60*60*24));
   blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"5", 2 *    7*60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"6", 1 * 30*7*60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"7", 2 * 30*7*60*60*24));
+  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"6", 1 *   30*60*60*24));
+  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"7", 2 *   30*60*60*24));
 
   expireItems.clear();
   expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"1", 2 *      60*60*24));
   expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"2", 4 *      60*60*24));
   expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"3", 1 *    7*60*60*24));
   expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"4", 2 *    7*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"5", 1 * 30*7*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"6", 2 * 30*7*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"7", 4 * 30*7*60*60*24));
+  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"5", 1 *   30*60*60*24));
+  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"6", 2 *   30*60*60*24));
+  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"7", 4 *   30*60*60*24));
 }
 
 

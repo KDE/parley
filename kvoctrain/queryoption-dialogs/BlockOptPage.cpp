@@ -67,14 +67,14 @@ static ListRef date_itemlist [] =
         {I18N_NOOP("3 Weeks"),  3 * 60*60*24*7},
         {I18N_NOOP("4 Weeks"),  4 * 60*60*24*7},
 
-        {I18N_NOOP("1 Month"),  1 * 60*60*24*7*30},
-        {I18N_NOOP("2 Months"), 2 * 60*60*24*7*30},
-        {I18N_NOOP("3 Months"), 3 * 60*60*24*7*30},
-        {I18N_NOOP("4 Months"), 4 * 60*60*24*7*30},
-        {I18N_NOOP("5 Months"), 5 * 60*60*24*7*30},
-        {I18N_NOOP("6 Months"), 6 * 60*60*24*7*30},
-        {I18N_NOOP("10 Months"), 10 * 60*60*24*7*30},
-        {I18N_NOOP("12 Months"), 12 * 60*60*24*7*30},
+        {I18N_NOOP("1 Month"),  1 * 60*60*24*30},
+        {I18N_NOOP("2 Months"), 2 * 60*60*24*30},
+        {I18N_NOOP("3 Months"), 3 * 60*60*24*30},
+        {I18N_NOOP("4 Months"), 4 * 60*60*24*30},
+        {I18N_NOOP("5 Months"), 5 * 60*60*24*30},
+        {I18N_NOOP("6 Months"), 6 * 60*60*24*30},
+        {I18N_NOOP("10 Months"), 10 * 60*60*24*30},
+        {I18N_NOOP("12 Months"), 12 * 60*60*24*30},
         {0 ,  0}
       };
 
