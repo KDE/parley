@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 21:11:57  arnold
+    removed icons and compatibilty for kde1
+
     Revision 1.7  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -212,7 +215,7 @@ void kvoctrainApp::initMenuBar()
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append new entry"), ID_APPEND_ROW );
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit selected area"), ID_EDIT_ROW );
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove selected area"), ID_REMOVE_ROW );
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("Sa&ve selected area.."), ID_SAVE_ROW );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), i18n("Sa&ve selected area.."), ID_SAVE_ROW );
   connect( edit_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEdit()));
   connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
   clipboardChanged();
