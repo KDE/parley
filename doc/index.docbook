@@ -2551,8 +2551,7 @@ problematic!</para></listitem>
 <itemizedlist>
 <listitem><para>If you are German an want to learn English
 (or vice versa) you can download the monthly vocabulary
-list provided by the German magazine <ulink url=
-"http://www.spotlight-online.de">Spotlight-Online</ulink>.</para>
+list provided by the German magazine <ulink url="http://www.spotlight-online.de">Spotlight-Online</ulink>.</para>
 <para>The &kvoctrain; distribution contains an executable called
 <command>spotlight2kvtml</command> to transform those lists
 in kvtml format. The original files come as &Windows; Word DOC-files
