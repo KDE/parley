@@ -1881,6 +1881,43 @@ and stop the query.</para></listitem>
  the column you used to start the query. With this checkbox you can
  determine, that the directions are altered randomly.</para></listitem>
 </varlistentry>
+
+<varlistentry>
+<term><guilabel>Use alternative learning method</guilabel></term>
+<listitem><para>The normal learning style is to learn a single lesson
+at a time, and when you answer correctly the first time it is removed
+from the current learning list.</para>
+
+<para>The alternative method was developed by Sebastian Leitner in his
+book "So lernt man lernen, Angewandte Lernpsychologie - ein Weg zum
+Erfolg" (Freiburg: Heider, 1972) (english: Learn how to learn, applied
+learning psychology - A way to success).</para>
+
+<para>The idea of Leitner's method is to try learn those questions you
+have a hard time to learn, and don't bother you with those that you do
+know. This is accomplished by requiring you to answer correctly to each
+question four times in a row.</para>
+
+<para>In real life it works by creating four rows of cards. Each row,
+above the bottom one, can only hold a certain number of cards. The top
+row can hold seven cards, the others can hold two cards. (In the
+original game, the bottom row can only hold three card, thus limiting
+the number of cards in the game to 20. This "limitation" is not
+present in KVocTrain.)</para>
+
+<para>In the bottom row are the questions that have yet to be asked
+and the questions that have previously been answered incorrectly. When
+a question is answered correctly, it is removed from the row it was in
+and moved to the back of row above. If answered incorrectly, the card
+is moved to the back of the bottom row. If the row a card is placed in
+exceed the maximum number of cards for that row, the next question is
+taken from the front of that row, else the question is taken from the
+front of the bottom row. A card is removed from the game when it would
+otherwise be moved to the fifth row, i.e. it has been answering
+correctly while located in the top row.</para>
+
+</listitem>
+</varlistentry>
 </variablelist>
 
 </sect2>
