@@ -26,7 +26,6 @@
 #ifndef EntryDlg_included
 #define EntryDlg_included
 
-#include "EntryDlgForm.h"
 #include <qtable.h>
 
 #include <kdialogbase.h>

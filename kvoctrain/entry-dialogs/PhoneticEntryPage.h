@@ -27,8 +27,6 @@
 #ifndef PHONETICENTRYPAGE_H
 #define PHONETICENTRYPAGE_H
 
-#include "PhoneticEntryPageForm.h"
-
 #include <qpushbutton.h>
 
 #include <kdialogbase.h>
