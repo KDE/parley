@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/10 22:28:25  arnold
+    removed compatibility for kde1
+
     Revision 1.8  2001/11/10 21:13:00  arnold
     removed icons and compatibilty for kde1
 
@@ -74,39 +77,40 @@
 
 EntryDlg::EntryDlg
 (
-        kvoctrainDoc *doc,
-        bool        multi_sel,
-        bool        origin,
-        grade_t     f_grd,
-        grade_t     t_grd,
-        count_t     f_qcount,
-        count_t     t_qcount,
-        count_t     f_bcount,
-        count_t     t_bcount,
-        time_t      f_qdate,
-        time_t      t_qdate,
-        QString     f_faux_ami,
-        QString     t_faux_ami,
-        QString     expr,
-        int         lesson,
-        QComboBox  *lessonbox,
-        QString     lang,
-        LangSet    &langset,
-        QString     rem,
-        QString     type,
-        QString     pronunce,
-        QString     synonym,
-        QString     antonym,
-        QString     example,
-        QString     usagelabel,
-        QString     paraphrase,
-        const       Conjugation &con_prefix,
-        const       Conjugation &conjugations,
-        const       Article &article,
-        const       Comparison &comp,
-        const       MultipleChoice &mc,
-        QueryManager &querymanager,
+        kvoctrainDoc  *doc,
+        bool           multi_sel,
+        bool           origin,
+        grade_t        f_grd,
+        grade_t        t_grd,
+        count_t        f_qcount,
+        count_t        t_qcount,
+        count_t        f_bcount,
+        count_t        t_bcount,
+        time_t         f_qdate,
+        time_t         t_qdate,
+        QString        f_faux_ami,
+        QString        t_faux_ami,
+        QString        expr,
+        int            lesson,
+        QComboBox     *lessonbox,
+        QString        lang,
+        LangSet       &langset,
+        QString        rem,
+        QString        type,
+        QString        pronunce,
+        QString        synonym,
+        QString        antonym,
+        QString        example,
+        QString        usagelabel,
+        QString        paraphrase,
+        const          Conjugation &con_prefix,
+        const          Conjugation &conjugations,
+        const          Article &article,
+        const          Comparison &comp,
+        const          MultipleChoice &mc,
+        QueryManager  &querymanager,
 	const QString &title,
+        bool           active,
 	QWidget    *parent,
 	const char *name
 )
@@ -126,7 +130,7 @@ EntryDlg::EntryDlg
           to_page = 0;
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Original &expression in %1:").arg(s), querymanager);
+                                           i18n("Original &expression in %1:").arg(s), querymanager, active);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
@@ -135,7 +139,7 @@ EntryDlg::EntryDlg
         else {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
-                                           i18n("Translated &expression in %1:").arg(s), querymanager);
+                                           i18n("Translated &expression in %1:").arg(s), querymanager, active);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());

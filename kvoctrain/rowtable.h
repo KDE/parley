@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.6  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -62,6 +65,7 @@ class kvoctrainExpr;
 class GradeCols;
 class QKeyEvent;
 class QTimer;
+class KvoctrainItem;
 
 /**
   * This class provides the container for your complete
@@ -97,8 +101,6 @@ protected:
         void repaintOriginal();
         virtual void paintCell( QPainter *p, int row, int col, const QRect &cr, bool selected);
 	virtual void paletteChange( const QPalette &oldPalette );
-        virtual QWidget *createEditor(int, int, bool) const;
-        void setCellWidget ( int row, int col, QWidget * e );
         virtual void keyPressEvent( QKeyEvent *e );
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
@@ -116,6 +118,7 @@ signals:
         void rightButtonClicked(int header, int x, int y);
 
 protected:
+        virtual QTableItem* item ( int row, int col ) const;
 	kvoctrainDoc    *m_rows;
 
 private:
@@ -125,6 +128,7 @@ private:
 	QTimer            *delayTimer;
         int                triggerSect;
 	const GradeCols   *gradecols;
+        KvoctrainItem     *defaultItem;
 
   friend class kvoctrainView;
 };

@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>596</width>
-            <height>373</height>
+            <width>588</width>
+            <height>438</height>
         </rect>
     </property>
     <property stdset="1">
@@ -419,6 +419,17 @@
                             </property>
                         </widget>
                     </grid>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>c_active</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Acti&amp;ve</string>
+                    </property>
                 </widget>
             </vbox>
         </widget>

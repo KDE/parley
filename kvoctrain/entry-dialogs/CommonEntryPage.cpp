@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:28:25  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:13:00  arnold
     removed icons and compatibilty for kde1
 
@@ -61,6 +64,7 @@
 #include <qlabel.h>
 #include <qlistbox.h>
 #include <qcombobox.h>
+#include <qcheckbox.h>
 #include <qpushbutton.h>
 #include <qgroupbox.h>
 
@@ -90,6 +94,7 @@ CommonEntryPage::CommonEntryPage
         QString       act_usage,
         QString       label,
         QueryManager &_querymanager,
+        bool          active,
 	QWidget      *parent,
 	const char   *name
 )
@@ -102,7 +107,8 @@ CommonEntryPage::CommonEntryPage
         type (act_type),
         dlgbook(_dlgbook),
         doc(_doc),
-        querymanager(_querymanager)
+        querymanager(_querymanager),
+        entry_active(active)
 {
 	connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
 	connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
@@ -114,6 +120,7 @@ CommonEntryPage::CommonEntryPage
 	connect( type_box, SIGNAL(highlighted(int)), SLOT(slotTypeSelected(int)) );
 	connect( pronunce_line, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( expr_line, SIGNAL(returnPressed()), SLOT(accept()) );
+        connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
 
 	connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
 	connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
@@ -148,6 +155,9 @@ CommonEntryPage::CommonEntryPage
 
     pronunce_line->setText(pronunce);
     pronunce_label->setBuddy(pronunce_line);
+
+    c_active->setChecked(entry_active);
+    lesson_dirty = false;
 
     expr_label->setText( label );
     expr_label->setBuddy(expr_line);
@@ -275,6 +285,13 @@ void CommonEntryPage::slotLessonSelected (int l)
 {
   lesson = l;
   lesson_dirty = true;
+}
+
+
+void CommonEntryPage::slotActiveChanged(bool state)
+{
+  entry_active = state;
+  active_dirty = true;
 }
 
 

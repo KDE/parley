@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -52,28 +55,31 @@ public:
     (
         QDialog      *dlgbook,
         kvoctrainDoc *doc,
-        bool        multi_sel,
-        QString     expr,
-        int         less,
-        QComboBox  *lessBox,
-        QString     lang,
-        QString     type,
-        QString     pronunce,
-        QString     usage,
-        QString     label,
+        bool          multi_sel,
+        QString       expr,
+        int           less,
+        QComboBox    *lessBox,
+        QString       lang,
+        QString       type,
+        QString       pronunce,
+        QString       usage,
+        QString       label,
         QueryManager &querymanager,
+        bool          active,
         QWidget* parent = NULL,
         const char* name = NULL
     );
 
     bool    lessonDirty  () const { return lesson_dirty; }
+    bool    activeDirty  () const { return active_dirty; }
     bool    typeDirty    () const { return type_dirty; }
 
-    int     getLesson  () const { return lesson; }
-    QString getType    () const { return type; }
-    QString getExpr    () const { return expression; }
-    QString getPronunce() const { return pronunce; }
+    int     getLesson  ()   const { return lesson; }
+    QString getType    ()   const { return type; }
+    QString getExpr    ()   const { return expression; }
+    QString getPronunce()   const { return pronunce; }
     QString getUsageLabel() const { return usageCollection; }
+    bool    getActive()     const { return entry_active; }
 
 signals:
     void typeSelected(const QString &);
@@ -92,6 +98,7 @@ protected slots:
     void slotSubTypeSelected(int);
     void slotPronunceSelected (const QString&);
     void slotUsageChanged();
+    void slotActiveChanged(bool state);
 
     void invokeLessDlg();
     void invokeTypeDlg();
@@ -99,15 +106,17 @@ protected slots:
     void invokeUsageDlg();
 
 protected:
-    QString   pronunce;
-    QString   expression;
-    QString   usageCollection;
-    int       lesson;
-    QString   type;
-    QDialog  *dlgbook;
-    bool      lesson_dirty;
-    bool      type_dirty;
+    QString      pronunce;
+    QString       expression;
+    QString       usageCollection;
+    int           lesson;
+    QString       type;
+    QDialog      *dlgbook;
+    bool          lesson_dirty;
+    bool          type_dirty;
     kvoctrainDoc *doc;
+    bool          entry_active;
+    bool          active_dirty;
 
     vector<TypeRelation>  all_maintypes;
     vector<TypeRelation>  all_types;

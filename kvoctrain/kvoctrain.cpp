@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/11/16 19:50:06  arnold
+    added submenu to set language to main menu
+
     Revision 1.18  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -314,7 +317,8 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
                   doc->getEntry(row)->getComparison(col),
                   doc->getEntry(row)->getMultipleChoice(col),
                   querymanager,
-                  title);
+                  title,
+                  doc->getEntry(row)->isActive());
 
 //   edlg.initFocus();
    int res = edlg.exec();
@@ -357,6 +361,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
      expr->setQueryDate(col, edlg.getFromDate(), false);
      expr->setQueryDate(col, edlg.getToDate(), true);
      expr->setLesson (edlg.getLesson());
+     expr->setActive(edlg.getActive());
      expr->setType (col, edlg.getType());
 
      for (int i = 0; i <= expr->numTranslations(); i++)
@@ -409,6 +414,10 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
            for (int i = 0; i <= expr->numTranslations(); i++)
              expr->setType(i, edlg.getType());
          }
+
+         if (edlg.activeDirty() )
+           expr->setActive(edlg.getActive());
+
        }
      }
      table->updateContents();
@@ -621,8 +630,8 @@ void kvoctrainApp::slotAppendRow ()
                    Comparison(),
                    MultipleChoice(),
                    querymanager,
-                   i18n("Enter new original expression")
-                   );
+                   i18n("Enter new original expression"),
+                   true);
     res = edlg.exec();
     if (res == QDialog::Accepted) {
       fillLessonBox(doc);
@@ -639,6 +648,7 @@ void kvoctrainApp::slotAppendRow ()
       expr.setComparison(0, edlg.getComparison() );
       expr.setMultipleChoice(0, edlg.getMultipleChoice() );
       expr.setLesson (edlg.getLesson());
+      expr.setActive (edlg.getActive());
       expr.setType (0, edlg.getType());
 
       for (int i = 1; i <= doc->numLangs(); i++)

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/09 14:18:49  arnold
+    fixed and improved some dialog pages
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -78,39 +81,40 @@ public:
 
     EntryDlg
     (
-        kvoctrainDoc *doc,
-        bool        multi_sel,
-        bool        origin,
-        grade_t     f_grd,
-        grade_t     t_grd,
-        count_t     f_qcount,
-        count_t     t_qcount,
-        count_t     f_bcount,
-        count_t     t_bcount,
-        time_t      f_qdate,
-        time_t      t_qdate,
-        QString     f_faux_ami,
-        QString     t_faux_ami,
-        QString     _expr,
-        int         _lesson,
-        QComboBox  *_lessonBox,
-        QString     lang,
-        LangSet    &langset,
-        QString     remark,
-        QString     _type,
-        QString     pronunce,
-        QString     synonym,
-        QString     antonym,
-        QString     example,
-        QString     usagelabel,
-        QString     paraphrase,
-        const       Conjugation &con_prefix,
-        const       Conjugation &conjugations,
-        const       Article &article,
-        const       Comparison &comp,
-        const       MultipleChoice &mc,
-        QueryManager &querymanager,
+        kvoctrainDoc  *doc,
+        bool           multi_sel,
+        bool           origin,
+        grade_t        f_grd,
+        grade_t        t_grd,
+        count_t        f_qcount,
+        count_t        t_qcount,
+        count_t        f_bcount,
+        count_t        t_bcount,
+        time_t         f_qdate,
+        time_t         t_qdate,
+        QString        f_faux_ami,
+        QString        t_faux_ami,
+        QString        _expr,
+        int            _lesson,
+        QComboBox     *_lessonBox,
+        QString        lang,
+        LangSet       &langset,
+        QString        remark,
+        QString        _type,
+        QString        pronunce,
+        QString        synonym,
+        QString        antonym,
+        QString        example,
+        QString        usagelabel,
+        QString        paraphrase,
+        const          Conjugation &con_prefix,
+        const          Conjugation &conjugations,
+        const          Article &article,
+        const          Comparison &comp,
+        const          MultipleChoice &mc,
+        QueryManager  &querymanager,
 	const QString &title,
+        bool           active,
         QWidget    *parent = 0,
 	const char *name = 0
     );
@@ -139,12 +143,14 @@ public:
 
     bool    lessonDirty  () const { return comm_page->lessonDirty(); }
     bool    typeDirty    () const { return comm_page->typeDirty  (); }
+    bool    activeDirty  () const { return comm_page->activeDirty  (); }
 
-    int     getLesson   () const { return comm_page->getLesson(); }
-    QString getType     () const { return comm_page->getType(); }
-    QString getExpr     () const { return comm_page->getExpr(); }
-    QString getPronunce () const { return comm_page->getPronunce(); }
-    QString getUsageLabel () const { return comm_page->getUsageLabel(); }
+    int     getLesson   ()  const { return comm_page->getLesson(); }
+    QString getType     ()  const { return comm_page->getType(); }
+    QString getExpr     ()  const { return comm_page->getExpr(); }
+    QString getPronunce ()  const { return comm_page->getPronunce(); }
+    QString getUsageLabel() const { return comm_page->getUsageLabel(); }
+    bool    getActive()     const { return comm_page->getActive(); }
 
     QString getSynonym  () const { return aux_page->getSynonym(); }
     QString getAntonym  () const { return aux_page->getAntonym(); }

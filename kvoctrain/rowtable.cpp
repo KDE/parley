@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.9  2001/11/09 11:06:40  arnold
     removed ability to display a different font for each column
 
@@ -54,6 +57,7 @@
 #include <qpainter.h>
 #include <qtimer.h>
 #include <qlineedit.h>
+#include <qpushbutton.h>
 #include <qcombobox.h>
 
 #include <kapp.h>
@@ -69,6 +73,131 @@
 #define POPUP_DELAY 500
 
 
+class KvoctrainItem : public QTableItem
+{
+public:
+    KvoctrainItem( QTable *t, EditType et, kvoctrainDoc *doc );
+    QWidget *createEditor() const;
+    void setContentFromEditor( QWidget *w );
+    void setPosition(int row, int col);
+
+private:
+    int                 row;
+    int                 col;
+    kvoctrainDoc       *kv_doc;
+};
+
+
+KvoctrainItem::KvoctrainItem( QTable *t, EditType et, kvoctrainDoc *doc)
+    : QTableItem( t, et, QString::null )
+{
+    kv_doc = doc;
+    row = -1;
+    col = -1;
+    // we do not want that this item can be replaced
+    setReplaceable( FALSE );
+}
+
+
+void KvoctrainItem::setPosition(int curr_row, int curr_col)
+{
+   row = curr_row;
+   col = curr_col;
+}
+
+
+QWidget *KvoctrainItem::createEditor() const
+{
+   switch (col) {
+     case KV_COL_LESS: {
+       QComboBox *lessonbox = new QComboBox(table()->viewport() );
+       lessonbox->insertItem (kv_doc->getLessonDescr(0));
+       for (unsigned i = 1; i < kv_doc->numLessons(); ++i)
+         lessonbox->insertItem (kv_doc->getLessonDescr(i));
+       lessonbox->setCurrentItem(kv_doc->getEntry((int)row)->getLesson());
+       return lessonbox;
+     }
+     break;
+
+     case KV_COL_MARK: {
+       QComboBox *statebox = new QComboBox(table()->viewport() );
+       statebox->insertItem ("active, not in query");
+       statebox->insertItem ("in query");
+       statebox->insertItem ("inactive");
+       QSize sz = statebox->sizeHint();
+       sz.setHeight(table()->rowHeight(row));
+       statebox->setMinimumSize(sz);
+       if (!kv_doc->getEntry(row)->isActive() )
+         statebox->setCurrentItem(2);
+       else if (kv_doc->getEntry(row)->isInQuery() )
+         statebox->setCurrentItem(1);
+       else
+         statebox->setCurrentItem(0);
+       return statebox;
+     }
+     break;
+
+     default: {
+       QLineEdit *edit = new QLineEdit(table()->viewport() );
+       if (col == KV_COL_ORG)
+         edit->setText(kv_doc->getEntry(row)->getOriginal());
+       else
+         edit->setText(kv_doc->getEntry(row)->getTranslation(col-KV_COL_ORG));
+       return edit;
+      }
+   }
+   return 0;
+}
+
+
+void KvoctrainItem::setContentFromEditor( QWidget *w )
+{
+    if ( w->inherits( "QComboBox" ) )
+      if (col == KV_COL_MARK) {
+       QComboBox *statebox = (QComboBox*) w;
+       kvoctrainExpr *expr = kv_doc->getEntry(row);
+       bool inq = false;
+       bool act = true;
+       if (statebox->currentItem() == 0) {
+         inq = false;
+         act = true;
+       }
+       else if (statebox->currentItem() == 1) {
+         inq = true;
+         act = true;
+       }
+       else if (statebox->currentItem() == 2) {
+         inq = false;
+         act = false;
+       }
+       if (inq != expr->isInQuery() ||
+           act != expr->isActive() )
+         kv_doc->setModified();
+       expr->setInQuery(inq);
+       expr->setActive(act);
+      }
+      else if (col == KV_COL_LESS) {
+       QComboBox *lessonbox = (QComboBox*) w;
+       if (kv_doc->getEntry(row)->getLesson() != lessonbox->currentItem())
+         kv_doc->setModified();
+       kv_doc->getEntry(row)->setLesson(lessonbox->currentItem());
+      }
+    else {
+      QLineEdit *edit = (QLineEdit*) w;
+      if (col == KV_COL_ORG) {
+        if (kv_doc->getEntry(row)->getOriginal() != edit->text())
+          kv_doc->setModified();
+        kv_doc->getEntry(row)->setOriginal(edit->text());
+      }
+      else {
+        if (kv_doc->getEntry(row)->getTranslation(col-KV_COL_ORG) != edit->text())
+          kv_doc->setModified();
+        kv_doc->getEntry(row)->setTranslation(col-KV_COL_ORG, (edit->text()));
+      }
+    }
+}	
+
+
 RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
                    const GradeCols *gc,
                    QWidget *parent, const char *name )
@@ -76,6 +205,7 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
 {
 	init(flags);
         setDoc (rows, gc);
+	defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, rows);
         setFocus();
         triggerSect = -1;
         delayTimer = new QTimer (this);
@@ -89,6 +219,7 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
 
 RowTable::~RowTable()
 {
+  delete defaultItem;
 }
 
 
@@ -137,14 +268,15 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
     setNumCols( 1+KV_EXTRA_COLS );
     m_rows = 0;
   }
+
   gradecols = gc;
 }
 
 
 void RowTable::init(Flags flags)
 {
+        defaultItem = 0;
 	m_flags = flags;
-
 	setFrameStyle( WinPanel | Sunken );
 	setBackgroundColor( colorGroup().base() );
 	setLeftMargin(0);
@@ -223,23 +355,6 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
 }
 
 
-void RowTable::setCellWidget ( int row, int col, QWidget * e )
-{
-  kdDebug() << "setCellWidget " << row << " " << col << " " << (long) e << endl;
-  kdDebug() << ((QLineEdit*) e)->text().latin1() << endl;
-}
-
-
-QWidget *RowTable::createEditor(int row, int col, bool initfrom) const
-{
-  kdDebug() << "createEditor " << row << " " << col << " " << (long) viewport() << endl;
-  QLineEdit *edit = new QLineEdit( viewport() );
-  edit ->setText("hello inlineedit");
-  return edit;
-//   return 0; // No inline editing
-}
-
-
 kvoctrainExpr *RowTable::getRow( int row )
 {
   if (m_rows)
@@ -261,15 +376,20 @@ void RowTable::setSelectColumn( int col )
 }
 
 
+QTableItem* RowTable::item ( int row, int col ) const
+{
+   if (defaultItem)
+     defaultItem->setPosition(row, col);
+   return defaultItem;
+}
+
+
 void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
 {
-  QTable::contentsMouseDoubleClickEvent(e);
-  return;
-
   delayTimer->stop();
+/*
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
-
   if (cc == KV_COL_MARK) {
     emit selected ( cr, KV_COL_MARK, 0);
   }
@@ -277,8 +397,10 @@ void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
     emit selected ( cr, KV_COL_LESS, Qt::ControlButton);
   }
   else
+*/
     QTable::contentsMouseDoubleClickEvent(e);
 }
+
 
 
 void RowTable::contentsMousePressEvent( QMouseEvent *e )
@@ -287,9 +409,9 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
 
-  if (cc >= KV_EXTRA_COLS) {
-    QTable::contentsMousePressEvent(e);
+  QTable::contentsMousePressEvent(e);
 
+  if (cc >= KV_EXTRA_COLS) {
     // update color of original when column changes and more than 1 translation
     bool update_org = false;
     if (cc != currentColumn() && numCols() > 2)
@@ -317,13 +439,14 @@ void RowTable::keyPressEvent( QKeyEvent *e )
         if (numCols() > 2)
           for (int i = topCell; i <= lastRowVisible; i++)
             updateCell(i, KV_COL_ORG);
-      }
+      }  // fallthrough
       case Key_Up:
       case Key_Down:
       case Key_Next:
       case Key_Prior:
       QTable::keyPressEvent(e);
-      emit cellMoved(currentRow(), currentColumn());
+      if (currentColumn() > KV_EXTRA_COLS)
+        emit cellMoved(currentRow(), currentColumn());
     break;
 
     case Key_Space:
@@ -331,19 +454,16 @@ void RowTable::keyPressEvent( QKeyEvent *e )
       emit selected ( currentRow(), currentColumn(), e->state() );
     break;
 
-    case Key_Left:
-      if (currentColumn() <= KV_EXTRA_COLS) {
-        e->ignore();
-      }
-      else {
+    case Key_Left: {
         QTable::keyPressEvent(e);
         int topCell = rowAt(0);
         int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
         if (numCols() > 2)
           for (int i = topCell; i <= lastRowVisible; i++)
             updateCell(i, KV_COL_ORG);
-        emit cellMoved(currentRow(), currentColumn());
-      }
+        if (currentColumn() > KV_EXTRA_COLS)
+          emit cellMoved(currentRow(), currentColumn());
+    }
     break;
 
     case Key_Return:

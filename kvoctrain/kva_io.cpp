@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.8  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -596,7 +599,7 @@ void kvoctrainApp::slotFileSave() /*FOLD00*/
 void kvoctrainApp::fillLessonBox(kvoctrainDoc *the_doc)
 {
   lessons->clear();
-  lessons->insertItem (i18n("<no lesson>"));
+  lessons->insertItem (the_doc->getLessonDescr(0));
   vector<QString> names = the_doc->getLessonDescr();
   for (int i = 0; i < (int) names.size(); i++)
     lessons->insertItem (names[i]);

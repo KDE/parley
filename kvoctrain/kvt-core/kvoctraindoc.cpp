@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/02 17:50:44  arnold
     fixed sorting basically
 
@@ -783,6 +786,9 @@ void kvoctrainDoc::resetEntry (int index, int lesson)
 
 QString kvoctrainDoc::getLessonDescr(int idx) const
 {
+  if (idx == 0)
+    return i18n("<no lesson>");
+
   if (idx <= 0 || idx > (int) lesson_descr.size() )
     return "";
 

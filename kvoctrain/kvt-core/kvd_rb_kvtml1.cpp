@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/16 18:53:21  arnold
+    added possibility to disable expressions
+
     Revision 1.6  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -530,7 +533,7 @@ bool kvoctrainDoc::extract_KVT_E_attr (
     else if ((*first).name () == KV_SELECTED)
       sel = (*first).intValue() != 0;
     else if ((*first).name () == KV_INACTIVE)
-      active = (*first).intValue() != 0;
+      active = !(*first).intValue() != 0;
     else if ((*first).name () == KV_EXPRTYPE) {
       type = (*first).stringValue();
       if (type == "1")
