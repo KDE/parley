@@ -42,9 +42,11 @@ APPS_FILES = \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
  pics/entry-in-query.png  pics/entry-inactive.png
 
-EXTRA_DIST = $(APPS_FILES) $(XMP_FILES)
+EXTRA_DIST = $(APPS_FILES) $(XMP_FILES) langen2kvtml
 
 install-data-local:
+	$(mkinstalldirs) $(DESTDIR)$(kde_bindir)
+	$(INSTALL_PROGRAM) $(srcdir)/langen2kvtml $(DESTDIR)$(kde_bindir)/langen2kvtml
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/
 	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/kvoctrain.desktop
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
@@ -76,6 +78,7 @@ install-data-local:
 	@echo "***********************************************************"
 
 uninstall-local:
+	-rm -f $(kde_bindir)/langen2kvtml
 	-rm -f $(kde_icondir)/kvoctrain.xpm
 	-rm -f $(kde_minidir)/kvoctrain.xpm
 	-rm -f $(kde_appsdir)/Edutainment/kvoctrain.desktop
@@ -109,9 +112,6 @@ kvoctrain_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 spotlight2kvtml_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 CLEANFILES = *.i.c
-
-# them while "make clean", use CLEANFILES
-#DISTCLEANFILES = $(kvoctrain_METASOURCES)
 
 i18n_files=  query-dialogs/*.cpp \
              entry-dialogs/*.cpp \
