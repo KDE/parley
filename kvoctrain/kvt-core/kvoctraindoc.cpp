@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/17 17:59:20  arnold
+    added inline editing of all columns
+
     Revision 1.6  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -56,6 +59,7 @@
 
 #include <kapp.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <qmessagebox.h>
 #include <qfile.h>
@@ -574,7 +578,7 @@ public:
         !dir
         ? (QString::compare(x.getOriginal().upper(),
                             y.getOriginal().upper() ) < 0)
-        : (QString::compare(x.getOriginal(),
+        : (QString::compare(x.getOriginal().upper(),
                             y.getOriginal().upper() ) > 0);
     }
 
