@@ -4,19 +4,17 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004-2005 Peter Hedlund
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
  ***************************************************************************/
 
-/*** content ************************************************************************
+/***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -201,6 +199,7 @@ void kvoctrainApp::initActions()
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
 
   lessons = new KComboBox(this);
+  lessons->setMinimumWidth(160);
   connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   lessons->setFocusPolicy(QWidget::NoFocus);
 
