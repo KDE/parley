@@ -646,6 +646,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                              random_expr1[random_query_nr].nr,
                              oindex,
                              tindex,
+			     tablefont,
                              query_cycle,
                              query_num,
                              query_startnum,
@@ -653,7 +654,8 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                              doc,
                              maxqueryTime,
                              showcounter,
-                             type_querytimeout);
+                             type_querytimeout
+			     );
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -875,6 +877,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     }
     randomQueryDlg->setQuery(q_org,
                              q_trans,
+			     tablefont,
                              random_expr1[random_query_nr].nr,
                              oindex,
                              tindex,
