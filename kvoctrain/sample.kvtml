@@ -142,7 +142,7 @@ Valid xml means:
   <desc no="2">#20 3</desc>
  </usage>
 
- <e m="11" s="1"><o width="262" l="en" q="t" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
+ <e m="11" s="1"><o width="262" l="en" q="t" r="rem" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
  <e m="10" s="1"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
  <e m="2" s="1" t="n:m"><o r="dfgh" y="-">mischief</o><t c="1;1" d="0;992304000">Unheil, Schaden</t></e>
  <e m="7" s="1"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
@@ -152,7 +152,7 @@ Valid xml means:
   <multiplechoice>
    <mc1>go 1a</mc1><mc2>go 2a</mc2><mc3>go 3a</mc3><mc4>go 4a</mc4><mc5>go 5a</mc5>
   </multiplechoice>
-  go</o><t c="1;1" d="0;992304000">
+  go</o><t c="1;1" d="1004400000;992304000">
   <multiplechoice>
    <mc1>schwi 1a</mc1><mc2>schwi 2a</mc2><mc3>schwi 3a</mc3><mc4>schwi 4a</mc4><mc5>schwi 5a</mc5>
   </multiplechoice>
