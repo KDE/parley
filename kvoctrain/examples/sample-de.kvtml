@@ -1,0 +1,203 @@
+<?xml version="1.0"?>
+<!doctype kvtml system "kvoctrain.dtd">
+<!--
+This is a machine generated file.
+Be careful when editing here.
+
+Short definition:
+
+lesson       lesson group
+ desc        name
+   %no       its index
+   %current  is current lesson
+type         type group
+ desc        name
+   %no       its index
+e            entry of dictionary
+  %s         is selected
+  %m         lesson member
+  %t         common expression type
+ o           original
+   %q        in query ("o" is given, "t" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type (see QueryManager.h)
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+ t           translation ..
+   %q        in query ("t" is given, "o" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+
+   %d        last query date (from;to)
+   %w        dito, compressed and deprecated
+   %g        grade (from;to)
+   %c        count (from;to)
+   %b        bad count (from;to)
+
+
+Valid xml means:
+ - Close all tags
+ - Keep proper hierarchy
+ - All attributes are quoted
+
+--
+>
+<kvtml
+  encoding="8Bit"
+  generator="kvoctrain v0.7.0pre5"
+  cols="3"
+  lines="20"
+  title="Beispieldatei: Deutsch - Englisch/Französisch"
+  author="Ewald Arnold">
+
+ <lesson width="130">
+  <desc no="1">Lektion eins</desc>
+  <desc no="2" current="1">Lektion zwei</desc>
+  <desc no="3">Lektion drei</desc>
+  <desc no="4">Lektion vier</desc>
+ </lesson>
+
+ <article>
+  <e l="de">
+   <fd>die</fd>
+   <fi>eine</fi>
+   <md>der</md>
+   <mi>einer</mi>
+   <nd>das</nd>
+   <ni>ein</ni>
+  </e>
+  <e l="en">
+   <fd>fd en</fd>
+   <fi>fi en</fi>
+   <md>md en</md>
+   <mi>mi en</mi>
+   <nd>nd en</nd>
+   <ni>ni en</ni>
+  </e>
+  <e l="fr">
+   <fd>la</fd>
+   <fi>une</fi>
+   <md>le</md>
+   <mi>un</mi>
+  </e>
+ </article>
+
+ <conjugation>
+  <e l="de">
+   <s1>ich</s1>
+   <s2>du</s2>
+   <s3f>sie</s3f>
+   <s3m>er</s3m>
+   <s3n>es</s3n>
+   <p1>wir</p1>
+   <p2>ihr</p2>
+   <p3f common="1">sie</p3f>
+   <p3m>sie</p3m>
+   <p3n>sie</p3n>
+  </e>
+  <e l="en">
+   <s1>I</s1>
+   <s2>you</s2>
+   <s3f>he</s3f>
+   <s3m>she</s3m>
+   <s3n>it</s3n>
+   <p1>we</p1>
+   <p2>you</p2>
+   <p3f common="1">they</p3f>
+  </e>
+  <e l="fr">
+   <s1>je</s1>
+   <s2>tu</s2>
+   <s3f>elle</s3f>
+   <s3m>il</s3m>
+   <p1>nous</p1>
+   <p2>vous</p2>
+   <p3f>elles</p3f>
+   <p3m>ils</p3m>
+  </e>
+ </conjugation>
+
+ <options>
+  <sort on="1"/>
+ </options>
+
+ <type>
+  <desc no="1">Mein Typ 1</desc>
+  <desc no="2">Mein Typ 2</desc>
+  <desc no="3">Mein Typ 3</desc>
+ </type>
+
+ <e m="3" s="1" t="v"><o width="260" l="de" charset="ISO 8859-1">
+  <conjugation>
+   <t n="PrSi"><s1>schwimme</s1><s2>du schwimmst</s2><p1>schwimmen</p1></t>
+   <t n="PaSi"><s1>schwamm</s1><s2>schwammst</s2></t>
+  </conjugation>
+  gehen</o><t width="260" l="en" charset="ISO 8859-4">
+   <conjugation>
+    <t n="PrSi"><s1>go</s1></t>
+    <t n="PaSi"><s1>went</s1></t>
+    <t n="PaPa"><s1>have gone</s1></t>
+   </conjugation>
+   go</t><t width="260" l="fr" charset="ISO 8859-3">aller</t></e>
+ <e m="1"><o t="n:m">Klotz</o><t p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
+ <e m="4" s="1" t="aj"><o>
+  <comparison>
+   <l1>gut</l1><l2>besser</l2><l3>am besten</l3>
+  </comparison>
+  gut</o><t>
+   <comparison>
+    <l1>good</l1><l2>better</l2><l3>best</l3>
+   </comparison>
+   good</t><t>
+    <comparison>
+     <l1>bon</l1><l2>meilleur</l2><l3>le meilleur</l3>
+    </comparison>
+    bon</t></e>
+ <e m="2"><o t="n:m">Knöchel</o><t p="nackls" t="n">knuckles</t><t g="2;3" c="1;1" b="1;1" t="n">cheville</t></e>
+ <e m="1" t="aj"><o>
+  <comparison>
+   <l1>mild</l1><l2>milder</l2><l3>am mildesten</l3>
+  </comparison>
+  mild</o><t>balmy</t><t g="2;4" c="1;1" b="1;1">doux</t></e>
+ <e m="3" s="1" t="n"><o>Unheil, Schaden</o><t p="mistschif">mischief</t><t g="4;1" c="1;1" b="1;1">détriment</t></e>
+ <e m="3" s="1" t="#1"><o>starrsinnig</o><t>opinionated</t><t g="2;3" c="1;1" b="1;1">entêté</t></e>
+ <e m="2" t="n"><o>Gunst, Gefallen</o><t>favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
+ <e m="2"><o t="n:f">Kniebeugen</o><t t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
+ <e m="1" s="1" t="v"><o>behindern</o><t>
+   <conjugation>
+    <t n="PrSi"><s1>encumber</s1><s2>encumber</s2><p1>encumber</p1></t>
+   </conjugation>
+   encumber</t><t g="2;3" c="1;1" b="1;1">gêner</t></e>
+ <e m="4" s="1"><o>stattlich</o><t>handsome</t><t g="3;2" c="1;1" b="1;1">imposant</t></e>
+ <e m="4" s="1"><o t="n:m">Saft</o><t t="n">sap</t><t g="3;2" c="1;1" b="1;1" t="n:m">jus</t></e>
+ <e m="2" t="#2"><o>schwerfällig, mühsam</o><t p="leibrd">laboured</t><t g="1;4" c="1;1" b="1;1">lourd</t></e>
+ <e m="3" s="1"><o>niedlich, ordentlich</o><t p="niit">neat</t><t g="3;2" c="1;1" b="1;1">mignon</t></e>
+ <e m="3" s="1"><o t="n:f">Erbse</o><t p="pi" t="n">pea</t><t g="1;4" c="1;1" b="1;1" t="n:m">pois</t></e>
+ <e m="4" s="1"><o t="n:m">Talg</o><t t="n">tallow</t><t g="2;3" c="2;3" b="1;1" t="n">suif</t></e>
+ <e m="4" s="1" t="#2"><o>gänzlich</o><t>utterly</t><t g="1;4" c="1;1" b="1;1">tout á fait</t></e>
+ <e m="4" s="1" t="v"><o>bezwingen</o><t>
+   <conjugation>
+    <t n="PrSi"><s1>quell</s1></t>
+   </conjugation>
+   quell</t><t g="4;1" c="1;1" b="1;1">vaincre</t></e>
+ <e m="1"><o>verblüfft</o><t>taken aback</t><t g="1;0" c="1;0" b="1;0">ébahi</t></e>
+ <e m="1"><o t="n:m">Verfall</o><t t="n">decline</t><t g="1;4" c="1;1" b="1;1" t="n">échéance</t></e>
+</kvtml>

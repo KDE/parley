@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/17 17:58:22  arnold
+    added inline editing of all columns
+
     Revision 1.9  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -73,6 +76,8 @@
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+#include <kstddirs.h>
+#include <kdebug.h>
 
 #include "kvoctrain.h"
 #include "UsageManager.h"
@@ -145,6 +150,7 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
 {
   saveOptions(false);
   if (!doc || !doc->isModified() ) return true;
+  kdDebug() << "qe 1\n";
 
   if (backupTime != 0) {  // autobackup on: save without asking
     slotFileSave();       // save and exit
@@ -193,11 +199,13 @@ void kvoctrainApp::slotFileOpenRecent(int id_) /*FOLD00*/
 {
   slotStatusMsg(i18n("Opening file..."));
 
+  id_ >>= 16;
   if (queryExit() && recent_files.count() != 0) {
     QString name = recent_files[id_];
     if (!name.isEmpty() ) {
       view->setView(0, langset, gradecols);
       delete doc;
+      doc = 0;
 
       QString format = i18n("Loading %1");
       QString msg = format.arg(name);
@@ -258,8 +266,8 @@ void kvoctrainApp::addRecentFile(const QString &rel_file) /*FOLD00*/
     accel.insert (0, "&");
     accel += "  ";
     accel += recent_files[i];
-    recent_files_menu->insertItem(accel, i);
-    file_open_popup->insertItem(accel, i);
+    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
+    file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
   }
 }
 
@@ -271,7 +279,6 @@ void kvoctrainApp::slotFileNew() /*FOLD00*/
   if (queryExit() ) {
     view->setView (0, langset, gradecols);
     delete doc;
-
     doc = new kvoctrainDoc (this, "", separator, &paste_order);
     connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     slotModifiedDoc(false);
@@ -296,9 +303,18 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
       s = recent_files[0];
     QString name = getFileName(kapp->makeStdCaption(i18n("Open vocabulary file")),
                                s, FILTER_RPATTERN, parentWidget());
+    loadfileFromPath(name);
+  }
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+
+void kvoctrainApp::loadfileFromPath(QString &name)
+{
     if (!name.isEmpty() ) {
       view->setView(0, langset, gradecols);
       delete doc;
+      doc = 0;
 
       QString format = i18n("Loading %1");
       QString msg = format.arg(name);
@@ -317,9 +333,22 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
       view->setView(doc, langset, gradecols);
       addRecentFile (name);
     }
+}
+
+void kvoctrainApp::slotFileOpenExample() /*FOLD00*/
+{
+  slotStatusMsg(i18n("Opening example file..."));
+
+  if (queryExit() ) {
+    QString s;
+    s = locate("data",  "kvoctrain/examples/");
+    QString name = getFileName(kapp->makeStdCaption(i18n("Open example vocabulary file")),
+                               s, FILTER_RPATTERN, parentWidget());
+    loadfileFromPath(name);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
+
 
 void kvoctrainApp::slotFileMerge() /*FOLD00*/
 {

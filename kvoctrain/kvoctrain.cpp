@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2001/11/17 17:58:22  arnold
+    added inline editing of all columns
+
     Revision 1.19  2001/11/16 19:50:06  arnold
     added submenu to set language to main menu
 
@@ -204,7 +207,7 @@ void kvoctrainApp::slotEditRow()
                  view->getTable()->currentColumn());
 }
 
-
+/*
 void kvoctrainApp::slotSelectEntry (int row, int col, int key_state)
 {
    if (view->getTable()->numRows() <= 0
@@ -240,7 +243,7 @@ void kvoctrainApp::slotSelectEntry (int row, int col, int key_state)
    for (int i = 0; i < view->getTable()->numCols(); i++)
      view->getTable()->updateCell(row, i);
 }
-
+*/
 
 bool kvoctrainApp::slotEditEntry (int row, int col)
 {
@@ -1343,9 +1346,11 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text)
 
 
 void kvoctrainApp::commandCallback(int id_){
+  id_ &=0xffff;
   switch (id_){
     ON_CMD(ID_FILE_NEW,                 slotFileNew())
     ON_CMD(ID_FILE_OPEN,                slotFileOpen())
+    ON_CMD(ID_FILE_OPEN_XMP,            slotFileOpenExample())
     ON_CMD(ID_FILE_MERGE,               slotFileMerge())
     ON_CMD(ID_FILE_SAVE,                slotFileSave())
     ON_CMD(ID_FILE_SAVE_AS,             slotFileSaveAs())
@@ -1381,10 +1386,13 @@ void kvoctrainApp::commandCallback(int id_){
 
 
 void kvoctrainApp::statusCallback(int id_){
+  id_ &=0xffff;
   switch (id_){
     ON_STATUS_MSG(ID_FILE_NEW,          i18n("Creates a new document"))
     ON_STATUS_MSG(ID_FILE_OPEN,         i18n("Opens an existing document"))
-    ON_STATUS_MSG(ID_FILE_MERGE,        i18n("Merges an existing document to the current vacabulary"))
+    ON_STATUS_MSG(ID_FILE_OPEN_XMP,     i18n("Opens an example document from the kvoctrain package"))
+    ON_STATUS_MSG(ID_FILE_OPEN_RECENT,  i18n("Opens one of your recent documents"))
+    ON_STATUS_MSG(ID_FILE_MERGE,        i18n("Merges an existing document to the current vocabulary"))
     ON_STATUS_MSG(ID_FILE_SAVE,         i18n("Saves the current document"))
     ON_STATUS_MSG(ID_FILE_SAVE_AS,      i18n("Saves the document as..."))
     ON_STATUS_MSG(ID_FILE_QUIT,         i18n("Exits the program"))

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/11/16 19:50:06  arnold
+    added submenu to set language to main menu
+
     Revision 1.12  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -188,8 +191,11 @@ void kvoctrainApp::initMenuBar()
   file_menu->insertItem(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Small),
                         i18n("&Open..."), ID_FILE_OPEN );
 
+  file_menu->insertItem(i18n("&Open an example..."), ID_FILE_OPEN_XMP );
+
   recent_files_menu = new QPopupMenu();
-  connect( recent_files_menu, SIGNAL(activated(int)), SLOT(slotFileOpenRecent(int)) );
+  connect(recent_files_menu, SIGNAL(activated(int)),   SLOT(slotFileOpenRecent(int)) );
+  connect(recent_files_menu, SIGNAL(highlighted(int)), SLOT(statusCallback(int)));
   file_menu->insertItem(i18n("Open Recen&t.."), recent_files_menu, ID_FILE_OPEN_RECENT);
   QString accel;
   for (uint i = 0 ; i < recent_files.count(); i++){
@@ -197,7 +203,7 @@ void kvoctrainApp::initMenuBar()
     accel.insert (0, "&");
     accel += "  ";
     accel += recent_files[i];
-    recent_files_menu->insertItem(accel, i);
+    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
   }
 
   file_menu->insertSeparator();
@@ -306,8 +312,6 @@ void kvoctrainApp::initMenuBar()
 
   CONNECT_CMD(file_menu);
   CONNECT_CMD(edit_menu);
-//  CONNECT_CMD(view_menu);
-//  CONNECT_CMD(learn_menu);
   connect (learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect (learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 

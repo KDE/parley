@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/17 17:58:22  arnold
+    added inline editing of all columns
+
     Revision 1.7  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -104,6 +107,7 @@ protected:
         virtual void keyPressEvent( QKeyEvent *e );
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
+        virtual void setItem ( int row, int col, QTableItem * item );
 
 protected slots:
         void menuTriggerTimeout();

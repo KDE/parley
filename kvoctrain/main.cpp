@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/10/28 10:15:46  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -75,7 +78,8 @@ static const char *version = "0.8.0";
                        version,
                        description,
                        KAboutData::License_GPL,
-                       "(c) 1999-2001, Ewald Arnold\n(c) 2001, The KDE edu team",
+                       "(c) 1999-2001\tEwald Arnold\n"
+                       "(c) 2001\tThe KDE team",
                        i18n_noop("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "kvoctrain@ewald-arnold.de");

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.12  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -138,8 +141,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
           parent, SLOT(slotCancelSelection()) );
  connect( lb_list, SIGNAL(cellMoved(int, int)),
           parent, SLOT(slotCurrentCellChanged(int, int)) );
- connect( lb_list, SIGNAL(selected(int,int,int)),
-          parent, SLOT(slotSelectEntry(int,int,int)) );
+// connect( lb_list, SIGNAL(selected(int,int,int)),
+//          parent, SLOT(slotSelectEntry(int,int,int)) );
 
  list_layout = new QGridLayout( f_list, 2, 1, 4 );
  list_layout->addWidget( lb_list, 1, 0 );

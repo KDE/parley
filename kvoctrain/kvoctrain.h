@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.12  2001/11/10 17:34:22  arnold
     fixed language property dialog page
 
@@ -176,7 +179,7 @@ public:
  public slots:
   void slotModifiedDoc(bool mod);
   void slotCurrentCellChanged(int row, int col);
-  void slotSelectEntry (int row, int col, int key_state);
+//  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */
   bool slotEditEntry(int row, int col);
@@ -242,6 +245,9 @@ public:
   void slotFileNew();
   /** open a document */
   void slotFileOpen();
+  /** open a sample document */
+  void slotFileOpenExample();
+  void loadfileFromPath(QString &path);
   /** merge a document */
   void slotFileMerge();
   /** save a document */

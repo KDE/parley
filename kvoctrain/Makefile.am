@@ -25,6 +25,10 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs
 
+XMP_FILES = \
+ examples/sample-de.kvtml \
+ examples/sample-en.kvtml
+
 APPS_FILES = \
  pics/16x16-kvoctrain.xpm pics/new.xpm pics/lesson.xpm\
  pics/list-win.xpm pics/pron-win.xpm\
@@ -53,6 +57,11 @@ install-data-local:
           file=`echo $$pic | sed 's,.*/,,'`; \
           $(INSTALL_DATA) $(srcdir)/pics/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/$$file; \
 	done
+	$(mkinstalldirs) $(kde_datadir)/kvoctrain/examples
+	for kvt in $(XMP_FILES); do \
+          file=`echo $$kvt | sed 's,.*/,,'`; \
+          $(INSTALL_DATA) $(srcdir)/examples/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/examples/$$file; \
+	done
 	@echo ""
 	@echo "***********************************************************"
 	@echo "* Installed. Enjoy KVOCTRAIN                              *"
@@ -68,6 +77,10 @@ uninstall-local:
 	for pic in $(APPS_FILES); do \
           file=`echo $$pic | sed 's,.*/,,'`; \
           rm -f "$(kde_datadir)/kvoctrain/$$file"; \
+	done
+	for kvt in $(XMP_FILES); do \
+          file=`echo $$kvt | sed 's,.*/,,'`; \
+          rm -f "$(kde_datadir)/kvoctrain/examples/$$file"; \
 	done
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \

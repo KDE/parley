@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/16 19:50:26  arnold
+    added submenu to set language to main menu
+
     Revision 1.6  2001/11/10 17:34:43  arnold
     fixed language property dialog page
 
@@ -78,6 +81,7 @@
 // File-menu entries
 #define ID_FILE_NEW                 10020
 #define ID_FILE_OPEN                10030
+#define ID_FILE_OPEN_XMP            10035
 #define ID_FILE_OPEN_RECENT         10040
 
 #define ID_FILE_SAVE                10050
