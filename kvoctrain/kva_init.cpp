@@ -296,9 +296,6 @@ void kvoctrainApp::clearStatusBar()
 
 void kvoctrainApp::initDoc( )
 {
-  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery, QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
-  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive, QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
-
   if (fileOpenRecent->items().count() /*recent_files.count()*/ > 0)
     doc = new kvoctrainDoc(this, fileOpenRecent->items()[0] /*KURL(recent_files[0])*/, separator, &paste_order);
   else

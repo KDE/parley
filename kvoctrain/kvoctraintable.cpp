@@ -24,6 +24,7 @@
  ***************************************************************************/
 
 #include <qpainter.h>
+#include <qstyle.h>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -31,6 +32,8 @@
 #include <dcopclient.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
+#include <kstandarddirs.h>
+#include <kiconloader.h>
 
 #include "kvoctraintable.h"
 #include "kv_resource.h"
@@ -52,6 +55,9 @@ KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, const Grade
   setDoc(m_doc, gc);
 
   triggerSect = -1;
+
+  m_pixInQuery = QPixmap(KGlobal::iconLoader()->loadIcon("ok", KIcon::Small));
+  m_pixInactive = QPixmap(KGlobal::iconLoader()->loadIcon("no", KIcon::Small));
 
   delayTimer = new QTimer(this);
   connect(delayTimer, SIGNAL(timeout()), this, SLOT(menuTriggerTimeout()));
@@ -283,33 +289,136 @@ void KVocTrainTable::setFont(const QFont & font)
     setRowHeight(i, fontMetrics().lineSpacing());
 }
 
-void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr, bool selected)
+void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr, bool selected, const QColorGroup &cg)
 {
   if (cr.width() == 0 || cr.height() == 0)
     return;
 
-  QColorGroup cg = colorGroup();
+  if (selected && row == currentRow() && col == currentColumn() && (hasFocus() || viewport()->hasFocus()))
+    selected = false;
 
   int w = cr.width();
   int h = cr.height();
   int x2 = w - 1;
   int y2 = h - 1;
 
-  p->fillRect(0, 0, w, h, selected ? cg.brush(QColorGroup::Highlight) : cg.brush(QColorGroup::Base));
+  p->fillRect( 0, 0, w, h, selected ? cg.brush( QColorGroup::Highlight ) : cg.brush( QColorGroup::Base ) );
 
-  kvoctrainExpr *cell = getRow(row);
-  if(cell) {
+  kvoctrainExpr *expr = getRow(row);
+  if (expr)
+  {
     p->save();
-    cell->paint(p, col, w, selected, m_doc, numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn(), gradecols);
+    //cell->paint(p, col, w, selected, m_doc, numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn(), gradecols);
+
+    QColor color = KV_NORM_COLOR;
+    int current_col = numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn();
+
+    if (gradecols != 0 && gradecols->use)
+    {
+      if (col > KV_COL_ORG)
+      {
+        color = gradecols->col0;
+        if (expr->getQueryCount(col - KV_EXTRA_COLS, false) != 0)
+        {
+          switch (expr->getGrade(col-KV_EXTRA_COLS, false))
+          {
+            case KV_NORM_GRADE: color = gradecols->col0; break;
+            case KV_LEV1_GRADE: color = gradecols->col1; break;
+            case KV_LEV2_GRADE: color = gradecols->col2; break;
+            case KV_LEV3_GRADE: color = gradecols->col3; break;
+            case KV_LEV4_GRADE: color = gradecols->col4; break;
+            case KV_LEV5_GRADE: color = gradecols->col5; break;
+            case KV_LEV6_GRADE: color = gradecols->col6; break;
+            case KV_LEV7_GRADE: color = gradecols->col7; break;
+            default           : color = gradecols->col1;
+          }
+        }
+      }
+      else if ( col == KV_COL_ORG )
+      {
+        color = gradecols->col0;
+        if (expr->numTranslations() != 0 && current_col > KV_COL_ORG )
+        {
+          if (expr->getQueryCount(current_col - KV_EXTRA_COLS, true) != 0 )
+          {
+            switch (expr->getGrade(current_col - KV_EXTRA_COLS, true))
+            {
+              case KV_LEV1_GRADE: color = gradecols->col1; break;
+              case KV_LEV2_GRADE: color = gradecols->col2; break;
+              case KV_LEV3_GRADE: color = gradecols->col3; break;
+              case KV_LEV4_GRADE: color = gradecols->col4; break;
+              case KV_LEV5_GRADE: color = gradecols->col5; break;
+              case KV_LEV6_GRADE: color = gradecols->col6; break;
+              case KV_LEV7_GRADE: color = gradecols->col7; break;
+              default           : color = gradecols->col1;
+            }
+          }
+        }
+      }
+    }
+
+    if (selected)
+      p->setPen (cg.highlightedText());
+    else
+      p->setPen (color);
+
+    int fontpos = (p->fontMetrics().lineSpacing() - p->fontMetrics().lineSpacing()) / 2;
+
+    switch (col)
+    {
+      case KV_COL_LESS: // lesson
+      {
+        QString less_str;
+        if (m_doc != 0 && expr->getLesson() != 0)
+          less_str = m_doc->getLessonDescr(expr->getLesson());
+        p->drawText( 3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, less_str);
+      }
+      break;
+
+      case KV_COL_MARK: // mark
+      {
+        if (!expr->isActive())
+        {
+          p->drawPixmap((w - m_pixInactive.width()) / 2,
+                         (p->fontMetrics().lineSpacing() - m_pixInactive.height())/2, m_pixInactive);
+        }
+        else if (expr->isInQuery() )
+        {
+          p->drawPixmap((w - m_pixInQuery.width()) / 2,
+                         (p->fontMetrics().lineSpacing() - m_pixInQuery.height())/2, m_pixInQuery);
+        }
+      }
+      break;
+
+      case KV_COL_ORG: // original
+      {
+        p->drawText(3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, expr->getOriginal());
+      }
+      break;
+
+      default: // translation x
+        p->drawText(3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, expr->getTranslation(col - KV_COL_ORG));
+        break;
+    }
     p->restore();
   }
 
-  // We are drawing our own grid lines
-  QPen pen(p->pen());
-  p->setPen(colorGroup().mid());
-  p->drawLine(x2, 0, x2, y2);
-  p->drawLine(0, y2, x2, y2);
-  p->setPen(pen);
+  QPen pen( p->pen() );
+  int gridColor = style().styleHint( QStyle::SH_Table_GridLineColor, this );
+  if (gridColor != -1) {
+    const QPalette &pal = palette();
+    if (cg != colorGroup()
+        && cg != pal.disabled()
+        && cg != pal.inactive())
+      p->setPen(cg.mid());
+    else
+      p->setPen((QRgb)gridColor);
+  } else {
+    p->setPen(cg.mid());
+  }
+  p->drawLine( x2, 0, x2, y2 );
+  p->drawLine( 0, y2, x2, y2 );
+  p->setPen( pen );
 }
 
 void KVocTrainTable::setItem(int row, int col, QTableItem * /*item*/)

@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                          maintain a kvoctrain expression
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                      C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -62,7 +60,7 @@
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif 
+#endif
 
 #include <qpixmap.h>
 # include <qnamespace.h>
@@ -440,24 +438,10 @@ class kvoctrainExpr
    */
   void incQueryCount (int index, bool rev_count = false);
 
-  /** "paint" expression in an area
-   *
-   * @param painter          pointer to paint object
-   * @param col              expression to paint: 0=org, 1..x=translation
-   * @param width            width
-   * @param selected         entry is selected (change color to white)
-   */
-  void paint( QPainter *painter, int col, int width, bool selected,
-              kvoctrainDoc *doc, int current_col, const GradeCols *gc);
-
-  enum PixmapRole {ExprInQuery, ExprInactive};
-
-  static void setPixmap(PixmapRole role, const QPixmap &pm);
-
  protected:
 
   void Init();
-  
+
  private:
   QString            origin;
 
@@ -488,9 +472,6 @@ class kvoctrainExpr
   int                lesson;
   bool               inquery;
   bool               active;
-
-  static QPixmap   *s_pm_mark;
-  static QPixmap   *s_pm_inactive;
 };
 
 #endif // KVOCTRAINEXPR_H

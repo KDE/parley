@@ -1,18 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    maintain a kvoctrain expression
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -28,7 +24,6 @@
  ***************************************************************************/
 
 #include "kvoctraindoc.h"
-#include <qpainter.h>
 
 #include <vector>
 using namespace std;
@@ -36,29 +31,6 @@ using namespace std;
 #include <kdebug.h>
 
 #include "kv_resource.h"  // FIXME: remove include
-
-QPixmap * kvoctrainExpr::s_pm_mark = 0;
-QPixmap * kvoctrainExpr::s_pm_inactive = 0;
-
-// static
-void kvoctrainExpr::setPixmap(PixmapRole role, const QPixmap &pm)
-{
-  switch (role) {
-    case ExprInQuery:
-      delete s_pm_mark;
-      s_pm_mark = new QPixmap(pm);
-    break;
-
-    case ExprInactive:
-      delete s_pm_inactive;
-      s_pm_inactive = new QPixmap(pm);
-    break;
-
-    default:
-      kdError() << ((QString)"unknown role <%1> for pixmap in ").arg((int) role)
-                << __FILE__ << endl;
-  }
-}
 
 
 void kvoctrainExpr::Init()
@@ -99,7 +71,7 @@ kvoctrainExpr::kvoctrainExpr (QString &s, QString &separator, int _lesson)
 
   if (separator.length() ) {
     int pos = s.find(separator);
-  
+
     if (pos == -1) {
       setOriginal(s.stripWhiteSpace());
     }
@@ -108,7 +80,7 @@ kvoctrainExpr::kvoctrainExpr (QString &s, QString &separator, int _lesson)
       setOriginal(se);
       s.remove (0, pos+separator.length() );
 //      s.stripWhiteSpace();
-  
+
       // gather all translations
       while ((pos = s.find(separator)) != -1) {
         se = s.left(pos).stripWhiteSpace();
@@ -166,7 +138,7 @@ void kvoctrainExpr::setFauxAmi (int idx, const QString & expr, bool rev_ami)
     if ((int)rev_fauxAmi.size() <= idx )
       for (int i = rev_fauxAmi.size(); i < idx+1; i++)
         rev_fauxAmi.push_back ("");
-  
+
     rev_fauxAmi[idx] = expr.stripWhiteSpace();
 
   }
@@ -175,7 +147,7 @@ void kvoctrainExpr::setFauxAmi (int idx, const QString & expr, bool rev_ami)
     if ((int)fauxAmi.size() <= idx )
       for (int i = fauxAmi.size(); i < idx+1; i++)
         fauxAmi.push_back ("");
-  
+
     fauxAmi[idx] = expr.stripWhiteSpace();
   }
 }
@@ -187,7 +159,7 @@ QString kvoctrainExpr::getFauxAmi (int idx, bool rev_ami) const
     if (idx >= (int)rev_fauxAmi.size() || idx < 1 ) {
       return "";
     }
-  
+
     return rev_fauxAmi[idx];
   }
 
@@ -540,7 +512,7 @@ grade_t kvoctrainExpr::getGrade (int idx, bool rev_grade) const
     else if (rev_grades[idx] > KV_MAX_GRADE) {
       return KV_MAX_GRADE;
     }
-  
+
     return rev_grades[idx];
 
   }
@@ -551,7 +523,7 @@ grade_t kvoctrainExpr::getGrade (int idx, bool rev_grade) const
     else if (grades[idx] > KV_MAX_GRADE) {
       return KV_MAX_GRADE;
     }
-  
+
     return grades[idx];
   }
 }
@@ -641,7 +613,7 @@ count_t kvoctrainExpr::getQueryCount (int idx, bool rev_count)  const
     if (idx >= (int)rev_qcounts.size() || idx < 1 ) {
       return 0;
     }
-  
+
     return rev_qcounts[idx];
   }
 
@@ -684,7 +656,7 @@ count_t kvoctrainExpr::getBadCount (int idx, bool rev_count) const
     if (idx >= (int)rev_bcounts.size() || idx < 1 ) {
       return 0;
     }
-  
+
     return rev_bcounts[idx];
   }
 
@@ -727,7 +699,7 @@ time_t kvoctrainExpr::getQueryDate (int idx, bool rev_date) const
     if (idx >= (int)rev_qdates.size() || idx < 1 ) {
       return 0;
     }
-  
+
     return rev_qdates[idx];
   }
 
@@ -760,102 +732,6 @@ void kvoctrainExpr::setQueryDate (int idx, time_t date, bool rev_date)
         qdates.push_back (0);
       }
     qdates[idx] = date;
-  }
-}
-
-
-void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
-                          kvoctrainDoc *voc_doc, int current_col,
-                          const GradeCols *gc)
-{
-  QColor color = KV_NORM_COLOR;
-
-  if (gc != 0 && gc->use) {
-    if (col > KV_COL_ORG) {
-      color = gc->col0;
-      if (getQueryCount(col-KV_EXTRA_COLS, false) != 0) {
-        switch (getGrade(col-KV_EXTRA_COLS, false)) {
-          case KV_NORM_GRADE:   color = gc->col0;    break;
-          case KV_LEV1_GRADE:   color = gc->col1;    break;
-          case KV_LEV2_GRADE:   color = gc->col2;    break;
-          case KV_LEV3_GRADE:   color = gc->col3;    break;
-          case KV_LEV4_GRADE:   color = gc->col4;    break;
-          case KV_LEV5_GRADE:   color = gc->col5;    break;
-          case KV_LEV6_GRADE:   color = gc->col6;    break;
-          case KV_LEV7_GRADE:   color = gc->col7;    break;
-          default             : color = gc->col1;
-        }
-      }
-    }
-    else if (   col == KV_COL_ORG ) {
-      color = gc->col0;
-      if (  numTranslations() != 0
-          && current_col > KV_COL_ORG ) {
-        if (getQueryCount(current_col-KV_EXTRA_COLS, true) != 0 ) {
-          switch (getGrade(current_col-KV_EXTRA_COLS, true)) {
-            case KV_LEV1_GRADE:   color = gc->col1;    break;
-            case KV_LEV2_GRADE:   color = gc->col2;    break;
-            case KV_LEV3_GRADE:   color = gc->col3;    break;
-            case KV_LEV4_GRADE:   color = gc->col4;    break;
-            case KV_LEV5_GRADE:   color = gc->col5;    break;
-            case KV_LEV6_GRADE:   color = gc->col6;    break;
-            case KV_LEV7_GRADE:   color = gc->col7;    break;
-            default             : color = gc->col1;
-          }
-        }
-      }
-    }
-  }
-
-  if (cell_selected)
-    p->setPen (Qt::white);
-  else
-    p->setPen (color);
-
-  int fontpos = ( p->fontMetrics().lineSpacing() - p->fontMetrics().lineSpacing())/2;
-
-  switch( col )
-    {
-    case KV_COL_LESS: // lesson
-      {
-        QString less_str;
-        if (voc_doc != 0 && getLesson() != 0)
-          less_str = voc_doc->getLessonDescr(getLesson() );
-	p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-		     Qt::AlignLeft,
-		     less_str);
-      }
-    break;
-
-    case KV_COL_MARK: // mark 
-      {
-        if (!isActive() )
-        {
-	  p->drawPixmap((width - s_pm_inactive->width()) / 2,
-                        (p->fontMetrics().lineSpacing() - s_pm_inactive->height())/2, *s_pm_inactive);
-        }
-        else if (isInQuery() )
-        {
-	  p->drawPixmap((width - s_pm_mark->width()) / 2,
-                        (p->fontMetrics().lineSpacing() - s_pm_mark->height())/2, *s_pm_mark);
-        }
-      }
-    break;
-
-    case KV_COL_ORG: // original
-      {
-	p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-		     Qt::AlignLeft,
-		     getOriginal() );
-	break;
-      }
-    break;
-
-    default: // translation x
-      p->drawText( 3, fontpos, width, p->fontMetrics().lineSpacing(),
-                   Qt::AlignLeft,
-		   getTranslation(col-KV_COL_ORG) );
-      break;
   }
 }
 
