@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/04/23 12:47:52  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.16  2002/04/20 12:55:48  binner
     CVS_SILENT Capitalisation fixes.
 
@@ -198,11 +201,11 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       if((j = langset.indexShortId(doc->getIdent(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
-        query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+names[i-1],
+        query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from %1").arg(names[i-1]),
             (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
       }
       else {
-        query_m->insertItem(i18n("from ")+doc->getIdent(i), (i << (16+8)) |  IDH_START_QUERY);
+        query_m->insertItem(i18n("from %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_QUERY);
       }
     }
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
@@ -214,11 +217,11 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       if((j = langset.indexShortId(doc->getIdent(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
-        multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+names[i-1],
+        multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from %1").arg(names[i-1]),
             (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
       }
       else {
-        multiple_m->insertItem(i18n("from ")+doc->getIdent(i), (i << (16+8)) |  IDH_START_MULTIPLE);
+        multiple_m->insertItem(i18n("from %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
       }
     }
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
