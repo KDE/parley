@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.1  2001/10/05 15:43:20  arnold
+  import of version 0.7.0pre8 to kde-edu
+
 
   -----------------------------------------------------------------------
 
@@ -125,6 +128,12 @@ void XmlWriter::addAttribute (KOXML_STRING name, const KOXML_STRING& value)
   while ((pos = val.find ('&', pos)) >= 0) {
     KOXML_STRING_INSERT( val, pos+1, "amp;");
     pos += 5; // skip &amp;
+  }
+  pos = 0;
+  while ((pos = val.find ('<', pos)) >= 0) {
+    KOXML_STRING_REMOVE( val, pos, 1);
+    KOXML_STRING_INSERT( val, pos, "&lt;");
+    pos += 4; // skip &nl;
   }
   pos = 0;
   while ((pos = val.find ('\n', pos)) >= 0) {

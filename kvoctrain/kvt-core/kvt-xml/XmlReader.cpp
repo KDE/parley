@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.4  2002/04/19 09:12:11  arnold
+  xml structure now more conforming
+
   Revision 1.3  2002/04/12 10:09:56  coolo
   replacing tons of these (for gcc 3):
   -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -238,6 +241,12 @@ bool XmlReader::readAttributes (std::list<XmlAttribute>& attrib_list) {
             KOXML_STRING_REMOVE( val, pos, 4);
             KOXML_STRING_INSERT( val, pos, "\n");
             pos += 1; // skip \n
+          }
+          pos = 0;
+          while ((pos = val.find("&lt;", pos)) >= 0) {
+            KOXML_STRING_REMOVE( val, pos, 4);
+            KOXML_STRING_INSERT( val, pos, "<");
+            pos += 1; // skip <
           }
           pos = 0;
           while ((pos = val.find ("&amp;", pos)) >= 0) {
