@@ -299,9 +299,6 @@ void kvoctrainApp::clearStatusBar()
 
 void kvoctrainApp::initDoc( )
 {
-  pdlg = new ProgressDlg (QString(), QString(), kapp->makeStdCaption(i18n("Loading Vocabulary File")));
-  pdlg->show();
-
   kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery, QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
   kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive, QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
 
@@ -310,7 +307,6 @@ void kvoctrainApp::initDoc( )
   else
     doc = new kvoctrainDoc(this, KURL(""), separator, &paste_order);
 
-  removeProgressBar();
   loadDocProps(doc);
   if (doc->numLangs() == 0)
     doc->appendLang("en");
