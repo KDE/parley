@@ -501,7 +501,7 @@ whole range.</para>
 
 <para>All selectable fields are empty at the beginning to represent
 the unmodified state. Once you have modified a property there will be
-contents in it's field and only those properties are altered in your
+contents in its field and only those properties are altered in your
 selection when you confirm the dialog.</para>
 
 </sect1>
@@ -1641,7 +1641,7 @@ list.</para></listitem>
 
 <varlistentry>
 <term><guilabel>Add</guilabel></term>
-<listitem><para>After entering a new language code in the field to it's left,
+<listitem><para>After entering a new language code in the field to its left,
 you use this button to append it to your list. After that you need to
 fill in the fields for the long name and the picture for the header
 button.</para></listitem>
@@ -1655,7 +1655,7 @@ desired language properties to your personal list.</para>
 
 <para>Maybe you want to change the
 language name or the according picture but I strongly recommend you keep at least the
-2-byte language code and it's 3-byte alternative if you don't have a special reason.
+2-byte language code and its 3-byte alternative if you don't have a special reason.
 This is to achieve compatible document files that can be shared among all users.
 </para></listitem>
 </varlistentry>
@@ -2277,7 +2277,7 @@ buttons in the bottom left corner. The left one resizes the windows to an optima
 height and places them one upon the other. The second places them accordingly
 side by side.</para>
 
-<para>After closing the entry dialog the main window returns to it's previous
+<para>After closing the entry dialog the main window returns to its previous
 position and size.</para>
 
 </sect2>
@@ -2625,7 +2625,7 @@ e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
 <quote>CSV</quote> format but encoded in <quote>UTF8</quote> so you should have
 all characters rendered correctly.
 
-The files are available from it's
+The files are available from its
 <ulink url="http://www3.futureware.at/1dim.htm">download section</ulink>.
 They are in compressed &Windows; <literal role="extension">.EXE</literal>
 format so you have
@@ -2856,8 +2856,7 @@ url="http://www.suse.de/download/LinuKS/">LinuKS: SuSE Linux KDE
 Service</ulink>.</para>
 
 <para>Another place for precompiled packages is <ulink
-url="http://xmission.linuxberg.com/kdehtml/ent_educational.html#kvoctrain"
->Linuxberg</ulink>.</para>
+url="http://xmission.linuxberg.com/kdehtml/ent_educational.html#kvoctrain">Linuxberg</ulink>.</para>
 
 </sect1>
 
