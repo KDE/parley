@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ProgressDlgForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,17 +8,9 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>583</width>
-            <height>609</height>
+            <width>400</width>
+            <height>127</height>
         </rect>
-    </property>
-    <property name="sizePolicy">
-        <sizepolicy>
-            <hsizetype>3</hsizetype>
-            <vsizetype>3</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-        </sizepolicy>
     </property>
     <property name="minimumSize">
         <size>
@@ -29,17 +21,11 @@
     <property name="caption">
         <string>-</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
-        <property name="margin">
-            <number>11</number>
-        </property>
-        <property name="spacing">
-            <number>6</number>
-        </property>
-        <widget class="QFrame">
+        <widget class="QFrame" row="0" column="0">
             <property name="name">
                 <cstring>Frame3</cstring>
             </property>
@@ -47,17 +33,14 @@
                 <enum>NoFrame</enum>
             </property>
             <property name="frameShadow">
-                <enum>Raised</enum>
+                <enum>Plain</enum>
             </property>
             <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
                 <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
+                    <number>0</number>
                 </property>
                 <widget class="QLabel" row="0" column="0">
                     <property name="name">
@@ -117,7 +100,7 @@
                 </widget>
             </grid>
         </widget>
-        <spacer>
+        <spacer row="1" column="0">
             <property name="name">
                 <cstring>Spacer1</cstring>
             </property>
@@ -134,7 +117,7 @@
                 </size>
             </property>
         </spacer>
-        <widget class="QProgressBar">
+        <widget class="QProgressBar" row="2" column="0">
             <property name="name">
                 <cstring>progress</cstring>
             </property>
@@ -149,17 +132,11 @@
             <property name="minimumSize">
                 <size>
                     <width>340</width>
-                    <height>40</height>
+                    <height>22</height>
                 </size>
             </property>
-            <property name="frameShape">
-                <enum>WinPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Raised</enum>
-            </property>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

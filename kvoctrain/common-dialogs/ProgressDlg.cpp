@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                               progress dialog
 
     -----------------------------------------------------------------------
@@ -22,7 +20,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -51,21 +49,11 @@ ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const
 void ProgressDlg::setValue( kvoctrainDoc *new_doc, int val)
 {
   progress->setProgress(val);
-  if (doc == 0 && new_doc != 0) {
+  if (doc == 0 && new_doc != 0)
+  {
     doc = new_doc;
-    QString s = doc->URL().path();
-    int pos;
-    bool cut = false;
-    while ((pos = s.find ('/')) >= 0) {
-      s.remove (0, pos+1);
-      cut = true;
-    }
-/*
-    if (cut)
-      s.insert (0, ".../");
-*/
     l_title->setText (doc->getTitle());
-    l_file->setText (s);
+    l_file->setText (doc->URL().fileName());
   }
 }
 
