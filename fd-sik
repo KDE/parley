@@ -1,10 +1,11 @@
-mount /a && \
-( rm /a/*.gz /a/*.bz2; \
+mount /a  && ( \
+  rm /a/*.gz /a/*.bz2; \
   test -x kvoctrain/kvoctrain && rm kvoctrain/kvoctrain; \
   test -x kvoctrain/spotlight2kvtml && rm kvoctrain/spotlight2kvtml; \
-  tar cfIv kvoc.tar.bz2 * --exclude-from=fd-sik.excl  cp kvoc.tar.bz2 /a; \
+  tar cfIv kvoc.tar.bz2 * --exclude-from=fd-sik.excl; \
   cp kvoc.tar.bz2 /a; \
   rm kvoc.tar.bz2; \
   ls -l /a; \
-  umount /a; )\
+)
+umount /a
 
