@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.6  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -78,8 +81,8 @@ static const char *version = "0.8.0";
                        version,
                        description,
                        KAboutData::License_GPL,
-                       "(c) 1999-2001\tEwald Arnold\n"
-                       "(c) 2001\tThe KDE team",
+                       "(c) 1999-2002\tEwald Arnold\n"
+                       "(c) 2001-2002\tThe KDE team\n",
                        i18n_noop("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "kvoctrain@ewald-arnold.de");
@@ -90,6 +93,7 @@ static const char *version = "0.8.0";
   aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"));
   aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polish"));
   aboutData.addCredit("Eric Bischoff", i18n_noop("Converting my oldstyle documentation to docbook"));
+  aboutData.addCredit("The whole KDE team", i18n_noop("A lot of small improvements in the background"));
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;
