@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 17:35:03  arnold
+    fixed language property dialog page
+
     Revision 1.3  2001/11/09 10:40:46  arnold
     removed ability to display a different font for each column
 
@@ -66,6 +69,13 @@ public:
 
     virtual ~LangOptPage ();
 
+    struct LangRef {
+      LangRef (const QString& reg, const LangSet &ls)
+        : region(reg), langs(ls) {}
+       QString region;
+       LangSet langs;
+    };
+
 protected:
     void keyPressEvent( QKeyEvent *e );
 
@@ -96,12 +106,7 @@ protected:
     QStringList      countrylist;
     QStringList      regionlist;
 
-    struct LangRef {
-      LangRef (const QString& reg, const LangSet &ls)
-        : region(reg), langs(ls) {}
-       QString region;
-       LangSet langs;
-    };
+
     vector <LangRef> globalLangs;
     LangSet          global_langset;
     QPopupMenu      *langset_popup;
