@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    $Id: $
+    $Id$
 
               dialog page for multiple choice suggestions
 
@@ -15,7 +15,10 @@
 
     -----------------------------------------------------------------------
 
-    $Log: $
+    $Log$
+    Revision 1.1  2001/10/30 14:53:34  arnold
+    added property 'multiple choice'
+
 
  ***************************************************************************/
 
@@ -41,7 +44,6 @@
 
 MCEntryPage::MCEntryPage
 (
-        SpecFont_t             *font,
         QDialog                *dlgbook,
         bool                    multi_sel,
         const MultipleChoice   &mc,
@@ -84,15 +86,6 @@ MCEntryPage::MCEntryPage
      mc3Field->setText (mc.mc3());
      mc4Field->setText (mc.mc4());
      mc5Field->setText (mc.mc5());
-   }
-
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     mc1Field->setFont (specfont);
-     mc2Field->setFont (specfont);
-     mc3Field->setFont (specfont);
-     mc4Field->setFont (specfont);
-     mc5Field->setFont (specfont);
    }
 }
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/02 04:31:42  waba
+    Add include to make it work with KDE CVS.
+
     Revision 1.5  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -56,10 +59,11 @@
 #include <qcombobox.h>
 #include <qradiobutton.h>
 #include <qpushbutton.h>
+#include <qlineedit.h>
+#include <qpopupmenu.h>
 
 #include <kfiledialog.h>
 #include <kapp.h>
-#include <kfontdialog.h>
 
 #include <kmessagebox.h>
 #include <kstddirs.h>
@@ -69,6 +73,8 @@
 #include <langset.h>
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
+
+#include <map>
 
 LangOptPage::LangOptPage
 (
@@ -83,9 +89,6 @@ LangOptPage::LangOptPage
         langset (_langset),
         lastPixName(lastPix)
 {
-  connect( r_spec, SIGNAL(clicked()), SLOT(slotSpecFont()) );
-  connect( r_stand, SIGNAL(clicked()), SLOT(slotStdFont()) );
-  connect( b_chooseFont, SIGNAL(clicked()), SLOT(slotChooseFont()) );
   connect( b_langDel, SIGNAL(clicked()), SLOT(slotDeleteClicked()) );
   connect( b_langNew, SIGNAL(clicked()), SLOT(slotNewClicked()) );
   connect( b_langPixmap, SIGNAL(clicked()), SLOT(slotPixmapClicked()) );
@@ -105,9 +108,6 @@ LangOptPage::LangOptPage
   b_langNew->setEnabled(false);
   enableLangWidgets();
 
-  r_stand->setChecked(true);
-  r_spec->setChecked(false);
-
   if (d_shortName->count() ) {
     d_shortName->setCurrentItem(0);
 
@@ -123,20 +123,6 @@ LangOptPage::LangOptPage
         b_langPixmap->setText (i18n("invalid"));
     }
 
-    QFont font;
-    bool specfont;
-    langset.Font(0, font, specfont);
-    if (specfont) {
-      e_font->setText (fontName (font));
-      r_stand->setChecked(false);
-      r_spec->setChecked(true);
-      slotSpecFont();
-    }
-    else {
-      r_stand->setChecked(true);
-      r_spec->setChecked(false);
-      slotStdFont();
-    }
   }
   else {
     b_langPixmap->setText (i18n("not selected"));
@@ -171,28 +157,12 @@ void LangOptPage::slotDeleteClicked()
     e_langLong->setText(langset.longId(d_shortName->currentItem()));
     e_shortName2->setText(langset.shortId2(d_shortName->currentItem()));
 
-    QFont font;
-    bool specfont;
-    langset.Font(d_shortName->currentItem(), font, specfont);
-    if (specfont) {
-      r_stand->setChecked(false);
-      r_spec->setChecked(true);
-      slotSpecFont();
-    }
-    else {
-      r_stand->setChecked(true);
-      r_spec->setChecked(false);
-      slotStdFont();
-    }
   }
   else {
     b_langPixmap->setText (i18n("not selected"));
     e_langLong->setText("");
     e_shortName2->setText("");
     b_langPixmap->setEnabled(false);
-    r_stand->setChecked(true);
-    r_spec->setChecked(false);
-    slotStdFont();
   }
   enableLangWidgets();
 }
@@ -202,9 +172,6 @@ void LangOptPage::enableLangWidgets()
 {
   bool enabled = d_shortName->count() != 0;
   b_langDel->setEnabled(enabled);
-  r_spec->setEnabled(enabled);
-  r_stand->setEnabled(enabled);
-  b_chooseFont->setEnabled(enabled);
   b_langPixmap->setEnabled(enabled);
   d_shortName->setEnabled(enabled);
   e_langLong->setEnabled(enabled);
@@ -253,7 +220,7 @@ void LangOptPage::slotShortActivated(const QString& _id)
   
      if (d_shortName->count() > (int) langset.size()
          && langset.size() < MAX_LANGSET ) {
-       langset.addSet (id, "", "", QFont(), false);
+       langset.addSet (id, "", "");
      }
    }
 
@@ -272,20 +239,6 @@ void LangOptPage::slotShortActivated(const QString& _id)
      }
      else
        b_langPixmap->setText (i18n("not selected"));
-
-     QFont font;
-     bool specfont;
-     langset.Font(d_shortName->currentItem(), font, specfont);
-     if (specfont) {
-       r_stand->setChecked(false);
-       r_spec->setChecked(true);
-       slotSpecFont();
-     }
-     else {
-       r_stand->setChecked(true);
-       r_spec->setChecked(false);
-       slotStdFont();
-     }
    }
 }
 
@@ -366,64 +319,97 @@ void LangOptPage::keyPressEvent( QKeyEvent *e )
 }
 
 
-QString LangOptPage::fontName(const QFont &font)
-{
-   return QString("%1 %2pt").arg(font.family()).arg(font.pointSize());
-}
-
-
-void LangOptPage::slotChooseFont()
-{
-   KFontDialog fdlg (0L, 0L, false, true);
-   int act_index = d_shortName->currentItem();
-   QFont font;
-   bool specfont;
-   langset.Font(act_index, font, specfont);
-   fdlg.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-   fdlg.setCaption(i18n("Choose font for language"));
-   fdlg.setFont(font);
-   if (fdlg.exec() == QDialog::Accepted ) {
-     font = fdlg.font();
-     font.setWeight(QFont::Normal);
-     font.setStrikeOut(false);
-     font.setUnderline(false);
-
-     langset.setFont (font, true, act_index);
-     e_font->setText (fontName (font));
-   }
-}
-
-
 LangSet LangOptPage::getLangSet () const
 {
   return langset;
 }
 
 
-void LangOptPage::slotStdFont()
+void LangOptPage::loadCountryData()
 {
-   int act_index = d_shortName->currentItem();
-   QFont font;
-   bool specfont;
-   langset.Font(act_index, font, specfont);
-   langset.setFont (font, false, act_index);
+  KLocale locale; // create default locale, works but don't know why
 
-   b_chooseFont->setEnabled(false);
-   e_font->setEnabled(false);
-   e_font->setText (""); 
+  // temperary use of our locale as the global locale
+  KLocale *lsave = KGlobal::_locale;
+  KGlobal::_locale = &locale;
+
+  globalLangs.clear();
+  QString sub = QString::fromLatin1("l10n/");
+  regionlist = KGlobal::dirs()->findAllResources("locale",
+                                 sub + QString::fromLatin1("*.desktop"));
+
+  typedef pair<QString, int> regionpair;
+  typedef map<QString, int> regionmap_t;
+
+  regionmap_t regionmap;
+  regionlist.sort();
+
+  for ( QStringList::ConstIterator it = regionlist.begin();
+    it != regionlist.end();
+    ++it )
+  {
+    QString tag = *it;
+    int index;
+
+    index = tag.findRev('/');
+    if (index != -1) tag = tag.mid(index + 1);
+
+    index = tag.findRev('.');
+    if (index != -1) tag.truncate(index);
+
+    KSimpleConfig entry(*it);
+    entry.setGroup(QString::fromLatin1("KCM Locale"));
+    QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
+
+    regionmap.insert(regionpair(tag, globalLangs.size()));
+    globalLangs.push_back(LangRef(name, LangSet()));
+  }
+
+  // add all languages to the list
+  countrylist = KGlobal::dirs()->findAllResources("locale",
+                               sub + QString::fromLatin1("*/entry.desktop"));
+  countrylist.sort();
+
+  for ( QStringList::ConstIterator it = countrylist.begin();
+    it != countrylist.end(); ++it )
+  {
+    KSimpleConfig entry(*it);
+    entry.setGroup(QString::fromLatin1("KCM Locale"));
+    QString name = entry.readEntry(QString::fromLatin1("Name"),
+                       i18n("without name"));
+    QString submenu = entry.readEntry(QString::fromLatin1("Region"));
+
+    QString tag = *it;
+    int index = tag.findRev('/');
+    tag.truncate(index);
+    index = tag.findRev('/');
+    tag = tag.mid(index+1);
+
+    QString pixmap = *it;
+    index = pixmap.findRev('/');
+    pixmap.truncate(index);
+    pixmap += "/flag.png";
+
+    regionmap_t::const_iterator it = regionmap.find(submenu);
+    if (it != regionmap.end())
+      globalLangs[(*it).second].langs.addSet (tag, name, pixmap);
+  }
+
+  int loffs = 0;
+  QPopupMenu *lang_m = new QPopupMenu();
+  for ( int i = 0; i < globalLangs.size(); ++i) {
+    QPopupMenu *regpop = new QPopupMenu();
+    lang_m->insertItem(globalLangs[i].region, regpop);
+    for ( int j = 0; j < globalLangs[i].langs.size(); ++j) {
+      regpop->insertItem(QPixmap(globalLangs[i].langs.PixMapFile(j)),
+                                 globalLangs[i].langs.longId(j),
+                                 (loffs << 16) | IDH_APPEND);
+      ++loffs;
+    }
+  }
+
+  // restore the old global locale
+  KGlobal::_locale = lsave;
 }
 
-
-void LangOptPage::slotSpecFont()
-{
-   int act_index = d_shortName->currentItem();
-   QFont font;
-   bool specfont;
-   langset.Font(act_index, font, specfont);
-   langset.setFont (font, true, act_index);
-
-   e_font->setEnabled(true);
-   e_font->setText (fontName(font));
-   b_chooseFont->setEnabled(true);
-}
 #include "LangOptPage.moc"

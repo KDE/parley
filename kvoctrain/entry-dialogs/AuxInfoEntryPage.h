@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -38,8 +41,6 @@
 
 #include "AuxInfoEntryPageForm.h"
 
-struct SpecFont_t;
-
 class AuxInfoEntryPage : public AuxInfoEntryPageForm
 {
     Q_OBJECT
@@ -48,7 +49,6 @@ public:
 
     AuxInfoEntryPage
     (
-        SpecFont_t *font,
         QDialog    *dlgbook,
         bool        multi_sel,
         QString     syno,

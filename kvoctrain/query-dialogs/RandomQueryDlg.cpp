@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.1  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -71,8 +74,6 @@
 
 
 RandomQueryDlg::RandomQueryDlg(
-                   SpecFont_t *transfont,
-                   SpecFont_t *orgfont,
                    QString org,
                    QString trans,
                    int entry,
@@ -112,17 +113,6 @@ RandomQueryDlg::RandomQueryDlg(
              q_cycle, q_num, q_start,
              exp, doc, mqtime, show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
-   if (transfont != 0 && transfont->specfont) {
-     transField->setFont (transfont->limitedFont() );
-     falseFriend->setFont (transfont->limitedFont() );
-   }
-
-   if (orgfont != 0 && orgfont->specfont) {
-     orgField->setFont (orgfont->limitedFont() );
-     remark->setFont (orgfont->limitedFont() );
-//     type->setFont (orgfont->limitedFont() );
-   }
 }
 
 

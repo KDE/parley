@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:22:00  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -58,7 +61,6 @@
 
 LangPropPage::LangPropPage
 (
-        SpecFont_t        *font,
         kvoctrainDoc      *_doc,
         QString            curr_lang,
         const Conjugation &conjug,
@@ -121,27 +123,6 @@ LangPropPage::LangPropPage
    thirdN_singular->setText (conjugations.pers3NaturalSingular (CONJ_PREFIX));
    thirdM_plural->setText (conjugations.pers3MalePlural (CONJ_PREFIX));
    thirdM_singular->setText (conjugations.pers3MaleSingular (CONJ_PREFIX));
-
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     first_plural->setFont (specfont);
-     first_singular->setFont (specfont);
-     second_singular->setFont (specfont);
-     second_plural->setFont (specfont);
-     thirdF_plural->setFont (specfont);
-     thirdF_singular->setFont (specfont);
-     thirdN_plural->setFont (specfont);
-     thirdN_singular->setFont (specfont);
-     thirdM_plural->setFont (specfont);
-     thirdM_singular->setFont (specfont);
-
-     def_female->setFont (specfont);
-     indef_female->setFont (specfont);
-     def_male->setFont (specfont);
-     indef_male->setFont (specfont);
-     def_natural->setFont (specfont);
-     indef_natural->setFont (specfont);
-   }
 
    bool common = conjugations.pers3SingularCommon(CONJ_PREFIX);
    thirdS_common->setChecked(common);

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.10  2001/11/01 11:26:12  arnold
     fixed some editing actions
 
@@ -211,8 +214,6 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
        (col < 0))
      return false;
 
-   SpecFont_t font = view->getTable()->getColFont(col);
-
    if (col < KV_EXTRA_COLS)
       return false;
 
@@ -245,8 +246,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
 
    bool hasSel = hasSelection();
 
-   EntryDlg edlg (&font,
-                  doc,
+   EntryDlg edlg (doc,
                   hasSel,
                   col==0,
                   doc->getEntry(row)->getGrade(col, false),
@@ -475,14 +475,7 @@ void kvoctrainApp::slotDocProps ()
 void kvoctrainApp::slotDocPropsLang ()
 {
    qtimer->stop();
-/*
-   int old_lessons = (int) lessons->count();
-   int old_types = (int) doc->getTypeDescr().size();
-   int old_tenses = (int) doc->getTenseDescr().size();
-   int old_usages = (int) doc->getUsageDescr().size();
-*/
    DocPropsLangDlg ldlg (doc, &langset);
-
    int res = ldlg.exec();
 
    if (res == QDialog::Accepted) {
@@ -491,27 +484,10 @@ void kvoctrainApp::slotDocPropsLang ()
         doc->setConjugation(i, ldlg.getConjugation(i) );
       }
 
-      for (int i = 0; i < doc->numLangs(); i++) {
-        QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
-        int idx = langset.indexShortId (id);
-        QFont font;
-        bool specfont;
-        if (idx >= 0) {
-          id = langset.longId (idx);
-          langset.Font (idx, font, specfont);
-        }
+      doc->setModified();
+      view->getTable()->updateContents();
+      setCaption(generateCaption(doc->getTitle()), doc->isModified());
 
-        if (idx >= 0)
-          langset.setFont (font, specfont, idx);
-        view->getTable()->setLangSet (&langset);
-
-        doc->setModified();
-        view->getTable()->updateContents();
-
-        setCaption(generateCaption(doc->getTitle()), doc->isModified());
-      }
-
-      QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
    }
 
@@ -577,9 +553,7 @@ void kvoctrainApp::slotAppendRow ()
 {
   int res;
   do {
-    SpecFont_t font = view->getTable()->getColFont(KV_COL_ORG);
-    EntryDlg edlg (&font,
-                   doc,
+    EntryDlg edlg (doc,
                    false, true,
                    0,
                    0,
@@ -917,7 +891,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       config->writeEntry(CFG_USECURRENT, useCurrent);
 
       view->getTable()->setFont(tablefont);
-      view->getTable()->setLangSet (&langset);
       view->setResizer (header_resizer);
       view->getTable()->updateContents();
 
@@ -1057,7 +1030,7 @@ void kvoctrainApp::slotViewStatusBar()
 }
 
 
-void kvoctrainApp::slotStatusMsg(const QString &text)
+void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
 {
 /*
   ///////////////////////////////////////////////////////////////////
@@ -1077,6 +1050,7 @@ void kvoctrainApp::invokeHelp( void )
 //   fall back to english if no native !
     kapp->invokeHTMLHelp("../en/kvoctrain/index.html", QString());
 }
+
 
 void kvoctrainApp::aboutToShowLearn()
 {
@@ -1126,22 +1100,13 @@ void kvoctrainApp::aboutToShowLearn()
       QPopupMenu *query_m =  new QPopupMenu();
       QPopupMenu *multiple_m =  new QPopupMenu();
 
-      vector<QString> names = main_names;
-
-      int accel;
-      for (int i = 0; i < (int) names.size(); i++) {
-        if (RowTable::createMenuNames("", names, i, accel)) {
-          names[i].insert (accel, "&");
-        }
-      }
-
       for (int i = 1; i < (int) doc->numLangs(); i++) {
         // show pixmap and long name if available
         int j;
         if((j = langset.indexShortId(doc->getIdent(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+names[i],
+          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+main_names[i],
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1159,7 +1124,7 @@ void kvoctrainApp::aboutToShowLearn()
         if((j = langset.indexShortId(doc->getIdent(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+names[i],
+          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from ")+main_names[i],
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1238,9 +1203,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
     voc_menu->removeItem (ID_APPEND_LANG);
     vector<QString> names;
 
-    // select one of the available languages for the column
     QPopupMenu *add_m = new QPopupMenu();
-    // hack: ID => header-id + language
 
     for (int i = 0; i < (int) langset.size(); i++) {
       if(langset.longId(i).isEmpty() )
@@ -1248,13 +1211,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
       else
         names.push_back(langset.longId(i));
     }
-  /*
-    int accel;
-    for (int i = 0; i < (int) names.size(); i++) {
-      if (RowTable::createMenuNames("", names, i, accel))
-        names[i].insert (accel, "&");
-    }
-  */
+
     for (int i = 0; i < (int) langset.size(); i++) {
       if(   !langset.PixMapFile(i).isEmpty()
          && !langset.longId(i).isEmpty() )
@@ -1264,14 +1221,15 @@ void kvoctrainApp::aboutToShowVocabulary() {
         add_m->insertItem(names[i],
           (i << 16) | IDH_APPEND);
     }
+    add_m->insertItem(add_m);
     add_m->insertItem(i18n("Another language"), (0xFF << 16) | IDH_APPEND);
 
     connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
     connect (add_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+
     voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/append-col.xpm")),
                    i18n("&Append language"), add_m, ID_APPEND_LANG,
                    pos);
-
 
     pos = voc_menu->indexOf(ID_REMOVE_LANG);
     voc_menu->removeItem (ID_REMOVE_LANG);
@@ -1283,13 +1241,6 @@ void kvoctrainApp::aboutToShowVocabulary() {
        names.push_back(langset.longId(i));
      else
        names.push_back(doc->getIdent(j));
-    }
-
-    int accel;
-    for (int i = 0; i < (int) names.size(); i++) {
-      if (RowTable::createMenuNames("", names, i, accel)) {
-        names[i].insert (accel, "&");
-      }
     }
 
     for (int i = 1; i < (int) doc->numLangs(); i++) {

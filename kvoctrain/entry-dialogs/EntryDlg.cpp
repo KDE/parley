@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/30 14:10:32  arnold
+    added property 'multiple choice'
+
     Revision 1.4  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -61,7 +64,6 @@
 
 EntryDlg::EntryDlg
 (
-        SpecFont_t   *font,
         kvoctrainDoc *doc,
         bool        multi_sel,
         bool        origin,
@@ -111,26 +113,26 @@ EntryDlg::EntryDlg
         if (origin) {
           from_page = 0;
           to_page = 0;
-          comm_page = new CommonEntryPage (font, this, doc, multi_sel, expr, lesson, lessonbox,
+          comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
                                            i18n("Original &expression in ")+s, querymanager);
-          aux_page = new AuxInfoEntryPage (font, this, multi_sel, synonym, antonym, example, rem, paraphrase);
-          mc_page = new MCEntryPage (font, this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
-          tense_page = new TenseEntryPage (font, this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
-          adj_page = new AdjEntryPage (font, this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
+          aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
+          mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
+          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
+          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
         }
         else {
-          comm_page = new CommonEntryPage (font, this, doc, multi_sel, expr, lesson, lessonbox,
+          comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
                                            i18n("Translated &expression in ")+s, querymanager);
-          aux_page = new AuxInfoEntryPage (font, this, multi_sel, synonym, antonym, example, rem, paraphrase);
-          mc_page = new MCEntryPage (font, this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
-          tense_page = new TenseEntryPage (font, this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
-          adj_page = new AdjEntryPage (font, this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
-          from_page = new FromToEntryPage (font, this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
+          aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
+          mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
+          tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
+          adj_page = new AdjEntryPage (this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
+          from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
                                            f_faux_ami,
                                            i18n("Properties from original"));
-          to_page   = new FromToEntryPage (font, this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
+          to_page   = new FromToEntryPage (this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
                                            t_faux_ami,
                                            i18n("Properties to original"));
         }

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/02 17:50:23  arnold
+    fixed sorting basically
+
     Revision 1.6  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -51,19 +54,18 @@
 #include "kvoctraindoc.h"
 #include "rowtable.h"
 #include "kv_resource.h"
-#include "langset.h"
 
 // delay im ms (microsoft seconds) before delayed popup pops up
 #define POPUP_DELAY 500
 
 
 RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
-                   const LangSet *ls, const GradeCols *gc,
+                   const GradeCols *gc,
                    QWidget *parent, const char *name )
 	: QTable( parent, name )
 {
 	init(flags);
-        setDoc (rows, ls, gc);
+        setDoc (rows, gc);
         setFocus();
         triggerSect = -1;
         delayTimer = new QTimer (this);
@@ -112,39 +114,7 @@ void RowTable::updateContents(int row, int col)
 }
 
 
-SpecFont_t RowTable::getColFont(int index)
-{
-  SpecFont_t font;
-  if (index < (int) m_colFonts.size() && index >= 0)
-    font = m_colFonts[index];
-  else
-    font.specfont = false;
-
-  return font;
-}
-
-
-void RowTable::setLangSet (const LangSet *ls)
-{
-  if (m_colFonts.size() == 0 || ls == 0 || m_rows == 0)
-    return;
-
-  int id = ls->indexShortId (m_rows->getOriginalIdent());
-  if (id >= 0) {
-    ls->Font(id, m_colFonts[KV_COL_ORG].font,
-            m_colFonts[KV_COL_ORG].specfont);
-  }
-
-  for (int i = KV_COL_TRANS; i < numCols(); i++) {
-    id = ls->indexShortId(m_rows->getIdent(i-KV_EXTRA_COLS));
-    if (id >= 0)
-      ls->Font(id, m_colFonts[i].font, m_colFonts[i].specfont);
-  }
-}
-
-
-void RowTable::setDoc(kvoctrainDoc *rows, const LangSet  *ls,
-                      const GradeCols *gc)
+void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
 {
   if (rows) {
      m_rows = rows;
@@ -157,7 +127,6 @@ void RowTable::setDoc(kvoctrainDoc *rows, const LangSet  *ls,
     setNumCols( 1+KV_EXTRA_COLS );
     m_rows = 0;
   }
-  setLangSet (ls);
   gradecols = gc;
 }
 
@@ -186,14 +155,6 @@ void RowTable::init(Flags flags)
 void RowTable::setNumCols( int cols )
 {
         cols = QMAX (1, cols );
-
-	int oldsize = m_colFonts.size();
-        m_colFonts.resize( cols );
-	for( int i=oldsize ; i<cols ; i++) {
-       	  m_colFonts[i].font = QFont();
-       	  m_colFonts[i].specfont = false;
-        }
-
 	QTable::setNumCols( cols );
 }
 
@@ -237,7 +198,7 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
        p->save();
        cell->paint( p, col, w, selected, m_rows,
                     numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn(),
-                    gradecols, &m_colFonts[col]);
+                    gradecols);
        p->restore();
     }
 
@@ -276,87 +237,6 @@ void RowTable::setCurrentRow( int row, int col )
 void RowTable::setSelectColumn( int col )
 {
         setCurrentRow(currentRow(), col);;
-}
-
-
-bool RowTable::createMenuNames (vector<QString> forbidden_labels,
-                                vector<QString> names,
-                                int index,
-                                int &accel_index)
-{
-   QString forbidden;
-   for (int i = 0; i < (int) forbidden_labels.size(); i++) {
-     int pos;
-     if ((pos = forbidden_labels[i].find('&'))>= 0)
-       if ((int) forbidden_labels[i].length() > pos+1)
-          forbidden += forbidden_labels[i][pos+1];
-   }
-   return createMenuNames (forbidden, names, index, accel_index);
-}
-
-
-bool RowTable::createMenuNames (QString forbidden_chars,
-                                vector<QString> names,
-                                int index,
-                                int &accel_index)
-{
-   accel_index = 0;
-   if (names.size() == 0
-       || index > (int) names.size())
-     return false;
-   else if (names.size() == 1)
-     return true;
-
-   QString pool = "0123456789abcdefghijklmnopqrstuvwxyz";
-   int pos;
-   forbidden_chars = forbidden_chars.lower()+"&";
-
-   for (int i = 0; i < (int) forbidden_chars.length(); i++)
-     if ((pos = pool.find(forbidden_chars[i])) >= 0)
-        pool.remove(pos, 1);
-
-   vector<int> key_index;
-   for (int i = 0; i < (int) names.size(); i++) {
-     names[i] = names[i].lower();
-     if (names[i].isEmpty() )
-       names[i] = " ";
-     key_index.push_back(0);
-   }
-
-   while (true) {
-
-     QString s;
-     for (int i = 0; i < (int) names.size(); i++) {
-       char c = names[i].local8Bit()[key_index[i]];
-// FIXME: problem with empty names and names with only invalid chars
-       if (s.find(c) < 0            // x different chars from pool
-           && pool.find(c) >= 0)
-         s += c;
-     }
-
-     // return when first possibility found
-     if (s.length() == names.size() ) {
-       if ((int) names[index].length() > key_index[index]) {
-         accel_index = key_index[index];
-         return true;
-       }
-     }
-
-   // count up
-     int n = 0;
-     bool over = false;
-     while (n < (int) names.size() && !over) {
-       if (++key_index[n] >= (int) names[n].length()) {
-         key_index[n] = 0;
-         if (n+1 >= (int) names.size() ) //tried all posiblities?
-           return false;
-       }
-       else
-         over = true;
-       n++;
-     }
-   }
-   return false;
 }
 
 

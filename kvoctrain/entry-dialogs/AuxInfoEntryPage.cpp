@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -51,7 +54,6 @@
 
 AuxInfoEntryPage::AuxInfoEntryPage
 (
-        SpecFont_t *font,
         QDialog    *dlgbook,
         bool        multi_sel,
         QString     syno,
@@ -108,14 +110,6 @@ AuxInfoEntryPage::AuxInfoEntryPage
 //        remark_line->setText ("");
         }
 
-        if (font != 0 && font->specfont) {
-          QFont specfont = font->limitedFont();
-          synonym_line ->setFont (specfont);
-          antonym_line ->setFont (specfont);
-          examp_line ->setFont (specfont);
-          remark_line ->setFont (specfont);
-          para_line ->setFont (specfont);
-        }
 }
 
 

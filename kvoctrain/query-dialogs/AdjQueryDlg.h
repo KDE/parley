@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.3  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -48,8 +51,6 @@
 #include "QueryDlgBase.h"
 #include <GrammerManager.h>
 
-struct SpecFont_t;
-
 class AdjQueryDlg : public AdjQueryDlgForm,
     		    public QueryDlgBase
 {
@@ -59,7 +60,6 @@ public:
 
     AdjQueryDlg
     (
-        SpecFont_t *font,
         QString type,
         int entry,
         int col,

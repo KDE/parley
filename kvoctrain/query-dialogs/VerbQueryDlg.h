@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/28 09:17:09  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.2  2001/10/17 21:41:16  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -46,8 +49,6 @@
 
 #include <GrammerManager.h>
 
-struct SpecFont_t;
-
 class VerbQueryDlg : public VerbQueryDlgForm,
                      public QueryDlgBase
 {
@@ -56,7 +57,6 @@ class VerbQueryDlg : public VerbQueryDlgForm,
 public:
 
 	VerbQueryDlg(
-                     SpecFont_t *font,
                      QString type,
                      int entry,
                      int col,

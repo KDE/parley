@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.5  2001/10/21 16:22:07  arnold
     removed all the 'charset' stuff
 
@@ -125,32 +128,20 @@ void kvoctrainApp::saveOptions(bool all)
       s.setNum (i);
       s.insert (0, CFG_L_SHORT);
       config->writeEntry(s, langset.shortId(i));
-  
+
       s.setNum (i);
       s.insert (0, CFG_L_SHORT2);
       config->writeEntry(s, langset.shortId2(i));
-  
+
       s.setNum (i);
       s.insert (0, CFG_L_LANG);
       config->writeEntry(s, langset.longId(i));
-  
+
       s.setNum (i);
       s.insert (0, CFG_L_PIXMAP);
       config->writeEntry(s, langset.PixMapFile(i));
-
-      QFont font;
-      bool stdfont;
-      langset.Font(i, font, stdfont);
-
-      s.setNum (i);
-      s.insert (0, CFG_L_FONT);
-      config->writeEntry(s, font);
-
-      s.setNum (i);
-      s.insert (0, CFG_L_STDFONT);
-      config->writeEntry(s, stdfont);
     }
-  
+
     config->setGroup(CFG_QUERYPROP);
     config->writeEntry(CFG_MAXTIME_PER, maxqueryTime);
     config->writeEntry(CFG_SHOWCOUNTER, showcounter);
@@ -273,23 +264,11 @@ void kvoctrainApp::readOptions()
     s.insert (0, CFG_L_PIXMAP);
     QString PixMapFile = config->readEntry(s, "");
 
-    s.setNum (i);
-    s.insert (0, CFG_L_FONT);
-    QFont font = config->readFontEntry(s);
-
-    s.setNum (i);
-    s.insert (0, CFG_L_STDFONT);
-    bool stdfont = config->readNumEntry(s);
-
-    langset.addSet (shortId, shortId2, longId, PixMapFile, font, stdfont);
+    langset.addSet (shortId, shortId2, longId, PixMapFile);
   }
 
   if (langset.size() == 0) {  // insert some language codes
-    langset.addSet ("en", i18n("English"), EA_KDEDATADIR("", "share/locale/l10n/en/flag.png"), QFont(), false);
-    langset.addSet ("de", i18n("German"),  EA_KDEDATADIR("", "share/locale/l10n/de/flag.png"), QFont(), false);
-    langset.addSet ("fr", i18n("French"),  EA_KDEDATADIR("", "share/locale/l10n/fr/flag.png"), QFont(), false);
-//    langset.addSet ("it", i18n("Italian"), EA_KDEDATADIR("", "share/locale/l10n/it/flag.png"), QFont(), false);
-//    langset.addSet ("sv", i18n("Swedish"), EA_KDEDATADIR("", "share/locale/l10n/sv/flag.png"), QFont(), false);
+    langset.addSet ("en", i18n("English"), EA_KDEDATADIR("", "share/locale/l10n/en/flag.png"));
   }
 
   config->setGroup(CFG_QUERYPROP);

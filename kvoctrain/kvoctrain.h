@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.9  2001/11/01 11:26:12  arnold
     fixed some editing actions
 
@@ -228,7 +231,6 @@ public:
   void slotTimeOutQuery();
   void slotTimeOutType();
   void slotTimeOutProperty();
-
   void slotTimeOutBackup();
 
   /** open a new application window */

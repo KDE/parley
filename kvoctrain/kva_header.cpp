@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 10:15:46  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -61,6 +64,8 @@
 #include "query-dialogs/SimpleQueryDlg.h"
 
 #include <kcombobox.h>
+#include <kglobal.h>
+#include <ksimpleconfig.h>
 
 void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 {
@@ -85,6 +90,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   QString curr_lang;
   QString id = header == 0 ? doc->getOriginalIdent()
                            : doc->getIdent(header);
+
   if (langset.indexShortId(id) >= 0)
     curr_lang = langset.longId(langset.indexShortId(id));
 
@@ -98,13 +104,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     else
       names.push_back(langset.longId(i));
   }
-/*
-  int accel;
-  for (int i = 0; i < (int) names.size(); i++) {
-    if (RowTable::createMenuNames("", names, i, accel))
-      names[i].insert (accel, "&");
-  }
-*/
+
   for (int i = 0; i < (int) langset.size(); i++) {
     if(   !langset.PixMapFile(i).isEmpty()
        && !langset.longId(i).isEmpty() )
@@ -117,9 +117,6 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
   connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-
-//  header_m = new KPopupMenu(i18n("Column menu for ")+curr_lang);
-//  header_m->insertSeparator();
   header_m = new QPopupMenu();
 
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
@@ -138,9 +135,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     header_m->insertSeparator();
     header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-    if (langset.size() != 0) {
-      header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
-    }
+    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
     header_m->insertSeparator();
     header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/reset.xpm")), i18n("Reset &grades"), (header << 16) | IDH_RESET_GRADE);
     header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/delete-col.xpm")), i18n("&Remove column"), (header << 16) | IDH_REMOVE );
@@ -156,13 +151,6 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
        names.push_back(langset.longId(i));
      else
        names.push_back(doc->getIdent(j));
-    }
-
-    int accel;
-    for (int i = 0; i < (int) names.size(); i++) {
-      if (RowTable::createMenuNames("", names, i, accel)) {
-        names[i].insert (accel, "&");
-      }
     }
 
     for (int i = 1; i < (int) doc->numLangs(); i++) {
@@ -209,10 +197,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
     header_m->insertSeparator();
     header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-
-    if (langset.size() != 0) {
-      header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
-    }
+    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
   }
 
   connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
@@ -240,6 +225,7 @@ void kvoctrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
 
   view->setHeaderProp (header1+KV_EXTRA_COLS, lid, pm);
 
+/*
   cout << "shp 1: " << (void*) doc << endl << flush;
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
@@ -247,19 +233,19 @@ void kvoctrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
           << EA_LOCAL(langset.PixMapFile(i)) << "  "
           << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
   }
-
+*/
   if (header1 > 0)
     doc->setIdent(header1, langset.shortId(id));
   else
     doc->setOriginalIdent(langset.shortId(id));
-
+/*
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
           << EA_LOCAL(langset.longId(i))  << "  "
           << EA_LOCAL(langset.PixMapFile(i)) << "  "
           << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
   }
-
+*/
   doc->setModified();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -598,5 +584,6 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
   }
   slotStatusMsg(IDS_DEFAULT);
 }
+
 
 #endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -64,7 +67,6 @@
 
 CommonEntryPage::CommonEntryPage
 (
-        SpecFont_t   *font,
         QDialog      *_dlgbook,
         kvoctrainDoc *_doc,
         bool          multi_sel,
@@ -184,9 +186,6 @@ CommonEntryPage::CommonEntryPage
     b_pronDlg->setPixmap(pron_pm);
     b_pronDlg->setEnabled (false);
 
-    if (font != 0 && font->specfont) {
-      expr_line->setFont (font->limitedFont() );
-    }
 }
 
 

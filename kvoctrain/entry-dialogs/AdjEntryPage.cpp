@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.4  2001/10/13 21:15:49  arnold
     tested and fixed changes from previous cvs updatecd
 
@@ -54,7 +57,6 @@
 
 AdjEntryPage::AdjEntryPage
 (
-        SpecFont_t        *font,
         QDialog           *dlgbook,
         bool               multi_sel,
         const Comparison  &comp,
@@ -87,13 +89,6 @@ AdjEntryPage::AdjEntryPage
      lev1Field->setText (comp.l1());
      lev2Field->setText (comp.l2());
      lev3Field->setText (comp.l3());
-   }
-
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     lev1Field->setFont (specfont);
-     lev2Field->setFont (specfont);
-     lev3Field->setFont (specfont);
    }
 }
 

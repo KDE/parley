@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -69,7 +72,6 @@
 
 ArtQueryDlg::ArtQueryDlg
 (
-        SpecFont_t *font,
         QString type,
         int entry,
         int col,
@@ -110,13 +112,6 @@ ArtQueryDlg::ArtQueryDlg
              exp, doc, articles, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     male->setFont (specfont);
-     rb_fem->setFont (specfont);
-     natural->setFont (specfont);
-     orgField->setFont (specfont);
-   }
 }
 
 

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 17:50:23  arnold
+    fixed sorting basically
+
     Revision 1.4  2001/11/01 11:26:12  arnold
     fixed some editing actions
 
@@ -50,8 +53,6 @@
 
 #include <qtable.h>
 
-#include "langset.h"
-
 class QPainter;
 class kvoctrainDoc;
 class kvoctrainExpr;
@@ -72,7 +73,7 @@ public:
 	enum Flags {SelectRow, SelectCell, SelectFixed};
 
 	RowTable(kvoctrainDoc *rows, Flags flags=SelectRow,
-                 const LangSet *ls=0, const GradeCols *gc = 0,
+                 const GradeCols *gc = 0,
                  QWidget *parent = NULL, const char *name = NULL );
 	~RowTable();
 
@@ -86,21 +87,8 @@ public:
 	void setSelectColumn( int col );
 
         void updateContents(int row = -1, int col = -1);
-        void setDoc(kvoctrainDoc *rows, const LangSet  *langset,
+        void setDoc(kvoctrainDoc *rows,
                     const GradeCols *gc = 0);
-
-        void setLangSet (const LangSet *ls);
-        SpecFont_t getColFont(int index);
-
-        static bool createMenuNames (QString forbidden_chars,
-                                     vector<QString> names,
-                                     int index,
-                                     int &accel_index);
-
-        static bool createMenuNames (vector<QString> forbidden_labels,
-                                     vector<QString> names,
-                                     int index,
-                                     int &accel_index);
 
 protected:
         void repaintOriginal();
@@ -129,7 +117,6 @@ protected:
 private:
 	void init(Flags flags);
 
-	vector<SpecFont_t> m_colFonts;
 	int                m_flags;
 	QTimer            *delayTimer;
         int                triggerSect;

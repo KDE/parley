@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/30 14:10:32  arnold
+    added property 'multiple choice'
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -63,7 +66,6 @@
 #include <kvoctraindoc.h>
 
 class LangSet;
-struct SpecFont_t;
 
 class EntryDlg : public QTabDialog
 {
@@ -73,7 +75,6 @@ public:
 
     EntryDlg
     (
-        SpecFont_t   *font,
         kvoctrainDoc *doc,
         bool        multi_sel,
         bool        origin,

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
+            <width>588</width>
             <height>480</height>
         </rect>
     </property>
@@ -149,7 +149,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Picture</string>
+                                <string>&amp;Picture:</string>
                             </property>
                         </widget>
                         <widget row="2"  column="1"  rowspan="1"  colspan="2" >
@@ -174,7 +174,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>Lang&amp;uage name</string>
+                                <string>Lang&amp;uage name:</string>
                             </property>
                         </widget>
                         <widget row="1"  column="0" >
@@ -185,7 +185,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>Alte&amp;rnative</string>
+                                <string>Alte&amp;rnative code:</string>
                             </property>
                         </widget>
                         <widget row="1"  column="1"  rowspan="1"  colspan="2" >
@@ -197,7 +197,7 @@
                             <property stdset="1">
                                 <name>sizePolicy</name>
                                 <sizepolicy>
-                                    <hsizetype>3</hsizetype>
+                                    <hsizetype>7</hsizetype>
                                     <vsizetype>0</vsizetype>
                                 </sizepolicy>
                             </property>
@@ -214,65 +214,6 @@
                                     <hsizetype>3</hsizetype>
                                     <vsizetype>0</vsizetype>
                                 </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string></string>
-                            </property>
-                        </widget>
-                        <widget row="5"  column="0" >
-                            <class>QRadioButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>r_spec</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>Spe&amp;cial font</string>
-                            </property>
-                        </widget>
-                        <widget row="5"  column="2" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>b_chooseFont</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>C&amp;hange</string>
-                            </property>
-                        </widget>
-                        <widget row="4"  column="0" >
-                            <class>QRadioButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>r_stand</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>S&amp;tandard font</string>
-                            </property>
-                        </widget>
-                        <widget row="5"  column="1" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>e_font</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShape</name>
-                                <enum>WinPanel</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShadow</name>
-                                <enum>Sunken</enum>
                             </property>
                             <property stdset="1">
                                 <name>text</name>
@@ -301,8 +242,5 @@
     <tabstop>e_shortName2</tabstop>
     <tabstop>e_langLong</tabstop>
     <tabstop>b_langPixmap</tabstop>
-    <tabstop>r_stand</tabstop>
-    <tabstop>r_spec</tabstop>
-    <tabstop>b_chooseFont</tabstop>
 </tabstops>
 </UI>

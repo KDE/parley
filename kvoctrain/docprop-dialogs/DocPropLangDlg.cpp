@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:22:00  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -85,13 +88,7 @@ DocPropsLangDlg::DocPropsLangDlg
 
     int idx = langset->indexShortId(s);
 
-    SpecFont_t font;
-    if (idx >= 0)
-      langset->Font(idx, font.font, font.specfont);
-    else
-      font.specfont = false; // FIXME:: use table font
-
-    LangPropPage* lpp = new LangPropPage (&font, doc, s,
+    LangPropPage* lpp = new LangPropPage (doc, s,
                                           doc->getConjugation(i),
                                           doc->getArticle(i)
 					  );
@@ -109,8 +106,6 @@ DocPropsLangDlg::DocPropsLangDlg
   int accel;
   for (int i = 0; i < (int) own_tabs.size(); i++) {
     QString s = own_tabs[i];
-    if (RowTable::createMenuNames(tabs, own_tabs, i, accel))
-      s.insert (accel, "&");
     QPixmap pix (own_pixmaps[i]);
     QIconSet iconset (pix);
     addTab (langPages[i], iconset, s);

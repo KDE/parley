@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/28 09:17:06  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.2  2001/10/17 21:41:16  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -55,7 +58,6 @@
 #include <qmultilineedit.h>
 
 class kvoctrainDoc;
-struct SpecFont_t;
 
 class RandomQueryDlg : public QueryDlgForm,
                        public QueryDlgBase
@@ -64,8 +66,6 @@ class RandomQueryDlg : public QueryDlgForm,
 
 public:
 	RandomQueryDlg(
-                 SpecFont_t *transfont,
-                 SpecFont_t *orgfont,
                  QString org,
                  QString trans,
                  int entry,

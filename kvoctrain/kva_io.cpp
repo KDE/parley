@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/21 15:28:43  arnold
+    removed all the 'charset' stuff
+
     Revision 1.4  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -425,7 +428,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
                 n = t;
                 t = "";
               }
-     
+
               t2.setNum (n.toInt()+usages_offset);
               t2.insert (0, UL_USER_USAGE);
               if (tg.length() == 0)
@@ -508,7 +511,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
               t2.insert (0, QM_USER_TYPE);
               new_expr.setType (i, t2);
             }
-    
+
             t = expr->getUsageLabel(lpos);
             if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
               QString t2;
@@ -548,7 +551,6 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
     addRecentFile (name);
   }
 
-  view->getTable()->setLangSet (&langset);
   view->setView(doc, langset, gradecols);
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);

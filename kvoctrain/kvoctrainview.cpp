@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/02 17:50:23  arnold
+    fixed sorting basically
+
     Revision 1.7  2001/11/02 10:17:48  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -141,7 +144,6 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
   if (r_ev == 0)
     return;
 
-  int shrink = 0;
   f_list->resize (r_ev->size());
   QHeader *header = lb_list->horizontalHeader();
   int remain = lb_list->clipper()->width();
@@ -237,7 +239,7 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
 {
  // set header
  the_doc = doc;
- lb_list->setDoc(the_doc, &ls, &gc);
+ lb_list->setDoc(the_doc, &gc);
  if (the_doc) {
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
@@ -296,9 +298,9 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
 ///////////////////////////////////////////////////////////
 
 kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
-                               const LangSet *ls, const GradeCols *gc,
+                               const LangSet */*ls*/, const GradeCols *gc,
                                QWidget *parent, const char *name )
-  : RowTable( doc, SelectCell, ls, gc, parent, name )
+  : RowTable( doc, SelectCell, gc, parent, name )
 {
   setNumCols( doc->numLangs() );
   setNumRows( doc->numEntries() );

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -63,7 +66,6 @@
 #include <kapp.h>
 
 SimpleQueryDlg::SimpleQueryDlg(
-        SpecFont_t *font,
         QueryType querytype,
         int entry,
         int column,
@@ -98,11 +100,6 @@ SimpleQueryDlg::SimpleQueryDlg(
              q_cycle, q_num, q_start,
              exp, doc, mqtime, showcounter, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
-   if (font != 0 && font->specfont) {
-     queryField->setFont (font->limitedFont() );
-     answerField->setFont (font->limitedFont() );
-   }
 }
 
 

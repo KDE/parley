@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -81,7 +84,7 @@ ViewOptPage::ViewOptPage
 
    setCaption( kapp->makeStdCaption(i18n("Document properties" )));
 
-   e_font->setText (LangOptPage::fontName (font));
+   e_font->setText (QString("%1 %2pt").arg(font.family()).arg(font.pointSize()));
 
 // l_lev0->setText (QueryManager::gradeStr("Not queried:");
    l_lev0->setBuddy(b_col0);
@@ -174,7 +177,7 @@ void ViewOptPage::slotChooseFont()
      font.setWeight(QFont::Normal);
      font.setStrikeOut(false);
      font.setUnderline(false);
-     e_font->setText (LangOptPage::fontName (font));
+     e_font->setText (QString("%1 %2pt").arg(font.family()).arg(font.pointSize()));
    }
 }
 

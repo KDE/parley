@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/02 10:18:08  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.5  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -67,7 +70,6 @@
 
 FromToEntryPage::FromToEntryPage
 (
-        SpecFont_t *font,
         QDialog    *_dlgbook,
         bool        multi_sel,
         grade_t     _grade,
@@ -194,11 +196,6 @@ FromToEntryPage::FromToEntryPage
         qcount_dirty = false;
         date_dirty = false;
         grade_dirty = false;
-
-        if (font != 0 && font->specfont) {
-          QFont specfont = font->limitedFont();
-          fauxami_line ->setFont (specfont);
-        }
 }
 
 

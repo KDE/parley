@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/22 06:39:21  waba
     Show a cute little marker to indicate marked entries.
     (Instead of using a bold type-face)
@@ -478,8 +481,7 @@ class kvoctrainExpr
    * @param selected         entry is selected (change color to white)
    */
   void paint( QPainter *painter, int col, int width, bool selected,
-              kvoctrainDoc *doc, int current_col, const GradeCols *gc,
-              const SpecFont_t *rowfont);
+              kvoctrainDoc *doc, int current_col, const GradeCols *gc);
 
   static void setPixmap(const QPixmap &pm);
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 10:15:46  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -186,8 +189,7 @@ void kvoctrainApp::slotTimeOutProperty()
   int nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
   kvoctrainExpr *exp = random_expr1[nr].exp;
 
-  SpecFont_t font = view->getTable()->getColFont(act_query_col+KV_EXTRA_COLS);
-  simpleQueryDlg = new SimpleQueryDlg (&font,
+  simpleQueryDlg = new SimpleQueryDlg (
                            queryType,
                            random_expr1[nr].nr,
                            act_query_col,
@@ -349,10 +351,9 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
   int nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
   kvoctrainExpr *exp = random_expr1[nr].exp;
 
-  SpecFont_t font = view->getTable()->getColFont(act_query_col+KV_EXTRA_COLS);
   int res = 0;
   if (queryType == QT_Conjugation) {
-    verbQueryDlg = new VerbQueryDlg (&font,
+    verbQueryDlg = new VerbQueryDlg (
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -376,7 +377,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
 
   }
   else if (queryType == QT_Articles) {
-    artQueryDlg = new ArtQueryDlg (&font,
+    artQueryDlg = new ArtQueryDlg (
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -398,7 +399,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
 
   }
   else if (queryType == QT_Comparison) {
-    adjQueryDlg = new AdjQueryDlg (&font,
+    adjQueryDlg = new AdjQueryDlg (
                              exp->getType(act_query_col),
                              random_expr1[nr].nr,
                              act_query_col,
@@ -633,12 +634,9 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
     q_grade = exp->getGrade(oindex, true);
   }
 
-  SpecFont_t transfont = view->getTable()->getColFont(tindex+KV_EXTRA_COLS);
-  SpecFont_t orgfont = view->getTable()->getColFont(oindex+KV_EXTRA_COLS);
   int res;
   if (queryType == QT_Random) {
-    randomQueryDlg = new RandomQueryDlg (&transfont,
-                             &orgfont,
+    randomQueryDlg = new RandomQueryDlg (
                              q_org,
                              q_trans,
                              random_expr1[nr].nr,
@@ -662,8 +660,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
 
   }
   else if (queryType == QT_Multiple) {
-    mcQueryDlg = new MCQueryDlg(&transfont,
-                             &orgfont,
+    mcQueryDlg = new MCQueryDlg(
                              q_org,
                              q_trans,
                              random_expr1[nr].nr,

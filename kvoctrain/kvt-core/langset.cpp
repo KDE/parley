@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -33,44 +36,46 @@
 #include <iostream.h>
 
 
-QFont SpecFont_t::limitedFont (int max, int min)
-{
-   QFont retfont = font;
-   if (retfont.pointSize() > max)
-     retfont.setPointSize(max);
-
-   if (retfont.pointSize() < min)
-     retfont.setPointSize(min);
-
-   return retfont;
-}
-
-
 void LangSet::addSet (QString _shortId, QString _longId,
-                      QString _PixMapFile, QFont font, bool specfont)
+                      QString _PixMapFile)
 {
   LangDef def;
   def.shortId = _shortId;
   def.shortId2 = "";
   def.longId = _longId;
   def.PixMapFile = _PixMapFile;
-  def.Font = font;
-  def.specfont = specfont;
   langs.push_back (def);
 }
 
 
 void LangSet::addSet (QString _shortId, QString _shortId2, QString _longId,
-                      QString _PixMapFile, QFont font, bool specfont)
+                      QString _PixMapFile)
 {
   LangDef def;
   def.shortId = _shortId;
   def.shortId2 = _shortId2;
   def.longId = _longId;
   def.PixMapFile = _PixMapFile;
-  def.Font = font;
-  def.specfont = specfont;
   langs.push_back (def);
+}
+
+
+void LangSet::appendSet(const LangSet &set)
+{
+  for (int i = 0; i < set.size(); ++i) {
+    LangDef def;
+    def.shortId = set.langs[i].shortId;
+    def.shortId2 = set.langs[i].shortId2;
+    def.longId = set.langs[i].longId;
+    def.PixMapFile = set.langs[i].PixMapFile;
+    langs.push_back (def);
+  }
+}
+
+
+void LangSet::clear()
+{
+  langs.clear();
 }
 
 
@@ -113,19 +118,6 @@ QString LangSet::PixMapFile (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].PixMapFile;
   return "";
-}
-
-
-void LangSet::Font (int index, QFont& font, bool &specfont) const
-{
-  if (index >= 0 && index < (int) langs.size() ) {
-    font = langs[index].Font;
-    specfont = langs[index].specfont;
-  }
-  else {
-    specfont = false;
-    font = QFont();
-  }
 }
 
 
@@ -218,13 +210,3 @@ void LangSet::setPixMapFile (QString s, int index)
   if (index < (int) langs.size() )
     langs[index].PixMapFile = s;
 }
-
-
-void LangSet::setFont (QFont f, bool specfont, int index)
-{
-  if (index < (int) langs.size() ) {
-    langs[index].Font = f;
-    langs[index].specfont = specfont;
-  }
-}
-

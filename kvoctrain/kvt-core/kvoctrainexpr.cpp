@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 10:18:31  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.4  2001/10/30 14:10:53  arnold
     added property 'multiple choice'
 
@@ -768,7 +771,7 @@ void kvoctrainExpr::setQueryDate (int idx, time_t date, bool rev_date)
 
 void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
                           kvoctrainDoc *voc_doc, int current_col,
-                          const GradeCols *gc, const SpecFont_t *rowfont)
+                          const GradeCols *gc)
 {
   QColor color = KV_NORM_COLOR;
 
@@ -809,21 +812,10 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
     }
   }
 
-  QFont old_font = p->font();
-
   if (cell_selected)
     p->setPen (EA_QtNS(white));
   else
     p->setPen (color);
-
-  QFont ft;
-
-  if (rowfont != 0 && rowfont->specfont)
-    ft = rowfont->font;
-  else
-    ft = p->font();
-
-  p->setFont(ft);
 
   int fontpos = ( p->fontMetrics().lineSpacing() - p->fontMetrics().lineSpacing())/2;
 
@@ -865,8 +857,6 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 		   getTranslation(col-KV_COL_ORG) );
       break;
   }
-  p->setFont(old_font);
-
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -35,15 +38,6 @@
 
 #include <vector.h>
 #include <qstring.h>
-#include <qfont.h>
-
-
-struct SpecFont_t {
-  QFont font;
-  bool  specfont;
-
-  QFont limitedFont (int max=24, int min=5);
-};
 
 
 class LangSet
@@ -52,17 +46,19 @@ class LangSet
 
    LangSet () {}
 
-   void addSet (QString shortId, QString longId, QString PixMapFile, QFont font, bool specfont);
-   void addSet (QString shortId, QString shortId2, QString longId, QString PixMapFile, QFont font, bool specfont);
+   void addSet (QString shortId, QString longId, QString PixMapFile);
+   void addSet (QString shortId, QString shortId2, QString longId, QString PixMapFile);
+
+   void appendSet(const LangSet &set);
 
    unsigned int size () const { return langs.size(); }
    void erase (int idx);
+   void clear ();
 
    QString shortId (int index) const;
    QString shortId2 (int index) const;
    QString longId (int index) const;
    QString PixMapFile (int index) const;
-   void Font (int index, QFont& font, bool &specfont) const;
 
    int indexShortId (QString shortId) const;
    int indexLongId (QString longId) const;
@@ -72,7 +68,6 @@ class LangSet
    void setShortId2 (QString shortId2, int index);
    void setLongId (QString longId, int index);
    void setPixMapFile (QString PixMapFile, int index);
-   void setFont (QFont font, bool specfont, int index);
 
    QString findShortId (const QString &longId)  const;
    QString findLongId  (const QString &shortId) const;
@@ -84,8 +79,6 @@ class LangSet
              shortId2,
              longId,
              PixMapFile;
-     QFont   Font;
-     bool    specfont;
    };
 
    vector<LangDef> langs;

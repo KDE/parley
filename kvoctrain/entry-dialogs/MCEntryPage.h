@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    $Id: $
+    $Id$
 
               dialog page for multiple choice suggestions
 
@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/30 14:53:34  arnold
+    added property 'multiple choice'
+
 
  ***************************************************************************/
 
@@ -35,8 +38,6 @@
 
 #include <MultipleChoice.h>
 
-struct SpecFont_t;
-
 class MCEntryPage : public MCEntryPageForm
 {
     Q_OBJECT
@@ -45,7 +46,6 @@ public:
 
     MCEntryPage
     (
-        SpecFont_t           *font,
         QDialog              *dlgbook,
         bool                  multi_sel,
         const MultipleChoice &mc,

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -52,7 +55,6 @@
 
 TenseEntryPage::TenseEntryPage
 (
-        SpecFont_t        *font,
         QDialog           *dlgbook,
         bool               multi_sel,
         const Conjugation &con_prefix,
@@ -127,19 +129,6 @@ TenseEntryPage::TenseEntryPage
    male_label->setBuddy(thirdM_singular);
    natural_label->setBuddy(thirdN_singular);
 
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     first_plural->setFont (specfont);
-     first_singular->setFont (specfont);
-     second_singular->setFont (specfont);
-     second_plural->setFont (specfont);
-     thirdF_plural->setFont (specfont);
-     thirdF_singular->setFont (specfont);
-     thirdM_singular->setFont (specfont);
-     thirdN_singular->setFont (specfont);
-     thirdN_plural->setFont (specfont);
-     thirdM_plural->setFont (specfont);
-   }
    updateFields();
 }
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.1  2001/10/05 15:44:04  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -56,8 +59,6 @@ public:
     QString getDefaultLang () const { return deflang; }
     LangSet getLangSet ()     const;
 
-    static QString fontName(const QFont &fnt);
-
 protected:
     void keyPressEvent( QKeyEvent *e );
 
@@ -72,13 +73,11 @@ protected slots:
     void slotShort2Changed(const QString&);
     void slotShortActivated(const QString&);
     void slotNewNameChanged(const QString&);
-    void slotSpecFont();
-    void slotStdFont();
-    void slotChooseFont();
 
 protected:
     bool setPixmap(QString pm);
     void enableLangWidgets();
+    void loadCountryData();
 
     QString     deflang;
     LangSet    &langset;
@@ -86,5 +85,15 @@ protected:
     QValidator *validator;
     QString    &lastPixName;
 
+    QStringList      countrylist;
+    QStringList      regionlist;
+
+    struct LangRef {
+      LangRef (const QString& reg, const LangSet &ls)
+        : region(reg), langs(ls) {}
+       QString region;
+       LangSet langs;
+    };
+    vector <LangRef> globalLangs;
 };
 #endif // LangOptPage_included

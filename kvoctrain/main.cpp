@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:15:46  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/21 15:28:43  arnold
     removed all the 'charset' stuff
 
@@ -65,7 +68,7 @@ static KCmdLineOptions options[] =
 static const char *description = 
 	i18n_noop("KDE Vocabulary trainer");
 
-static const char *version = "0.7.0";
+static const char *version = "0.8.0";
 
   KAboutData aboutData("kvoctrain",
                        "kvoctrain",

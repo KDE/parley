@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -71,8 +74,6 @@
 #define MAX_TRANS  5  // select one out of x
 
 MCQueryDlg::MCQueryDlg(
-                   SpecFont_t *transfont,
-                   SpecFont_t *orgfont,
                    QString org,
                    QString trans,
                    int entry,
@@ -115,21 +116,6 @@ MCQueryDlg::MCQueryDlg(
              q_cycle, q_num, q_start,
              exp, doc, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
-   if (transfont != 0 && transfont->specfont) {
-     QFont specfont = transfont->limitedFont();
-     trans1->setFont (specfont);
-     trans2->setFont (specfont);
-     trans3->setFont (specfont);
-     trans4->setFont (specfont);
-     trans5->setFont (specfont);
-   }
-
-   if (orgfont != 0 && orgfont->specfont) {
-     QFont specfont = orgfont->limitedFont();
-     orgField->setFont (specfont);
-   }
-
 }
 
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -67,7 +70,6 @@
 
 AdjQueryDlg::AdjQueryDlg
 (
-        SpecFont_t *font,
         QString type,
         int entry,
         int col,
@@ -113,13 +115,6 @@ AdjQueryDlg::AdjQueryDlg
              query_cycle, query_num, query_startnum,
              exp, doc, _comp, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     lev1Field->setFont (specfont);
-     lev2Field->setFont (specfont);
-     lev3Field->setFont (specfont);
-   }
 }
 
 

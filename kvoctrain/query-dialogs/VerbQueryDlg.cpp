@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/28 10:16:31  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.4  2001/10/28 09:17:09  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -71,7 +74,6 @@
 
 VerbQueryDlg::VerbQueryDlg
 (
-        SpecFont_t *font,
 	QString type,
         int entry,
         int col,
@@ -126,32 +128,6 @@ VerbQueryDlg::VerbQueryDlg
              query_cycle, query_num, query_startnum,
              exp, doc, prefix, conjug, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
-   if (font != 0 && font->specfont) {
-     QFont specfont = font->limitedFont();
-     p1sLabel->setFont (specfont);
-     p2sLabel->setFont (specfont);
-     p3sfLabel->setFont (specfont);
-     p3smLabel->setFont (specfont);
-     p3snLabel->setFont (specfont);
-  
-     p1pLabel->setFont (specfont);
-     p2pLabel->setFont (specfont);
-     p3pfLabel->setFont (specfont);
-     p3pmLabel->setFont (specfont);
-     p3pnLabel->setFont (specfont);
-
-     p3pmField->setFont (specfont);
-     p3snField->setFont (specfont);
-     p3pnField->setFont (specfont);
-     p3smField->setFont (specfont);
-     p3pfField->setFont (specfont);
-     p3sfField->setFont (specfont);
-     p2pField->setFont (specfont);
-     p2sField->setFont (specfont);
-     p1pField->setFont (specfont);
-     p1sField->setFont (specfont);
-  }
 
 }
 
