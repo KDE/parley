@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.19  2001/12/26 13:15:21  arnold
     fixed header buttons and kbd handling
 
@@ -110,6 +113,7 @@ public:
     QWidget *createEditor() const;
     void setContentFromEditor( QWidget *w );
     void setPosition(int row, int col);
+    void setDoc(kvoctrainDoc *doc);
 
 private:
     kvoctrainDoc       *kv_doc;
@@ -129,6 +133,12 @@ void KvoctrainItem::setPosition(int curr_row, int curr_col)
 {
    setRow(curr_row);
    setCol(curr_col);
+}
+
+
+void KvoctrainItem::setDoc(kvoctrainDoc *doc)
+{
+    kv_doc = doc;
 }
 
 
@@ -343,8 +353,10 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
     else
       defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, rows);
   }
-  else
+  else {
     defaultItem = d;
+    defaultItem->setDoc(rows);
+  }
   gradecols = gc;
 }
 
