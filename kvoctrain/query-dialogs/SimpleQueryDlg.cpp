@@ -341,7 +341,7 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
 }
 
 
-void SimpleQueryDlg::closeEvent (QCloseEvent*e)
+void SimpleQueryDlg::closeEvent (QCloseEvent*)
 {
    emit sigQueryChoice (StopIt);
 }

@@ -49,7 +49,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
         int           btime,
         LangSet      &_langset,
         QString      &lastPix,
-        QComboBox    *lessons,
+        QComboBox    *,
         QStringList  &paste_list,
         bool          useCurrent,
         kvoctrainDoc *doc,

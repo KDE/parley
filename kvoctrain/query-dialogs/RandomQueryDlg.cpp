@@ -337,7 +337,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
 }
 
 
-void RandomQueryDlg::closeEvent (QCloseEvent*e)
+void RandomQueryDlg::closeEvent (QCloseEvent*)
 {
    emit sigQueryChoice (StopIt);
 }

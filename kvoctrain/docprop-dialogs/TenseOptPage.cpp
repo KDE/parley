@@ -45,7 +45,7 @@ TenseOptPage::TenseOptPage
         kvoctrainDoc    *_doc,
         QWidget         *parent,
         const char      *name,
-        bool             modal
+        bool             
 )
 	:
 	TenseOptPageForm( parent, name )

@@ -106,7 +106,7 @@ void VerbQueryDlg::initFocus() const
 }
 
 
-void VerbQueryDlg::setQuery(QString type,
+void VerbQueryDlg::setQuery(QString,
                             int entry,
                             int col,
                             int q_cycle,
@@ -544,7 +544,7 @@ void VerbQueryDlg::slotP2pChanged(const QString&)
 }
 
 
-void VerbQueryDlg::closeEvent (QCloseEvent*e)
+void VerbQueryDlg::closeEvent (QCloseEvent*)
 {
    emit sigQueryChoice (StopIt);
 }

@@ -64,7 +64,7 @@ void GroupOptPage::initFocus() const
 }
 
 
-void GroupOptPage::slotGroupSelected(int item)
+void GroupOptPage::slotGroupSelected(int )
 {
 }
 

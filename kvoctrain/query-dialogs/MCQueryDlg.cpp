@@ -459,7 +459,7 @@ void MCQueryDlg::trans5clicked()
 }
 
 
-void MCQueryDlg::closeEvent (QCloseEvent*e)
+void MCQueryDlg::closeEvent (QCloseEvent*)
 {
    emit sigQueryChoice (StopIt);
 }

@@ -94,7 +94,7 @@ AdjQueryDlg::AdjQueryDlg
 }
 
 
-void AdjQueryDlg::setQuery(QString type,
+void AdjQueryDlg::setQuery(QString,
                            int entry,
                            int col,
                            int q_cycle,
@@ -318,7 +318,7 @@ void AdjQueryDlg::lev3Changed(const QString&)
 }
 
 
-void AdjQueryDlg::closeEvent (QCloseEvent*e)
+void AdjQueryDlg::closeEvent (QCloseEvent*)
 {
   emit sigQueryChoice(StopIt);
 }

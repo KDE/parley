@@ -87,7 +87,7 @@ QWidget *KvoctrainItem::createEditor() const
        case KV_COL_LESS: {
          QComboBox *lessonbox = new QComboBox(table()->viewport() );
          lessonbox->insertItem (kv_doc->getLessonDescr(0));
-         for (unsigned i = 1; i <= kv_doc->numLessons(); ++i)
+         for (unsigned i = 1; i <= (unsigned) kv_doc->numLessons(); ++i)
            lessonbox->insertItem (kv_doc->getLessonDescr(i));
          lessonbox->setCurrentItem(kv_doc->getEntry(row())->getLesson());
          return lessonbox;
@@ -329,7 +329,7 @@ void RowTable::setFont( const QFont &font)
 {
   QTable::setFont(font);
   horizontalHeader()->setFont(KGlobalSettings::generalFont());
-  for (unsigned i = 0; i < numRows(); ++i)
+  for (unsigned i = 0; i < (unsigned) numRows(); ++i)
     setRowHeight(i, fontMetrics().lineSpacing() );
 }
 
@@ -416,7 +416,7 @@ void RowTable::setSelectColumn( int col )
 }
 
 
-void RowTable::setItem ( int row, int col, QTableItem * item )
+void RowTable::setItem ( int row, int col, QTableItem * )
 {
   // ignore item!
   updateContents(row, col);
@@ -543,7 +543,7 @@ void RowTable::headerPressEvent(int sect)
 }
 
 
-void RowTable::headerReleaseEvent(int sect)
+void RowTable::headerReleaseEvent(int )
 {
    delayTimer->stop();
    if(triggerSect == -1 ) {             // long enough pressed for popup menu
