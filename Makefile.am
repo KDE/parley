@@ -25,7 +25,7 @@ install-data-local:
 	@echo " Please report bugs at"
 	@echo "     http://sourceforge.net/bugs/?group_id=9265"
 	@echo ""
-	@echo " Ewald Arnold <ewald@ewald-arnold.de> whishes you"
+	@echo " Ewald Arnold <ewald@ewald-arnold.de> wishes you"
 	@echo " a happy learning."
 	@echo "****************************************************"
 	@echo ""
