@@ -56,8 +56,7 @@ when you are trying to learn a foreign language.</para></abstract>
 <title>Introduction</title>
 
 <mediaobject>
-<imageobject><imagedata fileref="logo-kvoctrain.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="logo-kvoctrain.png" format="PNG" /></imageobject>
 </mediaobject>
 
 <sect1 id="what-is-it">
@@ -249,8 +248,7 @@ translations.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="mainview.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="mainview.png" format="PNG" /></imageobject>
 <textobject><phrase>[main view]</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -878,8 +876,8 @@ green check mark in the <link linkend="overview">main view</link>.</para>
 <menuchoice>
 <guimenu>File</guimenu>
 <guimenuitem>Open example file...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens an example file shipped with &kvoctrain;
-</action></para></listitem>
+<listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1210,8 +1208,6 @@ not already saved automatically.</para></listitem>
 <sect1 id="help-menu">
 <title>The <guimenu>Help</guimenu> menu</title>
 
-<!-- I'm assuming this app has or will very soon have a standard Help
- menu -->
 &help.menu.documentation;
 
 </sect1>
@@ -1377,8 +1373,7 @@ one of the other categories.</para></listitem>
 <screenshot>
 <screeninfo>Lesson descriptions dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="docprop2-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="docprop2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Lesson descriptions</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1429,8 +1424,7 @@ include them in the application as standard item.</para>
 <screenshot>
 <screeninfo>Document options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="docprop6-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="docprop6-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Document Options</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1468,8 +1462,7 @@ to create some conversion tool.
 <screenshot>
 <screeninfo>Language Properties dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="lang1-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="lang1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Language Elements</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1522,8 +1515,7 @@ equally.</para>
 <screenshot>
 <screeninfo>General options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options1-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="options1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>General Options Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1597,8 +1589,7 @@ the columns is done.</para></listitem>
 <screenshot>
 <screeninfo>Language options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options2-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Language options dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1690,8 +1681,7 @@ the language codes known in &kde; sorted by country whereas the second contains
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options3-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[view options dialog]</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1750,8 +1740,7 @@ according check box.</para></listitem>
 <screenshot>
 <screeninfo>Clipboard options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="options4-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Clipboard options dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1799,8 +1788,7 @@ be in the same language order as the current document.</para></listitem>
 <screenshot>
 <screeninfo>Option groups dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Option groups</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1851,8 +1839,7 @@ settings.</para></listitem>
 <screenshot>
 <screeninfo>General query options dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>General query options</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1905,8 +1892,7 @@ and stop the query.</para></listitem>
 <screenshot>
 <screeninfo>Query threshholds dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Query threshholds</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -1977,8 +1963,7 @@ want a property to be ignored, choose <guilabel>Dont care </guilabel>for it.</pa
 <screenshot>
 <screeninfo>Query blocking dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Query blocking</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2018,8 +2003,7 @@ on the previous dialog page are not taken into account.</para>
 <screenshot>
 <screeninfo>Entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry1-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2037,7 +2021,6 @@ on the previous dialog page are not taken into account.</para>
 <link linkend="docprop2-dlg">document
 properties page</link> where you can enter a new lesson.</para></listitem>
 </varlistentry>
-</variablelist>
 
 <varlistentry>
 <term><guilabel>Pronunciation</guilabel></term>
@@ -2084,7 +2067,8 @@ the usual usage of the expression, &eg; medicine or chemistry.</para>
 <link linkend="docprop3-dlg">document
 properties dialog</link> to enter a new usage label.</para></listitem>
 </varlistentry>
-    
+</variablelist>
+
 <sect3 id="pron-window">
 <title>Selecting from the international phonetic alphabet</title>
 
@@ -2094,8 +2078,7 @@ should look like this:</para>
 <screenshot>
 <screeninfo>IPA dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="pron-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="pron-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>International phonetic alphabet dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2117,8 +2100,7 @@ page are located here.</para>
 <screenshot>
 <screeninfo>Additional entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry2-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Additional entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2166,8 +2148,7 @@ information.</para></listitem>
 <screenshot>
 <screeninfo>Multiple choice dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry3-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Multiple choice dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2191,8 +2172,7 @@ You can enter up to five expressions for this purpose.</para>
 <screenshot>
 <screeninfo>Verb entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry4-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Verb entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2218,8 +2198,7 @@ already entered conjugations.</para>
 <screenshot>
 <screeninfo>Comparison entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry5-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry5-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Comparison entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2241,8 +2220,7 @@ one of the translations is given (=> to the original).</para>
 <screenshot>
 <screeninfo>From/to entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry6-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="entry6-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>From/to entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2305,8 +2283,7 @@ in random order with the following dialog box.</para>
 <screenshot>
 <screeninfo>Random query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Random query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2315,6 +2292,7 @@ in random order with the following dialog box.</para>
 you can enable to give you some hints. You have to enter the solution in the
 according text field.</para>
  
+<variablelist>
 <varlistentry>
 <term><guilabel>Show all</guilabel></term>
 <listitem><para>Shows the complete solution in the <guilabel>Translation</guilabel>
@@ -2347,7 +2325,6 @@ knew the answer correctly. This entry is then removed from the current<quote>bad
 list</quote>.</para></listitem>
 </varlistentry>
 
-<variablelist>
 <varlistentry>
 <term><guilabel>Edit</guilabel></term>
 <listitem><para>If you find a mistake with a query you can invoke the
@@ -2401,8 +2378,7 @@ step. If you did not know it, the grade is reset to level 1 which is worst.</par
 <screenshot>
 <screeninfo>Multiple choice query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="mu-query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="mu-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Multiple choice query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2424,8 +2400,7 @@ is added if available.</para>
 <screenshot>
 <screeninfo>Conjugation query dialog</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="verb-query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="verb-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Conjugation query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2443,8 +2418,7 @@ course you must know all of them for a successful result.</para>
 <screenshot>
 <screeninfo>Article query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="art-query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="art-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Article query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2462,8 +2436,7 @@ course you must know all of them for a successful result.</para>
 <screenshot>
 <screeninfo>Comparison query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="comp-query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="comp-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Comparison query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2481,8 +2454,7 @@ word is chosen randomly and you must complete the remaining two.</para>
 <screenshot>
 <screeninfo>Synonym query dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="syn-query-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="syn-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Synonym query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2507,8 +2479,7 @@ this is mainly useful when your expression is a single word.</para>
 <screenshot>
 <screeninfo>General document statistics screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="stat1-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="stat1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>General document statistics</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2531,8 +2502,7 @@ your document:</para>
 <screenshot>
 <screeninfo>Per language statistics screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="stat2-dlg.png" format="PNG"
- /></imageobject>
+<imageobject><imagedata fileref="stat2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>Per language statistics</phrase></textobject>
 </mediaobject>
 </screenshot>
@@ -2782,11 +2752,11 @@ Educational Projects</ulink></para></listitem>
 url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
 (Linux at school, German)</para></listitem>
 
-<listitem><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
-Reference and Introduction to Phonetic Symbols</ulink></listitem>
+<listitem><para><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
+Reference and Introduction to Phonetic Symbols</ulink></para></listitem>
 
-<listitem><ulink url="http://www2.arts.gla.ac.uk/IPA/ipa.html">
-The INTERNATIONAL PHONETIC ASSOCIATION</ulink></listitem>
+<listitem><para><ulink url="http://www2.arts.gla.ac.uk/IPA/ipa.html">
+The International Phonetic Association</ulink></para></listitem>
 
 </itemizedlist>
 
@@ -2859,10 +2829,10 @@ url="http://kvoctrain.sourceforge.net/download/download.html">kvoctrain
 homepage</ulink>.</para>
 
 <para><ulink url="http://www.kde.org/anoncvs.html">Anonymous
-CVS download</ulink> is also available.
+CVS download</ulink> is also available.</para>
 
-<important>Don't use the CVS code from the Sourceforge server because ths
-branch is obsolete.</important></para>
+<important><para>Don't use the CVS code from the Sourceforge server because ths
+branch is obsolete.</para></important>
 
 <para>You can find precompiled binaries as rpm packages
 for the SuSE distribution (of almost all KDE apps): <ulink
