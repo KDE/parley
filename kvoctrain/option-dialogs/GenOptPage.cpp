@@ -1,17 +1,15 @@
 /***************************************************************************
 
-    $Id$
-
                        general options dialog page
 
     -----------------------------------------------------------------------
 
     begin                : Thu Jun 3 18:08:56 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -53,7 +51,7 @@ GenOptPage::GenOptPage
 {
   setCaption(i18n("Options" ));
   resizer = res;
-  chk_autoapply->setChecked(_autoapply);
+
 
   group_resize->insert(hb_auto);
   group_resize->insert(hb_percent);
@@ -71,7 +69,9 @@ GenOptPage::GenOptPage
   btime = _btime;
   smart = _smart;
   autosaveopts = _autosaveopts;
+  autoapply = _autoapply;
 
+  chk_autoapply->setChecked(autoapply);
   kcfg_smartAppend->setChecked(smart);
   c_saveopt->setChecked(autosaveopts);
 
