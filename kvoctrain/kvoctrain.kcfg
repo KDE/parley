@@ -19,6 +19,10 @@
       <label>The number of entries per lesson</label>
       <default code="true">50</default>
     </entry>
+       <entry name="BackupTime" type="Int">
+      <label>Time interval between two automatic backups</label>
+      <default code="true">15*60*1000</default>
+    </entry>
    </group>
   <group name="QueryProperties">
    <entry name="Block" type="Bool">
@@ -48,10 +52,6 @@
         <entry name="MaxTimePer" type="Int">
       <label>Maximum time allowed per query</label>
       <default code="true">20*1000</default>
-    </entry>
-    <entry name="BackupTime" type="Int">
-      <label>Time interval between two automatic backups</label>
-      <default code="true">15*60*1000</default>
     </entry>
   </group>
 </kcfg>
