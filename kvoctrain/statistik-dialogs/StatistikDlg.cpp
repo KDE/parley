@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/19 17:52:18  arnold
+    replaced dialog files from qtarch by qtdesigner
+
     Revision 1.3  2001/10/17 21:41:16  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -84,7 +87,7 @@ StatistikDlg::StatistikDlg
     addTab( spage, s);
   }
 
-  setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

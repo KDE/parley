@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 10:18:58  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.4  2001/10/25 18:04:26  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -109,7 +112,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
 
-  setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

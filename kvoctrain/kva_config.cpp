@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/09 15:52:00  arnold
+    fixed error messages for correct i18n use
+
     Revision 1.7  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -69,7 +72,7 @@
 
 void kvoctrainApp::saveOptions(bool all)
 {
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
 
   config->setGroup(CFG_GENERAL);
   config->writeEntry(CFG_RECENT, recent_files);
@@ -162,7 +165,7 @@ void kvoctrainApp::readOptions()
 {
   ///////////////////////////////////////////////////////////////////
   // read the config file entries
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
 
   config->setGroup(CFG_QUERY_PRESETTING);
   int ls = config->readNumEntry(CFG_QP_NUM, 0);
@@ -250,10 +253,6 @@ void kvoctrainApp::readOptions()
     QString PixMapFile = config->readEntry(s, "");
 
     langset.addSet (shortId, shortId2, longId, PixMapFile);
-  }
-
-  if (langset.size() == 0) {  // insert some language codes
-    langset.addSet ("en", i18n("English"), EA_KDEDATADIR("", "share/locale/l10n/en/flag.png"));
   }
 
   config->setGroup(CFG_QUERYPROP);

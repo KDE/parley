@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/12 19:14:28  arnold
     switched dialog files to qt-designer
 
@@ -59,7 +63,7 @@ ProgressDlg::ProgressDlg
      setCaption (title);
      l_title->setText (doctitle);
      l_file->setText (filename);
-     setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+     setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
      progress-> setTotalSteps(100);
 }
 

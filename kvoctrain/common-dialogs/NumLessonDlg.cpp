@@ -14,6 +14,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -56,7 +63,7 @@ NumLessonDlg::NumLessonDlg
       QString s;
       s.setNum (input);
       e_title->setText(s);
-      setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+      setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
       setCaption( kapp->makeStdCaption(i18n("Assign lessons")));
 }
 

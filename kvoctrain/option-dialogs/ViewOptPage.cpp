@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 14:19:33  arnold
+    fixed and improved some dialog pages
+
     Revision 1.5  2001/11/09 10:40:46  arnold
     removed ability to display a different font for each column
 
@@ -164,7 +167,7 @@ void ViewOptPage::initFocus() const
 void ViewOptPage::slotChooseFont()
 {
    KFontDialog fdlg (0L, 0L, false, true);
-   fdlg.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+   fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    fdlg.setCaption(i18n("Choose table font"));
    fdlg.setFont(font);
    if (fdlg.exec() == QDialog::Accepted ) {

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/09 14:18:49  arnold
+    fixed and improved some dialog pages
+
     Revision 1.6  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -172,7 +175,7 @@ EntryDlg::EntryDlg
         if (to_page != 0)
           connect (this, SIGNAL(aboutToShow()), to_page, SLOT(initFocus() ));
 
-        setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+        setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

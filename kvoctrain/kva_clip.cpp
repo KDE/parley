@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/20 08:10:34  arnold
+    fixed copying multiple lines to clipboard
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -101,7 +104,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
 {
   vector<int> csv_order;
 
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
   config->setGroup(CFG_GENERAL);
   bool useCurrent = config->readBoolEntry(CFG_USECURRENT, false);
 

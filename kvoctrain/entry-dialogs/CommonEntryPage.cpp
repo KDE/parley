@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 14:18:49  arnold
+    fixed and improved some dialog pages
+
     Revision 1.5  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -165,7 +168,7 @@ CommonEntryPage::CommonEntryPage
 
     // list-win and pron-win have same size
     // buttons also have same size
-    QPixmap list_pm = QPixmap(EA_KDEDATADIR("", "kvoctrain/list-win.xpm"));
+    QPixmap list_pm = QPixmap(locate("data", "kvoctrain/list-win.xpm"));
     int x_add = b_LessDlg->width() - list_pm.width() +4;
     int y_add = b_LessDlg->height() - list_pm.height() +4;
 
@@ -183,7 +186,7 @@ CommonEntryPage::CommonEntryPage
                    list_pm.width()+x_add, list_pm.height()+y_add );
     b_usageDlg->setPixmap(list_pm);
 
-    QPixmap pron_pm = QPixmap(EA_KDEDATADIR("", "kvoctrain/pron-win.xpm"));
+    QPixmap pron_pm = QPixmap(locate("data", "kvoctrain/pron-win.xpm"));
     b_pronDlg->setGeometry( b_pronDlg->x()-2, b_pronDlg->y()-2,
                    pron_pm.width()+x_add, pron_pm.height()+y_add );
     b_pronDlg->setPixmap(pron_pm);
@@ -344,7 +347,7 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
   QTabDialog usageOpt(0, "", true);
-  usageOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  usageOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   usageOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined usage labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
@@ -375,7 +378,7 @@ void CommonEntryPage::invokeLessDlg()
 */
   int old_lessons = (int) lesson_box->count();
   QTabDialog lessOpt(0, "", true);
-  lessOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  lessOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
   lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit lesson names")));
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
@@ -406,7 +409,7 @@ void CommonEntryPage::invokeTypeDlg()
 
   int old_types = (int) doc->getTypeDescr().size();
   QTabDialog typeOpt(0, "", true);
-  typeOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  typeOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined types")));
   TypeOptPage *typeOptPage
     = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.8  2001/11/02 17:50:23  arnold
     fixed sorting basically
 
@@ -89,8 +92,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  the_doc = doc;
  parent = _parent;
  // read the config file entries
- setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
- KConfig *config = EA_KappGetConfig;
+ setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+ KConfig *config = KApplication::kApplication()->config();
 
  config->setGroup(CFG_WINPROP);
  parent->resize (config->readNumEntry(CFG_WINWIDTH, 520),
@@ -243,8 +246,8 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
  if (the_doc) {
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
-   setHeaderProp( KV_COL_LESS, i18n("Lesson"),  EA_KDEDATADIR("", "kvoctrain/lesson.xpm"));
-   setHeaderProp( KV_COL_MARK, QString::null,  EA_KDEDATADIR("", "kvoctrain/mark.png"));
+   setHeaderProp( KV_COL_LESS, i18n("Lesson"),  locate("data", "kvoctrain/lesson.xpm"));
+   setHeaderProp( KV_COL_MARK, QString::null,  locate("data", "kvoctrain/mark.png"));
    lb_list->setColumnWidth(KV_COL_MARK, 20);
 
    if (id < 0 )
@@ -271,7 +274,7 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
 kvoctrainView::~kvoctrainView()
 {
   // write the config file entries
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
   config->setGroup(CFG_WINPROP);
   config->writeEntry(CFG_WINWIDTH, width());
   config->writeEntry(CFG_WINHEIGHT, height());

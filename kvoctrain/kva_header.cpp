@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/28 10:15:46  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -74,8 +77,8 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
   if (header == KV_COL_LESS) {
     header_m = new QPopupMenu();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_num.xpm")), SORT_NUM, (header << 16) | IDH_SORT_COL_NUM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_num.xpm")), SORT_NUM, (header << 16) | IDH_SORT_COL_NUM);
 
     connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -120,25 +123,25 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   header_m = new QPopupMenu();
 
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-query.xpm")), i18n("Create random &query"), (header << 16) | IDH_START_QUERY);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), (header << 16) | IDH_START_MULTIPLE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create random &query"), (header << 16) | IDH_START_QUERY);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), (header << 16) | IDH_START_MULTIPLE);
     header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, doc->numLangs() > 1);
     header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  doc->numLangs() > 1);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-verb.xpm")), i18n("&Verbs"), (header << 16) | IDH_START_VERB);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-art.xpm")), i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-adj.xpm")), i18n("&Comparison forms"), (header << 16) | IDH_START_ADJECTIVE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("&Verbs"), (header << 16) | IDH_START_VERB);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison forms"), (header << 16) | IDH_START_ADJECTIVE);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-syno.xpm")), i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-anto.xpm")), i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/reset.xpm")), i18n("Reset &grades"), (header << 16) | IDH_RESET_GRADE);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/delete-col.xpm")), i18n("&Remove column"), (header << 16) | IDH_REMOVE );
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/reset.xpm")), i18n("Reset &grades"), (header << 16) | IDH_RESET_GRADE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove column"), (header << 16) | IDH_REMOVE );
   }
   else {
     QPopupMenu *query_m =  new QPopupMenu();
@@ -166,7 +169,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
         query_m->insertItem(i18n("from ")+doc->getIdent(i), (i << (16+8)) |  IDH_START_QUERY);
       }
     }
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-query.xpm")), i18n("Create random &query"), query_m, (3 << 16) | IDH_NULL);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create random &query"), query_m, (3 << 16) | IDH_NULL);
     connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
     for (int i = 1; i < (int) doc->numLangs(); i++) {
@@ -182,22 +185,22 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
         multiple_m->insertItem(i18n("from ")+doc->getIdent(i), (i << (16+8)) |  IDH_START_MULTIPLE);
       }
     }
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), multiple_m, (4 << 16) | IDH_NULL);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), multiple_m, (4 << 16) | IDH_NULL);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-verb.xpm")), i18n("Train &verbs"), (header << 16) | IDH_START_VERB);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-art.xpm")), i18n("&Article training"), (header << 16) | IDH_START_ARTICLE);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-adj.xpm")), i18n("&Comparison training"), (header << 16) | IDH_START_ADJECTIVE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("Train &verbs"), (header << 16) | IDH_START_VERB);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Article training"), (header << 16) | IDH_START_ARTICLE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison training"), (header << 16) | IDH_START_ADJECTIVE);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-syno.xpm")), i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-anto.xpm")), i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     connect (multiple_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
   }
 
   connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));

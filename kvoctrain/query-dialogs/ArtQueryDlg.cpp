@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:41:18  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/10/28 10:16:31  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -110,8 +113,7 @@ ArtQueryDlg::ArtQueryDlg
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, articles, mqtime, _show, type_to);
-   setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-
+   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

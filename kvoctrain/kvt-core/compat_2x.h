@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -47,9 +50,9 @@
 #include <kstddirs.h>
 #include  <kconfig.h>
 
-# define  EA_KappGetConfig           KApplication::kApplication()->config()
-# define  EA_KDEHTMLDIR(path, file)  locate( "html", file)
-# define  EA_KDEDATADIR(path, file)  locate( "data", file)
-# define  EA_I18N(context, msg)      i18n(context, msg)
+//# define  EA_KappGetConfig           KApplication::kApplication()->config()
+//# define  EA_KDEHTMLDIR(path, file)  locate( "html", file)
+//# define  EA_KDEDATADIR(path, file)  locate( "data", file)
+//# define  EA_I18N(context, msg)      i18n(context, msg)
 
 #endif  // COMPAT_2X_H

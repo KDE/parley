@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 14:18:28  arnold
+    fixed and improved some dialog pages
+
     Revision 1.5  2001/11/09 10:39:45  arnold
     removed ability to display a different font for each column
 
@@ -119,7 +122,7 @@ DocPropsLangDlg::DocPropsLangDlg
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
 
-  setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.6  2001/10/28 10:15:46  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -66,6 +69,7 @@
 #include <kstatusbar.h>
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
+#include <kiconloader.h>
 
 kvoctrainApp::kvoctrainApp(const QString &name)
 {
@@ -102,9 +106,9 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   initToolBar();
   initStatusBar();
   initView(name);
-  setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
+  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
   config->setGroup(CFG_GENERAL);
   int cc = config->readNumEntry(CFG_CUR_COL, KV_COL_ORG);
   int cr = config->readNumEntry(CFG_CUR_ROW, 0);
@@ -162,9 +166,10 @@ void kvoctrainApp::initMenuBar()
   ///////////////////////////////////////////////////////////////////
   // menuBar entry file_menu
   file_menu = new QPopupMenu();
-  file_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/new.xpm")),
+  file_menu->insertItem(QPixmap(locate("data", "kvoctrain/new.xpm")),
                         i18n("&New"), ID_FILE_NEW );
-  file_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/open.xpm")),
+
+  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Small),
                         i18n("&Open..."), ID_FILE_OPEN );
 
   recent_files_menu = new QPopupMenu();
@@ -180,13 +185,13 @@ void kvoctrainApp::initMenuBar()
   }
 
   file_menu->insertSeparator();
-  file_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/merge.xpm")), i18n("&Merge..."), ID_FILE_MERGE );
+  file_menu->insertItem(QPixmap(locate("data", "kvoctrain/merge.xpm")), i18n("&Merge..."), ID_FILE_MERGE );
 
   file_menu->insertSeparator();
-  file_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/save.xpm")) ,i18n("&Save"), ID_FILE_SAVE );
+  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small) ,i18n("&Save"), ID_FILE_SAVE );
   file_menu->insertItem(i18n("Save &as..."), ID_FILE_SAVE_AS );
   file_menu->insertSeparator();
-  file_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/exit.xpm")), i18n("E&xit"), ID_FILE_QUIT );
+  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("exit", KIcon::Small), i18n("E&xit"), ID_FILE_QUIT );
 
   // file_menu key accelerators
   file_menu->setAccel(CTRL+Key_O, ID_FILE_OPEN);
@@ -197,17 +202,17 @@ void kvoctrainApp::initMenuBar()
   ///////////////////////////////////////////////////////////////////
   // menuBar entry edit_menu
   edit_menu = new QPopupMenu();
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/copy.xpm")), i18n("&Copy"), ID_EDIT_COPY );
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/paste.xpm")), i18n("&Paste"), ID_EDIT_PASTE );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("editcopy", KIcon::Small), i18n("&Copy"), ID_EDIT_COPY );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("editpaste", KIcon::Small), i18n("&Paste"), ID_EDIT_PASTE );
   edit_menu->insertItem(i18n("Se&lect all"), ID_SEL_ALL );
   edit_menu->insertItem(i18n("Clear selec&tion"), ID_CLR_SEL );
   edit_menu->insertSeparator();
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/searchclip.xpm")), i18n("&Search from clipboard"), ID_SEARCH_CLIP );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("&Search from clipboard"), ID_SEARCH_CLIP );
   edit_menu->insertSeparator();
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/append-row.xpm")), i18n("&Append new entry"), ID_APPEND_ROW );
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/edit-row.xpm")), i18n("&Edit selected area"), ID_EDIT_ROW );
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/delete-row.xpm")), i18n("&Remove selected area"), ID_REMOVE_ROW );
-  edit_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/save.xpm")), i18n("Sa&ve selected area.."), ID_SAVE_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append new entry"), ID_APPEND_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit selected area"), ID_EDIT_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove selected area"), ID_REMOVE_ROW );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("Sa&ve selected area.."), ID_SAVE_ROW );
   connect( edit_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEdit()));
   connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
   clipboardChanged();
@@ -226,14 +231,14 @@ void kvoctrainApp::initMenuBar()
   ///////////////////////////////////////////////////////////////////
   // menuBar entry voc_menu
   voc_menu = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/statist.xpm")), i18n("Show &statistics"), ID_SHOW_STAT );
-  voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/rand-less.xpm")), i18n("Assign &lessons"), ID_RAND_CREATE );
-  voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/cleanup.xpm")), i18n("&Clean up"), ID_CLEANUP );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/statist.xpm")), i18n("Show &statistics"), ID_SHOW_STAT );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/rand-less.xpm")), i18n("Assign &lessons"), ID_RAND_CREATE );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/cleanup.xpm")), i18n("&Clean up"), ID_CLEANUP );
   voc_menu->insertSeparator();
   QPopupMenu *add_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/append-col.xpm")), i18n("&Append language"), add_m, ID_APPEND_LANG );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")), i18n("&Append language"), add_m, ID_APPEND_LANG );
   QPopupMenu *remove_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/delete-col.xpm")), i18n("&Remove language"), remove_m, ID_REMOVE_LANG);
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove language"), remove_m, ID_REMOVE_LANG);
 
   voc_menu->insertSeparator();
   voc_menu->insertItem(i18n("Document &properties"), ID_DOC_PROPS );
@@ -250,9 +255,9 @@ void kvoctrainApp::initMenuBar()
   opts_menu->insertItem(i18n("Tool&bar"), ID_VIEW_TOOLBAR);
   opts_menu->insertItem(i18n("St&atusbar"), ID_VIEW_STATUSBAR );
   opts_menu->insertSeparator();
-  opts_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/gen-conf.xpm")), i18n("General &options"), ID_GENERAL_OPTIONS );
-  opts_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/query-conf.xpm")), i18n("&Query options"), ID_QUERY_OPTIONS );
-  opts_menu->insertItem(QPixmap(EA_KDEDATADIR("", "kvoctrain/conf-save.xpm")),i18n("&Save options"), ID_SAVE_OPTIONS );
+  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/gen-conf.xpm")), i18n("General &options"), ID_GENERAL_OPTIONS );
+  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/query-conf.xpm")), i18n("&Query options"), ID_QUERY_OPTIONS );
+  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/conf-save.xpm")),i18n("&Save options"), ID_SAVE_OPTIONS );
   connect( opts_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowOptions()));
 
   opts_menu->setItemChecked(ID_VIEW_TOOLBAR, bViewToolbar);
@@ -300,8 +305,7 @@ void kvoctrainApp::initToolBar()
   // TOOLBAR
   // set toolBar() the current toolBar and the position due to config file
 
-
-  toolBar()->insertButton(QPixmap(EA_KDEDATADIR("", "kvoctrain/open.xpm")), ID_FILE_OPEN, true, i18n("Open File"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Toolbar), ID_FILE_OPEN, true, i18n("Open File"));
   file_open_popup= new QPopupMenu();
   QString accel;
   for (uint i = 0 ; i < recent_files.count(); i++){
@@ -314,10 +318,10 @@ void kvoctrainApp::initToolBar()
   connect(file_open_popup, SIGNAL(activated(int)), SLOT(slotFileOpenRecent(int)));
   toolBar()->setDelayedPopup(ID_FILE_OPEN, file_open_popup);
 
-  toolBar()->insertButton(QPixmap(EA_KDEDATADIR("", "kvoctrain/save.xpm")), ID_FILE_SAVE, true, i18n("Save File"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Toolbar), ID_FILE_SAVE, true, i18n("Save File"));
   toolBar()->insertSeparator();
-  toolBar()->insertButton(QPixmap(EA_KDEDATADIR("", "kvoctrain/copy.xpm")), ID_EDIT_COPY, true, i18n("Copy"));
-  toolBar()->insertButton(QPixmap(EA_KDEDATADIR("", "kvoctrain/paste.xpm")), ID_EDIT_PASTE, true, i18n("Paste"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("editcopy", KIcon::Toolbar), ID_EDIT_COPY, true, i18n("Copy"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("editpaste", KIcon::Toolbar), ID_EDIT_PASTE, true, i18n("Paste"));
 
   toolBar()->insertSeparator();
   QStrList slist;
@@ -328,7 +332,7 @@ void kvoctrainApp::initToolBar()
   lessons->setFocusPolicy(QWidget::NoFocus);
 
   toolBar()->insertSeparator();
-  toolBar()->insertButton(QPixmap(EA_KDEDATADIR("", "kvoctrain/searchclip.xpm")), ID_SEARCH_CLIP, true, i18n("Search from clipboard"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("find", KIcon::Toolbar), ID_SEARCH_CLIP, true, i18n("Search from clipboard"));
   toolBar()->insertLined ("", ID_TSEARCH, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)), true, i18n("Smart search"));
   searchLine = toolBar()->getLined (ID_TSEARCH);
   searchLine->setFocusPolicy(QWidget::ClickFocus);
@@ -406,7 +410,7 @@ void kvoctrainApp::initView(const QString &name)
                 kvoctrainApp::generateCaption("Loading vocabulary file"));
   pdlg->show();
 
-  kvoctrainExpr::setPixmap(QPixmap(EA_KDEDATADIR("", "kvoctrain/mark.png")));
+  kvoctrainExpr::setPixmap(QPixmap(locate("data", "kvoctrain/mark.png")));
 
   if (!name.isEmpty()) {
     doc = new kvoctrainDoc(this, name, separator, &paste_order);
@@ -446,7 +450,7 @@ void kvoctrainApp::initView(const QString &name)
   // prepare dock window in panel
   slotStatusMsg(IDS_DEFAULT);
 
-  KConfig *config = EA_KappGetConfig;
+  KConfig *config = KApplication::kApplication()->config();
   config->setGroup(CFG_GENERAL);
   bool first_time = config->readNumEntry(CFG_FIRST_TIME, 1);
   if (first_time)

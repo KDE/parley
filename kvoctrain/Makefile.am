@@ -25,20 +25,19 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs
 
-APPS_FILES = pics/exit.xpm pics/fonts.xpm pics/kde.xpm pics/stop.xpm \
+APPS_FILES = pics/stop.xpm \
  pics/16x16-kvoctrain.xpm pics/new.xpm pics/lesson.xpm\
  pics/list-win.xpm pics/pron-win.xpm pics/contents.xpm \
  pics/delete-row.xpm pics/append-row.xpm pics/edit-row.xpm \
- pics/run.xpm pics/copy.xpm pics/open.xpm pics/save.xpm pics/help.xpm pics/paste.xpm \
+ pics/run.xpm \
  pics/conf-save.xpm pics/gen-conf.xpm pics/query-conf.xpm \
  pics/flags.xpm pics/reset.xpm  pics/statist.xpm \
  pics/delete-col.xpm pics/append-col.xpm \
- pics/searchclip.xpm pics/rand-less.xpm \
+ pics/rand-less.xpm \
  pics/run-verb.xpm  pics/run-art.xpm  pics/run-adj.xpm \
  pics/run-query.xpm  pics/run-multi.xpm \
  pics/sort_alpha.xpm pics/sort_num.xpm pics/cleanup.xpm \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
- pics/sf-mail.xpm pics/sf-bugs.xpm pics/sf-home.xpm \
  pics/mark.png
  
 install-data-local:
@@ -72,10 +71,8 @@ uninstall-local:
           rm -f "$(kde_datadir)/kvoctrain/$$file"; \
 	done
 
-# set the include path for X, qt and KDE
 INCLUDES= -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core $(all_includes)
-# claim, which subdirectories you want to install
-# you can add here more. This one gets installed 
+
 bin_PROGRAMS = kvoctrain spotlight2kvtml
 
 # the library search path. 
