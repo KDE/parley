@@ -55,6 +55,8 @@ void kvoctrainApp::slotSmartSearchClip()
     searchLine->setFocus();
     searchLine->setText (searchstr);
   }
+  else
+    searchLine->setFocus();
 }
 
 

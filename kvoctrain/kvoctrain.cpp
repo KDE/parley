@@ -1108,12 +1108,14 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
   bool word_beg = controlActive;
   int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg, false);
   if (idx >= 0) {
+    view->getTable()->clearSelection();
     view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
     searchpos = idx+1;
   }
   else { // try again from beginning up to current pos
     int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg, false);
     if (idx >= 0) {
+      view->getTable()->clearSelection();
       view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
       searchpos = idx+1;
     }
