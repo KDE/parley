@@ -49,3 +49,4 @@ Terminal=0
 MimeType=text/x-kvtml
 #ServiceTypes=Browser/View
 #X-KDE-Library=libkorganizer
+Categories=QT;KDE;Education;X-KDE-Edu-Language
