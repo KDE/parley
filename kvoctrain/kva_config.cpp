@@ -35,6 +35,7 @@
 #include <kconfig.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
@@ -44,7 +45,7 @@ void kvoctrainApp::saveOptions(bool all)
   KConfig *config = KApplication::kApplication()->config();
 
   config->setGroup(CFG_GENERAL);
-  config->writePathEntry(CFG_RECENT, recent_files);
+  Prefs::setRecentFiles(recent_files);
   config->writeEntry(CFG_AUTOSAVEOPT, autosaveopts);
   config->writeEntry(CFG_ENTRYAUTOAPPLY, autoentryApply);
 
@@ -55,9 +56,10 @@ void kvoctrainApp::saveOptions(bool all)
   config->writeEntry(CFG_INLINE_EDIT, inline_edit);
 
   if (view) {
-    config->setGroup(CFG_GENERAL);
-    config->writeEntry(CFG_CUR_ROW, view->getTable()->currentRow());
-    config->writeEntry(CFG_CUR_COL, view->getTable()->currentColumn());
+    kdDebug() << "Rows: " << view->getTable()->currentRow() << endl;
+    Prefs::setCurrentRow(view->getTable()->currentRow());
+    Prefs::setCurrentCol(view->getTable()->currentColumn());
+    Prefs::writeConfig();
   }
 
   if (all || autosaveopts) {
@@ -199,7 +201,7 @@ void kvoctrainApp::readOptions()
   smartAppend = Prefs::smartAppend();
   header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
   // initialize the recent file list
-  recent_files = config->readPathListEntry(CFG_RECENT);
+  recent_files = Prefs::recentFiles();//config->readPathListEntry(CFG_RECENT);
   autosaveopts = config->readBoolEntry(CFG_AUTOSAVEOPT, true);
   autoentryApply = config->readBoolEntry(CFG_ENTRYAUTOAPPLY, false);
 

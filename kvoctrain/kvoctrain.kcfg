@@ -23,6 +23,14 @@
       <label>Time interval between two automatic backups</label>
       <default code="true">15*60*1000</default>
     </entry>
+    <entry name="CurrentCol" type="Int">
+      <label>Number of columns</label>
+      <default code="true">KV_COL_ORG</default>
+    </entry>
+    <entry name="CurrentRow" type="Int">
+      <label>Number of rows</label>
+      <default code="true">0</default>
+    </entry>
    </group>
   <group name="QueryProperties">
    <entry name="Block" type="Bool">
@@ -52,6 +60,11 @@
         <entry name="MaxTimePer" type="Int">
       <label>Maximum time allowed per query</label>
       <default code="true">20*1000</default>
+    </entry>
+  </group>
+  <group name="KFileDialog Settings">
+  <entry name="RecentFiles" type="StringList">
+      <label>Files recently opened</label>
     </entry>
   </group>
 </kcfg>

@@ -43,6 +43,8 @@
 #include <klocale.h>
 #include <kconfig.h>
 
+#include "prefs.h"
+
 kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 : KMainWindow(parent, name)
 {
@@ -83,10 +85,8 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   initView(name);
   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
-  KConfig *config = KApplication::kApplication()->config();
-  config->setGroup(CFG_GENERAL);
-  int cc = config->readNumEntry(CFG_CUR_COL, KV_COL_ORG);
-  int cr = config->readNumEntry(CFG_CUR_ROW, 0);
+  int cc = Prefs::currentCol();
+  int cr = Prefs::currentRow();
   if (cc <= KV_COL_LESS)
     cc = KV_COL_LESS+1;
 

@@ -1,5 +1,5 @@
 # Code generation options for kconfig_compiler
-IncludeFiles=kvt-core/QueryManager.h
+IncludeFiles=kvt-core/QueryManager.h,kvoctrain/kv_resource.h
 File=kvoctrain.kcfg
 ClassName=Prefs
 Singleton=true
