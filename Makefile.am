@@ -1,14 +1,10 @@
 SUBDIRS = kvoctrain 
 
-EXTRA_DIST = AUTHORS ChangeLog README README.develop \
-             TODO kvoctrain.kdevprj bug-report
+EXTRA_DIST = AUTHORS kvoctrain.kdevprj
 
 AUTOMAKE_OPTIONS = foreign 
 
 install-data-local:
-
-bug-rep:
-	./bug-report
 
 clean_distdir:
 	-rm -rf $(distdir)
