@@ -42,7 +42,7 @@
 using namespace std;
 
 #include <iostream>
-#include <fstream.h>
+#include <sstream>
 
 #include <float.h>
 
@@ -58,7 +58,7 @@ void kvoctrainDoc::setVersion (QString vers)
 }
 
 
-void kvoctrainDoc::getVersion(int &major, int &minor, int &patch)
+void kvoctrainDoc::getVersion(int &, int &, int &)
 {
 }
 
@@ -846,7 +846,7 @@ void kvoctrainDoc::setDocRemark(QString s)
 int kvoctrainDoc::search(QString substr, int id,
                          int first, int last,
                          bool word_start,
-                         bool tolerant)
+                         bool)
 {
    if (last >= numEntries()
        || last < 0 )
@@ -1034,7 +1034,7 @@ int kvoctrainDoc::cleanUp()
 
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      emit progressChanged(this, (ent_no / f_ent_percent) /2.0);
+      emit progressChanged(this, (int)((ent_no / f_ent_percent) / 2.0));
 
     bool equal = true;
     if (kve1->getOriginal() == kve2->getOriginal() ) {
@@ -1059,7 +1059,7 @@ int kvoctrainDoc::cleanUp()
   for (int i = (int) to_delete.size()-1; i >= 0; i--) {
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      emit progressChanged(this, 50 + ent_no / f_ent_percent / 2.0);
+      emit progressChanged(this, (int)(50 + ent_no / f_ent_percent / 2.0));
 #ifdef CLEAN_BUG
     sso << getEntry(to_delete[i])->getOriginal() << endl;
 #endif

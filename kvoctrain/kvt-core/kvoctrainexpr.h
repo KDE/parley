@@ -36,31 +36,24 @@
 #define KV_NORM_TEXT       I18N_NOOP("Not Queried Yet")
 
 #define KV_LEV1_GRADE      1
-#define KV_LEV1_COLOR      Qt::red
 #define KV_LEV1_TEXT       I18N_NOOP("Level 1")
 
 #define KV_LEV2_GRADE      2
-#define KV_LEV2_COLOR      Qt::red
 #define KV_LEV2_TEXT       I18N_NOOP("Level 2")
 
 #define KV_LEV3_GRADE      3
-#define KV_LEV3_COLOR      Qt::red
 #define KV_LEV3_TEXT       I18N_NOOP("Level 3")
 
 #define KV_LEV4_GRADE      4
-#define KV_LEV4_COLOR      Qt::red
 #define KV_LEV4_TEXT       I18N_NOOP("Level 4")
 
 #define KV_LEV5_GRADE      5
-#define KV_LEV5_COLOR      Qt::green
 #define KV_LEV5_TEXT       I18N_NOOP("Level 5")
 
 #define KV_LEV6_GRADE      6
-#define KV_LEV6_COLOR      Qt::green
 #define KV_LEV6_TEXT       I18N_NOOP("Level 6")
 
 #define KV_LEV7_GRADE      7
-#define KV_LEV7_COLOR      Qt::green
 #define KV_LEV7_TEXT       I18N_NOOP("Level 7")
 
 #include "langset.h"
