@@ -1182,199 +1182,189 @@ affected.</para></listitem>
 that belong only to the current document. They are stored with the
 vocabulary.</para>
 
-<sect1>General properties<p>
+<sect2 id="docprop1-dlg">
+<title>General properties</title>
 
-<label id="docprop1-dlg">
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="docprop1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="docprop1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[general document properties]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-  <figure>
-    <eps file="docprop1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="476"
-     SRC="docprop1-dlg.png"
-     ALT="[general document properties]">
-  </figure>
-
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Title</term>
-<listitem><para>
-    Here you enter the title of the document which is displayed in the
-    windows title bar.
+<term><guilabel>Title</guilabel></term>
+<listitem><para>Here you enter the title of the document which is
+displayed in the window's title bar.</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Authors</term>
-<listitem><para>
-    Usually you will enter your name in this field. If there are more than one
-    author you might use a line for each person.
+<term><guilabel>Authors</guilabel></term>
+<listitem><para>Usually you will enter your name in this field. If
+there are more than one author you might use a line for each
+person.</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>License</term>
-<listitem><para>
-    If you want to restrict (or better allow :-) the use of you vocabulary
-    you should enter the according permission or license here.
-
-    I recommend something like the Open Content License.
-
-<varlistentry>
-<term>Remark</term>
-<listitem><para>
-    This field should contain things that do not fall in one of the other
-    categories.
-
-</descrip>
-
-<p>&nbsp;<p>
-
-<sect1>Lesson descriptions<p>
-
-<label id="docprop2-dlg">
-  <figure>
-    <eps file="docprop2-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="476"
-     SRC="docprop2-dlg.png"
-     ALT="[lesson descriptions]">
-  </figure>
-
-Here you add, modify or delete descriptions of your lessons.
-
-The buttons should be pretty self explaining except "Clean up".
-This one will remove all lesson descriptions that are currently unused.
-
-<p>&nbsp;<p>
-
-<sect1>Type descriptions<p>
-
-Similar to the previous section about lessons you can edit
-our own expression types on this page.
-
-Since the dialog page looks the same as the one before there is no picture.
-
-<sect1>Tenses<p>
-
-On the next page you may add the tenses you need.
-
-<sect1>Usage labels<p>
-
-The last page provides the possibilty to enter your own usage labels.
-
-<p>
-
-<bf>If you think an important item is missing (from the above tense, type or
-usage label section)
-you should tell me, so I can include them in the application as standard
-item.</bf>
-
-<bf>This way all the other users can benefit.</bf>
-
-<p>&nbsp;<p>
-
-<sect1>Document options<p>
-
-<label id="docprop6-dlg">
-  <figure>
-    <eps file="docprop6-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="476"
-     SRC="docprop6-dlg.png"
-     ALT="[document options]">
-  </figure>
-
-<descrip>
-<varlistentry>
-<term>allow sorting</term>
-<listitem><para>
-    If you have created your vocabulary with a certain order,
-    you can use this checkbox to turn sorting off for this document.
-    A click in the header button will then no longer sort the row.
+<term><guilabel>License</guilabel></term>
+<listitem><para>If you want to restrict (or better allow :-) the use
+of you vocabulary you should enter the according permission or license
+here.</para>
+<para>I recommend something like the Open Content
+License.</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Encoding</term>
-<listitem><para>
-    Useful only on KDE2 systems. Here you choose the encoding used to store
-    the vocabulary files.
+<term><guilabel>Remark</guilabel></term>
+<listitem><para>This field should contain things that do not fall in
+one of the other categories.</para></listitem>
+</varlistentry>
+</variablelist>
 
-    Choose "8Bit" if possible. UTF-8 is only possible on QT2 based systems
-    and should therefor only used if really needed.
+</sect2>
 
-    Take also into account that you might have to select a certain charset in the
-    <link linkend="langprop-dlg">
-            name="language properties dialog"> if you want to share your vocabulary
-    files with others <bf/(and I really recommend that you do ;-)/.        
- 
-</descrip>
+<sect2 id="docprop2-dlg">
+<title>Lesson descriptions</title>
 
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="docprop2-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="docprop2-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[lesson descriptions]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-<p>&nbsp;<p>
+<para>Here you add, modify or delete descriptions of your lessons.</para>
 
+<para>The buttons should be pretty self explaining except <guibutton>Clean
+up</guibutton>. This one will remove all lesson descriptions that are
+currently unused.</para>
 
-<sect>Language properties dialog<p>
+</sect2>
 
-<label id="langprop-dlg">
+<sect2 id="docprop3-dlg">
+<title>Type descriptions</title>
 
-<label id="lang1-dlg">
-  <figure>
-    <eps file="lang1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="472"
-     SRC="lang1-dlg.png"
-     ALT="[language elements]">
-  </figure>
+<para>Similar to the previous section about lessons you can edit our
+own expression types on this page.</para>
 
-The following pages of this dialog determine for each language of this dictionary
-several elements that are used in the according queries.
+<para>Since the dialog page looks the same as the one before there is
+no picture.</para>
 
-<descrip>
+</sect2>
+
+<sect2 id="docprop4-dlg">
+<title>Tenses</title>
+
+<para>On the next page you may add the tenses you need.</para>
+
+</sect2>
+
+<sect2 id="docprop5-dlg">
+<title>Usage labels</title>
+
+<para>The last page provides the possibilty to enter your own usage labels.</para>
+
+<important><para>If you think an important item is missing (from the
+above tense, type or usage label section) you should tell me, so I can
+include them in the application as standard item.</para>
+<para>This way all the other users can benefit.</para></important>
+
+</sect2>
+
+<sect2 id="docprop6-dlg">
+<title>Document options</title>
+
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="docprop6-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="docprop6-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[document options]</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
 <varlistentry>
-<term>Article</term>
-<listitem><para>
-   For every gender you enter here the definite and the indefinite article.
-   If there is none for this language, you leave the field empty.
+<term><guilabel>allow sorting</guilabel></term>
+<listitem><para>If you have created your vocabulary with a certain order,
+you can use this checkbox to turn sorting off for this document. A click
+in the header button will then no longer sort the row.</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Conjugation</term>
-<listitem><para>
-   In the similar manner you input the descriptor for the 1., 2. and 3. person
-   each in plural and singular.
+<term><guilabel>Encoding</guilabel></term>
+<listitem><para>Useful only on KDE2 systems. Here you choose the encoding
+used to store the vocabulary files.</para>
+<para>Choose <guilabel>8Bit</guilabel> if possible. UTF-8 is only
+possible on QT2 based systems and should therefore only be used if
+really needed.</para>
+<para>Take also into account that you might have to select a
+certain charset in the <link linkend="langprop-dlg">language
+properties dialog</link> if you want to share your vocabulary
+files with others <emphasis>(and I really recommend that you do ;-)
+)</emphasis>.</para></listitem>
+</varlistentry>
+</variablelist>
 
-   Because many languages do not distinguish in the 3rd person plural,
-   there is a checkbox to determine this.
+</sect2>
+</sect1>
 
-   Leave the uneccessary fields empty.
+<sect1 id="langprop-dlg">
+<title>Language properties dialog</title>
+
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="lang1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="lang1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[language elements]</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>The following pages of this dialog determine for each language
+of this dictionary several elements that are used in the according
+queries.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Article</guilabel></term>
+<listitem><para>For every gender you enter here the definite and the
+indefinite article. If there is none for this language, you leave the
+field empty.</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Charset</term>
-<listitem><para>
-   Choose the font you need to display all your symbols. ISO8859-1 is most common,
-   at least on western european systems. Unicode is basically independent but most
-   fonts do not contain all available characters and Unicode is only supported
-   under QT2/KDE2.
+<term><guilabel>Conjugation</guilabel></term>
+<listitem><para>In the similar manner you input the descriptor for the
+1., 2. and 3. person each in plural and singular.</para>
+<para>Because many languages do not distinguish in the 3rd person plural,
+there is a checkbox to determine this.</para>
+<para>Leave the uneccessary fields empty.</para></listitem>
+</varlistentry>
 
-   If you try to load a file with a an unavailable charset on your system
-   yoou will be warned.
-</descrip>
+<varlistentry>
+<term><guilabel>Charset</guilabel></term>
+<listitem><para>Choose the font you need to display all your
+symbols. ISO8859-1 is most common, at least on western european
+systems. Unicode is basically independent but most fonts do not
+contain all available characters and Unicode is only supported under
+QT2/KDE2.</para>
+<para>If you try to load a file with a an unavailable charset on your
+system you will be warned.</para></listitem>
+</varlistentry>
+</variablelist>
 
+</sect1>
 
+<sect1 id="options-dlg">
+<title>Options dialog</title>
 
+<para>The settings of this dialog are global and affect all vocabularies
+equally.</para>
 
-<sect>Options dialog<p>
-
- The settings of this dialog are global and affect all vocabularies equally.
-<p>
-
-<label id="options-dlg">
-
+<sect2 id="options1-dlg">
 <sect1>General options<p>
-
-<label id="options1-dlg">
 
   <figure>
     <eps file="options1-dlg.eps">
@@ -1386,9 +1376,9 @@ several elements that are used in the according queries.
      ALT="[general options dialog]">
   </figure>
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Backup interval</term>
+<term><guilabel>Backup interval</guilabel></term>
 <listitem><para>
     &kvoctrain; will automatically save the document if it was modified
     after the period you enter here.
@@ -1397,9 +1387,11 @@ several elements that are used in the according queries.
     when quiting with modified data but saves the vocabulary without asking.
     
     A number of 0 stops this behaviour.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Smart appending</term>
+<term><guilabel>Smart appending</guilabel></term>
 <listitem><para>
     If this feature is activated, you will repeatedly be prompted with the
     entry dialog. After entering the first original you have to enter the corresponding
@@ -1412,15 +1404,19 @@ several elements that are used in the according queries.
     <p>
     The required lesson will have to be created in advance in the document
     settings.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>save options automatically</term>
+<term><guilabel>save options automatically</guilabel></term>
 <listitem><para>
     When check, all options are save upon termination of &kvoctrain;.
     Otherwise you have to select the according menu item.
+</para></listitem>
+</varlistentry>
  
 <varlistentry>
-<term>Column resizing</term>
+<term><guilabel>Column resizing</guilabel></term>
 <listitem><para>
     When you resize your main window it is convenient, if the columns resize
     automatically, too.
@@ -1438,7 +1434,9 @@ several elements that are used in the according queries.
     </itemizedlist>
 
     If the last button labeled "fixed" is set, no resizing is done.
- </descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 <p>&nbsp;<p>
 
@@ -1455,9 +1453,9 @@ several elements that are used in the according queries.
      ALT="[language options dialog]">
   </figure>
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Language code</term>
+<term><guilabel>Language code</guilabel></term>
 <listitem><para>
     Each column can be assigned a language. This is internally done
     with the usual
@@ -1468,44 +1466,56 @@ several elements that are used in the according queries.
     You should always use the correct codes to be able to share
     vocabularies with others. Merging vocabularies also relies on the
     correct language codes.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Alternative</term>
+<term><guilabel>Alternative</guilabel></term>
 <listitem><para>
     Sometimes it may be useful to have a second language code because
     some languages have the usual short code and one or two longer codes.
     For german for example it is common to use <literal>de</literal> but either <literal>deu</literal> or <literal>ger</literal>
     is also possible according to ISO639-2.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Language</term>
+<term><guilabel>Language</guilabel></term>
 <listitem><para>
     Here you can give the language code a descriptive name in your own
     language which is shown in the table header.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Picture in header</term>
+<term><guilabel>Picture in header</guilabel></term>
 <listitem><para>
     Additionally you can add a nice icon to your language which is shown in
     the table header button.
 
     KDE2 stores those pixmaps under 
     <tt>$KDEDIR/share/locale/l10n/[language-code]</tt>.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>New</term>
+<term><guilabel>New</guilabel></term>
 <listitem><para>
     After entering a new language in the according field, you use this button to
     append it to your list. After that you need to fill in the fields
     for the long name and the picture for the header button.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Delete</term>
+<term><guilabel>Delete</guilabel></term>
 <listitem><para>
     Deletes the currently selected language code in the list.
+</para></listitem>
+</varlistentry>
     
 
-</descrip>
+</variablelist>
 
 <p>&nbsp;<p>
 
@@ -1523,24 +1533,28 @@ several elements that are used in the according queries.
      ALT="[view options dialog]">
   </figure>
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Choose Font</term>
+<term><guilabel>Choose Font</guilabel></term>
 <listitem><para>
     Lets you choose a font to display the vocabulary.
  
     Take into account that not all fonts provide bold face which is
     used to represent the "selected" state.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Grade colors</term>
+<term><guilabel>Grade colors</guilabel></term>
 <listitem><para>
     Every grade can be assigned an individual color. For example I prefer
     green for best grade and red for worst.
 
     If you don't want any colors but just black on white, uncheck the
     according check box.
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 <p>&nbsp;<p>
 
@@ -1558,10 +1572,10 @@ several elements that are used in the according queries.
      ALT="[clipboard options dialog]">
   </figure>
 
-<descrip>
+<variablelist>
  <label id="cut-n-paste">
 <varlistentry>
-<term>Separator</term>
+<term><guilabel>Separator</guilabel></term>
 <listitem><para>
     This is a sequence of one ore more characters which divide
     the parts of an expression when transfering data from or to an other
@@ -1570,9 +1584,11 @@ several elements that are used in the according queries.
     The most common item is TAB which uses the tabulator character.
     Another possibility is to use the semicolon, if you want to export
     data to a database file in CSV format.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Order</term>
+<term><guilabel>Order</guilabel></term>
 <listitem><para>
     When pasting via the clipboard &kvoctrain; does not know which
     languages the different fields belong to and just would insert them
@@ -1584,13 +1600,17 @@ several elements that are used in the according queries.
     The buttons right to the list box move the current language up or down.
     "Skip" will insert a hole which means that the later calculated field
     from the clipboard is skipped.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Use current document</term>
+<term><guilabel>Use current document</guilabel></term>
 <listitem><para>
     When checked, the items in the clipboard are assumend to be in the same
     language order as the current document.
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 
 
@@ -1615,31 +1635,38 @@ For that reason all the settings of the pages of this dialog
 can be summarized under an arbitrarilly chosen name.
 You can store the settings and recall them whenever you want.
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Retain</term>
+<term><guilabel>Retain</guilabel></term>
 <listitem><para>
     Retains the settings of the other pages under the current name.
 
     Saving to disk is done as with all the other settings using the
     according menu item of the options menu.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Recall</term>
+<term><guilabel>Recall</guilabel></term>
 <listitem><para>
     Recalls the settings from the group in the list.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>New</term>
+<term><guilabel>New</guilabel></term>
 <listitem><para>
     Creates a new group with the current settings.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Delete</term>
+<term><guilabel>Delete</guilabel></term>
 <listitem><para>
     Removes the current group.
-    
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
  
 <p>&nbsp;<p>
 
@@ -1658,10 +1685,10 @@ You can store the settings and recall them whenever you want.
      ALT="[query options]">
   </figure>
 
-<descrip>
+<variablelist>
 
 <varlistentry>
-<term>Time per query</term>
+<term><guilabel>Time per query</guilabel></term>
 <listitem><para>
     Her you can influence the behaviour of &kvoctrain; when you don't know
     the answer in time.
@@ -1684,15 +1711,19 @@ You can store the settings and recall them whenever you want.
     If you exceeed the time limit several times in series
     &kvoctrain; will assume that there is currently no person in front 
     of the screen and stop the query.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Swap direction randomly</term>
+<term><guilabel>Swap direction randomly</guilabel></term>
 <listitem><para>
     Usually a query is only in one direction, depending on the column you
     used to start the query. With this checkbox you can determine, that the 
     directions are altered randomly.
+</para></listitem>
+</varlistentry>
 
-</descrip>
+</variablelist>
 
 <p>&nbsp;<p>
 
@@ -1714,9 +1745,9 @@ You can store the settings and recall them whenever you want.
 With this dialog you determine which entries are included in the next
 selection for random query.
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Lesson</term>
+<term><guilabel>Lesson</guilabel></term>
 <listitem><para>
     Designate which lessons to include or leave out. An arbitrary number of
     lessons can be selected for the calculation.
@@ -1726,35 +1757,47 @@ selection for random query.
 
     Starting with version 0.7.0 this is stored with the document instead
     of of storing globally.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Word type</term>
+<term><guilabel>Word type</guilabel></term>
 <listitem><para>
     Select the word type. &kvoctrain; does not pay any attention
     to subtypes.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Grade</term>
+<term><guilabel>Grade</guilabel></term>
 <listitem><para>
     The same for the grade.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Query count</term>
+<term><guilabel>Query count</guilabel></term>
 <listitem><para>
     Choose how often the selection must be queried.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Bad count</term>
+<term><guilabel>Bad count</guilabel></term>
 <listitem><para>
     The same for the amount of times the entry was not known.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Last query</term>
+<term><guilabel>Last query</guilabel></term>
 <listitem><para>
    Include queries before or within the given time span.
 
    Entries which have not been queried are always included if you choose <em/before/.
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 
 Entries are only included if all conditions are fulfilled. If you want a
@@ -1814,30 +1857,36 @@ and their properties.
      ALT="[entry dialog]">
   </figure>
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Expression</term>
+<term><guilabel>Expression</guilabel></term>
 <listitem><para>
     Contains your data.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Pronunciation</term>
+<term><guilabel>Pronunciation</guilabel></term>
 <listitem><para>
     In this field you can describe how the word is pronunciated.
     Currently this is only possible in ascii characters. Maybe I can find a 
     way to do this with the phonetic alphabet.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Type</term>
+<term><guilabel>Type</guilabel></term>
 <listitem><para>
     Lets you choose one of the predefined types for your expression.
     If you change the type for an entry, all the other entries
     in that row will be assigned the new type.
     
     See the table for all <htmlurl name="available types" url="#types">.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Subtype</term>
+<term><guilabel>Subtype</guilabel></term>
 <listitem><para>
     Some types also include subtypes. If there is no subtype available
     this field is disabled.
@@ -1848,25 +1897,30 @@ and their properties.
 
     The button right to this field invokes the according page from the
     document properties dialog so you can enter a new type immediately.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Usage label</term>
+<term><guilabel>Usage label</guilabel></term>
 <listitem><para>
     One or more usage labels can be selected to describe the usual usage
     of the expression, e.g. medicine or chemistry.
 
     The button on the right also invokes the document properties dialog
     to enter a new usage label.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Lesson</term>
+<term><guilabel>Lesson</guilabel></term>
 <listitem><para>
     Selects the desired lesson.
 
     The button on the right also invokes the document properties dialog
     to enter a new lesson.
-
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 <p>
    &nbsp;
@@ -1891,38 +1945,47 @@ For most of these fields there are special queries, too.
   </figure>
 
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Synonym</term>
+<term><guilabel>Synonym</guilabel></term>
 <listitem><para>
     Here you max enter words that have the same meaning as the expression.
     There is also a query type for this expression.    
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Antonym</term>
+<term><guilabel>Antonym</guilabel></term>
 <listitem><para>
     This is for words that have the opposite meaning.
     This field can also be queried.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Example</term>
+<term><guilabel>Example</guilabel></term>
 <listitem><para>
     Additionally you may enter here an example sentence for the expression.
     There is a simple query type which prompts you with the content of this 
     field but with dots instead of the word in question.
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Remark</term>
+<term><guilabel>Remark</guilabel></term>
 <listitem><para>
     This is an optional field to store additional information.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Paraphrase</term>
+<term><guilabel>Paraphrase</guilabel></term>
 <listitem><para>
     Here you may enter a description in different words. There is also
     a query type for this expression.
-
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 <p>
    &nbsp;
@@ -1995,23 +2058,27 @@ when querying the original when one of the translations is given(=> to).
      ALT="[from/to entry dialog]">
   </figure>
 
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Grade</term>
+<term><guilabel>Grade</guilabel></term>
 <listitem><para>
     Contains the current grade of this expression.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>False friend</term>
+<term><guilabel>False friend</guilabel></term>
 <listitem><para>
     Sometimes there is a word in a foreign language that looks like a word in
     your native language so you think it must have the same meaning. But in fact,
     it is not.
     
     Enter such words in this field.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Last query date</term>
+<term><guilabel>Last query date</guilabel></term>
 <listitem><para>
     This is the date when this entry was last queried.
     If it was never queried yet you only see "--".
@@ -2021,18 +2088,23 @@ when querying the original when one of the translations is given(=> to).
 
     Due to internal reasons, it is not possible to store dates
     before Aug. 12 1999 with every version of &kvoctrain;!
+</para></listitem>
+</varlistentry>
     
 <varlistentry>
-<term>Query count</term>
+<term><guilabel>Query count</guilabel></term>
 <listitem><para>
     Designates how often this entry was queried.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Bad count</term>
+<term><guilabel>Bad count</guilabel></term>
 <listitem><para>
     Shows the amount of times you did not know the right answer.
-
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 
 
@@ -2063,55 +2135,69 @@ list and shown in random order with the following dialog box.
  In the area with the original expression there are some properties
  you can enable  pageto give you some hints.
  
-<descrip>
+<variablelist>
 <varlistentry>
-<term>Edit</term>
+<term><guilabel>Edit</guilabel></term>
 <listitem><para>
    If you find a mistake with a query you can invoke the edit dialog
    immediately and correct it.
+</para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Show more</term>
+<term><guilabel>Show more</guilabel></term>
 <listitem><para>
    Each click on this button will show one more character of the solution
    to give you a little help.
+</para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Show all</term>
+<term><guilabel>Show all</guilabel></term>
 <listitem><para>
    Shows the complete solution in the "Translation" field.
+</para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Verify</term>
+<term><guilabel>Verify</guilabel></term>
 <listitem><para>
    Not implemented yet. Later version will take the content in the field
    translation and determine using a more or less smart algorithm if the
    answer was correct.
+</para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Don`t know</term>
+<term><guilabel>Don`t know</guilabel></term>
 <listitem><para>
    Tells &kvoctrain; that you did not know the answer and that
    the according grade must be lowered.
+</para></listitem>
+</varlistentry>
 
 <varlistentry>
-<term>Know it</term>
+<term><guilabel>Know it</guilabel></term>
 <listitem><para>
    Click this button to tell &kvoctrain; that you knew the answer
    correctly. This entry is then removed from the "bad list".
+</para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Stop query</term>
+<term><guilabel>Stop query</guilabel></term>
 <listitem><para>
    Stop query mode and show vocabulary again.
 </para></listitem>
+</varlistentry>
    
 <varlistentry>
-<term>Options</term>
+<term><guilabel>Options</guilabel></term>
 <listitem><para>
 Invoke <link linkend="options-dlg">options dialog</link>.
-   
-</descrip>
+</para></listitem>
+</varlistentry>
+</variablelist>
 
 In the right top corner you see two progress display that indicate the
 remaining time and the amount of queries to come.
@@ -2298,186 +2384,242 @@ in each lesson.
 A click with the right mouse button on one of the pixmaps will popup
 a menu which shows the exact numbers.
 
+</chapter>
 
+<chapter id="dictionaries">
+<title>Dictionaries</title>
 
-<sect>Dictionaries<p>
+<sect1 id="dictionary">
+<title>Contributing a dictionary to &kvoctrain;</title>
 
-<sect1>Contributing a dictionary to &kvoctrain; <p>
+<para>If you have created a dictionary, please send <ulink
+url="mailto:kvoctrain at ewald-arnold.de">me</ulink> an email and tell
+me about it. I plan to collect pointers to those files and include
+them in this handbook. If I find an electronic abode for &kvoctrain;
+with enough space, I might also store them there.</para>
 
-If you have created a dictionary, please send
-<htmlurl url="mailto:kvoctrain at ewald-arnold.de" name = "me"> an email and tell me about
-it. I plan to collect pointers to those files and include them in this
-handbook. If I find an electronic abode for &kvoctrain; with enough space,
-I might also store them there.
+<para>This also applies if you have dictionaries for <ulink
+url="http://ohfw65.hf.op.dlr.de/qvocab/qvocab.html">QVocab</ulink>
+or <ulink
+url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">KVoclearn</ulink>
+as I will write converters if necessary.</para>
 
-<label id="dictionary">
-
-This also applies if you have dictionaries for
-<htmlurl name="QVocab" url="http://ohfw65.hf.op.dlr.de/qvocab/qvocab.html">
-or
-<htmlurl name="KVoclearn" url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">
-as I will write converters if necessary.
-
-But please:
+<para>But please:
 <itemizedlist>
-  <listitem><para></para></listitem>
-  Don't send me any files before asking me.
-  Maybe someone else has already contributed this type of dictionary.
-  <listitem><para></para></listitem>
-  The dictionaries should have a reasonable good quality as I don't want
-  to do any revision.
-  <listitem><para></para></listitem>
-  If you modify existing vocabularies or create vocabularies based
-  on copyrighted material ask the author or for permission.
+<listitem><para>Don't send me any files before asking me. Maybe someone
+else has already contributed this type of dictionary.</para></listitem>
+<listitem><para>The dictionaries should have a reasonable good quality
+as I don't want to do any revision.</para></listitem>
+<listitem><para>If you modify existing vocabularies or create
+vocabularies based on copyrighted material ask the author or for
+permission.</para></listitem>
 </itemizedlist>
 
-<sect1>Other dictionaries on the web<p>
+</sect1>
+
+<sect1 id="other-dict">
+<title>Other dictionaries on the web</title>
 
 <itemizedlist>
- <listitem><para></para></listitem>
-  If you are german an want to learn english (or vice versa) you can download
-  the monthly vocabulary list provided by the german magazine 
-      <htmlurl name="Spotlight-Online"
-               url= "http://spotlight-online.de">.
-  <p>
-  The &kvoctrain; distribution contains an executable called <tt/spotlight2kvtml/
-  to transform those lists in kvtml format. The original files come as WinWord
-  DOC-files so you have to save them as <tt/ANSI-TXT/ files before starting conversion.
-  StarOffice can do this job.
-  <p>
-  <tt/spotlight2kvtml/ needs the 3 parameters filename, month and year
-  and produces a file in the same directory with the same name and the
-  extension "kvtml":
-  <p>
-     <verb>&nbsp;&nbsp;spotlight2kvtml&nbsp;0199.txt&nbsp;01&nbsp;99</verb>
-  <p>
-  
- <listitem><para></para></listitem>
-  Dictionaries in ascii-format are for example available at:
-   <itemizedlist>
-    <listitem><para></para></listitem>
-      <htmlurl name="ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz ~350kB"
-               url= "ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">
-    <listitem><para></para></listitem>
-      <htmlurl name="ftp.gwdg.de:/pub/misc/dictionary/english/words.gz ~1035kB"
-               url= "ftp.gwdg.de:/pub/misc/dictionary/english/words.gz">
-    <listitem><para></para></listitem>
-      <htmlurl name="ftp://sable.ox.ac.uk/pub/wordlists"
-               url= "ftp://sable.ox.ac.uk/pub/wordlists">
-   </itemizedlist>
-   <p>
-  
- <listitem><para></para></listitem>
-  Another possibility is it, to download the files that are available on the
-  homepage of
-  <htmlurl name="Vocabulary Trainer"
-            url="http://ourworld.compuserve.com/homepages/michael_m_werner/">.
-  These are in the "lex" format which can also be read by &kvoctrain;.
-  As I also implemented the ability to write this format, you should also send
-  your vocabulary files in "lex" format to the
-  <htmlurl url="mailto:100700.1757 at compuserve.com" name = "author">.
-</itemizedlist>
+<listitem><para>If you are German an want to learn English
+(or vice versa) you can download the monthly vocabulary
+list provided by the German magazine <ulink url=
+"http://spotlight-online.de">Spotlight-Online</ulink>.</para>
+<para>The &kvoctrain; distribution contains an executable called
+<command>spotlight2kvtml</command> to transform those lists
+in kvtml format. The original files come as WinWord DOC-files
+so you have to save them as ANSI-TXT files before starting
+conversion. <application>StarOffice</application> can do this job.</para>
+<para><command>spotlight2kvtml</command> needs the 3 parameters
+<param>filename</param>, <param>month</param> and <param>year</param>
+and produces a file in the same directory with the same name and the
+extension "kvtml":</para>
+<para><userinput><command>spotlight2kvtml</command>
+<replaceable><param>0199.txt</param>
+<param>01</param>
+<param>99</param></replaceable></userinput></para></listitem>
 
-<sect1>Translator applications<p>
-
-If you don't want to learn but just need quick translations of expressions
-in larger dictionaries you might be unhappy with &kvoctrain; if your
-computer doesn't have much memory and MHz. A 150000 entry file consumes
-about 60M and takes
-ages to load if your system starts swapping.
-
-In this case  you might want to try one of the following:
-
-   <itemizedlist>
-    <listitem><para></para></listitem>
-    <htmlurl name="kdsing (KDE)"
-             url= "http://www.franken.de/users/duffy1/rjakob/">.
-
-    <listitem><para></para></listitem>
-    <htmlurl name="steak/xsteak (console/X)"
-             url= "http://www.tm.informatik.uni-frankfurt.de/~razi/steak/steak.html">.
-
-    <listitem><para></para></listitem>
-    <htmlurl name="Ding (TCL)"
-             url= "http://www.tu-chemnitz.de/urz/netz/forms/ding.html">.
-
-    <listitem><para></para></listitem>
-    <htmlurl name="qtrans (QT 2.x)"
-             url= "http://digilander.iol.it/merlim/english.html">.
-
-   </itemizedlist>
-
-
-
-<sect>Known Bugs<p>
-
-<sect>Thanks<p>
-
-&kvoctrain; is my first gui application for <tt/KDE/, so I had to borrow
-a lot of code from other apps.
-The biggest chunks are taken from
- <itemizedlist>
-   <listitem><para> <tt/klpq/ (table functionality)</para></listitem>
-   <listitem><para> <tt/killustrator/ (xml reading/writing).</para></listitem>
-   <listitem><para> <tt/khexedit/ ("about" dialog).</para></listitem>
- </itemizedlist>
-
-I like to thank the following people personally for their contribution to
-kvoctrain:
-
+<listitem><para>Dictionaries in ascii-format are for example available at:
   <itemizedlist>
-    <listitem><para>Andrea Marconi for localisation to italian</para></listitem>
-    <listitem><para>Hans Kottman for localisation to french</para></listitem>
+  <listitem><para>
+  <ulink url="ftp://ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz</ulink> (approx. 350 kB)
+  </para></listitem>
+  <listitem><para>
+  <ulink url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.de/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
+  </para></listitem>
+  <listitem><para>
+  <ulink url="ftp://sable.ox.ac.uk/pub/wordlists">sable.ox.ac.uk/pub/wordlists</ulink>
+  </para></listitem>
   </itemizedlist>
-      
-I also want to thank all the other unamed persons for their constructive
-criticisim, suggestions or bug-reports.
+</para></listitem>
 
-<p>
+<listitem><para>Another possibility is to download
+the files that are available on the homepage of <ulink
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabulary
+Trainer</ulink>.</para>
+<para>These are in the "lex" format which can also be read by
+&kvoctrain;. As I also implemented the ability to write this format,
+you should also send your vocabulary files in "lex" format to the <ulink
+url="mailto:100700.1757@compuserve.com">author</ulink>.</para></listitem>
+</itemizedlist>
 
-<sect>Similar projects<p>
+</sect1>
 
- <label id="similar">
- 
-You might also want to try one of the other vocabulary trainers I have found
-(sorted by the time when I found them):
+<sect1 id="translators">
+<title>Translator applications</title>
 
- <itemizedlist>
-   <listitem><para><htmlurl name="QVocab (Qt)"     url="HTTP://www.daniel-graefe.de"></para></listitem>
-   <listitem><para><htmlurl name="Vokabel-Trainer (Tcl/Tk)" url="http://pweb.uunet.de/reger.kuen/"></para></listitem>
-   <listitem><para><htmlurl name="Lingvisto (X)"   url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz"></para></listitem>
-   <listitem><para><htmlurl name="KVoclearn (KDE)" url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html"></para></listitem>
-   <listitem><para><htmlurl name="SVT (console)"   url="http://members.tripod.com/~planetphil/svt.html"></para></listitem>
-   <listitem><para><htmlurl name="chflashcard (X11, for chinese)" url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz"></para></listitem>
-   <listitem><para><htmlurl name="Vocabulary Trainer (freeware, all flavours of windoze)" url="http://ourworld.compuserve.com/homepages/michael_m_werner/"></para></listitem>
-   <listitem><para><htmlurl name="Acavoc (Java)"  url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.html"></para></listitem>
-          The author of this application has also written a theoretical
-          article about learning languages (german only).
-   <listitem><para><htmlurl name="wordtrain (console)"    url="http://www.daniel-graefe.de/"></para></listitem>
-   <listitem><para><htmlurl name="vocabbox (Python QT/KDE)"    url="http://www.kiecza.de/daniel/linux/"></para></listitem>
-   <listitem><para><htmlurl name="DokVok(KDE)"     url="http://rcswww.urz.tu-dresden.de/~kossebau/dokvok"></para></listitem>
-   <listitem><para><htmlurl name="gvoc"      url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml"></para></listitem>
-   <listitem><para><htmlurl name="Wordlearn (Win32/commercial)"      url="http://www.brainsystems.com/english/index.html"></para></listitem>
-   <listitem><para><htmlurl name="GVoctra (DOS)"      url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html"></para></listitem>
-   <listitem><para><htmlurl name="Vocitrainer (Mac/Win32, commercial)"      url="http://a.die.supsi.ch/~gull/vocitrainer"></para></listitem>
- </itemizedlist>
+<para>If you don't want to learn but just need quick translations of
+expressions in larger dictionaries you might be unhappy with &kvoctrain;
+if your computer doesn't have much memory and MHz. A 150000 entry
+file consumes about 60M and takes ages to load if your system starts
+swapping.</para>
 
-<sect>Interresting links<p>
+<para>In this case  you might want to try one of the following:
+<itemizedlist>
+<listitem><para>
+<ulink url="http://www.franken.de/users/duffy1/rjakob/">kdsing</ulink> (KDE).
+</para></listitem>
 
- <label id="links">
+<listitem><para>
+<ulink url="http://www.tm.informatik.uni-frankfurt.de/~razi/steak/steak.html">steak/xsteak</ulink> (console/X).
+</para></listitem>
 
-Maybe you are interrested in the one or the other links I found while working
-on &kvoctrain;.
+<listitem><para>
+<ulink url="http://www.tu-chemnitz.de/urz/netz/forms/ding.html">Ding</ulink> (TCL).
+</para></listitem>
 
- <itemizedlist>
-   <listitem><para><htmlurl name="GNU Unifont Projekt" url="http://czyborra.com/unifont/"></para></listitem>
-   <listitem><para><htmlurl name="SEUL Educational Projects" url="http://www.seul.org/edu/projects.html"></para></listitem>
-   <listitem><para><htmlurl name="Linux Schulserver (Linux at school, german)" url="http://www.lxschule.de/txt/software.html"></para></listitem>
- </itemizedlist>
+<listitem><para>
+<ulink url="http://digilander.iol.it/merlim/english.html">qtrans</ulink> (QT 2.x).
+</para></listitem>
+</itemizedlist>
 
+</sect1>
+</chapter>
 
-<chapter id="credits">
+<chapter id="links">
+<title>Interesting links</title>
+
+<sect1 id="similar">
+<title>Similar projects</title>
+
+<para>You might also want to try one of the other vocabulary trainers
+I have found (sorted by the time when I found them):
+<itemizedlist>
+<listitem><para><ulink
+url="HTTP://www.daniel-graefe.de">QVocab</ulink> (Qt)</para></listitem>
+
+<listitem><para><ulink
+url="http://pweb.uunet.de/reger.kuen/">Vokabel-Trainer</ulink>
+(Tcl/Tk)</para></listitem>
+
+<listitem><para><ulink
+url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvisto</ulink>
+(X)</para></listitem>
+
+<listitem><para><ulink
+url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">KVoclearn</ulink>
+(KDE)</para></listitem>
+
+<listitem><para><ulink
+url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
+(console)</para></listitem>
+
+<listitem><para><ulink
+url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz">chflashcard</ulink>
+(X11, for Chinese)</para></listitem>
+
+<listitem><para><ulink
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabulary
+Trainer</ulink> (freeware, all flavours of Windows)</para></listitem>
+
+<listitem><para><ulink
+url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.html">Acavoc
+(Java)</ulink></para>
+<para>The author of this application has also written a theoretical
+article about learning languages (German only).</para></listitem>
+
+<listitem><para><ulink
+url="http://www.daniel-graefe.de/">wordtrain</ulink>
+(console)</para></listitem>
+
+<listitem><para><ulink
+url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> (Python
+QT/KDE)</para></listitem>
+
+<listitem><para><ulink
+url="http://rcswww.urz.tu-dresden.de/~kossebau/dokvok">DokVok</ulink>
+(KDE)</para></listitem>
+
+<listitem><para><ulink
+url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml">gvoc</ulink></para></listitem>
+
+<listitem><para><ulink
+url="http://www.brainsystems.com/english/index.html">Wordlearn
+(Win32/commercial)</ulink></para></listitem>
+
+<listitem><para><ulink
+url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">GVoctra
+(DOS)</ulink></para></listitem>
+
+<listitem><para><ulink
+url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer (Mac/Win32,
+commercial)</ulink></para></listitem>
+</itemizedlist></para>
+
+</sect1>
+
+<sect1 id="other-links">
+<title>Other interesting links</title>
+
+<para>Maybe you are interrested in the one or the other links I found
+while working on &kvoctrain;.
+<itemizedlist>
+<listitem><para><ulink url="http://czyborra.com/unifont/">GNU Unifont
+Projekt</ulink></para></listitem>
+
+<listitem><para><ulink url="http://www.seul.org/edu/projects.html">SEUL
+Educational Projects</ulink></para></listitem>
+
+<listitem><para><ulink
+url="http://www.lxschule.de/txt/software.html">Linux Schulserver</ulink>
+(Linux at school, German)</para></listitem>
+
+</itemizedlist></para>
+
+</sect1>
+</chapter>
+
+</chapter>
+
+<chapter id="credits-and-license">
 <title>Credits and License</title>
+
+<sect1 id="credits">
+<title>Thanks</title>
+
+<para>&kvoctrain; is my first GUI application for &kde;, so I had to
+borrow a lot of code from other applications. The biggest chunks are
+taken from
+<itemizedlist>
+<listitem><para>&klpq; (table functionality)</para></listitem>
+<listitem><para>&killustrator; (XML reading/writing).</para></listitem>
+<listitem><para>&khexedit; ("about" dialog).</para></listitem>
+</itemizedlist>
+
+<para>I'd like to thank the following people personally for their
+contribution to &kvoctrain;:
+<itemizedlist>
+<listitem><para>Andrea Marconi for localisation to Italian</para></listitem>
+<listitem><para>Hans Kottman for localisation to French</para></listitem>
+<listitem><para>Eric Bischoff for converting the documentation to
+DocBook</para></listitem>
+</itemizedlist>
+      
+<para>I also want to thank all the other unamed persons for their constructive
+criticisim, suggestions or bug-reports.</para>
+
+<sect1 id="copyright">
+<title>Copyright</title>
 
 <para>&kvoctrain; Program copyright 1999-2001 Ewald Arnold
 <email>ewald@ewald-arnold.de</email></para>
