@@ -4,12 +4,12 @@ $Date$
                   ----------------------------
 
 tofix now:
-  - resume query
-  - copy cell / copy row
   - percentage %x done in query-statusbar
   - spot2 utf8
+  - verbquerydlg
 
 todo post-release ?
+  - copy cell / copy row
   - modeless entry dialog, smart appending, initFocus beachten!
   - multiple selections in main view
   - translator hint iso names "language name aa:"
@@ -47,11 +47,6 @@ auch abzufragen). Gerade bei Sprachen wie Deutsch oder Hollaendisch kann
 das helfen, da die Pluralbildung nicht immer regelmaessig ist (z.B.
 Vokalverschiebung (D) Mann -> Maenner oder Unregelmaessigkeiten a la
 (NL) ei -> eieren).
-
-
-  einander naeher liegt. Was ich persoenlich jetzt toll faende, waere
-  die Moeglichkeit, mich bei Zufallsabfragen zufaellig in
-  Hollaendisch<->Deutsch *und* Hollaendisch<->Englisch abfragen zu
 
 - Artikelabfrage: Prima Idee! Allerdings faende ich es noch besser, wenn
   es die Moeglichkeit gaebe, Artikelabfrage und Zufallsabfrage zu

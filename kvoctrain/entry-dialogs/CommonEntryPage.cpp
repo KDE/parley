@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/06 15:57:07  arnold
+    fixed handling of usage labels
+
     Revision 1.14  2002/01/05 18:50:23  arnold
     fixed i18n() related isuses
 
@@ -150,6 +153,7 @@ CommonEntryPage::CommonEntryPage
 	connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
 	connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
+    usage_label->setTitle(i18n("usage (area) of a language", "&Usage Labels"));
     pronunce_line->setFont(ipafont);
     setLessonBox (lessbox, less);
     lesson_label->setBuddy(lesson_box);
@@ -416,7 +420,8 @@ void CommonEntryPage::invokeUsageDlg()
   int old_usages = (int) doc->getUsageDescr().size();
   QTabDialog usageOpt(0, "", true);
   usageOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-  usageOpt.setCaption (kapp->makeStdCaption(i18n("Edit User Defined Usage Labels")));
+  usageOpt.setCaption (kapp->makeStdCaption(i18n("usage (area) of a language",
+                                                 "Edit User Defined Usage Labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
   usageOpt.addTab( usageOptPage, _DocDlg_USAGES);

@@ -16,9 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/21 15:22:00  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************
 
@@ -32,7 +34,7 @@
  ***************************************************************************/
 
 #ifndef _DocDlg_TYPES
-#define _DocDlg_TYPES i18n("T&ypes")
+#define _DocDlg_TYPES i18n("word types","T&ypes")
 #endif
 
 #ifndef _DocDlg_TENSES
@@ -40,7 +42,7 @@
 #endif
 
 #ifndef _DocDlg_USAGES
-#define _DocDlg_USAGES i18n("&Usage")
+#define _DocDlg_USAGES i18n("usage (area) of a language", "&Usage")
 #endif
 
 #ifndef _DocDlg_TITLE

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/11 12:52:26  arnold
     fixed some strings for i18n purposes
 
@@ -39,7 +42,6 @@
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -59,6 +61,7 @@
 
 #include <qkeycode.h>
 #include <qlistbox.h>
+#include <qgroupbox.h>
 #include <qpushbutton.h>
 
 #include <kvoctraindoc.h>
@@ -80,7 +83,7 @@ UsageOptPage::UsageOptPage
 	UsageOptPageForm( parent, name ),
         doc(_doc)
 {
-	setCaption(i18n("Options" ));
+	usage_group->setTitle(i18n("usage (area) of a language", "Usage Labels" ));
 
 	connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
 	connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteUsage()) );
@@ -122,7 +125,8 @@ void UsageOptPage::slotUsageChosen(int index)
 
 void UsageOptPage::slotNewUsage()
 {
-     LessonInputDlg lid ("", i18n("Input usage description"), i18n("Usage description"));
+     LessonInputDlg lid ("", i18n("usage (area) of a language", "Input usage description"),
+                             i18n("usage (area) of a language", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
        int i = usageList->count()+1;
@@ -146,7 +150,8 @@ void UsageOptPage::slotModifyUsage()
      QString str = usageList->text (act_usage);
      int pos = str.find (USAGE_TAG);
      str.remove (0, pos+strlen (USAGE_TAG));
-     LessonInputDlg lid (str, i18n("Input usage description"), i18n("Usage description"));
+     LessonInputDlg lid (str, i18n("usage (area) of a language", "Input usage description"),
+                              i18n("usage (area) of a language", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;
        str2.setNum (act_usage+1);
@@ -190,8 +195,11 @@ void UsageOptPage::slotDeleteUsage()
          QString ul = exp->getUsageLabel(lang) + UL_USAGE_DIV;
          if (ul.find(t) >= 0 ) {
            KMessageBox::information(this,
-                     i18n("This user defined usage label could not be deleted\nbecause it is in use."),
-                     kapp->makeStdCaption(i18n("Deleting a usage label")));
+                     i18n("usage (area) of a language",
+                          "This user defined usage label could not be deleted\n"
+                          "because it is in use."),
+                     kapp->makeStdCaption(i18n("usage (area) of a language",
+                                               "Deleting a usage label")));
            return;
          }
        }

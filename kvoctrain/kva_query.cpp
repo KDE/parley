@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2002/01/04 17:28:51  arnold
+    fixed resuming a query
+
     Revision 1.15  2002/01/04 13:17:06  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -105,8 +108,8 @@ static const char * not_contain = I18N_NOOP(
     "There are currently no suitable expressions for the\n"
     "query you started.\n"
     "\n"
-    "Several reasons can cause this. Maybe you don't\n"
-    "have any expressions with the word type you requested.\n"
+    "Several reasons can cause this. Maybe you don't have\n"
+    "any expressions for the type of query you requested.\n"
     "\n"
     "Most likely you should adjust your settings referring to\n"
     "thresholds and blocking values in the query options.\n"
@@ -196,7 +199,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
   // something left to query ?
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                                not_contain,
+                                i18n(not_contain),
                                 kapp->makeStdCaption(i18n("Starting query"))))
        slotQueryOptions(2);
      return;
@@ -372,7 +375,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
   // something left to query ?
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                                not_contain,
+                                i18n(not_contain),
                                 kapp->makeStdCaption(i18n("Starting query"))))
        slotQueryOptions(2);
      return;
@@ -667,7 +670,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
   // something left to query ?
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                                not_contain,
+                                i18n(not_contain),
                                 kapp->makeStdCaption(i18n("Starting query"))))
        slotQueryOptions(2);
      return;

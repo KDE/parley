@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.31  2001/12/30 18:41:38  arnold
+    improved reaction upon 'empty' query selections
+
     Revision 1.30  2001/12/30 12:12:32  arnold
     fixed smart appending and editing
 
@@ -532,7 +535,8 @@ void kvoctrainApp::slotDocProps ()
       TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
       Conjugation::setTenseNames (new_tenseStr);
 
-      slotStatusMsg(i18n("updating usage label indices..."));
+      slotStatusMsg(i18n("usage (area) of a language",
+                         "updating usage label indices..."));
       UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
       UsageManager::setUsageNames (new_usageStr);
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/29 10:40:24  arnold
+    merged fixes from POST-branch
+
     Revision 1.3  2001/12/26 15:11:52  mueller
     CVSSILINT: fixincludes
 
@@ -190,7 +193,6 @@ void Conjugation::setTenseNames (vector<QString> names)
 
 QString Conjugation::getName (const QString &abbrev)
 {
-
    if (abbrev.length() >= 2 && abbrev[0] == QString(UL_USER_TENSE)) {
      QString s = abbrev;
      s.remove(0, 1);
@@ -203,8 +205,9 @@ QString Conjugation::getName (const QString &abbrev)
    }
    else {
      for (int i = 0; i < (int) numInternalNames(); i++)
-       if (names[i].abbrev == abbrev)
-         return names[i].name;
+       if (names[i].abbrev == abbrev) {
+         return i18n(names[i].name);
+       }
    }
 
    return "";
@@ -214,7 +217,7 @@ QString Conjugation::getName (const QString &abbrev)
 QString Conjugation::getName (int idx)
 {
    if (idx < numInternalNames() )
-     return names[idx].name;
+     return i18n(names[idx].name);
 
    else if (idx < numTenses() )
      return userTenses[idx-numInternalNames()];

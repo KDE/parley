@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>564</width>
+            <width>560</width>
             <height>390</height>
         </rect>
     </property>
@@ -311,7 +311,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>&amp;Usage labels</string>
+                        <string>-</string>
                     </property>
                     <grid>
                         <property stdset="1">
