@@ -1,6 +1,5 @@
 /***************************************************************************
 
-    $Id$
 
                    maintain a kvoctrain document
 
@@ -85,7 +84,7 @@ void kvoctrainDoc::Init ()
   setCurrentLesson (0);
   queryorg = "";
   querytrans = "";
-  doc_url.setFileName("");
+  doc_url.setFileName(i18n("Untitled"));
   doctitle = "";
   author = "";
 }
@@ -94,7 +93,8 @@ void kvoctrainDoc::Init ()
 kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url, QString separator, QStringList *lang_order)
 {
   Init();
-  doc_url = url;
+  if (!url.isEmpty())
+    doc_url = url;
 
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
@@ -105,7 +105,6 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url, QString separator, 
     if (!f.open(IO_ReadOnly))
     {
       KMessageBox::error(0, i18n("<qt>Cannot open file<br><b>%1</b></qt>").arg(url.path()));
-      doc_url.setFileName("unknown.kvtml");
       return;
     }
 
@@ -186,11 +185,10 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
   KURL tmp (url);
-  if (tmp.isEmpty())
-    tmp = doc_url;
-
-  if (tmp.isEmpty())
-    tmp.setFileName("unknown.kvtml");
+  if (title == i18n("Untitled"))
+    title = QString::null;
+  if (title == doc_url.fileName())
+    title = QString::null;
 
   if (ft == automatic) 
   {
@@ -775,7 +773,10 @@ void kvoctrainDoc::setLessonsInQuery(vector<int> lesson_iq)
 
 QString kvoctrainDoc::getTitle() const
 {
-  return doctitle;
+  if (doctitle.isEmpty())
+    return doc_url.fileName();
+  else
+    return doctitle;
 }
 
 

@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                          i/o part of kvoctrain
 
     -----------------------------------------------------------------------
@@ -187,7 +185,7 @@ void kvoctrainApp::slotFileNew()
     view->setView (0, langset, gradecols);
     delete doc;
     QString name = "";
-    doc = new kvoctrainDoc (this, KURL(name), separator, &paste_order);
+    doc = new kvoctrainDoc (this, 0 /*KURL(name)*/, separator, &paste_order);
     loadDocProps(doc);
     if (doc->numLangs() == 0) {
       QString l = "en";
@@ -512,7 +510,7 @@ void kvoctrainApp::slotFileSave()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  if (doc->URL().isEmpty() ) {
+  if (doc->URL().fileName() == i18n("Untitled") ) {
     slotFileSaveAs();
     return;
   }

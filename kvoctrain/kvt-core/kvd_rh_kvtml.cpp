@@ -1,13 +1,11 @@
 /***************************************************************************
 
-    $Id$
-
                    read header parts of a kvtml document
 
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
     email                : kvoctrain@ewald-arnold.de
@@ -68,7 +66,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   }
 
   list<XmlAttribute>::const_iterator first =  elem.attributes ().begin ();
-  doctitle = i18n("untitled");
+  doctitle = i18n("Untitled");
   while (first != elem.attributes ().end ()) {
 
     if ((*first).name () == KV_ENCODING) {
