@@ -290,9 +290,6 @@
                             <property name="text">
                                 <string>&amp;Verify</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+V</string>
-                            </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="0">
                             <property name="name">
@@ -483,9 +480,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Edit Expression...</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+E</string>
                     </property>
                 </widget>
                 <spacer>

@@ -361,9 +361,6 @@
                             <property name="text">
                                 <string>&amp;female</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+F</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="1" column="0">
                             <property name="name">
@@ -372,9 +369,6 @@
                             <property name="text">
                                 <string>&amp;male</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+M</string>
-                            </property>
                         </widget>
                         <widget class="QRadioButton" row="2" column="0">
                             <property name="name">
@@ -382,9 +376,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;neutral</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+N</string>
                             </property>
                         </widget>
                     </grid>
@@ -413,9 +404,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Edit Expression...</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+E</string>
                     </property>
                 </widget>
                 <spacer>

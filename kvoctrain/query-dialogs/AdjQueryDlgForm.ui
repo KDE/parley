@@ -411,9 +411,6 @@
                     <property name="text">
                         <string>&amp;Edit Expression...</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+E</string>
-                    </property>
                 </widget>
                 <spacer>
                     <property name="name">

@@ -70,9 +70,6 @@
                             <property name="text">
                                 <string>C&amp;ommon</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+O</string>
-                            </property>
                         </widget>
                         <widget class="QLineEdit" row="2" column="2">
                             <property name="name">
@@ -106,9 +103,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Common</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+C</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="1" column="0">
@@ -352,9 +346,6 @@
                             </property>
                             <property name="text">
                                 <string>Ne&amp;xt</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+X</string>
                             </property>
                         </widget>
                         <widget class="QComboBox" row="0" column="1">
