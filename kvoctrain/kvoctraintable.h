@@ -41,7 +41,7 @@ class KVocTrainTable : public QTable
 Q_OBJECT
 public:
   public:
-    KVocTrainTable( kvoctrainDoc *_doc, const LangSet *ls, const GradeCols *gc = 0, QWidget *parent = NULL, const char *name = NULL );
+    KVocTrainTable( kvoctrainDoc *_doc, const LangSet *ls, QWidget *parent = NULL, const char *name = NULL );
 
     int currentItem() { return currentRow(); }
     void setCurrentItem(int row);
@@ -54,7 +54,7 @@ public:
     void setCurrentRow(int row, int col);
     void updateContents(int row = -1, int col = -1);
     kvoctrainExpr *getRow(int row);
-    void setDoc(kvoctrainDoc *rows, const GradeCols *gc = 0);
+    void setDoc(kvoctrainDoc *rows);
     void setFont(const QFont &);
 
   signals:
@@ -91,7 +91,7 @@ public:
     kvoctrainDoc * m_doc;
     void sortByColumn(int, bool);
     const LangSet* langs;
-    const GradeCols *gradecols;
+    //const GradeCols *gradecols;
     KVocTrainTableItem *defaultItem;
     QTimer *delayTimer;
     int triggerSect;

@@ -19,12 +19,12 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
-#ifndef Statistik_included
-#define Statistik_included
+#ifndef StatistikPage_included
+#define StatistikPage_included
 
 #include "StatistikPageForm.h"
 
@@ -40,7 +40,7 @@ class StatistikPage : public StatistikPageForm
   Q_OBJECT
 
 public:
-  StatistikPage(int col, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent = NULL, const char *name = NULL);
+  StatistikPage(int col, kvoctrainDoc *doc, QWidget *parent = NULL, const char *name = NULL);
 
 public slots:
   void slotPopupMenu(int row, int col);
@@ -52,9 +52,9 @@ protected:
   struct stat_counter
   {
     stat_counter() {
-    for (int i = 0; i <= KV_MAX_GRADE; i++)
-      grade[i] = 0;
-    num = 0;
+      for (int i = 0; i <= KV_MAX_GRADE; i++)
+        grade[i] = 0;
+      num = 0;
     }
 
     int grade [KV_MAX_GRADE+1];
@@ -68,7 +68,7 @@ protected:
 
   vector<stat_counter>  fsc;
   vector<stat_counter>  tsc;
-  GradeCols            *gcol;
+  //GradeCols            *gcol;
 };
 
 #endif // StatistikPage_included

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>GenOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -70,20 +70,6 @@
                                 <string>Your work will be automatically saved if you check this option</string>
                             </property>
                         </widget>
-                        <widget class="QCheckBox" row="3" column="0" rowspan="1" colspan="3">
-                            <property name="name">
-                                <cstring>c_saveopt</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Save options automatically </string>
-                            </property>
-                            <property name="toolTip" stdset="0">
-                                <string>If checked, KVocTrain will automatically save all your changes when quitting</string>
-                            </property>
-                            <property name="whatsThis" stdset="0">
-                                <string>When checked, all options are saved upon termination of KVocTrain. Otherwise you have to select the appropriate menu item.</string>
-                            </property>
-                        </widget>
                         <widget class="QLineEdit" row="0" column="1">
                             <property name="name">
                                 <cstring>kcfg_backupTime</cstring>
@@ -127,6 +113,9 @@
                             <property name="text">
                                 <string>Smart a&amp;ppending</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+P</string>
+                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, the entry dialog will popup repeatedly</string>
                             </property>
@@ -136,10 +125,13 @@
                         </widget>
                         <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="3">
                             <property name="name">
-                                <cstring>chk_autoapply</cstring>
+                                <cstring>kcfg_autoEntryApply</cstring>
                             </property>
                             <property name="text">
-                                <string>Apply changes &amp;without asking</string>
+                                <string>Appl&amp;y changes without asking</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+Y</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Your changes will be applied automatically.</string>
@@ -218,7 +210,6 @@
 <tabstops>
     <tabstop>kcfg_backupTime</tabstop>
     <tabstop>kcfg_smartAppend</tabstop>
-    <tabstop>c_saveopt</tabstop>
     <tabstop>hb_auto</tabstop>
     <tabstop>hb_percent</tabstop>
     <tabstop>hb_fixed</tabstop>

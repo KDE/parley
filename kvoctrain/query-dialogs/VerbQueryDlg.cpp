@@ -28,6 +28,7 @@
 
 #include <kv_resource.h>
 #include <QueryManager.h>
+#include <prefs.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -47,14 +48,13 @@ VerbQueryDlg::VerbQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
-	QFont &font,
+        QFont font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Conjugation &prefix,
         const Conjugation &conjug,
         int mqtime,
         bool _show,
-        kvq_timeout_t type_to,
         QWidget *parent,
         char *name)
 	:
@@ -94,7 +94,7 @@ VerbQueryDlg::VerbQueryDlg
    setCaption (kapp->makeStdCaption(i18n("Training with Verbs")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
-             exp, doc, prefix, conjug, mqtime, _show, type_to);
+             exp, doc, prefix, conjug, mqtime, _show);
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -117,10 +117,9 @@ void VerbQueryDlg::setQuery(QString,
                             const Conjugation &prefix,
                             const Conjugation &conjug,
                             int mqtime,
-                            bool _show,
-                            kvq_timeout_t type_to)
+                            bool _show)
 {
-   type_timeout = type_to;
+   //type_timeout = type_to;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
@@ -170,7 +169,7 @@ void VerbQueryDlg::setQuery(QString,
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
-     if (type_timeout != kvq_notimeout) {
+     if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
        timebar->setTotalSteps(timercount);
        timebar->setProgress(timercount);
@@ -373,20 +372,20 @@ void VerbQueryDlg::timeoutReached()
      timebar->setProgress(0);
      if (current >= (int) conjugations.numEntries()-1 ) {
        qtimer->stop();
-       if (type_timeout == kvq_show) {
+       if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
          showAllClicked();
          dont_know->setDefault(true);
        }
-       else if (type_timeout == kvq_cont)
+       else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
          emit sigQueryChoice (Timeout);
      }
      else {
-       if (type_timeout == kvq_show) {
+       if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
          qtimer->stop();
          showAllClicked();
          dont_know->setDefault(true);
        }
-       else if (type_timeout == kvq_cont) {
+       else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
          next();
          qtimer->start(1000, TRUE);
          timercount = query_time/1000;

@@ -31,6 +31,7 @@
 #include <kv_resource.h>
 #include <QueryManager.h>
 #include <langset.h>
+#include <prefs.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -50,13 +51,12 @@ AdjQueryDlg::AdjQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
-	QFont &font,
+        QFont font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Comparison &_comp,
         int   mqtime,
         bool _show,
-        kvq_timeout_t type_to,
         QWidget* parent,
         const char* name
 )
@@ -88,7 +88,7 @@ AdjQueryDlg::AdjQueryDlg
 
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
-             exp, doc, _comp, mqtime, _show, type_to);
+             exp, doc, _comp, mqtime, _show);
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -104,10 +104,9 @@ void AdjQueryDlg::setQuery(QString,
                            kvoctrainDoc  *doc,
                            const Comparison &_comp,
                            int mqtime,
-                           bool _show,
-                           kvq_timeout_t type_to)
+                           bool _show)
 {
-   type_timeout = type_to;
+   //type_timeout = type_to;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
@@ -150,7 +149,7 @@ void AdjQueryDlg::setQuery(QString,
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
-     if (type_timeout != kvq_notimeout) {
+     if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
        timebar->setTotalSteps(timercount);
        timebar->setProgress(timercount);
@@ -231,11 +230,11 @@ void AdjQueryDlg::timeoutReached()
 
    if (timercount <= 0) {
      timebar->setProgress(0);
-     if (type_timeout == kvq_show ) {
+     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
        dont_know->setDefault(true);
      }
-     else if (type_timeout == kvq_cont )
+     else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice(Timeout);
    }
 }

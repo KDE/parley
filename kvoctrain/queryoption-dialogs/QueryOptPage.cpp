@@ -26,6 +26,7 @@
  ***************************************************************************/
 
 #include "QueryOptPage.h"
+#include <prefs.h>
 
 #include <qkeycode.h>
 #include <qcheckbox.h>
@@ -44,7 +45,7 @@ QueryOptPage::QueryOptPage
 (
         int           _mqtime,
         bool          show,
-        kvq_timeout_t type_to,
+        //kvq_timeout_t type_to,
         QueryManager *_manager,
         bool          _swapdir,
         bool          _suggestions,
@@ -96,7 +97,7 @@ QueryOptPage::QueryOptPage
 
    split_max_fields->setValidator (validator);
 
-   setStates(_mqtime, _swapdir, _altlearn, show, type_to, _suggestions, _split,
+   setStates(_mqtime, _swapdir, _altlearn, show, _suggestions, _split,
      _periods, _colons, _semicolons, _commas, _fields, _show_more, _i_know);
 
    // FIXME: until really needed
@@ -112,7 +113,11 @@ QueryOptPage::QueryOptPage
 }
 
 
-void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to,
+void QueryOptPage::setStates(
+        int           _mqtime,
+        bool          _swapdir,
+        bool          _altlearn,
+        bool           show,
         bool          _suggestions,
         bool          _split,
         bool          _periods,
@@ -136,7 +141,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    altlearn = _altlearn;
    mqtime = _mqtime;
    showCounter = show;
-   type_timeout = type_to;
+   //type_timeout = type_to;
    suggestions = _suggestions;
    split = _split;
    periods = _periods;
@@ -160,12 +165,12 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    enable_show_more->setChecked(show_more);
    enable_i_know->setChecked(i_know);
 
-   if (type_to == kvq_show) {
+   if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
      kcfg_maxTimePer->setEnabled(true);
      kcfg_showcounter->setEnabled(true);
      r_show_to->setChecked (true);
    }
-   else if (type_to == kvq_cont) {
+   else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
      kcfg_maxTimePer->setEnabled(true);
      kcfg_showcounter->setEnabled(true);
      r_cont_to->setChecked (true);
@@ -215,7 +220,7 @@ void QueryOptPage::slotShowTimeout()
 {
    kcfg_maxTimePer->setEnabled(true);
    kcfg_showcounter->setEnabled(true);
-   type_timeout = kvq_show;
+   Prefs::setQueryTimeout(Prefs::EnumQueryTimeout::Show);
 }
 
 
@@ -223,7 +228,7 @@ void QueryOptPage::slotContTimeOut()
 {
    kcfg_maxTimePer->setEnabled(true);
    kcfg_showcounter->setEnabled(true);
-   type_timeout = kvq_cont;
+   Prefs::setQueryTimeout(Prefs::EnumQueryTimeout::Continue);
 }
 
 
@@ -231,7 +236,7 @@ void QueryOptPage::slotNoTimeout()
 {
    kcfg_maxTimePer->setEnabled(false);
    kcfg_showcounter->setEnabled(false);
-   type_timeout = kvq_notimeout;
+   Prefs::setQueryTimeout(Prefs::EnumQueryTimeout::NoTimeout);
 }
 
 

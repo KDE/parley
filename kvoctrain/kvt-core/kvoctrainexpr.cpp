@@ -63,7 +63,7 @@ kvoctrainExpr::kvoctrainExpr ()
 }
 
 
-kvoctrainExpr::kvoctrainExpr (QString &s, QString &separator, int _lesson)
+kvoctrainExpr::kvoctrainExpr (QString &s, QString separator, int _lesson)
 {
   Init();
   QString se;

@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Sat Jul 10 18:03:22 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -47,7 +47,6 @@ public:
     (
         int           _mqtime,
         bool          show,
-        kvq_timeout_t type_timeout,
         QueryManager *_manager,
         bool          swapdir,
         bool          _suggestions,
@@ -64,7 +63,7 @@ public:
         const char   *name = NULL
     );
 
-    kvq_timeout_t  getTypeQueryTimeout()   const { return type_timeout; }
+    //kvq_timeout_t  getTypeQueryTimeout()   const { return type_timeout; }
     int  getMQueryTime()   const { return mqtime; }
     bool getSwapDir()      const { return swapdir; }
     bool getAltLearn()     const { return altlearn; }
@@ -79,7 +78,7 @@ public:
     bool getShowMore()     const { return show_more; }
     bool getIKnow()        const { return i_know; }
 
-    void setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to,
+    void setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show,
       bool _suggestions, bool _split, bool _periods, bool _colons, bool _semicolons,
       bool _commas, int _fields, bool _show_more, bool _i_know);
 
@@ -117,7 +116,7 @@ protected:
     int           mqtime;
     bool          swapdir;
     bool          altlearn;
-    kvq_timeout_t type_timeout;
+    //kvq_timeout_t type_timeout;
     bool          showCounter;
     bool          suggestions;
     bool          split;

@@ -26,7 +26,7 @@
 
 
 #include "QueryOptionsDlg.h"
-
+#include <prefs.h>
 
 #include <kstandarddirs.h>
 #include <kdebug.h>
@@ -43,7 +43,7 @@ QueryOptionsDlg::QueryOptionsDlg
 (
         int           mqtime,
         bool          showcounter,
-        kvq_timeout_t type_timeout,
+        //kvq_timeout_t type_timeout,
         kvoctrainDoc *,
         KComboBox    *lessons,
         QueryManager *_manager,
@@ -76,7 +76,7 @@ QueryOptionsDlg::QueryOptionsDlg
 
   groupOptPage = new GroupOptPage (settings, this, name);
   threshOptPage = new ThreshOptPage (&manager, lessons, this, name);
-  queryOptPage = new QueryOptPage (mqtime, showcounter, type_timeout, &manager, swapdir,
+  queryOptPage = new QueryOptPage (mqtime, showcounter, &manager, swapdir,
     suggestions, split, periods, colons, semicolons, commas, fields, show_more, i_know, altlearn, this, name);
   blockOptPage = new BlockOptPage (&manager, block, expire, this, name);
 
@@ -152,7 +152,7 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
     bool swap = false;
     bool altlearn = false;
     bool show = false;
-    kvq_timeout_t type_to = kvq_notimeout;
+    //kvq_timeout_t type_to = kvq_notimeout;
     bool suggestions = false;
     bool split = false;
     bool periods = true;
@@ -171,7 +171,7 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
     if (extract (line, s))
       show = (bool) s.toInt();
     if (extract (line, s))
-      type_to = (kvq_timeout_t) s.toInt();
+      Prefs::setQueryTimeout(s.toInt());
     if (extract (line, s))
       suggestions = (bool) s.toInt();
     if (extract (line, s))
@@ -190,7 +190,7 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
       show_more = (bool) s.toInt();
     if (extract (line, s))
       i_know = (bool) s.toInt();
-    queryOptPage->setStates (mqtime, swap, altlearn, show, type_to, suggestions,
+    queryOptPage->setStates (mqtime, swap, altlearn, show, suggestions,
       split, periods, colons, semicolons, commas, fields, show_more, i_know);
 
 #define QCT(x)  QueryManager::CompType(x)
@@ -215,27 +215,27 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
       manager.setLessonItemStr(s);
 
     if (extract (line, s))
-      manager.setLessonComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::Lesson, QCT(s.toInt()));
     if (extract (line, s))
-      manager.setTypeItem(s);   // s.toInt()
+      Prefs::setTypeItem(s);   // s.toInt()
     if (extract (line, s))
-      manager.setTypeComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::WordType, QCT(s.toInt())) /*manager.setTypeComp(QCT(s.toInt()))*/;
     if (extract (line, s))
-      manager.setGradeItem(s.toInt());
+      Prefs::setGradeItem(s.toInt());
     if (extract (line, s))
-      manager.setGradeComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::Grade, QCT(s.toInt()));
     if (extract (line, s))
-      manager.setQueryItem(s.toInt());
+      Prefs::setQueryItem(s.toInt());
     if (extract (line, s))
-      manager.setQueryComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::Query, QCT(s.toInt()));
     if (extract (line, s))
-      manager.setBadItem(s.toInt());
+      Prefs::setBadItem(s.toInt());
     if (extract (line, s))
-      manager.setBadComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::Bad, QCT(s.toInt()));
     if (extract (line, s))
-      manager.setDateItem(s.toInt());
+      Prefs::setDateItem(s.toInt());
     if (extract (line, s))
-      manager.setDateComp(QCT(s.toInt()));
+      Prefs::setCompType(Prefs::EnumType::Date, QCT(s.toInt()));
     threshOptPage->setStates(&manager);
 
 #undef QCT
@@ -246,38 +246,37 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
 
     if (extract (line, s))
       block = s.toInt();
-
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV1_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV1_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV2_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV2_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV3_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV3_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV4_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV4_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV5_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV5_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV6_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV6_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setBlockItem(KV_LEV7_GRADE, s.toInt());
+      Prefs::setBlockItem(KV_LEV7_GRADE, s.toInt());
 
     if (extract (line, s))
       expire = (bool) s.toInt();
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV1_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV1_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV2_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV2_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV3_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV3_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV4_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV4_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV5_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV5_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV6_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV6_GRADE, s.toInt());
     if (extract (line, s))
-      manager.setExpireItem(KV_LEV7_GRADE, s.toInt());
+      Prefs::setExpireItem(KV_LEV7_GRADE, s.toInt());
 
     blockOptPage->setStates(&manager, block, expire);
   }
@@ -300,7 +299,7 @@ void QueryOptionsDlg::slotModifyGroup(int grp)
     line += s + ',';
     s.setNum((int) getShowCounter());
     line += s + ',';
-    s.setNum( (int) getTypeQueryTimeout());
+    s.setNum( (int) Prefs::queryTimeout() /*getTypeQueryTimeout()*/);
     line += s + ',';
     s.setNum((int) getSuggestions());
     line += s + ',';
@@ -323,41 +322,41 @@ void QueryOptionsDlg::slotModifyGroup(int grp)
     settings[grp].query_set = line;
 
     line = '(' + manager.lessonItemStr() + ')';
-    s.setNum((int) manager.lessonComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::Lesson));
     line += s + ',';
-    s = manager.typeItem();
+    s = Prefs::typeItem();
     line += s + ',';
-    s.setNum((int) manager.typeComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::WordType) /*manager.typeComp()*/);
     line += s + ',';
-    s.setNum(manager.gradeItem());
+    s.setNum(Prefs::gradeItem());
     line += s + ',';
-    s.setNum((int) manager.gradeComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::Grade));
     line += s + ',';
-    s.setNum(manager.queryItem());
+    s.setNum(Prefs::queryItem());
     line += s + ',';
-    s.setNum((int) manager.queryComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::Query));
     line += s + ',';
-    s.setNum(manager.badItem());
+    s.setNum(Prefs::badItem());
     line += s + ',';
-    s.setNum((int) manager.badComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::Bad));
     line += s + ',';
-    s.setNum(manager.dateItem());
+    s.setNum(Prefs::dateItem());
     line += s + ',';
-    s.setNum((int) manager.dateComp());
+    s.setNum((int) Prefs::compType(Prefs::EnumType::WordType));
     line += s + ',';
     settings[grp].thresh_set = line;
 
     s.setNum(getBlock());
     line = s + ',';
     for (int i = KV_LEV1_GRADE; i <= KV_MAX_GRADE; i++) {
-      s.setNum(manager.blockItem(i));
+      s.setNum(Prefs::blockItem(i));
       line += s + ',';
     }
 
     s.setNum(getExpire());
     line += s + ',';
     for (int i = KV_LEV1_GRADE; i <= KV_MAX_GRADE; i++) {
-      s.setNum(manager.expireItem(i));
+      s.setNum(Prefs::expireItem(i));
       line += s + ',';
     }
     settings[grp].block_set = line;

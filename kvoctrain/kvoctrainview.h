@@ -52,22 +52,20 @@ class kvoctrainView : public QWidget
 
  public:
 
-   enum Resizer { Automatic,  // guess something meaningful for resizing
+   /*enum Resizer { Automatic,  // guess something meaningful for resizing
                   Fixed,      // keep users sizes
                   Percent};   // keep percentage of size
-
-  void setResizer (Resizer res) { header_resizer = res; }
+   */
+  //void setResizer (Resizer res) { header_resizer = res; }
 
   /** Constructor for the main view */
-  kvoctrainView(kvoctrainDoc* doc,
-                const LangSet &ls, const GradeCols &gradecols,
-                kvoctrainApp *parent = 0);
+  kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp *parent = 0);
 
   /** Destructor for the main view */
   ~kvoctrainView();
 
   /** sets view to another vocabulary */
-  void setView (kvoctrainDoc *doc, const LangSet &ls, const GradeCols &gc);
+  void setView (kvoctrainDoc *doc, const LangSet &ls);
 
   KVocTrainTable* getTable() { return lb_list; }
   void setHeaderProp (int id, const QString &name, const QString &pixfile=QString::null);
@@ -81,7 +79,7 @@ class kvoctrainView : public QWidget
   bool             autoResize;
   kvoctrainDoc    *the_doc;
   QGridLayout     *list_layout;
-  Resizer          header_resizer;
+  //Resizer          header_resizer;
   kvoctrainApp    *parent;
 
   /** resizes table when frame is resized */

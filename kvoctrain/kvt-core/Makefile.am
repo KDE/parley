@@ -1,6 +1,6 @@
 INCLUDES = -I$(srcdir)/.. -I../queryoption-dialogs \
- -I$(srcdir)/../queryoption-dialogs $(all_includes)
- 
+ -I$(srcdir)/../queryoption-dialogs -I$(top_builddir)/kvoctrain/kvoctrain $(all_includes)
+
 noinst_LTLIBRARIES = libkvoctraincore.la
 
 METASOURCES = AUTO

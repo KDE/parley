@@ -20,7 +20,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -449,7 +449,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
                     kapp->makeStdCaption(""));
       if(exit==KMessageBox::Yes) {
         doc->removeIdent(header1);
-        view->setView (doc, langset, gradecols);
+        view->setView (doc, langset);
         doc->setModified();
       }
     }

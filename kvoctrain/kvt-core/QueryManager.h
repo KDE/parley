@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                             manage queries
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Jul 11 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sat Jul 11 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -22,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -71,7 +68,7 @@ class kvoctrainExpr;
 #define QM_USER_TYPE  "#"   // designates number of user type
 #define QM_TYPE_DIV   ":"   // divide main from subtype
 
-enum kvq_timeout_t { kvq_notimeout, kvq_show, kvq_cont };
+//enum kvq_timeout_t { kvq_notimeout, kvq_show, kvq_cont };
 
 enum QueryType  { QT_Random, QT_Multiple,
                   QT_Articles, QT_Conjugation, QT_Comparison,
@@ -106,14 +103,14 @@ struct QueryEntryRef {
 
 typedef vector<vector<QueryEntryRef> > QuerySelection;
 
-class QueryManager 
+class QueryManager
 {
  public:
                 // don´t change the order/remove one of these,
                 // just APPEND new types
-  enum CompType { DontCare,
+ enum CompType { DontCare,
                   MoreEqThan, MoreThan,
-                  Before, Within, 
+                  Before, Within,
                   WorseThan, WorseEqThan,
                   EqualTo, NotEqual,
                   LessEqThan, LessThan,
@@ -125,8 +122,8 @@ class QueryManager
 
   QueryManager ();
 
-  void loadConfig (KConfig *);
-  void saveConfig (KConfig *);
+  //void loadConfig (KConfig *);
+  //void saveConfig (KConfig *);
 
   static vector<TypeRelation> getRelation (bool only_maintypes);
   static void setTypeNames (vector<QString> names);
@@ -139,37 +136,37 @@ class QueryManager
 
   void setLessonItems (vector<int> indices) { lessonitems = indices; }
   void setLessonItemStr (const QString & indices);
-  void setDateItem (time_t time) { dateitem = time; }
-  void setQueryItem (int query) { queryitem = query; }
-  void setBadItem (int bad) { baditem = bad; }
-  void setTypeItem (const QString & type) { typeitem = type; }
-  void setGradeItem (grade_t grade) { gradeitem = grade; }
-  void setBlockItem (int item, int grade);
-  void setExpireItem (int item, int grade);
+  //void setDateItem (time_t time) { dateitem = time; }
+  //void setQueryItem (int query) { queryitem = query; }
+  //void setBadItem (int bad) { baditem = bad; }
+  //void setTypeItem (const QString & type) { typeitem = type; }
+  //void setGradeItem (grade_t grade) { gradeitem = grade; }
+  //void setBlockItem (int item, int grade);
+  //void setExpireItem (int item, int grade);
 
   vector<int> lessonItems() const { return lessonitems; }
   QString lessonItemStr() const;
-  time_t dateItem () const { return dateitem; }
-  int queryItem () const { return queryitem; }
-  int badItem () const { return baditem; }
-  QString typeItem () const { return typeitem; }
-  grade_t gradeItem () const { return gradeitem; }
-  int blockItem (int grade) const;
-  int expireItem (int grade) const;
+  //time_t dateItem () const { return dateitem; }
+  //int queryItem () const { return queryitem; }
+  //int badItem () const { return baditem; }
+  //QString typeItem () const { return typeitem; }
+  //grade_t gradeItem () const { return gradeitem; }
+  //int blockItem (int grade) const;
+  //int expireItem (int grade) const;
 
-  void setDateComp (CompType time) { datecomp = time; }
-  void setLessonComp (CompType less) { lessoncomp = less; }
-  void setQueryComp (CompType query) { querycomp = query; }
-  void setBadComp (CompType bad) { badcomp = bad; }
-  void setTypeComp (CompType type) { typecomp = type; }
-  void setGradeComp (CompType grade) { gradecomp = grade; }
+  //void setDateComp (CompType time) { datecomp = time; }
+  //void setLessonComp (CompType less) { lessoncomp = less; }
+  //void setQueryComp (CompType query) { querycomp = query; }
+  //void setBadComp (CompType bad) { badcomp = bad; }
+  //void setTypeComp (CompType type) { typecomp = type; }
+  //void setGradeComp (CompType grade) { gradecomp = grade; }
 
-  CompType dateComp () const { return datecomp; }
-  CompType lessonComp () const { return lessoncomp; }
-  CompType queryComp () const { return querycomp; }
-  CompType badComp () const { return badcomp; }
-  CompType typeComp () const { return typecomp; }
-  CompType gradeComp () const { return gradecomp; }
+  //CompType dateComp () const { return datecomp; }
+  //CompType lessonComp () const { return lessoncomp; }
+  //CompType queryComp () const { return querycomp; }
+  //CompType badComp () const { return badcomp; }
+  //CompType typeComp () const { return typecomp; }
+  //CompType gradeComp () const { return gradecomp; }
 
   bool validate(kvoctrainExpr *expr, int act_lesson,
                 int oindex, int tindex,
@@ -202,22 +199,22 @@ class QueryManager
   bool compareType (CompType, const QString &, const QString &);
   bool compareLesson (CompType type, int less, const vector<int> &limit, int current);
 
-  CompType    typecomp,
+ /* CompType    typecomp,
               querycomp,
               badcomp,
               gradecomp,
               lessoncomp,
-              datecomp;
+              datecomp;*/
 
-  time_t      dateitem;
-  int         queryitem,
-              baditem;
-  QString     typeitem;
-  grade_t     gradeitem;
+  //time_t      dateitem;
+  //int         queryitem,
+  //            baditem;
+  //QString     typeitem;
+  //grade_t     gradeitem;
   vector<int> lessonitems;
 
-  vector<int> blockItems,
-              expireItems;
+  //vector<int> blockItems,
+  //            expireItems;
 
  private:
   static vector<QString> userTypes;

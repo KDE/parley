@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -47,10 +47,10 @@ class QueryOptionsDlg : public QTabDialog
 public:
 
     QueryOptionsDlg
-    (   
+    (
         int           _mqtime,
         bool          showcounter,
-        kvq_timeout_t type_timeout,
+        //kvq_timeout_t type_timeout,
         kvoctrainDoc *_doc,
         KComboBox    *lessons,
         QueryManager *manager,
@@ -76,8 +76,8 @@ public:
     bool getShowCounter() const { return queryOptPage->getShowCounter(); }
     int  getSwapDir()     const { return queryOptPage->getSwapDir(); }
     int  getAltLearn()    const { return queryOptPage->getAltLearn(); }
-    kvq_timeout_t getTypeQueryTimeout()   const
-           { return queryOptPage->getTypeQueryTimeout(); }
+    //kvq_timeout_t getTypeQueryTimeout()   const
+    //       { return queryOptPage->getTypeQueryTimeout(); }
 
     bool getSuggestions() const { return queryOptPage->getSuggestions(); }
     bool getSplit()       const { return queryOptPage->getSplit(); }

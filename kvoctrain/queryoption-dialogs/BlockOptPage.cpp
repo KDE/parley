@@ -29,6 +29,7 @@
 #include "BlockOptPage.h"
 
 #include <QueryManager.h>
+#include <prefs.h>
 
 #include <kapplication.h>
 #include <kmessagebox.h>
@@ -106,7 +107,7 @@ BlockOptPage::BlockOptPage
    connect( block7, SIGNAL(activated(int)), SLOT(slotSetBlock7(int)) );
    connect( kcfg_expire, SIGNAL(toggled(bool)), SLOT(slotCheckExpire(bool)) );
    connect( kcfg_block, SIGNAL(toggled(bool)), SLOT(slotCheckBlock(bool)) );
- 
+
    l_lev7->setBuddy(block7);
    l_lev6->setBuddy(block6);
    l_lev5->setBuddy(block5);
@@ -127,22 +128,22 @@ void BlockOptPage::setStates(QueryManager *_manager, bool _block, bool _expire)
    expire = _expire;
    kcfg_block->setChecked(block);
    kcfg_expire->setChecked(expire);
-                                  
-   setBlockBox (manager->blockItem(KV_LEV1_GRADE), block1);
-   setBlockBox (manager->blockItem(KV_LEV2_GRADE), block2);
-   setBlockBox (manager->blockItem(KV_LEV3_GRADE), block3);
-   setBlockBox (manager->blockItem(KV_LEV4_GRADE), block4);
-   setBlockBox (manager->blockItem(KV_LEV5_GRADE), block5);
-   setBlockBox (manager->blockItem(KV_LEV6_GRADE), block6);
-   setBlockBox (manager->blockItem(KV_LEV7_GRADE), block7);
 
-   setExpireBox (manager->expireItem(KV_LEV1_GRADE), expire1);
-   setExpireBox (manager->expireItem(KV_LEV2_GRADE), expire2);
-   setExpireBox (manager->expireItem(KV_LEV3_GRADE), expire3);
-   setExpireBox (manager->expireItem(KV_LEV4_GRADE), expire4);
-   setExpireBox (manager->expireItem(KV_LEV5_GRADE), expire5);
-   setExpireBox (manager->expireItem(KV_LEV6_GRADE), expire6);
-   setExpireBox (manager->expireItem(KV_LEV7_GRADE), expire7);
+   setBlockBox (Prefs::blockItem(KV_LEV1_GRADE), block1);
+   setBlockBox (Prefs::blockItem(KV_LEV2_GRADE), block2);
+   setBlockBox (Prefs::blockItem(KV_LEV3_GRADE), block3);
+   setBlockBox (Prefs::blockItem(KV_LEV4_GRADE), block4);
+   setBlockBox (Prefs::blockItem(KV_LEV5_GRADE), block5);
+   setBlockBox (Prefs::blockItem(KV_LEV6_GRADE), block6);
+   setBlockBox (Prefs::blockItem(KV_LEV7_GRADE), block7);
+
+   setExpireBox (Prefs::expireItem(KV_LEV1_GRADE), expire1);
+   setExpireBox (Prefs::expireItem(KV_LEV2_GRADE), expire2);
+   setExpireBox (Prefs::expireItem(KV_LEV3_GRADE), expire3);
+   setExpireBox (Prefs::expireItem(KV_LEV4_GRADE), expire4);
+   setExpireBox (Prefs::expireItem(KV_LEV5_GRADE), expire5);
+   setExpireBox (Prefs::expireItem(KV_LEV6_GRADE), expire6);
+   setExpireBox (Prefs::expireItem(KV_LEV7_GRADE), expire7);
 
    block1->setEnabled(block);
    block2->setEnabled(block);
@@ -223,7 +224,7 @@ void BlockOptPage::slotCheckExpire(bool state)
 
 void BlockOptPage::slotSetBlock7(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV7_GRADE);
+  Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -231,7 +232,7 @@ void BlockOptPage::slotSetBlock7(int idx)
 
 void BlockOptPage::slotSetExpire7(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV7_GRADE);
+  Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -239,7 +240,7 @@ void BlockOptPage::slotSetExpire7(int idx)
 
 void BlockOptPage::slotSetSetBlock6(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV6_GRADE);
+  Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -247,7 +248,7 @@ void BlockOptPage::slotSetSetBlock6(int idx)
 
 void BlockOptPage::slotSetExpire6(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV6_GRADE);
+  Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -255,7 +256,7 @@ void BlockOptPage::slotSetExpire6(int idx)
 
 void BlockOptPage::slotSetSetBlock5(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV5_GRADE);
+  Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -263,7 +264,7 @@ void BlockOptPage::slotSetSetBlock5(int idx)
 
 void BlockOptPage::slotSetExpire5(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV5_GRADE);
+  Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -271,7 +272,7 @@ void BlockOptPage::slotSetExpire5(int idx)
 
 void BlockOptPage::slotSetSetBlock4(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV4_GRADE);
+  Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -279,7 +280,7 @@ void BlockOptPage::slotSetSetBlock4(int idx)
 
 void BlockOptPage::slotSetExpire4(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV4_GRADE);
+  Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -287,7 +288,7 @@ void BlockOptPage::slotSetExpire4(int idx)
 
 void BlockOptPage::slotSetBlock3(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV3_GRADE);
+  Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -295,7 +296,7 @@ void BlockOptPage::slotSetBlock3(int idx)
 
 void BlockOptPage::slotSetExpire3(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV3_GRADE);
+  Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -303,7 +304,7 @@ void BlockOptPage::slotSetExpire3(int idx)
 
 void BlockOptPage::slotSetSetBlock2(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV2_GRADE);
+  Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -311,7 +312,7 @@ void BlockOptPage::slotSetSetBlock2(int idx)
 
 void BlockOptPage::slotSetExpire2(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV2_GRADE);
+  Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -319,7 +320,7 @@ void BlockOptPage::slotSetExpire2(int idx)
 
 void BlockOptPage::slotSetSetBlock1(int idx)
 {
-  manager->setBlockItem(date_itemlist[idx].num, KV_LEV1_GRADE);
+  Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -327,7 +328,7 @@ void BlockOptPage::slotSetSetBlock1(int idx)
 
 void BlockOptPage::slotSetExpire1(int idx)
 {
-  manager->setExpireItem(date_itemlist[idx].num, KV_LEV1_GRADE);
+  Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[idx].num);
   emit modifySetting();
   checkValidity();
 }
@@ -340,9 +341,9 @@ void BlockOptPage::checkValidity()
   for (int i = KV_LEV2_GRADE; i <= KV_MAX_GRADE; i++) {
 
     if (  block
-        && manager->blockItem(i-1) != 0
-        && manager->blockItem(i) != 0
-        && manager->blockItem(i-1) >= manager->blockItem(i)) {
+        && Prefs::blockItem(i-1) != 0
+        && Prefs::blockItem(i) != 0
+        && Prefs::blockItem(i-1) >= Prefs::blockItem(i)) {
       QString format;
       if (!found)
         format = i18n("\nNonsensical blocking times.\n");
@@ -357,9 +358,9 @@ void BlockOptPage::checkValidity()
   for (int i = KV_LEV2_GRADE; i <= KV_MAX_GRADE; i++) {
     found = false;
     if (   expire
-        && manager->expireItem(i-1) != 0
-        && manager->expireItem(i) != 0
-        && manager->expireItem(i-1) >= manager->expireItem(i)) {
+        && Prefs::expireItem(i-1) != 0
+        && Prefs::expireItem(i) != 0
+        && Prefs::expireItem(i-1) >= Prefs::expireItem(i)) {
       QString format;
       if (!found)
         format = i18n("\nNonsensical expiration times.\n");
@@ -376,14 +377,14 @@ void BlockOptPage::checkValidity()
     for (int i = KV_LEV1_GRADE; i <= KV_MAX_GRADE; i++) {
       if (   block
           && expire
-          && manager->expireItem(i) != 0
-          && manager->blockItem(i) != 0
-          && manager->blockItem(i) >= manager->expireItem(i)) {
+          && Prefs::expireItem(i) != 0
+          && Prefs::blockItem(i) != 0
+          && Prefs::blockItem(i) >= Prefs::expireItem(i)) {
         QString format;
         if (!found)
           format = i18n("\nNonsensical blocking vs. expiration times.\n");
         found = true;
-  
+
         format += i18n("At level %1 blocking time is not lower than expiration time.\n");
         QString msg = format.arg(i);
         all_msg += msg;

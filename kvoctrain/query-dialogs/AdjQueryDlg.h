@@ -48,13 +48,12 @@ public:
         int query_cycle,
         int query_num,
         int query_startnum,
-	QFont &font,
+        QFont font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Comparison &comp,
         int   mqtime,
         bool show,
-        kvq_timeout_t type_timeout,
         QWidget* parent = NULL,
         const char* name = NULL
     );
@@ -69,8 +68,7 @@ public:
                 kvoctrainDoc  *doc,
                 const Comparison &comp,
                 int   mqtime,
-                bool show,
-                kvq_timeout_t type_timeout);
+                bool show);
 
 public slots:
     virtual void initFocus() const;

@@ -4,13 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004-2005 Peter Hedlund
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -50,11 +48,11 @@
 #include "statistik-dialogs/StatistikDlg.h"
 #include "prefs.h"
 
-void kvoctrainApp::slotSaveOptions()
+/*void kvoctrainApp::slotSaveOptions()
 {
    saveOptions(true);
 }
-
+*/
 
 kvoctrainApp::~kvoctrainApp()
 {
@@ -143,7 +141,7 @@ void kvoctrainApp::slotEditCallBack(int res)
 
     case EntryDlg::EditApply:
       commitEntryDlg(true);
-      if (smartAppend)
+      if (Prefs::smartAppend())
       {
         int row = view->getTable()->currentRow();
         if (row == view->getTable()->numRows()-1)
@@ -185,7 +183,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
      return;
    }
 
-   if (!force && entryDlg->isModified() && !autoentryApply) {
+   if (!force && entryDlg->isModified() && !Prefs::autoEntryApply()) {
      if( KMessageBox::No == KMessageBox::warningYesNo(this,
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
@@ -364,7 +362,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     querymanager,
                     title,
                     doc->getEntry(row)->isActive(),
-                    ipafont);
+                    Prefs::iPAFont());
    }
    else {
      col -= KV_EXTRA_COLS;
@@ -416,7 +414,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     querymanager,
                     title,
                     doc->getEntry(row)->isActive(),
-                    ipafont);
+                    Prefs::iPAFont());
    }
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
@@ -880,7 +878,7 @@ void kvoctrainApp::slotCreateLesson(int header)
 
 void kvoctrainApp::slotShowStatist()
 {
-   StatistikDlg sdlg (langset, doc, &gradecols);
+   StatistikDlg sdlg (langset, doc);
    sdlg.exec();
 }
 
@@ -896,7 +894,7 @@ void kvoctrainApp::slotCleanVocabulary ()
    slotStatusMsg(IDS_DEFAULT);
 
    if (num != 0) {
-     view->setView(doc, langset, gradecols);
+     view->setView(doc, langset);
      QString s =
         i18n("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
@@ -911,14 +909,12 @@ void kvoctrainApp::slotCleanVocabulary ()
 void kvoctrainApp::slotCreateRandom()
 {
    bool ok = FALSE;
-   //shouldn't this dialog display the previous setting i.e Prefs::entriesPerLesson()?
-   int res = KInputDialog::getInteger(
-                i18n( "Entries in Lesson" ),
-                i18n( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );
+   int res = KInputDialog::getInteger(i18n( "Entries in Lesson" ),
+                i18n( "Enter number of entries in lesson:" ), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this );
    if (!ok)
      return;
 
-   entriesPerLesson = res;
+   Prefs::setEntriesPerLesson(res);
 
    slotStatusMsg(i18n("Creating random lessons..."));
    QApplication::setOverrideCursor( waitCursor );
@@ -936,10 +932,10 @@ void kvoctrainApp::slotCreateRandom()
      s.setNum (less_no);
      s.insert (0, "- ");
      lessons->insertItem (s);
-     int less_cnt = entriesPerLesson;
+     int less_cnt = Prefs::entriesPerLesson();
      while (randomList.size () != 0) {
        if (--less_cnt <= 0) {
-         less_cnt = entriesPerLesson;
+         less_cnt = Prefs::entriesPerLesson();
          less_no++;
          s.setNum (less_no);
          s.insert (0, "- ");
@@ -972,22 +968,19 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 {
    QString defTrans;
    GeneralOptionsDlg godlg (defTrans,
-                    separator,
-                    backupTime /(60*1000),
+                    Prefs::separator(),
+                    Prefs::backupTime() /(60*1000),
                     langset,
                     lastPixName,
                     lessons,
-                    paste_order,
-                    useCurrent,
+                    Prefs::pasteOrder(),
+                    Prefs::useCurrent(),
                     doc,
-                    tablefont,
-                    ipafont,
+                    Prefs::tableFont(),
+                    Prefs::iPAFont(),
                     &querymanager,
-                    gradecols,
-                    header_resizer,
-                    smartAppend,
-                    autosaveopts,
-                    autoentryApply);
+                    Prefs::smartAppend(),
+                    Prefs::autoEntryApply());
 
    if (index >= 0)
      godlg.selectPage(index);
@@ -996,28 +989,19 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
    if (res == QDialog::Accepted) {
 
       defTrans = godlg.getDefaultLang();
-      backupTime = godlg.getBackupTime()*60*1000;
-      smartAppend = godlg.getSmartAppend();
-      autosaveopts = godlg.getAutoSaveOpts();
-      autoentryApply = godlg.getAutoApply();
-      separator = godlg.getSeparator();
+      Prefs::setBackupTime(godlg.getBackupTime()*60*1000);
+      Prefs::setSmartAppend(godlg.getSmartAppend());
+      Prefs::setAutoEntryApply(godlg.getAutoApply());
+      Prefs::setSeparator(godlg.getSeparator());
       langset = godlg.getLangSet();
-      paste_order = godlg.getPasteOrder();
-      useCurrent = godlg.getUseCurrent(),
-      tablefont = godlg.getFont();
-      ipafont = godlg.getIPAFont();
-      gradecols = godlg.getGradeCols();
-      header_resizer = godlg.getResizer();
-
-       // rather ugly hack to keep useCurrent "globally" up to date
-      // is that necessary? anmma Feb 23rd 2004
-      Prefs::setUseCurrent( useCurrent);
-      Prefs::writeConfig();
+      Prefs::setPasteOrder(godlg.getPasteOrder());
+      Prefs::setUseCurrent(godlg.getUseCurrent()),
+      Prefs::setTableFont(godlg.getFont());
+      Prefs::setIPAFont(godlg.getIPAFont());
 
       if (pron_label)
-        pron_label->setFont(ipafont);
-      view->getTable()->setFont(tablefont);
-      view->setResizer (header_resizer);
+        pron_label->setFont(Prefs::iPAFont());
+      view->getTable()->setFont(Prefs::tableFont());
       view->getTable()->updateContents();
 
       // update header buttons
@@ -1034,7 +1018,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
         }
         view->setHeaderProp (i+KV_EXTRA_COLS, lid, pm);
       }
-      configSaveOptions->setEnabled(!autosaveopts);
       slotStatusMsg(IDS_DEFAULT);
    }
 }
@@ -1069,7 +1052,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
    }
 
    doc->setIdent(doc->numLangs()-1, langset.shortId(lang_id));
-   view->setView(doc, langset, gradecols);
+   view->setView(doc, langset);
    doc->setModified();
 }
 

@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Jul 11 20:50:53 MET 1999
+    begin          : Sat Jul 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -23,16 +23,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "QueryManager.h"
-#include "kvoctraincore.h"
-
 #include <klocale.h>
 #include <kconfig.h>
-
 
 #include <iostream>
 #include <vector>
 using namespace std;
+
+#include "QueryManager.h"
+#include "kvoctraincore.h"
+#include <prefs.h>
 
 vector<QString> QueryManager::userTypes;
 
@@ -114,75 +114,75 @@ QString QueryManager::getMainType (const QString & type)
 
 QueryManager::QueryManager ()
 {
-  datecomp = DontCare;
-  badcomp = DontCare;
-  querycomp = DontCare;
-  gradecomp = DontCare;
-  typecomp = DontCare;
-  lessoncomp = DontCare;
+  //datecomp = DontCare;
+  //badcomp = DontCare;
+  //querycomp = DontCare;
+  //gradecomp = DontCare;
+  //typecomp = DontCare;
+  //lessoncomp = DontCare;
 
-  dateitem = 0;
-  queryitem = 0;
-  baditem = 0;
-  typeitem = QString::null;
-  gradeitem = 0;
+  //dateitem = 0;
+  //queryitem = 0;
+  //baditem = 0;
+  //typeitem = QString::null;
+  //gradeitem = 0;
   lessonitems.clear();
 }
 
 
-void QueryManager::loadConfig (KConfig *config)
+/*void QueryManager::loadConfig (KConfig *config)
 {
-  datecomp = (CompType) config->readNumEntry(CFG_QM_DATE_COMP, DontCare);
-  badcomp = (CompType) config->readNumEntry(CFG_QM_BAD_COMP, DontCare);
-  querycomp = (CompType) config->readNumEntry(CFG_QM_QUERY_COMP, DontCare);
-  gradecomp = (CompType) config->readNumEntry(CFG_QM_GRADE_COMP, DontCare);
-  typecomp = (CompType) config->readNumEntry(CFG_QM_TYPE_COMP, DontCare);
-  lessoncomp = (CompType) config->readNumEntry(CFG_QM_LESSON_COMP, Current);
+  //datecomp = (CompType) config->readNumEntry(CFG_QM_DATE_COMP, DontCare);
+  //badcomp = (CompType) config->readNumEntry(CFG_QM_BAD_COMP, DontCare);
+  //querycomp = (CompType) config->readNumEntry(CFG_QM_QUERY_COMP, DontCare);
+  //gradecomp = (CompType) config->readNumEntry(CFG_QM_GRADE_COMP, DontCare);
+  //typecomp = (CompType) config->readNumEntry(CFG_QM_TYPE_COMP, DontCare);
+  //lessoncomp = (CompType) config->readNumEntry(CFG_QM_LESSON_COMP, Current);
 
-  dateitem = (CompType) config->readNumEntry(CFG_QM_DATE_ITEM, 0);
-  baditem = (CompType) config->readNumEntry(CFG_QM_BAD_ITEM, 0);
-  queryitem = (CompType) config->readNumEntry(CFG_QM_QUERY_ITEM, 0);
-  gradeitem = (CompType) config->readNumEntry(CFG_QM_GRADE_ITEM, 0);
-  typeitem = config->readEntry(CFG_QM_TYPE_ITEM);
+  //dateitem = (CompType) config->readNumEntry(CFG_QM_DATE_ITEM, 0);
+  //baditem = (CompType) config->readNumEntry(CFG_QM_BAD_ITEM, 0);
+  //queryitem = (CompType) config->readNumEntry(CFG_QM_QUERY_ITEM, 0);
+  //gradeitem = (CompType) config->readNumEntry(CFG_QM_GRADE_ITEM, 0);
+  //typeitem = config->readEntry(CFG_QM_TYPE_ITEM);
 //  setLessonItemStr (config->readEntry(CFG_QM_LESSON_ITEM));
 
-  blockItems.clear();
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"1", 1 *      60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"2", 2 *      60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"3", 4 *      60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"4", 1 *    7*60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"5", 2 *    7*60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"6", 1 *   30*60*60*24));
-  blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"7", 2 *   30*60*60*24));
+  //blockItems.clear();
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"1", 1 *      60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"2", 2 *      60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"3", 4 *      60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"4", 1 *    7*60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"5", 2 *    7*60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"6", 1 *   30*60*60*24));
+  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"7", 2 *   30*60*60*24));
 
-  expireItems.clear();
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"1", 2 *      60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"2", 4 *      60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"3", 1 *    7*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"4", 2 *    7*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"5", 1 *   30*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"6", 2 *   30*60*60*24));
-  expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"7", 4 *   30*60*60*24));
+  //expireItems.clear();
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"1", 2 *      60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"2", 4 *      60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"3", 1 *    7*60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"4", 2 *    7*60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"5", 1 *   30*60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"6", 2 *   30*60*60*24));
+  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"7", 4 *   30*60*60*24));
 }
 
 
 void QueryManager::saveConfig (KConfig *config)
 {
-  config->writeEntry(CFG_QM_DATE_COMP, (int) datecomp);
-  config->writeEntry(CFG_QM_BAD_COMP, (int) badcomp);
-  config->writeEntry(CFG_QM_QUERY_COMP, (int) querycomp);
-  config->writeEntry(CFG_QM_GRADE_COMP, (int) gradecomp);
-  config->writeEntry(CFG_QM_TYPE_COMP, (int) typecomp);
-  config->writeEntry(CFG_QM_LESSON_COMP, (int) lessoncomp);
+  //config->writeEntry(CFG_QM_DATE_COMP, (int) datecomp);
+  //config->writeEntry(CFG_QM_BAD_COMP, (int) badcomp);
+  //config->writeEntry(CFG_QM_QUERY_COMP, (int) querycomp);
+  //config->writeEntry(CFG_QM_GRADE_COMP, (int) gradecomp);
+  //config->writeEntry(CFG_QM_TYPE_COMP, (int) typecomp);
+  //config->writeEntry(CFG_QM_LESSON_COMP, (int) lessoncomp);
 
-  config->writeEntry(CFG_QM_DATE_ITEM, (int) dateitem);
-  config->writeEntry(CFG_QM_BAD_ITEM, (int) baditem);
-  config->writeEntry(CFG_QM_QUERY_ITEM, (int) queryitem);
-  config->writeEntry(CFG_QM_GRADE_ITEM, (int) gradeitem);
-  config->writeEntry(CFG_QM_TYPE_ITEM, typeitem);
+  //config->writeEntry(CFG_QM_DATE_ITEM, (int) dateitem);
+  //config->writeEntry(CFG_QM_BAD_ITEM, (int) baditem);
+  //config->writeEntry(CFG_QM_QUERY_ITEM, (int) queryitem);
+  //config->writeEntry(CFG_QM_GRADE_ITEM, (int) gradeitem);
+  //config->writeEntry(CFG_QM_TYPE_ITEM, typeitem);
 //  config->writeEntry(CFG_QM_LESSON_ITEM, lessonItemStr());
 
-  QString s;
+  /*QString s;
   for (int i = KV_LEV1_GRADE;
        i <= KV_MAX_GRADE && i <= (int) blockItems.size(); i++) {
     s.setNum(i);
@@ -195,10 +195,10 @@ void QueryManager::saveConfig (KConfig *config)
     s.setNum(i);
     s.insert(0, CFG_QM_EXPIRE_ITEM);
     config->writeEntry(s, expireItems[i-1]);
-  }
-}
+  }*/
+/*}*/
 
-
+/*
 int QueryManager::blockItem (int grade) const
 {
    if (grade <= (int) blockItems.size() && grade > 0)
@@ -210,7 +210,7 @@ int QueryManager::blockItem (int grade) const
 
 int QueryManager::expireItem (int grade) const
 {
-   if (grade <= (int) expireItems.size() && grade > 0)
+   if (grade <= (int) expireItems().size() && grade > 0)
     return expireItems[grade-1];
    else
     return 0;
@@ -237,7 +237,7 @@ void QueryManager::setExpireItem (int item, int grade)
      expireItems.push_back(0);
    expireItems[grade-1] = item;
 }
-
+*/
 
 QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
                                     int oindex, int tindex,
@@ -309,10 +309,10 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
         ||
 
         (
-            compareGrade (gradecomp, expr->getGrade(index, oindex != 0), gradeitem)
-         && compareQuery (querycomp, expr->getQueryCount(index, oindex != 0), queryitem)
-         && compareBad (badcomp, expr->getBadCount(index, oindex != 0), baditem)
-         && compareDate (datecomp, expr->getQueryDate(index, oindex != 0), dateitem)
+            compareGrade ((CompType) Prefs::compType(Prefs::EnumType::Grade), expr->getGrade(index, oindex != 0), Prefs::gradeItem())
+         && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query), expr->getQueryCount(index, oindex != 0), Prefs::queryItem())
+         && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->getBadCount(index, oindex != 0), Prefs::badItem())
+         && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date), expr->getQueryDate(index, oindex != 0), Prefs::dateItem())
 
          && compareBlocking(expr->getGrade(index, oindex != 0),
                             expr->getQueryDate(index, oindex != 0), block)
@@ -320,8 +320,8 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
        )
 //     lesson + word type must ALWAYS match
 //     (and there must be a word on both sides)
-       && compareLesson (lessoncomp, expr->getLesson(), lessonitems, act_lesson)
-       && compareType (typecomp, expr->getType(index), typeitem)
+       && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(), lessonitems, act_lesson)
+       && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType), expr->getType(index), Prefs::typeItem())
        && !expr->getOriginal().stripWhiteSpace().isEmpty()
        && !expr->getTranslation(index).stripWhiteSpace().isEmpty()
       )
@@ -400,7 +400,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
    else
      return false;
 
-   if (compareLesson (lessoncomp, expr->getLesson(),
+   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(),
                       lessonitems, act_lesson)
        && type_ok) {
      return true;
@@ -463,7 +463,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
      type_ok = !expr->getExample(idx).stripWhiteSpace().isEmpty();
    }
 
-   if (compareLesson (lessoncomp, expr->getLesson(),
+   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(),
                       lessonitems, act_lesson)
        && type_ok) {
      return true;
@@ -570,7 +570,7 @@ QString QueryManager::typeStr (const QString id)
 
 bool QueryManager::compareBlocking (int grade, int date, bool use_it)
 {
-   time_t cmp = blockItem(grade);
+   time_t cmp = Prefs::blockItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
      return true;
    else {
@@ -582,7 +582,7 @@ bool QueryManager::compareBlocking (int grade, int date, bool use_it)
 
 bool QueryManager::compareExpiring (int grade, int date, bool use_it)
 {
-   time_t cmp = expireItem(grade);
+   time_t cmp = Prefs::expireItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
      return false;
    else {

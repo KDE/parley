@@ -50,7 +50,7 @@ DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *p
   QVBoxLayout * topLayout;
   LangPropPage* lpp;
 
-  for (int i = 0; i < (int) doc->numLangs(); i++) 
+  for (int i = 0; i < (int) doc->numLangs(); i++)
   {
     QString s;
     if (i == 0)

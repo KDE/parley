@@ -1,8 +1,8 @@
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = kva_io.cpp kvoctrain.cpp kvoctrainview.cpp main.cpp \
-	kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp prefs.kcfgc \
-	kvoctraintable.cpp kvoctraintableitem.cpp
+			kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp prefs.kcfgc \
+			kvoctraintable.cpp kvoctraintableitem.cpp languagesettings.kcfgc presettings.kcfgc
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
@@ -30,7 +30,7 @@ rcdir = $(kde_datadir)/kvoctrain
 rc_DATA = kvoctrainui.rc
 
 xdg_apps_DATA = kvoctrain.desktop
-kde_kcfg_DATA = kvoctrain.kcfg
+kde_kcfg_DATA = kvoctrain.kcfg languagesettings.kcfg presettings.kcfg
 
 INCLUDES= -I$(srcdir)/.. \
  -I$(srcdir)/kvt-core \

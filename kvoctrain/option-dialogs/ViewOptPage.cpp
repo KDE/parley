@@ -37,20 +37,18 @@
 
 #include <kstandarddirs.h>
 
+#include <prefs.h>
+
 ViewOptPage::ViewOptPage
 (
-        QFont        &_tablefont,
-        QFont        &_ipa_font,
-        GradeCols    &cols,
-        QueryManager *,
-	QWidget      *parent,
-	const char   *name
+  QFont        &_tablefont,
+  QFont        &_ipa_font,
+  QueryManager *,
+  QWidget      *parent,
+  const char   *name
 )
-	:
-	ViewOptPageForm( parent, name ),
-        gc(cols),
-        tablefont(_tablefont),
-        ipa_font(_ipa_font)
+  :
+  ViewOptPageForm( parent, name ), tablefont(_tablefont), ipa_font(_ipa_font)
 {
    connect( kcfg_gradeCol0, SIGNAL(changed(const QColor&)), SLOT(slotCol0(const QColor&)) );
    connect( kcfg_gradeCol1, SIGNAL(changed(const QColor&)), SLOT(slotCol1(const QColor&)) );
@@ -69,16 +67,16 @@ ViewOptPage::ViewOptPage
    e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
    e_ipa_font->setText (QString("%1 %2pt").arg(ipa_font.family()).arg(ipa_font.pointSize()));
 
-   kcfg_gradeCol0->setColor (cols.col0);
-   kcfg_gradeCol1->setColor (cols.col1);
-   kcfg_gradeCol2->setColor (cols.col2);
-   kcfg_gradeCol3->setColor (cols.col3);
-   kcfg_gradeCol4->setColor (cols.col4);
-   kcfg_gradeCol5->setColor (cols.col5);
-   kcfg_gradeCol6->setColor (cols.col6);
-   kcfg_gradeCol7->setColor (cols.col7);
-   kcfg_useGradeCol->setChecked (gc.use);
-   slotColUsed(gc.use);
+   kcfg_gradeCol0->setColor (Prefs::gradeCol(0));
+   kcfg_gradeCol1->setColor (Prefs::gradeCol(1));
+   kcfg_gradeCol2->setColor (Prefs::gradeCol(2));
+   kcfg_gradeCol3->setColor (Prefs::gradeCol(3));
+   kcfg_gradeCol4->setColor (Prefs::gradeCol(4));
+   kcfg_gradeCol5->setColor (Prefs::gradeCol(5));
+   kcfg_gradeCol6->setColor (Prefs::gradeCol(6));
+   kcfg_gradeCol7->setColor (Prefs::gradeCol(7));
+   kcfg_useGradeCol->setChecked (Prefs::useGradeCol());
+   slotColUsed(Prefs::useGradeCol());
 }
 
 
@@ -120,55 +118,55 @@ void ViewOptPage::slotChooseIPAFont()
 
 void ViewOptPage::slotCol0(const QColor &col)
 {
-  gc.col0 = col;
+  Prefs::setGradeCol(0, col);
 }
 
 
 void ViewOptPage::slotCol1(const QColor &col)
 {
-  gc.col1 = col;
+  Prefs::setGradeCol(1, col);
 }
 
 
 void ViewOptPage::slotCol2(const QColor &col)
 {
-  gc.col2 = col;
+  Prefs::setGradeCol(2, col);
 }
 
 
 void ViewOptPage::slotCol3(const QColor &col)
 {
-  gc.col3 = col;
+  Prefs::setGradeCol(3, col);
 }
 
 
 void ViewOptPage::slotCol4(const QColor &col)
 {
-  gc.col4 = col;
+  Prefs::setGradeCol(4, col);
 }
 
 
 void ViewOptPage::slotCol5(const QColor &col)
 {
-  gc.col5 = col;
+  Prefs::setGradeCol(5, col);
 }
 
 
 void ViewOptPage::slotCol6(const QColor &col)
 {
-  gc.col6 = col;
+  Prefs::setGradeCol(6, col);
 }
 
 
 void ViewOptPage::slotCol7(const QColor &col)
 {
-  gc.col7 = col;
+  Prefs::setGradeCol(7, col);
 }
 
 
 void ViewOptPage::slotColUsed(bool used)
 {
-  gc.use = used;
+  Prefs::setUseGradeCol(used);
 
   kcfg_gradeCol0->setEnabled(used);
   kcfg_gradeCol1->setEnabled(used);

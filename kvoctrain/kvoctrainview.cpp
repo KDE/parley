@@ -27,6 +27,7 @@
 #include <kvoctraincore.h>
 #include "kvoctrain.h"
 #include "kvoctrainview.h"
+#include "prefs.h"
 
 #include <kstandarddirs.h>
 #include <kconfig.h>
@@ -44,16 +45,14 @@
 #define HEADER_MINSIZE   24
 #define KV_COLWIDTH_MARK 20
 
-kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
-                             const LangSet &ls, const GradeCols &gradecols,
-                             kvoctrainApp *_parent)
-	: QWidget(_parent)
+kvoctrainView::kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp *_parent)
+  : QWidget(_parent)
 {
 
  the_doc = doc;
  parent = _parent;
 
- lb_list = new KVocTrainTable( the_doc, &ls, &gradecols, this, "ListBox_1" );
+ lb_list = new KVocTrainTable( the_doc, &ls, this, "ListBox_1" );
 
  lb_list->setLineWidth( 2 );
 
@@ -86,7 +85,7 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  list_layout->setRowStretch( 1, 1 );
  list_layout->activate();
 
- setView(the_doc, ls, gradecols);
+ setView(the_doc, ls);
 }
 
 
@@ -120,8 +119,9 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
   unsigned newwidth = lb_list->clipper()->width();
   int remain = newwidth;
 
-  switch (header_resizer) {
-    case Automatic: {
+  switch (Prefs::headerResizeMode()) {
+    case Prefs::EnumHeaderResizeMode::Automatic:
+    {
     // lesson is only half as wide as a original/translation
     // exclude fixed size of "mark"-column
       int x = (remain -KV_COLWIDTH_MARK) / ((lb_list->numCols()-1)*2-1);
@@ -141,7 +141,8 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
     }
     break;
 
-    case Percent: {
+    case Prefs::EnumHeaderResizeMode::Percent:
+    {
       float grow = float(newwidth) / float(oldwidth);
       header->resizeSection( KV_COL_MARK, KV_COLWIDTH_MARK);
       lb_list->setColumnWidth (KV_COL_MARK, KV_COLWIDTH_MARK);
@@ -162,7 +163,7 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
     }
     break;
 
-    case Fixed:
+    case Prefs::EnumHeaderResizeMode::Fixed:
       // nix
     break;
   }
@@ -176,12 +177,11 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
 }
 
 
-void kvoctrainView::setView(kvoctrainDoc *doc,
-                            const LangSet& ls, const GradeCols &gc)
+void kvoctrainView::setView(kvoctrainDoc *doc, const LangSet& ls)
 {
  // set header
  the_doc = doc;
- lb_list->setDoc(the_doc, &gc);
+ lb_list->setDoc(the_doc);
  if (the_doc) {
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 

@@ -19,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -30,6 +30,7 @@
 #include <kdebug.h>
 
 #include <kvoctraindoc.h>
+#include <prefs.h>
 
 #include <qcursor.h>
 #include <qpainter.h>
@@ -57,8 +58,8 @@ private:
 };
 
 
-StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, GradeCols *_gcol, QWidget *parent, const char *name)
-  : StatistikPageForm( parent, name ), doc(_doc), gcol(_gcol)
+StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent, const char *name)
+  : StatistikPageForm( parent, name ), doc(_doc)
 {
   StatListView->setColumnWidth(0, SIZE_GRADE + 10);
   StatListView->setColumnWidth(1, SIZE_GRADE + 10);
@@ -132,15 +133,15 @@ void StatistikPage::setupPixmaps()
       int x2 = 1+PIX_SHIFT;
       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
         switch (j) {
-          case KV_NORM_GRADE: color = gcol->col0;    break;
-          case KV_LEV1_GRADE: color = gcol->col1;    break;
-          case KV_LEV2_GRADE: color = gcol->col2;    break;
-          case KV_LEV3_GRADE: color = gcol->col3;    break;
-          case KV_LEV4_GRADE: color = gcol->col4;    break;
-          case KV_LEV5_GRADE: color = gcol->col5;    break;
-          case KV_LEV6_GRADE: color = gcol->col6;    break;
-          case KV_LEV7_GRADE: color = gcol->col7;    break;
-          default           : color = gcol->col1;
+          case KV_NORM_GRADE: color = Prefs::gradeCol(0);    break;
+          case KV_LEV1_GRADE: color = Prefs::gradeCol(1);    break;
+          case KV_LEV2_GRADE: color = Prefs::gradeCol(2);    break;
+          case KV_LEV3_GRADE: color = Prefs::gradeCol(3);    break;
+          case KV_LEV4_GRADE: color = Prefs::gradeCol(4);    break;
+          case KV_LEV5_GRADE: color = Prefs::gradeCol(5);    break;
+          case KV_LEV6_GRADE: color = Prefs::gradeCol(6);    break;
+          case KV_LEV7_GRADE: color = Prefs::gradeCol(7);    break;
+          default           : color = Prefs::gradeCol(1);
         }
         if (widths[j] != 0) {
           x2 += widths[j];
@@ -151,7 +152,7 @@ void StatistikPage::setupPixmaps()
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1, gcol->col0);
+      p.fillRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1, Prefs::gradeCol(0));
       p.drawRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1);
     }
     p.end();
@@ -190,15 +191,15 @@ void StatistikPage::setupPixmaps()
       int x2 = 1+PIX_SHIFT;
       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
         switch (j) {
-          case KV_NORM_GRADE: color = gcol->col0;    break;
-          case KV_LEV1_GRADE: color = gcol->col1;    break;
-          case KV_LEV2_GRADE: color = gcol->col2;    break;
-          case KV_LEV3_GRADE: color = gcol->col3;    break;
-          case KV_LEV4_GRADE: color = gcol->col4;    break;
-          case KV_LEV5_GRADE: color = gcol->col5;    break;
-          case KV_LEV6_GRADE: color = gcol->col6;    break;
-          case KV_LEV7_GRADE: color = gcol->col7;    break;
-          default           : color = gcol->col1;
+          case KV_NORM_GRADE: color = Prefs::gradeCol(0);    break;
+          case KV_LEV1_GRADE: color = Prefs::gradeCol(1);    break;
+          case KV_LEV2_GRADE: color = Prefs::gradeCol(2);    break;
+          case KV_LEV3_GRADE: color = Prefs::gradeCol(3);    break;
+          case KV_LEV4_GRADE: color = Prefs::gradeCol(4);    break;
+          case KV_LEV5_GRADE: color = Prefs::gradeCol(5);    break;
+          case KV_LEV6_GRADE: color = Prefs::gradeCol(6);    break;
+          case KV_LEV7_GRADE: color = Prefs::gradeCol(7);    break;
+          default           : color = Prefs::gradeCol(1);
         }
         if (widths[j] != 0) {
           x2 += widths[j];
@@ -209,7 +210,7 @@ void StatistikPage::setupPixmaps()
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1, gcol->col0);
+      p.fillRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1, Prefs::gradeCol(0));
       p.drawRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1);
     }
     p.end();

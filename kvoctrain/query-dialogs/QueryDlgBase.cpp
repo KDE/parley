@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Wed Feb 16 20:50:53 MET 2000
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -41,7 +41,7 @@ QueryDlgBase::QueryDlgBase (QFont &font)
   word_font = font;
   kv_doc = 0;
   kv_exp = 0;
-  type_timeout = kvq_notimeout;
+  //type_timeout = kvq_notimeout;
 }
 
 
@@ -214,7 +214,7 @@ void QueryDlgBase::resetField(QMultiLineEdit *field)
   QFont ft = field->font();
   if (ft.weight() != QFont::Normal) {
     ft.setWeight(QFont::Normal);
-    field->setFont(ft);                               	
+    field->setFont(ft);
   }
 }
 

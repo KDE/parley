@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                      C) 2005 Peter Hedlund <peter@peterandlinda.com>
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -68,11 +68,11 @@
 #include "GrammerManager.h"
 #include "MultipleChoice.h"
 
-struct GradeCols {
+/*struct GradeCols {
    bool   use;
    QColor col0, col1, col2, col3, col4, col5, col6, col7;
 };
-
+*/
 typedef signed char grade_t;
 typedef unsigned short count_t;
 
@@ -94,7 +94,7 @@ class kvoctrainExpr
 
   kvoctrainExpr ();
 
-  kvoctrainExpr (QString &s, QString &separator, int lesson = 0);
+  kvoctrainExpr (QString &s, QString separator, int lesson = 0);
 
   /** Constructor for an expression in different languages
    *

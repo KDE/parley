@@ -1,0 +1,5 @@
+File=languagesettings.kcfg
+ClassName=LanguageSettings
+Mutators=true
+ItemAccessors=true
+SetUserTexts=true

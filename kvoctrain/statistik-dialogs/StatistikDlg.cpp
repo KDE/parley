@@ -34,7 +34,7 @@
 #include <langset.h>
 #include <kvoctraindoc.h>
 
-StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent, const char *name, bool modal)
+StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent, const char *name, bool modal)
   : KDialogBase(Tabbed, i18n("Document Statistics"), Close, Close, parent, name, modal)
 {
   QFrame * page;
@@ -46,7 +46,7 @@ StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, Q
   GenStatPage *gspage = new GenStatPage (doc, page, name);
   topLayout->addWidget(gspage);
 
-  for (int i = 1; i < (int) doc->numLangs(); i++) 
+  for (int i = 1; i < (int) doc->numLangs(); i++)
   {
     QString s = langset.findLongId(doc->getIdent(i));
     if (s.isEmpty() )
@@ -56,7 +56,7 @@ StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, Q
 
     page = addPage(s);
     topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    spage = new StatistikPage (i, doc, gc, page, name);
+    spage = new StatistikPage (i, doc, page, name);
     topLayout->addWidget(spage);
   }
 }

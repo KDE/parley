@@ -39,6 +39,7 @@
 #include "kvoctrain.h"
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"
+#include "prefs.h"
 
 #define PATTERN_ALL  I18N_NOOP("*|All Files (*)\n")
 #define PATTERN_ML   I18N_NOOP("*.kvtml|KVocTrain Markup (*.kvtml)\n")
@@ -57,12 +58,12 @@
 
 void kvoctrainApp::slotTimeOutBackup()
 {
-  if (backupTime > 0 && doc && doc->isModified() ) {
+  if (Prefs::backupTime() > 0 && doc && doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
-  if (backupTime > 0)
-    btimer->start(backupTime, TRUE);
+  if (Prefs::backupTime() > 0)
+    btimer->start(Prefs::backupTime(), TRUE);
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -78,10 +79,10 @@ bool kvoctrainApp::queryClose()
 
 bool kvoctrainApp::queryExit()
 {
-  saveOptions(false);
+  saveOptions();
   if (!doc || !doc->isModified() ) return true;
 
-  bool save = (backupTime > 0); // autobackup on: save without asking
+  bool save = (Prefs::backupTime() > 0); // autobackup on: save without asking
 
   if (!save)
   {
@@ -154,17 +155,17 @@ void kvoctrainApp::slotFileNew()
   slotStatusMsg(i18n("Creating new file..."));
 
   if (queryExit() ) {
-    view->setView (0, langset, gradecols);
+    view->setView (0, langset);
     delete doc;
     QString name = "";
-    doc = new kvoctrainDoc (this, 0 /*KURL(name)*/, separator, &paste_order);
+    doc = new kvoctrainDoc (this, 0 /*KURL(name)*/, Prefs::separator(), &Prefs::pasteOrder());
     loadDocProps(doc);
     if (doc->numLangs() == 0) {
       QString l = "en";
       doc->appendLang(l);
     }
-    view->setView(doc, langset, gradecols);
-    view->getTable()->setFont(tablefont);
+    view->setView(doc, langset);
+    view->getTable()->setFont(Prefs::tableFont());
     view->adjustContent();
     connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     doc->setModified(false);
@@ -189,7 +190,7 @@ void kvoctrainApp::slotFileOpen()
 void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 {
     if (!url.path().isEmpty() ) {
-      view->setView(0, langset, gradecols);
+      view->setView(0, langset);
       delete doc;
       doc = 0;
 
@@ -198,11 +199,11 @@ void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 
       slotStatusMsg(msg);
       prepareProgressBar();
-      doc = new kvoctrainDoc (this, url, separator, &paste_order);
+      doc = new kvoctrainDoc (this, url, Prefs::separator(), &Prefs::pasteOrder());
       removeProgressBar();
       loadDocProps(doc);
-      view->setView(doc, langset, gradecols);
-      view->getTable()->setFont(tablefont);
+      view->setView(doc, langset);
+      view->getTable()->setFont(Prefs::tableFont());
       view->adjustContent();
       if (addRecent)
         fileOpenRecent->addURL(url) /*addRecentFile (url.path())*/;
@@ -241,7 +242,7 @@ void kvoctrainApp::slotFileMerge()
 
     slotStatusMsg(msg);
     prepareProgressBar();
-    kvoctrainDoc *new_doc = new kvoctrainDoc (this, url, separator, &paste_order);
+    kvoctrainDoc *new_doc = new kvoctrainDoc (this, url, Prefs::separator(), &Prefs::pasteOrder());
     connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     doc->setModified(false);
     removeProgressBar();
@@ -469,8 +470,8 @@ void kvoctrainApp::slotFileMerge()
     fileOpenRecent->addURL(url); // addRecentFile (url.path());
   }
 
-  view->setView(doc, langset, gradecols);
-  view->getTable()->setFont(tablefont);
+  view->setView(doc, langset);
+  view->getTable()->setFont(Prefs::tableFont());
   view->adjustContent();
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
@@ -498,7 +499,7 @@ void kvoctrainApp::slotFileSave()
 
   prepareProgressBar();
   saveDocProps(doc);
-  doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+  doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
   fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
   removeProgressBar();
 
@@ -602,7 +603,7 @@ void kvoctrainApp::slotFileSaveAs()
       saveDocProps(doc);
 
       prepareProgressBar();
-      doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+      doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
       fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
       removeProgressBar();
     }
@@ -653,7 +654,7 @@ void kvoctrainApp::slotSaveSelection ()
       saveDocProps(&seldoc);
 
       prepareProgressBar();
-      seldoc.saveAs(this, url, i18n ("Part of: ") + doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+      seldoc.saveAs(this, url, i18n ("Part of: ") + doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
       removeProgressBar();
     }
   }

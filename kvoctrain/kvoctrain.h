@@ -89,7 +89,7 @@ public:
   /** setup the main view*/
   void initView();
   /** save the app-specific options on slotAppExit or by an Options dialog */
-  void saveOptions(bool all);
+  void saveOptions();
   /** read the app-specific options on init() or by an Options dialog */
   void readOptions();
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
@@ -153,7 +153,6 @@ public:
   void slotGeneralOptions();
   void slotQueryOptions();
   void slotQueryOptions(int pageindex);
-  void slotSaveOptions();
   void slotDocProps();
   void slotDocPropsLang();
   void slotShowStatist();
@@ -217,7 +216,7 @@ public:
   void loadDocProps(kvoctrainDoc *the_doc);
   void saveDocProps(kvoctrainDoc *);
   /** exits the application */
-  static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *paste_order);
+  static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *);
 
 //  void doSM();
 
@@ -260,7 +259,6 @@ private:
   KAction* configNotifications;
   KAction* configApp;
   KAction* configQueryOptions;
-  KAction* configSaveOptions;
 
   QString lastPixName;
 
@@ -286,17 +284,9 @@ private:
 
   QTimer          *btimer;
   int              random_query_nr;
-  int              maxqueryTime;
-  int              backupTime;
-  bool             smartAppend;
   bool             querymode;
   bool             querying;
-  bool             swap_querydir;
-  bool             alt_learn;
-  bool             expire;
-  bool             block;
   QString          def_lang;
-  QString          separator;
   QPopupMenu      *header_m;
   int              act_query_col;
   QString          act_query_trans;
@@ -307,16 +297,10 @@ private:
   KLineEdit       *searchLine;
   KComboBox       *lessons;
   int              act_lesson;
-  QStringList      paste_order;
-  bool             useCurrent;
-  int              entriesPerLesson;
-  QFont            tablefont;
-  QFont            ipafont;
   QueryManager     querymanager;
   bool             controlActive;
   bool             shiftActive;
   bool             altActive;
-  GradeCols        gradecols;
   ProgressDlg     *pdlg;
   KProgress       *pbar;
   QLabel          *vslide_label;
@@ -330,27 +314,13 @@ private:
   RandomQueryDlg  *randomQueryDlg;
   AdjQueryDlg     *adjQueryDlg;
   ArtQueryDlg     *artQueryDlg;
-  kvoctrainView::Resizer header_resizer;
   int              num_queryTimeout;
   int              query_cycle;
   int              query_num;
   int              query_startnum;
   vector<PreSetting>  presettings;
   QueryType        queryType;
-  kvq_timeout_t    type_querytimeout;
-  int              showcounter;
-  bool             autosaveopts;
-  bool             autoentryApply;
   KRandomSequence  random;
-  bool             suggestions;
-  bool             split;
-  bool             periods;
-  bool             colons;
-  bool             semicolons;
-  bool             commas;
-  int              fields;
-  bool             show_more;
-  bool             i_know;
 };
 
 #endif // KVOCTRAIN_H

@@ -36,12 +36,11 @@
 
 #include <QueryManager.h>
 
+
 GenOptPage::GenOptPage
 (
         int        _btime,
-        kvoctrainView::Resizer res,
         bool        _smart,
-        bool        _autosaveopts,
         bool        _autoapply,
 	QWidget    *parent,
 	const char *name
@@ -50,17 +49,17 @@ GenOptPage::GenOptPage
 	GenOptPageForm( parent, name )
 {
   setCaption(i18n("Options" ));
-  resizer = res;
+  //resizer = res;
 
 
   group_resize->insert(hb_auto);
   group_resize->insert(hb_percent);
   group_resize->insert(hb_fixed);
 
-  connect( chk_autoapply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
+  connect( kcfg_autoEntryApply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
   connect( kcfg_smartAppend, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_btime, SIGNAL(toggled(bool)), SLOT(slotBTimeUsed(bool)) );
-  connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
+  //connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
   connect( kcfg_backupTime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
   connect( hb_fixed, SIGNAL(clicked()), SLOT(slotHBfixed()) );
   connect( hb_percent, SIGNAL(clicked()), SLOT(slotHBpercent()) );
@@ -68,12 +67,12 @@ GenOptPage::GenOptPage
 
   btime = _btime;
   smart = _smart;
-  autosaveopts = _autosaveopts;
+  //autosaveopts = _autosaveopts;
   autoapply = _autoapply;
 
-  chk_autoapply->setChecked(autoapply);
+  kcfg_autoEntryApply->setChecked(autoapply);
   kcfg_smartAppend->setChecked(smart);
-  c_saveopt->setChecked(autosaveopts);
+  //c_saveopt->setChecked(autosaveopts);
 
   QString s;
   validator = new QIntValidator (0, 60*60*24*7, 0); // at least once a week
@@ -82,22 +81,22 @@ GenOptPage::GenOptPage
   c_btime->setChecked(btime > 0);
   slotBTimeUsed(btime > 0);
 
-  switch (resizer) {
-    case kvoctrainView::Automatic :
+  switch (Prefs::headerResizeMode()) {
+    case /*kvoctrainView::Automatic*/ 0 :
        hb_auto->setChecked( true );
     break;
 
-    case kvoctrainView::Fixed :
+    case /*kvoctrainView::Fixed*/ 1 :
        hb_fixed->setChecked( true );
     break;
 
-    case kvoctrainView::Percent :
+    case /*kvoctrainView::Percent*/ 2 :
        hb_percent->setChecked( true );
     break;
 
     default: {
       hb_auto->setChecked( true );
-      resizer = kvoctrainView::Automatic;
+      //resizer = kvoctrainView::Automatic;
     }
   }
 }
@@ -151,27 +150,21 @@ void GenOptPage::slotSmartAppend(bool b)
 }
 
 
-void GenOptPage::slotAutoSaveOpts(bool b)
-{
-  autosaveopts = b;
-}
-
-
 void GenOptPage::slotHBauto()
 {
-  resizer = kvoctrainView::Automatic;
+  Prefs::setHeaderResizeMode(Prefs::EnumHeaderResizeMode::Automatic);
 }
 
 
 void GenOptPage::slotHBfixed()
 {
-  resizer = kvoctrainView::Fixed;
+  Prefs::setHeaderResizeMode(Prefs::EnumHeaderResizeMode::Fixed);
 }
 
 
 void GenOptPage::slotHBpercent()
 {
-  resizer = kvoctrainView::Percent;
+  Prefs::setHeaderResizeMode(Prefs::EnumHeaderResizeMode::Percent);
 }
 
 

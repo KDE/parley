@@ -48,32 +48,28 @@ GeneralOptionsDlg::GeneralOptionsDlg
         LangSet      &_langset,
         QString      &lastPix,
         QComboBox    *,
-        QStringList  &paste_list,
+        QStringList   paste_list,
         bool          useCurrent,
         kvoctrainDoc *doc,
-        QFont        &tablefont,
-        QFont        &ipafont,
+        QFont         tablefont,
+        QFont         ipafont,
         QueryManager *manager,
-        GradeCols    &gradecols,
-        kvoctrainView::Resizer resizer,
         bool          smartAppend,
-        bool          autosaveopts,
         bool          autoapply,
-	QWidget      *parent,
-	const char   *name
+        QWidget      *parent,
+        const char   *name
 )
-	:
-	Inherited( parent, name, true ),
-        langset(_langset)
+:
+  Inherited( parent, name, true ), langset(_langset)
 {
   setCaption(kapp->makeStdCaption(i18n("General Options")));
 
   setCancelButton(i18n("&Cancel"));
   setOkButton(i18n("&OK"));
 
-  genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, autoapply, this, name);
+  genOptPage =  new GenOptPage  (btime, smartAppend, autoapply, this, name);
   langOptPage = new LangOptPage (deflang, langset, lastPix, this, name);
-  viewOptPage = new ViewOptPage (tablefont, ipafont, gradecols, manager, this, name);
+  viewOptPage = new ViewOptPage (tablefont, ipafont, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);
 
   addTab( genOptPage,  i18n("&General"));

@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Sat Jul 10 18:03:22 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -23,11 +23,12 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 #include "ThreshOptPage.h"
+#include <prefs.h>
 
 #include <iostream>
 #include <vector>
@@ -214,14 +215,14 @@ void ThreshOptPage::setStates(QueryManager *_manager)
        }
      }
    }
-   slotSetLessonItems(); 
+   slotSetLessonItems();
 
    // limits and threshholds
    index = 0;
    gradelist->clear();
    for (int i = 1; i <= KV_MAX_GRADE; i++) {
      gradelist->insertItem (manager->gradeStr(i));
-     if (manager->gradeItem() == i)
+     if (Prefs::gradeItem() == i)
        index = i-1;
    }
    gradelist->setCurrentItem (index);
@@ -232,7 +233,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    all_maintypes = QueryManager::getRelation(true); // collect main types
    for (int i = 0; i < (int) all_maintypes.size(); i++) {
      typelist->insertItem (all_maintypes[i].longStr());
-     if (manager->typeItem() == all_maintypes[i].shortStr())
+     if (Prefs::typeItem() == all_maintypes[i].shortStr())
        index = i;
    }
    typelist->setCurrentItem (index);
@@ -242,7 +243,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    badlist->clear();
    while (ref->text != 0 ) {
      badlist->insertItem (ref->text);
-     if (manager->badItem() == ref->num)
+     if (Prefs::badItem() == ref->num)
        index = ref - Threshbad_itemlist;
      ref++;
    }
@@ -253,7 +254,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    querylist->clear();
    while (ref->text != 0 ) {
      querylist->insertItem (ref->text);
-     if (manager->queryItem() == ref->num)
+     if (Prefs::queryItem() == ref->num)
        index = ref - Threshquery_itemlist;
      ref++;
    }
@@ -264,7 +265,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    datelist->clear();
    while (ref->text != 0 ) {
      datelist->insertItem (i18n(ref->text));
-     if (manager->dateItem() == ref->num)
+     if (Prefs::dateItem() == ref->num)
        index = ref - Threshdate_itemlist;
      ref++;
    }
@@ -277,7 +278,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    typecomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      typecomp->insertItem (manager->compStr(*ct));
-     if (manager->typeComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::WordType) /*manager->typeComp()*/ == *ct)
        index = ct - type_complist;
      ct++;
    }
@@ -289,7 +290,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    querycomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      querycomp->insertItem (manager->compStr(*ct));
-     if (manager->queryComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::Query) == *ct)
        index = ct - query_complist;
      ct++;
    }
@@ -301,7 +302,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    badcomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      badcomp->insertItem (manager->compStr(*ct));
-     if (manager->badComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::Bad) == *ct)
        index = ct - bad_complist;
      ct++;
    }
@@ -313,7 +314,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    lessoncomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      lessoncomp->insertItem (manager->compStr(*ct));
-     if (manager->lessonComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::Lesson) == *ct)
        index = ct - less_complist;
      ct++;
    }
@@ -325,7 +326,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    gradecomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      gradecomp->insertItem (manager->compStr(*ct));
-     if (manager->gradeComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::Grade) == *ct)
        index = ct - grade_complist;
      ct++;
    }
@@ -337,7 +338,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    datecomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      datecomp->insertItem (manager->compStr(*ct));
-     if (manager->dateComp() == *ct)
+     if (Prefs::compType(Prefs::EnumType::Date) == *ct)
        index = ct - date_complist;
      ct++;
    }
@@ -395,7 +396,7 @@ void ThreshOptPage::slotSetLessonComp(int i)
    if (i < 0)
      return;
 
-   manager->setLessonComp(less_complist[i]);
+   Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[i]);
 
    emit modifySetting();
 }
@@ -403,7 +404,7 @@ void ThreshOptPage::slotSetLessonComp(int i)
 
 void ThreshOptPage::slotSetGradeComp(int i)
 {
-   manager->setGradeComp (grade_complist[i]);
+   Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[i]);
    gradelist->setEnabled(i != 0); // don`t care == 0
    emit modifySetting();
 }
@@ -411,14 +412,15 @@ void ThreshOptPage::slotSetGradeComp(int i)
 
 void ThreshOptPage::slotSetTypeComp(int i)
 {
-   manager->setTypeComp (type_complist[i]);
+   Prefs::setCompType(Prefs::EnumType::WordType, type_complist[i]);
+   //manager->setTypeComp (type_complist[i]);
    typelist->setEnabled(i != 0); // don`t care == 0
 }
 
 
 void ThreshOptPage::slotSetQueryComp(int i)
 {
-   manager->setQueryComp (query_complist[i]);
+   Prefs::setCompType(Prefs::EnumType::Query, query_complist[i]);
    querylist->setEnabled(i != 0); // don`t care == 0
    emit modifySetting();
 }
@@ -426,7 +428,7 @@ void ThreshOptPage::slotSetQueryComp(int i)
 
 void ThreshOptPage::slotSetBadComp(int i)
 {
-   manager->setBadComp (bad_complist[i]);
+   Prefs::setCompType(Prefs::EnumType::Bad, bad_complist[i]);
    badlist->setEnabled(i != 0); // don`t care == 0
    emit modifySetting();
 }
@@ -434,8 +436,8 @@ void ThreshOptPage::slotSetBadComp(int i)
 
 void ThreshOptPage::slotSetDateComp(int i)
 {
-   manager->setDateComp (date_complist[i]);
-   if (   date_complist[i] == QueryManager::Before
+   Prefs::setCompType(Prefs::EnumType::Date, date_complist[i]);
+   if (date_complist[i] == QueryManager::Before
        || date_complist[i] == QueryManager::Within)
      datelist->setEnabled(true);
    else
@@ -446,35 +448,35 @@ void ThreshOptPage::slotSetDateComp(int i)
 
 void ThreshOptPage::slotSetTypeItem(int i)
 {
-   manager->setTypeItem (all_maintypes[i].shortStr() );
+   Prefs::setTypeItem (all_maintypes[i].shortStr() );
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetGradeItem(int i)
 {
-   manager->setGradeItem (i+1);
+   Prefs::setGradeItem (i+1);
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetQueryItem(int i)
 {
-   manager->setQueryItem (Threshquery_itemlist[i].num);
+   Prefs::setQueryItem (Threshquery_itemlist[i].num);
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetDateItem(int i)
 {
-   manager->setDateItem (Threshdate_itemlist[i].num);
+   Prefs::setDateItem (Threshdate_itemlist[i].num);
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetBadItem(int i)
 {
-   manager->setBadItem (Threshbad_itemlist[i].num);
+   Prefs::setBadItem (Threshbad_itemlist[i].num);
    emit modifySetting();
 }
 

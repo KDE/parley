@@ -8,7 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
- 
+
     email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
@@ -20,7 +20,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -36,6 +36,7 @@
 #include "query-dialogs/SimpleQueryDlg.h"
 
 #include "queryoption-dialogs/QueryOptionsDlg.h"
+#include "prefs.h"
 
 #define MAX_QUERY_TIMEOUT 3
 
@@ -66,25 +67,24 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
 {
    vector<int> old_liq = doc->getLessonsInQuery();
    QueryOptionsDlg qodlg (
-                    maxqueryTime /1000,
-                    showcounter,
-                    type_querytimeout,
+                    Prefs::maxTimePer() /1000,
+                    Prefs::showCounter(),
                     doc,
                     lessons,
                     &querymanager,
-                    swap_querydir,
-                    suggestions,
-                    split,
-                    periods,
-                    colons,
-                    semicolons,
-                    commas,
-                    fields,
-                    show_more,
-                    i_know,
-                    alt_learn,
-                    block,
-                    expire,
+                    Prefs::swapDirection(),
+                    Prefs::suggestions(),
+                    Prefs::split(),
+                    Prefs::periods(),
+                    Prefs::colons(),
+                    Prefs::semicolons(),
+                    Prefs::commas(),
+                    Prefs::fields(),
+                    Prefs::showMore(),
+                    Prefs::iKnow(),
+                    Prefs::altLearn(),
+                    Prefs::block(),
+                    Prefs::expire(),
                     presettings);
 
    if (pageindex >= 0)
@@ -93,23 +93,23 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
    int res = qodlg.exec();
    if (res == QDialog::Accepted) {
 
-      type_querytimeout = qodlg.getTypeQueryTimeout();
-      maxqueryTime = qodlg.getMQueryTime()*1000;
-      showcounter = qodlg.getShowCounter();
+      //type_querytimeout = qodlg.getTypeQueryTimeout();
+      Prefs::setMaxTimePer(qodlg.getMQueryTime()*1000);
+      Prefs::setShowCounter(qodlg.getShowCounter());
       querymanager = qodlg.getQueryManager();
-      swap_querydir = qodlg.getSwapDir();
-      suggestions = qodlg.getSuggestions();
-      split = qodlg.getSplit();
-      periods = qodlg.getPeriods();
-      colons = qodlg.getColons();
-      semicolons = qodlg.getSemicolons();
-      commas = qodlg.getCommas();
-      fields = qodlg.getFields();
-      show_more = qodlg.getShowMore();
-      i_know = qodlg.getIKnow();
-      alt_learn = qodlg.getAltLearn();
-      block = qodlg.getBlock();
-      expire = qodlg.getExpire();
+      Prefs::setSwapDirection(qodlg.getSwapDir());
+      Prefs::setSuggestions(qodlg.getSuggestions());
+      Prefs::setSplit(qodlg.getSplit());
+      Prefs::setPeriods(qodlg.getPeriods());
+      Prefs::setColons(qodlg.getColons());
+      Prefs::setSemicolons(qodlg.getSemicolons());
+      Prefs::setCommas(qodlg.getCommas());
+      Prefs::setFields(qodlg.getFields());
+      Prefs::setShowMore(qodlg.getShowMore());
+      Prefs::setIKnow(qodlg.getIKnow());
+      Prefs::setAltLearn(qodlg.getAltLearn());
+      Prefs::setBlock(qodlg.getBlock());
+      Prefs::setExpire(qodlg.getExpire());
       presettings = qodlg.getPreSetting();
       if (old_liq != qodlg.getQueryManager().lessonItems()) {
         doc->setModified();
@@ -178,12 +178,11 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
                            query_cycle,
                            query_num,
                            query_startnum,
-                           tablefont,
-			   exp,
+                           Prefs::tableFont(),
+                           exp,
                            doc,
-                           maxqueryTime,
-                           showcounter,
-                           type_querytimeout);
+                           Prefs::maxTimePer(),
+                           Prefs::showCounter());
 
   connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
            this, SLOT(slotEditEntry(int,int)));
@@ -292,9 +291,8 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
                            query_startnum,
                            exp,
                            doc,
-                           maxqueryTime,
-                           showcounter,
-                           type_querytimeout);
+                           Prefs::maxTimePer(),
+                           Prefs::showCounter());
 
   simpleQueryDlg->initFocus();
   slotStatusMsg(IDS_DEFAULT);
@@ -355,14 +353,13 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                             query_cycle,
                             query_num,
                             query_startnum,
-                            tablefont,
+                            Prefs::tableFont(),
                             exp,
                             doc,
                             doc->getConjugation(act_query_col),
                             exp->getConjugation(act_query_col),
-                            maxqueryTime,
-                            showcounter,
-                            type_querytimeout);
+                            Prefs::maxTimePer(),
+                            Prefs::showCounter());
 
     verbQueryDlg->initFocus();
     connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
@@ -379,13 +376,12 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_cycle,
                           query_num,
                           query_startnum,
-			  tablefont,
+                          Prefs::tableFont(),
                           exp,
                           doc,
                           doc->getArticle(act_query_col),
-                          maxqueryTime,
-                          showcounter,
-                          type_querytimeout);
+                          Prefs::maxTimePer(),
+                          Prefs::showCounter());
     artQueryDlg->initFocus();
     connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
              this, SLOT(slotEditEntry(int,int)));
@@ -400,13 +396,12 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_cycle,
                           query_num,
                           query_startnum,
-			  tablefont,
+                          Prefs::tableFont(),
                           exp,
                           doc,
                           exp->getComparison(act_query_col),
-                          maxqueryTime,
-                          showcounter,
-                          type_querytimeout);
+                          Prefs::maxTimePer(),
+                          Prefs::showCounter());
     adjQueryDlg->initFocus();
     connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
               this, SLOT(slotEditEntry(int,int)));
@@ -523,9 +518,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                             doc,
                             doc->getConjugation(act_query_col),
                             exp->getConjugation(act_query_col),
-                            maxqueryTime,
-                            showcounter,
-                            type_querytimeout);
+                            Prefs::maxTimePer(),
+                            Prefs::showCounter());
 
     verbQueryDlg->initFocus();
   }
@@ -544,9 +538,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           exp,
                           doc,
                           doc->getArticle(act_query_col),
-                          maxqueryTime,
-                          showcounter,
-                          type_querytimeout);
+                          Prefs::maxTimePer(),
+                          Prefs::showCounter());
     artQueryDlg->initFocus();
   }
   else if (queryType == QT_Comparison) {
@@ -564,9 +557,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           exp,
                           doc,
                           exp->getComparison(act_query_col),
-                          maxqueryTime,
-                          showcounter,
-                          type_querytimeout);
+                          Prefs::maxTimePer(),
+                          Prefs::showCounter());
     adjQueryDlg->initFocus();
   }
   else {
@@ -615,7 +607,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
 
   if (create_new || queryList.size() == 0)
     queryList = querymanager.select (doc, act_lesson, oindex, tindex,
-                                     swap_querydir, alt_learn, block, expire);
+                                     Prefs::swapDirection(), Prefs::altLearn(), Prefs::block(), Prefs::expire());
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -670,22 +662,21 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_cycle,
                              query_num,
                              query_startnum,
-			     tablefont,
+                             Prefs::tableFont(),
                              exp,
                              doc,
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout,
-                             suggestions,
-                             split,
-                             periods,
-                             colons,
-                             semicolons,
-                             commas,
-                             fields,
-                             show_more,
-                             i_know,
-                             swap_querydir);
+                             Prefs::maxTimePer(),
+                             Prefs::showCounter(),
+                             Prefs::suggestions(),
+                             Prefs::split(),
+                             Prefs::periods(),
+                             Prefs::colons(),
+                             Prefs::semicolons(),
+                             Prefs::commas(),
+                             Prefs::fields(),
+                             Prefs::showMore(),
+                             Prefs::iKnow(),
+                             Prefs::swapDirection());
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -703,12 +694,11 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_cycle,
                              query_num,
                              query_startnum,
-			     tablefont,
+                             Prefs::tableFont(),
                              exp,
                              doc,
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout);
+                             Prefs::maxTimePer(),
+                             Prefs::showCounter());
       mcQueryDlg->initFocus();
       connect( mcQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -775,7 +765,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
         //When you get it wrong Leisner style, it ends up in the back
         //of the line
-        if (alt_learn)
+        if (Prefs::altLearn())
           random_expr1.push_back (qer);
         else
           random_expr2.push_back (qer);
@@ -797,7 +787,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
       //When you get it wrong Leisner style, it ends up in the back
       //of the line
-      if (alt_learn)
+      if (Prefs::altLearn())
         random_expr1.push_back (qer);
       else
         random_expr2.push_back (qer);
@@ -814,7 +804,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
     case QueryDlgBase::Known :
       num_queryTimeout = 0;
-      if (alt_learn) {
+      if (Prefs::altLearn()) {
         //we always store the current question in the random_expr
         //array, so delete it from there.
         random_expr1.erase (random_expr1.begin() + random_query_nr);
@@ -835,7 +825,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
           //The user has answered correctly four times in a row. She
           //is good!
           exp->setInQuery(false);
-          
+
           query_num--;
           if (oindex == 0) {
             exp->incGrade(tindex, false);
@@ -859,7 +849,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
         }
 
       }
-      else { //not alt_learn
+      else { //not Prefs::altLearn()
       query_num--;
       if (query_cycle <= 1) {
         if (oindex == 0) {
@@ -901,7 +891,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       return;
   }
 
-  if (alt_learn) {
+  if (Prefs::altLearn()) {
 
     if (correct_3_times.size() > 7 ||
         (correct_3_times.size() > 0
@@ -945,7 +935,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     }
 
   }
-  else {  // not alt_learn
+  else {  // not Prefs::altLearn()
   if (random_expr1.size() == 0 ) {
     if (   random_expr2.size() == 0
         && queryList.size() == 0) {
@@ -970,7 +960,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     slotStopQuery(true);
     return;
   }
-  
+
   random_query_nr = random.getLong(random_expr1.size());
   }
 
@@ -981,7 +971,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   QString q_org,
           q_trans;
 
-  if (swap_querydir) {
+  if (Prefs::swapDirection()) {
     bool rand_swap = random.getBool();
 
     if (rand_swap) {        // random direction
@@ -991,7 +981,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     }
 
     if (!querymanager.validate (exp, act_lesson, oindex, tindex,
-                                block, expire)) {
+                                Prefs::block(), Prefs::expire())) {
       int tmp = oindex;  // must use other direction which is the only valid
       oindex = tindex;
       tindex = tmp;
@@ -1023,9 +1013,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              query_startnum,
                              exp,
                              doc,
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout);
+                             Prefs::maxTimePer(),
+                             Prefs::showCounter());
       randomQueryDlg->initFocus();
   }
   else if (queryType == QT_Multiple) {
@@ -1044,9 +1033,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                          query_startnum,
                          exp,
                          doc,
-                         maxqueryTime,
-                         showcounter,
-                         type_querytimeout);
+                         Prefs::maxTimePer(),
+                         Prefs::showCounter());
       mcQueryDlg->initFocus();
   }
   slotStatusMsg(IDS_DEFAULT);

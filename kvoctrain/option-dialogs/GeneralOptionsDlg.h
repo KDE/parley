@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -22,7 +22,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -53,16 +53,13 @@ public:
         LangSet      &_langset,
         QString      &lastpix,
         QComboBox    *lessons,
-        QStringList  &list,
+        QStringList   list,
         bool          useCurrent,
         kvoctrainDoc *_doc,
-        QFont        &table_font,
-        QFont        &ipa_font,
+        QFont         table_font,
+        QFont         ipa_font,
         QueryManager *manager,
-        GradeCols    &gradecols,
-        kvoctrainView::Resizer resizer,
         bool          smartAppend,
-        bool          autosaveopts,
         bool          _autoapply,
         QWidget      *parent = NULL,
         const char   *name = NULL
@@ -70,13 +67,13 @@ public:
 
     QFont getFont()           const { return viewOptPage->getFont(); }
     QFont getIPAFont()        const { return viewOptPage->getIPAFont(); }
-    GradeCols getGradeCols()  const { return viewOptPage->getGradeCols(); }
+    //GradeCols getGradeCols()  const { return viewOptPage->getGradeCols(); }
 
     int getBackupTime()       const { return genOptPage->getBackupTime(); }
     int getSmartAppend()      const { return genOptPage->getSmartAppend(); }
-    int getAutoSaveOpts()     const { return genOptPage->getAutoSaveOpts(); }
+    //int getAutoSaveOpts()     const { return genOptPage->getAutoSaveOpts(); }
     bool getAutoApply()       const { return genOptPage->getAutoApply(); }
-    kvoctrainView::Resizer getResizer() const { return genOptPage->getResizer(); }
+    //kvoctrainView::Resizer getResizer() const { return genOptPage->getResizer(); }
 
     QString getDefaultLang () const { return langOptPage->getDefaultLang(); }
     LangSet getLangSet ()     const { return langOptPage->getLangSet(); }

@@ -19,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -40,7 +40,7 @@ class StatistikDlg : public KDialogBase
   Q_OBJECT
 
 public:
-  StatistikDlg(LangSet &langset, kvoctrainDoc *doc, GradeCols *gc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
 };
 

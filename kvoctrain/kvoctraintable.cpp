@@ -37,8 +37,9 @@
 
 #include "kvoctraintable.h"
 #include "kv_resource.h"
+#include "prefs.h"
 
-KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, const GradeCols *gc, QWidget *parent, const char *name)
+KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, QWidget *parent, const char *name)
   : QTable(parent, name), langs(ls)
 {
   m_doc = doc;
@@ -52,7 +53,7 @@ KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, const Grade
   setRowMovingEnabled(false);
   setSorting(false);
 
-  setDoc(m_doc, gc);
+  setDoc(m_doc);
 
   triggerSect = -1;
 
@@ -211,7 +212,7 @@ kvoctrainExpr *KVocTrainTable::getRow(int row)
     return 0;
 }
 
-void KVocTrainTable::setDoc(kvoctrainDoc * rows, const GradeCols * gc)
+void KVocTrainTable::setDoc(kvoctrainDoc * rows)
 {
   if (defaultItem)
     endEdit(defaultItem->row(), defaultItem->col(), true, false);
@@ -238,7 +239,7 @@ void KVocTrainTable::setDoc(kvoctrainDoc * rows, const GradeCols * gc)
     defaultItem = d;
     defaultItem->setDoc(rows);
   }
-  gradecols = gc;
+  //gradecols = gc;
 }
 
 void KVocTrainTable::menuTriggerTimeout()
@@ -313,44 +314,44 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
     QColor color = KV_NORM_COLOR;
     int current_col = numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn();
 
-    if (gradecols != 0 && gradecols->use)
+    if (Prefs::useGradeCol())
     {
       if (col > KV_COL_ORG)
       {
-        color = gradecols->col0;
+        color = Prefs::gradeCol(0);
         if (expr->getQueryCount(col - KV_EXTRA_COLS, false) != 0)
         {
           switch (expr->getGrade(col-KV_EXTRA_COLS, false))
           {
-            case KV_NORM_GRADE: color = gradecols->col0; break;
-            case KV_LEV1_GRADE: color = gradecols->col1; break;
-            case KV_LEV2_GRADE: color = gradecols->col2; break;
-            case KV_LEV3_GRADE: color = gradecols->col3; break;
-            case KV_LEV4_GRADE: color = gradecols->col4; break;
-            case KV_LEV5_GRADE: color = gradecols->col5; break;
-            case KV_LEV6_GRADE: color = gradecols->col6; break;
-            case KV_LEV7_GRADE: color = gradecols->col7; break;
-            default           : color = gradecols->col1;
+            case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
+            case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+            case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+            case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+            case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+            case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+            case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+            case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+            default           : color = Prefs::gradeCol(1);
           }
         }
       }
       else if ( col == KV_COL_ORG )
       {
-        color = gradecols->col0;
+        color = Prefs::gradeCol(0);
         if (expr->numTranslations() != 0 && current_col > KV_COL_ORG )
         {
           if (expr->getQueryCount(current_col - KV_EXTRA_COLS, true) != 0 )
           {
             switch (expr->getGrade(current_col - KV_EXTRA_COLS, true))
             {
-              case KV_LEV1_GRADE: color = gradecols->col1; break;
-              case KV_LEV2_GRADE: color = gradecols->col2; break;
-              case KV_LEV3_GRADE: color = gradecols->col3; break;
-              case KV_LEV4_GRADE: color = gradecols->col4; break;
-              case KV_LEV5_GRADE: color = gradecols->col5; break;
-              case KV_LEV6_GRADE: color = gradecols->col6; break;
-              case KV_LEV7_GRADE: color = gradecols->col7; break;
-              default           : color = gradecols->col1;
+              case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+              case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+              case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+              case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+              case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+              case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+              case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+              default           : color = Prefs::gradeCol(1);
             }
           }
         }

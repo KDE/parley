@@ -1,5 +1,4 @@
-INCLUDES = -I$(srcdir)/.. -I../common-dialogs -I$(srcdir)/../kvt-core \
- $(all_includes)
+INCLUDES = -I$(srcdir)/.. -I../common-dialogs -I$(srcdir)/../kvt-core -I$(top_builddir)/kvoctrain/kvoctrain $(all_includes)
 
 noinst_LTLIBRARIES = libquerydlg.la
 

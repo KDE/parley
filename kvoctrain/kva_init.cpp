@@ -85,14 +85,13 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   view->getTable()->clearSelection();
   view->getTable()->selectRow(cr);
 
-  configSaveOptions->setEnabled(!autosaveopts);
   editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 
   querying = false;
   btimer = new QTimer( this );
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
-  if (backupTime > 0)
-    btimer->start(backupTime, TRUE);
+  if (Prefs::backupTime() > 0)
+    btimer->start(Prefs::backupTime(), TRUE);
 }
 
 
@@ -136,7 +135,7 @@ void kvoctrainApp::initActions()
   editPaste->setWhatsThis(i18n("Pastes previously cut or copied text from the clipboard into the selected cells"));
   editPaste->setToolTip(editPaste->whatsThis());
 
-  editSelectAll = KStdAction::selectAll(this, SLOT(slotSelectAll()), actionCollection()); // KAction(i18n("Se&lect All"), 0, "CTRL+A", this, SLOT(slotSelectAll()), actionCollection(),"edit_select_all");
+  editSelectAll = KStdAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
   editSelectAll->setWhatsThis(i18n("Selects all rows"));
   editSelectAll->setToolTip(editSelectAll->whatsThis());
 
@@ -232,15 +231,9 @@ void kvoctrainApp::initActions()
   configQueryOptions->setWhatsThis(i18n("Shows the query configuration dialog"));
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());
 
-  configSaveOptions =  KStdAction::saveOptions(this, SLOT(slotSaveOptions()), actionCollection());
-  configSaveOptions->setWhatsThis(i18n("Saves current configuration"));
-  configSaveOptions->setToolTip(configSaveOptions->whatsThis());
-
   actionCollection()->setHighlightingEnabled(true);
   connect(actionCollection(), SIGNAL(actionStatusText(const QString &)), this, SLOT(slotStatusHelpMsg(const QString &)));
   //connect(actionCollection(), SIGNAL(actionHighlighted(KAction *, bool)), this, SLOT(slotActionHighlighted(KAction *, bool)));
-
-  //setupGUI(ToolBar|Keys|StatusBar|Save|Create, "/home/kdedev/src/kde/kdeedu/kvoctrain/kvoctrain/kvoctrainui.rc");
 
   if (!initialGeometrySet())
       resize( QSize(550, 400).expandedTo(minimumSizeHint()));
@@ -266,7 +259,7 @@ void kvoctrainApp::initStatusBar()
 
   pron_label = new QLabel (i18n(PREFIX_Pronunce), statusBar());
   pron_label->setFrameStyle(QFrame::NoFrame);
-  pron_label->setFont(ipafont);
+  pron_label->setFont(Prefs::iPAFont());
   statusBar()->addWidget(pron_label, 200);
 
   rem_label = new QLabel (i18n(PREFIX_Remark), statusBar());
@@ -299,10 +292,10 @@ void kvoctrainApp::clearStatusBar()
 
 void kvoctrainApp::initDoc( )
 {
-  if (fileOpenRecent->items().count() /*recent_files.count()*/ > 0)
-    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0] /*KURL(recent_files[0])*/, separator, &paste_order);
+  if (fileOpenRecent->items().count() > 0)
+    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0], Prefs::separator(), &Prefs::pasteOrder());
   else
-    doc = new kvoctrainDoc(this, KURL(""), separator, &paste_order);
+    doc = new kvoctrainDoc(this, KURL(""), Prefs::separator(), &Prefs::pasteOrder());
 
   loadDocProps(doc);
   if (doc->numLangs() == 0)
@@ -314,9 +307,8 @@ void kvoctrainApp::initDoc( )
 
 void kvoctrainApp::initView()
 {
-  view = new kvoctrainView(doc, langset, gradecols, this);
-  view->setResizer (header_resizer);
-  view->getTable()->setFont(tablefont);
+  view = new kvoctrainView(doc, langset, this);
+  view->getTable()->setFont(Prefs::tableFont());
   setCentralWidget(view);
   slotStatusMsg(IDS_DEFAULT);
 }

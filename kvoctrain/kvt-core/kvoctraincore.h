@@ -103,9 +103,6 @@
 #define CSV_EXT          "csv"
 #define TXT_EXT          "txt"
 
-#define TAB_REP          "%t"
-#define SPC_REP          "%ws"
-
 #define VCB_SEPARATOR    "__"
 
 #define MAX_LESSON       25

@@ -21,7 +21,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -45,7 +45,6 @@ public:
     (
         QFont        &_tablefont,
         QFont        &_ipa_font,
-        GradeCols    &cols,
         QueryManager *manager,
         QWidget      *parent = NULL,
         const char   *name = NULL
@@ -53,7 +52,7 @@ public:
 
     QFont     getIPAFont()    const { return ipa_font; }
     QFont     getFont()       const { return tablefont; }
-    GradeCols getGradeCols()  const { return gc; }
+    //GradeCols getGradeCols()  const { return gc; }
 
 protected:
     void keyPressEvent( QKeyEvent * );
@@ -76,7 +75,7 @@ protected slots:
 
 
 protected:
-    GradeCols     gc;
+    //GradeCols     gc;
     QFont         tablefont;
     QFont         ipa_font;
 };

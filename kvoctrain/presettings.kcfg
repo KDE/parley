@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kcfg xmlns="http://www.kde.org/standards/kcfg/1.0"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
+      http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
+  <kcfgfile name="kvoctrainrc">
+    <parameter name="settingsId" />
+  </kcfgfile>
+  <group name="Presetting #$(settingsId)">
+    <entry name="Name" type="String">
+      <label>Name of the settings profile</label>
+      <whatsthis></whatsthis>
+    </entry>
+    <entry name="Query" type="String">
+      <label></label>
+      <whatsthis></whatsthis>
+    </entry>
+    <entry name="Threshold" type="String">
+      <label></label>
+      <whatsthis></whatsthis>
+    </entry>
+    <entry name="Blocking" type="String">
+      <label></label>
+      <whatsthis></whatsthis>
+    </entry>
+  </group>
+</kcfg>

@@ -20,7 +20,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -60,14 +60,11 @@ void kvoctrainApp::slotSmartSearchClip()
 }
 
 
-vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
-                                      QStringList *lang_order)
+vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc, QStringList *lang_order)
 {
   vector<int> csv_order;
 
-  bool useCurrent = Prefs::useCurrent();
-
-  if (!useCurrent) {
+  if (!Prefs::useCurrent()) {
     if (lang_order && lang_order->count() != 0) {
       for (int i = 0; i < (int) lang_order->count(); i++) {
         int j = doc->findIdent((*lang_order)[i]);
@@ -118,7 +115,7 @@ void kvoctrainApp::slotEditCopy()
   QString exp;
   QString s;
 
-  vector <int> csv_order = getCsvOrder(doc, &paste_order);
+  vector <int> csv_order = getCsvOrder(doc, &Prefs::pasteOrder() /*&paste_order*/);
 
   KVocTrainTable *table = view->getTable();
 
@@ -133,8 +130,8 @@ void kvoctrainApp::slotEditCopy()
         if (!sep)
           sep = true;
         else
-          exp += separator;
-  
+          exp += Prefs::separator();
+
         if (csv_order[i] >= 0) {
           if (csv_order[i] == 0)
             exp += expr->getOriginal();
@@ -169,7 +166,7 @@ void kvoctrainApp::slotEditPaste()
   QString s;
   QString entries = QApplication::clipboard()->text();
 
-  vector <int> csv_order = getCsvOrder(doc, &paste_order);
+  vector <int> csv_order = getCsvOrder(doc, &Prefs::pasteOrder() /*&paste_order*/);
 
   bool changed = false;
   QString num;
@@ -192,8 +189,8 @@ void kvoctrainApp::slotEditPaste()
     // similar block in kvd_csv.cpp::loadFromCsv()
 
     if (!s.stripWhiteSpace().isEmpty()) {
-      if (paste_order.count() != 0) {
-        kvoctrainExpr bucket (s, separator, act_lesson);
+      if (Prefs::pasteOrder().count() != 0) {
+        kvoctrainExpr bucket (s, Prefs::separator(), act_lesson);
         kvoctrainExpr expr;
         expr.setLesson(act_lesson);
         // now move columns according to paste-order
@@ -204,7 +201,7 @@ void kvoctrainApp::slotEditPaste()
               s = bucket.getOriginal();
             else
               s = bucket.getTranslation(i);
-  
+
             if (csv_order[i] == 0)
               expr.setOriginal(s);
             else
@@ -215,7 +212,7 @@ void kvoctrainApp::slotEditPaste()
         doc->appendEntry (&expr);
       }
       else {
-        kvoctrainExpr expr (s, separator, act_lesson);
+        kvoctrainExpr expr (s, Prefs::separator(), act_lesson);
         changed = true;
         doc->appendEntry (&expr);
       }

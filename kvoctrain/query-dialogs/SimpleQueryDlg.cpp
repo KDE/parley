@@ -27,6 +27,7 @@
 #include "SimpleQueryDlg.h"
 
 #include <kv_resource.h>
+#include <prefs.h>
 
 #include <qtimer.h>
 #include <qmultilineedit.h>
@@ -45,12 +46,11 @@ SimpleQueryDlg::SimpleQueryDlg(
         int q_cycle,
         int q_num,
         int q_start,
-	QFont &font,
+        QFont font,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         int mqtime,
         bool showcounter,
-        kvq_timeout_t type_to,
 	QWidget* parent,
 	const char* name
 )
@@ -72,7 +72,7 @@ SimpleQueryDlg::SimpleQueryDlg(
    qtimer = 0;
    setQuery (querytype, entry, column,
              q_cycle, q_num, q_start,
-             exp, doc, mqtime, showcounter, type_to);
+             exp, doc, mqtime, showcounter);
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -93,10 +93,9 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
                          kvoctrainExpr *exp,
                          kvoctrainDoc  *doc,
                          int mqtime,
-                         bool _show,
-                         kvq_timeout_t type_to)
+                         bool _show)
 {
-   type_timeout = type_to;
+   //type_timeout = type_to;
    querytype = _querytype;
    kv_doc = doc;
    q_row = entry;
@@ -177,7 +176,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
-     if (type_timeout != kvq_notimeout) {
+     if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
        timebar->setTotalSteps(timercount);
        timebar->setProgress(timercount);
@@ -209,11 +208,11 @@ void SimpleQueryDlg::timeoutReached()
 
    if (timercount <= 0) {
      timebar->setProgress(0);
-     if (type_timeout == kvq_show ) {
+     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
        dont_know->setDefault(true);
      }
-     else if (type_timeout == kvq_cont )
+     else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice (Timeout);
    }
 }
