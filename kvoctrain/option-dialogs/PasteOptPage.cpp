@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/26 15:12:15  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.5  2001/11/16 19:48:52  arnold
     reactivated paste order group
 
@@ -64,18 +67,14 @@
 #include "PasteOptPage.h"
 #include "GeneralOptionsDlg.h"
 
-#ifndef i18n_noop
-#define i18n_noop(x) x
-#endif
-
 static const char *separator_name[] = {
   ";",                         // 0
   "#",                         // 1
   "!",                         // 2
   "|",                         // 3
   ",",                         // 4
-  i18n_noop("TAB"),            // 5
-  i18n_noop(">= 2 SPACES"),    // 6
+  I18N_NOOP("TAB"),            // 5
+  I18N_NOOP(">= 2 SPACES"),    // 6
   " : ",                       // 7
   " :: ",                      // 8
   0

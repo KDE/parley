@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:12:58  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:30:01  arnold
     removed compatibility for kde1
 
@@ -46,7 +49,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -64,47 +67,42 @@
 #include <qlabel.h>
 #include <qcheckbox.h>
 
-#ifndef i18n_noop
-# define i18n_noop(x) (x)
-#endif
-
-
 struct ListRef {
           const char *text;
           long int num;
        };
 
 static ListRef date_itemlist [] =
-      { {i18n_noop("don`t care"),    0},
+      { {I18N_NOOP("don`t care"),    0},
 
-        {i18n_noop("30 min"),        30*60   },
-        {i18n_noop("1 hour"),    1 * 60*60   },
-        {i18n_noop("2 hours"),   2 * 60*60   },
-        {i18n_noop("4 hours"),   4 * 60*60   },
-        {i18n_noop("8 hours"),   8 * 60*60   },
-        {i18n_noop("12 hours"), 12 * 60*60   },
-        {i18n_noop("18 hours"), 18 * 60*60   },
+        {I18N_NOOP("30 min"),        30*60   },
+        {I18N_NOOP("1 hour"),    1 * 60*60   },
+        {I18N_NOOP("2 hours"),   2 * 60*60   },
+        {I18N_NOOP("4 hours"),   4 * 60*60   },
+        {I18N_NOOP("8 hours"),   8 * 60*60   },
+        {I18N_NOOP("12 hours"), 12 * 60*60   },
+        {I18N_NOOP("18 hours"), 18 * 60*60   },
 
-        {i18n_noop("1 day"),    1 * 60*60*24},
-        {i18n_noop("2 days"),   2 * 60*60*24},
-        {i18n_noop("3 days"),   3 * 60*60*24},
-        {i18n_noop("4 days"),   4 * 60*60*24},
-        {i18n_noop("5 days"),   5 * 60*60*24},
-        {i18n_noop("6 days"),   6 * 60*60*24},
+        {I18N_NOOP("1 day"),    1 * 60*60*24},
+        {I18N_NOOP("2 days"),   2 * 60*60*24},
+        {I18N_NOOP("3 days"),   3 * 60*60*24},
+        {I18N_NOOP("4 days"),   4 * 60*60*24},
+        {I18N_NOOP("5 days"),   5 * 60*60*24},
+        {I18N_NOOP("6 days"),   6 * 60*60*24},
 
-        {i18n_noop("1 week"),   1 * 60*60*24*7},
-        {i18n_noop("2 weeks"),  2 * 60*60*24*7},
-        {i18n_noop("3 weeks"),  3 * 60*60*24*7},
-        {i18n_noop("4 weeks"),  4 * 60*60*24*7},
+        {I18N_NOOP("1 week"),   1 * 60*60*24*7},
+        {I18N_NOOP("2 weeks"),  2 * 60*60*24*7},
+        {I18N_NOOP("3 weeks"),  3 * 60*60*24*7},
+        {I18N_NOOP("4 weeks"),  4 * 60*60*24*7},
 
-        {i18n_noop("1 month"),  1 * 60*60*24*7*30},
-        {i18n_noop("2 months"), 2 * 60*60*24*7*30},
-        {i18n_noop("3 months"), 3 * 60*60*24*7*30},
-        {i18n_noop("4 months"), 4 * 60*60*24*7*30},
-        {i18n_noop("5 months"), 5 * 60*60*24*7*30},
-        {i18n_noop("6 months"), 6 * 60*60*24*7*30},
-        {i18n_noop("10 months"), 10 * 60*60*24*7*30},
-        {i18n_noop("12 months"), 12 * 60*60*24*7*30},
+        {I18N_NOOP("1 month"),  1 * 60*60*24*7*30},
+        {I18N_NOOP("2 months"), 2 * 60*60*24*7*30},
+        {I18N_NOOP("3 months"), 3 * 60*60*24*7*30},
+        {I18N_NOOP("4 months"), 4 * 60*60*24*7*30},
+        {I18N_NOOP("5 months"), 5 * 60*60*24*7*30},
+        {I18N_NOOP("6 months"), 6 * 60*60*24*7*30},
+        {I18N_NOOP("10 months"), 10 * 60*60*24*7*30},
+        {I18N_NOOP("12 months"), 12 * 60*60*24*7*30},
         {0 ,  0}
       };
 

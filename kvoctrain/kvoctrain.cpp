@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.27  2001/12/26 13:15:21  arnold
+    fixed header buttons and kbd handling
+
     Revision 1.26  2001/12/16 16:51:25  arnold
     fixed keyboard handling in main view
 
@@ -127,9 +130,9 @@
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kprogress.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <kconfig.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 #include <qcursor.h>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/13 18:40:12  arnold
+    added phonetic alphabet stuff
+
     Revision 1.5  2001/12/10 21:00:15  mueller
     fix compilation
 
@@ -94,11 +97,13 @@ protected slots:
     void slotShortActivated(const QString&);
     void slotNewNameChanged(const QString&);
     void slotLangFromGlobalActivated(int);
+    void slotLangFromISO6391Activated(int);
 
 protected:
     bool setPixmap(QString pm);
     void enableLangWidgets();
     void loadCountryData();
+    void loadISO6391Data();
 
     QString     deflang;
     LangSet    &langset;
@@ -113,6 +118,7 @@ protected:
     vector <LangRef> globalLangs;
     LangSet          global_langset;
     QPopupMenu      *langset_popup;
+    QPopupMenu      *iso6391_popup;
 
     friend class sortByRegion;
 };

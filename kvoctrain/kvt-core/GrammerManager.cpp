@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/12/26 15:11:52  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.2  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -29,15 +32,11 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 #include "GrammerManager.h"
-
-#ifndef i18n_noop
-# define i18n_noop(x) (x)
-#endif
 
 #include <klocale.h>
 #include <kapplication.h>
@@ -45,15 +44,15 @@
 Conjugation::conjug_name_t
 Conjugation::names [] =
 {
-  { CONJ_SIMPLE_PRESENT,    i18n_noop("Simple preset") },
-  { CONJ_PRESENT_PROGR,     i18n_noop("Preset progressive") },
-  { CONJ_PRESENT_PERFECT,   i18n_noop("Preset perfect") },
+  { CONJ_SIMPLE_PRESENT,    I18N_NOOP("Simple preset") },
+  { CONJ_PRESENT_PROGR,     I18N_NOOP("Preset progressive") },
+  { CONJ_PRESENT_PERFECT,   I18N_NOOP("Preset perfect") },
 
-  { CONJ_SIMPLE_PAST,       i18n_noop("Simple past") },
-  { CONJ_PAST_PROGR,        i18n_noop("Past progressive") },
-  { CONJ_PAST_PARTICIPLE,   i18n_noop("Past participle") },
+  { CONJ_SIMPLE_PAST,       I18N_NOOP("Simple past") },
+  { CONJ_PAST_PROGR,        I18N_NOOP("Past progressive") },
+  { CONJ_PAST_PARTICIPLE,   I18N_NOOP("Past participle") },
 
-  { CONJ_FUTURE,            i18n_noop("Future") }
+  { CONJ_FUTURE,            I18N_NOOP("Future") }
 };
 
 

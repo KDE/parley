@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/26 15:12:15  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.15  2001/12/22 09:03:56  arnold
     fixed iso name
 
@@ -765,8 +768,12 @@ LangOptPage::LangOptPage
   connect( e_langLong, SIGNAL(textChanged(const QString&)), SLOT(slotLangChanged(const QString&)) );
   connect( e_shortName2, SIGNAL(textChanged(const QString&)), SLOT(slotShort2Changed(const QString&)) );
 
-  loadCountryData();
+  loadCountryData(); // load first
   b_lang_kde->setPopup(langset_popup);
+
+  loadISO6391Data(); // load second
+  b_lang_iso1->setPopup(iso6391_popup);
+
   b_langNew->setEnabled(false); // activate after data is entered
 
   setCaption(i18n("Options" ));
@@ -802,11 +809,6 @@ LangOptPage::LangOptPage
   label_shortName->setBuddy(d_shortName);
   label_langLong->setBuddy(e_langLong);
   label_langPixmap->setBuddy(b_langPixmap);
-
-  b_lang_iso1->setEnabled(false);
-
-  // FIXME enable after kde3 release
-  b_lang_iso1->hide();
 }
 
 
@@ -1158,5 +1160,77 @@ void LangOptPage::slotLangFromGlobalActivated(int i)
   }
 }
 
+
+void LangOptPage::loadISO6391Data()
+{
+  typedef map<QString, int> isomap_t;
+  isomap_t isomap;
+  QString s;
+  for (unsigned id = 0;
+          id < (int)(sizeof(kv_iso639_1) / sizeof(kv_iso639_1[0]))
+       && kv_iso639_1[id].iso1code != 0;
+       ++id) {
+    s = i18n(kv_iso639_1[id].langname);
+    isomap.insert(make_pair(s.stripWhiteSpace(), id));
+  }
+
+  iso6391_popup = new QPopupMenu();
+  QPopupMenu *pop = 0;
+  QString pixname;
+  QString lang = "";
+  for (isomap_t::iterator iso_it = isomap.begin();
+        iso_it != isomap.end();
+        ++iso_it) {
+    if ((*iso_it).first.left(1).upper() != lang.left(1).upper() ) {
+      pop = new QPopupMenu();
+      connect(pop, SIGNAL(activated(int)), this, SLOT(slotLangFromISO6391Activated(int)));
+      iso6391_popup->insertItem((*iso_it).first.left(1).upper(), pop, 1);
+    }
+
+    lang = (*iso_it).first;
+    QString shortid = QString::fromLatin1(kv_iso639_1[(*iso_it).second].iso1code);
+    QString short2id = QString::fromLatin1(kv_iso639_1[(*iso_it).second].iso2code);
+    lang += "\t("+shortid+")";
+    pixname = "";
+    // search pixmap in KDE-data
+    for ( unsigned i = 0; i < globalLangs.size(); ++i)
+      for (unsigned j = 0; j < globalLangs[i].langs.size(); ++j)
+        if (   globalLangs[i].langs.shortId(j) == shortid
+            || globalLangs[i].langs.shortId2(j) == short2id)
+          pixname = globalLangs[i].langs.PixMapFile(j);
+    if (pixname.length() != 0)
+      pop->insertItem(QPixmap(pixname), lang, (*iso_it).second);
+    else
+      pop->insertItem(lang, (*iso_it).second);
+  }
+}
+
+
+void LangOptPage::slotLangFromISO6391Activated(int id)
+{
+   if (id < (int)(sizeof(kv_iso639_1) / sizeof(kv_iso639_1[0]))) {
+     QString shortid = QString::fromLatin1(kv_iso639_1[id].iso1code);
+     d_shortName->insertItem(shortid.stripWhiteSpace());
+     d_shortName->setCurrentItem(d_shortName->count()-1);
+     slotShortActivated(shortid);
+     enableLangWidgets();
+
+     e_shortName2->setText(kv_iso639_1[id].iso2code);
+     slotShort2Changed(kv_iso639_1[id].iso2code);
+
+     e_langLong->setText(i18n(kv_iso639_1[id].langname));
+     slotLangChanged(e_langLong->text());
+
+     // search pixmap in KDE-data
+     for ( unsigned i = 0; i < globalLangs.size(); ++i)
+       for (unsigned j = 0; j < globalLangs[i].langs.size(); ++j)
+         if (   globalLangs[i].langs.shortId(j) == shortid
+             || globalLangs[i].langs.shortId2(j) == e_shortName2->text())
+           setPixmap(globalLangs[i].langs.PixMapFile(j));
+     e_newName->setText("");
+     e_langLong->setFocus();
+     e_langLong->selectAll();
+   }
+}
 
 #include "LangOptPage.moc"

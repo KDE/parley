@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/12/22 09:06:54  arnold
+    fixed version string handling
+
     Revision 1.14  2001/12/18 21:17:05  howells
     * Get rid of old "make install" message
     * Use new bug dialog
@@ -69,7 +72,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -80,21 +83,18 @@
 
 # include <kcmdlineargs.h>
 # include <kaboutdata.h>
+# include <klocale.h>
 
-#ifndef i18n_noop
-# define i18n_noop(x) (x)
-#endif
-
-int main(int argc, char* argv[]) { 
+int main(int argc, char* argv[]) {
 
 static KCmdLineOptions options[] =
 {
-  { i18n_noop("+[file]"),   i18n_noop("Document file to open."), 0 },
+  { I18N_NOOP("+[file]"),   I18N_NOOP("Document file to open."), 0 },
   { 0, 0, 0}
 };
 
-static const char *description = 
-	i18n_noop("Vocabulary Trainer");
+static const char *description =
+	I18N_NOOP("Vocabulary Trainer");
 
 static const char *version = KVOCTRAIN_VERSION_STRING;
 
@@ -105,36 +105,36 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
                        KAboutData::License_GPL,
                        "(c) 1999-2002\tEwald Arnold\n"
                        "(c) 2001-2002\tThe KDE team\n",
-                       i18n_noop("Helps you train your vocabulary"),
+                       I18N_NOOP("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "submit@bugs.kde.org");
 
-  aboutData.addAuthor("Ewald Arnold", i18n_noop("Author and maintainer"), "kvoctrain@ewald-arnold.de",
+  aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Author and maintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );
-		
+
   aboutData.addCredit("Waldo Bastian",
-                      i18n_noop("Help in port to Qt3/KDE3"));
+                      I18N_NOOP("Help in port to Qt3/KDE3"));
 
   aboutData.addCredit("Andrea Marconi",
-                      i18n_noop("Initial Italian localisation"));
+                      I18N_NOOP("Initial Italian localisation"));
 
   aboutData.addCredit("Hans Kottmann",
-                      i18n_noop("Initial French localisation"));
+                      I18N_NOOP("Initial French localisation"));
 
   aboutData.addCredit("Grzegorz Ilczuk",
-                      i18n_noop("Initial Polish localisation"));
+                      I18N_NOOP("Initial Polish localisation"));
 
   aboutData.addCredit("Eric Bischoff",
-                      i18n_noop("Converting documentation to docbook format"));
+                      I18N_NOOP("Converting documentation to docbook format"));
 
   aboutData.addCredit("Kevin Kramer",
-                      i18n_noop("Tool to create lists with ISO639 codes"));
+                      I18N_NOOP("Tool to create lists with ISO639 codes"));
 
   aboutData.addCredit("Andreas Neuper",
-                      i18n_noop("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
+                      I18N_NOOP("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
 
   aboutData.addCredit("The whole KDE team",
-                      i18n_noop("Many small enhancements"));
+                      I18N_NOOP("Many small enhancements"));
 
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );

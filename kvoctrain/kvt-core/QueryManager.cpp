@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/12/01 11:28:34  arnold
     fixed flickering in query dialogs
 
@@ -64,10 +67,6 @@ struct t_type_rel
    const char *long_ref;
 };
 
-#ifndef i18n_noop
-# define i18n_noop(x) (x)
-#endif
-
 // types are hierarchical !
 // - . divides main from sub type
 // - sub types must follow main type
@@ -76,40 +75,40 @@ struct t_type_rel
 
 static t_type_rel InternalTypeRelations [] =
 {
-  { QM_ADJ,                           i18n_noop("adjective") },
+  { QM_ADJ,                           I18N_NOOP("adjective") },
 
-  { QM_ADV,                           i18n_noop("adverb") },
+  { QM_ADV,                           I18N_NOOP("adverb") },
 
-  { QM_ART,                           i18n_noop("article") },
-  { QM_ART QM_TYPE_DIV QM_ART_DEF,    i18n_noop("article definite") },
-  { QM_ART QM_TYPE_DIV QM_ART_IND,    i18n_noop("article indefinite") },
+  { QM_ART,                           I18N_NOOP("article") },
+  { QM_ART QM_TYPE_DIV QM_ART_DEF,    I18N_NOOP("article definite") },
+  { QM_ART QM_TYPE_DIV QM_ART_IND,    I18N_NOOP("article indefinite") },
 
-  { QM_CON,                           i18n_noop("conjunction") },
+  { QM_CON,                           I18N_NOOP("conjunction") },
 
-  { QM_NAME,                          i18n_noop("name") },   // old type "3"
+  { QM_NAME,                          I18N_NOOP("name") },   // old type "3"
 
-  { QM_NOUN,                          i18n_noop("noun") },   // old type "2"
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    i18n_noop("noun male") },
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    i18n_noop("noun female") },
-  { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    i18n_noop("noun neutral") },
+  { QM_NOUN,                          I18N_NOOP("noun") },   // old type "2"
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    I18N_NOOP("noun male") },
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    I18N_NOOP("noun female") },
+  { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    I18N_NOOP("noun neutral") },
 
-  { QM_NUM,                           i18n_noop("numeral") },
-  { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    i18n_noop("numeral ordinal") },
-  { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   i18n_noop("numeral cardinal") },
+  { QM_NUM,                           I18N_NOOP("numeral") },
+  { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    I18N_NOOP("numeral ordinal") },
+  { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   I18N_NOOP("numeral cardinal") },
 
-  { QM_PHRASE,                        i18n_noop("phrase") },
+  { QM_PHRASE,                        I18N_NOOP("phrase") },
 
-  { QM_PREP,                          i18n_noop("preposition") },
+  { QM_PREP,                          I18N_NOOP("preposition") },
 
-  { QM_PRON,                          i18n_noop("pronoun") },
-  { QM_PRON QM_TYPE_DIV QM_PRON_POS,  i18n_noop("pronoun possessive") },
-  { QM_PRON QM_TYPE_DIV QM_PRON_PER,  i18n_noop("pronoun personal") },
+  { QM_PRON,                          I18N_NOOP("pronoun") },
+  { QM_PRON QM_TYPE_DIV QM_PRON_POS,  I18N_NOOP("pronoun possessive") },
+  { QM_PRON QM_TYPE_DIV QM_PRON_PER,  I18N_NOOP("pronoun personal") },
 
-  { QM_QUEST,                         i18n_noop("question") },
+  { QM_QUEST,                         I18N_NOOP("question") },
 
-  { QM_VERB,                          i18n_noop("verb") },   // old type "1"
-  { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, i18n_noop("verb irregular") },
-  { QM_VERB  QM_TYPE_DIV QM_VERB_REG, i18n_noop("verb regular") },
+  { QM_VERB,                          I18N_NOOP("verb") },   // old type "1"
+  { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, I18N_NOOP("verb irregular") },
+  { QM_VERB  QM_TYPE_DIV QM_VERB_REG, I18N_NOOP("verb regular") },
 
   { 0, 0 }  // the end
 };

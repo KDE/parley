@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/24 14:28:44  arnold
+    fixed sorting
+
     Revision 1.10  2001/12/01 11:28:13  arnold
     fixed flickering in query dialogs
 
@@ -85,7 +88,7 @@
 #include <ksimpleconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 {
@@ -491,9 +494,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                    kapp->makeStdCaption(""),
-                    i18n("&Yes"),
-                    i18n("&No"));
+                    kapp->makeStdCaption(""));
       if(exit==KMessageBox::Yes) {
         doc->removeIdent(header1);
         view->setView (doc, langset, gradecols);
@@ -598,8 +599,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                    kapp->makeStdCaption(""),
-                    i18n("&Yes"), i18n("&No"));
+                    kapp->makeStdCaption(""));
       if(exit==KMessageBox::Yes) {
         doc->resetEntry (header1, act_lesson);
         doc->setModified();

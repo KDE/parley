@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.3  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -48,10 +51,6 @@
 
 vector<QString> UsageManager::userUsages;
 
-#ifndef i18n_noop
-# define i18n_noop(x) (x)
-#endif
-
 // user usages are strings like this: #1
 
 struct internalRelation_t
@@ -64,54 +63,54 @@ struct internalRelation_t
 
 static internalRelation_t InternalUsageRelations [] =
 {
-  { UL_AM,        i18n_noop("Am."),      i18n_noop("Americanism")},
-  { UL_ABBR,      i18n_noop("abbr."),    i18n_noop("abbreviation")},
-  { UL_ANAT,      i18n_noop("anat."),    i18n_noop("anatomy")},
-  { UL_ASTR,      i18n_noop("astr."),    i18n_noop("astronomy")},
-  { UL_BIOL,      i18n_noop("biol."),    i18n_noop("biology")},
-  { UL_BS,        i18n_noop("b.s."),     i18n_noop("bad sense")},
-  { UL_CONTP,     i18n_noop("contp."),   i18n_noop("contemptously")},
-  { UL_ECCL,      i18n_noop("eccl."),    i18n_noop("ecclesiastical")},
-  { UL_FIG,       i18n_noop("fig."),     i18n_noop("figurativley")},
-  { UL_GEOL,      i18n_noop("geol."),    i18n_noop("geology")},
-  { UL_HIST,      i18n_noop("hist."),    i18n_noop("historical")},
-  { UL_ICHT,      i18n_noop("icht."),    i18n_noop("ichthyology")},
-  { UL_IFML,      i18n_noop("ifml."),    i18n_noop("informal")},
-  { UL_IRONIC,    i18n_noop("iro."),     i18n_noop("ironic")},
-  { UL_IRR,       i18n_noop("irr."),     i18n_noop("irregular")},
-  { UL_LIT,       i18n_noop("lit."),     i18n_noop("literary")},
-  { UL_META,      i18n_noop("metall."),  i18n_noop("metallurgy")},
-  { UL_METEO,     i18n_noop("meteor."),  i18n_noop("meteorology")},
-  { UL_MIN,       i18n_noop("min."),     i18n_noop("mineralogie")},
-  { UL_MOT,       i18n_noop("mot."),     i18n_noop("motoring")},
-  { UL_MOUNT,     i18n_noop("mount."),   i18n_noop("mountaineering")},
-  { UL_MYT,       i18n_noop("myth."),    i18n_noop("mythology")},
-  { UL_NPR,       i18n_noop("npr."),     i18n_noop("proper name")},
-  { UL_OPT,       i18n_noop("opt."),     i18n_noop("optics")},
-  { UL_ORN,       i18n_noop("orn."),     i18n_noop("ornithology")},
-  { UL_OS,        i18n_noop("o.s."),     i18n_noop("oneself")},
-  { UL_P,         i18n_noop("P."),       i18n_noop("person")},
-  { UL_PARL,      i18n_noop("parl."),    i18n_noop("parliamentary")},
-  { UL_PHARM,     i18n_noop("pharm."),   i18n_noop("pharmacy")},
-  { UL_PHLS,      i18n_noop("phls."),    i18n_noop("philosophy")},
-  { UL_PHOT,      i18n_noop("phot."),    i18n_noop("photography")},
-  { UL_PHYS,      i18n_noop("phys."),    i18n_noop("physics")},
-  { UL_PHYSIOL,   i18n_noop("physiol."), i18n_noop("physiology")},
-  { UL_PL,        i18n_noop("pl."),      i18n_noop("plural")},
-  { UL_POET,      i18n_noop("poet."),    i18n_noop("poetry")},
-  { UL_POL,       i18n_noop("pol."),     i18n_noop("politics")},
-  { UL_PROV,      i18n_noop("prov."),    i18n_noop("provincialism")},
-  { UL_PSYCH,     i18n_noop("psych."),   i18n_noop("psychology")},
-  { UL_RHET,      i18n_noop("rhet."),    i18n_noop("rhetoric")},
-  { UL_SURV,      i18n_noop("surv."),    i18n_noop("surveying")},
-  { UL_TEL,       i18n_noop("tel."),     i18n_noop("telegraphy")},
-  { UL_TELEPH,    i18n_noop("teleph."),  i18n_noop("telephony")},
-  { UL_THEA,      i18n_noop("thea."),    i18n_noop("theatre")},
-  { UL_TYP,       i18n_noop("typ."),     i18n_noop("typography")},
-  { UL_UNIV,      i18n_noop("univ."),    i18n_noop("university")},
-  { UL_VET,       i18n_noop("vet."),     i18n_noop("veterinary medicine")},
-  { UL_ZO,        i18n_noop("zo."),      i18n_noop("zoology")},
-//{ UL_,          i18n_noop(""),        i18n_noop("")},
+  { UL_AM,        I18N_NOOP("Am."),      I18N_NOOP("Americanism")},
+  { UL_ABBR,      I18N_NOOP("abbr."),    I18N_NOOP("abbreviation")},
+  { UL_ANAT,      I18N_NOOP("anat."),    I18N_NOOP("anatomy")},
+  { UL_ASTR,      I18N_NOOP("astr."),    I18N_NOOP("astronomy")},
+  { UL_BIOL,      I18N_NOOP("biol."),    I18N_NOOP("biology")},
+  { UL_BS,        I18N_NOOP("b.s."),     I18N_NOOP("bad sense")},
+  { UL_CONTP,     I18N_NOOP("contp."),   I18N_NOOP("contemptously")},
+  { UL_ECCL,      I18N_NOOP("eccl."),    I18N_NOOP("ecclesiastical")},
+  { UL_FIG,       I18N_NOOP("fig."),     I18N_NOOP("figurativley")},
+  { UL_GEOL,      I18N_NOOP("geol."),    I18N_NOOP("geology")},
+  { UL_HIST,      I18N_NOOP("hist."),    I18N_NOOP("historical")},
+  { UL_ICHT,      I18N_NOOP("icht."),    I18N_NOOP("ichthyology")},
+  { UL_IFML,      I18N_NOOP("ifml."),    I18N_NOOP("informal")},
+  { UL_IRONIC,    I18N_NOOP("iro."),     I18N_NOOP("ironic")},
+  { UL_IRR,       I18N_NOOP("irr."),     I18N_NOOP("irregular")},
+  { UL_LIT,       I18N_NOOP("lit."),     I18N_NOOP("literary")},
+  { UL_META,      I18N_NOOP("metall."),  I18N_NOOP("metallurgy")},
+  { UL_METEO,     I18N_NOOP("meteor."),  I18N_NOOP("meteorology")},
+  { UL_MIN,       I18N_NOOP("min."),     I18N_NOOP("mineralogie")},
+  { UL_MOT,       I18N_NOOP("mot."),     I18N_NOOP("motoring")},
+  { UL_MOUNT,     I18N_NOOP("mount."),   I18N_NOOP("mountaineering")},
+  { UL_MYT,       I18N_NOOP("myth."),    I18N_NOOP("mythology")},
+  { UL_NPR,       I18N_NOOP("npr."),     I18N_NOOP("proper name")},
+  { UL_OPT,       I18N_NOOP("opt."),     I18N_NOOP("optics")},
+  { UL_ORN,       I18N_NOOP("orn."),     I18N_NOOP("ornithology")},
+  { UL_OS,        I18N_NOOP("o.s."),     I18N_NOOP("oneself")},
+  { UL_P,         I18N_NOOP("P."),       I18N_NOOP("person")},
+  { UL_PARL,      I18N_NOOP("parl."),    I18N_NOOP("parliamentary")},
+  { UL_PHARM,     I18N_NOOP("pharm."),   I18N_NOOP("pharmacy")},
+  { UL_PHLS,      I18N_NOOP("phls."),    I18N_NOOP("philosophy")},
+  { UL_PHOT,      I18N_NOOP("phot."),    I18N_NOOP("photography")},
+  { UL_PHYS,      I18N_NOOP("phys."),    I18N_NOOP("physics")},
+  { UL_PHYSIOL,   I18N_NOOP("physiol."), I18N_NOOP("physiology")},
+  { UL_PL,        I18N_NOOP("pl."),      I18N_NOOP("plural")},
+  { UL_POET,      I18N_NOOP("poet."),    I18N_NOOP("poetry")},
+  { UL_POL,       I18N_NOOP("pol."),     I18N_NOOP("politics")},
+  { UL_PROV,      I18N_NOOP("prov."),    I18N_NOOP("provincialism")},
+  { UL_PSYCH,     I18N_NOOP("psych."),   I18N_NOOP("psychology")},
+  { UL_RHET,      I18N_NOOP("rhet."),    I18N_NOOP("rhetoric")},
+  { UL_SURV,      I18N_NOOP("surv."),    I18N_NOOP("surveying")},
+  { UL_TEL,       I18N_NOOP("tel."),     I18N_NOOP("telegraphy")},
+  { UL_TELEPH,    I18N_NOOP("teleph."),  I18N_NOOP("telephony")},
+  { UL_THEA,      I18N_NOOP("thea."),    I18N_NOOP("theatre")},
+  { UL_TYP,       I18N_NOOP("typ."),     I18N_NOOP("typography")},
+  { UL_UNIV,      I18N_NOOP("univ."),    I18N_NOOP("university")},
+  { UL_VET,       I18N_NOOP("vet."),     I18N_NOOP("veterinary medicine")},
+  { UL_ZO,        I18N_NOOP("zo."),      I18N_NOOP("zoology")},
+//{ UL_,          I18N_NOOP(""),        I18N_NOOP("")},
   { 0, 0, 0 } // the end
 };
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.20  2001/12/24 14:29:46  arnold
     fixed sorting
 
@@ -91,7 +94,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -117,7 +120,8 @@
 
 #include <ctype.h>
 
-#define HEADER_MINSIZE  24
+#define HEADER_MINSIZE   24
+#define KV_COLWIDTH_MARK 20
 
 kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
                              const LangSet &ls, const GradeCols &gradecols,
@@ -204,25 +208,26 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
   if (r_ev == 0)
     return;
 
-  f_list->resize (r_ev->size());
   QHeader *header = lb_list->horizontalHeader();
-  int remain = lb_list->clipper()->width();
-//  cout << "remain: " << remain << endl;
-//  cout << "ev width: " << r_ev->size().width() << endl;
-/*
+  unsigned oldwidth = 0;
+  for (int i = 0; i < lb_list->numCols(); ++i )
+    oldwidth += header->sectionSize(i);
+
+  f_list->resize (r_ev->size());
+  unsigned newwidth = lb_list->clipper()->width();
+  int remain = newwidth;
+
   switch (header_resizer) {
     case Automatic: {
-*/
     // lesson is only half as wide as a original/translation
     // exclude fixed size of "mark"-column
-      int x = (remain -20) / ((lb_list->numCols()-1)*2-1);
-//      cout << "x: " << remain << endl;
+      int x = (remain -KV_COLWIDTH_MARK) / ((lb_list->numCols()-1)*2-1);
       header->resizeSection( KV_COL_LESS, x);
       lb_list->setColumnWidth (KV_COL_LESS, x);
       remain -= x;
-      header->resizeSection( KV_COL_MARK, 20);
-      lb_list->setColumnWidth (KV_COL_MARK, 20);
-      remain -= 20;
+      header->resizeSection( KV_COL_MARK, KV_COLWIDTH_MARK);
+      lb_list->setColumnWidth (KV_COL_MARK, KV_COLWIDTH_MARK);
+      remain -= KV_COLWIDTH_MARK;
       for (int i = KV_COL_ORG; i < lb_list->numCols()-1; i++) {
         remain -= 2*x;
         header->resizeSection(i, 2*x);
@@ -230,61 +235,35 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
       }
       header->resizeSection(lb_list->numCols()-1, remain);
       lb_list->setColumnWidth (lb_list->numCols()-1, remain);
-/*
     }
     break;
 
     case Percent: {
-//      cout << "sz0.1 " << h_list->getHeaderSize(0) << endl;
-//      cout << "sz1.1 " << h_list->getHeaderSize(1) << endl;
-//      cout << "sz2.1 " << h_list->getHeaderSize(2) << endl;
-      // header smaller than listbox to avoid scrollbar
-      if (((QWidget*)lb_list->verticalScrollBar())->isVisible() )
-        shrink += ((QWidget*)lb_list->verticalScrollBar())->width();
-      h_list->resize(lb_list->width()-shrink,
-                     h_list->height() );
+      float grow = float(newwidth) / float(oldwidth);
+      header->resizeSection( KV_COL_MARK, KV_COLWIDTH_MARK);
+      lb_list->setColumnWidth (KV_COL_MARK, KV_COLWIDTH_MARK);
+      int remain = newwidth - KV_COLWIDTH_MARK;
+      int x = QMAX(20, (int)((header->sectionSize(KV_COL_LESS) * grow)+0.5));
+      header->resizeSection( KV_COL_LESS, x);
+      lb_list->setColumnWidth (KV_COL_LESS, x);
+      remain -= x;
 
-      int all = 0;
-      for (int i = 0; i < lb_list->numCols(); i++)
-        all += h_list->getHeaderSize(i);
-
-      if (lb_list->numCols() > 1) {
-        int max = h_list->width();
-        if (all != 0) {
-          int rest = max;
-          int i;
-          for (i = 0; i < lb_list->numCols()-1; i++) {
-            int size = h_list->getHeaderSize(i) * max / all;
-            rest -= size;
-            h_list->setHeaderSize( i, size );
-          }
-          h_list->setHeaderSize( i, rest );
-        }
-        else {
-          int rest = max;
-          int i;
-          int size = max / lb_list->numCols();
-          for (i = 0; i < lb_list->numCols()-1; i++) {
-            rest -= size;
-            h_list->setHeaderSize( i, size );
-          }
-          h_list->setHeaderSize( i, rest );
-        }
+      for (int i = KV_COL_ORG; i < lb_list->numCols()-1; i++) {
+        x = QMAX(20, (int)((header->sectionSize(i) * grow)+0.5));
+        remain -= x;
+        header->resizeSection(i, x);
+        lb_list->setColumnWidth (i, x);
       }
-      else {
-        h_list->setHeaderSize( KV_COL_ORG, h_list->width());
-      }
-//      cout << "sz0.2 " << h_list->getHeaderSize(0) << endl;
-//      cout << "sz1.2 " << h_list->getHeaderSize(1) << endl;
-//      cout << "sz2.2 " << h_list->getHeaderSize(2) << endl;
+      header->resizeSection(lb_list->numCols()-1, QMAX(20,remain));
+      lb_list->setColumnWidth (lb_list->numCols()-1, QMAX(20,remain));
     }
     break;
 
     case Fixed:
-      //
+      // nix
     break;
   }
-*/
+
   if (the_doc != 0) {
     for (int i = KV_COL_ORG; i < lb_list->numCols(); i++) {
       the_doc->setSizeHint (i-KV_EXTRA_COLS, header->sectionSize(i));
@@ -305,7 +284,7 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
 
    setHeaderProp( KV_COL_LESS, i18n("Lesson"),  locate("data", "kvoctrain/lesson.xpm"));
    setHeaderProp( KV_COL_MARK, QString::null,  QString::null);
-   lb_list->setColumnWidth(KV_COL_MARK, 20);
+   lb_list->setColumnWidth(KV_COL_MARK, KV_COLWIDTH_MARK);
 
    if (id < 0 )
      setHeaderProp( KV_COL_ORG, the_doc->getOriginalIdent());

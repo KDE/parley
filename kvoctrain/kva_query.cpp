@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/13 18:39:09  arnold
+    added phonetic alphabet stuff
+
     Revision 1.11  2001/12/07 19:20:50  arnold
     included multiple choice fields and false friend into query
 
@@ -81,15 +84,18 @@
 
 #define MAX_QUERY_TIMEOUT 3
 
-#ifndef i18n_noop
-#define i18n_noop
-#endif
-
-static const char * not_answered = i18n_noop(
+static const char * not_answered = I18N_NOOP(
     "The query dialog was not answered for several times in series.\n"
     "\n"
     "It is assumed that there is currently no person in front of\n"
     "the screen and for that reason the query is stopped.\n\n");
+
+static const char * not_contain = I18N_NOOP(
+    "Your selection does not contain any\n"
+    "expressions for the query\n"
+    "\n"
+    "There may be several reasons for this.\n"
+    "Please check your settings in the query options.\n");
 
 
 void kvoctrainApp::slotQueryOptions()
@@ -164,9 +170,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this,
-      i18n("Your selection does not contain any\n"
-           "expressions for the query"),
+    KMessageBox::information(this, not_contain,
       kapp->makeStdCaption(i18n("Starting query")));
     return;
   }
@@ -341,9 +345,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this,
-      i18n("Your selection does not contain any\n"
-           "expressions for the query"),
+    KMessageBox::information(this, not_contain,
       kapp->makeStdCaption(i18n("Starting query")));
     return;
   }
@@ -631,9 +633,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
 
   // something left to query ?
   if (query_startnum == 0) {
-    KMessageBox::information(this,
-      i18n("Your selection does not contain any\n"
-           "expressions for the query"),
+    KMessageBox::information(this, not_contain,
       kapp->makeStdCaption(i18n("Starting query")));
     return;
   }

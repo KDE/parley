@@ -4,17 +4,18 @@ $Date$
                   ----------------------------
 
 tofix now:
-
-tofix post-release:
+  - message boxen
+  - accel order
+  - triangle "menu button" in table header buttons
+  - [modified], warum?
   - resume query
   - copy cell / copy row
-  - [modified], warum?
+
+todo post-release ?
+  - Queryoptions aufrufen, wenn keine Selections in der query
   - modeless entry dialog
   - multiple selections in main view
-  - triangle "menu button" in table header buttons
   - translator hint iso names "language name aa:"
-  - percent resize
-  - accel order
   - quickhelp/tooltipps
   - entry dialog kleiner
   - percentage %x done in query-statusbar
