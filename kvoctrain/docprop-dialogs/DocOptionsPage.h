@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    internal doc options dialog class
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Nov 25 12:00:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Nov 25 12:00:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -38,26 +35,15 @@ class DocOptionsPage : public DocOptionsPageForm
 
 public:
 
-    DocOptionsPage
-    (
-        bool         sort,
-	QWidget     *parent,
-	const char  *name
-    );
+  DocOptionsPage(bool sort, QWidget *parent, const char *name);
 
-    bool getSorting () const { return sorter; }
-
-public slots:
-    void initFocus() const;
-
-protected:
-    void keyPressEvent( QKeyEvent * );
+  bool getSorting () const { return sorter; }
 
 protected slots:
-    void docSortToggled(bool);
+  void docSortToggled(bool);
 
 private:
-    bool        sorter;
+  bool sorter;
 };
 
 #endif // DocOptionsPage_included

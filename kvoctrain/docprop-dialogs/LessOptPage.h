@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    lesson properties dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Jun 3 22:03:50 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Jun 3 22:03:50 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -43,42 +40,37 @@ class LessOptPage : public LessOptPageForm
 
 public:
 
-    LessOptPage
-    (
-        QComboBox     *lessons,
-        kvoctrainDoc  *doc,
-        QWidget       *parent = NULL,
-        const char    *name = NULL,
-        bool           modal = false
-    );
+  LessOptPage
+  (
+    QComboBox     *lessons,
+    kvoctrainDoc  *doc,
+    QWidget       *parent = NULL,
+    const char    *name = NULL
+  );
 
-    void getLesson (QComboBox *ret_lesson, vector<int>& ret_Index);
+  void getLesson (QComboBox *ret_lesson, vector<int>& ret_Index);
 
-    static void cleanUnused(kvoctrainDoc *doc,
-                            const QComboBox *lessons,
-                            const vector<int> &lessonIndex,
-                            int old_lessons,
-                            vector<int> &lessons_in_use);
-
-public slots:
-    void initFocus() const;
+  static void cleanUnused(kvoctrainDoc *doc,
+                          const QComboBox *lessons,
+                          const vector<int> &lessonIndex,
+                          int old_lessons,
+                          vector<int> &lessons_in_use);
 
 protected:
-    void updateListBox(int start);
-    void keyPressEvent( QKeyEvent *e );
+  void updateListBox(int start);
 
 protected slots:
 
-    void slotDeleteLesson();
-    void slotNewLesson();
-    void slotLessonChosen(int);
-    void slotModifyLesson();
-    void slotCleanup();
+  void slotDeleteLesson();
+  void slotNewLesson();
+  void slotLessonChosen(int);
+  void slotModifyLesson();
+  void slotCleanup();
 
 private:
-    kvoctrainDoc  *doc;
-    int            act_lesson;
-    vector<int>    lessonIndex; // contains indices of lesson on exec()
-                               // negative values are new lessons
+  kvoctrainDoc  *doc;
+  int            act_lesson;
+  vector<int>    lessonIndex; // contains indices of lesson on exec()
+                              // negative values are new lessons
 };
 #endif // LessOptPage_included

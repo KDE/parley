@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    enter document title and author
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Thu Mar 11 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -38,40 +35,34 @@ class TitlePage : public TitlePageForm
 
 public:
 
-    TitlePage
-    (
-        QString      title,
-        QString      author,
-        QString      license,
-        QString      doc_remark,
-        QWidget     *parent = NULL,
-        const char  *name = NULL
-    );
+  TitlePage
+  (
+    QString      title,
+    QString      author,
+    QString      license,
+    QString      doc_remark,
+    QWidget     *parent = NULL,
+    const char  *name = NULL
+  );
 
-    QString getTitle() { return title; }
-    QString getAuthor() { return author; }
-    QString getLicense() { return license; }
-    QString getDocRemark() { return doc_remark; }
-
-public slots:
-    void initFocus() const;
-
-protected:
-  void keyPressEvent( QKeyEvent *e );
+  QString getTitle() { return title; }
+  QString getAuthor() { return author; }
+  QString getLicense() { return license; }
+  QString getDocRemark() { return doc_remark; }
 
 protected slots:
 
-    void slotTitleChanged(const QString&);
-    void slotAuthorChanged();
-    void slotLicenseChanged(const QString&);
-    void slotDocRemarkChanged();
+  void slotTitleChanged(const QString&);
+  void slotAuthorChanged();
+  void slotLicenseChanged(const QString&);
+  void slotDocRemarkChanged();
 
 private:
 
-    QString title;
-    QString author;
-    QString license;
-    QString doc_remark;
+  QString title;
+  QString author;
+  QString license;
+  QString doc_remark;
 };
 
 #endif // TitlePage_included

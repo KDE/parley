@@ -1,6 +1,6 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>LessOptPageForm</class>
-<widget class="QDialog">
+<widget class="QWidget">
     <property name="name">
         <cstring>Lesson_Descriptions</cstring>
     </property>
@@ -15,17 +15,17 @@
     <property name="caption">
         <string>-</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
         <property name="margin">
-            <number>11</number>
+            <number>0</number>
         </property>
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>lesson_group</cstring>
             </property>
@@ -42,7 +42,7 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <spacer row="1" column="3">
+                <spacer row="2" column="3">
                     <property name="name">
                         <cstring>Spacer1</cstring>
                     </property>
@@ -52,8 +52,14 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
                 </spacer>
-                <widget class="QPushButton" row="1" column="0">
+                <widget class="QPushButton" row="2" column="0">
                     <property name="name">
                         <cstring>b_new</cstring>
                     </property>
@@ -69,7 +75,7 @@
                         <string>&amp;New...</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="1" column="1">
+                <widget class="QPushButton" row="2" column="1">
                     <property name="name">
                         <cstring>b_modify</cstring>
                     </property>
@@ -85,7 +91,7 @@
                         <string>&amp;Modify...</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="1" column="2">
+                <widget class="QPushButton" row="2" column="2">
                     <property name="name">
                         <cstring>b_delete</cstring>
                     </property>
@@ -101,7 +107,7 @@
                         <string>&amp;Delete</string>
                     </property>
                 </widget>
-                <widget class="QPushButton" row="1" column="4">
+                <widget class="QPushButton" row="2" column="4">
                     <property name="name">
                         <cstring>b_cleanup</cstring>
                     </property>
@@ -117,14 +123,14 @@
                         <string>&amp;Clean Up</string>
                     </property>
                 </widget>
-                <widget class="QListBox" row="0" column="0" rowspan="1" colspan="5">
+                <widget class="QListBox" row="1" column="0" rowspan="1" colspan="5">
                     <property name="name">
                         <cstring>lessonList</cstring>
                     </property>
                 </widget>
             </grid>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <tabstops>
     <tabstop>lessonList</tabstop>

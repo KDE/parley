@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    usage labels dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Sep 12 15:38:31 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sun Sep 12 15:38:31 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -45,26 +42,17 @@ class UsageOptPage : public UsageOptPageForm
 
 public:
 
-    UsageOptPage
-    (
-        const vector<QString> &usages,
-        kvoctrainDoc    *doc,
-        QWidget         *parent = NULL,
-        const char      *name = NULL,
-        bool             modal = false
-    );
+  UsageOptPage
+  (
+    const vector<QString> &usages,
+    kvoctrainDoc    *doc,
+    QWidget         *parent = NULL,
+    const char      *name = NULL
+  );
 
-    void getUsageLabels (vector<QString> &ret_usages, vector<int> &ret_Index);
+  void getUsageLabels (vector<QString> &ret_usages, vector<int> &ret_Index);
 
-    static void cleanUnused(kvoctrainDoc *doc,
-                            const vector<int> &lessonIndex,
-                            int old_lessons);
-
-public slots:
-    void initFocus() const;
-
-protected:
-    void keyPressEvent( QKeyEvent * );
+  static void cleanUnused(kvoctrainDoc *doc, const vector<int> &lessonIndex, int old_lessons);
 
 protected:
     void updateListBox(int start);

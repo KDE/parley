@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    user tense options dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Sun May 28 12:14:31 2000
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sun May 28 12:14:31 2000
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -44,46 +41,34 @@ class TenseOptPage : public TenseOptPageForm
 
 public:
 
-    TenseOptPage
-    (
-        const vector<QString> &tenses,
-        kvoctrainDoc    *doc,
-        QWidget         *parent = NULL,
-        const char      *name = NULL,
-        bool             modal = false
-    );
+  TenseOptPage
+  (
+    const vector<QString> &tenses,
+    kvoctrainDoc    *doc,
+    QWidget         *parent = NULL,
+    const char      *name = NULL
+  );
 
-//  virtual ~TenseOptPage();
+  void getTenseNames (vector<QString> &ret_types, vector<int> &ret_Index);
 
-    void getTenseNames (vector<QString> &ret_types,
-                         vector<int> &ret_Index);
-
-    static void cleanUnused(kvoctrainDoc *doc,
-                            const vector<int> &tenseIndex,
-                            int old_tenses);
-
-public slots:
-    void initFocus() const;
-
-protected:
-    void keyPressEvent( QKeyEvent * );
+  static void cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex, int old_tenses);
 
 protected:
 
-    void updateListBox(int start);
+  void updateListBox(int start);
 
 protected slots:
 
-    void slotDeleteTense();
-    void slotNewTense();
-    void slotTenseChosen(int);
-    void slotModifyTense();
-    void slotCleanup();
+  void slotDeleteTense();
+  void slotNewTense();
+  void slotTenseChosen(int);
+  void slotModifyTense();
+  void slotCleanup();
 
 private:
-    kvoctrainDoc  *doc;
-    int            act_tense;
-    vector<int>    tenseIndex; // contains indices of tenses on exec()
-                               // negative values are new tenses
+  kvoctrainDoc  *doc;
+  int            act_tense;
+  vector<int>    tenseIndex; // contains indices of tenses on exec()
+                              // negative values are new tenses
 };
 #endif // TenseOptPage_included

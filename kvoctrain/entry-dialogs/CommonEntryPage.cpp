@@ -33,6 +33,7 @@
 #include <qcombobox.h>
 #include <qcheckbox.h>
 #include <qgroupbox.h>
+#include <qtabdialog.h>
 
 #include <kapplication.h>
 #include <kdebug.h>

@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -24,81 +23,67 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "DocPropDlg.h"
-
-#include <langset.h>
+#include <qlayout.h>
 
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kapplication.h>
 
-#define Inherited QTabDialog
+#include "DocPropDlg.h"
+#include <langset.h>
 
 
 class kvoctraindoc;
 
 DocPropsDlg::DocPropsDlg
 (
-        kvoctrainDoc    *doc,
-        const char      *start_page,
-        QComboBox       *lessons,
-        QString          title,
-        QString          author,
-        QString          license,
-        QString          doc_remark,
-        vector<QString>  types,
-        vector<QString>  tenses,
-        vector<QString>  usages,
-	QWidget         *parent,
-	const char      *name
+  kvoctrainDoc    *doc,
+  const char      * /*start_page*/,
+  QComboBox       *lessons,
+  QString          title,
+  QString          author,
+  QString          license,
+  QString          doc_remark,
+  vector<QString>  types,
+  vector<QString>  tenses,
+  vector<QString>  usages,
+  QWidget         *parent,
+  const char      *name,
+  bool             modal
 )
-	:
-	Inherited( parent, name, true )
+  :
+  KDialogBase(Tabbed, i18n("Document Properties"), Ok|Cancel, Ok, parent, name, modal)
 {
-  setCaption( kapp->makeStdCaption(i18n("Document Properties")));
+  QFrame *page = addPage( i18n("&General") );
+  QVBoxLayout *topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  titleOptPage = new TitlePage (title, author, license, doc_remark, page, name);
+  topLayout->addWidget( titleOptPage );
 
-  lessOptPage = new LessOptPage (lessons, doc, this, name);
-  titleOptPage = new TitlePage (title, author, license, doc_remark, this, name);
-  typeOptPage = new TypeOptPage (types, doc, this, name);
-  tenseOptPage = new TenseOptPage (tenses, doc, this, name);
-  useOptPage = new UsageOptPage (usages, doc, this, name);
-  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), this, name);
-  addTab( titleOptPage, i18n("&General"));
-  connect (this, SIGNAL(aboutToShow()), titleOptPage, SLOT(initFocus() ));
+  page = addPage( i18n("L&essons"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  lessOptPage = new LessOptPage (lessons, doc, page, name);
+  topLayout->addWidget( lessOptPage );
 
-  addTab( lessOptPage, i18n("L&essons"));
-  connect (this, SIGNAL(aboutToShow()), lessOptPage, SLOT(initFocus() ));
+  page = addPage( i18n("word types","T&ypes"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  typeOptPage = new TypeOptPage (types, doc, page, name);
+  topLayout->addWidget( typeOptPage );
 
-  addTab( typeOptPage, i18n("word types","T&ypes"));
-  connect (this, SIGNAL(aboutToShow()), typeOptPage, SLOT(initFocus() ));
+  page = addPage( i18n("Te&nses"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  tenseOptPage = new TenseOptPage (tenses, doc, page, name);
+  topLayout->addWidget( tenseOptPage );
 
-  addTab( tenseOptPage, i18n("Te&nses"));
-  connect (this, SIGNAL(aboutToShow()), tenseOptPage, SLOT(initFocus() ));
+  page = addPage( i18n("usage (area) of an expression", "&Usage"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  useOptPage = new UsageOptPage (usages, doc, page, name);
+  topLayout->addWidget( useOptPage );
 
-  addTab( useOptPage, i18n("usage (area) of an expression", "&Usage"));
-  connect (this, SIGNAL(aboutToShow()), useOptPage, SLOT(initFocus() ));
-
-  addTab( docOptPage, i18n("&Options"));
-  connect (this, SIGNAL(aboutToShow()), docOptPage, SLOT(initFocus() ));
-
-  setCancelButton(i18n("&Cancel"));
-  setOkButton(i18n("&OK"));
-
-  connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
-  connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
+  page = addPage( i18n("&Options"));
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), page, name);
+  topLayout->addWidget( docOptPage );
 }
 
-
-void DocPropsDlg::cancelButton()
-{
-  emit reject();
-}
-
-
-void DocPropsDlg::okButton()
-{
-  emit accept();
-}
 
 #include "DocPropDlg.moc"
