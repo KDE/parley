@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/11 12:52:26  arnold
     fixed some strings for i18n purposes
 
@@ -121,7 +124,7 @@ void LessOptPage::slotLessonChosen(int index)
 
 void LessOptPage::slotNewLesson()
 {
-     LessonInputDlg lid ("", i18n("Input lesson description"), i18n("Lesson description"));
+     LessonInputDlg lid ("", i18n("Input Lesson Description"), i18n("Lesson description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
        int i = lessonList->count()+1;
@@ -145,7 +148,7 @@ void LessOptPage::slotModifyLesson()
      QString str = lessonList->text (act_lesson);
      int pos = str.find (LESS_TAG);
      str.remove (0, pos+strlen (LESS_TAG));
-     LessonInputDlg lid (str, i18n("Input lesson description"), i18n("Lesson description"));
+     LessonInputDlg lid (str, i18n("Input Lesson Description"), i18n("Lesson description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;
        str2.setNum (act_lesson+1);

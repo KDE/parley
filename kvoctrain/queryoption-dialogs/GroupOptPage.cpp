@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/26 15:12:58  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.5  2001/11/23 18:16:48  mueller
     compile fixes (builddir != stddir, --enable-final)
 
@@ -105,7 +108,7 @@ void GroupOptPage::slotDeleteGroup()
 
 void GroupOptPage::slotNewGroup()
 {
-   LessonInputDlg lid ("", i18n("Input group description"), i18n("Group description"));
+   LessonInputDlg lid ("", i18n("Input Group Description"), i18n("Group description"));
    if (lid.exec() == QDialog::Accepted) {
      QString str;
      ps_name->insertItem(lid.getInput().stripWhiteSpace());

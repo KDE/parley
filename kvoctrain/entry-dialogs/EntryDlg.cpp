@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/01/26 15:51:26  arnold
+    fixes due to new entry dialog
+
     Revision 1.17  2002/01/21 21:13:27  arnold
     calculate 'docked' size correctly
 
@@ -203,8 +206,8 @@ EntryDlg::EntryDlg(
         tabber->addTab( mc_page,   _EntryDlg_MULTIPLECHOICE);
         tabber->addTab( tense_page, _EntryDlg_CONJUGATION);
         tabber->addTab( adj_page,   _EntryDlg_ADJECTIVE);
-        tabber->addTab( from_page, i18n( "&From original" ));
-        tabber->addTab( to_page, i18n( "&To original" ));
+        tabber->addTab( from_page, i18n( "&From Original" ));
+        tabber->addTab( to_page, i18n( "&To Original" ));
 
         dock_vert->setPixmap(KGlobal::iconLoader()->loadIcon("view_left_right", KIcon::Small));
         dock_horiz->setPixmap(KGlobal::iconLoader()->loadIcon("view_top_bottom", KIcon::Small));

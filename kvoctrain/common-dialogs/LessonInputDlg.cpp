@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:10:47  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:27:30  arnold
     removed compatibility for kde1
 
@@ -79,7 +82,7 @@ LessonInputDlg::LessonInputDlg
         b_ok->setDefault(true);
 
         if (_descr.isEmpty() )
-          _descr = i18n("Input lesson description");
+          _descr = i18n("Input Lesson Description");
 
         title_label->setText (_label);
         setCaption(kapp->makeStdCaption(_descr));

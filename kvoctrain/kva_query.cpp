@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/01/20 11:41:01  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.20  2002/01/19 11:06:46  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -210,7 +213,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                                 i18n(not_contain),
-                                kapp->makeStdCaption(i18n("Starting query"))))
+                                kapp->makeStdCaption(i18n("Starting Query"))))
        slotQueryOptions(2);
      return;
   }
@@ -263,7 +266,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping query"));
+                                 kapp->makeStdCaption("Stopping Query"));
         return;
       }
       else {
@@ -387,7 +390,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                                 i18n(not_contain),
-                                kapp->makeStdCaption(i18n("Starting query"))))
+                                kapp->makeStdCaption(i18n("Starting Query"))))
        slotQueryOptions(2);
      return;
   }
@@ -481,7 +484,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping query"));
+                                 kapp->makeStdCaption("Stopping Query"));
         return;
       }
       else {
@@ -683,7 +686,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
   if (query_startnum == 0) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                                 i18n(not_contain),
-                                kapp->makeStdCaption(i18n("Starting query"))))
+                                kapp->makeStdCaption(i18n("Starting Query"))))
        slotQueryOptions(2);
      return;
   }
@@ -799,7 +802,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping query"));
+                                 kapp->makeStdCaption("Stopping Query"));
         return;
       }
       else {

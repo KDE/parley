@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.39  2002/01/26 15:51:08  arnold
+    fixes due to new entry dialog
+
     Revision 1.38  2002/01/21 18:56:15  arnold
     fixed disabling of dialog pages
 
@@ -148,8 +151,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#define S_RESUME_QUERY i18n("Resume &query")
-#define S_RESUME_MULTI i18n("Resume &multiple choice")
+#define S_RESUME_QUERY i18n("Resume &Query")
+#define S_RESUME_MULTI i18n("Resume &Multiple Choice")
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
 
@@ -509,12 +512,12 @@ void kvoctrainApp::createEntryDlg(int row, int col)
      if (col == 0) {
        lang = doc->getOriginalIdent();
        text = doc->getEntry(row)->getOriginal();
-       title = i18n("Edit properties for original");
+       title = i18n("Edit Properties for Original");
      }
      else {
        lang = doc->getIdent(col);
        text = doc->getEntry(row)->getTranslation(col);
-       title = i18n("Edit properties of a translation");
+       title = i18n("Edit Properties of a Translation");
      }
 
      entryDlg = new EntryDlg (
@@ -658,14 +661,14 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
      col -= KV_EXTRA_COLS;
 
      if (col == 0) {
-       title = i18n("Edit properties for original");
+       title = i18n("Edit Properties for Original");
        lang = doc->getOriginalIdent();
        text = doc->getEntry(row)->getOriginal();
      }
      else {
        lang = doc->getIdent(col);
        text = doc->getEntry(row)->getTranslation(col);
-       title = i18n("Edit properties of a translation");
+       title = i18n("Edit Properties of a Translation");
      }
 
      entryDlg->setData(doc,
@@ -1031,7 +1034,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 
      KMessageBox::information(this,
        s,
-       kapp->makeStdCaption(i18n("Clean up")));
+       kapp->makeStdCaption(i18n("Clean Up")));
    }
 }
 
@@ -1323,8 +1326,8 @@ void kvoctrainApp::aboutToShowLearn()
     int j;
     header_m = new QPopupMenu();
     if (header != 0 ) {
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create random &query"), (header << 16) | IDH_START_QUERY);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), (header << 16) | IDH_START_MULTIPLE);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
 
       header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, doc->numLangs() > 1);
       header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  doc->numLangs() > 1);
@@ -1332,7 +1335,7 @@ void kvoctrainApp::aboutToShowLearn()
 
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("&Verbs"), (header << 16) | IDH_START_VERB);
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison forms"), (header << 16) | IDH_START_ADJECTIVE);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison Forms"), (header << 16) | IDH_START_ADJECTIVE);
       header_m->insertSeparator();
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
@@ -1357,7 +1360,7 @@ void kvoctrainApp::aboutToShowLearn()
         }
       }
 
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create random &query"), query_m, (3 << 16) | IDH_NULL);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-query.xpm")), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
       connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
@@ -1374,12 +1377,12 @@ void kvoctrainApp::aboutToShowLearn()
           multiple_m->insertItem(i18n("from ")+doc->getIdent(i), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &multiple choice"), multiple_m, (4 << 16) | IDH_NULL);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-multi.xpm")), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
       header_m->insertSeparator();
 
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("Train &verbs"), (header << 16) | IDH_START_VERB);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Article training"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison training"), (header << 16) | IDH_START_ADJECTIVE);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-verb.xpm")), i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-art.xpm")), i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
+      header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-adj.xpm")), i18n("&Comparison Training"), (header << 16) | IDH_START_ADJECTIVE);
       header_m->insertSeparator();
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-syno.xpm")), i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
       header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-anto.xpm")), i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
@@ -1450,13 +1453,13 @@ void kvoctrainApp::aboutToShowVocabulary() {
         add_m->insertItem(names[i],
           (i << 16) | IDH_APPEND);
     }
-    add_m->insertItem(i18n("Another language"), (0xFF << 16) | IDH_APPEND);
+    add_m->insertItem(i18n("Another Language"), (0xFF << 16) | IDH_APPEND);
 
     connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
     connect (add_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")),
-                   i18n("&Append language"), add_m, ID_APPEND_LANG,
+                   i18n("&Append Language"), add_m, ID_APPEND_LANG,
                    pos);
 
 
@@ -1490,7 +1493,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
       }
     }
     voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")),
-                   i18n("Set &language"), set_m, ID_SET_LANG,
+                   i18n("Set &Language"), set_m, ID_SET_LANG,
                    pos);
 
 
@@ -1521,7 +1524,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
       }
     }
     voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")),
-                   i18n("&Remove language"), remove_m, ID_REMOVE_LANG,
+                   i18n("&Remove Language"), remove_m, ID_REMOVE_LANG,
                    pos);
     connect (remove_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (remove_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));

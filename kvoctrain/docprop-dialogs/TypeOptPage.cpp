@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/23 18:15:47  mueller
     compile fixes (builddir != stddir, --enable-final)
 
@@ -125,7 +128,7 @@ void TypeOptPage::slotTypeChosen(int index)
 
 void TypeOptPage::slotNewType()
 {
-     LessonInputDlg lid ("", i18n("Input type description"), i18n("Type description"));
+     LessonInputDlg lid ("", i18n("Input Type Description"), i18n("Type description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
        int i = typeList->count()+1;
@@ -149,7 +152,7 @@ void TypeOptPage::slotModifyType()
      QString str = typeList->text (act_type);
      int pos = str.find (TYPE_TAG);
      str.remove (0, pos+strlen (TYPE_TAG));
-     LessonInputDlg lid (str, i18n("Input type description"), i18n("Type description"));
+     LessonInputDlg lid (str, i18n("Input Type Description"), i18n("Type description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;
        str2.setNum (act_type+1);

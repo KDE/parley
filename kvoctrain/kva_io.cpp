@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/01/23 18:17:40  arnold
+    fix for multiple selections
+
     Revision 1.22  2002/01/21 18:56:14  arnold
     fixed disabling of dialog pages
 
@@ -343,7 +346,7 @@ void kvoctrainApp::slotFileOpen()
     QString s;
     if (recent_files.count() > 0)
       s = recent_files[0];
-    QString name = getFileName(kapp->makeStdCaption(i18n("Open vocabulary file")),
+    QString name = getFileName(kapp->makeStdCaption(i18n("Open Vocabulary File")),
                                s, FILTER_RPATTERN, parentWidget());
     loadfileFromPath(name);
   }
@@ -382,7 +385,7 @@ void kvoctrainApp::slotFileOpenExample()
   if (queryExit() ) {
     QString s;
     s = locate("data",  "kvoctrain/examples/");
-    QString name = getFileName(kapp->makeStdCaption(i18n("Open example vocabulary file")),
+    QString name = getFileName(kapp->makeStdCaption(i18n("Open Example Vocabulary File")),
                                s, FILTER_RPATTERN, parentWidget());
     loadfileFromPath(name);
   }
@@ -397,7 +400,7 @@ void kvoctrainApp::slotFileMerge()
   QString s;
   if (recent_files.count() > 0)
     s = recent_files[0];
-  QString name = getFileName(kapp->makeStdCaption(i18n("Merge vocabulary file")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Merge Vocabulary File")),
                              s, FILTER_RPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -748,7 +751,7 @@ void kvoctrainApp::slotFileSaveAs()
   if (recent_files.count() > 0)
     s = recent_files[0];
 
-  QString name = getFileName(kapp->makeStdCaption(i18n("Save vocabulary as")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Save Vocabulary As")),
                              s, FILTER_WPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -760,7 +763,7 @@ void kvoctrainApp::slotFileSaveAs()
 
       int exit = KMessageBox::warningYesNo(this,
                     msg,
-                    kapp->makeStdCaption(i18n("File exists")));
+                    kapp->makeStdCaption(i18n("File Exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }
@@ -807,7 +810,7 @@ void kvoctrainApp::slotSaveSelection ()
       seldoc.appendEntry(doc->getEntry(i));
 
   QString s;
-  QString name = getFileName(kapp->makeStdCaption(i18n("Save vocabulary block as")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Save Vocabulary Block As")),
                              s, FILTER_WPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -818,7 +821,7 @@ void kvoctrainApp::slotSaveSelection ()
       QString msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                 kapp->makeStdCaption(i18n("File exists")));
+                 kapp->makeStdCaption(i18n("File Exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }

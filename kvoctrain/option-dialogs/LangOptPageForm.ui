@@ -203,7 +203,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>Add language data from &amp;KDE data base</string>
+                                <string>Add Language Data from &amp;KDE Data Base</string>
                             </property>
                         </widget>
                         <widget row="2"  column="0"  rowspan="1"  colspan="2" >
@@ -214,7 +214,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>Add language data from ISO639-&amp;1</string>
+                                <string>Add Language Data from ISO639-&amp;1</string>
                             </property>
                         </widget>
                         <widget row="0"  column="1" >

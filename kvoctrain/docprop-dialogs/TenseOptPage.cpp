@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/11 12:52:26  arnold
     fixed some strings for i18n purposes
 
@@ -127,7 +130,7 @@ void TenseOptPage::slotTenseChosen(int index)
 
 void TenseOptPage::slotNewTense()
 {
-     LessonInputDlg lid ("", i18n("Input tense description"), i18n("Tense description"));
+     LessonInputDlg lid ("", i18n("Input Tense Description"), i18n("Tense description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
        int i = tenseList->count()+1;
@@ -151,7 +154,7 @@ void TenseOptPage::slotModifyTense()
      QString str = tenseList->text (act_tense);
      int pos = str.find (TENSE_TAG);
      str.remove (0, pos+strlen (TENSE_TAG));
-     LessonInputDlg lid (str, i18n("Input tense description"), i18n("Tense description"));
+     LessonInputDlg lid (str, i18n("Input Tense Description"), i18n("Tense description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;
        str2.setNum (act_tense+1);

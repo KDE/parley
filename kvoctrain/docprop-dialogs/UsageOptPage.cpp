@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.10  2002/01/08 13:19:25  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -134,7 +138,7 @@ void UsageOptPage::slotUsageChosen(int index)
 
 void UsageOptPage::slotNewUsage()
 {
-     LessonInputDlg lid ("", i18n("usage (area) of an expression", "Input usage description"),
+     LessonInputDlg lid ("", i18n("usage (area) of an expression", "Input Usage Description"),
                              i18n("usage (area) of an expression", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
@@ -159,7 +163,7 @@ void UsageOptPage::slotModifyUsage()
      QString str = usageList->text (act_usage);
      int pos = str.find (USAGE_TAG);
      str.remove (0, pos+strlen (USAGE_TAG));
-     LessonInputDlg lid (str, i18n("usage (area) of an expression", "Input usage description"),
+     LessonInputDlg lid (str, i18n("usage (area) of an expression", "Input Usage Description"),
                               i18n("usage (area) of an expression", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/01/03 09:11:57  coolo
+    changing latin1 to utf-8
+
     Revision 1.18  2001/12/29 11:16:43  arnold
     fixed language names
 
@@ -800,13 +803,13 @@ LangOptPage::LangOptPage
         b_langPixmap->setPixmap (pix);
       }
       else
-        b_langPixmap->setText (i18n("Picture is invalid"));
+        b_langPixmap->setText (i18n("Picture is Invalid"));
     }
     else
-      b_langPixmap->setText  (i18n("No picture selected"));
+      b_langPixmap->setText  (i18n("No Picture Selected"));
   }
   else {
-    b_langPixmap->setText  (i18n("No picture selected"));
+    b_langPixmap->setText  (i18n("No Picture Selected"));
     b_langPixmap->setEnabled(false);
   }
 
@@ -902,7 +905,7 @@ void LangOptPage::slotShortActivated(const QString& _id)
          d_shortName->setCurrentItem(i);
          return;
        }
-  
+
      if (d_shortName->count() > (int) langset.size()
          && langset.size() < MAX_LANGSET ) {
        langset.addSet (id, "", "");
@@ -920,10 +923,10 @@ void LangOptPage::slotShortActivated(const QString& _id)
        if (!pix.isNull() )
          b_langPixmap->setPixmap (pix);
        else
-         b_langPixmap->setText (i18n("Picture is invalid"));
+         b_langPixmap->setText (i18n("Picture is Invalid"));
      }
      else
-       b_langPixmap->setText (i18n("No picture selected"));
+       b_langPixmap->setText (i18n("No Picture Selected"));
    }
 }
 

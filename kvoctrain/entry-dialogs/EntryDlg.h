@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/01/26 15:51:26  arnold
+    fixes due to new entry dialog
+
     Revision 1.10  2002/01/23 18:17:40  arnold
     fix for multiple selections
 
@@ -66,7 +69,7 @@
 #endif
 
 #ifndef _EntryDlg_MULTIPLECHOICE
-#define _EntryDlg_MULTIPLECHOICE i18n("&Multiple choice")
+#define _EntryDlg_MULTIPLECHOICE i18n("&Multiple Choice")
 #endif
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
