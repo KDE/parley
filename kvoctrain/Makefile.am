@@ -24,8 +24,6 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs examples pics
 
-KDE_ICON = kvoctrain
-
 bin_SCRIPTS = langen2kvtml
 
 rcdir = $(kde_datadir)/kvoctrain
