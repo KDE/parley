@@ -394,7 +394,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
   int header2 = header_and_cmd >> (16+8);
   int cmd     = header_and_cmd & 0xFFFF;
 
-//cout << header1 << " " << header2 << " " << cmd << endl;
+  kdDebug() << header1 << " " << header2 << " " << cmd << endl;
 
   switch (cmd) {
     case IDH_SORT_COL_ALPHA:

@@ -1,0 +1,54 @@
+<!DOCTYPE kpartgui>
+<kpartgui version="0.1" name="kvoctrain" >
+ <MenuBar>
+  <Menu name="file" >
+   <Action append="open_merge" name="file_open_example" />
+   <Separator append="open_merge" />
+   <Action append="open_merge" name="file_merge" />
+   <Separator/>
+  </Menu>
+  <Menu name="edit" >
+   <Separator/>
+   <Action name="edit_append" />
+   <Action name="edit_edit_selected_area" />
+   <Action name="edit_remove_selected_area" />
+   <Action name="edit_save_selected_area" />
+  </Menu>
+  <Menu name="vocabulary" >
+   <text>Vo&amp;cabulary</text>
+   <Action name="vocab_show_statistics" />
+   <Action name="vocab_assign_lessons" />
+   <Action name="vocab_clean_up" />
+   <Separator/>
+   <Action name="vocab_append_language" />
+   <Action name="vocab_set_language" />
+   <Action name="vocab_remove_language" />
+   <Separator/>
+   <Action name="vocab_document_properties" />
+   <Action name="vocab_language_properties" />
+  </Menu>
+  <Menu name="learning" >
+   <text>&amp;Learning</text>
+<!--<Action name="learning_language" />
+   <Separator/>
+   <Action name="learning_resume_query" />
+   <Action name="learning_resume_multiple_choice" /> -->  </Menu>
+  <Menu name="settings" >
+   <Action append="configure_merge" name="config_query_options" />
+   <Action append="show_merge" name="config_inline_editing" />
+  </Menu>
+ </MenuBar>
+ <ToolBar noMerge="1" name="mainToolBar" >
+  <text>Main Toolbar</text>
+  <Action name="file_open" />
+  <Action name="file_save" />
+  <Separator name="separator_2" />
+  <Action name="edit_copy" />
+  <Action name="edit_paste" />
+  <Separator name="separator_1" />
+  <Action name="vocab_lessons" />
+  <Separator name="separator_0" />
+  <Action name="edit_find" />
+  <Action name="vocab_search" />
+ </ToolBar>
+</kpartgui>

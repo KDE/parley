@@ -10,6 +10,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
+                           (C) 2004 Peter Hedlund 
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -40,6 +41,7 @@
 // include files for KDE 
 #include <kapplication.h> 
 #include <kmainwindow.h>
+#include <kaction.h>
 #include <kmenubar.h>
 #include <kmessagebox.h>
 #include <krandomsequence.h>
@@ -80,11 +82,8 @@ public:
   kvoctrainApp(QWidget *parent = NULL, const char *name = NULL);
   /** destructor */
   ~kvoctrainApp();
-  /** initMenuBar creates the menu_bar and inserts the menuitems */
-  void initMenuBar();
-  /** this creates the toolbars. Change the toobar look and add new toolbars in this
-    * function */
-  void initToolBar();
+  void initActions();
+
   /** setup the statusbar */
   void initStatusBar();
   void clearStatusBar();
@@ -106,13 +105,6 @@ public:
   * @see KMainWindow#readProperties
   */
   virtual void readProperties(KConfig* );
-
-  /** enable menuentries/toolbar items */
-  void enableCommand(int id_);
-  /** disable menuentries/toolbar items */
-  void disableCommand(int id_);
-  /** add a opened file to the recent file list and update recent_file_menu */
-  void addRecentFile(const QString &file);
 
   /** Whether the user has selected a range of items. **/
   bool hasSelection();
@@ -169,17 +161,12 @@ public:
   void slotDocPropsLang();
   void slotShowStatist();
   void slotCreateRandom();
-  /** setup edit submenu */
-  void aboutToShowEdit();
-  void aboutToShowOptions();
-  void aboutToShowVocabulary();
+  /** set up vocabulary and learning submenus */
+  void aboutToShowVocabAppendLanguage();
+  void aboutToShowVocabSetLanguage();
+  void aboutToShowVocabRemoveLanguage();
   void aboutToShowLearn();
-  /** setup file submenu */
-  void aboutToShowFile();
-  /** switch argument for slot selection by menu or toolbar ID */
-  void commandCallback(int id_);
-  /** switch argument for Statusbar help entries on slot selection */
-  void statusCallback(int id_);
+
   /** starts random query mode */
   void slotRestartQuery();
   void slotStartTypeQuery(int col, QString type);
@@ -199,6 +186,8 @@ public:
   void slotFileNew();
   /** open a document */
   void slotFileOpen();
+  /** opens a file from the recent files menu */
+  void slotFileOpenRecent(const KURL& url);
   /** open a sample document */
   void slotFileOpenExample();
   void loadfileFromPath(const KURL &, bool addRecent=true);
@@ -209,8 +198,7 @@ public:
   /** save a document under a different filename*/
   void slotFileSaveAs();
   void slotFileQuit();
-  /* disconnect clipboard */
-  void clipboardChanged();
+
   /** put the marked text/object into the clipboard*/
   void slotEditCopy();
   void slotSmartSearchClip();
@@ -219,17 +207,13 @@ public:
   void slotEditRow();
   /** paste the clipboard into the document*/
   void slotEditPaste();
-  /** toggle the toolbar*/
-  void slotViewToolBar();
-  /** toggle the statusbar*/
-  void slotViewStatusBar();
+
   void slotViewInline();
   /** change the status message to text */
   void slotStatusMsg(const QString &text);
   /** change the status message of the whole statusbar temporary */
   void slotStatusHelpMsg(const QString &text);
-  /** opens a file from the recent files menu */
-  void slotFileOpenRecent(int id_);
+
 public:
   void removeProgressBar ();
   void prepareProgressBar ();
@@ -242,24 +226,51 @@ public:
 //  void doSM();
 
 private:
-  /** the recent file menu containing the last five opened files */
-  QPopupMenu *recent_files_menu;
-  /** contains the recently used filenames */
-  QStringList recent_files;
+  // KAction pointers to enable/disable actions
+  KAction* fileNew;
+  KAction* fileOpen;
+  KAction* fileOpenExample;
+  KRecentFilesAction* fileOpenRecent;
+  KAction* fileMerge;
+  KAction* fileSave;
+  KAction* fileSaveAs;
+  KAction* fileQuit;
+
+  KAction* editCopy;
+  KAction* editPaste;
+  KAction* editSelectAll;
+  KAction* editClearSelection;
+  KAction* editSearchFromClipboard;
+  KAction* editAppend;
+  KAction* editEditSelectedArea;
+  KAction* editRemoveSelectedArea;
+  KAction* editSaveSelectedArea;
+
+  KAction* vocabShowStatistics;
+  KAction* vocabAssignLessons;
+  KAction* vocabCleanUp;
+  KSelectAction* vocabAppendLanguage;
+  KSelectAction* vocabSetLanguage;
+  KSelectAction* vocabRemoveLanguage;
+  KAction* vocabDocumentProperties;
+  KAction* vocabLanguageProperties;
+  KWidgetAction* vocabLessons;
+  KWidgetAction* vocabSearch;
+
+  //KAction* learningResumeQuery;
+  //KAction* learningResumeMultipleChoice;
+
+  KAction* configToolbar;
+  KAction* configNotifications;
+  KAction* configApp;
+  KAction* configQueryOptions;
+  KAction* configSaveOptions;
+  KToggleAction* configInlineEditing;
+
   QString lastPixName;
-  /** file_menu contains all items of the menubar entry "File" */
-  QPopupMenu *file_menu;
-  /** opts_menu contains all items of the menubar entry "Optins" */
-  QPopupMenu *opts_menu;
-  /** edit_menu contains all items of the menubar entry "Edit" */
-  QPopupMenu *edit_menu;
+
   QPopupMenu *learn_menu;
-  /** view_menu contains all items of the menubar entry "View" */
-//  QPopupMenu *view_menu;
-  /** voc_menu contains all items of the menubar entry "Vocabulary" */
-  QPopupMenu *voc_menu;
-  /** help_menu contains all items of the menubar entry "Help" */
-  QPopupMenu *help_menu;
+
   /** view is the main widget which represents your working area. The View
     * class should handle all events of the view widget.  It is kept empty so
     * you can create your view according to your application's needs by
@@ -269,18 +280,6 @@ private:
     * information such as filename and does the serialization of your files.
     */
   kvoctrainDoc *doc;
-  /** flag if toolbar is visible or not. Used for kconfig and checking the
-    * view-menu entry view toolbar. bViewStatusbar does the same for the
-    * statusbar.
-    */
-  bool bViewToolbar;
-  bool bViewStatusbar;
-  bool inline_edit;
-  /** used for KConfig to store and restore menubar position. Same with
-    * tool_bar_pos. If more menubars or toolbars are created, you should add
-    * positions as well and implement them in saveOptions() and readOptions().
-    */
-  KToolBar::BarPosition  tool_bar_pos;
 
   friend class kvoctrainView;
 
@@ -303,7 +302,6 @@ private:
   bool             block;
   QString          def_lang;
   QString          separator;
-  QPopupMenu*      file_open_popup;
   QPopupMenu      *header_m;
   int              act_query_col;
   QString          act_query_trans;

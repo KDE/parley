@@ -10,6 +10,8 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
+                           (C) 2004 Peter Hedlund
+
     email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
@@ -66,12 +68,6 @@ void kvoctrainApp::slotTimeOutBackup()
   if (backupTime > 0)
     btimer->start(backupTime, TRUE);
   slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void kvoctrainApp::aboutToShowFile()
-{
-  file_menu->setItemEnabled(ID_FILE_SAVE, doc->isModified());
 }
 
 
@@ -145,10 +141,12 @@ void kvoctrainApp::slotProgress(kvoctrainDoc *curr_doc, int percent)
 }
 
 
-void kvoctrainApp::slotFileOpenRecent(int id_)
+void kvoctrainApp::slotFileOpenRecent(const KURL& url)
 {
   slotStatusMsg(i18n("Opening file..."));
-
+  fileOpenRecent->setCurrentItem(-1);
+  loadfileFromPath(url);
+  /*
   id_ >>= 16;
   if (queryExit() && recent_files.count() != 0) {
     QString name = recent_files[id_];
@@ -173,56 +171,11 @@ void kvoctrainApp::slotFileOpenRecent(int id_)
       doc->setModified(false);
     }
   }
+  */
   slotStatusMsg(IDS_DEFAULT);
 
   for (int i = 0; i < 10; i++)
     kapp->processEvents();
-}
-
-
-void kvoctrainApp::addRecentFile(const QString &rel_file)
-{
-  if (rel_file.stripWhiteSpace().length() == 0)
-    return;
-
-  QString file = QFileInfo (rel_file).absFilePath();
-
-  int pos = recent_files.findIndex(file);
-  if((pos == -1)){
-    if( recent_files.count() < MAX_RECENTFILES) {
-      recent_files.insert(recent_files.begin(), file);
-      KRecentDocument::add (file, false);
-    }
-    else{
-      recent_files.remove(--recent_files.end());
-      recent_files.insert(recent_files.begin(), file);
-      KRecentDocument::add (file, false);
-    }
-  }
-  else {
-    recent_files.remove(recent_files.at(pos));
-    recent_files.insert(recent_files.begin(), file);  // make most recent the first entry
-    KRecentDocument::add (file, false);
-  }
-
-  // create/update the file_open_popup for the toolbar and the menu
-  QString accel;
-  for ( unsigned i = 0 ; i < recent_files.count(); i++){
-    accel.setNum (i);
-    accel.insert (0, "&");
-    accel += "  ";
-    accel += recent_files[i];
-
-    if (i < recent_files_menu->count())
-      recent_files_menu->changeItem((i << 16) | ID_FILE_OPEN_RECENT, accel);
-    else
-      recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
-
-    if (i < file_open_popup->count())
-      file_open_popup->changeItem((i << 16) | ID_FILE_OPEN_RECENT, accel);
-    else
-      file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
-  }
 }
 
 
@@ -256,9 +209,7 @@ void kvoctrainApp::slotFileOpen()
 
   if (queryExit() ) {
     QString s;
-    if (recent_files.count() > 0)
-      s = recent_files[0];
-      KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
+    KURL url = KFileDialog::getOpenURL(QDir::currentDirPath(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
       loadfileFromPath(url, true);
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -284,7 +235,7 @@ void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
       view->getTable()->setFont(tablefont);
       view->adjustContent();
       if (addRecent)
-         addRecentFile (url.path());
+        fileOpenRecent->addURL(url) /*addRecentFile (url.path())*/;
       connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
       doc->setModified(false);
     }
@@ -311,9 +262,9 @@ void kvoctrainApp::slotFileMerge()
   slotStatusMsg(i18n("Merging file..."));
 
   QString s;
-  if (recent_files.count() > 0)
-    s = recent_files[0];
-    KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+  //if (recent_files.count() > 0)
+    //s = recent_files[0];
+  KURL url = KFileDialog::getOpenURL(QDir::currentDirPath(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty() ) {
 
@@ -547,7 +498,7 @@ void kvoctrainApp::slotFileMerge()
       }
     }
     delete (new_doc);
-    addRecentFile (url.path());
+    fileOpenRecent->addURL(url); // addRecentFile (url.path());
   }
 
   view->setView(doc, langset, gradecols);
@@ -580,7 +531,7 @@ void kvoctrainApp::slotFileSave()
   prepareProgressBar();
   saveDocProps(doc);
   doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
-  addRecentFile(doc->URL().path());
+  fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -685,7 +636,7 @@ void kvoctrainApp::slotFileSaveAs()
 
       prepareProgressBar();
       doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
-      addRecentFile(doc->URL().path());
+      fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
       removeProgressBar();
     }
   }

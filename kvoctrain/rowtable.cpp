@@ -304,7 +304,6 @@ void RowTable::init(Flags flags)
 {
         defaultItem = 0;
 	m_flags = flags;
-	setFrameStyle( WinPanel | Sunken );
 	setBackgroundColor( colorGroup().base() );
 	setLeftMargin(0);
 #if QT_VERSION < 300

@@ -7,11 +7,12 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+                           (C) 2004 Peter Hedlund
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -55,21 +56,11 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  the_doc = doc;
  parent = _parent;
- // read the config file entries
+
  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
- KConfig *config = KApplication::kApplication()->config();
 
- config->setGroup(CFG_WINPROP);
- parent->resize (config->readNumEntry(CFG_WINWIDTH, 520),
-                 config->readNumEntry(CFG_WINHEIGHT, 300));
+ lb_list = new kvoctrainTable( the_doc, &ls, &gradecols, this, "ListBox_1" );
 
- f_list = new QFrame( this, "Frame_2" );
- f_list->setFrameStyle( 50 );
- f_list->resize (width(), height() );
-
- lb_list = new kvoctrainTable( the_doc, &ls, &gradecols, f_list, "ListBox_1" );
-
- lb_list->setFrameStyle( 51 );
  lb_list->setLineWidth( 2 );
 
  if (the_doc->numLangs() == 0)
@@ -96,7 +87,7 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  connect( lb_list, SIGNAL(forwardKeyReleaseEvent (QKeyEvent*)),
           parent, SLOT(keyReleaseEvent(QKeyEvent *)) );
 
- list_layout = new QGridLayout( f_list, 2, 1, 4 );
+ list_layout = new QGridLayout( this, 2, 1/*, 4 */);
  list_layout->addWidget( lb_list, 1, 0 );
  list_layout->setRowStretch( 1, 1 );
  list_layout->activate();
@@ -132,7 +123,6 @@ void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
   for (int i = 0; i < lb_list->numCols(); ++i )
     oldwidth += header->sectionSize(i);
 
-  f_list->resize (r_ev->size());
   unsigned newwidth = lb_list->clipper()->width();
   int remain = newwidth;
 

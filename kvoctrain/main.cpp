@@ -74,9 +74,12 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
 
   aboutData.addCredit("Andreas Neuper",
                       I18N_NOOP("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
-		     
+
    aboutData.addCredit("Dennis Haney",
                       I18N_NOOP("Patch to implement Leitner learning method"));
+
+   aboutData.addCredit("Peter Hedlund",
+                       I18N_NOOP("Port to KActions and XML-based user interface"));
 
   aboutData.addCredit(I18N_NOOP("KDE Team"),
                       I18N_NOOP("Many small enhancements"));

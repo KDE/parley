@@ -10,6 +10,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
+                           (C) 2004 Peter Hedlund
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -420,7 +421,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
 
-   opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
+   configInlineEditing->setEnabled(false);
    view->getTable()->setEditorBlocked(true);
 
    if (col == 0)
@@ -444,7 +445,7 @@ void kvoctrainApp::removeEntryDlg()
     entryDlg = 0;
   }
 
-  opts_menu->setItemEnabled(ID_VIEW_INLINE, true);
+  configInlineEditing->setEnabled(true);
   view->getTable()->setEditorBlocked(false);
 }
 
@@ -738,7 +739,7 @@ void kvoctrainApp::slotRemoveRow()
       table->updateContents();
     }
   }
-  view->setInlineEnabled(inline_edit);
+  view->setInlineEnabled(Prefs::enableInlineEdit());
 }
 
 
@@ -1034,7 +1035,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
         }
         view->setHeaderProp (i+KV_EXTRA_COLS, lid, pm);
       }
-
+      configSaveOptions->setEnabled(!autosaveopts);
       slotStatusMsg(IDS_DEFAULT);
    }
 }
@@ -1083,6 +1084,7 @@ void kvoctrainApp::slotInitSearch()
 
 void kvoctrainApp::slotSearchNext()
 {
+  kdDebug() << "Searching..." << endl;
   slotResumeSearch(searchstr);
 }
 
@@ -1124,39 +1126,13 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
   slotStatusMsg(IDS_DEFAULT);
 }
 
-void kvoctrainApp::slotViewToolBar()
-{
-  ///////////////////////////////////////////////////////////////////
-  // turn Toolbar on or off
-  bViewToolbar=!bViewToolbar;
-  menuBar()->setItemChecked(ID_VIEW_TOOLBAR, bViewToolbar);
-  if (bViewToolbar)
-     toolBar()->show();
-  else
-     toolBar()->hide();
-  slotStatusMsg(IDS_DEFAULT);
-}
-
 
 void kvoctrainApp::slotViewInline()
 {
-  inline_edit = !inline_edit;
-  menuBar()->setItemChecked(ID_VIEW_INLINE, inline_edit);
-  view->setInlineEnabled(inline_edit);
-  slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void kvoctrainApp::slotViewStatusBar()
-{
-  ///////////////////////////////////////////////////////////////////
-  //turn Statusbar on or off
-  bViewStatusbar=!bViewStatusbar;
-  menuBar()->setItemChecked(ID_VIEW_STATUSBAR, bViewStatusbar);
-  if (bViewStatusbar)
-    statusBar()->show();
-  else
-    statusBar()->hide();
+  Prefs::setEnableInlineEdit(!Prefs::enableInlineEdit());
+  configInlineEditing->setChecked(Prefs::enableInlineEdit());
+  //menuBar()->setItemChecked(ID_VIEW_INLINE, inline_edit);
+  view->setInlineEnabled(Prefs::enableInlineEdit());
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1174,7 +1150,10 @@ void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
 
 void kvoctrainApp::aboutToShowLearn()
 {
+  //learn_menu = (QPopupMenu*) this->child( "learning", "KPopupMenu" );
   learn_menu->clear();
+  //KActionMenu * am = dynamic_cast<KActionMenu*>(actionCollection()->action("learning"));
+  //learn_menu = (QPopupMenu*) am->popupMenu();
 
   vector<QString> set_names;
   for (int i = 0; i < (int) langset.size(); i++) {
@@ -1291,69 +1270,70 @@ void kvoctrainApp::aboutToShowLearn()
 
 }
 
-
-void kvoctrainApp::aboutToShowOptions()
+void kvoctrainApp::aboutToShowVocabAppendLanguage()
 {
-  opts_menu->setItemEnabled(ID_SAVE_OPTIONS, !autosaveopts);
-}
+  if (doc != 0)
+  {
+    vocabAppendLanguage->clear();
+    QPopupMenu * add_m = vocabAppendLanguage->popupMenu();
 
-
-void kvoctrainApp::aboutToShowVocabulary() {
-//  voc_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
-
-  if (doc != 0) {
-    int pos = voc_menu->indexOf(ID_APPEND_LANG);
-    voc_menu->removeItem (ID_APPEND_LANG);
-    vector<QString> names;
-
-    QPopupMenu *add_m = new QPopupMenu();
-
-    for (int i = 0; i < (int) langset.size(); i++) {
+    QStringList names;
+    for (int i = 0; i < (int) langset.size(); i++)
+    {
       if(langset.longId(i).isEmpty() )
-        names.push_back(langset.shortId(i));
+        names.append(langset.shortId(i));
       else
-        names.push_back(langset.longId(i));
+        names.append(langset.longId(i));
     }
 
-    for (int i = 0; i < (int) langset.size(); i++) {
-      if(   !langset.PixMapFile(i).isEmpty()
-         && !langset.longId(i).isEmpty() )
-        add_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i],
-          (i << 16) | IDH_APPEND);
+    for (int i = 0; i < (int) langset.size(); i++)
+    {
+      if(!langset.PixMapFile(i).isEmpty() && !langset.longId(i).isEmpty())
+        add_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i], (i << 16) | IDH_APPEND);
       else
-        add_m->insertItem(names[i],
-          (i << 16) | IDH_APPEND);
+        add_m->insertItem(names[i], (i << 16) | IDH_APPEND);
     }
+
     add_m->insertItem(i18n("Another Language..."), (0xFF << 16) | IDH_APPEND);
 
     connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
     connect (add_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-
-    voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")),
-                   i18n("&Append Language"), add_m, ID_APPEND_LANG,
-                   pos);
+  }
+}
 
 
-    pos = voc_menu->indexOf(ID_SET_LANG);
-    voc_menu->removeItem (ID_SET_LANG);
-    QPopupMenu *set_m = new QPopupMenu();
+void kvoctrainApp::aboutToShowVocabSetLanguage()
+{
+  if (doc != 0)
+  {
+    vocabSetLanguage->clear();
+    QPopupMenu * set_m = vocabSetLanguage->popupMenu();
 
-    for (int header = 0; header < doc->numLangs(); ++header ) {
+    QStringList names;
+    for (int i = 0; i < (int) langset.size(); i++) 
+    {
+      if(langset.longId(i).isEmpty() )
+        names.append(langset.shortId(i));
+      else
+        names.append(langset.longId(i));
+    }
+
+    for (int header = 0; header < doc->numLangs(); ++header ) 
+    {
       // select one of the available languages for the column
       QPopupMenu *langs_m = new QPopupMenu();
-      // hack: ID => header-id + language
+        // hack: ID => header-id + language
 
       for (int i = 0; i < (int) langset.size(); i++) {
-        if(   !langset.PixMapFile(i).isEmpty()
-           && !langset.longId(i).isEmpty() )
-          langs_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i],
-            (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+        if(!langset.PixMapFile(i).isEmpty() && !langset.longId(i).isEmpty())
+          langs_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
         else
-          langs_m->insertItem(names[i],
-            (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+          langs_m->insertItem(names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
       }
+
       connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
       connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+
       if (header == 0)
         set_m->insertItem(i18n("&Original"), langs_m, (2 << 16) | IDH_NULL);
       else {
@@ -1363,40 +1343,39 @@ void kvoctrainApp::aboutToShowVocabulary() {
           set_m->insertItem(i18n("&%1. Translation").arg(header), langs_m, (2 << 16) | IDH_NULL);
       }
     }
-    voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")),
-                   i18n("Set &Language"), set_m, ID_SET_LANG,
-                   pos);
+  }
+}
 
 
+void kvoctrainApp::aboutToShowVocabRemoveLanguage()
+{
+  if (doc != 0)
+  {
+    vocabRemoveLanguage->clear();
+    QPopupMenu * remove_m = vocabRemoveLanguage->popupMenu();
 
-    pos = voc_menu->indexOf(ID_REMOVE_LANG);
-    voc_menu->removeItem (ID_REMOVE_LANG);
-    QPopupMenu *remove_m = new QPopupMenu();
-    names.clear();
-    for (int j = 1; j < (int) doc->numLangs(); j++) {
-     int i;
-     if ((i = langset.indexShortId(doc->getIdent(j))) >= 0)
-       names.push_back(langset.longId(i));
-     else
-       names.push_back(doc->getIdent(j));
+    QStringList names;
+    for (int j = 1; j < (int) doc->numLangs(); j++) 
+    {
+      int i;
+      if ((i = langset.indexShortId(doc->getIdent(j))) >= 0)
+        names.append(langset.longId(i));
+      else
+        names.append(doc->getIdent(j));
     }
 
-    for (int i = 1; i < (int) doc->numLangs(); i++) {
+    for (int i = 1; i < (int) doc->numLangs(); i++) 
+    {
       // show pixmap and long name if available
       int j;
       if((j = langset.indexShortId(doc->getIdent(i))) >= 0
-         && !langset.PixMapFile(j).isEmpty()
-         && !langset.longId(j).isEmpty() ) {
-        remove_m->insertItem(QPixmap(langset.PixMapFile(j)), names[i-1],
-            (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
-      }
-      else {
+          && !langset.PixMapFile(j).isEmpty()
+          && !langset.longId(j).isEmpty() )
+        remove_m->insertItem(QPixmap(langset.PixMapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
+      else
         remove_m->insertItem(doc->getIdent(i), (i << 16) | IDH_REMOVE);
-      }
     }
-    voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")),
-                   i18n("&Remove Language"), remove_m, ID_REMOVE_LANG,
-                   pos);
+
     connect (remove_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (remove_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   }
@@ -1409,89 +1388,6 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text)
   // change status message of whole statusbar temporary (text, msec)
   if (pbar == 0 || !pbar->isVisible() )
     statusBar()->message(text, 3000);
-}
-
-
-void kvoctrainApp::commandCallback(int id_){
-  id_ &=0xffff;
-  switch (id_){
-    ON_CMD(ID_FILE_NEW,                 slotFileNew())
-    ON_CMD(ID_FILE_OPEN,                slotFileOpen())
-    ON_CMD(ID_FILE_OPEN_XMP,            slotFileOpenExample())
-    ON_CMD(ID_FILE_MERGE,               slotFileMerge())
-    ON_CMD(ID_FILE_SAVE,                slotFileSave())
-    ON_CMD(ID_FILE_SAVE_AS,             slotFileSaveAs())
-
-    ON_CMD(ID_FILE_QUIT,                slotFileQuit())
-
-    ON_CMD(ID_EDIT_COPY,                slotEditCopy())
-    ON_CMD(ID_EDIT_PASTE,               slotEditPaste())
-    ON_CMD(ID_SEARCH_CLIP,              slotSmartSearchClip())
-    ON_CMD(ID_APPEND_ROW,               slotAppendRow())
-    ON_CMD(ID_REMOVE_ROW,               slotRemoveRow())
-    ON_CMD(ID_EDIT_ROW,                 slotEditRow())
-    ON_CMD(ID_CLR_SEL,                  slotCancelSelection())
-    ON_CMD(ID_SEL_ALL,                  slotSelectAll())
-    ON_CMD(ID_SAVE_ROW,                 slotSaveSelection())
-
-//    ON_CMD(ID_APPEND_LANG,              slotAppendLang())
-    ON_CMD(ID_DOC_PROPS,                slotDocProps())
-    ON_CMD(ID_DOC_PROPS_LANG,           slotDocPropsLang())
-    ON_CMD(ID_GENERAL_OPTIONS,          slotGeneralOptions())
-    ON_CMD(ID_QUERY_OPTIONS,            slotQueryOptions())
-    ON_CMD(ID_SHOW_STAT,                slotShowStatist())
-    ON_CMD(ID_RAND_CREATE,              slotCreateRandom())
-    ON_CMD(ID_CLEANUP,                  slotCleanVocabulary())
-//    ON_CMD(ID_RESUME_QUERY,             slotTimeOutRandomQuery())
-//    ON_CMD(ID_RESUME_MULTIPLE,          slotTimeOutMultipleChoice())
-
-    ON_CMD(ID_VIEW_INLINE,              slotViewInline())
-    ON_CMD(ID_VIEW_TOOLBAR,             slotViewToolBar())
-    ON_CMD(ID_VIEW_STATUSBAR,           slotViewStatusBar())
-    ON_CMD(ID_SAVE_OPTIONS,             slotSaveOptions())
-  }
-}
-
-
-void kvoctrainApp::statusCallback(int id_){
-  id_ &= 0xffff;
-  switch (id_){
-    ON_STATUS_MSG(ID_FILE_NEW,          i18n("Creates a new document"))
-    ON_STATUS_MSG(ID_FILE_OPEN,         i18n("Opens an existing document"))
-    ON_STATUS_MSG(ID_FILE_OPEN_XMP,     i18n("Opens an example document from the KVocTrain package"))
-    ON_STATUS_MSG(ID_FILE_OPEN_RECENT,  i18n("Opens one of your recent documents"))
-    ON_STATUS_MSG(ID_FILE_MERGE,        i18n("Merges an existing document to the current vocabulary"))
-    ON_STATUS_MSG(ID_FILE_SAVE,         i18n("Saves the current document"))
-    ON_STATUS_MSG(ID_FILE_SAVE_AS,      i18n("Saves the document as..."))
-    ON_STATUS_MSG(ID_FILE_QUIT,         i18n("Exits the program"))
-
-    ON_STATUS_MSG(ID_EDIT_COPY,         i18n("Copies the selected section to the clipboard"))
-    ON_STATUS_MSG(ID_EDIT_PASTE,        i18n("Pastes the clipboard contents to the end"))
-    ON_STATUS_MSG(ID_SEARCH_CLIP,       i18n("Searches clipboard contents in vocabulary"))
-    ON_STATUS_MSG(ID_APPEND_ROW,        i18n("Appends new entry to vocabulary"))
-    ON_STATUS_MSG(ID_REMOVE_ROW,        i18n("Removes selected entries from the vocabulary"))
-    ON_STATUS_MSG(ID_EDIT_ROW,          i18n("Edits properties of current selection"))
-    ON_STATUS_MSG(ID_SAVE_ROW,          i18n("Writes selected rows to a file"))
-    ON_STATUS_MSG(ID_SEL_ALL,           i18n("Selects all entries"))
-    ON_STATUS_MSG(ID_CLR_SEL,           i18n("Deselects all entries"))
-
-    ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables/disables the current toolbar"))
-    ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables/disables the statusbar"))
-    ON_STATUS_MSG(ID_VIEW_INLINE,       i18n("Enables/disables inline editing in the table view"))
-    ON_STATUS_MSG(ID_SAVE_OPTIONS,      i18n("Saves options"))
-    ON_STATUS_MSG(ID_DOC_PROPS,         i18n("Edits document properties"))
-    ON_STATUS_MSG(ID_DOC_PROPS_LANG,    i18n("Edits language properties in current document"))
-
-//    ON_STATUS_MSG(ID_APPEND_LANG,       i18n("Appends a column for a new language to the table"))
-    ON_STATUS_MSG(ID_GENERAL_OPTIONS,   i18n("Shows general options dialog"))
-    ON_STATUS_MSG(ID_QUERY_OPTIONS,     i18n("Shows query options dialog"))
-    ON_STATUS_MSG(ID_SEARCH,            i18n("Enters smart search mode"))
-    ON_STATUS_MSG(ID_SHOW_STAT,         i18n("Shows statistics"))
-    ON_STATUS_MSG(ID_RAND_CREATE,       i18n("Creates random lessons with unassigned entries"))
-    ON_STATUS_MSG(ID_CLEANUP,           i18n("Removes entries with same content from vocabulary"))
-//    ON_STATUS_MSG(ID_RESUME_QUERY,      i18n("Resumes random query with existing selection"))
-//    ON_STATUS_MSG(ID_RESUME_MULTIPLE,   i18n("Resumes multiple choice with existing selection"))
-  }
 }
 
 #include "kvoctrain.moc"

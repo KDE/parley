@@ -152,27 +152,6 @@
 #define IDH_START_PARAPHRASE           16
 
 ///////////////////////////////////////////////////////////////////
-// MACROS FOR THE CONNECT OF YOUR SIGNALS TO CORRESPONDENT SLOTS 
-// IN YOUR MAIN IMPLEMENTATION OF MENUBAR AND TOOLBAR
-
-
-///////////////////////////////////////////////////////////////////
-// MENU CONNECTS
-#define CONNECT_CMD(submenu)           connect(submenu, SIGNAL(activated(int)), SLOT(commandCallback(int)));connect(submenu,SIGNAL(highlighted(int)), SLOT(statusCallback(int)))
-
-///////////////////////////////////////////////////////////////////
-// TOOLBAR CONNECT  
-#define CONNECT_TOOLBAR(ToolBar)        connect(ToolBar, SIGNAL(clicked(int)), SLOT(commandCallback(int)));connect(ToolBar, SIGNAL(highlighted(int,bool)), SLOT(statusCallback(int)))
-
-///////////////////////////////////////////////////////////////////
-// Create cases for entries and connect them with their functions
-#define ON_CMD(id, cmd_class_function)   case id:cmd_class_function ;break;
-
-///////////////////////////////////////////////////////////////////
-// Create cases for entries and connect them to change statusBar entry
-#define ON_STATUS_MSG(id, message)     case id:  slotStatusHelpMsg(message);break;
-
-///////////////////////////////////////////////////////////////////
 // other strings
 //#define KVOCTRAIN_TITLE i18n("Vocabulary Trainer")
 #define KVOCTRAIN_NAME "kvoctrain"

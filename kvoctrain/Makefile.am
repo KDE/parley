@@ -1,9 +1,8 @@
 METASOURCES = AUTO
 
-kvoctrain_SOURCES = kva_io.cpp \
-   kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
-   main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
-   kva_clip.cpp kva_query.cpp prefs.kcfgc
+kvoctrain_SOURCES = kva_io.cpp kvoctrain.cpp kvoctrainview.cpp rowtable.cpp \
+	main.cpp kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp \
+	prefs.kcfgc
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
@@ -19,6 +18,8 @@ kvoctrain_LDADD =   ./docprop-dialogs/libdocpropdlg.la \
                     ./statistik-dialogs/libstatdlg.la \
                     ./common-dialogs/libcommondlg.la $(LIB_KHTML)
 
+EXTRA_DIST = kvoctrainui.rc
+
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
           statistik-dialogs examples pics
@@ -26,6 +27,9 @@ SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
 KDE_ICON = kvoctrain
 
 bin_SCRIPTS = langen2kvtml
+
+rcdir = $(kde_datadir)/kvoctrain
+rc_DATA = kvoctrainui.rc
 
 xdg_apps_DATA = kvoctrain.desktop
 kde_kcfg_DATA = kvoctrain.kcfg

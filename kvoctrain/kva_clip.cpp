@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -37,19 +37,6 @@
 #include <algorithm>
 using namespace std;
 
-void kvoctrainApp::clipboardChanged() {
-  QString s = QApplication::clipboard()->text();
-  edit_menu->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
-  edit_menu->setItemEnabled(ID_SEARCH_CLIP, !s.isEmpty());
-  toolBar()->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
-  toolBar()->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
-#if defined(_WS_X11_)
-//  disconnect(QApplication::clipboard(),SIGNAL(dataChanged()),
-//    this,SLOT(clipboardChanged()));
-#endif
-}
-
-
 void kvoctrainApp::slotSmartSearchClip()
 {
   QString s;
@@ -70,17 +57,6 @@ void kvoctrainApp::slotSmartSearchClip()
     searchLine->setFocus();
     searchLine->setText (searchstr);
   }
-}
-
-
-void kvoctrainApp::aboutToShowEdit() {
-  QString s = QApplication::clipboard()->text();
-  edit_menu->setItemEnabled(ID_CLR_SEL,  hasSelection());
-  edit_menu->setItemEnabled(ID_SAVE_ROW,  hasSelection());
-  edit_menu->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
-  edit_menu->setItemEnabled(ID_SEARCH_CLIP, !s.isEmpty());
-  toolBar()->setItemEnabled(ID_SEARCH_CLIP, !s.isEmpty());
-  toolBar()->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
 }
 
 

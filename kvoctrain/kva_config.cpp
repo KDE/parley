@@ -7,11 +7,12 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+                           (C) 2004 Peter Hedlund
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -42,15 +43,11 @@ void kvoctrainApp::saveOptions(bool all)
   KConfig *config = KApplication::kApplication()->config();
 
   config->setGroup(CFG_GENERAL);
-  Prefs::setRecentFiles(recent_files);
+  fileOpenRecent->saveEntries(config, "Recent Files");
   config->writeEntry(CFG_AUTOSAVEOPT, autosaveopts);
   config->writeEntry(CFG_ENTRYAUTOAPPLY, autoentryApply);
 
   config->setGroup(CFG_APPEARANCE);
-  config->writeEntry(CFG_SHOW_TOOLBAR,toolBar()->isVisible());
-  config->writeEntry(CFG_SHOW_STATUSBAR,statusBar()->isVisible());
-  config->writeEntry(CFG_TOOLBAR_POS, (int)toolBar()->barPos());
-  Prefs::setEnableInlineEdit(inline_edit);
 
   if (view) {
     kdDebug() << "Rows: " << view->getTable()->currentRow() << endl;
@@ -70,7 +67,7 @@ void kvoctrainApp::saveOptions(bool all)
       config->writeEntry(QString(CFG_QP_THRESH)+s, presettings[i].thresh_set);
       config->writeEntry(QString(CFG_QP_BLOCK)+s, presettings[i].block_set);
     }
-  
+
     config->setGroup(CFG_APPEARANCE);
     config->writeEntry(CFG_IPA_FFAMILY, ipafont.family());
     config->writeEntry(CFG_IPA_FSIZE, ipafont.pointSize());
@@ -85,7 +82,7 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setGradeCol5(gradecols.col5);
     Prefs::setGradeCol6(gradecols.col6);
     Prefs::setGradeCol7(gradecols.col7);
-  
+
     config->setGroup(CFG_GENERAL);
     Prefs::setSmartAppend((bool) smartAppend);
     config->writeEntry(CFG_HEADER_RESIZER, (int) header_resizer);
@@ -100,7 +97,7 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setUseCurrent(useCurrent);
     Prefs::setEntriesPerLesson(entriesPerLesson);
     Prefs::setBackupTime(backupTime);
-  
+
     config->writeEntry(CFG_NUMLANGSET, langset.size() );
     for (int i = 0; i < (int) langset.size(); i++) {
       s.setNum (i);
@@ -142,7 +139,7 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setShowMore(show_more);
     Prefs::setIKnow(i_know);
     Prefs::writeConfig();
-   
+
     config->setGroup(CFG_QUERYMANAG);
     querymanager.saveConfig (config);
   }
@@ -169,10 +166,6 @@ void kvoctrainApp::readOptions()
   }
 
   config->setGroup(CFG_APPEARANCE);
-  bViewToolbar = config->readBoolEntry(CFG_SHOW_TOOLBAR, true);
-  bViewStatusbar = config->readBoolEntry(CFG_SHOW_STATUSBAR, true);
-  inline_edit = Prefs::enableInlineEdit();;
-  tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry(CFG_TOOLBAR_POS, KToolBar::Top);
 
   QFont fdefault;
   QString family = config->readEntry(CFG_FFAMILY, fdefault.family());
@@ -202,8 +195,8 @@ void kvoctrainApp::readOptions()
   config->setGroup(CFG_GENERAL);
   smartAppend = Prefs::smartAppend();
   header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
-  // initialize the recent file list
-  recent_files = Prefs::recentFiles();//config->readPathListEntry(CFG_RECENT);
+
+  fileOpenRecent->loadEntries(config, "Recent Files");
   autosaveopts = config->readBoolEntry(CFG_AUTOSAVEOPT, true);
   autoentryApply = config->readBoolEntry(CFG_ENTRYAUTOAPPLY, false);
 

@@ -10,6 +10,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
+                           (C) 2004 Peter Hedlund 
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -71,15 +72,11 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   artQueryDlg = 0;
   entryDlg = 0;
 
-  ///////////////////////////////////////////////////////////////////
-  // read the config file options
+  initStatusBar();
+  initActions();
+
   readOptions();
 
-  ///////////////////////////////////////////////////////////////////
-  // call inits to invoke all other construction parts
-  initMenuBar();
-  initToolBar();
-  initStatusBar();
   initDoc();
   initView();
   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
@@ -91,17 +88,8 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 
   view->getTable()->updateContents(cr, cc);
 
-  ///////////////////////////////////////////////////////////////////
-  // enable bars dependent on config file setups
-  if (!bViewToolbar)
-    toolBar()->hide();
-  if (!bViewStatusbar)
-    statusBar()->hide();
-
-  toolBar()->setBarPos(tool_bar_pos);
-
-  ///////////////////////////////////////////////////////////////////
-  // disable menu and toolbar items at startup
+  configInlineEditing->setChecked(Prefs::enableInlineEdit());
+  configSaveOptions->setEnabled(!autosaveopts);
 
   querying = false;
   btimer = new QTimer( this );
@@ -111,249 +99,176 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 }
 
 
-void kvoctrainApp::enableCommand(int id_)
+void kvoctrainApp::initActions()
 {
-  ///////////////////////////////////////////////////////////////////
-  // enable menu and toolbar functions by their ID's
-  menuBar()->setItemEnabled(id_,true);
-  toolBar()->setItemEnabled(id_,true);
-}
+  fileNew = KStdAction::openNew(this, SLOT(slotFileNew()), actionCollection());
+  fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
+  fileNew->setToolTip(fileNew->whatsThis());
 
+  fileOpen = KStdAction::open(this, SLOT(slotFileOpen()), actionCollection());
+  fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
+  fileOpen->setToolTip(fileOpen->whatsThis());
 
-void kvoctrainApp::disableCommand(int id_)
-{
-  ///////////////////////////////////////////////////////////////////
-  // disable menu and toolbar functions by their ID's
-  menuBar()->setItemEnabled(id_,false);
-  toolBar()->setItemEnabled(id_,false);
-}
+  fileOpenExample = new KAction(i18n("Open &Example..."), "fileopen", 0, this, SLOT(slotFileOpenExample()), actionCollection(), "file_open_example");
+  fileOpen->setWhatsThis(i18n("Opens an example vocabulary document"));
+  fileOpen->setToolTip(fileOpen->whatsThis());
 
+  fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KURL&)), actionCollection());
 
-void kvoctrainApp::initMenuBar()
-{
+  fileMerge = new KAction(i18n("&Merge..."), 0, 0, this, SLOT(slotFileMerge()), actionCollection(), "file_merge");
+  fileMerge->setWhatsThis(i18n("Merges an existing vocabulary document with the current one"));
+  fileMerge->setToolTip(fileOpen->whatsThis());
 
-  header_m = 0;
+  fileSave = KStdAction::save(this, SLOT(slotFileSave()), actionCollection());
+  fileSave->setWhatsThis(i18n("Saves the active vocabulary document"));
+  fileSave->setToolTip(fileSave->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // MENUBAR
-  ///////////////////////////////////////////////////////////////////
-  // menuBar entry file_menu
-  file_menu = new QPopupMenu();
-  file_menu->insertItem(QPixmap(locate("data", "kvoctrain/new.xpm")),
-                        i18n("&New"), ID_FILE_NEW );
+  fileSaveAs = KStdAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+  fileSaveAs->setWhatsThis(i18n("Saves the active vocabulary document with a different name"));
+  fileSaveAs->setToolTip(fileSaveAs->whatsThis());
 
-  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Small),
-                        i18n("&Open..."), ID_FILE_OPEN );
+  fileQuit = KStdAction::quit(this, SLOT(slotFileQuit()), actionCollection());
+  fileQuit->setWhatsThis(i18n("Quits KVocTrain"));
+  fileQuit->setToolTip(fileQuit->whatsThis());
 
-  file_menu->insertItem(i18n("&Open Example..."), ID_FILE_OPEN_XMP );
+  editCopy = KStdAction::copy(this, SLOT(slotEditCopy()), actionCollection());
+  editCopy->setWhatsThis(i18n("Copies the text from the selected cells and places it on the clipboard"));
+  editCopy->setToolTip(editCopy->whatsThis());
 
-  recent_files_menu = new QPopupMenu();
-  connect(recent_files_menu, SIGNAL(activated(int)),   SLOT(slotFileOpenRecent(int)) );
-  connect(recent_files_menu, SIGNAL(highlighted(int)), SLOT(statusCallback(int)));
-  file_menu->insertItem(i18n("Open &Recent"), recent_files_menu, ID_FILE_OPEN_RECENT);
-  QString accel;
-  for (uint i = 0 ; i < recent_files.count(); i++){
-    accel.setNum (i);
-    accel.insert (0, "&");
-    accel += "  ";
-    accel += recent_files[i];
-    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
-  }
+  editPaste = KStdAction::paste(this, SLOT(slotEditPaste()), actionCollection());
+  editPaste->setWhatsThis(i18n("Pastes previously cut or copied text from the clipboard into the selected cells"));
+  editPaste->setToolTip(editPaste->whatsThis());
 
-  file_menu->insertSeparator();
-  file_menu->insertItem(QPixmap(locate("data", "kvoctrain/merge.xpm")), i18n("&Merge..."), ID_FILE_MERGE );
+  editSelectAll = KStdAction::selectAll(this, SLOT(slotSelectAll()), actionCollection()); // KAction(i18n("Se&lect All"), 0, "CTRL+A", this, SLOT(slotSelectAll()), actionCollection(),"edit_select_all");
+  editSelectAll->setWhatsThis(i18n("Selects all rows"));
+  editSelectAll->setToolTip(editSelectAll->whatsThis());
 
-  file_menu->insertSeparator();
-  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small) ,i18n("&Save"), ID_FILE_SAVE );
-  file_menu->insertItem(SmallIcon("filesaveas"),i18n("Save &As..."), ID_FILE_SAVE_AS );
-  file_menu->insertSeparator();
-  file_menu->insertItem(KGlobal::iconLoader()->loadIcon("exit", KIcon::Small), i18n("&Quit"), ID_FILE_QUIT );
+  editClearSelection = KStdAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
+  editClearSelection->setWhatsThis(i18n("Deselects all rows"));
+  editClearSelection->setToolTip(editClearSelection->whatsThis());
 
-  // file_menu key accelerators
-  file_menu->setAccel(CTRL+Key_O, ID_FILE_OPEN);
-  file_menu->setAccel(CTRL+Key_S, ID_FILE_SAVE);
-  file_menu->setAccel(CTRL+Key_Q, ID_FILE_QUIT);
-  connect( file_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowFile()));
+  editSearchFromClipboard =  KStdAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
+  editSearchFromClipboard->setWhatsThis(i18n("Searches for clipboard content in the vocabulary"));
+  editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // menuBar entry edit_menu
-  edit_menu = new QPopupMenu();
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("editcopy", KIcon::Small), i18n("&Copy"), ID_EDIT_COPY );
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("editpaste", KIcon::Small), i18n("&Paste"), ID_EDIT_PASTE );
-  edit_menu->insertItem(i18n("Se&lect All"), ID_SEL_ALL );
-  edit_menu->insertItem(i18n("Clear Selec&tion"), ID_CLR_SEL );
-  edit_menu->insertSeparator();
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("&Search From Clipboard"), ID_SEARCH_CLIP );
-  edit_menu->insertSeparator();
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append New Entry"), ID_APPEND_ROW );
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit Selected Area..."), ID_EDIT_ROW );
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove Selected Area"), ID_REMOVE_ROW );
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), i18n("Sa&ve Selected Area..."), ID_SAVE_ROW );
-  connect( edit_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEdit()));
-  connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
-  clipboardChanged();
+  editAppend = new KAction(i18n("&Append New Entry"), QPixmap(locate("data", "kvoctrain/append-row.xpm")), "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
+  editAppend->setWhatsThis(i18n("Appends a new row to the vocabulary"));
+  editAppend->setToolTip(editAppend->whatsThis());
 
-  //edit_menu key accelerators
-  edit_menu->setAccel(CTRL+Key_C, ID_EDIT_COPY);
-  edit_menu->setAccel(CTRL+Key_V, ID_EDIT_PASTE);
-  edit_menu->setAccel(CTRL+Key_F, ID_SEARCH_CLIP);
-  edit_menu->setAccel(Key_Insert, ID_APPEND_ROW);
-  edit_menu->setAccel(Key_Delete, ID_REMOVE_ROW);
-  edit_menu->setAccel(Key_Return, ID_EDIT_ROW);
-  edit_menu->setAccel(Key_Enter, ID_EDIT_ROW);
-  edit_menu->setAccel(CTRL+Key_A, ID_SEL_ALL);
-  edit_menu->setAccel(CTRL+Key_Delete, ID_CLR_SEL);
+  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), QPixmap(locate("data", "kvoctrain/edit-row.xpm")), "Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
+  editEditSelectedArea->setWhatsThis(i18n("Edits the entries in the selected rows"));
+  editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // menuBar entry voc_menu
-  voc_menu = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/statist.xpm")), i18n("Show &Statistics"), ID_SHOW_STAT );
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/rand-less.xpm")), i18n("Assign &Lessons..."), ID_RAND_CREATE );
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/cleanup.xpm")), i18n("&Clean Up"), ID_CLEANUP );
-  voc_menu->insertSeparator();
-  QPopupMenu *add_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")), i18n("&Append Language"), add_m, ID_APPEND_LANG );
-  QPopupMenu *set_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &Language"), set_m, ID_SET_LANG );
-  QPopupMenu *remove_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove Language"), remove_m, ID_REMOVE_LANG);
+  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), QPixmap(locate("data", "kvoctrain/delete-row.xpm")), "Delete", this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
+  editRemoveSelectedArea->setWhatsThis(i18n("Deletes the selected rows"));
+  editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
-  voc_menu->insertSeparator();
-  voc_menu->insertItem(i18n("Document &Properties"), ID_DOC_PROPS );
-  voc_menu->insertItem(i18n("Lan&guage Properties"), ID_DOC_PROPS_LANG );
-  connect( voc_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabulary()));
+  editSaveSelectedArea = new KAction(i18n("Sa&ve Selected Area"), KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
+  editSaveSelectedArea->setWhatsThis(i18n("Saves the selected rows as a new vocabulary"));
+  editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // menuBar entry learn_menu
-  learn_menu = new QPopupMenu();
-  connect( learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
+  vocabShowStatistics = new KAction(i18n("Show &Statistics..."), QPixmap(locate("data", "kvoctrain/statist.xpm")), 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
+  vocabShowStatistics->setWhatsThis(i18n("Shows statisitcs for the current vocabulary"));
+  vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
-  opts_menu = new QPopupMenu();
-  opts_menu->setCheckable(true);
-  opts_menu->insertItem(i18n("Tool&bar"), ID_VIEW_TOOLBAR);
-  opts_menu->insertItem(i18n("St&atusbar"), ID_VIEW_STATUSBAR );
-  opts_menu->insertItem(i18n("&Inline Editing"), ID_VIEW_INLINE );
-  opts_menu->insertSeparator();
-  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/gen-conf.xpm")), i18n("General &Options..."), ID_GENERAL_OPTIONS );
-  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/query-conf.xpm")), i18n("&Query Options..."), ID_QUERY_OPTIONS );
-  opts_menu->insertItem(QPixmap(locate("data", "kvoctrain/conf-save.xpm")),i18n("&Save Options"), ID_SAVE_OPTIONS );
-  connect( opts_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowOptions()));
+  vocabAssignLessons = new KAction(i18n("Assign L&essons..."), QPixmap(locate("data", "kvoctrain/rand-less.xpm")), 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
+  vocabAssignLessons->setWhatsThis(i18n("Creates random lessons with unassigned entries"));
+  vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
 
-  opts_menu->setItemChecked(ID_VIEW_TOOLBAR, bViewToolbar);
-  opts_menu->setItemChecked(ID_VIEW_STATUSBAR, bViewStatusbar);
-  opts_menu->setItemChecked(ID_VIEW_INLINE, inline_edit);
+  vocabCleanUp = new KAction(i18n("&Clean Up"), QPixmap(locate("data", "kvoctrain/cleanup.xpm")), 0, this, SLOT(slotCleanVocabulary()), actionCollection(),"vocab_clean_up");
+  vocabCleanUp->setWhatsThis(i18n("Removes entries with same content from vocabulary"));
+  vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // MENUBAR CONFIGURATION
-  // set menuBar() the current menuBar and the position due to config file
+  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), QPixmap(locate("data", "kvoctrain/append-col.xpm")), 0, actionCollection(), "vocab_append_language");
+  connect(vocabAppendLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
 
-  menuBar()->insertItem(i18n("&File"), file_menu);
+  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), QPixmap(locate("data", "kvoctrain/flags.xpm")), 0, actionCollection(), "vocab_set_language");
+  connect(vocabSetLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
-  menuBar()->insertItem(i18n("&Edit"), edit_menu);
+  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), QPixmap(locate("data", "kvoctrain/delete-col.xpm")), 0, actionCollection(), "vocab_remove_language");
+  connect(vocabRemoveLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
 
-//  menuBar()->insertItem(i18n("&View"), view_menu);
+  vocabDocumentProperties = new KAction(i18n("Document &Properties..."), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
+  vocabDocumentProperties->setWhatsThis(i18n("Edits document properties"));
+  vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
 
-  menuBar()->insertItem(i18n("Vo&cabulary"), voc_menu);
+  vocabLanguageProperties = new KAction(i18n("Lan&guage Properties..."), 0, 0, this, SLOT(slotDocPropsLang()), actionCollection(), "vocab_language_properties");
+  vocabLanguageProperties->setWhatsThis(i18n("Edits language properties in current document"));
+  vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
 
-  menuBar()->insertItem(i18n("&Learning"), learn_menu);
-
-  menuBar()->insertItem(i18n("&Options"), opts_menu);
-
-  help_menu = helpMenu();
-  menuBar()->insertSeparator();
-  menuBar()->insertItem(i18n("&Help"), help_menu);
-
-  ///////////////////////////////////////////////////////////////////
-  // CONNECT THE SUBMENU SLOTS WITH SIGNALS
-
-  CONNECT_CMD(file_menu);
-  CONNECT_CMD(edit_menu);
-  connect (learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-  connect (learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-
-  CONNECT_CMD(opts_menu);
-  CONNECT_CMD(voc_menu);
-}
-
-
-void kvoctrainApp::initToolBar()
-{
-
-  ///////////////////////////////////////////////////////////////////
-  // TOOLBAR
-  // set toolBar() the current toolBar and the position due to config file
-
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("fileopen", KIcon::Toolbar), ID_FILE_OPEN, true, i18n("Open File"));
-  file_open_popup= new QPopupMenu();
-  QString accel;
-  for (uint i = 0 ; i < recent_files.count(); i++){
-    accel.setNum (i);
-    accel.insert (0, "&");
-    accel += "  ";
-    accel += recent_files[i];
-    file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
-  }
-  connect(file_open_popup, SIGNAL(activated(int)), SLOT(slotFileOpenRecent(int)));
-  toolBar()->setDelayedPopup(ID_FILE_OPEN, file_open_popup);
-
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Toolbar), ID_FILE_SAVE, true, i18n("Save File"));
-  toolBar()->insertSeparator();
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("editcopy", KIcon::Toolbar), ID_EDIT_COPY, true, i18n("Copy"));
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("editpaste", KIcon::Toolbar), ID_EDIT_PASTE, true, i18n("Paste"));
-
-  toolBar()->insertSeparator();
-  QStringList slist;
-  toolBar()->insertCombo (slist, ID_TLESSON, false,
-                          SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)),
-                          true, i18n("Choose current lesson"), 160);
-  lessons = toolBar()->getCombo(ID_TLESSON);
+  lessons = new KComboBox(this);
+  connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   lessons->setFocusPolicy(QWidget::NoFocus);
 
-  toolBar()->insertSeparator();
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("find", KIcon::Toolbar), ID_SEARCH_CLIP, true, i18n("Search From Clipboard"));
-  toolBar()->insertLined ("", ID_TSEARCH, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)), true, i18n("Smart Search"));
-  searchLine = toolBar()->getLined (ID_TSEARCH);
+  vocabLessons = new KWidgetAction(lessons, i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
+  vocabLessons->setWhatsThis(i18n("Choose current lesson"));
+  vocabLessons->setToolTip(vocabLessons->whatsThis());
+
+  searchLine = new KLineEdit(this);
   searchLine->setFocusPolicy(QWidget::ClickFocus);
-  toolBar()->setItemAutoSized (ID_TSEARCH, true);
-  connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
-  toolBar()->insertSeparator();
+  connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));  
+  connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
-  ///////////////////////////////////////////////////////////////////
-  // INSERT YOUR APPLICATION SPECIFIC TOOLBARS HERE -e.g. tool_bar_1:
-  // add functionality for new created toolbars in:
-  // enableCommand, disableCommand, in the menuBar() and an additional function slotViewToolbar_1
-  // for that also create a bViewToolbar_1 and a KConfig entry (see Constructor).
-  // Also update resource values and commands 
+  vocabSearch = new KWidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+  vocabSearch->setAutoSized(true);
+  vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
+  vocabSearch->setToolTip(vocabSearch->whatsThis());
+  /*
+  learningResumeQuery = new KAction(i18n("Resume &Query..."), QPixmap(locate("data", "kvoctrain/run-query.xpm")), 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_query");
+  //learningResumeQuery->setWhatsThis(i18n(""));
+  learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
 
+  learningResumeMultipleChoice = new KAction(i18n("&Resume Multiple Choice..."), QPixmap(locate("data", "kvoctrain/run-multi.xpm")), 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_multiple_choice");
+  //learningResumeMultipleChoice->setWhatsThis(i18n(""));
+  learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
+  */
+  configApp = KStdAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
+  configApp->setWhatsThis(i18n("Shows the configuration dialog"));
+  configApp->setToolTip(configApp->whatsThis());
 
-  ///////////////////////////////////////////////////////////////////
-  // CONNECT THE TOOLBAR SLOTS WITH SIGNALS - add new created toolbars
-  CONNECT_TOOLBAR(toolBar());
+  configQueryOptions = new KAction(i18n("Configure &Query..."), QPixmap(locate("data", "kvoctrain/query-conf.xpm")), 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
+  configQueryOptions->setWhatsThis(i18n("Shows the query configuration dialog"));
+  configQueryOptions->setToolTip(configQueryOptions->whatsThis());
 
+  configInlineEditing = new KToggleAction(i18n("&Inline Editing"), 0, 0, this, SLOT(slotViewInline()), actionCollection(),"config_inline_editing");
+  configInlineEditing->setWhatsThis(i18n("Toggles inline editing"));
+  configInlineEditing->setToolTip(configInlineEditing->whatsThis());
+
+  configSaveOptions =  KStdAction::saveOptions(this, SLOT(slotSaveOptions()), actionCollection());
+  configSaveOptions->setWhatsThis(i18n("Saves current configuration"));
+  configSaveOptions->setToolTip(configSaveOptions->whatsThis());
+
+  actionCollection()->setHighlightingEnabled(true);
+  connect(actionCollection(), SIGNAL(actionStatusText(const QString &)), this, SLOT(slotStatusHelpMsg(const QString &)));
+  //connect(actionCollection(), SIGNAL(actionHighlighted(KAction *, bool)), this, SLOT(slotActionHighlighted(KAction *, bool)));
+
+  //setupGUI(ToolBar|Keys|StatusBar|Save|Create, "/home/kdedev/src/kde/kdeedu/kvoctrain/kvoctrain/kvoctrainui.rc");
+  setupGUI();
+
+  configToolbar = actionCollection()->action("options_configure_toolbars");
+  configToolbar->setWhatsThis(i18n("Toggles display of the toolbars"));
+  configToolbar->setToolTip(configToolbar->whatsThis());
+
+  learn_menu = (QPopupMenu*) this->child( "learning", "KPopupMenu" );
+  connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
+  connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+  connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
 }
 
 
 void kvoctrainApp::initStatusBar()
 {
-  ///////////////////////////////////////////////////////////////////
-  //STATUSBAR
-
-/*
-  QLabel *label = new QLabel ("", statusBar());
-  label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
-  statusBar()->insertWidget(label, 50, ID_STATUS_MSG );
-*/
   type_label = new QLabel (i18n(PREFIX_Type), statusBar());
-  type_label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  type_label->setFrameStyle(QFrame::NoFrame);
   statusBar()->addWidget(type_label, 150);
 
   pron_label = new QLabel (i18n(PREFIX_Pronunce), statusBar());
-  pron_label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  pron_label->setFrameStyle(QFrame::NoFrame);
   pron_label->setFont(ipafont);
   statusBar()->addWidget(pron_label, 200);
 
   rem_label = new QLabel (i18n(PREFIX_Remark), statusBar());
-  rem_label->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+  rem_label->setFrameStyle(QFrame::NoFrame);
   statusBar()->addWidget(rem_label, 150);
 }
 
@@ -388,8 +303,8 @@ void kvoctrainApp::initDoc( )
   kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery, QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
   kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive, QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
 
-  if (recent_files.count() > 0)
-    doc = new kvoctrainDoc(this, KURL(recent_files[0]), separator, &paste_order);
+  if (fileOpenRecent->items().count() /*recent_files.count()*/ > 0)
+    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0] /*KURL(recent_files[0])*/, separator, &paste_order);
   else
     doc = new kvoctrainDoc(this, KURL(""), separator, &paste_order);
 
