@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:28:25  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -60,7 +63,7 @@
 #include <qpushbutton.h>
 #include <qgroupbox.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <kvoctraindoc.h>

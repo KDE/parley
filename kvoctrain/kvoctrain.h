@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/16 16:51:25  arnold
+    fixed keyboard handling in main view
+
     Revision 1.17  2001/12/13 18:39:09  arnold
     added phonetic alphabet stuff
 
@@ -98,7 +101,7 @@
 #include <qcombobox.h>
 
 // include files for KDE 
-#include <kapp.h> 
+#include <kapplication.h> 
 #include <kmainwindow.h>
 #include <kaccel.h>
 #include <kmenubar.h>

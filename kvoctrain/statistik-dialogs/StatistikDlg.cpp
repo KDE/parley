@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:30:21  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/10 21:15:11  arnold
     removed icons and compatibilty for kde1
 
@@ -53,9 +56,9 @@
 #include "StatistikPage.h"
 #include "GenStatPage.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <qcombobox.h>
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.1  2001/10/30 14:53:34  arnold
     added property 'multiple choice'
 
@@ -40,7 +43,7 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 
 MCEntryPage::MCEntryPage
 (

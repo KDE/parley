@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:28:25  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -48,7 +51,7 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <langset.h>
 

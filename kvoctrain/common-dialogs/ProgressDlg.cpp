@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:27:30  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/11/10 21:12:18  arnold
     removed icons and compatibilty for kde1
 
@@ -43,13 +46,13 @@
 
 #include "ProgressDlg.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <qprogressbar.h>
 #include <qlabel.h>
 
 #include <kvoctraindoc.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 ProgressDlg::ProgressDlg

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.2  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -40,7 +43,7 @@
 #include <vector.h>
 
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 #define KVD_VERS_PREFIX " v"     //#include "kvoctraindoc.h"
 #define QM_VERB         "v"      //#include "QueryManager.h"

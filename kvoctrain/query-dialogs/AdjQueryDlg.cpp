@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/13 18:37:28  arnold
+    fixed and improved query dialogs
+
     Revision 1.11  2001/12/08 10:29:16  arnold
     fixed timeout behaviour
 
@@ -76,8 +79,8 @@
 #include <QueryManager.h>
 #include <langset.h>
 
-#include <kapp.h> 
-#include <kstddirs.h>
+#include <kapplication.h> 
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 #include <qtimer.h>

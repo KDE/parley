@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/13 18:39:29  arnold
+    added phonetic alphabet stuff
+
     Revision 1.10  2001/11/17 17:58:55  arnold
     added inline editing of all columns
 
@@ -68,7 +71,7 @@
 #define Inherited QTabDialog
 
 #include <iostream.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <qpixmap.h>
 
@@ -76,7 +79,7 @@
 #include <kv_resource.h>
 #include <langset.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 EntryDlg::EntryDlg
 (

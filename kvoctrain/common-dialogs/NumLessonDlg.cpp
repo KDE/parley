@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:27:30  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/10 21:12:18  arnold
     removed icons and compatibilty for kde1
 
@@ -39,8 +42,8 @@
 
 #include "NumLessonDlg.h"
 
-#include <kapp.h>
-#include <kstddirs.h>
+#include <kapplication.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 #include <kv_resource.h>

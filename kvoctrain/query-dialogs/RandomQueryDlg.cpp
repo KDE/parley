@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/07 19:21:36  arnold
+    included multiple choice fields and false friend into query
+
     Revision 1.7  2001/12/01 11:28:54  arnold
     fixed flickering in query dialogs
 
@@ -70,9 +73,9 @@
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <qtimer.h>
 #include <qdialog.h>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.6  2001/11/20 01:38:26  jsinger
     Proofreading changes for grammar and spelling. No functional changes.
 
@@ -49,9 +52,9 @@
 #include "kvoctraincore.h"
 #include "QueryManager.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <qmessagebox.h>
 #include <qtextcodec.h>

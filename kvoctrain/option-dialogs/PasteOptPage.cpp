@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/16 19:48:52  arnold
+    reactivated paste order group
+
     Revision 1.4  2001/11/10 22:29:11  arnold
     removed compatibility for kde1
 
@@ -51,7 +54,7 @@
 
 #include <iostream.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 

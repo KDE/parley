@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2001/12/24 14:29:46  arnold
+    fixed sorting
+
     Revision 1.19  2001/12/16 16:51:25  arnold
     fixed keyboard handling in main view
 
@@ -101,9 +104,9 @@
 #include "kvoctraindoc.h"
 #include "kvoctrainview.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kmessagebox.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>

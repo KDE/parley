@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/22 09:02:55  arnold
+    fixed version string handling
+
     Revision 1.12  2001/12/16 16:11:55  howells
     Don't break
 
@@ -72,7 +75,7 @@
 
 #include "kvoctraindoc.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 #include <kdebug.h>
 

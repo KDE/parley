@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 22:30:21  arnold
+    removed compatibility for kde1
+
     Revision 1.3  2001/10/19 17:52:18  arnold
     replaced dialog files from qtarch by qtdesigner
 
@@ -41,7 +44,7 @@
 #include "StatistikPage.h"
 
 #include <kpopupmenu.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <kvoctraindoc.h>

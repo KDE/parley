@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/23 18:16:48  mueller
+    compile fixes (builddir != stddir, --enable-final)
+
     Revision 1.6  2001/11/10 22:30:01  arnold
     removed compatibility for kde1
 
@@ -178,7 +181,7 @@ static ThreshListRef Threshdate_itemlist [] =
 #undef _QM
 #undef _QT
 
-#include <kapp.h>
+#include <kapplication.h>
 
 ThreshOptPage::ThreshOptPage
 (

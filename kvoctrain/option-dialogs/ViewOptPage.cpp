@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/13 18:40:12  arnold
+    added phonetic alphabet stuff
+
     Revision 1.9  2001/11/24 11:47:59  arnold
     fix for color buttons
 
@@ -59,7 +62,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kfontdialog.h>
 #include <kcolorbutton.h>
 #include <klocale.h>
@@ -74,7 +77,7 @@
 #include <QueryManager.h>
 #include <kv_resource.h>
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include  <kconfig.h>
 
 ViewOptPage::ViewOptPage

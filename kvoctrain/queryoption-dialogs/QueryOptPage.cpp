@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/22 09:05:02  arnold
+    hiding of future features
+
     Revision 1.4  2001/11/09 14:19:54  arnold
     fixed and improved some dialog pages
 
@@ -41,7 +44,6 @@
  ***************************************************************************/
 
 #include "QueryOptPage.h"
-#include <qvalidator.h>
 
 #include <qkeycode.h>
 #include <qcheckbox.h>
@@ -49,12 +51,12 @@
 #include <qgroupbox.h>
 #include <qradiobutton.h>
 #include <qbuttongroup.h>
-#include <qvalidator.h>
 #include <qlineedit.h>
+#include <qvalidator.h>
 
 #include <stdlib.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 
 QueryOptPage::QueryOptPage
 (

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.8  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -66,7 +69,7 @@
 #include "kvoctraincore.h"
 #include <klocale.h>
 #include <kdebug.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include "kv_resource.h"  // FIXME: remove include
 

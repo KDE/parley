@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/08 10:29:16  arnold
+    fixed timeout behaviour
+
     Revision 1.9  2001/12/01 11:28:54  arnold
     fixed flickering in query dialogs
 
@@ -68,13 +71,11 @@
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <qtimer.h>
-#include <qkeycode.h>
-#include <qkeycode.h>
 #include <qradiobutton.h>
 #include <qlabel.h>
 #include <qpushbutton.h>

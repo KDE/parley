@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:29:11  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/02 10:18:58  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -52,17 +55,15 @@
  ***************************************************************************/
 
 #include "GenOptPage.h"
-#include <qvalidator.h>
 #include <qkeycode.h>
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <qcheckbox.h>
-#include <qvalidator.h>
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
-
+#include <qvalidator.h>
 #include <stdlib.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <QueryManager.h>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.1  2001/10/05 15:42:00  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,7 +40,7 @@
 #endif
 
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 Conjugation::conjug_name_t
 Conjugation::names [] =

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.2  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -36,7 +39,7 @@
 #include "UsageManager.h"
 #include "kvoctraincore.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <kvoctraindoc.h>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.6  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -54,9 +57,9 @@
 #include "QueryManager.h"
 
 #include <kdebug.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <qtextcodec.h>
 

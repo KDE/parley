@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/01 11:28:34  arnold
+    fixed flickering in query dialogs
+
     Revision 1.5  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -46,7 +49,7 @@
 #include "kvoctraincore.h"
 
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <kconfig.h>
 
 #include <kvoctraindoc.h>

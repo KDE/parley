@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.3  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -41,7 +44,7 @@
 
 #include "DocOptionsPage.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <qkeycode.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/13 18:39:29  arnold
+    added phonetic alphabet stuff
+
     Revision 1.10  2001/11/23 18:16:08  mueller
     compile fixes (builddir != stddir, --enable-final)
 
@@ -74,10 +77,10 @@
 #include <qpushbutton.h>
 #include <qgroupbox.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <QueryManager.h>
 #include <kv_resource.h>

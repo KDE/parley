@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/11 12:52:26  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.6  2001/11/10 22:27:55  arnold
     removed compatibility for kde1
 
@@ -57,7 +60,7 @@
 #include <qlistbox.h>
 #include <qpushbutton.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 

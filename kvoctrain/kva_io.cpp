@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/12/24 13:02:23  arnold
+    fixed crash with recent files menu
+
     Revision 1.16  2001/12/14 16:05:49  arnold
     fixed handling of table font
 
@@ -94,7 +97,7 @@
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <kdebug.h>
 
 #include <kvoctraincore.h>

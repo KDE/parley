@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -53,7 +56,7 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 
 AdjEntryPage::AdjEntryPage
 (

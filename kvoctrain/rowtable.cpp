@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/12/26 13:15:21  arnold
+    fixed header buttons and kbd handling
+
     Revision 1.18  2001/12/24 13:37:46  arnold
     fixed misbehaviour with inline editing
 
@@ -84,7 +87,7 @@
 #include <qpushbutton.h>
 #include <qcombobox.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/13 18:37:28  arnold
+    fixed and improved query dialogs
+
     Revision 1.10  2001/12/01 11:28:54  arnold
     fixed flickering in query dialogs
 
@@ -76,8 +79,8 @@
 
 #include <iostream.h>
 
-#include <kapp.h>
-#include <kstddirs.h>
+#include <kapplication.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 SimpleQueryDlg::SimpleQueryDlg(

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/23 18:15:47  mueller
+    compile fixes (builddir != stddir, --enable-final)
+
     Revision 1.6  2001/11/11 12:52:26  arnold
     fixed some strings for i18n purposes
 
@@ -53,7 +56,7 @@
 
 #include "TypeOptPage.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/12/24 13:01:03  arnold
+    fixed crash with recent files menu
+
     Revision 1.18  2001/12/13 18:39:09  arnold
     added phonetic alphabet stuff
 
@@ -104,7 +107,7 @@
 #include <kpopupmenu.h>
 #include <khelpmenu.h>
 #include <kiconloader.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 #include <kconfig.h>
 

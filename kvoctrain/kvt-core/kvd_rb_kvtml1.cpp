@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.8  2001/11/17 17:59:20  arnold
     added inline editing of all columns
 
@@ -61,9 +64,9 @@
 #include "QueryManager.h"
 #include "UsageManager.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <qmessagebox.h>
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:30:01  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/10/28 16:56:56  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -52,7 +55,7 @@
 
 #include <QueryManager.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 

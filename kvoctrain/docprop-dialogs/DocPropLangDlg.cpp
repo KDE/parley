@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:12:40  arnold
     removed icons and compatibilty for kde1
 
@@ -64,9 +67,9 @@
 
 #include <rowtable.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include <qcombobox.h>
 #include <qpixmap.h>

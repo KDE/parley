@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/09 14:18:28  arnold
     fixed and improved some dialog pages
 
@@ -58,7 +61,7 @@
 
 #include "LangPropPage.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 #include <qkeycode.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/23 18:16:48  mueller
+    compile fixes (builddir != stddir, --enable-final)
+
     Revision 1.4  2001/10/28 16:56:56  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -49,7 +52,7 @@
 #include <qlabel.h>
 #include <qpushbutton.h>
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 
 GroupOptPage::GroupOptPage

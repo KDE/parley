@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/13 18:40:12  arnold
+    added phonetic alphabet stuff
+
     Revision 1.7  2001/11/10 22:29:11  arnold
     removed compatibility for kde1
 
@@ -61,8 +64,8 @@
 #include <langset.h>
 
 #include <klocale.h>
-#include <kstddirs.h>
-#include <kapp.h>
+#include <kstandarddirs.h>
+#include <kapplication.h>
 
 #include <qcombobox.h>
 #include <qpixmap.h>

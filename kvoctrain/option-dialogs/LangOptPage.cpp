@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/12/22 09:03:56  arnold
+    fixed iso name
+
     Revision 1.14  2001/12/13 18:40:12  arnold
     added phonetic alphabet stuff
 
@@ -87,11 +90,11 @@
 #include <qpopupmenu.h>
 
 #include <kfiledialog.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 
 #include "LangOptPage.h"
 

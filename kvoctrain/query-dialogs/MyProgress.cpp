@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/07 19:21:36  arnold
+    included multiple choice fields and false friend into query
+
     Revision 1.3  2001/11/24 17:16:08  arnold
     fixes for table view and query
 
@@ -41,7 +44,7 @@
 #include <qpainter.h>
 #include <qframe.h>
 
-#include <kstddirs.h>
+#include <kstandarddirs.h>
 #include <klocale.h>
 
 #include <iostream.h>
