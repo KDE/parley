@@ -30,14 +30,14 @@
 </authorgroup>
 
 <copyright>
-<year>2000</year><year>2001</year>
+<year>1999</year><year>2000</year><year>2001</year>
 <holder>Ewald Arnold</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2001-05-17</date>
-<releaseinfo>0.07.00</releaseinfo>
+<releaseinfo>0.08.00</releaseinfo>
 
 <abstract><para>This handbook describes &kvoctrain; version 0.8.0.
 &kvoctrain; is a little utility to help you train your vocabulary,
@@ -48,6 +48,7 @@ when you are trying to learn a foreign language.</para></abstract>
 <keyword>KVocTrain</keyword>
 <keyword>vocabulary</keyword>
 <keyword>training</keyword>
+<keyword>learning</keyword>
 </keywordset>
 </bookinfo>
 
@@ -239,8 +240,10 @@ of this application.</para>
 
 <para>As you can see below, the entries of the vocabulary are arranged
 similar to a spreadsheet. Each column represents an expression or word
-in one language. The leftmost column contains the name of the lesson
-this entry belongs to. The second is always the original word and the
+in one language or some other information. The leftmost column contains
+the name of the lesson
+this entry belongs to. The second describes the state if the line and the
+third is always the original word. The
 others to the right of it represent the respective
 translations.</para>
 
@@ -252,20 +255,22 @@ translations.</para>
 </mediaobject>
 </screenshot>
 
-<para>In the picture above, you can also see that several properties of
+<para>In the picture above, you can see that several properties of
 the vocabulary have a visual representation:</para>
 
 <itemizedlist>
 <listitem><para>colors show the grade (Level 1 to 7) of your
 knowledge</para></listitem>
-<listitem><para>bold face lines are currently selected for a
+<listitem><para>A green check mark in the second colums means that this
+line is in use for the a query (when you did not finish) wheras a
+red cross appeares when you deactivated the line.
 query</para></listitem>
 <listitem><para>if you mark a range of entries to work with, they
 appear with a different background.</para></listitem>
 </itemizedlist>
 
 <para>The color in the column with the original will vary if you have
-two columns with translations. If the cursor is in one of the
+two or more columns with translations. If the cursor is in one of the
 translations the color represents its grade <quote>to the
 original</quote>. See section <link linkend="entry2-dlg">entry
 dialog</link> for more on this.</para>
@@ -274,7 +279,7 @@ dialog</link> for more on this.</para>
 and <link linkend="smart-search">lookup manually</link>.</para>
 
 <para>On the bottom of the main window you also see the status line
-which usually contains the three areas that show properties of the
+which usually contains the three areas that show important properties of the
 current expression if available:</para>
 
 <variablelist>
@@ -286,14 +291,18 @@ word</para></listitem>
 
 <varlistentry>
 <term>P:</term>
-<listitem><para>how to pronunce this expression</para></listitem>
+<listitem><para>how to pronunce this expression. If you have a
+font installed, that contains IPA-characters you can also use the charaters from
+the phonetic alphabet. See more about this in the according
+<link linkend="opt-dlg-ipa">options dialog page</link>.
+</para></listitem>
 </varlistentry>
 
 <varlistentry><term>R:</term>
 <listitem><para>your personal remarks</para></listitem>
 </varlistentry>
 </variablelist>
-   
+
 <para>While &kvoctrain; is loading, saving a large file or otherwise
 busy doing something time consuming, you will see a progress bar in this
 status line.</para>
@@ -317,37 +326,17 @@ moved to this location.</para>
 <para>If you press <keycap>Return</keycap> it will move to the next
 match.</para>
 
-<para>If you additionally keep &Shift; pressed while entering the next
+<para>If you additionally keep &Ctrl; pressed while entering the next
 letter of your word (or press <keycap>Return</keycap> for the next
  match)
 only entries that match from the <emphasis>beginning</emphasis> of the
 expressions are recognized.</para>
-    
-<para>Pressing <keycombo action="simul">&Shift;
-<keycap>Tab</keycap></keycombo> will move back to the
-vocabulary.</para></listitem>
-</varlistentry>
-    
-<varlistentry>
-<term><keycap>Space</keycap></term>
-<listitem><para>There are two possibilities:</para>
 
-<itemizedlist>
-<listitem><para><keycap>SPACE</keycap> for its own selects or de-selects
-the current row. This means this line is included in (or excluded
-from) the next query. When selected, the row appears in a bold face
-font.</para></listitem>
-      
-<listitem><para>
-If you press a shift key (one of &Shift;, &Ctrl; or &Alt;) together
-with the <keycap>Space</keycap> key, the current entry is assigned the
-lesson which is shown in the lessons listbox in the toolbar. If the
- entry
-was already assigned a lesson, it will belong to no lesson
-afterwards.</para></listitem>
-</itemizedlist></listitem>
+<para>Pressing <keycombo action="simul">&Shift;
+<keycap>Tab</keycap></keycombo> or <keycap>Tab</keycap> will move back
+to the vocabulary.</para></listitem>
 </varlistentry>
-  
+
 <varlistentry>
 <term><keycap>Left Arrow</keycap></term>
 <listitem><para>The cursor in the vocabulary is moved one column
@@ -415,23 +404,24 @@ vocabulary.</para></listitem>
 
 <varlistentry>
 <term><keycap>+</keycap> or <keycap>-</keycap></term>
-<listitem><para>Pressing the control key and one of the two number pad
+<listitem><para>By pressing &Ctrl; and one of the two number pad
 keys, <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
-previous or next item in the combo box determinig the current
+previous or next item in the combo box determining the current
 lesson. If you don't have a number pad you may also use the normal
 <keycap>+</keycap> or <keycap>-</keycap> keys.</para></listitem> 
 </varlistentry>
 
 </variablelist>
 
-<para>Some of the menus also have accelerator keys. They are shown on
-the according entry on the right side.</para>
-
+<!--  Re-implement??
 <para>The buttons on top of the rows are acessible by the keyboard. To
 avoid clashes with the shortcuts for the main menu you have to press
 <keycombo action="simul">&Shift;&Alt;</keycombo> and the key of
 underlined letter in the button text. Then the corresponding <link
 linkend="header-menu">header menu</link> will pop up.</para>
+-->
+
+<!--  cont-here -->
 
 </sect1>
 
@@ -1627,8 +1617,16 @@ list.</para></listitem>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Choose Font</guilabel></term>
-<listitem><para>Lets you choose a font to display the vocabulary.</para>
+<term><guilabel>Table Font</guilabel></term>
+<listitem><para>Lets you choose a font to display the vocabulary
+in the main view.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry id="opt-dlg-ipa">
+<term><guilabel>IPA Font</guilabel></term>
+<listitem><para>Lets you choose a font to display thecharacters from the
+phonetic alphabet.</para>
 <para>Take into account that not all fonts provide bold face which is
 used to represent the <quote>selected</quote> state.</para></listitem>
 </varlistentry>
