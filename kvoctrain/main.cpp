@@ -46,13 +46,17 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
                        description,
                        KAboutData::License_GPL,
                        I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
-                       "(c) 2001-2002\tThe KDE team\n"),
+                       "(c) 2001-2002\tThe KDE team\n"
+                       "(c) 2004\t\tPeter Hedlund\n"),
                        I18N_NOOP("Helps you train your vocabulary"),
-		      "http://kvoctrain.sourceforge.net/",
-                      "submit@bugs.kde.org");
+                       "http://edu.kde.org/kvoctrain",
+                       "submit@bugs.kde.org");
 
-  aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Author and maintainer"), "kvoctrain@ewald-arnold.de",
-		      "http://www.ewald-arnold.de" );
+  aboutData.addAuthor("Peter Hedlund",
+                      I18N_NOOP("Current Maintainer"), "peter@peterandlinda.com");
+
+  aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
+                      "http://www.ewald-arnold.de" );
 
   aboutData.addCredit("Waldo Bastian",
                       I18N_NOOP("Help with port to Qt3/KDE3"));
@@ -78,8 +82,8 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
    aboutData.addCredit("Dennis Haney",
                       I18N_NOOP("Patch to implement Leitner learning method"));
 
-   aboutData.addCredit("Peter Hedlund",
-                       I18N_NOOP("Port to KActions and XML-based user interface"));
+   aboutData.addCredit("Anne-Marie Mahfouf",
+                       I18N_NOOP("Port to KConfig XT"));
 
   aboutData.addCredit(I18N_NOOP("KDE Team"),
                       I18N_NOOP("Many small enhancements"));
