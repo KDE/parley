@@ -812,7 +812,7 @@ multiple choice).</para></listitem>
 
 <listitem><para>Special word types need special queries.</para>
 <para>For this reason there are queries for the conjugation of verbs,
-comparision form of adjectives and the articles of
+comparison form of adjectives and the articles of
 nouns.</para></listitem>
 </itemizedlist>
 
@@ -1223,7 +1223,7 @@ pressed for about a second.</para>
 <term><guimenuitem>Create random query</guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
-linkend="q-opt3-dlg">threshholds</link>.</para></listitem>
+linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1231,7 +1231,7 @@ linkend="q-opt3-dlg">threshholds</link>.</para></listitem>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions
  according to your <link
- linkend="q-opt3-dlg">threshholds</link>.</para></listitem>
+ linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1748,7 +1748,7 @@ according check box.</para></listitem>
 <varlistentry id="cut-n-paste">
 <term><guilabel>Separator</guilabel></term>
 <listitem><para>This is a sequence of one ore more characters which
-divide the parts of an expression when transfering data from or to an
+divide the parts of an expression when transferring data from or to an
 other application over the clipboard.</para>
 <para>The most common item is <keycap>TAB</keycap> which uses the tabulator
 character. Another possibility is to use the semicolon, if you want to
@@ -1886,21 +1886,21 @@ and stop the query.</para></listitem>
 </sect2>
 
 <sect2 id="q-opt3-dlg">
-<title>Query threshholds</title>
+<title>Query thresholds</title>
 
 <screenshot>
-<screeninfo>Query threshholds dialog screenshot</screeninfo>
+<screeninfo>Query thresholds dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Query threshholds</phrase></textobject>
+<textobject><phrase>Query thresholds</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para id="threshholds">With this dialog you determine which entries are
+<para id="thresholds">With this dialog you determine which entries are
 included in the next selection for random query.</para>
 
 <important><para>If you have activated the blocking mechanism on the next dialog
-page, the threshholds from
+page, the thresholds from
 <guilabel>Grade</guilabel>,
 <guilabel>Query count</guilabel>,
 <guilabel>Bad count</guilabel> and
@@ -1980,7 +1980,7 @@ will be shown an according warning:</para>
 the same level.</para></listitem>
 </itemizedlist>
 
-<para>If at least one of blocking or expiring is active, the threshholds from
+<para>If at least one of blocking or expiring is active, the thresholds from
 <guilabel>Grade</guilabel>,
 <guilabel>Query count</guilabel>,
 <guilabel>Bad count</guilabel> and
@@ -2290,10 +2290,10 @@ position and size.</para>
 <title>Normal random query</title>
 
 <para>After selecting <guimenuitem>Create random query </guimenuitem>
-the main window disappers.</para>
+the main window disappears.</para>
 
 <para>Then all entries that match your current <link
-linkend="q-opt3-dlg">threshholds</link> are put into a list and shown
+linkend="q-opt3-dlg">thresholds</link> are put into a list and shown
 in random order with the following dialog box.</para>
 
 <screenshot>
