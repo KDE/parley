@@ -54,15 +54,15 @@ ViewOptPage::ViewOptPage
         tablefont(_tablefont),
         ipa_font(_ipa_font)
 {
-   connect( b_col0, SIGNAL(changed(const QColor&)), SLOT(slotCol0(const QColor&)) );
-   connect( b_col1, SIGNAL(changed(const QColor&)), SLOT(slotCol1(const QColor&)) );
-   connect( b_col2, SIGNAL(changed(const QColor&)), SLOT(slotCol2(const QColor&)) );
-   connect( b_col3, SIGNAL(changed(const QColor&)), SLOT(slotCol3(const QColor&)) );
-   connect( b_col4, SIGNAL(changed(const QColor&)), SLOT(slotCol4(const QColor&)) );
-   connect( b_col5, SIGNAL(changed(const QColor&)), SLOT(slotCol5(const QColor&)) );
-   connect( b_col6, SIGNAL(changed(const QColor&)), SLOT(slotCol6(const QColor&)) );
-   connect( b_col7, SIGNAL(changed(const QColor&)), SLOT(slotCol7(const QColor&)) );
-   connect( c_use, SIGNAL(toggled(bool)), SLOT(slotColUsed(bool)) );
+   connect( kcfg_gradeCol0, SIGNAL(changed(const QColor&)), SLOT(slotCol0(const QColor&)) );
+   connect( kcfg_gradeCol1, SIGNAL(changed(const QColor&)), SLOT(slotCol1(const QColor&)) );
+   connect( kcfg_gradeCol2, SIGNAL(changed(const QColor&)), SLOT(slotCol2(const QColor&)) );
+   connect( kcfg_gradeCol3, SIGNAL(changed(const QColor&)), SLOT(slotCol3(const QColor&)) );
+   connect( kcfg_gradeCol4, SIGNAL(changed(const QColor&)), SLOT(slotCol4(const QColor&)) );
+   connect( kcfg_gradeCol5, SIGNAL(changed(const QColor&)), SLOT(slotCol5(const QColor&)) );
+   connect( kcfg_gradeCol6, SIGNAL(changed(const QColor&)), SLOT(slotCol6(const QColor&)) );
+   connect( kcfg_gradeCol7, SIGNAL(changed(const QColor&)), SLOT(slotCol7(const QColor&)) );
+   connect( kcfg_useGradeCol, SIGNAL(toggled(bool)), SLOT(slotColUsed(bool)) );
    connect( b_choose, SIGNAL(clicked()), SLOT(slotChooseFont()) );
    connect( b_choose_ipa, SIGNAL(clicked()), SLOT(slotChooseIPAFont()) );
 
@@ -71,22 +71,22 @@ ViewOptPage::ViewOptPage
    e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
    e_ipa_font->setText (QString("%1 %2pt").arg(ipa_font.family()).arg(ipa_font.pointSize()));
 
-   b_col0->setColor (cols.col0);
-   b_col1->setColor (cols.col1);
-   b_col2->setColor (cols.col2);
-   b_col3->setColor (cols.col3);
-   b_col4->setColor (cols.col4);
-   b_col5->setColor (cols.col5);
-   b_col6->setColor (cols.col6);
-   b_col7->setColor (cols.col7);
-   c_use->setChecked (gc.use);
+   kcfg_gradeCol0->setColor (cols.col0);
+   kcfg_gradeCol1->setColor (cols.col1);
+   kcfg_gradeCol2->setColor (cols.col2);
+   kcfg_gradeCol3->setColor (cols.col3);
+   kcfg_gradeCol4->setColor (cols.col4);
+   kcfg_gradeCol5->setColor (cols.col5);
+   kcfg_gradeCol6->setColor (cols.col6);
+   kcfg_gradeCol7->setColor (cols.col7);
+   kcfg_useGradeCol->setChecked (gc.use);
    slotColUsed(gc.use);
 }
 
 
 void ViewOptPage::initFocus() const
 {
-  c_use->setFocus();
+  kcfg_useGradeCol->setFocus();
 }
 
 
@@ -174,14 +174,14 @@ void ViewOptPage::slotColUsed(bool used)
 {
   gc.use = used;
 
-  b_col0->setEnabled(used);
-  b_col1->setEnabled(used);
-  b_col2->setEnabled(used);
-  b_col3->setEnabled(used);
-  b_col4->setEnabled(used);
-  b_col5->setEnabled(used);
-  b_col6->setEnabled(used);
-  b_col7->setEnabled(used);
+  kcfg_gradeCol0->setEnabled(used);
+  kcfg_gradeCol1->setEnabled(used);
+  kcfg_gradeCol2->setEnabled(used);
+  kcfg_gradeCol3->setEnabled(used);
+  kcfg_gradeCol4->setEnabled(used);
+  kcfg_gradeCol5->setEnabled(used);
+  kcfg_gradeCol6->setEnabled(used);
+  kcfg_gradeCol7->setEnabled(used);
 
   l_lev0->setEnabled(used);
   l_lev1->setEnabled(used);

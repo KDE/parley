@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>ViewOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -69,10 +69,13 @@
                         </property>
                         <widget class="QCheckBox" row="0" column="1">
                             <property name="name">
-                                <cstring>c_use</cstring>
+                                <cstring>kcfg_useGradeCol</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;Use colors</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+U</string>
                             </property>
                         </widget>
                         <spacer row="0" column="0">
@@ -84,6 +87,12 @@
                             </property>
                             <property name="sizeType">
                                 <enum>Minimum</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>20</width>
+                                    <height>20</height>
+                                </size>
                             </property>
                         </spacer>
                         <widget class="QLabel" row="3" column="0">
@@ -132,18 +141,24 @@
                         </widget>
                         <widget class="KColorButton" row="1" column="1">
                             <property name="name">
-                                <cstring>b_col7</cstring>
+                                <cstring>kcfg_gradeCol7</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;7</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+7</string>
+                            </property>
                         </widget>
                         <widget class="KColorButton" row="3" column="1">
                             <property name="name">
-                                <cstring>b_col5</cstring>
+                                <cstring>kcfg_gradeCol5</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;5</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+5</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="5" column="0">
@@ -159,34 +174,46 @@
                         </widget>
                         <widget class="KColorButton" row="4" column="1">
                             <property name="name">
-                                <cstring>b_col4</cstring>
+                                <cstring>kcfg_gradeCol4</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;4</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+4</string>
+                            </property>
                         </widget>
                         <widget class="KColorButton" row="5" column="1">
                             <property name="name">
-                                <cstring>b_col3</cstring>
+                                <cstring>kcfg_gradeCol3</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;3</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+3</string>
+                            </property>
                         </widget>
                         <widget class="KColorButton" row="2" column="1">
                             <property name="name">
-                                <cstring>b_col6</cstring>
+                                <cstring>kcfg_gradeCol6</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;6</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+6</string>
+                            </property>
                         </widget>
                         <widget class="KColorButton" row="6" column="1">
                             <property name="name">
-                                <cstring>b_col2</cstring>
+                                <cstring>kcfg_gradeCol2</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;2</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+2</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="2" column="0">
@@ -213,18 +240,24 @@
                         </widget>
                         <widget class="KColorButton" row="7" column="1">
                             <property name="name">
-                                <cstring>b_col1</cstring>
+                                <cstring>kcfg_gradeCol1</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;1</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+1</string>
+                            </property>
                         </widget>
                         <widget class="KColorButton" row="8" column="1">
                             <property name="name">
-                                <cstring>b_col0</cstring>
+                                <cstring>kcfg_gradeCol0</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;N</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+N</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="8" column="0">
@@ -249,6 +282,12 @@
                     </property>
                     <property name="sizeType">
                         <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
                     </property>
                 </spacer>
                 <widget class="QLabel" row="1" column="0">
@@ -350,15 +389,15 @@
 <tabstops>
     <tabstop>b_choose</tabstop>
     <tabstop>b_choose_ipa</tabstop>
-    <tabstop>c_use</tabstop>
-    <tabstop>b_col7</tabstop>
-    <tabstop>b_col6</tabstop>
-    <tabstop>b_col5</tabstop>
-    <tabstop>b_col4</tabstop>
-    <tabstop>b_col3</tabstop>
-    <tabstop>b_col2</tabstop>
-    <tabstop>b_col1</tabstop>
-    <tabstop>b_col0</tabstop>
+    <tabstop>kcfg_useGradeCol</tabstop>
+    <tabstop>kcfg_gradeCol7</tabstop>
+    <tabstop>kcfg_gradeCol6</tabstop>
+    <tabstop>kcfg_gradeCol5</tabstop>
+    <tabstop>kcfg_gradeCol4</tabstop>
+    <tabstop>kcfg_gradeCol3</tabstop>
+    <tabstop>kcfg_gradeCol2</tabstop>
+    <tabstop>kcfg_gradeCol1</tabstop>
+    <tabstop>kcfg_gradeCol0</tabstop>
 </tabstops>
 <includes>
     <include location="global" impldecl="in declaration">kcolorbutton.h</include>

@@ -79,15 +79,15 @@ void kvoctrainApp::saveOptions(bool all)
     config->writeEntry(CFG_IPA_FSIZE, ipafont.pointSize());
     config->writeEntry(CFG_FFAMILY, tablefont.family());
     config->writeEntry(CFG_FSIZE, tablefont.pointSize());
-    config->writeEntry(CFG_GC_USE, gradecols.use);
-    config->writeEntry(CFG_GCOL0, gradecols.col0);
-    config->writeEntry(CFG_GCOL1, gradecols.col1);
-    config->writeEntry(CFG_GCOL2, gradecols.col2);
-    config->writeEntry(CFG_GCOL3, gradecols.col3);
-    config->writeEntry(CFG_GCOL4, gradecols.col4);
-    config->writeEntry(CFG_GCOL5, gradecols.col5);
-    config->writeEntry(CFG_GCOL6, gradecols.col6);
-    config->writeEntry(CFG_GCOL7, gradecols.col7);
+    Prefs::setUseGradeCol(gradecols.use);
+    Prefs::setGradeCol0(gradecols.col0);
+    Prefs::setGradeCol1(gradecols.col1);
+    Prefs::setGradeCol2(gradecols.col2);
+    Prefs::setGradeCol3(gradecols.col3);
+    Prefs::setGradeCol4(gradecols.col4);
+    Prefs::setGradeCol5(gradecols.col5);
+    Prefs::setGradeCol6(gradecols.col6);
+    Prefs::setGradeCol7(gradecols.col7);
   
     config->setGroup(CFG_GENERAL);
     Prefs::setSmartAppend((bool) smartAppend);
@@ -179,23 +179,15 @@ void kvoctrainApp::readOptions()
   if (pron_label != 0)
     pron_label->setFont(ipafont);
 
-  gradecols.use = config->readBoolEntry(CFG_GC_USE, true);
-  QColor qc = KV_NORM_COLOR;
-  gradecols.col0 = config->readColorEntry(CFG_GCOL0, &qc);
-  qc = KV_LEV1_COLOR;
-  gradecols.col1 = config->readColorEntry(CFG_GCOL1, &qc);
-  qc = KV_LEV2_COLOR;
-  gradecols.col2 = config->readColorEntry(CFG_GCOL2, &qc);
-  qc = KV_LEV3_COLOR;
-  gradecols.col3 = config->readColorEntry(CFG_GCOL3, &qc);
-  qc = KV_LEV4_COLOR;
-  gradecols.col4 = config->readColorEntry(CFG_GCOL4, &qc);
-  qc = KV_LEV5_COLOR;
-  gradecols.col5 = config->readColorEntry(CFG_GCOL5, &qc);
-  qc = KV_LEV6_COLOR;
-  gradecols.col6 = config->readColorEntry(CFG_GCOL6, &qc);
-  qc = KV_LEV7_COLOR;
-  gradecols.col7 = config->readColorEntry(CFG_GCOL7, &qc);
+  gradecols.use = Prefs::useGradeCol();
+  gradecols.col0 = Prefs::gradeCol0();
+  gradecols.col1 = Prefs::gradeCol1();
+  gradecols.col2 = Prefs::gradeCol2();
+  gradecols.col3 = Prefs::gradeCol3();  
+  gradecols.col4 = Prefs::gradeCol4();
+  gradecols.col5 = Prefs::gradeCol5();
+  gradecols.col6 = Prefs::gradeCol6();
+  gradecols.col7 = Prefs::gradeCol7();
 
   config->setGroup(CFG_GENERAL);
   smartAppend = Prefs::smartAppend();
