@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/02/18 15:41:03  arnold
+    fixed crash when loading non-existent file
+
     Revision 1.17  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -187,48 +190,55 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
         case kvtml:
         {
           QFile f( filename );
-          f.open( IO_ReadOnly );
-          QTextStream is (&f);
-          read = loadFromKvtMl (is);
+          if (f.open( IO_ReadOnly )) {
+            QTextStream is (&f);
+            read = loadFromKvtMl (is);
+            f.close();
+          }
         }
         break;
 
         case vt_lex:
         {
           QFile f( filename );
-          f.open( IO_ReadOnly );
-          QTextStream is (&f);
-          read = loadFromLex (is);
-          f.close();
+          if (f.open( IO_ReadOnly )) {
+            QTextStream is (&f);
+            read = loadFromLex (is);
+            f.close();
+          }
         }
         break;
 
         case vt_vcb:
         {
           QFile f( filename );
-          f.open( IO_ReadOnly );
-          QTextStream is (&f);
-          read = loadFromVcb (is);
-          f.close();
+          if (f.open( IO_ReadOnly )) {
+            QTextStream is (&f);
+            read = loadFromVcb (is);
+            f.close();
+          }
         }
         break;
 
         case csv:
         {
           QFile f( filename );
-          f.open( IO_ReadOnly );
-          QTextStream is (&f);
-          read = loadFromCsv (is, separator, lang_order);
-          f.close();
+          if (f.open( IO_ReadOnly )) {
+            QTextStream is (&f);
+            read = loadFromCsv (is, separator, lang_order);
+            f.close();
+          }
         }
         break;
 
         default:
         {
           QFile f( mainfile );
-          f.open( IO_ReadOnly );
-          QTextStream is (&f);
-          read = loadFromKvtMl (is);
+          if (f.open( IO_ReadOnly )) {
+            QTextStream is (&f);
+            read = loadFromKvtMl (is);
+            f.close();
+          }
         }
       }
 
@@ -283,16 +293,25 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
       ft = vt_vcb;
     else if (tmp.right(strlen("." CSV_EXT)) == "." CSV_EXT)
       ft = csv;
-    else
+    else {
+      tmp += "." KVTML_EXT;
       ft = kvtml;
+    }
   }
 
   bool saved = false;
   while (!saved) {
 
-    QApplication::setOverrideCursor( waitCursor );
     QFile f( tmp);
-    f.open( IO_WriteOnly );                     // open file for writing
+
+    if (!f.open( IO_WriteOnly )) {               // open file for writing
+      QString format = i18n("File \"%1\" is not writable, probably you don\'t have permission to do this.\n");
+      QString msg = format.arg(tmp);
+      KMessageBox::error(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
+      return false;
+    }
+
+    QApplication::setOverrideCursor( waitCursor );
     switch (ft) {
       case kvtml: {
         QTextStream os( &f );                       // serialize using f
@@ -303,21 +322,18 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
       case vt_lex: {
         QTextStream os( &f );                       // serialize using f
         saved = saveToLex(os, title);
-        f.close();           
       }
       break;
 
       case vt_vcb: {
         QTextStream os( &f );                       // serialize using f
         saved = saveToVcb(os, title);
-        f.close();           
       }
       break;
 
       case csv: {
         QTextStream os( &f );                       // serialize using f
         saved = saveToCsv(os, title, separator, lang_order);
-        f.close();           
       }
       break;
 
@@ -326,6 +342,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
       }
       break;
     }
+    f.close();
     QApplication::restoreOverrideCursor();
 
     if (!saved) {
@@ -980,7 +997,9 @@ unsigned long kvoctrainDoc::decompressDate(QString s) const
 kvoctrainDoc::FileType kvoctrainDoc::detectFT(const QString &filename)
 {
    QFile f( filename );
-   f.open( IO_ReadOnly );
+   if (!f.open( IO_ReadOnly ))
+     return csv;
+
    QDataStream is( &f );
 
    Q_INT8 c1, c2, c3, c4, c5;
