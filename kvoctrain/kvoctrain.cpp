@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.17  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -1249,6 +1252,42 @@ void kvoctrainApp::aboutToShowVocabulary() {
     voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")),
                    i18n("&Append language"), add_m, ID_APPEND_LANG,
                    pos);
+
+
+    pos = voc_menu->indexOf(ID_SET_LANG);
+    voc_menu->removeItem (ID_SET_LANG);
+    QPopupMenu *set_m = new QPopupMenu();
+
+    for (unsigned header = 0; header < doc->numLangs(); ++header ) {
+      // select one of the available languages for the column
+      QPopupMenu *langs_m = new QPopupMenu();
+      // hack: ID => header-id + language
+
+      for (int i = 0; i < (int) langset.size(); i++) {
+        if(   !langset.PixMapFile(i).isEmpty()
+           && !langset.longId(i).isEmpty() )
+          langs_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i],
+            (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+        else
+          langs_m->insertItem(names[i],
+            (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+      }
+      connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
+      connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+      if (header == 0)
+        set_m->insertItem(i18n("&Original"), langs_m, (2 << 16) | IDH_NULL);
+      else {
+        if (doc->numLangs() <= 2)
+          set_m->insertItem(i18n("&Translation"), langs_m, (2 << 16) | IDH_NULL);
+        else
+          set_m->insertItem(i18n("&%1. Translation").arg(header), langs_m, (2 << 16) | IDH_NULL);
+      }
+    }
+    voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")),
+                   i18n("Set &language"), set_m, ID_SET_LANG,
+                   pos);
+
+
 
     pos = voc_menu->indexOf(ID_REMOVE_LANG);
     voc_menu->removeItem (ID_REMOVE_LANG);

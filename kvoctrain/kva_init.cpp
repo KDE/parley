@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.11  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -250,6 +253,8 @@ void kvoctrainApp::initMenuBar()
   voc_menu->insertSeparator();
   QPopupMenu *add_m = new QPopupMenu();
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")), i18n("&Append language"), add_m, ID_APPEND_LANG );
+  QPopupMenu *set_m = new QPopupMenu();
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), ("Set &language"), set_m, ID_SET_LANG );
   QPopupMenu *remove_m = new QPopupMenu();
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove language"), remove_m, ID_REMOVE_LANG);
 

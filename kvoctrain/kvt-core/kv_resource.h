@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 17:34:43  arnold
+    fixed language property dialog page
+
     Revision 1.5  2001/11/02 10:18:31  arnold
     fixed colum resizing and diplaying of grade colors
 
@@ -108,6 +111,7 @@
 // Vocabulary-menu entries
 #define ID_RANDOM_QUERY             13010
 #define ID_APPEND_LANG              13020
+#define ID_SET_LANG                 13025
 #define ID_REMOVE_LANG              13030
 #define ID_SEARCH                   13040
 #define ID_SHOW_STAT                13050
