@@ -64,7 +64,7 @@
                                 <string>Automatic &amp;backup interval (min):</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Allow automatic savings of your work</string>
+                                <string>Allow automatic saving of your work</string>
                             </property>
                             <property name="whatsThis" stdset="0">
                                 <string>Your work will be automatically saved if you check this option</string>
@@ -78,10 +78,10 @@
                                 <string>&amp;Save options automatically </string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>If checked, KVocTrain will save automatically all your changes when quitting</string>
+                                <string>If checked, KVocTrain will automatically save all your changes when quitting</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>When checked, all options are save upon termination of KVocTrain. Otherwise you have to select the appropriate menu item.</string>
+                                <string>When checked, all options are saved upon termination of KVocTrain. Otherwise you have to select the appropriate menu item.</string>
                             </property>
                         </widget>
                         <widget class="QLineEdit" row="0" column="1">
@@ -97,10 +97,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Number of secondes between 2 automatic backups</string>
+                                <string>Number of seconds between each automatic backup</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>You can fix here the number of seconds between 2 backups of yopur current work</string>
+                                <string>Here you can set the number of seconds between each backup of your current work</string>
                             </property>
                         </widget>
                         <spacer row="0" column="2">
@@ -145,7 +145,7 @@
                                 <string>Your changes will be applied automatically.</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>If checked, no dialog will ask you if you really want this change, it will be applied automatically.</string>
+                                <string>If checked, you will not be asked if you really want this change; it will be applied automatically.</string>
                             </property>
                         </widget>
                     </grid>
@@ -175,10 +175,10 @@
                                 <string>A&amp;utomatic</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>KVocTrain decides of the resizing of the columns</string>
+                                <string>KVocTrain determines the resizing of the columns</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>KVocTrain makes each columns the same width except the leftmost with the lesson names which has half the size of the others. The second column which contains the picture that describes the state of the row has a fixed width.</string>
+                                <string>KVocTrain makes each column the same width except the leftmost with the lesson names, which is half the size of the others. The second column, which contains the picture that describes the state of the row, has a fixed width.</string>
                             </property>
                         </widget>
                         <widget class="QRadioButton">
@@ -189,10 +189,10 @@
                                 <string>P&amp;ercentage</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>The columns resize whith the same factor the window is resized to.</string>
+                                <string>The columns resize using the same factor that the window is resized to.</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>If this is checked, the columns resize accordingly to the window resizing rate</string>
+                                <string>If this is checked, the columns resize by the same amount as the window</string>
                             </property>
                         </widget>
                         <widget class="QRadioButton">
@@ -206,7 +206,7 @@
                                 <string>There is no resizing of the columns</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>When checked, no resizing of the columns is done</string>
+                                <string>When checked, the columns are not resized</string>
                             </property>
                         </widget>
                     </vbox>

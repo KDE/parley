@@ -131,7 +131,7 @@
                         <string>Choose which separator you want to use to separate your data.</string>
                     </property>
                     <property name="whatsThis" stdset="0">
-                        <string>Choose one separator which will divide the parts of an expression when transferring data from or to an other application over the clipboard.</string>
+                        <string>Choose one separator which will divide the parts of an expression when transferring data from or to another application over the clipboard.</string>
                     </property>
                 </widget>
                 <spacer row="0" column="2">

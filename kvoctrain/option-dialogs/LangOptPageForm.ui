@@ -239,7 +239,7 @@
                                 <string>Add Language Data From &amp;KDE Database</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Brings the languages choices from the KDE database</string>
+                                <string>Obtains the language choices from the KDE database</string>
                             </property>
                             <property name="whatsThis" stdset="0">
                                 <string>Pressing this button opens a menu that contains all the countries that are known in your KDE installation. Ordered by country you can add your desired language properties to your personal list.</string>
@@ -256,7 +256,7 @@
                                 <string>List of languages covered by ISO639-1</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>Pressing this button opens a menu that contains all the language codes that are covered by “ISO639-1”</string>
+                                <string>Pressing this button opens a menu that contains all the language codes that are covered by "ISO639-1"</string>
                             </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="1">
@@ -267,7 +267,7 @@
                                 <string>&amp;Add</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Allow to add the language you typed.</string>
+                                <string>Allow addition of the language you typed.</string>
                             </property>
                             <property name="whatsThis" stdset="0">
                                 <string>This button becomes available when you type a language code in the field.</string>
