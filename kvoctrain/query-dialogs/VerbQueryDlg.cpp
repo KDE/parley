@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/01/04 21:09:16  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.12  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -55,7 +58,6 @@
 
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************
 
@@ -250,7 +252,7 @@ bool VerbQueryDlg::next()
     current++;
 
   type = conjugations.getType(current);
-  QString format = i18n("Current tense is %1.");
+  QString format = i18n("Current tense is: %1.");
   QString msg = format.arg(conjugations.getName(type));
 
   instructionLabel->setText (msg);
@@ -305,12 +307,8 @@ bool VerbQueryDlg::next()
 void VerbQueryDlg::showAllClicked()
 {
   resetAllFields();
-  if (current >= (int) conjugations.numEntries()-1 ) {
-    dont_know->setDefault(true);
-  }
-  else
-    next();
- 
+  dont_know->setDefault(true);
+
   QString type = conjugations.getType (current);
 
   p1sField->setText  (conjugations.pers1Singular(type));
@@ -352,49 +350,50 @@ void VerbQueryDlg::verifyClicked()
 {
   QString type = conjugations.getType(current);
 
-  bool all_known = true;
+  bool known = true;
 
   if (!verifyField (p1sField, conjugations.pers1Singular(type)))
-    all_known = false;
+    known = false;
 
   if (!verifyField (p2sField, conjugations.pers2Singular(type)))
-    all_known = false;
+    known = false;
 
   if (!verifyField (p3sfField, conjugations.pers3FemaleSingular(type)))
-    all_known = false;
+    known = false;
 
   bool common = conjugations.pers3SingularCommon(type);
   if (!common) {
     if (!verifyField (p3smField, conjugations.pers3MaleSingular(type)))
-      all_known = false;
+      known = false;
   
     if (!verifyField (p3snField, conjugations.pers3NaturalSingular(type)))
-      all_known = false;
+      known = false;
   }
 
   if (!verifyField (p1pField, conjugations.pers1Plural(type)))
-    all_known = false;
+    known = false;
 
   if (!verifyField (p2pField, conjugations.pers2Plural(type)))
-    all_known = false;
+    known = false;
 
   if (!verifyField (p3pfField, conjugations.pers3FemalePlural(type)))
-    all_known = false;
+    known = false;
 
   common = conjugations.pers3PluralCommon(type);
   if (!common) {
     if (!verifyField (p3pmField, conjugations.pers3MalePlural(type)))
-      all_known = false;
+      known = false;
   
     if (!verifyField (p3pnField, conjugations.pers3NaturalPlural(type)))
-      all_known = false;
+      known = false;
   }
 
-  if (all_known)
-//    know_it->setDefault(true);
+  if (known)
     knowItClicked();
-  else
+  else {
+    all_known = false;
     dont_know->setDefault(true);
+  }
 }
 
 
@@ -414,6 +413,43 @@ void VerbQueryDlg::resetAllFields()
 }
 
 
+void VerbQueryDlg::timeoutReached()
+{
+   if (timercount > 0) {
+     timercount--;
+     timebar->setData (-1, timercount, false);
+     timebar->repaint();
+     qtimer->start(1000, TRUE);
+   }
+
+   if (timercount <= 0) {
+     timebar->setData (-1, 0, false);
+     timebar->repaint();
+     if (current >= (int) conjugations.numEntries()-1 ) {
+       qtimer->stop();
+       if (type_timeout == kvq_show) {
+         showAllClicked();
+         dont_know->setDefault(true);
+       }
+       else if (type_timeout == kvq_cont)
+         emit sigQueryChoice (Timeout);
+     }
+     else {
+       if (type_timeout == kvq_show) {
+         qtimer->stop();
+         showAllClicked();
+         dont_know->setDefault(true);
+       }
+       else if (type_timeout == kvq_cont) {
+         next();
+         qtimer->start(1000, TRUE);
+         timercount = query_time/1000;
+       }
+     }
+   }
+}
+
+
 void VerbQueryDlg::knowItClicked()
 {
    resetAllFields();
@@ -428,41 +464,16 @@ void VerbQueryDlg::knowItClicked()
 }
 
 
-void VerbQueryDlg::timeoutReached()
-{
-   if (timercount > 0) {
-     timercount--;
-     timebar->setData (-1, timercount, false);
-     timebar->repaint();
-     qtimer->start(1000, TRUE);
-   }
-
-   if (timercount <= 0) {
-     timebar->setData (-1, 0, false);
-     timebar->repaint();
-     if (++current >= (int) conjugations.numEntries() )
-       if (type_timeout == kvq_show) {
-         showAllClicked();
-         dont_know->setDefault(true);
-       }
-       else if (type_timeout == kvq_cont)
-         emit sigQueryChoice (Timeout);
-     else {
-       next();
-       qtimer->start(1000, TRUE);
-       timercount = query_time/1000;
-     }
-   }
-}
-
-
 void VerbQueryDlg::dontKnowClicked()
 {
    all_known = false;
    if (current >= (int) conjugations.numEntries()-1 )
      emit sigQueryChoice (Unknown);
-   else
+   else {
+     qtimer->start(1000, TRUE);
+     timercount = query_time/1000;
      next();
+   }
 }
 
 
