@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/17 20:09:31  howells
+    Descriptions for all apps
+
     Revision 1.12  2001/12/16 16:11:34  howells
     Don't break
 
@@ -86,7 +89,7 @@ static KCmdLineOptions options[] =
 };
 
 static const char *description = 
-	i18n_noop(Vocabulary Trainer");
+	i18n_noop("Vocabulary Trainer");
 
 static const char *version = "0.8.0";
 
@@ -99,7 +102,7 @@ static const char *version = "0.8.0";
                        "(c) 2001-2002\tThe KDE team\n",
                        i18n_noop("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
-                      "kvoctrain@ewald-arnold.de");
+                      "submit@bugs.kde.org");
 
   aboutData.addAuthor("Ewald Arnold", i18n_noop("Author and maintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );

@@ -72,7 +72,7 @@ install-data-local:
 	@echo ""
 	@echo "***********************************************************"
 	@echo "* Installed. Enjoy KVOCTRAIN                              *"
-	@echo "* Please report bugs to: kvoctrain@ewald-arnold.de        *"
+	@echo "* Please report bugs at http://bugs.kde.org               *"
 	@echo "***********************************************************"
 
 uninstall-local:

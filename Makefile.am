@@ -6,29 +6,6 @@ EXTRA_DIST = AUTHORS ChangeLog README README.develop \
 AUTOMAKE_OPTIONS = foreign 
 
 install-data-local:
-	@echo ""
-	@echo ""
-	@echo ""
-	@echo "*************** Important *************************"
-	@echo ""
-	@echo " This package does not contain any documentation."
-	@echo ""
-	@echo " Download the doc-package according to your language"
-	@echo " code (you really should do it)."
-	@echo ""
-	@echo "   e.g.: - kvoctrain-0.7.0.doc-en.tar.bz2  (english)"
-	@echo "         - kvoctrain-0.7.0.doc-de.tar.bz2  (german)"
-	@echo ""
-	@echo " Homepage is now on Sourceforge:"
-	@echo "     http://kvoctrain.sourceforge.net"
-	@echo ""
-	@echo " Please report bugs at"
-	@echo "     http://sourceforge.net/bugs/?group_id=9265"
-	@echo ""
-	@echo " Ewald Arnold <ewald@ewald-arnold.de> wishes you"
-	@echo " a happy learning."
-	@echo "****************************************************"
-	@echo ""
 
 bug-rep:
 	./bug-report
