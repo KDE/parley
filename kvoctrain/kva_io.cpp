@@ -48,7 +48,7 @@
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"
 
-#define PATTERN_ALL  I18N_NOOP("*|All files (*)\n")
+#define PATTERN_ALL  I18N_NOOP("*|All Files (*)\n")
 #define PATTERN_ML   I18N_NOOP("*.kvtml|KVocTrain Markup (*.kvtml)\n")
 #define PATTERN_LEX  I18N_NOOP("*.lex|Vocabulary Trainer 5.0 (*.lex)\n")
 #define PATTERN_VL   I18N_NOOP("*.vl|KVoclearn (*.vl)\n")
