@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/13 18:39:29  arnold
+    added phonetic alphabet stuff
+
     Revision 1.4  2001/11/17 17:58:55  arnold
     added inline editing of all columns
 
@@ -90,6 +93,9 @@ public:
     QString getUsageLabel() const { return usageCollection; }
     bool    getActive()     const { return entry_active; }
 
+public slots:
+    void initFocus() const;
+
 signals:
     void typeSelected(const QString &);
 
@@ -100,7 +106,6 @@ protected:
     void setUsageBox(const QString &act_type);
 
 protected slots:
-    void initFocus() const;
     void slotLessonSelected(int);
     void slotExprSelected(const QString&);
     void slotTypeSelected(int);

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.11  2001/12/13 18:39:29  arnold
     added phonetic alphabet stuff
 
@@ -117,14 +120,14 @@ EntryDlg::EntryDlg
         QueryManager  &querymanager,
 	const QString &title,
         bool           active,
-        const QFont&  ipafont,
-	QWidget    *parent,
-	const char *name
+        const QFont&   ipafont,
+	QWidget       *parent,
+	const char    *name
 )
 	:
 	Inherited( parent, name, true)
 {
-	setCaption (kapp->makeStdCaption( name));
+	setCaption (kapp->makeStdCaption(title));
 
         QString s;
         if (langset.findLongId(lang).isEmpty() )
@@ -217,6 +220,12 @@ void EntryDlg::updatePages(const QString &type)
      setTabEnabled (QString(_EntryDlg_CONJUGATION).local8Bit(), false);
      setTabEnabled (QString(_EntryDlg_ADJECTIVE).local8Bit(), false);
    }
+}
+
+
+void EntryDlg::initFocus()
+{
+  comm_page->initFocus();
 }
 
 

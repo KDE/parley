@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/13 18:39:29  arnold
+    added phonetic alphabet stuff
+
     Revision 1.5  2001/11/17 17:58:55  arnold
     added inline editing of all columns
 
@@ -119,8 +122,8 @@ public:
 	const QString &title,
         bool           active,
         const QFont&   ipafont,
-        QWidget    *parent = 0,
-	const char *name = 0
+        QWidget       *parent = 0,
+	const char    *name = 0
     );
 
     bool  fromDateDirty   () const { return from_page ? from_page->dateDirty() : false; }
@@ -168,9 +171,8 @@ public:
 
     MultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
 
-protected slots:
-
-//  virtual void appHelpActivated();
+public slots:
+    void initFocus();
 
 protected slots:
     void updatePages(const QString &type);

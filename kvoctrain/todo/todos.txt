@@ -4,7 +4,6 @@ $Date$
                   ----------------------------
 
 tofix now:
-  - smart appending
   - triangle "menu button" in table header buttons
   - [modified], warum?
   - resume query
@@ -13,7 +12,7 @@ tofix now:
 
 todo post-release ?
   - Queryoptions aufrufen, wenn keine Selections in der query
-  - modeless entry dialog
+  - modeless entry dialog, smart appending, initFocus beachten!
   - multiple selections in main view
   - translator hint iso names "language name aa:"
   - quickhelp/tooltipps

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.29  2001/12/29 15:49:11  arnold
+    fixed kmessagebox calls
+
     Revision 1.28  2001/12/29 10:40:03  arnold
     merged fixes from POST-branch
 
@@ -356,7 +359,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
                   doc->getEntry(row)->isActive(),
                   ipafont);
 
-//   edlg.initFocus();
+   edlg.initFocus();
    res = edlg.exec();
 
    if (res != QDialog::Accepted)
@@ -589,6 +592,8 @@ bool kvoctrainApp::hasSelection()
 
 void kvoctrainApp::slotRemoveRow()
 {
+  view->setInlineEnabled(false);
+
   if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected entry ?\n"),
@@ -617,11 +622,23 @@ void kvoctrainApp::slotRemoveRow()
       table->updateContents();
     }
   }
+  view->setInlineEnabled(inline_edit);
 }
 
 
 void kvoctrainApp::slotAppendRow ()
 {
+  if (inline_edit) {
+    kvoctrainExpr expr;
+    expr.setLesson(act_lesson);
+    doc->appendEntry(&expr);
+    doc->setModified();
+    int row = doc->numEntries()-1;
+    view->getTable()->updateContents(row, KV_COL_ORG);
+    return;
+  }
+
+
   int res;
   do {
     EntryDlg edlg (doc,
@@ -658,6 +675,7 @@ void kvoctrainApp::slotAppendRow ()
                    i18n("Enter new original expression"),
                    true,
                    ipafont);
+    edlg.initFocus();
     res = edlg.exec();
 
     if (res == QDialog::Accepted) {
@@ -692,7 +710,7 @@ void kvoctrainApp::slotAppendRow ()
 
         bool nextcol = smartAppend;
         for (int i = 2; nextcol && i <= doc->numLangs(); i++) {
-          if ((nextcol = slotEditEntry (row, i))) {
+          if ((nextcol = slotEditEntry (row, i-1+KV_EXTRA_COLS))) {
             int lesson = doc->getEntry(row)->getLesson();
             if (lesson >= lessons->count())
               lesson = QMAX (0, lessons->count()-1);
@@ -700,6 +718,7 @@ void kvoctrainApp::slotAppendRow ()
           }
           else
             return;
+         view->getTable()->updateContents(row, i+KV_EXTRA_COLS);
         }
       }
     }
@@ -720,8 +739,6 @@ void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
     case Key_Control:  controlActive = false;
     break;
   }
-//  cout << "sa " << shiftActive << endl;
-//  cout << "ca " << controlActive << endl;
 }
 
 
@@ -795,8 +812,6 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       if (!found)
         e->ignore();
   }
-//  cout << "sa " << shiftActive << endl;
-//  cout << "ca " << controlActive << endl;
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1240,7 +1255,6 @@ void kvoctrainApp::aboutToShowLearn()
     if((j = langset.indexShortId(id)) >= 0
        && !langset.PixMapFile(j).isEmpty()
        && !langset.longId(j).isEmpty() ) {
-//      cout << j << " " << id << " " << main_names[header] << endl;
       learn_menu->insertItem(QPixmap(langset.PixMapFile(j)), main_names[header], header_m, IDH_NULL);
     }
     else {
@@ -1423,7 +1437,7 @@ void kvoctrainApp::commandCallback(int id_){
 
 
 void kvoctrainApp::statusCallback(int id_){
-  id_ &=0xffff;
+  id_ &= 0xffff;
   switch (id_){
     ON_STATUS_MSG(ID_FILE_NEW,          i18n("Creates a new document"))
     ON_STATUS_MSG(ID_FILE_OPEN,         i18n("Opens an existing document"))
