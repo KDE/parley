@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -37,6 +40,7 @@ class MyProgressBar : public QFrame
 public:
  MyProgressBar(QWidget* parent = 0, const char* name = 0);
  void setData (int _all, int _current, bool x_from_y);
+ unsigned getPercentage() const;
 
 protected:
  void paintEvent (QPaintEvent *pev);

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/25 11:11:02  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.13  2001/11/20 01:38:03  jsinger
     Proofreading changes for grammar and spelling. No functional changes.
 
@@ -130,7 +133,7 @@ static QString getFileName(const QString &caption,
 }
 
 
-void kvoctrainApp::slotTimeOutBackup() /*FOLD00*/
+void kvoctrainApp::slotTimeOutBackup()
 {
   if (backupTime != 0 && doc && doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
@@ -141,13 +144,13 @@ void kvoctrainApp::slotTimeOutBackup() /*FOLD00*/
 }
 
 
-void kvoctrainApp::aboutToShowFile() /*FOLD00*/
+void kvoctrainApp::aboutToShowFile()
 {
   file_menu->setItemEnabled(ID_FILE_SAVE, doc->isModified());
 }
 
 
-bool kvoctrainApp::queryClose() /*FOLD00*/
+bool kvoctrainApp::queryClose()
 {
    bool erg = queryExit();
    if (erg)
@@ -156,7 +159,7 @@ bool kvoctrainApp::queryClose() /*FOLD00*/
 }
 
 
-bool kvoctrainApp::queryExit() /*FOLD00*/
+bool kvoctrainApp::queryExit()
 {
   saveOptions(false);
   if (!doc || !doc->isModified() ) return true;
@@ -166,14 +169,14 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
     return true;
   }
 
-  int exit = KMessageBox::warningYesNoCancel(this, 
+  int exit = KMessageBox::warningYesNoCancel(this,
             i18n("Vocabulary is modified.\n\nSave file before exit ?\n"),
             kapp->makeStdCaption(""));
   if(exit==KMessageBox::Yes) {
     slotFileSave();   // save and exit
     return true;
   }
-  else if (exit == 2) {
+  else if (exit == KMessageBox::No) {
     return true;     // dont save but exit
   }
 
@@ -181,8 +184,8 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileQuit() /*FOLD00*/
-{ 
+void kvoctrainApp::slotFileQuit()
+{
   ///////////////////////////////////////////////////////////////////
   // exits the Application
   if(this->queryExit())
@@ -194,7 +197,7 @@ void kvoctrainApp::slotFileQuit() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotProgress(kvoctrainDoc *curr_doc, int percent) /*FOLD00*/
+void kvoctrainApp::slotProgress(kvoctrainDoc *curr_doc, int percent)
 {
   if (pdlg != 0)
     pdlg->setValue (curr_doc, percent);
@@ -204,7 +207,7 @@ void kvoctrainApp::slotProgress(kvoctrainDoc *curr_doc, int percent) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileOpenRecent(int id_) /*FOLD00*/
+void kvoctrainApp::slotFileOpenRecent(int id_)
 {
   slotStatusMsg(i18n("Opening file..."));
 
@@ -241,7 +244,7 @@ void kvoctrainApp::slotFileOpenRecent(int id_) /*FOLD00*/
 }
 
 
-void kvoctrainApp::addRecentFile(const QString &rel_file) /*FOLD00*/
+void kvoctrainApp::addRecentFile(const QString &rel_file)
 {
   if (rel_file.stripWhiteSpace().length() == 0)
     return;
@@ -281,7 +284,7 @@ void kvoctrainApp::addRecentFile(const QString &rel_file) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileNew() /*FOLD00*/
+void kvoctrainApp::slotFileNew()
 {
   slotStatusMsg(i18n("Creating new file..."));
 
@@ -302,7 +305,7 @@ void kvoctrainApp::slotFileNew() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileOpen() /*FOLD00*/
+void kvoctrainApp::slotFileOpen()
 {
   slotStatusMsg(i18n("Opening file..."));
 
@@ -344,7 +347,7 @@ void kvoctrainApp::loadfileFromPath(QString &name)
     }
 }
 
-void kvoctrainApp::slotFileOpenExample() /*FOLD00*/
+void kvoctrainApp::slotFileOpenExample()
 {
   slotStatusMsg(i18n("Opening example file..."));
 
@@ -359,7 +362,7 @@ void kvoctrainApp::slotFileOpenExample() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileMerge() /*FOLD00*/
+void kvoctrainApp::slotFileMerge()
 {
   slotStatusMsg(i18n("Merging file..."));
 
@@ -608,7 +611,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotFileSave() /*FOLD00*/
+void kvoctrainApp::slotFileSave()
 {
   if (doc->getFileName().isEmpty() ) {
     slotFileSaveAs();
@@ -650,7 +653,7 @@ void kvoctrainApp::fillLessonBox(kvoctrainDoc *the_doc)
 }
 
 
-void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
+void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
 {
   fillLessonBox(the_doc);
 
@@ -696,13 +699,13 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
 }
 
 
-void kvoctrainApp::saveDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
+void kvoctrainApp::saveDocProps(kvoctrainDoc *the_doc)
 {
   the_doc->setQueryLang (act_query_org, act_query_trans);
 }
 
 
-void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
+void kvoctrainApp::slotFileSaveAs()
 {
   slotStatusMsg(i18n("Saving file under new filename..."));
 
@@ -748,7 +751,7 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotSaveSelection () /*FOLD00*/
+void kvoctrainApp::slotSaveSelection ()
 {
   slotStatusMsg(i18n("Saving selected area under new filename..."));
 
@@ -790,7 +793,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
     // FIXME: check error
     ::rename (QFile::encodeName(name), QFile::encodeName(name+"~"));
     saveDocProps(&seldoc);
- 
+
     prepareProgressBar();
     seldoc.saveAs(this, name, QString (i18n ("Part of: ")) +doc->getTitle(),
                 kvoctrainDoc::automatic, separator, &paste_order);
@@ -800,7 +803,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
 }
 
 
-void kvoctrainApp::prepareProgressBar () /*FOLD00*/
+void kvoctrainApp::prepareProgressBar ()
 {
     statusBar()->clear ();
     pbar = new KProgress (statusBar());
@@ -810,7 +813,7 @@ void kvoctrainApp::prepareProgressBar () /*FOLD00*/
 }
 
 
-void kvoctrainApp::removeProgressBar () /*FOLD00*/
+void kvoctrainApp::removeProgressBar ()
 {
     statusBar()->clear ();
     statusBar()->removeWidget(pbar);

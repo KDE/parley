@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.10  2001/11/24 17:16:08  arnold
     fixes for table view and query
 
@@ -50,7 +53,6 @@
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************
 
  ***************************************************************************
@@ -73,6 +75,7 @@
 #include <kapp.h>
 #include <kstddirs.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <qtimer.h>
 #include <qkeycode.h>
@@ -85,8 +88,6 @@
 #include <iostream.h>
 #include <algo.h>
 
-
-#define MAX_TRANS  5  // select one out of x
 
 MCQueryDlg::MCQueryDlg(
                    QString org,
@@ -192,38 +193,57 @@ void MCQueryDlg::setQuery(QString org,
    button_ref.push_back(RB_Label(rb_trans4, trans4));
    button_ref.push_back(RB_Label(rb_trans5, trans5));
    random_shuffle(button_ref.begin(), button_ref.end() );
+   resetButton(button_ref[0].rb, button_ref[0].label);
+   resetButton(button_ref[1].rb, button_ref[1].label);
+   resetButton(button_ref[2].rb, button_ref[2].label);
+   resetButton(button_ref[3].rb, button_ref[3].label);
+   resetButton(button_ref[4].rb, button_ref[4].label);
+
    solution = 0;
 
-   // FIXME: check for false friend and use it
-   if (doc->numEntries() <= MAX_TRANS) {
-     for (int i = 0; i < doc->numEntries(); i++ ) {
-       kvoctrainExpr *act = doc->getEntry(i);
-       if (q_tcol == 0)
-         strings.push_back(act->getOriginal());
-       else 
-         strings.push_back(act->getTranslation(q_tcol));
+   MultipleChoice mc = exp->getMultipleChoice(q_tcol);
+   for (unsigned i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, mc.size()); ++i)
+     strings.push_back(mc.mc(i));
+   std::random_shuffle(strings.begin(), strings.end());
 
-       if (act == exp)
-         solution = i;
+   // always include false friend
+   QString ff;
+   if (q_tcol != 0)
+     ff = exp->getFauxAmi (q_tcol, false).stripWhiteSpace();
+   else
+     ff = exp->getFauxAmi (q_ocol, true).stripWhiteSpace();
+
+   if (ff.length())
+     strings.insert(strings.begin(), ff);
+
+   if (doc->numEntries() <= MAX_MULTIPLE_CHOICE) {
+     for (int i = strings.size(); i < doc->numEntries(); ++i ) {
+       kvoctrainExpr *act = doc->getEntry(i);
+
+       if (act != exp) {
+         if (q_tcol == 0)
+           strings.push_back(act->getOriginal());
+         else
+           strings.push_back(act->getTranslation(q_tcol));
+       }
      }
    }
    else {
      vector<kvoctrainExpr*> exprlist;
      solution = 0;
-     exprlist.push_back(exp);
 
      srand((unsigned int)time((time_t *)NULL));
-     int count = MAX_TRANS-1;
-     // gather random pointers for the choice
+     int count = MAX_MULTIPLE_CHOICE;
+     // gather random expressions for the choice
      while (count > 0) {
        int nr = (int) (doc->numEntries() * ((1.0*rand())/RAND_MAX));
-       // append if new in list
+       // append if new expr found
        bool newex = true;
        for (int i = 0; newex && i < (int) exprlist.size(); i++) {
          if (exprlist[i] == doc->getEntry(nr))
            newex = false;
        }
-       if (newex) {
+       if (newex && exp != doc->getEntry(nr)) {
          count--;
          exprlist.push_back(doc->getEntry(nr));
        }
@@ -237,12 +257,18 @@ void MCQueryDlg::setQuery(QString org,
      }
 
    }
-   for (int i = strings.size(); i < MAX_TRANS; i++ )
+
+   // solution is always the first
+   if (q_tcol == 0)
+     strings.insert(strings.begin(), exp->getOriginal());
+   else
+     strings.insert(strings.begin(), exp->getTranslation(q_tcol));
+
+   for (int i = strings.size(); i < MAX_MULTIPLE_CHOICE; i++ )
      strings.push_back("");
 
-   if (solution >= MAX_TRANS) {
-       solution = 0;
-   }
+   if (strings.size() > MAX_MULTIPLE_CHOICE)
+     strings.erase(strings.begin()+MAX_MULTIPLE_CHOICE, strings.end());
 
    button_ref[0].rb->setEnabled(!strings[0].isEmpty() );
    button_ref[1].rb->setEnabled(!strings[1].isEmpty() );
@@ -344,16 +370,20 @@ void MCQueryDlg::verifyClicked()
     verifyButton(button_ref[4].rb, known, button_ref[4].label);
   }
 
-  if (known)
-//    know_it->setDefault(true);
+  if (known) {
+    status->setText(getOKComment(countbar->getPercentage()));
     knowItClicked();
-  else
+  }
+  else {
+    status->setText(getNOKComment(countbar->getPercentage()));
     dont_know->setDefault(true);
+  }
 }
 
 
 void MCQueryDlg::knowItClicked()
 {
+   status->setText("");
    emit sigQueryChoice (Known);
 }
 
@@ -368,21 +398,24 @@ void MCQueryDlg::timeoutReached()
    }
 
    if (timercount <= 0) {
+     status->setText(getTimeoutComment(countbar->getPercentage()));
      timebar->setData (-1, 0, false);
      timebar->repaint();
      if (type_timeout == kvq_show) {
        showItClicked();
-//     verifyClicked();
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)
        emit sigQueryChoice (Timeout);
    }
+   else
+     status->setText("");
 }
 
 
 void MCQueryDlg::dontKnowClicked()
 {
+   status->setText("");
    emit sigQueryChoice (Unknown);
 }
 
@@ -424,8 +457,6 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
         knowItClicked();
       else if (show_all->isDefault() )
         showItClicked();
-//    else if (verify->isDefault() )
-//      verifyClicked();
     break;
       
     default:

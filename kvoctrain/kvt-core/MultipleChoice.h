@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    $Id: $
+    $Id$
 
               manage multiple choice suggestions for queries
 
@@ -14,7 +14,10 @@
 
     -----------------------------------------------------------------------
 
-    $Log: $
+    $Log$
+    Revision 1.1  2001/10/30 14:53:55  arnold
+    added property 'multiple choice'
+
 
  ***************************************************************************/
 
@@ -32,6 +35,8 @@
 #define MultipleChoice_included
 
 #include <qstring.h>
+
+#define MAX_MULTIPLE_CHOICE  5  // select one out of x
 
 class MultipleChoice
 {
@@ -60,9 +65,12 @@ public:
    QString mc4 () const { return muc4; }
    QString mc5 () const { return muc5; }
 
+   QString mc (unsigned idx) const;
+
    bool isEmpty() const;
    void normalize();
    void clear();
+   unsigned size();
 
 protected:
 

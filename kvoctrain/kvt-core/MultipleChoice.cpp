@@ -1,6 +1,6 @@
 /***************************************************************************
 
-    $Id: $
+    $Id$
 
               manage multiple choice suggestions for queries
 
@@ -14,7 +14,10 @@
 
     -----------------------------------------------------------------------
 
-    $Log: $
+    $Log$
+    Revision 1.1  2001/10/30 14:53:55  arnold
+    added property 'multiple choice'
+
 
  ***************************************************************************/
 
@@ -62,6 +65,37 @@ void MultipleChoice::clear()
    muc3 = "";
    muc4 = "";
    muc5 = "";
+}
+
+
+QString MultipleChoice::mc (unsigned idx) const
+{
+   switch (idx) {
+     case 0: return muc1;
+     case 1: return muc2;
+     case 2: return muc3;
+     case 3: return muc4;
+     case 4: return muc5;
+   }
+   return "";
+}
+
+
+unsigned MultipleChoice::size()
+{
+   normalize();
+   unsigned num = 0;
+   if (!muc1.isEmpty() )
+     ++num;
+   if (!muc2.isEmpty() )
+     ++num;
+   if (!muc3.isEmpty() )
+     ++num;
+   if (!muc4.isEmpty() )
+     ++num;
+   if (!muc5.isEmpty() )
+     ++num;
+   return num;
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.4  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -55,6 +58,8 @@
 #include <iostream.h>
 
 #include <LineList.h>
+
+#include <klocale.h>
 
 QueryDlgBase::QueryDlgBase ()
 {
@@ -343,13 +348,19 @@ void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
 }
 
 
-QString  QueryDlgBase::getOKComment(int percent)
+QString  QueryDlgBase::getOKComment(int percent_done)
 {
-  return "";
+  return i18n("Well done, you knew the correct answer. %1% done.").arg(percent_done);
 }
 
 
-QString  QueryDlgBase::getNOKComment(int percent)
+QString  QueryDlgBase::getTimeoutComment(int percent_done)
 {
-  return "";
+  return i18n("You waited too long to enter the correct answer. %1% done.").arg(percent_done);
+}
+
+
+QString  QueryDlgBase::getNOKComment(int percent_done)
+{
+  return i18n("Your answer was wrong. %1% done.").arg(percent_done);
 }

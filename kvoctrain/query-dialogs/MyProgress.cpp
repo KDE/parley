@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/24 17:16:08  arnold
+    fixes for table view and query
+
     Revision 1.2  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -72,6 +75,19 @@ void MyProgressBar::setData (int _all, int _current, bool x_from_y)
     current = _current;
 
   from = x_from_y;
+}
+
+
+unsigned MyProgressBar::getPercentage() const
+{
+  if (from) {
+    if (current > 0 && all > 0)
+      return (current/all) * 100;
+    else
+      return 0;
+  }
+  else
+    return 0;
 }
 
 

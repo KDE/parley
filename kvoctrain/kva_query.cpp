@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/01 11:28:13  arnold
+    fixed flickering in query dialogs
+
     Revision 1.9  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -50,7 +53,7 @@
 
  ***************************************************************************/
 
-/************x***************************************************************
+/***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -84,10 +87,10 @@ static const char * not_answered = i18n_noop(
     "The query dialog was not answered for several times in series.\n"
     "\n"
     "It is assumed that there is currently no person in front of\n"
-    "the screen and for that reason the query is stopped.\n");
+    "the screen and for that reason the query is stopped.\n\n");
 
 
-void kvoctrainApp::slotQueryOptions() /*FOLD00*/
+void kvoctrainApp::slotQueryOptions()
 {
    vector<int> old_liq = doc->getLessonsInQuery();
    QueryOptionsDlg qodlg (
@@ -211,9 +214,10 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
                                  kapp->makeStdCaption("Stopping query"));
-        slotStopQuery(true);
+        return;
       }
       else {
         random_expr2.push_back (random_expr1[random_query_nr]);
@@ -299,7 +303,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 }
 
 
-void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
+void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 {
   slotStatusMsg(i18n("Starting special query..."));
   querymode = false;
@@ -312,7 +316,6 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
   prepareProgressBar();
   QApplication::setOverrideCursor( waitCursor );
   random_expr2.clear();
-  kdDebug() << "type: " << type << endl;
 
   queryList = querymanager.select (doc, act_lesson, act_query_col, type);
 
@@ -427,9 +430,10 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
                                  kapp->makeStdCaption("Stopping query"));
-        slotStopQuery(true);
+        return;
       }
       else {
         random_expr2.push_back (random_expr1[random_query_nr]);
@@ -579,7 +583,7 @@ void kvoctrainApp::slotRestartQuery()
 }
 
 
-void kvoctrainApp::slotStartQuery(QString translang, QString orglang) /*FOLD00*/
+void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
 {
   slotStatusMsg(i18n("Starting random query..."));
   querymode = false;
@@ -732,9 +736,9 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
                                  kapp->makeStdCaption("Stopping query"));
-        slotStopQuery(true);
         return;
       }
       else {

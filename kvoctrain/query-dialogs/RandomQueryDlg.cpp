@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.6  2001/11/24 17:16:08  arnold
     fixes for table view and query
 
@@ -127,7 +130,7 @@ RandomQueryDlg::RandomQueryDlg(
 }
 
 
-void RandomQueryDlg::	setQuery(QString org,
+void RandomQueryDlg::setQuery(QString org,
                          QString trans,
                          int entry,
                          int orgcol,
@@ -198,11 +201,14 @@ void RandomQueryDlg::initFocus() const
 
 void RandomQueryDlg::verifyClicked()
 {
-  if (verifyField (transField, translation))
-//    know_it->setDefault(true);
+  if (verifyField (transField, translation)) {
+    status->setText(getOKComment(countbar->getPercentage()));
     knowItClicked();
-  else
+  }
+  else {
+    status->setText(getNOKComment(countbar->getPercentage()));
     dont_know->setDefault(true);
+  }
 }
 
 
@@ -233,6 +239,7 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 
 void RandomQueryDlg::knowItClicked()
 {
+   status->setText("");
    emit sigQueryChoice (Known);
 }
 
@@ -247,21 +254,26 @@ void RandomQueryDlg::timeoutReached()
    }
 
    if (timercount <= 0) {
+     status->setText(getTimeoutComment(countbar->getPercentage()));
      timebar->setData (-1, 0, false);
      timebar->repaint();
      if (type_timeout == kvq_show) {
        showAllClicked();
-//       verifyClicked();
        dont_know->setDefault(true);
      }
-     else if (type_timeout == kvq_cont)
+     else if (type_timeout == kvq_cont) {
        emit sigQueryChoice (Timeout);
+     }
    }
+   else
+     status->setText("");
+
 }
 
 
 void RandomQueryDlg::dontKnowClicked()
 {
+   status->setText("");
    emit sigQueryChoice (Unknown);
 }
 

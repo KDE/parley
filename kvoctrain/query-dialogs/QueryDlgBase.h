@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.5  2001/11/09 11:07:24  arnold
     removed ability to display a different font for each column
 
@@ -92,6 +95,7 @@ public:
    // depending on progress and randomness
    QString  getOKComment(int percent);
    QString  getNOKComment(int percent);
+   QString  getTimeoutComment(int percent);
 
    int getRandom(int range)
      {
