@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/18 04:40:08  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.13  2002/01/04 17:28:51  arnold
     fixed resuming a query
 
@@ -496,7 +500,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
         name = langset.longId(i);
 
       QString format = i18n("You are about to delete a language completely.\n"
-                            "Do you really want to delete \"%1\" ?");
+                            "Do you really want to delete \"%1\"?");
       msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,

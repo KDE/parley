@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.18  2002/01/18 04:40:08  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -105,9 +108,9 @@
 
 
 static const char * not_answered = I18N_NOOP(
-    "The query dialog was not answered for several times in series.\n"
-    "It is assumed that there is currently no person in front of "
-    "the screen and for that reason the query is stopped.");
+    "The query dialog was not answered several times in a row.\n"
+    "It is assumed that there is currently noone in front of "
+    "the screen, and for that reason the query is stopped.");
 
 
 static const char * not_contain = I18N_NOOP(
