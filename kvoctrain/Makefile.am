@@ -7,10 +7,9 @@ kvoctrain_SOURCES = kva_io.cpp \
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
-spotlight2kvtml_LDADD = -lkdecore 
+spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 
-kvoctrain_LDADD =   -lkfile -lkhtml \
-                    ./docprop-dialogs/libdocpropdlg.la \
+kvoctrain_LDADD =   ./docprop-dialogs/libdocpropdlg.la \
                     ./entry-dialogs/libentrydlg.la \
                     ./kvt-core/libkvoctraincore.la \
                     ./kvt-core/kvt-xml/libkvtxml.la \
@@ -18,7 +17,7 @@ kvoctrain_LDADD =   -lkfile -lkhtml \
                     ./query-dialogs/libquerydlg.la \
                     ./queryoption-dialogs/libqueryoptiondlg.la \
                     ./statistik-dialogs/libstatdlg.la \
-                    ./common-dialogs/libcommondlg.la
+                    ./common-dialogs/libcommondlg.la $(LIB_KHTML)
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs docprop-dialogs entry-dialogs  kvt-core \
