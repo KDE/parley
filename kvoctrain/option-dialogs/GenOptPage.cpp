@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -63,7 +66,7 @@ GenOptPage::GenOptPage
   connect( hb_percent, SIGNAL(clicked()), SLOT(slotHBpercent()) );
   connect( hb_auto, SIGNAL(clicked()), SLOT(slotHBauto()) );
 
-  connect( e_btime, SIGNAL(textChanged(const char*)), SLOT(slotChangeBTime(const char*)) );
+  connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
 
   btime = _btime;
   smart = _smart;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -57,9 +60,9 @@ AdjEntryPage::AdjEntryPage
    connect( lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
    connect( lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
 
-   connect( lev1Field, SIGNAL(textChanged(const char*)), SLOT(lev1Changed(const char*)) );
-   connect( lev2Field, SIGNAL(textChanged(const char*)), SLOT(lev2Changed(const char*)) );
-   connect( lev3Field, SIGNAL(textChanged(const char*)), SLOT(lev3Changed(const char*)) );
+   connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
+   connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
+   connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
    lev1Label->setBuddy(lev1Field);
    lev2Label->setBuddy(lev2Field);

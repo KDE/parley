@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -84,8 +87,8 @@ FromToEntryPage::FromToEntryPage
 	connect( qcount_line, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( fauxami_line, SIGNAL(returnPressed()), SLOT(accept()) );
 
-	connect( bcount_line, SIGNAL(textChanged(const QString&)), SLOT(slotBCount(const QString&)) );
-	connect( qcount_line, SIGNAL(textChanged(const QString&)), SLOT(slotQCount(const QString&)) );
+	connect( bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)) );
+	connect( qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)) );
 	connect( fauxami_line, SIGNAL(textChanged(const QString&)), SLOT(slotFauxAmiSelected(const QString&)) );
 
 	connect( never, SIGNAL(clicked()), SLOT(slotNever()) );
