@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.5  2002/04/21 13:18:51  arnold
+  fixed escaping from "<" to &lt;
+
   Revision 1.4  2002/04/19 09:12:11  arnold
   xml structure now more conforming
 
@@ -40,7 +43,7 @@
   
   You should have received a copy of the GNU Library General Public License
   along with this program; if not, write to the Free Software
-  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 */
 

@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.1  2001/10/05 15:43:20  arnold
+  import of version 0.7.0pre8 to kde-edu
+
 
   -----------------------------------------------------------------------
 
@@ -26,7 +29,7 @@
   
   You should have received a copy of the GNU Library General Public License
   along with this program; if not, write to the Free Software
-  Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+  Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 
 #include "XmlTokenizer.h"
