@@ -62,7 +62,6 @@
 
 #define      CFG_GENERAL              "General"
 #define       CFG_LASTFILE             "LastFile"
-#define       CFG_SEPARATOR            "Separator"
 #define       CFG_PASTEORDER           "PasteOrder"
 #define       CFG_ENTRIESLESSON        "EntriesPerLesson"
 #define       CFG_BACKTIME             "BackupTime"

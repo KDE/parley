@@ -91,7 +91,7 @@ PasteOptPage::PasteOptPage
   connect( item_down, SIGNAL(clicked()), SLOT(slotItemDown()) );
   connect( item_skip, SIGNAL(clicked()), SLOT(slotItemSkip()) );
   connect( item_up, SIGNAL(clicked()), SLOT(slotItemUp()) );
-  connect( d_sep, SIGNAL(highlighted(int)), SLOT(slotSelectSep(int)) );
+  connect( kcfg_separator, SIGNAL(highlighted(int)), SLOT(slotSelectSep(int)) );
   connect( order_list, SIGNAL(highlighted(int)), SLOT(slotSelectOrder(int)) );
 
 
@@ -105,13 +105,13 @@ PasteOptPage::PasteOptPage
   while (*seps) {
     if (*sepid == sep)
       sel = seps - separator_name;
-    d_sep->insertItem (i18n(*seps));
+    kcfg_separator->insertItem (i18n(*seps));
     seps++;
     sepid++;
   }
-  d_sep->setSizeLimit( seps - separator_name );
-  d_sep->setCurrentItem(sel);
-  label_sep->setBuddy(d_sep);
+  kcfg_separator->setSizeLimit( seps - separator_name );
+  kcfg_separator->setCurrentItem(sel);
+  label_sep->setBuddy(kcfg_separator);//could be done in the ui file
 
   order_list->clear();
   for (int i = 0; i < (int) paste_list.count(); i++) {
@@ -145,7 +145,7 @@ PasteOptPage::PasteOptPage
 
 void PasteOptPage::initFocus() const
 {
-  d_sep->setFocus();
+  kcfg_separator->setFocus();
 }
 
 

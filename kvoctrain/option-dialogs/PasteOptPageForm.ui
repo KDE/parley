@@ -128,7 +128,13 @@
                 </widget>
                 <widget class="QComboBox" row="0" column="1">
                     <property name="name">
-                        <cstring>d_sep</cstring>
+                        <cstring>kcfg_separator</cstring>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Choose which separator you want to use to separate your data.</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Choose one separator which will divide the parts of an expression when transferring data from or to an other application over the clipboard.</string>
                     </property>
                 </widget>
                 <spacer row="0" column="2">
@@ -153,7 +159,7 @@
     </hbox>
 </widget>
 <tabstops>
-    <tabstop>d_sep</tabstop>
+    <tabstop>kcfg_separator</tabstop>
     <tabstop>kcfg_useCurrent</tabstop>
     <tabstop>order_list</tabstop>
     <tabstop>item_up</tabstop>

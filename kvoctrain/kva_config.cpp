@@ -96,7 +96,7 @@ void kvoctrainApp::saveOptions(bool all)
       s = TAB_REP;
     if (separator == "  ")
       s = SPC_REP;
-    config->writeEntry(CFG_SEPARATOR, s);
+    Prefs::setSeparator(s);
     config->writeEntry(CFG_PASTEORDER, paste_order);
     Prefs::setUseCurrent(useCurrent);
     config->writeEntry(CFG_ENTRIESLESSON, entriesPerLesson);
@@ -206,7 +206,7 @@ void kvoctrainApp::readOptions()
   paste_order = config->readListEntry(CFG_PASTEORDER);
   useCurrent = Prefs::useCurrent();
   entriesPerLesson = config->readNumEntry(CFG_ENTRIESLESSON, 50);
-  separator = config->readEntry(CFG_SEPARATOR, "\t");
+  separator = Prefs::separator();
   if (separator == TAB_REP)
     separator = "\t";
   else if (separator == SPC_REP)

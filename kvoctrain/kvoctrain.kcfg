@@ -11,6 +11,10 @@
       <label>If true, it uses the same language order than the current document for the clipboard</label>
       <default code="true">true</default>
     </entry>
+    <entry name="Separator" type="String">
+      <label>If true, it uses the same language order than the current document for the clipboard</label>
+      <default code="true">"\t"</default>
+    </entry>
    </group>
   <group name="QueryProperties">
    <entry name="Block" type="Bool">
