@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:27:55  arnold
     removed compatibility for kde1
 
@@ -91,7 +94,7 @@ DocPropsDlg::DocPropsDlg
 	:
 	Inherited( parent, name, true )
 {
-  setCaption( kapp->makeStdCaption(i18n("Document properties")));
+  setCaption( kapp->makeStdCaption(i18n("Document Properties")));
 
   lessOptPage = new LessOptPage (lessons, doc, this, name);
   titleOptPage = new TitlePage (title, author, license, doc_remark, this, name);

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.12  2001/12/13 18:37:28  arnold
     fixed and improved query dialogs
 
@@ -126,7 +129,7 @@ AdjQueryDlg::AdjQueryDlg
    connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
    qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Comparison training")));
+   setCaption (kapp->makeStdCaption(i18n("Comparison Training")));
 
    lev1Label->setBuddy(lev1Field);
    lev2Label->setBuddy(lev2Field);

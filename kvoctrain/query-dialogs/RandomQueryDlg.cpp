@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.8  2001/12/07 19:21:36  arnold
     included multiple choice fields and false friend into query
 
@@ -125,7 +128,7 @@ RandomQueryDlg::RandomQueryDlg(
 
    kv_doc = 0;
    qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Random query")));
+   setCaption (kapp->makeStdCaption(i18n("Random Query")));
    setQuery (org, trans, entry, orgcol, transcol,
              q_cycle, q_num, q_start,
              exp, doc, mqtime, show, type_to);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:13:19  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:30:21  arnold
     removed compatibility for kde1
 
@@ -79,7 +82,7 @@ StatistikDlg::StatistikDlg
 	:
 	Inherited( parent, name, true )
 {
-  setCaption( kapp->makeStdCaption(i18n("Document statistics")));
+  setCaption( kapp->makeStdCaption(i18n("Document Statistics")));
 
   GenStatPage *gspage = new GenStatPage (doc, this, name);
   addTab( gspage, i18n("General"));

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:10:47  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/10 22:27:30  arnold
     removed compatibility for kde1
 
@@ -71,7 +74,7 @@ NumLessonDlg::NumLessonDlg
       s.setNum (input);
       e_title->setText(s);
       setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-      setCaption( kapp->makeStdCaption(i18n("Assign lessons")));
+      setCaption( kapp->makeStdCaption(i18n("Assign Lessons")));
 }
 
 

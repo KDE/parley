@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.10  2001/12/08 10:29:16  arnold
     fixed timeout behaviour
 
@@ -117,7 +120,7 @@ ArtQueryDlg::ArtQueryDlg
    connect( male, SIGNAL(clicked()), SLOT(slotMaleClicked()) );
    connect( rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()) );
 
-   setCaption(kapp->makeStdCaption(i18n("Article training")));
+   setCaption(kapp->makeStdCaption(i18n("Article Training")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, articles, mqtime, _show, type_to);

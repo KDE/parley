@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/10 22:27:55  arnold
     removed compatibility for kde1
 
@@ -121,7 +124,7 @@ LangPropPage::LangPropPage
    connect( thirdS_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
    connect( thirdP_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
 
-   setCaption(i18n("Language properties" ));
+   setCaption(i18n("Language Properties" ));
    conjugations = conjug;
 
    first_plural->setText (conjugations.pers1Plural (CONJ_PREFIX));

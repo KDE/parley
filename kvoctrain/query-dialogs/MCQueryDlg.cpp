@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.12  2001/12/07 19:21:36  arnold
     included multiple choice fields and false friend into query
 
@@ -130,7 +133,7 @@ MCQueryDlg::MCQueryDlg(
    connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
 
    qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Multiple choice")));
+   setCaption (kapp->makeStdCaption(i18n("Multiple Choice")));
    setQuery (org, trans, entry, orgcol, transcol,
              q_cycle, q_num, q_start,
              exp, doc, mqtime, _show, type_to);

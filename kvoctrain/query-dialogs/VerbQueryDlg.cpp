@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.11  2001/12/08 10:29:16  arnold
     fixed timeout behaviour
 
@@ -139,7 +142,7 @@ VerbQueryDlg::VerbQueryDlg
 	connect( p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)) );
 
    qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Training with verbs")));
+   setCaption (kapp->makeStdCaption(i18n("Training With Verbs")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, prefix, conjug, mqtime, _show, type_to);

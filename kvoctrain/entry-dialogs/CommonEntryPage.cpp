@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.11  2001/12/13 18:39:29  arnold
     added phonetic alphabet stuff
 
@@ -412,7 +415,7 @@ void CommonEntryPage::invokeUsageDlg()
   int old_usages = (int) doc->getUsageDescr().size();
   QTabDialog usageOpt(0, "", true);
   usageOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-  usageOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined usage labels")));
+  usageOpt.setCaption (kapp->makeStdCaption(i18n("Edit User Defined Usage Labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
   usageOpt.addTab( usageOptPage, _DocDlg_USAGES);
@@ -444,7 +447,7 @@ void CommonEntryPage::invokeLessDlg()
   QTabDialog lessOpt(0, "", true);
   lessOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
-  lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit lesson names")));
+  lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit Lesson Names")));
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
   lessOpt.addTab( lessOptPage, _DocDlg_LESSONS);
 
@@ -474,7 +477,7 @@ void CommonEntryPage::invokeTypeDlg()
   int old_types = (int) doc->getTypeDescr().size();
   QTabDialog typeOpt(0, "", true);
   typeOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-  typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined types")));
+  typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit User Defined Types")));
   TypeOptPage *typeOptPage
     = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");
   typeOpt.addTab( typeOptPage, _DocDlg_TYPES);

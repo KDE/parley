@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -74,7 +77,7 @@ TitlePage::TitlePage
 	connect( e_license, SIGNAL(returnPressed()), SLOT(accept()) );
 //	connect( e_author, SIGNAL(returnPressed()), SLOT(accept()) );
 
-        setCaption (kapp->makeStdCaption(i18n("Input title and author")));
+        setCaption (kapp->makeStdCaption(i18n("Input Title and Author")));
         title = _title;
         author = _author;
         license = _license;

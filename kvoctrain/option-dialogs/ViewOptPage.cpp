@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/26 15:12:15  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.10  2001/12/13 18:40:12  arnold
     added phonetic alphabet stuff
 
@@ -107,7 +110,7 @@ ViewOptPage::ViewOptPage
    connect( b_choose, SIGNAL(clicked()), SLOT(slotChooseFont()) );
    connect( b_choose_ipa, SIGNAL(clicked()), SLOT(slotChooseIPAFont()) );
 
-   setCaption( kapp->makeStdCaption(i18n("Document properties" )));
+   setCaption( kapp->makeStdCaption(i18n("Document Properties" )));
 
    e_font->setText (QString("%1 %2pt").arg(tablefont.family()).arg(tablefont.pointSize()));
    e_ipa_font->setText (QString("%1 %2pt").arg(ipa_font.family()).arg(ipa_font.pointSize()));
@@ -135,7 +138,7 @@ void ViewOptPage::slotChooseFont()
 {
    KFontDialog fdlg (0L, 0L, false, true);
    fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-   fdlg.setCaption(i18n("Choose table font"));
+   fdlg.setCaption(i18n("Choose Table Font"));
    fdlg.setFont(tablefont);
    if (fdlg.exec() == QDialog::Accepted ) {
      tablefont = fdlg.font();
@@ -151,7 +154,7 @@ void ViewOptPage::slotChooseIPAFont()
 {
    KFontDialog fdlg (0L, 0L, false, true);
    fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-   fdlg.setCaption(i18n("Choose IPA font"));
+   fdlg.setCaption(i18n("Choose IPA Font"));
    fdlg.setFont(ipa_font);
    if (fdlg.exec() == QDialog::Accepted ) {
      ipa_font = fdlg.font();

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/26 15:11:08  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.8  2001/11/10 22:27:55  arnold
     removed compatibility for kde1
 
@@ -88,7 +91,7 @@ DocPropsLangDlg::DocPropsLangDlg
 	:
 	Inherited( parent, name, true )
 {
-  setCaption( kapp->makeStdCaption(i18n("Language properties")));
+  setCaption( kapp->makeStdCaption(i18n("Language Properties")));
 
   vector<QString> tabs;
   vector<QString> own_tabs;
