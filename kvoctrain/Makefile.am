@@ -2,24 +2,24 @@
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = \
-    header.cpp kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
- main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
- kva_io.cpp kva_clip.cpp kva_query.cpp
+   header.cpp kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
+   main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
+   kva_io.cpp kva_clip.cpp kva_query.cpp
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
 spotlight2kvtml_LDADD = -lkdecore 
 
 kvoctrain_LDADD =   -lkfile -lkhtml \
-                    ./docprop-dialogs/libdocpropdlg.a \
-                    ./entry-dialogs/libentrydlg.a \
-                    ./kvt-core/libkvoctraincore.a \
-                    ./kvt-core/kvt-xml/libkvtxml.a \
-                    ./option-dialogs/liboptiondlg.a \
-                    ./query-dialogs/libquerydlg.a \
-                    ./queryoption-dialogs/libqueryoptiondlg.a \
-                    ./statistik-dialogs/libstatdlg.a \
-                    ./common-dialogs/libcommondlg.la 
+                    ./docprop-dialogs/libdocpropdlg.la \
+                    ./entry-dialogs/libentrydlg.la \
+                    ./kvt-core/libkvoctraincore.la \
+                    ./kvt-core/kvt-xml/libkvtxml.la \
+                    ./option-dialogs/liboptiondlg.la \
+                    ./query-dialogs/libquerydlg.la \
+                    ./queryoption-dialogs/libqueryoptiondlg.la \
+                    ./statistik-dialogs/libstatdlg.la \
+                    ./common-dialogs/libcommondlg.la
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs entry-dialogs docprop-dialogs kvt-core \
@@ -40,9 +40,6 @@ APPS_FILES = pics/exit.xpm pics/fonts.xpm pics/kde.xpm pics/stop.xpm \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
  pics/sf-mail.xpm pics/sf-bugs.xpm pics/sf-home.xpm
  
-refresh-dlg:
-	find . -name *.dlg  -exec touch {} \;
-
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Applications/
 	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(kde_appsdir)/Applications/kvoctrain.desktop
@@ -87,7 +84,7 @@ spotlight2kvtml_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 CLEANFILES = *.i *~
 
 # them while "make clean", use CLEANFILES
-DISTCLEANFILES = $(kvoctrain_METASOURCES)
+#DISTCLEANFILES = $(kvoctrain_METASOURCES)
 
 i18n_files=  query-dialogs/*.cpp \
              entry-dialogs/*.cpp \
@@ -114,9 +111,3 @@ messages:
 	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i
 	$(XGETTEXT) `ls $(i18n_files)` -o $(podir)/kvoctrain.pot
 	-rm *.i
-
-doc:
-	list='$(SUBDIRS)'; for subdir in $$list; do \
-	  test "$$subdir" = . || (cd $$subdir && $(MAKE) doc); \
-	done
-
