@@ -1094,14 +1094,14 @@ to choose which of the translations you want learn from.</para>
 <term><guimenuitem></guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
-linkend="options6-dlg">threshholds</link>.</para></listitem>
+linkend="threshholds">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guimenuitem></guimenuitem></term>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions according
-to your <link linkend="options6-dlg">threshholds</link>.</para></listitem>
+to your <link linkend="threshholds">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1364,763 +1364,633 @@ system you will be warned.</para></listitem>
 equally.</para>
 
 <sect2 id="options1-dlg">
-<sect1>General options<p>
+<title>General options</title>
 
-  <figure>
-    <eps file="options1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="options1-dlg.png"
-     ALT="[general options dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="options1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="options1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[general options dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Backup interval</guilabel></term>
-<listitem><para>
-    &kvoctrain; will automatically save the document if it was modified
-    after the period you enter here.
-
-    As a side effect it also does not ask for confirmation to save
-    when quiting with modified data but saves the vocabulary without asking.
-    
-    A number of 0 stops this behaviour.
-</para></listitem>
+<listitem><para>&kvoctrain; will automatically save the document if it
+was modified after the period you enter here.</para>
+<para>As a side effect it also does not ask for confirmation to save when
+quiting with modified data but saves the vocabulary without asking.</para>
+<para>A number of 0 stops this behaviour.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Smart appending</guilabel></term>
-<listitem><para>
-    If this feature is activated, you will repeatedly be prompted with the
-    entry dialog. After entering the first original you have to enter the corresponding
-    translations. Afterwards you proceed with the next original and its 
-    translations until you stop by pressing the esc key.
-    <p>
-    When you are in this mode and modify the lesson in the dialog it has 
-    the same meaning as selecting the lesson in the toolbar.
-    This way it is preselected when the next entry dialag appears.
-    <p>
-    The required lesson will have to be created in advance in the document
-    settings.
-</para></listitem>
+<listitem><para>If this feature is activated, you will repeatedly be
+prompted with the entry dialog. After entering the first original you
+have to enter the corresponding translations. Afterwards you proceed
+with the next original and its translations until you stop by pressing
+the esc key.</para>
+<para>When you are in this mode and modify the lesson in the dialog it
+has the same meaning as selecting the lesson in the toolbar.  This way
+it is preselected when the next entry dialag appears.</para>
+<para>The required lesson will have to be created in advance in the
+document settings.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>save options automatically</guilabel></term>
-<listitem><para>
-    When check, all options are save upon termination of &kvoctrain;.
-    Otherwise you have to select the according menu item.
-</para></listitem>
+<listitem><para>When check, all options are save upon termination
+of &kvoctrain;. Otherwise you have to select the according menu
+item.</para></listitem>
 </varlistentry>
  
 <varlistentry>
 <term><guilabel>Column resizing</guilabel></term>
-<listitem><para>
-    When you resize your main window it is convenient, if the columns resize
-    automatically, too.
+<listitem><para>When you resize your main window it is convenient,
+if the columns resize automatically, too.</para>
+<para>This is possible in two manners:
+  <variablelist>
+  <varlistentry>
+  <term><guilabel>Automatic</guilabel></term>
+  <listitem><para>&kvoctrain; makes each columns the same width except
+  the leftmost with the lesson names which has half the size of the
+  others.</para></listitem>
+  </varlistentry>
 
-    This is possible in two manners:
-    <itemizedlist>
-      <listitem><para></para></listitem>
-        Automatic: &kvoctrain; makes each columns the same width except
-        the leftmost with the lesson names which has half the size of the
-        others.
-
-      <listitem><para></para></listitem>
-        Percent: The widths of the columns are altered with the same
-        factor the main window grew or shrunk.
-    </itemizedlist>
-
-    If the last button labeled "fixed" is set, no resizing is done.
-</para></listitem>
+  <varlistentry>
+  <term><guilabel>Percent</guilabel></term>
+  <listitem><para>The widths of the columns are altered with the same
+  factor the main window grew or shrunk.</para></listitem>
+  </varlistentry>
+  </variablelist></para>
+<para>If the last button labeled "fixed" is set, no resizing is
+done.</para></listitem>
 </varlistentry>
 </variablelist>
 
-<p>&nbsp;<p>
+</sect2>
 
-<sect1>Available languages<p>
+<sect2 id="options2-dlg">
+<title>Available languages</title>
 
-<label id="options2-dlg">
-  <figure>
-    <eps file="options2-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="options2-dlg.png"
-     ALT="[language options dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="options2-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[language options dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Language code</guilabel></term>
-<listitem><para>
-    Each column can be assigned a language. This is internally done
-    with the usual
-    <htmlurl url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html"
-    name="international language codes"> e.g. <literal>en</literal>, <literal>de</literal>, <literal>it</literal>.
-    These codes are also stored with the document.
-
-    You should always use the correct codes to be able to share
-    vocabularies with others. Merging vocabularies also relies on the
-    correct language codes.
-</para></listitem>
+<listitem><para>Each column can be assigned a
+language. This is internally done with the usual <ulink
+url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">international
+language codes</ulink> e.g. <literal>en</literal>, <literal>de</literal>,
+<literal>it</literal>. These codes are also stored with the
+document.</para>
+<para>You should always use the correct codes to be able to share
+vocabularies with others. Merging vocabularies also relies on the correct
+language codes.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Alternative</guilabel></term>
-<listitem><para>
-    Sometimes it may be useful to have a second language code because
-    some languages have the usual short code and one or two longer codes.
-    For german for example it is common to use <literal>de</literal> but either <literal>deu</literal> or <literal>ger</literal>
-    is also possible according to ISO639-2.
-</para></listitem>
+<listitem><para>Sometimes it may be useful to have a second language code
+because some languages have the usual short code and one or two longer
+codes. For German for example it is common to use <literal>de</literal>
+but either <literal>deu</literal> or <literal>ger</literal> is also
+possible according to ISO639-2.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Language</guilabel></term>
-<listitem><para>
-    Here you can give the language code a descriptive name in your own
-    language which is shown in the table header.
-</para></listitem>
+<listitem><para>Here you can give the language code a descriptive name
+in your own language which is shown in the table header.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Picture in header</guilabel></term>
-<listitem><para>
-    Additionally you can add a nice icon to your language which is shown in
-    the table header button.
-
-    KDE2 stores those pixmaps under 
-    <tt>$KDEDIR/share/locale/l10n/[language-code]</tt>.
-</para></listitem>
+<listitem><para>Additionally you can add a nice icon to your language
+which is shown in the table header button.</para>
+<para>KDE2 stores those pixmaps under
+<filename>$<envar>KDEDIR</envar>/share/locale/l10n/<replaceable>language-code</replaceable></filename>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>New</guilabel></term>
-<listitem><para>
-    After entering a new language in the according field, you use this button to
-    append it to your list. After that you need to fill in the fields
-    for the long name and the picture for the header button.
-</para></listitem>
+<listitem><para>After entering a new language in the according field,
+you use this button to append it to your list. After that you need to
+fill in the fields for the long name and the picture for the header
+button.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Delete</guilabel></term>
-<listitem><para>
-    Deletes the currently selected language code in the list.
-</para></listitem>
+<listitem><para>Deletes the currently selected language code in the
+list.</para></listitem>
 </varlistentry>
-    
-
 </variablelist>
 
-<p>&nbsp;<p>
+</sect2>
 
-<sect1>Table View<p>
+<sect2 id="options3-dlg">
+<title>Table View</title>
 
-<label id="options3-dlg">
-
-  <figure>
-    <eps file="options3-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="options3-dlg.png"
-     ALT="[view options dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="options3-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[view options dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Choose Font</guilabel></term>
-<listitem><para>
-    Lets you choose a font to display the vocabulary.
- 
-    Take into account that not all fonts provide bold face which is
-    used to represent the "selected" state.
-</para></listitem>
+<listitem><para>Lets you choose a font to display the vocabulary.</para>
+<para>Take into account that not all fonts provide bold face which is
+used to represent the "selected" state.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Grade colors</guilabel></term>
-<listitem><para>
-    Every grade can be assigned an individual color. For example I prefer
-    green for best grade and red for worst.
-
-    If you don't want any colors but just black on white, uncheck the
-    according check box.
-</para></listitem>
+<listitem><para>Every grade can be assigned an individual color. For
+example I prefer green for best grade and red for worst.</para>
+<para>If you don't want any colors but just black on white, uncheck the
+according check box.</para></listitem>
 </varlistentry>
 </variablelist>
 
-<p>&nbsp;<p>
+</sect2>
 
-<sect1>Clipboard<p>
+<sect2 id="options4-dlg">
+<title>Clipboard</title>
 
-<label id="options4-dlg">
-
-  <figure>
-    <eps file="options4-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="options4-dlg.png"
-     ALT="[clipboard options dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="options4-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[clipboard options dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
- <label id="cut-n-paste">
-<varlistentry>
+<varlistentry id="cut-n-paste">
 <term><guilabel>Separator</guilabel></term>
-<listitem><para>
-    This is a sequence of one ore more characters which divide
-    the parts of an expression when transfering data from or to an other
-    application over the clipboard.
-
-    The most common item is TAB which uses the tabulator character.
-    Another possibility is to use the semicolon, if you want to export
-    data to a database file in CSV format.
-</para></listitem>
+<listitem><para>This is a sequence of one ore more characters which
+divide the parts of an expression when transfering data from or to an
+other application over the clipboard.</para>
+<para>The most common item is TAB which uses the tabulator
+character. Another possibility is to use the semicolon, if you want to
+export data to a database file in CSV format.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Order</guilabel></term>
-<listitem><para>
-    When pasting via the clipboard &kvoctrain; does not know which
-    languages the different fields belong to and just would insert them
-    from left to right.
-
-    To facilitate correct behaviour, if you arranged your vocabulary
-    in an other way, you can determine your desired order with this area.
-
-    The buttons right to the list box move the current language up or down.
-    "Skip" will insert a hole which means that the later calculated field
-    from the clipboard is skipped.
-</para></listitem>
+<listitem><para>When pasting via the clipboard &kvoctrain; does not know
+which languages the different fields belong to and just would insert
+them from left to right.</para>
+<para>To facilitate correct behaviour, if you arranged your vocabulary in
+an other way, you can determine your desired order with this area.</para>
+<para>The buttons right to the list box move the current language up or
+down. <guibutton>Skip</guibutton> will insert a hole which means that the
+later calculated field from the clipboard is skipped.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Use current document</guilabel></term>
-<listitem><para>
-    When checked, the items in the clipboard are assumend to be in the same
-    language order as the current document.
-</para></listitem>
+<listitem><para>When checked, the items in the clipboard are assumend to
+be in the same language order as the current document.</para></listitem>
 </varlistentry>
 </variablelist>
 
+</sect2>
+</sect1>
 
+<sect1 id="q-opt-dlg">
+<title>Query options dialog</title>
 
-<sect>Query options dialog<p>
+<sect2 id="q-opt1-dlg.eps">
+<title>Option groups</title>
 
-<sect1>Option groups<p>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="q-opt1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[option groups]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-  <figure>
-    <eps file="q-opt1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="q-opt1-dlg.png"
-     ALT="[option groups]">
-  </figure>
+<para>Depending on the dictionary or the time you have to learn the
+vocabulary different settings may be optimal.</para>
 
-Depending on the dictionary or the time you have to learn the vocabulary
-different settings may be optimal.
-
-For that reason all the settings of the pages of this dialog
-can be summarized under an arbitrarilly chosen name.
-You can store the settings and recall them whenever you want.
+<para>For that reason all the settings of the pages of this dialog can
+be summarized under an arbitrarilly chosen name.  You can store the
+settings and recall them whenever you want.</para>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Retain</guilabel></term>
-<listitem><para>
-    Retains the settings of the other pages under the current name.
-
-    Saving to disk is done as with all the other settings using the
-    according menu item of the options menu.
-</para></listitem>
+<listitem><para>Retains the settings of the other pages under the
+current name.</para>
+<para>Saving to disk is done as with all the other settings using the
+according menu item of the options menu.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Recall</guilabel></term>
-<listitem><para>
-    Recalls the settings from the group in the list.
-</para></listitem>
+<listitem><para>Recalls the settings from the group in the
+list.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>New</guilabel></term>
-<listitem><para>
-    Creates a new group with the current settings.
-</para></listitem>
+<listitem><para>Creates a new group with the current
+settings.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Delete</guilabel></term>
-<listitem><para>
-    Removes the current group.
-</para></listitem>
+<listitem><para>Removes the current group.</para></listitem>
 </varlistentry>
 </variablelist>
  
-<p>&nbsp;<p>
+</sect2>
 
+<sect2 id="q-opt2-dlg">
+<title>General query options</title>
 
-
-<sect1>General query options<p>
-
-<label id="q-opt2-dlg">
-  <figure>
-    <eps file="q-opt2-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="q-opt2-dlg.png"
-     ALT="[query options]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="q-opt2-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[general query options]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
-
 <varlistentry>
 <term><guilabel>Time per query</guilabel></term>
-<listitem><para>
-    Her you can influence the behaviour of &kvoctrain; when you don't know
-    the answer in time.
-
-    <itemizedlist>
-      <listitem><para></para></listitem>
-        You may set a time limit &kvoctrain; grants you to remember
-        the correct answer.
-    
-      <listitem><para></para></listitem>
-        Additionally you can tell &kvoctrain; what to do when this limit is
-        reached. Except of waiting unlimited time you may select be shown the
-        solution or to continue immediately with the next question.
-    
-      <listitem><para></para></listitem>
-        Furthermore you can switch on a little progess bar to shown the remaining
-        time for the current answer.
-    </itemizedlist>
-    
-    If you exceeed the time limit several times in series
-    &kvoctrain; will assume that there is currently no person in front 
-    of the screen and stop the query.
-</para></listitem>
+<listitem><para>Here you can influence the behaviour of &kvoctrain;
+when you don't know the answer in time.
+  <itemizedlist>
+  <listitem><para>You may set a time limit &kvoctrain; grants you to
+  remember the correct answer.</para></listitem>
+  <listitem><para>Additionally you can tell &kvoctrain; what to do
+  when this limit is reached. Except of waiting unlimited time you may
+  select be shown the solution or to continue immediately with the next
+  question.</para></listitem>
+  <listitem><para>Furthermore you can switch on a little progess bar to
+  shown the remaining time for the current answer.</para></listitem>
+  </itemizedlist></para>
+<para>If you exceed the time limit several times in series &kvoctrain;
+will assume that there is currently no person in front of the screen
+and stop the query.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Swap direction randomly</guilabel></term>
-<listitem><para>
-    Usually a query is only in one direction, depending on the column you
-    used to start the query. With this checkbox you can determine, that the 
-    directions are altered randomly.
-</para></listitem>
+<listitem><para>Usually a query is only in one direction, depending on the
+column you used to start the query. With this checkbox you can determine,
+that the directions are altered randomly.</para></listitem>
 </varlistentry>
-
 </variablelist>
 
-<p>&nbsp;<p>
+</sect2>
 
-<sect1>Query threshholds<p>
+<sect2 id="q-opt3-dlg">
+<title>Query threshholds</title>
 
-<label id="q-opt3-dlg">
-  <figure>
-    <eps file="q-opt3-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="q-opt3-dlg.png"
-     ALT="[query threshholds]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="q-opt3-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[query threshholds]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
- <label id="threshholds">
-
-With this dialog you determine which entries are included in the next
-selection for random query.
+<para id="threshholds">With this dialog you determine which entries are
+included in the next selection for random query.</para>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Lesson</guilabel></term>
-<listitem><para>
-    Designate which lessons to include or leave out. An arbitrary number of
-    lessons can be selected for the calculation.
-
-    For convenience there are two additional buttons to selected all
-    entries or none.
-
-    Starting with version 0.7.0 this is stored with the document instead
-    of of storing globally.
-</para></listitem>
+<listitem><para>Designate which lessons to include or leave out. An
+arbitrary number of lessons can be selected for the calculation.</para>
+<para>For convenience there are two additional buttons to selected all
+entries or none.</para>
+<para>Starting with version 0.7.0 this is stored with the document
+instead of storing globally.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Word type</guilabel></term>
-<listitem><para>
-    Select the word type. &kvoctrain; does not pay any attention
-    to subtypes.
-</para></listitem>
+<listitem><para>Select the word type. &kvoctrain; does not pay any
+attention to subtypes.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Grade</guilabel></term>
-<listitem><para>
-    The same for the grade.
-</para></listitem>
+<listitem><para>The same for the grade.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Query count</guilabel></term>
-<listitem><para>
-    Choose how often the selection must be queried.
-</para></listitem>
+<listitem><para>Choose how often the selection must be
+queried.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Bad count</guilabel></term>
-<listitem><para>
-    The same for the amount of times the entry was not known.
-</para></listitem>
+<listitem><para>The same for the amount of times the entry was not
+known.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Last query</guilabel></term>
-<listitem><para>
-   Include queries before or within the given time span.
-
-   Entries which have not been queried are always included if you choose <em/before/.
-</para></listitem>
+<listitem><para>Include queries before or within the given time span.</para>
+<para>Entries which have not been queried are always included if you
+choose <emphasis>before</emphasis>.</para></listitem>
 </varlistentry>
 </variablelist>
 
+<para>Entries are only included if all conditions are fulfilled. If you
+want a property to be ignored, choose "Dont care" for it.</para>
 
-Entries are only included if all conditions are fulfilled. If you want a
-property to be ignored, choose "Dont care" for it.
+</sect2>
 
-<p>&nbsp;<p>
+<sect2 id="q-opt4-dlg">
+<title>Blocking and expiring</title>
 
-<sect1>Blocking and expiring<p>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="q-opt4-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[query blocking]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-<label id="q-opt4-dlg">
-  <figure>
-    <eps file="q-opt4-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="544"
-     HEIGHT="462"
-     SRC="q-opt4-dlg.png"
-     ALT="[query blocking]">
-  </figure>
+<para>On this page you select the time, an known entry is excluded from
+queries resp. when it must be queried at the latest.</para>
 
-On this page you select the time, an known entry is excluded from queries
-resp. when it must be queried at the latest.
-
-There are two conditions which must be fullfilled, otherwise you will
-be shown an according warning:
+<para>There are two conditions which must be fullfilled, otherwise you
+will be shown an according warning:</para>
 
 <itemizedlist>
- <listitem><para>The time must increase from level to level</para></listitem>
+<listitem><para>The time must increase from level to
+level</para></listitem>
 
- <listitem><para>The time for blocking must be less than for expiring in the same level.</para></listitem>
+<listitem><para>The time for blocking must be less than for expiring in
+the same level.</para></listitem>
 </itemizedlist>
 
-If one of these functions is active, the threshholds from the previous dialog
-page (grade, count of queries and last date) are not taken into account.
+<para>If one of these functions is active, the threshholds from the
+previous dialog page (grade, count of queries and last date) are not
+taken into account.</para>
 
+</sect2>
+</sect1>
 
+<sect1 id="entry-dlg">
+<title>Entry dialog</title>
 
+<sect2 id="entry1-dlg">
+<title>General properties</title>
 
+<para>Here you enter a new expression into a table cell or modify existing
+entries and their properties.</para>
 
-<sect>Entry dialog<p>
-
-<label id="entry-dlg">
-
-<sect1>General properties<p>
-
-Here you enter a new expression into a table cell or modify existing entries
-and their properties.
-
-<p>
-  <figure>
-    <eps file="entry1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="512"
-     SRC="entry1-dlg.png"
-     ALT="[entry dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="entry1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="entry1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[entry dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Expression</guilabel></term>
-<listitem><para>
-    Contains your data.
-</para></listitem>
+<listitem><para>Contains your data.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Pronunciation</guilabel></term>
-<listitem><para>
-    In this field you can describe how the word is pronunciated.
-    Currently this is only possible in ascii characters. Maybe I can find a 
-    way to do this with the phonetic alphabet.
-</para></listitem>
+<listitem><para>In this field you can describe how the word is
+pronunciated.</para>
+<para>Currently this is only possible in ascii characters. Maybe I can
+find a way to do this with the phonetic alphabet.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Type</guilabel></term>
-<listitem><para>
-    Lets you choose one of the predefined types for your expression.
-    If you change the type for an entry, all the other entries
-    in that row will be assigned the new type.
-    
-    See the table for all <htmlurl name="available types" url="#types">.
-</para></listitem>
+<listitem><para>Lets you choose one of the predefined types for your
+expression. If you change the type for an entry, all the other entries
+in that row will be assigned the new type.</para>
+<para>See the table for all <link linkend="types">available
+types</link>.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Subtype</guilabel></term>
-<listitem><para>
-    Some types also include subtypes. If there is no subtype available
-    this field is disabled.
-
-    Every entry in a row can have a different subtype. This is useful
-    for nouns as the gender of a noun may be different in different
-    languages.
-
-    The button right to this field invokes the according page from the
-    document properties dialog so you can enter a new type immediately.
-</para></listitem>
+<listitem><para>Some types also include subtypes. If there is no subtype
+available this field is disabled.</para>
+<para>Every entry in a row can have a different subtype. This is
+useful for nouns as the gender of a noun may be different in different
+languages.</para>
+<para>The button right to this field invokes the according page
+from the document properties dialog so you can enter a new type
+immediately.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Usage label</guilabel></term>
-<listitem><para>
-    One or more usage labels can be selected to describe the usual usage
-    of the expression, e.g. medicine or chemistry.
-
-    The button on the right also invokes the document properties dialog
-    to enter a new usage label.
-</para></listitem>
+<listitem><para>One or more usage labels can be selected to describe
+the usual usage of the expression, e.g. medicine or chemistry.</para>
+<para>The button on the right also invokes the document properties dialog
+to enter a new usage label.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Lesson</guilabel></term>
-<listitem><para>
-    Selects the desired lesson.
-
-    The button on the right also invokes the document properties dialog
-    to enter a new lesson.
-</para></listitem>
+<listitem><para>Selects the desired lesson.</para>
+<para>The button on the right also invokes the document properties dialog
+to enter a new lesson.</para></listitem>
 </varlistentry>
 </variablelist>
 
-<p>
-   &nbsp;
-<p>
+</sect2>
 
-<sect1>Additional properties<p>
+<sect2 id="entry2-dlg">
+<title>Additional properties</title>
 
-Less important properties that did not find place on the previous page
-are located here.
+<para>Less important properties that did not find place on the previous
+page are located here.</para>
 
-For most of these fields there are special queries, too.
+<para>For most of these fields there are special queries, too.</para>
 
-<p>
-  <figure>
-    <eps file="entry2-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="512"
-     SRC="entry2-dlg.png"
-     ALT="[additional entry dialog]">
-  </figure>
-
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="entry2-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="entry2-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[additional entry dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Synonym</guilabel></term>
-<listitem><para>
-    Here you max enter words that have the same meaning as the expression.
-    There is also a query type for this expression.    
-</para></listitem>
+<listitem><para>Here you max enter words that have the same
+meaning as the expression. There is also a query type for this
+expression.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Antonym</guilabel></term>
-<listitem><para>
-    This is for words that have the opposite meaning.
-    This field can also be queried.
-</para></listitem>
+<listitem><para>This is for words that have the opposite meaning. This
+field can also be queried.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Example</guilabel></term>
-<listitem><para>
-    Additionally you may enter here an example sentence for the expression.
-    There is a simple query type which prompts you with the content of this 
-    field but with dots instead of the word in question.
-</para></listitem>
+<listitem><para>Additionally you may enter here an example sentence
+for the expression. There is a simple query type which prompts you
+with the content of this field but with dots instead of the word in
+question.</para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Remark</guilabel></term>
-<listitem><para>
-    This is an optional field to store additional information.
-</para></listitem>
+<listitem><para>This is an optional field to store additional
+information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Paraphrase</guilabel></term>
-<listitem><para>
-    Here you may enter a description in different words. There is also
-    a query type for this expression.
-</para></listitem>
+<listitem><para>Here you may enter a description in different words. There
+is also a query type for this expression.</para></listitem>
 </varlistentry>
 </variablelist>
 
-<p>
-   &nbsp;
-<p>
+</sect2>
 
-<sect1>Additional properties for verbs<p>
+<sect2 id="entry3-dlg">
+<title>Additional properties for verbs</title>
 
-This page is only accessible when you selected <tt/verb/ as word type.
+<para>This page is only accessible when you selected
+<guilabel>verb</guilabel> as word type.</para>
 
-<p>
-  <figure>
-    <eps file="entry3-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="512"
-     SRC="entry3-dlg.png"
-     ALT="[verb entry dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="entry3-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="entry3-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[verb entry dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
- For every tense &kvoctrain; knows you can enter the conjugations
- of the verb for the different persons. The tense can be selected from the
- list. After doing this the entry fields are updated
- accordingly.
+<para>For every tense &kvoctrain; knows you can enter the conjugations
+of the verb for the different persons. The tense can be selected from the
+list. After doing this the entry fields are updated accordingly.</para>
 
- Because some languages don't distinguish in the  3rd person plural
- you may use the according checkbox.
+<para>Because some languages don't distinguish in the 3rd person of the
+plural you may use the according checkbox.</para>
  
- <tt/Next/ searches for the next tense with already entered conjugations.
+<para><guibutton>Next</guibutton> searches for the next tense with
+already entered conjugations.</para>
 
-<p>
-   &nbsp;
-<p>
+</sect2>
 
-<sect1>Additional properties for adjectives<p>
+<sect2 id="entry4-dlg">
+<title>Additional properties for adjectives</title>
 
-This page is only accessible when you selected <tt/adjective/ as word type.
+<para>This page is only accessible when you selected
+<guilabel>adjective</guilabel> as word type.</para>
 
-<p>
-  <figure>
-    <eps file="entry4-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="512"
-     SRC="entry4-dlg.png"
-     ALT="[comparison entry dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="entry4-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="entry4-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[comparison entry dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-Here you just enter the the comparison forms of the adjective.
+<para>Here you just enter the the comparison forms of the adjective.</para>
 
-<p>
-   &nbsp;
-<p>
+<sect2 id="entry5-dlg">
+<title>Properties from or to the original</title>
 
-<sect1>Properties from or to the original<p>
+<para>For some properties it is possible to set up values
+<emphasis>from</emphasis> the original or <emphasis>to</emphasis> the
+original. For example you can have a grade when querying the translation
+(=> from). The opposite is the grade when querying the original when
+one of the translations is given (=> to).</para>
 
-For some properties it is possible to set up values <bf/from/ the
-original or <bf/to/ the original. For example you can have a grade
-when querying the translation (=> from). The opposite is the grade
-when querying the original when one of the translations is given(=> to).
-
-  <figure>
-    <eps file="entry5-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="624"
-     HEIGHT="512"
-     SRC="entry5-dlg.png"
-     ALT="[from/to entry dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="entry5-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="entry5-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[from/to entry dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <variablelist>
 <varlistentry>
 <term><guilabel>Grade</guilabel></term>
-<listitem><para>
-    Contains the current grade of this expression.
-</para></listitem>
+<listitem><para>Contains the current grade of this
+expression.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>False friend</guilabel></term>
-<listitem><para>
-    Sometimes there is a word in a foreign language that looks like a word in
-    your native language so you think it must have the same meaning. But in fact,
-    it is not.
-    
-    Enter such words in this field.
-</para></listitem>
+<listitem><para>Sometimes there is a word in a foreign language that
+looks like a word in your native language so you think it must have the
+same meaning. But in fact, it is not.</para>
+<para>Enter such words in this field.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Last query date</guilabel></term>
-<listitem><para>
-    This is the date when this entry was last queried.
-    If it was never queried yet you only see "--".
-
-    For convinience reasons there are two buttons to 
-    set the current date or reset to "never queried".
-
-    Due to internal reasons, it is not possible to store dates
-    before Aug. 12 1999 with every version of &kvoctrain;!
+<listitem><para>This is the date when this entry was
+last queried. If it was never queried yet you only see
+<omputeroutput>--</computeroutput>.</para>
+<para>For convinience reasons there are two buttons to set the current
+date or reset to "never queried".</para>
+<para>Due to internal reasons, it is not possible to store dates before
+Aug. 12 1999 with every version of &kvoctrain;!</para>
 </para></listitem>
 </varlistentry>
     
 <varlistentry>
 <term><guilabel>Query count</guilabel></term>
-<listitem><para>
-    Designates how often this entry was queried.
-</para></listitem>
+<listitem><para>Designates how often this entry was
+queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Bad count</guilabel></term>
-<listitem><para>
-    Shows the amount of times you did not know the right answer.
-</para></listitem>
+<listitem><para>Shows the amount of times you did not know the right
+answer.</para></listitem>
 </varlistentry>
 </variablelist>
 
+</sect2>
+</sect1>
 
+<sect1 id="query-dlg">
+<title>Query dialogs</title>
 
-<sect>Query dialogs<p>
+<sect2 id="norm-query-dlg">
+<title>Normal random query</title>
 
-<label id="query-dlg">
+<para>After selecting "Create random query" from the <link
+linkend="header-menu">header menu</link> the vocabulary disappers.</para>
 
-<sect1>Normal random query<p>
-
-After selecting "Create random query" from the
-<link linkend="header-menu">header menu</link> the vocabulary disappers.
-
-Then all entries that match your current
-<link linkend="options6-dlg">threshholds</link>.
-are put into a
-list and shown in random order with the following dialog box.
+<para>Then all entries that match your current <link
+linkend="threshholds">threshholds</link>.  are put into a list and shown
+in random order with the following dialog box.</para>
 
   <figure>
     <eps file="query-dlg.eps">
