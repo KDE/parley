@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>576</width>
-            <height>484</height>
+            <height>487</height>
         </rect>
     </property>
     <property name="caption">
@@ -306,6 +306,12 @@
                     </property>
                     <property name="accel">
                         <string>Alt+U</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Use the Leitner learning method</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 4 times in a row. </string>
                     </property>
                 </widget>
             </vbox>
