@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -108,7 +111,7 @@ MCQueryDlg::MCQueryDlg(
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
 // connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_it, SIGNAL(clicked()), SLOT(showItClicked()) );
+   connect( show_all, SIGNAL(clicked()), SLOT(showItClicked()) );
    connect( rb_trans5, SIGNAL(clicked()), SLOT(trans5clicked()) );
    connect( rb_trans4, SIGNAL(clicked()), SLOT(trans4clicked()) );
    connect( rb_trans3, SIGNAL(clicked()), SLOT(trans3clicked()) );
@@ -149,7 +152,7 @@ void MCQueryDlg::setQuery(QString org,
    timebar->setEnabled(showCounter);
    timelabel->setEnabled(showCounter);
    orgField->setText (org);
-   show_it->setDefault(true);
+   show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);
    progCount->setText (s);
@@ -268,7 +271,7 @@ void MCQueryDlg::setQuery(QString org,
    rb_trans4->setChecked (false);
    rb_trans5->setChecked (false);
 
-   show_it->setFocus();
+   show_all->setFocus();
 }
 
 
@@ -427,7 +430,7 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
         dontKnowClicked();
       else if (know_it->isDefault() )
         knowItClicked();
-      else if (show_it->isDefault() )
+      else if (show_all->isDefault() )
         showItClicked();
 //    else if (verify->isDefault() )
 //      verifyClicked();

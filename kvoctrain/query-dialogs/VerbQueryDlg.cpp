@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -236,10 +239,11 @@ bool VerbQueryDlg::next()
     current++;
 
   type = conjugations.getType(current);
-  QString format = i18n("Enter %1 for \"%2\"");
-  QString msg = format.arg(conjugations.getName(type)).arg(s);
+  QString format = i18n("Enter the correct conjugation forms for tense %1:");
+  QString msg = format.arg(conjugations.getName(type));
 
-  groupTitle->setTitle (msg);
+  instructionLabel->setText (msg);
+  baseLabel->setText (s);
 
   p1sField->setText("");
   p1sField->setEnabled (!conjugations.pers1Singular(type).isEmpty());

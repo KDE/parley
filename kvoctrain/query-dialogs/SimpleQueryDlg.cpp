@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -143,7 +146,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        answerLabel->setText (i18n("Synonym"));
        queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the synonym");
-       groupName->setTitle (s);
+       instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getSynonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
@@ -155,7 +158,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        answerLabel->setText(i18n("Antonym"));
        queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the antonym");
-       groupName->setTitle (s);
+       instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getAntonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
@@ -167,7 +170,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Paraphrase"));
        s = i18n("Enter the paraphrase");
-       groupName->setTitle (s);
+       instructionLabel->setText(s);
        setCaption (kapp->makeStdCaption(s));
        queryField->setText (exp->getParaphrase(column));
        answerstring = column == 0 ? exp->getOriginal()
@@ -179,7 +182,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Example sentence"));
        s = i18n("Fill in the gap");
-       groupName->setTitle (s);
+       instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        QString s = exp->getExample(column);
        answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace()
