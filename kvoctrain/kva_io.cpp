@@ -57,23 +57,6 @@
 #define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
 
 
-// helper that gets a file name (it only differs in the caption of the dialog)
-static QString getFileName(const QString &caption,
-			   const QString &dir = 0, const QString &filter = 0,
-			   QWidget* parent = 0, const QString &name = 0)
-{
-    QString filename;
-    KFileDialog dlg(dir, filter, parent, name.local8Bit(), true /*, false*/);
-
-    dlg.setCaption(caption);
-
-    if (dlg.exec() == QDialog::Accepted)
-	filename = dlg.selectedFile();
-
-    return filename;
-}
-
-
 void kvoctrainApp::slotTimeOutBackup()
 {
   if (backupTime > 0 && doc && doc->isModified() ) {
@@ -126,7 +109,7 @@ bool kvoctrainApp::queryExit()
   }
 
   if (save) {  
-    if (!doc->getFileName().isEmpty())
+    if (!doc->URL().isEmpty())
       slotFileSave();       // save and exit
     if (doc->isModified())
     {
@@ -179,7 +162,7 @@ void kvoctrainApp::slotFileOpenRecent(int id_)
 
       slotStatusMsg(msg);
       prepareProgressBar();
-      doc = new kvoctrainDoc (this, name, separator, &paste_order);
+      doc = new kvoctrainDoc (this, KURL(name), separator, &paste_order);
       removeProgressBar();
       loadDocProps(doc);
       addRecentFile(name);
@@ -251,7 +234,7 @@ void kvoctrainApp::slotFileNew()
     view->setView (0, langset, gradecols);
     delete doc;
     QString name = "";
-    doc = new kvoctrainDoc (this, name, separator, &paste_order);
+    doc = new kvoctrainDoc (this, KURL(name), separator, &paste_order);
     loadDocProps(doc);
     if (doc->numLangs() == 0) {
       QString l = "en";
@@ -275,9 +258,8 @@ void kvoctrainApp::slotFileOpen()
     QString s;
     if (recent_files.count() > 0)
       s = recent_files[0];
-    QString name = getFileName(kapp->makeStdCaption(i18n("Open Vocabulary File")),
-                               s, FILTER_RPATTERN, parentWidget());
-    loadfileFromPath(KURL(name));
+      KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
+      loadfileFromPath(url, true);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -295,7 +277,7 @@ void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 
       slotStatusMsg(msg);
       prepareProgressBar();
-      doc = new kvoctrainDoc (this, url.path(), separator, &paste_order);
+      doc = new kvoctrainDoc (this, url, separator, &paste_order);
       removeProgressBar();
       loadDocProps(doc);
       view->setView(doc, langset, gradecols);
@@ -315,11 +297,10 @@ void kvoctrainApp::slotFileOpenExample()
   if (queryExit() ) {
     QString s;
     s = locate("data",  "kvoctrain/examples/");
-    QString name = getFileName(kapp->makeStdCaption(i18n("Open Example Vocabulary File")),
-                               s, FILTER_RPATTERN, parentWidget());
-    loadfileFromPath(KURL(name), false);
+    KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
+    loadfileFromPath(url, false);
     if (doc)
-       doc->setFileName(QString::null);
+       doc->URL().setFileName(QString::null);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -332,16 +313,16 @@ void kvoctrainApp::slotFileMerge()
   QString s;
   if (recent_files.count() > 0)
     s = recent_files[0];
-  QString name = getFileName(kapp->makeStdCaption(i18n("Merge Vocabulary File")),
-                             s, FILTER_RPATTERN, parentWidget());
-  if (!name.isEmpty() ) {
+    KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+
+  if (!url.isEmpty() ) {
 
     QString format = i18n("Loading %1");
-    QString msg = format.arg(name);
+    QString msg = format.arg(url.path());
 
     slotStatusMsg(msg);
     prepareProgressBar();
-    kvoctrainDoc *new_doc = new kvoctrainDoc (this, name, separator, &paste_order);
+    kvoctrainDoc *new_doc = new kvoctrainDoc (this, url, separator, &paste_order);
     connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     doc->setModified(false);
     removeProgressBar();
@@ -362,7 +343,7 @@ void kvoctrainApp::slotFileMerge()
     vector<QString> new_usages = new_doc->getUsageDescr();
 
     format = i18n("Merging %1");
-    msg = format.arg(name);
+    msg = format.arg(url.path());
     slotStatusMsg(msg);
 
     QApplication::setOverrideCursor( waitCursor );
@@ -566,7 +547,7 @@ void kvoctrainApp::slotFileMerge()
       }
     }
     delete (new_doc);
-    addRecentFile (name);
+    addRecentFile (url.path());
   }
 
   view->setView(doc, langset, gradecols);
@@ -582,25 +563,24 @@ void kvoctrainApp::slotFileSave()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  if (doc->getFileName().isEmpty() ) {
+  if (doc->URL().isEmpty() ) {
     slotFileSaveAs();
     return;
   }
 
   QString format = i18n("Saving %1");
-  QString msg = format.arg(doc->getFileName());
+  QString msg = format.arg(doc->URL().path());
   slotStatusMsg(msg);
 
   // remove previous backup
-  QFile::remove(QFile::encodeName(doc->getFileName()+"~"));
-  ::rename (QFile::encodeName(doc->getFileName()),
-            QFile::encodeName(doc->getFileName()+"~"));
+  QFile::remove(QFile::encodeName(doc->URL().path()+"~"));
+  ::rename (QFile::encodeName(doc->URL().path()),
+            QFile::encodeName(doc->URL().path()+"~"));
 
   prepareProgressBar();
   saveDocProps(doc);
-  doc->saveAs(this, doc->getFileName(), doc->getTitle(),
-              kvoctrainDoc::automatic, separator, &paste_order);
-  addRecentFile(doc->getFileName());
+  doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+  addRecentFile(doc->URL().path());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -682,40 +662,30 @@ void kvoctrainApp::slotFileSaveAs()
     commitEntryDlg(false);
 
   QString s;
-/*
-  if (recent_files.count() > 0)
-    s = recent_files[0];
-*/
-  QString name = getFileName(kapp->makeStdCaption(i18n("Save Vocabulary As")),
-                             s, FILTER_WPATTERN, parentWidget());
-  if (!name.isEmpty() ) {
+  KURL url = KFileDialog::getSaveURL(s, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
-    QFile file (name);
-    if (file.exists() ) {
-      QString format = i18n("Your selected file exists already.\n"
-                            "Do you want to overwrite \"%1\"?");
-      QString msg = format.arg(name);
-
-      int exit = KMessageBox::warningYesNo(this,
-                    msg,
-                    kapp->makeStdCaption(i18n("File Exists")));
-      if(exit!=KMessageBox::Yes)
-        return;
+  if (!url.isEmpty() ) {
+    QFileInfo fileinfo(url.path());
+    if (fileinfo.exists() && KMessageBox::questionYesNo(0,
+       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
+       .arg(url.path())) == KMessageBox::No)
+    {
+    // do nothing
     }
+    else
 
     if (doc) {
       QString format = i18n("Saving %1");
-      QString msg = format.arg(name);
+      QString msg = format.arg(url.path());
       slotStatusMsg(msg);
 
-      QFile::remove(QFile::encodeName(name+"~"));         // remove previous backup
-      ::rename (QFile::encodeName(name), QFile::encodeName(QString(name+"~")));
+      QFile::remove(QFile::encodeName(url.path()+"~"));         // remove previous backup
+      ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+"~")));
       saveDocProps(doc);
 
       prepareProgressBar();
-      doc->saveAs(this, name, doc->getTitle(),
-                  kvoctrainDoc::automatic, separator, &paste_order);
-      addRecentFile(doc->getFileName());
+      doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+      addRecentFile(doc->URL().path());
       removeProgressBar();
     }
   }
@@ -744,35 +714,31 @@ void kvoctrainApp::slotSaveSelection ()
       seldoc.appendEntry(doc->getEntry(i));
 
   QString s;
-  QString name = getFileName(kapp->makeStdCaption(i18n("Save Vocabulary Block As")),
-                             s, FILTER_WPATTERN, parentWidget());
-  if (!name.isEmpty() ) {
+  KURL url = KFileDialog::getSaveURL(s, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
-    QFile file (name);
-    if (file.exists() ) {
-      QString format = i18n("Your selected file exists already.\n"
-                            "Do you want to overwrite \"%1\"?");
-      QString msg = format.arg(name);
-
-      int exit = KMessageBox::warningYesNo(this, msg,
-                 kapp->makeStdCaption(i18n("File Exists")));
-      if(exit!=KMessageBox::Yes)
-        return;
+  if (!url.isEmpty() ) {
+    QFileInfo fileinfo(url.path());
+    if (fileinfo.exists() && KMessageBox::questionYesNo(0,
+       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
+       .arg(url.path())) == KMessageBox::No)
+    {
+    // do nothing
     }
+    else
+    {
+      QString format = i18n("Saving %1");
+      QString msg = format.arg(url.path());
+      slotStatusMsg(msg);
 
-    QString format = i18n("Saving %1");
-    QString msg = format.arg(name);
-    slotStatusMsg(msg);
+      QFile::remove(url.path()+"~");         // remove previous backup
+      // FIXME: check error
+      ::rename (QFile::encodeName(url.path()), QFile::encodeName(url.path()+"~"));
+      saveDocProps(&seldoc);
 
-    QFile::remove(name+"~");         // remove previous backup
-    // FIXME: check error
-    ::rename (QFile::encodeName(name), QFile::encodeName(name+"~"));
-    saveDocProps(&seldoc);
-
-    prepareProgressBar();
-    seldoc.saveAs(this, name, i18n ("Part of: ") + doc->getTitle(),
-                kvoctrainDoc::automatic, separator, &paste_order);
-    removeProgressBar();
+      prepareProgressBar();
+      seldoc.saveAs(this, url, i18n ("Part of: ") + doc->getTitle(), kvoctrainDoc::automatic, separator, &paste_order);
+      removeProgressBar();
+    }
   }
   slotStatusMsg(IDS_DEFAULT);
 }

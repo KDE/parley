@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Mon Aug 16 17:41:11 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -36,46 +36,37 @@
 #include <kstandarddirs.h>
 
 
-ProgressDlg::ProgressDlg
-(
-        const QString &doctitle,
-        const QString &filename,
-        const QString &title,
-	QWidget* parent,
-	const char* name
-)
-	:
-	ProgressDlgForm( parent, name )
+ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const QString &title, QWidget* parent, const char* name)
+  : ProgressDlgForm( parent, name )
 {
-     doc = 0;
-     setCaption (title);
-     l_title->setText (doctitle);
-     l_file->setText (filename);
-     setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-     progress-> setTotalSteps(100);
+  doc = 0;
+  setCaption (title);
+  l_title->setText (doctitle);
+  l_file->setText (filename);
+  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+  progress-> setTotalSteps(100);
 }
 
 
 void ProgressDlg::setValue( kvoctrainDoc *new_doc, int val)
 {
-   progress->setProgress(val);
-   if (doc == 0 && new_doc != 0) {
-     doc = new_doc;
-     QString s = doc->getFileName();
-     int pos;
-     bool cut = false;
-     while ((pos = s.find ('/')) >= 0) {
-       s.remove (0, pos+1);
-       cut = true;
-     }
+  progress->setProgress(val);
+  if (doc == 0 && new_doc != 0) {
+    doc = new_doc;
+    QString s = doc->URL().path();
+    int pos;
+    bool cut = false;
+    while ((pos = s.find ('/')) >= 0) {
+      s.remove (0, pos+1);
+      cut = true;
+    }
 /*
-     if (cut)
-       s.insert (0, ".../");
+    if (cut)
+      s.insert (0, ".../");
 */
-     l_title->setText (doc->getTitle());
-     l_file->setText (s);
-   }
-
+    l_title->setText (doc->getTitle());
+    l_file->setText (s);
+  }
 }
 
 

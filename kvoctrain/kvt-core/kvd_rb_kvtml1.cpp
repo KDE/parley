@@ -826,7 +826,7 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
 
    unknown_attr = true;
 
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
 
    QString format = i18n(
       "Your document contains an unknown attribute <%1> "   // keep trailing space
@@ -850,7 +850,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 {
    unknown_elem = true;
 
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
 
    QString format = i18n(
       "Your document contains an unknown tag <%1>.  "  // keep trailing space
@@ -871,7 +871,7 @@ void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error"));
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
 
    QString msg = text;
    KMessageBox::error(0, ln+msg, s);
@@ -883,7 +883,7 @@ void kvoctrainDoc::warningKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Warning"));
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
    QString msg = text;
    KMessageBox::information(0, ln+msg, s);
    QApplication::restoreOverrideCursor();

@@ -7,10 +7,10 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
+
     email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
@@ -88,8 +88,10 @@ public:
   /** setup the statusbar */
   void initStatusBar();
   void clearStatusBar();
-  /** setup the mainview*/
-  void initView(const QString &name);
+  /** setup the main document*/
+  void initDoc();
+  /** setup the main view*/
+  void initView();
   /** save the app-specific options on slotAppExit or by an Options dialog */
   void saveOptions(bool all);
   /** read the app-specific options on init() or by an Options dialog */
@@ -109,13 +111,12 @@ public:
   void enableCommand(int id_);
   /** disable menuentries/toolbar items */
   void disableCommand(int id_);
-  /** add a opened file to the recent file list and update recent_file_menu
-		*/
+  /** add a opened file to the recent file list and update recent_file_menu */
   void addRecentFile(const QString &file);
 
   /** Whether the user has selected a range of items. **/
   bool hasSelection();
-  
+
  signals:
   void progressChanged (kvoctrainDoc *, int curr_percent);
 
@@ -358,6 +359,6 @@ private:
   bool             show_more;
   bool             i_know;
 };
- 
+
 #endif // KVOCTRAIN_H
 

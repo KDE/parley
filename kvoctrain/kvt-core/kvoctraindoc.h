@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -34,6 +34,8 @@
 #endif 
 
 #include <qobject.h>
+
+#include <kurl.h>
 
 #include "kvoctrainexpr.h"
 
@@ -265,8 +267,7 @@ class kvoctrainDoc : public QObject
    * @param obj              calling object
    * @param filename         name of file to parse
    */
-  kvoctrainDoc(QObject* obj, QString name,
-               QString separator, QStringList *lang_order = 0);
+  kvoctrainDoc(QObject* obj, const KURL& url, QString separator, QStringList *lang_order = 0);
 
   /** Destructor for the fileclass of the application */
   ~kvoctrainDoc();
@@ -422,12 +423,11 @@ class kvoctrainDoc : public QObject
 
   /** saves the data under the given name
    *
-   * @param name     if name is empty (or NULL) actual name is preserved
+   * @param url     if url is empty (or NULL) actual name is preserved
    * @result         true if successful
    */
-  bool saveAs (QObject *parent, QString name, QString title,
-               FileType ft,
-               const QString &separator, QStringList *lang_order = 0);
+  bool saveAs (QObject *parent, const KURL & url, QString title, FileType ft, const QString &separator,
+    QStringList *lang_order = 0);
 
   /** returns count of entries
    */
@@ -470,11 +470,11 @@ class kvoctrainDoc : public QObject
   int search(QString substr, int id,
              int first=0, int last=-1, bool word_start = false, bool tolerant=false);
 
-  /** returns name of xml file  */
-  inline QString getFileName() const { return mainfile; }
+  /** returns url of xml file  */
+  inline KURL URL() const {return doc_url; }
 
-  /** sets name of xml file  */
-  inline void setFileName(const QString &s) { mainfile = s; }
+  /** sets url of xml file  */
+  inline void setURL(const KURL& url) {doc_url = url;}
 
   /** returns title of xml file  */
   QString getTitle() const;
@@ -712,7 +712,7 @@ protected:
 
  private:
   bool                  dirty;
-  QString               mainfile;
+  KURL                  doc_url;
   vector<bool>          sort_lang;
   bool                  sort_lesson;
   bool                  unknown_attr;

@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -80,7 +80,8 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   initMenuBar();
   initToolBar();
   initStatusBar();
-  initView(name);
+  initDoc();
+  initView();
   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
   int cc = Prefs::currentCol();
@@ -379,45 +380,33 @@ void kvoctrainApp::clearStatusBar()
 }
 
 
-void kvoctrainApp::initView(const QString &name)
-{ 
-  view = 0;
-
-  pdlg = new ProgressDlg (QString(), QString(),
-                kapp->makeStdCaption(i18n("Loading Vocabulary File")));
+void kvoctrainApp::initDoc( )
+{
+  pdlg = new ProgressDlg (QString(), QString(), kapp->makeStdCaption(i18n("Loading Vocabulary File")));
   pdlg->show();
 
-  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery,
-                           QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
-  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive,
-                           QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
+  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery, QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
+  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive, QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
 
-  if (!name.isEmpty()) {
-    doc = new kvoctrainDoc(this, name, separator, &paste_order);
-    if (doc) {
-      addRecentFile(name);
-    }
-  }
-  else {
-    if (recent_files.count() > 0)
-      doc = new kvoctrainDoc(this, recent_files[0], separator, &paste_order);
-    else
-      doc = new kvoctrainDoc(this, "", separator, &paste_order);
-  }
+  if (recent_files.count() > 0)
+    doc = new kvoctrainDoc(this, KURL(recent_files[0]), separator, &paste_order);
+  else
+    doc = new kvoctrainDoc(this, KURL(""), separator, &paste_order);
+
   removeProgressBar();
   loadDocProps(doc);
   if (doc->numLangs() == 0)
     doc->appendLang("en");
-
-  view = new kvoctrainView(doc, langset, gradecols, this);
   connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   doc->setModified(false);
+}
 
+
+void kvoctrainApp::initView()
+{
+  view = new kvoctrainView(doc, langset, gradecols, this);
   view->setResizer (header_resizer);
   view->getTable()->setFont(tablefont);
   setCentralWidget(view);
-
-  ////////////////////////////////////////////////////////////////////
-  // prepare dock window in panel
   slotStatusMsg(IDS_DEFAULT);
 }

@@ -7,7 +7,7 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
     email                : kvoctrain@ewald-arnold.de
@@ -33,6 +33,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
+#include <kio/netaccess.h>
 
 #include <qfileinfo.h>
 
@@ -84,35 +85,31 @@ void kvoctrainDoc::Init ()
   setCurrentLesson (0);
   queryorg = "";
   querytrans = "";
-  mainfile = "";
+  doc_url.setFileName("");
   doctitle = "";
   author = "";
 }
 
 
-kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
-                           QString separator, QStringList *lang_order)
+kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url, QString separator, QStringList *lang_order)
 {
   Init();
-  mainfile = filename;
-  connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)),
-           parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
+  doc_url = url;
 
+  connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
-  if (!mainfile.isEmpty()) {
-    QFile f( filename );
-    QFileInfo fi (f);
-    bool isfile = fi.isFile() || fi.isSymLink();
-    if (!f.exists() || !isfile) {
-      QString format = i18n("Could not open \"%1\"\n"
-                            "Probably this is not a regular file or it does not exist.");
-      QString msg = format.arg(mainfile);
-      KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O Failure")));
-      mainfile = "unknown.kvtml";
+  QString tmpfile;
+  if (KIO::NetAccess::download( url, tmpfile, 0 ))
+  {
+    QFile f(tmpfile);
+    if (!f.open(IO_ReadOnly))
+    {
+      KMessageBox::error(0, i18n("<qt>Cannot open file<br><b>%1</b></qt>").arg(url.path()));
+      doc_url.setFileName("unknown.kvtml");
       return;
     }
 
-    FileType ft = detectFT(filename);
+    FileType ft = detectFT(url.path());
 
     bool read = false;
     while (!read) {
@@ -121,56 +118,36 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
       switch (ft) {
         case kvtml:
         {
-          QFile f( filename );
-          if (f.open( IO_ReadOnly )) {
-            QTextStream is (&f);
-            read = loadFromKvtMl (is);
-            f.close();
-          }
+          QTextStream is (&f);
+          read = loadFromKvtMl (is);
         }
         break;
 
         case vt_lex:
         {
-          QFile f( filename );
-          if (f.open( IO_ReadOnly )) {
-            QTextStream is (&f);
-            read = loadFromLex (is);
-            f.close();
-          }
+          QTextStream is (&f);
+          read = loadFromLex (is);
         }
         break;
 
         case vt_vcb:
         {
-          QFile f( filename );
-          if (f.open( IO_ReadOnly )) {
-            QTextStream is (&f);
-            read = loadFromVcb (is);
-            f.close();
-          }
+          QTextStream is (&f);
+          read = loadFromVcb (is);
         }
         break;
 
         case csv:
         {
-          QFile f( filename );
-          if (f.open( IO_ReadOnly )) {
-            QTextStream is (&f);
-            read = loadFromCsv (is, separator, lang_order);
-            f.close();
-          }
+          QTextStream is (&f);
+          read = loadFromCsv (is, separator, lang_order);
         }
         break;
 
         default:
         {
-          QFile f( mainfile );
-          if (f.open( IO_ReadOnly )) {
-            QTextStream is (&f);
-            read = loadFromKvtMl (is);
-            f.close();
-          }
+          QTextStream is (&f);
+          read = loadFromKvtMl (is);
         }
       }
 
@@ -182,7 +159,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
           return;
         }
         QString format = i18n("Could not load \"%1\"\nDo you want to try again?");
-        QString msg = format.arg(mainfile);
+        QString msg = format.arg(url.path());
         int result = KMessageBox::warningContinueCancel(0, msg,
                                                         kapp->makeStdCaption(i18n("I/O Failure")),
                                                         i18n("&Retry"));
@@ -192,6 +169,8 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
         }
       }
     }
+    f.close();
+    KIO::NetAccess::removeTempFile( tmpfile );
   }
 }
 
@@ -201,44 +180,44 @@ kvoctrainDoc::~kvoctrainDoc()
 }
 
 
-bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
-                           FileType ft,
-                          const QString &separator, QStringList *lang_order)
+bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, FileType ft, const QString &separator, 
+  QStringList *lang_order)
 {
-  connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)),
-           parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
+  connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
-  QString tmp (name);
+  KURL tmp (url);
   if (tmp.isEmpty())
-    tmp = mainfile;
+    tmp = doc_url;
 
   if (tmp.isEmpty())
-    tmp = "unknown.kvtml";
+    tmp.setFileName("unknown.kvtml");
 
-  if (ft == automatic) {
-
-    if (tmp.right(strlen("." KVTML_EXT)) == "." KVTML_EXT)
+  if (ft == automatic) 
+  {
+    if (tmp.path().right(strlen("." KVTML_EXT)) == "." KVTML_EXT)
       ft = kvtml;
-    else if (tmp.right(strlen("." VT5_LEX_EXT)) == "." VT5_LEX_EXT)
+    else if (tmp.path().right(strlen("." VT5_LEX_EXT)) == "." VT5_LEX_EXT)
       ft = vt_lex;
-    else if (tmp.right(strlen("." VCB_EXT)) == "." VCB_EXT)
+    else if (tmp.path().right(strlen("." VCB_EXT)) == "." VCB_EXT)
       ft = vt_vcb;
-    else if (tmp.right(strlen("." CSV_EXT)) == "." CSV_EXT)
+    else if (tmp.path().right(strlen("." CSV_EXT)) == "." CSV_EXT)
       ft = csv;
-    else {
-      tmp += "." KVTML_EXT;
+    else 
+    {
+      tmp.setFileName(tmp.path() + "." KVTML_EXT);
       ft = kvtml;
     }
   }
 
   bool saved = false;
-  while (!saved) {
+  while (!saved)
+  {
 
-    QFile f( tmp);
+    QFile f(tmp.path());
 
-    if (!f.open( IO_WriteOnly )) {               // open file for writing
-      QString msg = i18n("File \"%1\" is not writable, probably you do not have permission to do this.");
-      KMessageBox::error(0, msg.arg(tmp), kapp->makeStdCaption(i18n("I/O Failure")));
+    if (!f.open(IO_WriteOnly))
+    {
+      KMessageBox::error(0, i18n("<qt>Cannot write to file<br><b>%1</b></qt>").arg(tmp.path()));
       return false;
     }
 
@@ -278,14 +257,14 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
 
     if (!saved) {
       QString format = i18n("Could not save \"%1\"\nDo you want to try again?");
-      QString msg = format.arg(tmp);
+      QString msg = format.arg(tmp.path());
       int result = KMessageBox::warningContinueCancel(0, msg,
                                                       kapp->makeStdCaption(i18n("I/O Failure")),
                                                       i18n("&Retry"));
       if ( result == KMessageBox::Cancel ) return false;
     }
   }
-  mainfile = tmp;
+  doc_url = tmp;
   dirty = false;
   emit docModified(false);
   return true;

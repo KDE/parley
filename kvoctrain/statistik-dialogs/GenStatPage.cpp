@@ -7,11 +7,11 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Sep 21 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -30,42 +30,34 @@
 
 #include <kvoctraindoc.h>
 
-
 #include <qlabel.h>
 
-GenStatPage::GenStatPage
-(
-        kvoctrainDoc *doc,
-	QWidget* parent,
-	const char* name
-)
-	:
-	GenStatPageForm( parent, name )
+GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent, const char* name): GenStatPageForm( parent, name )
 {
-    l_filename->setText(doc->getFileName());
-    l_title->setText(doc->getTitle());
-    l_author->setText(doc->getAuthor());
-    QString s;
-    s.setNum(doc->numEntries());
-    kcfg_entriesPerLesson->setText(s);
-    vector<QString> lesson = doc->getLessonDescr();
-    s.setNum(lesson.size());
-    l_lessons->setText(s);
+  l_filename->setText(doc->URL().path());
+  l_title->setText(doc->getTitle());
+  l_author->setText(doc->getAuthor());
+  QString s;
+  s.setNum(doc->numEntries());
+  kcfg_entriesPerLesson->setText(s);
+  vector<QString> lesson = doc->getLessonDescr();
+  s.setNum(lesson.size());
+  l_lessons->setText(s);
 }
 
 
 void GenStatPage::keyPressEvent( QKeyEvent *e )
 {
-   if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
-     if (  e->key() == Key_Escape )
-       emit reject();
-     else if (  e->key() == Key_Enter
-              ||e->key() == Key_Return)
-       emit accept();
-     else
-       e->ignore();
-   }
-   else
-     e->ignore();
+  if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
+    if (  e->key() == Key_Escape )
+      emit reject();
+    else if (  e->key() == Key_Enter
+            ||e->key() == Key_Return)
+      emit accept();
+    else
+      e->ignore();
+  }
+  else
+    e->ignore();
 }
 #include "GenStatPage.moc"
