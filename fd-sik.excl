@@ -1,0 +1,12 @@
+*.o
+*.lo
+*.la
+*.moc
+*.bak
+*.P
+*.a
+*~
+*.old
+\.deps
+\.libs
+\.#*
