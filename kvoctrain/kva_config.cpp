@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/21 16:22:07  arnold
+    removed all the 'charset' stuff
+
     Revision 1.4  2001/10/21 15:28:43  arnold
     removed all the 'charset' stuff
 
@@ -104,7 +107,8 @@ void kvoctrainApp::saveOptions(bool all)
   
     config->setGroup(CFG_GENERAL);
     config->writeEntry(CFG_SMART_APPEND, (bool) smartAppend);
-  
+    config->writeEntry(CFG_HEADER_RESIZER, (int) header_resizer);
+
     s = separator;
     if (separator == "\t")
       s = TAB_REP;
@@ -227,6 +231,7 @@ void kvoctrainApp::readOptions()
 
   config->setGroup(CFG_GENERAL);
   smartAppend = config->readNumEntry(CFG_SMART_APPEND, 0);
+  header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
   // initialize the recent file list
   recent_files = config->readListEntry(CFG_RECENT);
   autosaveopts = config->readBoolEntry(CFG_AUTOSAVEOPT, true);

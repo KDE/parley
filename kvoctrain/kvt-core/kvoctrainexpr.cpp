@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/30 14:10:53  arnold
+    added property 'multiple choice'
+
     Revision 1.3  2001/10/22 06:39:21  waba
     Show a cute little marker to indicate marked entries.
     (Instead of using a bold type-face)
@@ -819,8 +822,6 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
     ft = rowfont->font;
   else
     ft = p->font();
-
-//  cout << col << " " << ft.family() << " " << kvoctrainDoc::charSet2String (ft.charSet() ) << endl;
 
   p->setFont(ft);
 

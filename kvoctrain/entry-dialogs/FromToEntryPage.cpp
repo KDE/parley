@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.4  2001/10/13 21:15:49  arnold
     tested and fixed changes from previous cvs updatecd
 
@@ -367,7 +370,7 @@ void FromToEntryPage::slotNever()
 
 void FromToEntryPage::keyPressEvent( QKeyEvent *e )
 {
-   if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
+   if (e->state() & (AltButton | ControlButton | ShiftButton) == 0) {
      if (  e->key() == Key_Escape )
        emit reject();
      else if (  e->key() == Key_Enter

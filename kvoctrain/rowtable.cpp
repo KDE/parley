@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/01 11:26:12  arnold
+    fixed some editing actions
+
     Revision 1.4  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -32,14 +35,7 @@
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
-
-//
-//  klpq
-//
-//  Copyright (C) 1997 Christoph Neerfeld
-//  email:  Christoph.Neerfeld@home.ivm.de or chris@kde.org
 
 #include <qkeycode.h>
 #include <qscrollbar.h>
@@ -67,6 +63,7 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
 RowTable::~RowTable()
 {
 }
+
 
 void RowTable::updateContents(int row, int col)
 {
@@ -188,6 +185,7 @@ void RowTable::setNumRows( int rows )
 	QTable::setNumRows( rows );
 }
 
+
 void RowTable::paletteChange( const QPalette &) //oldPalette )
 {
 	setBackgroundColor( colorGroup().base() );
@@ -219,7 +217,9 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
 
     if( cell ) {
        p->save();
-       cell->paint( p, col, w, selected, m_rows, col, gradecols, &m_colFonts[col]);
+       cell->paint( p, col, w, selected, m_rows,
+                    numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : currentColumn(),
+                    gradecols, &m_colFonts[col]);
        p->restore();
     }
 
@@ -233,10 +233,12 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
     }
 }
 
+
 QWidget *RowTable::createEditor(int, int, bool) const
 {
    return 0; // No inline editing
 }
+
 
 kvoctrainExpr *RowTable::getRow( int row )
 {
@@ -246,15 +248,18 @@ kvoctrainExpr *RowTable::getRow( int row )
     return 0;
 }
 
+
 void RowTable::setCurrentRow( int row, int col )
 {
         QTable::setCurrentCell(row, col);
 }
 
+
 void RowTable::setSelectColumn( int col )
 {
         setCurrentRow(currentRow(), col);;
 }
+
 
 bool RowTable::createMenuNames (vector<QString> forbidden_labels,
                                 vector<QString> names,
@@ -342,8 +347,6 @@ void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
 
-  cout<< "dbl: "<< cc << " " << cr << endl;
-
   if (cc == KV_COL_MARK) {
     emit selected ( cr, KV_COL_MARK, 0);
   }
@@ -367,25 +370,33 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
     bool update_org = false;
     if (cc != currentColumn() && numCols() > 2)
       update_org = true;
-/* FIXME:
+
+    int topCell = rowAt(0);
+    int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
     if (update_org)
-      for (int i = topCell(); i <= lastRowVisible(); i++)
+      for (int i = topCell; i <= lastRowVisible; i++)
         updateCell(i, KV_COL_ORG);
-*/
 
     if( e->button() == LeftButton )
       emit cellMoved(cr, cc);
   }
 }
 
+
 void RowTable::keyPressEvent( QKeyEvent *e )
 {
   switch( e->key() ) {
-    case Key_Up:
-    case Key_Down:
-    case Key_Right:
-    case Key_Next:
-    case Key_Prior:
+      case Key_Right: {
+        int topCell = rowAt(0);
+        int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
+        if (numCols() > 2)
+          for (int i = topCell; i <= lastRowVisible; i++)
+            updateCell(i, KV_COL_ORG);
+      }
+      case Key_Up:
+      case Key_Down:
+      case Key_Next:
+      case Key_Prior:
       QTable::keyPressEvent(e);
       emit cellMoved(currentRow(), currentColumn());
     break;
@@ -399,9 +410,15 @@ void RowTable::keyPressEvent( QKeyEvent *e )
       if (currentColumn() <= KV_EXTRA_COLS) {
         e->ignore();
       }
-      else
+      else {
         QTable::keyPressEvent(e);
-       emit cellMoved(currentRow(), currentColumn());
+        int topCell = rowAt(0);
+        int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
+        if (numCols() > 2)
+          for (int i = topCell; i <= lastRowVisible; i++)
+            updateCell(i, KV_COL_ORG);
+        emit cellMoved(currentRow(), currentColumn());
+      }
     break;
 
     case Key_Return:

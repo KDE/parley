@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -42,6 +45,7 @@
 #define GenOptPage_included
 
 #include "GenOptPageForm.h"
+#include "../kvoctrainview.h"
 
 class QValidator;
 
@@ -54,6 +58,7 @@ public:
     GenOptPage
     (
         int         _btime,
+        kvoctrainView::Resizer res,
         bool        _smartAppend,
         bool        _autosaveopts,
         QWidget    *parent = NULL,
@@ -65,6 +70,7 @@ public:
     int getBackupTime()       const { return btime; }
     int getSmartAppend()      const { return smart; }
     int getAutoSaveOpts()     const { return autosaveopts; }
+    kvoctrainView::Resizer getResizer() const { return resizer; }
 
 public slots:
     void initFocus() const;
@@ -73,17 +79,19 @@ protected:
     void keyPressEvent( QKeyEvent * );
 
 protected slots:
-
+    void slotHBfixed();
+    void slotHBpercent();
+    void slotHBauto();
     void slotChangeBTime(const QString&);
     void slotSmartAppend(bool);
     void slotAutoSaveOpts(bool);
 
 protected:
-
     QValidator              *validator;
     int                      btime;
     bool                     smart;
     bool                     autosaveopts;
+    kvoctrainView::Resizer   resizer;
 };
 
 #endif // GenOptPage_included

@@ -71,14 +71,14 @@ Valid xml means:
   license="GPL"
   remark="doc remark&nl;line2">
 
- <lesson width="131">
+ <lesson width="157">
   <desc no="1">- 1</desc>
   <desc no="2">- 2</desc>
   <desc no="3">- 3</desc>
   <desc no="4">- 4</desc>
-  <desc no="5">- 5</desc>
+  <desc no="5" current="1">- 5</desc>
   <desc no="6">- 6</desc>
-  <desc no="7" current="1">- 7</desc>
+  <desc no="7">- 7</desc>
   <desc no="8">- 8</desc>
   <desc no="9">- 9</desc>
   <desc no="10">- 10</desc>
@@ -142,13 +142,13 @@ Valid xml means:
   <desc no="2">#20 3</desc>
  </usage>
 
- <e m="6"><o width="262" l="en" q="t" r="rem" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
- <e m="6" s="1"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
- <e m="7" s="1" t="n:m"><o r="dfgh" y="-" p="mischief">mischief</o><t c="1;1" d="0;992304000" r="remark">Unheil, Schaden</t></e>
- <e m="6"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
- <e m="10" s="1"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
- <e m="7" s="1"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
- <e m="7" s="1"><o y="-" u="#1">
+ <e m="2"><o width="314" l="en" q="t" r="rem" y="-">jaggy</o><t width="318" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
+ <e m="2" s="1"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
+ <e m="2" s="1" t="n:m"><o r="dfgh" y="-" p="mischief">mischief</o><t c="1;1" d="0;992304000" r="remark">Unheil, Schaden</t></e>
+ <e m="2"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
+ <e m="2" s="1"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
+ <e m="2" s="1"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
+ <e m="2" s="1"><o y="-" u="#1">
   <multiplechoice>
    <mc1>go 1a</mc1><mc2>go 2a</mc2><mc3>go 3a</mc3><mc4>go 4a</mc4><mc5>go 5a</mc5>
   </multiplechoice>
@@ -157,24 +157,24 @@ Valid xml means:
    <mc1>schwi 1a</mc1><mc2>schwi 2a</mc2><mc3>schwi 3a</mc3><mc4>schwi 4a</mc4><mc5>schwi 5a</mc5>
   </multiplechoice>
   schwimmen</t></e>
- <e m="7" s="1"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
- <e m="1" s="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
- <e m="1" s="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
- <e m="11" s="1"><o>balmy</o><t c="1;1" d="0;992361257">mild</t></e>
- <e m="3" s="1"><o y="-">knuckles</o><t g="0;1" c="1;2" d="0;1003190400" r="rem" y="sysbsefgr" x="xmplr Knöchel" h="asdf knöchel sdfg" a="asdf">Knöchel</t></e>
+ <e m="2" s="1"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
+ <e m="5" s="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
+ <e s="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
+ <e s="1"><o>balmy</o><t c="1;1" d="0;992361257">mild</t></e>
+ <e s="1"><o y="-">knuckles</o><t g="0;1" c="1;2" d="0;1003190400" r="rem" y="sysbsefgr" x="xmplr Knöchel" h="asdf knöchel sdfg" a="asdf">Knöchel</t></e>
  <e s="1"><o>genuflect</o><t g="0;1" c="1;2" d="0;1003212929">Kniebeugen</t></e>
- <e m="6" s="1"><o>chunk</o><t c="1;1" d="0;992361258" r="Klotz">Klotz</t></e>
- <e m="6" s="1"><o r="rema">itch</o><t c="1;1" d="0;992361254">jucken, darauf brennen</t></e>
+ <e s="1"><o>chunk</o><t c="1;1" d="0;992361258" r="Klotz">Klotz</t></e>
+ <e s="1"><o r="rema">itch</o><t c="1;1" d="0;992361254">jucken, darauf brennen</t></e>
  <e><o y="-">utterly</o><t c="1;1" d="0;992361255">gänzlich</t></e>
- <e m="6" s="1" t="aj"><o y="-">good</o><t c="1;1" d="0;992304000">
+ <e s="1" t="aj"><o y="-">good</o><t c="1;1" d="0;992304000">
    <comparison>
     <l1>gut</l1><l2>besser</l2><l3>am besten</l3>
    </comparison>
    gut</t></e>
- <e m="3"><o y="-">favour</o><t c="1;1">Gunst, Gefallen</t></e>
- <e m="6" t="#1"><o>pea</o><t c="1;1" d="0;992361258">Erbse</t></e>
- <e m="5"><o>quell</o><t c="1;1" d="0;992361257">bezwingen</t></e>
- <e m="4" s="1" t="v"><o y="-">
+ <e><o y="-">favour</o><t c="1;1">Gunst, Gefallen</t></e>
+ <e t="#1"><o>pea</o><t c="1;1" d="0;992361258">Erbse</t></e>
+ <e><o>quell</o><t c="1;1" d="0;992361257">bezwingen</t></e>
+ <e s="1" t="v"><o y="-">
   <conjugation>
    <t n="#1"><s1>1</s1><s2>1</s2></t>
    <t n="PrSi"><s1>sp</s1><s2>sdfg</s2><s3f>dsfg</s3f><s3m>sdfg</s3m><s3n>sdfg</s3n><p1>sdg</p1><p2>sdg</p2><p3f>sdg</p3f><p3m>dfg</p3m><p3n>dg</p3n></t>

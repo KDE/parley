@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/01 11:26:12  arnold
+    fixed some editing actions
+
     Revision 1.8  2001/10/28 10:15:46  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -360,6 +363,7 @@ private:
   RandomQueryDlg  *randomQueryDlg;
   AdjQueryDlg     *adjQueryDlg;
   ArtQueryDlg     *artQueryDlg;
+  kvoctrainView::Resizer header_resizer;
   int              num_queryTimeout;
   int              query_cycle;
   int              query_num;

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/01 11:26:12  arnold
+    fixed some editing actions
+
     Revision 1.9  2001/10/31 19:10:56  arnold
     fixed generation of i18n messages
 
@@ -886,6 +889,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
                     tablefont,
                     &querymanager,
                     gradecols,
+                    header_resizer,
                     smartAppend,
                     autosaveopts);
 
@@ -905,6 +909,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       useCurrent = godlg.getUseCurrent(),
       tablefont = godlg.getFont();
       gradecols = godlg.getGradeCols();
+      header_resizer = godlg.getResizer();
 
       // rather ugly hack to keep useCurrent "globally" up to date
       KConfig *config = EA_KappGetConfig;
@@ -913,6 +918,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 
       view->getTable()->setFont(tablefont);
       view->getTable()->setLangSet (&langset);
+      view->setResizer (header_resizer);
       view->getTable()->updateContents();
 
       // update header buttons

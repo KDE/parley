@@ -62,7 +62,7 @@ Valid xml means:
 --
 >
 <kvtml
-  encoding="8Bit"
+  encoding="UTF-8"
   generator="kvoctrain v2.2.1"
   cols="1"
   lines="4"
@@ -77,7 +77,7 @@ Valid xml means:
   <sort on="1"/>
  </options>
 
- <e m="2"><o width="340" l="en" q="t" charset="ISO 8859-5">abc</o></e>
+ <e m="2"><o width="340" l="en" q="t">abc</o></e>
  <e m="2"><o y="-" u="Am" p="Diewg Hiegiewld">Dag Harald</o></e>
  <e m="2"><o p="Ieliuew Wiegield">Hello World</o></e>
  <e m="2"><o>It's raining</o></e>

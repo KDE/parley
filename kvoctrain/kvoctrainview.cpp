@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/01 11:26:12  arnold
+    fixed some editing actions
+
     Revision 1.5  2001/10/22 06:38:58  waba
     Show a cute little marker to indicate marked entries.
     (Instead of using a bold type-face)
@@ -129,6 +132,105 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
 }
 
+
+void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
+{
+  QWidget::resizeEvent(r_ev);
+
+  if (r_ev == 0)
+    return;
+
+  int shrink = 0;
+  f_list->resize (r_ev->size());
+  QHeader *header = lb_list->horizontalHeader();
+  int remain = lb_list->clipper()->width();
+  cout << "remain: " << remain << endl;
+  cout << "ev width: " << r_ev->size().width() << endl;
+/*
+  switch (header_resizer) {
+    case Automatic: {
+*/
+    // lesson is only half as wide as a original/translation
+    // exclude fixed size of "mark"-column
+      int x = (remain -20) / ((lb_list->numCols()-1)*2-1);
+      cout << "x: " << remain << endl;
+      header->resizeSection( KV_COL_LESS, x);
+      lb_list->setColumnWidth (KV_COL_LESS, x);
+      remain -= x;
+      header->resizeSection( KV_COL_MARK, 20);
+      lb_list->setColumnWidth (KV_COL_MARK, 20);
+      remain -= 20;
+      for (int i = KV_COL_ORG; i < lb_list->numCols()-1; i++) {
+        remain -= 2*x;
+        header->resizeSection(i, 2*x);
+        lb_list->setColumnWidth (i, 2*x);
+      }
+      header->resizeSection(lb_list->numCols()-1, remain);
+      lb_list->setColumnWidth (lb_list->numCols()-1, remain);
+/*
+    }
+    break;
+
+    case Percent: {
+//      cout << "sz0.1 " << h_list->getHeaderSize(0) << endl;
+//      cout << "sz1.1 " << h_list->getHeaderSize(1) << endl;
+//      cout << "sz2.1 " << h_list->getHeaderSize(2) << endl;
+      // header smaller than listbox to avoid scrollbar
+      if (((QWidget*)lb_list->verticalScrollBar())->isVisible() )
+        shrink += ((QWidget*)lb_list->verticalScrollBar())->width();
+      h_list->resize(lb_list->width()-shrink,
+                     h_list->height() );
+
+      int all = 0;
+      for (int i = 0; i < lb_list->numCols(); i++)
+        all += h_list->getHeaderSize(i);
+
+      if (lb_list->numCols() > 1) {
+        int max = h_list->width();
+        if (all != 0) {
+          int rest = max;
+          int i;
+          for (i = 0; i < lb_list->numCols()-1; i++) {
+            int size = h_list->getHeaderSize(i) * max / all;
+            rest -= size;
+            h_list->setHeaderSize( i, size );
+          }
+          h_list->setHeaderSize( i, rest );
+        }
+        else {
+          int rest = max;
+          int i;
+          int size = max / lb_list->numCols();
+          for (i = 0; i < lb_list->numCols()-1; i++) {
+            rest -= size;
+            h_list->setHeaderSize( i, size );
+          }
+          h_list->setHeaderSize( i, rest );
+        }
+      }
+      else {
+        h_list->setHeaderSize( KV_COL_ORG, h_list->width());
+      }
+//      cout << "sz0.2 " << h_list->getHeaderSize(0) << endl;
+//      cout << "sz1.2 " << h_list->getHeaderSize(1) << endl;
+//      cout << "sz2.2 " << h_list->getHeaderSize(2) << endl;
+    }
+    break;
+
+    case Fixed:
+      //
+    break;
+  }
+*/
+  if (the_doc != 0) {
+    for (int i = KV_COL_ORG; i < lb_list->numCols(); i++) {
+      the_doc->setSizeHint (i-KV_EXTRA_COLS, header->sectionSize(i));
+    }
+    the_doc->setSizeHint (-1, header->sectionSize(KV_COL_LESS));
+  }
+}
+
+
 void kvoctrainView::setView(kvoctrainDoc *doc,
                             const LangSet& ls, const GradeCols &gc)
 {
@@ -170,23 +272,6 @@ kvoctrainView::~kvoctrainView()
   config->setGroup(CFG_WINPROP);
   config->writeEntry(CFG_WINWIDTH, width());
   config->writeEntry(CFG_WINHEIGHT, height());
-}
-
-
-void kvoctrainView::showEvent( QShowEvent * )
-{
-  QResizeEvent r_ev (size(), size());
-  resizeEvent ( &r_ev );
-}
-
-
-void kvoctrainView::resizeEvent ( QResizeEvent *r_ev )
-{
-  if (r_ev == 0)
-    return;
-
-  f_list->resize (r_ev->size());
-  int shrink = 0;
 }
 
 

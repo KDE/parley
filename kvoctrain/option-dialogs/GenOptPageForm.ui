@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>596</width>
+            <width>592</width>
             <height>480</height>
         </rect>
     </property>
@@ -47,60 +47,6 @@
                     <name>spacing</name>
                     <number>6</number>
                 </property>
-                <widget row="0"  column="3"  rowspan="3"  colspan="1" >
-                    <class>QGroupBox</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>group_resize</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>title</name>
-                        <string>Column resizing</string>
-                    </property>
-                    <vbox>
-                        <property stdset="1">
-                            <name>margin</name>
-                            <number>11</number>
-                        </property>
-                        <property stdset="1">
-                            <name>spacing</name>
-                            <number>6</number>
-                        </property>
-                        <widget>
-                            <class>QRadioButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>hb_auto</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>a&amp;utomatic</string>
-                            </property>
-                        </widget>
-                        <widget>
-                            <class>QRadioButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>hb_percent</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>&amp;percentage</string>
-                            </property>
-                        </widget>
-                        <widget>
-                            <class>QRadioButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>hb_fixed</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>hb_fixed</string>
-                            </property>
-                        </widget>
-                    </vbox>
-                </widget>
                 <widget row="0"  column="0" >
                     <class>QLabel</class>
                     <property stdset="1">
@@ -169,6 +115,60 @@
                         </size>
                     </property>
                 </spacer>
+                <widget row="0"  column="3"  rowspan="3"  colspan="1" >
+                    <class>QButtonGroup</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>group_resize</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>Column resizing</string>
+                    </property>
+                    <vbox>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget>
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>hb_auto</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>a&amp;utomatic</string>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>hb_percent</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;percentage</string>
+                            </property>
+                        </widget>
+                        <widget>
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>hb_fixed</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;fixed</string>
+                            </property>
+                        </widget>
+                    </vbox>
+                </widget>
             </grid>
         </widget>
     </hbox>

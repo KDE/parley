@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/25 18:04:26  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -72,6 +75,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
         QFont        &font,
         QueryManager *manager,
         GradeCols    &gradecols,
+        kvoctrainView::Resizer resizer,
         bool          smartAppend,
         bool          autosaveopts,
 	QWidget      *parent,
@@ -86,7 +90,7 @@ GeneralOptionsDlg::GeneralOptionsDlg
   setCancelButton(i18n("&Cancel"));
   setOkButton(i18n("&OK"));
 
-  genOptPage =  new GenOptPage  (btime, smartAppend, autosaveopts, this, name);
+  genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, this, name);
   langOptPage = new LangOptPage (deflang, langset, lastPix, this, name);
   viewOptPage = new ViewOptPage (font, gradecols, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);

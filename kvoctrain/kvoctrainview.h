@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -69,6 +73,13 @@ class kvoctrainView : public QWidget
   Q_OBJECT
 
  public:
+
+   enum Resizer { Automatic,  // guess something meaningful for resizing
+                  Fixed,      // keep users sizes
+                  Percent};   // keep percentage of size
+
+  void setResizer (Resizer res) { header_resizer = res; }
+
   /** Constructor for the main view */
   kvoctrainView(kvoctrainDoc* doc,
                 const LangSet &ls, const GradeCols &gradecols,
@@ -92,11 +103,11 @@ class kvoctrainView : public QWidget
   bool             autoResize;
   kvoctrainDoc    *the_doc;
   QGridLayout     *list_layout;
+  Resizer          header_resizer;
   kvoctrainApp    *parent;
 
   /** resizes table when frame is resized */
   virtual void resizeEvent ( QResizeEvent * );
-  virtual void showEvent( QShowEvent * );
 };
 
 /**
@@ -131,6 +142,8 @@ public slots:
 
 protected:
   int             current;
+
+
 };
 
 #endif // KVOCTRAINVIEW_H

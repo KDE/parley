@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.4  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -52,6 +55,8 @@
 #include <qlineedit.h>
 #include <qcheckbox.h>
 #include <qvalidator.h>
+#include <qbuttongroup.h>
+#include <qradiobutton.h>
 
 #include <stdlib.h>
 #include <kapp.h>
@@ -61,6 +66,7 @@
 GenOptPage::GenOptPage
 (
         int        _btime,
+        kvoctrainView::Resizer res,
         bool        _smart,
         bool        _autosaveopts,
 	QWidget    *parent,
@@ -70,11 +76,18 @@ GenOptPage::GenOptPage
 	GenOptPageForm( parent, name )
 {
   setCaption(i18n("Options" ));
+  resizer = res;
+
+  group_resize->insert(hb_auto);
+  group_resize->insert(hb_percent);
+  group_resize->insert(hb_fixed);
 
   connect( c_smart, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
-
   connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
+  connect( hb_fixed, SIGNAL(clicked()), SLOT(slotHBfixed()) );
+  connect( hb_percent, SIGNAL(clicked()), SLOT(slotHBpercent()) );
+  connect( hb_auto, SIGNAL(clicked()), SLOT(slotHBauto()) );
 
   btime = _btime;
   smart = _smart;
@@ -90,6 +103,25 @@ GenOptPage::GenOptPage
   s.setNum (btime);
   e_btime->setText (s);
   label_btime->setBuddy (e_btime);
+
+  switch (resizer) {
+    case kvoctrainView::Automatic :
+       hb_auto->setChecked( true );
+    break;
+
+    case kvoctrainView::Fixed :
+       hb_fixed->setChecked( true );
+    break;
+
+    case kvoctrainView::Percent :
+       hb_percent->setChecked( true );
+    break;
+
+    default: {
+      hb_auto->setChecked( true );
+      resizer = kvoctrainView::Automatic;
+    }
+  }
 }
 
 
@@ -119,6 +151,24 @@ void GenOptPage::slotSmartAppend(bool b)
 void GenOptPage::slotAutoSaveOpts(bool b)
 {
   autosaveopts = b;
+}
+
+
+void GenOptPage::slotHBauto()
+{
+  resizer = kvoctrainView::Automatic;
+}
+
+
+void GenOptPage::slotHBfixed()
+{
+  resizer = kvoctrainView::Fixed;
+}
+
+
+void GenOptPage::slotHBpercent()
+{
+  resizer = kvoctrainView::Percent;
 }
 
 

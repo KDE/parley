@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 10:16:08  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.3  2001/10/22 06:39:21  waba
     Show a cute little marker to indicate marked entries.
     (Instead of using a bold type-face)
@@ -137,6 +140,9 @@
 #define PREFIX_Remark               "R:"
 #define PREFIX_Pronunce             "P:"
 
+//
+//
+//
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
      i18n("Abbreviation for T)ype of word",  PREFIX_Type)
      i18n("Abbreviation for R)emark",        PREFIX_Remark)
@@ -305,6 +311,7 @@
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
 #define MAX_LANGSET      100
+
 
 #endif // RESOURCE_H
 

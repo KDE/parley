@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/10/28 10:15:46  arnold
+    quick 'n dirty fixes for new query dialogs
+
     Revision 1.5  2001/10/22 06:38:58  waba
     Show a cute little marker to indicate marked entries.
     (Instead of using a bold type-face)
@@ -435,6 +438,7 @@ void kvoctrainApp::initView(const QString &name)
 
   view = new kvoctrainView(doc, langset, gradecols, this);
 
+  view->setResizer (header_resizer);
   view->getTable()->setFont(tablefont);
   setCentralWidget(view);
 
