@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.27  2002/04/16 17:54:09  binner
+    Capitalisation fixes.
+
     Revision 1.26  2002/03/13 09:25:42  staikos
     Don't crash on exit
 
@@ -105,7 +108,7 @@
 
  ***************************************************************************/
 
-/***************************************************************************
+/*** content ************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *

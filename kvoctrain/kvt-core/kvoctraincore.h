@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2002/01/19 10:33:10  arnold
+    made entry dialog modeless
+
     Revision 1.4  2001/12/22 09:01:46  arnold
     fixed version string handling
 
@@ -151,6 +154,6 @@
 #define MAX_LANGSET      100
 
 #define KVTLIB_DEBUG_AREA         12003
-#define KVOCTRAIN_VERSION_STRING  "0.8.0"  // maybe split KVTLIB_VERSION/KVAPP_VERSION
+#define KVOCTRAIN_VERSION_STRING  "0.8.1"  // maybe split KVTLIB_VERSION/KVAPP_VERSION
 
 #endif // KVOCTRAINCORE_H

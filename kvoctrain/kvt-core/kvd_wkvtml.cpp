@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.9  2002/01/05 18:51:37  arnold
     fixed i18n() related isuses
 
@@ -622,8 +625,8 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
   XmlWriter xml (os);
   xml.setAutoEndl (false);
 
-  xml.startTag ("!doctype", false);
-  xml.writeText (" kvtml system \"kvoctrain.dtd\"");
+  xml.startTag ("!DOCTYPE", false);
+  xml.writeText (" kvtml SYSTEM \"kvoctrain.dtd\"");
   xml.closeTag (false, true);
 
   xml.startTag ("!--", false, true, true);
@@ -683,12 +686,10 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
                  " - Close all tags\n"
                  " - Keep proper hierarchy\n"
                  " - All attributes are quoted\n"
-                 "\n"
-                 "--"
-                 "\n");
-
+                 "--");
   xml.closeTag (false, true);
 
+  xml.writeText ("\n ");
   xml.startTag (KV_DOCTYPE, false);
   xml.writeText ("\n ");
   xml.addAttribute (KV_ENCODING, (QString)"UTF-8");

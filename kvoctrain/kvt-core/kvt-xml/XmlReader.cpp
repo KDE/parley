@@ -10,6 +10,11 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.3  2002/04/12 10:09:56  coolo
+  replacing tons of these (for gcc 3):
+  -      queryList.erase(&queryList[i], &queryList[i+1]);
+  +      queryList.erase(queryList.begin() + i);
+
   Revision 1.2  2002/02/08 19:24:03  arnold
   fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -86,7 +91,7 @@ bool XmlReader::validHeader () {
 
   if (token != XmlTokenizer::Tok_Symbol)
     return false;
-  else if (tokenizer.element () != "doctype")
+  else if (tokenizer.element().lower() != "doctype")
     return false;
 
   if (tokenizer.nextToken () != XmlTokenizer::Tok_Symbol)
@@ -95,7 +100,7 @@ bool XmlReader::validHeader () {
 
   if (tokenizer.nextToken () != XmlTokenizer::Tok_Symbol)
     return false;
-  else if (tokenizer.element () != "system")
+  else if (tokenizer.element().lower() != "system")
     return false;
 
   if (tokenizer.nextToken () != XmlTokenizer::Tok_String)
