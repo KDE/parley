@@ -209,8 +209,8 @@ void kvoctrainApp::slotFileOpen()
 
   if (queryExit() ) {
     QString s;
-    KURL url = KFileDialog::getOpenURL(QDir::currentDirPath(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
-      loadfileFromPath(url, true);
+    KURL url = KFileDialog::getOpenURL(QString::null, FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
+    loadfileFromPath(url, true);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -262,9 +262,7 @@ void kvoctrainApp::slotFileMerge()
   slotStatusMsg(i18n("Merging file..."));
 
   QString s;
-  //if (recent_files.count() > 0)
-    //s = recent_files[0];
-  KURL url = KFileDialog::getOpenURL(QDir::currentDirPath(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+  KURL url = KFileDialog::getOpenURL(QString::null, FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty() ) {
 
@@ -612,8 +610,7 @@ void kvoctrainApp::slotFileSaveAs()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  QString s;
-  KURL url = KFileDialog::getSaveURL(s, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KURL url = KFileDialog::getSaveURL(QString::null, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
@@ -664,8 +661,7 @@ void kvoctrainApp::slotSaveSelection ()
     if (doc->getEntry(i)->isInQuery() )
       seldoc.appendEntry(doc->getEntry(i));
 
-  QString s;
-  KURL url = KFileDialog::getSaveURL(s, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KURL url = KFileDialog::getSaveURL(QString::null, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
