@@ -56,10 +56,10 @@ QueryOptPage::QueryOptPage
 {
    query_group->insert( r_show_to );
    query_group->insert( r_cont_to );
-   query_group->insert( r_nolimit_to );
+   query_group->insert( kcfg_queryTimeout );
 
    connect( showrem, SIGNAL(toggled(bool)), SLOT(slotShowRemTime(bool)) );
-   connect( r_nolimit_to, SIGNAL(clicked()), SLOT(slotNoTimeout()) );
+   connect( kcfg_queryTimeout, SIGNAL(clicked()), SLOT(slotNoTimeout()) );
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
    connect( kcfg_SwapDir, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
@@ -73,7 +73,6 @@ QueryOptPage::QueryOptPage
    validator = new QIntValidator (0, 60*60*24*7, 0); // at least once a week
 
    kcfg_maxTimePer->setValidator (validator);
-  // label_mqtime->setBuddy(kcfg_maxTimePer);
 
    setStates(_mqtime, _swapdir, _altlearn, show, type_to);
 
@@ -128,7 +127,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    else {
      kcfg_maxTimePer->setEnabled(false);
      showrem->setEnabled(false);
-     r_nolimit_to->setChecked (true);
+     kcfg_queryTimeout->setChecked (true);
    }
 }
 

@@ -85,7 +85,6 @@
 #define       CFG_QUERYMODE            "QueryMode"
 #define       CFG_DEFTRANS             "DefaultTranslation"
 #define       CFG_DEFORG               "DefaultOriginal"
-#define       CFG_QUERYTIMEOUT         "QueryTimeout"
 #define       CFG_SHOWCOUNTER          "Showcounter"
 
 #define      CFG_NUMLANGSET           "NumLangSet"

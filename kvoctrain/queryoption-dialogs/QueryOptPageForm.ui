@@ -88,10 +88,19 @@
                         </widget>
                         <widget class="QRadioButton" row="0" column="0">
                             <property name="name">
-                                <cstring>r_nolimit_to</cstring>
+                                <cstring>kcfg_queryTimeout</cstring>
                             </property>
                             <property name="text">
                                 <string>&amp;No time limitation</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+N</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Check this if you don't want any time limitation per query.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>When this is checked, there is no time limitation for each query</string>
                             </property>
                         </widget>
                         <widget class="QCheckBox" row="2" column="2">
@@ -325,7 +334,7 @@
     </hbox>
 </widget>
 <tabstops>
-    <tabstop>r_nolimit_to</tabstop>
+    <tabstop>kcfg_queryTimeout</tabstop>
     <tabstop>r_show_to</tabstop>
     <tabstop>r_cont_to</tabstop>
     <tabstop>kcfg_maxTimePer</tabstop>

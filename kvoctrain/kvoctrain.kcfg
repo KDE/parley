@@ -19,6 +19,10 @@
       <label>Swap direction randomly</label>
       <default code="true">false</default>
     </entry>
+        <entry name="QueryTimeout" type="Int">
+      <label>If true, there is no time set to answer each query</label>
+      <default code="true">(int) kvq_notimeout</default>
+    </entry>
         <entry name="MaxTimePer" type="Int">
       <label>Swap direction randomly</label>
       <default code="true">20*1000</default>

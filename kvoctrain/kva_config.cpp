@@ -128,9 +128,9 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setAltLearn(alt_learn);
     Prefs::setBlock(block);
     Prefs::setExpire(expire);
+    Prefs::setQueryTimeout(type_querytimeout);
     Prefs::writeConfig();
    
-    config->writeEntry(CFG_QUERYTIMEOUT, type_querytimeout);
     config->setGroup(CFG_QUERYMANAG);
     querymanager.saveConfig (config);
   }
@@ -244,7 +244,7 @@ void kvoctrainApp::readOptions()
   }
 
   config->setGroup(CFG_QUERYPROP);
-  type_querytimeout = (kvq_timeout_t) config->readNumEntry(CFG_QUERYTIMEOUT, (int) kvq_notimeout);
+  type_querytimeout = (kvq_timeout_t) Prefs::queryTimeout();
   maxqueryTime = Prefs::maxTimePer();
   showcounter = config->readNumEntry(CFG_SHOWCOUNTER, false);
   swap_querydir= Prefs::swapDir();
