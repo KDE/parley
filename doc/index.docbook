@@ -114,7 +114,7 @@ of this application.</para>
             one of them is good.</para></listitem>
       <listitem><para>reduced size of executable by almost 1000kb ;-) by
  eleminating
-            multiple instatiations of templates.</para></listitem>
+            multiple instantiations of templates.</para></listitem>
       <listitem><para>query may contain arbitrary many lessons, not just
  one (or all).</para></listitem>
       <listitem><para>user defined names for
@@ -127,7 +127,7 @@ of this application.</para>
       <listitem><para>switch to have settings always saved on exit (not
  only upon request)</para></listitem>
       <listitem><para>Thanks to Hans Kottmann there is also a
- localization for french and
+ localization for French and
             Grzegorz Ilzuk has created one for polish.</para></listitem>
       <listitem><para>lesson which are included for the next query are
  now stored with the
@@ -260,7 +260,7 @@ the vocabulary have a visual representation:</para>
 
 <listitem><para>colors show the grade (Level 1 to 7) of your
 knowledge</para></listitem>
-<listitem><para>A green check mark in the second colums means that this
+<listitem><para>A green check mark in the second columns means that this
 line is in use for a query (when you did not finish last time) whereas a
 red cross appears when you deactivated the line.</para></listitem>
 
@@ -444,14 +444,14 @@ vocabulary.</para></listitem>
 <listitem><para>By pressing &Ctrl; and one of the two number pad
 keys, <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
 previous or next item in the combo box determining the current
-lesson. If you don't have a number pad you may also use the normal
+lesson. If you do not have a number pad you may also use the normal
 <keycap>+</keycap> or <keycap>-</keycap> keys.</para></listitem> 
 </varlistentry>
 
 </variablelist>
 
 <!--  FIXME: Re-implement??
-<para>The buttons on top of the rows are acessible by the keyboard. To
+<para>The buttons on top of the rows are accessible by the keyboard. To
 avoid clashes with the shortcuts for the main menu you have to press
 <keycombo action="simul">&Shift;&Alt;</keycombo> and the key of
 underlined letter in the button text. Then the corresponding <link
@@ -620,7 +620,7 @@ every document can contain user defined types.</para>
      <listitem><para>neutral</para></listitem>
   </itemizedlist></para></entry>
 <entry><para>naming of things, feelings</para></entry>
-<entry><para>table, coffee (english does not distinguish
+<entry><para>table, coffee (English does not distinguish
  here)</para></entry>
 </row>
 
@@ -793,7 +793,7 @@ words per cycle and subdivide the lessons accordingly.</para></listitem>
 current grade, the number of queries and the last query
 date.</para></listitem>
 
-<listitem><para>Learning is efficient, if you don't repeat the words
+<listitem><para>Learning is efficient, if you do not repeat the words
 for a certain length of time, depending on the current
 grade.</para>
 
@@ -1484,7 +1484,7 @@ field empty.</para></listitem>
 first, second and third person each in plural and singular.</para>
 <para>Because many languages do not distinguish in the third person
  plural, there is a checkbox to determine this.</para>
-<para>Leave the uneccessary fields empty.</para></listitem>
+<para>Leave the unneccessary fields empty.</para></listitem>
 </varlistentry>
 
 </variablelist>
@@ -1654,7 +1654,7 @@ desired language properties to your personal list.</para>
 
 <para>Maybe you want to change the
 language name or the according picture but I strongly recommend you keep at least the
-2-byte language code and its 3-byte alternative if you don't have a special reason.
+2-byte language code and its 3-byte alternative if you do not have a special reason.
 This is to achieve compatible document files that can be shared among all users.
 </para></listitem>
 </varlistentry>
@@ -1700,7 +1700,7 @@ in the
 <listitem><para>Lets you choose a font to display the characters from the international
 phonetic alphabet. This is used to show the pronunciation of the expression
 on the bottom in the statusbar.</para>
-<para>Probably you don't have an IPA enabled font since those characters are seldom used.
+<para>Probably you do not have an IPA enabled font since those characters are seldom used.
 You may download a free font from
 <ulink url="http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html">http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html
 </ulink> or
@@ -1726,7 +1726,7 @@ The International Phonetic Association</ulink> where you can find even more info
 <term><guilabel>Grade colors</guilabel></term>
 <listitem><para>Every grade can be assigned an individual color. For
 example I prefer green for best grade and red for worst.</para>
-<para>If you don't want any colors but just black on white, uncheck the
+<para>If you do not want any colors but just black on white, uncheck the
 according check box.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1847,7 +1847,7 @@ settings.</para></listitem>
 <varlistentry>
 <term><guilabel>Time per query</guilabel></term>
 <listitem><para>Here you can influence the behavior of &kvoctrain;
-when you don't know the answer in time.
+when you do not know the answer in time.
   <itemizedlist>
   <listitem><para>You may set a time limit &kvoctrain; grants you to
   remember the correct answer.</para></listitem>
@@ -1890,11 +1890,11 @@ from the current learning list.</para>
 
 <para>The alternative method was developed by Sebastian Leitner in his
 book "So lernt man lernen, Angewandte Lernpsychologie - ein Weg zum
-Erfolg" (Freiburg: Heider, 1972) (english: Learn how to learn, applied
+Erfolg" (Freiburg: Heider, 1972) (English: Learn how to learn, applied
 learning psychology - A way to success).</para>
 
 <para>The idea of Leitner's method is to try learn those questions you
-have a hard time to learn, and don't bother you with those that you do
+have a hard time to learn, and do not bother you with those that you do
 know. This is accomplished by requiring you to answer correctly to each
 question four times in a row.</para>
 
@@ -1989,7 +1989,7 @@ choose <emphasis>before</emphasis>.</para></listitem>
 </variablelist>
 
 <para>Entries are only included if all conditions are fulfilled. If you
-want a property to be ignored, choose <guilabel>Dont care </guilabel>for it.</para>
+want a property to be ignored, choose <guilabel>Do not care </guilabel>for it.</para>
 
 </sect2>
 
@@ -2061,7 +2061,7 @@ properties page</link> where you can enter a new lesson.</para></listitem>
 <varlistentry>
 <term><guilabel>Pronunciation</guilabel></term>
 <listitem><para>In this field you can describe how the word is
-pronounciated.</para>
+pronounced.</para>
 <para>This is possible either by using simple ascii characters and maybe an fancy
 and very personal phonetic description or better by using the international
 phonetic alphabet.
@@ -2119,7 +2119,7 @@ should look like this:</para>
 </mediaobject>
 </screenshot>
 
-<para>If you don't have such a font you can find a link to a free one in the section
+<para>If you do not have such a font you can find a link to a free one in the section
 about the <link linkend="opt-dlg-ipa">view options</link>.</para>
 </sect3>
 
@@ -2191,7 +2191,7 @@ information.</para></listitem>
 
 <para>If you want to create an efficient multiple choice query it
 is good to offer expressions that are similar to the solution to make
-it more difficult. If you don't offer them, &kvoctrain; has only
+it more difficult. If you do not offer them, &kvoctrain; has only
 the possibility
 to create such queries with randomly chosen expressions which are rather
 easy to guess.
@@ -2217,7 +2217,7 @@ You can enter up to five expressions for this purpose.</para>
 of the verb for the different persons. The tense can be selected from
  the list. After doing this the entry fields are updated accordingly.</para>
 
-<para>Because some languages don't distinguish in the 3rd person of the
+<para>Because some languages do not distinguish in the 3rd person of the
 plural you may use the according checkbox.</para>
 
 <para><guibutton>Next</guibutton> searches for the next tense with
@@ -2586,10 +2586,10 @@ with enough space, I might also store them there.</para>
 
 <para>But please:</para>
 <itemizedlist>
-<listitem><para>Don't send me any files before telling me. Maybe someone
+<listitem><para>Do not send me any files before telling me. Maybe someone
 else has already started this type of dictionary.</para></listitem>
 <listitem><para>The dictionaries should have a reasonable good quality
-as I don't want to do any revision.</para></listitem>
+as I do not want to do any revision.</para></listitem>
 <listitem><para>If you modify existing vocabularies or create
 vocabularies based on copyrighted material you must ask the author for
 permission. Even taking literal examples from schoolbooks might be
@@ -2678,7 +2678,7 @@ to include it here.</para>
 <sect1 id="translators">
 <title>Translator applications</title>
 
-<para>If you don't want to learn but just need quick translations of
+<para>If you do not want to learn but just need quick translations of
 expressions in larger dictionaries you might be unhappy with &kvoctrain;
 if your computer doesn't have much memory and MHz. A 150000 entry
 file consumes about 60M and takes ages to load if your system is short of memory.</para>
@@ -2883,7 +2883,7 @@ homepage</ulink>.</para>
 <para><ulink url="http://www.kde.org/anoncvs.html">Anonymous
 CVS download</ulink> is also available.</para>
 
-<important><para>Don't use the CVS code from the Sourceforge server because ths
+<important><para>Do not use the CVS code from the Sourceforge server because this
 branch is obsolete.</para></important>
 
 <para>You can find precompiled binaries as rpm packages
