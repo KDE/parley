@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:11  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:13:42  arnold
     removed icons and compatibilty for kde1
 
@@ -99,58 +102,6 @@ ViewOptPage::ViewOptPage
 
    e_font->setText (QString("%1 %2pt").arg(font.family()).arg(font.pointSize()));
 
-// l_lev0->setText (QueryManager::gradeStr("Not queried:");
-   l_lev0->setBuddy(b_col0);
-
-   QString s = QueryManager::gradeStr(KV_LEV1_GRADE);
-   int pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev1->setText (s+':');
-   l_lev1->setBuddy(b_col1);
-
-   s = QueryManager::gradeStr(KV_LEV2_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev2->setText (s+':');
-   l_lev2->setBuddy(b_col2);
-
-   s = QueryManager::gradeStr(KV_LEV3_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev3->setText (s+':');
-   l_lev3->setBuddy(b_col3);
-
-   s = QueryManager::gradeStr(KV_LEV4_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev4->setText (s+':');
-   l_lev4->setBuddy(b_col4);
- 
-   s = QueryManager::gradeStr(KV_LEV5_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev5->setText (s+':');
-   l_lev5->setBuddy(b_col5);
- 
-   s = QueryManager::gradeStr(KV_LEV6_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev6->setText (s+':');
-   l_lev6->setBuddy(b_col6);
- 
-   s = QueryManager::gradeStr(KV_LEV7_GRADE);
-   pos = s.findRev(" ");
-   if (pos >= 0)
-     s.insert(pos+1, "&");
-   l_lev7->setText (s+':');
-   l_lev7->setBuddy(b_col7);
- 
    b_col0->setColor (cols.col0);
    b_col1->setColor (cols.col1);
    b_col2->setColor (cols.col2);
@@ -161,7 +112,6 @@ ViewOptPage::ViewOptPage
    b_col7->setColor (cols.col7);
    c_use->setChecked (gc.use);
    slotColUsed(gc.use);
-
 }
 
 
