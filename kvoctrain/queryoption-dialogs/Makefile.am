@@ -2,7 +2,7 @@
 # this enables me to create a personal tar ball
 
 INCLUDES = -I$(top_srcdir)/kvoctrain/kvoctrain/common-dialogs \
-           -I$(top_builddir)/kvoctrain/common-dialogs \
+           -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs \
            -I$(top_srcdir)/kvoctrain/kvoctrain \
            -I$(top_srcdir)/kvoctrain \
            -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
