@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/01/05 18:51:36  arnold
+    fixed i18n() related isuses
+
     Revision 1.6  2002/01/04 13:17:32  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -52,8 +55,10 @@
 #include <klocale.h>
 
 #include <kvoctraindoc.h>
+
 #include <iostream.h>
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 vector<QString> UsageManager::userUsages;
 

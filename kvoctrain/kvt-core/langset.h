@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/09 10:40:26  arnold
+    removed ability to display a different font for each column
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -36,7 +39,9 @@
 #ifndef langset_h
 #define langset_h
 
-#include <vector.h>
+#include <vector>
+using namespace std;
+
 #include <qstring.h>
 
 

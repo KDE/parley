@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:47:12  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -32,7 +35,9 @@
 #define StatistikDlg_included
 
 #include <qtabdialog.h>
-#include <vector.h>
+
+#include <vector>
+using namespace std;
 
 class kvoctrainDoc;
 class LangSet;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.2  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -40,6 +43,8 @@
 
 #include <MultipleChoice.h>
 
+class EntryDlg;
+
 class MCEntryPage : public MCEntryPageForm
 {
     Q_OBJECT
@@ -48,7 +53,7 @@ public:
 
     MCEntryPage
     (
-        QDialog              *dlgbook,
+        EntryDlg             *dlgbook,
         bool                  multi_sel,
         const MultipleChoice &mc,
         QWidget              *parent = NULL,
@@ -84,6 +89,7 @@ protected slots:
 protected:
     MultipleChoice  multiplechoice;
     bool            modified;
+    EntryDlg       *dlgbook;
 };
 
 #endif // MCEntryPage_included

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/25 11:11:02  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.6  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -60,7 +63,8 @@
 #include <klocale.h>
 #include <kconfig.h>
 
-#include <algo.h>
+#include <algorithm>
+using namespace std;
 
 void kvoctrainApp::clipboardChanged() {
   QString s = QApplication::clipboard()->text();

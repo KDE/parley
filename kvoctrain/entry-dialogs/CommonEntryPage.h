@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.7  2002/01/06 15:57:07  arnold
     fixed handling of usage labels
 
@@ -57,6 +60,7 @@
 #include <UsageManager.h>
 
 class PhoneticEntryPage;
+class EntryDlg;
 
 class CommonEntryPage : public CommonEntryPageForm
 {
@@ -66,7 +70,7 @@ public:
 
     CommonEntryPage
     (
-        QDialog      *dlgbook,
+        EntryDlg     *dlgbook,
         kvoctrainDoc *doc,
         bool          multi_sel,
         QString       expr,
@@ -150,12 +154,12 @@ signals:
     void sigModified();
 
 protected:
-    QString      pronunce;
+    QString       pronunce;
     QString       expression;
     QString       usageCollection;
     int           lesson;
     QString       type;
-    QDialog      *dlgbook;
+    EntryDlg     *dlgbook;
     bool          lesson_dirty;
     bool          type_dirty;
     kvoctrainDoc *doc;

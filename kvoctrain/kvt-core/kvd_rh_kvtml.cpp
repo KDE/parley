@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.8  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -465,7 +469,7 @@ bool kvoctrainDoc::extract_BOOL_attr (
 
 
 bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
-                                    const QString entry_tag,
+                                    const QString &entry_tag,
                                     XmlElement elem, XmlReader& xml)
 
 /*

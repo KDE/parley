@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:00  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -34,7 +37,8 @@
 #include <qstring.h>
 #include <qdatastream.h>
 
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 #define CONJ_SIMPLE_PRESENT    "PrSi" // I live at home  what you frequently do
 #define CONJ_PRESENT_PROGR     "PrPr" // I am working    what you currently are doing

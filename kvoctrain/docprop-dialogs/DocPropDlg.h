@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/07 17:54:59  arnold
+    fixed typo
+
     Revision 1.3  2002/01/07 17:20:56  arnold
     fixed i18n() issues
 
@@ -86,7 +89,8 @@
 #include <GrammerManager.h>
 #include <kvoctraindoc.h>
 
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 class kvoctrainDoc;
 class LangPropPage;

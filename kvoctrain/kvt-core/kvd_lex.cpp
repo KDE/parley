@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.5  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -54,6 +58,9 @@
 #include "kvoctraincore.h"
 
 #include <qtextstream.h>
+
+#include <vector>
+using namespace std;
 
 #define LEX_MAX_ATTR    20
 #define LEX_MAX_LESSON  9
@@ -199,7 +206,7 @@ bool kvoctrainDoc::loadLessonLex (QTextStream &is)
 }
 
 
-bool kvoctrainDoc::saveToLex (QTextStream& os, QString title)
+bool kvoctrainDoc::saveToLex (QTextStream& os, QString &title)
 {
   os << LEX_IDENT_50 "\n";
   os << "LEX|" << getOriginalIdent() << "|" << getIdent(1) << "|"

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -43,6 +46,8 @@
 
 #include <GrammerManager.h>
 
+class EntryDlg;
+
 class AdjEntryPage : public AdjEntryPageForm
 {
     Q_OBJECT
@@ -51,7 +56,7 @@ public:
 
     AdjEntryPage
     (
-        QDialog           *dlgbook,
+        EntryDlg          *dlgbook,
         bool               multi_sel,
         const Comparison  &comp,
         QWidget           *parent = NULL,
@@ -84,7 +89,8 @@ protected slots:
 
 protected:
 
-    Comparison comparisons;
-    bool       modified;
+    Comparison    comparisons;
+    bool          modified;
+    EntryDlg     *dlgbook;
 };
 #endif // AdjEntryPage_included

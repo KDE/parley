@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,9 +34,10 @@
 #ifndef UsageManager_included
 #define UsageManager_included
 
-#include <vector.h>
-#include "kvoctraindoc.h"
+#include <vector>
+using namespace std;
 
+#include "kvoctraindoc.h"
 
 class kvoctrainDoc;
 class KConfig;

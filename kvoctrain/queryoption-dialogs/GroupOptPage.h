@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.1  2001/10/05 15:46:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -36,7 +39,8 @@
 
 #include "GroupOptPageForm.h"
 
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 struct PreSetting {
  PreSetting (QString n, QString q, QString t, QString b)

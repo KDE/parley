@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/19 17:52:18  arnold
+    replaced dialog files from qtarch by qtdesigner
+
     Revision 1.1  2001/10/05 15:47:12  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -35,7 +38,8 @@
 #ifndef Statistik_included
 #define Statistik_included
 
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 #include "StatistikPageForm.h"
 

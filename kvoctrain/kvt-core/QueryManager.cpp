@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/29 10:40:24  arnold
+    merged fixes from POST-branch
+
     Revision 1.7  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -56,8 +59,10 @@
 #include <kconfig.h>
 
 #include <kvoctraindoc.h>
+
 #include <iostream.h>
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 vector<QString> QueryManager::userTypes;
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/09 14:19:13  arnold
+    fixed and improved some dialog pages
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,7 +37,9 @@
 #ifndef QueryManager_included
 #define QueryManager_included
 
-#include <vector.h>
+#include <vector>
+using namespace std;
+
 #include "kvoctraindoc.h"
 
 class kvoctrainDoc;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2002/01/19 11:24:52  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.15  2002/01/18 04:40:09  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -91,9 +94,11 @@
 #include <qfileinfo.h>
 #include <qtextstream.h>
 
-#include <algo.h>
-#include <function.h>
-#include <vector.h>
+#include <algorithm>
+#include <functional>
+#include <vector>
+using namespace std;
+
 #include <iostream.h>
 #include <fstream.h>
 #include <strstream.h>
@@ -124,7 +129,7 @@ void kvoctrainDoc::getVersion(int &major, int &minor, int &patch)
 void kvoctrainDoc::Init ()
 {
 
-  setVersion (KVOCTRAIN_VERSION_STRING);
+  setVersion (QString::fromUtf8(KVOCTRAIN_VERSION_STRING));
   lesson_descr.clear();
   type_descr.clear();
   tense_descr.clear();
@@ -149,17 +154,16 @@ void kvoctrainDoc::Init ()
 
 
 kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
-                           const QString separator, QStringList *lang_order)
+                           QString separator, QStringList *lang_order)
 {
   Init();
   mainfile = filename;
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)),
            parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
-  FileType ft = detectFT(filename);
 
   if (!mainfile.isEmpty()) {
-
+    FileType ft = detectFT(filename);
     QFile f( filename );
     QFileInfo fi (f);
     bool isfile = fi.isFile() || fi.isSymLink();
@@ -253,7 +257,7 @@ kvoctrainDoc::~kvoctrainDoc()
 
 bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
                            FileType ft,
-                          const QString separator, QStringList *lang_order)
+                          const QString &separator, QStringList *lang_order)
 {
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)),
            parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
@@ -352,7 +356,7 @@ void kvoctrainDoc::removeEntry(int index)
 }
 
 
-int kvoctrainDoc::findIdent (const QString lang) const
+int kvoctrainDoc::findIdent (const QString &lang) const
 {
   vector<QString>::const_iterator first = langs.begin();
   int count = 0;
@@ -375,7 +379,7 @@ QString kvoctrainDoc::getIdent (int index) const
 }
 
 
-void kvoctrainDoc::setIdent (int idx, const QString id)
+void kvoctrainDoc::setIdent (int idx, const QString &id)
 {
   if (idx < (int)langs.size() && idx >= 1 ) {
     langs[idx] = id;
@@ -392,7 +396,7 @@ QString kvoctrainDoc::getTypeName (int index) const
 }
 
 
-void kvoctrainDoc::setTypeName (int idx, const QString id)
+void kvoctrainDoc::setTypeName (int idx, QString &id)
 {
   if (idx >= (int)type_descr.size())
     for (int i = (int)type_descr.size(); i <= idx; i++)
@@ -411,7 +415,7 @@ QString kvoctrainDoc::getTenseName (int index) const
 }
 
 
-void kvoctrainDoc::setTenseName (int idx, const QString id)
+void kvoctrainDoc::setTenseName (int idx, QString &id)
 {
   if (idx >= (int)tense_descr.size())
     for (int i = (int)tense_descr.size(); i <= idx; i++)
@@ -430,7 +434,7 @@ QString kvoctrainDoc::getUsageName (int index) const
 }
 
 
-void kvoctrainDoc::setUsageName (int idx, const QString id)
+void kvoctrainDoc::setUsageName (int idx, QString &id)
 {
   if (idx >= (int)usage_descr.size())
     for (int i = (int)usage_descr.size(); i <= idx; i++)
@@ -568,7 +572,7 @@ QString kvoctrainDoc::getOriginalIdent () const
 }
 
 
-void kvoctrainDoc::setOriginalIdent (const QString id)
+void kvoctrainDoc::setOriginalIdent (const QString &id)
 {
   if (langs.size() > 0) {
     langs[0] = id;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -43,6 +46,8 @@
 
 #include <GrammerManager.h>
 
+class EntryDlg;
+
 class TenseEntryPage : public TenseEntryPageForm
 {
     Q_OBJECT
@@ -51,7 +56,7 @@ public:
 
     TenseEntryPage
     (
-        QDialog           *dlgbook,
+        EntryDlg          *dlgbook,
         bool               multi_sel,
         const Conjugation &con_prefix,
         const Conjugation &conjugations,
@@ -94,10 +99,11 @@ protected slots:
     void slotNextConj();
 
 protected:
-    Conjugation  prefix,
-                 conjugations;
-    QString      selection;
-    bool         multi_mode;
-    bool         modified;
+    Conjugation   prefix,
+                  conjugations;
+    QString       selection;
+    bool          multi_mode;
+    bool          modified;
+    EntryDlg     *dlgbook;
 };
 #endif // TenseEntryPage_included

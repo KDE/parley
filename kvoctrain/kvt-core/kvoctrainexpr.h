@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/16 18:53:21  arnold
+    added possibility to disable expressions
+
     Revision 1.7  2001/11/10 22:59:41  arnold
     fixed some bugs
 
@@ -144,13 +147,13 @@ class kvoctrainExpr
 
   kvoctrainExpr ();
 
-  kvoctrainExpr (QString s, QString separator, int lesson = 0);
+  kvoctrainExpr (QString &s, QString &separator, int lesson = 0);
 
   /** Constructor for an expression in different languages
    *
    * @param expr             expression
    */
-  kvoctrainExpr (QString expr, int lesson = 0);
+  kvoctrainExpr (QString &expr, int lesson = 0);
 
   /** adds a new translation of this entry
    * @param expr             translation
@@ -354,7 +357,7 @@ class kvoctrainExpr
    * @param index            index of type
    * @param type             type of this expression ("" = none)
    */
-  void setType (int index, const QString type);
+  void setType (int index, const QString &type);
 
   /** returns grade of given translation as string
    *

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -43,6 +46,8 @@
 
 #include "AuxInfoEntryPageForm.h"
 
+class EntryDlg;
+
 class AuxInfoEntryPage : public AuxInfoEntryPageForm
 {
     Q_OBJECT
@@ -51,7 +56,7 @@ public:
 
     AuxInfoEntryPage
     (
-        QDialog    *dlgbook,
+        EntryDlg   *dlgbook,
         bool        multi_sel,
         QString     syno,
         QString     anto,
@@ -83,6 +88,7 @@ public:
 
 public slots:
     void initFocus() const;
+    void returnPressed();
 
 signals:
     void sigModified();
@@ -99,12 +105,13 @@ protected slots:
     void slotParaSelected();
 
 protected:
-    QString   synonym;
-    QString   antonym;
-    QString   example;
-    QString   remark;
-    QString   paraphrase;
-    bool      modified;
+    QString       synonym;
+    QString       antonym;
+    QString       example;
+    QString       remark;
+    QString       paraphrase;
+    bool          modified;
+    EntryDlg     *dlgbook;
 };
 
 #endif // AuxInfoEntryPage_included

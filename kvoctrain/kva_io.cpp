@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.26  2002/01/30 17:26:55  arnold
+    added some tooltips, fixed capitalisation
+
     Revision 1.25  2002/01/30 09:57:06  binner
     "All files" is "*", not "*.*"
 
@@ -330,10 +333,13 @@ void kvoctrainApp::slotFileNew()
   if (queryExit() ) {
     view->setView (0, langset, gradecols);
     delete doc;
-    doc = new kvoctrainDoc (this, "", separator, &paste_order);
+    QString name = "";
+    doc = new kvoctrainDoc (this, name, separator, &paste_order);
     loadDocProps(doc);
-    if (doc->numLangs() == 0)
-      doc->appendLang("en");
+    if (doc->numLangs() == 0) {
+      QString l = "en";
+      doc->appendLang(l);
+    }
     view->setView(doc, langset, gradecols);
     view->getTable()->setFont(tablefont);
     view->adjustContent();
@@ -592,7 +598,8 @@ void kvoctrainApp::slotFileMerge()
               new_expr.setOriginal(s);
             else
               new_expr.setTranslation(i, s);
-            new_expr.setRemark (i, expr->getRemark(lpos));
+            QString r = expr->getRemark(lpos);
+            new_expr.setRemark (i, r);
 
             QString t = expr->getType(lpos);
             if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
@@ -802,7 +809,7 @@ void kvoctrainApp::slotSaveSelection ()
 
   slotStatusMsg(i18n("Saving selected area under new filename..."));
 
-  kvoctrainDoc seldoc(this, "");
+  kvoctrainDoc seldoc(this, "", "\t");
   // transfer most important parts
   seldoc.appendLang(doc->getOriginalIdent());
   for (int i = 1; i < doc->numLangs(); i++)

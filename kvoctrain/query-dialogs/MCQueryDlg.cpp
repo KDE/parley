@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/20 11:41:02  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.14  2002/01/04 21:09:16  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -95,8 +98,8 @@
 #include <qpushbutton.h>
 
 #include <iostream.h>
-#include <algo.h>
-
+#include <algorithm>
+using namespace std;
 
 MCQueryDlg::MCQueryDlg(
                    QString org,

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.6  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -63,7 +66,7 @@
 
 TenseEntryPage::TenseEntryPage
 (
-        QDialog           *dlgbook,
+        EntryDlg         *_dlgbook,
         bool               multi_sel,
         const Conjugation &con_prefix,
         const Conjugation &conjug,
@@ -71,21 +74,23 @@ TenseEntryPage::TenseEntryPage
         const char        *name
 )                       
 	:
+        dlgbook(_dlgbook),
 	TenseEntryPageForm( parent, name ),
         multi_mode(multi_sel)
 {
-	connect( thirdN_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( thirdN_singular, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( thirdM_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( thirdM_singular, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( thirdF_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( thirdF_singular, SIGNAL(returnPressed()), SLOT(accept()) );
+	connect( thirdN_plural, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( thirdN_singular, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( thirdM_plural, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( thirdM_singular, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( thirdF_plural, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( thirdF_singular, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( second_plural, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( second_singular, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( first_plural, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( first_singular, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	
 	connect( third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
 	connect( third_s_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
-	connect( second_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( second_singular, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( first_plural, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( first_singular, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( b_next, SIGNAL(clicked()), SLOT(slotNextConj()) );
 	connect( tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)) );
 
@@ -327,10 +332,10 @@ void TenseEntryPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.13  2001/12/16 16:51:25  arnold
     fixed keyboard handling in main view
 
@@ -71,11 +74,13 @@
 #define rowtable_included
 
 #include <kv_resource.h>
-#include <vector.h>
 
 #include <qglobal.h>
 #include <qtable.h>
 #include <qheader.h>
+
+#include <vector>
+using namespace std;
 
 class QPainter;
 class kvoctrainDoc;

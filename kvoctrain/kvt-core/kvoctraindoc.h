@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/13 18:39:52  arnold
+    added phonetic alphabet stuff
+
     Revision 1.6  2001/11/16 18:53:21  arnold
     added possibility to disacble expressions
 
@@ -290,7 +293,7 @@ class kvoctrainDoc : public QObject
    * @param filename         name of file to parse
    */
   kvoctrainDoc(QObject* obj, QString name,
-               const QString separator = "\t", QStringList *lang_order = 0);
+               QString separator, QStringList *lang_order = 0);
 
   /** Destructor for the fileclass of the application */
   ~kvoctrainDoc();
@@ -354,7 +357,7 @@ class kvoctrainDoc : public QObject
 
   /** set original´s identifier
    */
-  void setOriginalIdent (const QString id);
+  void setOriginalIdent (const QString &id);
 
   /** returns identifier of translation x
    *
@@ -368,7 +371,7 @@ class kvoctrainDoc : public QObject
    * @param index            number of translation 1..x
    * @param lang             ident string: de=german, en=englisch, ..
    */
-  void setIdent (int index, const QString lang);
+  void setIdent (int index, const QString &lang);
 
   /** removes identifier an the according translation in all entries
    *
@@ -381,7 +384,7 @@ class kvoctrainDoc : public QObject
    * @param lang             identifier of language
    * @result                 index of translation, 0=original, -1=none
    */
-  int findIdent (const QString lang) const;
+  int findIdent (const QString &lang) const;
 
   /** returns attribute string 
    *
@@ -395,7 +398,7 @@ class kvoctrainDoc : public QObject
    * @param index            number of attribute
    * @param str              name of attribute
    */
-  void setTypeName (int index, QString str);
+  void setTypeName (int index, QString &str);
 
   /** gets descr of types  */
   inline vector<QString> getTypeDescr() const { return type_descr; }
@@ -415,7 +418,7 @@ class kvoctrainDoc : public QObject
    * @param index            number of tense
    * @param str              name of tense
    */
-  void setTenseName (int index, QString str);
+  void setTenseName (int index, QString &str);
 
   /** gets descr of tenses  */
   inline vector<QString> getTenseDescr() const { return tense_descr; }
@@ -435,7 +438,7 @@ class kvoctrainDoc : public QObject
    * @param index            number of usage
    * @param str              name of usage
    */
-  void setUsageName (int index, QString str);
+  void setUsageName (int index, QString &str);
 
   /** gets descr of usages  */
   inline vector<QString> getUsageDescr() const { return usage_descr; }
@@ -450,8 +453,8 @@ class kvoctrainDoc : public QObject
    * @result         true if successful
    */
   bool saveAs (QObject *parent, QString name, QString title,
-               FileType ft = automatic,
-               const QString separator = "\t" , QStringList *lang_order = 0);
+               FileType ft,
+               const QString &separator, QStringList *lang_order = 0);
 
   /** returns count of entries
    */
@@ -498,7 +501,7 @@ class kvoctrainDoc : public QObject
   inline QString getFileName() const { return mainfile; }
 
   /** sets name of xml file  */
-  inline void setFileName(QString s) { mainfile = s; }
+  inline void setFileName(QString &s) { mainfile = s; }
 
   /** returns title of xml file  */
   QString getTitle() const;
@@ -515,7 +518,7 @@ class kvoctrainDoc : public QObject
   inline void getQueryLang(QString &org, QString &trans) const
     { org = queryorg; trans = querytrans; }
 
-  inline void setQueryLang(QString org, QString trans)
+  inline void setQueryLang(QString &org, QString &trans)
     { queryorg = org; querytrans = trans; }
 
   /** sets title of xml file  */
@@ -627,7 +630,7 @@ protected:
   /** sets version of loaded file  */
   void setVersion(QString ver);
 
-  bool saveToKvtMl     (QTextStream& os, QString title);
+  bool saveToKvtMl     (QTextStream& os, QString &title);
   bool loadFromKvtMl   (QTextStream& is);
   bool parseBody_kvtml (XmlElement elem, XmlReader& xml);
   bool parseBody_e     (XmlElement elem, XmlReader& xml);
@@ -703,7 +706,7 @@ protected:
                           XmlWriter &xml, QString identstr);
   bool saveConjugEntry   (Conjugation &curr_conjug,
                           XmlWriter &xml, int ident);
-  bool loadConjugKvtMl   (vector<Conjugation> &curr_conjug, const QString entry_tag,
+  bool loadConjugKvtMl   (vector<Conjugation> &curr_conjug, const QString &entry_tag,
                           XmlElement elem, XmlReader& xml);
 
   bool saveComparison    (const Comparison &comp, XmlWriter &xml, int ident);
@@ -712,15 +715,15 @@ protected:
   bool saveMultipleChoice(const MultipleChoice &mc, XmlWriter &xml, int ident);
   bool loadMultipleChoice(MultipleChoice &mc, XmlElement elem, XmlReader &xml);
 
-  bool saveToLex     (QTextStream& os, QString title);
+  bool saveToLex     (QTextStream& os, QString &title);
   bool loadFromLex   (QTextStream& is);
   bool loadLessonLex (QTextStream& is);
   bool saveLessonLex (QTextStream& os);
   bool saveTypeNameLex   (QTextStream& os);
   bool loadTypeNameLex   (QTextStream& is);
 
-  bool saveToCsv     (QTextStream& os, QString title, const QString separator, QStringList *lang_order);
-  bool loadFromCsv   (QTextStream& is, const QString separator, QStringList *lang_order);
+  bool saveToCsv     (QTextStream& os, QString &title, const QString &separator, QStringList *lang_order);
+  bool loadFromCsv   (QTextStream& is, QString &separator, QStringList *lang_order);
   bool loadLessonCsv (QTextStream& is);
   bool saveLessonCsv (QTextStream& os);
   bool saveTypeNameCsv   (QTextStream& os);
@@ -730,7 +733,7 @@ protected:
   bool loadTypeNameVcb (QTextStream &is);
   bool saveLessonVcb (QTextStream &os);
   bool loadLessonVcb (QTextStream &is);
-  bool saveToVcb (QTextStream& os, QString title);
+  bool saveToVcb (QTextStream& os, QString &title);
   bool loadFromVcb (QTextStream& is);
   void errorVcb (int line, const QString &text );
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/05 18:51:37  arnold
+    fixed i18n() related isuses
+
     Revision 1.8  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -611,7 +614,7 @@ bool kvoctrainDoc::saveOptionsKvtMl (XmlWriter &xml)
 }
 
 
-bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
+bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
   bool first_expr = true;
 
   os.setCodec(QTextCodec::codecForName("UTF-8"));

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.7  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -64,13 +67,14 @@
 
 AdjEntryPage::AdjEntryPage
 (
-        QDialog           *dlgbook,
+        EntryDlg          *_dlgbook,
         bool               multi_sel,
         const Comparison  &comp,
         QWidget           *parent,
         const char        *name
 )
 	:
+        dlgbook(_dlgbook),
 	AdjEntryPageForm( parent, name )
 {
    comparisons = comp;
@@ -112,7 +116,7 @@ void AdjEntryPage::initFocus() const
 
 void AdjEntryPage::returnPressed()
 {
-   emit accept();
+   emit dlgbook->slotApply();
 }
 
 
@@ -141,10 +145,10 @@ void AdjEntryPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }

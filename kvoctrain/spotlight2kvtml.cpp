@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.3  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -40,7 +43,10 @@
 #include <qfile.h>
 #include <qtextstream.h>
 
-#include <vector.h>
+#include <iostream.h>
+#include <vector>
+using namespace std;
+
 
 #include <klocale.h>
 #include <kapplication.h>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2002/01/26 15:51:28  arnold
+    fixes due to new entry dialog
+
     Revision 1.11  2002/01/19 10:33:09  arnold
     made entry dialog modeless
 
@@ -86,7 +89,7 @@
 
 FromToEntryPage::FromToEntryPage
 (
-        QDialog    *_dlgbook,
+        EntryDlg   *_dlgbook,
         bool        multi_sel,
         grade_t     _grade,
         time_t      _time,
@@ -117,9 +120,9 @@ FromToEntryPage::FromToEntryPage
         monthnames.append (i18n("November"));
         monthnames.append (i18n("December"));
 
-	connect( bcount_line, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( qcount_line, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( fauxami_line, SIGNAL(returnPressed()), SLOT(accept()) );
+	connect( bcount_line, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( qcount_line, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+	connect( fauxami_line, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
 
 	connect( bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)) );
 	connect( qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)) );
@@ -414,12 +417,12 @@ void FromToEntryPage::slotNever()
 
 void FromToEntryPage::keyPressEvent( QKeyEvent *e )
 {
-   if (e->state() & (AltButton | ControlButton | ShiftButton) == 0) {
+   if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.5  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -80,7 +84,7 @@ bool kvoctrainDoc::loadLessonVcb (QTextStream &is)
 }
 
 
-bool kvoctrainDoc::saveToVcb (QTextStream& os, QString title)
+bool kvoctrainDoc::saveToVcb (QTextStream& os, QString &title)
 {
   saveTypeNameVcb (os);
   saveLessonVcb (os);

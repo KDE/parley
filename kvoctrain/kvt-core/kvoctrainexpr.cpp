@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.9  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -64,7 +67,9 @@
 #include "kvoctraindoc.h"
 #include <qpainter.h>
 #include "qdatastream.h"
-#include <vector.h>
+
+#include <vector>
+using namespace std;
 
 #include "kvoctraincore.h"
 #include <klocale.h>
@@ -113,7 +118,7 @@ void kvoctrainExpr::Init()
 }
 
 
-kvoctrainExpr::kvoctrainExpr (QString expr, int _lesson)
+kvoctrainExpr::kvoctrainExpr (QString &expr, int _lesson)
 {
   Init();
   setOriginal(expr.stripWhiteSpace() );
@@ -127,7 +132,7 @@ kvoctrainExpr::kvoctrainExpr ()
 }
 
 
-kvoctrainExpr::kvoctrainExpr (QString s, QString separator, int _lesson)
+kvoctrainExpr::kvoctrainExpr (QString &s, QString &separator, int _lesson)
 {
   Init();
   QString se;
@@ -953,7 +958,7 @@ void kvoctrainExpr::setLesson (int l)
 }
 
 
-void kvoctrainExpr::setType (int idx, QString type)
+void kvoctrainExpr::setType (int idx, const QString &type)
 {
   if ( idx < 0) return;
 

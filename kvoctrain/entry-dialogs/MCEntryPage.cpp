@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.3  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -51,13 +54,14 @@
 
 MCEntryPage::MCEntryPage
 (
-        QDialog                *dlgbook,
+        EntryDlg              *_dlgbook,
         bool                    multi_sel,
         const MultipleChoice   &mc,
         QWidget                *parent,
         const char             *name
 )
 	:
+        dlgbook(_dlgbook),
 	MCEntryPageForm( parent, name )
 {
    multiplechoice = mc;
@@ -107,7 +111,7 @@ void MCEntryPage::initFocus() const
 
 void MCEntryPage::returnPressed()
 {
-   emit accept();
+   dlgbook->slotApply();
 }
 
 
@@ -150,10 +154,10 @@ void MCEntryPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }

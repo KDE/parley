@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.5  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -61,7 +64,7 @@
 
 AuxInfoEntryPage::AuxInfoEntryPage
 (
-        QDialog    *dlgbook,
+        EntryDlg   *_dlgbook,
         bool        multi_sel,
         QString     syno,
         QString     anto,
@@ -72,6 +75,7 @@ AuxInfoEntryPage::AuxInfoEntryPage
 	const char *name
 )
 	:
+        dlgbook(_dlgbook),
 	AuxInfoEntryPageForm( parent, name )
 {
         QFontMetrics fm (synonym_line->font());
@@ -218,10 +222,10 @@ void AuxInfoEntryPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }
@@ -253,6 +257,12 @@ void AuxInfoEntryPage::setModified(bool mod)
   modified = mod;
   if (mod)
     emit sigModified();
+}
+
+
+void AuxInfoEntryPage::returnPressed()
+{
+   dlgbook->slotApply();
 }
 
 

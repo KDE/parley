@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2002/01/26 15:51:26  arnold
+    fixes due to new entry dialog
+
     Revision 1.19  2002/01/19 10:33:09  arnold
     made entry dialog modeless
 
@@ -118,7 +121,7 @@
 
 CommonEntryPage::CommonEntryPage
 (
-        QDialog      *_dlgbook,
+        EntryDlg     *_dlgbook,
         kvoctrainDoc *_doc,
         bool          multi_sel,
         QString       expr,
@@ -149,6 +152,10 @@ CommonEntryPage::CommonEntryPage
         ipafont(_ipafont)
 {
     phoneticDlg = 0;
+
+    connect( pronunce_line, SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+    connect( expr_line,     SIGNAL(returnPressed()), dlgbook, SLOT(slotApply()) );
+
     connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
     connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
     connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );
@@ -157,8 +164,6 @@ CommonEntryPage::CommonEntryPage
     connect( lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)) );
     connect( subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)) );
     connect( type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)) );
-    connect( pronunce_line, SIGNAL(returnPressed()), SLOT(accept()) );
-    connect( expr_line, SIGNAL(returnPressed()), SLOT(accept()) );
     connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
 
     connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
@@ -548,10 +553,10 @@ void CommonEntryPage::keyPressEvent( QKeyEvent *e )
 {
    if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
      if (  e->key() == Key_Escape )
-       emit reject();
+       emit dlgbook->slotCancel();
      else if (  e->key() == Key_Enter
               ||e->key() == Key_Return)
-       emit accept();
+       emit dlgbook->slotApply();
      else
        e->ignore();
    }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.42  2002/02/03 08:39:19  arnold
+    moved checkbox to options dialog
+
     Revision 1.41  2002/01/30 17:26:55  arnold
     added some tooltips, fixed capitalisation
 
@@ -185,6 +188,7 @@
 
 #include <time.h>
 #include <ctype.h>
+#include <iostream.h>
 
 #include <kvoctraincore.h>
 #include "kvoctraindoc.h"
@@ -285,7 +289,7 @@ void kvoctrainApp::slotEditRow()
 
 void kvoctrainApp::slotEditCallBack(int res)
 {
-  cout << "secb\n";
+//  cout << "secb\n";
   switch (res) {
     case EntryDlg::EditCancel:
       removeEntryDlg();
@@ -327,7 +331,7 @@ void kvoctrainApp::slotEditCallBack(int res)
 
 void kvoctrainApp::commitEntryDlg(bool force)
 {
-  cout << "ced\n";
+//  cout << "ced\n";
    if (entryDlg == 0) {
      kdError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
      return;
@@ -581,7 +585,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
 void kvoctrainApp::removeEntryDlg()
 {
-  cout << "red\n";
+//  cout << "red\n";
   if (entryDlg != 0) {
     commitEntryDlg(false);
     delete entryDlg;
@@ -610,7 +614,7 @@ void kvoctrainApp::slotEditEntry (int row, int col)
 
 void kvoctrainApp::setDataEntryDlg (int row, int col)
 {
-  cout << "sded\n";
+//  cout << "sded\n";
    if (entryDlg == 0) {
      kdError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
      return;

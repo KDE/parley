@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/26 15:10:47  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.5  2001/11/10 22:27:30  arnold
     removed compatibility for kde1
 
@@ -44,16 +47,17 @@
  *                                                                         *
  ***************************************************************************/
 
+#undef stack
+#include <kvoctraindoc.h>
 #include "ProgressDlg.h"
-
-#include <kapplication.h>
 
 #include <qprogressbar.h>
 #include <qlabel.h>
 
-#include <kvoctraindoc.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <kapplication.h>
+
 
 ProgressDlg::ProgressDlg
 (

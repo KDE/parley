@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.7  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -63,6 +67,9 @@
 #include <qtextstream.h>
 #include <qtextcodec.h>
 
+#include <vector>
+using namespace std;
+
 bool kvoctrainDoc::saveTypeNameCsv (QTextStream &os)
 {
  return true;
@@ -86,8 +93,8 @@ bool kvoctrainDoc::loadLessonCsv (QTextStream &is)
  return true;
 }
 
-bool kvoctrainDoc::saveToCsv (QTextStream& os, QString title,
-                              const QString separator, QStringList *lang_order)
+bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &title,
+                              const QString &separator, QStringList *lang_order)
 {
   saveTypeNameCsv (os);
   saveLessonCsv (os);
@@ -141,7 +148,7 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString title,
 
 
 bool kvoctrainDoc::loadFromCsv (QTextStream& is,
-                                const QString separator, QStringList *lang_order)
+                                QString &separator, QStringList *lang_order)
 {
 
   langs.clear();
@@ -232,8 +239,10 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
         lang_num = QMAX (lang_num, bucket.numTranslations()+1);
         if (i == 0)
           expr.setOriginal(bucket.getOriginal());
-        else
-          expr.setTranslation(i, bucket.getTranslation(i));
+        else {
+          QString ts = bucket.getTranslation(i);
+          expr.setTranslation(i, ts);
+        }
       }
       appendEntry (&expr);
     }

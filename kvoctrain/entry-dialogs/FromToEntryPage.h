@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.3  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -46,6 +49,8 @@
 
 #include <kvoctraindoc.h>
 
+class EntryDlg;
+
 class FromToEntryPage : public FromToEntryPageForm
 {
     Q_OBJECT
@@ -54,7 +59,7 @@ public:
 
     FromToEntryPage
     (
-        QDialog    *dlgbook,
+        EntryDlg   *dlgbook,
         bool        multi_sel,
         grade_t     _grade,
         time_t      _date,
@@ -134,7 +139,7 @@ protected:
     int        year,
                month,
                day;
-    QDialog   *dlgbook;
+    EntryDlg  *dlgbook;
     bool       modified;
 };
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/29 10:40:45  arnold
+    merged fixes from POST-branch
+
     Revision 1.6  2001/12/13 18:40:12  arnold
     added phonetic alphabet stuff
 
@@ -52,6 +55,9 @@
 #include <qvalidator.h>
 
 #include <langset.h>
+
+#include <vector>
+using namespace std;
 
 class QPopupMenu;
 

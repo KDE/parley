@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/29 10:41:06  arnold
+    merged fixes from POST-branch
+
     Revision 1.8  2001/12/26 15:12:58  mueller
     CVSSILINT: fixincludes
 
@@ -56,7 +59,8 @@
 #include "ThreshOptPage.h"
 
 #include <iostream.h>
-#include <vector.h>
+#include <vector>
+using namespace std;
 
 #include <qkeycode.h>
 #include <qcheckbox.h>

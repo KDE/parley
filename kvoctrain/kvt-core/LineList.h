@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -28,13 +31,13 @@
  *                                                                         *
  ***************************************************************************/
 
-
-
 #ifndef LineList_h
 #define LineList_h
 
 #include <qstring.h>
-#include <vector.h>
+
+#include <vector>
+using namespace std;
 
 class LineList {
  public:
