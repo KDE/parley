@@ -27,7 +27,7 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
-
+#include <kglobalsettings.h>
 #include <iostream>
 
 #include "kvoctraindoc.h"
@@ -331,7 +331,7 @@ void RowTable::init(Flags flags)
 void RowTable::setFont( const QFont &font)
 {
   QTable::setFont(font);
-  horizontalHeader()->setFont(QFont());
+  horizontalHeader()->setFont(KGlobalSettings::generalFont());
   for (unsigned i = 0; i < numRows(); ++i)
     setRowHeight(i, fontMetrics().lineSpacing() );
 }
