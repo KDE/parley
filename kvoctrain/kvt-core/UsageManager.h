@@ -96,7 +96,7 @@ struct UsageRelation
 {
  public:
 
-  UsageRelation (QString id, QString shorty, QString longy)
+  UsageRelation (const QString & id, const QString & shorty, const QString & longy)
     :ident(id), shortId(shorty), longId(longy) {}
 
   QString identStr() const { return ident; }

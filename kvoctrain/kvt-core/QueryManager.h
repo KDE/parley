@@ -82,7 +82,7 @@ class TypeRelation
 {
  public:
 
-  TypeRelation (QString _short, QString _long)
+  TypeRelation (const QString & _short, const QString & _long)
     : shortId (_short), longId(_long) {}
 
   QString shortStr() const { return shortId; }
@@ -130,19 +130,19 @@ class QueryManager
 
   static vector<TypeRelation> getRelation (bool only_maintypes);
   static void setTypeNames (vector<QString> names);
-  static QString getSubType (QString type);
-  static QString getMainType (QString type);
+  static QString getSubType (const QString & type);
+  static QString getMainType (const QString & type);
 
   static QString compStr (CompType type);
   static QString gradeStr (int i);
   static QString typeStr (const QString id);
 
   void setLessonItems (vector<int> indices) { lessonitems = indices; }
-  void setLessonItemStr (QString indices);
+  void setLessonItemStr (const QString & indices);
   void setDateItem (time_t time) { dateitem = time; }
   void setQueryItem (int query) { queryitem = query; }
   void setBadItem (int bad) { baditem = bad; }
-  void setTypeItem (QString type) { typeitem = type; }
+  void setTypeItem (const QString & type) { typeitem = type; }
   void setGradeItem (grade_t grade) { gradeitem = grade; }
   void setBlockItem (int item, int grade);
   void setExpireItem (int item, int grade);
@@ -199,7 +199,7 @@ class QueryManager
   bool compareQuery (CompType, int, int);
   bool compareBad (CompType, int, int);
   bool compareGrade (CompType, grade_t, grade_t);
-  bool compareType (CompType, QString, QString);
+  bool compareType (CompType, const QString &, const QString &);
   bool compareLesson (CompType type, int less, const vector<int> &limit, int current);
 
   CompType    typecomp,

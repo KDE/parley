@@ -187,28 +187,28 @@ int LangSet::indexPixMapFile (QString PixMapFile) const
    return id;
 }
 
-void LangSet::setShortId (QString s, int index)
+void LangSet::setShortId (const QString & s, int index)
 {
   if (index < (int) langs.size() )
     langs[index].shortId = s;
 }
 
 
-void LangSet::setShortId2 (QString s, int index)
+void LangSet::setShortId2 (const QString & s, int index)
 {
   if (index < (int) langs.size() )
     langs[index].shortId2 = s;
 }
 
 
-void LangSet::setLongId (QString s, int index)
+void LangSet::setLongId (const QString & s, int index)
 {
   if (index < (int) langs.size() )
     langs[index].longId = s;
 }
 
 
-void LangSet::setPixMapFile (QString s, int index)
+void LangSet::setPixMapFile (const QString & s, int index)
 {
   if (index < (int) langs.size() )
     langs[index].PixMapFile = s;

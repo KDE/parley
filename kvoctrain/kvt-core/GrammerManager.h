@@ -111,7 +111,7 @@ class TenseRelation
 {
  public:
 
-  TenseRelation (QString _short, QString _long)
+  TenseRelation (const QString & _short, const QString & _long)
     : shortId (_short), longId(_long) {}
 
   inline QString shortStr() const { return shortId; }
@@ -143,7 +143,7 @@ public:
    static int numTenses();
 
    QString getType (int index);
-   void setType (int index, QString type);
+   void setType (int index, const QString & type);
    void cleanUp();
    bool isEmpty (int idx);
 

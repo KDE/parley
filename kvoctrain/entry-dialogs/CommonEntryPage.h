@@ -107,7 +107,7 @@ protected:
     void keyPressEvent( QKeyEvent * );
     void setTypeBox(const QString &act_type);
     void setLessonBox(QComboBox *lessbox, int lesson);
-    void setUsageBox( QString act_type);
+    void setUsageBox(const QString & act_type);
 
 protected slots:
     void slotLessonSelected(int);

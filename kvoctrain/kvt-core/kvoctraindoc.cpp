@@ -53,7 +53,7 @@ using namespace std;
 //  kvoctrainDoc
 //********************************************************
 
-void kvoctrainDoc::setVersion (QString vers)
+void kvoctrainDoc::setVersion (const QString & vers)
 {
    doc_version = vers;
 }
@@ -797,25 +797,25 @@ QString kvoctrainDoc::getDocRemark() const
 }
 
 
-void kvoctrainDoc::setTitle(QString title)
+void kvoctrainDoc::setTitle(const QString & title)
 {
   doctitle = title.stripWhiteSpace();
 }
 
 
-void kvoctrainDoc::setAuthor(QString s)
+void kvoctrainDoc::setAuthor(const QString & s)
 {
   author = s.stripWhiteSpace();
 }
 
 
-void kvoctrainDoc::setLicense(QString s)
+void kvoctrainDoc::setLicense(const QString & s)
 {
   license = s.stripWhiteSpace();
 }
 
 
-void kvoctrainDoc::setDocRemark(QString s)
+void kvoctrainDoc::setDocRemark(const QString & s)
 {
   doc_remark = s.stripWhiteSpace();
 }

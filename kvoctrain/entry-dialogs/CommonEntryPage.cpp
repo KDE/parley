@@ -245,7 +245,7 @@ void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
 }
 
 
-void CommonEntryPage::setUsageBox(QString act_usage)
+void CommonEntryPage::setUsageBox(const QString & act_usage)
 {
     usages = UsageManager::getRelation();
     usage_box->clear();

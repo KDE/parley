@@ -447,7 +447,7 @@ class kvoctrainDoc : public QObject
 
   /** append new lang ident
    */
-  inline void appendLang(QString id) { langs.push_back(id); }
+  inline void appendLang(const QString & id) { langs.push_back(id); }
 
   /** returns pointer to expression object x
    *
@@ -495,16 +495,16 @@ class kvoctrainDoc : public QObject
     { queryorg = org; querytrans = trans; }
 
   /** sets title of xml file  */
-  void setTitle(QString title);
+  void setTitle(const QString & title);
 
   /** sets author of file  */
-  void setAuthor(QString author);
+  void setAuthor(const QString & author);
 
   /** sets license of file  */
-  void setLicense(QString license);
+  void setLicense(const QString & license);
 
   /** sets remark of file  */
-  void setDocRemark(QString rem);
+  void setDocRemark(const QString & rem);
 
   /** gets version of loaded file  */
   void getVersion(int &major, int &minor, int &patch);
@@ -601,7 +601,7 @@ protected:
   void Init();
 
   /** sets version of loaded file  */
-  void setVersion(QString ver);
+  void setVersion(const QString & ver);
 
   bool saveToKvtMl     (QTextStream& os, QString &title);
   bool loadFromKvtMl   (QTextStream& is);

@@ -302,7 +302,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 }
 
 
-void kvoctrainApp::slotStartTypeQuery(int col, QString type)
+void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting special query..."));
@@ -589,7 +589,7 @@ void kvoctrainApp::slotRestartQuery()
 }
 
 
-void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool create_new)
+void kvoctrainApp::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));

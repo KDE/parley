@@ -68,14 +68,14 @@ class LangSet
    int indexPixMapFile (QString PixMapFile) const;
    // doesn't make sense for keyboard layouts since there is no 1-to-1 relation to languages
 
-   void setShortId (QString shortId, int index);
-   void setShortId2 (QString shortId2, int index);
-   void setLongId (QString longId, int index);
-   void setPixMapFile (QString PixMapFile, int index);
-   void setKeyboardLayout(const QString& layout, int index);
+   void setShortId (const QString & shortId, int index);
+   void setShortId2 (const QString & shortId2, int index);
+   void setLongId (const QString & longId, int index);
+   void setPixMapFile (const QString & PixMapFile, int index);
+   void setKeyboardLayout(const QString & layout, int index);
 
-   QString findShortId (const QString &longId)  const;
-   QString findLongId  (const QString &shortId) const;
+   QString findShortId (const QString & longId)  const;
+   QString findLongId  (const QString & shortId) const;
 
  private:
 

@@ -132,7 +132,7 @@ class kvoctrainExpr
 
   /** sets original expression of this entry
    */
-  void setOriginal (QString expr);
+  void setOriginal (const QString & expr);
 
   /** returns number of max. translations of all expressions
    */
@@ -166,14 +166,14 @@ class kvoctrainExpr
    * @param index            number of translation
    * @param expr             expression of this index
    */
-  void setTranslation (int index, QString expr);
+  void setTranslation (int index, const QString & expr);
 
   /** sets remark of this expression
    *
    * @param index            index of expression
    * @param expr             remark of this index
    */
-  void setPronunce (int index, QString expr);
+  void setPronunce (int index, const QString & expr);
 
   /** returns pronunciation of this expression
    *
@@ -194,7 +194,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param expr             remark of this index
    */
-  void setRemark (int index, QString expr);
+  void setRemark (int index, const QString & expr);
 
 
   /** sets false friend of this expression
@@ -203,7 +203,7 @@ class kvoctrainExpr
    * @param expr             false friend of this index
    * @param rev_grade        dito, in opposite direction
    */
-  void setFauxAmi (int index, QString expr, bool rev_ami = false);
+  void setFauxAmi (int index, const QString & expr, bool rev_ami = false);
 
 
   /** returns false friend of this expression
@@ -219,7 +219,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param expr             synonym of this index
    */
-  void setSynonym (int index, QString expr);
+  void setSynonym (int index, const QString & expr);
 
 
   /** returns synonym of this expression
@@ -234,7 +234,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param expr             example of this index
    */
-  void setExample (int index, QString expr);
+  void setExample (int index, const QString & expr);
 
 
   /** returns example of this expression
@@ -249,7 +249,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param usage            usage label of this index
    */
-  void setUsageLabel (int index, QString usage);
+  void setUsageLabel (int index, const QString & usage);
 
 
   /** returns usage label of this expression
@@ -264,7 +264,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param usage            paraphrase of this index
    */
-  void setParaphrase (int index, QString usage);
+  void setParaphrase (int index, const QString & usage);
 
 
   /** returns paraphrase of this expression
@@ -279,7 +279,7 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param expr             antonym of this index
    */
-  void setAntonym (int index, QString expr);
+  void setAntonym (int index, const QString & expr);
 
 
   /** returns antonym of this expression

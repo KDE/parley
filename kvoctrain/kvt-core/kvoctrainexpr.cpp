@@ -144,7 +144,7 @@ QString kvoctrainExpr::getRemark (int idx) const
 }
 
 
-void kvoctrainExpr::setRemark (int idx, QString expr)
+void kvoctrainExpr::setRemark (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -157,7 +157,7 @@ void kvoctrainExpr::setRemark (int idx, QString expr)
 }
 
 
-void kvoctrainExpr::setFauxAmi (int idx, QString expr, bool rev_ami)
+void kvoctrainExpr::setFauxAmi (int idx, const QString & expr, bool rev_ami)
 {
   if (idx < 1) return;
 
@@ -199,7 +199,7 @@ QString kvoctrainExpr::getFauxAmi (int idx, bool rev_ami) const
 }
 
 
-void kvoctrainExpr::setSynonym (int idx, QString expr)
+void kvoctrainExpr::setSynonym (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -223,7 +223,7 @@ QString kvoctrainExpr::getSynonym (int idx) const
 }
 
 
-void kvoctrainExpr::setExample (int idx, QString expr)
+void kvoctrainExpr::setExample (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -247,7 +247,7 @@ QString kvoctrainExpr::getExample (int idx) const
 }
 
 
-void kvoctrainExpr::setUsageLabel (int idx, QString expr)
+void kvoctrainExpr::setUsageLabel (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -271,7 +271,7 @@ QString kvoctrainExpr::getUsageLabel (int idx) const
 }
 
 
-void kvoctrainExpr::setParaphrase (int idx, QString expr)
+void kvoctrainExpr::setParaphrase (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -295,7 +295,7 @@ QString kvoctrainExpr::getParaphrase (int idx) const
 }
 
 
-void kvoctrainExpr::setAntonym (int idx, QString expr)
+void kvoctrainExpr::setAntonym (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -402,7 +402,7 @@ QString kvoctrainExpr::getPronunce (int idx) const
 }
 
 
-void kvoctrainExpr::setPronunce (int idx, QString expr)
+void kvoctrainExpr::setPronunce (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
@@ -509,7 +509,7 @@ void kvoctrainExpr::removeTranslation (int idx)
 }
 
 
-void kvoctrainExpr::setTranslation (int idx, QString expr)
+void kvoctrainExpr::setTranslation (int idx, const QString & expr)
 {
   if ( idx <= 0) return;
 
@@ -899,7 +899,7 @@ void kvoctrainExpr::incBadCount (int index, bool rev_count)
 }
 
 
-void kvoctrainExpr::setOriginal (QString expr)
+void kvoctrainExpr::setOriginal ( const QString & expr)
 {
   origin = expr;
 }

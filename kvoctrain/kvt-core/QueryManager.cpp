@@ -91,19 +91,20 @@ static t_type_rel InternalTypeRelations [] =
 };
 
 
-QString QueryManager::getSubType (QString type)
+QString QueryManager::getSubType (const QString & type)
 {
   int i;
-  if ((i = type.find(QM_TYPE_DIV)) >= 0) {
-    type.remove(0, i+1);
-    return type;
+  QString t = type;
+  if ((i = t.find(QM_TYPE_DIV)) >= 0) {
+    t.remove(0, i+1);
+    return t;
   }
   else
     return QString::null;
 }
 
 
-QString QueryManager::getMainType (QString type)
+QString QueryManager::getMainType (const QString & type)
 {
   int i;
   if ((i = type.find(QM_TYPE_DIV)) >= 0)
@@ -713,7 +714,7 @@ bool QueryManager::compareGrade (CompType type, grade_t qgrade, grade_t limit)
 }
 
 
-bool QueryManager::compareType (CompType type, QString exprtype, QString limit)
+bool QueryManager::compareType (CompType type, const QString & exprtype, const QString & limit)
 {
    bool erg = true;
    switch (type) {
@@ -780,17 +781,18 @@ void QueryManager::setTypeNames (vector<QString> names)
 }
 
 
-void QueryManager::setLessonItemStr (QString indices)
+void QueryManager::setLessonItemStr (const QString & indices)
 {
   int pos;
+  QString indices_copy = indices;
   lessonitems.clear();
-  while ((pos = indices.find(' ')) >= 0) {
-     QString s = indices.left(pos);
-     indices.remove(0, pos+1);
+  while ((pos = indices_copy.find(' ')) >= 0) {
+     QString s = indices_copy.left(pos);
+     indices_copy.remove(0, pos+1);
      lessonitems.push_back(s.toInt());
   }
-  if (indices.length() != 0) {
-    lessonitems.push_back(indices.toInt());
+  if (indices_copy.length() != 0) {
+    lessonitems.push_back(indices_copy.toInt());
   }
 }
 

@@ -169,9 +169,9 @@ public:
 
   /** starts random query mode */
   void slotRestartQuery();
-  void slotStartTypeQuery(int col, QString type);
+  void slotStartTypeQuery(int col, const QString & type);
   void slotStartPropertyQuery(int col, QueryType property);
-  void slotStartQuery(QString trans, QString org, bool create_new);
+  void slotStartQuery(const QString & trans, const QString & org, bool create_new);
 
   void slotTimeOutRandomQuery(QueryDlgBase::Result res);
   void slotTimeOutMultipleChoice(QueryDlgBase::Result res);

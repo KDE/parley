@@ -268,7 +268,7 @@ QString Conjugation::getType (int idx)
 }
 
 
-void Conjugation::setType (int idx, QString type)
+void Conjugation::setType (int idx, const QString & type)
 {
   if (idx >= (int) conjugations.size() )
     return;
