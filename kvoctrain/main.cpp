@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/01/30 17:26:55  arnold
+    added some tooltips, fixed capitalisation
+
     Revision 1.18  2002/01/04 17:28:51  arnold
     fixed resuming a query
 
@@ -162,7 +165,7 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
   else {
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if ( args && args->count() == 1 )
-       kva = new kvoctrainApp (args->arg(0));
+       kva = new kvoctrainApp (NULL, args->arg(0));
     else
       kva = new kvoctrainApp;
 

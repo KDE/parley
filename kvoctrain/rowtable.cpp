@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.21  2002/01/06 16:10:15  arnold
     fixed crash when loading a second doc
 
@@ -262,6 +265,7 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
         setDoc (rows, gc);
         setFocus();
         triggerSect = -1;
+	defaultItem = 0;
         delayTimer = new QTimer (this);
         connect (delayTimer, SIGNAL(timeout ()), this, SLOT(menuTriggerTimeout()));
         QHeader *header = horizontalHeader();
@@ -272,8 +276,6 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
 
 RowTable::~RowTable()
 {
-  delete defaultItem;
-  defaultItem = 0;
 }
 
 
@@ -285,6 +287,7 @@ void RowTable::setInlineEnabled(bool state)
            || (type == QTableItem::OnTyping && !state)
           )) {
        endEdit(defaultItem->row(), defaultItem->col(), true, false);
+       takeItem(defaultItem);
        delete defaultItem;
        defaultItem = 0;
        if (state) {

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.25  2002/01/27 07:17:44  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.24  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -126,10 +129,13 @@
 #include <klocale.h>
 #include <kconfig.h>
 
-kvoctrainApp::kvoctrainApp(const QString &name)
+kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
+: KMainWindow(parent, name)
 {
   doc = 0;
   view = 0;
+  header_m = 0;
+  btimer = 0;
   querymode = false;
   shiftActive = false;
   altActive = false;

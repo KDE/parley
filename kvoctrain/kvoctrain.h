@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.25  2002/03/13 08:22:29  waba
+    * Use KRandomSequence instead of rand()
+    * Fix crash in "resume query".
+
     Revision 1.24  2002/01/26 15:51:08  arnold
     fixes due to new entry dialog
 
@@ -163,7 +167,7 @@ class kvoctrainApp : public KMainWindow
 
 public:
   /** construtor */
-  kvoctrainApp(const QString &name = QString::null);
+  kvoctrainApp(QWidget *parent = NULL, const char *name = NULL);
   /** destructor */
   ~kvoctrainApp();
   /** initMenuBar creates the menu_bar and inserts the menuitems */
