@@ -214,7 +214,9 @@ void RowTable::setInlineEnabled(bool state)
            || (type == QTableItem::OnTyping && !state)
           )) {
        endEdit(defaultItem->row(), defaultItem->col(), true, false);
-       takeItem(defaultItem);
+       // the qtableitem destructor does this too, and doing it twice
+       // seems to cause a crash..
+//       takeItem(defaultItem);
        delete defaultItem;
        defaultItem = 0;
        if (state) {
