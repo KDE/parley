@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ViewOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -376,7 +376,7 @@
                         </sizepolicy>
                     </property>
                     <property name="frameShape">
-                        <enum>WinPanel</enum>
+                        <enum>StyledPanel</enum>
                     </property>
                     <property name="frameShadow">
                         <enum>Sunken</enum>
@@ -412,7 +412,7 @@
                         </sizepolicy>
                     </property>
                     <property name="frameShape">
-                        <enum>WinPanel</enum>
+                        <enum>StyledPanel</enum>
                     </property>
                     <property name="frameShadow">
                         <enum>Sunken</enum>
