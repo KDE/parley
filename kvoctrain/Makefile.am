@@ -46,8 +46,8 @@ EXTRA_DIST = $(APPS_FILES) $(XMP_FILES) langen2kvtml
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_bindir)
 	$(INSTALL_PROGRAM) $(srcdir)/langen2kvtml $(DESTDIR)$(kde_bindir)/langen2kvtml
-	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/
-	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/kvoctrain.desktop
+	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/
+	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
 	$(INSTALL_DATA) $(srcdir)/pics/kvoctrain.xpm $(DESTDIR)$(kde_icondir)/kvoctrain.xpm
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/hicolor/48x48/apps/
@@ -80,7 +80,7 @@ uninstall-local:
 	-rm -f $(kde_bindir)/langen2kvtml
 	-rm -f $(kde_icondir)/kvoctrain.xpm
 	-rm -f $(kde_minidir)/kvoctrain.xpm
-	-rm -f $(kde_appsdir)/Edutainment/kvoctrain.desktop
+	-rm -f $(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
 	-rm -f $(kde_icondir)/large/kvoctrain.xpm
 	-rm -f $(kde_icondir)/mini/kvoctrain.xpm
 	for pic in $(APPS_FILES); do \
