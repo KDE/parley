@@ -5,6 +5,7 @@
    <Action append="open_merge" name="file_open_example" />
    <Separator append="open_merge" />
    <Action append="open_merge" name="file_merge" />
+   <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
   </Menu>
   <Menu name="edit" >
@@ -12,7 +13,6 @@
    <Action name="edit_append" />
    <Action name="edit_edit_selected_area" />
    <Action name="edit_remove_selected_area" />
-   <Action name="edit_save_selected_area" />
   </Menu>
   <Menu name="vocabulary" >
    <text>Vo&amp;cabulary</text>

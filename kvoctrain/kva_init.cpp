@@ -8,7 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund 
+                           (C) 2004 Peter Hedlund
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -21,7 +21,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -162,8 +162,8 @@ void kvoctrainApp::initActions()
   editRemoveSelectedArea->setWhatsThis(i18n("Deletes the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
-  editSaveSelectedArea = new KAction(i18n("Sa&ve Selected Area"), KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
-  editSaveSelectedArea->setWhatsThis(i18n("Saves the selected rows as a new vocabulary"));
+  editSaveSelectedArea = new KAction(i18n("Save E&ntries In Query As..."), KGlobal::iconLoader()->loadIcon("filesaveas", KIcon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
+  editSaveSelectedArea->setWhatsThis(i18n("Saves the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
   vocabShowStatistics = new KAction(i18n("Show &Statistics..."), QPixmap(locate("data", "kvoctrain/statist.xpm")), 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
@@ -209,7 +209,7 @@ void kvoctrainApp::initActions()
 
   searchLine = new KLineEdit(this);
   searchLine->setFocusPolicy(QWidget::ClickFocus);
-  connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));  
+  connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
   vocabSearch = new KWidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");

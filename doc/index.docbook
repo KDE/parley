@@ -916,6 +916,13 @@ according <link linkend="options2-dlg">options page</link>
 </varlistentry>
 
 <varlistentry>
+  <term><menuchoice>
+      <guimenu>File</guimenu>
+      <guimenuitem>Save Entries In Query As...</guimenuitem></menuchoice></term>
+  <listitem><para><action>Saves the entries marked In Query as a new vocabulary.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
 <term>
 <menuchoice><guimenu>File</guimenu>
 <guimenuitem>Quit</guimenuitem></menuchoice></term>
@@ -1025,13 +1032,6 @@ information.</para></listitem>
 key</link> for more information.</para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term><menuchoice>
-<guimenu>Edit</guimenu>
-<guimenuitem>Save selected area...</guimenuitem></menuchoice></term>
-<listitem><para><action>Saves the selection to a
- file.</action></para></listitem>
-</varlistentry>
 </variablelist>
 
 </sect1>
