@@ -39,7 +39,7 @@
 #include "kvoctrain.h"
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"
-#include "prefs.h"
+#include <prefs.h>
 
 #define PATTERN_ALL  I18N_NOOP("*|All Files (*)\n")
 #define PATTERN_ML   I18N_NOOP("*.kvtml|KVocTrain Markup (*.kvtml)\n")
