@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2003/02/27 00:41:22  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.6  2002/01/04 17:29:59  arnold
     fixed resuming a query
 
@@ -318,7 +325,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
   else
     return;
 
-  KPopupMenu *header_m = new KPopupMenu(i18n("Number of entries per grade"));
+  KPopupMenu *header_m = new KPopupMenu(i18n("Number of Entries per Grade"));
 
   header_m->insertItem (i18n(KV_NORM_TEXT) + "\t" + QString::number(sc->grade[KV_NORM_GRADE]) );
   header_m->insertItem (i18n(KV_LEV1_TEXT) + "\t" + QString::number(sc->grade[KV_LEV1_GRADE]) );

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2002/01/04 21:07:58  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.5  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -77,7 +80,7 @@ TitlePage::TitlePage
 	connect( e_license, SIGNAL(returnPressed()), SLOT(accept()) );
 //	connect( e_author, SIGNAL(returnPressed()), SLOT(accept()) );
 
-        setCaption (kapp->makeStdCaption(i18n("Input Title and Author")));
+        setCaption (kapp->makeStdCaption(i18n("Input Title & Author")));
         title = _title;
         author = _author;
         license = _license;

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2002/11/14 22:52:35  mueller
+    compiler warning fixes
+
     Revision 1.15  2002/01/20 11:41:02  arnold
     fixed issues with modeless dialogs
 
@@ -146,7 +149,7 @@ VerbQueryDlg::VerbQueryDlg
 	connect( p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)) );
 
    qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Training With Verbs")));
+   setCaption (kapp->makeStdCaption(i18n("Training with Verbs")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, prefix, conjug, mqtime, _show, type_to);
