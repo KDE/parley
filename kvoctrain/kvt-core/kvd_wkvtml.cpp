@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/04/19 09:12:11  arnold
+    xml structure now more conforming
+
     Revision 1.10  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -844,13 +847,21 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
     if (!saveMultipleChoice ((*first).getMultipleChoice(0), xml, 1))
         return false;
 
-    if ((*first).getType(0) == QM_VERB
+    QString s;
+    QString entype = s = (*first).getType(0);
+    int pos = s.find (QM_TYPE_DIV);
+    if (pos >= 0)
+      entype = s.left (pos);
+    else
+      entype = s;
+        
+    if (   entype == QM_VERB
         && (*first).getConjugation(0).numEntries() > 0) {
       Conjugation conj = (*first).getConjugation(0);
       if (!saveConjugEntry(conj, xml, 1))
         return false;
     }
-    else if ((*first).getType(0) == QM_ADJ
+    else if (entype == QM_ADJ
         && !(*first).getComparison(0).isEmpty()) {
       Comparison comp = (*first).getComparison(0);
       if (!saveComparison (comp, xml, 1))
@@ -957,14 +968,22 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       if (!saveMultipleChoice ((*first).getMultipleChoice(trans), xml, 1))
           return false;
 
-      if (   (*first).getType(trans) == QM_VERB
+      QString s;
+      QString entype = s = (*first).getType(0);
+      int pos = s.find (QM_TYPE_DIV);
+      if (pos >= 0)
+        entype = s.left (pos);
+      else
+        entype = s;
+  
+      if (   entype == QM_VERB
           && (*first).getConjugation(trans).numEntries() > 0) {
         Conjugation conj = (*first).getConjugation(trans);
         if (!saveConjugEntry(conj, xml, 1+trans))
           return false;
       }
 
-      if ((*first).getType(trans) == QM_ADJ
+      if (   entype == QM_ADJ
           && !(*first).getComparison(trans).isEmpty()) {
         Comparison comp = (*first).getComparison(trans);
         if (!saveComparison (comp, xml, 1+trans))
