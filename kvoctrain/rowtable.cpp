@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.11  2001/11/17 17:58:22  arnold
     added inline editing of all columns
 
@@ -83,12 +86,8 @@ public:
     QWidget *createEditor() const;
     void setContentFromEditor( QWidget *w );
     void setPosition(int row, int col);
-    int lastRow() const { return row; }
-    int lastCol() const { return col; }
 
 private:
-    int                 row;
-    int                 col;
     kvoctrainDoc       *kv_doc;
 };
 
@@ -97,8 +96,6 @@ KvoctrainItem::KvoctrainItem( QTable *t, EditType et, kvoctrainDoc *doc)
     : QTableItem( t, et, QString::null )
 {
     kv_doc = doc;
-    row = -1;
-    col = -1;
     // we do not want that this item can be replaced
     setReplaceable( FALSE );
 }
@@ -106,21 +103,21 @@ KvoctrainItem::KvoctrainItem( QTable *t, EditType et, kvoctrainDoc *doc)
 
 void KvoctrainItem::setPosition(int curr_row, int curr_col)
 {
-   row = curr_row;
-   col = curr_col;
+   setRow(curr_row);
+   setCol(curr_col);
 }
 
 
 QWidget *KvoctrainItem::createEditor() const
 {
-   if (kv_doc != 0 && kv_doc->numEntries() != 0 && row >= 0 && col >= 0) {
-     switch (col) {
+   if (kv_doc != 0 && kv_doc->numEntries() != 0 && row() >= 0 && col() >= 0) {
+     switch (col()) {
        case KV_COL_LESS: {
          QComboBox *lessonbox = new QComboBox(table()->viewport() );
          lessonbox->insertItem (kv_doc->getLessonDescr(0));
          for (unsigned i = 1; i <= kv_doc->numLessons(); ++i)
            lessonbox->insertItem (kv_doc->getLessonDescr(i));
-         lessonbox->setCurrentItem(kv_doc->getEntry((int)row)->getLesson());
+         lessonbox->setCurrentItem(kv_doc->getEntry(row())->getLesson());
          return lessonbox;
        }
        break;
@@ -131,11 +128,11 @@ QWidget *KvoctrainItem::createEditor() const
          statebox->insertItem ("in query");
          statebox->insertItem ("inactive");
          QSize sz = statebox->sizeHint();
-         sz.setHeight(table()->rowHeight(row));
+         sz.setHeight(table()->rowHeight(row()));
          statebox->setMinimumSize(sz);
-         if (!kv_doc->getEntry(row)->isActive() )
+         if (!kv_doc->getEntry(row())->isActive() )
            statebox->setCurrentItem(2);
-         else if (kv_doc->getEntry(row)->isInQuery() )
+         else if (kv_doc->getEntry(row())->isInQuery() )
            statebox->setCurrentItem(1);
          else
            statebox->setCurrentItem(0);
@@ -145,10 +142,10 @@ QWidget *KvoctrainItem::createEditor() const
 
        default: {
          QLineEdit *edit = new QLineEdit(table()->viewport() );
-         if (col == KV_COL_ORG)
-           edit->setText(kv_doc->getEntry(row)->getOriginal());
+         if (col() == KV_COL_ORG)
+           edit->setText(kv_doc->getEntry(row())->getOriginal());
          else
-           edit->setText(kv_doc->getEntry(row)->getTranslation(col-KV_COL_ORG));
+           edit->setText(kv_doc->getEntry(row())->getTranslation(col()-KV_COL_ORG));
          return edit;
         }
      }
@@ -161,9 +158,9 @@ void KvoctrainItem::setContentFromEditor( QWidget *w )
 {
    if (kv_doc != 0) {
      if ( w->inherits( "QComboBox" ) )
-       if (col == KV_COL_MARK) {
+       if (col() == KV_COL_MARK) {
         QComboBox *statebox = (QComboBox*) w;
-        kvoctrainExpr *expr = kv_doc->getEntry(row);
+        kvoctrainExpr *expr = kv_doc->getEntry(row());
         bool inq = false;
         bool act = true;
         if (statebox->currentItem() == 0) {
@@ -184,23 +181,23 @@ void KvoctrainItem::setContentFromEditor( QWidget *w )
         expr->setInQuery(inq);
         expr->setActive(act);
        }
-       else if (col == KV_COL_LESS) {
+       else if (col() == KV_COL_LESS) {
         QComboBox *lessonbox = (QComboBox*) w;
-        if (kv_doc->getEntry(row)->getLesson() != lessonbox->currentItem())
+        if (kv_doc->getEntry(row())->getLesson() != lessonbox->currentItem())
           kv_doc->setModified();
-        kv_doc->getEntry(row)->setLesson(lessonbox->currentItem());
+        kv_doc->getEntry(row())->setLesson(lessonbox->currentItem());
        }
      else {
        QLineEdit *edit = (QLineEdit*) w;
-       if (col == KV_COL_ORG) {
-         if (kv_doc->getEntry(row)->getOriginal() != edit->text())
+       if (col() == KV_COL_ORG) {
+         if (kv_doc->getEntry(row())->getOriginal() != edit->text())
            kv_doc->setModified();
-         kv_doc->getEntry(row)->setOriginal(edit->text());
+         kv_doc->getEntry(row())->setOriginal(edit->text());
        }
        else {
-         if (kv_doc->getEntry(row)->getTranslation(col-KV_COL_ORG) != edit->text())
+         if (kv_doc->getEntry(row())->getTranslation(col()-KV_COL_ORG) != edit->text())
            kv_doc->setModified();
-         kv_doc->getEntry(row)->setTranslation(col-KV_COL_ORG, (edit->text()));
+         kv_doc->getEntry(row())->setTranslation(col()-KV_COL_ORG, (edit->text()));
        }
      }
    }
@@ -267,7 +264,7 @@ void RowTable::updateContents(int row, int col)
 void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
 {
   if (defaultItem)
-    endEdit(defaultItem->lastRow(), defaultItem->lastCol(), true, false);
+    endEdit(defaultItem->row(), defaultItem->col(), true, false);
 
   delete defaultItem;
   defaultItem = 0;

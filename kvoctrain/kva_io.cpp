@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.10  2001/11/17 17:58:22  arnold
     added inline editing of all columns
 
@@ -150,7 +153,6 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
 {
   saveOptions(false);
   if (!doc || !doc->isModified() ) return true;
-  kdDebug() << "qe 1\n";
 
   if (backupTime != 0) {  // autobackup on: save without asking
     slotFileSave();       // save and exit

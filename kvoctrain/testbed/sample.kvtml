@@ -143,7 +143,7 @@ Valid xml means:
 
  <e m="1"><o width="354" l="en" q="t">balmy</o><t width="356" l="de" q="o" c="1;1" d="0;992361257">mild</t></e>
  <e m="2" s="1"><o>chunk</o><t g="0;1" c="1;2" b="0;1" d="0;1005777089" r="Klotz">Klotz</t></e>
- <e m="3"><o>decline </o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
+ <e m="3"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
  <e m="4" i="1" t="v"><o y="-">
   <conjugation>
    <t n="#1"><s1>1</s1><s2>1</s2></t>

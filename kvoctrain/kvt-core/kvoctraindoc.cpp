@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/19 19:43:24  arnold
+    fixed crash while sorting (though I dont understand it)
+
     Revision 1.7  2001/11/17 17:59:20  arnold
     added inline editing of all columns
 
@@ -299,7 +302,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
       break;
 
       default: {
-        cerr << "kvcotrainDoc::saveAs(): unknown filetype\n";
+        kdError() << "kvcotrainDoc::saveAs(): unknown filetype" << endl;
       }
       break;
     }

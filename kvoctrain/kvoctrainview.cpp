@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.13  2001/11/16 18:52:59  arnold
     added possibility to disable expressions
 
@@ -87,6 +90,7 @@
 #include <kstddirs.h>
 #include <kconfig.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <qwidget.h>
 #include <qlayout.h>
