@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/25 11:11:43  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.11  2001/11/24 11:46:21  arnold
     fix for kde3, better sorting of regions
 
@@ -93,6 +96,96 @@
 
 #include <map.h>
 #include <algo.h>
+
+struct KV_ISO_2Char {
+   const char *isocode;
+   const char *langname;
+};
+
+// automatically extracted from http://www.loc.gov/standards/iso639-2/englangn.html
+
+KV_ISO_2Char kv_iso_2char[] = {
+        {{"ae"}, {I18N_NOOP("Avestan")}},
+        {{"ay"}, {I18N_NOOP("Aymara")}},
+        {{"ba"}, {I18N_NOOP("Bashkir")}},
+        {{"be"}, {I18N_NOOP("Belarusian")}},
+        {{"bn"}, {I18N_NOOP("Bengali")}},
+        {{"bi"}, {I18N_NOOP("Bislama")}},
+        {{"br"}, {I18N_NOOP("Breton")}},
+        {{"bg"}, {I18N_NOOP("Bulgarian")}},
+        {{"es"}, {I18N_NOOP("Spanish")}},
+        {{"ch"}, {I18N_NOOP("Chamorro")}},
+        {{"cu"}, {I18N_NOOP("ChurchSlavic")}},
+        {{"cv"}, {I18N_NOOP("Chuvash")}},
+        {{"kw"}, {I18N_NOOP("Cornish")}},
+        {{"dz"}, {I18N_NOOP("Dzongkha")}},
+        {{"eo"}, {I18N_NOOP("Esperanto")}},
+        {{"fo"}, {I18N_NOOP("Faroese")}},
+        {{"fi"}, {I18N_NOOP("Finnish")}},
+        {{"fy"}, {I18N_NOOP("Frisian")}},
+        {{"gd"}, {I18N_NOOP("ScottishGaelic")}},
+        {{"ki"}, {I18N_NOOP("Kikuyu")}},
+        {{"gn"}, {I18N_NOOP("Guarani")}},
+        {{"ha"}, {I18N_NOOP("Hausa")}},
+        {{"he"}, {I18N_NOOP("Hebrew")}},
+        {{"hi"}, {I18N_NOOP("Hindi")}},
+        {{"hu"}, {I18N_NOOP("Hungarian")}},
+        {{"ia"}, {I18N_NOOP("Interlingua")}},
+        {{"iu"}, {I18N_NOOP("Inuktitut")}},
+        {{"ja"}, {I18N_NOOP("Japanese")}},
+        {{"kl"}, {I18N_NOOP("Kalaallisut")}},
+        {{"kn"}, {I18N_NOOP("Kannada")}},
+        {{"ks"}, {I18N_NOOP("Kashmiri")}},
+        {{"kk"}, {I18N_NOOP("Kazakh")}},
+        {{"km"}, {I18N_NOOP("Khmer")}},
+        {{"ky"}, {I18N_NOOP("Kirghiz")}},
+        {{"ko"}, {I18N_NOOP("Korean")}},
+        {{"kj"}, {I18N_NOOP("Kuanyama")}},
+        {{"ku"}, {I18N_NOOP("Kurdish")}},
+        {{"lo"}, {I18N_NOOP("Lao")}},
+        {{"lv"}, {I18N_NOOP("Latvian")}},
+        {{"lt"}, {I18N_NOOP("Lithuanian")}},
+        {{"mg"}, {I18N_NOOP("Malagasy")}},
+        {{"ml"}, {I18N_NOOP("Malayalam")}},
+        {{"mr"}, {I18N_NOOP("Marathi")}},
+        {{"mh"}, {I18N_NOOP("Marshall")}},
+        {{"mn"}, {I18N_NOOP("Mongolian")}},
+        {{"nv"}, {I18N_NOOP("Navajo")}},
+        {{"nr"}, {I18N_NOOP("Ndebele,South")}},
+        {{"ne"}, {I18N_NOOP("Nepali")}},
+        {{"se"}, {I18N_NOOP("NorthernSami")}},
+        {{"nb"}, {I18N_NOOP("Norwegian")}},
+        {{"ny"}, {I18N_NOOP("Chichewa")}},
+        {{"nn"}, {I18N_NOOP("NorwegianNynorsk")}},
+        {{"om"}, {I18N_NOOP("Oromo")}},
+        {{"os"}, {I18N_NOOP("Ossetic")}},
+        {{"pa"}, {I18N_NOOP("Panjabi")}},
+        {{"pl"}, {I18N_NOOP("Polish")}},
+        {{"qu"}, {I18N_NOOP("Quechua")}},
+        {{"ru"}, {I18N_NOOP("Russian")}},
+        {{"sm"}, {I18N_NOOP("Samoan")}},
+        {{"sg"}, {I18N_NOOP("Sango")}},
+        {{"sn"}, {I18N_NOOP("Shona")}},
+        {{"sd"}, {I18N_NOOP("Sindhi")}},
+        {{"sl"}, {I18N_NOOP("Slovenian")}},
+        {{"so"}, {I18N_NOOP("Somali")}},
+        {{"su"}, {I18N_NOOP("Sundanese")}},
+        {{"sw"}, {I18N_NOOP("Swahili")}},
+        {{"sv"}, {I18N_NOOP("Swedish")}},
+        {{"tl"}, {I18N_NOOP("Tagalog")}},
+        {{"tt"}, {I18N_NOOP("Tatar")}},
+        {{"th"}, {I18N_NOOP("Thai")}},
+        {{"to"}, {I18N_NOOP("Tonga")}},
+        {{"ts"}, {I18N_NOOP("Tsonga")}},
+        {{"tw"}, {I18N_NOOP("Twi")}},
+        {{"ug"}, {I18N_NOOP("Uighur")}},
+        {{"ur"}, {I18N_NOOP("Urdu")}},
+        {{"vi"}, {I18N_NOOP("Vietnamese")}},
+        {{"wo"}, {I18N_NOOP("Wolof")}},
+        {{"yo"}, {I18N_NOOP("Yoruba")}},
+        {{"zu"}, {I18N_NOOP("Zulu")}},
+        {{0}, {0}}
+};
 
 LangOptPage::LangOptPage
 (
@@ -435,6 +528,16 @@ void LangOptPage::loadCountryData()
     QString all_langs = entry.readEntry(QString::fromLatin1("Languages"));
     if (tag == all_langs)
       all_langs = "";
+
+    KV_ISO_2Char *iso2 = kv_iso_2char;
+    while (iso2->isocode != 0) {
+      if (strcmp(iso2->isocode, tag.latin1()) == 0) {
+        name = i18n(iso2->langname);
+//      kdDebug() << "--iso " << iso2->langname << endl;
+        break;
+      }
+      ++iso2;
+    }
 
     QString pixmap = *it;
     index = pixmap.findRev('/');
