@@ -2576,7 +2576,7 @@ conversion. <application>StarOffice</application> or <application>kword</applica
 can do this job.</para>
 <para><command>spotlight2kvtml</command> needs the 3 parameters
 <parameter>filename</parameter>, <parameter>month</parameter> and
-<parameter>year</parameter> and produces a file in the same directory
+<parameter>year</parameter> and produces a file in the same folder
 with the same name and the extension <literal role="extension">kvtml</literal>:</para>
 <para><userinput><command>spotlight2kvtml</command>
 <replaceable>0199.txt 01 99</replaceable></userinput></para></listitem>
@@ -2594,7 +2594,7 @@ in kvtml format.</para>
 and tries to extract as much information as possible from the source file.
 For example is keeps the lesson names, conjugations and articles.</para>
 
-<para>It produces a file in the same directory
+<para>It produces a file in the same folder
 with the same name and the extension <literal role="extension">kvtml</literal>.</para>
 </listitem>
 
