@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
-             manage grammer parts (articles, conjugation)
+             manage grammar parts (articles, conjugation)
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Nov 27 09:50:53 MET 1999
+    begin          : Sat Nov 27 09:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -181,7 +179,7 @@ QString Conjugation::getName (const QString &abbrev)
    if (abbrev.length() >= 2 && abbrev[0] == QString(UL_USER_TENSE)) {
      QString s = abbrev;
      s.remove(0, 1);
-     int i = s.toInt();
+     int i = s.toInt() - 1;
 
      if (i < (int) userTenses.size() )
        return userTenses[i];
