@@ -78,10 +78,10 @@
                                 <string>Alt+U</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>If it is unchecked, you will jkust have black on white for the grades, if it is checked, the colors below will be choosen.</string>
+                                <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>If it is unchecked, you will jkust have black on white for the grades, if it is checked, the colors below will be choosen.</string>
+                                <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
                             </property>
                         </widget>
                         <spacer row="0" column="0">
@@ -255,7 +255,7 @@
                                 <string>Color for the grade 2</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>Click here Click here to change the color for grade 2.</string>
+                                <string>Click here to change the color for grade 2.</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="2" column="0">
@@ -294,7 +294,7 @@
                                 <string>Color for the grade 1</string>
                             </property>
                             <property name="whatsThis" stdset="0">
-                                <string>Click here Click here to change the color for grade 1.</string>
+                                <string>Click here to change the color for grade 1.</string>
                             </property>
                         </widget>
                         <widget class="KColorButton" row="8" column="1">
@@ -390,10 +390,10 @@
                         <string>Alt+C</string>
                     </property>
                     <property name="toolTip" stdset="0">
-                        <string>Click on Chnage to choose another font for the main view</string>
+                        <string>Click on Change to choose another font for the main view</string>
                     </property>
                     <property name="whatsThis" stdset="0">
-                        <string>Click on Chnage to choose another font for the main view</string>
+                        <string>Click on Change to choose another font for the main view</string>
                     </property>
                 </widget>
                 <widget class="QLabel" row="0" column="1">
