@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.32  2002/05/09 09:17:20  arnold
+    fixed problem with filename handling
+
     Revision 1.31  2002/04/20 12:55:48  binner
     CVS_SILENT Capitalisation fixes.
 
@@ -887,7 +890,7 @@ void kvoctrainApp::slotSaveSelection ()
     saveDocProps(&seldoc);
 
     prepareProgressBar();
-    seldoc.saveAs(this, name, QString (i18n ("Part of: ")) +doc->getTitle(),
+    seldoc.saveAs(this, name, i18n ("Part of: ") + doc->getTitle(),
                 kvoctrainDoc::automatic, separator, &paste_order);
     removeProgressBar();
   }

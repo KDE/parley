@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.54  2002/11/14 22:52:35  mueller
+    compiler warning fixes
+
     Revision 1.53  2002/10/23 18:16:48  asserhal
     Changed tr to i18n
 
@@ -298,12 +301,12 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
   kvoctrainExpr *expr = doc->getEntry(row);
 
   if (rem_label != 0)
-    rem_label->setText (QString(i18n  (PREFIX_Remark))+expr->getRemark (col));
+    rem_label->setText( i18n(PREFIX_Remark) + expr->getRemark (col) );
   if (pron_label != 0)
-    pron_label->setText (QString(i18n (PREFIX_Pronunce))+expr->getPronunce (col));
+    pron_label->setText( i18n(PREFIX_Pronunce) + expr->getPronunce (col) );
   if (type_label != 0)
-    type_label->setText (QString(i18n (PREFIX_Type))
-            +QueryManager::typeStr(expr->getType (col)));
+    type_label->setText( i18n(PREFIX_Type)
+            + QueryManager::typeStr(expr->getType(col)) );
 
   if (entryDlg != 0) {
     if (col == 0)
