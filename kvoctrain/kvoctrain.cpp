@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.50  2002/07/21 05:12:04  binner
+    Use KLineEditDlg and QInputDialog.
+
     Revision 1.49  2002/07/21 04:27:08  binner
     CVS_SILENT Style guide fixes
 
@@ -1653,9 +1656,9 @@ void kvoctrainApp::statusCallback(int id_){
     ON_STATUS_MSG(ID_SEL_ALL,           i18n("Selects all entries"))
     ON_STATUS_MSG(ID_CLR_SEL,           i18n("Deselects all entries"))
 
-    ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables / disables the current toolbar"))
-    ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables / disables the statusbar"))
-    ON_STATUS_MSG(ID_VIEW_INLINE,       i18n("Enables / disables inline editing in the table view"))
+    ON_STATUS_MSG(ID_VIEW_TOOLBAR,      i18n("Enables/disables the current toolbar"))
+    ON_STATUS_MSG(ID_VIEW_STATUSBAR,    i18n("Enables/disables the statusbar"))
+    ON_STATUS_MSG(ID_VIEW_INLINE,       i18n("Enables/disables inline editing in the table view"))
     ON_STATUS_MSG(ID_SAVE_OPTIONS,      i18n("Saves options"))
     ON_STATUS_MSG(ID_DOC_PROPS,         i18n("Edits document properties"))
     ON_STATUS_MSG(ID_DOC_PROPS_LANG,    i18n("Edits language properties in current document"))
