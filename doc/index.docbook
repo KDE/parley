@@ -1187,9 +1187,9 @@ bottom.</action></para></listitem>
 <term>
 <menuchoice><guimenu>Options</guimenu>
 <guimenuitem>Inline editing</guimenuitem></menuchoice></term>
-<listitem><para><action>Toggles on or off <link linkend="inline-edit">
+<listitem><para>Toggles on or off <link linkend="inline-edit">
 inline editing</link> in the
-table cell.</action></para></listitem>
+table cell.</para></listitem>
 </varlistentry>
 
 <varlistentry>
