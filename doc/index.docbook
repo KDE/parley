@@ -36,8 +36,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2001-30-12</date>
-<releaseinfo>0.08.00</releaseinfo>
+<date>2002-10-08</date>
+<releaseinfo>0.8.1</releaseinfo>
 
 <abstract><para>This handbook describes &kvoctrain; version 0.8.0.
 &kvoctrain; is a little utility to help you train your vocabulary,
@@ -74,8 +74,8 @@ translation on the back. Then look at the cards one after another. If
 you knew the translation, you could put it away. If you failed, you
 put it back to try again.</para>
 
-<para>&kvoctrain; is not intended to teach you grammer or other
-sophisticated things. This is and probably will stay beyond the scope
+<para>&kvoctrain; is not intended to teach you grammar or other
+sophisticated things. This is, and probably will stay, beyond the scope
 of this application.</para>
 
 </sect1>
@@ -291,7 +291,7 @@ word</para></listitem>
 <varlistentry>
 <term>P:</term>
 <listitem><para>how to pronunce this expression. If you have a
-font installed, that contains IPA-characters you can also use the characters from
+font installed, that contains <acronym>IPA</acronym> characters you can also use the characters from 
 the phonetic alphabet. See more about this in the according
 <link linkend="opt-dlg-ipa">options dialog page</link>.
 </para></listitem>
@@ -327,9 +327,8 @@ in the cell.</para>
 <keycap>Return</keycap>
 when you have finished.</para>
 
-<para><emphasis>Please note:</emphasis> You can't invoke the
-<link linkend="entry-dlg">entry dialog window</link> in this mode.
-</para></listitem>
+<note><para>You can't invoke the <link linkend="entry-dlg">entry dialog window</link> in this mode. 
+</para><note></listitem>
 </varlistentry>
 
 <varlistentry>
