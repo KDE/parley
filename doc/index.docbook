@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
-<!ENTITY kvoctrain "<application>KVocTrain</application>">
   <!ENTITY kappname "&kvoctrain;">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"> <!-- change language only here -->
@@ -2184,48 +2183,46 @@ this is mainly useful when your expression is a single word.</para>
 <sect2 id="stat1-dlg">
 <title>General</title>
 
-  <figure>
-    <eps file="stat1-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="614"
-     HEIGHT="454"
-     SRC="stat1-dlg.png"
-     ALT="[general document statistics]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="stat1-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="stat1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[general document statistics]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-On this page you find the most important general information about your
-document:
-  <itemizedlist>
-    <listitem><para>The filename</para></listitem>
-    <listitem><para>The title</para></listitem>
-    <listitem><para>The name of the author</para></listitem>
-    <listitem><para>and the number of entries and lessons.</para></listitem>
-  </itemizedlist>
+<para>On this page you find the most important general information about
+your document:
+<itemizedlist>
+<listitem><para>The filename</para></listitem>
+<listitem><para>The title</para></listitem>
+<listitem><para>The name of the author</para></listitem>
+<listitem><para>and the number of entries and lessons.</para></listitem>
+</itemizedlist></para>
 
-<p>&nbsp;<p>
+</sect2>
 
-<sect1>All languages in the dictionary<p>
+<sect2 id="stat2-dlg">
+<title>All languages in the dictionary</title>
 
-<label id="stat2-dlg">
-  <figure>
-    <eps file="stat2-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="614"
-     HEIGHT="454"
-     SRC="stat2-dlg.png"
-     ALT="[per language statistics]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="stat2-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="stat2-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[per language statistics]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-Depending on the amount of translations your document contains,
+<para>Depending on the amount of translations your document contains,
 you will have none, one or more additional pages. Each page contains
 two pixmaps for each lesson describing the amount of entries per grade
-in each lesson.
+in each lesson.</para>
 
-A click with the right mouse button on one of the pixmaps will popup
-a menu which shows the exact numbers.
+<para>A click with the right mouse button on one of the pixmaps will
+popup a menu which shows the exact numbers.</para>
 
+</sect2>
+</sect1>
 </chapter>
 
 <chapter id="dictionaries">
@@ -2255,7 +2252,7 @@ as I don't want to do any revision.</para></listitem>
 <listitem><para>If you modify existing vocabularies or create
 vocabularies based on copyrighted material ask the author or for
 permission.</para></listitem>
-</itemizedlist>
+</itemizedlist></para>
 
 </sect1>
 
@@ -2273,13 +2270,11 @@ in kvtml format. The original files come as WinWord DOC-files
 so you have to save them as ANSI-TXT files before starting
 conversion. <application>StarOffice</application> can do this job.</para>
 <para><command>spotlight2kvtml</command> needs the 3 parameters
-<param>filename</param>, <param>month</param> and <param>year</param>
-and produces a file in the same directory with the same name and the
-extension "kvtml":</para>
+<parameter>filename</parameter>, <parameter>month</parameter> and
+<parameter>year</parameter> and produces a file in the same directory
+with the same name and the extension "kvtml":</para>
 <para><userinput><command>spotlight2kvtml</command>
-<replaceable><param>0199.txt</param>
-<param>01</param>
-<param>99</param></replaceable></userinput></para></listitem>
+<replaceable>0199.txt 01 99</replaceable></userinput></para></listitem>
 
 <listitem><para>Dictionaries in ascii-format are for example available at:
   <itemizedlist>
@@ -2333,7 +2328,7 @@ swapping.</para>
 <listitem><para>
 <ulink url="http://digilander.iol.it/merlim/english.html">qtrans</ulink> (QT 2.x).
 </para></listitem>
-</itemizedlist>
+</itemizedlist></para>
 
 </sect1>
 </chapter>
@@ -2396,16 +2391,16 @@ url="http://rcswww.urz.tu-dresden.de/~kossebau/dokvok">DokVok</ulink>
 url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml">gvoc</ulink></para></listitem>
 
 <listitem><para><ulink
-url="http://www.brainsystems.com/english/index.html">Wordlearn
-(Win32/commercial)</ulink></para></listitem>
+url="http://www.brainsystems.com/english/index.html">Wordlearn</ulink>
+(Win32/commercial)</para></listitem>
 
 <listitem><para><ulink
-url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">GVoctra
-(DOS)</ulink></para></listitem>
+url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">GVoctra</ulink>
+(DOS)</para></listitem>
 
 <listitem><para><ulink
-url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer (Mac/Win32,
-commercial)</ulink></para></listitem>
+url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer</ulink>
+(Mac/Win32, commercial)</para></listitem>
 </itemizedlist></para>
 
 </sect1>
@@ -2431,8 +2426,6 @@ url="http://www.lxschule.de/txt/software.html">Linux Schulserver</ulink>
 </sect1>
 </chapter>
 
-</chapter>
-
 <chapter id="credits-and-license">
 <title>Credits and License</title>
 
@@ -2446,7 +2439,7 @@ taken from
 <listitem><para>&klpq; (table functionality)</para></listitem>
 <listitem><para>&killustrator; (XML reading/writing).</para></listitem>
 <listitem><para>&khexedit; ("about" dialog).</para></listitem>
-</itemizedlist>
+</itemizedlist></para>
 
 <para>I'd like to thank the following people personally for their
 contribution to &kvoctrain;:
@@ -2455,10 +2448,12 @@ contribution to &kvoctrain;:
 <listitem><para>Hans Kottman for localisation to French</para></listitem>
 <listitem><para>Eric Bischoff for converting the documentation to
 DocBook</para></listitem>
-</itemizedlist>
+</itemizedlist></para>
       
 <para>I also want to thank all the other unamed persons for their constructive
 criticisim, suggestions or bug-reports.</para>
+
+</sect1>
 
 <sect1 id="copyright">
 <title>Copyright</title>
@@ -2474,6 +2469,7 @@ criticisim, suggestions or bug-reports.</para>
 &underFDL;
 &underGPL;
 
+</sect1>
 </chapter>
 
 <appendix id="installation">
