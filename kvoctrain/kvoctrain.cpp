@@ -189,7 +189,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
                    kapp->makeStdCaption("Unsaved Changes"),
-                   i18n("&Apply"), i18n("&Discard"))) {
+                   KStdGuiItem::apply(), KStdGuiItem::discard())) {
         return;
      }
    }

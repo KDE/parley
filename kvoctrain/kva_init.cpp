@@ -166,7 +166,7 @@ void kvoctrainApp::initMenuBar()
 
   file_menu->insertSeparator();
   file_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small) ,i18n("&Save"), ID_FILE_SAVE );
-  file_menu->insertItem(i18n("Save &As..."), ID_FILE_SAVE_AS );
+  file_menu->insertItem(SmallIcon("filesaveas"),i18n("Save &As..."), ID_FILE_SAVE_AS );
   file_menu->insertSeparator();
   file_menu->insertItem(KGlobal::iconLoader()->loadIcon("exit", KIcon::Small), i18n("&Quit"), ID_FILE_QUIT );
 
