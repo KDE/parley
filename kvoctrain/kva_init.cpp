@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/01/13 14:34:04  mueller
+    make it compile again
+
     Revision 1.22  2002/01/02 11:38:27  arnold
     fixed displaying of modified doc
 
@@ -143,6 +146,7 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   randomQueryDlg = 0;
   adjQueryDlg = 0;
   artQueryDlg = 0;
+  entryDlg = 0;
 
   ///////////////////////////////////////////////////////////////////
   // read the config file options

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/30 12:12:57  arnold
+    fixed smart appending and editing
+
     Revision 1.12  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -31,6 +34,7 @@
     removed icons and compatibilty for kde1
 
     Revision 1.7  2001/11/09 14:18:49  arnold
+
     fixed and improved some dialog pages
 
     Revision 1.6  2001/11/09 10:40:05  arnold
@@ -56,7 +60,6 @@
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************
 
  ***************************************************************************
@@ -70,22 +73,29 @@
 
 
 #include "EntryDlg.h"
-
-#define Inherited QTabDialog
+#include <kvoctraindoc.h>
+#include <kmainwindow.h>
 
 #include <iostream.h>
-#include <kapplication.h>
 
 #include <qpixmap.h>
+#include <qlayout.h>
+#include <qframe.h>
+#include <qcheckbox.h>
+#include <qtabwidget.h>
+#include <qpushbutton.h>
+#include <qapplication.h>
 
 #include <kvoctraindoc.h>
 #include <kv_resource.h>
 #include <langset.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kiconloader.h>
+#include <kapplication.h>
 
-EntryDlg::EntryDlg
-(
+EntryDlg::EntryDlg(
+        KMainWindow   *main,
         kvoctrainDoc  *doc,
         bool           multi_sel,
         bool           origin,
@@ -122,11 +132,16 @@ EntryDlg::EntryDlg
         bool           active,
         const QFont&   ipafont,
 	QWidget       *parent,
-	const char    *name
-)
+	const char    *name)
 	:
-	Inherited( parent, name, true)
+	EntryDlgForm( parent, name, false)
 {
+        setAutoApply (false);
+        mainwin = main;
+        docked = false;
+        edit_row = -1;
+        edit_col = -1;
+
 	setCaption (kapp->makeStdCaption(title));
 
         QString s;
@@ -135,9 +150,10 @@ EntryDlg::EntryDlg
         else          
           s = langset.findLongId(lang);
 
+        from_page = 0;
+        to_page = 0;
+
         if (origin) {
-          from_page = 0;
-          to_page = 0;
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                            lang, type, pronunce, usagelabel, 
                                            i18n("Original &expression in %1:").arg(s), querymanager, active,
@@ -156,46 +172,129 @@ EntryDlg::EntryDlg
           mc_page = new MCEntryPage (this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
           adj_page = new AdjEntryPage (this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
-          from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
-                                           f_faux_ami,
-                                           i18n("Properties from original"));
-          to_page   = new FromToEntryPage (this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
-                                           t_faux_ami,
-                                           i18n("Properties to original"));
         }
 
-        setCancelButton(i18n("&Cancel"));
-        setOkButton(i18n("&OK"));
-          
-        addTab( comm_page,  i18n( "Co&mmon" ));
-        addTab( aux_page,   i18n( "&Additional" ));
-        addTab( mc_page,   _EntryDlg_MULTIPLECHOICE);
-        addTab( tense_page, _EntryDlg_CONJUGATION);
-        addTab( adj_page,   _EntryDlg_ADJECTIVE);
-        if (!origin) {
-          addTab( from_page, i18n( "&From original" ));
-          addTab( to_page, i18n( "&To original" ));
-        }
-      
+        from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
+                                         f_faux_ami,
+                                         i18n("Properties from original"));
+        to_page   = new FromToEntryPage (this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
+                                         t_faux_ami,
+                                         i18n("Properties to original"));
+
+        QVBoxLayout *tablay = new QVBoxLayout(tabframe);
+        tabber = new QTabWidget(tabframe);
+        tablay->addWidget(tabber);
+
+        tabber->addTab( comm_page,  i18n( "Co&mmon" ));
+        tabber->addTab( aux_page,   i18n( "&Additional" ));
+        tabber->addTab( mc_page,   _EntryDlg_MULTIPLECHOICE);
+        tabber->addTab( tense_page, _EntryDlg_CONJUGATION);
+        tabber->addTab( adj_page,   _EntryDlg_ADJECTIVE);
+        tabber->addTab( from_page, i18n( "&From original" ));
+        tabber->addTab( to_page, i18n( "&To original" ));
+
+        dock_vert->setPixmap(KGlobal::iconLoader()->loadIcon("view_left_right", KIcon::Small));
+        dock_horiz->setPixmap(KGlobal::iconLoader()->loadIcon("view_top_bottom", KIcon::Small));
+
         updatePages (type);
 
         connect(comm_page, SIGNAL(typeSelected(const QString&)),
                 SLOT(updatePages(const QString&)) );
 
-        connect( this, SIGNAL(applyButtonPressed()), SLOT(accept()) );
-        connect( this, SIGNAL(cancelButtonPressed()), SLOT(reject()) );
+        connect( chk_autoapply, SIGNAL(toggled(bool)), this, SLOT(slotAutoApplyChecked(bool)) );
+        connect( undoButton, SIGNAL(clicked()), this, SLOT(slotUndo()) );
+        connect( applyButton, SIGNAL(clicked()), this, SLOT(slotApply()) );
+        connect( cancelButton, SIGNAL(clicked()), this, SLOT(slotCancel()) );
+        connect( dock_vert, SIGNAL(clicked()), this, SLOT(slotDockVertical()) );
+        connect( dock_horiz, SIGNAL(clicked()), this, SLOT(slotDockHorizontal()) );
 
-        connect (this, SIGNAL(aboutToShow()), comm_page, SLOT(initFocus() ));
-        connect (this, SIGNAL(aboutToShow()), aux_page, SLOT(initFocus() ));
-        connect (this, SIGNAL(aboutToShow()), adj_page, SLOT(initFocus() ));
-        connect (this, SIGNAL(aboutToShow()), mc_page, SLOT(initFocus() ));
-        connect (this, SIGNAL(aboutToShow()), tense_page, SLOT(initFocus() ));
+        connect (comm_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+        connect (aux_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+        connect (adj_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+        connect (mc_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+        connect (tense_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+
         if (from_page != 0)
-          connect (this, SIGNAL(aboutToShow()), from_page, SLOT(initFocus() ));
+          connect (from_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
         if (to_page != 0)
-          connect (this, SIGNAL(aboutToShow()), to_page, SLOT(initFocus() ));
+          connect (to_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
 
+        chk_autoapply->setChecked(false);
+        applyButton->setEnabled(false);
+        undoButton->setEnabled(false);
+        initFocus();
         setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+}
+
+
+void EntryDlg::setData(
+        kvoctrainDoc  *doc,
+        bool           multi_sel,
+        bool           origin,
+        grade_t        f_grd,
+        grade_t        t_grd,
+        count_t        f_qcount,
+        count_t        t_qcount,
+        count_t        f_bcount,
+        count_t        t_bcount,
+        time_t         f_qdate,
+        time_t         t_qdate,
+        QString        f_faux_ami,
+        QString        t_faux_ami,
+        QString        expr,
+        int            lesson,
+        QComboBox     *lessonbox,
+        QString        lang,
+        LangSet       &langset,
+        QString        rem,
+        QString        type,
+        QString        pronunce,
+        QString        synonym,
+        QString        antonym,
+        QString        example,
+        QString        usagelabel,
+        QString        paraphrase,
+        const          Conjugation &con_prefix,
+        const          Conjugation &conjugations,
+        const          Article &article,
+        const          Comparison &comp,
+        const          MultipleChoice &mc,
+        QueryManager  &querymanager,
+	const QString &title,
+        bool           active)
+{
+        QString s;
+        if (langset.findLongId(lang).isEmpty() )
+          s = lang;
+        else
+          s = langset.findLongId(lang);
+
+        if (origin)
+          comm_page->setData(multi_sel, expr, lesson, lessonbox,
+                             lang, type, pronunce, usagelabel,
+                             i18n("Original &expression in %1:").arg(s), querymanager,
+                             active);
+        else
+          comm_page->setData(multi_sel, expr, lesson, lessonbox,
+                             lang, type, pronunce, usagelabel,
+                             i18n("Translated &expression in %1:").arg(s), querymanager,
+                             active);
+
+        adj_page->setData(multi_sel, comp);
+        aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
+        mc_page->setData(multi_sel, mc);
+        tense_page->setData(multi_sel, conjugations);
+        if (from_page != 0)
+          from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
+                             f_faux_ami,
+                             i18n("Properties from original"));
+        if (to_page != 0)
+          to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
+                           t_faux_ami,
+                           i18n("Properties to original"));
+
+        setModified(false);
+        updatePages (type);
 }
 
 
@@ -209,24 +308,198 @@ void EntryDlg::updatePages(const QString &type)
      main = type.left(pos);
 
    if (main == QM_VERB) {
-     setTabEnabled (QString(_EntryDlg_CONJUGATION).local8Bit(), true);
-     setTabEnabled (QString(_EntryDlg_ADJECTIVE).local8Bit(), false);
-   }                  
+     tense_page->setEnabled(EntryDlg::EnableAll);
+     adj_page->setEnabled(EntryDlg::EnableNone);
+   }
    else if (main == QM_ADJ) {
-     setTabEnabled (QString(_EntryDlg_CONJUGATION).local8Bit(), false);
-     setTabEnabled (QString(_EntryDlg_ADJECTIVE).local8Bit(), true);
+     tense_page->setEnabled(EntryDlg::EnableNone);
+     adj_page->setEnabled(EntryDlg::EnableAll);
    }
    else {
-     setTabEnabled (QString(_EntryDlg_CONJUGATION).local8Bit(), false);
-     setTabEnabled (QString(_EntryDlg_ADJECTIVE).local8Bit(), false);
+     tense_page->setEnabled(EntryDlg::EnableNone);
+     adj_page->setEnabled(EntryDlg::EnableNone);
    }
 }
 
 
 void EntryDlg::initFocus()
 {
+
   comm_page->initFocus();
+  aux_page->initFocus();
+  mc_page->initFocus();
+  tense_page->initFocus();
+  mc_page->initFocus();
+  adj_page->initFocus();
+  if (from_page != 0)
+    from_page->initFocus();
+  if (to_page != 0)
+    to_page->initFocus();
+}
+
+
+void EntryDlg::setModified(bool mod)
+{
+  comm_page->setModified(mod);
+  aux_page->setModified(mod);
+  mc_page->setModified(mod);
+  tense_page->setModified(mod);
+  mc_page->setModified(mod);
+  adj_page->setModified(mod);
+  if (from_page != 0)
+    from_page->setModified(mod);
+  if (to_page != 0)
+    to_page->setModified(mod);
+  applyButton->setEnabled(false);
+  undoButton->setEnabled(false);
+}
+
+
+void EntryDlg::setEnabled(int enable)
+{
+  if (enable == EnableOnlyOriginal) {
+    comm_page->setEnabled(EnableAll);
+    aux_page->setEnabled(EnableAll);
+    mc_page->setEnabled(EnableAll);
+    tense_page->setEnabled(EnableAll);
+    mc_page->setEnabled(EnableAll);
+    adj_page->setEnabled(EnableAll);
+    if (from_page != 0)
+      from_page->setEnabled(EnableNone);
+    if (to_page != 0)
+      to_page->setEnabled(EnableNone);
+  }
+  else {
+    comm_page->setEnabled(enable);
+    aux_page->setEnabled(enable);
+    mc_page->setEnabled(enable);
+    tense_page->setEnabled(enable);
+    mc_page->setEnabled(enable);
+    adj_page->setEnabled(enable);
+    if (from_page != 0)
+      from_page->setEnabled(enable);
+    if (to_page != 0)
+      to_page->setEnabled(enable);
+  }
+}
+
+
+void EntryDlg::slotCancel()
+{
+  emit sigEditChoice(EditCancel);
+}
+
+
+void EntryDlg::slotApply()
+{
+  emit sigEditChoice(EditApply);
+}
+
+
+void EntryDlg::slotUndo()
+{
+  emit sigEditChoice(EditUndo);
+}
+
+
+bool EntryDlg::isModified()
+{
+  bool mod = comm_page->isModified()
+          || aux_page->isModified()
+          || tense_page->isModified()
+          || mc_page->isModified()
+          || adj_page->isModified();
+
+  if (from_page != 0)
+    mod |= from_page->isModified();
+
+  if (to_page != 0)
+    mod |= to_page->isModified();
+
+  return mod;
+}
+
+
+void EntryDlg::slotDisplayModified()
+{
+  applyButton->setEnabled(true);
+  undoButton->setEnabled(true);
+}
+
+
+void EntryDlg::setCell(int row, int col, const vector<QTableSelection>& sel)
+{
+  edit_row = row;
+  edit_col = col;
+//  selections = sel;
+}
+
+
+void EntryDlg::getCell(int &row, int &col, vector<QTableSelection>& sel) const
+{
+  row = edit_row;
+  col = edit_col;
+//  sel = selections;
+}
+
+
+void EntryDlg::slotDockVertical()
+{
+   if (!docked) {
+     oldMainPos = mainwin->pos();
+     oldMainSize = mainwin->size();
+     docked = true;
+   }
+
+   QWidget *desk = QApplication::desktop();
+
+   resize(minimumWidth(), desk->height());
+   move (0, 0);
+   mainwin->resize(desk->width()-width(), desk->height());
+   mainwin->move(width(), 0);
+}
+
+
+void EntryDlg::slotDockHorizontal()
+{
+   if (!docked) {
+     oldMainPos = mainwin->pos();
+     oldMainSize = mainwin->size();
+     docked = true;
+   }
+
+   QWidget *desk = QApplication::desktop();
+
+   resize(desk->width(), minimumHeight());
+   mainwin->resize(desk->width(), desk->height()-height());
+   mainwin->move (0, 0);
+   move(0, mainwin->height());
+}
+
+
+void EntryDlg::setAutoApply (bool appl)
+{
+  autoapply = appl;
+  chk_autoapply->setChecked(autoapply);
+}
+
+
+void EntryDlg::slotAutoApplyChecked(bool ena)
+{
+  autoapply = ena;
+}
+
+
+
+EntryDlg::~EntryDlg()
+{
+   if (docked) {
+     docked = false;
+     mainwin->resize(oldMainSize);
+     mainwin->move(oldMainPos);
+   }
 }
 
 
 #include "EntryDlg.moc"
+

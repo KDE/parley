@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.34  2002/01/18 04:40:08  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.33  2002/01/07 17:54:37  arnold
     fixed typo
 
@@ -121,7 +125,6 @@
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -151,6 +154,7 @@
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <qcursor.h>
 #include <qtimer.h>
@@ -182,6 +186,7 @@ void kvoctrainApp::slotSaveOptions()
 
 kvoctrainApp::~kvoctrainApp()
 {
+   removeEntryDlg();
    delete header_m;
    delete btimer;
    delete view;
@@ -208,16 +213,6 @@ void kvoctrainApp::slotSelectAll ()
 
 void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 {
-  if (col < KV_EXTRA_COLS) {
-    if (rem_label != 0)
-      rem_label->setText  (i18n (PREFIX_Remark));
-    if (pron_label != 0)
-      pron_label->setText (i18n (PREFIX_Pronunce));
-    if (type_label != 0)
-      type_label->setText (i18n (PREFIX_Type));
-    return;
-  }
-
   col -= KV_EXTRA_COLS;
 
   statusBar()->clear();
@@ -231,6 +226,10 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
       pron_label->setText (i18n (PREFIX_Pronunce));
     if (type_label != 0)
       type_label->setText (i18n (PREFIX_Type));
+
+    if (entryDlg != 0)
+      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+
     return;
   }
 
@@ -243,55 +242,195 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
   if (type_label != 0)
     type_label->setText (QString(i18n (PREFIX_Type))
             +QueryManager::typeStr(expr->getType (col)));
+
+  if (entryDlg != 0) {
+    if (col == 0)
+      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+    else
+      entryDlg->setEnabled(EntryDlg::EnableAll);
+    slotEditEntryModeless(row, col+KV_EXTRA_COLS);
+  }
 }
 
 
 void kvoctrainApp::slotEditRow()
 {
-  slotEditEntry (view->getTable()->currentRow(),
-                 view->getTable()->currentColumn());
+  slotEditEntryModeless (view->getTable()->currentRow(),
+                         view->getTable()->currentColumn());
+  if (entryDlg != 0)
+    entryDlg->raise();
 }
 
-/*
-void kvoctrainApp::slotSelectEntry (int row, int col, int key_state)
+
+void kvoctrainApp::slotEditCallBack(int res)
 {
-   if (view->getTable()->numRows() <= 0
-       || row < 0
-       || col < 0)
-     return;
+  switch (res) {
+    case EntryDlg::EditCancel:
+      removeEntryDlg();
+    break;
 
-   if (col == KV_COL_LESS) {
-     if (key_state != 0) { // some shift/ctrl key
-       if (doc->getEntry(row)->getLesson () == 0)
-         doc->getEntry(row)->setLesson (act_lesson);
-       else
-         doc->getEntry(row)->setLesson (0);
-     }
-   }
-   else if (col == KV_COL_MARK) {
-     // Quick'N'dirty
-     kvoctrainExpr *expr = doc->getEntry(row);
-     if (expr->isActive() && !expr->isInQuery()) {
-       expr->setInQuery();
-     }
-     else if (expr->isActive() && expr->isInQuery()) {
-       expr->setInQuery(false);
-       expr->setActive(false);
-     }
-     else if (!expr->isActive() && !expr->isInQuery()) {
-       expr->setActive(true);
-     }
-   }
+    case EntryDlg::EditApply:
+      commitEntryDlg(true);
+      if (smartAppend) {
+        int row = view->getTable()->currentRow();
+        if (row == view->getTable()->numRows()-1) {
+          int col = view->getTable()->currentColumn();
+          if (   col < view->getTable()->numCols()-1
+              && col > KV_COL_ORG ) {
+            QString exp;
+            exp = doc->getEntry(row)->getTranslation(col-KV_COL_ORG);
+            if (exp.isEmpty())
+              view->getTable()->setCurrentRow(row, col+1);
+          }
+          else
+            slotAppendRow();
+        }
+      }
+    break;
 
-   doc->setModified(true);
-   // update current row with all cols
-   for (int i = 0; i < view->getTable()->numCols(); i++)
-     view->getTable()->updateCell(row, i);
+    case EntryDlg::EditUndo:
+      int row, col;
+      vector<QTableSelection> tabsel;
+      entryDlg->getCell(row, col, tabsel);
+      setDataEntryDlg(row, col + KV_EXTRA_COLS);
+    break;
+  }
 }
+
+
+void kvoctrainApp::commitEntryDlg(bool force)
+{
+   if (entryDlg == 0) {
+     kdError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
+     return;
+   }
+
+   if (!force && entryDlg->isModified() && !entryDlg->autoApply()) {
+     if( KMessageBox::No == KMessageBox::warningYesNo(this,
+                   i18n("The entry dialog contains unsaved changes.\n"
+                        "Do you want to apply or discard your changes?"),
+                   kapp->makeStdCaption("Unsaved Changes"),
+                   i18n("&Apply"), i18n("&Discard"))) {
+        return;
+     }
+   }
+
+   int row, col;
+   vector<QTableSelection> tabsel;
+   entryDlg->getCell(row, col, tabsel);
+/*
+   if (hasSel) {
+     for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
+       tabsel.push_back(view->getTable()->selection(i);
+   }
 */
 
-bool kvoctrainApp::slotEditEntry (int row, int col)
+//   commitEntryDlg->autoApply();
+
+   fillLessonBox(doc);
+   if (tabsel.size() <= 1) {
+     kvoctrainExpr *expr = doc->getEntry(row);
+     if (col == 0)
+       expr->setOriginal(entryDlg->getExpr());
+     else
+       expr->setTranslation(col, entryDlg->getExpr());
+
+     expr->setRemark (col, entryDlg->getRemark());
+     expr->setPronunce (col, entryDlg->getPronunce());
+
+     expr->setSynonym (col, entryDlg->getSynonym());
+     expr->setAntonym (col, entryDlg->getAntonym());
+     expr->setExample (col, entryDlg->getExample());
+     expr->setUsageLabel (col, entryDlg->getUsageLabel());
+     expr->setParaphrase (col, entryDlg->getParaphrase());
+     expr->setConjugation (col, entryDlg->getConjugation());
+     expr->setComparison(col, entryDlg->getComparison() );
+     expr->setMultipleChoice(col, entryDlg->getMultipleChoice() );
+
+     expr->setFauxAmi (col, entryDlg->getFromFauxAmi(), false);
+     expr->setFauxAmi (col, entryDlg->getToFauxAmi(), true);
+     expr->setGrade(col, entryDlg->getFromGrade(), false);
+     expr->setGrade(col, entryDlg->getToGrade(), true);
+     expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+     expr->setQueryCount(col, entryDlg->getToQCount(), true);
+     expr->setBadCount(col, entryDlg->getFromBCount(), false);
+     expr->setBadCount(col, entryDlg->getToBCount(), true);
+     expr->setQueryDate(col, entryDlg->getFromDate(), false);
+     expr->setQueryDate(col, entryDlg->getToDate(), true);
+     expr->setLesson (entryDlg->getLesson());
+     expr->setActive(entryDlg->getActive());
+     expr->setType (col, entryDlg->getType());
+
+     for (int i = 0; i <= expr->numTranslations(); i++)
+       if (expr->getType(i).isEmpty() )
+         expr->setType(i, entryDlg->getType());
+
+     for (int i = 0; i <= expr->numTranslations(); i++)
+       if (QueryManager::getMainType(expr->getType(i))
+             !=
+           QueryManager::getMainType(entryDlg->getType()) )
+         expr->setType(i, entryDlg->getType());
+
+     view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+   }
+   else {
+     for (int ts = 0; ts < tabsel.size(); ++ts) {
+       for (int i = tabsel[ts].topRow(); i < tabsel[ts].bottomRow(); ++i) {
+         kvoctrainExpr *expr = doc->getEntry(i);
+         // only updated "common" props in multimode
+         if (entryDlg->fromGradeDirty() )
+           expr->setGrade(col, entryDlg->getFromGrade(), false);
+         if (entryDlg->toGradeDirty() )
+           expr->setGrade(col, entryDlg->getToGrade(), true);
+
+         if (entryDlg->fromQCountDirty() )
+           expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+         if (entryDlg->toQCountDirty() )
+            expr->setQueryCount(col, entryDlg->getToQCount(), true);
+
+         if (entryDlg->fromBCountDirty() )
+           expr->setBadCount(col, entryDlg->getFromBCount(), false);
+         if (entryDlg->toBCountDirty() )
+           expr->setBadCount(col, entryDlg->getToBCount(), true);
+
+         if (entryDlg->fromDateDirty() )
+           expr->setQueryDate(col, entryDlg->getFromDate(), false);
+         if (entryDlg->toDateDirty() )
+           expr->setQueryDate(col, entryDlg->getToDate(), true);
+
+         if (entryDlg->lessonDirty() )
+           expr->setLesson (entryDlg->getLesson());
+
+         if (entryDlg->usageDirty() )
+           for (int i = 0; i <= expr->numTranslations(); i++)
+             expr->setUsageLabel (i, entryDlg->getUsageLabel());
+
+         if (entryDlg->typeDirty() )
+         {
+           for (int i = 0; i <= expr->numTranslations(); i++)
+             expr->setType(i, entryDlg->getType());
+         }
+
+         if (entryDlg->activeDirty() )
+           expr->setActive(entryDlg->getActive());
+
+       }
+     }
+     view->getTable()->updateContents();
+   }
+
+   entryDlg->setModified(false);
+   doc->setModified(true);
+}
+
+
+void kvoctrainApp::createEntryDlg(int row, int col)
 {
+   if (entryDlg != 0) {
+     kdError() << "kvoctrainApp::createEntryDlg: entryDlg != 0\n";
+     return;
+   }
+
    QString s1,
            s2,
            text,
@@ -299,13 +438,13 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
 
    if ((row < 0) ||
        (col < 0))
-     return false;
+     return;
 
    if (col < KV_EXTRA_COLS)
-      return false;
+      return;
 
    if (view->getTable()->numRows() <= 0)
-     return false;
+     return;
 
    col -= KV_EXTRA_COLS;
 
@@ -331,11 +470,13 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
    else
      title = i18n("Edit properties of translation");
 
-   bool hasSel = hasSelection();
+   opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
+   view->getTable()->setEditorBlocked(true);
 
-   int res;
-   EntryDlg edlg (doc,
-                  hasSel,
+   entryDlg = new EntryDlg (
+                  this,
+                  doc,
+                  hasSelection(),
                   col==0,
                   doc->getEntry(row)->getGrade(col, false),
                   doc->getEntry(row)->getGrade(col, true),
@@ -369,115 +510,145 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
                   title,
                   doc->getEntry(row)->isActive(),
                   ipafont);
+   entryDlg->setAutoApply(autoentryApply);
+   connect( entryDlg, SIGNAL(sigEditChoice(int)),
+             this, SLOT(slotEditCallBack(int)));
 
-   edlg.initFocus();
-   res = edlg.exec();
+   cout << "ce 1\n";
+   vector<QTableSelection> tabsel;
+   cout << "ce 2\n";
+   entryDlg->setCell(row, col, tabsel);
+   cout << "ce 3\n";
+   entryDlg->initFocus();
+   entryDlg->show();
+}
 
-   if (res != QDialog::Accepted)
-      return false;
 
-   fillLessonBox(doc);
+void kvoctrainApp::removeEntryDlg()
+{
+  if (entryDlg != 0) {
+    autoentryApply = entryDlg->autoApply();
+    commitEntryDlg(false);
+    delete entryDlg;
+    entryDlg = 0;
+  }
 
-   if (!hasSel)
-   {
-     kvoctrainExpr *expr = doc->getEntry(row);
-     if (col == 0)
-       expr->setOriginal(edlg.getExpr());
-     else
-       expr->setTranslation(col, edlg.getExpr());
+  opts_menu->setItemEnabled(ID_VIEW_INLINE, true);
+  view->getTable()->setEditorBlocked(false);
+}
 
-     // do the same for "append entry"
 
-     expr->setRemark (col, edlg.getRemark());
-     expr->setPronunce (col, edlg.getPronunce());
-
-     expr->setSynonym (col, edlg.getSynonym());
-     expr->setAntonym (col, edlg.getAntonym());
-     expr->setExample (col, edlg.getExample());
-     expr->setUsageLabel (col, edlg.getUsageLabel());
-     expr->setParaphrase (col, edlg.getParaphrase());
-     expr->setConjugation (col, edlg.getConjugation());
-     expr->setComparison(col, edlg.getComparison() );
-     expr->setMultipleChoice(col, edlg.getMultipleChoice() );
-
-     expr->setFauxAmi (col, edlg.getFromFauxAmi(), false);
-     expr->setFauxAmi (col, edlg.getToFauxAmi(), true);
-     expr->setGrade(col, edlg.getFromGrade(), false);
-     expr->setGrade(col, edlg.getToGrade(), true);
-     expr->setQueryCount(col, edlg.getFromQCount(), false);
-     expr->setQueryCount(col, edlg.getToQCount(), true);
-     expr->setBadCount(col, edlg.getFromBCount(), false);
-     expr->setBadCount(col, edlg.getToBCount(), true);
-     expr->setQueryDate(col, edlg.getFromDate(), false);
-     expr->setQueryDate(col, edlg.getToDate(), true);
-     expr->setLesson (edlg.getLesson());
-     expr->setActive(edlg.getActive());
-     expr->setType (col, edlg.getType());
-
-     for (int i = 0; i <= expr->numTranslations(); i++)
-       if (expr->getType(i).isEmpty() )
-         expr->setType(i, edlg.getType());
-
-     for (int i = 0; i <= expr->numTranslations(); i++)
-       if (QueryManager::getMainType(expr->getType(i))
-             !=
-           QueryManager::getMainType(edlg.getType()) )
-         expr->setType(i, edlg.getType());
-     view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+void kvoctrainApp::slotEditEntryModeless (int row, int col)
+{
+   if (entryDlg == 0) {
+     createEntryDlg(row, col);
+     return;
    }
+
+   if (entryDlg->isModified()) {
+     commitEntryDlg(false);
+   }
+
+   setDataEntryDlg(row, col);
+}
+
+
+void kvoctrainApp::setDataEntryDlg (int row, int col)
+{
+   if (entryDlg == 0) {
+     kdError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
+     return;
+   }
+
+   QString s1,
+           s2,
+           text,
+           lang;
+
+   if ((row < 0) ||
+       (col < 0))
+     return;
+
+   if (col < KV_EXTRA_COLS)
+      return;
+
+   if (view->getTable()->numRows() <= 0)
+     return;
+
+   col -= KV_EXTRA_COLS;
+
+   s1.setNum(row);
+   s2.setNum(col);
+
+   if (col == 0) {
+     lang = doc->getOriginalIdent();
+     text = doc->getEntry(row)->getOriginal();
+   }
+   else {
+     lang = doc->getIdent(col);
+     text = doc->getEntry(row)->getTranslation(col);
+   }
+
+   int lesson = doc->getEntry(row)->getLesson();
+   if (lesson >= lessons->count())
+     lesson = QMAX (0, lessons->count()-1);
+
+   QString title;
+   if (col == 0)
+     title = i18n("Edit properties for original");
    else
-   {
-     RowTable *table = view->getTable();
+     title = i18n("Edit properties of translation");
 
-     int numRows = table->numRows();
-     for (int i = 0; i < numRows; i++)
-     {
-       if (table->isRowSelected(i))
-       {
-         kvoctrainExpr *expr = table->getRow(i);
-         // only updated "common" props in multimode
-         if (edlg.fromGradeDirty() )
-           expr->setGrade(col, edlg.getFromGrade(), false);
-         if (edlg.toGradeDirty() )
-           expr->setGrade(col, edlg.getToGrade(), true);
-
-         if (edlg.fromQCountDirty() )
-           expr->setQueryCount(col, edlg.getFromQCount(), false);
-         if (edlg.toQCountDirty() )
-            expr->setQueryCount(col, edlg.getToQCount(), true);
-
-         if (edlg.fromBCountDirty() )
-           expr->setBadCount(col, edlg.getFromBCount(), false);
-         if (edlg.toBCountDirty() )
-           expr->setBadCount(col, edlg.getToBCount(), true);
-
-         if (edlg.fromDateDirty() )
-           expr->setQueryDate(col, edlg.getFromDate(), false);
-         if (edlg.toDateDirty() )
-           expr->setQueryDate(col, edlg.getToDate(), true);
-
-         if (edlg.lessonDirty() )
-           expr->setLesson (edlg.getLesson());
-
-         if (edlg.typeDirty() )
-         {
-           for (int i = 0; i <= expr->numTranslations(); i++)
-             expr->setType(i, edlg.getType());
-         }
-
-         if (edlg.activeDirty() )
-           expr->setActive(edlg.getActive());
-
-       }
-     }
-     table->updateContents();
+   bool hasSel = hasSelection();
+   vector<QTableSelection> tabsel;
+   if (hasSel) {
+     for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
+       tabsel.push_back(view->getTable()->selection(i));
    }
 
-   doc->setModified(true);
-   slotCurrentCellChanged(view->getTable()->currentRow(),
-                          view->getTable()->currentColumn());
+   entryDlg->setCell(row, col, tabsel);
+   entryDlg->setData(doc,
+                     hasSel,
+                     col==0,
+                     doc->getEntry(row)->getGrade(col, false),
+                     doc->getEntry(row)->getGrade(col, true),
+                     doc->getEntry(row)->getQueryCount(col, false),
+                     doc->getEntry(row)->getQueryCount(col, true),
+                     doc->getEntry(row)->getBadCount(col, false),
+                     doc->getEntry(row)->getBadCount(col, true),
+                     doc->getEntry(row)->getQueryDate(col, false),
+                     doc->getEntry(row)->getQueryDate(col, true),
+                     doc->getEntry(row)->getFauxAmi(col, false),
+                     doc->getEntry(row)->getFauxAmi(col, true),
+                     text,
+                     lesson,
+                     lessons,
+                     lang,
+                     langset,
+                     doc->getEntry(row)->getRemark(col),
+                     doc->getEntry(row)->getType(col),
+                     doc->getEntry(row)->getPronunce(col),
+                     doc->getEntry(row)->getSynonym(col),
+                     doc->getEntry(row)->getAntonym(col),
+                     doc->getEntry(row)->getExample(col),
+                     doc->getEntry(row)->getUsageLabel(col),
+                     doc->getEntry(row)->getParaphrase(col),
+                     doc->getConjugation(col),
+                     doc->getEntry(row)->getConjugation(col),
+                     doc->getArticle(col),
+                     doc->getEntry(row)->getComparison(col),
+                     doc->getEntry(row)->getMultipleChoice(col),
+                     querymanager,
+                     title,
+                     doc->getEntry(row)->isActive());
+     view->getTable()->updateCell(row, col);
+}
 
-   return true;
+
+bool kvoctrainApp::slotEditEntry (int row, int col)
+{
+   slotEditEntryModeless (row, col);
+   return false;
 }
 
 
@@ -640,102 +811,13 @@ void kvoctrainApp::slotRemoveRow()
 
 void kvoctrainApp::slotAppendRow ()
 {
-  if (inline_edit) {
     kvoctrainExpr expr;
     expr.setLesson(act_lesson);
     doc->appendEntry(&expr);
     doc->setModified();
     int row = doc->numEntries()-1;
     view->getTable()->updateContents(row, KV_COL_ORG);
-    return;
-  }
-
-
-  int res;
-  do {
-    EntryDlg edlg (doc,
-                   false, true,
-                   0,
-                   0,
-                   0,
-                   0,
-                   0,
-                   0,
-                   0,
-                   0,
-                   "",
-                   "",
-                   "",
-                   act_lesson,
-                   lessons,
-                   doc->getOriginalIdent(),
-                   langset,
-                   "",
-                   "",
-                   "",
-                   "",
-                   "",
-                   "",
-                   "",
-                   0,
-                   doc->getConjugation(0),
-                   Conjugation(),
-                   doc->getArticle(0),
-                   Comparison(),
-                   MultipleChoice(),
-                   querymanager,
-                   i18n("Enter new original expression"),
-                   true,
-                   ipafont);
-    edlg.initFocus();
-    res = edlg.exec();
-
-    if (res == QDialog::Accepted) {
-      fillLessonBox(doc);
-      kvoctrainExpr expr (edlg.getExpr(), edlg.getLesson());
-      expr.setRemark (0, edlg.getRemark());
-      expr.setType (0, edlg.getType());
-      expr.setPronunce (0, edlg.getPronunce());
-      expr.setSynonym (0, edlg.getSynonym());
-      expr.setAntonym (0, edlg.getAntonym());
-      expr.setExample (0, edlg.getExample());
-      expr.setUsageLabel (0, edlg.getUsageLabel());
-      expr.setParaphrase (0, edlg.getParaphrase());
-      expr.setConjugation (0, edlg.getConjugation());
-      expr.setComparison(0, edlg.getComparison() );
-      expr.setMultipleChoice(0, edlg.getMultipleChoice() );
-      expr.setLesson (edlg.getLesson());
-      expr.setActive (edlg.getActive());
-      expr.setType (0, edlg.getType());
-
-      for (int i = 1; i <= doc->numLangs(); i++)
-         expr.setType (i, edlg.getType());
-
-      doc->appendEntry(&expr);
-      doc->setModified();
-      int row = doc->numEntries()-1;
-      view->getTable()->updateContents(row, KV_COL_ORG);
-
-      // enter all new translations
-      if (smartAppend) {
-        slotChooseLesson(edlg.getLesson());
-
-        bool nextcol = smartAppend;
-        for (int i = 2; nextcol && i <= doc->numLangs(); i++) {
-          if ((nextcol = slotEditEntry (row, i-1+KV_EXTRA_COLS))) {
-            int lesson = doc->getEntry(row)->getLesson();
-            if (lesson >= lessons->count())
-              lesson = QMAX (0, lessons->count()-1);
-            slotChooseLesson(lesson);
-          }
-          else
-            return;
-         view->getTable()->updateContents(row, i+KV_EXTRA_COLS);
-        }
-      }
-    }
-  } while (res == QDialog::Accepted && smartAppend);
-
+    view->getTable()->setCurrentRow(row, KV_COL_ORG);
 }
 
 

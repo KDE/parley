@@ -16,12 +16,14 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -56,13 +58,25 @@ public:
         const char        *name = NULL
     );
 
+    void setData (bool multi_sel,
+                  const Comparison  &comp);
+
     Comparison getComparison() const { return comparisons; }
+
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
+
+public slots:
+    void initFocus() const;
+
+signals:
+    void sigModified();
 
 protected:
     void keyPressEvent( QKeyEvent * );
 
 protected slots:
-    void initFocus() const;
     void lev1Changed(const QString&);
     void lev2Changed(const QString&);
     void lev3Changed(const QString&);
@@ -71,5 +85,6 @@ protected slots:
 protected:
 
     Comparison comparisons;
+    bool       modified;
 };
 #endif // AdjEntryPage_included

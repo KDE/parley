@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/04 17:28:51  arnold
+    fixed resuming a query
+
     Revision 1.13  2001/12/13 18:39:09  arnold
     added phonetic alphabet stuff
 
@@ -91,6 +94,7 @@ void kvoctrainApp::saveOptions(bool all)
   config->setGroup(CFG_GENERAL);
   config->writeEntry(CFG_RECENT, recent_files);
   config->writeEntry(CFG_AUTOSAVEOPT, autosaveopts);
+  config->writeEntry(CFG_ENTRYAUTOAPPLY, autoentryApply);
 
   config->setGroup(CFG_APPEARANCE);
   config->writeEntry(CFG_SHOW_TOOLBAR,toolBar()->isVisible());
@@ -242,6 +246,7 @@ void kvoctrainApp::readOptions()
   // initialize the recent file list
   recent_files = config->readListEntry(CFG_RECENT);
   autosaveopts = config->readBoolEntry(CFG_AUTOSAVEOPT, true);
+  autoentryApply = config->readBoolEntry(CFG_ENTRYAUTOAPPLY, false);
 
   paste_order = config->readListEntry(CFG_PASTEORDER);
   useCurrent = config->readBoolEntry(CFG_USECURRENT, true);

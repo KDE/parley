@@ -16,12 +16,14 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -64,6 +66,15 @@ public:
         const char *name = NULL
     );
 
+    void setData(
+        bool        multi_sel,
+        grade_t     _grade,
+        time_t      _date,
+        count_t     _qcount,
+        count_t     _bcount,
+        QString     faux,
+        QString     label);
+
     time_t  dateDirty   () const { return date_dirty; }
     grade_t gradeDirty  () const { return grade_dirty; }
     count_t qCountDirty () const { return qcount_dirty; }
@@ -76,11 +87,20 @@ public:
 
     QString getFauxAmi () const { return fauxami; }
 
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
+
+public slots:
+    void initFocus() const;
+
+signals:
+    void sigModified();
+
 protected:
     void keyPressEvent( QKeyEvent * );
 
 protected slots:
-    void initFocus() const;
     void slotGradeSelected(int);
     void slotQCount(const QString&);
     void slotBCount(const QString&);
@@ -115,6 +135,7 @@ protected:
                month,
                day;
     QDialog   *dlgbook;
+    bool       modified;
 };
 
 #endif // FromToEntryPage_included

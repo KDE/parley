@@ -1,6 +1,6 @@
  /***************************************************************************
 
-    $Id:$
+    $Id$
 
               dialog page for characters from the phonetic alphabet
 
@@ -15,7 +15,10 @@
 
     -----------------------------------------------------------------------
 
-    $Log: $
+    $Log$
+    Revision 1.1  2001/12/13 18:39:29  arnold
+    added phonetic alphabet stuff
+
  ***************************************************************************/
 
 /***************************************************************************
@@ -180,7 +183,7 @@ void PhoneticButton::slotClicked()
 
 
 PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, const char *name)
-  : PhoneticEntryPageForm(parent, name, true)
+  : PhoneticEntryPageForm(parent, name, /*modal*/false)
 {
   int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
   QGridLayout *gbox = new QGridLayout(phoneticbox, KV_MAX_HORIZ, (num+KV_MAX_HORIZ-1)/KV_MAX_HORIZ, 1);
@@ -201,7 +204,8 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     tip += i18n(uni_ref->audible);
     butt->setFont(ipafont);
     butt->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
-    butt->setMaximumSize(QSize (1.7*ipafont.pointSize(), 1.7*ipafont.pointSize()));
+    int sz = QMAX(14, 1.7*ipafont.pointSize());
+    butt->setMaximumSize(QSize (sz, sz));
     gbox->addWidget( butt, vert, horiz, AlignCenter );
     QToolTip::add (butt, tip);
 

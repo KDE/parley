@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.5  2001/11/10 22:28:25  arnold
     removed compatibility for kde1
 
@@ -31,7 +34,6 @@
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -56,6 +58,7 @@
 #include <langset.h>
 
 #include "TenseEntryPage.h"
+#include "EntryDlg.h"
 
 
 TenseEntryPage::TenseEntryPage
@@ -71,7 +74,6 @@ TenseEntryPage::TenseEntryPage
 	TenseEntryPageForm( parent, name ),
         multi_mode(multi_sel)
 {
-
 	connect( thirdN_plural, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( thirdN_singular, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( thirdM_plural, SIGNAL(returnPressed()), SLOT(accept()) );
@@ -85,7 +87,7 @@ TenseEntryPage::TenseEntryPage
 	connect( first_plural, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( first_singular, SIGNAL(returnPressed()), SLOT(accept()) );
 	connect( b_next, SIGNAL(clicked()), SLOT(slotNextConj()) );
-	connect( tensebox, SIGNAL(highlighted(int)), SLOT(slotTenseSelected(int)) );
+	connect( tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)) );
 
 	connect( thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)) );
 	connect( thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)) );
@@ -99,16 +101,7 @@ TenseEntryPage::TenseEntryPage
 	connect( first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)) );
 
    prefix = con_prefix;
-   conjugations = conjug;
    selection = "";
-   if (multi_mode)
-     tensebox->setEnabled(false);
-   else  {
-     for (int i = 0; i <  Conjugation::numTenses(); i++)
-       tensebox->insertItem (Conjugation::getName(i) );
-   }
-
-   slotTenseSelected(0);
 /*
    // FIXME: fill labels with prefixes ?
 
@@ -124,17 +117,23 @@ TenseEntryPage::TenseEntryPage
    label_thirdM_plural->setText (con_prefix.pers3MalePlural (CONJ_PREFIX));
 */
 
-   tenselabel->setBuddy(tensebox);
+   setData(multi_sel, conjug);
+}
 
-   pers1_label->setBuddy(first_singular);
-   pers2_label->setBuddy(second_singular);
-   pers3_label->setBuddy(thirdF_singular);
 
-   female_label->setBuddy(thirdF_singular);
-   male_label->setBuddy(thirdM_singular);
-   natural_label->setBuddy(thirdN_singular);
+void TenseEntryPage::setData(bool multi_sel, const Conjugation &conjug)
+{
+  if (multi_mode)
+    tensebox->setEnabled(false);
 
-   updateFields();
+  for (int i = 0; i <  Conjugation::numTenses(); i++)
+    tensebox->insertItem (Conjugation::getName(i) );
+
+  conjugations = conjug;
+  slotTenseSelected(0);
+  updateFields();
+
+  setModified(false);
 }
 
 
@@ -148,6 +147,7 @@ void TenseEntryPage::firstPluralChanged(const QString& s)
 {
    conjugations.setPers1Plural (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -155,6 +155,7 @@ void TenseEntryPage::firstSingularChanged(const QString& s)
 {
    conjugations.setPers1Singular (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -162,6 +163,7 @@ void TenseEntryPage::secondSingularChanged(const QString& s)
 {
    conjugations.setPers2Singular (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -169,6 +171,7 @@ void TenseEntryPage::secondPluralChanged(const QString& s)
 {
    conjugations.setPers2Plural (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -176,6 +179,7 @@ void TenseEntryPage::thirdFPluralChanged(const QString& s)
 {
    conjugations.setPers3FemalePlural (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -183,6 +187,7 @@ void TenseEntryPage::thirdFSingularChanged(const QString& s)
 {
    conjugations.setPers3FemaleSingular (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -190,6 +195,7 @@ void TenseEntryPage::thirdMSingularChanged(const QString& s)
 {
    conjugations.setPers3MaleSingular (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -197,6 +203,7 @@ void TenseEntryPage::thirdNSingularChanged(const QString& s)
 {
    conjugations.setPers3NaturalSingular(selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -204,6 +211,7 @@ void TenseEntryPage::thirdNPluralChanged(const QString& s)
 {
    conjugations.setPers3NaturalPlural (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -211,6 +219,7 @@ void TenseEntryPage::thirdMPluralChanged(const QString& s)
 {
    conjugations.setPers3MalePlural (selection, s);
    updateFields();
+   setModified(true);
 }
 
 
@@ -262,6 +271,7 @@ void TenseEntryPage::slotThirdSCommonToggled(bool common)
   conjugations.setPers3SingularCommon(selection, common);
   thirdM_singular->setEnabled(!common);
   thirdN_singular->setEnabled(!common);
+  setModified(true);
 }
 
 
@@ -270,6 +280,7 @@ void TenseEntryPage::slotThirdPCommonToggled(bool common)
   conjugations.setPers3PluralCommon(selection, common);
   thirdN_plural->setEnabled(!common);
   thirdM_plural->setEnabled(!common);
+  setModified(true);
 }
 
 
@@ -326,4 +337,41 @@ void TenseEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
+bool TenseEntryPage::isModified()
+{
+  return modified;
+}
+
+
+void TenseEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  b_next->setEnabled(ena);
+  tensebox->setEnabled(ena);
+  third_s_common->setEnabled(ena);
+  third_p_common->setEnabled(ena);
+  first_plural->setEnabled(ena);
+  first_singular->setEnabled(ena);
+  second_singular->setEnabled(ena);
+  second_plural->setEnabled(ena);
+  thirdF_plural->setEnabled(ena);
+  thirdF_singular->setEnabled(ena);
+  thirdM_singular->setEnabled(ena);
+  thirdN_singular->setEnabled(ena);
+  thirdN_plural->setEnabled(ena);
+  thirdM_plural->setEnabled(ena);
+}
+
+
+void TenseEntryPage::setModified(bool mod)
+{
+  modified = mod;
+  if (mod)
+    emit sigModified();
+}
+
+
 #include "TenseEntryPage.moc"

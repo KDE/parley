@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.2  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -36,6 +39,7 @@
 
 
 #include "MCEntryPage.h"
+#include "EntryDlg.h"
 
 #include <langset.h>
 
@@ -70,26 +74,28 @@ MCEntryPage::MCEntryPage
    connect( mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)) );
    connect( mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)) );
 
-   mc1Label->setBuddy(mc1Field);
-   mc2Label->setBuddy(mc2Field);
-   mc3Label->setBuddy(mc3Field);
-   mc4Label->setBuddy(mc4Field);
-   mc5Label->setBuddy(mc5Field);
+   setData(multi_sel, mc);
+}
 
-   if (multi_sel) {
-     mc1Field->setEnabled(false);
-     mc2Field->setEnabled(false);
-     mc3Field->setEnabled(false);
-     mc4Field->setEnabled(false);
-     mc5Field->setEnabled(false);
-   }
-   else {
+
+void MCEntryPage::setData(bool multi_sel,
+                          const MultipleChoice &mc)
+{
      mc1Field->setText (mc.mc1());
      mc2Field->setText (mc.mc2());
      mc3Field->setText (mc.mc3());
      mc4Field->setText (mc.mc4());
      mc5Field->setText (mc.mc5());
-   }
+
+     if (multi_sel) {
+       mc1Field->setEnabled(false);
+       mc2Field->setEnabled(false);
+       mc3Field->setEnabled(false);
+       mc4Field->setEnabled(false);
+       mc5Field->setEnabled(false);
+     }
+
+     setModified(false);
 }
 
 
@@ -107,30 +113,35 @@ void MCEntryPage::returnPressed()
 
 void MCEntryPage::mc1Changed(const QString& s)
 {
+    setModified(true);
     multiplechoice.setMC1 (s);
 }
 
 
 void MCEntryPage::mc2Changed(const QString& s)
 {
+    setModified(true);
     multiplechoice.setMC2 (s);
 }
 
 
 void MCEntryPage::mc3Changed(const QString& s)
 {
+    setModified(true);
     multiplechoice.setMC3 (s);
 }
 
 
 void MCEntryPage::mc4Changed(const QString& s)
 {
+    setModified(true);
     multiplechoice.setMC4 (s);
 }
 
 
 void MCEntryPage::mc5Changed(const QString& s)
 {
+    setModified(true);
     multiplechoice.setMC5 (s);
 }
 
@@ -149,5 +160,32 @@ void MCEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
+bool MCEntryPage::isModified()
+{
+  return modified;
+}
+
+
+void MCEntryPage::setModified(bool mod)
+{
+  modified = mod;
+  if (mod)
+    emit sigModified();
+}
+
+
+void MCEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  mc1Field->setEnabled (ena);
+  mc2Field->setEnabled (ena);
+  mc3Field->setEnabled (ena);
+  mc4Field->setEnabled (ena);
+  mc5Field->setEnabled (ena);
+}
+
 
 #include "MCEntryPage.moc"

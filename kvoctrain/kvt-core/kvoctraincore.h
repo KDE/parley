@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/22 09:01:46  arnold
+    fixed version string handling
+
     Revision 1.3  2001/12/13 18:39:52  arnold
     added phonetic alphabet stuff
 
@@ -81,6 +84,7 @@
 #define       CFG_FIRST_TIME           "FirstTime"
 #define       CFG_SMART_APPEND         "SmartAppend"
 #define       CFG_AUTOSAVEOPT          "AutoSaveOptions"
+#define       CFG_ENTRYAUTOAPPLY       "EntryAutomaticApply"
 
 #define      CFG_WINPROP              "WindowProperties"
 #define       CFG_WINWIDTH             "WindowWidth"

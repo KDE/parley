@@ -6,15 +6,13 @@ $Date$
 tofix now:
   - percentage %x done in query-statusbar
   - spot2 utf8
-  - verbquerydlg
 
 todo post-release ?
   - copy cell / copy row
-  - modeless entry dialog, smart appending, initFocus beachten!
   - multiple selections in main view
-  - translator hint iso names "language name aa:"
   - quickhelp/tooltipps
-  - entry dialog kleiner
+  - verbquerydlg: abfrage gute merken und nicht mehr im zweiten
+    durchlauf noch mal fragen
 
 todoc:
 

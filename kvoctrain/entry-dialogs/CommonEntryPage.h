@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/01/06 15:57:07  arnold
+    fixed handling of usage labels
+
     Revision 1.6  2001/12/30 12:12:57  arnold
     fixed smart appending and editing
 
@@ -33,7 +36,6 @@
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -82,12 +84,28 @@ public:
         const char* name = NULL
     );
 
+    void setData(
+        bool          multi_sel,
+        QString       expr,
+        int           less,
+        QComboBox    *lessBox,
+        QString       lang,
+        QString       type,
+        QString       pronunce,
+        QString       usage,
+        QString       label,
+        QueryManager &querymanager,
+        bool          active);
+
     ~CommonEntryPage ();
 
+
+    bool isDirty() const;
 
     bool    lessonDirty  () const { return lesson_dirty; }
     bool    activeDirty  () const { return active_dirty; }
     bool    typeDirty    () const { return type_dirty; }
+    bool    usageDirty   () const { return usage_dirty; }
 
     int     getLesson  ()   const { return lesson; }
     QString getType    ()   const { return type; }
@@ -95,6 +113,10 @@ public:
     QString getPronunce()   const { return pronunce; }
     QString getUsageLabel() const { return usageCollection; }
     bool    getActive()     const { return entry_active; }
+
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
 
 public slots:
     void initFocus() const;
@@ -124,6 +146,9 @@ protected slots:
     void invokePronDlg();
     void invokeUsageDlg();
 
+signals:
+    void sigModified();
+
 protected:
     QString      pronunce;
     QString       expression;
@@ -136,6 +161,7 @@ protected:
     kvoctrainDoc *doc;
     bool          entry_active;
     bool          active_dirty;
+    bool          usage_dirty;
 
     PhoneticEntryPage  *phoneticDlg;
 
@@ -145,5 +171,6 @@ protected:
     vector<QString>       current_subtypes;
     QueryManager         &querymanager;
     QFont                 ipafont;
+    bool                  modified;
 };
 #endif // CommonEntryPage_included

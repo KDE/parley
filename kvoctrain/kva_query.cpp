@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/01/18 04:40:08  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.17  2002/01/07 17:19:44  arnold
     fixed i18n() issues
 
@@ -164,6 +168,7 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
 
 void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 {
+  removeEntryDlg();
   slotStatusMsg(i18n("Starting property query..."));
   queryType = property;
   querymode = false;
@@ -341,6 +346,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 {
+  removeEntryDlg();
   slotStatusMsg(i18n("Starting special query..."));
   querymode = false;
   num_queryTimeout = 0;
@@ -624,6 +630,7 @@ void kvoctrainApp::slotRestartQuery()
 
 void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool create_new)
 {
+  removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));
   querymode = false;
   num_queryTimeout = 0;

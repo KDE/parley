@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.25  2002/01/05 13:59:20  arnold
+    added drop-down arrow to table buttons
+
     Revision 1.24  2002/01/02 11:38:27  arnold
     fixed displaying of modified doc
 
@@ -177,7 +180,7 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  connect( lb_list, SIGNAL(sigCancelSelection()),
           parent, SLOT(slotCancelSelection()) );
 
- connect( lb_list, SIGNAL(cellMoved(int, int)),
+ connect( lb_list, SIGNAL(currentChanged(int, int)),
           parent, SLOT(slotCurrentCellChanged(int, int)) );
 
  connect( lb_list, SIGNAL(forwardKeyPressEvent (QKeyEvent*)),

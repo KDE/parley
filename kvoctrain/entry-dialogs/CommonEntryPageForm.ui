@@ -11,9 +11,16 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>560</width>
-            <height>390</height>
+            <width>540</width>
+            <height>445</height>
         </rect>
+    </property>
+    <property stdset="1">
+        <name>sizePolicy</name>
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>3</vsizetype>
+        </sizepolicy>
     </property>
     <property stdset="1">
         <name>caption</name>
@@ -33,6 +40,13 @@
             <property stdset="1">
                 <name>name</name>
                 <cstring>asdf</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>3</vsizetype>
+                </sizepolicy>
             </property>
             <property stdset="1">
                 <name>title</name>
@@ -122,6 +136,10 @@
                                 <name>text</name>
                                 <string>&amp;Expression:</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>expr_line</cstring>
+                            </property>
                         </widget>
                         <widget row="2"  column="0" >
                             <class>QLabel</class>
@@ -133,6 +151,10 @@
                                 <name>text</name>
                                 <string>&amp;Pronounciation:</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>pronunce_line</cstring>
+                            </property>
                         </widget>
                         <widget row="1"  column="0" >
                             <class>QLabel</class>
@@ -143,6 +165,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>&amp;Lesson:</string>
+                            </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>lesson_box</cstring>
                             </property>
                         </widget>
                         <widget row="1"  column="2" >
@@ -261,6 +287,10 @@
                                 <name>text</name>
                                 <string>&amp;Subtype:</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>subtype_box</cstring>
+                            </property>
                         </widget>
                         <widget>
                             <class>QComboBox</class>
@@ -310,6 +340,13 @@
                         <cstring>usage_label</cstring>
                     </property>
                     <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>5</hsizetype>
+                            <vsizetype>3</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
                         <name>title</name>
                         <string>-</string>
                     </property>
@@ -322,6 +359,31 @@
                             <name>spacing</name>
                             <number>6</number>
                         </property>
+                        <widget row="0"  column="2" >
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>b_usageDlg</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>0</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>30</width>
+                                    <height>30</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>-</string>
+                            </property>
+                        </widget>
                         <widget row="0"  column="1"  rowspan="2"  colspan="1" >
                             <class>QLabel</class>
                             <property stdset="1">
@@ -331,8 +393,8 @@
                             <property stdset="1">
                                 <name>sizePolicy</name>
                                 <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>3</vsizetype>
                                 </sizepolicy>
                             </property>
                             <property stdset="1">
@@ -365,7 +427,7 @@
                             </property>
                             <property stdset="1">
                                 <name>sizeType</name>
-                                <enum>Expanding</enum>
+                                <enum>Minimum</enum>
                             </property>
                             <property>
                                 <name>sizeHint</name>
@@ -375,31 +437,6 @@
                                 </size>
                             </property>
                         </spacer>
-                        <widget row="0"  column="2" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>b_usageDlg</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>0</hsizetype>
-                                    <vsizetype>0</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>maximumSize</name>
-                                <size>
-                                    <width>30</width>
-                                    <height>30</height>
-                                </size>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>-</string>
-                            </property>
-                        </widget>
                         <widget row="0"  column="0"  rowspan="2"  colspan="1" >
                             <class>QListBox</class>
                             <property stdset="1">
@@ -409,7 +446,7 @@
                             <property stdset="1">
                                 <name>sizePolicy</name>
                                 <sizepolicy>
-                                    <hsizetype>1</hsizetype>
+                                    <hsizetype>5</hsizetype>
                                     <vsizetype>1</vsizetype>
                                 </sizepolicy>
                             </property>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/09 10:40:05  arnold
     removed ability to display a different font for each column
 
@@ -49,6 +52,7 @@
 
 
 #include "AdjEntryPage.h"
+#include "EntryDlg.h"
 
 #include <langset.h>
 
@@ -79,10 +83,13 @@ AdjEntryPage::AdjEntryPage
    connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
    connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
-   lev1Label->setBuddy(lev1Field);
-   lev2Label->setBuddy(lev2Field);
-   lev3Label->setBuddy(lev3Field);
+   setData(multi_sel, comp);
+}
 
+
+void AdjEntryPage::setData(bool multi_sel,
+                           const Comparison  &comp)
+{
    if (multi_sel) {
      lev1Field->setEnabled(false);
      lev2Field->setEnabled(false);
@@ -93,6 +100,7 @@ AdjEntryPage::AdjEntryPage
      lev2Field->setText (comp.l2());
      lev3Field->setText (comp.l3());
    }
+   setModified(false);
 }
 
 
@@ -110,18 +118,21 @@ void AdjEntryPage::returnPressed()
 
 void AdjEntryPage::lev1Changed(const QString& s)
 {
+    setModified(true);
     comparisons.setL1 (s);
 }
 
 
 void AdjEntryPage::lev2Changed(const QString& s)
 {
+    setModified(true);
     comparisons.setL2 (s);
 }
 
 
 void AdjEntryPage::lev3Changed(const QString& s)
 {
+    setModified(true);
     comparisons.setL3 (s);
 }
 
@@ -140,5 +151,30 @@ void AdjEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
+bool AdjEntryPage::isModified()
+{
+  return modified;
+}
+
+
+void AdjEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  lev1Field->setEnabled (ena);
+  lev2Field->setEnabled (ena);
+  lev3Field->setEnabled (ena);
+}
+
+
+void AdjEntryPage::setModified(bool mod)
+{
+  modified = mod;
+  if (mod)
+    emit sigModified();
+}
+
 
 #include "AdjEntryPage.moc"

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/16 16:51:25  arnold
+    fixed keyboard handling in main view
+
     Revision 1.12  2001/12/14 16:05:49  arnold
     fixed handling of table font
 
@@ -112,6 +115,7 @@ public:
         void updateContents(int row = -1, int col = -1);
         void setDoc(kvoctrainDoc *rows,
                     const GradeCols *gc = 0);
+        void setEditorBlocked(bool block);
 
 protected:
         void repaintOriginal();
@@ -130,7 +134,6 @@ protected slots:
         void headerPressEvent(int sec);
 
 signals:
-        void cellMoved(int, int);
         void edited(int, int);
 	void selected(int row, int col, int key_state);
 	void selected(int row);

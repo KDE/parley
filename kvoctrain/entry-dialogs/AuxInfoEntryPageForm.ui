@@ -11,15 +11,26 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
-            <height>309</height>
+            <width>576</width>
+            <height>547</height>
         </rect>
+    </property>
+    <property stdset="1">
+        <name>sizePolicy</name>
+        <sizepolicy>
+            <hsizetype>1</hsizetype>
+            <vsizetype>1</vsizetype>
+        </sizepolicy>
     </property>
     <property stdset="1">
         <name>caption</name>
         <string>-</string>
     </property>
-    <hbox>
+    <property stdset="1">
+        <name>sizeGripEnabled</name>
+        <bool>false</bool>
+    </property>
+    <vbox>
         <property stdset="1">
             <name>margin</name>
             <number>11</number>
@@ -33,6 +44,13 @@
             <property stdset="1">
                 <name>name</name>
                 <cstring>GroupBox1</cstring>
+            </property>
+            <property stdset="1">
+                <name>sizePolicy</name>
+                <sizepolicy>
+                    <hsizetype>1</hsizetype>
+                    <vsizetype>5</vsizetype>
+                </sizepolicy>
             </property>
             <property stdset="1">
                 <name>title</name>
@@ -53,6 +71,21 @@
                         <name>name</name>
                         <cstring>synonym_line</cstring>
                     </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                    <property stdset="1">
+                        <name>cursor</name>
+                        <cursor>0</cursor>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string></string>
+                    </property>
                 </widget>
                 <widget row="0"  column="0" >
                     <class>QLabel</class>
@@ -64,16 +97,9 @@
                         <name>text</name>
                         <string>S&amp;ynonyms:</string>
                     </property>
-                </widget>
-                <widget row="1"  column="0" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>antonym_label</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>Ant&amp;onyms:</string>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>synonym_line</cstring>
                     </property>
                 </widget>
                 <widget row="1"  column="1" >
@@ -81,6 +107,13 @@
                     <property stdset="1">
                         <name>name</name>
                         <cstring>antonym_line</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
                     </property>
                 </widget>
                 <widget row="2"  column="0" >
@@ -93,12 +126,23 @@
                         <name>text</name>
                         <string>E&amp;xample:</string>
                     </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>examp_line</cstring>
+                    </property>
                 </widget>
                 <widget row="2"  column="1" >
                     <class>QMultiLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
                         <cstring>examp_line</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
                     </property>
                 </widget>
                 <widget row="3"  column="0" >
@@ -111,12 +155,23 @@
                         <name>text</name>
                         <string>&amp;Remark:</string>
                     </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>remark_line</cstring>
+                    </property>
                 </widget>
                 <widget row="3"  column="1" >
                     <class>QMultiLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
                         <cstring>remark_line</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
                     </property>
                 </widget>
                 <widget row="4"  column="0" >
@@ -129,6 +184,10 @@
                         <name>text</name>
                         <string>&amp;Paraphrase:</string>
                     </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>para_line</cstring>
+                    </property>
                 </widget>
                 <widget row="4"  column="1" >
                     <class>QMultiLineEdit</class>
@@ -136,10 +195,32 @@
                         <name>name</name>
                         <cstring>para_line</cstring>
                     </property>
+                    <property stdset="1">
+                        <name>sizePolicy</name>
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                        </sizepolicy>
+                    </property>
+                </widget>
+                <widget row="1"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>antonym_label</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Ant&amp;onyms:</string>
+                    </property>
+                    <property>
+                        <name>buddy</name>
+                        <cstring>antonym_line</cstring>
+                    </property>
                 </widget>
             </grid>
         </widget>
-    </hbox>
+    </vbox>
 </widget>
 <tabstops>
     <tabstop>synonym_line</tabstop>

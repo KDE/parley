@@ -16,12 +16,14 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -57,14 +59,25 @@ public:
         const char        *name = NULL
     );
 
+    void setData(bool multi_sel, const Conjugation &conjugations);
+
     Conjugation getConjugation();
+
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
+
+public slots:
+    void initFocus() const;
+
+signals:
+    void sigModified();
 
 protected:
     void keyPressEvent( QKeyEvent * );
     void updateFields();
 
 protected slots:
-    void initFocus() const;
     void secondPluralChanged(const QString&);
     void secondSingularChanged(const QString&);
     void thirdNSingularChanged(const QString&);
@@ -81,10 +94,10 @@ protected slots:
     void slotNextConj();
 
 protected:
-
     Conjugation  prefix,
                  conjugations;
     QString      selection;
     bool         multi_mode;
+    bool         modified;
 };
 #endif // TenseEntryPage_included

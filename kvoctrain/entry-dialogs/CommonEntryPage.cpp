@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/01/08 13:19:46  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.17  2002/01/07 17:55:19  arnold
     fixed typo
 
@@ -72,7 +75,6 @@
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -85,6 +87,7 @@
  ***************************************************************************/
 
 #include "CommonEntryPage.h"
+#include "EntryDlg.h"
 
 #include <qkeycode.h>
 #include <qlineedit.h>
@@ -142,78 +145,28 @@ CommonEntryPage::CommonEntryPage
         entry_active(active),
         ipafont(_ipafont)
 {
-        phoneticDlg = 0;
+    phoneticDlg = 0;
+    connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
+    connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
+    connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );
+    connect( b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()) );
+    connect( usage_box, SIGNAL(selectionChanged()), SLOT(slotUsageChanged()) );
+    connect( lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)) );
+    connect( subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)) );
+    connect( type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)) );
+    connect( pronunce_line, SIGNAL(returnPressed()), SLOT(accept()) );
+    connect( expr_line, SIGNAL(returnPressed()), SLOT(accept()) );
+    connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
 
-	connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
-	connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
-	connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );
-	connect( b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()) );
-	connect( usage_box, SIGNAL(selectionChanged()), SLOT(slotUsageChanged()) );
-	connect( lesson_box, SIGNAL(highlighted(int)), SLOT(slotLessonSelected(int)) );
-	connect( subtype_box, SIGNAL(highlighted(int)), SLOT(slotSubTypeSelected(int)) );
-	connect( type_box, SIGNAL(highlighted(int)), SLOT(slotTypeSelected(int)) );
-	connect( pronunce_line, SIGNAL(returnPressed()), SLOT(accept()) );
-	connect( expr_line, SIGNAL(returnPressed()), SLOT(accept()) );
-        connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
-
-	connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
-	connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
+    connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
+    connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
     usage_label->setTitle(i18n("usage (area) of an expression", "&Usage Labels"));
     pronunce_line->setFont(ipafont);
-    setLessonBox (lessbox, less);
-    lesson_label->setBuddy(lesson_box);
-
-    setUsageBox (usageCollection);
-
-    setTypeBox(act_type);
-    subtype_label->setBuddy(subtype_box);
-
-    int start = -1;
-    int i = 0;
-    while (start < 0 && i < (int) all_types.size()) {
-      if (all_types [i].shortStr() == QueryManager::getMainType(act_type))
-        start = i;
-      i++;
-    }
-    int offset = -1;
-    while (offset < 0 && i < (int) all_types.size()) {
-      if (all_types [i].shortStr() == act_type)
-        offset = i - start;
-      i++;
-    }
-    if (offset >= 0) {
-      slotSubTypeSelected(offset-1);
-      subtype_box->setCurrentItem(offset);
-    }
-
-    pronunce_line->setText(pronunce);
-    pronunce_label->setBuddy(pronunce_line);
-
-    c_active->setChecked(entry_active);
-    lesson_dirty = false;
-
-    expr_label->setText( label );
-    expr_label->setBuddy(expr_line);
-
-    expr_line->setText(expression);
 
     lesson_box->setValidator (new BlockAllValidator() );
     type_box->setValidator (new BlockAllValidator() );
     subtype_box->setValidator (new BlockAllValidator() );
-    if (multi_sel) {
-      expr_line->setEnabled (false);
-      pronunce_line->setEnabled (false);
-      expr_line->setText ("");
-      pronunce_line->setText ("");
-      lesson_box->clearEdit();
-      type_box->clearEdit();
-      subtype_box->clearEdit();
-    }
-    else {
-      expr_line->selectAll();
-      expr_line->setFocus();
-    }
 
     // list-win and pron-win have same size
     // buttons also have same size
@@ -221,12 +174,10 @@ CommonEntryPage::CommonEntryPage
     int x_add = b_LessDlg->width() - list_pm.width() +4;
     int y_add = b_LessDlg->height() - list_pm.height() +4;
 
-    lesson_dirty = false;
     b_LessDlg->setGeometry( b_LessDlg->x()-2, b_LessDlg->y()-2,
                    list_pm.width()+x_add, list_pm.height()+y_add );
     b_LessDlg->setPixmap(list_pm);
 
-    type_dirty = false;
     b_TypeDlg->setGeometry( b_TypeDlg->x()-2, b_TypeDlg->y()-2,
                    list_pm.width()+x_add, list_pm.height()+y_add );
     b_TypeDlg->setPixmap(list_pm);
@@ -239,6 +190,78 @@ CommonEntryPage::CommonEntryPage
     b_pronDlg->setGeometry( b_pronDlg->x()-2, b_pronDlg->y()-2,
                    pron_pm.width()+x_add, pron_pm.height()+y_add );
     b_pronDlg->setPixmap(pron_pm);
+
+    setData(multi_sel,
+            expr,
+            less,
+            lessbox,
+            lang,
+            type,
+            pronunce,
+            act_usage,
+            label,
+            querymanager,
+            active);
+}
+
+
+void CommonEntryPage::setData(
+        bool          multi_sel,
+        QString       expr,
+        int           less,
+        QComboBox    *lessBox,
+        QString       lang,
+        QString       type,
+        QString       pronunce,
+        QString       usage,
+        QString       label,
+        QueryManager &querymanager,
+        bool          active)
+{
+    setLessonBox (lessBox, less);
+    setUsageBox (usage);
+
+//    expr_label->setText( label );
+    expr_line->setText(expr);
+
+    setTypeBox(type);
+    pronunce_line->setText(pronunce);
+    c_active->setChecked(active);
+
+    int start = -1;
+    int i = 0;
+    while (start < 0 && i < (int) all_types.size()) {
+      if (all_types [i].shortStr() == QueryManager::getMainType(type))
+        start = i;
+      i++;
+    }
+    int offset = -1;
+    while (offset < 0 && i < (int) all_types.size()) {
+      if (all_types [i].shortStr() == type)
+        offset = i - start;
+      i++;
+    }
+    if (offset >= 0) {
+      slotSubTypeSelected(offset-1);
+      subtype_box->setCurrentItem(offset);
+    }
+
+    if (multi_sel) {
+      expr_line->setEnabled (false);
+      pronunce_line->setEnabled (false);
+      expr_line->setText ("");
+      pronunce_line->setText ("");
+      lesson_box->clearEdit();
+      type_box->clearEdit();
+      subtype_box->clearEdit();
+    }
+
+    lesson_dirty = false;
+    type_dirty = false;
+    lesson_dirty = false;
+    usage_dirty = false;
+
+    setModified(false);
 }
 
 
@@ -300,6 +323,7 @@ void CommonEntryPage::setUsageBox(QString act_usage)
 
 void CommonEntryPage::slotUsageChanged()
 {
+   setModified(true);
    usageCollection = "";
    QString s;
    for (int i = 0; i < (int) usage_box->count(); i++) {
@@ -320,6 +344,7 @@ void CommonEntryPage::slotUsageChanged()
 
 void CommonEntryPage::slotLessonSelected (int l)
 {
+  setModified(true);
   lesson = l;
   lesson_dirty = true;
 }
@@ -327,6 +352,7 @@ void CommonEntryPage::slotLessonSelected (int l)
 
 void CommonEntryPage::slotActiveChanged(bool state)
 {
+  setModified(true);
   entry_active = state;
   active_dirty = true;
 }
@@ -334,18 +360,21 @@ void CommonEntryPage::slotActiveChanged(bool state)
 
 void CommonEntryPage::slotExprSelected (const QString& s)
 {
+  setModified(true);
   expression = s;
 }
 
 
 void CommonEntryPage::slotPronunceSelected (const QString& s)
 {
+  setModified(true);
   pronunce = s;
 }
 
 
 void CommonEntryPage::slotSubTypeSelected(int i)
 {
+  setModified(true);
    if (i < (int) current_subtypes.size()) {
      type = current_subtypes[i];
      emit typeSelected(type);
@@ -356,6 +385,7 @@ void CommonEntryPage::slotSubTypeSelected(int i)
 
 void CommonEntryPage::slotTypeSelected(int idx)
 {
+   setModified(true);
    subtype_box->clear();
    current_subtypes.clear();
    bool first = true;
@@ -400,6 +430,7 @@ void CommonEntryPage::deletePronDlg()
 
 void CommonEntryPage::phoneticSelected(wchar_t wc)
 {
+  setModified(true);
   pronunce += QChar(wc);
   pronunce_line->setText(pronunce);
 }
@@ -523,4 +554,35 @@ void CommonEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
+bool CommonEntryPage::isModified()
+{
+  return modified;
+}
+
+
+void CommonEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  usage_box->setEnabled(ena);
+  subtype_box->setEnabled(ena);
+  type_box->setEnabled(ena);
+  pronunce_line->setEnabled(ena);
+  expr_line->setEnabled(ena);
+
+  lesson_box->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
+  c_active->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
+}
+
+
+void CommonEntryPage::setModified(bool mod)
+{
+  modified = mod;
+  if (mod)
+    emit sigModified();
+}
+
+
 #include "CommonEntryPage.moc"

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/30 10:36:45  arnold
+    fixed and improved dialogs
+
     Revision 1.9  2001/12/26 15:11:29  mueller
     CVSSILINT: fixincludes
 
@@ -44,7 +47,6 @@
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -58,6 +60,7 @@
 
 
 #include "FromToEntryPage.h"
+#include "EntryDlg.h"
 
 #include <qkeycode.h>
 #include <qlineedit.h>
@@ -96,7 +99,6 @@ FromToEntryPage::FromToEntryPage
         fauxami(faux),
         dlgbook(_dlgbook)
 {
-
         monthnames.clear();
         monthnames.append ("");
         monthnames.append (i18n("January"));
@@ -122,7 +124,7 @@ FromToEntryPage::FromToEntryPage
 
 	connect( never, SIGNAL(clicked()), SLOT(slotNever()) );
 	connect( today, SIGNAL(clicked()), SLOT(slotToday()) );
-	connect( gradebox, SIGNAL(highlighted(int)), SLOT(slotGradeSelected(int)) );
+	connect( gradebox, SIGNAL(activated(int)), SLOT(slotGradeSelected(int)) );
 
 	connect( year_spin,  SIGNAL(valueChanged(int)), SLOT(slotYearChanged(int)) );
 	connect( month_spin, SIGNAL(valueChanged(int)), SLOT(slotMonthChanged(int)) );
@@ -132,12 +134,31 @@ FromToEntryPage::FromToEntryPage
         month_spin->setData (&monthnames, 1, 12);
         day_spin->setData ((QStringList *) 0, 1, 31);
 
+        gradebox->setValidator (new BlockAllValidator() );
+
+        setTabOrder(fauxami_line, year_spin);
+        setTabOrder(year_spin, month_spin);
+        setTabOrder(month_spin, day_spin);
+        setTabOrder(day_spin, today);
+
+        setData(multi_sel, _grade, _time, _qcount, _bcount, faux, label);
+}
+
+
+void FromToEntryPage::setData(
+        bool        multi_sel,
+        grade_t     _grade,
+        time_t      _time,
+        count_t     _qcount,
+        count_t     _bcount,
+        QString     faux,
+        QString     label)
+{
         grade = _grade;
         qcount = _qcount;
         bcount = _bcount;
-
+        fauxami = faux;
 	fauxami_line->setText(fauxami);
-        fauxami_label->setBuddy(fauxami_line);
 
         valid_date = false;
         QDateTime dt;
@@ -150,7 +171,7 @@ FromToEntryPage::FromToEntryPage
           year = date.year();
           month = date.month();
           day = date.day();
-  
+
           day_spin->setValue(day);
           month_spin->setValue(month);
           year_spin->setValue(year);
@@ -178,17 +199,13 @@ FromToEntryPage::FromToEntryPage
           gradebox->insertItem( QueryManager::gradeStr(i) );
         }
         gradebox->setCurrentItem (grade);
-        grade_label->setBuddy (gradebox);
 
         s.setNum (qcount);
         qcount_line->setText (s);
-        qcount_label->setBuddy (qcount_line);
 
         s.setNum (bcount);
         bcount_line->setText (s);
-        bcount_label->setBuddy (bcount_line);
 
-        gradebox->setValidator (new BlockAllValidator() );
         if (multi_sel) {
           fauxami_line->setEnabled(false);
           valid_date = false;
@@ -207,10 +224,7 @@ FromToEntryPage::FromToEntryPage
         date_dirty = false;
         grade_dirty = false;
 
-        setTabOrder(fauxami_line, year_spin);
-        setTabOrder(year_spin, month_spin);
-        setTabOrder(month_spin, day_spin);
-        setTabOrder(day_spin, today);
+        setModified(false);
 }
 
 
@@ -222,12 +236,14 @@ void FromToEntryPage::initFocus() const
 
 void FromToEntryPage::slotFauxAmiSelected(const QString& s)
 {
+   setModified(true);
    fauxami = s;
 }
 
 
 void FromToEntryPage::slotGradeSelected (int g)
 {
+   setModified(true);
    grade_dirty = true;
    grade = g;
 }
@@ -235,6 +251,7 @@ void FromToEntryPage::slotGradeSelected (int g)
 
 void FromToEntryPage::slotQCount(const QString& s)
 {
+   setModified(true);
    qcount_dirty = true;
    qcount = atoi (s.local8Bit());
 }
@@ -242,6 +259,7 @@ void FromToEntryPage::slotQCount(const QString& s)
 
 void FromToEntryPage::slotBCount(const QString& s)
 {
+   setModified(true);
    bcount_dirty = true;
    bcount = atoi (s.local8Bit());
 }
@@ -273,6 +291,7 @@ void FromToEntryPage::validate()
 
 void FromToEntryPage::slotYearChanged(int new_year)
 {
+   setModified(true);
    date_dirty = true;
    if (!valid_date) {
      slotToday();
@@ -288,17 +307,20 @@ void FromToEntryPage::slotYearChanged(int new_year)
 
 void FromToEntryPage::slotDecYear()
 {
+   setModified(true);
 }
 
 
 // FIXME: dec month when day decrease below 1 ..
 void FromToEntryPage::slotIncYear()
 {
+   setModified(true);
 }
 
 
 void FromToEntryPage::slotMonthChanged(int new_month)
 {
+   setModified(true);
    date_dirty = true;
    if (!valid_date) {
      slotToday();
@@ -314,16 +336,19 @@ void FromToEntryPage::slotMonthChanged(int new_month)
 
 void FromToEntryPage::slotDecMonth()
 {
+   setModified(true);
 }
 
 
 void FromToEntryPage::slotIncMonth()
 {
+   setModified(true);
 }
 
 
 void FromToEntryPage::slotDayChanged(int new_day)
 {
+   setModified(true);
    date_dirty = true;
    if (!valid_date) {
      slotToday();
@@ -339,16 +364,19 @@ void FromToEntryPage::slotDayChanged(int new_day)
 
 void FromToEntryPage::slotDecDay()
 {
+   setModified(true);
 }
 
 
 void FromToEntryPage::slotIncDay()
 {
+   setModified(true);
 }
 
 
 void FromToEntryPage::slotToday()
 {
+   setModified(true);
    date_dirty = true;
    QDateTime dt;
    dt.setTime_t (time(0L));
@@ -369,6 +397,7 @@ void FromToEntryPage::slotToday()
 
 void FromToEntryPage::slotNever()
 {
+   setModified(true);
    date_dirty = true;
    year = 0;
    month = 0;
@@ -394,6 +423,39 @@ void FromToEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
+
+bool FromToEntryPage::isModified()
+{
+  return modified;
+}
+
+
+void FromToEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  bcount_line->setEnabled(ena);
+  qcount_line->setEnabled(ena);
+  fauxami_line->setEnabled(ena);
+
+  never->setEnabled(ena);
+  today->setEnabled(ena);
+  gradebox->setEnabled(ena);
+
+  year_spin->setEnabled(ena);
+  month_spin->setEnabled(ena);
+  day_spin->setEnabled(ena);
+}
+
+
+void FromToEntryPage::setModified(bool mod)
+{
+  modified = mod;
+  if (mod)
+    emit sigModified();
+}
+
 
 #include "FromToEntryPage.moc"
 

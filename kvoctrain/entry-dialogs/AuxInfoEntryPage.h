@@ -16,12 +16,14 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/09 10:40:05  arnold
+    removed ability to display a different font for each column
+
     Revision 1.2  2001/10/23 18:15:39  arnold
     replaced qtarch dialog files with qtdesigner
 
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
-
 
  ***************************************************************************/
 
@@ -60,18 +62,36 @@ public:
 	const char *name = 0
     );
 
+    void setData(
+        bool        multi_sel,
+        QString     syno,
+        QString     anto,
+        QString     example,
+        QString     remark,
+        QString     para);
+
+
     QString getSynonym ();
     QString getAntonym ();
     QString getExample ();
     QString getRemark  ();
     QString getParaphrase();
 
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
+
+public slots:
+    void initFocus() const;
+
+signals:
+    void sigModified();
+
 protected:
     void keyPressEvent( QKeyEvent * );
     void normalize(QString &str);
 
 protected slots:
-    void initFocus() const;
     void slotAntonymSelected();
     void slotSynonymSelected();
     void slotExampSelected();
@@ -84,6 +104,7 @@ protected:
     QString   example;
     QString   remark;
     QString   paraphrase;
+    bool      modified;
 };
 
 #endif // AuxInfoEntryPage_included

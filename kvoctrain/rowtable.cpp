@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/01/06 16:10:15  arnold
+    fixed crash when loading a second doc
+
     Revision 1.20  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -115,8 +118,12 @@ public:
     void setPosition(int row, int col);
     void setDoc(kvoctrainDoc *doc);
 
+    void setBlocked(bool block) { blockedit = block; }
+    bool blocked() const        { return blockedit; }
+
 private:
     kvoctrainDoc       *kv_doc;
+    bool                blockedit;
 };
 
 
@@ -124,6 +131,7 @@ KvoctrainItem::KvoctrainItem( QTable *t, EditType et, kvoctrainDoc *doc)
     : QTableItem( t, et, QString::null )
 {
     kv_doc = doc;
+    blockedit = false;
     // we do not want that this item can be replaced
     setReplaceable( FALSE );
 }
@@ -144,6 +152,9 @@ void KvoctrainItem::setDoc(kvoctrainDoc *doc)
 
 QWidget *KvoctrainItem::createEditor() const
 {
+   if (blocked() )
+     return 0;
+
    if (kv_doc != 0 && kv_doc->numEntries() != 0 && row() >= 0 && col() >= 0) {
      switch (col()) {
        case KV_COL_LESS: {
@@ -190,6 +201,9 @@ QWidget *KvoctrainItem::createEditor() const
 
 void KvoctrainItem::setContentFromEditor( QWidget *w )
 {
+   if (blocked() )
+     return;
+
    if (kv_doc != 0) {
      if ( w->inherits( "QComboBox" ) ) {
        if (col() == KV_COL_MARK) {
@@ -518,7 +532,7 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
         updateCell(i, KV_COL_ORG);
   }
   if( e->button() == LeftButton )
-    emit cellMoved(cr, cc);
+    setCurrentCell(cr, cc);
 }
 
 
@@ -553,7 +567,6 @@ void RowTable::keyPressEvent( QKeyEvent *e )
       case Key_Next:
       case Key_Prior:
       QTable::keyPressEvent(e);
-      emit cellMoved(currentRow(), currentColumn());
     break;
 
     case Key_Left: {
@@ -563,7 +576,6 @@ void RowTable::keyPressEvent( QKeyEvent *e )
         if (numCols() > 2)
           for (int i = topCell; i <= lastRowVisible; i++)
             updateCell(i, KV_COL_ORG);
-        emit cellMoved(currentRow(), currentColumn());
     }
     break;
 
@@ -636,5 +648,20 @@ void RowTable::menuTriggerTimeout()
                   QMouseEvent::LeftButton, QMouseEvent::LeftButton);
    QApplication::sendEvent( header, &me );
 }
+
+
+void RowTable::setEditorBlocked(bool block)
+{
+  if (defaultItem != 0 && block != defaultItem->blocked() ) {
+    if (block)
+       endEdit(defaultItem->row(), defaultItem->col(), true, false);
+
+    defaultItem->setBlocked(block);
+
+    if (!block)
+      beginEdit (currentRow(), currentColumn(), true);
+  }
+}
+
 
 #include "rowtable.moc"

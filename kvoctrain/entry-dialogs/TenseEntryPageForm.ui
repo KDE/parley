@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
+            <width>576</width>
             <height>328</height>
         </rect>
     </property>
@@ -86,6 +86,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>&amp;Tense</string>
+                            </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>tensebox</cstring>
                             </property>
                         </widget>
                         <widget>
@@ -184,6 +188,10 @@
                                 <name>text</name>
                                 <string>&amp;1. person:</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>first_singular</cstring>
+                            </property>
                         </widget>
                         <widget row="2"  column="0" >
                             <class>QLabel</class>
@@ -194,6 +202,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>&amp;2. person:</string>
+                            </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>second_singular</cstring>
                             </property>
                         </widget>
                         <widget row="3"  column="0" >
@@ -206,6 +218,10 @@
                                 <name>text</name>
                                 <string>&amp;3. person:</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>third_s_common</cstring>
+                            </property>
                         </widget>
                         <widget row="5"  column="0" >
                             <class>QLabel</class>
@@ -216,6 +232,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>&amp;male</string>
+                            </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>thirdM_singular</cstring>
                             </property>
                         </widget>
                         <widget row="4"  column="0" >
@@ -228,6 +248,10 @@
                                 <name>text</name>
                                 <string>&amp;female</string>
                             </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>thirdF_singular</cstring>
+                            </property>
                         </widget>
                         <widget row="6"  column="0" >
                             <class>QLabel</class>
@@ -238,6 +262,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>&amp;neutral</string>
+                            </property>
+                            <property>
+                                <name>buddy</name>
+                                <cstring>thirdN_singular</cstring>
                             </property>
                         </widget>
                         <widget row="3"  column="1" >

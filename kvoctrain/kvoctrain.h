@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/01/04 17:28:51  arnold
+    fixed resuming a query
+
     Revision 1.20  2001/12/30 18:41:38  arnold
     improved reaction upon 'empty' query selections
 
@@ -82,7 +85,6 @@
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
-
  ***************************************************************************/
 
 /***************************************************************************
@@ -113,7 +115,6 @@
 #include <kmenubar.h>
 #include <ktoolbar.h>
 #include <kiconloader.h>
-
 #include <kmessagebox.h>
 
 // application specific includes
@@ -203,6 +204,13 @@ public:
 
   /** edit an entry */
   bool slotEditEntry(int row, int col);
+  void slotEditEntryModeless(int row, int col);
+  void slotEditCallBack(int res);
+
+  void commitEntryDlg(bool force);
+  void createEntryDlg(int row, int col);
+  void setDataEntryDlg (int row, int col);
+  void removeEntryDlg();
 
   /** select an entry */
   void slotSaveSelection ();
@@ -396,6 +404,7 @@ private:
   QLabel          *rem_label;
   QLabel          *type_label;
   SimpleQueryDlg  *simpleQueryDlg;
+  EntryDlg        *entryDlg;
   MCQueryDlg      *mcQueryDlg;
   VerbQueryDlg    *verbQueryDlg;
   RandomQueryDlg  *randomQueryDlg;
@@ -411,7 +420,7 @@ private:
   kvq_timeout_t    type_querytimeout;
   int              showcounter;
   bool             autosaveopts;
-  EntryDlg        *entrydialog;
+  bool             autoentryApply;
 };
  
 #endif // KVOCTRAIN_H
