@@ -92,6 +92,7 @@ protected slots:
     void slotNewNameChanged(const QString&);
     void slotLangFromGlobalActivated(int);
     void slotLangFromISO6391Activated(int);
+    void slotKeyboardLayoutChanged(const QString&);
 
 protected:
     bool setPixmap(QString pm);

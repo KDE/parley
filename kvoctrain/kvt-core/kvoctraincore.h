@@ -73,6 +73,7 @@
 #define       CFG_L_SHORT2             "Short2Id"
 # define      CFG_L_LANG               "LongId_KDE2"
 # define      CFG_L_PIXMAP             "Pixmap_KDE2"
+#define       CFG_L_KBLAYOUT           "KeyboardLayout"
 #define       CFG_L_FONT               "Font"
 #define       CFG_L_STDFONT            "SpecialFont"
 

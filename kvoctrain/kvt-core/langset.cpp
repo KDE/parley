@@ -29,26 +29,30 @@
 
 #include "langset.h"
 
+// void LangSet::addSet (QString _shortId, QString _longId,
+//                       QString _PixMapFile, const QString& keyboardLayout)
+// {
+//   LangDef def;
+//   def.shortId = _shortId;
+//   def.shortId2 = "";
+//   def.longId = _longId;
+//   def.PixMapFile = _PixMapFile;
+//   def.keyboardLayout = keyboardLayout;
+//   langs.push_back (def);
+// }
+
+
 void LangSet::addSet (QString _shortId, QString _longId,
-                      QString _PixMapFile)
-{
-  LangDef def;
-  def.shortId = _shortId;
-  def.shortId2 = "";
-  def.longId = _longId;
-  def.PixMapFile = _PixMapFile;
-  langs.push_back (def);
-}
-
-
-void LangSet::addSet (QString _shortId, QString _shortId2, QString _longId,
-                      QString _PixMapFile)
+                      QString _PixMapFile, const QString& _shortId2,
+		      const QString& keyboardLayout)
+		      
 {
   LangDef def;
   def.shortId = _shortId;
   def.shortId2 = _shortId2;
   def.longId = _longId;
   def.PixMapFile = _PixMapFile;
+  def.keyboardLayout = keyboardLayout;
   langs.push_back (def);
 }
 
@@ -61,6 +65,7 @@ void LangSet::appendSet(const LangSet &set)
     def.shortId2 = set.langs[i].shortId2;
     def.longId = set.langs[i].longId;
     def.PixMapFile = set.langs[i].PixMapFile;
+    def.keyboardLayout = set.langs[i].keyboardLayout;
     langs.push_back (def);
   }
 }
@@ -111,6 +116,16 @@ QString LangSet::PixMapFile (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].PixMapFile;
   return "";
+}
+
+QString LangSet::keyboardLayout (int index) const
+{
+  if (index >= 0 && index < (int) langs.size()) {
+    return langs[index].keyboardLayout;
+  }
+  else {
+    return QString::null;
+  }
 }
 
 
@@ -202,4 +217,11 @@ void LangSet::setPixMapFile (QString s, int index)
 {
   if (index < (int) langs.size() )
     langs[index].PixMapFile = s;
+}
+
+void LangSet::setKeyboardLayout(const QString& layout, int index)
+{
+  if (index < (int) langs.size()) {
+    langs[index].keyboardLayout = layout;
+  }
 }

@@ -38,6 +38,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
+#include <dcopclient.h>
 
 #include "LangOptPage.h"
 
@@ -703,9 +704,15 @@ LangOptPage::LangOptPage
   connect( b_langPixmap, SIGNAL(clicked()), SLOT(slotPixmapClicked()) );
 
   connect( e_newName, SIGNAL(textChanged(const QString&)), SLOT(slotNewNameChanged(const QString&)) );
+
   connect( d_shortName, SIGNAL(activated(const QString&)), SLOT(slotShortActivated(const QString&)) );
+
   connect( e_langLong, SIGNAL(textChanged(const QString&)), SLOT(slotLangChanged(const QString&)) );
+
   connect( e_shortName2, SIGNAL(textChanged(const QString&)), SLOT(slotShort2Changed(const QString&)) );
+
+  connect(d_kblayout, SIGNAL(activated(const QString&)), 
+	  SLOT(slotKeyboardLayoutChanged(const QString&)));
 
   // Load the languages first, then the countries and create the
   // menus for the languages last, so they will have flags
@@ -788,8 +795,25 @@ void LangOptPage::slotDeleteClicked()
     b_langPixmap->setEnabled(false);
   }
   enableLangWidgets();
+
+  // doesn't work yet
+  if (d_shortName->count() != 0 && d_kblayout->isEnabled()) {
+    for (int i = 0; i < d_kblayout->count(); i++) {
+      if (d_kblayout->text(i)
+	  == langset.keyboardLayout(d_shortName->currentItem())) {
+	d_kblayout->setCurrentItem(i);
+	break;
+      }
+    }
+  }
 }
 
+
+void LangOptPage::slotKeyboardLayoutChanged(const QString& layout)
+{
+  kdDebug() << "layout changed " << layout << endl;
+  langset.setKeyboardLayout(layout, d_shortName->currentItem());
+}
 
 void LangOptPage::enableLangWidgets()
 {
@@ -799,6 +823,41 @@ void LangOptPage::enableLangWidgets()
   d_shortName->setEnabled(enabled);
   e_langLong->setEnabled(enabled);
   e_shortName2->setEnabled(enabled);
+  
+  kdDebug() << "enabled? " << enabled << endl;
+
+  if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
+
+    kdDebug() << "kxkb enabled" << endl;
+
+//     if (!KApplication::dcopClient()->isAttached()) {
+//       KApplication::dcopClient()->attach();
+//     }
+
+    QByteArray data;
+    QCString replyType;
+    QByteArray replyData;
+    
+    if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()",
+					  data, replyType, replyData)) {
+      kdDebug() << "kxkb dcop error" << endl;
+    }
+    else {
+      if (replyType == "QStringList") {
+	QStringList layouts;
+	QDataStream stream(replyData, IO_ReadOnly);
+	stream >> layouts;
+	layouts.prepend(QString::null);
+	d_kblayout->clear();
+	d_kblayout->insertStringList(layouts);
+      }
+    }
+  }
+  else {
+    kdDebug() << "kxkb not enabled" << endl;
+    d_kblayout->clear();
+    d_kblayout->setEnabled(false);
+  }
 }
 
 
@@ -861,6 +920,21 @@ void LangOptPage::slotShortActivated(const QString& _id)
      }
      else
        b_langPixmap->setText (i18n("No Picture Selected"));
+
+     QString layout = langset.keyboardLayout(d_shortName->currentItem());
+
+     kdDebug() << "layout to select " << layout << endl;
+
+     for (int i = 0; i < d_kblayout->count(); i++) {
+       if (d_kblayout->text(i) == layout) {
+	 d_kblayout->setCurrentItem(i);
+	 break;
+       }
+     }
+     // not found
+     if (d_kblayout->currentText() != layout) {
+       d_kblayout->setCurrentItem(0);
+     }
    }
 }
 
@@ -1097,7 +1171,9 @@ void LangOptPage::slotLangFromGlobalActivated(int i)
       }
 
       d_shortName->insertItem(s.stripWhiteSpace());
-      langset.addSet(s, global_langset.shortId2(*it), global_langset.longId(*it), global_langset.PixMapFile(*it));
+      langset.addSet(s, global_langset.longId(*it), 
+		     global_langset.PixMapFile(*it), 
+		     global_langset.shortId2(*it));
 
       if (first)
       {
@@ -1129,7 +1205,10 @@ void LangOptPage::loadISO6391Data()
        && kv_iso639_1[id].iso1code != 0;
        ++id) {
     QString s = i18n(kv_iso639_1[id].langname);
-    global_langset.addSet(kv_iso639_1[id].iso1code, kv_iso639_1[id].iso2code, s, QString::null);
+    global_langset.addSet(kv_iso639_1[id].iso1code, 
+			  s,
+			  QString::null,
+			  kv_iso639_1[id].iso2code);
   }
 }
 

@@ -128,9 +128,13 @@ public slots:
 
 protected:
   int             current;
+  QWidget* beginEdit(int row, int col, bool replace);
+  void endEdit(int row, int col, bool accept, bool replace);
 
  private:
   void sortByColumn(int, bool);
+  const LangSet* langs;
+  
 
 };
 

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>LangOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>536</width>
-            <height>485</height>
+            <width>641</width>
+            <height>577</height>
         </rect>
     </property>
     <property name="caption">
@@ -187,6 +187,42 @@
                                 <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
                             </property>
                         </widget>
+                        <widget class="QLabel" row="4" column="0">
+                            <property name="name">
+                                <cstring>label_kblayout</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Keyboard Layout:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>d_kblayout</cstring>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>You can assign a language to each column</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
+                            </property>
+                        </widget>
+                        <widget class="KComboBox" row="4" column="1">
+                            <property name="name">
+                                <cstring>d_kblayout</cstring>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Select a language or use the Add New Language Code to add one.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
+                            </property>
+                        </widget>
                         <widget class="QPushButton" row="3" column="1">
                             <property name="name">
                                 <cstring>b_langPixmap</cstring>
@@ -313,6 +349,7 @@
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 <includehints>
+    <includehint>kcombobox.h</includehint>
     <includehint>kcombobox.h</includehint>
 </includehints>
 </UI>

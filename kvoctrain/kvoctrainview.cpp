@@ -35,6 +35,8 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <dcopclient.h>
+#include <kapplication.h>
 
 #include <qlayout.h>
 #include <qbitmap.h>
@@ -321,9 +323,9 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
 
 
 kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
-                               const LangSet */*ls*/, const GradeCols *gc,
+                               const LangSet *ls, const GradeCols *gc,
                                QWidget *parent, const char *name )
-  : RowTable( doc, SelectCell, gc, parent, name )
+  : RowTable( doc, SelectCell, gc, parent, name ), langs(ls)
 {
   setNumCols( doc->numLangs() );
   setNumRows( doc->numEntries() );
@@ -333,6 +335,47 @@ kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
 void kvoctrainTable::setCurrentItem(int row)
 {
   setCurrentRow( row, currentColumn() );
+}
+
+QWidget* kvoctrainTable::beginEdit(int row, int col, bool replace)
+{
+  if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
+  
+    if (m_rows) {
+      QString id = (col == KV_COL_ORG) ? m_rows->getOriginalIdent()
+	: m_rows->getIdent(col - KV_EXTRA_COLS);
+      
+      if (langs) {
+	QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
+	if (!kbLayout.isEmpty()) {
+	  QByteArray data, replyData;
+	  QCString replyType;
+	  QDataStream arg(data, IO_WriteOnly);
+	  arg << kbLayout;
+
+	  if (!KApplication::dcopClient()->call("kxkb", "kxkb", 
+						"setLayout(QString)",
+						data, replyType, replyData)) {
+	    kdDebug() << "kskb dcop error" << endl;
+	  }
+	}
+      }
+    }
+  }
+  return RowTable::beginEdit(row, col, replace);
+}
+
+void kvoctrainTable::endEdit(int row, int col, bool accept, bool replace)
+{
+//   if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
+//     QByteArray data, replyData;
+//     QCString replyType;
+    
+//     if (!KApplication::dcopClient()->call("kxkb", "kxkb", 
+// 					  "setLayout(QString)",
+// 					  data, replyType, replyData)) {
+//   }
+  RowTable::endEdit(row, col, accept, replace);
 }
 
 void kvoctrainTable::sortByColumn(int header, bool alpha) {

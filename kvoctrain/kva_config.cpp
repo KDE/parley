@@ -118,6 +118,10 @@ void kvoctrainApp::saveOptions(bool all)
       s.setNum (i);
       s.insert (0, CFG_L_PIXMAP);
       config->writeEntry(s, langset.PixMapFile(i));
+
+      s.setNum(i);
+      s.insert(0, CFG_L_KBLAYOUT);
+      config->writeEntry(s, langset.keyboardLayout(i));
     }
 
     config->setGroup(CFG_QUERYPROP);
@@ -240,7 +244,11 @@ void kvoctrainApp::readOptions()
     s.insert (0, CFG_L_PIXMAP);
     QString PixMapFile = config->readEntry(s);
 
-    langset.addSet (shortId, shortId2, longId, PixMapFile);
+    s.setNum(i);
+    s.insert(0, CFG_L_KBLAYOUT);
+    QString kbLayout = config->readEntry(s);
+
+    langset.addSet (shortId, longId, PixMapFile, shortId2, kbLayout);
   }
 
   config->setGroup(CFG_QUERYPROP);

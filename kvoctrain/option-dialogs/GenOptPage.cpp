@@ -34,6 +34,7 @@
 #include <qvalidator.h>
 #include <stdlib.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <QueryManager.h>
 
