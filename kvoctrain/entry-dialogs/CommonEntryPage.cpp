@@ -180,7 +180,7 @@ void CommonEntryPage::setData(
       i++;
     }
     if (offset >= 0) {
-      slotSubTypeSelected(offset-1);
+      slotSubTypeSelected(offset);
       subtype_box->setCurrentItem(offset);
     }
 
