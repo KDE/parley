@@ -45,12 +45,12 @@ static const char description[] = I18N_NOOP("Vocabulary Trainer");
 static const char version[]     = KVOCTRAIN_VERSION_STRING;
 
   KAboutData aboutData("kvoctrain",
-                       "KVocTrain",
+                       I18N_NOOP("KVocTrain"),
                        version,
                        description,
                        KAboutData::License_GPL,
-                       "(c) 1999-2002\tEwald Arnold\n"
-                       "(c) 2001-2002\tThe KDE team\n",
+                       I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
+                       "(c) 2001-2002\tThe KDE team\n"),
                        I18N_NOOP("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "submit@bugs.kde.org");
