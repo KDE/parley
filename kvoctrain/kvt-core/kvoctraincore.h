@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/12/13 18:39:52  arnold
+    added phonetic alphabet stuff
+
     Revision 1.2  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -143,6 +146,7 @@
 #define THRESH_LESSON    KV_MIN_GRADE
 #define MAX_LANGSET      100
 
-#define KVTLIB_DEBUG_AREA     12003
+#define KVTLIB_DEBUG_AREA         12003
+#define KVOCTRAIN_VERSION_STRING  "0.8.0"  // maybe split KVTLIB_VERSION/KVAPP_VERSION
 
 #endif // KVOCTRAINCORE_H

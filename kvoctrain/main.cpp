@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/12/18 21:17:05  howells
+    * Get rid of old "make install" message
+    * Use new bug dialog
+
     Revision 1.13  2001/12/17 20:09:31  howells
     Descriptions for all apps
 
@@ -70,7 +74,8 @@
  ***************************************************************************/
 
 
-#include "kvoctrain.h" 
+#include "kvoctrain.h"
+#include "kvoctraincore.h"
 #include <iostream.h>
 
 # include <kcmdlineargs.h>
@@ -91,7 +96,7 @@ static KCmdLineOptions options[] =
 static const char *description = 
 	i18n_noop("Vocabulary Trainer");
 
-static const char *version = "0.8.0";
+static const char *version = KVOCTRAIN_VERSION_STRING;
 
   KAboutData aboutData("kvoctrain",
                        "KVocTrain",

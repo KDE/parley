@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/16 16:11:55  howells
+    Don't break
+
     Revision 1.11  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -111,7 +114,7 @@ void kvoctrainDoc::getVersion(int &major, int &minor, int &patch)
 void kvoctrainDoc::Init ()
 {
 
-  setVersion (VERSION);
+  setVersion (KVOCTRAIN_VERSION_STRING);
   lesson_descr.clear();
   type_descr.clear();
   tense_descr.clear();
