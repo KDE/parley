@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -43,8 +47,6 @@
 #include <eadebug.h>
 #include <compat_2x.h>
 
-#include "../kvoctrain.h"
-
 #include <kapp.h> 
 
 #include <qtimer.h>
@@ -61,7 +63,6 @@ ArtQueryDlg::ArtQueryDlg
         int query_num,
         int query_startnum,
         kvoctrainExpr *exp,
-        kvoctrainApp  *kv_app,
         kvoctrainDoc  *doc,
         const Article &articles,
         int   mqtime,
@@ -89,10 +90,10 @@ ArtQueryDlg::ArtQueryDlg
    connect( male, SIGNAL(clicked()), SLOT(slotMaleClicked()) );
    connect( rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()) );
 
-   setCaption (kvoctrainApp::generateCaption(i18n("Article training"), true));
+   setCaption(kapp->makeStdCaption(i18n("Article training")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
-             exp, kv_app, doc, articles, mqtime, _show, type_to);
+             exp, doc, articles, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if (font != 0 && font->specfont) {
@@ -112,7 +113,6 @@ void ArtQueryDlg::setQuery(QString type,
                            int q_num,
                            int q_start,
                            kvoctrainExpr *exp,
-                           kvoctrainApp  *app,
                            kvoctrainDoc  *doc,
                            const Article &art,
                            int mqtime,
@@ -121,7 +121,6 @@ void ArtQueryDlg::setQuery(QString type,
 {
    type_timeout = type_to;
    kv_exp = exp;
-   kv_app = app;
    kv_doc = doc;
    q_row = entry;
    q_ocol = col;

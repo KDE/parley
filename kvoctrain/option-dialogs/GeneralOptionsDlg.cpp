@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:44:04  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,8 +41,6 @@
 #include <kv_resource.h>
 #include <langset.h>
 #include <compat_2x.h>
-
-#include "../kvoctrain.h"
 
 #include <kapp.h>
 #include <qcombobox.h>
@@ -63,7 +65,6 @@ GeneralOptionsDlg::GeneralOptionsDlg
         QFont        &font,
         QueryManager *manager,
         GradeCols    &gradecols,
-        kvoctrainView::Resizer resizer,
         bool          smartAppend,
         bool          autosaveopts,
 	QWidget      *parent,
@@ -73,12 +74,12 @@ GeneralOptionsDlg::GeneralOptionsDlg
 	Inherited( parent, name, true ),
         langset(_langset)
 {
-  setCaption( kvoctrainApp::generateCaption(i18n("General Options"), true));
+  setCaption(kapp->makeStdCaption(i18n("General Options")));
 
   setCancelButton(i18n("&Cancel"));
   setOkButton(i18n("&OK"));
 
-  genOptPage =  new GenOptPage  (btime, resizer, smartAppend, autosaveopts, this, name);
+  genOptPage =  new GenOptPage  (btime, smartAppend, autosaveopts, this, name);
   langOptPage = new LangOptPage (deflang, langset, lastPix, this, name);
   viewOptPage = new ViewOptPage (font, gradecols, manager, this, name);
   pasteOptPage = new PasteOptPage (sep, langset, paste_list, useCurrent, doc, this, name);

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -45,7 +49,6 @@
 QueryDlgBase::QueryDlgBase ( QWidget * parent, const char * name, bool modal)
      : QDialog (parent, name, true, 0)
 {
-  kv_app = 0;
   kv_doc = 0;
   kv_exp = 0;
   type_timeout = kvq_notimeout;

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,9 +41,6 @@
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include <compat_2x.h>
-
-#include "../kvoctrain.h"
-#include "../rowtable.h"
 
 #include <kapp.h> 
 
@@ -67,7 +68,6 @@ QueryDlg::QueryDlg(
                    int q_num,
                    int q_start,
                    kvoctrainExpr *exp,
-                   kvoctrainApp  *app,
                    kvoctrainDoc  *doc,
                    int mqtime,
                    bool show,
@@ -93,10 +93,10 @@ QueryDlg::QueryDlg(
 
    kv_doc = 0;
    qtimer = 0;
-   setCaption (kvoctrainApp::generateCaption(i18n("Random query"), true));
+   setCaption (kapp->makeStdCaption(i18n("Random query")));
    setQuery (org, trans, entry, orgcol, transcol,
              q_cycle, q_num, q_start,
-             exp, app, doc, mqtime, show, type_to);
+             exp, doc, mqtime, show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if (transfont != 0 && transfont->specfont) {
@@ -121,14 +121,12 @@ void QueryDlg::	setQuery(QString org,
                          int q_num,
                          int q_start,
                          kvoctrainExpr *exp,
-                         kvoctrainApp  *_app,
                          kvoctrainDoc  *doc,
                          int mqtime,
                          bool _show,
                          kvq_timeout_t type_to)
 {
    type_timeout = type_to;
-   kv_app = _app;
    kv_doc = doc;
    q_row = entry;
    q_ocol = orgcol;

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -84,7 +87,7 @@ static const char *version = VERSION;
   kvoctrainApp *kva = 0;
   if (app.isRestored()) {
     int n = 1;
-    while (KTMainWindow::canBeRestored(n)){
+    while (KMainWindow::canBeRestored(n)){
       kva = new kvoctrainApp;
       kva->restore(n);
 

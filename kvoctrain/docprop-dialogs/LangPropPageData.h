@@ -76,9 +76,10 @@ protected:
     QLabel* natural_c_label;
     QLineEdit* thirdN_singular;
     QLineEdit* thirdN_plural;
+#if QT_VERSION < 300
     QComboBox* charset_box;
     QLabel* charset_label;
-
+#endif
 };
 
 #endif // LangPropPageData_included

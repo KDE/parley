@@ -14,6 +14,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/12 19:15:40  arnold
     switched dialog files to qt-designer
 
@@ -35,9 +39,15 @@
 #include "LessonInputDlg.h"
 
 #include <qpixmap.h>
+#include <qpushbutton.h>
+#include <qlabel.h>
+
+#include <klocale.h>
+#include <kapp.h>
 
 #include <kv_resource.h>
-#include "../kvoctrain.h"
+
+#include <compat_2x.h>
 
 LessonInputDlg::LessonInputDlg
 (
@@ -59,7 +69,7 @@ LessonInputDlg::LessonInputDlg
           _descr = i18n("Input lesson description");
 
         title_label->setText (_label);
-        setCaption (kvoctrainApp::generateCaption(_descr));
+        setCaption(kapp->makeStdCaption(_descr));
 
         input = _input;
         e_title->setText (input);

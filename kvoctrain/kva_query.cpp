@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -26,6 +29,8 @@
  *   (at your option) any later version.                                   * 
  *                                                                         *
  ***************************************************************************/
+
+#include <qtimer.h>
 
 #include "compat_2x.h"
 #include "eadebug.h"
@@ -179,7 +184,6 @@ void kvoctrainApp::slotTimeOutProperty()
                            query_num,
                            query_startnum,
                            exp,
-                           this,
                            doc,
                            maxqueryTime,
                            showcounter,
@@ -346,7 +350,6 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              query_num,
                              query_startnum,
                              exp,
-                             this,
                              doc,
                              doc->getConjugation(act_query_col),
                              exp->getConjugation(act_query_col),
@@ -363,7 +366,6 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              query_num,
                              query_startnum,
                              exp,
-                             this,
                              doc,
                              doc->getArticle(act_query_col),
                              maxqueryTime,
@@ -379,7 +381,6 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
                              query_num,
                              query_startnum,
                              exp,
-                             this,
                              doc,
                              exp->getComparison(act_query_col),
                              maxqueryTime,
@@ -622,7 +623,6 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
                              query_num,
                              query_startnum,
                              exp,
-                             this,
                              doc,
                              maxqueryTime,
                              showcounter,
@@ -640,7 +640,6 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
                              query_num,
                              query_startnum,
                              exp,
-                             this,
                              doc,
                              maxqueryTime,
                              showcounter,

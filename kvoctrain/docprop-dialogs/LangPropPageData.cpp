@@ -224,6 +224,7 @@ LangPropPageData::LangPropPageData
 	thirdN_plural->setText( "" );
 	thirdN_plural->setMaxLength( 32767 );
 
+#if QT_VERSION < 300
 	charset_box = new QComboBox( FALSE, this, "ComboBox_1" );
 	charset_box->setGeometry( 30, 290, 230, 30 );
 	charset_box->setSizeLimit( 10 );
@@ -236,9 +237,7 @@ LangPropPageData::LangPropPageData
 	charset_label->setFrameStyle( 0 );
 	charset_label->setText( i18n( "Re&quired charset" ));
 	charset_label->setAlignment( 289 );
-
-
-
+#endif
 
 	resize( 600,370 );
 }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 21:14:27  arnold
+    tested and fixed changes from previous cvs updatecd
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -48,7 +51,6 @@
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 
-#include "../kvoctrain.h"
 #include "../common-dialogs/LessonInputDlg.h"
 
 #define TENSE_TAG ". "
@@ -178,8 +180,7 @@ void TenseOptPage::slotDeleteTense()
            if (conj.getType(con) == t) {
              KMessageBox::information(this,
                        i18n("Can't delete this user defined tense\nbecause it is in use."),
-                       kvoctrainApp::generateCaption(i18n("Deleting a tense description")),
-                       i18n("&OK"));
+                       kapp->makeStdCaption(i18n("Deleting a tense description")));
              return;
            }
          }

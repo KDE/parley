@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -44,11 +48,13 @@
 
 #include <qkeycode.h>
 
+#if QT_VERSION < 300
 struct CharSetRef {
           const char           *cs_str;
           const char           *expl;
           const QFont::CharSet  cs;
        };
+#endif
 
 #ifndef i18n_noop
 # define i18n_noop(x) x
@@ -58,6 +64,7 @@ struct CharSetRef {
 // also update kvoctraindoc.cpp kvoctrainDoc::charSet2String
 ///////////////////////////////////////////////////////////////
 
+#if QT_VERSION < 300
 static CharSetRef charset_list [] =
       {
         {i18n_noop("Any"), 0, QFont::AnyCharSet},
@@ -89,6 +96,7 @@ static CharSetRef charset_list [] =
         {0, 0,            (QFont::CharSet) 0}
       };
 
+#endif
 #undef i18n_noop
 
 
@@ -100,16 +108,20 @@ LangPropPage::LangPropPage
         QString            curr_lang,
         const Conjugation &conjug,
         const Article     &art,
+#if QT_VERSION < 300
         const              QFont::CharSet _cs,
+#endif
         QWidget           *parent,
         const char        *name
 )
 	:
-	Inherited( parent, name ),
-        doc(_doc),
-        conjugations(conjug),
-        articles(art),
-        charset (_cs)
+	Inherited( parent, name )
+        ,doc(_doc)
+        ,conjugations(conjug)
+        ,articles(art)
+#if QT_VERSION < 300
+        ,charset (_cs)
+#endif
 {
    connect( indef_female, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( def_female, SIGNAL(returnPressed()), SLOT(accept()) );
@@ -127,8 +139,9 @@ LangPropPage::LangPropPage
    connect( thirdM_plural, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( thirdN_singular, SIGNAL(returnPressed()), SLOT(accept()) );
    connect( thirdN_plural, SIGNAL(returnPressed()), SLOT(accept()) );
+#if QT_VERSION < 300
    connect( charset_box, SIGNAL(highlighted(int)), SLOT(charsetChanged(int)) );
-
+#endif
    connect( indef_female, SIGNAL(textChanged(const QString&)), SLOT(indefFemaleChanged(const QString&)) );
    connect( def_female, SIGNAL(textChanged(const QString&)), SLOT(defFemaleChanged(const QString&)) );
    connect( def_male, SIGNAL(textChanged(const QString&)), SLOT(defMaleChanged(const QString&)) );
@@ -219,6 +232,7 @@ LangPropPage::LangPropPage
    def_natural->setText (def);
    indef_natural->setText (indef);
 
+#if QT_VERSION < 300
    CharSetRef *ref = &charset_list[0];
    int index = 0;
    charset_box->clear();
@@ -236,6 +250,7 @@ LangPropPage::LangPropPage
    charset_box->setCurrentItem (index);
    charsetChanged (index);
    charset_label->setBuddy (charset_box);
+#endif
 }
 
 
@@ -378,7 +393,9 @@ void LangPropPage::indefNaturalChanged(const QString& s)
 
 void LangPropPage::charsetChanged(int idx)
 {
+#if QT_VERSION < 300
    charset = charset_list[idx].cs;
+#endif
 }
 
 

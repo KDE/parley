@@ -35,8 +35,6 @@ GenStatPageData::GenStatPageData
 	qtarch_Label_1->setGeometry( 30, 70, 100, 20 );
 	{
 		QFont font( "helvetica", 12, 63, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_1->setFont( font );
 	}
 	qtarch_Label_1->setFrameStyle( 0 );
@@ -48,8 +46,6 @@ GenStatPageData::GenStatPageData
 	qtarch_Label_3->setGeometry( 30, 110, 100, 20 );
 	{
 		QFont font( "helvetica", 12, 63, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_3->setFont( font );
 	}
 	qtarch_Label_3->setFrameStyle( 0 );
@@ -61,8 +57,6 @@ GenStatPageData::GenStatPageData
 	qtarch_Label_4->setGeometry( 30, 170, 100, 20 );
 	{
 		QFont font( "helvetica", 12, 63, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_4->setFont( font );
 	}
 	qtarch_Label_4->setFrameStyle( 0 );
@@ -74,8 +68,6 @@ GenStatPageData::GenStatPageData
 	qtarch_Label_5->setGeometry( 30, 210, 100, 20 );
 	{
 		QFont font( "helvetica", 12, 63, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_5->setFont( font );
 	}
 	qtarch_Label_5->setFrameStyle( 0 );
@@ -87,8 +79,6 @@ GenStatPageData::GenStatPageData
 	qtarch_Label_10->setGeometry( 30, 30, 100, 20 );
 	{
 		QFont font( "helvetica", 12, 63, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_10->setFont( font );
 	}
 	qtarch_Label_10->setFrameStyle( 0 );

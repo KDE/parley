@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -662,6 +665,7 @@ class kvoctrainDoc : public QObject
    */
   void setSizeHint (int index, const int width);
 
+#if QT_VERSION < 300
   /** returns recommended charset
    *
    * @param index            number of expr
@@ -690,6 +694,7 @@ class kvoctrainDoc : public QObject
    * @param width            charset
    */
   void setCharSet (int index, const QFont::CharSet cs);
+#endif
 
   bool unknownAttribute (int line, const QString &name, const QString &attr);
   void unknownElement (int line, const QString &elem );
@@ -738,7 +743,9 @@ protected:
                          QString &query_id,
                          QString &pronunce,
                          int &width,
+#if QT_VERSION < 300
                          QFont::CharSet &cs,
+#endif
                          QString &type,
                          QString &faux_ami_f,
                          QString &faux_ami_t,
@@ -834,7 +841,9 @@ protected:
   int                    current_lesson;
   vector<int>            extraSizehints;
   vector<int>            sizehints;
+#if QT_VERSION < 300
   vector<QFont::CharSet> charsets;
+#endif
   QString                generator;
   QString                queryorg,
                          querytrans;

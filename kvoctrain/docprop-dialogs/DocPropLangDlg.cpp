@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -40,15 +44,13 @@
 #include <langset.h>
 #include <compat_2x.h>
 
+#include <../rowtable.h>
 
 #include <kapp.h>
 #include <qcombobox.h>
 #include <qpixmap.h>
 
 #define Inherited QTabDialog
-
-#include "../kvoctrain.h"
-#include "../rowtable.h"
 
 class kvoctraindoc;
 
@@ -62,7 +64,7 @@ DocPropsLangDlg::DocPropsLangDlg
 	:
 	Inherited( parent, name, true )
 {
-  setCaption( kvoctrainApp::generateCaption(i18n("Language properties")));
+  setCaption( kapp->makeStdCaption(i18n("Language properties")));
 
   vector<QString> tabs;
   vector<QString> own_tabs;
@@ -82,13 +84,18 @@ DocPropsLangDlg::DocPropsLangDlg
     else
       font.specfont = false; // FIXME:: use table font
 
+#if QT_VERSION < 300
     if (doc->getCharSet(i) != QFont::AnyCharSet)
       font.font.setCharSet (doc->getCharSet(i));
+#endif
 
     LangPropPage* lpp = new LangPropPage (&font, doc, s,
                                           doc->getConjugation(i),
-                                          doc->getArticle(i),
-                                          doc->getCharSet(i));
+                                          doc->getArticle(i)
+#if QT_VERSION < 300
+                                          ,doc->getCharSet(i)
+#endif
+					  );
     connect (this, SIGNAL(aboutToShow()), lpp, SLOT(initFocus() ));
 
     langPages.push_back (lpp);
@@ -142,7 +149,7 @@ Article DocPropsLangDlg::getArticle(int idx) const
      return Article();
 }
 
-
+#if QT_VERSION < 300
 QFont::CharSet DocPropsLangDlg::getCharSet(int idx) const
 {
    if (idx < (int) langPages.size() )
@@ -150,7 +157,7 @@ QFont::CharSet DocPropsLangDlg::getCharSet(int idx) const
    else
      return QFont::AnyCharSet;
 }
-
+#endif
 
 void DocPropsLangDlg::cancelButton()
 {

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,9 +41,8 @@
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include <eadebug.h>
-#include <compat_2x.h>
 
-#include "../kvoctrain.h"
+#include <compat_2x.h>
 
 #include <kapp.h> 
 
@@ -64,7 +67,6 @@ VerbQueryDlg::VerbQueryDlg
         int query_num,
         int query_startnum,
         kvoctrainExpr *exp,
-        kvoctrainApp  *kv_app,
         kvoctrainDoc  *doc,
         const Conjugation &prefix,
         const Conjugation &conjug,
@@ -107,10 +109,10 @@ VerbQueryDlg::VerbQueryDlg
 	connect( p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)) );
 
    qtimer = 0;
-   setCaption (kvoctrainApp::generateCaption(i18n("Training with verbs"), true));
+   setCaption (kapp->makeStdCaption(i18n("Training with verbs")));
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
-             exp, kv_app, doc, prefix, conjug, mqtime, _show, type_to);
+             exp, doc, prefix, conjug, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if (font != 0 && font->specfont) {
@@ -156,7 +158,6 @@ void VerbQueryDlg::setQuery(QString type,
                             int q_num,
                             int q_start,
                             kvoctrainExpr *exp,
-                            kvoctrainApp  *app,
                             kvoctrainDoc  *doc,
                             const Conjugation &prefix,
                             const Conjugation &conjug,
@@ -165,7 +166,6 @@ void VerbQueryDlg::setQuery(QString type,
                             kvq_timeout_t type_to)
 {
    type_timeout = type_to;
-   kv_app = app;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;

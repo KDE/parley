@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -37,8 +41,6 @@
 #include "TitlePage.h"
 #include "TypeOptPage.h"
 #include "LangPropPage.h"
-#include "../kvoctrain.h"
-#include "../rowtable.h"
 
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
@@ -72,7 +74,7 @@ DocPropsDlg::DocPropsDlg
 	:
 	Inherited( parent, name, true )
 {
-  setCaption( kvoctrainApp::generateCaption(i18n("Document properties"), true));
+  setCaption( kapp->makeStdCaption(i18n("Document properties")));
 
   lessOptPage = new LessOptPage (lessons, doc, this, name);
   titleOptPage = new TitlePage (title, author, license, doc_remark, this, name);

@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -34,7 +37,7 @@
 #include "qdatastream.h"
 #include <vector.h>
 
-#include "rowtable.h"
+#include "kv_resource.h"
 #include "compat_2x.h"
 
 void kvoctrainExpr::Init()
@@ -42,7 +45,6 @@ void kvoctrainExpr::Init()
   grades.push_back(KV_NORM_GRADE);
   rev_grades.push_back(KV_NORM_GRADE);
   selected = false;
-  tagged = false;
   qcounts.push_back(0);
   rev_qcounts.push_back(0);
   bcounts.push_back(0);
@@ -761,7 +763,7 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 
   QFont old_font = p->font();
 
-  if (cell_selected || isTagged() )
+  if (cell_selected)
     p->setPen (EA_QtNS(white));
   else
     p->setPen (color);
@@ -854,23 +856,10 @@ void kvoctrainExpr::incBadCount (int index, bool rev_count)
 }
 
 
-void kvoctrainExpr::setTagged(bool flag)
-{
-  tagged = flag;
-}
-
-
 bool kvoctrainExpr::isSelected() const
 {
   return selected;
 }
-
-
-bool kvoctrainExpr::isTagged() const
-{
-  return tagged;
-}
-
 
 void kvoctrainExpr::setSelected(bool flag)
 {

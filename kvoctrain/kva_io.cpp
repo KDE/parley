@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/12 19:28:13  arnold
+    removed references to obsolete binary format
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -32,12 +35,13 @@
 
 #include <unistd.h>
 
-#include <kfiledialog.h>
+#include <qtimer.h>
 #include <qprogressbar.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qmessagebox.h>
 
+#include <kfiledialog.h>
 #include <kcombobox.h>
 #include <kprogress.h>
 #include <krecentdocument.h>
@@ -121,10 +125,7 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
 
   int exit = KMessageBox::warningYesNoCancel(this, 
             i18n("Vocabulary is modified\n\nSave file before exit ?\n"),
-            kvoctrainApp::generateCaption(""),
-            i18n("&Yes"),
-            i18n("&No"),
-            false);
+            kvoctrainApp::generateCaption(""));
   if(exit==KMessageBox::Yes) {
     slotFileSave();   // save and exit
     return true;
@@ -292,7 +293,7 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
   slotStatusMsg(IDS_DEFAULT);
 }
 
-
+#if QT_VERSION < 300
 QFont::CharSet kvoctrainApp::dlgMergeCharsets (
    QFont::CharSet old_charset,
    QFont::CharSet new_charset,
@@ -333,7 +334,7 @@ QFont::CharSet kvoctrainApp::dlgMergeCharsets (
    else
      return new_charset;
 }
-
+#endif
 
 void kvoctrainApp::slotFileMerge() /*FOLD00*/
 {
@@ -422,6 +423,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
 
     if (equal) {   // easy way: same language codes, just append
 
+#if QT_VERSION < 300
       if (   doc->getCharSet(0) != QFont::AnyCharSet
           && new_doc->getCharSet(0) != QFont::AnyCharSet
           && doc->getCharSet(0) != new_doc->getCharSet(0)) {
@@ -439,6 +441,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
                                      doc->getIdent(i)));
         }
       }
+#endif
 
       for (int i = 0; i < new_doc->numEntries(); i++) {
         kvoctrainExpr *expr = new_doc->getEntry(i);
@@ -540,6 +543,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
               cs_equal[lpos] = true;
               QString id = lpos == 0 ? doc->getOriginalIdent()
                                      : doc->getIdent(lpos);
+#if QT_VERSION < 300
               if (   doc->getCharSet(lpos) != QFont::AnyCharSet
                   && new_doc->getCharSet(i) != QFont::AnyCharSet
                   && doc->getCharSet(lpos) != new_doc->getCharSet(i)) {
@@ -547,6 +551,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
                                            new_doc->getCharSet(i),
                                            id));
               }
+#endif
             }
 
             if (i == 0)
@@ -603,6 +608,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
     addRecentFile (name);
   }
 
+#if QT_VERSION < 300
   for (int i = 0; i < doc->numLangs(); i++) {
     QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
     int idx = langset.indexShortId (id);
@@ -624,6 +630,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
     if (idx >= 0)
       langset.setFont (font, specfont, idx);
   }
+#endif
 
   view->getTable()->setLangSet (&langset);
   view->setView(doc, langset, gradecols);
@@ -714,6 +721,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
     query_startnum += queryList[i].size();
   query_num = query_startnum;
 
+#if QT_VERSION < 300
   for (int i = 0; i < doc->numLangs(); i++ ) {
     QFont font;
     bool specfont;
@@ -730,6 +738,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
     if (idx >= 0)
       langset.setFont (font, specfont, idx);
   }
+#endif
 }
 
 
@@ -759,10 +768,7 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
 
       int exit = KMessageBox::warningYesNo(this,
                     msg,
-                    kvoctrainApp::generateCaption(i18n("File exists")),
-                    i18n("&Yes"),
-                    i18n("&No"),
-                    false);
+                    kvoctrainApp::generateCaption(i18n("File exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }
@@ -790,7 +796,7 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
 
 void kvoctrainApp::slotSaveSelection () /*FOLD00*/
 {
-  if (tagCount == 0)
+  if (view->getTable()->numSelections() == 0)
     return;
 
   slotStatusMsg(i18n("Saving selected area under new filename..."));
@@ -804,8 +810,9 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
   seldoc.setLessonDescr(doc->getLessonDescr());
   seldoc.setTypeDescr(doc->getTypeDescr());
 
+  // FIXME!
   for (int i = doc->numEntries()-1; i >= 0; i--)
-    if (doc->getEntry(i)->isTagged() )
+    if (doc->getEntry(i)->isSelected() )
       seldoc.appendEntry(doc->getEntry(i));
 
   QString s;
@@ -821,10 +828,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
 
       int exit = KMessageBox::warningYesNo(this,
                  kvoctrainApp::generateCaption(i18n("File exists")),
-                 kvoctrainApp::generateCaption(""),
-                 i18n("&Yes"),
-                 i18n("&No"),
-                 false);
+                 kvoctrainApp::generateCaption(""));
       if(exit!=KMessageBox::Yes)
         return;
     }

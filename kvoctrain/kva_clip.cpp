@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -73,8 +76,8 @@ void kvoctrainApp::slotSmartSearchClip()
 
 void kvoctrainApp::aboutToShowEdit() {
   QString s = QApplication::clipboard()->text();
-  edit_menu->setItemEnabled(ID_CLR_SEL,  tagCount != 0);
-  edit_menu->setItemEnabled(ID_SAVE_ROW,  tagCount != 0);
+  edit_menu->setItemEnabled(ID_CLR_SEL,  hasSelection());
+  edit_menu->setItemEnabled(ID_SAVE_ROW,  hasSelection());
   edit_menu->setItemEnabled(ID_EDIT_PASTE,  !s.isEmpty());
   edit_menu->setItemEnabled(ID_SEARCH_CLIP, !s.isEmpty());
   toolBar()->setItemEnabled(ID_SEARCH_CLIP, !s.isEmpty());
@@ -144,7 +147,6 @@ void kvoctrainApp::slotEditCopy()
 
   vector <int> csv_order = getCsvOrder(doc, &paste_order);
 
-  if (tagCount == 0) {
     kvoctrainExpr *expr = view->getTable()->selectedRow();
     if (expr == 0 ) return;
 
@@ -162,30 +164,6 @@ void kvoctrainApp::slotEditCopy()
           exp += expr->getTranslation(csv_order[i]);
       }
     }
-  }
-  else {
-
-    for (int i = 0; i < doc->numEntries(); i++) {
-      kvoctrainExpr *expr = doc->getEntry(i);
-      if (expr->isTagged()) {
-        bool sep = false;
-        for (int i = 0; i < (int) csv_order.size(); i++) {
-          if (!sep)
-            sep = true;
-          else
-            exp += separator;
-
-          if (csv_order[i] >= 0) {
-              if (csv_order[i] == 0)
-                exp += expr->getOriginal();
-              else
-                exp += expr->getTranslation(csv_order[i]);
-          }
-        }
-        exp += "\n";
-      }
-    }
-  }
 
   if (!exp.isEmpty()) {
 #if defined(_WS_X11_)

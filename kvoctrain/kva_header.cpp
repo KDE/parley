@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -457,8 +460,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       int exit = KMessageBox::warningYesNo(this, msg,
                     kvoctrainApp::generateCaption(""),
                     i18n("&Yes"),
-                    i18n("&No"),
-                    false);
+                    i18n("&No"));
       if(exit==KMessageBox::Yes) {
         doc->removeIdent(header1);
         view->setView (doc, langset, gradecols);

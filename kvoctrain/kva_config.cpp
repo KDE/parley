@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -74,7 +77,9 @@ void kvoctrainApp::saveOptions(bool all)
   
     config->setGroup(CFG_APPEARANCE);
     config->writeEntry(CFG_FFAMILY, tablefont.family());
+#if QT_VERSION < 300
     config->writeEntry(CFG_FCHARSET, kvoctrainDoc::charSet2String (tablefont.charSet()));
+#endif
     config->writeEntry(CFG_FSIZE, tablefont.pointSize());
     config->writeEntry(CFG_GC_USE, gradecols.use);
     config->writeEntry(CFG_GCOL0, gradecols.col0);
@@ -87,7 +92,6 @@ void kvoctrainApp::saveOptions(bool all)
     config->writeEntry(CFG_GCOL7, gradecols.col7);
   
     config->setGroup(CFG_GENERAL);
-    config->writeEntry(CFG_HEADER_RESIZER, (int) header_resizer);
     config->writeEntry(CFG_SMART_APPEND, (bool) smartAppend);
   
     s = separator;
@@ -162,7 +166,7 @@ static char **getXFontNames( const char *pattern, int *count )
     }
 }
 
-
+#if QT_VERSION < 300
 bool kvoctrainApp::substituteFontInfo (QFont &font, QString &langname)
 {
    char      **xFontNames;
@@ -202,7 +206,6 @@ bool kvoctrainApp::substituteFontInfo (QFont &font, QString &langname)
    return true;
 }
 
-
 void kvoctrainApp::checkFontInfo (QFont &font, QString &langname)
 {
     QFontInfo fi (font);
@@ -232,7 +235,7 @@ void kvoctrainApp::checkFontInfo (QFont &font, QString &langname)
 
     }
 }
-
+#endif
 
 void kvoctrainApp::readOptions()
 {
@@ -259,13 +262,17 @@ void kvoctrainApp::readOptions()
   tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry("ToolBar_Pos", KToolBar::Top);
   QFont fdefault;
   QString family = config->readEntry(CFG_FFAMILY, fdefault.family());
+#if QT_VERSION < 300
   QString charset = config->readEntry(CFG_FCHARSET, "");
   QFont::CharSet cs = kvoctrainDoc::string2CharSet (charset);
+#endif  
   int size = config->readNumEntry(CFG_FSIZE, fdefault.pointSize());
   tablefont.setPointSize(size);
   tablefont.setFamily(family);
   tablefont.setWeight(QFont::Normal);
+#if QT_VERSION < 300
   tablefont.setCharSet(cs);
+#endif
   gradecols.use = config->readBoolEntry(CFG_GC_USE, true);
   QColor qc = KV_NORM_COLOR;
   gradecols.col0 = config->readColorEntry(CFG_GCOL0, &qc);
@@ -285,7 +292,6 @@ void kvoctrainApp::readOptions()
   gradecols.col7 = config->readColorEntry(CFG_GCOL7, &qc);
 
   config->setGroup(CFG_GENERAL);
-  header_resizer = (kvoctrainView::Resizer) config->readNumEntry(CFG_HEADER_RESIZER, (int) kvoctrainView::Automatic);
   smartAppend = config->readNumEntry(CFG_SMART_APPEND, 0);
   // initialize the recent file list
   recent_files = config->readListEntry(CFG_RECENT);
@@ -332,7 +338,9 @@ void kvoctrainApp::readOptions()
     s.insert (0, CFG_L_FONT);
     QFont font = config->readFontEntry(s);
 
+#if QT_VERSION < 300
     checkFontInfo (font, longId);
+#endif
 
     s.setNum (i);
     s.insert (0, CFG_L_STDFONT);

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -36,7 +40,6 @@
 #include <kapp.h>
 #include <eadebug.h>
 #include "compat_2x.h"
-#include "kvoctrain.h"
 
 #include <qmessagebox.h>
 #include <qfile.h>
@@ -121,7 +124,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
                             "\n"
                             "Probably this is no regular file or it does not exist.");
       QString msg = format.arg(mainfile);
-      QMessageBox mb(kvoctrainApp::generateCaption(i18n("I/O failure"), true),
+      QMessageBox mb(kapp->makeStdCaption(i18n("I/O failure")),
           msg,
           QMessageBox::Warning,
           QMessageBox::Ok | QMessageBox::Default,
@@ -193,7 +196,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
         }
         QString format = i18n("Could not load \"%1\"\nDo you want to repeat ?");
         QString msg = format.arg(mainfile);
-        QMessageBox mb( kvoctrainApp::generateCaption(i18n("I/O failure"), true),
+        QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
             msg,
             QMessageBox::Warning,
             QMessageBox::Yes | QMessageBox::Default,
@@ -286,7 +289,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     if (!saved) {
       QString format = i18n("Could not save \"%1\"\nDo you want to repeat ?");
       QString msg = format.arg(tmp);
-      QMessageBox mb( kvoctrainApp::generateCaption(i18n("I/O failure"), true),
+      QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
           msg,
           QMessageBox::Warning,
           QMessageBox::Yes | QMessageBox::Default,
@@ -497,7 +500,7 @@ void kvoctrainDoc::setSizeHint (int idx, const int width)
   }
 }
 
-
+#if QT_VERSION < 300
 QFont::CharSet kvoctrainDoc::getCharSet (int idx) const
 {
   if (idx >= (int)charsets.size() )
@@ -1015,7 +1018,7 @@ void kvoctrainDoc::setCharSet (int idx, const QFont::CharSet cs)
     }
     charsets[idx] = cs;
 }
-
+#endif
 
 class eraseTrans : public unary_function<kvoctrainExpr, void>
 {

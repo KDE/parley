@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/12 19:13:50  arnold
     switched dialog files to qt-designer
 
@@ -35,6 +39,8 @@
  ***************************************************************************/
 
 #include "CharSetDlg.h"
+
+#if QT_VERSION < 300
 
 #include <kapp.h>
 
@@ -139,3 +145,5 @@ void CharSetDlg::slotSelected(int)
 }
 
 #include "CharSetDlg.moc"
+
+#endif

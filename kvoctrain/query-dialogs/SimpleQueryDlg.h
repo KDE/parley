@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -50,7 +53,6 @@ public:
         int q_num,
         int q_start,
         kvoctrainExpr *exp,
-        kvoctrainApp  *app,
         kvoctrainDoc  *doc,
         int mqtime,
         bool showcounter,
@@ -66,7 +68,6 @@ public:
                   int q_num,
                   int q_start,
                   kvoctrainExpr *exp,
-                  kvoctrainApp  *app,
                   kvoctrainDoc  *doc,
                   int mqtime,
                   bool showcounter,

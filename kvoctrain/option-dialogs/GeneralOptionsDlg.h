@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -70,7 +73,6 @@ public:
         QFont        &font,
         QueryManager *manager,
         GradeCols    &gradecols,
-        kvoctrainView::Resizer resizer,
         bool          smartAppend,
         bool          autosaveopts,
         QWidget      *parent = NULL,
@@ -83,7 +85,6 @@ public:
     int getBackupTime()       const { return genOptPage->getBackupTime(); }
     int getSmartAppend()      const { return genOptPage->getSmartAppend(); }
     int getAutoSaveOpts()     const { return genOptPage->getAutoSaveOpts(); }
-    kvoctrainView::Resizer getResizer() const { return genOptPage->getResizer(); }
 
     QString getDefaultLang () const { return langOptPage->getDefaultLang(); }
     LangSet getLangSet ()     const { return langOptPage->getLangSet(); }

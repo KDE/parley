@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -167,14 +170,6 @@ class kvoctrainExpr
   /** set entry "selected"
    */
   void setSelected(bool flag = true);
-
-  /** returns flag if entry is "tagged" for work on entry
-   */
-  bool isTagged() const;
-
-  /** set entry "tagged"
-   */
-  void setTagged(bool flag = true);
 
   /** returns translation of this expression
    *

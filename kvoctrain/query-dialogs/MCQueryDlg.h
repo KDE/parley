@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -37,7 +40,6 @@
 /* Library Includes */
 
 class kvoctrainExpr;
-class kvoctrainApp;
 class kvoctrainDoc;
 struct SpecFont_t;
 
@@ -58,7 +60,6 @@ public:
                    int query_num,
                    int query_startnum,
                    kvoctrainExpr *exp,
-                   kvoctrainApp *kv_app,
                    kvoctrainDoc  *doc,
                    int mqtime,
                    bool show,
@@ -75,7 +76,6 @@ public:
                       int query_num,
                       int query_startnum,
                       kvoctrainExpr *exp,
-                      kvoctrainApp *kv_app,
                       kvoctrainDoc  *doc,
                       int   mqtime,
                       bool show,

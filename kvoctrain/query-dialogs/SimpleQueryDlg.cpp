@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -36,8 +40,6 @@
 #include <eadebug.h>
 
 #include "QueryDlgBase.h"
-#include "../rowtable.h"
-#include "../kvoctrain.h"
 
 #define Inherited SimpleQueryDlgData
 
@@ -57,7 +59,6 @@ SimpleQueryDlg::SimpleQueryDlg(
         int q_num,
         int q_start,
         kvoctrainExpr *exp,
-        kvoctrainApp  *app,
         kvoctrainDoc  *doc,
         int mqtime,
         bool showcounter,
@@ -83,7 +84,7 @@ SimpleQueryDlg::SimpleQueryDlg(
    qtimer = 0;
    setQuery (querytype, entry, column,
              q_cycle, q_num, q_start,
-             exp, app, doc, mqtime, showcounter, type_to);
+             exp, doc, mqtime, showcounter, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if (font != 0 && font->specfont) {
@@ -106,7 +107,6 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
                          int q_num,
                          int q_start,
                          kvoctrainExpr *exp,
-                         kvoctrainApp  *app,
                          kvoctrainDoc  *doc,
                          int mqtime,
                          bool _show,
@@ -114,7 +114,6 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
 {
    type_timeout = type_to;
    querytype = _querytype;
-   kv_app = app;
    kv_doc = doc;
    q_row = entry;
    q_ocol = column;
@@ -130,7 +129,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Expression"));
        s = i18n("Query of synonym");
        groupName->setTitle (s);
-       setCaption (kvoctrainApp::generateCaption(s, true));
+       setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getSynonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
@@ -142,7 +141,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Expression"));
        s = i18n("Query of antonym");
        groupName->setTitle (s);
-       setCaption (kvoctrainApp::generateCaption(s, true));
+       setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getAntonym(column);
        queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
@@ -154,7 +153,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Paraphrase"));
        s = i18n("Query by paraphrase");
        groupName->setTitle (s);
-       setCaption (kvoctrainApp::generateCaption(s, true));
+       setCaption (kapp->makeStdCaption(s));
        queryField->setText (exp->getParaphrase(column));
        answerstring = column == 0 ? exp->getOriginal()
                                   : exp->getTranslation(column);
@@ -166,7 +165,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        queryLabel->setText (i18n("Example sentence"));
        s = i18n("Query by example");
        groupName->setTitle (s);
-       setCaption (kvoctrainApp::generateCaption(s, true));
+       setCaption (kapp->makeStdCaption(s));
        QString s = exp->getExample(column);
        answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace()
                                   : exp->getTranslation(column).stripWhiteSpace();

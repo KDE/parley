@@ -37,12 +37,6 @@ GenOptPageData::GenOptPageData
 	qtarch_ButtonGroup_12->setTitle( i18n( "General options" ));
 	qtarch_ButtonGroup_12->setAlignment( 1 );
 
-	group_resize = new QButtonGroup( this, "ButtonGroup_16" );
-	group_resize->setGeometry( 270, 30, 200, 120 );
-	group_resize->setFrameStyle( 49 );
-	group_resize->setTitle( i18n( "Column resizing" ));
-	group_resize->setAlignment( 1 );
-
 	label_btime = new QLabel( this, "Label_6" );
 	label_btime->setGeometry( 30, 50, 180, 20 );
 	label_btime->setFrameStyle( 0 );
@@ -54,21 +48,6 @@ GenOptPageData::GenOptPageData
 	e_btime->setText( "" );
 	e_btime->setMaxLength( 32767 );
 
-	hb_auto = new QRadioButton( this, "RadioButton_1" );
-	hb_auto->setGeometry( 300, 50, 140, 30 );
-	hb_auto->setText( i18n( "a&utomatic" ));
-	hb_auto->setChecked( FALSE );
-
-	hb_percent = new QRadioButton( this, "RadioButton_3" );
-	hb_percent->setGeometry( 300, 80, 140, 30 );
-	hb_percent->setText( i18n( "&percentage" ));
-	hb_percent->setChecked( FALSE );
-
-	hb_fixed = new QRadioButton( this, "RadioButton_2" );
-	hb_fixed->setGeometry( 300, 110, 140, 30 );
-	hb_fixed->setText( i18n( "&fixed" ));
-	hb_fixed->setChecked( FALSE );
-
 	c_smart = new QCheckBox( this, "CheckBox_1" );
 	c_smart->setGeometry( 30, 140, 180, 30 );
 	c_smart->setText( i18n( "Smart a&ppending" ));
@@ -78,8 +57,6 @@ GenOptPageData::GenOptPageData
 	c_saveopt->setGeometry( 30, 180, 180, 30 );
 	c_saveopt->setText( i18n( "sa&ve options automatically " ));
 	c_saveopt->setChecked( FALSE );
-
-
 
 	resize( 520,360 );
 }

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -45,8 +49,6 @@
 #include "../common-dialogs/LessonInputDlg.h"
 
 #include <kvoctraindoc.h>
-
-#include "../kvoctrain.h"
 
 #define LESS_TAG ". "
 
@@ -165,8 +167,7 @@ void LessOptPage::slotDeleteLesson()
        if (doc->getEntry(ent)->getLesson() == lessonIndex[act_lesson]+1) {
          KMessageBox::information(this,
                    i18n("Can't delete this lesson\nbecause it is in use."),
-                   kvoctrainApp::generateCaption(i18n("Deleting a lesson")),
-                   i18n("&OK"));
+                   kapp->makeStdCaption(i18n("Deleting a lesson")));
          return;
        }
      }

@@ -50,8 +50,6 @@ AdjQueryDlgData::AdjQueryDlgData
 	qtarch_Label_14->setGeometry( 60, 40, 320, 30 );
 	{
 		QFont font( "helvetica", 12, 75, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		qtarch_Label_14->setFont( font );
 	}
 	qtarch_Label_14->setFrameStyle( 0 );

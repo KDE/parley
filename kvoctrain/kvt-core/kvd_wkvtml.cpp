@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -726,9 +729,11 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
       else if (s == q_trans)
         xml.addAttribute (KV_QUERY, (QString) KV_T);
 
+#if QT_VERSION < 300
       if (!getCharSetString(0).isEmpty() ) {
         xml.addAttribute (KV_CHARSET, getCharSetString(0));
       }
+#endif
     }
 
     if (!(*first).getRemark(0).isEmpty() ) {
@@ -800,9 +805,11 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
         else if (s == q_trans)
           xml.addAttribute (KV_QUERY, (QString) KV_T);
 
+#if QT_VERSION < 300
         if (!getCharSetString(trans).isEmpty() ) {
           xml.addAttribute (KV_CHARSET, getCharSetString(trans));
         }
+#endif
       }
 
       QString s1, s2;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:44:04  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -32,7 +35,6 @@
 #define GenOptPage_included
 
 #include "GenOptPageData.h"
-#include "../kvoctrainview.h"
 
 #include <compat_2x.h>
 
@@ -45,7 +47,6 @@ public:
     GenOptPage
     (
         int         _btime,
-        kvoctrainView::Resizer resizer,
         bool        _smartAppend,
         bool        _autosaveopts,
         QWidget    *parent = NULL,
@@ -57,7 +58,6 @@ public:
     int getBackupTime()       const { return btime; }
     int getSmartAppend()      const { return smart; }
     int getAutoSaveOpts()     const { return autosaveopts; }
-    kvoctrainView::Resizer getResizer() const { return resizer; }
 
 public slots:
     void initFocus() const;
@@ -67,9 +67,6 @@ protected:
 
 protected slots:
 
-    void slotHBfixed();
-    void slotHBpercent();
-    void slotHBauto();
     void slotChangeBTime(const QString&);
     void slotSmartAppend(bool);
     void slotAutoSaveOpts(bool);
@@ -78,7 +75,6 @@ protected:
 
     QValidator              *validator;
     int                      btime;
-    kvoctrainView::Resizer   resizer;
     bool                     smart;
     bool                     autosaveopts;
 };

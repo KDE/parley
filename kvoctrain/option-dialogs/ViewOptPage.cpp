@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:44:04  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -40,8 +44,6 @@
 
 #include <QueryManager.h>
 #include <kv_resource.h>
-
-#include "../kvoctrain.h"
 
 #define Inherited ViewOptPageData
 
@@ -69,7 +71,7 @@ ViewOptPage::ViewOptPage
    connect( c_use, SIGNAL(toggled(bool)), SLOT(slotColUsed(bool)) );
    connect( b_choose, SIGNAL(clicked()), SLOT(slotChooseFont()) );
 
-   setCaption( kvoctrainApp::generateCaption(i18n("Document properties" )));
+   setCaption( kapp->makeStdCaption(i18n("Document properties" )));
 
    e_font->setText (LangOptPage::fontName (font));
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -57,7 +60,9 @@ public:
 
     Conjugation getConjugation(int idx) const;
     Article     getArticle(int idx) const;
+#if QT_VERSION < 300
     QFont::CharSet getCharSet(int idx) const;
+#endif
 
 protected slots:
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,6 +34,8 @@
 
 #ifndef LangPropPage_included
 #define LangPropPage_included
+
+#include <qglobal.h>
 
 #include "LangPropPageData.h"
 
@@ -52,14 +57,18 @@ public:
         QString            curr_lang,
         const Conjugation &conjugations,
         const Article     &article,
+#if QT_VERSION < 300
         const              QFont::CharSet cs,
+#endif
         QWidget           *parent = NULL,
         const char        *name = NULL
     );
 
     Conjugation getConjugation();
-    inline Article getArticle() const { return articles; }
-    inline QFont::CharSet getCharSet() const { return charset; }
+    Article getArticle() const { return articles; }
+#if QT_VERSION < 300
+    QFont::CharSet getCharSet() const { return charset; }
+#endif
 
 protected:
     void keyPressEvent( QKeyEvent * );
@@ -96,7 +105,9 @@ protected slots:
    kvoctrainDoc  *doc;
    Conjugation    conjugations;
    Article        articles;
+#if QT_VERSION < 300
    QFont::CharSet charset;
+#endif
 };
 
 #endif // LangPropPage_included

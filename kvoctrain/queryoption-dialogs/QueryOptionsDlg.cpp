@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:46:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -36,8 +40,6 @@
 
 #include <kv_resource.h>
 #include <compat_2x.h>
-
-#include "../kvoctrain.h"
 
 #include <kapp.h>
 
@@ -70,7 +72,7 @@ QueryOptionsDlg::QueryOptionsDlg
         settings(preset)
 {
   manager = *_manager;
-  setCaption(kvoctrainApp::generateCaption(i18n("Query Options"), true));
+  setCaption(kapp->makeStdCaption(i18n("Query Options")));
 
   setCancelButton(i18n("&Cancel"));
   setOkButton(i18n("&OK"));

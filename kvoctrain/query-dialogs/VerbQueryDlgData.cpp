@@ -200,8 +200,6 @@ VerbQueryDlgData::VerbQueryDlgData
 	groupTitle->setGeometry( 30, 30, 210, 30 );
 	{
 		QFont font( "helvetica", 12, 75, 0 );
-		font.setStyleHint( (QFont::StyleHint)0 );
-		font.setCharSet( (QFont::CharSet)0 );
 		groupTitle->setFont( font );
 	}
 	groupTitle->setFrameStyle( 0 );

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,7 +34,6 @@
 #include "compat_2x.h"
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
-#include "kvoctrain.h"
 #include "QueryManager.h"
 #include "UsageManager.h"
 
@@ -309,7 +311,9 @@ bool kvoctrainDoc::extract_O_T_attr (
                        QString &query_id,
                        QString &pronunce,
                        int &width,
+#if QT_VERSION < 300
                        QFont::CharSet &cs,
+#endif
                        QString &type,
                        QString &faux_ami_f,
                        QString &faux_ami_t,
@@ -339,7 +343,9 @@ bool kvoctrainDoc::extract_O_T_attr (
   paraphrase = "";
   antonym = "";
   width = -1;
+#if QT_VERSION < 300
   cs = QFont::AnyCharSet;
+#endif
 //type = exprtype
   list<XmlAttribute>::const_iterator first = elem.attributes ().begin ();
   int pos;
@@ -352,8 +358,10 @@ bool kvoctrainDoc::extract_O_T_attr (
       width = (*first).intValue();
 
     else if ((*first).name () == KV_CHARSET) {
+#if QT_VERSION < 300
       QString s = (*first).stringValue();
       cs = kvoctrainDoc::string2CharSet(s);
+#endif
     }
 
     else if ((*first).name () == KV_GRADE) {
@@ -772,7 +780,7 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
    QString msg = format.arg(attr).arg(name);
 
    QApplication::setOverrideCursor( arrowCursor, true );
-   QString s = kvoctrainApp::generateCaption(i18n("Unknown attribute"), true);
+   QString s = kapp->makeStdCaption(i18n("Unknown attribute"));
    QMessageBox mb(s,
        ln+msg,
        QMessageBox::Warning,
@@ -806,7 +814,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
      );
    QString msg = format.arg(elem);
    QApplication::setOverrideCursor( arrowCursor, true );
-   QString s = kvoctrainApp::generateCaption(i18n("Unknown element"), true);
+   QString s = kapp->makeStdCaption(i18n("Unknown element"));
    QMessageBox mb( s,
        ln+msg,
        QMessageBox::Critical,
@@ -821,7 +829,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
-   QString s = kvoctrainApp::generateCaption(i18n("Error"), true);
+   QString s = kapp->makeStdCaption(i18n("Error"));
    QString ln;
    ln.setNum(line);
    ln.insert (0,  i18n("File:\t")+getFileName()+"\n"
@@ -843,7 +851,7 @@ void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 void kvoctrainDoc::warningKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
-   QString s = kvoctrainApp::generateCaption(i18n("Warning"), true);
+   QString s = kapp->makeStdCaption(i18n("Warning"));
    QString ln;
    ln.setNum(line);
    ln.insert (0,  i18n("File:\t")+getFileName()+"\n"

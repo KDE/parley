@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/05 17:34:55  arnold
     FIX: slot signature changed to KDE2
 
@@ -47,27 +51,18 @@
 GenOptPage::GenOptPage
 (
         int        _btime,
-        kvoctrainView::Resizer res,
         bool        _smart,
         bool        _autosaveopts,
 	QWidget    *parent,
 	const char *name
 )
 	:
-	Inherited( parent, name ),
-        resizer(res)
+	Inherited( parent, name )
 {
   setCaption(i18n("Options" ));
 
-  group_resize->insert(hb_auto);
-  group_resize->insert(hb_percent);
-  group_resize->insert(hb_fixed);
-
   connect( c_smart, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
-  connect( hb_fixed, SIGNAL(clicked()), SLOT(slotHBfixed()) );
-  connect( hb_percent, SIGNAL(clicked()), SLOT(slotHBpercent()) );
-  connect( hb_auto, SIGNAL(clicked()), SLOT(slotHBauto()) );
 
   connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
 
@@ -85,25 +80,6 @@ GenOptPage::GenOptPage
   s.setNum (btime);
   e_btime->setText (s);
   label_btime->setBuddy (e_btime);
-
-  switch (resizer) {
-    case kvoctrainView::Automatic :
-       hb_auto->setChecked( true );
-    break;
-
-    case kvoctrainView::Fixed :
-       hb_fixed->setChecked( true );
-    break;
-
-    case kvoctrainView::Percent :
-       hb_percent->setChecked( true );
-    break;
-
-    default: {
-      hb_auto->setChecked( true );
-      resizer = kvoctrainView::Automatic;
-    }
-  }
 }
 
 
@@ -123,25 +99,6 @@ void GenOptPage::slotChangeBTime(const QString& s)
 {
    btime = atoi (s.local8Bit());
 }
-
-
-void GenOptPage::slotHBauto()
-{
-  resizer = kvoctrainView::Automatic;
-}
-
-
-void GenOptPage::slotHBfixed()
-{
-  resizer = kvoctrainView::Fixed;
-}
-
-
-void GenOptPage::slotHBpercent()
-{
-  resizer = kvoctrainView::Percent;
-}
-
 
 void GenOptPage::slotSmartAppend(bool b)
 {

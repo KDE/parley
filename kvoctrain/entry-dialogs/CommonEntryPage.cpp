@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -43,7 +47,6 @@
 #include <kv_resource.h>
 #include <langset.h>
 
-#include "../kvoctrain.h"
 #include "../docprop-dialogs/DocPropDlg.h"
 #include "../docprop-dialogs/LessOptPage.h"
 #include "blockall.h"
@@ -329,7 +332,7 @@ void CommonEntryPage::invokeUsageDlg()
   int old_usages = (int) doc->getUsageDescr().size();
   QTabDialog usageOpt(0, "", true);
   usageOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-  usageOpt.setCaption (kvoctrainApp::generateCaption(i18n("Edit user defined usage labels"), true));
+  usageOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined usage labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
   usageOpt.addTab( usageOptPage, _DocDlg_USAGES);
@@ -366,7 +369,7 @@ void CommonEntryPage::invokeLessDlg()
   QTabDialog lessOpt(0, "", true);
   lessOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
-  lessOpt.setCaption (kvoctrainApp::generateCaption(i18n("Edit lesson names"), true));
+  lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit lesson names")));
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
   lessOpt.addTab( lessOptPage, _DocDlg_LESSONS);
 
@@ -401,7 +404,7 @@ void CommonEntryPage::invokeTypeDlg()
   int old_types = (int) doc->getTypeDescr().size();
   QTabDialog typeOpt(0, "", true);
   typeOpt.setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-  typeOpt.setCaption (kvoctrainApp::generateCaption(i18n("Edit user defined types"), true));
+  typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit user defined types")));
   TypeOptPage *typeOptPage
     = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");
   typeOpt.addTab( typeOptPage, _DocDlg_TYPES);

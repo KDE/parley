@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 21:11:02  arnold
+    tested and fixed changes from previous cvs update
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -38,8 +41,6 @@
 #include "BlockOptPage.h"
 
 #include <QueryManager.h>
-
-#include "../kvoctrain.h"
 
 #include <kapp.h>
 #include <kmessagebox.h>
@@ -409,7 +410,7 @@ void BlockOptPage::checkValidity()
 
   if (all_msg.length() != 0)
     KMessageBox::sorry(this, all_msg,
-          kvoctrainApp::generateCaption(i18n("Nonsensical values")), false);
+          kapp->makeStdCaption(i18n("Nonsensical values")));
 }
 
 void BlockOptPage::keyPressEvent( QKeyEvent *e )

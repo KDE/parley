@@ -50,12 +50,8 @@ protected slots:
 
 
 protected:
-    QButtonGroup* group_resize;
     QLabel* label_btime;
     QLineEdit* e_btime;
-    QRadioButton* hb_auto;
-    QRadioButton* hb_percent;
-    QRadioButton* hb_fixed;
     QCheckBox* c_smart;
     QCheckBox* c_saveopt;
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -32,7 +35,6 @@
 
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
-#include "kvoctrain.h"
 
 #include <qtextstream.h>
 #include <qmessagebox.h>
@@ -198,7 +200,7 @@ void kvoctrainDoc::errorVcb (int line, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( arrowCursor, true );
-   QString s = kvoctrainApp::generateCaption(i18n("Error in vocabbox file"), true);
+   QString s = kapp->makeStdCaption(i18n("Error in vocabbox file"));
    QString msg = text;
    QMessageBox mb( s,
        msg,

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -41,7 +44,6 @@
 
 class kvoctrainExpr;
 class kvoctrainDoc;
-class kvoctrainApp;
 
 class QLineEdit;
 class QMultiLineEdit;
@@ -96,7 +98,6 @@ protected:
    int            q_row,
                   q_ocol,
                   q_tcol;
-   kvoctrainApp  *kv_app;
    kvoctrainDoc  *kv_doc;
    kvoctrainExpr *kv_exp;
    QString        translation;

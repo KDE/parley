@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -43,8 +47,6 @@
 #include <compat_2x.h>
 #include <langset.h>
 
-#include "../kvoctrain.h"
-
 #include <kapp.h> 
 
 #include <qtimer.h>
@@ -63,7 +65,6 @@ AdjQueryDlg::AdjQueryDlg
         int query_num,
         int query_startnum,
         kvoctrainExpr *exp,
-        kvoctrainApp  *kv_app,
         kvoctrainDoc  *doc,
         const Comparison &_comp,
         int   mqtime,
@@ -92,7 +93,7 @@ AdjQueryDlg::AdjQueryDlg
 	connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
    qtimer = 0;
-   setCaption (kvoctrainApp::generateCaption(i18n("Comparison training"), true));
+   setCaption (kapp->makeStdCaption(i18n("Comparison training")));
 
    lev1Label->setBuddy(lev1Field);
    lev2Label->setBuddy(lev2Field);
@@ -100,7 +101,7 @@ AdjQueryDlg::AdjQueryDlg
 
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
-             exp, kv_app, doc, _comp, mqtime, _show, type_to);
+             exp, doc, _comp, mqtime, _show, type_to);
    setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if (font != 0 && font->specfont) {
@@ -119,7 +120,6 @@ void AdjQueryDlg::setQuery(QString type,
                            int q_num,
                            int q_start,
                            kvoctrainExpr *exp,
-                           kvoctrainApp  *app,
                            kvoctrainDoc  *doc,
                            const Comparison &_comp,
                            int mqtime,
@@ -127,7 +127,6 @@ void AdjQueryDlg::setQuery(QString type,
                            kvq_timeout_t type_to)
 {
    type_timeout = type_to;
-   kv_app = app;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;

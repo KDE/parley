@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -60,7 +63,9 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   kvoctrainExpr expr;
   int           lesson;
   int           width;
+#if QT_VERSION < 300
   QFont::CharSet cs;
+#endif
   QString       type;
   QString       faux_ami_f;
   QString       faux_ami_t;
@@ -125,7 +130,9 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
                         query_id,
                         pronunce,
                         width,
+#if QT_VERSION < 300
                         cs,
+#endif
                         type,
                         faux_ami_t,
                         faux_ami_f,
@@ -146,8 +153,9 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   
         if (query_id == KV_T)
           q_trans = lang;
-  
+#if QT_VERSION < 300
         setCharSet (count, cs);
+#endif
       }
   
       if (langs.size() == 0) {          // first entry
@@ -271,7 +279,9 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
                         query_id,
                         pronunce,
                         width,
+#if QT_VERSION < 300
                         cs,
+#endif
                         type,
                         faux_ami_f,
                         faux_ami_t,
@@ -292,7 +302,9 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
         if (query_id == KV_T)
           q_trans = lang;
   
+#if QT_VERSION < 300
         setCharSet (count, cs);
+#endif
       }
 
       if (langs.size() <= count) {      // new translation

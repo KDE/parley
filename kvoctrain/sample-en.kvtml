@@ -9,6 +9,7 @@ Short definition:
 lesson       lesson group
  desc        name
    %no       its index
+   %query    is in query selection
    %current  is current lesson
 type         type group
  desc        name
@@ -62,7 +63,7 @@ Valid xml means:
 >
 <kvtml
   encoding="8Bit"
-  generator="kvoctrain v0.7.0pre6"
+  generator="kvoctrain v2.90"
   cols="3"
   lines="20"
   title="Sample vocabulary file"
@@ -145,22 +146,22 @@ Valid xml means:
   <desc no="3">My type 3</desc>
  </type>
 
- <e m="1" s="1"><o width="252" l="de" q="t" charset="Unicode" t="n:m">Verfall</o><t width="252" l="en" q="o" charset="Unicode" g="1;2" c="7;2" b="1;0" d="961317477;976221514" t="n">decline</t><t width="252" l="fr" charset="ISO 8859-1" g="1;4" c="1;1" b="1;1" t="n">échéance</t></e>
- <e m="1" s="1"><o>verblüfft</o><t g="7;1" c="9;2" b="2;1" d="977077597;961317468">taken aback</t><t g="1;1" c="1;1" b="1;0" d="0;977075246">ébahi</t></e>
- <e m="3" s="1" t="n"><o>Unheil, Schaden</o><t g="2;0" c="2;0" d="934675200;0" p="mistschif">mischief</t><t g="4;1" c="1;1" b="1;1">détriment</t></e>
+ <e m="4" s="1"><o width="252" l="de" q="t" t="n:m">Verfall</o><t width="252" l="en" q="o" g="1;2" c="7;2" b="1;0" d="961317477;976221514" t="n">decline</t><t width="252" l="fr" g="1;4" c="1;1" b="1;1" t="n">échéance</t></e>
+ <e m="4" s="1"><o>verblüfft</o><t g="7;1" c="9;2" b="2;1" d="977077597;961317468">taken aback</t><t g="1;1" c="1;1" b="1;0" d="0;977075246">ébahi</t></e>
+ <e m="4" s="1" t="n"><o>Unheil, Schaden</o><t g="2;0" c="2;0" d="934675200;0" p="mistschif">mischief</t><t g="4;1" c="1;1" b="1;1">détriment</t></e>
  <e m="4" s="1"><o t="n:m">Talg</o><t g="1;2" c="4;1" d="934731796;0" t="n">tallow</t><t g="2;3" c="2;3" b="1;1" t="n">suif</t></e>
  <e m="4" s="1"><o>stattlich</o><t g="2;0" c="4;0" d="934335883;0">handsome</t><t g="3;2" c="1;1" b="1;1">imposant</t></e>
- <e m="3" s="1" t="#1"><o>starrsinnig</o><t g="4;0" c="5;0" b="1;0" d="934731793;0">opinionated</t><t g="2;3" c="1;1" b="1;1">entêté</t></e>
- <e m="2" s="1" t="#2"><o>schwerfällig, mühsam</o><t g="4;1" c="5;1" b="1;0" d="934675200;949757271" p="leibrd">laboured</t><t g="1;4" c="1;1" b="1;1">lourd</t></e>
+ <e m="4" s="1" t="#1"><o>starrsinnig</o><t g="4;0" c="5;0" b="1;0" d="934731793;0">opinionated</t><t g="2;3" c="1;1" b="1;1">entêté</t></e>
+ <e m="4" s="1" t="#2"><o>schwerfällig, mühsam</o><t g="4;1" c="5;1" b="1;0" d="934675200;949757271" p="leibrd">laboured</t><t g="1;4" c="1;1" b="1;1">lourd</t></e>
  <e m="4" s="1"><o t="n:m">Saft</o><t g="3;4" c="4;2" d="934731800;0" t="n">sap</t><t g="3;2" c="1;1" b="1;1" t="n:m">jus</t></e>
- <e m="3" s="1"><o>niedlich, ordentlich</o><t g="4;0" c="4;0" d="934675200;0" p="niit">neat</t><t g="3;2" c="1;1" b="1;1">mignon</t></e>
- <e m="1" s="1" t="aj"><o>
+ <e m="4" s="1"><o>niedlich, ordentlich</o><t g="4;0" c="4;0" d="934675200;0" p="niit">neat</t><t g="3;2" c="1;1" b="1;1">mignon</t></e>
+ <e m="4" s="1" t="aj"><o>
   <comparison>
    <l1>mild</l1><l2>milder</l2><l3>am mildesten</l3>
   </comparison>
   mild</o><t g="2;1" c="4;3" b="1;0" d="976221574;961317485">balmy</t><t g="2;5" c="1;2" b="1;1" d="0;976221651">doux</t></e>
- <e m="2" s="1"><o t="n:m">Knöchel</o><t g="4;1" c="4;1" d="934675200;949757271" p="nackls" t="n">knuckles</t><t g="2;3" c="1;1" b="1;1" t="n">cheville</t></e>
- <e m="2" s="1"><o t="n:f">Kniebeugen</o><t g="3;1" c="2;1" d="934731856;949757271" t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
+ <e m="4" s="1"><o t="n:m">Knöchel</o><t g="4;1" c="4;1" d="934675200;949757271" p="nackls" t="n">knuckles</t><t g="2;3" c="1;1" b="1;1" t="n">cheville</t></e>
+ <e m="4" s="1"><o t="n:f">Kniebeugen</o><t g="3;1" c="2;1" d="934731856;949757271" t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
  <e m="1"><o t="n:m">Klotz</o><t g="1;2" c="3;3" b="1;0" d="961317457;982000304" p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
  <e m="4" s="1" t="#2"><o>gänzlich</o><t g="4;0" c="17;0" b="6;0" d="934731325;0">utterly</t><t g="1;4" c="1;1" b="1;1">tout á fait</t></e>
  <e m="4" s="1" t="aj"><o>
@@ -176,8 +177,8 @@ Valid xml means:
      <l1>bon</l1><l2>meilleur</l2><l3>le meilleur</l3>
     </comparison>
     bon</t></e>
- <e m="2" s="1" t="n"><o>Gunst, Gefallen</o><t g="1;1" c="4;1" d="934731795;949757271">favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
- <e m="3" s="1" t="v"><o>
+ <e m="4" s="1" t="n"><o>Gunst, Gefallen</o><t g="1;1" c="4;1" d="934731795;949757271">favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
+ <e m="4" s="1" t="v"><o>
   <conjugation>
    <t n="PrSi"><s1>schwimme</s1><s2>du schwimmst</s2></t>
    <t n="PaSi"><s1>schwamm</s1><s2>schwammst</s2></t>
@@ -189,7 +190,7 @@ Valid xml means:
     <t n="PaPa"><s1>have gone</s1></t>
    </conjugation>
    go</t><t>aller</t></e>
- <e m="3" s="1"><o t="n:f">Erbse</o><t g="2;2" c="5;1" b="1;0" d="938974981;0" p="pi" t="n">pea</t><t g="1;4" c="1;1" b="1;1" t="n:m">pois</t></e>
+ <e m="4" s="1"><o t="n:f">Erbse</o><t g="2;2" c="5;1" b="1;0" d="938974981;0" p="pi" t="n">pea</t><t g="1;4" c="1;1" b="1;1" t="n:m">pois</t></e>
  <e m="4" s="1" t="v"><o>bezwingen</o><t g="1;2" c="1;3" d="934675200;0">
    <conjugation>
     <t n="PrSi"><s1>quell</s1></t>

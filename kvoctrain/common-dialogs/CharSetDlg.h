@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/12 19:13:50  arnold
+    switched dialog files to qt-designer
+
     Revision 1.1  2001/10/05 15:37:45  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -35,6 +38,10 @@
 #define CharSetDlg_included
 
 #include "CharSetDlgForm.h"
+
+#include <qglobal.h>
+
+#if QT_VERSION < 300
 
 #include <qstrlist.h>
 
@@ -67,5 +74,6 @@ private:
     vector<QFont> fonts;
 
 };
+#endif
 
 #endif // CharSetDlg_included

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:38:38  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,8 +38,6 @@
 #include "TitlePage.h"
 
 #include <kv_resource.h>
-
-#include "../kvoctrain.h"
 
 #include <kapp.h>
 
@@ -60,7 +62,7 @@ TitlePage::TitlePage
 	connect( e_license, SIGNAL(returnPressed()), SLOT(accept()) );
 //	connect( e_author, SIGNAL(returnPressed()), SLOT(accept()) );
 
-        setCaption (kvoctrainApp::generateCaption(i18n("Input title and author")));
+        setCaption (kapp->makeStdCaption(i18n("Input title and author")));
         title = _title;
         author = _author;
         license = _license;

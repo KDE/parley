@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:37:45  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -59,9 +63,6 @@
 #include "aboutdialog.h"
 #include <kv_resource.h>
 #include <compat_2x.h>
-
-#include "../kvoctrain.h"
-
 
 #define OUTER_SEP 6
 #define INNER_SEP 6
@@ -386,7 +387,7 @@ void CAboutDialog::createContributorPage( void )
   //
   // Add 20 pixels to (hopefully) avoid the vertical scrollbar
   //
-  contrbutorTextArea->setMinimumWidth(contrbutorTextArea->maxLineWidth()+20);
+  contrbutorTextArea->setMinimumWidth(contrbutorTextArea->sizeHint().width()+20);
   topLayout->addWidget( contrbutorTextArea );
   topLayout->activate();
 }
@@ -444,7 +445,7 @@ void CAboutDialog::createLicencePage( void )
   //
   // Add 20 pixels to (hopefully) avoid the vertical scrollbar
   //
-  licenseTextArea->setMinimumWidth(licenseTextArea->maxLineWidth()+20);
+  licenseTextArea->setMinimumWidth(licenseTextArea->sizeHint().width()+20);
   topLayout->addWidget( licenseTextArea );
   topLayout->activate();
 }

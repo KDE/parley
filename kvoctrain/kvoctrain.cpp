@@ -17,6 +17,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/12 20:55:31  arnold
     added include file
 
@@ -49,6 +53,8 @@
 #include <kcombobox.h>
 #include <kprogress.h>
 #include <kapp.h>
+
+#include <qcursor.h>
 #include <qtimer.h>
 #include <qfile.h>
 #include <qtooltip.h>
@@ -90,25 +96,18 @@ kvoctrainApp::~kvoctrainApp() /*FOLD00*/
 
 void kvoctrainApp::slotCancelSelection () /*FOLD00*/
 {
-  if (tagCount != 0) {
-    for (int i = 0; i < doc->numEntries(); i++)
-      doc->getEntry(i)->setTagged(false);
-    view->getTable()->repaintCells();
-  }
-  tagCount = 0;
-  tagLastRow = -1;
-  tagLastCol = -1;
+  view->getTable()->clearSelection();
 }
 
 
 void kvoctrainApp::slotSelectAll () /*FOLD00*/
 {
-  for (int i = 0; i < doc->numEntries(); i++)
-    doc->getEntry(i)->setTagged(true);
-  view->getTable()->repaintCells();
-  tagCount = doc->numEntries();
-  tagLastRow = -1;
-  tagLastCol = -1;
+  QTableSelection ts;
+  RowTable *table = view->getTable();
+  table->clearSelection();
+  ts.init(0,0);
+  ts.expandTo(table->numRows()-1, table->numCols()-1);
+  table->addSelection(ts);
 }
 
 
@@ -140,86 +139,6 @@ void kvoctrainApp::slotCellMoved(int row, int col, int keys) /*FOLD00*/
     type_label->setText (QString(i18n (PREFIX_Type))
             +QueryManager::typeStr(expr->getType (col)));
 }
-
-
-void kvoctrainApp::slotTagEntry(int row, int col, int key) /*FOLD00*/
-{
-  controlActive = (key & ControlButton) != 0;
-  shiftActive = (key & ShiftButton) != 0;
-  altActive = (key & AltButton) != 0;
-
-  if (   doc == 0
-      || view == 0
-      || view->getTable() == 0
-      || view->getTable()->numRows() <= 0
-      || row < 0
-      || col < 0)
-    return;
-
-  slotCellMoved (row, col, key);
-  if (altActive) {
-    // keep selection
-  }
-  else if (shiftActive) {
-    int first, last;
-
-    if (tagLastRow < 0 || tagLastCol < 0) {
-      first = row;
-      last = row;
-    }
-    else if (row > tagLastRow) {
-      first = tagLastRow;  // +1
-      last = row;
-    }
-    else {
-      first = row;
-      last = tagLastRow;  // -1
-    }
-    bool tag;
-    for (int i = first; i <= last; i++) {
-      if (controlActive) {
-        doc->getEntry(i)->setTagged ((tag = !doc->getEntry(i)->isTagged ()));
-        if (tag)
-          tagCount ++;
-        else
-          tagCount --;
-      }
-      else {
-        if (!doc->getEntry(i)->isTagged()) {
-          tagCount++;
-          doc->getEntry(i)->setTagged(true);
-        }
-      }
-    }
-    view->getTable()->repaintCells(first, last);
-    tagLastRow = row;
-    tagLastCol = col;
-  }
-  else if (controlActive) {
-    bool tag = !doc->getEntry(row)->isTagged ();
-    doc->getEntry(row)->setTagged (tag);
-    if (tag)
-      tagCount ++;
-    else
-      tagCount --;
-
-    tagLastRow = row;
-    tagLastCol = col;
-
-    // update current row with all cols
-    for (int i = 0; i < view->getTable()->numCols(); i++) {
-      view->getTable()->updateCell(view->getTable()->currentRow(), i);
-    }
-
-  }
-  else {
-
-    slotCancelSelection ();
-    tagLastRow = row;
-    tagLastCol = col;
-  }
-}
-
 
 void kvoctrainApp::slotSelectEntry (int row, int col, int key_state) /*FOLD00*/
 {
@@ -258,7 +177,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
            expr,
            lang;
 
-   if (col == KV_COL_LESS
+   if ((col == KV_COL_LESS)
        || row < 0
        || col < 0)
      return false;
@@ -293,7 +212,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
 
    EntryDlg edlg (&font,
                   doc,
-                  tagCount != 0,
+                  hasSelection(),
                   col==0,
                   doc->getEntry(row)->getGrade(col, false),
                   doc->getEntry(row)->getGrade(col, true),
@@ -333,7 +252,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
      fillLessonBox(doc);
      kvoctrainExpr *expr = doc->getEntry(row);
 
-     if (tagCount == 0) {
+     if (!hasSelection()) {
        if (col == 0)
          expr->setOriginal(edlg.getExpr());
        else
@@ -376,9 +295,10 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
            expr->setType(i, edlg.getType());
      }
      else {
+       // TODO Make selections work
        for (int i = 0; i < doc->numEntries(); i++) {
          kvoctrainExpr *expr = doc->getEntry(i);
-         if (expr->isTagged()) {
+         if (expr->isSelected()) {
            // only updated "common" props in multimode
            if (edlg.fromGradeDirty() )
              expr->setGrade(col, edlg.getFromGrade(), false);
@@ -532,7 +452,9 @@ void kvoctrainApp::slotDocPropsLang ()
       }
 
       for (int i = 0; i < doc->numLangs(); i++) {
+#if QT_VERSION < 300
         doc->setCharSet(i, ldlg.getCharSet(i));
+#endif
 
         QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
         int idx = langset.indexShortId (id);
@@ -543,10 +465,11 @@ void kvoctrainApp::slotDocPropsLang ()
           langset.Font (idx, font, specfont);
         }
 
+#if QT_VERSION < 300
         font.setCharSet (ldlg.getCharSet(i));
-
         kvoctrainApp::checkFontInfo (font, id);
         doc->setCharSet(i, font.charSet());
+#endif
 
         if (idx >= 0)
           langset.setFont (font, specfont, idx);
@@ -574,10 +497,19 @@ void kvoctrainApp::slotModifiedDoc(bool mod)
   slotStatusMsg(IDS_DEFAULT);
 }
 
+bool kvoctrainApp::hasSelection()
+{
+  int num = view->getTable()->numSelections();
+  if (num < 1) return false;
+  if (num > 1) return true;
+  QTableSelection ts = view->getTable()->selection(0);
+  return (ts.bottomRow() - ts.topRow()) > 0;
+}
+
 
 void kvoctrainApp::slotRemoveRow() /*FOLD00*/
 {
-  if (tagCount == 0) {
+  if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this, 
                   i18n("Do you really want to delete the selected entry ?\n"),
                   generateCaption(""),
@@ -594,11 +526,11 @@ void kvoctrainApp::slotRemoveRow() /*FOLD00*/
                   i18n("Do you really want to delete the selected range ?\n"),
                   generateCaption(""),
                   i18n("&Yes"),
-                  i18n("&No"),
-                  false))
+                  i18n("&No")))
     {
+      // TODO Make selections work
       for (int i = doc->numEntries()-1; i >= 0; i--)
-        if (doc->getEntry(i)->isTagged() )
+        if (doc->getEntry(i)->isSelected() )
           doc->removeEntry(i);
       view->getTable()->updateViewPort();
       view->getTable()->repaintCells();
@@ -778,14 +710,6 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e ) /*FOLD00*/
       
     default:
       bool found = false;
-      if (/*shiftActive && */ altActive) {
-        for (int i = KV_COL_LESS; i < view->getTable()->numCols(); i++)
-          if (tolower(e->key()) == view->getHeaderAccel(i)) {
-            QPoint pt = view->getAbsHeaderPos(i);
-            slotHeaderMenu(i, pt.x(), pt.y());
-            found = true;
-          }
-      }
       if (!found)
         e->ignore();
   }
@@ -946,7 +870,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
                     tablefont,
                     &querymanager,
                     gradecols,
-                    header_resizer,
                     smartAppend,
                     autosaveopts);
 
@@ -966,7 +889,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       useCurrent = godlg.getUseCurrent(),
       tablefont = godlg.getFont();
       gradecols = godlg.getGradeCols();
-      header_resizer = godlg.getResizer();
 
       // rather ugly hack to keep useCurrent "globally" up to date
       KConfig *config = EA_KappGetConfig;
@@ -975,7 +897,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 
       view->getTable()->setFont(tablefont);
       view->getTable()->setLangSet (&langset);
-      view->setResizer (header_resizer);
       view->getTable()->updateViewPort();
       view->getTable()->repaintCells();
      
@@ -1095,66 +1016,6 @@ void kvoctrainApp::slotResumeSearch(const QString& s) /*FOLD00*/
   slotStatusMsg(IDS_DEFAULT);
 }
 
-
-void kvoctrainApp::slotVSliderPressed (bool state, int val) /*FOLD00*/
-{
-   return;
-
-   if (!state) {
-     if (vslide_label != 0) {
-       delete vslide_label;
-       vslide_label = 0;
-     }
-   }
-   else {
-     // taken from qtooltip
-     if (vslide_label == 0) {
-       vslide_label = new QLabel( 0, "sliderInfo",
-                           WStyle_Customize | WStyle_NoBorder );
-       CHECK_PTR( vslide_label );
-   /*
-       label->setFont( QToolTip::font() );
-   */
-       QColorGroup cg( black, QColor(255,255,220),
-                       QColor(96,96,96), black, black,
-                       black, QColor(255,255,220) );
-       vslide_label->setPalette(QPalette( cg, cg, cg ));
-       if ( QApplication::style() == MotifStyle )
-           vslide_label->setFrameStyle( QFrame::Plain | QFrame::Box );
-       else
-           vslide_label->setFrameStyle( QFrame::Raised | QFrame::Panel );
-       vslide_label->setLineWidth( 1 );
-       vslide_label->setMargin( 3 );
-       vslide_label->setAlignment( AlignLeft | AlignTop );
-       vslide_label->setAutoResize( TRUE );
-     }
-     slotVSliderTrackInfo (val);
-   }
-}
-
-
-void kvoctrainApp::slotVSliderTrackInfo (int val) /*FOLD00*/
-{
-    return;
-
-    if (vslide_label != 0) {
-      // taken from qtooltip
-      QString text;
-      text.setNum(val+1);
-      vslide_label->setText( text );
-  
-      QPoint p = QCursor::pos() + QPoint( 2, 16 );
-      if ( p.x() + vslide_label->width() > QApplication::desktop()->width() )
-          p.setX( QApplication::desktop()->width() - vslide_label->width() );
-      if ( p.y() + vslide_label->height() > QApplication::desktop()->height() )
-          p.setY( p.y() - 20 - vslide_label->height() );
-      vslide_label->move( p );
-      vslide_label->show();
-      vslide_label->raise();
-    }
-}
-
-
 static void centerDialog( QWidget *widget, QWidget *centerParent ) /*FOLD00*/
 { 
   if( centerParent == 0 || widget == 0 )
@@ -1199,7 +1060,10 @@ void kvoctrainApp::slotViewToolBar() /*FOLD00*/
   // turn Toolbar on or off
   bViewToolbar=!bViewToolbar;
   menuBar()->setItemChecked(ID_VIEW_TOOLBAR, bViewToolbar);
-  enableToolBar(KToolBar::Toggle,0);
+  if (bViewToolbar)
+     toolBar()->show();
+  else
+     toolBar()->hide();
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1210,7 +1074,10 @@ void kvoctrainApp::slotViewStatusBar() /*FOLD00*/
   //turn Statusbar on or off
   bViewStatusbar=!bViewStatusbar;
   menuBar()->setItemChecked(ID_VIEW_STATUSBAR, bViewStatusbar);
-  enableStatusBar();
+  if (bViewStatusbar)
+    statusBar()->show();
+  else
+    statusBar()->hide();
   slotStatusMsg(IDS_DEFAULT);
 }
 

@@ -2,7 +2,7 @@
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = \
-   header.cpp kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
+   kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
    main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
    kva_io.cpp kva_clip.cpp kva_query.cpp
 

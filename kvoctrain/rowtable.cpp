@@ -14,6 +14,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -38,11 +42,10 @@
 #include "kv_resource.h"
 #include "langset.h"
 
-
 RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
                    const LangSet *ls, const GradeCols *gc,
                    QWidget *parent, const char *name )
-	: QTableView( parent, name )
+	: QTable( parent, name )
 {
 	init(flags);
         setDoc (rows, ls, gc);
@@ -62,33 +65,11 @@ void RowTable::repaintCells(int firstRow, int lastRow, int firstCol, int lastCol
        fcol,
        lcol;
 
-   int tc = topCell();
-   if (   firstRow == -1
-       || firstRow < tc)
-     frow = tc;
-   else
-     frow = firstRow;
+   frow = firstRow;
+   lrow = lastRow;
 
-   int lrv = lastRowVisible();
-   if (   lastRow == -1
-       || lastRow > lrv)
-     lrow = lrv;
-   else
-     lrow = lastRow;
-
-   int lc = leftCell();
-   if (   firstCol == -1
-       || firstCol < lc)
-     fcol = lc;
-   else
-     fcol = firstRow;
-
-   int lcv = lastColVisible();
-   if (   lastCol == -1
-       || lastCol > lcv)
-     lcol = lcv;
-   else
-     lcol = lastCol;
+   fcol = firstRow;
+   lcol = lastCol;
 
    if (   frow > lrow
        || fcol > lcol
@@ -103,15 +84,6 @@ void RowTable::repaintCells(int firstRow, int lastRow, int firstCol, int lastCol
 
 void RowTable::updateViewPort()
 {
-      int height = fontMetrics().lineSpacing();
-      for (int i = 0; i < (int) m_colFonts.size(); i++) {
-         if (m_colFonts[i].specfont) {
-           QFontMetrics fm (m_colFonts[i].font);
-           height= QMAX (height, fm.lineSpacing() );
-         }
-      }
-      setCellHeight( height );
-
       if (m_rows) {
         setNumRows( m_rows->numEntries());
         setNumCols( QMAX (1, m_rows->numLangs()+KV_EXTRA_COLS) );
@@ -120,19 +92,8 @@ void RowTable::updateViewPort()
         setNumRows( 0 );
         setNumCols( 1+KV_EXTRA_COLS );
       }
-      current_row = QMIN (current_row, numRows()-1);
-      cout << "stc: " << current_row << " " << topCell() << " " << lastRowVisible() << endl;
-      int pageSize = lastRowVisible() - topCell();
-      if( rowIsVisible( current_row ) ) {
-        setCurrentRow (current_row, current_col);;
-	setTopCell( QMIN( topCell(), (int) m_rowHeights.size()-pageSize ) );
-        cout << "stc 1\n";
-      }
-      else {
-        setCurrentRow (current_row, current_col);;
-	setTopCell( QMIN( current_row, (int) m_rowHeights.size()-pageSize ) );
-        cout << "stc 2\n";
-      }
+      int current_row = QMIN (currentRow(), numRows()-1);
+      setCurrentRow (current_row, currentColumn());
 }
 
 
@@ -157,21 +118,14 @@ void RowTable::setLangSet (const LangSet *ls)
   if (id >= 0) {
     ls->Font(id, m_colFonts[KV_COL_ORG].font,
             m_colFonts[KV_COL_ORG].specfont);
-     // override charset
-    if (m_rows->getCharSet(KV_COL_ORG-KV_EXTRA_COLS) != QFont::AnyCharSet)
-      m_colFonts[KV_COL_ORG].font.setCharSet (m_rows->getCharSet(KV_COL_ORG-KV_EXTRA_COLS)); 
   }
 
   for (int i = KV_COL_TRANS; i < numCols(); i++) {
     id = ls->indexShortId(m_rows->getIdent(i-KV_EXTRA_COLS));
     if (id >= 0)
       ls->Font(id, m_colFonts[i].font, m_colFonts[i].specfont);
-      // override charset
-      if (m_rows->getCharSet(i-KV_EXTRA_COLS) != QFont::AnyCharSet)
-        m_colFonts[i].font.setCharSet (m_rows->getCharSet(i-KV_EXTRA_COLS));
   }
 }
-
 
 void RowTable::setDoc(kvoctrainDoc *rows, const LangSet  *ls,
                       const GradeCols *gc)
@@ -195,181 +149,38 @@ void RowTable::setDoc(kvoctrainDoc *rows, const LangSet  *ls,
 void RowTable::init(Flags flags)
 {
 	m_flags = flags;
-	current_row = -1;
-	if( flags == SelectRow )
-		current_col = -1;
-	else
-		current_col = 0;
 
 	setFrameStyle( WinPanel | Sunken );
 	setBackgroundColor( colorGroup().base() );
+	setLeftMargin(0);
+#if QT_VERSION < 300
+	setSelectionMode(Multi);
+#else
+	setSelectionMode(MultiRow);
+#endif
 
-	setCellWidth( 0 );
-	setCellHeight( 0 );
-
-	setAutoUpdate( TRUE );
         setFocusPolicy( StrongFocus );
-        setTableFlags( Tbl_autoScrollBars |
-                       Tbl_clipCellPainting |
-                       Tbl_snapToVGrid
-                     );
-
-	connect( (QObject*)horizontalScrollBar(), SIGNAL(sliderMoved(int)),
-				SLOT(hSliderMovedSlot(int)) );
-	connect( (QObject*)horizontalScrollBar(), SIGNAL(valueChanged(int)),
-				SLOT(hSliderMovedSlot(int)) );
-
-	connect( (QObject*)verticalScrollBar(), SIGNAL(sliderMoved(int)),
-				SLOT(vSliderMovedSlot(int)) );
-	connect( (QObject*)verticalScrollBar(), SIGNAL(sliderReleased()),
-				SLOT(vSliderReleasedSlot()) );
-	connect( (QObject*)verticalScrollBar(), SIGNAL(sliderPressed()),
-				SLOT(vSliderPressedSlot()) );
-	connect( (QObject*)verticalScrollBar(), SIGNAL(valueChanged(int)),
-				SLOT(vSliderMovedSlot(int)) );
-
 }
-
-
-void RowTable::setCellWidth( int width )
-{
-	QTableView::setCellWidth( width );
-}
-
-
-void RowTable::setCellHeight( int height )
-{
-	QTableView::setCellHeight( height );
-}
-
 
 void RowTable::setNumCols( int cols )
 {
         cols = QMAX (1, cols );
-	int oldsize = m_colWidths.size();
 
-	m_colWidths.resize( cols );
-	for( int i=oldsize ; i<cols ; i++)
-	  m_colWidths[i] = 0;
-
-	oldsize = m_colFonts.size();
+	int oldsize = m_colFonts.size();
         m_colFonts.resize( cols );
 	for( int i=oldsize ; i<cols ; i++) {
        	  m_colFonts[i].font = QFont();
        	  m_colFonts[i].specfont = false;
         }
 
-	QTableView::setNumCols( cols );
+	QTable::setNumCols( cols );
 }
 
 
 void RowTable::setNumRows( int rows )
 {
-	int oldsize = m_rowHeights.size();
-	m_rowHeights.resize( rows );
-	for( int i=oldsize ; i<rows ; i++)
-          m_rowHeights[i] = 0;
-
-	QTableView::setNumRows( rows );
+	QTable::setNumRows( rows );
 }
-
-
-int RowTable::cellWidth( int col )
-{
-	int width = QTableView::cellWidth();
-	if( width != 0 )
-		return width;
-        if (col < (int)m_colWidths.size() )
-  	  return m_colWidths[col];
-         else
-           return 0;
-}
-
-
-void RowTable::setHighlightColumn( int col )
-{
-	current_col = col;
-        setCurrentRow (current_row, current_col);;
-}
-
-
-void RowTable::setColumnWidth( int col, int width )
-{
-        if (col < (int)m_colWidths.size() )
-   	  m_colWidths[col] = width;
-	resizeEvent(0);
-	repaint();
-        if (m_rows) {
-          if (col >= KV_COL_ORG)
-            m_rows->setSizeHint(col-KV_COL_ORG, width);
-          else
-            m_rows->setSizeHint(-1, width); // lesson
-        }
-}
-
-
-int RowTable::cellHeight( int row )
-{
-	int height = QTableView::cellHeight();
-	if( height != 0 )
-		return height;
-        if (row < (int)m_rowHeights.size() )
-  	  return m_rowHeights[row];
-        else
-          return 0;
-}
-
-
-void RowTable::setRowHeight( int row, int height )
-{
-        if (row < (int)m_rowHeights.size() )
-  	  m_rowHeights[row] = height;
-	resizeEvent(0);
-	repaint();
-}
-
-
-void RowTable::vSliderMovedSlot(int value)
-{
-	emit(vSliderMoved(value / cellHeight(0) ));
-}
-
-
-void RowTable::vSliderPressedSlot()
-{
-  int val = verticalScrollBar()->value() / cellHeight(0);
-  emit(vSliderPressed(true, val));
-}
-
-
-void RowTable::vSliderReleasedSlot()
-{
-  int val = verticalScrollBar()->value() / cellHeight(0);
-  emit(vSliderPressed(false, val));
-}
-
-
-void RowTable::hSliderMovedSlot(int value)
-{
-	emit(hSliderMoved(value));
-}
-
-
-void RowTable::focusInEvent( QFocusEvent * )
-{
-  if( current_row != -1 && current_col != -1 )
-    updateCell( current_row, current_col, FALSE );
-    setCurrentRow (current_row, current_col);;
-}
-
-
-void RowTable::focusOutEvent( QFocusEvent * )
-{
-  if( current_row != -1 && current_col != -1 )
-    updateCell( current_row, current_col, FALSE );
-    setCurrentRow (current_row, current_col);;
-}
-
 
 void RowTable::paletteChange( const QPalette &) //oldPalette )
 {
@@ -377,70 +188,53 @@ void RowTable::paletteChange( const QPalette &) //oldPalette )
 }
 
 
-void RowTable::paintCell( QPainter *p, int row, int col )
+void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool selected)
 {
+    if ( cr.width() == 0 || cr.height() == 0 )
+        return;
 
-  QPen oldPen = p->pen();
-  QColor oldBackground = p->backgroundColor();
+   QColorGroup cg = colorGroup();
   
-  QColorGroup g = colorGroup();
-  p->setBackgroundColor( g.base() );
-  p->setPen( g.text() );
-  
-  kvoctrainExpr *cell = getRow( row );
-// FIXME: tagged in an other color ?
-  bool sel = cell->isTagged();
-  if( sel || current_row == row && ( current_col == col || current_col == -1 ) )
-    {
-      sel = true;
-      QColor fc;
-      if( style() == WindowsStyle )
-	fc = darkBlue;
-      else
-	{
-	  if( !hasFocus() )
-	    fc = g.dark();
-	  else
-	    fc = g.text();
-	}
-      //if( hasFocus() )
-      p->fillRect( 0, 0, cellWidth( col ), cellHeight( row ), fc );
-      //else
-      //p->fillRect( 1, 1, cellWidth( col )-2, cellHeight( row )-2, fc );
-      p->setPen( g.base() );
-      p->setBackgroundColor( g.text() );
+#if 0  
+   if ( /*(focusStl == SpreadSheet) && */ selected &&
+	 (row == currentRow()) &&
+	 (col == currentColumn()) && ( hasFocus() || viewport()->hasFocus() ) )
+	selected = FALSE;
+#endif
+
+    int w = cr.width();
+    int h = cr.height();
+    int x2 = w - 1;
+    int y2 = h - 1;
+
+    kvoctrainExpr *cell = getRow( row );
+
+    p->fillRect( 0, 0, w, h, selected ? cg.brush( QColorGroup::Highlight ) : cg.brush( QColorGroup::Base ) );
+
+    if( cell ) {
+       p->save();
+       cell->paint( p, col, w, selected, m_rows, col, gradecols, &m_colFonts[col]);
+       p->restore();
     }
-  
-  if( cell != NULL ) {
-                // with exactly 2 cols always keep org-col from translation
-    cell->paint( p, col, cellWidth(col), sel, m_rows,
-                 numCols() == KV_EXTRA_COLS+2 ? KV_COL_TRANS : current_col,
-                 gradecols, &m_colFonts[col]);
-  }
-  if( current_row == row && ( current_col == col || current_col == -1 ) && hasFocus() )
-    {
-      if( style() == WindowsStyle )
-	p->drawWinFocusRect( 1, 1, cellWidth( col )-2, cellHeight( row )-2 );
-      else
-	{
-	  /*
-	  p->setPen( g.base() );
-	  p->setBrush( NoBrush );
-	  p->drawRect( 1, 1, cellWidth( col )-2, cellHeight( row )-2 );
-	  */
-	}
+
+    if ( true ) {
+	// Draw our lines
+	QPen pen( p->pen() );
+	p->setPen( colorGroup().mid() );
+	p->drawLine( x2, 0, x2, y2 );
+	p->drawLine( 0, y2, x2, y2 );
+	p->setPen( pen );
     }
-  
-  p->setPen( oldPen );
-  p->setBackgroundColor( oldBackground );
 }
 
+QWidget *RowTable::createEditor(int, int, bool) const
+{
+   return 0; // No inline editing
+}
 
 kvoctrainExpr *RowTable::selectedRow()
 {
-	if( current_row == -1 )
-		return NULL;
-	return getRow( current_row );
+	return getRow( currentRow() );
 }
 
 
@@ -452,190 +246,15 @@ kvoctrainExpr *RowTable::getRow( int row )
     return 0;
 }
 
-
-void RowTable::mousePressEvent( QMouseEvent *e )
-{
-  int cr = findRow( e->pos().y() );
-  int cc = findCol( e->pos().x() );
-
-  // update color of original when column changes
-  bool update_org = false;
-  if (cc != current_col && numCols() > 2)
-    update_org = true;
-
-  if( m_flags & SelectCell ) {
-    if (cc != KV_COL_LESS)
-      setCurrentRow( cr, cc);
-  }
-  else if( m_flags & SelectFixed )
-    setCurrentRow( cr, current_col );
-  else
-    setCurrentRow( cr, -1 );
-
-  if (update_org)
-    for (int i = topCell(); i <= lastRowVisible(); i++)
-      updateCell(i, KV_COL_ORG);
-
-  if( e->button() == RightButton )
-    emit rightButtonClicked();
-
-  if( e->button() == LeftButton ) {
-    emit leftButtonClicked(cr, cc, e->state());
-//    emit cellMoved(cr, cc, e->state());
-  }
-}
-
-
-void RowTable::mouseDoubleClickEvent( QMouseEvent *e )
-{
-        int cc = findCol( e->pos().x() );
-	if( current_col != -1 && current_row != -1 ) {
-           if (cc != KV_COL_LESS)
-		emit edited( current_row, cc );
-	}	
-        setCurrentRow (current_row, current_col);;
-}
-
-
 void RowTable::setCurrentRow( int row, int col )
 {
-	int old_row = current_row;
-	current_row = row;
-	int old_col = current_col;
-	current_col = col;
-	updateCell( old_row, old_col );
-	updateCell( current_row, current_col, FALSE );
-	emit highlighted( current_row, current_col );
+        QTable::setCurrentCell(row, col);
 }
-
-
-void RowTable::keyPressEvent( QKeyEvent *e )
-{
-  if( m_colWidths.size() == 0 )
-    return;
-  if( current_row == -1 )
-    setCurrentRow( topCell(), current_col );
-  
-  int pageSize;
-  
-  switch( e->key() )
-    {
-      
-    case Key_Up:
-      if( current_row > 0 )
-	{
-	  setCurrentRow( current_row-1, current_col );
-	  if(    current_row < topCell()
-	      || current_row > lastRowVisible() )
-	    setTopCell( current_row );
-          emit cellMoved(current_row, current_col, e->state());
-	}
-      break;
-
-    case Key_Space:
-      if( current_row != -1 && current_col != -1 ) {
-        emit selected ( current_row, current_col, e->state() );
-      }
-      break;
-
-    case Key_Left:
-      if( current_col > KV_COL_ORG )
-	{
-	  setCurrentRow( current_row, current_col-1 );
-	  if( current_col < leftCell() )
-	    setLeftCell( current_col );
-          if (numCols() > 2)
-            for (int i = topCell(); i <= lastRowVisible(); i++)
-              updateCell(i, KV_COL_ORG);
-          emit cellMoved(current_row, current_col, e->state());
-	}
-      break;
-
-    case Key_Down:
-      if( current_row < (int) m_rowHeights.size()-1 )
-	{
-	  setCurrentRow( current_row + 1, current_col );
-	  if(current_row >= lastRowVisible() )
-	    setTopCell( topCell() + current_row - lastRowVisible() );
-          else if (current_row < topCell() )
-	    setTopCell( current_row);
-          emit cellMoved(current_row, current_col, e->state());
-	}
-      else {
-        if ((lastRowVisible() - topCell()+1 ) * cellHeight(0) > viewHeight() )
-          setTopCell(topCell()+1); // was only partially visible
-      }
-      break;
-      
-    case Key_Right:
-      if( current_col < (int) m_colWidths.size()-1 )
-	{
-	  setCurrentRow( current_row, current_col + 1 );
-	  if( current_col > lastColVisible() )
-	    setLeftCell( leftCell() + current_col - lastColVisible() );
-          if (numCols() > 2)
-            for (int i = topCell(); i <= lastRowVisible(); i++)
-              updateCell(i, KV_COL_ORG);
-          emit cellMoved(current_row, current_col, e->state());
-	}
-      break;
-
-    case Key_Next: {
-      int cl = current_col;
-      int cr = current_row;
-      setCurrentRow(-1, -1);
-      pageSize = lastRowVisible() - topCell();
-      if( rowIsVisible( cr ) )
-	setTopCell( QMIN( topCell() + pageSize, (int) m_rowHeights.size()-pageSize ) );
-      else
-	setTopCell( QMIN( cr + pageSize, (int) m_rowHeights.size()-pageSize ) );
-      setCurrentRow( QMIN( cr + pageSize, (int) m_rowHeights.size()-1 ), cl );
-      }
-      emit cellMoved(current_row, current_col, e->state());
-      break;
-      
-    case Key_Prior: {
-      int cl = current_col;
-      int cr = current_row;
-      setCurrentRow(-1, -1);
-      pageSize = lastRowVisible() - topCell();
-      if( rowIsVisible( cr ) )
-	setTopCell( QMAX( topCell() - pageSize, 0 ) );
-      else
-	setTopCell( QMAX( cr - pageSize, 0 ) );
-      setCurrentRow( QMAX( cr - pageSize, 0 ), cl );
-      emit cellMoved(current_row, current_col, e->state());
-      }
-      break;
-      
-    case Key_Return:
-    case Key_Enter:
-      if( current_row != -1 && current_col != -1 ) {
-	emit edited( current_row, current_col );
-      }
-      break;
-      
-	default:
-	  e->ignore();
-	  break;
-    }
-}
-
 
 void RowTable::setSelectColumn( int col )
 {
-	if( m_flags == SelectRow )
-		col = -1;
-	current_col = col;
-        setCurrentRow (current_row, current_col);;
+        setCurrentRow(currentRow(), col);;
 }
-
-
-int RowTable::selectColumn()
-{
-	return current_col;
-}
-
 
 bool RowTable::createMenuNames (vector<QString> forbidden_labels,
                                 vector<QString> names,

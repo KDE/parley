@@ -14,6 +14,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/12 19:15:05  arnold
     switched dialog files to qt-designer
 
@@ -29,9 +33,9 @@
 
 #include <kv_resource.h>
 #include <compat_2x.h>
-#include "../kvoctrain.h"
 
 #include <qlineedit.h>
+#include <qpushbutton.h>
 
 NumLessonDlg::NumLessonDlg
 (
@@ -53,7 +57,7 @@ NumLessonDlg::NumLessonDlg
       s.setNum (input);
       e_title->setText(s);
       setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
-      setCaption (kvoctrainApp::generateCaption(i18n("Assign lessons"), true));
+      setCaption( kapp->makeStdCaption(i18n("Assign lessons")));
 }
 
 

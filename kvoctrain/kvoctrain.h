@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 21:17:59  arnold
+    tested and fixed changes from previous cvs update
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -50,7 +53,7 @@
 
 // include files for KDE 
 #include <kapp.h> 
-#include <ktmainwindow.h>
+#include <kmainwindow.h>
 #include <kaccel.h>
 #include <kmenubar.h>
 #include <ktoolbar.h>
@@ -82,13 +85,13 @@ class KProgress;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class kvoctrainApp : public KTMainWindow 
+class kvoctrainApp : public KMainWindow 
 {
   Q_OBJECT
 
 public:
   /** construtor */
-  kvoctrainApp(const QString name = "");
+  kvoctrainApp(const QString &name = QString::null);
   /** destructor */
   ~kvoctrainApp();
   /** returns true, if running in query mode now */
@@ -110,12 +113,12 @@ public:
   void readOptions();
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
   * opened file by a temporary filename provided by KApplication.
-  * @see KTMainWindow#saveProperties
+  * @see KMainWindow#saveProperties
   */
   virtual void saveProperties(KConfig* );
   /** reads the session config file and restores the application's state including the last opened files and documents by reading the
   * temporary files saved by saveProperties()
-  * @see KTMainWindow#readProperties
+  * @see KMainWindow#readProperties
   */
   virtual void readProperties(KConfig* );
 
@@ -129,13 +132,14 @@ public:
 		*/
   void addRecentFile(const QString &file);
 
+  /** Whether the user has selected a range of items. **/
+  bool hasSelection();
+  
  signals:
   void progressChanged (kvoctrainDoc *, int curr_percent);
 
  public slots:
   void slotModifiedDoc(bool mod);
-  void slotVSliderTrackInfo (int value);
-  void slotVSliderPressed (bool state, int val);
 
   /** edit an entry */
   bool slotEditEntry(int row, int col);
@@ -157,7 +161,6 @@ public:
   void slotHeaderCallBack (int cmd_and_id);
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
-  void slotTagEntry(int row, int col, int key);
   void slotCellMoved(int row, int col, int keys);
   void showAboutDialog( void );
   void invokeHelp();
@@ -212,25 +215,11 @@ public:
   void slotFileSave();
   /** save a document under a different filename*/
   void slotFileSaveAs();
-  void removeProgressBar ();
-  void prepareProgressBar ();
-  void fillLessonBox(kvoctrainDoc *the_doc);
-  void loadDocProps(kvoctrainDoc *the_doc);
-  void saveDocProps(kvoctrainDoc *);
-  QFont::CharSet dlgMergeCharsets (
-   QFont::CharSet old_charset,
-   QFont::CharSet new_charset,
-   QString id);
-  static void checkFontInfo (QFont &font, QString &charsetname);
-  static bool substituteFontInfo (QFont &font, QString &charsetname);
-  static QString generateCaption (const QString &title, bool force_kde2 = false);
-  /** exits the application */
   void slotFileQuit();
   /* disconnect clipboard */
   void clipboardChanged();
   /** put the marked text/object into the clipboard*/
   void slotEditCopy();
-  static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *paste_order);
   void slotSmartSearchClip();
   void slotAppendRow();
   void slotRemoveRow();
@@ -247,6 +236,23 @@ public:
   void slotStatusHelpMsg(const QString &text);
   /** opens a file from the recent files menu */
   void slotFileOpenRecent(int id_);
+public:
+  void removeProgressBar ();
+  void prepareProgressBar ();
+  void fillLessonBox(kvoctrainDoc *the_doc);
+  void loadDocProps(kvoctrainDoc *the_doc);
+  void saveDocProps(kvoctrainDoc *);
+#if QT_VERSION < 300
+  QFont::CharSet dlgMergeCharsets (
+     QFont::CharSet old_charset,
+     QFont::CharSet new_charset,
+     QString id);
+  static void checkFontInfo (QFont &font, QString &charsetname);
+  static bool substituteFontInfo (QFont &font, QString &charsetname);
+#endif
+  static QString generateCaption (const QString &title, bool force_kde2 = false);
+  /** exits the application */
+  static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *paste_order);
 
 //  void doSM();
 
@@ -331,14 +337,10 @@ private:
   ProgressDlg     *pdlg;
   KProgress       *pbar;
   QLabel          *vslide_label;
-  int              tagCount;
-  int              tagLastRow,
-                   tagLastCol;
   QLabel          *pron_label;
   QLabel          *rem_label;
   QLabel          *type_label;
   QueryDlgBase    *queryDlg;
-  kvoctrainView::Resizer header_resizer;
   int              num_queryTimeout;
   int              query_cycle;
   int              query_num;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -34,15 +37,16 @@
 
 #include <qclipboard.h>
 #include <qprogressbar.h>
+#include <qtimer.h>
+
 #include <kstdaccel.h>
 #include <klineedit.h>
 #include <kcombobox.h>
 
-kvoctrainApp::kvoctrainApp(const QString name)
+kvoctrainApp::kvoctrainApp(const QString &name)
 {
-  tagCount = 0;
-  tagLastRow = -1;
-  tagLastCol = -1;
+  doc = 0;
+  view = 0;
   querymode = false;
   shiftActive = false;
   altActive = false;
@@ -82,15 +86,13 @@ kvoctrainApp::kvoctrainApp(const QString name)
   view->getTable()->setCurrentRow (cr, cc);
   view->getTable()->updateViewPort();
   slotCellMoved(cr, cc, 0);
-  tagLastRow = view->getTable()->currentRow();
-  tagLastCol = view->getTable()->currentCol();
 
   ///////////////////////////////////////////////////////////////////
   // enable bars dependend on config file setups
   if (!bViewToolbar)
-    enableToolBar(KToolBar::Hide,0);
+    toolBar()->hide();
   if (!bViewStatusbar)
-    enableStatusBar(KStatusBar::Hide);
+    statusBar()->hide();
 
   toolBar()->setBarPos(tool_bar_pos);
 
@@ -406,14 +408,13 @@ void kvoctrainApp::clearStatusBar()
 
 void kvoctrainApp::initView(const QString &name)
 { 
-  KApplication *app=kapp;
   view = 0;
 
   pdlg = new ProgressDlg (QString(), QString(),
                 kvoctrainApp::generateCaption("Loading vocabulary file"));
   pdlg->show();
 
-  if (name != "") {
+  if (!name.isEmpty()) {
     doc = new kvoctrainDoc(this, name, separator, &paste_order);
     if (doc) {
       connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
@@ -441,18 +442,10 @@ void kvoctrainApp::initView(const QString &name)
   else
     setCaption(kvoctrainApp::generateCaption(""), doc->isModified());
 
-  view = new kvoctrainView(app, doc, langset, gradecols, this);
+  view = new kvoctrainView(doc, langset, gradecols, this);
 
-  view->setResizer (header_resizer);
   view->getTable()->setFont(tablefont);
-//  view->getTable()->updateViewPort();
-  connect( view, SIGNAL(vSliderTrack(int)),
-           this, SLOT(slotVSliderTrackInfo (int)));
-  connect( view, SIGNAL(vSliderPressed(bool, int)),
-           this, SLOT(slotVSliderPressed (bool, int)));
-  setView(view);
-  connect(view->getTable(), SIGNAL(cellMoved(int, int, int)),
-          this, SLOT(slotTagEntry(int, int, int)) );
+  setCentralWidget(view);
 
   ////////////////////////////////////////////////////////////////////
   // prepare dock window in panel

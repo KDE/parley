@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -38,7 +41,6 @@
 
 class QGridLayout;
 class QFrame;
-class KHeader;
 class KApplication;
 class kvoctrainExpr;
 class kvoctrainTable;
@@ -48,7 +50,6 @@ class GradeCols;
 
 #include <qwidget.h>
 #include "rowtable.h"
-#include "header.h"
 #include "kvoctraindoc.h"
 #include "langset.h"
 
@@ -62,7 +63,7 @@ class kvoctrainView : public QWidget
 
  public:
   /** Constructor for the main view */
-  kvoctrainView(KApplication* a,kvoctrainDoc* doc,
+  kvoctrainView(kvoctrainDoc* doc,
                 const LangSet &ls, const GradeCols &gradecols,
                 kvoctrainApp *parent = 0);
 
@@ -73,39 +74,17 @@ class kvoctrainView : public QWidget
   void setView (kvoctrainDoc *doc, const LangSet &ls, const GradeCols &gc);
 
   kvoctrainTable* getTable() { return lb_list; }
-  void setHeaderProp (int id, const QString &name, const QString &pixfile);
-
-  enum Resizer { Automatic, Fixed, Percent};
-
-  void setResizer (Resizer res) { header_resizer = res; }
-                                              
-  char getHeaderAccel(int i) { return h_list->getHeaderAccel(i); }
-
-  QPoint getAbsHeaderPos(int i) { return h_list->getAbsHeaderPos(i); }
-
- signals:
-  void vSliderTrack(int val);
-  void vSliderPressed(bool state, int val);
-
- public slots:
-
-  void slotVSliderChanged (int val);
-  void slotVSliderPressed (bool state, int val);
-
-  /** working menu table */
-  void popupMenu();
+  void setHeaderProp (int id, const QString &name, const QString &pixfile=QString::null);
 
  private:
 
  protected:
 
   QFrame          *f_list;
-  KHeader         *h_list;
   kvoctrainTable  *lb_list;
   bool             autoResize;
   kvoctrainDoc    *the_doc;
   QGridLayout     *list_layout;
-  Resizer          header_resizer;
   kvoctrainApp    *parent;
 
   /** resizes table when frame is resized */
