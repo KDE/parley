@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -156,7 +160,7 @@ void kvoctrainApp::slotEditCopy()
 
   RowTable *table = view->getTable();
 
-  for (int j = table->numRows()-1; j >= 0; j--)
+  for (int j = table->numRows()-1; j >= 0; j--) {
     if (table->isRowSelected(j))
     {
       kvoctrainExpr *expr = table->getRow(j);
@@ -177,7 +181,9 @@ void kvoctrainApp::slotEditCopy()
         }
       }
     }
-
+    if (!exp.isEmpty())
+      exp += '\n';
+  }
   if (!exp.isEmpty()) {
 #if defined(_WS_X11_)
 //    disconnect(QApplication::clipboard(),SIGNAL(dataChanged()),this,0);
