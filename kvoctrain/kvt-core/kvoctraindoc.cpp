@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.16  2002/01/19 11:24:52  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -163,7 +166,6 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
 
 
   if (!mainfile.isEmpty()) {
-    FileType ft = detectFT(filename);
     QFile f( filename );
     QFileInfo fi (f);
     bool isfile = fi.isFile() || fi.isSymLink();
@@ -174,6 +176,8 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
       KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
       return;
     }
+
+    FileType ft = detectFT(filename);
 
     bool read = false;
     while (!read) {
