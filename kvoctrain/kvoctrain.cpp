@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                       main part of kvoctrain
 
     -----------------------------------------------------------------------
@@ -1061,7 +1059,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
 
    if (lang_id >= (int) langset.size())
      return;
-
+   kdDebug() << "I'm here" << endl;
    doc->appendLang("");
    int num = doc->numEntries()-1;
    for (int i = 0; i < (int) num; i++) {
@@ -1292,9 +1290,6 @@ void kvoctrainApp::aboutToShowVocabAppendLanguage()
     }
 
     add_m->insertItem(i18n("Another Language..."), (0xFF << 16) | IDH_APPEND);
-
-    connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
-    connect (add_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   }
 }
 
@@ -1372,9 +1367,6 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
       else
         remove_m->insertItem(doc->getIdent(i), (i << 16) | IDH_REMOVE);
     }
-
-    connect (remove_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-    connect (remove_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   }
 }
 

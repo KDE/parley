@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                    initialisation part of kvoctrain
 
     -----------------------------------------------------------------------
@@ -181,12 +179,16 @@ void kvoctrainApp::initActions()
 
   vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), QPixmap(locate("data", "kvoctrain/append-col.xpm")), 0, actionCollection(), "vocab_append_language");
   connect(vocabAppendLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
+  connect (vocabAppendLanguage->popupMenu(), SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
+  connect (vocabAppendLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
   vocabSetLanguage = new KSelectAction(i18n("Set &Language"), QPixmap(locate("data", "kvoctrain/flags.xpm")), 0, actionCollection(), "vocab_set_language");
   connect(vocabSetLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
   vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), QPixmap(locate("data", "kvoctrain/delete-col.xpm")), 0, actionCollection(), "vocab_remove_language");
   connect(vocabRemoveLanguage->popupMenu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
+  connect(vocabRemoveLanguage->popupMenu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
+  connect(vocabRemoveLanguage->popupMenu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
   vocabDocumentProperties = new KAction(i18n("Document &Properties..."), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
   vocabDocumentProperties->setWhatsThis(i18n("Edits document properties"));
