@@ -254,7 +254,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
    }
    else {
      col -= KV_EXTRA_COLS;
-     for (int ts = 0; ts < tabsel.size(); ++ts) {
+     for (uint ts = 0; ts < tabsel.size(); ++ts) {
        for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
          kvoctrainExpr *expr = doc->getEntry(er);
 
@@ -299,7 +299,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
      }
      entryDlg->setModified(false);
      doc->setModified(true);
-     for (int ts = 0; ts < tabsel.size(); ++ts)
+     for (uint ts = 0; ts < tabsel.size(); ++ts)
        for (int r = tabsel[ts].topRow(); r <= tabsel[ts].bottomRow(); ++r)
          for (int c = 0; c < view->getTable()->numCols(); ++c)
            view->getTable()->updateCell(r, c);
@@ -578,7 +578,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
    view->getTable()->updateCell(row, col);
    vector<QTableSelection> tabsel;
    if (hasSel) {
-     for (unsigned i = 0; i < view->getTable()->numSelections(); ++i)
+     for (int i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
    }
    entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
@@ -1337,7 +1337,7 @@ void kvoctrainApp::aboutToShowVocabulary() {
     voc_menu->removeItem (ID_SET_LANG);
     QPopupMenu *set_m = new QPopupMenu();
 
-    for (unsigned header = 0; header < doc->numLangs(); ++header ) {
+    for (int header = 0; header < doc->numLangs(); ++header ) {
       // select one of the available languages for the column
       QPopupMenu *langs_m = new QPopupMenu();
       // hack: ID => header-id + language
