@@ -65,7 +65,6 @@
 #define       CFG_PASTEORDER           "PasteOrder"
 #define       CFG_ENTRIESLESSON        "EntriesPerLesson"
 #define       CFG_HEADER_RESIZER       "HeaderResizer"
-#define       CFG_FIRST_TIME           "FirstTime"
 #define       CFG_AUTOSAVEOPT          "AutoSaveOptions"
 #define       CFG_ENTRYAUTOAPPLY       "EntryAutomaticApply"
 

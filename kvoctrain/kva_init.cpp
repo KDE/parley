@@ -422,10 +422,4 @@ void kvoctrainApp::initView(const QString &name)
   ////////////////////////////////////////////////////////////////////
   // prepare dock window in panel
   slotStatusMsg(IDS_DEFAULT);
-
-  KConfig *config = KApplication::kApplication()->config();
-  config->setGroup(CFG_GENERAL);
-  bool first_time = config->readNumEntry(CFG_FIRST_TIME, 1);
-  if (first_time)
-   /* showAboutDialog() */ ;
 }
