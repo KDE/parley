@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2002/03/20 23:00:03  mueller
+    it seems to compile fine without strstream.h
+
     Revision 1.19  2002/02/24 09:35:31  arnold
     fixed crash when saving without perms
 
@@ -111,11 +114,7 @@ using namespace std;
 #include <iostream>
 #include <fstream.h>
 
-#ifdef __FreeBSD__
 #include <float.h>
-#else
-#include <values.h>
-#endif
 
 #include "kvoctraincore.h"
 
