@@ -14,6 +14,7 @@ todo post-release ?
   - translator hint iso names "language name aa:"
   - quickhelp/tooltipps
   - entry dialog kleiner
+  - Kontexte in Usagemanager.cpp: P. npr.
 
 /*
   - triangle "menu button" in table header buttons

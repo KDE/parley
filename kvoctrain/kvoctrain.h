@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2001/12/30 18:41:38  arnold
+    improved reaction upon 'empty' query selections
+
     Revision 1.19  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -152,9 +155,6 @@ public:
   kvoctrainApp(const QString &name = QString::null);
   /** destructor */
   ~kvoctrainApp();
-  /** returns true, if running in query mode now */
-  bool isQueryMode() const
-    { return querymode; }
   /** initMenuBar creates the menu_bar and inserts the menuitems */
   void initMenuBar();
   /** this creates the toolbars. Change the toobar look and add new toolbars in this
@@ -253,7 +253,7 @@ public:
   void slotRestartQuery();
   void slotStartTypeQuery(int col, QString type);
   void slotStartPropertyQuery(int col, QueryType property);
-  void slotStartQuery(QString trans, QString org);
+  void slotStartQuery(QString trans, QString org, bool create_new);
 
   void slotTimeOutRandomQuery(QueryDlgBase::Result res);
   void slotTimeOutMultipleChoice(QueryDlgBase::Result res);

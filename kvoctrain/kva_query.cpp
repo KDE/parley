@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/04 13:17:06  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.14  2001/12/30 18:41:38  arnold
     improved reaction upon 'empty' query selections
 
@@ -241,6 +244,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 
   // FIXME: keep track of knowledge ?
 
+  doc->setModified();
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
@@ -256,14 +260,12 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     break;
 
     case QueryDlgBase::Unknown :
-//      doc->setModified();
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[random_query_nr]);
       random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
     break;
 
     case QueryDlgBase::Known :
-//      doc->setModified();
       num_queryTimeout = 0;
       query_num--;
 
@@ -459,6 +461,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
   // FIXME: keep track of knowledge ?
 
+  doc->setModified();
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
@@ -474,14 +477,12 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     break;
 
     case QueryDlgBase::Unknown :
-//      doc->setModified();
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[random_query_nr]);
       random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
     break;
 
     case QueryDlgBase::Known :
-//      doc->setModified();
       num_queryTimeout = 0;
       query_num--;
 
@@ -611,11 +612,15 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotRestartQuery()
 {
-  slotStartQuery(act_query_trans, act_query_org);
+  slotStartQuery(act_query_trans, act_query_org, false);
+  if (random_expr1.size() != 0) {
+    queryList.insert(queryList.begin(), random_expr1);
+    random_expr1.clear();
+  }
 }
 
 
-void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
+void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool create_new)
 {
   slotStatusMsg(i18n("Starting random query..."));
   querymode = false;
@@ -638,8 +643,10 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
   prepareProgressBar();
   QApplication::setOverrideCursor( waitCursor );
   random_expr2.clear();
-  queryList = querymanager.select (doc, act_lesson, oindex, tindex,
-                                   swap_querydir, block, expire);
+
+  if (create_new || queryList.size() == 0)
+    queryList = querymanager.select (doc, act_lesson, oindex, tindex,
+                                     swap_querydir, block, expire);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -728,6 +735,11 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang)
                this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
       mcQueryDlg->exec();
   }
+  else {
+    kdError() << "kvoctrainApp::slotStartQuery: unknown type\n";
+    slotStopQuery(true);
+    return;
+  }
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -748,6 +760,8 @@ void kvoctrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
 
 void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 {
+  doc->setModified();
+
   int tindex = view->getTable()->findIdent(act_query_trans);
   int oindex = view->getTable()->findIdent(act_query_org);
   kvoctrainExpr *exp = random_expr1[random_query_nr].exp;

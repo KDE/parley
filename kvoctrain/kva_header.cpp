@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/29 10:39:46  arnold
+    merged fixes from POST-branch
+
     Revision 1.11  2001/12/24 14:28:44  arnold
     fixed sorting
 
@@ -470,13 +473,13 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     case ID_RESUME_QUERY:
-//      slotTimeOutRandomQuery();
-//      slotRestartRandomQuery();
+      queryType = QT_Random;
+      slotRestartQuery();
     break;
 
     case ID_RESUME_MULTIPLE:
-//      slotStartMultipleChoice();
-//      slotTimeOutMultipleChoice();
+      queryType = QT_Multiple;
+      slotRestartQuery();
     break;
 
     case IDH_REMOVE: {
@@ -508,7 +511,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       randomQueryDlg = 0;
       queryType = QT_Random;
       slotStartQuery(header1 ? doc->getIdent(header1) : doc->getOriginalIdent(),
-                     header2 ? doc->getIdent(header2) : doc->getOriginalIdent());
+                     header2 ? doc->getIdent(header2) : doc->getOriginalIdent(), true);
     break;
 
     case IDH_START_MULTIPLE:
@@ -516,7 +519,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       mcQueryDlg = 0;
       queryType = QT_Multiple;
       slotStartQuery(header1 ? doc->getIdent(header1) : doc->getOriginalIdent(),
-                     header2 ? doc->getIdent(header2) : doc->getOriginalIdent());
+                     header2 ? doc->getIdent(header2) : doc->getOriginalIdent(), true);
     break;
 
     case IDH_START_VERB: {

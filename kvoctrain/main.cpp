@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/01/04 13:17:07  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.16  2001/12/29 10:40:03  arnold
     merged fixes from POST-branch
 
@@ -136,7 +139,7 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
   aboutData.addCredit("Andreas Neuper",
                       I18N_NOOP("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
 
-  aboutData.addCredit("The whole KDE team",
+  aboutData.addCredit(I18N_NOOP("The whole KDE team"),
                       I18N_NOOP("Many small enhancements"));
 
   KCmdLineArgs::init( argc, argv, &aboutData );
@@ -160,23 +163,11 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
     while (KMainWindow::canBeRestored(n)){
       kva = new kvoctrainApp;
       kva->restore(n);
-
-      kva->hide();
-      if (kva->isQueryMode()) {
-        kva->slotRestartQuery();   // query was running at last exit
-// FIXME: remove querymode stuff?
-        if (!kva->isQueryMode()) { // query mode could not re-start
-          kva->show();
-        }
-      }
-      else {
-        kva->show();
-      }
+      kva->show();
       n++;
     }
   }
   else {
-
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     if ( args && args->count() == 1 )
        kva = new kvoctrainApp (args->arg(0));

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/12/26 15:13:19  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.4  2001/11/10 22:30:21  arnold
     removed compatibility for kde1
 
@@ -46,6 +49,7 @@
 #include <kpopupmenu.h>
 #include <kapplication.h>
 #include <klocale.h>
+#include <kdebug.h>
 
 #include <kvoctraindoc.h>
 
@@ -294,7 +298,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
 
   if (col == TB_FGRADE) {
     if (row >= (int) fsc.size() ) {
-      cerr << "row >= fsc.size()" << endl;
+      kdError() << "row >= fsc.size()" << endl;
       return;
     }
     else
@@ -302,7 +306,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
   }
   else if (col == TB_TGRADE) {
     if (row >= (int) tsc.size() ) {
-      cerr << "row >= tsc.size()" << endl;
+      kdError() << "row >= tsc.size()" << endl;
       return;
     }
     else

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:00  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -29,6 +32,8 @@
  ***************************************************************************/
 
 #include "LineList.h"
+
+#include <kdebug.h>
 
 LineList::LineList (const QString &multilines)
 {
@@ -76,7 +81,7 @@ QString LineList::getLine (int index) const
    if (index < (int) multilines.size())
      return multilines[index];
    else {
-     cerr << "LineList::getLine: index too big";
+     kdError() << "LineList::getLine: index too big";
      return "";
    }
 }

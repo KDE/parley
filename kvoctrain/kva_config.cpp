@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/12/13 18:39:09  arnold
+    added phonetic alphabet stuff
+
     Revision 1.12  2001/11/25 11:11:02  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -343,18 +346,8 @@ void kvoctrainApp::readProperties(KConfig *config)
     setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   }
 
-  if (isQueryMode()) {
-    slotStartQuery(act_query_trans, act_query_org); // query was running at last exit
-    if (!isQueryMode()) {                           // query mode could not start
-      show();
-      kapp->setTopWidget(this);
-      kapp->setMainWidget( this );
-    }
-  }
-  else {
-    show();
-    kapp->setTopWidget(this);
-    kapp->setMainWidget( this );
-  }
+  show();
+  kapp->setTopWidget(this);
+  kapp->setMainWidget( this );
 }		
 
