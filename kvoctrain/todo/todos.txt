@@ -6,7 +6,7 @@ $Id$
 tofix now:
   - percentage %x done in query-statusbar
   - spot2 utf8
-  - multiple selections in main view
+  - smart appending
 
 todo post-release ?
   - copy cell / copy row

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
+            <width>576</width>
             <height>209</height>
         </rect>
     </property>
@@ -62,7 +62,7 @@
                     </property>
                     <property stdset="1">
                         <name>text</name>
-                        <string>Level &amp;1</string>
+                        <string>Level &amp;1:</string>
                     </property>
                     <property>
                         <name>buddy</name>
@@ -84,7 +84,7 @@
                     </property>
                     <property stdset="1">
                         <name>text</name>
-                        <string>Level &amp;2</string>
+                        <string>Level &amp;2:</string>
                     </property>
                     <property>
                         <name>buddy</name>
@@ -106,7 +106,7 @@
                     </property>
                     <property stdset="1">
                         <name>text</name>
-                        <string>Level &amp;3</string>
+                        <string>Level &amp;3:</string>
                     </property>
                     <property>
                         <name>buddy</name>

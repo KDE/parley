@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.40  2002/01/27 07:17:44  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.39  2002/01/26 15:51:08  arnold
     fixes due to new entry dialog
 
@@ -279,6 +282,7 @@ void kvoctrainApp::slotEditRow()
 
 void kvoctrainApp::slotEditCallBack(int res)
 {
+  cout << "secb\n";
   switch (res) {
     case EntryDlg::EditCancel:
       removeEntryDlg();
@@ -320,6 +324,7 @@ void kvoctrainApp::slotEditCallBack(int res)
 
 void kvoctrainApp::commitEntryDlg(bool force)
 {
+  cout << "ced\n";
    if (entryDlg == 0) {
      kdError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
      return;
@@ -466,7 +471,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
      lesson = QMAX (0, lessons->count()-1);
 
    if (col < KV_EXTRA_COLS) {
-     title = i18n("Edit general properties");
+     title = i18n("Edit General Properties");
      col -= KV_EXTRA_COLS;
      entryDlg = new EntryDlg (
                     this,
@@ -574,6 +579,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
 void kvoctrainApp::removeEntryDlg()
 {
+  cout << "red\n";
   if (entryDlg != 0) {
     autoentryApply = entryDlg->autoApply();
     commitEntryDlg(false);
@@ -603,6 +609,7 @@ void kvoctrainApp::slotEditEntry (int row, int col)
 
 void kvoctrainApp::setDataEntryDlg (int row, int col)
 {
+  cout << "sded\n";
    if (entryDlg == 0) {
      kdError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
      return;
@@ -613,14 +620,19 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
 
    QString text, lang, title;
 
-   int lesson = doc->getEntry(row)->getLesson();
+   kvoctrainExpr *expr = doc->getEntry(row);
+
+   if (expr == 0)
+     return; // entry delete in the meantime
+
+   int lesson = expr->getLesson();
    if (lesson >= lessons->count())
      lesson = QMAX (0, lessons->count()-1);
 
    bool hasSel = hasSelection();
 
    if (col < KV_EXTRA_COLS) {
-     title = i18n("Edit general properties");
+     title = i18n("Edit General Properties");
      col -= KV_EXTRA_COLS;
      entryDlg->setData(doc,
                        hasSel,

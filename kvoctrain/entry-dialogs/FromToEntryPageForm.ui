@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>556</width>
+            <width>552</width>
             <height>292</height>
         </rect>
     </property>
@@ -127,7 +127,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>False fr&amp;iend</string>
+                                <string>False fr&amp;iend:</string>
                             </property>
                             <property>
                                 <name>buddy</name>
@@ -142,7 +142,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Grade</string>
+                                <string>&amp;Grade:</string>
                             </property>
                             <property>
                                 <name>buddy</name>

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
+            <width>568</width>
             <height>328</height>
         </rect>
     </property>
@@ -85,7 +85,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;Tense</string>
+                                <string>&amp;Tense:</string>
                             </property>
                             <property>
                                 <name>buddy</name>
@@ -231,7 +231,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;male</string>
+                                <string>&amp;male:</string>
                             </property>
                             <property>
                                 <name>buddy</name>
@@ -246,7 +246,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;female</string>
+                                <string>&amp;female:</string>
                             </property>
                             <property>
                                 <name>buddy</name>
@@ -261,7 +261,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;neutral</string>
+                                <string>&amp;neutral:</string>
                             </property>
                             <property>
                                 <name>buddy</name>

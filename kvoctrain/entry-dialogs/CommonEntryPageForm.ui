@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>540</width>
+            <width>536</width>
             <height>445</height>
         </rect>
     </property>
@@ -25,6 +25,10 @@
     <property stdset="1">
         <name>caption</name>
         <string>-</string>
+    </property>
+    <property>
+        <name>toolTip</name>
+        <string>Invokes lesson input dialog</string>
     </property>
     <vbox>
         <property stdset="1">
@@ -195,6 +199,10 @@
                                 <name>text</name>
                                 <string>-</string>
                             </property>
+                            <property>
+                                <name>toolTip</name>
+                                <string>Invokes input dialog for lessons</string>
+                            </property>
                         </widget>
                         <widget row="2"  column="2" >
                             <class>QPushButton</class>
@@ -219,6 +227,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>-</string>
+                            </property>
+                            <property>
+                                <name>toolTip</name>
+                                <string>Invokes dialog page with characters from phonetic alphabet</string>
                             </property>
                         </widget>
                     </grid>
@@ -330,6 +342,10 @@
                                 <name>text</name>
                                 <string>-</string>
                             </property>
+                            <property>
+                                <name>toolTip</name>
+                                <string>Invokes input dialog for word types</string>
+                            </property>
                         </widget>
                     </hbox>
                 </widget>
@@ -382,6 +398,10 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>-</string>
+                            </property>
+                            <property>
+                                <name>toolTip</name>
+                                <string>Invokes input dialog for usage labels</string>
                             </property>
                         </widget>
                         <widget row="0"  column="1"  rowspan="2"  colspan="1" >

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2002/01/04 17:28:51  arnold
+    fixed resuming a query
+
     Revision 1.17  2002/01/04 13:17:07  mhunter
     CVS_SILENT Corrected typographical errors
 
@@ -139,23 +142,12 @@ static const char *version = KVOCTRAIN_VERSION_STRING;
   aboutData.addCredit("Andreas Neuper",
                       I18N_NOOP("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
 
-  aboutData.addCredit(I18N_NOOP("The whole KDE team"),
+  aboutData.addCredit(I18N_NOOP("KDE Team"),
                       I18N_NOOP("Many small enhancements"));
 
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;
-
-/*
-    bool query = false;
-    for(int i = 0; i < argc; i++){
-
-        if(strcmp(argv[i],"--query") == 0){
-	    query = true;
-	}
-	
-    }
-*/
 
   kvoctrainApp *kva = 0;
   if (app.isRestored()) {

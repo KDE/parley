@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.25  2002/01/30 09:57:06  binner
+    "All files" is "*", not "*.*"
+
     Revision 1.24  2002/01/27 07:17:44  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -128,7 +131,7 @@
 #include "common-dialogs/ProgressDlg.h"
 
 #define PATTERN_ALL  "*"            "|All files (*)\n"
-#define PATTERN_ML   "*." KVTML_EXT   "|KVoctrain Markup (*.kvtml)\n"
+#define PATTERN_ML   "*." KVTML_EXT   "|KVocTrain Markup (*.kvtml)\n"
 #define PATTERN_LEX  "*." VT5_LEX_EXT "|Vocabulary Trainer 5.0 (*.lex)\n"
 #define PATTERN_VL   "*." KVL_EXT     "|KVoclearn (*.vl)\n"
 #define PATTERN_QVO  "*." QVOCAB_EXT  "|QVocab (*.qvo)\n"

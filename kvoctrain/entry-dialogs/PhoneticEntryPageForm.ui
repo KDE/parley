@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
+            <width>572</width>
             <height>480</height>
         </rect>
     </property>
@@ -24,7 +24,7 @@
     </property>
     <property stdset="1">
         <name>caption</name>
-        <string>Select characters from the phonetic alphabet</string>
+        <string>Select Characters from the Phonetic Alphabet</string>
     </property>
     <grid>
         <property stdset="1">

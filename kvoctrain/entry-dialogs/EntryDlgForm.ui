@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>612</width>
+            <width>604</width>
             <height>473</height>
         </rect>
     </property>
@@ -116,6 +116,10 @@
                         <name>text</name>
                         <string>-</string>
                     </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Places the main window and this dialog one upon another</string>
+                    </property>
                 </widget>
                 <widget>
                     <class>QPushButton</class>
@@ -133,6 +137,10 @@
                     <property stdset="1">
                         <name>text</name>
                         <string>-</string>
+                    </property>
+                    <property>
+                        <name>toolTip</name>
+                        <string>Places the main window and this dialog side by side</string>
                     </property>
                 </widget>
                 <widget>
