@@ -74,9 +74,6 @@
                             <property name="text">
                                 <string>&amp;Use colors</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+U</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
                             </property>
@@ -152,9 +149,6 @@
                             <property name="text">
                                 <string>&amp;7</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+7</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 7</string>
                             </property>
@@ -168,9 +162,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;5</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+5</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 5</string>
@@ -197,9 +188,6 @@
                             <property name="text">
                                 <string>&amp;4</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+4</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 4</string>
                             </property>
@@ -213,9 +201,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;3</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+3</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 3</string>
@@ -231,9 +216,6 @@
                             <property name="text">
                                 <string>&amp;6</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+6</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 6</string>
                             </property>
@@ -247,9 +229,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;2</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+2</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 2</string>
@@ -287,9 +266,6 @@
                             <property name="text">
                                 <string>&amp;1</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+1</string>
-                            </property>
                             <property name="toolTip" stdset="0">
                                 <string>Color for the grade 1</string>
                             </property>
@@ -303,9 +279,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;N</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+N</string>
                             </property>
                         </widget>
                         <widget class="QLabel" row="8" column="0">
@@ -361,9 +334,6 @@
                     <property name="text">
                         <string>C&amp;hange...</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+H</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Use this Change button to choose another font to display the characters from the international phonetic alphabet </string>
                     </property>
@@ -385,9 +355,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Change...</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Click on Change to choose another font for the main view</string>
