@@ -1,9 +1,12 @@
 KDE_LANG = en
 KDE_DOCS = AUTO
 
-check:
-	"meinproc --check index.docbook"
+check-local:
+	$(MEINPROC) --check index.docbook
 
+convert-local:
+	$(MEINPROC) $(srcdir)/index.docbook
+                	
 # needs pngcrush which reduces files size about 20%
 # brute-crush takes _very_ long time
 crush:
