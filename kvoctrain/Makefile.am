@@ -141,4 +141,5 @@ messages:
 
 messages-local:
 	$(MAKE) messages podir=. XGETTEXT="xgettext -kI18N_NOOP"
+	iconv -futf-8 -tutf-16 kvoctrain.pot > /dev/null
 

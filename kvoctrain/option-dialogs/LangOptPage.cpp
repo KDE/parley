@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/29 11:16:43  arnold
+    fixed language names
+
     Revision 1.17  2001/12/29 10:40:45  arnold
     merged fixes from POST-branch
 
@@ -220,7 +223,7 @@ KV_ISO639_Code kv_iso639_1[] = {
 	{{"mt"}, {"mlt"}, {I18N_NOOP("Maltese")}},
 	{{"my"}, {"bur"}, {I18N_NOOP("Burmese")}},
 	{{"na"}, {"nau"}, {I18N_NOOP("Nauru")}},
-	{{"nb"}, {"nob"}, {I18N_NOOP("Bokmål")}},
+	{{"nb"}, {"nob"}, {I18N_NOOP("BokmÃ¥l")}},
 	{{"nd"}, {"nde"}, {I18N_NOOP("Ndebele, North")}},
 	{{"ne"}, {"nep"}, {I18N_NOOP("Nepali")}},
 	{{"ng"}, {"ndo"}, {I18N_NOOP("Ndonga")}},
@@ -284,7 +287,7 @@ KV_ISO639_Code kv_iso639_1[] = {
 	{{"ur"}, {"urd"}, {I18N_NOOP("Urdu")}},
 	{{"uz"}, {"uzb"}, {I18N_NOOP("Uzbek")}},
 	{{"vi"}, {"vie"}, {I18N_NOOP("Vietnamese")}},
-	{{"vo"}, {"vol"}, {I18N_NOOP("Volapük")}},
+	{{"vo"}, {"vol"}, {I18N_NOOP("VolapÃ¼k")}},
 	{{"wo"}, {"wol"}, {I18N_NOOP("Wolof")}},
 	{{"xh"}, {"xho"}, {I18N_NOOP("Xhosa")}},
 	{{"yi"}, {"yid"}, {I18N_NOOP("Yiddish")}},
