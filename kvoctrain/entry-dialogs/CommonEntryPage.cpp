@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/01/07 17:55:19  arnold
+    fixed typo
+
     Revision 1.16  2002/01/07 17:22:05  arnold
     fixed i18n() issues
 
@@ -424,7 +427,7 @@ void CommonEntryPage::invokeUsageDlg()
   QTabDialog usageOpt(0, "", true);
   usageOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   usageOpt.setCaption (kapp->makeStdCaption(i18n("usage (area) of an expression",
-                                                 "Edit User Defined Usage Labels")));
+                                                 "Edit User-Defined Usage Labels")));
   UsageOptPage *usageOptPage
     = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
   usageOpt.addTab( usageOptPage, _DocDlg_USAGES);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/07 17:54:59  arnold
+    fixed typo
+
     Revision 1.8  2002/01/07 17:21:34  arnold
     fixed i18n() issues
 
@@ -199,7 +202,7 @@ void UsageOptPage::slotDeleteUsage()
          if (ul.find(t) >= 0 ) {
            KMessageBox::information(this,
                      i18n("usage (area) of an expression",
-                          "This user defined usage label could not be deleted\n"
+                          "This user-defined usage label could not be deleted\n"
                           "because it is in use."),
                      kapp->makeStdCaption(i18n("usage (area) of an expression",
                                                "Deleting a usage label")));
