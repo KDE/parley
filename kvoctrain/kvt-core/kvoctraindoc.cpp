@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2002/02/24 09:35:31  arnold
+    fixed crash when saving without perms
+
     Revision 1.18  2002/02/18 15:41:03  arnold
     fixed crash when loading non-existent file
 
@@ -105,9 +108,8 @@
 #include <vector>
 using namespace std;
 
-#include <iostream.h>
+#include <iostream>
 #include <fstream.h>
-#include <strstream.h>
 
 #ifdef __FreeBSD__
 #include <float.h>
