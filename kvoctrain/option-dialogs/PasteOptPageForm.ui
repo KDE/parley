@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>PasteOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -50,7 +50,7 @@
                         <string>&amp;Separator:</string>
                     </property>
                     <property name="buddy" stdset="0">
-                        <cstring>d_sep</cstring>
+                        <cstring>kcfg_separator</cstring>
                     </property>
                 </widget>
                 <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="3">

@@ -150,9 +150,6 @@
                     <property name="text">
                         <string>&amp;Reset</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+R</string>
-                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
