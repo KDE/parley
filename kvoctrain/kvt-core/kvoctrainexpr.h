@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/09 10:40:26  arnold
     removed ability to display a different font for each column
 
@@ -47,12 +50,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#pragma interface
-
 #ifndef KVOCTRAINEXPR_H
 #define KVOCTRAINEXPR_H
-
-# include <qnamespace.h>
 
 #define KV_MAX_GRADE       7
 #define KV_MIN_GRADE       0
@@ -111,6 +110,7 @@
 #include <qstring.h>
 #include <qcolor.h>
 #include <qpixmap.h>
+# include <qnamespace.h>
 
 #include <GrammerManager.h>
 #include <MultipleChoice.h>

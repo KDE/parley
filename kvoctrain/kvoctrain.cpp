@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.14  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -931,7 +934,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
 
    if (lang_id == 0xFF) {
      QString msg = i18n("To append a new language, which is not listed in\n"
-                        "the submenu, you must first add its data in the\n"
+                        "the submenu, you must first add it\'s data in the\n"
                         "general options dialog.\n"
                         "\n"
                         "Should this dialog be invoked now ?\n");
@@ -1230,7 +1233,6 @@ void kvoctrainApp::aboutToShowVocabulary() {
         add_m->insertItem(names[i],
           (i << 16) | IDH_APPEND);
     }
-    add_m->insertItem(add_m);
     add_m->insertItem(i18n("Another language"), (0xFF << 16) | IDH_APPEND);
 
     connect (add_m, SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
