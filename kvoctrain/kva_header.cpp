@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/01/04 17:28:51  arnold
+    fixed resuming a query
+
     Revision 1.12  2001/12/29 10:39:46  arnold
     merged fixes from POST-branch
 
@@ -492,7 +495,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
           && !langset.longId(i).isEmpty() )
         name = langset.longId(i);
 
-      QString format = i18n("You are about to delete a language completely.\n\n"
+      QString format = i18n("You are about to delete a language completely.\n"
                             "Do you really want to delete \"%1\" ?");
       msg = format.arg(name);
 

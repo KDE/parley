@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2002/01/02 11:38:27  arnold
+    fixed displaying of modified doc
+
     Revision 1.19  2001/12/30 10:36:04  arnold
     fixed and improved dialogs
 
@@ -738,7 +741,7 @@ void kvoctrainApp::slotFileSaveAs()
 
     QFile file (name);
     if (file.exists() ) {
-      QString format = i18n("Your selected file exists already.\n\n"
+      QString format = i18n("Your selected file exists already.\n"
                             "Do you want to overwrite \"%1\"?");
       QString msg = format.arg(name);
 
@@ -794,7 +797,7 @@ void kvoctrainApp::slotSaveSelection ()
 
     QFile file (name);
     if (file.exists() ) {
-      QString format = i18n("Your selected file exists already.\n\n"
+      QString format = i18n("Your selected file exists already.\n"
                             "Do you want to overwrite \"%1\"?");
       QString msg = format.arg(name);
 

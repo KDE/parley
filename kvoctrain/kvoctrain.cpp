@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.33  2002/01/07 17:54:37  arnold
+    fixed typo
+
     Revision 1.32  2002/01/07 17:19:44  arnold
     fixed i18n() issues
 
@@ -1022,11 +1025,10 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
    int lang_id = (header_and_cmd >> 16) & 0xFF;
 
    if (lang_id == 0xFF) {
-     QString msg = i18n("To append a new language which is not listed in\n"
-                        "the submenu, you must first add its data in the\n"
+     QString msg = i18n("To append a new language which is not listed in "
+                        "the submenu, you must first add its data in the "
                         "general options dialog.\n"
-                        "\n"
-                        "Should this dialog be invoked now ?\n");
+                        "Should this dialog be invoked now ?");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
                   kapp->makeStdCaption("")));

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.13  2001/12/22 09:02:55  arnold
     fixed version string handling
 
@@ -78,8 +81,8 @@
 #include <kapplication.h>
 #include <klocale.h>
 #include <kdebug.h>
+#include <kmessagebox.h>
 
-#include <qmessagebox.h>
 #include <qfile.h>
 #include <qfileinfo.h>
 #include <qtextstream.h>
@@ -158,16 +161,9 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
     bool isfile = fi.isFile() || fi.isSymLink();
     if (!f.exists() || !isfile) {
       QString format = i18n("Could not open \"%1\"\n"
-                            "\n"
                             "Probably this is no regular file or it does not exist.");
       QString msg = format.arg(mainfile);
-      QMessageBox mb(kapp->makeStdCaption(i18n("I/O failure")),
-          msg,
-          QMessageBox::Warning,
-          QMessageBox::Ok | QMessageBox::Default,
-          0,
-          0);
-      mb.exec();
+      KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
       return;
     }
 
@@ -233,13 +229,10 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
         }
         QString format = i18n("Could not load \"%1\"\nDo you want to try again?");
         QString msg = format.arg(mainfile);
-        QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
-            msg,
-            QMessageBox::Warning,
-            QMessageBox::Yes | QMessageBox::Default,
-            QMessageBox::No | QMessageBox::Escape,
-            0);
-        if ( mb.exec() == QMessageBox::No ) {
+        int result = KMessageBox::warningContinueCancel(0, msg, 
+                                                        kapp->makeStdCaption(i18n("I/O failure")),
+                                                        i18n("&Retry"));
+        if ( result == KMessageBox::Cancel ) {
           Init();
           return;
         }
@@ -326,13 +319,10 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     if (!saved) {
       QString format = i18n("Could not save \"%1\"\nDo you want to try again?");
       QString msg = format.arg(tmp);
-      QMessageBox mb( kapp->makeStdCaption(i18n("I/O failure")),
-          msg,
-          QMessageBox::Warning,
-          QMessageBox::Yes | QMessageBox::Default,
-          QMessageBox::No | QMessageBox::Escape,
-          0);
-     if ( mb.exec() == QMessageBox::No ) return false;
+      int result = KMessageBox::warningContinueCancel(0, msg, 
+                                                      kapp->makeStdCaption(i18n("I/O failure")),
+                                                      i18n("&Retry"));
+      if ( result == KMessageBox::Cancel ) return false;
     }
   }
   mainfile = tmp;

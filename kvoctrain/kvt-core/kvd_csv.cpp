@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.6  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -51,6 +54,7 @@
 
 #include <klocale.h>
 #include <kapplication.h>
+#include <kmessagebox.h>
 
 #include "kvoctraindoc.h"
 #include "kvoctrain.h"
@@ -58,7 +62,6 @@
 
 #include <qtextstream.h>
 #include <qtextcodec.h>
-#include <qmessagebox.h>
 
 bool kvoctrainDoc::saveTypeNameCsv (QTextStream &os)
 {
@@ -262,12 +265,6 @@ void kvoctrainDoc::errorCsv (int line, const QString &text )
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error in csv file"));
    QString msg = text;
-   QMessageBox mb( s,
-       msg,
-       QMessageBox::Critical,
-       QMessageBox::Abort | QMessageBox::Default,
-       0,
-       0);
-   mb.exec();
+   KMessageBox::error( 0, msg, s);
    QApplication::restoreOverrideCursor();
 }

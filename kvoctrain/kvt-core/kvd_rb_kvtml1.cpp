@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.9  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -67,8 +70,7 @@
 #include <kapplication.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
-
-#include <qmessagebox.h>
+#include <kmessagebox.h>
 
 bool kvoctrainDoc::extract_T_DESCR_attr (XmlReader &xml,
                                          XmlElement &elem, int &no)
@@ -863,34 +865,21 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
 
    unknown_attr = true;
 
-   QString ln;
-   ln.setNum(line);
-   ln.insert (0,  i18n("File:\t")+getFileName()+"\n"
-                 +i18n("Line:\t"));
-   ln += ":\n\n";
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
 
    QString format = i18n(
-      "Your document contains an unknown attribute <%1> \n"   // keep trailing space
+      "Your document contains an unknown attribute <%1> "   // keep trailing space
        "in tag <%2>.\n"
-      "\n"
-      "Maybe your version of kvoctrain is too old\n"
+      "Maybe your version of kvoctrain is too old "
       "or the document is damaged.\n"
-      "\n"
       "If you proceed and save afterwards you are likely to lose data !\n"
-      "\n"
       "Do you want to proceed anyway ?\n"
      );
    QString msg = format.arg(attr).arg(name);
 
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown attribute"));
-   QMessageBox mb(s,
-       ln+msg,
-       QMessageBox::Warning,
-       QMessageBox::Yes | QMessageBox::Default,
-       QMessageBox::No | QMessageBox::Escape,
-       0);
-   bool result = mb.exec() == QMessageBox::Yes;
+   bool result = (KMessageBox::warningContinueCancel(0, ln+msg, s) == KMessageBox::Continue);
    QApplication::restoreOverrideCursor();
    return result;
 }
@@ -900,31 +889,19 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 {
    unknown_elem = true;
 
-   QString ln;
-   ln.setNum(line);
-   ln.insert (0,  i18n("File:\t")+getFileName()+"\n"
-                 +i18n("Line:\t"));
-   ln += ":\n\n";
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
 
    QString format = i18n(
-      "Your document contains an unknown tag <%1>. \n"  // keep trailing space
-      "\n"
-      "Maybe your version of kvoctrain is too old\n"
+      "Your document contains an unknown tag <%1>.  "  // keep trailing space
+      "Maybe your version of kvoctrain is too old "
       "or the document is damaged.\n"
-      "\n"
-      "Loading is aborted because kvoctrain cannot\n"
+      "Loading is aborted because kvoctrain cannot "
       "read documents with unknown elements.\n"
      );
    QString msg = format.arg(elem);
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown element"));
-   QMessageBox mb( s,
-       ln+msg,
-       QMessageBox::Critical,
-       QMessageBox::Abort | QMessageBox::Default,
-       0,
-       0);
-   mb.exec();
+   KMessageBox::sorry(0, ln+msg, s);
    QApplication::restoreOverrideCursor();
 }
 
@@ -933,20 +910,10 @@ void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error"));
-   QString ln;
-   ln.setNum(line);
-   ln.insert (0,  i18n("File:\t")+getFileName()+"\n"
-                 +i18n("Line:\t"));
-   ln += "\n\n";
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
 
    QString msg = text;
-   QMessageBox mb( s,
-       ln+msg,
-       QMessageBox::Critical,
-       QMessageBox::Abort | QMessageBox::Default,
-       0,
-       0);
-   mb.exec();
+   KMessageBox::error(0, ln+msg, s);
    QApplication::restoreOverrideCursor();
 }
 
@@ -955,19 +922,8 @@ void kvoctrainDoc::warningKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Warning"));
-   QString ln;
-   ln.setNum(line);
-   ln.insert (0,  i18n("File:\t")+getFileName()+"\n"
-                 +i18n("Line:\t"));
-   ln += "\n\n";
-
+   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(getFileName()).arg(line);
    QString msg = text;
-   QMessageBox mb( s,
-       ln+msg,
-       QMessageBox::Warning,
-       QMessageBox::Ok | QMessageBox::Default,
-       0,
-       0);
-   mb.exec();
+   KMessageBox::information(0, ln+msg, s);
    QApplication::restoreOverrideCursor();
 }

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:11:53  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/25 11:11:23  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -90,7 +93,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
 
   if (elem.tag () != KV_DOCTYPE) {
     errorKvtMl (xml.lineNumber(),
-                i18n("Tag <%1> was expected\n"
+                i18n("Tag <%1> was expected "
                      "but tag <%2> was read." ).arg(KV_DOCTYPE).arg(elem.tag()));
     return false;
   }

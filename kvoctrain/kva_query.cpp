@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2002/01/07 17:19:44  arnold
+    fixed i18n() issues
+
     Revision 1.16  2002/01/04 17:28:51  arnold
     fixed resuming a query
 
@@ -99,22 +102,18 @@
 
 static const char * not_answered = I18N_NOOP(
     "The query dialog was not answered for several times in series.\n"
-    "\n"
-    "It is assumed that there is currently no person in front of\n"
-    "the screen and for that reason the query is stopped.\n\n");
+    "It is assumed that there is currently no person in front of "
+    "the screen and for that reason the query is stopped.");
 
 
 static const char * not_contain = I18N_NOOP(
-    "There are currently no suitable expressions for the\n"
+    "There are currently no suitable expressions for the "
     "query you started.\n"
-    "\n"
-    "Several reasons can cause this. Maybe you don't have\n"
+    "Several reasons can cause this. Maybe you don't have "
     "any expressions for the type of query you requested.\n"
-    "\n"
-    "Most likely you should adjust your settings referring to\n"
+    "Most likely you should adjust your settings referring to "
     "thresholds and blocking values in the query options.\n"
-    "\n"
-    "Should the query options dialog be invoked now?\n");
+    "Should the query options dialog be invoked now?");
 
 
 void kvoctrainApp::slotQueryOptions()
