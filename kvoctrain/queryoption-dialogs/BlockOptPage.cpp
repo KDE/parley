@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/29 10:41:06  arnold
+    merged fixes from POST-branch
+
     Revision 1.7  2001/12/26 15:12:58  mueller
     CVSSILINT: fixincludes
 
@@ -423,7 +426,7 @@ void BlockOptPage::checkValidity()
 
   if (all_msg.length() != 0)
     KMessageBox::sorry(this, all_msg,
-          kapp->makeStdCaption(i18n("Nonsensical values")));
+          kapp->makeStdCaption(i18n("Nonsensical Values")));
 }
 
 void BlockOptPage::keyPressEvent( QKeyEvent *e )

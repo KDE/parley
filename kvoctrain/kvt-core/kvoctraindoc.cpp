@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/04/12 10:09:56  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.21  2002/04/10 12:26:19  mueller
     we aint need no values.h here
 
@@ -180,7 +185,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
       QString format = i18n("Could not open \"%1\"\n"
                             "Probably this is not a regular file or it does not exist.");
       QString msg = format.arg(mainfile);
-      KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
+      KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O Failure")));
       return;
     }
 
@@ -255,8 +260,8 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
         }
         QString format = i18n("Could not load \"%1\"\nDo you want to try again?");
         QString msg = format.arg(mainfile);
-        int result = KMessageBox::warningContinueCancel(0, msg, 
-                                                        kapp->makeStdCaption(i18n("I/O failure")),
+        int result = KMessageBox::warningContinueCancel(0, msg,
+                                                        kapp->makeStdCaption(i18n("I/O Failure")),
                                                         i18n("&Retry"));
         if ( result == KMessageBox::Cancel ) {
           Init();
@@ -311,7 +316,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     if (!f.open( IO_WriteOnly )) {               // open file for writing
       QString format = i18n("File \"%1\" is not writable, probably you don\'t have permission to do this.\n");
       QString msg = format.arg(tmp);
-      KMessageBox::error(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
+      KMessageBox::error(0, msg, kapp->makeStdCaption(i18n("I/O Failure")));
       return false;
     }
 
@@ -352,8 +357,8 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     if (!saved) {
       QString format = i18n("Could not save \"%1\"\nDo you want to try again?");
       QString msg = format.arg(tmp);
-      int result = KMessageBox::warningContinueCancel(0, msg, 
-                                                      kapp->makeStdCaption(i18n("I/O failure")),
+      int result = KMessageBox::warningContinueCancel(0, msg,
+                                                      kapp->makeStdCaption(i18n("I/O Failure")),
                                                       i18n("&Retry"));
       if ( result == KMessageBox::Cancel ) return false;
     }

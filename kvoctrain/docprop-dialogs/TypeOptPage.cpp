@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/04/12 10:09:55  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.9  2002/01/27 07:17:47  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -198,7 +203,7 @@ void TypeOptPage::slotDeleteType()
          if (exp->getType(lang) == t) {
            KMessageBox::information(this,
                      i18n("This user defined type could not be deleted\nbecause it is in use."),
-                     kapp->makeStdCaption(i18n("Deleting a type description")));
+                     kapp->makeStdCaption(i18n("Deleting a Type Description")));
            return;
          }
        }

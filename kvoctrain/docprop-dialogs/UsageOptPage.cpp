@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/04/12 10:09:55  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.12  2002/01/27 07:17:47  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -215,7 +220,7 @@ void UsageOptPage::slotDeleteUsage()
                           "This user-defined usage label could not be deleted "
                           "because it is in use."),
                      kapp->makeStdCaption(i18n("usage (area) of an expression",
-                                               "Deleting a usage label")));
+                                               "Deleting a Asage Label")));
            return;
          }
        }

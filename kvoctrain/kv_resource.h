@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/11/25 11:12:24  arnold
+    splitted kv_resource.h
+
     Revision 1.8  2001/11/18 12:28:46  arnold
     provided menu entry for example files
 
@@ -212,7 +215,7 @@
 
 ///////////////////////////////////////////////////////////////////
 // other strings
-//#define KVOCTRAIN_TITLE i18n("Vocabulary trainer")
+//#define KVOCTRAIN_TITLE i18n("Vocabulary Trainer")
 #define KVOCTRAIN_NAME "kvoctrain"
 
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
