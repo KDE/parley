@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.31  2002/04/20 12:55:48  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.30  2002/04/12 10:09:55  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -714,6 +717,7 @@ void kvoctrainApp::slotFileSave()
   saveDocProps(doc);
   doc->saveAs(this, doc->getFileName(), doc->getTitle(),
               kvoctrainDoc::automatic, separator, &paste_order);
+  addRecentFile(doc->getFileName());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -795,9 +799,10 @@ void kvoctrainApp::slotFileSaveAs()
     commitEntryDlg(false);
 
   QString s;
+/*
   if (recent_files.count() > 0)
     s = recent_files[0];
-
+*/
   QString name = getFileName(kapp->makeStdCaption(i18n("Save Vocabulary As")),
                              s, FILTER_WPATTERN, parentWidget());
   if (!name.isEmpty() ) {
@@ -816,8 +821,6 @@ void kvoctrainApp::slotFileSaveAs()
     }
 
     if (doc) {
-      addRecentFile(name);
-
       QString format = i18n("Saving %1");
       QString msg = format.arg(name);
       slotStatusMsg(msg);
@@ -829,6 +832,7 @@ void kvoctrainApp::slotFileSaveAs()
       prepareProgressBar();
       doc->saveAs(this, name, doc->getTitle(),
                   kvoctrainDoc::automatic, separator, &paste_order);
+      addRecentFile(doc->getFileName());
       removeProgressBar();
     }
   }

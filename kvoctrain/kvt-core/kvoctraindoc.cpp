@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.22  2002/04/12 10:09:56  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -186,6 +189,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
                             "Probably this is not a regular file or it does not exist.");
       QString msg = format.arg(mainfile);
       KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O Failure")));
+      mainfile = "unknown.kvtml";
       return;
     }
 
@@ -290,7 +294,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, QString name, QString title,
     tmp = mainfile;
 
   if (tmp.isEmpty())
-    tmp = "outfile.kvtml";
+    tmp = "unknown.kvtml";
 
   if (ft == automatic) {
 
