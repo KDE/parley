@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.26  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.25  2002/01/05 13:59:20  arnold
     added drop-down arrow to table buttons
 
@@ -153,8 +156,6 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  config->setGroup(CFG_WINPROP);
  parent->resize (config->readNumEntry(CFG_WINWIDTH, 520),
                  config->readNumEntry(CFG_WINHEIGHT, 300));
-
- parent->setMinimumSize(520, 300);
 
  f_list = new QFrame( this, "Frame_2" );
  f_list->setFrameStyle( 50 );

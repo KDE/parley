@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2002/01/21 18:56:17  arnold
+    fixed disabling of dialog pages
+
     Revision 1.15  2002/01/20 11:41:01  arnold
     fixed issues with modeless dialogs
 
@@ -99,6 +102,7 @@
 #include <kstandarddirs.h>
 #include <kiconloader.h>
 #include <kapplication.h>
+#include <kwinmodule.h>
 
 EntryDlg::EntryDlg(
         KMainWindow   *main,
@@ -468,12 +472,16 @@ void EntryDlg::slotDockVertical()
      docked = true;
    }
 
-   QWidget *desk = QApplication::desktop();
+   KWinModule info;
+   QRect rect = info.workArea();
 
-   resize(minimumWidth(), desk->height());
+   int diff_x = frameGeometry().width()-width();
+   int diff_y = frameGeometry().height()-height();
+   resize(minimumWidth(), rect.height()-diff_y);
+   mainwin->resize(rect.width()-frameGeometry().width()-diff_x,
+                   rect.height()-diff_y);
    move (0, 0);
-   mainwin->resize(desk->width()-width(), desk->height());
-   mainwin->move(width(), 0);
+   mainwin->move(frameGeometry().width(), 0);
 }
 
 
@@ -485,12 +493,17 @@ void EntryDlg::slotDockHorizontal()
      docked = true;
    }
 
-   QWidget *desk = QApplication::desktop();
+   KWinModule info;
+   QRect rect = info.workArea();
 
-   resize(desk->width(), minimumHeight());
-   mainwin->resize(desk->width(), desk->height()-height());
+   int diff_x = frameGeometry().width()-width();
+   int diff_y = frameGeometry().height()-height();
+
+   resize(rect.width()-diff_x, minimumHeight());
+   mainwin->resize(rect.width()-diff_x,
+                   rect.height()-frameGeometry().height()-diff_y);
+   move(0, mainwin->frameGeometry().height());
    mainwin->move (0, 0);
-   move(0, mainwin->height());
 }
 
 
