@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.8  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -306,7 +309,6 @@ void ArtQueryDlg::timeoutReached()
      timebar->repaint();
      if (type_timeout == kvq_show) {
        showAllClicked();
-       verifyClicked();
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)

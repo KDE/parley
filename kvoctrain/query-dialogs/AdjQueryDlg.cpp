@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.9  2001/11/11 12:53:27  arnold
     fixed some strings for i18n purposes
 
@@ -265,7 +268,6 @@ void AdjQueryDlg::timeoutReached()
      timebar->repaint();
      if (type_timeout == kvq_show ) {
        showAllClicked();
-//     verifyClicked();
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont )
