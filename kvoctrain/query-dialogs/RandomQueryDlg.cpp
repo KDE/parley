@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/01/04 21:09:16  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.9  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -111,7 +114,7 @@ RandomQueryDlg::RandomQueryDlg(
                    kvq_timeout_t type_to,
                    QWidget *parent,
                    char *name)
-	: QueryDlgForm(parent, name, true),
+	: QueryDlgForm(parent, name, false),
 	  QueryDlgBase()
 {
    connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
@@ -385,5 +388,12 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
     break;
   }
 }
+
+
+void RandomQueryDlg::closeEvent (QCloseEvent*e)
+{
+   emit sigQueryChoice (StopIt);
+}
+
 
 #include "RandomQueryDlg.moc"

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2002/01/19 11:06:46  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.19  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -238,7 +241,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
            this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
 
   simpleQueryDlg->initFocus();
-  simpleQueryDlg->exec();
+  simpleQueryDlg->show();
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -415,7 +418,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 
     connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                    this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-    verbQueryDlg->exec();
+    verbQueryDlg->show();
   }
   else if (queryType == QT_Articles) {
     artQueryDlg = new ArtQueryDlg(exp->getType(act_query_col),
@@ -435,7 +438,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
              this, SLOT(slotEditEntry(int,int)));
     connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                       this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-    artQueryDlg->exec();
+    artQueryDlg->show();
   }
   else if (queryType == QT_Comparison) {
     adjQueryDlg = new AdjQueryDlg(exp->getType(act_query_col),
@@ -456,7 +459,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
 
     connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                     this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-    adjQueryDlg->exec();
+    adjQueryDlg->show();
   }
   else {
     kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
@@ -723,7 +726,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                this, SLOT(slotEditEntry(int,int)));
       connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
-      randomQueryDlg->exec();
+      randomQueryDlg->show();
   }
   else if (queryType == QT_Multiple) {
     mcQueryDlg = new MCQueryDlg(
@@ -745,7 +748,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                this, SLOT(slotEditEntry(int,int)));
       connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
-      mcQueryDlg->exec();
+      mcQueryDlg->show();
   }
   else {
     kdError() << "kvoctrainApp::slotStartQuery: unknown type\n";

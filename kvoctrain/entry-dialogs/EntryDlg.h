@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.7  2001/12/30 12:12:57  arnold
     fixed smart appending and editing
 
@@ -249,6 +252,7 @@ protected slots:
     void slotAutoApplyChecked(bool);
 
 protected:
+    virtual void closeEvent (QCloseEvent*e);
 
     FromToEntryPage  *from_page,
                      *to_page;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.3  2001/11/24 17:16:08  arnold
     fixes for table view and query
 
@@ -128,7 +131,9 @@ public slots:
     void slotRemClicked();
 
 protected:
-  kvoctrainDoc *kv_doc;
+    virtual void closeEvent (QCloseEvent*e);
+
+    kvoctrainDoc *kv_doc;
 };
 
 #endif

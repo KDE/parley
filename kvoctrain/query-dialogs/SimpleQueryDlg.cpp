@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/26 15:12:38  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.11  2001/12/13 18:37:28  arnold
     fixed and improved query dialogs
 
@@ -99,7 +102,7 @@ SimpleQueryDlg::SimpleQueryDlg(
 	const char* name
 )
 	:
-	SimpleQueryDlgForm( parent, name, true ),
+	SimpleQueryDlgForm( parent, name, false),
         QueryDlgBase()
 {
    connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
@@ -381,4 +384,12 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
     break;
   }
 }
+
+
+void SimpleQueryDlg::closeEvent (QCloseEvent*e)
+{
+   emit sigQueryChoice (StopIt);
+}
+
+
 #include "SimpleQueryDlg.moc"

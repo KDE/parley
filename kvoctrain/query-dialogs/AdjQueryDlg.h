@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.5  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column
 
@@ -104,6 +107,7 @@ protected:
     void resetAllFields();
 
 protected slots:
+    virtual void closeEvent (QCloseEvent*e);
 
     void lev1Changed(const QString&);
     void lev2Changed(const QString&);

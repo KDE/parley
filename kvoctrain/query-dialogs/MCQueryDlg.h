@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.5  2001/11/24 17:16:08  arnold
     fixes for table view and query
 
@@ -121,6 +124,7 @@ public slots:
         void verifyClicked();
 
 protected:
+    virtual void closeEvent (QCloseEvent*e);
 
   int            solution;
   vector<RB_Label> button_ref;

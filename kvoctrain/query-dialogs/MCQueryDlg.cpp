@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/04 21:09:16  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.13  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -111,7 +114,7 @@ MCQueryDlg::MCQueryDlg(
                    kvq_timeout_t type_to,
                    QWidget *parent,
                    char *name)
-	: MCQueryDlgForm(parent, name, true),
+	: MCQueryDlgForm(parent, name, false),
 	  QueryDlgBase()
 {
    transgroup->insert(rb_trans1);
@@ -500,5 +503,12 @@ void MCQueryDlg::trans5clicked()
 {
   verifyClicked();
 }
+
+
+void MCQueryDlg::closeEvent (QCloseEvent*e)
+{
+   emit sigQueryChoice (StopIt);
+}
+
 
 #include "MCQueryDlg.moc"

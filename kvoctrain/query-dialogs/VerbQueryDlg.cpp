@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/07 18:36:50  arnold
+    fixed query
+
     Revision 1.13  2002/01/04 21:09:16  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -111,7 +114,7 @@ VerbQueryDlg::VerbQueryDlg
         QWidget *parent,
         char *name)
 	:
-	VerbQueryDlgForm( parent, name, true ),
+	VerbQueryDlgForm( parent, name, false),
         QueryDlgBase()
 {
 	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
@@ -594,5 +597,12 @@ void VerbQueryDlg::slotP2pChanged(const QString&)
   verify->setDefault(true);
   resetField(p2pField);
 }
+
+
+void VerbQueryDlg::closeEvent (QCloseEvent*e)
+{
+   emit sigQueryChoice (StopIt);
+}
+
 
 #include "VerbQueryDlg.moc"

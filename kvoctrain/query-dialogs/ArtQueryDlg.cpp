@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2002/01/04 21:09:16  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.11  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -101,7 +104,7 @@ ArtQueryDlg::ArtQueryDlg
         QWidget *parent,
         char    *name)
 	:
-	ArtQueryDlgForm( parent, name, true ),
+	ArtQueryDlgForm( parent, name, false),
         QueryDlgBase()
 {
    qtimer = 0;
@@ -400,4 +403,12 @@ void ArtQueryDlg::slotNaturalClicked()
   resetButton(rb_fem);
   verifyClicked();
 }
+
+
+void ArtQueryDlg::closeEvent (QCloseEvent*e)
+{
+   emit sigQueryChoice (StopIt);
+}
+
+
 #include "ArtQueryDlg.moc"

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/04 21:09:14  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.13  2001/12/26 15:12:38  mueller
     CVSSILINT: fixincludes
 
@@ -110,7 +113,7 @@ AdjQueryDlg::AdjQueryDlg
         const char* name
 )
 	:
-	AdjQueryDlgForm( parent, name, true),
+	AdjQueryDlgForm( parent, name, false),
         QueryDlgBase()
 {
    connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
@@ -364,4 +367,12 @@ void AdjQueryDlg::lev3Changed(const QString&)
   verify->setDefault(true);
   resetField (lev3Field);
 }
+
+
+void AdjQueryDlg::closeEvent (QCloseEvent*e)
+{
+  emit sigQueryChoice(StopIt);
+}
+
+
 #include "AdjQueryDlg.moc"

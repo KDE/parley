@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.36  2002/01/19 11:24:47  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.35  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -260,8 +263,6 @@ void kvoctrainApp::slotEditRow()
 {
   slotEditEntryModeless (view->getTable()->currentRow(),
                          view->getTable()->currentColumn());
-  if (entryDlg != 0)
-    entryDlg->raise();
 }
 
 
@@ -279,9 +280,14 @@ void kvoctrainApp::slotEditCallBack(int res)
         if (row == view->getTable()->numRows()-1) {
           int col = view->getTable()->currentColumn();
           if (   col < view->getTable()->numCols()-1
-              && col > KV_COL_ORG ) {
+              && col >= KV_COL_ORG ) {
+            int lesson = doc->getEntry(row)->getLesson();
+            if (lesson >= lessons->count())
+              lesson = QMAX (0, lessons->count()-1);
+            slotChooseLesson(lesson);
+
             QString exp;
-            exp = doc->getEntry(row)->getTranslation(col-KV_COL_ORG);
+            exp = doc->getEntry(row)->getTranslation(col+1-KV_COL_ORG);
             if (exp.isEmpty())
               view->getTable()->setCurrentRow(row, col+1);
           }
@@ -547,6 +553,8 @@ void kvoctrainApp::slotEditEntryModeless (int row, int col)
      createEntryDlg(row, col);
      return;
    }
+
+   entryDlg->raise();
 
    if (entryDlg->isModified()) {
      commitEntryDlg(false);

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/19 10:33:09  arnold
+    made entry dialog modeless
+
     Revision 1.13  2001/12/30 12:12:57  arnold
     fixed smart appending and editing
 
@@ -498,6 +501,12 @@ EntryDlg::~EntryDlg()
      mainwin->resize(oldMainSize);
      mainwin->move(oldMainPos);
    }
+}
+
+
+void EntryDlg::closeEvent (QCloseEvent*e)
+{
+  emit sigEditChoice(EditCancel);
 }
 
 
