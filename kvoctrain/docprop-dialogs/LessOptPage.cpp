@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.9  2002/04/12 10:09:55  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -58,13 +61,14 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 #include "LessOptPage.h"
 
 #include <kapplication.h>
+#include <klineeditdlg.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
@@ -72,8 +76,6 @@
 #include <qkeycode.h>
 #include <qlistbox.h>
 #include <qpushbutton.h>
-
-#include "../common-dialogs/LessonInputDlg.h"
 
 #include <kvoctraindoc.h>
 
@@ -132,14 +134,15 @@ void LessOptPage::slotLessonChosen(int index)
 
 void LessOptPage::slotNewLesson()
 {
-     LessonInputDlg lid ("", i18n("Input Lesson Description"), i18n("Lesson description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("Enter lesson description:"), QString::null, this);
+     dlg.setCaption(i18n("Lesson Description"));
+     if (dlg.exec()) {
        QString str;
        int i = lessonList->count()+1;
        str.setNum (i);
        if (i <= 9)
          str.insert (0, " ");
-       lessonList->insertItem (str+LESS_TAG+lid.getInput().stripWhiteSpace());
+       lessonList->insertItem (str+LESS_TAG+dlg.text().stripWhiteSpace());
        lessonIndex.push_back(-(i-1));
        act_lesson = lessonList->count();
        lessonList->setCurrentItem (i-1);
@@ -156,13 +159,14 @@ void LessOptPage::slotModifyLesson()
      QString str = lessonList->text (act_lesson);
      int pos = str.find (LESS_TAG);
      str.remove (0, pos+strlen (LESS_TAG));
-     LessonInputDlg lid (str, i18n("Input Lesson Description"), i18n("Lesson description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("Enter lesson description:"), str, this);
+     dlg.setCaption(i18n("Lesson Description"));
+     if (dlg.exec()) {
        QString str2;
        str2.setNum (act_lesson+1);
        if (act_lesson <= 9)
          str2.insert (0, " ");
-       lessonList->changeItem (str2+LESS_TAG+lid.getInput().stripWhiteSpace(), act_lesson);
+       lessonList->changeItem (str2+LESS_TAG+dlg.text().stripWhiteSpace(), act_lesson);
      }
    }
 }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.10  2002/04/12 10:09:55  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -68,6 +71,7 @@
 #include "TypeOptPage.h"
 
 #include <kapplication.h>
+#include <klineeditdlg.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -77,8 +81,6 @@
 
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
-
-#include "LessonInputDlg.h"
 
 #define TYPE_TAG ". "
 
@@ -136,14 +138,15 @@ void TypeOptPage::slotTypeChosen(int index)
 
 void TypeOptPage::slotNewType()
 {
-     LessonInputDlg lid ("", i18n("Input Type Description"), i18n("Type description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("Enter type description:"), QString::null, this);
+     dlg.setCaption(i18n("Type Description"));
+     if (dlg.exec()) {
        QString str;
        int i = typeList->count()+1;
        str.setNum (i);
        if (i <= 9)
          str.insert (0, " ");
-       typeList->insertItem (str+TYPE_TAG+lid.getInput().stripWhiteSpace());
+       typeList->insertItem (str+TYPE_TAG+dlg.text().stripWhiteSpace());
        typeIndex.push_back(-(i-1));
        act_type = typeList->count();
        typeList->setCurrentItem (i-1);
@@ -160,13 +163,14 @@ void TypeOptPage::slotModifyType()
      QString str = typeList->text (act_type);
      int pos = str.find (TYPE_TAG);
      str.remove (0, pos+strlen (TYPE_TAG));
-     LessonInputDlg lid (str, i18n("Input Type Description"), i18n("Type description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("Enter type description:"), str, this);
+     dlg.setCaption(i18n("Type Description"));
+     if (dlg.exec()) {
        QString str2;
        str2.setNum (act_type+1);
        if (act_type <= 9)
          str2.insert (0, " ");
-       typeList->changeItem (str2+TYPE_TAG+lid.getInput().stripWhiteSpace(), act_type);
+       typeList->changeItem (str2+TYPE_TAG+dlg.text().stripWhiteSpace(), act_type);
      }
    }
 }

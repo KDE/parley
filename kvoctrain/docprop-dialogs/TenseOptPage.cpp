@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/04/22 19:12:15  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.10  2002/04/12 10:09:55  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -61,7 +64,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -72,13 +75,12 @@
 #include <qpushbutton.h>
 
 #include <kapplication.h>
+#include <klineeditdlg.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
-
-#include "../common-dialogs/LessonInputDlg.h"
 
 #define TENSE_TAG ". "
 
@@ -138,14 +140,15 @@ void TenseOptPage::slotTenseChosen(int index)
 
 void TenseOptPage::slotNewTense()
 {
-     LessonInputDlg lid ("", i18n("Input Tense Description"), i18n("Tense description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("Enter tense description:"), QString::null, this);
+     dlg.setCaption(i18n("Tense Description"));
+     if (dlg.exec()) {
        QString str;
        int i = tenseList->count()+1;
        str.setNum (i);
        if (i <= 9)
          str.insert (0, " ");
-       tenseList->insertItem (str+TENSE_TAG+lid.getInput().stripWhiteSpace());
+       tenseList->insertItem (str+TENSE_TAG+dlg.text().stripWhiteSpace());
        tenseIndex.push_back(-(i-1));
        act_tense = tenseList->count();
        tenseList->setCurrentItem (i-1);
@@ -162,13 +165,15 @@ void TenseOptPage::slotModifyTense()
      QString str = tenseList->text (act_tense);
      int pos = str.find (TENSE_TAG);
      str.remove (0, pos+strlen (TENSE_TAG));
-     LessonInputDlg lid (str, i18n("Input Tense Description"), i18n("Tense description"));
-     if (lid.exec() == QDialog::Accepted) {
+
+     KLineEditDlg dlg(i18n("Enter tense description:"), str, this);
+     dlg.setCaption(i18n("Tense Description"));
+     if (dlg.exec()) {
        QString str2;
        str2.setNum (act_tense+1);
        if (act_tense <= 9)
          str2.insert (0, " ");
-       tenseList->changeItem (str2+TENSE_TAG+lid.getInput().stripWhiteSpace(), act_tense);
+       tenseList->changeItem (str2+TENSE_TAG+dlg.text().stripWhiteSpace(), act_tense);
      }
    }
 }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/01/27 07:17:51  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.6  2001/12/26 15:12:58  mueller
     CVSSILINT: fixincludes
 
@@ -48,7 +51,6 @@
  ***************************************************************************/
 
 #include "GroupOptPage.h"
-#include "LessonInputDlg.h"
 
 #include <qkeycode.h>
 #include <qcombobox.h>
@@ -57,6 +59,7 @@
 
 #include <kapplication.h>
 #include <klocale.h>
+#include <klineeditdlg.h>
 
 GroupOptPage::GroupOptPage
 (
@@ -108,11 +111,11 @@ void GroupOptPage::slotDeleteGroup()
 
 void GroupOptPage::slotNewGroup()
 {
-   LessonInputDlg lid ("", i18n("Input Group Description"), i18n("Group description"));
-   if (lid.exec() == QDialog::Accepted) {
-     QString str;
-     ps_name->insertItem(lid.getInput().stripWhiteSpace());
-     emit newGroup(lid.getInput().stripWhiteSpace());
+  KLineEditDlg dlg(i18n("Enter group description:"), QString::null, this);
+  dlg.setCaption(i18n("Group Description"));
+  if (dlg.exec()) {
+     ps_name->insertItem(dlg.text().stripWhiteSpace());
+     emit newGroup(dlg.text().stripWhiteSpace());
      ps_name->setCurrentItem(ps_name->count()-1);
      emit selectGroup(ps_name->currentItem());
    }

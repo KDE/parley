@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.49  2002/07/21 04:27:08  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.48  2002/05/09 09:48:55  arnold
     fixed i18n issue
 
@@ -202,6 +205,7 @@
 #include <kdebug.h>
 
 #include <qcursor.h>
+#include <qinputdialog.h>
 #include <qtimer.h>
 #include <qfile.h>
 #include <qtooltip.h>
@@ -221,7 +225,6 @@
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "common-dialogs/ProgressDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"
-#include "common-dialogs/NumLessonDlg.h"
 
 
 void kvoctrainApp::slotSaveOptions()
@@ -1083,11 +1086,14 @@ void kvoctrainApp::slotCleanVocabulary ()
 
 void kvoctrainApp::slotCreateRandom()
 {
-   NumLessonDlg numDlg (entriesPerLesson, this, "name");
-   if (numDlg.exec() != QDialog::Accepted)
+   bool ok = FALSE;
+   int res = QInputDialog::getInteger(
+                tr( "Entries in Lesson" ),
+                tr( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );
+   if (!ok)
      return;
 
-   entriesPerLesson = numDlg.getInput();
+   entriesPerLesson = res;
 
    slotStatusMsg(i18n("Creating random lessons..."));
    QApplication::setOverrideCursor( waitCursor );

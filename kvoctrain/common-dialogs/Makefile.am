@@ -4,8 +4,6 @@ INCLUDES = -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
 
 noinst_LTLIBRARIES = libcommondlg.la
 
-libcommondlg_la_SOURCES = \
-               NumLessonDlg.cpp ProgressDlg.cpp LessonInputDlg.cpp \
-               NumLessonDlgForm.ui ProgressDlgForm.ui LessonInputDlgForm.ui
+libcommondlg_la_SOURCES = ProgressDlg.cpp ProgressDlgForm.ui
 
 METASOURCES = AUTO

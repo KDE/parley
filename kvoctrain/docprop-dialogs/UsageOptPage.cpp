@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/04/23 12:30:40  mhunter
+    Corrected typographical errors
+
     Revision 1.14  2002/04/22 19:12:15  binner
     CVS_SILENT Capitalisation fixes.
 
@@ -80,6 +83,7 @@
 #include "UsageOptPage.h"
 
 #include <kapplication.h>
+#include <klineeditdlg.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -90,8 +94,6 @@
 
 #include <kvoctraindoc.h>
 #include <QueryManager.h>
-
-#include "../common-dialogs/LessonInputDlg.h"
 
 #define USAGE_TAG ". "
 
@@ -149,15 +151,15 @@ void UsageOptPage::slotUsageChosen(int index)
 
 void UsageOptPage::slotNewUsage()
 {
-     LessonInputDlg lid ("", i18n("usage (area) of an expression", "Input Usage Description"),
-                             i18n("usage (area) of an expression", "Usage description"));
-     if (lid.exec() == QDialog::Accepted) {
+     KLineEditDlg dlg(i18n("usage (area) of an expression", "Enter usage description:"), QString::null, this);
+     dlg.setCaption(i18n("usage (area) of an expression", "Usage Description"));
+     if (dlg.exec()) {
        QString str;
        int i = usageList->count()+1;
        str.setNum (i);
        if (i <= 9)
          str.insert (0, " ");
-       usageList->insertItem (str+USAGE_TAG+lid.getInput().stripWhiteSpace());
+       usageList->insertItem (str+USAGE_TAG+dlg.text().stripWhiteSpace());
        usageIndex.push_back(-(i-1));
        act_usage = usageList->count();
        usageList->setCurrentItem (i-1);
@@ -174,14 +176,15 @@ void UsageOptPage::slotModifyUsage()
      QString str = usageList->text (act_usage);
      int pos = str.find (USAGE_TAG);
      str.remove (0, pos+strlen (USAGE_TAG));
-     LessonInputDlg lid (str, i18n("usage (area) of an expression", "Input Usage Description"),
-                              i18n("usage (area) of an expression", "Usage description"));
-     if (lid.exec() == QDialog::Accepted) {
+     
+     KLineEditDlg dlg(i18n("usage (area) of an expression", "Enter usage description:"), str, this);
+     dlg.setCaption(i18n("usage (area) of an expression", "Usage Description"));
+     if (dlg.exec()) {
        QString str2;
        str2.setNum (act_usage+1);
        if (act_usage <= 9)
          str2.insert (0, " ");
-       usageList->changeItem (str2+USAGE_TAG+lid.getInput().stripWhiteSpace(), act_usage);
+       usageList->changeItem (str2+USAGE_TAG+dlg.text().stripWhiteSpace(), act_usage);
      }
    }
 }
