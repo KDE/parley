@@ -328,7 +328,7 @@ in the cell.</para>
 when you have finished.</para>
 
 <note><para>You can't invoke the <link linkend="entry-dlg">entry dialog window</link> in this mode. 
-</para><note></listitem>
+</para></note></listitem>
 </varlistentry>
 
 <varlistentry>
