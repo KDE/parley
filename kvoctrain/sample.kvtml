@@ -62,8 +62,8 @@ Valid xml means:
 --
 >
 <kvtml
-  encoding="8Bit"
-  generator="kvoctrain v2.90"
+  encoding="UTF-8"
+  generator="kvoctrain v2.2.1"
   cols="2"
   lines="21"
   title="Sample vocabulary"
@@ -143,21 +143,21 @@ Valid xml means:
  </usage>
 
  <e m="11"><o width="262" l="en" q="t" y="-">jaggy</o><t width="262" l="de" q="o" c="1;1" d="0;992361255">zackig, gekerbt</t></e>
- <e m="10"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblüfft</t></e>
+ <e m="10"><o>aback (taken ~)</o><t c="1;1" d="0;992361254">verblÃ¼fft</t></e>
  <e m="2"><o r="dfgh">mischief</o><t c="1;1" d="0;992361258">Unheil, Schaden</t></e>
  <e m="7"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
  <e m="10"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
  <e m="6"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
  <e m="9"><o y="-" u="#1">go</o><t c="1;1" d="0;992361256">schwimmen</t></e>
- <e m="7"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
+ <e m="7"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfÃ¤llig, mÃ¼hsam</t></e>
  <e m="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
  <e m="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
  <e m="11"><o>balmy</o><t c="1;1" d="0;992361257">mild</t></e>
- <e m="3"><o>knuckles</o><t g="0;1" c="1;2" d="0;1003212935">Knöchel</t></e>
+ <e m="3"><o>knuckles</o><t g="0;1" c="1;2" d="0;1003212935">KnÃ¶chel</t></e>
  <e m="3"><o>genuflect</o><t g="0;1" c="1;2" d="0;1003212929">Kniebeugen</t></e>
  <e m="5"><o>chunk</o><t c="1;1" d="0;992361258" r="Klotz">Klotz</t></e>
  <e m="8"><o r="rema">itch</o><t c="1;1" d="0;992361254">jucken, darauf brennen</t></e>
- <e m="8"><o y="-">utterly</o><t c="1;1" d="0;992361255">gänzlich</t></e>
+ <e m="8"><o y="-">utterly</o><t c="1;1" d="0;992361255">gÃ¤nzlich</t></e>
  <e m="2"><o y="-">good</o><t c="1;1" d="0;992361258">gut</t></e>
  <e m="4"><o y="-">favour</o><t c="1;1">Gunst, Gefallen</t></e>
  <e m="6" t="#1"><o>pea</o><t c="1;1" d="0;992361258">Erbse</t></e>

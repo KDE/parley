@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/21 15:28:43  arnold
+    removed all the 'charset' stuff
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -54,7 +57,6 @@
 #include <kstatusbar.h>
 
 #include "common-dialogs/ProgressDlg.h"
-#include "common-dialogs/CharSetDlg.h"
 
 void kvoctrainApp::saveOptions(bool all)
 {
