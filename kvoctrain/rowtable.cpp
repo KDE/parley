@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/12/16 16:51:25  arnold
+    fixed keyboard handling in main view
+
     Revision 1.16  2001/12/14 16:05:49  arnold
     fixed handling of table font
 
@@ -79,6 +82,7 @@
 #include <qcombobox.h>
 
 #include <kapp.h>
+#include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
 
@@ -87,6 +91,7 @@
 #include "kvoctraindoc.h"
 #include "rowtable.h"
 #include "kv_resource.h"
+#include "kvoctraincore.h"
 
 // delay im ms (microsoft seconds) before delayed popup pops up
 #define POPUP_DELAY 500
@@ -308,9 +313,9 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
   if (defaultItem)
     endEdit(defaultItem->row(), defaultItem->col(), true, false);
 
-      cout << "sd 2\n";
-  delete defaultItem;
-      cout << "sd 3\n";
+  KvoctrainItem *d = defaultItem;
+  defaultItem = 0;
+
   defaultItem = 0;
   if (rows) {
      m_rows = rows;
@@ -324,10 +329,16 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
     m_rows = 0;
   }
 
-// QTableItem::Never
-// QTableItem::WhenCurrent
-// QTableItem::OnTyping
-  defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, rows);
+  if (d == 0) {
+    KConfig *config = KApplication::kApplication()->config();
+    config->setGroup(CFG_APPEARANCE);
+    if (config->readBoolEntry(CFG_INLINE_EDIT, false))
+      defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, rows);
+    else
+      defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, rows);
+  }
+  else
+    defaultItem = d;
   gradecols = gc;
 }
 
