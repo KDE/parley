@@ -46,8 +46,12 @@
       <default code="true">(int) kvq_notimeout</default>
     </entry>
         <entry name="MaxTimePer" type="Int">
-      <label>Swap direction randomly</label>
+      <label>Maximum time allowed per query</label>
       <default code="true">20*1000</default>
+    </entry>
+    <entry name="BackupTime" type="Int">
+      <label>Time interval between two automatic backups</label>
+      <default code="true">15*60*1000</default>
     </entry>
   </group>
 </kcfg>

@@ -100,7 +100,7 @@ void kvoctrainApp::saveOptions(bool all)
     config->writeEntry(CFG_PASTEORDER, paste_order);
     Prefs::setUseCurrent(useCurrent);
     Prefs::setEntriesPerLesson(entriesPerLesson);
-    config->writeEntry(CFG_BACKTIME, backupTime);
+    Prefs::setBackupTime(backupTime);
   
     config->writeEntry(CFG_NUMLANGSET, langset.size() );
     for (int i = 0; i < (int) langset.size(); i++) {
@@ -211,7 +211,7 @@ void kvoctrainApp::readOptions()
     separator = "\t";
   else if (separator == SPC_REP)
     separator = "  ";
-  backupTime = config->readNumEntry(CFG_BACKTIME, 15*60*1000);
+  backupTime = Prefs::backupTime();
 
   ls = config->readNumEntry(CFG_NUMLANGSET, 0);
   QString s;

@@ -62,7 +62,7 @@ GenOptPage::GenOptPage
   connect( kcfg_smartAppend, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
   connect( c_btime, SIGNAL(toggled(bool)), SLOT(slotBTimeUsed(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
-  connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
+  connect( kcfg_backupTime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
   connect( hb_fixed, SIGNAL(clicked()), SLOT(slotHBfixed()) );
   connect( hb_percent, SIGNAL(clicked()), SLOT(slotHBpercent()) );
   connect( hb_auto, SIGNAL(clicked()), SLOT(slotHBauto()) );
@@ -77,7 +77,7 @@ GenOptPage::GenOptPage
   QString s;
   validator = new QIntValidator (0, 60*60*24*7, 0); // at least once a week
 
-  e_btime->setValidator (validator);
+  kcfg_backupTime->setValidator (validator);
   c_btime->setChecked(btime > 0);
   slotBTimeUsed(btime > 0);
 
@@ -116,7 +116,7 @@ void GenOptPage::initFocus() const
 
 void GenOptPage::slotBTimeUsed(bool on)
 {
-  e_btime->setEnabled(on);
+  kcfg_backupTime->setEnabled(on);
 
   if (on) {
     if (btime < 0 )
@@ -131,10 +131,10 @@ void GenOptPage::slotBTimeUsed(bool on)
 
   QString s;
   s.setNum (abs(btime));
-  bool b = e_btime->signalsBlocked();
-  e_btime->blockSignals(true);
-  e_btime->setText (s);
-  e_btime->blockSignals(b);
+  bool b = kcfg_backupTime->signalsBlocked();
+  kcfg_backupTime->blockSignals(true);
+  kcfg_backupTime->setText (s);
+  kcfg_backupTime->blockSignals(b);
 }
 
 

@@ -64,7 +64,6 @@
 #define       CFG_LASTFILE             "LastFile"
 #define       CFG_PASTEORDER           "PasteOrder"
 #define       CFG_ENTRIESLESSON        "EntriesPerLesson"
-#define       CFG_BACKTIME             "BackupTime"
 #define       CFG_CUR_ROW              "CurrentRow"
 #define       CFG_CUR_COL              "CurrentCol"
 #define       CFG_RECENT               "RecentFiles"

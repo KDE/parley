@@ -86,7 +86,7 @@
                         </widget>
                         <widget class="QLineEdit" row="0" column="1">
                             <property name="name">
-                                <cstring>e_btime</cstring>
+                                <cstring>kcfg_backupTime</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
@@ -216,7 +216,7 @@
     </hbox>
 </widget>
 <tabstops>
-    <tabstop>e_btime</tabstop>
+    <tabstop>kcfg_backupTime</tabstop>
     <tabstop>kcfg_smartAppend</tabstop>
     <tabstop>c_saveopt</tabstop>
     <tabstop>hb_auto</tabstop>
