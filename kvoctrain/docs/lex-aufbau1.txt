@@ -1,0 +1,58 @@
+From: Michael Werner <Michael_M_Werner@compuserve.com>
+
+Hallo Ewald,
+
+es freut mich, daß Dir mein VT zusagt. Wobei ich mir nicht ganz im Klaren
+bin, ob es eher mein Programm oder die beigefügten Lexika sind. ;-)
+
+Du hast völlig Recht, daß ich der Opensource-Bewegung positiv gegenüber
+stehe.
+
+Viele Grüße
+Michael
+
+
+----------kleine Format-Beschreibung (bitte mit Font Courier
+"nichtproportional" ansehen)----------
+
+Lexikon-Format-Beschreibung:
+
+Format eines minimalen Eintrags (mit zwei Dummy-Einträgen x und y)
+ 0 255 255 255 255 255 255 0 0 1
+x||||y||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+ |  |                   |  | | |
+ |  |___________________|  | | Lektionszugehörigkeit (1-9) 
+ |  |                      | |
+ |  |                      beide Sprachseiten sind ungelernt 
+ |  |
+ |  diese Nummern bitte unverändert übernehmen 
+ |
+Attribut: 0 für --NONE-- 
+
+Format eines maximalen Eintrags
+ 0 255 255 255 255 255 255 0 0 1
+MAIN#0|SYNONYM#1|SYNONYM#2|SYNONYM#3|MAIN#1|SYNONYM#1|SYNONYM#2|SYNONYM#3||
+|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+
+Eine Konvertierung (zur Erstellung einer LEX-Datei) könnte nun
+folgendermaßen aussehen:
+
+erster Schritt:
+Formatkopf einer bestehenden Lexikon-Datei nehmen und vor die erste
+Vokabelzeile kopieren.
+
+
+zweiter Schritt:
+0 255 255 255 255 255 255 0 0 1 an den Anfang jeder Vokabelzeile
+(entspricht einem Vokabeleintrag) schreiben. Wortbestandteile durch |
+trennen. Minimal muß ein MAIN#0 und ein MAIN#1 existieren und mindestens 1
+Vokabelzeile.
+
+
+dritter Schritt:
+neues Lexikon laden. Dadurch werden beim nächsten Abspeichern die Anzahl
+der Vokabeleinträge und das Datum korrekt gesetzt. Die Vokabelliste wird
+hierbei auch sortiert.
+
+

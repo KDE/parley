@@ -1,0 +1,72 @@
+/***************************************************************************
+
+    $Id$
+
+                   dialog page for adjectives (comparison)
+
+    -----------------------------------------------------------------------
+
+    begin                : Sat Dec 4 18:09:29 1999
+                                           
+    copyright            : (C) 1999-2001 Ewald Arnold
+                           (C) 2001 The KDE-EDU team
+                         
+    email                : kvoctrain@ewald-arnold.de                                    
+
+    -----------------------------------------------------------------------
+
+    $Log$
+
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   * 
+ *                                                                         *
+ ***************************************************************************/
+
+#ifndef AdjEntryPage_included
+#define AdjEntryPage_included
+
+#include "AdjEntryPageData.h"
+
+#include <GrammerManager.h>
+
+struct SpecFont_t;
+
+class AdjEntryPage : public AdjEntryPageData
+{
+    Q_OBJECT
+
+public:
+
+    AdjEntryPage
+    (
+        SpecFont_t        *font,
+        QDialog           *dlgbook,
+        bool               multi_sel,
+        const Comparison  &comp,
+        QWidget           *parent = NULL,
+        const char        *name = NULL
+    );
+
+    Comparison getComparison() const { return comparisons; }
+
+protected:
+    void keyPressEvent( QKeyEvent * );
+
+protected slots:
+    void initFocus() const;
+    void lev1Changed(const QString&);
+    void lev2Changed(const QString&);
+    void lev3Changed(const QString&);
+    void returnPressed();
+
+protected:
+
+    Comparison comparisons;
+};
+#endif // AdjEntryPage_included

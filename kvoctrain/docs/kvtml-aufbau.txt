@@ -1,0 +1,264 @@
+<?xml version="1.0"?>
+<!doctype kvtml system "kvoctrain.dtd">
+<!--
+This is a machine generated file.
+Be careful when editing here.
+
+Short definition:
+
+lesson       lesson group
+ desc        name
+   %no       its index
+   %current  is current lesson
+type         type group
+ desc        name
+   %no       its index
+e            entry of dictionary
+  %s         is selected
+  %m         lesson member
+  %t         common expression type
+ o           original
+   %q        in query ("o" is given, "t" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type (see QueryManager.h)
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+ t           translation ..
+   %q        in query ("t" is given, "o" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+
+   %d        last query date (from;to)
+   %w        dito, compressed
+   %g        grade (from;to)
+   %c        count (from;to)
+   %b        bad count (from;to)
+
+
+Valid xml means:
+ - Close all tags
+ - Keep proper hierarchy
+ - All attributes are quoted
+
+--
+>
+<kvtml
+  encoding="8Bit"                                           <!-- Kodierung (ab hier)  8Bit oder UTF8     -->
+  generator="kvoctrain v0.7.0pre3"                          <!-- für alle Fälle                          -->
+  cols="3"                                                  <!-- ebenfalls Reserve                       -->
+  lines="3"                                                 <!-- nur für Fortschrittsbalken zu Beginn    -->
+  title="Beispieldatei: Deutsch - Englisch/Französisch"     <!-- 4 selbsterklärende Zeilen ;-)           -->
+  author="Ewald Arnold"
+  license="OpenContent"
+  remark="Beispieldatei mit allen Eigenschaften">
+
+ <lesson width="104">                                       <!-- Block mit Lektionen, width ist die zuletzt eingestellte Breite der Spalte -->
+  <desc no="1">Lektion eins</desc>
+  <desc no="2">Lektion zwei</desc>
+  <desc no="3">Lektion drei</desc>
+  <desc no="4">Lektion vier</desc>
+ </lesson>
+
+ <article>                                                  <!-- Definition mit den Artikeln je Sprache -->
+  <e l="de">                                                <!-- bestimmter und unbestimmter Artikel    -->
+   <fd>die</fd>
+   <fi>eine</fi>
+   <md>der</md>
+   <mi>einer</mi>
+   <nd>das</nd>
+   <ni>ein</ni>
+  </e>
+  <e l="en">
+   <fd>fd en</fd>
+   <fi>fi en</fi>
+   <md>md en</md>
+   <mi>mi en</mi>
+   <nd>nd en</nd>
+   <ni>ni en</ni>
+  </e>
+  <e l="fr">
+   <fd>la</fd>
+   <fi>une</fi>
+   <md>le</md>
+   <mi>un</mi>
+  </e>
+ </article>
+
+ <conjugation>                   <!-- Präfixe für Konjugationen -->
+  <e l="de">                     <!-- ebenfalls für alle Sprachen -->
+   <s1>ich</s1>                  <!-- wobei die Reihenfolge de-en-fr gleich sein muss wie vorher -->
+   <s2>du</s2>
+   <s3f>sie</s3f>
+   <s3m>er</s3m>
+   <s3n>es</s3n>
+   <p1>wir</p1>
+   <p2>ihr</p2>
+   <p3f common="1">sie</p3f>
+   <p3m>sie</p3m>
+   <p3n>sie</p3n>
+  </e>
+  <e l="en">
+   <s1>I</s1>
+   <s2>you</s2>
+   <s3f>he</s3f>
+   <s3m>she</s3m>
+   <s3n>it</s3n>
+   <p1>we</p1>
+   <p2>you</p2>
+   <p3f common="1">they</p3f>
+  </e>
+  <e l="fr">
+   <s1>je</s1>
+   <s2>tu</s2>
+   <s3f>elle</s3f>
+   <s3m>il</s3m>
+   <p1>nous</p1>
+   <p2>vous</p2>
+   <p3f>elles</p3f>
+   <p3m>ils</p3m>
+  </e>
+ </conjugation>
+
+ <options>                                  <!-- Dokument-Optionen, z.B. nicht sortieren -->
+  <sort on="1"/>
+ </options>
+
+ <type>                                     <!-- eigene Worttypen -->
+  <desc no="1">Mein Typ 1</desc>
+  <desc no="2">Mein Typ 2</desc>
+  <desc no="3">Mein Typ 3</desc>
+ </type>
+
+ <tense>                                    <!-- eigene Worttypen -->
+  <desc no="1">Benutzer-Konjugation 1</desc>
+ </tense>
+
+ <usage>                                    <!-- eigene Sprachebenen -->
+  <desc no="1">Benutzersprachebene 1</desc>
+ </usage>
+
+ <e
+     m="3"    <!-- Lektionsindex 3, Name siehe oben -->
+     s="1"    <!-- selektiert, Rest einer abgebrochenen Abfrage -->
+     t="v">   <!-- Worttyp, Verb -->
+
+     <o width="208"           <!-- Originalausdruck, zuletzt benutzte Spaltenbreite  -->
+      l="de"                  <!-- Sprache deutsch       -->
+      charset="ISO 8859-1"    <!-- Zeichensatz, alle 8859-x, auch Unicode und Japanisch, soweit eben von QT2/KDE2 unterstützt -->
+      y="laufen">             <!-- Synonyme, derzeit durch Kommas notdürftig getrennt  -->
+      
+  <conjugation                      <!-- Konjugationen zum aktuellen Verb  -->
+                                    <!-- angedacht: hier könnten weitere Attribute wie oben für
+                                         Noten, Abfrage usw. stehen -->
+
+  >                     
+   <t n="PrSi">                     <!-- Typ, Simple Present               -->
+      <s1>gehe</s1>                 <!-- ich, du, er, ...                  -->
+      <s2>gehst</s2>
+      <s3f common="1">geht</s3f>    <!-- er, sie, es gemeinsam weil gleich -->
+      <p1>gehen</p1>
+      <p2>gehen</p2>
+      <p3f common="1">gehen</p3f></t>
+   <t n="PaSi"><s1>schwamm</s1><s2>schwammst</s2></t>
+  </conjugation>
+  gehen</o>                         <!-- eigentliche Vokabel   -->
+
+
+
+    <t                              <!-- erste Fremdsprache    -->
+      width="208"
+      l="en"                        <!-- Sprachcode            -->
+      g="1;2"                       <!-- Note für Richtung von/zum Original, 1..7 -->
+      c="2;0"                       <!-- Anzahl Abfragen von/zum Original   -->
+      b="1;0"                       <!-- davon falsche Abfragen von/zum Original   -->
+      w="AiHzA;AiHzA"               <!-- letztes Abfragedatum von/zum Original, hier etwas "komprimiert", eigentlich aber time()-Funktion   -->
+      ff="falscher Freund"          <!-- falscher Freund vom Original   -->
+      tf="Freund falscher">         <!-- falscher Freund zum Original   -->
+      
+   <conjugation
+                                    <!-- angedacht: hier könnten weitere Attribute wie oben für
+                                         Noten, Abfrage usw. stehen -->
+   >
+    <t n="PaSi"><s1>went</s1></t>
+    <t n="PaPa"><s1>have gone</s1></t>
+   </conjugation>
+   go</t>
+   
+     <t width="208"                       <!-- zweite Fremdsprache            -->
+        l="fr"                            <!-- Französisch                    -->
+        charset="Unicode"                 <!-- Unicode kodiert                -->
+   >aller</t></e>                         <!-- Ende dieses Datensatzes        -->
+
+ <e m="4"
+    s="1"
+    t="aj">                               <!-- Typ Adjektiv                  -->
+
+    <o r="unregelmässiges Adjektiv"       <!-- eigene Bemerkung               -->
+       a="schlecht">                      <!-- Antonym dieser Vokabel         -->
+
+  <comparison>                            <!-- Block mit Steigerungsformen    -->
+   <l1>gut</l1>
+   <l2>besser</l2>
+   <l3>am besten</l3>
+  </comparison>
+  gut</o><t>
+   <comparison>
+    <l1>good</l1><l2>better</l2><l3>best</l3>
+   </comparison>
+   good</t><t>
+    <comparison>
+     <l1>bon</l1><l2>meilleur</l2><l3>le meilleur</l3>
+    </comparison>
+    bon</t></e>
+ <e m="2" t="n">
+    <o y="Fußgelenk"                    <!-- Synonyme                       -->
+     u="anat"                           <!-- Sprachebene, Anatomie          -->
+     >Knöchel</o>
+
+     <t p="nackls">                     <!-- Aussprache, derzeit nach Geschmack, später zusätzlich mit Unicode
+                                             und den Zeichen aus dem Phonetischen Alphabet  -->
+     knuckles</t><t g="2;3" c="1;1" b="1;1">cheville</t></e>
+</kvtml>
+
+
+<!--
+
+  noch einige Bemerkungen:
+
+  Alle Eigenschaften sind darauf ausgelegt, mit anderen austauschbar zu sein,
+  auch über Sprachgrenzen hinweg.
+
+  Es wird immer über einen "Platzhalter" referenziert.
+  Der Typ "Verb" z.B. mit "v", Hauptwörter zunächst mit "n", können
+  aber mit "n:f" näher spezifiziert werden, in diesem Fall "Nomen,weiblich".
+
+  u="anat" ist ebenfalls in allen Sprachen das selbe und wird nur für die Anzeige
+  intern in "Anatomie" der "anatomy" umgesetzt. Bei den Benutzerebenen sind mehrere
+  in Kombination möglich, jeweils durch Kommas getrennt.
+
+  Benutzerdefinierte Eigenschaften beginnen immer mit einem "#" und einer darauf
+  folgenden Nummer. Z.B. t="#1" =  benutzer-definierter Worttyp, mit dem Namen des ersten
+  Eintrages des entsprechenden Blockes. Mehrsprachigkeit ist hier nicht möglich und meist auch
+  nicht nötig, aber immerhin kann man die Blöcke im Programm oder einem Texteditor anpassen,
+  wenn Bedarf ist.
+
+-->
+  

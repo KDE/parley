@@ -1,0 +1,153 @@
+DlgEdit:v1.2:Dialog:
+Dialog {
+	ClassHeader {ProgressDlg.h}
+	ClassSource {ProgressDlg.cpp}
+	ClassName {ProgressDlg}
+	DataHeader {ProgressDlgData.h}
+	DataSource {ProgressDlgData.cpp}
+	DataName {ProgressDlgData}
+	WindowBaseClass {Custom}
+	CustomBase {QSemiModal}
+	CustomBaseHeader {qsemimodal.h}
+	WindowFlags {0}
+}
+WidgetLayout {
+InitialPos {-1 -1}
+Size {400 130}
+MinSize {400 130}
+MaxSize {400 130}
+Grid {10}
+
+KDE::KProgress {
+		BarStyle {Solid}
+		Orientation {Horizontal}
+		BarColor {10236209}
+		TextEnabled {TRUE}
+		Value {0}
+		LineStep {1}
+		PageStep {10}
+		MinValue {0}
+		MaxValue {100}
+		Style {51}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 70 340 30}
+		Name {KProgress_1}
+		Variable {progress}
+		Font {"helvetica" 12 75 0 0 0 0 5 0}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {FixedColor}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {Filename:}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 10 90 30}
+		Name {Label_2}
+		Font {"helvetica" 12 75 0 0 0 0 0 0}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {file.kvtml}
+		Alignment {265}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {130 20 250 20}
+		Name {Label_3}
+		Variable {l_file}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {Title:}
+		Alignment {289}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {1}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {30 30 90 30}
+		Name {Label_4}
+		Font {"helvetica" 12 75 0 0 0 0 0 0}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+Label {
+		Text {Title}
+		Alignment {265}
+		AutoResize {FALSE}
+		Margin {-1}
+		Style {0}
+		LineWidth {2}
+		MidLineWidth {0}
+		FrameMargin {0}
+		Rect {130 40 250 20}
+		Name {Label_5}
+		Variable {l_title}
+		MinimumSize {0 0}
+		MaximumSize {32767 32767}
+		BackgroundPixmap {}
+		UseBackgroundPixmap {FALSE}
+		AdjustSize {FALSE}
+		ReadPixmapFromData {FALSE}
+		DataVarName {}
+		DataLenName {}
+		FocusPolicy {NoFocus}
+		BackgroundMode {PaletteBackground}
+		FontPropagation {NoChildren}
+		PalettePropagation {NoChildren}
+}
+
+}

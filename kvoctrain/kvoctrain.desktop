@@ -1,0 +1,17 @@
+[Desktop Entry]
+Comment=Helps you train your vocabulary
+Comment[C]=Helps you train your vocabulary
+Comment[de]=Hilft beim Wörter lernen
+BinaryPattern=kvoctrain;
+Name=kvoctrain
+Name[C]=kvoctrain
+MimeType=application/x-kvoctrain;
+Exec=kvoctrain
+Icon=kvoctrain
+DocPath=kvoctrain/index.html
+Type=Application
+Terminal=0
+MimeType=text/x-kvtml
+#Protocols=file;
+#ServiceTypes=Browser/View
+#X-KDE-Library=libkorganizer

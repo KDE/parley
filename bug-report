@@ -1,0 +1,12 @@
+rm bug-report.tar.gz
+./configure >x1 2>x2
+make -i >x3 2>x4
+set >x5
+ls -l $QTDIR >x6
+ls -l $KDEDIR >x7
+gcc -v >x8
+uname -a >x9
+tar cf bug-report.tar x? x?? config.cache config.log
+gzip bug-report.tar
+echo "send bug-report.tar.gz to kvoctrain@ewald-arnold.de"
+

@@ -1,0 +1,52 @@
+<!ELEMENT kvtml - -        (lesson?, e*)     >
+<!ATTLIST kvtml generator  CDATA  #REQUIRED
+                title      CDATA  #REQUIRED>
+
+<!-- xml tree
+ kvtml
+  lesson  lesson group
+   desc    description
+    %no    its number
+  e        element
+   %m
+   %s
+   o       original
+    %l     language code
+    %r
+   t       translation
+    %l     language code
+    %g     grade
+    %d     last querydate
+    %c     count of queries
+    %b     count of failed queries
+    %r
+-->
+
+<!ELEMENT lesson  - -     (desc*)  >
+
+<!ELEMENT desc    - -     (#PCDATA)>
+<!ATTLIST desc    no      NUMBER #OPTIONAL                            >
+
+<!ELEMENT e       - -     (o, t+)  >
+<!ATTLIST e       lm      NUMBER #OPTIONAL                            >
+
+<!ELEMENT o       - -     (#PCDATA)>
+<!ATTLIST o       l       CDATA  #IMPLIED  -- must at least appear in first entry !
+                  d       CDATA  #IMPLIED                                        
+>
+
+<!ELEMENT t       - -     (#PCDATA)>
+<!ATTLIST t       l       CDATA  #IMPLIED  -- must at least appear in first entry !
+                  g       NUMBER #IMPLIED  -- assume 1 if missing                  
+                  d       CDATA  #IMPLIED
+                  c       NUMBER #IMPLIED  -- assume 0 if missing
+                  r       CDATA  #IMPLIED
+>
+                
+<!ENTITY  ouml  "ö">
+<!ENTITY  Ouml  "Ö">
+<!ENTITY  uuml  "ü">
+<!ENTITY  Uuml  "Ü">
+<!ENTITY  auml  "ä">
+<!ENTITY  Auml  "Ä">
+<!ENTITY  szlig "ß">

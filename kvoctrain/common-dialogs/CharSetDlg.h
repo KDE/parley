@@ -1,0 +1,70 @@
+/***************************************************************************
+
+    $Id$
+
+                        substitute charset for document
+
+    -----------------------------------------------------------------------
+
+    begin                : Mon Jun 12 09:51:32 2000
+                                           
+    copyright            : (C) 1999-2001 Ewald Arnold
+                           (C) 2001 The KDE-EDU team
+                         
+    email                : kvoctrain@ewald-arnold.de                                    
+
+    -----------------------------------------------------------------------
+
+    $Log$
+
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   * 
+ *                                                                         *
+ ***************************************************************************/
+
+#ifndef CharSetDlg_included
+#define CharSetDlg_included
+
+#include "CharSetDlgData.h"
+
+#include <qstrlist.h>
+
+#include <vector.h>
+
+class CharSetDlg : public CharSetDlgData
+{
+    Q_OBJECT
+
+public:
+
+    CharSetDlg
+    (
+        bool          flag,
+        QString       exact_name,
+        QStrList     &rawnames,
+        QWidget      *parent = NULL,
+        const char   *name = NULL
+    );
+
+//  virtual ~CharSetDlg();
+
+    QFont getFont () const;
+
+protected slots:
+    void slotItemSelected (int item);
+    void slotSelected(int dummy);
+
+private:
+
+    int           sel;
+    vector<QFont> fonts;
+
+};
+
+#endif // CharSetDlg_included

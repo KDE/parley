@@ -1,0 +1,127 @@
+# Format eines minimalen Eintrags (mit zwei Dummy-Einträgen x und y)
+#  0 255 255 255 255 255 255 0 0 1 x||||y||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+#  |  |                   |  | | |
+#  |  |___________________|  | | Lektionszugehörigkeit (1-9) 
+
+?                                maximal 9 Lektionen? "Namen" der
+Lektionen?
+Das Lektionenmaximum ist auf 9 festgelegt. Die Lektionsbezeichnungen werden
+weiter oben abgespeichert! Ausprobieren, dann siehst Du wo.
+
+#  |  |                      | |
+#  |  |                      beide Sprachseiten sind ungelernt 
+
+?                            1..x = Note?
+0..2 (0=ungelernt, 1=unsicher, 2=gelernt)
+
+#  |  |
+#  |  diese Nummern bitte unverändert übernehmen 
+
+?     was bedeuten sie?
+   
+#  |
+# Attribut: 0 für --NONE-- 
+
+? weitere Attribute?
+Alle aus der Eingabemaske "Edit Entry" ersichtlichen + 20 extra zu
+definierenden Attributen
+ 
+# Format eines maximalen Eintrags
+# 0 255 255 255 255 255 255 0 0 1
+MAIN#0|SYNONYM#1|SYNONYM#2|SYNONYM#3|MAIN#1|SYNONYM#1|SYNONYM#2|SYNONYM#3|||||||||||||||||||||||||||||||||||||||||||||||||||||||||
+
+? Das Lexikon beinhaltet immer 2 Sprachen, MAIN ist der "normale" Ausdruck
+und
+? es folgen bis zu 3 Synonyme jeweils für beide Sprachen. Was folgt
+hierauf?
+Alle Konjugationsformen die evtl. für das Konjugationstraining eingegeben
+wurden. (siehe ITALIAN.LEX)
+? Ich speichere jeweils das letzte Abfragedatum, die Anzahl der Abfragen
+? und Fehler sowie eine Art Note. Gibt es dies bei dir ebenfalls?
+Nein, wozu? Meiner Meinung nach, ist der Anwender am Lernen interessiert
+und nicht an einer Statistikreiterei.
+
+? Hier der Anfang von elek.lex mit meinen Vermutungen:
+
+# Vocabulary Trainer V5.0 
+
+? 1. Zeile: Version
+
+# LEX|Deutsch|Englisch| 259 260 1 1 1 0 0 268 0 1 1 1 1 145 6 23 1999 255 1 1 653 0 0 0 0 0 0 0 0 0 0 1 1 1 0 1 13 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 10 1 1 0 0 | 
+
+? 2. Zeile: Kennung, Sprachen 1+2 und viele Daten (aber welche ? ;-)
+Programminterne: Abspeicherung der Trainingsoptionen und viele andere Infos
+die meiner Meinung nach Lexikaspezifisch abgespeichert werden sollen.
+
+# -11 700 
+verwendeter Zeichensatz
+?  3. Zeile: nochmal 2 Daten
+# System 
+?  4. Zeile: Beschreibung ?
+Nein! Nochmals verwendeter Zeichensatz
+
+# Energie- und Automatisierungstechnik. V. Manuela Lutz. Danke. 
+
+?  5. Zeile: nochmal Beschreibung/Herkunft ?
+Eigentliche Lexikonbeschreibung
+
+? danach ein Stück Wörterbuch, allerdings ein anderer Aufbau als oben
+-> siehe Trainingsoptionen
+# 1 1 der die das|he she it| 
+# 1 1 eine einer eines einen einem|has have had is be| 
+# 1 1 er sie es|his him her its| 
+# 1 1 wir ihr euch|in to into on at too| 
+# 1 1 in an auf bei|the a an| 
+# 1 1 zu um zur zum|out by with of off| 
+# 1 1 ist sind seid|something someone some| 
+# 1 1 dies dieser dieses|under below| 
+# 1 1 || 
+# 1 1 || 
+
+?  Zeile ohne Zahlen?
+-> siehe ebenfalls Trainingsoptionen
+# der die das ein eine einer eines einen einem|the a an| 
+
+?  viele Leerzeilen ?
+-> eigene selbst zu definierende Attribute
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# Sachgebiete| 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+# | 
+
+# 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32 32  
+? ab hier scheint das Lexikon zu starten, aber was bedeuten die 32 32 ... 
+Funktionstastenbelegungen
+
+# 1 0 255 255 255 255 255 255 0 0 1 Abbildung||||mapping|||||||||||||||||||||||||||||||||||||||||||||||||||||||
+|||||
+# 1 0 255 255 255 255 255 255 0 0 1 Abblendkappe||||anti-dazzle device|||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| 
+
+Mein Tip für Dich: Verwende das Lexikon ITALIAN.LEX von mir. Dort findest
+Du die meisten Funktionen verwendet und vielleicht wird für Dich vieles
+klarer, wenn Du Dich mehr mit der VT-Funktionalität auseinandersetzt.

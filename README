@@ -1,0 +1,55 @@
+$Date$
+                             kvoctrain
+
+        helps you train your own vocabulary in different languages
+        
+==================================================================
+
+This package is compilable for KDE1 *AND* KDE2.
+
+To determine the target version for compilation for see
+README.kde1x-kde2x.
+
+==================================================================
+
+This tool is intended as a replacement for the old recommendation, to
+excercise your vocabulary with little sheets of paper and a box.
+
+You remember: write the original expression on the front side of a sheet
+and the translation on the back. Then look at the first sheet. If you know
+the translation, put it away. If you failed, put it back into the box.
+
+To find out more about this little application choose HELP in its main menu.
+
+To install, proceed as usual:
+
+ configure
+ make
+ su
+ make install
+ make distclean
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+If you have problems to get started (does not compile or something else)
+point your web browser to the subdirectory where the handbook resides:
+
+  kvoctrain/docs/en/index.html
+  
+=========================================================================
+
+Wenn Du schon Schwierigkeiten hast, überhaupt zu starten (z.B. kompiliert
+nicht) lass Dir von deinem Webbrowser das Handbuch im folgenden
+Unterverzeichnis anzeigen:
+
+  kvoctrain/docs/de/index.html
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Happy learning,
+Ewald Arnold
+
+-- 
+ewald@ewald-arnold.de  (prefered)
+earnold@rafi.de (work)
+http://www.ewald-arnold.de

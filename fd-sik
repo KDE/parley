@@ -1,0 +1,8 @@
+mount /a && \
+( rm /a/*.gz /a/*.bz2; \
+  tar cfI kvoc.tar.bz2  * --exclude=*.o --exclude=*.a --exclude=*~ --exclude=*.old
+  cp kvoc.tar.bz2 /a; \
+  rm kvoc.tar.bz2 \
+  ls -l /a; \
+  umount /a; )\
+
