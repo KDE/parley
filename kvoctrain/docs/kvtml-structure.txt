@@ -62,7 +62,7 @@ Valid xml means:
 --
 >
 <kvtml
-  encoding="8Bit"                                           <!-- Encoding (starting from here)  8Bit orTF8     -->
+  encoding="8Bit"                                           <!-- Encoding (starting from here)  8Bit or UTF8     -->
   generator="kvoctrain v0.7.0pre3"                          <!-- just in case                            -->
   cols="3"                                                  <!-- as well: just in case                   -->
   lines="3"                                                 <!-- just for progressbar on startup         -->
