@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.56  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.55  2003/02/24 21:14:20  antlarr
     QString(i18n())
 
@@ -908,7 +915,7 @@ void kvoctrainApp::slotRemoveRow()
   else {
     if(KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected range?\n"),
-                  kapp->makeStdCaption("")));
+                  kapp->makeStdCaption("")))
     {
       RowTable *table = view->getTable();
 
