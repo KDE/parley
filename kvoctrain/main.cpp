@@ -77,7 +77,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
                       I18N_NOOP("Tool to create lists with ISO639 codes"));
 
   aboutData.addCredit("Andreas Neuper",
-                      I18N_NOOP("Converter script \"langen2kvtml\" (download files at http://www.vokabeln.de/files.htm)"));
+                      I18N_NOOP("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
 
    aboutData.addCredit("Dennis Haney",
                       I18N_NOOP("Patch to implement Leitner learning method"));
