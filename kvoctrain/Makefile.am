@@ -66,8 +66,8 @@ i18n_files=  query-dialogs/*.cpp \
              $(spotlight2kvtml_SOURCES) \
              $(kvoctrain_SOURCES)
 
-messages:
-	$(EXTRACTRC) `find . -name "*.ui"` > rc.cpp
+messages: rc.cpp
+	$(EXTRACTRC) `find . -name "*.ui"` >> rc.cpp
 	$(XGETTEXT) `ls $(i18n_files)` rc.cpp -kI18N_NOOP2 -o $(podir)/kvoctrain.pot
 	-rm rc.cpp
 
