@@ -56,7 +56,8 @@ public:
                  int entry,
                  int orgcol,
                  int transcol,
-                 int query_cycle,
+                 QFont & word_font,
+		 int query_cycle,
                  int query_num,
                  int query_startnum,
                  kvoctrainExpr *exp,
@@ -69,6 +70,7 @@ public:
 
 	void setQuery(QString org,
                       QString trans,
+		      QFont & font,
                       int entry,
                       int orgcol,
                       int transcol,
