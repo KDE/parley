@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/21 18:30:17  arnold
+    quick fix for change in KLocale class
+
     Revision 1.9  2001/11/10 22:29:11  arnold
     removed compatibility for kde1
 
@@ -84,7 +87,8 @@
 #include <kv_resource.h>
 #include <kvoctraindoc.h>
 
-#include <map>
+#include <map.h>
+#include <algo.h>
 
 LangOptPage::LangOptPage
 (
@@ -349,16 +353,29 @@ LangSet LangOptPage::getLangSet () const
 }
 
 
+class sortByRegion : public binary_function<LangOptPage::LangRef,
+                                            LangOptPage::LangRef, bool>
+{
+ public:
+
+  sortByRegion () {}
+
+  bool operator() (const LangOptPage::LangRef &x, const LangOptPage::LangRef &y) const {
+      return (QString::compare(x.region.upper(), y.region.upper() ) < 0);
+  }
+};
+
+
 void LangOptPage::loadCountryData()
 {
-#if KDE_VERSION <= 222 // FIXME
-  KLocale locale; // create default locale, works but don't know why
-#else
-  KLocale locale("kvoctrain.gmo");
-#endif
 
   // temperary use of our locale as the global locale
   KLocale *lsave = KGlobal::_locale;
+  QString curr_lang = lsave->language();
+
+//  KLocale locale("kvoctrain");
+  KLocale locale(QString::null);
+  locale.setLanguage(curr_lang);
   KGlobal::_locale = &locale;
 
   globalLangs.clear();
@@ -370,8 +387,6 @@ void LangOptPage::loadCountryData()
   typedef map<QString, int> regionmap_t;
 
   regionmap_t regionmap;
-  regionlist.sort();
-
   for ( QStringList::ConstIterator it = regionlist.begin();
     it != regionlist.end();
     ++it )
@@ -426,6 +441,8 @@ void LangOptPage::loadCountryData()
     if (it != regionmap.end())
       globalLangs[(*it).second].langs.addSet (tag, all_langs, name, pixmap);
   }
+
+  std::sort (globalLangs.begin(), globalLangs.end(), sortByRegion() );
 
   int idx = 0;
   global_langset.clear();
