@@ -146,7 +146,7 @@ Valid xml means:
   <desc no="3">My type 3</desc>
  </type>
 
- <e m="4" t="#2"><o width="246" l="de" q="t">gänzlich</o><t width="246" l="en" q="o" g="4;0" c="17;0" b="6;0" d="934731325;0">utterly</t><t width="249" l="fr" g="1;4" c="1;1" b="1;1">tout á fait</t></e>
+ <e m="4" t="#2"><o width="246" l="de" q="t">gänzlich</o><t width="246" l="en" q="o" g="4;0" c="17;0" b="6;0" d="934731325;0">utterly</t><t width="249" l="fr" g="1;4" c="1;1" b="1;1">tout à fait</t></e>
  <e m="4"><o t="n:m">Talg</o><t g="1;2" c="4;1" d="934731796;0" t="n">tallow</t><t g="2;3" c="2;3" b="1;1" t="n">suif</t></e>
  <e m="1"><o>verblüfft</o><t g="7;1" c="9;2" b="2;1" d="977077597;961317468">taken aback</t><t g="1;1" c="1;1" b="1;0" d="0;977075246">ébahi</t></e>
  <e m="4"><o t="n:m">Saft</o><t g="3;4" c="4;2" d="934731800;0" t="n">sap</t><t g="3;2" c="1;1" b="1;1" t="n:m">jus</t></e>
@@ -188,7 +188,7 @@ Valid xml means:
    </conjugation>
    go</t><t>aller</t></e>
  <e m="2"><o t="n:f">Kniebeugen</o><t g="3;1" c="2;1" d="934731856;949757271" t="n">genuflect</t><t g="4;1" c="1;1" b="1;1" t="n">flexion de genoux</t></e>
- <e m="2" t="n"><o>Gunst, Gefallen</o><t g="1;1" c="4;1" d="934731795;949757271">favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
+ <e m="2" t="n"><o>Gunst, Gefallen</o><t g="1;1" c="4;1" d="934731795;949757271">favour</t><t g="3;2" c="1;1" b="1;1">faveur</t></e>
  <e m="1" s="1" t="v"><o>behindern</o><t g="4;6" c="6;6" b="1;0" d="977077375;982000284">
    <conjugation>
     <t n="PrSi"><s1>encumber</s1><s2>encumber</s2><p1>encumber</p1></t>
@@ -202,3 +202,4 @@ Valid xml means:
   </comparison>
   mild</o><t g="2;1" c="4;3" b="1;0" d="976221574;961317485">balmy</t><t g="2;5" c="1;2" b="1;1" d="0;976221651">doux</t></e>
 </kvtml>
+

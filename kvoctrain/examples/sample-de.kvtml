@@ -6,7 +6,7 @@ Be careful when editing here.
 
 Short definition:
 
-lesson       lesson group
+lesson       lesson groupf
  desc        name
    %no       its index
    %query    is in query selection
@@ -69,7 +69,7 @@ Valid xml means:
   title="Beispieldatei: Deutsch - Englisch/Franzsisch"
   author="Ewald Arnold">
 
- <lesson width="123">
+ <lesson width="113">
   <desc no="1">Lektion eins</desc>
   <desc no="2">Lektion zwei</desc>
   <desc no="3" current="1">Lektion drei</desc>
@@ -146,19 +146,19 @@ Valid xml means:
   <desc no="3">Mein Typ 3</desc>
  </type>
 
- <e m="1" t="aj"><o width="246" l="de" q="o">
+ <e m="1" t="aj"><o width="226" l="de" q="o">
   <comparison>
    <l1>mild</l1><l2>milder</l2><l3>am mildesten</l3>
   </comparison>
-  mild</o><t width="246" l="en" q="t">balmy</t><t width="249" l="fr" g="2;4" c="1;1" b="1;1">doux</t></e>
- <e m="4"><o t="n:m">Klotz</o><t p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
+  mild</o><t width="226" l="en" q="t">balmy</t><t width="232" l="fr" g="2;4" c="1;1" b="1;1">doux</t></e>
+ <e m="4"><o y="-" t="n:m">Klotz</o><t p="tschank" t="n">chunk</t><t g="3;1" c="1;11" b="1;1" t="n">bloc</t></e>
  <e m="1"><o t="n:m">Verfall</o><t g="1;0" c="1;0" d="1010165496;0" t="n">decline</t><t g="1;4" c="1;1" b="1;1" t="n">échéance</t></e>
  <e m="1" s="1" t="v"><o>behindern</o><t>
    <conjugation>
     <t n="PrSi"><s1>encumber</s1><s2>encumber</s2><p1>encumber</p1></t>
    </conjugation>
    encumber</t><t g="2;3" c="1;1" b="1;1">gêner</t></e>
- <e m="2" t="n"><o>Gunst, Gefallen</o><t>favour</t><t g="3;2" c="1;1" b="1;1">favoer</t></e>
+ <e m="2" t="n"><o y="-">Gunst, Gefallen</o><t y="-">favour</t><t g="3;2" c="1;1" b="1;1">faveur</t></e>
  <e m="2" t="ar"><o y="-">Kniebeugen</o><t u="npr">genuflect</t><t g="4;1" c="1;1" b="1;1">flexion de genoux</t></e>
  <e m="3" s="1" t="v"><o y="-">
   <conjugation>
@@ -200,5 +200,6 @@ Valid xml means:
  <e m="4"><o t="n:m">Saft</o><t t="n">sap</t><t g="3;2" c="1;1" b="1;1" t="n:m">jus</t></e>
  <e m="1"><o>verblüfft</o><t g="1;0" c="1;0" d="1010163035;0">taken aback</t><t g="1;0" c="1;0" b="1;0">ébahi</t></e>
  <e m="4"><o t="n:m">Talg</o><t t="n">tallow</t><t g="2;3" c="2;3" b="1;1" t="n">suif</t></e>
- <e m="4" t="#2"><o>gänzlich</o><t>utterly</t><t g="1;4" c="1;1" b="1;1">tout á fait</t></e>
+ <e m="4" t="#2"><o y="-">gänzlich</o><t y="-">utterly</t><t g="1;4" c="1;1" b="1;1">tout à fait</t></e>
 </kvtml>
+
