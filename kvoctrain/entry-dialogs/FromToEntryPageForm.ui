@@ -284,7 +284,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;wrong:</string>
+                                <string>&amp;Wrong:</string>
                             </property>
                             <property>
                                 <name>buddy</name>
@@ -299,7 +299,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;altogether:</string>
+                                <string>&amp;Altogether:</string>
                             </property>
                             <property>
                                 <name>buddy</name>

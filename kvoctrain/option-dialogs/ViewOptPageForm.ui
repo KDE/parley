@@ -1,14 +1,10 @@
-<!DOCTYPE UI><UI>
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
 <class>ViewOptPageForm</class>
-<include location="global">kcolorbutton.h</include>
-<widget>
-    <class>QDialog</class>
-    <property stdset="1">
-        <name>name</name>
+<widget class="QDialog">
+    <property name="name">
         <cstring>ViewOptPageForm</cstring>
     </property>
-    <property stdset="1">
-        <name>geometry</name>
+    <property name="geometry">
         <rect>
             <x>0</x>
             <y>0</y>
@@ -16,434 +12,334 @@
             <height>480</height>
         </rect>
     </property>
-    <property stdset="1">
-        <name>caption</name>
+    <property name="caption">
         <string>-</string>
     </property>
     <vbox>
-        <property stdset="1">
-            <name>margin</name>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
             <number>11</number>
         </property>
-        <property stdset="1">
-            <name>spacing</name>
+        <property name="spacing">
             <number>6</number>
         </property>
-        <widget>
-            <class>QGroupBox</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QGroupBox">
+            <property name="name">
                 <cstring>GroupBox3</cstring>
             </property>
-            <property stdset="1">
-                <name>title</name>
+            <property name="title">
                 <string>Viewing Options</string>
             </property>
             <grid>
-                <property stdset="1">
-                    <name>margin</name>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
                     <number>11</number>
                 </property>
-                <property stdset="1">
-                    <name>spacing</name>
+                <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget row="0"  column="3"  rowspan="3"  colspan="1" >
-                    <class>QGroupBox</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QGroupBox" row="0" column="3" rowspan="3" colspan="1">
+                    <property name="name">
                         <cstring>gradegroup</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>sizePolicy</name>
+                    <property name="sizePolicy">
                         <sizepolicy>
                             <hsizetype>1</hsizetype>
                             <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>title</name>
+                    <property name="title">
                         <string>Grade Colors</string>
                     </property>
                     <grid>
-                        <property stdset="1">
-                            <name>margin</name>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
                             <number>11</number>
                         </property>
-                        <property stdset="1">
-                            <name>spacing</name>
+                        <property name="spacing">
                             <number>6</number>
                         </property>
-                        <widget row="0"  column="1" >
-                            <class>QCheckBox</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QCheckBox" row="0" column="1">
+                            <property name="name">
                                 <cstring>c_use</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;Use colors</string>
                             </property>
                         </widget>
-                        <spacer row="0"  column="0" >
-                            <property>
-                                <name>name</name>
+                        <spacer row="0" column="0">
+                            <property name="name">
                                 <cstring>Spacer1</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>orientation</name>
+                            <property name="orientation">
                                 <enum>Horizontal</enum>
                             </property>
-                            <property stdset="1">
-                                <name>sizeType</name>
+                            <property name="sizeType">
                                 <enum>Minimum</enum>
                             </property>
-                            <property>
-                                <name>sizeHint</name>
-                                <size>
-                                    <width>20</width>
-                                    <height>20</height>
-                                </size>
-                            </property>
                         </spacer>
-                        <widget row="3"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="3" column="0">
+                            <property name="name">
                                 <cstring>l_lev5</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;5:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col5</cstring>
                             </property>
                         </widget>
-                        <widget row="6"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="6" column="0">
+                            <property name="name">
                                 <cstring>l_lev2</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;2:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col2</cstring>
                             </property>
                         </widget>
-                        <widget row="4"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="4" column="0">
+                            <property name="name">
                                 <cstring>l_lev4</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;4:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col4</cstring>
                             </property>
                         </widget>
-                        <widget row="7"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="7" column="0">
+                            <property name="name">
                                 <cstring>l_lev1</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;1:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col1</cstring>
                             </property>
                         </widget>
-                        <widget row="1"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="1" column="1">
+                            <property name="name">
                                 <cstring>b_col7</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;7</string>
                             </property>
                         </widget>
-                        <widget row="3"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="3" column="1">
+                            <property name="name">
                                 <cstring>b_col5</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;5</string>
                             </property>
                         </widget>
-                        <widget row="5"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="5" column="0">
+                            <property name="name">
                                 <cstring>l_lev3</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;3:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col3</cstring>
                             </property>
                         </widget>
-                        <widget row="4"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="4" column="1">
+                            <property name="name">
                                 <cstring>b_col4</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;4</string>
                             </property>
                         </widget>
-                        <widget row="5"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="5" column="1">
+                            <property name="name">
                                 <cstring>b_col3</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;3</string>
                             </property>
                         </widget>
-                        <widget row="2"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="2" column="1">
+                            <property name="name">
                                 <cstring>b_col6</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;6</string>
                             </property>
                         </widget>
-                        <widget row="6"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="6" column="1">
+                            <property name="name">
                                 <cstring>b_col2</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;2</string>
                             </property>
                         </widget>
-                        <widget row="2"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
                                 <cstring>l_lev6</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;6:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col6</cstring>
                             </property>
                         </widget>
-                        <widget row="1"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
                                 <cstring>l_lev7</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Level &amp;7:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col7</cstring>
                             </property>
                         </widget>
-                        <widget row="7"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="7" column="1">
+                            <property name="name">
                                 <cstring>b_col1</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;1</string>
                             </property>
                         </widget>
-                        <widget row="8"  column="1" >
-                            <class>KColorButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="KColorButton" row="8" column="1">
+                            <property name="name">
                                 <cstring>b_col0</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;N</string>
                             </property>
                         </widget>
-                        <widget row="8"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="8" column="0">
+                            <property name="name">
                                 <cstring>l_lev0</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;Not queried:</string>
                             </property>
-                            <property>
-                                <name>buddy</name>
+                            <property name="buddy" stdset="0">
                                 <cstring>b_col0</cstring>
                             </property>
                         </widget>
                     </grid>
                 </widget>
-                <spacer row="2"  column="1" >
-                    <property>
-                        <name>name</name>
+                <spacer row="2" column="1">
+                    <property name="name">
                         <cstring>Spacer2</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>orientation</name>
+                    <property name="orientation">
                         <enum>Vertical</enum>
                     </property>
-                    <property stdset="1">
-                        <name>sizeType</name>
+                    <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
-                    <property>
-                        <name>sizeHint</name>
-                        <size>
-                            <width>20</width>
-                            <height>20</height>
-                        </size>
-                    </property>
                 </spacer>
-                <widget row="1"  column="0" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
                         <cstring>TextLabel1_2</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
+                    <property name="text">
                         <string>IPA font:</string>
                     </property>
                 </widget>
-                <widget row="1"  column="2" >
-                    <class>QPushButton</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QPushButton" row="1" column="2">
+                    <property name="name">
                         <cstring>b_choose_ipa</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>sizePolicy</name>
+                    <property name="sizePolicy">
                         <sizepolicy>
                             <hsizetype>1</hsizetype>
                             <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>C&amp;hange</string>
+                    <property name="text">
+                        <string>C&amp;hange...</string>
                     </property>
                 </widget>
-                <widget row="0"  column="2" >
-                    <class>QPushButton</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QPushButton" row="0" column="2">
+                    <property name="name">
                         <cstring>b_choose</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>sizePolicy</name>
+                    <property name="sizePolicy">
                         <sizepolicy>
                             <hsizetype>1</hsizetype>
                             <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>&amp;Change</string>
+                    <property name="text">
+                        <string>&amp;Change...</string>
                     </property>
                 </widget>
-                <widget row="0"  column="1" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QLabel" row="0" column="1">
+                    <property name="name">
                         <cstring>e_font</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>sizePolicy</name>
+                    <property name="sizePolicy">
                         <sizepolicy>
                             <hsizetype>3</hsizetype>
                             <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>frameShape</name>
+                    <property name="frameShape">
                         <enum>WinPanel</enum>
                     </property>
-                    <property stdset="1">
-                        <name>frameShadow</name>
+                    <property name="frameShadow">
                         <enum>Sunken</enum>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
+                    <property name="text">
                         <string></string>
                     </property>
                 </widget>
-                <widget row="0"  column="0" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
                         <cstring>TextLabel1</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
+                    <property name="text">
                         <string>Table font:</string>
                     </property>
                 </widget>
-                <widget row="1"  column="1" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QLabel" row="1" column="1">
+                    <property name="name">
                         <cstring>e_ipa_font</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>sizePolicy</name>
+                    <property name="sizePolicy">
                         <sizepolicy>
                             <hsizetype>3</hsizetype>
                             <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>frameShape</name>
+                    <property name="frameShape">
                         <enum>WinPanel</enum>
                     </property>
-                    <property stdset="1">
-                        <name>frameShadow</name>
+                    <property name="frameShadow">
                         <enum>Sunken</enum>
                     </property>
-                    <property stdset="1">
-                        <name>text</name>
+                    <property name="text">
                         <string></string>
                     </property>
                 </widget>
@@ -464,4 +360,8 @@
     <tabstop>b_col1</tabstop>
     <tabstop>b_col0</tabstop>
 </tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">kcolorbutton.h</include>
+</includes>
+<layoutdefaults spacing="6" margin="11"/>
 </UI>

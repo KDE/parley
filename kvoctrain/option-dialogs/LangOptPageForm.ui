@@ -1,13 +1,10 @@
-<!DOCTYPE UI><UI>
+<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
 <class>LangOptPageForm</class>
-<widget>
-    <class>QDialog</class>
-    <property stdset="1">
-        <name>name</name>
+<widget class="QDialog">
+    <property name="name">
         <cstring>LangOptPageForm</cstring>
     </property>
-    <property stdset="1">
-        <name>geometry</name>
+    <property name="geometry">
         <rect>
             <x>0</x>
             <y>0</y>
@@ -15,230 +12,205 @@
             <height>480</height>
         </rect>
     </property>
-    <property stdset="1">
-        <name>caption</name>
+    <property name="caption">
         <string>-</string>
     </property>
     <hbox>
-        <property stdset="1">
-            <name>margin</name>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
             <number>11</number>
         </property>
-        <property stdset="1">
-            <name>spacing</name>
+        <property name="spacing">
             <number>6</number>
         </property>
-        <widget>
-            <class>QGroupBox</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QGroupBox">
+            <property name="name">
                 <cstring>GroupBox7</cstring>
             </property>
-            <property stdset="1">
-                <name>title</name>
+            <property name="title">
                 <string>Language Codes</string>
             </property>
             <vbox>
-                <property stdset="1">
-                    <name>margin</name>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
                     <number>11</number>
                 </property>
-                <property stdset="1">
-                    <name>spacing</name>
+                <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget>
-                    <class>QGroupBox</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QGroupBox">
+                    <property name="name">
                         <cstring>GroupBox3</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>title</name>
+                    <property name="title">
                         <string>Available Languages</string>
                     </property>
                     <grid>
-                        <property stdset="1">
-                            <name>margin</name>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
                             <number>11</number>
                         </property>
-                        <property stdset="1">
-                            <name>spacing</name>
+                        <property name="spacing">
                             <number>6</number>
                         </property>
-                        <widget row="2"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
                                 <cstring>label_langLong</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Lang&amp;uage name:</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>e_langLong</cstring>
+                            </property>
                         </widget>
-                        <widget row="1"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
                                 <cstring>label_shortName2</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Alte&amp;rnative code:</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>e_shortName2</cstring>
+                            </property>
                         </widget>
-                        <widget row="3"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="3" column="0">
+                            <property name="name">
                                 <cstring>label_langPixmap</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;Picture:</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>b_langPixmap</cstring>
+                            </property>
                         </widget>
-                        <widget row="0"  column="1" >
-                            <class>QComboBox</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QComboBox" row="0" column="1">
+                            <property name="name">
                                 <cstring>d_shortName</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
+                            <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>3</hsizetype>
                                     <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
                         </widget>
-                        <widget row="0"  column="2" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QPushButton" row="0" column="2">
+                            <property name="name">
                                 <cstring>b_langDel</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;Delete</string>
                             </property>
                         </widget>
-                        <widget row="1"  column="1" >
-                            <class>QLineEdit</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLineEdit" row="1" column="1">
+                            <property name="name">
                                 <cstring>e_shortName2</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
+                            <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>7</hsizetype>
                                     <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
                         </widget>
-                        <widget row="2"  column="1" >
-                            <class>QLineEdit</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLineEdit" row="2" column="1">
+                            <property name="name">
                                 <cstring>e_langLong</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
+                            <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>3</hsizetype>
                                     <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
                         </widget>
-                        <widget row="0"  column="0" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
                                 <cstring>label_shortName</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>Language c&amp;ode:</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>d_shortName</cstring>
+                            </property>
                         </widget>
-                        <widget row="3"  column="1" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QPushButton" row="3" column="1">
+                            <property name="name">
                                 <cstring>b_langPixmap</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string></string>
                             </property>
                         </widget>
                     </grid>
                 </widget>
-                <widget>
-                    <class>QGroupBox</class>
-                    <property stdset="1">
-                        <name>name</name>
+                <widget class="QGroupBox">
+                    <property name="name">
                         <cstring>GroupBox2</cstring>
                     </property>
-                    <property stdset="1">
-                        <name>title</name>
-                        <string>Add a new Language Code</string>
+                    <property name="title">
+                        <string>Add New Language Code</string>
                     </property>
                     <grid>
-                        <property stdset="1">
-                            <name>margin</name>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
                             <number>11</number>
                         </property>
-                        <property stdset="1">
-                            <name>spacing</name>
+                        <property name="spacing">
                             <number>6</number>
                         </property>
-                        <widget row="1"  column="0"  rowspan="1"  colspan="2" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QPushButton" row="1" column="0" rowspan="1" colspan="2">
+                            <property name="name">
                                 <cstring>b_lang_kde</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>Add Language Data from &amp;KDE Data Base</string>
+                            <property name="text">
+                                <string>Add Language Data From &amp;KDE Data Base</string>
                             </property>
                         </widget>
-                        <widget row="2"  column="0"  rowspan="1"  colspan="2" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QPushButton" row="2" column="0" rowspan="1" colspan="2">
+                            <property name="name">
                                 <cstring>b_lang_iso1</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>Add Language Data from ISO639-&amp;1</string>
+                            <property name="text">
+                                <string>Add Language Data From ISO639-&amp;1</string>
                             </property>
                         </widget>
-                        <widget row="0"  column="1" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QPushButton" row="0" column="1">
+                            <property name="name">
                                 <cstring>b_langNew</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>text</name>
+                            <property name="text">
                                 <string>&amp;Add</string>
                             </property>
                         </widget>
-                        <widget row="0"  column="0" >
-                            <class>QLineEdit</class>
-                            <property stdset="1">
-                                <name>name</name>
+                        <widget class="QLineEdit" row="0" column="0">
+                            <property name="name">
                                 <cstring>e_newName</cstring>
                             </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
+                            <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>3</hsizetype>
                                     <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
                         </widget>
@@ -259,4 +231,5 @@
     <tabstop>b_lang_kde</tabstop>
     <tabstop>b_lang_iso1</tabstop>
 </tabstops>
+<layoutdefaults spacing="6" margin="11"/>
 </UI>
