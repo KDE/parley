@@ -73,7 +73,7 @@ struct GradeCols {
    QColor col0, col1, col2, col3, col4, col5, col6, col7;
 };
 
-typedef char grade_t;
+typedef signed char grade_t;
 typedef unsigned short count_t;
 
 class kvoctrainDoc;
