@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2001/12/29 10:40:03  arnold
+    merged fixes from POST-branch
+
     Revision 1.21  2001/12/26 15:10:25  mueller
     CVSSILINT: fixincludes
 
@@ -372,7 +375,7 @@ void kvoctrainTable::sortByColumn_alpha(int header)
                i18n("Sorting is currently turned off for this document.\n"
                     "\n"
                     "Use the document properties dialog to turn sorting on."),
-                    kapp->makeStdCaption(""), i18n("&OK"));
+                    kapp->makeStdCaption(""));
     return;
   }
 
@@ -407,7 +410,7 @@ void kvoctrainTable::sortByColumn_index(int header)
                i18n("Sorting is currently turned off for this document.\n"
                     "\n"
                     "Use the document properties dialog to turn sorting on."),
-                    kapp->makeStdCaption(""), i18n("&OK"));
+                    kapp->makeStdCaption(""));
     return;
   }
 

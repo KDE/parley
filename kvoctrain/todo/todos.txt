@@ -4,12 +4,12 @@ $Date$
                   ----------------------------
 
 tofix now:
-  - message boxen
   - accel order
   - triangle "menu button" in table header buttons
   - [modified], warum?
   - resume query
   - copy cell / copy row
+  - percentage %x done in query-statusbar
 
 todo post-release ?
   - Queryoptions aufrufen, wenn keine Selections in der query
@@ -18,7 +18,6 @@ todo post-release ?
   - translator hint iso names "language name aa:"
   - quickhelp/tooltipps
   - entry dialog kleiner
-  - percentage %x done in query-statusbar
 
 todoc:
 

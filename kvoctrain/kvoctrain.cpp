@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.28  2001/12/29 10:40:03  arnold
+    merged fixes from POST-branch
+
     Revision 1.27  2001/12/26 13:15:21  arnold
     fixed header buttons and kbd handling
 
@@ -589,8 +592,7 @@ void kvoctrainApp::slotRemoveRow()
   if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected entry ?\n"),
-                  kapp->makeStdCaption(""),
-                  i18n("&Yes"), i18n("&No")))
+                  kapp->makeStdCaption("")))
     {
       RowTable *table = view->getTable();
       doc->removeEntry(table->currentRow());
@@ -601,9 +603,7 @@ void kvoctrainApp::slotRemoveRow()
   else {
     if(KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected range ?\n"),
-                  kapp->makeStdCaption(""),
-                  i18n("&Yes"),
-                  i18n("&No")))
+                  kapp->makeStdCaption("")));
     {
       RowTable *table = view->getTable();
 
@@ -861,7 +861,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 
      KMessageBox::information(this,
        s,
-       kapp->makeStdCaption(i18n("Clean up")), i18n("&OK"));
+       kapp->makeStdCaption(i18n("Clean up")));
    }
 }
 
@@ -1005,8 +1005,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
                         "Should this dialog be invoked now ?\n");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
-                  kapp->makeStdCaption(""),
-                  i18n("&Yes"), i18n("&No")))
+                  kapp->makeStdCaption("")));
      {
        slotGeneralOptionsPage(1);
      }
