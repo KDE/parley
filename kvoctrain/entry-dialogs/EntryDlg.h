@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/20 11:41:01  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.8  2002/01/19 10:33:09  arnold
     made entry dialog modeless
 
@@ -264,7 +267,7 @@ protected:
     int               edit_row, edit_col;
     QTabWidget       *tabber;
 
-    vector<QTableSelection>& selections;
+//    vector<QTableSelection>& selections;
     KMainWindow     *mainwin;
     QSize            oldMainSize;
     QPoint           oldMainPos;

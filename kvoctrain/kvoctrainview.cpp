@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.27  2002/01/21 21:13:26  arnold
+    calculate 'docked' size correctly
+
     Revision 1.26  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -430,7 +433,9 @@ void kvoctrainTable::sortByColumn_alpha(int header)
     return;
   }
 
-//  emit sigCancelSelection();
+  while (numSelections() != 0)
+    removeSelection(0);
+
   bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );
   if (m_rows) {
@@ -442,6 +447,7 @@ void kvoctrainTable::sortByColumn_alpha(int header)
   horizontalHeader()->setSortIndicator ( header, sortdir);
   repaintContents();
   m_rows->setModified();
+  emit currentChanged(currentRow(), currentColumn());
   QApplication::restoreOverrideCursor();
 }
 
@@ -465,7 +471,9 @@ void kvoctrainTable::sortByColumn_index(int header)
     return;
   }
 
-//  emit sigCancelSelection();
+  while (numSelections() != 0)
+    removeSelection(0);
+
   bool sortdir = false;
   QApplication::setOverrideCursor( waitCursor );
   if (m_rows) {
@@ -477,6 +485,7 @@ void kvoctrainTable::sortByColumn_index(int header)
   horizontalHeader()->setSortIndicator ( header, sortdir);
   repaintContents();
   m_rows->setModified();
+  emit currentChanged(currentRow(), currentColumn());
   QApplication::restoreOverrideCursor();
 }
 

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/01/21 18:56:14  arnold
+    fixed disabling of dialog pages
+
     Revision 1.21  2002/01/18 04:40:08  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -640,7 +643,8 @@ void kvoctrainApp::slotFileMerge()
 
 void kvoctrainApp::slotFileSave()
 {
-  commitEntryDlg(false);
+  if (entryDlg != 0)
+    commitEntryDlg(false);
 
   if (doc->getFileName().isEmpty() ) {
     slotFileSaveAs();
@@ -737,7 +741,8 @@ void kvoctrainApp::slotFileSaveAs()
 {
   slotStatusMsg(i18n("Saving file under new filename..."));
 
-  commitEntryDlg(false);
+  if (entryDlg != 0)
+    commitEntryDlg(false);
 
   QString s;
   if (recent_files.count() > 0)
@@ -783,7 +788,8 @@ void kvoctrainApp::slotFileSaveAs()
 
 void kvoctrainApp::slotSaveSelection ()
 {
-  commitEntryDlg(false);
+  if (entryDlg != 0)
+    commitEntryDlg(false);
 
   slotStatusMsg(i18n("Saving selected area under new filename..."));
 
