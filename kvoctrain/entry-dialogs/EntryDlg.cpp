@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2002/02/03 08:39:20  arnold
+    moved checkbox to options dialog
+
     Revision 1.19  2002/01/27 07:17:47  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -508,8 +511,8 @@ void EntryDlg::slotDockHorizontal()
    resize(rect.width()-diff_x, minimumHeight());
    mainwin->resize(rect.width()-diff_x,
                    rect.height()-frameGeometry().height()-diff_y);
-   move(0, mainwin->frameGeometry().height());
-   mainwin->move (0, 0);
+   move(0, 0);
+   mainwin->move (0, frameGeometry().height());
 }
 
 

@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>536</width>
-            <height>445</height>
+            <width>516</width>
+            <height>444</height>
         </rect>
     </property>
     <property stdset="1">
@@ -359,7 +359,7 @@
                         <name>sizePolicy</name>
                         <sizepolicy>
                             <hsizetype>5</hsizetype>
-                            <vsizetype>3</vsizetype>
+                            <vsizetype>5</vsizetype>
                         </sizepolicy>
                     </property>
                     <property stdset="1">
@@ -404,38 +404,6 @@
                                 <string>Invokes input dialog for usage labels</string>
                             </property>
                         </widget>
-                        <widget row="0"  column="1"  rowspan="2"  colspan="1" >
-                            <class>QLabel</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>usage_line</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>5</hsizetype>
-                                    <vsizetype>3</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShape</name>
-                                <enum>WinPanel</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>frameShadow</name>
-                                <enum>Sunken</enum>
-                            </property>
-                            <property stdset="1">
-                                <name>alignment</name>
-                                <set>WordBreak|AlignTop|AlignLeft</set>
-                            </property>
-                            <property>
-                                <name>vAlign</name>
-                            </property>
-                            <property>
-                                <name>wordwrap</name>
-                            </property>
-                        </widget>
                         <spacer row="1"  column="2" >
                             <property>
                                 <name>name</name>
@@ -447,7 +415,7 @@
                             </property>
                             <property stdset="1">
                                 <name>sizeType</name>
-                                <enum>Minimum</enum>
+                                <enum>Preferred</enum>
                             </property>
                             <property>
                                 <name>sizeHint</name>
@@ -467,12 +435,58 @@
                                 <name>sizePolicy</name>
                                 <sizepolicy>
                                     <hsizetype>5</hsizetype>
-                                    <vsizetype>1</vsizetype>
+                                    <vsizetype>5</vsizetype>
                                 </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>maximumSize</name>
+                                <size>
+                                    <width>32767</width>
+                                    <height>90</height>
+                                </size>
                             </property>
                             <property stdset="1">
                                 <name>selectionMode</name>
                                 <enum>Multi</enum>
+                            </property>
+                        </widget>
+                        <widget row="0"  column="1"  rowspan="2"  colspan="1" >
+                            <class>QLabel</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>usage_line</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>minimumSize</name>
+                                <size>
+                                    <width>0</width>
+                                    <height>80</height>
+                                </size>
+                            </property>
+                            <property stdset="1">
+                                <name>frameShape</name>
+                                <enum>WinPanel</enum>
+                            </property>
+                            <property stdset="1">
+                                <name>frameShadow</name>
+                                <enum>Sunken</enum>
+                            </property>
+                            <property stdset="1">
+                                <name>alignment</name>
+                                <set>WordBreak|AlignTop|AlignLeft</set>
+                            </property>
+                            <property>
+                                <name>vAlign</name>
+                            </property>
+                            <property>
+                                <name>wordwrap</name>
                             </property>
                         </widget>
                     </grid>
