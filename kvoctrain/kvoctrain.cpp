@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.51  2002/07/23 12:39:19  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.50  2002/07/21 05:12:04  binner
     Use KLineEditDlg and QInputDialog.
 
@@ -804,7 +807,7 @@ void kvoctrainApp::slotDocProps ()
       doc->setLicense(ddlg.getLicense() );
       doc->setDocRemark(ddlg.getDocRemark() );
 
-      slotStatusMsg(i18n("updating lesson indices..."));
+      slotStatusMsg(i18n("Updating lesson indices..."));
       QApplication::setOverrideCursor( waitCursor );
 
       ddlg.getLesson(lessons, lessonIndex);
@@ -817,16 +820,16 @@ void kvoctrainApp::slotDocProps ()
       for (int i = 1; i < lessons->count(); i++)
         new_lessonStr.push_back(lessons->text(i));
 
-      slotStatusMsg(i18n("updating type indices..."));
+      slotStatusMsg(i18n("Updating type indices..."));
       TypeOptPage::cleanUnused(doc, typeIndex, old_types);
       QueryManager::setTypeNames (new_typeStr);
 
-      slotStatusMsg(i18n("updating tense indices..."));
+      slotStatusMsg(i18n("Updating tense indices..."));
       TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
       Conjugation::setTenseNames (new_tenseStr);
 
       slotStatusMsg(i18n("usage (area) of an expression",
-                         "updating usage label indices..."));
+                         "Updating usage label indices..."));
       UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
       UsageManager::setUsageNames (new_usageStr);
 

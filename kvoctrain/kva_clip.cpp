@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/04/12 10:09:55  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.8  2002/02/08 19:24:02  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -170,7 +175,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
 
 void kvoctrainApp::slotEditCopy()
 {
-  slotStatusMsg(i18n("Copying selection to Clipboard..."));
+  slotStatusMsg(i18n("Copying selection to clipboard..."));
 
   QApplication::setOverrideCursor( waitCursor );
   QString exp;
@@ -221,7 +226,7 @@ void kvoctrainApp::slotEditCopy()
 
 void kvoctrainApp::slotEditPaste()
 {
-  slotStatusMsg(i18n("Inserting Clipboard contents..."));
+  slotStatusMsg(i18n("Inserting clipboard contents..."));
 
   QApplication::setOverrideCursor( waitCursor );
   QString s;

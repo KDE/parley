@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.29  2002/07/21 04:27:08  binner
+    CVS_SILENT Style guide fixes
+
     Revision 1.28  2002/04/19 09:12:10  arnold
     xml structure now more conforming
 
@@ -285,7 +288,7 @@ void kvoctrainApp::initMenuBar()
   edit_menu->insertSeparator();
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append New Entry"), ID_APPEND_ROW );
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit Selected Area..."), ID_EDIT_ROW );
-  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove Selected Area..."), ID_REMOVE_ROW );
+  edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-row.xpm")), i18n("&Remove Selected Area"), ID_REMOVE_ROW );
   edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("filesave", KIcon::Small), i18n("Sa&ve Selected Area..."), ID_SAVE_ROW );
   connect( edit_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowEdit()));
   connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
@@ -408,7 +411,7 @@ void kvoctrainApp::initToolBar()
   lessons->setFocusPolicy(QWidget::NoFocus);
 
   toolBar()->insertSeparator();
-  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("find", KIcon::Toolbar), ID_SEARCH_CLIP, true, i18n("Search from Clipboard"));
+  toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("find", KIcon::Toolbar), ID_SEARCH_CLIP, true, i18n("Search From Clipboard"));
   toolBar()->insertLined ("", ID_TSEARCH, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)), true, i18n("Smart Search"));
   searchLine = toolBar()->getLined (ID_TSEARCH);
   searchLine->setFocusPolicy(QWidget::ClickFocus);
