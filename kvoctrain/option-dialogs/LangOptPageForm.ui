@@ -182,7 +182,7 @@
                                 <cstring>b_lang_kde</cstring>
                             </property>
                             <property name="text">
-                                <string>Add Language Data From &amp;KDE Data Base</string>
+                                <string>Add Language Data From &amp;KDE Database</string>
                             </property>
                         </widget>
                         <widget class="QPushButton" row="2" column="0" rowspan="1" colspan="2">
