@@ -183,7 +183,7 @@ of this application.</para>
       <listitem><para>user defined expression types, revised internal
  types</para></listitem>
       <listitem><para>added converter for <ulink
- url="http://spotlight-online.de">Spotlight-Online</ulink>
+ url="http://www.spotlight-online.de">Spotlight-Online</ulink>
             vocabulary list ==> spotlight2kvtml</para></listitem>
       <listitem><para>access header buttons and lesson box also with
  keyboard</para></listitem>
@@ -309,11 +309,52 @@ status line.</para>
 
 </sect1>
 
+<sect1 id="inline-edit">
+<title>Inline editing</title>
+<para>
+  There are two modes that allow you to modify the content of the
+  cells in the main view. You can select the desired mode in the
+  <link linkend="opt-menu">Options menu</link>.
+</para>
+
+<variablelist>
+<varlistentry>
+<term>Inline editing enabled</term>
+<listitem><para>When this mode is enabled you can modify the lesson or
+the state of a table row by selecting it from a listbox. The listbox appears
+after clicking on it with the mouse or pressing space while the cursor is
+in the cell.</para>
+<para>To modify a word or an expression just start typing and press
+<keycap>Return</keycap>
+when you have finished.</para>
+
+<para><emphasis>Please note:</emphasis> You can't invoke the
+<link linkend="entry-dlg">entry dialog window</link> in this mode.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>Inline editing disabled</term>
+<listitem><para>When inline editing is disabled you must press
+<keycap>F2</keycap> to open a
+listbox or an edit field to make you changes.</para>
+
+<para>To invoke the
+<link linkend="entry-dlg">entry dialog window</link> just press
+<keycap>Return</keycap> when the cursor in the cell
+or double click on it.
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect1>
+
 <sect1 id="keyboard">
 <title>Using the keyboard</title>
 
 <para>I tried to optimize the work flow for the use with the keyboard.
-So all of the functions are reachable this way.</para>
+So all of the important functions are reachable this way.</para>
 
 <variablelist id="smart-search">
 <varlistentry>
@@ -413,15 +454,13 @@ lesson. If you don't have a number pad you may also use the normal
 
 </variablelist>
 
-<!--  Re-implement??
+<!--  FIXME: Re-implement??
 <para>The buttons on top of the rows are acessible by the keyboard. To
 avoid clashes with the shortcuts for the main menu you have to press
 <keycombo action="simul">&Shift;&Alt;</keycombo> and the key of
 underlined letter in the button text. Then the corresponding <link
 linkend="header-menu">header menu</link> will pop up.</para>
 -->
-
-<!--  cont-here -->
 
 </sect1>
 
@@ -433,7 +472,8 @@ linkend="header-menu">header menu</link> will pop up.</para>
     
 <para><mousebutton>Left</mousebutton> mouse click in of the header
 buttons will sort this column in ascending order. The next click will
-sort in descending order.</para> 
+sort in descending order. When the colum is sorted you can see a triangle
+in the button that shows the direction.</para>
 
 <para>Keeping pressed the <mousebutton>left</mousebutton> mouse button
 for about 1 second in on of the table header buttons will pop up its
@@ -441,35 +481,23 @@ for about 1 second in on of the table header buttons will pop up its
 
 </sect1>
 
-<sect1 id="multiple-selection">
-<title>Working on multiple selections</title>
+<sect1 id="selections">
+<title>Working on selections</title>
 
-<para>It is possible to mark arbitrary ranges. You can then modify one
-or more properties for the selection or save them as a new
+<para>It is possible to mark a range of expressions. You can then modify one
+or more properties from the selection or save them as a new
 file.</para>
 
 <para>If you keep the &Ctrl; key pressed while clicking on an entry,
 the whole row is marked for further processing. A click on a marked
-entry will remove this type of selection.</para>
+entry will remove this selection.</para>
 
 <para>When you additionally press a &Shift; key when clicking on an
-entry, the selection will be extended (or shrunk if you additionally
-press the &Ctrl; key) from the current entry to the point where the
-cursor was previously.</para>
+entry, the selection will be extended from the current entry to the
+point where the cursor was previously.</para>
 
-<para>The selection will disappear after a simple mouse click in a table
-cell without a key pressed.</para>
-
-<para>It is also possible to create multiple selections with the cursor
-keys. The &Shift; and &Ctrl; keys have the same function here. If you
- want
-to move the cursor to an other area you have to keep the alt key
- depressed
-to prevent the selection from disappearing. If you want to select
- several
-areas you will have to press a lot of keys, but it works.</para>
-
-<para>If you invoke the edit dialog to modify a selection the dialog
+<para>You invoke the edit dialog to modify the selection by pressing
+<keycap>Return</keycap>. In this case the dialog
 appears differently. Some properties are disabled. For example it does
 not make sense to edit the expression itself or the remark of a
 whole range.</para>
@@ -477,7 +505,7 @@ whole range.</para>
 <para>All selectable fields are empty at the beginning to represent
 the unmodified state. Once you have modified a property there will be
 contents in it's field and only those properties are altered in your
-selection.</para>
+selection when you confirm the dialog.</para>
 
 </sect1>
 
@@ -512,25 +540,26 @@ leanest vocabulary trainer I know. I recommend this application if you
 need a really compact one.</para></listitem>
 
 <listitem><para>Files created by <ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
-ary
+url="http://ourworld.compuserve.com/homepages/michael_m_werner/">
+Vocabulary
 Trainer</ulink> This is an application for &Microsoft; &Windows;. It
-uses the file extension <literal role="extension">lex</literal>. Link
-seems to be dead. See the section about <link
-linkend="dictionary">available dictionaries</link> to download these
-files.</para></listitem>
+uses the file extension <literal role="extension">lex</literal>.
+Unfortunately the link to the original files at Compuserve is dead
+but there may still be files available elsewhere so I kept it.
+</para></listitem>
 
 <listitem><para>Simple text files with special delimiters between the
-entries which are also used by simpled database programs. The
+entries which are also used by simple database programs. The
 extension is <literal role="extension">csv</literal> in this
-case.</para>
+case. &kvoctrain; also detects if those files are encoded in UTF8
+since such files are also available to preserve the correct characters,
+see more about this in the section about <link
+linkend="encodings">encodings and charsets.</link></para>
 
 <para>There are a lot of dictionaries on the internet which use the
 tabular character or one or two colons to separate the different
-languages.</para>
-
-<para>To select this separator use the dialog for setting the <link
-linkend="options2-dlg">clipboard options</link>.</para></listitem>
+languages. To select this separator use the dialog for setting the <link
+linkend="options4-dlg">clipboard options</link>.</para></listitem>
 
 </itemizedlist>
 
@@ -697,20 +726,22 @@ value from 0 to 255 and therefore you are able to display up to 256
 different characters within one file.</para>
 
 <para>Usually you have the <quote>ascii</quote> characters, &eg; a
-through Z, A through Z, 0 through 9 and additional language dependent
+through z, A through Z, 0 through 9 and additional language dependent
 characters. For example, the German umlauts &auml; or &uuml; or a lot
 of other special symbols from Russian, Greek, Hebrew or even
 Chinese. All this total up to far more than 256 different
 symbols.</para>
 
 <para>At this point it should be obvious that you have to take care to
-select the correct <quote>charset</quote>, which is needed to display
+select the correct <quote>charset</quote>, which is needed on a lot of
+computer systems to display
 the bytes in the same way as they are intended.</para>
 
 <para>A better approach is to combine two ore more bytes into a
 representation for a single character on the screen. This is for
 example what Unicode does. Unicode is a standard that currently uses a
-range from 0 to 65535 to designate a given symbol. Almost each symbol
+range from 0 to 65535 (and even more) to designate a given symbol.
+Almost each symbol
 of almost each language on earth (and even a lot more, &eg; well known
 icons) is assigned a unique and unabiguous number.</para>
 
@@ -721,16 +752,15 @@ might also be longer. A compromise is to use UTF-8 which uses 7 bits
 set and switches to 2, 3 or even 4 or more bytes if needed.</para>
 
 <para>Every vocabulary file for &kvoctrain; is basically such a simple
-text file.</para>
+text file using Unicode.</para>
 
-<para>To support as many languages as possible &kvoctrain; offers the
-possibility to choose a special charset for a 8 or 16 bit based
-representation as well as the storage of the files and in the
-computers memory in UTF-8.</para>
-
-<para>Unicode is only supported on &Qt; 2.x or later based systems
-since this only works well if the underlying system works with
-unicode.</para>
+<para>To support as many languages as possible &kvoctrain; version 0.7
+offered the possibility to choose a special charset for each language.
+If you have saved your files
+in the former <quote>8Bit-Mode</quote> you might see the wrong characters
+when you load with version 0.8 and higher.
+Contact <ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink> in this case.
+</para>
 
 <para>If you want to learn more about this issue you should visit the
 following links:</para>
@@ -780,9 +810,9 @@ date.</para></listitem>
 
 <listitem><para>Learning is efficient, if you don't repeat the words
 for a certain length of time, dependig on the current
-grade.</para></listitem>
+grade.</para>
 
-<listitem><para>There is a blocking and expiring mechanism for that
+<para>There is a blocking and expiring mechanism for that
 case, so you are not obliged to modify the settings after each
 cycle. The known expression is blocked at least for the given time and
 will be shown after the expiration time.</para></listitem>
@@ -812,7 +842,8 @@ special lesson, all lessons are queried one after the other.</para>
 <para>Remaining expressions of a currently running query are
 accordingly stored when you leave &kvoctrain;. After a later restart
 you can resume the query (currently does not apply to special queries
-with verbs, articles and comparisons).</para>
+with verbs, articles and comparisons). Those expressions are marked with a
+green check mark in the <link linkend="overview">main view</link>.</para>
 
 </sect1>
 </chapter>
@@ -842,8 +873,7 @@ with verbs, articles and comparisons).</para>
 <guimenu>File</guimenu>
 <guimenuitem>Open...</guimenuitem></menuchoice></term>
 <listitem><para><action>Opens an existing document.</action>
-<filename>sample-en.kvtml</filename> is included as an
-example.</para></listitem>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -857,18 +887,28 @@ example.</para></listitem>
 
 <varlistentry>
 <term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open example file...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens an example file shipped with &kvoctrain;
+</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
 <menuchoice><guimenu>File</guimenu>
 <guimenuitem>Merge..</guimenuitem></menuchoice></term>
 <listitem><para><action>Merges another vocabulary to the
  current.</action></para>
 <para>Only those parts of the second vocabulary are merged, that have
  the same 
-<ulink
- url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">in
-ternational 
+<ulink url="http://www.loc.gov/standards/iso639-2/englangn.html">
+ international
 language code</ulink> as your current one.</para>
 <para>So always use the correct codes. This helps you share vocabularies
-with others.</para></listitem>
+with others. &kvoctrain; supports you in this and offers all codes in the
+according <ulink url="options2-dlg">options page</ulink>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -914,7 +954,7 @@ with others.</para></listitem>
 <listitem><para><action>Copies the current row to the
  clipboard.</action> The entries are separated by a special sequence of
  characters which can be chosen in the <link
- linkend="options2-dlg">options dialog</link>.</para></listitem>
+ linkend="options4-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -927,9 +967,10 @@ with others.</para></listitem>
  divided by
 the above mentioned <link linkend="cut-n-paste">separator</link>
 character and inserted as a new row with one or more columns. You can
-also <link linkend="options2-dlg">adjust the order</link> in which the
+also <link linkend="options4-dlg">adjust the order</link> in which the
 columns are concatenated bofore copying all to the clipboard.</para>
-<para>Pasting multiple lines (&eg; from a CSV data base file) will
+<para>Pasting multiple lines (&eg; from a <literal role="extension">CSV</literal>
+ data base file) will
  append them all as new rows one after another.</para></listitem>
 </varlistentry>
 
@@ -1053,6 +1094,13 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Set language</guimenuitem></menuchoice></term>
+<listitem><para><action>Sets the language code and name for a column</action>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
 <guimenuitem>Remove language</guimenuitem></menuchoice></term>
 <listitem><para><action>Removes one of the
  translations.</action></para></listitem>
@@ -1099,8 +1147,8 @@ linkend="header-menu">table header button</link>.</para></listitem>
 <guimenuitem>Resume random query</guimenuitem></menuchoice></term>
 <listitem><para><action>Resumes the previous random query if you
  terminated one
-before.</action> Selected entries appear in a bold face
- font.</para></listitem>
+before.</action> Remaining entries appear with a green check mark.
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1138,6 +1186,15 @@ bottom.</action></para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Options</guimenu>
+<guimenuitem>Inline editing</guimenuitem></menuchoice></term>
+<listitem><para><action>Toggles on or off <link linkend="inline-edit">
+inline editing</link> in the
+table cell.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Options</guimenu>
 <guimenuitem>General options</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="options-dlg">general options
 dialog</link>.</para></listitem>
@@ -1146,7 +1203,7 @@ dialog</link>.</para></listitem>
 <varlistentry>
 <term><menuchoice><guimenu>Options</guimenu>
 <guimenuitem>Query options</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="options-dlg">query options
+<listitem><para>Invokes the <link linkend="query-opt-dlg">query options
 dialog</link>.</para></listitem>
 </varlistentry>
 
@@ -1554,7 +1611,7 @@ done.</para></listitem>
 <term><guilabel>Language code</guilabel></term>
 <listitem><para>Each column can be assigned a
 language. This is internally done with the usual <ulink
-url="http://www.swbv.uni-konstanz.de/wwwroot/metadata/kv_dc008.html">international
+url="http://www.loc.gov/standards/iso639-2/englangn.html">international
 language codes</ulink> &eg; <literal>en</literal>, <literal>de</literal>,
 <literal>it</literal>. These codes are also stored with the document.</para>
 <para>You should always use the correct codes to be able to share
@@ -1660,9 +1717,10 @@ according check box.</para></listitem>
 <listitem><para>This is a sequence of one ore more characters which
 divide the parts of an expression when transfering data from or to an
 other application over the clipboard.</para>
-<para>The most common item is TAB which uses the tabulator
+<para>The most common item is <keycap>TAB</keycap> which uses the tabulator
 character. Another possibility is to use the semicolon, if you want to
-export data to a database file in CSV format.</para></listitem>
+export data to a database file in <literal role="extension">CSV</literal>
+ format.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1687,7 +1745,7 @@ be in the same language order as the current document.</para></listitem>
 </sect2>
 </sect1>
 
-<sect1 id="q-opt-dlg">
+<sect1 id="query-opt-dlg">
 <title>Query options dialog</title>
 
 <sect2 id="q-opt1-dlg.eps">
@@ -2369,7 +2427,8 @@ popup a menu which shows the exact numbers.</para>
 <sect1 id="dictionary">
 <title>Contributing a dictionary to &kvoctrain;</title>
 
-<para>If you have created a dictionary, please send an email to <email>kvoctrain@ewald-arnold.de</email> and tell
+<para>If you have created a dictionary, please send an email to
+<email>kvoctrain@ewald-arnold.de</email> and tell
 me about it. I plan to collect pointers to those files and include
 them in this handbook. If I find an electronic abode for &kvoctrain;
 with enough space, I might also store them there.</para>
@@ -2400,7 +2459,7 @@ permission.</para></listitem>
 <listitem><para>If you are German an want to learn English
 (or vice versa) you can download the monthly vocabulary
 list provided by the German magazine <ulink url=
-"http://spotlight-online.de">Spotlight-Online</ulink>.</para>
+"http://www.spotlight-online.de">Spotlight-Online</ulink>.</para>
 <para>The &kvoctrain; distribution contains an executable called
 <command>spotlight2kvtml</command> to transform those lists
 in kvtml format. The original files come as &Windows; Word DOC-files
