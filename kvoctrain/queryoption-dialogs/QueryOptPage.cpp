@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/09 14:19:54  arnold
+    fixed and improved some dialog pages
+
     Revision 1.3  2001/10/28 16:56:56  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -87,6 +90,17 @@ QueryOptPage::QueryOptPage
    label_mqtime->setBuddy(e_mqtime);
 
    setStates(_mqtime, _swapdir, show, type_to);
+
+   // FIXME: until really needed
+   GroupBox5->hide();
+   ask_sub->hide();
+   ask_verbcon->hide();
+   ask_article->hide();
+   ask_compare->hide();
+   ask_syno->hide();
+   ask_anto->hide();
+   ask_examp->hide();
+   ask_para->hide();
 }
 
 
