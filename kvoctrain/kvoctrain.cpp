@@ -898,7 +898,8 @@ void kvoctrainApp::slotCleanVocabulary ()
    if (num != 0) {
      view->setView(doc, langset, gradecols);
      QString s =
-        i18n("%1 entries with same content have been found and removed").arg(num);
+        i18n("1 entry with the same content has been found and removed.",
+             "%n entries with the same content have been found and removed.", num);
 
      KMessageBox::information(this,
        s,
