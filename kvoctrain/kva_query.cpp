@@ -45,7 +45,7 @@
 
 static const char not_answered[] = I18N_NOOP(
     "The query dialog was not answered several times in a row.\n"
-    "It is assumed that there is currently noone in front of "
+    "It is assumed that there is currently nobody in front of "
     "the screen, and for that reason the query is stopped.");
 
 
