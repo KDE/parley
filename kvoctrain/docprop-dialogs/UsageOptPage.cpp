@@ -29,7 +29,7 @@
 #include "UsageOptPage.h"
 
 #include <kapplication.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -46,7 +46,7 @@ UsageOptPage::UsageOptPage
         kvoctrainDoc    *_doc,
 	QWidget         *parent,
 	const char      *name,
-        bool             modal
+        bool             
 )
 	:
 	UsageOptPageForm( parent, name ),
@@ -94,21 +94,22 @@ void UsageOptPage::slotUsageChosen(int index)
 
 void UsageOptPage::slotNewUsage()
 {
-     KLineEditDlg dlg(i18n("usage (area) of an expression", "Enter usage description:"), QString::null, this);
-     dlg.setCaption(i18n("usage (area) of an expression", "Usage Description"));
-     if (dlg.exec()) {
-       QString str;
-       int i = usageList->count()+1;
-       str.setNum (i);
-       if (i <= 9)
-         str.insert (0, " ");
-       usageList->insertItem (str+USAGE_TAG+dlg.text().stripWhiteSpace());
-       usageIndex.push_back(-(i-1));
-       act_usage = usageList->count();
-       usageList->setCurrentItem (i-1);
-       b_modify->setEnabled(true);
-       b_delete->setEnabled(true);
-     }
+     bool ok;
+     QString getUsage = KInputDialog::getText(
+                 i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description" ), QString::null, &ok );
+     if( !ok )
+       return;
+     QString str;
+     int i = usageList->count()+1;
+     str.setNum (i);
+     if (i <= 9)
+       str.insert (0, " ");
+     usageList->insertItem (str+USAGE_TAG+getUsage.stripWhiteSpace());
+     usageIndex.push_back(-(i-1));
+     act_usage = usageList->count();
+     usageList->setCurrentItem (i-1);
+     b_modify->setEnabled(true);
+     b_delete->setEnabled(true);
 }
 
 
@@ -120,15 +121,16 @@ void UsageOptPage::slotModifyUsage()
      int pos = str.find (USAGE_TAG);
      str.remove (0, pos+strlen (USAGE_TAG));
      
-     KLineEditDlg dlg(i18n("usage (area) of an expression", "Enter usage description:"), str, this);
-     dlg.setCaption(i18n("usage (area) of an expression", "Usage Description"));
-     if (dlg.exec()) {
-       QString str2;
-       str2.setNum (act_usage+1);
-       if (act_usage <= 9)
-         str2.insert (0, " ");
-       usageList->changeItem (str2+USAGE_TAG+dlg.text().stripWhiteSpace(), act_usage);
-     }
+     bool ok;
+     QString getUsage = KInputDialog::getText(
+                 i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description" ), str, &ok );
+     if( !ok )
+       return;
+     QString str2;
+     str2.setNum (act_usage+1);
+     if (act_usage <= 9)
+       str2.insert (0, " ");
+     usageList->changeItem (str2+USAGE_TAG+getUsage.stripWhiteSpace(), act_usage);
    }
 }
 

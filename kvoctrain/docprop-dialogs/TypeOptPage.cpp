@@ -29,7 +29,7 @@
 #include "TypeOptPage.h"
 
 #include <kapplication.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -93,21 +93,22 @@ void TypeOptPage::slotTypeChosen(int index)
 
 void TypeOptPage::slotNewType()
 {
-     KLineEditDlg dlg(i18n("Enter type description:"), QString::null, this);
-     dlg.setCaption(i18n("Type Description"));
-     if (dlg.exec()) {
-       QString str;
-       int i = typeList->count()+1;
-       str.setNum (i);
-       if (i <= 9)
-         str.insert (0, " ");
-       typeList->insertItem (str+TYPE_TAG+dlg.text().stripWhiteSpace());
-       typeIndex.push_back(-(i-1));
-       act_type = typeList->count();
-       typeList->setCurrentItem (i-1);
-       b_modify->setEnabled(true);
-       b_delete->setEnabled(true);
-     }
+     bool ok;
+     QString getType = KInputDialog::getText(
+                 i18n( "Type Description" ), i18n( "Enter type description" ), QString::null, &ok );
+     if( !ok )
+       return;
+     QString str;
+     int i = typeList->count()+1;
+     str.setNum (i);
+     if (i <= 9)
+       str.insert (0, " ");
+     typeList->insertItem (str+TYPE_TAG+getType.stripWhiteSpace());
+     typeIndex.push_back(-(i-1));
+     act_type = typeList->count();
+     typeList->setCurrentItem (i-1);
+     b_modify->setEnabled(true);
+     b_delete->setEnabled(true);
 }
 
 
@@ -118,15 +119,16 @@ void TypeOptPage::slotModifyType()
      QString str = typeList->text (act_type);
      int pos = str.find (TYPE_TAG);
      str.remove (0, pos+strlen (TYPE_TAG));
-     KLineEditDlg dlg(i18n("Enter type description:"), str, this);
-     dlg.setCaption(i18n("Type Description"));
-     if (dlg.exec()) {
-       QString str2;
-       str2.setNum (act_type+1);
-       if (act_type <= 9)
-         str2.insert (0, " ");
-       typeList->changeItem (str2+TYPE_TAG+dlg.text().stripWhiteSpace(), act_type);
-     }
+     bool ok;
+     QString getType = KInputDialog::getText(
+                 i18n( "Type Description" ), i18n( "Enter type description" ), str, &ok );
+     if( !ok )
+       return;
+     QString str2;
+     str2.setNum (act_type+1);
+     if (act_type <= 9)
+       str2.insert (0, " ");
+     typeList->changeItem (str2+TYPE_TAG+getType.stripWhiteSpace(), act_type);
    }
 }
 

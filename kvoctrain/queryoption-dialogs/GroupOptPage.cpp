@@ -33,7 +33,7 @@
 #include <qpushbutton.h>
 
 #include <klocale.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 
 GroupOptPage::GroupOptPage
 (
@@ -85,15 +85,16 @@ void GroupOptPage::slotDeleteGroup()
 
 void GroupOptPage::slotNewGroup()
 {
-  KLineEditDlg dlg(i18n("Enter group description:"), QString::null, this);
-  dlg.setCaption(i18n("Group Description"));
-  if (dlg.exec()) {
-     ps_name->insertItem(dlg.text().stripWhiteSpace());
-     emit newGroup(dlg.text().stripWhiteSpace());
-     ps_name->setCurrentItem(ps_name->count()-1);
-     emit selectGroup(ps_name->currentItem());
-   }
-   updateButtons();
+  bool ok;
+  QString getGroup = KInputDialog::getText(
+            i18n( "Group Description" ), i18n( "Enter group description" ), QString::null, &ok );
+  if( !ok )
+       return;
+  ps_name->insertItem(getGroup.stripWhiteSpace());
+  emit newGroup(getGroup.stripWhiteSpace());
+  ps_name->setCurrentItem(ps_name->count()-1);
+  emit selectGroup(ps_name->currentItem());
+  updateButtons();
 }
 
 
