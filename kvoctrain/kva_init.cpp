@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.26  2002/03/13 09:25:42  staikos
+    Don't crash on exit
+
+    Initialise the KMainWindow constructor
+
     Revision 1.25  2002/01/27 07:17:44  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -270,7 +275,7 @@ void kvoctrainApp::initMenuBar()
   edit_menu->insertItem(i18n("Se&lect All"), ID_SEL_ALL );
   edit_menu->insertItem(i18n("Clear Selec&tion"), ID_CLR_SEL );
   edit_menu->insertSeparator();
-  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("&Search from Clipboard"), ID_SEARCH_CLIP );
+  edit_menu->insertItem(KGlobal::iconLoader()->loadIcon("find", KIcon::Small), i18n("&Search From Clipboard"), ID_SEARCH_CLIP );
   edit_menu->insertSeparator();
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-row.xpm")), i18n("&Append New Entry"), ID_APPEND_ROW );
   edit_menu->insertItem(QPixmap(locate("data", "kvoctrain/edit-row.xpm")), i18n("&Edit Selected Area"), ID_EDIT_ROW );
