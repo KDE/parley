@@ -70,11 +70,17 @@
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>4</hsizetype>
-                            <vsizetype>4</vsizetype>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>30</width>
+                            <height>0</height>
+                        </size>
                     </property>
                     <property name="maximumSize">
                         <size>
@@ -95,11 +101,17 @@
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>4</hsizetype>
-                            <vsizetype>4</vsizetype>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                        <size>
+                            <width>30</width>
+                            <height>0</height>
+                        </size>
                     </property>
                     <property name="maximumSize">
                         <size>
@@ -137,6 +149,9 @@
                     </property>
                     <property name="text">
                         <string>&amp;Reset</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+R</string>
                     </property>
                 </widget>
                 <widget class="QPushButton">

@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                    entry dialog for table cell contents
 
     -----------------------------------------------------------------------
@@ -94,7 +92,7 @@ EntryDlg::EntryDlg(
         QString s;
         if (langset.findLongId(lang).isEmpty() )
           s = lang;
-        else          
+        else
           s = langset.findLongId(lang);
 
         from_page = 0;
@@ -102,7 +100,7 @@ EntryDlg::EntryDlg(
 
         if (origin) {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
-                                           lang, type, pronunce, usagelabel, 
+                                           lang, type, pronunce, usagelabel,
                                            i18n("Original &expression in %1:").arg(s), querymanager, active,
                                            ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
@@ -112,7 +110,7 @@ EntryDlg::EntryDlg(
         }
         else {
           comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
-                                           lang, type, pronunce, usagelabel, 
+                                           lang, type, pronunce, usagelabel,
                                            i18n("Translated &expression in %1:").arg(s), querymanager, active,
                                            ipafont);
           aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase);
@@ -133,7 +131,7 @@ EntryDlg::EntryDlg(
         tablay->addWidget(tabber);
 
         tabber->addTab( comm_page,  i18n( "Co&mmon" ));
-        tabber->addTab( aux_page,   i18n( "&Additional" ));
+        tabber->addTab( aux_page,   i18n( "A&dditional" ));
         tabber->addTab( mc_page,    i18n( "&Multiple Choice" ));
         tabber->addTab( tense_page, i18n( "Con&jugation"));
         tabber->addTab( adj_page,   i18n( "Compar&ison"));
