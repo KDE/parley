@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/10 22:29:11  arnold
+    removed compatibility for kde1
+
     Revision 1.8  2001/11/10 17:35:03  arnold
     fixed language property dialog page
 
@@ -348,7 +351,11 @@ LangSet LangOptPage::getLangSet () const
 
 void LangOptPage::loadCountryData()
 {
+#if KDE_VERSION <= 222 // FIXME
   KLocale locale; // create default locale, works but don't know why
+#else
+  KLocale locale("kvoctrain.gmo");
+#endif
 
   // temperary use of our locale as the global locale
   KLocale *lsave = KGlobal::_locale;
