@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/11/14 22:52:35  mueller
+    compiler warning fixes
+
     Revision 1.6  2001/12/07 19:21:36  arnold
     included multiple choice fields and false friend into query
 
@@ -110,22 +113,18 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
   bool ret = false;
   if (smartCompare(really, field->text(), 0) ) {
     ret = true;
-    if (   known_pal.normal() != k_normal
-        || known_pal.inactive() != k_normal
+    if ( known_pal.inactive() != k_normal
         || known_pal.active() != k_normal) {
       // replace text colors
-      known_pal.setNormal(k_normal);
       known_pal.setActive(k_normal);
       known_pal.setInactive(k_normal);
       field->setPalette( known_pal );
     }
   }
   else
-    if (   unknown_pal.normal() != u_normal
-        || unknown_pal.inactive() != u_normal
+    if ( unknown_pal.inactive() != u_normal
         || unknown_pal.active() != u_normal) {
       // replace text colors
-      unknown_pal.setNormal(u_normal);
       unknown_pal.setActive(u_normal);
       unknown_pal.setInactive(u_normal);
       field->setPalette( unknown_pal );
@@ -144,10 +143,8 @@ void QueryDlgBase::resetField(QLineEdit *field)
   QPalette pal( field->palette());
   // replace text colors
 
-  if (   pal.normal() != normal
-      || pal.inactive() != normal
+  if ( pal.inactive() != normal
       || pal.active() != normal) {
-    pal.setNormal(normal);
     pal.setActive(normal);
     pal.setInactive(normal);
     field->setPalette( pal );
@@ -205,22 +202,18 @@ bool QueryDlgBase::verifyField(QMultiLineEdit *field, const QString &really,
 
   if (equal) {
     ret = true;
-    if (   known_pal.normal() != k_normal
-        || known_pal.inactive() != k_normal
+    if (known_pal.inactive() != k_normal
         || known_pal.active() != k_normal) {
       // replace text colors
-      known_pal.setNormal(k_normal);
       known_pal.setActive(k_normal);
       known_pal.setInactive(k_normal);
       field->setPalette( known_pal );
     }
   }
   else
-    if (   unknown_pal.normal() != u_normal
-        || unknown_pal.inactive() != u_normal
+    if ( unknown_pal.inactive() != u_normal
         || unknown_pal.active() != u_normal) {
       // replace text colors
-      unknown_pal.setNormal(u_normal);
       unknown_pal.setActive(u_normal);
       unknown_pal.setInactive(u_normal);
       field->setPalette( unknown_pal );
@@ -239,10 +232,8 @@ void QueryDlgBase::resetField(QMultiLineEdit *field)
   QPalette pal( field->palette());
   // replace text colors
 
-  if (   pal.normal() != normal
-      || pal.inactive() != normal
+  if ( pal.inactive() != normal
       || pal.active() != normal) {
-    pal.setNormal(normal);
     pal.setActive(normal);
     pal.setInactive(normal);
     field->setPalette( pal );
@@ -286,10 +277,8 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
   }
 
   if (is_ok) {
-    if (   known_pal.normal() != k_normal
-        || known_pal.inactive() != k_normal
+    if ( known_pal.inactive() != k_normal
         || known_pal.active() != k_normal) {
-      known_pal.setNormal(k_normal);
       known_pal.setActive(k_normal);
       known_pal.setInactive(k_normal);
       radio->setPalette( known_pal );
@@ -298,10 +287,8 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
     }
   }
   else {
-    if (   unknown_pal.normal() != u_normal
-        || unknown_pal.inactive() != u_normal
+    if ( unknown_pal.inactive() != u_normal
         || unknown_pal.active() != u_normal) {
-      unknown_pal.setNormal(u_normal);
       unknown_pal.setActive(u_normal);
       unknown_pal.setInactive(u_normal);
       radio->setPalette( unknown_pal );
@@ -322,10 +309,8 @@ void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
 
   QPalette pal(radio->palette());
   // replace text colors, avoid flickering
-  if (   pal.normal() != normal
-      || pal.inactive() != normal
+  if ( pal.inactive() != normal
       || pal.active() != normal) {
-    pal.setNormal(normal);
     pal.setActive(normal);
     pal.setInactive(normal);
     radio->setPalette( pal );

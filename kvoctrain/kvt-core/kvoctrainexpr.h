@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.10  2002/07/21 04:27:09  binner
     CVS_SILENT Style guide fixes
 
@@ -113,8 +120,8 @@
 #include <qpixmap.h>
 # include <qnamespace.h>
 
-#include <GrammerManager.h>
-#include <MultipleChoice.h>
+#include "GrammerManager.h"
+#include "MultipleChoice.h"
 
 struct GradeCols {
    bool   use;

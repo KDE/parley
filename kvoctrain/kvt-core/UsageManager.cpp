@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.8  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -57,7 +64,7 @@
 #include <kapplication.h>
 #include <klocale.h>
 
-#include <kvoctraindoc.h>
+#include "kvoctraindoc.h"
 
 #include <iostream.h>
 #include <vector>

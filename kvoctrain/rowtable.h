@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.14  2002/01/19 10:33:08  arnold
     made entry dialog modeless
 
@@ -73,7 +76,7 @@
 #ifndef rowtable_included
 #define rowtable_included
 
-#include <kv_resource.h>
+#include "kv_resource.h"
 
 #include <qglobal.h>
 #include <qtable.h>
