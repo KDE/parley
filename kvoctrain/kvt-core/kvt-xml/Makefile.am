@@ -1,4 +1,6 @@
-INCLUDES = -I$(top_srcdir)/kvoctrain/kvoctrain $(all_includes)
+INCLUDES = -I$(top_srcdir)/kvoctrain \
+ -I$(top_srcdir)/kvoctrain/kvoctrain \
+ $(all_includes)
 
 noinst_LTLIBRARIES = libkvtxml.la
 

@@ -40,8 +40,8 @@ APPS_FILES = \
  pics/mark.png
  
 install-data-local:
-	$(mkinstalldirs) $(kde_appsdir)/Applications/
-	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(kde_appsdir)/Applications/kvoctrain.desktop
+	$(mkinstalldirs) $(kde_appsdir)/Edutainment/
+	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(kde_appsdir)/Edutainment/kvoctrain.desktop
 	$(mkinstalldirs) $(kde_icondir)/
 	$(INSTALL_DATA) $(srcdir)/pics/kvoctrain.xpm $(kde_icondir)/kvoctrain.xpm
 	$(INSTALL_DATA) $(srcdir)/pics/48x48-kvoctrain.xpm $(kde_icondir)/hicolor/48x48/apps/kvoctrain.xpm
@@ -62,7 +62,7 @@ install-data-local:
 uninstall-local:
 	-rm -f $(kde_icondir)/kvoctrain.xpm
 	-rm -f $(kde_minidir)/kvoctrain.xpm
-	-rm -f $(kde_appsdir)/Applications/kvoctrain.desktop
+	-rm -f $(kde_appsdir)/Edutainment/kvoctrain.desktop
 	-rm -f $(kde_icondir)/large/kvoctrain.xpm
 	-rm -f $(kde_icondir)/mini/kvoctrain.xpm
 	for pic in $(APPS_FILES); do \
@@ -70,7 +70,9 @@ uninstall-local:
           rm -f "$(kde_datadir)/kvoctrain/$$file"; \
 	done
 
-INCLUDES= -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core $(all_includes)
+INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
+ -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
+ $(all_includes)
 
 bin_PROGRAMS = kvoctrain spotlight2kvtml
 
