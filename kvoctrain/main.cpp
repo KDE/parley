@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/08 15:22:57  arnold
+    added contributors
+
     Revision 1.9  2001/12/05 09:07:21  howells
     Fix some spelling/gramattical errors, and make the program fit better with the style guide
 
@@ -82,7 +85,7 @@ static const char *description =
 static const char *version = "0.8.0";
 
   KAboutData aboutData("kvoctrain",
-                       "KVocTrain",
+                       I18N_NOOP("KVocTrain",)
                        version,
                        description,
                        KAboutData::License_GPL,
