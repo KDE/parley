@@ -1,5 +1,5 @@
 
-pics_DATA = 16x16-kvoctrain.xpm new.xpm lesson.xpm\
+pics_DATA = new.xpm lesson.xpm\
  list-win.xpm pron-win.xpm\
  delete-row.xpm append-row.xpm edit-row.xpm \
  conf-save.xpm gen-conf.xpm query-conf.xpm \
