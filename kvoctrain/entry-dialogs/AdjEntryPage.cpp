@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/13 21:15:49  arnold
+    tested and fixed changes from previous cvs updatecd
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -43,9 +46,9 @@
 
 #include <langset.h>
 
-#define Inherited AdjEntryPageData
-
 #include <qkeycode.h>
+#include <qlineedit.h>
+#include <qlabel.h>
 
 #include <kapp.h>
 
@@ -59,7 +62,7 @@ AdjEntryPage::AdjEntryPage
         const char        *name
 )
 	:
-	Inherited( parent, name )
+	AdjEntryPageForm( parent, name )
 {
    comparisons = comp;
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,14 +34,14 @@
 #ifndef CommonEntryPage_included
 #define CommonEntryPage_included
 
-#include "CommonEntryPageData.h"
+#include "CommonEntryPageForm.h"
 
 #include <QueryManager.h>
 #include <UsageManager.h>
 
 struct SpecFont_t;
 
-class CommonEntryPage : public CommonEntryPageData
+class CommonEntryPage : public CommonEntryPageForm
 {
     Q_OBJECT
 

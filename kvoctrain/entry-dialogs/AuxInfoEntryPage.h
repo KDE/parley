@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -33,11 +36,11 @@
 #ifndef AuxInfoEntryPage_included
 #define AuxInfoEntryPage_included
 
-#include "AuxInfoEntryPageData.h"
+#include "AuxInfoEntryPageForm.h"
 
 struct SpecFont_t;
 
-class AuxInfoEntryPage : public AuxInfoEntryPageData
+class AuxInfoEntryPage : public AuxInfoEntryPageForm
 {
     Q_OBJECT
 

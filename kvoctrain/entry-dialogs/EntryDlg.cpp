@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -150,10 +157,6 @@ EntryDlg::EntryDlg
           connect (this, SIGNAL(aboutToShow()), from_page, SLOT(initFocus() ));
         if (to_page != 0)
           connect (this, SIGNAL(aboutToShow()), to_page, SLOT(initFocus() ));
-
-        resize( 600+16,410+76 );
-        setMinimumSize( 600+16,410+76 );
-        setMaximumSize( 600+16,410+76 );
 
         setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 }

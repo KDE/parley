@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,13 +34,13 @@
 #ifndef AdjEntryPage_included
 #define AdjEntryPage_included
 
-#include "AdjEntryPageData.h"
+#include "AdjEntryPageForm.h"
 
 #include <GrammerManager.h>
 
 struct SpecFont_t;
 
-class AdjEntryPage : public AdjEntryPageData
+class AdjEntryPage : public AdjEntryPageForm
 {
     Q_OBJECT
 

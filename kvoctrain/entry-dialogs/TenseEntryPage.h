@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,13 +34,13 @@
 #ifndef TenseEntryPage_included
 #define TenseEntryPage_included
 
-#include "TenseEntryPageData.h"
+#include "TenseEntryPageForm.h"
 
 #include <GrammerManager.h>
 
 struct SpecFont_t;
 
-class TenseEntryPage : public TenseEntryPageData
+class TenseEntryPage : public TenseEntryPageForm
 {
     Q_OBJECT
 

@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -32,9 +36,10 @@
  ***************************************************************************/
 
 
-#define Inherited AuxInfoEntryPageData
-
 #include <qkeycode.h>
+#include <qmultilineedit.h>
+#include <qlabel.h>
+#include <qlistbox.h>
 
 #include <kapp.h>
 
@@ -58,7 +63,7 @@ AuxInfoEntryPage::AuxInfoEntryPage
 	const char *name
 )
 	:
-	Inherited( parent, name ),
+	AuxInfoEntryPageForm( parent, name ),
         synonym(syno),
         antonym(anto),
 	example(exam),

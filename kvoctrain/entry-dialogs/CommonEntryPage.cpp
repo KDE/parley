@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -37,9 +44,13 @@
 
 #include "CommonEntryPage.h"
 
-#define Inherited CommonEntryPageData
-
 #include <qkeycode.h>
+#include <qlineedit.h>
+#include <qlabel.h>
+#include <qlistbox.h>
+#include <qcombobox.h>
+#include <qpushbutton.h>
+#include <qgroupbox.h>
 
 #include <kapp.h>
 
@@ -70,7 +81,7 @@ CommonEntryPage::CommonEntryPage
 	const char   *name
 )
 	:
-	Inherited( parent, name ),
+	CommonEntryPageForm( parent, name ),
 	pronunce(pron),
 	expression(expr),
         usageCollection (act_usage),
@@ -97,11 +108,11 @@ CommonEntryPage::CommonEntryPage
     setLessonBox (lessbox, less);
     lesson_label->setBuddy(lesson_box);
 
-    usage_label->setBuddy(usage_box);
+//    usage_label->setBuddy(usage_box);
     setUsageBox (usageCollection);
 
     setTypeBox(act_type);
-    type_label->setBuddy(type_box);
+//    type_label->setBuddy(type_box);
     subtype_label->setBuddy(subtype_box);
 
     int start = -1;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/13 21:15:49  arnold
+    tested and fixed changes from previous cvs updatecd
+
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -41,9 +44,12 @@
 
 #include "FromToEntryPage.h"
 
-#define Inherited FromToEntryPageData
-
 #include <qkeycode.h>
+#include <qlineedit.h>
+#include <qlabel.h>
+#include <qcombobox.h>
+#include <qpushbutton.h>
+#include <qgroupbox.h>
 
 #include <kapp.h>
 
@@ -52,6 +58,7 @@
 #include <langset.h>
 
 #include "blockall.h"
+#include "MySpinBox.h"
 
   static QStringList  monthnames;
 
@@ -70,7 +77,7 @@ FromToEntryPage::FromToEntryPage
 	const char *name
 )
 	:
-	Inherited( parent, name ),
+	FromToEntryPageForm( parent, name ),
         fauxami(faux),
         dlgbook(_dlgbook)
 {
