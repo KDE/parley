@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/04/03 15:19:29  mlaurent
+    Fix header
+
     Revision 1.21  2002/03/05 18:33:44  arnold
     fix for display problems
 
@@ -525,6 +528,12 @@ EntryDlg::~EntryDlg()
      mainwin->resize(oldMainSize);
      mainwin->move(oldMainPos);
    }
+}
+
+
+void EntryDlg::reject ()
+{
+  emit sigEditChoice(EditCancel);
 }
 
 

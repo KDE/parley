@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/02/03 08:39:20  arnold
+    moved checkbox to options dialog
+
     Revision 1.12  2002/01/27 07:17:47  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -258,6 +261,7 @@ public slots:
 
 protected slots:
     void updatePages(const QString &type);
+    virtual void reject ();
 
 protected:
     virtual void closeEvent (QCloseEvent*e);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.46  2002/04/20 12:55:48  binner
+    CVS_SILENT Capitalisation fixes.
+
     Revision 1.45  2002/04/12 10:09:55  coolo
     replacing tons of these (for gcc 3):
     -      queryList.erase(&queryList[i], &queryList[i+1]);
@@ -587,6 +590,11 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
    opts_menu->setItemEnabled(ID_VIEW_INLINE, false);
    view->getTable()->setEditorBlocked(true);
+
+   if (col == 0)
+     entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+   else
+     entryDlg->setEnabled(EntryDlg::EnableAll);
 
    vector<QTableSelection> tabsel;
    entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
