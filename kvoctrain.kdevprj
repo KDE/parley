@@ -106,8 +106,8 @@ author=earnold
 configure_args=
 email=earnold@presario
 kdevprj_version=1.3
-lfv_open_groups=
-makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am
+lfv_open_groups=User Interface
+makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am,kvoctrain/todo/Makefile.am
 project_name=kvoctrain
 project_type=normal_empty
 sub_dir=kvoctrain/
@@ -121,9 +121,8 @@ GNU=AUTHORS,COPYING,ChangeLog,INSTALL,README,TODO,NEWS,
 Headers=*.h,*.hxx,*.hpp,*.H,
 Others=*,
 Sources=*.cpp,*.c,*.cc,*.C,*.cxx,*.ec,*.ecpp,*.lxx,*.l++,*.ll,*.l,
-Translations=*.ts,*.po,
 User Interface=*.ui,*.kdevdlg,*.rc,*.dlg
-groups=Headers,Sources,GNU,Translations,User Interface,Desktop,Others
+groups=Headers,Sources,GNU,User Interface,Desktop,Others
 
 [Makefile.am]
 dist=true
@@ -159,10 +158,10 @@ type=DATA
 
 [kvoctrain/Makefile.am]
 dist=true
-files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,kvoctrain/Makefile.am
+files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,kvoctrain/Makefile.am,kvoctrain/kvoctrain.pot
 install=false
 install_location=
-sub_dirs=docs,pics,docprop-dialogs,common-dialogs,queryoption-dialogs,kvt-core,testbed,option-dialogs,statistik-dialogs,entry-dialogs,query-dialogs,
+sub_dirs=docs,pics,docprop-dialogs,common-dialogs,queryoption-dialogs,kvt-core,testbed,option-dialogs,statistik-dialogs,entry-dialogs,query-dialogs,todo
 type=DATA
 
 [kvoctrain/common-dialogs/CharSetDlg.cpp]
@@ -437,7 +436,7 @@ files=kvoctrain/docprop-dialogs/DocPropLangDlg.cpp,kvoctrain/docprop-dialogs/Usa
 install=false
 install_location=
 sub_dirs=
-type=static_library
+type=DATA
 
 [kvoctrain/docprop-dialogs/TenseOptPage.cpp]
 dist=true
@@ -660,12 +659,6 @@ install=false
 install_location=
 type=SOURCE
 
-[kvoctrain/entry-dialogs/AuxInfoEntryPage.dlg]
-dist=true
-install=false
-install_location=
-type=DATA
-
 [kvoctrain/entry-dialogs/AuxInfoEntryPage.h]
 dist=true
 install=false
@@ -848,7 +841,7 @@ type=SOURCE
 
 [kvoctrain/entry-dialogs/Makefile.am]
 dist=true
-files=kvoctrain/entry-dialogs/AuxInfoEntryPage.h,kvoctrain/entry-dialogs/FromToEntryPage.h,kvoctrain/entry-dialogs/UsageOptPageData.h,kvoctrain/entry-dialogs/TypeOptPageData.cpp,kvoctrain/entry-dialogs/DocOptionsPageData.h,kvoctrain/entry-dialogs/TenseEntryPage.cpp,kvoctrain/entry-dialogs/TenseEntryPage.dlg,kvoctrain/entry-dialogs/TypeOptPageData.h,kvoctrain/entry-dialogs/AdjEntryPageData.h,kvoctrain/entry-dialogs/FromToEntryPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.cpp,kvoctrain/entry-dialogs/UsageOptPage.cpp,kvoctrain/entry-dialogs/EntryDlg.cpp,kvoctrain/entry-dialogs/CommonEntryPageData.cpp,kvoctrain/entry-dialogs/AdjEntryPage.cpp,kvoctrain/entry-dialogs/AdjEntryPage.dlg,kvoctrain/entry-dialogs/UsageOptPage.h,kvoctrain/entry-dialogs/MySpinBox.cpp,kvoctrain/entry-dialogs/AdjEntryPageData.cpp,kvoctrain/entry-dialogs/TenseOptPage.h,kvoctrain/entry-dialogs/CommonEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.h,kvoctrain/entry-dialogs/TitlePageData.cpp,kvoctrain/entry-dialogs/TypeOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.h,kvoctrain/entry-dialogs/TitlePage.h,kvoctrain/entry-dialogs/TypeOptPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.dlg,kvoctrain/entry-dialogs/TitlePageData.h,kvoctrain/entry-dialogs/UsageOptPageData.cpp,kvoctrain/entry-dialogs/LessOptPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.ui,kvoctrain/entry-dialogs/LessOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.cpp,kvoctrain/entry-dialogs/FromToEntryPageData.cpp,kvoctrain/entry-dialogs/blockall.h,kvoctrain/entry-dialogs/CommonEntryPage.h,kvoctrain/entry-dialogs/TenseEntryPage.h,kvoctrain/entry-dialogs/AdjEntryPage.h,kvoctrain/entry-dialogs/blockall.cpp,kvoctrain/entry-dialogs/TitlePage.cpp,kvoctrain/entry-dialogs/LessOptPageData.cpp,kvoctrain/entry-dialogs/EntryDlg.h,kvoctrain/entry-dialogs/LessOptPageData.h,kvoctrain/entry-dialogs/TenseOptPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.dlg,kvoctrain/entry-dialogs/TenseOptPage.cpp,kvoctrain/entry-dialogs/TenseOptPageData.cpp,kvoctrain/entry-dialogs/MySpinBox.h,kvoctrain/entry-dialogs/DocOptionsPageData.cpp,kvoctrain/entry-dialogs/CommonEntryPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.dlg,kvoctrain/entry-dialogs/MCEntryPage.cpp,kvoctrain/entry-dialogs/MCEntryPage.h,kvoctrain/entry-dialogs/MCEntryPageForm.ui,kvoctrain/entry-dialogs/FromToEntryPageForm.ui,kvoctrain/entry-dialogs/CommonEntryPageForm.ui,kvoctrain/entry-dialogs/AuxInfoEntryPageForm.ui,kvoctrain/entry-dialogs/AdjEntryPageForm.ui,kvoctrain/entry-dialogs/TenseEntryPageForm.ui,kvoctrain/entry-dialogs/Makefile.am
+files=kvoctrain/entry-dialogs/AuxInfoEntryPage.h,kvoctrain/entry-dialogs/FromToEntryPage.h,kvoctrain/entry-dialogs/UsageOptPageData.h,kvoctrain/entry-dialogs/TypeOptPageData.cpp,kvoctrain/entry-dialogs/DocOptionsPageData.h,kvoctrain/entry-dialogs/TenseEntryPage.cpp,kvoctrain/entry-dialogs/TenseEntryPage.dlg,kvoctrain/entry-dialogs/TypeOptPageData.h,kvoctrain/entry-dialogs/AdjEntryPageData.h,kvoctrain/entry-dialogs/FromToEntryPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.cpp,kvoctrain/entry-dialogs/UsageOptPage.cpp,kvoctrain/entry-dialogs/EntryDlg.cpp,kvoctrain/entry-dialogs/CommonEntryPageData.cpp,kvoctrain/entry-dialogs/AdjEntryPage.cpp,kvoctrain/entry-dialogs/AdjEntryPage.dlg,kvoctrain/entry-dialogs/UsageOptPage.h,kvoctrain/entry-dialogs/MySpinBox.cpp,kvoctrain/entry-dialogs/AdjEntryPageData.cpp,kvoctrain/entry-dialogs/TenseOptPage.h,kvoctrain/entry-dialogs/CommonEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.h,kvoctrain/entry-dialogs/TitlePageData.cpp,kvoctrain/entry-dialogs/TypeOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.h,kvoctrain/entry-dialogs/TitlePage.h,kvoctrain/entry-dialogs/TypeOptPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.cpp,kvoctrain/entry-dialogs/FromToEntryPage.dlg,kvoctrain/entry-dialogs/TitlePageData.h,kvoctrain/entry-dialogs/UsageOptPageData.cpp,kvoctrain/entry-dialogs/LessOptPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.ui,kvoctrain/entry-dialogs/LessOptPage.h,kvoctrain/entry-dialogs/DocOptionsPage.cpp,kvoctrain/entry-dialogs/FromToEntryPageData.cpp,kvoctrain/entry-dialogs/blockall.h,kvoctrain/entry-dialogs/CommonEntryPage.h,kvoctrain/entry-dialogs/TenseEntryPage.h,kvoctrain/entry-dialogs/AdjEntryPage.h,kvoctrain/entry-dialogs/blockall.cpp,kvoctrain/entry-dialogs/TitlePage.cpp,kvoctrain/entry-dialogs/LessOptPageData.cpp,kvoctrain/entry-dialogs/EntryDlg.h,kvoctrain/entry-dialogs/LessOptPageData.h,kvoctrain/entry-dialogs/TenseOptPageData.h,kvoctrain/entry-dialogs/AuxInfoEntryPageData.h,kvoctrain/entry-dialogs/TenseEntryPageData.cpp,kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp,kvoctrain/entry-dialogs/TenseOptPage.cpp,kvoctrain/entry-dialogs/TenseOptPageData.cpp,kvoctrain/entry-dialogs/MySpinBox.h,kvoctrain/entry-dialogs/DocOptionsPageData.cpp,kvoctrain/entry-dialogs/CommonEntryPage.cpp,kvoctrain/entry-dialogs/CommonEntryPage.dlg,kvoctrain/entry-dialogs/MCEntryPage.cpp,kvoctrain/entry-dialogs/MCEntryPage.h,kvoctrain/entry-dialogs/MCEntryPageForm.ui,kvoctrain/entry-dialogs/FromToEntryPageForm.ui,kvoctrain/entry-dialogs/CommonEntryPageForm.ui,kvoctrain/entry-dialogs/AuxInfoEntryPageForm.ui,kvoctrain/entry-dialogs/AdjEntryPageForm.ui,kvoctrain/entry-dialogs/TenseEntryPageForm.ui,kvoctrain/entry-dialogs/Makefile.am
 install=false
 install_location=
 sub_dirs=
@@ -1087,6 +1080,12 @@ dist=true
 install=false
 install_location=
 type=DATA
+
+[kvoctrain/kvoctrain.pot]
+dist=true
+install=false
+install_location=
+type=PO
 
 [kvoctrain/kvoctrainview.cpp]
 dist=true
@@ -2095,7 +2094,7 @@ files=kvoctrain/query-dialogs/QueryDlgData.cpp,kvoctrain/query-dialogs/AdjQueryD
 install=false
 install_location=
 sub_dirs=
-type=static_library
+type=DATA
 
 [kvoctrain/query-dialogs/MyProgress.cpp]
 dist=true
@@ -2548,6 +2547,41 @@ install_location=
 type=DATA
 
 [kvoctrain/testbed/polska-svenska]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/todo/Makefile.am]
+files=kvoctrain/todo/query2.txt,kvoctrain/todo/nomen.txt,kvoctrain/todo/query.txt,kvoctrain/todo/typos.txt,kvoctrain/todo/todos.txt
+sub_dirs=
+type=normal
+
+[kvoctrain/todo/nomen.txt]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/todo/query.txt]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/todo/query2.txt]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/todo/todos.txt]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/todo/typos.txt]
 dist=true
 install=false
 install_location=
