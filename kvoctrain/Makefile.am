@@ -57,13 +57,13 @@ install-data-local:
 	$(INSTALL_DATA) $(srcdir)/pics/32x32-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/32x32/apps/kvoctrain.xpm
 	$(INSTALL_DATA) $(srcdir)/pics/22x22-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/hicolor/22x22/apps/kvoctrain.xpm
 	$(INSTALL_DATA) $(srcdir)/pics/16x16-kvoctrain.xpm $(DESTDIR)$(kde_icondir)/locolor/16x16/apps/kvoctrain.xpm
-	$(mkinstalldirs) $(kde_datadir)/kvoctrain
+	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain
 	for pic in $(APPS_FILES); do \
           file=`echo $$pic | sed 's,.*/,,'`; \
 	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/; \
           $(INSTALL_DATA) $(srcdir)/pics/$$file $(DESTDIR)$(kde_datadir)/kvoctrain/$$file; \
 	done
-	$(mkinstalldirs) $(kde_datadir)/kvoctrain/examples
+	$(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/examples
 	for kvt in $(XMP_FILES); do \
           file=`echo $$kvt | sed 's,.*/,,'`; \
 	  $(mkinstalldirs) $(DESTDIR)$(kde_datadir)/kvoctrain/examples/ ; \
@@ -76,19 +76,19 @@ install-data-local:
 	@echo "***********************************************************"
 
 uninstall-local:
-	-rm -f $(kde_bindir)/langen2kvtml
-	-rm -f $(kde_icondir)/kvoctrain.xpm
-	-rm -f $(kde_minidir)/kvoctrain.xpm
-	-rm -f $(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
-	-rm -f $(kde_icondir)/large/kvoctrain.xpm
-	-rm -f $(kde_icondir)/mini/kvoctrain.xpm
+	-rm -f $(DESTDIR)$(kde_bindir)/langen2kvtml
+	-rm -f $(DESTDIR)$(kde_icondir)/kvoctrain.xpm
+	-rm -f $(DESTDIR)$(kde_minidir)/kvoctrain.xpm
+	-rm -f $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
+	-rm -f $(DESTDIR)$(kde_icondir)/large/kvoctrain.xpm
+	-rm -f $(DESTDIR)$(kde_icondir)/mini/kvoctrain.xpm
 	for pic in $(APPS_FILES); do \
           file=`echo $$pic | sed 's,.*/,,'`; \
-          rm -f "$(kde_datadir)/kvoctrain/$$file"; \
+          rm -f "$(DESTDIR)$(kde_datadir)/kvoctrain/$$file"; \
 	done
 	for kvt in $(XMP_FILES); do \
           file=`echo $$kvt | sed 's,.*/,,'`; \
-          rm -f "$(kde_datadir)/kvoctrain/examples/$$file"; \
+          rm -f "$(DESTDIR)$(kde_datadir)/kvoctrain/examples/$$file"; \
 	done
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
