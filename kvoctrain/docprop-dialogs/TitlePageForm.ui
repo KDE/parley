@@ -160,10 +160,6 @@
                             <vsizetype>3</vsizetype>
                         </sizepolicy>
                     </property>
-                    <property stdset="1">
-                        <name>hMargin</name>
-                        <number>2</number>
-                    </property>
                 </widget>
                 <widget row="1"  column="1" >
                     <class>QMultiLineEdit</class>
@@ -177,10 +173,6 @@
                             <hsizetype>3</hsizetype>
                             <vsizetype>1</vsizetype>
                         </sizepolicy>
-                    </property>
-                    <property stdset="1">
-                        <name>hMargin</name>
-                        <number>2</number>
                     </property>
                 </widget>
                 <widget row="2"  column="1" >
