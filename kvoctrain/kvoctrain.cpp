@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.26  2001/12/16 16:51:25  arnold
+    fixed keyboard handling in main view
+
     Revision 1.25  2001/12/13 18:39:09  arnold
     added phonetic alphabet stuff
 
@@ -185,8 +188,15 @@ void kvoctrainApp::slotSelectAll ()
 
 void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 {
-  if (col < KV_EXTRA_COLS)
+  if (col < KV_EXTRA_COLS) {
+    if (rem_label != 0)
+      rem_label->setText  (i18n (PREFIX_Remark));
+    if (pron_label != 0)
+      pron_label->setText (i18n (PREFIX_Pronunce));
+    if (type_label != 0)
+      type_label->setText (i18n (PREFIX_Type));
     return;
+  }
 
   col -= KV_EXTRA_COLS;
 

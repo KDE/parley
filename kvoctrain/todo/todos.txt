@@ -3,28 +3,47 @@ $Date$
                    kvoctrain roadmap and todo
                   ----------------------------
 
+tofix now:
 
-Reference and Introduction to Phonetic Symbols
-http://esl.about.com/library/weekly/aa040998.htm
+tofix post-release:
+  - resume query
+  - copy cell / copy row
+  - [modified], warum?
+  - modeless entry dialog
+  - multiple selections in main view
+  - triangle "menu button" in table header buttons
+  - translator hint iso names "language name aa:"
+  - percent resize
+  - accel order
+  - quickhelp/tooltipps
+  - entry dialog kleiner
+  - percentage %x done in query-statusbar
 
-IPA-enabled font
-http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html
+todoc:
+
+iso-button
+
+IPA fonts
+http://www.hclrss.demon.co.uk/unicode/fonts.html
+Lucida Sans Unicode von StarOffice
+
+The INTERNATIONAL PHONETIC ASSOCIATION
+http://www2.arts.gla.ac.uk/IPA/ipa.html
+
+neue shots: query-options-2, general-opt-2
 
 still left flaws:
 =================
 
-# shp-bug
-
-# crash "recent files"
-
-= kde2: accel in dialogen??
-
-- percentage resizing bug
-
-- aktion nach query-timeout: statt show wird weitergemacht
-
 - multiline input anon-query
 
+I was stuck for a few seconds when I tried out this app. No lection is selected
+by default and if you start to learn you get the following error:
+"Ihre Auswahl enthält keine Audrücke für die Abfrage", which might be
+technically correct (your  choice does not contain any blabal), but does not
+help the starting learner one bit. How about startign with the first lesson by
+default and/or replacing the error message by "No Lesson selected, please
+select one"?
 
 common
 ======
@@ -40,13 +59,7 @@ groups: Liste neutral wenn neue Option manuell
 doc
 ===
 
-- header menu: alt (shift)
 - faq compile problems, script bug-report
-
-- encoding
-
-  uft8 for kde2x envs
-  8859-x/koi if special
 
 wishes from users
 =================

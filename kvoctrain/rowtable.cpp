@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/24 13:37:46  arnold
+    fixed misbehaviour with inline editing
+
     Revision 1.17  2001/12/16 16:51:25  arnold
     fixed keyboard handling in main view
 
@@ -498,10 +501,9 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
     if (update_org)
       for (int i = topCell; i <= lastRowVisible; i++)
         updateCell(i, KV_COL_ORG);
-
-    if( e->button() == LeftButton )
-      emit cellMoved(cr, cc);
   }
+  if( e->button() == LeftButton )
+    emit cellMoved(cr, cc);
 }
 
 
@@ -536,8 +538,7 @@ void RowTable::keyPressEvent( QKeyEvent *e )
       case Key_Next:
       case Key_Prior:
       QTable::keyPressEvent(e);
-      if (currentColumn() > KV_EXTRA_COLS)
-        emit cellMoved(currentRow(), currentColumn());
+      emit cellMoved(currentRow(), currentColumn());
     break;
 
     case Key_Left: {
@@ -547,8 +548,7 @@ void RowTable::keyPressEvent( QKeyEvent *e )
         if (numCols() > 2)
           for (int i = topCell; i <= lastRowVisible; i++)
             updateCell(i, KV_COL_ORG);
-        if (currentColumn() > KV_EXTRA_COLS)
-          emit cellMoved(currentRow(), currentColumn());
+        emit cellMoved(currentRow(), currentColumn());
     }
     break;
 
@@ -602,20 +602,24 @@ void RowTable::headerReleaseEvent(int sect)
 void RowTable::menuTriggerTimeout()
 {
    delayTimer->stop();
-   if(triggerSect == -1 )
+   if (triggerSect == -1 )
      return;
 
    int mt = triggerSect;
    triggerSect = -1;
-
-//   emit header->released(mt);
 
    QHeader *header = horizontalHeader();
    int x = leftMargin();
    for (int i = 0; i < mt; ++i )
      x += header->sectionSize(i);
    QPoint mpos = mapToGlobal(QPoint(x, topMargin()));
-   emit rightButtonClicked(mt, mpos.x(), mpos.y() );
+
+   if (mt != KV_COL_MARK)
+     emit rightButtonClicked(mt, mpos.x(), mpos.y() );
+
+   QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0),
+                  QMouseEvent::LeftButton, QMouseEvent::LeftButton);
+   QApplication::sendEvent( header, &me );
 }
 
 #include "rowtable.moc"
