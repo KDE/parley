@@ -46,7 +46,7 @@ QueryOptionsDlg::QueryOptionsDlg
         int           mqtime,
         bool          showcounter,
         kvq_timeout_t type_timeout,
-        kvoctrainDoc *_doc,
+        kvoctrainDoc *,
         KComboBox    *lessons,
         QueryManager *_manager,
         bool          swapdir,

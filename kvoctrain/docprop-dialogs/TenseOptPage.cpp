@@ -31,7 +31,7 @@
 #include <qpushbutton.h>
 
 #include <kapplication.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
@@ -95,21 +95,22 @@ void TenseOptPage::slotTenseChosen(int index)
 
 void TenseOptPage::slotNewTense()
 {
-     KLineEditDlg dlg(i18n("Enter tense description:"), QString::null, this);
-     dlg.setCaption(i18n("Tense Description"));
-     if (dlg.exec()) {
+     bool ok;
+     QString getTense = KInputDialog::getText(
+                 i18n( "Tense Description" ), i18n( "Enter tense description" ), QString::null, &ok );
+         if( !ok )
+                 return;
        QString str;
        int i = tenseList->count()+1;
        str.setNum (i);
        if (i <= 9)
          str.insert (0, " ");
-       tenseList->insertItem (str+TENSE_TAG+dlg.text().stripWhiteSpace());
+       tenseList->insertItem (str+TENSE_TAG+getTense.stripWhiteSpace());
        tenseIndex.push_back(-(i-1));
        act_tense = tenseList->count();
        tenseList->setCurrentItem (i-1);
        b_modify->setEnabled(true);
        b_delete->setEnabled(true);
-     }
 }
 
 
@@ -120,16 +121,16 @@ void TenseOptPage::slotModifyTense()
      QString str = tenseList->text (act_tense);
      int pos = str.find (TENSE_TAG);
      str.remove (0, pos+strlen (TENSE_TAG));
-
-     KLineEditDlg dlg(i18n("Enter tense description:"), str, this);
-     dlg.setCaption(i18n("Tense Description"));
-     if (dlg.exec()) {
+     bool ok;
+     QString getTense = KInputDialog::getText(
+                i18n( "Tense Description" ), i18n( "Enter tense description" ), QString::null, &ok );
+     if( !ok )
+           return;
        QString str2;
        str2.setNum (act_tense+1);
        if (act_tense <= 9)
          str2.insert (0, " ");
-       tenseList->changeItem (str2+TENSE_TAG+dlg.text().stripWhiteSpace(), act_tense);
-     }
+       tenseList->changeItem (str2+TENSE_TAG+getTense.stripWhiteSpace(), act_tense);
    }
 }
 
