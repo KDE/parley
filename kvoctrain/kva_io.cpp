@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/14 16:05:49  arnold
+    fixed handling of table font
+
     Revision 1.15  2001/12/07 19:20:50  arnold
     included multiple choice fields and false friend into query
 
@@ -274,17 +277,23 @@ void kvoctrainApp::addRecentFile(const QString &rel_file)
     KRecentDocument::add (file, false);
   }
 
-  // create the file_open_popup for the toolbar and the menu
-  recent_files_menu->clear();
-  file_open_popup->clear();
+  // create/update the file_open_popup for the toolbar and the menu
   QString accel;
-  for ( int i =0 ; i < (int)recent_files.count(); i++){
+  for ( unsigned i = 0 ; i < recent_files.count(); i++){
     accel.setNum (i);
     accel.insert (0, "&");
     accel += "  ";
     accel += recent_files[i];
-    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
-    file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
+
+    if (i < recent_files_menu->count())
+      recent_files_menu->changeItem((i << 16) | ID_FILE_OPEN_RECENT, accel);
+    else
+      recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
+
+    if (i < file_open_popup->count())
+      file_open_popup->changeItem((i << 16) | ID_FILE_OPEN_RECENT, accel);
+    else
+      file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
   }
 }
 

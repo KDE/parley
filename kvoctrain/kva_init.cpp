@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/13 18:39:09  arnold
+    added phonetic alphabet stuff
+
     Revision 1.17  2001/12/05 09:07:21  howells
     Fix some spelling/gramattical errors, and make the program fit better with the style guide
 
@@ -216,7 +219,7 @@ void kvoctrainApp::initMenuBar()
     accel.insert (0, "&");
     accel += "  ";
     accel += recent_files[i];
-    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT);
+    recent_files_menu->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
   }
 
   file_menu->insertSeparator();
@@ -350,7 +353,7 @@ void kvoctrainApp::initToolBar()
     accel.insert (0, "&");
     accel += "  ";
     accel += recent_files[i];
-    file_open_popup->insertItem(accel, i);
+    file_open_popup->insertItem(accel, (i << 16) | ID_FILE_OPEN_RECENT, i);
   }
   connect(file_open_popup, SIGNAL(activated(int)), SLOT(slotFileOpenRecent(int)));
   toolBar()->setDelayedPopup(ID_FILE_OPEN, file_open_popup);
