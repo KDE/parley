@@ -95,12 +95,13 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
       n++;
     }
   }
-  else {
+  else 
+  {
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+    kva = new kvoctrainApp;
+    
     if ( args && args->count() == 1 )
-       kva = new kvoctrainApp (NULL, args->arg(0));
-    else
-      kva = new kvoctrainApp;
+      kva->loadfileFromPath(args->arg(0), true);  
 
     kva->show();
   }

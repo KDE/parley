@@ -277,32 +277,32 @@ void kvoctrainApp::slotFileOpen()
       s = recent_files[0];
     QString name = getFileName(kapp->makeStdCaption(i18n("Open Vocabulary File")),
                                s, FILTER_RPATTERN, parentWidget());
-    loadfileFromPath(name);
+    loadfileFromPath(KURL(name));
   }
   slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void kvoctrainApp::loadfileFromPath(QString &name, bool addRecent)
+void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 {
-    if (!name.isEmpty() ) {
+    if (!url.path().isEmpty() ) {
       view->setView(0, langset, gradecols);
       delete doc;
       doc = 0;
 
       QString format = i18n("Loading %1");
-      QString msg = format.arg(name);
+      QString msg = format.arg(url.path());
 
       slotStatusMsg(msg);
       prepareProgressBar();
-      doc = new kvoctrainDoc (this, name, separator, &paste_order);
+      doc = new kvoctrainDoc (this, url.path(), separator, &paste_order);
       removeProgressBar();
       loadDocProps(doc);
       view->setView(doc, langset, gradecols);
       view->getTable()->setFont(tablefont);
       view->adjustContent();
       if (addRecent)
-         addRecentFile (name);
+         addRecentFile (url.path());
       connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
       doc->setModified(false);
     }
@@ -317,7 +317,7 @@ void kvoctrainApp::slotFileOpenExample()
     s = locate("data",  "kvoctrain/examples/");
     QString name = getFileName(kapp->makeStdCaption(i18n("Open Example Vocabulary File")),
                                s, FILTER_RPATTERN, parentWidget());
-    loadfileFromPath(name, false);
+    loadfileFromPath(KURL(name), false);
     if (doc)
        doc->setFileName(QString::null);
   }

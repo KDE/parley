@@ -200,7 +200,7 @@ public:
   void slotFileOpen();
   /** open a sample document */
   void slotFileOpenExample();
-  void loadfileFromPath(QString &path, bool addRecent=true);
+  void loadfileFromPath(const KURL &, bool addRecent=true);
   /** merge a document */
   void slotFileMerge();
   /** save a document */
