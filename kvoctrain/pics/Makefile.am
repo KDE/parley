@@ -9,7 +9,7 @@ pics_DATA = 16x16-kvoctrain.xpm new.xpm lesson.xpm\
  run-query.xpm  run-multi.xpm \
  sort_alpha.xpm sort_num.xpm cleanup.xpm \
  run-syno.xpm run-anto.xpm  run-exmp.xpm  run-para.xpm \
- entry-in-query.png  entry-inactive.png
+ entry-in-query.png  entry-inactive.png logo.png
 
 picsdir = $(kde_datadir)/kvoctrain
 
