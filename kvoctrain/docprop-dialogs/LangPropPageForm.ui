@@ -11,13 +11,13 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>756</width>
+            <width>748</width>
             <height>480</height>
         </rect>
     </property>
     <property stdset="1">
         <name>caption</name>
-        <string>Form2</string>
+        <string>-</string>
     </property>
     <vbox>
         <property stdset="1">

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -95,20 +98,20 @@ AdjQueryDlg::AdjQueryDlg
 	AdjQueryDlgForm( parent, name, true),
         QueryDlgBase()
 {
-	connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-	connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-	connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-	connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-	connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
- 
-	connect( lev1Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-	connect( lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-	connect( lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+   connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
+   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
+   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+   connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+   connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
 
-	connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
-	connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
-	connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
+   connect( lev1Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+   connect( lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+   connect( lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+
+   connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
+   connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
+   connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Comparison training")));

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/10 17:34:22  arnold
+    fixed language property dialog page
+
     Revision 1.11  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -272,7 +275,6 @@ public:
   void fillLessonBox(kvoctrainDoc *the_doc);
   void loadDocProps(kvoctrainDoc *the_doc);
   void saveDocProps(kvoctrainDoc *);
-  static QString generateCaption (const QString &title, bool force_kde2 = false);
   /** exits the application */
   static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *paste_order);
 

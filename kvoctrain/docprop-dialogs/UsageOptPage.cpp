@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -184,7 +187,7 @@ void UsageOptPage::slotDeleteUsage()
          QString ul = exp->getUsageLabel(lang) + UL_USAGE_DIV;
          if (ul.find(t) >= 0 ) {
            KMessageBox::information(this,
-                     i18n("Can't delete this user defined usage label\nbecause it is in use."),
+                     i18n("This user defined usage label could not be deleted\nbecause it is in use."),
                      kapp->makeStdCaption(i18n("Deleting a usage label")));
            return;
          }

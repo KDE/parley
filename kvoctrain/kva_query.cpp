@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/09 14:18:00  arnold
     fixed and improved some dialog pages
 
@@ -158,7 +161,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kvoctrainApp::generateCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
     return;
   }
 
@@ -232,7 +235,7 @@ void kvoctrainApp::slotTimeOutProperty()
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, i18n(not_answered),
-                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
+                                 kapp->makeStdCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {
@@ -316,7 +319,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kvoctrainApp::generateCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
     return;
   }
 
@@ -446,7 +449,7 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, i18n(not_answered),
-                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
+                                 kapp->makeStdCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {
@@ -547,7 +550,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang) /*FOLD00*/
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kvoctrainApp::generateCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
     return;
   }
 
@@ -710,7 +713,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, i18n(not_answered),
-                                 kvoctrainApp::generateCaption(""), i18n("&OK"));
+                                 kapp->makeStdCaption(""), i18n("&OK"));
         slotStopQuery(true);
       }
       else {

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -176,7 +179,7 @@ void LessOptPage::slotDeleteLesson()
        // FIXME: ProgressDlg here?
        if (doc->getEntry(ent)->getLesson() == lessonIndex[act_lesson]+1) {
          KMessageBox::information(this,
-                   i18n("Can't delete this lesson\nbecause it is in use."),
+                   i18n("This lesson could not be deleted\nbecause it is in use."),
                    kapp->makeStdCaption(i18n("Deleting a lesson")));
          return;
        }

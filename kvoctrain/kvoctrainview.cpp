@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.10  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -329,7 +332,7 @@ void kvoctrainTable::sortByColumn_alpha(int header)
                i18n("Sorting is currently turned off for this document.\n"
                     "\n"
                     "Use the document properties dialog to turn sorting on."),
-                    kvoctrainApp::generateCaption(""), i18n("&OK"));
+                    kapp->makeStdCaption(""), i18n("&OK"));
     return;
   }
 
@@ -359,7 +362,7 @@ void kvoctrainTable::sortByColumn_index(int header)
                i18n("Sorting is currently turned off for this document.\n"
                     "\n"
                     "Use the document properties dialog to turn sorting on."),
-                    kvoctrainApp::generateCaption(""), i18n("&OK"));
+                    kapp->makeStdCaption(""), i18n("&OK"));
     return;
   }
 

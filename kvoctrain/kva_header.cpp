@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -468,7 +471,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                    kvoctrainApp::generateCaption(""),
+                    kapp->makeStdCaption(""),
                     i18n("&Yes"),
                     i18n("&No"));
       if(exit==KMessageBox::Yes) {
@@ -575,7 +578,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                    kvoctrainApp::generateCaption(""),
+                    kapp->makeStdCaption(""),
                     i18n("&Yes"), i18n("&No"));
       if(exit==KMessageBox::Yes) {
         doc->resetEntry (header1, act_lesson);

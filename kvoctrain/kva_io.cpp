@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -144,7 +147,7 @@ bool kvoctrainApp::queryExit() /*FOLD00*/
 
   int exit = KMessageBox::warningYesNoCancel(this, 
             i18n("Vocabulary is modified\n\nSave file before exit ?\n"),
-            kvoctrainApp::generateCaption(""));
+            kapp->makeStdCaption(""));
   if(exit==KMessageBox::Yes) {
     slotFileSave();   // save and exit
     return true;
@@ -201,9 +204,9 @@ void kvoctrainApp::slotFileOpenRecent(int id_) /*FOLD00*/
       removeProgressBar();
       loadDocProps(doc);
       if (!doc->getTitle().isEmpty() )
-        setCaption(kvoctrainApp::generateCaption(doc->getTitle()), doc->isModified());
+        setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
       else
-        setCaption(kvoctrainApp::generateCaption(""), doc->isModified());
+        setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       addRecentFile(name);
       view->setView(doc, langset, gradecols);
     }
@@ -270,7 +273,7 @@ void kvoctrainApp::slotFileNew() /*FOLD00*/
 
     if (doc->numLangs() == 0)
       doc->appendLang("en");
-    setCaption(kvoctrainApp::generateCaption(""), doc->isModified());
+    setCaption(kapp->makeStdCaption("", false, doc->isModified()));
     view->setView(doc, langset, gradecols);
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -285,7 +288,7 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
     QString s;
     if (recent_files.count() > 0)
       s = recent_files[0];
-    QString name = getFileName(generateCaption(i18n("Open vocabulary file")),
+    QString name = getFileName(kapp->makeStdCaption(i18n("Open vocabulary file")),
                                s, FILTER_RPATTERN, parentWidget());
     if (!name.isEmpty() ) {
       view->setView(0, langset, gradecols);
@@ -302,9 +305,9 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
       removeProgressBar();
       loadDocProps(doc);
       if (!doc->getTitle().isEmpty() )
-        setCaption(kvoctrainApp::generateCaption(doc->getTitle()), doc->isModified());
+        setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
       else
-        setCaption(kvoctrainApp::generateCaption(""), doc->isModified());
+        setCaption(kapp->makeStdCaption("", false, doc->isModified()));
       view->setView(doc, langset, gradecols);
       addRecentFile (name);
     }
@@ -319,7 +322,7 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
   QString s;
   if (recent_files.count() > 0)
     s = recent_files[0];
-  QString name = getFileName(generateCaption(i18n("Merge vocabulary file")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Merge vocabulary file")),
                              s, FILTER_RPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -663,7 +666,7 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
   if (recent_files.count() > 0)
     s = recent_files[0];
 
-  QString name = getFileName(generateCaption(i18n("Save vocabulary as")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Save vocabulary as")),
                              s, FILTER_WPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -675,7 +678,7 @@ void kvoctrainApp::slotFileSaveAs() /*FOLD00*/
 
       int exit = KMessageBox::warningYesNo(this,
                     msg,
-                    kvoctrainApp::generateCaption(i18n("File exists")));
+                    kapp->makeStdCaption(i18n("File exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }
@@ -719,7 +722,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
       seldoc.appendEntry(doc->getEntry(i));
 
   QString s;
-  QString name = getFileName(generateCaption(i18n("Save vocabulary block as")),
+  QString name = getFileName(kapp->makeStdCaption(i18n("Save vocabulary block as")),
                              s, FILTER_WPATTERN, parentWidget());
   if (!name.isEmpty() ) {
 
@@ -730,7 +733,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
       QString msg = format.arg(name);
 
       int exit = KMessageBox::warningYesNo(this, msg,
-                 kvoctrainApp::generateCaption(i18n("File exists")));
+                 kapp->makeStdCaption(i18n("File exists")));
       if(exit!=KMessageBox::Yes)
         return;
     }

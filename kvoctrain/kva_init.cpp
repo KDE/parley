@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.9  2001/11/10 21:16:47  arnold
     removed icons and compatibility for kde1
 
@@ -102,8 +105,6 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   randomQueryDlg = 0;
   adjQueryDlg = 0;
   artQueryDlg = 0;
-
-//  setCaption(kapp->makeStdCaption(i18n("")));
 
   ///////////////////////////////////////////////////////////////////
   // read the config file options
@@ -416,7 +417,7 @@ void kvoctrainApp::initView(const QString &name)
   view = 0;
 
   pdlg = new ProgressDlg (QString(), QString(),
-                kvoctrainApp::generateCaption("Loading vocabulary file"));
+                kapp->makeStdCaption("Loading vocabulary file"));
   pdlg->show();
 
   kvoctrainExpr::setPixmap(QPixmap(locate("data", "kvoctrain/mark.png")));
@@ -445,9 +446,9 @@ void kvoctrainApp::initView(const QString &name)
   if (doc->numLangs() == 0)
     doc->appendLang("en");
   if (!doc->getTitle().isEmpty())
-    setCaption(kvoctrainApp::generateCaption(doc->getTitle()), doc->isModified());
+    setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   else
-    setCaption(kvoctrainApp::generateCaption(""), doc->isModified());
+    setCaption(kapp->makeStdCaption("", false, doc->isModified()));
 
   view = new kvoctrainView(doc, langset, gradecols, this);
 

@@ -11,13 +11,13 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>588</width>
+            <width>584</width>
             <height>502</height>
         </rect>
     </property>
     <property stdset="1">
         <name>caption</name>
-        <string>Form1</string>
+        <string>-</string>
     </property>
     <widget>
         <class>QGroupBox</class>
@@ -33,6 +33,14 @@
                 <width>581</width>
                 <height>471</height>
             </rect>
+        </property>
+        <property stdset="1">
+            <name>frameShape</name>
+            <enum>Box</enum>
+        </property>
+        <property stdset="1">
+            <name>frameShadow</name>
+            <enum>Sunken</enum>
         </property>
         <property stdset="1">
             <name>title</name>

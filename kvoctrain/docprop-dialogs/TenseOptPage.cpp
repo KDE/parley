@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:27:55  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -189,7 +192,7 @@ void TenseOptPage::slotDeleteTense()
          for (int con = 0; con < conj.numEntries(); con++ ) {
            if (conj.getType(con) == t) {
              KMessageBox::information(this,
-                       i18n("Can't delete this user defined tense\nbecause it is in use."),
+                       i18n("This user defined tense could not be deleted\nbecause it is in use."),
                        kapp->makeStdCaption(i18n("Deleting a tense description")));
              return;
            }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/10 22:27:08  arnold
+    removed compatibility for kde1
+
     Revision 1.9  2001/11/10 21:11:57  arnold
     removed icons and compatibilty for kde1
 
@@ -301,24 +304,24 @@ void kvoctrainApp::readProperties(KConfig *config)
   	
     if(b_canRecover){
       pdlg = new ProgressDlg (QString(), QString(),
-                    kvoctrainApp::generateCaption(""));
+                              kapp->makeStdCaption(""));
       pdlg->show();
       doc = new kvoctrainDoc (this, tempname, separator, &paste_order);
       removeProgressBar();
       doc->setModified();
       doc->setTitle(title);
       doc->setFileName(filename);
-      setCaption(kvoctrainApp::generateCaption(doc->getTitle()), doc->isModified());
+      setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
       QFile::remove(tempname);
     }
   }
   else if(!filename.isEmpty()){
     pdlg = new ProgressDlg (QString(), QString(),
-                  kvoctrainApp::generateCaption(""));
+                            kapp->makeStdCaption(""));
     pdlg->show();
     doc = new kvoctrainDoc (this, filename, separator, &paste_order);
     removeProgressBar();
-    setCaption(kvoctrainApp::generateCaption(doc->getTitle()), doc->isModified());
+    setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   }
 
   if (isQueryMode()) {

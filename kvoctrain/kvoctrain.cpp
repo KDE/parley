@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/11/10 22:59:17  arnold
+    fixed some bugs
+
     Revision 1.15  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -474,7 +477,7 @@ void kvoctrainApp::slotDocProps ()
       doc->setModified();
       view->getTable()->updateContents();
 
-      setCaption(generateCaption(doc->getTitle()), doc->isModified());
+      setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
 
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
@@ -499,7 +502,7 @@ void kvoctrainApp::slotDocPropsLang ()
 
       doc->setModified();
       view->getTable()->updateContents();
-      setCaption(generateCaption(doc->getTitle()), doc->isModified());
+      setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
 
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -511,10 +514,11 @@ void kvoctrainApp::slotDocPropsLang ()
 
 void kvoctrainApp::slotModifiedDoc(bool mod)
 {
-  setCaption(generateCaption(doc->getTitle()), mod);
+  setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   toolBar()->setItemEnabled(ID_FILE_SAVE, mod);
   slotStatusMsg(IDS_DEFAULT);
 }
+
 
 bool kvoctrainApp::hasSelection()
 {
@@ -531,7 +535,7 @@ void kvoctrainApp::slotRemoveRow()
   if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected entry ?\n"),
-                  generateCaption(""),
+                  kapp->makeStdCaption(""),
                   i18n("&Yes"), i18n("&No")))
     {
       RowTable *table = view->getTable();
@@ -543,7 +547,7 @@ void kvoctrainApp::slotRemoveRow()
   else {
     if(KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected range ?\n"),
-                  generateCaption(""),
+                  kapp->makeStdCaption(""),
                   i18n("&Yes"),
                   i18n("&No")))
     {
@@ -796,7 +800,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 
      KMessageBox::information(this,
        s,
-       generateCaption(i18n("Clean up")), i18n("&OK"));
+       kapp->makeStdCaption(i18n("Clean up")), i18n("&OK"));
    }
 }
 
@@ -940,7 +944,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
                         "Should this dialog be invoked now ?\n");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
-                  generateCaption(""),
+                  kapp->makeStdCaption(""),
                   i18n("&Yes"), i18n("&No")))
      {
        slotGeneralOptionsPage(1);
@@ -1186,19 +1190,6 @@ void kvoctrainApp::aboutToShowLearn()
 
 #undef  S_RESUME_QUERY
 #undef  S_RESUME_MULTI
-
-
-QString kvoctrainApp::generateCaption (const QString &title, bool force_kde2)
-{
-  if (force_kde2) {
-    if (title.length() != 0)
-      return title + " - " KVOCTRAIN_NAME;
-    else
-      return KVOCTRAIN_NAME;
-  }
-  else
-    return title;
-}
 
 
 void kvoctrainApp::aboutToShowOptions()
