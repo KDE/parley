@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.25  2001/12/13 18:39:09  arnold
+    added phonetic alphabet stuff
+
     Revision 1.24  2001/12/01 11:28:13  arnold
     fixed flickering in query dialogs
 
@@ -704,6 +707,8 @@ void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
     case Key_Control:  controlActive = false;
     break;
   }
+//  cout << "sa " << shiftActive << endl;
+//  cout << "ca " << controlActive << endl;
 }
 
 
@@ -777,6 +782,8 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       if (!found)
         e->ignore();
   }
+//  cout << "sa " << shiftActive << endl;
+//  cout << "ca " << controlActive << endl;
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1038,7 +1045,7 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
 
   // search in current col from current row till end
   // SHIFT means start search from beginning of word
-  bool word_beg = shiftActive;
+  bool word_beg = controlActive;
   int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg, false);
   if (idx >= 0) {
     view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());

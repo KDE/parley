@@ -111,7 +111,7 @@ email=earnold@presario
 kdevprj_version=1.3
 lfv_open_groups=
 make_options=\s-j1
-makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am,kvoctrain/todo/Makefile.am,kvoctrain/tools/Makefile.am
+makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am,kvoctrain/todo/Makefile.am,kvoctrain/tools/Makefile.am,kvoctrain/examples/Makefile.am
 modifyMakefiles=true
 project_name=kvoctrain
 project_type=normal_empty
@@ -132,7 +132,7 @@ groups=Headers,Sources,GNU,User Interface,Desktop,Others
 
 [Makefile.am]
 dist=true
-files=README,README.develop,AUTHORS,ChangeLog,TODO,BUGS,Makefile.am,kvoctrain.kdevprj
+files=README,README.develop,AUTHORS,ChangeLog,TODO,BUGS,Makefile.am,kvoctrain.kdevprj,bug-report,fd-sik,fd-sik.excl,open.sh
 install=false
 install_location=
 sub_dirs=kvoctrain
@@ -156,6 +156,24 @@ install=false
 install_location=
 type=DATA
 
+[bug-report]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[fd-sik]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[fd-sik.excl]
+dist=true
+install=false
+install_location=
+type=DATA
+
 [kvoctrain.kdevprj]
 dist=true
 install=false
@@ -164,10 +182,10 @@ type=DATA
 
 [kvoctrain/Makefile.am]
 dist=true
-files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,kvoctrain/Makefile.am,kvoctrain/kvoctrain.pot,kvoctrain/asdfa
+files=kvoctrain/kva_query.cpp,kvoctrain/rowtable.cpp,kvoctrain/kva_config.cpp,kvoctrain/langen2kvtml,kvoctrain/kvoctrain.desktop,kvoctrain/sample.kvtml,kvoctrain/main.cpp,kvoctrain/spotlight2kvtml,kvoctrain/kvoctrainview.cpp,kvoctrain/sample-en.kvtml,kvoctrain/rowtable.h,kvoctrain/kvoctrain.lsm.tpl,kvoctrain/sample.kvtml~,kvoctrain/kvoctrain.cpp,kvoctrain/kvoctrain.dtd,kvoctrain/sample-de.kvtml,kvoctrain/kva_io.cpp,kvoctrain/kva_header.cpp,kvoctrain/spotlight2kvtml.cpp,kvoctrain/kva_init.cpp,kvoctrain/x-kvtml.desktop,kvoctrain/header.h,kvoctrain/kvoctrainview.h,kvoctrain/header.cpp,kvoctrain/kvoctrain.h,kvoctrain/kva_clip.cpp,kvoctrain/Makefile.am,kvoctrain/kvoctrain.pot,kvoctrain/asdfa,kvoctrain/kv_resource.h
 install=false
 install_location=
-sub_dirs=docs,pics,docprop-dialogs,common-dialogs,queryoption-dialogs,kvt-core,testbed,option-dialogs,statistik-dialogs,entry-dialogs,query-dialogs,todo,tools
+sub_dirs=docs,pics,docprop-dialogs,common-dialogs,queryoption-dialogs,kvt-core,testbed,option-dialogs,statistik-dialogs,entry-dialogs,query-dialogs,todo,tools,examples
 type=DATA
 
 [kvoctrain/asdfa]
@@ -1033,6 +1051,23 @@ install=false
 install_location=
 type=HEADER
 
+[kvoctrain/examples/Makefile.am]
+files=kvoctrain/examples/sample-de.kvtml,kvoctrain/examples/sample-en.kvtml
+sub_dirs=
+type=normal
+
+[kvoctrain/examples/sample-de.kvtml]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/examples/sample-en.kvtml]
+dist=true
+install=false
+install_location=
+type=DATA
+
 [kvoctrain/header.cpp]
 dist=true
 install=false
@@ -1040,6 +1075,12 @@ install_location=
 type=SOURCE
 
 [kvoctrain/header.h]
+dist=true
+install=false
+install_location=
+type=HEADER
+
+[kvoctrain/kv_resource.h]
 dist=true
 install=false
 install_location=
@@ -1598,7 +1639,7 @@ install_location=
 type=DATA
 
 [kvoctrain/pics/Makefile.am]
-files=kvoctrain/pics/logo-kvoctrain.png,kvoctrain/pics/logo-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xpm,kvoctrain/pics/pron-win.xpm,kvoctrain/pics/kde.xpm,kvoctrain/pics/lesson.xcf,kvoctrain/pics/lesson.xpm,kvoctrain/pics/gen-conf.xcf,kvoctrain/pics/gen-conf.xpm,kvoctrain/pics/fonts.xpm,kvoctrain/pics/sf-bugs.xpm,kvoctrain/pics/sort_alpha.xcf,kvoctrain/pics/sort_alpha.xpm,kvoctrain/pics/run-multi.xcf,kvoctrain/pics/run-multi.xpm,kvoctrain/pics/22x22-kvoctrain.xcf,kvoctrain/pics/22x22-kvoctrain.xpm,kvoctrain/pics/run-anto.xcf,kvoctrain/pics/run-anto.xpm,kvoctrain/pics/save.xpm,kvoctrain/pics/rand-less.xpm,kvoctrain/pics/16x16-kvoctrain.xcf,kvoctrain/pics/16x16-kvoctrain.xpm,kvoctrain/pics/list-win.xpm,kvoctrain/pics/paste.xpm,kvoctrain/pics/flags.xpm,kvoctrain/pics/run.xpm,kvoctrain/pics/run-para.xcf,kvoctrain/pics/run-para.xpm,kvoctrain/pics/flags-pattern.xcf,kvoctrain/pics/conf-save.xcf,kvoctrain/pics/conf-save.xpm,kvoctrain/pics/32x32-kvoctrain.xcf,kvoctrain/pics/32x32-kvoctrain.xpm,kvoctrain/pics/configure.xpm,kvoctrain/pics/run-verb.xcf,kvoctrain/pics/run-verb.xpm,kvoctrain/pics/run-adj.xcf,kvoctrain/pics/run-adj.xpm,kvoctrain/pics/run-query.xcf,kvoctrain/pics/run-query.xpm,kvoctrain/pics/new.xcf,kvoctrain/pics/new.xpm,kvoctrain/pics/copy.xpm,kvoctrain/pics/edit-row.xpm,kvoctrain/pics/delete-col.xpm,kvoctrain/pics/run-syno.xcf,kvoctrain/pics/run-syno.xpm,kvoctrain/pics/reset.xpm,kvoctrain/pics/sort_num.xcf,kvoctrain/pics/sort_num.xpm,kvoctrain/pics/kvoctrain.xcf,kvoctrain/pics/kvoctrain.xpm,kvoctrain/pics/open.xpm,kvoctrain/pics/run-art.xcf,kvoctrain/pics/run-art.xpm,kvoctrain/pics/append-col.xpm,kvoctrain/pics/cleanup.xcf,kvoctrain/pics/cleanup.xpm,kvoctrain/pics/delete-row.xpm,kvoctrain/pics/sf-mail.xpm,kvoctrain/pics/statist.xcf,kvoctrain/pics/statist.xpm,kvoctrain/pics/stop.xpm,kvoctrain/pics/sf-home.xpm,kvoctrain/pics/append-row.xpm,kvoctrain/pics/query-conf.xcf,kvoctrain/pics/query-conf.xpm,kvoctrain/pics/exit.xpm,kvoctrain/pics/searchclip.xpm,kvoctrain/pics/run-exmp.xcf,kvoctrain/pics/run-exmp.xpm,kvoctrain/pics/contents.xpm,kvoctrain/pics/help.xpm,kvoctrain/pics/mark.png
+files=kvoctrain/pics/logo-kvoctrain.png,kvoctrain/pics/logo-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xcf,kvoctrain/pics/48x48-kvoctrain.xpm,kvoctrain/pics/pron-win.xpm,kvoctrain/pics/kde.xpm,kvoctrain/pics/lesson.xcf,kvoctrain/pics/lesson.xpm,kvoctrain/pics/gen-conf.xcf,kvoctrain/pics/gen-conf.xpm,kvoctrain/pics/fonts.xpm,kvoctrain/pics/sf-bugs.xpm,kvoctrain/pics/sort_alpha.xcf,kvoctrain/pics/sort_alpha.xpm,kvoctrain/pics/run-multi.xcf,kvoctrain/pics/run-multi.xpm,kvoctrain/pics/22x22-kvoctrain.xcf,kvoctrain/pics/22x22-kvoctrain.xpm,kvoctrain/pics/run-anto.xcf,kvoctrain/pics/run-anto.xpm,kvoctrain/pics/save.xpm,kvoctrain/pics/rand-less.xpm,kvoctrain/pics/16x16-kvoctrain.xcf,kvoctrain/pics/16x16-kvoctrain.xpm,kvoctrain/pics/list-win.xpm,kvoctrain/pics/paste.xpm,kvoctrain/pics/flags.xpm,kvoctrain/pics/run.xpm,kvoctrain/pics/run-para.xcf,kvoctrain/pics/run-para.xpm,kvoctrain/pics/flags-pattern.xcf,kvoctrain/pics/conf-save.xcf,kvoctrain/pics/conf-save.xpm,kvoctrain/pics/32x32-kvoctrain.xcf,kvoctrain/pics/32x32-kvoctrain.xpm,kvoctrain/pics/configure.xpm,kvoctrain/pics/run-verb.xcf,kvoctrain/pics/run-verb.xpm,kvoctrain/pics/run-adj.xcf,kvoctrain/pics/run-adj.xpm,kvoctrain/pics/run-query.xcf,kvoctrain/pics/run-query.xpm,kvoctrain/pics/new.xcf,kvoctrain/pics/new.xpm,kvoctrain/pics/copy.xpm,kvoctrain/pics/edit-row.xpm,kvoctrain/pics/delete-col.xpm,kvoctrain/pics/run-syno.xcf,kvoctrain/pics/run-syno.xpm,kvoctrain/pics/reset.xpm,kvoctrain/pics/sort_num.xcf,kvoctrain/pics/sort_num.xpm,kvoctrain/pics/kvoctrain.xcf,kvoctrain/pics/kvoctrain.xpm,kvoctrain/pics/open.xpm,kvoctrain/pics/run-art.xcf,kvoctrain/pics/run-art.xpm,kvoctrain/pics/append-col.xpm,kvoctrain/pics/cleanup.xcf,kvoctrain/pics/cleanup.xpm,kvoctrain/pics/delete-row.xpm,kvoctrain/pics/sf-mail.xpm,kvoctrain/pics/statist.xcf,kvoctrain/pics/statist.xpm,kvoctrain/pics/stop.xpm,kvoctrain/pics/sf-home.xpm,kvoctrain/pics/append-row.xpm,kvoctrain/pics/query-conf.xcf,kvoctrain/pics/query-conf.xpm,kvoctrain/pics/exit.xpm,kvoctrain/pics/searchclip.xpm,kvoctrain/pics/run-exmp.xcf,kvoctrain/pics/run-exmp.xpm,kvoctrain/pics/contents.xpm,kvoctrain/pics/help.xpm,kvoctrain/pics/mark.png,kvoctrain/pics/entry-in-query.png,kvoctrain/pics/entry-inactive.png
 sub_dirs=
 type=normal
 
@@ -1669,6 +1710,18 @@ install_location=
 type=DATA
 
 [kvoctrain/pics/edit-row.xpm]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/pics/entry-in-query.png]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[kvoctrain/pics/entry-inactive.png]
 dist=true
 install=false
 install_location=
@@ -2343,9 +2396,12 @@ install_location=
 type=SOURCE
 
 [kvoctrain/queryoption-dialogs/Makefile.am]
-files=kvoctrain/queryoption-dialogs/QueryOptionsDlg.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.h,kvoctrain/queryoption-dialogs/GroupOptPageData.h,kvoctrain/queryoption-dialogs/BlockOptPageData.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPageData.cpp,kvoctrain/queryoption-dialogs/BlockOptPageData.cpp,kvoctrain/queryoption-dialogs/QueryOptPageData.h,kvoctrain/queryoption-dialogs/QueryOptPage.h,kvoctrain/queryoption-dialogs/QueryOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.h,kvoctrain/queryoption-dialogs/QueryOptionsDlg.h,kvoctrain/queryoption-dialogs/GroupOptPage.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.cpp,kvoctrain/queryoption-dialogs/BlockOptPage.dlg,kvoctrain/queryoption-dialogs/ThreshOptPage.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.dlg,kvoctrain/queryoption-dialogs/QueryOptPage.cpp,kvoctrain/queryoption-dialogs/QueryOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.h,kvoctrain/queryoption-dialogs/BlockOptPageForm.ui,kvoctrain/queryoption-dialogs/GroupOptPageForm.ui,kvoctrain/queryoption-dialogs/QueryOptPageForm.ui,kvoctrain/queryoption-dialogs/ThreshOptPageForm.ui
+dist=true
+files=kvoctrain/queryoption-dialogs/QueryOptionsDlg.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.h,kvoctrain/queryoption-dialogs/GroupOptPageData.h,kvoctrain/queryoption-dialogs/BlockOptPageData.h,kvoctrain/queryoption-dialogs/ThreshOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPageData.cpp,kvoctrain/queryoption-dialogs/BlockOptPageData.cpp,kvoctrain/queryoption-dialogs/QueryOptPageData.h,kvoctrain/queryoption-dialogs/QueryOptPage.h,kvoctrain/queryoption-dialogs/QueryOptPageData.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.h,kvoctrain/queryoption-dialogs/QueryOptionsDlg.h,kvoctrain/queryoption-dialogs/GroupOptPage.cpp,kvoctrain/queryoption-dialogs/GroupOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.cpp,kvoctrain/queryoption-dialogs/BlockOptPage.dlg,kvoctrain/queryoption-dialogs/ThreshOptPage.cpp,kvoctrain/queryoption-dialogs/ThreshOptPage.dlg,kvoctrain/queryoption-dialogs/QueryOptPage.cpp,kvoctrain/queryoption-dialogs/QueryOptPage.dlg,kvoctrain/queryoption-dialogs/BlockOptPage.h,kvoctrain/queryoption-dialogs/BlockOptPageForm.ui,kvoctrain/queryoption-dialogs/GroupOptPageForm.ui,kvoctrain/queryoption-dialogs/QueryOptPageForm.ui,kvoctrain/queryoption-dialogs/ThreshOptPageForm.ui,kvoctrain/queryoption-dialogs/Makefile.am
+install=false
+install_location=
 sub_dirs=
-type=static_library
+type=DATA
 
 [kvoctrain/queryoption-dialogs/QueryOptPage.cpp]
 dist=true
@@ -2618,9 +2674,15 @@ install_location=
 type=DATA
 
 [kvoctrain/tools/Makefile.am]
-files=kvoctrain/tools/extractlang.mak,kvoctrain/tools/extractlang.cpp
+files=kvoctrain/tools/extractlang.mak,kvoctrain/tools/extractlang.cpp,kvoctrain/tools/extractlang.README
 sub_dirs=
 type=static_library
+
+[kvoctrain/tools/extractlang.README]
+dist=true
+install=false
+install_location=
+type=DATA
 
 [kvoctrain/tools/extractlang.cpp]
 dist=true
@@ -2635,6 +2697,12 @@ install_location=
 type=DATA
 
 [kvoctrain/x-kvtml.desktop]
+dist=true
+install=false
+install_location=
+type=DATA
+
+[open.sh]
 dist=true
 install=false
 install_location=

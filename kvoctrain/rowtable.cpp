@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.16  2001/12/14 16:05:49  arnold
+    fixed handling of table font
+
     Revision 1.15  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -491,6 +494,21 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
 }
 
 
+
+void RowTable::keyReleaseEvent( QKeyEvent *e )
+{
+  delayTimer->stop();
+  switch( e->key() ) {
+    case Key_Shift:
+    case Key_Alt:
+    case Key_Control:  // fallthrough
+      QTable::keyPressEvent(e);
+      emit forwardKeyReleaseEvent(e);
+    break;
+  }
+}
+
+
 void RowTable::keyPressEvent( QKeyEvent *e )
 {
   delayTimer->stop();
@@ -524,9 +542,23 @@ void RowTable::keyPressEvent( QKeyEvent *e )
     break;
 
     case Key_Return:
-    case Key_Enter:
+    case Key_Enter:    // fallthrough
       QTable::keyPressEvent(e);
       emit edited( currentRow(), currentColumn() );
+    break;
+
+    case Key_Shift:
+    case Key_Alt:
+    case Key_Control:  // fallthrough
+      QTable::keyPressEvent(e);
+      emit forwardKeyPressEvent(e);
+    break;
+
+    case Key_Minus:
+    case Key_Plus:
+    case Key_Tab:
+    case Key_Backtab:  // fallthrough
+      emit forwardKeyPressEvent(e);
     break;
 
     default:

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/14 16:05:49  arnold
+    fixed handling of table font
+
     Revision 1.11  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -115,6 +118,7 @@ protected:
         virtual void paintCell( QPainter *p, int row, int col, const QRect &cr, bool selected);
 	virtual void paletteChange( const QPalette &oldPalette );
         virtual void keyPressEvent( QKeyEvent *e );
+        virtual void keyReleaseEvent( QKeyEvent *e );
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
         virtual void setItem ( int row, int col, QTableItem * item );
@@ -131,6 +135,8 @@ signals:
 	void selected(int row, int col, int key_state);
 	void selected(int row);
         void rightButtonClicked(int header, int x, int y);
+        void forwardKeyPressEvent (QKeyEvent *);
+        void forwardKeyReleaseEvent (QKeyEvent *);
 
 protected:
         virtual QTableItem* item ( int row, int col ) const;

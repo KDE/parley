@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>588</width>
-            <height>480</height>
+            <width>584</width>
+            <height>209</height>
         </rect>
     </property>
     <property stdset="1">
@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Conjugation of verbs</string>
+                <string>Comparison of adjectives</string>
             </property>
             <grid>
                 <property stdset="1">

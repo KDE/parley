@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
-            <height>480</height>
+            <width>572</width>
+            <height>292</height>
         </rect>
     </property>
     <property stdset="1">
@@ -168,6 +168,13 @@
                                 <name>name</name>
                                 <cstring>year_spin</cstring>
                             </property>
+                            <property stdset="1">
+                                <name>minimumSize</name>
+                                <size>
+                                    <width>60</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
                         </widget>
                         <widget>
                             <class>MySpinBox</class>
@@ -175,12 +182,26 @@
                                 <name>name</name>
                                 <cstring>month_spin</cstring>
                             </property>
+                            <property stdset="1">
+                                <name>minimumSize</name>
+                                <size>
+                                    <width>80</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
                         </widget>
                         <widget>
                             <class>MySpinBox</class>
                             <property stdset="1">
                                 <name>name</name>
                                 <cstring>day_spin</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>minimumSize</name>
+                                <size>
+                                    <width>60</width>
+                                    <height>0</height>
+                                </size>
                             </property>
                         </widget>
                         <spacer>
@@ -313,8 +334,8 @@
         </sizehint>
         <container>0</container>
         <sizepolicy>
-            <hordata>5</hordata>
-            <verdata>5</verdata>
+            <hordata>0</hordata>
+            <verdata>0</verdata>
         </sizepolicy>
         <pixmap>image0</pixmap>
     </customwidget>

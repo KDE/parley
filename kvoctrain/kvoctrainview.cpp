@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/14 16:05:49  arnold
+    fixed handling of table font
+
     Revision 1.17  2001/11/25 11:11:03  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -142,21 +145,27 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  connect( lb_list, SIGNAL(selected(int)),
           lb_list, SLOT(sortByColumn_alpha(int)) );
+
  connect( lb_list, SIGNAL(rightButtonClicked(int,int,int)),
           parent, SLOT(slotHeaderMenu(int,int,int)) );
 
  connect( lb_list, SIGNAL(edited(int,int)),
           parent, SLOT(slotEditEntry(int,int)) );
-// connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
-//          parent, SLOT(slotEditEntry(int,int)) );
+
  connect( lb_list, SIGNAL(sigModified(bool)),
           parent, SLOT(slotModifiedDoc(bool)) );
+
  connect( lb_list, SIGNAL(sigCancelSelection()),
           parent, SLOT(slotCancelSelection()) );
+
  connect( lb_list, SIGNAL(cellMoved(int, int)),
           parent, SLOT(slotCurrentCellChanged(int, int)) );
-// connect( lb_list, SIGNAL(selected(int,int,int)),
-//          parent, SLOT(slotSelectEntry(int,int,int)) );
+
+ connect( lb_list, SIGNAL(forwardKeyPressEvent (QKeyEvent*)),
+          parent, SLOT(keyPressEvent(QKeyEvent *)) );
+
+ connect( lb_list, SIGNAL(forwardKeyReleaseEvent (QKeyEvent*)),
+          parent, SLOT(keyReleaseEvent(QKeyEvent *)) );
 
  list_layout = new QGridLayout( f_list, 2, 1, 4 );
  list_layout->addWidget( lb_list, 1, 0 );

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/12/13 18:39:09  arnold
+    added phonetic alphabet stuff
+
     Revision 1.16  2001/12/01 11:28:13  arnold
     fixed flickering in query dialogs
 
@@ -175,8 +178,6 @@ public:
   void enableCommand(int id_);
   /** disable menuentries/toolbar items */
   void disableCommand(int id_);
-  void keyPressEvent( QKeyEvent *e );
-  void keyReleaseEvent( QKeyEvent *e );
   /** add a opened file to the recent file list and update recent_file_menu
 		*/
   void addRecentFile(const QString &file);
@@ -188,6 +189,8 @@ public:
   void progressChanged (kvoctrainDoc *, int curr_percent);
 
  public slots:
+  void keyPressEvent( QKeyEvent *e );
+  void keyReleaseEvent( QKeyEvent *e );
   void slotModifiedDoc(bool mod);
   void slotCurrentCellChanged(int row, int col);
 //  void slotSelectEntry (int row, int col, int key_state);
