@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>TenseEntryPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,14 +8,14 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>568</width>
-            <height>328</height>
+            <width>546</width>
+            <height>270</height>
         </rect>
     </property>
     <property name="caption">
         <string>-</string>
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -25,14 +25,14 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QGroupBox">
+        <widget class="QGroupBox" row="0" column="0">
             <property name="name">
                 <cstring>GroupBox8</cstring>
             </property>
             <property name="title">
                 <string>Conjugation of Verbs</string>
             </property>
-            <vbox>
+            <grid>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
@@ -42,61 +42,17 @@
                 <property name="spacing">
                     <number>6</number>
                 </property>
-                <widget class="QFrame">
+                <widget class="QLayoutWidget" row="1" column="0">
                     <property name="name">
-                        <cstring>Frame8</cstring>
+                        <cstring>layout3</cstring>
                     </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>5</hsizetype>
-                            <vsizetype>3</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>Plain</enum>
-                    </property>
-                    <hbox>
+                    <grid>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
-                        <property name="margin">
-                            <number>11</number>
-                        </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QLabel">
+                        <widget class="QLineEdit" row="6" column="2">
                             <property name="name">
-                                <cstring>tenselabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Tense:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>tensebox</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QComboBox">
-                            <property name="name">
-                                <cstring>tensebox</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                        </widget>
-                        <widget class="QPushButton">
-                            <property name="name">
-                                <cstring>b_next</cstring>
+                                <cstring>thirdN_plural</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
@@ -105,129 +61,6 @@
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>Ne&amp;xt</string>
-                            </property>
-                        </widget>
-                    </hbox>
-                </widget>
-                <widget class="QFrame">
-                    <property name="name">
-                        <cstring>Frame7</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>5</hsizetype>
-                            <vsizetype>3</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="frameShadow">
-                        <enum>Plain</enum>
-                    </property>
-                    <grid>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <property name="margin">
-                            <number>11</number>
-                        </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QLabel" row="0" column="2">
-                            <property name="name">
-                                <cstring>TextLabel4_2</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Plural</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="0" column="1">
-                            <property name="name">
-                                <cstring>TextLabel4_2_2</cstring>
-                            </property>
-                            <property name="text">
-                                <string>Singular</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="1" column="0">
-                            <property name="name">
-                                <cstring>pers1_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;1. Person:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>first_singular</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="2" column="0">
-                            <property name="name">
-                                <cstring>pers2_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;2. Person:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>second_singular</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="3" column="0">
-                            <property name="name">
-                                <cstring>pers3_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;3. Person:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>third_s_common</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="5" column="0">
-                            <property name="name">
-                                <cstring>male_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Male:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>thirdM_singular</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="4" column="0">
-                            <property name="name">
-                                <cstring>female_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Female:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>thirdF_singular</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="6" column="0">
-                            <property name="name">
-                                <cstring>natural_label</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Neutral:</string>
-                            </property>
-                            <property name="buddy" stdset="0">
-                                <cstring>thirdN_singular</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QCheckBox" row="3" column="1">
-                            <property name="name">
-                                <cstring>third_s_common</cstring>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Common</string>
                             </property>
                         </widget>
                         <widget class="QCheckBox" row="3" column="2">
@@ -237,44 +70,8 @@
                             <property name="text">
                                 <string>C&amp;ommon</string>
                             </property>
-                        </widget>
-                        <widget class="QLineEdit" row="1" column="1">
-                            <property name="name">
-                                <cstring>first_singular</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="2" column="1">
-                            <property name="name">
-                                <cstring>second_singular</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="1" column="2">
-                            <property name="name">
-                                <cstring>first_plural</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>3</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
+                            <property name="accel">
+                                <string>Alt+O</string>
                             </property>
                         </widget>
                         <widget class="QLineEdit" row="2" column="2">
@@ -284,20 +81,7 @@
                             <property name="sizePolicy">
                                 <sizepolicy>
                                     <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="4" column="2">
-                            <property name="name">
-                                <cstring>thirdF_plural</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
+                                    <vsizetype>0</vsizetype>
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
@@ -316,35 +100,58 @@
                                 </sizepolicy>
                             </property>
                         </widget>
-                        <widget class="QLineEdit" row="6" column="2">
+                        <widget class="QCheckBox" row="3" column="1">
                             <property name="name">
-                                <cstring>thirdN_plural</cstring>
+                                <cstring>third_s_common</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Common</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+C</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
+                                <cstring>pers1_label</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
                                     <horstretch>0</horstretch>
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
-                        </widget>
-                        <widget class="QLineEdit" row="6" column="1">
-                            <property name="name">
-                                <cstring>thirdN_singular</cstring>
+                            <property name="text">
+                                <string>&amp;1. Person:</string>
                             </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
+                            <property name="buddy" stdset="0">
+                                <cstring>first_singular</cstring>
                             </property>
                         </widget>
-                        <widget class="QLineEdit" row="5" column="1">
+                        <widget class="QLabel" row="4" column="0">
                             <property name="name">
-                                <cstring>thirdM_singular</cstring>
+                                <cstring>female_label</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Female:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>thirdF_singular</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="1">
+                            <property name="name">
+                                <cstring>TextLabel4_2_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Singular</string>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="4" column="2">
+                            <property name="name">
+                                <cstring>thirdF_plural</cstring>
                             </property>
                             <property name="sizePolicy">
                                 <sizepolicy>
@@ -368,6 +175,56 @@
                                 </sizepolicy>
                             </property>
                         </widget>
+                        <widget class="QLabel" row="3" column="0">
+                            <property name="name">
+                                <cstring>pers3_label</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;3. Person:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>third_s_common</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="1" column="2">
+                            <property name="name">
+                                <cstring>first_plural</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="5" column="1">
+                            <property name="name">
+                                <cstring>thirdM_singular</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="1" column="1">
+                            <property name="name">
+                                <cstring>first_singular</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
                         <spacer row="0" column="0">
                             <property name="name">
                                 <cstring>Spacer6</cstring>
@@ -376,30 +233,148 @@
                                 <enum>Horizontal</enum>
                             </property>
                             <property name="sizeType">
-                                <enum>Minimum</enum>
+                                <enum>Fixed</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>80</width>
+                                    <height>20</height>
+                                </size>
                             </property>
                         </spacer>
+                        <widget class="QLineEdit" row="6" column="1">
+                            <property name="name">
+                                <cstring>thirdN_singular</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="6" column="0">
+                            <property name="name">
+                                <cstring>natural_label</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Neutral:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>thirdN_singular</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="5" column="0">
+                            <property name="name">
+                                <cstring>male_label</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Male:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>thirdM_singular</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="2" column="1">
+                            <property name="name">
+                                <cstring>second_singular</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
+                                <cstring>pers2_label</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;2. Person:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>second_singular</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="2">
+                            <property name="name">
+                                <cstring>TextLabel4_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Plural</string>
+                            </property>
+                        </widget>
                     </grid>
                 </widget>
-            </vbox>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>layout5</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>tenselabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Tense:</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>tensebox</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="0" column="2">
+                            <property name="name">
+                                <cstring>b_next</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Ne&amp;xt</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+X</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox" row="0" column="1">
+                            <property name="name">
+                                <cstring>tensebox</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </grid>
         </widget>
-    </vbox>
+    </grid>
 </widget>
-<tabstops>
-    <tabstop>tensebox</tabstop>
-    <tabstop>b_next</tabstop>
-    <tabstop>first_singular</tabstop>
-    <tabstop>second_singular</tabstop>
-    <tabstop>third_s_common</tabstop>
-    <tabstop>thirdF_singular</tabstop>
-    <tabstop>thirdM_singular</tabstop>
-    <tabstop>thirdN_singular</tabstop>
-    <tabstop>first_plural</tabstop>
-    <tabstop>second_plural</tabstop>
-    <tabstop>third_p_common</tabstop>
-    <tabstop>thirdF_plural</tabstop>
-    <tabstop>thirdM_plural</tabstop>
-    <tabstop>thirdN_plural</tabstop>
-</tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>EntryDlgForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>583</width>
-            <height>609</height>
+            <height>458</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -27,7 +27,7 @@
     </property>
     <property name="layoutSpacing" stdset="0">
     </property>
-    <vbox>
+    <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -37,7 +37,7 @@
         <property name="spacing">
             <number>6</number>
         </property>
-        <widget class="QFrame">
+        <widget class="QFrame" row="0" column="0">
             <property name="name">
                 <cstring>tabframe</cstring>
             </property>
@@ -56,37 +56,13 @@
                 <enum>Raised</enum>
             </property>
         </widget>
-        <widget class="QFrame">
+        <widget class="QLayoutWidget" row="1" column="0">
             <property name="name">
-                <cstring>navi_frame</cstring>
-            </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>1</hsizetype>
-                    <vsizetype>4</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="frameShape">
-                <enum>NoFrame</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Raised</enum>
-            </property>
-            <property name="layoutMargin" stdset="0">
-            </property>
-            <property name="layoutSpacing" stdset="0">
+                <cstring>layout8</cstring>
             </property>
             <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
-                </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
                 </property>
                 <widget class="QPushButton">
                     <property name="name">
@@ -150,7 +126,7 @@
                     </property>
                     <property name="sizeHint">
                         <size>
-                            <width>20</width>
+                            <width>269</width>
                             <height>20</height>
                         </size>
                     </property>
@@ -181,7 +157,7 @@
                 </widget>
             </hbox>
         </widget>
-    </vbox>
+    </grid>
 </widget>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>
