@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/12/16 16:11:34  howells
+    Don't break
+
     Revision 1.11  2001/12/16 08:37:22  howells
     Use I18N_NOOP()
 
@@ -83,7 +86,7 @@ static KCmdLineOptions options[] =
 };
 
 static const char *description = 
-	i18n_noop("KDE Vocabulary trainer");
+	i18n_noop(Vocabulary Trainer");
 
 static const char *version = "0.8.0";
 
