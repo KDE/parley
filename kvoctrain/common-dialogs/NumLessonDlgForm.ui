@@ -5,7 +5,7 @@
     <class>QDialog</class>
     <property stdset="1">
         <name>name</name>
-        <cstring>LessonInputDlgForm</cstring>
+        <cstring>NumLessonDlgForm</cstring>
     </property>
     <property stdset="1">
         <name>geometry</name>
