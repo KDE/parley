@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.10  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -870,10 +874,10 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
    QString format = i18n(
       "Your document contains an unknown attribute <%1> "   // keep trailing space
        "in tag <%2>.\n"
-      "Maybe your version of kvoctrain is too old "
+      "Maybe your version of KVocTrain is too old, "
       "or the document is damaged.\n"
-      "If you proceed and save afterwards you are likely to lose data !\n"
-      "Do you want to proceed anyway ?\n"
+      "If you proceed and save afterwards you are likely to lose data!\n"
+      "Do you want to proceed anyway?\n"
      );
    QString msg = format.arg(attr).arg(name);
 
@@ -893,9 +897,9 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 
    QString format = i18n(
       "Your document contains an unknown tag <%1>.  "  // keep trailing space
-      "Maybe your version of kvoctrain is too old "
+      "Maybe your version of KVocTrain is too old, "
       "or the document is damaged.\n"
-      "Loading is aborted because kvoctrain cannot "
+      "Loading is aborted because KVocTrain cannot "
       "read documents with unknown elements.\n"
      );
    QString msg = format.arg(elem);

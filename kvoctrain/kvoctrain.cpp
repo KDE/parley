@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.35  2002/01/19 10:33:08  arnold
+    made entry dialog modeless
+
     Revision 1.34  2002/01/18 04:40:08  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -1534,7 +1537,7 @@ void kvoctrainApp::statusCallback(int id_){
   switch (id_){
     ON_STATUS_MSG(ID_FILE_NEW,          i18n("Creates a new document"))
     ON_STATUS_MSG(ID_FILE_OPEN,         i18n("Opens an existing document"))
-    ON_STATUS_MSG(ID_FILE_OPEN_XMP,     i18n("Opens an example document from the kvoctrain package"))
+    ON_STATUS_MSG(ID_FILE_OPEN_XMP,     i18n("Opens an example document from the KVocTrain package"))
     ON_STATUS_MSG(ID_FILE_OPEN_RECENT,  i18n("Opens one of your recent documents"))
     ON_STATUS_MSG(ID_FILE_MERGE,        i18n("Merges an existing document to the current vocabulary"))
     ON_STATUS_MSG(ID_FILE_SAVE,         i18n("Saves the current document"))

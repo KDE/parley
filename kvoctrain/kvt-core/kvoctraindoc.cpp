@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/18 04:40:09  waba
+    Remove linbreaks from messageboxes.
+    Use KMessageBox.
+
     Revision 1.14  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -161,7 +165,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, QString filename,
     bool isfile = fi.isFile() || fi.isSymLink();
     if (!f.exists() || !isfile) {
       QString format = i18n("Could not open \"%1\"\n"
-                            "Probably this is no regular file or it does not exist.");
+                            "Probably this is not a regular file or it does not exist.");
       QString msg = format.arg(mainfile);
       KMessageBox::sorry(0, msg, kapp->makeStdCaption(i18n("I/O failure")));
       return;
