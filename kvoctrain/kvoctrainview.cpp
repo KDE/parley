@@ -214,11 +214,6 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
 
 kvoctrainView::~kvoctrainView()
 {
-  // write the config file entries
-  KConfig *config = KApplication::kApplication()->config();
-  config->setGroup(CFG_WINPROP);
-  config->writeEntry(CFG_WINWIDTH, width());
-  config->writeEntry(CFG_WINHEIGHT, height());
 }
 
 

@@ -40,7 +40,6 @@ class kvoctrainApp;
 class kvoctrainDoc;
 class GradeCols;
 
-#include "rowtable.h"
 #include "kvoctraindoc.h"
 
 /**

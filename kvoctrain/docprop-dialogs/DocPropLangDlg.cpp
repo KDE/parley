@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                    document language dialog class
 
     -----------------------------------------------------------------------
@@ -32,8 +30,6 @@
 
 #include <kvoctraindoc.h>
 #include <langset.h>
-
-#include <rowtable.h>
 
 #include <kapplication.h>
 #include <klocale.h>

@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                      common #defines for kvoctrain core
 
     -----------------------------------------------------------------------
@@ -58,9 +56,6 @@
 #define       CFG_AUTOSAVEOPT          "AutoSaveOptions"
 #define       CFG_ENTRYAUTOAPPLY       "EntryAutomaticApply"
 
-#define      CFG_WINPROP              "WindowProperties"
-#define       CFG_WINWIDTH             "WindowWidth"
-#define       CFG_WINHEIGHT            "WindowHeight"
 #define       CFG_LESSONSIZE           "LessonSize"
 
 #define      CFG_QUERYPROP            "QueryProperties"
