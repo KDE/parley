@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/18 12:28:25  arnold
+    provided menu entry for example files
+
     Revision 1.8  2001/11/17 17:58:22  arnold
     added inline editing of all columns
 
@@ -59,8 +62,8 @@
 #include <vector.h>
 
 #include <qglobal.h>
-
 #include <qtable.h>
+#include <qheader.h>
 
 class QPainter;
 class kvoctrainDoc;

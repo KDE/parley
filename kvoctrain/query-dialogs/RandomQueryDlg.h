@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/09 10:41:18  arnold
+    removed ability to display a different font for each column
+
     Revision 1.1  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -101,6 +104,7 @@ public slots:
 
 protected:
     void keyPressEvent( QKeyEvent *e );
+    void setHintFields();
 
 signals:
     void sigEditEntry(int row, int col);
@@ -113,8 +117,7 @@ public slots:
     void dontKnowClicked();
     void stopItClicked();
     void timeoutReached();
-    void editOrgClicked();
-    void editTransClicked();
+    void editEntryClicked();
     void slotTransChanged(const QString&);
     void slotFFClicked();
     void slotTypeClicked();

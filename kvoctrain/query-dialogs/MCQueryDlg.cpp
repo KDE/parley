@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/16 16:26:23  arnold
+    improved dialogs
+
     Revision 1.8  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -117,7 +120,7 @@ MCQueryDlg::MCQueryDlg(
    connect( rb_trans3, SIGNAL(clicked()), SLOT(trans3clicked()) );
    connect( rb_trans2, SIGNAL(clicked()), SLOT(trans2clicked()) );
    connect( rb_trans1, SIGNAL(clicked()), SLOT(trans1clicked()) );
-   connect( b_edit, SIGNAL(clicked()), SLOT(editOrgClicked()) );
+   connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
 
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Multiple choice")));
@@ -156,16 +159,7 @@ void MCQueryDlg::setQuery(QString org,
    QString s;
    s.setNum (q_cycle);
    progCount->setText (s);
-//   remark->setText (exp->getRemark(orgcol));
-//   falseFriend->setText (exp->getFauxAmi(orgcol));
-/*
-   type->setText ("");
-   vector<TypeRelation> all_types = QueryManager::getRelation(false);
-   for (int i = 0; i < (int) all_types.size(); i++) {
-     if ( exp->getType(orgcol) == all_types[i].shortStr())
-       type->setText(all_types[i].longStr());
-   }
-*/
+
    countbar->setData (q_start, q_start-q_num+1, true);
    countbar->repaint();
 
@@ -396,23 +390,18 @@ void MCQueryDlg::stopItClicked()
 }
 
 
-void MCQueryDlg::editOrgClicked()
+void MCQueryDlg::editEntryClicked()
 {
 
    if (qtimer != 0)
      qtimer->stop();
 
    emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
-}
 
-
-void MCQueryDlg::editTransClicked()
-{
-
-   if (qtimer != 0)
-     qtimer->stop();
-
-   emit sigEditEntry (q_row, KV_COL_ORG+q_tcol);
+   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
+   orgField->setText (q_ocol == 0
+                        ? exp->getOriginal()
+                        : exp->getTranslation(q_ocol));
 }
 
 

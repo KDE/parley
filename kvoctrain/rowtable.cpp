@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2001/11/19 20:05:16  arnold
+    fixed warning message
+
     Revision 1.12  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -67,6 +70,7 @@
 #include <qcombobox.h>
 
 #include <kapp.h>
+#include <klocale.h>
 #include <kdebug.h>
 
 #include <iostream.h>
@@ -110,6 +114,7 @@ void KvoctrainItem::setPosition(int curr_row, int curr_col)
 
 QWidget *KvoctrainItem::createEditor() const
 {
+  kdDebug() << "crea     " << endl;
    if (kv_doc != 0 && kv_doc->numEntries() != 0 && row() >= 0 && col() >= 0) {
      switch (col()) {
        case KV_COL_LESS: {
@@ -124,9 +129,9 @@ QWidget *KvoctrainItem::createEditor() const
 
        case KV_COL_MARK: {
          QComboBox *statebox = new QComboBox(table()->viewport() );
-         statebox->insertItem ("active, not in query");
-         statebox->insertItem ("in query");
-         statebox->insertItem ("inactive");
+         statebox->insertItem (i18n("state of a row", "active, not in query"));
+         statebox->insertItem (i18n("state of a row", "in query"));
+         statebox->insertItem (i18n("state of a row", "inactive"));
          QSize sz = statebox->sizeHint();
          sz.setHeight(table()->rowHeight(row()));
          statebox->setMinimumSize(sz);
@@ -141,6 +146,7 @@ QWidget *KvoctrainItem::createEditor() const
        break;
 
        default: {
+  kdDebug() << "edit1 " << endl;
          QLineEdit *edit = new QLineEdit(table()->viewport() );
          if (col() == KV_COL_ORG)
            edit->setText(kv_doc->getEntry(row())->getOriginal());
@@ -157,7 +163,7 @@ QWidget *KvoctrainItem::createEditor() const
 void KvoctrainItem::setContentFromEditor( QWidget *w )
 {
    if (kv_doc != 0) {
-     if ( w->inherits( "QComboBox" ) )
+     if ( w->inherits( "QComboBox" ) ) {
        if (col() == KV_COL_MARK) {
         QComboBox *statebox = (QComboBox*) w;
         kvoctrainExpr *expr = kv_doc->getEntry(row());
@@ -187,6 +193,7 @@ void KvoctrainItem::setContentFromEditor( QWidget *w )
           kv_doc->setModified();
         kv_doc->getEntry(row())->setLesson(lessonbox->currentItem());
        }
+     }
      else {
        QLineEdit *edit = (QLineEdit*) w;
        if (col() == KV_COL_ORG) {
@@ -216,7 +223,6 @@ RowTable::RowTable(kvoctrainDoc *rows, Flags flags,
         delayTimer = new QTimer (this);
         connect (delayTimer, SIGNAL(timeout ()), this, SLOT(menuTriggerTimeout()));
         QHeader *header = horizontalHeader();
-
         connect (header, SIGNAL(pressed(int)), this, SLOT(headerPressEvent(int)));
         connect (header, SIGNAL(released(int)), this, SLOT(headerReleaseEvent(int)));
 }
@@ -280,7 +286,10 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
     m_rows = 0;
   }
 
-  defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, rows);
+// QTableItem::Never
+// QTableItem::WhenCurrent
+// QTableItem::OnTyping
+  defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, rows);
   gradecols = gc;
 }
 
@@ -406,18 +415,8 @@ QTableItem* RowTable::item ( int row, int col ) const
 void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
 {
   delayTimer->stop();
-/*
-  int cc = columnAt(e->x());
-  int cr = rowAt(e->y());
-  if (cc == KV_COL_MARK) {
-    emit selected ( cr, KV_COL_MARK, 0);
-  }
-  else if (cc == KV_COL_LESS) {
-    emit selected ( cr, KV_COL_LESS, Qt::ControlButton);
-  }
-  else
-*/
-    QTable::contentsMouseDoubleClickEvent(e);
+  QTable::contentsMouseDoubleClickEvent(e);
+  emit edited( currentRow(), currentColumn() );
 }
 
 
@@ -466,11 +465,6 @@ void RowTable::keyPressEvent( QKeyEvent *e )
       QTable::keyPressEvent(e);
       if (currentColumn() > KV_EXTRA_COLS)
         emit cellMoved(currentRow(), currentColumn());
-    break;
-
-    case Key_Space:
-      QTable::keyPressEvent(e);
-      emit selected ( currentRow(), currentColumn(), e->state() );
     break;
 
     case Key_Left: {
@@ -526,6 +520,8 @@ void RowTable::menuTriggerTimeout()
 
    int mt = triggerSect;
    triggerSect = -1;
+
+//   emit header->released(mt);
 
    QHeader *header = horizontalHeader();
    int x = leftMargin();

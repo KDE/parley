@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/09 10:41:18  arnold
+    removed ability to display a different font for each column
+
     Revision 1.3  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -105,8 +108,7 @@ public slots:
         void dontKnowClicked();
         void stopItClicked();
         void timeoutReached();
-        void editOrgClicked();
-        void editTransClicked();
+        void editEntryClicked();
         void trans1clicked();
         void trans2clicked();
         void trans3clicked();

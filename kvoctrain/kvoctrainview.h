@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/02 10:17:48  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.3  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -108,6 +111,7 @@ class kvoctrainView : public QWidget
 
   /** resizes table when frame is resized */
   virtual void resizeEvent ( QResizeEvent * );
+  void showEvent (  QShowEvent * s_ev);
 };
 
 /**

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.1  2001/10/05 15:45:05  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -55,6 +58,8 @@ MyProgressBar::MyProgressBar
    all = 100;
    current = 0;
    from = false;
+   setMinimumWidth(70);
+   setMinimumHeight(30);
 }
 
 

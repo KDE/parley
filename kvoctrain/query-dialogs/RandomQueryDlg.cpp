@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -102,15 +105,13 @@ RandomQueryDlg::RandomQueryDlg(
    connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
    connect( c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
    connect( c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()) );
-// connect( b_edittrans, SIGNAL(clicked()), SLOT(editTransClicked()) );
    connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
    connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
    connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
    connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
    connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
    connect( show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
-// connect( b_editorg, SIGNAL(clicked()), SLOT(editOrgClicked()) );
-
+   connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
    connect( transField, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)) );
 
    kv_doc = 0;
@@ -160,16 +161,7 @@ void RandomQueryDlg::	setQuery(QString org,
    c_remark->setChecked(false);
    c_falsefriend->setChecked(false);
    c_type->setChecked(false);
-
-   remark->setText (exp->getRemark(orgcol));
-   falseFriend->setText (exp->getFauxAmi(orgcol, orgcol != 0));
-
-   type->setText ("");
-   vector<TypeRelation> all_types = QueryManager::getRelation(false);
-   for (int i = 0; i < (int) all_types.size(); i++) {
-     if ( exp->getType(orgcol) == all_types[i].shortStr())
-       type->setText(all_types[i].longStr());
-   }
+   setHintFields();
 
    countbar->setData (q_start, q_start-q_num+1, true);
    countbar->repaint();
@@ -277,7 +269,33 @@ void RandomQueryDlg::stopItClicked()
 }
 
 
-void RandomQueryDlg::editOrgClicked()
+void RandomQueryDlg::setHintFields()
+{
+   QString s;
+   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
+
+   s = exp->getRemark(q_ocol);
+   remark->setText (s);
+   c_remark->setEnabled(!s.isEmpty() );
+
+   s = exp->getFauxAmi(q_ocol, q_ocol != 0);
+   falseFriend->setText (s);
+   c_falsefriend->setEnabled(!s.isEmpty() );
+
+   s = "";
+   vector<TypeRelation> all_types = QueryManager::getRelation(false);
+   for (int i = 0; i < (int) all_types.size(); i++) {
+     if ( exp->getType(q_ocol) == all_types[i].shortStr()) {
+       s = all_types[i].longStr();
+       break;
+     }
+   }
+   type->setText (s);
+   c_type->setEnabled(!s.isEmpty() );
+}
+
+
+void RandomQueryDlg::editEntryClicked()
 {
    if (qtimer != 0)
      qtimer->stop();
@@ -288,31 +306,9 @@ void RandomQueryDlg::editOrgClicked()
    orgField->setText (q_ocol == 0
                         ? exp->getOriginal()
                         : exp->getTranslation(q_ocol));
-   remark->setText(exp->getRemark(q_ocol));
-   falseFriend->setText(exp->getFauxAmi(q_ocol, q_ocol != 0));
+   transField->setText ("");
 
-   type->setText ("");
-   vector<TypeRelation> all_types = QueryManager::getRelation(false);
-   for (int i = 0; i < (int) all_types.size(); i++) {
-     if ( exp->getType(q_ocol) == all_types[i].shortStr())
-       type->setText(all_types[i].longStr());
-   }
-}
-
-
-void RandomQueryDlg::editTransClicked()
-{
-
-   if (qtimer != 0)
-     qtimer->stop();
-
-   emit sigEditEntry (q_row, KV_COL_ORG+q_tcol);
-   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
-
-   if (transField->text() != "" )
-     transField->setText (q_tcol == 0
-                          ? exp->getOriginal()
-                          : exp->getTranslation(q_ocol));
+   setHintFields();
 }
 
 

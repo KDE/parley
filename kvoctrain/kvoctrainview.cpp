@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/11/19 20:05:16  arnold
+    fixed warning message
+
     Revision 1.14  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -137,8 +140,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  connect( lb_list, SIGNAL(edited(int,int)),
           parent, SLOT(slotEditEntry(int,int)) );
- connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
-          parent, SLOT(slotEditEntry(int,int)) );
+// connect( lb_list, SIGNAL(doubleClicked(int,int,int,const QPoint &)),
+//          parent, SLOT(slotEditEntry(int,int)) );
  connect( lb_list, SIGNAL(sigModified(bool)),
           parent, SLOT(slotModifiedDoc(bool)) );
  connect( lb_list, SIGNAL(sigCancelSelection()),
@@ -154,6 +157,14 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  list_layout->activate();
 
  setView(the_doc, ls, gradecols);
+}
+
+
+void kvoctrainView::showEvent (  QShowEvent * s_ev)
+{
+  QWidget::showEvent(s_ev);
+  QResizeEvent r_ev(size(), size());
+  resizeEvent (&r_ev);
 }
 
 
