@@ -87,7 +87,7 @@ PasteOptPage::PasteOptPage
         langset(_langset),
         doc(_doc)
 {
-  connect( item_curr_doc, SIGNAL(toggled(bool)), SLOT(slotCurrentDoc(bool)) );
+  connect( kcfg_useCurrent, SIGNAL(toggled(bool)), SLOT(slotCurrentDoc(bool)) );
   connect( item_down, SIGNAL(clicked()), SLOT(slotItemDown()) );
   connect( item_skip, SIGNAL(clicked()), SLOT(slotItemSkip()) );
   connect( item_up, SIGNAL(clicked()), SLOT(slotItemUp()) );
@@ -134,7 +134,7 @@ PasteOptPage::PasteOptPage
   }
 
   order_list->setCurrentItem (0);
-  item_curr_doc->setChecked (useCurrent);
+  kcfg_useCurrent->setChecked (useCurrent);
   order_list->setEnabled(!useCurrent);
   item_down->setEnabled(!useCurrent);
   item_skip->setEnabled(!useCurrent);

@@ -98,7 +98,7 @@ void kvoctrainApp::saveOptions(bool all)
       s = SPC_REP;
     config->writeEntry(CFG_SEPARATOR, s);
     config->writeEntry(CFG_PASTEORDER, paste_order);
-    config->writeEntry(CFG_USECURRENT, useCurrent);
+    Prefs::setUseCurrent(useCurrent);
     config->writeEntry(CFG_ENTRIESLESSON, entriesPerLesson);
     config->writeEntry(CFG_BACKTIME, backupTime);
   
@@ -204,7 +204,7 @@ void kvoctrainApp::readOptions()
   autoentryApply = config->readBoolEntry(CFG_ENTRYAUTOAPPLY, false);
 
   paste_order = config->readListEntry(CFG_PASTEORDER);
-  useCurrent = config->readBoolEntry(CFG_USECURRENT, true);
+  useCurrent = Prefs::useCurrent();
   entriesPerLesson = config->readNumEntry(CFG_ENTRIESLESSON, 50);
   separator = config->readEntry(CFG_SEPARATOR, "\t");
   if (separator == TAB_REP)

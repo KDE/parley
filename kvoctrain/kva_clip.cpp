@@ -33,8 +33,8 @@
 
 #include <klineedit.h>
 #include <klocale.h>
-#include <kconfig.h>
 
+#include "prefs.h"
 #include <algorithm>
 using namespace std;
 
@@ -90,9 +90,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
 {
   vector<int> csv_order;
 
-  KConfig *config = KApplication::kApplication()->config();
-  config->setGroup(CFG_GENERAL);
-  bool useCurrent = config->readBoolEntry(CFG_USECURRENT, false);
+  bool useCurrent = Prefs::useCurrent();
 
   if (!useCurrent) {
     if (lang_order && lang_order->count() != 0) {

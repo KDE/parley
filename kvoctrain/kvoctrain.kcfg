@@ -7,6 +7,10 @@
       <label>If true, the entry dialog will popup repeatedly</label>
       <default code="true">false</default>
     </entry>
+     <entry name="UseCurrent" type="Bool">
+      <label>If true, it uses the same language order than the current document for the clipboard</label>
+      <default code="true">true</default>
+    </entry>
    </group>
   <group name="QueryProperties">
    <entry name="Block" type="Bool">

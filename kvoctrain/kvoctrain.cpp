@@ -47,7 +47,7 @@
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"
-
+#include "prefs.h"
 
 void kvoctrainApp::slotSaveOptions()
 {
@@ -1006,10 +1006,10 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
       gradecols = godlg.getGradeCols();
       header_resizer = godlg.getResizer();
 
-      // rather ugly hack to keep useCurrent "globally" up to date
-      KConfig *config = KApplication::kApplication()->config();
-      config->setGroup(CFG_GENERAL);
-      config->writeEntry(CFG_USECURRENT, useCurrent);
+       // rather ugly hack to keep useCurrent "globally" up to date
+      // is that necessary? anmma Feb 23rd 2004
+      Prefs::setUseCurrent( useCurrent);
+      Prefs::writeConfig();
 
       if (pron_label)
         pron_label->setFont(ipafont);

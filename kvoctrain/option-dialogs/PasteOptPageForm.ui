@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>PasteOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -109,10 +109,19 @@
                         </widget>
                         <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
                             <property name="name">
-                                <cstring>item_curr_doc</cstring>
+                                <cstring>kcfg_useCurrent</cstring>
                             </property>
                             <property name="text">
                                 <string>Use cu&amp;rrent document</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+R</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Check this if you want the items in the clipboard to be in the same language order as the current document.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>When checked, the items in the clipboard are assumed to be in the same language order as the current document.</string>
                             </property>
                         </widget>
                     </grid>
@@ -132,6 +141,12 @@
                     <property name="sizeType">
                         <enum>Expanding</enum>
                     </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
                 </spacer>
             </grid>
         </widget>
@@ -139,7 +154,7 @@
 </widget>
 <tabstops>
     <tabstop>d_sep</tabstop>
-    <tabstop>item_curr_doc</tabstop>
+    <tabstop>kcfg_useCurrent</tabstop>
     <tabstop>order_list</tabstop>
     <tabstop>item_up</tabstop>
     <tabstop>item_skip</tabstop>
