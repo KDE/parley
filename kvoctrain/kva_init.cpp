@@ -384,7 +384,7 @@ void kvoctrainApp::initView(const QString &name)
   view = 0;
 
   pdlg = new ProgressDlg (QString(), QString(),
-                kapp->makeStdCaption("Loading vocabulary file"));
+                kapp->makeStdCaption(i18n("Loading vocabulary file")));
   pdlg->show();
 
   kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery,

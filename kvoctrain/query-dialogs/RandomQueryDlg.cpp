@@ -28,6 +28,7 @@
 
 #include "RandomQueryDlg.h"
 #include "MyProgress.h"
+#include "common-dialogs/ProgressDlg.h"
 
 #include <kv_resource.h>
 #include <QueryManager.h>
@@ -136,7 +137,7 @@ RandomQueryDlg::RandomQueryDlg(
                    int q_cycle,
                    int q_num,
                    int q_start,
-		   QFont & font,
+                   QFont & font,
                    kvoctrainExpr *exp,
                    kvoctrainDoc  *doc,
                    int mqtime,
@@ -151,10 +152,11 @@ RandomQueryDlg::RandomQueryDlg(
                    int  _fields,
                    bool _show_more,
                    bool _i_know,
+                   bool _swap,
                    QWidget *parent,
                    char *name)
-	: QueryDlgForm(parent, name, false),
-	  QueryDlgBase(font)
+        : QueryDlgForm(parent, name, false),
+          QueryDlgBase(font)
 {
    connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
    connect( c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
@@ -168,12 +170,23 @@ RandomQueryDlg::RandomQueryDlg(
    connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
    show_more -> setEnabled (_show_more);
    know_it -> setEnabled (_i_know);
-   if ( ! _split )
+
+   if ( ! _split || _fields < 1 )
      _fields = 1;
+   else if ( _fields > 10 )
+     _fields = 10;
+   suggestions = _suggestions;
+   split = _split;
+   periods = _periods;
+   colons = _colons;
+   semicolons = _semicolons;
+   commas = _commas;
+   fields = _fields;
+
    int i;
-   if ( _suggestions )
+   if ( suggestions )
    {
-     for ( i = 0; i < _fields; i ++ )
+     for ( i = 0; i < fields; i ++ )
      {
        transCombos.append (new QComboBox (false, simpleGroup, QCString ("transCombo") + QCString().setNum (i)));
        transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
@@ -187,7 +200,7 @@ RandomQueryDlg::RandomQueryDlg(
    }
    else
    {
-     for ( i = 0; i < _fields; i ++ )
+     for ( i = 0; i < fields; i ++ )
      {
        transFields.append (new QLineEdit (simpleGroup, QCString ("transField") + QCString().setNum (i)));
        transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
@@ -200,24 +213,45 @@ RandomQueryDlg::RandomQueryDlg(
    kv_doc = 0;
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Random Query")));
-   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show, type_to,
-     _suggestions, _split, _periods, _colons, _semicolons, _commas, _fields, _show_more, _i_know);
+   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show, type_to);
    setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
    if ( suggestions )
    {
+     ProgressDlg* pdlg = 0;
+     if ( split && kv_doc -> numEntries() >= 500 )
+     {
+       pdlg = new ProgressDlg (QString(), QString(), kapp -> makeStdCaption (i18n("Loading Random Query")));
+       pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
+       pdlg -> show();
+       kapp -> processEvents();
+     }
      for ( i = 0; i < kv_doc -> numEntries(); i ++ )
      {
        kvoctrainExpr* expr = kv_doc -> getEntry (i);
-       if ( _split )
+       if ( split )
          vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
        else
          vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
+       if ( _swap )
+       {
+         if ( split )
+           vocabulary += extractTranslations (q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal());
+         else
+           vocabulary += q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal();
+       }
+       if ( pdlg )
+       {
+         pdlg -> setValue (doc, i * 100 / kv_doc -> numEntries());
+         kapp -> processEvents();
+       }
      }
      vocabulary.sort();
      for ( uint k = 1; k < vocabulary.count(); k ++ )
        if ( vocabulary [k - 1] == vocabulary [k] )
          vocabulary.remove (vocabulary.at (k --));
+     if ( pdlg )
+       delete pdlg;
    }
 }
 
@@ -234,16 +268,7 @@ void RandomQueryDlg::setQuery(QString org,
                          kvoctrainDoc  *doc,
                          int mqtime,
                          bool _show,
-                         kvq_timeout_t type_to,
-                         bool _suggestions,
-                         bool _split,
-                         bool _periods,
-                         bool _colons,
-                         bool _semicolons,
-                         bool _commas,
-                         int  _fields,
-                         bool /*_show_more*/,
-                         bool /*_i_know*/)
+                         kvq_timeout_t type_to)
 {
    type_timeout = type_to;
    kv_doc = doc;
@@ -252,15 +277,7 @@ void RandomQueryDlg::setQuery(QString org,
    q_tcol = transcol;
    translation = trans;
    showCounter = _show;
-   suggestions = _suggestions;
-   periods = _periods;
-   colons = _colons;
-   semicolons = _semicolons;
-   commas = _commas;
-   if ( ! _split )
-     _fields = 1;
-   fields = _fields;
-   if ( _split )
+   if ( split )
      translations = extractTranslations (trans);
    else
      translations = trans;
@@ -372,7 +389,7 @@ void RandomQueryDlg::verifyClicked()
     else
     {
       for ( i = 0; i < combos.count(); i ++ )
-        verifyField (combos.at(i) -> lineEdit(), trans[i]);
+        verifyField (combos.at(i) -> lineEdit(), "a\na"); // always fail
       status->setText(getNOKComment(countbar->getPercentage()));
       dont_know->setDefault(true);
     }
@@ -386,7 +403,7 @@ void RandomQueryDlg::verifyClicked()
       for ( j = 0; j < trans.count(); j ++ )
         if ( smartCompare (trans[j], fields.at(i) -> text(), 0) )
         {
-          verifyField (fields.at(i), trans[j]);
+          verifyField (fields.at(i), "a\na"); // always fail
           trans.remove (trans.at(j));
           fields.remove (i --);
           break;
@@ -424,10 +441,10 @@ void RandomQueryDlg::showMoreClicked()
           verify -> setEnabled (false);
         }
         else
-	{
+        {
           combo -> setEditText (translations[i].left (length));
           resetField (combo -> lineEdit());
-	}
+        }
         dont_know -> setDefault (true);
         break;
       }
@@ -446,10 +463,10 @@ void RandomQueryDlg::showMoreClicked()
           verify -> setEnabled (false);
         }
         else
-	{
+        {
           field -> setText (translations[i].left (length));
           resetField (field);
-	}
+        }
         dont_know -> setDefault (true);
         break;
       }

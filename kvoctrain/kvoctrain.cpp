@@ -188,7 +188,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
      if( KMessageBox::No == KMessageBox::warningYesNo(this,
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
-                   kapp->makeStdCaption("Unsaved Changes"),
+                   kapp->makeStdCaption(i18n("Unsaved Changes")),
                    KStdGuiItem::apply(), KStdGuiItem::discard())) {
         return;
      }

@@ -215,7 +215,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping Query"));
+                                 kapp->makeStdCaption(i18n("Stopping Query")));
         return;
       }
       else {
@@ -436,7 +436,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping Query"));
+                                 kapp->makeStdCaption(i18n("Stopping Query")));
         return;
       }
       else {
@@ -685,7 +685,8 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                              commas,
                              fields,
                              show_more,
-                             i_know);
+                             i_know,
+                             swap_querydir);
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -767,7 +768,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         slotStopQuery(true);
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption("Stopping Query"));
+                                 kapp->makeStdCaption(i18n("Stopping Query")));
         return;
       }
       else {
@@ -1025,16 +1026,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              doc,
                              maxqueryTime,
                              showcounter,
-                             type_querytimeout,
-                             suggestions,
-                             split,
-                             periods,
-                             colons,
-                             semicolons,
-                             commas,
-                             fields,
-                             show_more,
-                             i_know);
+                             type_querytimeout);
       randomQueryDlg->initFocus();
   }
   else if (queryType == QT_Multiple) {

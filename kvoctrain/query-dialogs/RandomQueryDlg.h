@@ -70,6 +70,7 @@ public:
                  int  _fields,
                  bool _show_more,
                  bool _i_know,
+                 bool _swap,
                  QWidget *parent=0,
                  char *name=0);
 
@@ -85,16 +86,7 @@ public:
                       kvoctrainDoc  *,
                       int   mqtime,
                       bool show,
-                      kvq_timeout_t type_timeout,
-                      bool _suggestions,
-                      bool _split,
-                      bool _periods,
-                      bool _colons,
-                      bool _semicolons,
-                      bool _commas,
-                      int  _fields,
-                      bool _show_more,
-                      bool _i_know);
+                      kvq_timeout_t type_timeout);
 
 public slots:
     virtual void initFocus() const;
@@ -134,6 +126,7 @@ protected:
 
     bool suggestion_hint;
     bool suggestions;
+    bool split;
     bool periods;
     bool colons;
     bool semicolons;
