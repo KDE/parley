@@ -1,6 +1,5 @@
 /***************************************************************************
 
-    $Id$
 
                  table view to kvoctrain document
 
@@ -440,13 +439,14 @@ void RowTable::contentsMousePressEvent( QMouseEvent *e )
   delayTimer->stop();
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());
+  int co = currentColumn();
 
   QTable::contentsMousePressEvent(e);
 
   if (cc >= KV_EXTRA_COLS) {
     // update color of original when column changes and more than 1 translation
     bool update_org = false;
-    if (cc != currentColumn() && numCols() > 2)
+    if (cc != co && numCols() > 2)
       update_org = true;
 
     int topCell = rowAt(0);
