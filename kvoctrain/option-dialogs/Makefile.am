@@ -1,6 +1,6 @@
 INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
 
-noinst_LIBRARIES = liboptiondlg.a
+noinst_LTLIBRARIES = liboptiondlg.la
 
 liboptiondlg_a_DLG_SOURCES = \
   GenOptPage.dlg \
@@ -14,16 +14,16 @@ liboptiondlg_a_QOBJ_SOURCES =   \
   GeneralOptionsDlg.cpp 
 
 
-liboptiondlg_a_SOURCES = $(liboptiondlg_a_QOBJ_SOURCES) 
+liboptiondlg_la_SOURCES = $(liboptiondlg_a_QOBJ_SOURCES)
                         
 EXTRA_DIST = \
   $(liboptiondlg_a_QOBJ_SOURCES:.cpp=.h) \
   $(liboptiondlg_a_DLG_SOURCES)
 
-CLEANFILES += *.rpo  *~
+CLEANFILES +=  *~
 
-%Data.cpp %Data.h: %.dlg
-	-qtarch -g $<
+#%Data.cpp %Data.h: %.dlg
+#	-qtarch -g $<
 
 METASOURCES = AUTO
 

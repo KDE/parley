@@ -1,10 +1,10 @@
 INCLUDES = $(all_includes) -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
 
-noinst_LIBRARIES = libkvoctraincore.a
+noinst_LTLIBRARIES = libkvoctraincore.la
 
 METASOURCES = AUTO
 
-libkvoctraincore_a_SOURCES = \
+libkvoctraincore_la_SOURCES = \
  langset.cpp \
  LineList.cpp \
  kvoctrainexpr.cpp \
@@ -16,7 +16,9 @@ libkvoctraincore_a_SOURCES = \
  GrammerManager.cpp UsageManager.cpp \
  QueryManager.cpp 
 
+CLEANFILES += *~
+
 SUBDIRS = kvt-xml
 
-libkvoctraincore_a_LIBADD= kvt-xml/libkvtxml.a
+libkvoctraincore_la_LIBADD= kvt-xml/libkvtxml.la
 

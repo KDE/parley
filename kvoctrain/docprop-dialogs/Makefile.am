@@ -1,6 +1,6 @@
 INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
 
-noinst_LIBRARIES = libdocpropdlg.a
+noinst_LTLIBRARIES = libdocpropdlg.la
 
 libdocpropdlg_a_DLG_SOURCES = \
   TitlePage.dlg \
@@ -17,16 +17,16 @@ libdocpropdlg_a_QOBJ_SOURCES =   \
   DocPropDlg.cpp    DocPropLangDlg.cpp 
 
 
-libdocpropdlg_a_SOURCES = $(libdocpropdlg_a_QOBJ_SOURCES)
+libdocpropdlg_la_SOURCES = $(libdocpropdlg_a_QOBJ_SOURCES)
 
 EXTRA_DIST = \
   $(libdocpropdlg_a_QOBJ_SOURCES:.cpp=.h) \
   $(libdocpropdlg_a_DLG_SOURCES)
 
-CLEANFILES += *.rpo  *~
+CLEANFILES += *~
 
 
-%Data.cpp %Data.h: %.dlg
-	-qtarch -g $<
+#%Data.cpp %Data.h: %.dlg
+#	-qtarch -g $<
 
 METASOURCES = AUTO

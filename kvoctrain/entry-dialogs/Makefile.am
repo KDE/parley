@@ -1,6 +1,6 @@
 INCLUDES = $(all_includes) -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
 
-noinst_LIBRARIES = libentrydlg.a
+noinst_LTLIBRARIES = libentrydlg.la
 
 libentrydlg_a_DLG_SOURCES = \
   FromToEntryPage.dlg \
@@ -15,7 +15,7 @@ libentrydlg_a_QOBJ_SOURCES =   \
   EntryDlg.cpp MySpinBox.cpp
 
 
-libentrydlg_a_SOURCES = $(libentrydlg_a_QOBJ_SOURCES) blockall.cpp
+libentrydlg_la_SOURCES = $(libentrydlg_a_QOBJ_SOURCES) blockall.cpp
 
 EXTRA_DIST = \
   $(libentrydlg_a_QOBJ_SOURCES:.cpp=.h) \
@@ -23,10 +23,10 @@ EXTRA_DIST = \
   blockall.h
 
 
-CLEANFILES += *.rpo  *~
+CLEANFILES += *~
 
-%Data.cpp %Data.h: %.dlg
-	-qtarch -g $<
+#%Data.cpp %Data.h: %.dlg
+#	-qtarch -g $<
 
 METASOURCES = AUTO
 

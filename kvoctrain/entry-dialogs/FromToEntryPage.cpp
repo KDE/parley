@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.2  2001/10/05 17:33:17  arnold
     FIX: slot signature changed to KDE2
 
@@ -368,4 +372,6 @@ void FromToEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+
 #include "FromToEntryPage.moc"
+
