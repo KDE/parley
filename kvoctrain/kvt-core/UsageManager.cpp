@@ -98,7 +98,7 @@ static internalRelation_t InternalUsageRelations [] =
   { UL_SURV,      0,   I18N_NOOP("surv."),    I18N_NOOP("surveying")},
   { UL_TEL,       0,   I18N_NOOP("tel."),     I18N_NOOP("telegraphy")},
   { UL_TELEPH,    0,   I18N_NOOP("teleph."),  I18N_NOOP("telephony")},
-  { UL_THEA,      0,   I18N_NOOP("thea."),    I18N_NOOP("theatre")},
+  { UL_THEA,      0,   I18N_NOOP("thea."),    I18N_NOOP("theater")},
   { UL_TYP,       0,   I18N_NOOP("typ."),     I18N_NOOP("typography")},
   { UL_UNIV,      0,   I18N_NOOP("univ."),    I18N_NOOP("university")},
   { UL_VET,       0,   I18N_NOOP("vet."),     I18N_NOOP("veterinary medicine")},

@@ -1528,7 +1528,7 @@ checked.</para>
 <para>As a side effect it also does not ask for confirmation to save
  when quiting with modified data but saves the vocabulary without
  asking.</para>
-<para>An interval of 0 also stops this behaviour.</para></listitem>
+<para>An interval of 0 also stops this behavior.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1761,7 +1761,7 @@ export data to a database file in <literal role="extension">CSV</literal>
 <listitem><para>When pasting via the clipboard &kvoctrain; does not know
 which languages the different fields belong to and just would insert
 them from left to right.</para>
-<para>To facilitate correct behaviour, if you arranged your vocabulary
+<para>To facilitate correct behavior, if you arranged your vocabulary
  in an other way, you can determine your desired order with this area.</para>
 <para>The buttons right to the list box move the current language up or
 down. <guibutton>Skip</guibutton> will insert a hole which means that
@@ -1846,7 +1846,7 @@ settings.</para></listitem>
 <variablelist>
 <varlistentry>
 <term><guilabel>Time per query</guilabel></term>
-<listitem><para>Here you can influence the behaviour of &kvoctrain;
+<listitem><para>Here you can influence the behavior of &kvoctrain;
 when you don't know the answer in time.
   <itemizedlist>
   <listitem><para>You may set a time limit &kvoctrain; grants you to
@@ -2365,7 +2365,7 @@ finished &kvoctrain; continues with the next (provided that you have set up
 the <link linkend="q-opt3-dlg">query options</link> accordingly).</para>
 
 <para>I regret to admit, but usually I don`t know the solution. For
-this reason the <keycap>Return</keycap> key has special behaviour,
+this reason the <keycap>Return</keycap> key has special behavior,
 which I found convenient:
 
 <itemizedlist>
