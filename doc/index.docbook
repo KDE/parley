@@ -1919,6 +1919,8 @@ already entered conjugations.</para>
 
 <para>Here you just enter the the comparison forms of the adjective.</para>
 
+</sect2>
+
 <sect2 id="entry5-dlg">
 <title>Properties from or to the original</title>
 
@@ -1955,12 +1957,11 @@ same meaning. But in fact, it is not.</para>
 <term><guilabel>Last query date</guilabel></term>
 <listitem><para>This is the date when this entry was
 last queried. If it was never queried yet you only see
-<omputeroutput>--</computeroutput>.</para>
+<computeroutput>--</computeroutput>.</para>
 <para>For convinience reasons there are two buttons to set the current
 date or reset to "never queried".</para>
 <para>Due to internal reasons, it is not possible to store dates before
-Aug. 12 1999 with every version of &kvoctrain;!</para>
-</para></listitem>
+Aug. 12 1999 with every version of &kvoctrain;!</para></listitem>
 </varlistentry>
     
 <varlistentry>
@@ -1992,225 +1993,196 @@ linkend="header-menu">header menu</link> the vocabulary disappers.</para>
 linkend="threshholds">threshholds</link>.  are put into a list and shown
 in random order with the following dialog box.</para>
 
-  <figure>
-    <eps file="query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="608"
-     HEIGHT="436"
-     SRC="query-dlg.png"
-     ALT="[random query dialog]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[random query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
- In the area with the original expression there are some properties
- you can enable  pageto give you some hints.
+<para>In the area with the original expression there are some properties
+you can enable to give you some hints.</para>
  
 <variablelist>
 <varlistentry>
 <term><guilabel>Edit</guilabel></term>
-<listitem><para>
-   If you find a mistake with a query you can invoke the edit dialog
-   immediately and correct it.
-</para></listitem>
+<listitem><para>If you find a mistake with a query you can invoke the
+edit dialog immediately and correct it.</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Show more</guilabel></term>
-<listitem><para>
-   Each click on this button will show one more character of the solution
-   to give you a little help.
-</para></listitem>
+<listitem><para>Each click on this button will show one more character
+of the solution to give you a little help.</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Show all</guilabel></term>
-<listitem><para>
-   Shows the complete solution in the "Translation" field.
-</para></listitem>
+<listitem><para>Shows the complete solution in the "Translation"
+field.</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Verify</guilabel></term>
-<listitem><para>
-   Not implemented yet. Later version will take the content in the field
-   translation and determine using a more or less smart algorithm if the
-   answer was correct.
-</para></listitem>
+<listitem><para>Not implemented yet. Later version will take the
+content in the field translation and determine using a more or less
+smart algorithm if the answer was correct.</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Don`t know</guilabel></term>
-<listitem><para>
-   Tells &kvoctrain; that you did not know the answer and that
-   the according grade must be lowered.
-</para></listitem>
+<listitem><para>Tells &kvoctrain; that you did not know the answer and
+that the according grade must be lowered.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Know it</guilabel></term>
-<listitem><para>
-   Click this button to tell &kvoctrain; that you knew the answer
-   correctly. This entry is then removed from the "bad list".
-</para></listitem>
+<listitem><para>Click this button to tell &kvoctrain; that you
+knew the answer correctly. This entry is then removed from the "bad
+list".</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Stop query</guilabel></term>
-<listitem><para>
-   Stop query mode and show vocabulary again.
-</para></listitem>
+<listitem><para>Stop query mode and show vocabulary
+again.</para></listitem>
 </varlistentry>
    
 <varlistentry>
 <term><guilabel>Options</guilabel></term>
-<listitem><para>
-Invoke <link linkend="options-dlg">options dialog</link>.
-</para></listitem>
+<listitem><para>Invoke <link linkend="options-dlg">options
+dialog</link>.</para></listitem>
 </varlistentry>
 </variablelist>
 
-In the right top corner you see two progress display that indicate the
-remaining time and the amount of queries to come.
+<para>In the right top corner you see two progress display that indicate
+the remaining time and the amount of queries to come.</para>
 
-The query of the current lesson is repeated until all its expressions
-are known.
-The amount of retries of the current lesson is shown below the progress indicator.
+<para>The query of the current lesson is repeated until all its
+expressions are known. The amount of retries of the current lesson is
+shown below the progress indicator.</para>
 
-<p>&nbsp;<p>
-
-I regret to admit, but usually I don`t know the solution :-(. For that reason
-the <tt/Return/ key has special behaviour, which I found convenient:
-
+<para>I regret to admit, but usually I don`t know the solution :-(. For
+that reason the <keycap>Return</keycap> key has special behaviour,
+which I found convenient:
 
 <itemizedlist>
- <listitem><para></para></listitem>
-   First pressing <tt/Return/ shows the complete solution (at the beginning
-   the button <tt/"Show more"/ is the default button) and makes <tt/"Don`t know"/
-   the default button.
- <listitem><para></para></listitem>
-   Pressing <tt/Return/ the second time will leave
-   this dialog and tell &kvoctrain; you did not know the answer.
-</itemizedlist>
+<listitem><para>First pressing <keycap>Return</keycap> shows the complete
+solution (at the beginning the button <guibutton>Show more</guibutton>
+is the default button) and makes <guibutton>Don`t know</guibutton>
+the default button.</para></listitem>
 
-At the moment you must decide for your own, if you knew the answer or failed.
-Later versions may provide a more or less smart algorithm to make this
-decision from a string you entered.
+<listitem><para>Pressing <keycap>Return</keycap> the second time
+will leave this dialog and tell &kvoctrain; you did not know the
+answer.</para></listitem>
+</itemizedlist></para>
 
-If you knew the corrent answer, the grade is increase by one step. If you did
-not know it, the grade is reset to level 1.
+<para>At the moment you must decide for your own, if you knew the answer
+or failed. Later versions may provide a more or less smart algorithm to
+make this decision from a string you entered.</para>
 
-<p>&nbsp;<p>
+<para>If you knew the corrent answer, the grade is increased by one
+step. If you did not know it, the grade is reset to level 1.</para>
 
-<sect1>Random query with multiple choice<p>
+</sect2>
 
-  <figure>
-    <eps file="mu-query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="608"
-     HEIGHT="436"
-     SRC="mu-query-dlg.png"
-     ALT="[multiple choice query dialog]">
-  </figure>
+<sect2 id="mu-query-dlg">
+<title>Random query with multiple choice</title>
 
-This type of query works similar to the previous one. The solution is 
-shown together with random other expressions and you have to
-choose "1 out of 5".
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="mu-query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="mu-query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[multiple choice query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-<p>&nbsp;<p>
+<para>This type of query works similar to the previous one. The solution
+is shown together with random other expressions and you have to choose
+"1 out of 5".</para>
 
-<sect1>Query of conjugations<p>
+</sect2>
 
-  <figure>
-    <eps file="verb-query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="628"
-     HEIGHT="436"
-     SRC="verb-query-dlg.png"
-     ALT="[conjugation query dialog]">
-  </figure>
+<sect2 id="verb-query-dlg">
+<title>Query of conjugations</title>
 
-This dialog appears after starting the query of the verbs.
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="verb-query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="verb-query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[conjugation query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-All tenses are queried that have definitions for conjugations.
-Of course you must know all of them for a successful result.
+<para>This dialog appears after starting the query of the verbs.</para>
 
-<p>&nbsp;<p>
+<para>All tenses are queried that have definitions for conjugations. Of
+course you must know all of them for a successful result.</para>
 
+</sect2>
 
-<sect1>Query of articles<p>
+<sect2 id="art-query-dlg">
+<title>Query of articles</title>
 
-  <figure>
-    <eps file="art-query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="608"
-     HEIGHT="436"
-     SRC="art-query-dlg.png"
-     ALT="[article query]">
-  </figure>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="art-query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="art-query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[article query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
-<p>&nbsp;<p>
+<para>In this dialog the article of the noun is queried.</para>
 
+<para>It is important to having selected the correct subtype in the
+entry dialog.</para>
 
-In this dialog the article of the noun is queried.
+</sect2>
 
-It is important to having selected the correct subtype in the entry dialog.
+<sect2 id="comp-query-dlg">
+<title>Query of comparison forms</title>
 
-<p>&nbsp;<p>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="comp-query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="comp-query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[comparison query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
+<para>All adjectives that contain also comparison forms are shown. One
+word is chosen randomly and you must complete the remaining two.</para>
 
-<sect1>Query of comparison forms<p>
+</sect2>
 
-  <figure>
-    <eps file="comp-query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="608"
-     HEIGHT="436"
-     SRC="comp-query-dlg.png"
-     ALT="[comparison query]">
-  </figure>
+<sect2 id="syn-query-dlg">
+<title>Query of synonyms, antonyms, paraphrases and example sentences.</title>
 
-All adjectives that contain also comparison forms are shown.
-One word is chosen randomly and you must complete the remaining two.
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="syn-query-dlg.eps" format="EPS" /></imageobject>
+<imageobject><imagedata fileref="syn-query-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>[synonym query dialog]</phrase></textobject>
+</mediaobject>
+</screenshot>
 
+<para>The query for the above mentioned additional properties of your
+expression looks basically the same for all types.</para>
 
+<para>You are prompted the expression and have to enter the according
+property. Querying by <guilabel>example</guilabel> is a bit different
+since &kvoctrain; takes the expression and replaces it by some dots so
+this is mainly useful when your expression is a single word.</para>
 
+</sect2>
+</sect1>
 
-<p>&nbsp;<p>
+<sect1 id="stat-dlg">
+<title>Document statistics dialog</title>
 
-
-<sect1>Query of synonyms, antonyms, paraphrases and example sentences.<p>
-
-  <figure>
-    <eps file="syn-query-dlg.eps">
-    <IMG
-     BORDER="0"
-     WIDTH="608"
-     HEIGHT="436"
-     SRC="syn-query-dlg.png"
-     ALT="[synonym query]">
-  </figure>
-
-The query for the above mentioned additional properties of your expression
-looks basically the same for all types.
-
-You are prompted the expression and have to enter the according property.
-Querying by "example" is a bit different since &kvoctrain; takes the
-expression and replaces it by some dots so this is mainly useful when your
-expression is a single word.
-
-
-
-<sect>Document statistics dialog<p>
-
-<label id="stat-dlg">
-
-<sect1>General<p>
-
-<label id="stat1-dlg">
+<sect2 id="stat1-dlg">
+<title>General</title>
 
   <figure>
     <eps file="stat1-dlg.eps">
