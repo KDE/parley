@@ -62,11 +62,12 @@ void parseLanguage(QString name, QString three, QString two)
 QString parseTD(QString& line)
 {
   QCString cline = line.local8Bit();
+  uint clineLength = cline.length();
   QCString result = cline;
   int pos = -1;
   bool inTag = false;
 
-  for (uint i = 0; i < cline.length(); ++i)
+  for (uint i = 0; i < clineLength; ++i)
     {
       if (cline[i] == '<')
 	inTag = true;
