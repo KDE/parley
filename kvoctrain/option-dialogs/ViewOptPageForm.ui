@@ -1,5 +1,6 @@
 <!DOCTYPE UI><UI>
 <class>ViewOptPageForm</class>
+<include location="global">kcolorbutton.h</include>
 <widget>
     <class>QDialog</class>
     <property stdset="1">
