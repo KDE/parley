@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -186,6 +189,23 @@
 #define KV_COMP_L3        "l3"           // last form
 
 /*
+ <multiplechoice>
+   <mc1>good</mc1>
+   <mc2>better</mc2>
+   <mc3>best</mc3>
+   <mc4>best 2</mc4>
+   <mc5>best 3</mc5>
+ </multiplechoice>
+*/
+
+#define KV_MULTIPLECHOICE_GRP "multiplechoice"   // multiple choice descriptor group
+#define KV_MC_1        "mc1"           // choice 1
+#define KV_MC_2        "mc2"           // choice 2
+#define KV_MC_3        "mc3"           // choice 3
+#define KV_MC_4        "mc4"           // choice 4
+#define KV_MC_5        "mc5"           // choice 5
+
+/*
  <conjugation>        used in header for definiton of "prefix"
   <e l="de">          lang determines also lang order in entries !!
    <s1>I</s1>         which must NOT differ in subsequent <e>-tags
@@ -238,6 +258,7 @@
 
 class QTextStream;
 class QStringList;
+class MultipleChoice;
 
 /*************************************************************
   * This class contains the expressions of your vocabulary
@@ -670,8 +691,12 @@ protected:
                           XmlWriter &xml, int ident);
   bool loadConjugKvtMl   (vector<Conjugation> &curr_conjug, const QString entry_tag,
                           XmlElement elem, XmlReader& xml);
-  bool saveComparison    (const Comparison comp, XmlWriter &xml, int ident);
+
+  bool saveComparison    (const Comparison &comp, XmlWriter &xml, int ident);
   bool loadComparison    (Comparison &comp, XmlElement elem, XmlReader &xml);
+
+  bool saveMultipleChoice(const MultipleChoice &mc, XmlWriter &xml, int ident);
+  bool loadMultipleChoice(MultipleChoice &mc, XmlElement elem, XmlReader &xml);
 
   bool saveToLex     (QTextStream& os, QString title);
   bool loadFromLex   (QTextStream& is);

@@ -7,7 +7,7 @@
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
     email                : kvoctrain@ewald-arnold.de
@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -605,6 +608,86 @@ bool kvoctrainDoc::loadComparison (Comparison &comp, XmlElement elem,
     }
   } while (! endOfGroup);
 
+  return true;
+}
+
+
+bool kvoctrainDoc::loadMultipleChoice (MultipleChoice &mc, XmlElement elem,
+                                       XmlReader &xml)
+/*
+ <multiplechoice>
+   <mc1>good</mc1>
+   <mc2>better</mc2>
+   <mc3>best</mc3>
+   <mc4>best 2</mc4>
+   <mc5>best 3</mc5>
+ </multiplechoice>
+*/
+
+{
+  bool endOfGroup = false;
+  QString s;
+  mc.clear();
+
+  do {
+    if (! xml.readElement (elem))
+      break;
+
+    if (elem.tag () == KV_MULTIPLECHOICE_GRP) {
+      if (! elem.isEndTag ()) {
+        errorKvtMl (xml.lineNumber(),
+                    (QString)i18n("expected ending tag <")+elem.tag()+">");
+        return false;
+      }
+      else
+        endOfGroup = true;
+
+    }
+
+    else if (elem.tag () == KV_MC_1 && !elem.isEndTag() ) {
+      if (!extract_simple_tag (KV_MC_1, xml, elem, s))
+        return false;
+      mc.setMC1(s);
+    }
+
+    else if (elem.tag () == KV_MC_2 && !elem.isEndTag() ) {
+      if (!extract_simple_tag (KV_MC_2, xml, elem, s))
+        return false;
+      mc.setMC2(s);
+    }
+
+    else if (elem.tag () == KV_MC_3 && !elem.isEndTag() ) {
+      if (!extract_simple_tag (KV_MC_3, xml, elem, s))
+        return false;
+      mc.setMC3(s);
+    }
+
+    else if (elem.tag () == KV_MC_4 && !elem.isEndTag() ) {
+      if (!extract_simple_tag (KV_MC_4, xml, elem, s))
+        return false;
+      mc.setMC4(s);
+    }
+
+    else if (elem.tag () == KV_MC_5 && !elem.isEndTag() ) {
+      if (!extract_simple_tag (KV_MC_5, xml, elem, s))
+        return false;
+      mc.setMC5(s);
+    }
+
+    else {
+      if (elem.isEndTag() ) {
+        errorKvtMl (xml.lineNumber(),
+                    (QString)i18n("unexpected ending tag <")+elem.tag()+">" );
+        return false;
+      }
+      else {
+        unknownElement (xml.lineNumber(), elem.tag() );
+        return false;
+      }
+    }
+  } while (! endOfGroup);
+
+  mc.normalize();
   return true;
 }
 

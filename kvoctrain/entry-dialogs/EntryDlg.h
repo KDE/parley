@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:40:37  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -36,9 +39,14 @@
 #define _EntryDlg_ADJECTIVE i18n("Compar&ison")
 #endif
 
+#ifndef _EntryDlg_MULTIPLECHOICE
+#define _EntryDlg_MULTIPLECHOICE i18n("&Multiple choice")
+#endif
+
 #ifdef __ONLY_TO_BE_SEEN_BY_XGETTEXT
   _EntryDlg_CONJUGATION
   _EntryDlg_ADJECTIVE
+  _EntryDlg_MULTIPLECHOICE
 #else
 
 #ifndef EntryDlg_included
@@ -50,6 +58,7 @@
 #include "AuxInfoEntryPage.h"
 #include "TenseEntryPage.h"
 #include "AdjEntryPage.h"
+#include "MCEntryPage.h"
 
 #include <kvoctraindoc.h>
 
@@ -95,6 +104,7 @@ public:
         const       Conjugation &conjugations,
         const       Article &article,
         const       Comparison &comp,
+        const       MultipleChoice &mc,
         QueryManager &querymanager,
         QWidget    *parent,
         QString     name
@@ -141,6 +151,8 @@ public:
 
     Comparison getComparison() const { return adj_page->getComparison(); }
 
+    MultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
+
 protected slots:
 
 //  virtual void appHelpActivated();
@@ -156,6 +168,7 @@ protected:
     AuxInfoEntryPage *aux_page;
     TenseEntryPage   *tense_page;
     AdjEntryPage     *adj_page;
+    MCEntryPage      *mc_page;
 };
 
 

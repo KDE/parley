@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -310,7 +313,7 @@ bool kvoctrainDoc::saveConjugHeader(vector<Conjugation> &curr_conjug,
 }
 
 
-bool kvoctrainDoc::saveComparison (const Comparison comp,
+bool kvoctrainDoc::saveComparison (const Comparison &comp,
                                    XmlWriter &xml, int ident)
 
 /*
@@ -354,6 +357,69 @@ bool kvoctrainDoc::saveComparison (const Comparison comp,
 
   xml.writeText("\n"+identstr);    
   xml.endTag (KV_COMPARISON_GRP, true);
+  xml.writeText(identstr);   // indent next element
+  return true;
+}
+
+
+bool kvoctrainDoc::saveMultipleChoice (const MultipleChoice &mc,
+                                       XmlWriter &xml, int ident)
+
+/*
+ <multiplechoice>
+   <mc1>good</mc1>
+   <mc2>better</mc2>
+   <mc3>best</mc3>
+   <mc4>best 2</mc4>
+   <mc5>best 3</mc5>
+ </multiplechoice>
+*/
+
+{
+  if (mc.isEmpty())
+    return true;
+
+  xml.writeText("\n");
+  QString identstr;
+  identstr.fill (' ', ident+1);
+
+  xml.writeText(identstr);
+  xml.startTag (KV_MULTIPLECHOICE_GRP, false);
+  xml.closeTag(false, true);
+  xml.writeText(identstr+" ");
+
+  if (!mc.mc1().isEmpty() ) {
+    xml.startTag (KV_MC_1, true, false, false);
+    xml.writeText (mc.mc1());
+    xml.endTag (KV_MC_1, false);
+  }
+
+  if (!mc.mc2().isEmpty() ) {
+    xml.startTag (KV_MC_2, true, false, false);
+    xml.writeText (mc.mc2());
+    xml.endTag (KV_MC_2, false);
+  }
+
+  if (!mc.mc3().isEmpty() ) {
+    xml.startTag (KV_MC_3, true, false, false);
+    xml.writeText (mc.mc3());
+    xml.endTag (KV_MC_3, false);
+  }
+
+  if (!mc.mc4().isEmpty() ) {
+    xml.startTag (KV_MC_4, true, false, false);
+    xml.writeText (mc.mc4());
+    xml.endTag (KV_MC_4, false);
+  }
+
+  if (!mc.mc5().isEmpty() ) {
+    xml.startTag (KV_MC_5, true, false, false);
+    xml.writeText (mc.mc5());
+    xml.endTag (KV_MC_5, false);
+  }
+
+  xml.writeText("\n"+identstr);
+  xml.endTag (KV_MULTIPLECHOICE_GRP, true);
   xml.writeText(identstr);   // indent next element
   return true;
 }
@@ -750,6 +816,9 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
 
     xml.closeTag ();
 
+    if (!saveMultipleChoice ((*first).getMultipleChoice(0), xml, 1))
+        return false;
+
     if ((*first).getType(0) == QM_VERB
         && (*first).getConjugation(0).numEntries() > 0) {
       Conjugation conj = (*first).getConjugation(0);
@@ -859,6 +928,9 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
       xml.closeTag ();
 
       // only save conjugations when type == verb
+
+      if (!saveMultipleChoice ((*first).getMultipleChoice(trans), xml, 1))
+          return false;
 
       if (   (*first).getType(trans) == QM_VERB
           && (*first).getConjugation(trans).numEntries() > 0) {

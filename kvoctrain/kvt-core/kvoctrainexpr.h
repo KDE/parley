@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/22 06:39:21  waba
+    Show a cute little marker to indicate marked entries.
+    (Instead of using a bold type-face)
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -102,6 +106,7 @@
 #include <qpixmap.h>
 
 #include <GrammerManager.h>
+#include <MultipleChoice.h>
 
 struct GradeCols {
    bool   use;
@@ -410,6 +415,19 @@ class kvoctrainExpr
    */
   void setComparison(int index, const Comparison &comp);
 
+  /** returns multiple choice if available
+   *
+   * @param index            index of multiple choice
+   */
+  MultipleChoice getMultipleChoice(int index) const;
+
+  /** sets multiple choice
+   *
+   * @param index            index of translation
+   * @param con              multiple choice block
+   */
+  void setMultipleChoice(int index, const MultipleChoice &mc);
+
   /** returns query count of given translation as int
    *
    * @param index            index of translation
@@ -494,6 +512,7 @@ class kvoctrainExpr
   vector<time_t>      rev_qdates;
   vector<Conjugation> conjugations;
   vector<Comparison>  comparisons;
+  vector<MultipleChoice> mcs;
 
   int                lesson;
   bool               selected;
@@ -502,8 +521,7 @@ class kvoctrainExpr
   static QPixmap *   s_pm_mark;
 };
 
-
-
 #endif  // ONLY XGETTEXT
+
 #endif // KVOCTRAINEXPR_H
 

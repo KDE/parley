@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/10/21 15:28:43  arnold
+    removed all the 'charset' stuff
+
     Revision 1.6  2001/10/20 12:08:37  arnold
     removed aboutdialog files
 
@@ -236,6 +239,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
                   doc->getEntry(row)->getConjugation(col),
                   doc->getArticle(col),
                   doc->getEntry(row)->getComparison(col),
+                  doc->getEntry(row)->getMultipleChoice(col),
                   querymanager,
                   0, title);
 
@@ -267,6 +271,7 @@ bool kvoctrainApp::slotEditEntry (int row, int col) /*FOLD00*/
      expr->setParaphrase (col, edlg.getParaphrase());
      expr->setConjugation (col, edlg.getConjugation());
      expr->setComparison(col, edlg.getComparison() );
+     expr->setMultipleChoice(col, edlg.getMultipleChoice() );
 
      expr->setFauxAmi (col, edlg.getFromFauxAmi(), false);
      expr->setFauxAmi (col, edlg.getToFauxAmi(), true);
@@ -564,6 +569,7 @@ void kvoctrainApp::slotAppendRow () /*FOLD00*/
                    Conjugation(),
                    doc->getArticle(0),
                    Comparison(),
+                   MultipleChoice(),
                    querymanager,
                    0,
                    i18n("Enter new original expression")
@@ -582,6 +588,7 @@ void kvoctrainApp::slotAppendRow () /*FOLD00*/
       expr.setParaphrase (0, edlg.getParaphrase());
       expr.setConjugation (0, edlg.getConjugation());
       expr.setComparison(0, edlg.getComparison() );
+      expr.setMultipleChoice(0, edlg.getMultipleChoice() );
       expr.setLesson (edlg.getLesson());
       expr.setType (0, edlg.getType());
 

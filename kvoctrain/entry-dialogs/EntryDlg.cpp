@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/23 18:15:39  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -89,6 +92,7 @@ EntryDlg::EntryDlg
         const       Conjugation &conjugations,
         const       Article &article,
         const       Comparison &comp,
+        const       MultipleChoice &mc,
         QueryManager &querymanager,
 	QWidget    *parent,
 	QString     name
@@ -111,6 +115,7 @@ EntryDlg::EntryDlg
                                            lang, type, pronunce, usagelabel, 
                                            i18n("Original &expression in ")+s, querymanager);
           aux_page = new AuxInfoEntryPage (font, this, multi_sel, synonym, antonym, example, rem, paraphrase);
+          mc_page = new MCEntryPage (font, this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (font, this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
           adj_page = new AdjEntryPage (font, this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
         }
@@ -119,6 +124,7 @@ EntryDlg::EntryDlg
                                            lang, type, pronunce, usagelabel, 
                                            i18n("Translated &expression in ")+s, querymanager);
           aux_page = new AuxInfoEntryPage (font, this, multi_sel, synonym, antonym, example, rem, paraphrase);
+          mc_page = new MCEntryPage (font, this, multi_sel, mc, 0, QString(_EntryDlg_MULTIPLECHOICE).local8Bit());
           tense_page = new TenseEntryPage (font, this, multi_sel, con_prefix, conjugations, 0, QString(_EntryDlg_CONJUGATION).local8Bit());
           adj_page = new AdjEntryPage (font, this, multi_sel, comp, 0, QString(_EntryDlg_ADJECTIVE).local8Bit());
           from_page = new FromToEntryPage (font, this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
@@ -134,6 +140,7 @@ EntryDlg::EntryDlg
           
         addTab( comm_page,  i18n( "Co&mmon" ));
         addTab( aux_page,   i18n( "&Additional" ));
+        addTab( mc_page,   _EntryDlg_MULTIPLECHOICE);
         addTab( tense_page, _EntryDlg_CONJUGATION);
         addTab( adj_page,   _EntryDlg_ADJECTIVE);
         if (!origin) {
@@ -152,6 +159,7 @@ EntryDlg::EntryDlg
         connect (this, SIGNAL(aboutToShow()), comm_page, SLOT(initFocus() ));
         connect (this, SIGNAL(aboutToShow()), aux_page, SLOT(initFocus() ));
         connect (this, SIGNAL(aboutToShow()), adj_page, SLOT(initFocus() ));
+        connect (this, SIGNAL(aboutToShow()), mc_page, SLOT(initFocus() ));
         connect (this, SIGNAL(aboutToShow()), tense_page, SLOT(initFocus() ));
         if (from_page != 0)
           connect (this, SIGNAL(aboutToShow()), from_page, SLOT(initFocus() ));

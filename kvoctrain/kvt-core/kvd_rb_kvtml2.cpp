@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/21 15:29:27  arnold
+    removed all the 'charset' stuff
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -79,7 +82,8 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   QString       usage;
   QString       paraphrase;
   vector<Conjugation> conjug;
-  Comparison    comparison;
+  Comparison     comparison;
+  MultipleChoice mc;
 
   if (!extract_KVT_E_attr (xml, elem, lesson, sel, exprtype))
     return false;
@@ -200,6 +204,17 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
         }
       }
 
+      mc.clear();
+      if (elem.tag () == KV_MULTIPLECHOICE_GRP && !elem.isEndTag() ) {
+        if (!loadMultipleChoice (mc, elem, xml))
+          return false;
+
+        if (! xml.readElement (elem) ) {
+          errorKvtMl (xml.lineNumber(), i18n("I/O failure") );
+          return false;
+        }
+      }
+
       if (elem.tag() == "#PCDATA") { // element data
         textstr = xml.getText();
         if (! xml.readElement (elem) ) {
@@ -235,6 +250,10 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       if (!comparison.isEmpty()) {
         expr.setComparison(0, comparison);
         comparison.clear();
+      }
+      if (!mc.isEmpty()) {
+        expr.setMultipleChoice(0, mc);
+        mc.clear();
       }
       if (!remark.isEmpty() )
         expr.setRemark (0, remark);
@@ -344,6 +363,17 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
         }
       }
 
+      mc.clear();
+      if (elem.tag () == KV_MULTIPLECHOICE_GRP && !elem.isEndTag() ) {
+        if (!loadMultipleChoice (mc, elem, xml))
+          return false;
+
+        if (! xml.readElement (elem) ) {
+          errorKvtMl (xml.lineNumber(), i18n("I/O failure") );
+          return false;
+        }
+      }
+
       textstr = "";
       if (elem.tag() == "#PCDATA") { // element data
         textstr = xml.getText();
@@ -400,6 +430,10 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       if (!comparison.isEmpty()) {
         expr.setComparison(count, comparison);
         comparison.clear();
+      }
+      if (!mc.isEmpty()) {
+        expr.setMultipleChoice(count, mc);
+        mc.clear();
       }
       if (!type.isEmpty() )
         expr.setType (count, type);

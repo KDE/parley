@@ -14,9 +14,7 @@ libkvoctraincore_la_SOURCES = \
  kvd_wkvtml.cpp \
  kvd_csv.cpp kvd_lex.cpp kvd_vcb.cpp \
  GrammerManager.cpp UsageManager.cpp \
- QueryManager.cpp 
-
-# CLEANFILES += *~ # This breaks badly with automake 1.5
+ QueryManager.cpp  MultipleChoice.cpp
 
 SUBDIRS = kvt-xml
 

@@ -17,6 +17,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/22 06:39:21  waba
+    Show a cute little marker to indicate marked entries.
+    (Instead of using a bold type-face)
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -358,6 +362,30 @@ Comparison kvoctrainExpr::getComparison (int idx) const
   }
   else {
     return comparisons[idx];
+  }
+}
+
+
+void kvoctrainExpr::setMultipleChoice (int idx, const MultipleChoice &mc)
+{
+  if ( idx < 0) return;
+
+  // extend comparison with empty elements
+  if ((int)mcs.size() <= idx )
+    for (int i = mcs.size(); i < idx+1; i++)
+      mcs.push_back (MultipleChoice());
+
+  mcs[idx] = mc;
+}
+
+
+MultipleChoice kvoctrainExpr::getMultipleChoice (int idx) const
+{
+  if (idx >= (int)mcs.size() || idx < 0) {
+    return MultipleChoice();
+  }
+  else {
+    return mcs[idx];
   }
 }
 

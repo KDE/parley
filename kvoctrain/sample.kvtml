@@ -82,7 +82,7 @@ Valid xml means:
   <desc no="8">- 8</desc>
   <desc no="9">- 9</desc>
   <desc no="10">- 10</desc>
-  <desc no="11" current="1">- 11</desc>
+  <desc no="11" current="1" query="1">- 11</desc>
  </lesson>
 
  <article>
@@ -148,7 +148,15 @@ Valid xml means:
  <e m="7" s="1"><o y="-">tallow</o><t c="1;1" d="0;992361256">Talg</t></e>
  <e m="10" s="1"><o r="dfgh" y="-">handsome</o><t c="1;2" d="0;992361258">stattlich</t></e>
  <e m="6" s="1"><o>opinionated</o><t c="1;1" d="0;992361257">starrsinnig</t></e>
- <e m="9" s="1"><o y="-" u="#1">go</o><t c="1;1" d="0;992361256">schwimmen</t></e>
+ <e m="9" s="1"><o y="-" u="#1">
+  <multiplechoice>
+   <mc1>go 1a</mc1><mc2>go 2a</mc2><mc3>go 3a</mc3><mc4>go 4a</mc4><mc5>go 5a</mc5>
+  </multiplechoice>
+  go</o><t c="1;1" d="0;992304000">
+  <multiplechoice>
+   <mc1>schwi 1a</mc1><mc2>schwi 2a</mc2><mc3>schwi 3a</mc3><mc4>schwi 4a</mc4><mc5>schwi 5a</mc5>
+  </multiplechoice>
+  schwimmen</t></e>
  <e m="7" s="1"><o y="-">laboured</o><t c="1;1" d="0;992361256">schwerfällig, mühsam</t></e>
  <e m="1" s="1"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
  <e m="1" s="1"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
