@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.24  2002/01/02 11:38:27  arnold
+    fixed displaying of modified doc
+
     Revision 1.23  2001/12/29 15:49:12  arnold
     fixed kmessagebox calls
 
@@ -123,6 +126,9 @@
 #include <qwidget.h>
 #include <qlayout.h>
 #include <qlistbox.h>
+#include <qiconset.h>
+#include <qbitmap.h>
+#include <qstyle.h>
 
 #include <ctype.h>
 
@@ -338,12 +344,52 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
   else
   {
      QPixmap pix(pixfile);
-     header->setLabel(id, pix, name);
+     int w = pix.width();
+     int h = pix.height();
+
+     QPixmap arrow(w+14, h);
+     QBitmap mask(arrow.width(), arrow.height());
+     arrow.fill(Qt::white);
+     mask.fill(Qt::black);
+
+     bitBlt(&arrow, 0, 0, &pix, 0, 0);
+     if (pix.mask() != 0)
+       bitBlt(&mask, 0, 0, pix.mask(), 0, 0);
+     else {
+       QBitmap bmp (pix.createHeuristicMask());
+       bitBlt(&mask, 0, 0, &bmp, 0, 0);
+     }
+
+     QPainter p, pm;
+     p.begin( &arrow);
+     pm.begin( &mask);
+
+     p.setPen(QColor(0,0,0));
+     p.drawLine(w+5, h-2, w+5+1, h-2);
+     p.drawLine(w+4, h-3, w+6+1, h-3);
+     p.drawLine(w+3, h-4, w+7+1, h-4);
+     p.drawLine(w+2, h-5, w+8+1, h-5);
+     p.drawLine(w+2, h-6, w+8+1, h-6);
+
+     pm.setPen(QColor(255,255,255));
+     pm.drawLine(w+5, h-2, w+5+1, h-2);
+     pm.drawLine(w+4, h-3, w+6+1, h-3);
+     pm.drawLine(w+3, h-4, w+7+1, h-4);
+     pm.drawLine(w+2, h-5, w+8+1, h-5);
+     pm.drawLine(w+2, h-6, w+8+1, h-6);
+
+     pm.end();
+     p.end();
+     arrow.setMask(mask);
+
+     QIconSet set(arrow, QIconSet::Small);
+     header->setLabel(id, set, name);
   }
 }
 
 
 ///////////////////////////////////////////////////////////
+
 
 kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
                                const LangSet */*ls*/, const GradeCols *gc,
@@ -353,6 +399,7 @@ kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
   setNumCols( doc->numLangs() );
   setNumRows( doc->numEntries() );
 }
+
 
 void kvoctrainTable::setCurrentItem(int row)
 {
