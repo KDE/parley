@@ -4,13 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004-2005 Peter Hedlund
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -102,7 +100,7 @@ bool kvoctrainApp::queryExit()
      }
   }
 
-  if (save) {  
+  if (save) {
     if (!doc->URL().isEmpty())
       slotFileSave();       // save and exit
     if (doc->isModified())
@@ -142,38 +140,12 @@ void kvoctrainApp::slotProgress(kvoctrainDoc *curr_doc, int percent)
 void kvoctrainApp::slotFileOpenRecent(const KURL& url)
 {
   slotStatusMsg(i18n("Opening file..."));
-  fileOpenRecent->setCurrentItem(-1);
-  loadfileFromPath(url);
-  /*
-  id_ >>= 16;
-  if (queryExit() && recent_files.count() != 0) {
-    QString name = recent_files[id_];
-    if (!name.isEmpty() ) {
-      view->setView(0, langset, gradecols);
-      delete doc;
-      doc = 0;
-
-      QString format = i18n("Loading %1");
-      QString msg = format.arg(name);
-
-      slotStatusMsg(msg);
-      prepareProgressBar();
-      doc = new kvoctrainDoc (this, KURL(name), separator, &paste_order);
-      removeProgressBar();
-      loadDocProps(doc);
-      addRecentFile(name);
-      view->setView(doc, langset, gradecols);
-      view->getTable()->setFont(tablefont);
-      view->adjustContent();
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-      doc->setModified(false);
-    }
+  if (queryExit() && fileOpenRecent->items().count() > 0)
+  {
+    fileOpenRecent->setCurrentItem(-1);
+    loadfileFromPath(url);
   }
-  */
   slotStatusMsg(IDS_DEFAULT);
-
-  for (int i = 0; i < 10; i++)
-    kapp->processEvents();
 }
 
 
