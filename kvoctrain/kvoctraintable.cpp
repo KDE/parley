@@ -199,7 +199,7 @@ void KVocTrainTable::updateContents(int row, int col)
   blockSignals(true);
   setCurrentRow(current_row, current_col);
   blockSignals(b);
-  update();
+  viewport()->update();
   emit currentChanged(current_row, current_col);
 }
 
