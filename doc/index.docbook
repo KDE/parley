@@ -242,7 +242,7 @@ of this application.</para>
 similar to a spreadsheet. Each column represents an expression or word
 in one language or some other information. The leftmost column contains
 the name of the lesson
-this entry belongs to. The second describes the state if the line and the
+this entry belongs to. The second describes the state of the line and the
 third is always the original word. The
 others to the right of it represent the respective
 translations.</para>
@@ -259,12 +259,13 @@ translations.</para>
 the vocabulary have a visual representation:</para>
 
 <itemizedlist>
+
 <listitem><para>colors show the grade (Level 1 to 7) of your
 knowledge</para></listitem>
 <listitem><para>A green check mark in the second colums means that this
-line is in use for the a query (when you did not finish) wheras a
-red cross appeares when you deactivated the line.
-query</para></listitem>
+line is in use for a query (when you did not finish last time) whereas a
+red cross appeares when you deactivated the line.</para></listitem>
+
 <listitem><para>if you mark a range of entries to work with, they
 appear with a different background.</para></listitem>
 </itemizedlist>
@@ -272,7 +273,7 @@ appear with a different background.</para></listitem>
 <para>The color in the column with the original will vary if you have
 two or more columns with translations. If the cursor is in one of the
 translations the color represents its grade <quote>to the
-original</quote>. See section <link linkend="entry2-dlg">entry
+original</quote>. See section <link linkend="entry6-dlg">entry
 dialog</link> for more on this.</para>
 
 <para>Of course it is also possible to use it as an ordinary dictionary
@@ -292,7 +293,7 @@ word</para></listitem>
 <varlistentry>
 <term>P:</term>
 <listitem><para>how to pronunce this expression. If you have a
-font installed, that contains IPA-characters you can also use the charaters from
+font installed, that contains IPA-characters you can also use the characters from
 the phonetic alphabet. See more about this in the according
 <link linkend="opt-dlg-ipa">options dialog page</link>.
 </para></listitem>
@@ -314,7 +315,7 @@ status line.</para>
 <para>
   There are two modes that allow you to modify the content of the
   cells in the main view. You can select the desired mode in the
-  <link linkend="opt-menu">Options menu</link>.
+  <link linkend="opt-menu">options menu</link>.
 </para>
 
 <variablelist>
@@ -367,11 +368,9 @@ moved to this location.</para>
 <para>If you press <keycap>Return</keycap> it will move to the next
 match.</para>
 
-<para>If you additionally keep &Ctrl; pressed while entering the next
-letter of your word (or press <keycap>Return</keycap> for the next
- match)
-only entries that match from the <emphasis>beginning</emphasis> of the
-expressions are recognized.</para>
+<para>If you only want entries that match from the <emphasis>beginning</emphasis>
+of the expression you must press <keycombo action="simul">&Ctrl;
+<keycap>Return</keycap></keycombo>.</para>
 
 <para>Pressing <keycombo action="simul">&Shift;
 <keycap>Tab</keycap></keycombo> or <keycap>Tab</keycap> will move back
@@ -522,17 +521,6 @@ selection when you confirm the dialog.</para>
 the only file format that is capable of containing
 <emphasis>all</emphasis> the properties in
 &kvoctrain;.</para></listitem>
-
-<!-- <listitem><para>Its native binary format with the extension
-   "kvtbin". Although it is also a native format, you should
-   <emphasis>not use it</emphasis> at the moment. It is just for me to
-   play around and test some things.</para>
-
-<warning><para>No version of &kvoctrain; will ever be able to read
-     binary files from previous or later versions! This (mis-)behaviour
- is intended!</para></warning>
-   </listitem>
--->
 
 <listitem><para>Vocabulary files from <ulink
 url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> which is the
@@ -729,7 +717,7 @@ different characters within one file.</para>
 through z, A through Z, 0 through 9 and additional language dependent
 characters. For example, the German umlauts &auml; or &uuml; or a lot
 of other special symbols from Russian, Greek, Hebrew or even
-Chinese. All this total up to far more than 256 different
+Chinese. All this tots up to far more than 256 different
 symbols.</para>
 
 <para>At this point it should be obvious that you have to take care to
@@ -739,11 +727,11 @@ the bytes in the same way as they are intended.</para>
 
 <para>A better approach is to combine two ore more bytes into a
 representation for a single character on the screen. This is for
-example what Unicode does. Unicode is a standard that currently uses a
-range from 0 to 65535 (and even more) to designate a given symbol.
-Almost each symbol
-of almost each language on earth (and even a lot more, &eg; well known
-icons) is assigned a unique and unabiguous number.</para>
+example what <quote>Unicode</quote> does. Unicode is a standard that
+currently uses a range from 0 to 65535 (and even more) to designate a
+given symbol. Almost each symbol
+of almost any language on earth (and even a lot more, &eg; well known
+icons or klingon) is assigned a unique and unabiguous number.</para>
 
 <para>Unfortunately the handling of Unicode is a bit more complicated
 and does not work with most of the current tools. Texts in unicode
@@ -831,8 +819,8 @@ comparision form of adjectives and the articles of
 nouns.</para></listitem>
 </itemizedlist>
 
-<para>All these settings can be summarized into query groups and
- retained
+<para>All these settings can be summarized into
+<link linkend="q-opt1-dlg">query groups</link> and retained
 under an arbitrarily name.</para>
 
 <para>When querying &kvoctrain; shows the expressions in random order
@@ -841,7 +829,7 @@ special lesson, all lessons are queried one after the other.</para>
 
 <para>Remaining expressions of a currently running query are
 accordingly stored when you leave &kvoctrain;. After a later restart
-you can resume the query (currently does not apply to special queries
+you can resume the query (currently this does not apply to special queries
 with verbs, articles and comparisons). Those expressions are marked with a
 green check mark in the <link linkend="overview">main view</link>.</para>
 
@@ -907,7 +895,7 @@ green check mark in the <link linkend="overview">main view</link>.</para>
 language code</ulink> as your current one.</para>
 <para>So always use the correct codes. This helps you share vocabularies
 with others. &kvoctrain; supports you in this and offers all codes in the
-according <ulink url="options2-dlg">options page</ulink>
+according <link linkend="options2-dlg">options page</link>
 </para></listitem>
 </varlistentry>
 
@@ -1005,7 +993,7 @@ columns are concatenated bofore copying all to the clipboard.</para>
 <guimenuitem>Search from clipboard</guimenuitem></menuchoice></term>
 <listitem><para><action>Pastes the clipboard content</action> into the
  <link
-linkend="smart-search">smart search</link> entry field and search this
+linkend="smart-search">smart search</link> entry field and searches this
 expression in all the entries in the current column.</para></listitem>
 </varlistentry>
 
@@ -1219,25 +1207,28 @@ not already saved automatically.</para></listitem>
 
 </sect1>
 
+<sect1 id="help-menu">
+<title>The <guimenu>Help</guimenu> menu</title>
+
+<!-- I'm assuming this app has or will very soon have a standard Help
+ menu -->
+&help.menu.documentation;
+
+</sect1>
+
 <sect1 id="header-menu">
-<title>Table header</title>
+<title>Table header menu</title>
 
-<para>The following context menu will appear when you keep one of the
- buttons
-in the table header pressed for half a second.</para>
-
-<!-- I completely don't understand this paragraph
-<para>The menu for the original is almost the same. The last two items
-are missing. The item to start the random query resp. its variant with
-multiple choice contains all languages from the vocabulary as you have
-to choose which of the translations you want learn from.</para> -->
+<para>The following context menu will appear when you keep the
+third button (your original expressions) in the table header
+pressed for about a second.</para>
 
 <variablelist>
 <varlistentry>
 <term><guimenuitem>Create random query</guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
-linkend="threshholds">threshholds</link>.</para></listitem>
+linkend="q-opt3-dlg">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1245,7 +1236,7 @@ linkend="threshholds">threshholds</link>.</para></listitem>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions
  according to your <link
- linkend="threshholds">threshholds</link>.</para></listitem>
+ linkend="q-opt3-dlg">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1297,7 +1288,13 @@ order.</para></listitem>
 language does not yet exists in this menu, you have to add it with the
 <link linkend="options2-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
+</variablelist>
 
+<para>The following two topics only appear if you keep a header button pressed
+that belongs to a translation.
+</para>
+
+<variablelist>
 <varlistentry>
 <term><guimenuitem>Reset properties</guimenuitem></term>
 <listitem><para>Resets the properties of all the selected entries to
@@ -1316,14 +1313,6 @@ affected.</para></listitem>
 
 </sect1>
 
-<sect1 id="help-menu">
-<title>The <guimenu>Help</guimenu> menu</title>
-
-<!-- I'm assuming this app has or will very soon have a standard Help
- menu -->
-&help.menu.documentation;
-
-</sect1>
 </chapter>
 
 <chapter id="dialogs">
@@ -1368,8 +1357,9 @@ person.</para></listitem>
 <listitem><para>If you want to restrict (or better allow) the use
 of you vocabulary you should enter the according permission or license
 here.</para>
-<para>I recommend something like the Open Content
- License.</para></listitem>
+<para>I recommend something like the
+<ulink url="http://www.gnu.org/philosophy/using-gfdl.html">Free Document License</ulink>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1398,14 +1388,14 @@ one of the other categories.</para></listitem>
 
 <para>The buttons should be pretty selfexplanatory except
  <guibutton>Clean up</guibutton>. This one will remove all lesson
- descriptions that are currently unused.</para>
+ descriptions that are unused in the current document.</para>
 
 </sect2>
 
 <sect2 id="docprop3-dlg">
 <title>Type descriptions</title>
 
-<para>Similar to the previous section about lessons, you can edit our
+<para>Similar to the previous section about lessons, you can edit your
 own expression types on this page.</para>
 
 <para>Since the dialog page looks the same as the one before there is
@@ -1453,20 +1443,21 @@ include them in the application as standard item.</para>
 in the header button will then no longer sort the row.</para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term><guilabel>Encoding</guilabel></term>
-<listitem><para>Useful only on &kde; 2.x systems. Here you choose the encoding
-used to store the vocabulary files.</para>
-<para>Choose <guilabel>8Bit</guilabel> if possible. UTF-8 is only
-possible on &Qt; based systems and should therefore only be used if
-really needed.</para>
-<para>Take also into account that you might have to select a
-certain charset in the <link linkend="langprop-dlg">language
-properties dialog</link> if you want to share your vocabulary
-files with others <emphasis>(and I really recommend that you do)</emphasis>.
-</para></listitem>
-</varlistentry>
 </variablelist>
+
+<para>Version 0.7 of &kvoctrain; additionally offered the choice to either use
+<quote>8Bit</quote> or <quote>Unicode</quote> to store the vocabulary files.
+This is no more supported. The files are always stored
+in Unicode to prevent wrong rendering of characters.</para>
+<para>Unfortunately there is no backwards
+compatibility to versions below 0.6 any more but I think the benefit is worth it.</para>
+<para>If you have important files that are rendered wrong in the new version
+you may contact
+<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
+since it might be worth the effort
+to create some conversion tool.
+</para>
+
 
 </sect2>
 </sect1>
@@ -1504,17 +1495,18 @@ first, second and third person each in plural and singular.</para>
 <para>Leave the uneccessary fields empty.</para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term><guilabel>Charset</guilabel></term>
-<listitem><para>Choose the font you need to display all your
-symbols. ISO8859-1 is most common, at least on western european
-systems. Unicode is basically independent but most fonts do not
-contain all available characters and Unicode is only supported under
-&Qt; 2/&kde; 2.</para>
-<para>If you try to load a file with a an unavailable charset on your
-system you will be warned.</para></listitem>
-</varlistentry>
 </variablelist>
+
+<para>Version 0.7 of &kvoctrain; also offered the choice for a special
+<link linkend="encodings">charset.</link>
+In &Qt; version 3 there is no need for this any more.</para>
+<para>
+If you have important files that are rendered wrong in the new version
+you may contact
+<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
+since it might be worth the effort
+to create some conversion tool.
+</para>
 
 </sect1>
 
@@ -1553,17 +1545,17 @@ was modified after the period you enter here.</para>
 prompted with the entry dialog. After entering the first original you
 have to enter the corresponding translations. Afterwards you proceed
 with the next original and its translations until you stop by pressing
-the esc key.</para>
+the <keycap>ESC</keycap> key.</para>
 <para>When you are in this mode and modify the lesson in the dialog it
 has the same meaning as selecting the lesson in the toolbar.  This way
 it is preselected when the next entry dialag appears.</para>
-<para>The required lesson will have to be created in advance in the
+<para>The required lessons will have to be created in advance in the
 document settings.</para></listitem>
 </varlistentry>
     
 <varlistentry>
-<term><guilabel>save options automatically</guilabel></term>
-<listitem><para>When check, all options are save upon termination
+<term><guilabel>Save options automatically</guilabel></term>
+<listitem><para>When checked, all options are save upon termination
 of &kvoctrain;. Otherwise you have to select the appropriate menu
 item.</para></listitem>
 </varlistentry>
@@ -1578,15 +1570,23 @@ if the columns resize automatically, too.</para>
   <term><guilabel>Automatic</guilabel></term>
   <listitem><para>&kvoctrain; makes each columns the same width except
   the leftmost with the lesson names which has half the size of the
-  others.</para></listitem>
+  others. The second column which contains the picture that describes the
+  state of the row has a fixed width.</para></listitem>
   </varlistentry>
 
   <varlistentry>
   <term><guilabel>Percent</guilabel></term>
-  <listitem><para>The widths of the columns are altered with the same
-  factor the main window grew or shrunk.</para></listitem>
+  <listitem><para><emphasis>NOTE: this feature is currently not working.</emphasis>
+
+<!-- DEFERRED AFTER KDE RELEASE but valid
+
+  The widths of the columns are altered with the same
+  factor the main window grew or shrunk.
+-->
+  </para></listitem>
   </varlistentry>
   </variablelist></para>
+
 <para>If the last button labeled <quote>fixed</quote> is set, no resizing is
 done.</para></listitem>
 </varlistentry>
@@ -1620,7 +1620,7 @@ vocabularies with others. Merging vocabularies also relies on the
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Alternative</guilabel></term>
+<term><guilabel>Alternative code</guilabel></term>
 <listitem><para>Sometimes it may be useful to have a second language
  code because some languages have the usual short code and one or two longer
 codes. For German for example it is common to use <literal>de</literal>
@@ -1629,14 +1629,15 @@ possible according to ISO639-2.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Language</guilabel></term>
+<term><guilabel>Language name</guilabel></term>
 <listitem><para>Here you can give the language code a descriptive name
-in your own language which is shown in the table
- header.</para></listitem>
+in your own language which is shown in the header buttons in the
+<link linkend="overview">main view</link>.
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Picture in header</guilabel></term>
+<term><guilabel>Picture</guilabel></term>
 <listitem><para>Additionally you can add a nice icon to your language
 which is shown in the table header button.</para>
 <para>&kde; 2 stores those pixmaps under
@@ -1645,18 +1646,46 @@ which is shown in the table header button.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>New</guilabel></term>
-<listitem><para>After entering a new language in the appropriate field,
+<term><guilabel>Delete</guilabel></term>
+<listitem><para>Deletes the currently selected language code in the
+list.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Add</guilabel></term>
+<listitem><para>After entering a new language code in the field to it's left,
 you use this button to append it to your list. After that you need to
 fill in the fields for the long name and the picture for the header
 button.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Delete</guilabel></term>
-<listitem><para>Deletes the currently selected language code in the
-list.</para></listitem>
+<term><guilabel>Add language from KDE database</guilabel></term>
+<listitem><para>Pressing this button opens a menu that contains all the countries
+that are known in your &kde; installation. Ordered by country you can add your
+desired language properties to your personal list. </para>
+<para>Maybe you want to change the
+language name or the according picture but I strongly recommend you keep at least the
+2-byte language code and it's 3-byte alternative if you don't have a special reason.
+This is to achieve compatible document files that can be shared among all users.
+</para></listitem>
 </varlistentry>
+
+<!-- DEFERRED AFTER KDE RELEASE but valid
+
+<varlistentry>
+<term><guilabel>Add language from ISO639</guilabel></term>
+<listitem><para>Pressing this button opens a menu that contains all the language codes
+that are covered by <quote>ISO639</quote>.</para>
+</listitem>
+</varlistentry>
+
+<para>Basically the previous two button provide the same data. The former contains
+the language codes known in &kde; sorted by country whereas the second contains
+<emphasis>all</emphasis> ISO639 codes sorted alphabetically.</para>
+
+-->
+
 </variablelist>
 
 </sect2>
@@ -1676,16 +1705,27 @@ list.</para></listitem>
 <varlistentry>
 <term><guilabel>Table Font</guilabel></term>
 <listitem><para>Lets you choose a font to display the vocabulary
-in the main view.</para>
+in the
+<link linkend="overview">main view</link>.
+</para>
 </listitem>
 </varlistentry>
 
 <varlistentry id="opt-dlg-ipa">
 <term><guilabel>IPA Font</guilabel></term>
-<listitem><para>Lets you choose a font to display thecharacters from the
-phonetic alphabet.</para>
-<para>Take into account that not all fonts provide bold face which is
-used to represent the <quote>selected</quote> state.</para></listitem>
+<listitem><para>Lets you choose a font to display the characters from the international
+phonetic alphabet. This is used to show the pronounciation of the expression
+on the bottom in the statusbar.</para>
+<para>Probably you don't have an IPA enabled font since those characters are seldom used.
+You may download a free font from
+<ulink url="http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html">http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html
+</ulink>. Install this font for example with kfontinst.</para>
+
+<para>I also found a <ulink url="http://esl.about.com/library/weekly/aa040998.htm">
+Reference and Introduction to Phonetic Symbols</ulink> that explains a bit about
+the background.</para>
+
+</listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1720,7 +1760,7 @@ other application over the clipboard.</para>
 <para>The most common item is <keycap>TAB</keycap> which uses the tabulator
 character. Another possibility is to use the semicolon, if you want to
 export data to a database file in <literal role="extension">CSV</literal>
- format.</para></listitem>
+ format.This character is also used to read such files correctly.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1748,7 +1788,7 @@ be in the same language order as the current document.</para></listitem>
 <sect1 id="query-opt-dlg">
 <title>Query options dialog</title>
 
-<sect2 id="q-opt1-dlg.eps">
+<sect2 id="q-opt1-dlg">
 <title>Option groups</title>
 
 <screenshot>
@@ -1773,13 +1813,17 @@ settings and recall them whenever you want.</para>
 <listitem><para>Retains the settings of the other pages under the
 current name.</para>
 <para>Saving to disk is done as with all the other settings using the
-according menu item of the options menu.</para></listitem>
+according menu item of the
+<link linkend="opt-menu">options menu</link>.
+Some properties are stored
+with the document. For example the lessons to include since this
+depends on the document in use.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Recall</guilabel></term>
 <listitem><para>Recalls the settings from the group in the
-list.</para></listitem>
+listbox.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1817,16 +1861,28 @@ when you don't know the answer in time.
   <listitem><para>You may set a time limit &kvoctrain; grants you to
   remember the correct answer.</para></listitem>
   <listitem><para>Additionally you can tell &kvoctrain; what to do
-  when this limit is reached. Except of waiting unlimited time you may
-  select be shown the solution or to continue immediately with the next
+  when this limit is reached. Besides of waiting unlimited time you may
+  select to be shown the solution or to continue immediately with the next
   question.</para></listitem>
-  <listitem><para>Furthermore you can switch on a little progess bar to
-  shown the remaining time for the current answer.</para></listitem>
+  <listitem><para>Furthermore you can activate a little progess bar to
+  show the remaining time for the current answer.</para></listitem>
   </itemizedlist></para>
-<para>If you exceed the time limit several times in series &kvoctrain;
-will assume that there is currently no person in front of the screen
+<para>If you exceed the time limit several times in series in continuous mode
+&kvoctrain; will assume that there is currently no person in front of the screen
 and stop the query.</para></listitem>
 </varlistentry>
+
+<!-- DEFERRED AFTER KDE RELEASE
+
+<varlistentry>
+<term><guilabel>Ask sub properties</guilabel></term>
+<listitem><para>
+
+</para></listitem>
+</varlistentry>
+</variablelist>
+-->
+
 
 <varlistentry>
 <term><guilabel>Swap direction randomly</guilabel></term>
@@ -1853,6 +1909,15 @@ and stop the query.</para></listitem>
 <para id="threshholds">With this dialog you determine which entries are
 included in the next selection for random query.</para>
 
+<important><para>If you have activated the blocking mechanism on the next dialog
+page, the threshholds from
+<guilabel>Grade</guilabel>,
+<guilabel>Query count</guilabel>,
+<guilabel>Bad count</guilabel> and
+<guilabel>Last query</guilabel>
+are disabled and not taken into account.</para>
+</important>
+
 <variablelist>
 <varlistentry>
 <term><guilabel>Lesson</guilabel></term>
@@ -1860,7 +1925,7 @@ included in the next selection for random query.</para>
 arbitrary number of lessons can be selected for the calculation.</para>
 <para>For convenience there are two additional buttons to selected all
 entries or none.</para>
-<para>Starting with version 0.7.0 this is stored with the document
+<para>Starting with version 0.7.0 this part is stored with the document
 instead of storing globally.</para></listitem>
 </varlistentry>
     
@@ -1891,7 +1956,7 @@ known.</para></listitem>
 <term><guilabel>Last query</guilabel></term>
 <listitem><para>Include queries before or within the given time
  span.</para>
-<para>Entries which have not been queried are always included if you
+<para>Entries which have not been queried yet are always included if you
 choose <emphasis>before</emphasis>.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1926,9 +1991,12 @@ will be shown an according warning:</para>
 the same level.</para></listitem>
 </itemizedlist>
 
-<para>If one of these functions is active, the threshholds from the
-previous dialog page (grade, count of queries and last date) are not
-taken into account.</para>
+<para>If at least one of blocking or expiring is active, the threshholds from
+<guilabel>Grade</guilabel>,
+<guilabel>Query count</guilabel>,
+<guilabel>Bad count</guilabel> and
+<guilabel>Last query</guilabel>
+on the previous dialog page are not taken into account.</para>
 
 </sect2>
 </sect1>
@@ -1954,15 +2022,30 @@ taken into account.</para>
 <variablelist>
 <varlistentry>
 <term><guilabel>Expression</guilabel></term>
-<listitem><para>Contains your data.</para></listitem>
+<listitem><para>Contains your words.</para></listitem>
 </varlistentry>
+
+<varlistentry>
+<term><guilabel>Lesson</guilabel></term>
+<listitem><para>Selects the desired lesson.</para>
+<para>The button on the right also invokes the
+<link linkend="docprop2-dlg">document
+properties page</link> where you can enter a new lesson.</para></listitem>
+</varlistentry>
+</variablelist>
 
 <varlistentry>
 <term><guilabel>Pronunciation</guilabel></term>
 <listitem><para>In this field you can describe how the word is
 pronunciated.</para>
-<para>Currently this is only possible in ascii characters. Maybe I can
-find a way to do this with the phonetic alphabet.</para></listitem>
+<para>This is possible either by using simple ascii charaters and maybe an fancy
+and very personal phonetic description or better by using the international
+phonetic alphabet.
+The button on the right invokes a
+<link linkend="pron-window">dialog</link> where you can select
+all the characters that belong to this alphabet.</para>
+
+</listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1982,7 +2065,9 @@ available this field is disabled.</para>
 useful for nouns as the gender of a noun may be different in different
 languages.</para>
 <para>The button to the right of this field invokes the according page
-from the document properties dialog so you can enter a new type
+from the
+<link linkend="docprop3-dlg">document
+properties dialog </link> so you can enter a new type
 immediately.</para></listitem>
 </varlistentry>
     
@@ -1990,17 +2075,29 @@ immediately.</para></listitem>
 <term><guilabel>Usage label</guilabel></term>
 <listitem><para>One or more usage labels can be selected to describe
 the usual usage of the expression, &eg; medicine or chemistry.</para>
-<para>The button on the right also invokes the document properties
- dialog to enter a new usage label.</para></listitem>
+<para>The button on the right also invokes the according page from the
+<link linkend="docprop3-dlg">document
+properties dialog</link> to enter a new usage label.</para></listitem>
 </varlistentry>
     
-<varlistentry>
-<term><guilabel>Lesson</guilabel></term>
-<listitem><para>Selects the desired lesson.</para>
-<para>The button on the right also invokes the document properties
- dialog to enter a new lesson.</para></listitem>
-</varlistentry>
-</variablelist>
+<sect3 id="pron-window">
+<title>Selecting from the international phonetic alphabet</title>
+
+<para>If you have an IPA-enabled font installed your dialog
+should look like this:</para>
+
+<screenshot>
+<screeninfo>IPA dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="pron-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>International phonetic alphabet dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>If you don't have such a font you can find a link to a free one in the section
+about the <link linkend="opt-dlg-ipa">view options</link>.</para>
+</sect3>
 
 </sect2>
 
@@ -2059,6 +2156,28 @@ information.</para></listitem>
 </sect2>
 
 <sect2 id="entry3-dlg">
+<title>Suggestions for a multiple choice query</title>
+
+<screenshot>
+<screeninfo>Multiple choice dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="entry3-dlg.png" format="PNG"
+ /></imageobject>
+<textobject><phrase>Multiple choice dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>If you want to create an efficient multiple choice query it
+is good to offer expressions that are similar to the solution to make
+it more difficult. If you don't offer them, &kvoctrain; has only
+the possibility
+to create such queries with randomly chosen expresions which are rather
+easy to guess.
+You can enter up to five expressions for this purpose.</para>
+
+</sect2>
+
+<sect2 id="entry4-dlg">
 <title>Additional properties for verbs</title>
 
 <para>This page is only accessible when you selected
@@ -2067,7 +2186,7 @@ information.</para></listitem>
 <screenshot>
 <screeninfo>Verb entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry3-dlg.png" format="PNG"
+<imageobject><imagedata fileref="entry4-dlg.png" format="PNG"
  /></imageobject>
 <textobject><phrase>Verb entry dialog</phrase></textobject>
 </mediaobject>
@@ -2085,7 +2204,7 @@ already entered conjugations.</para>
 
 </sect2>
 
-<sect2 id="entry4-dlg">
+<sect2 id="entry5-dlg">
 <title>Additional properties for adjectives</title>
 
 <para>This page is only accessible when you selected
@@ -2094,30 +2213,30 @@ already entered conjugations.</para>
 <screenshot>
 <screeninfo>Comparison entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry4-dlg.png" format="PNG"
+<imageobject><imagedata fileref="entry5-dlg.png" format="PNG"
  /></imageobject>
 <textobject><phrase>Comparison entry dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>Here you just enter the the comparison forms of the
+<para>Here you enter the the comparison forms of the
  adjective.</para>
 
 </sect2>
 
-<sect2 id="entry5-dlg">
+<sect2 id="entry6-dlg">
 <title>Properties from or to the original</title>
 
 <para>For some properties it is possible to set up values
 <emphasis>from</emphasis> the original or <emphasis>to</emphasis> the
 original. For example you can have a grade when querying the translation
-(=> from). The opposite is the grade when querying the original when
-one of the translations is given (=> to).</para>
+(=> from the original). The opposite is the grade when querying the original when
+one of the translations is given (=> to the original).</para>
 
 <screenshot>
 <screeninfo>From/to entry dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="entry5-dlg.png" format="PNG"
+<imageobject><imagedata fileref="entry6-dlg.png" format="PNG"
  /></imageobject>
 <textobject><phrase>From/to entry dialog</phrase></textobject>
 </mediaobject>
@@ -2146,16 +2265,17 @@ last queried. If it was never queried yet you only see
 <para>For convinience reasons there are two buttons to set the current
 date or reset to <quote>never queried</quote>.</para>
 <para>Due to internal reasons, it is not possible to store dates before
-August 12 1999 with every version of &kvoctrain;!</para></listitem>
+August 12 1999 with every version of &kvoctrain;. Versions 0.8 and later
+are no more affected.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Query count</guilabel></term>
+<term><guilabel>altogether</guilabel></term>
 <listitem><para>Designates how often this entry was queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Bad count</guilabel></term>
+<term><guilabel>wrong</guilabel></term>
 <listitem><para>Shows the amount of times you did not know the right
 answer.</para></listitem>
 </varlistentry>
@@ -2170,12 +2290,11 @@ answer.</para></listitem>
 <sect2 id="norm-query-dlg">
 <title>Normal random query</title>
 
-<para>After selecting <guimenuitem>Create random query </guimenuitem>from the <link
-linkend="header-menu"><guimenu>Header</guimenu> menu</link> the vocabulary
- disappers.</para>
+<para>After selecting <guimenuitem>Create random query </guimenuitem>
+the main window disappers.</para>
 
 <para>Then all entries that match your current <link
-linkend="threshholds">threshholds</link>.  are put into a list and shown
+linkend="q-opt3-dlg">threshholds</link> are put into a list and shown
 in random order with the following dialog box.</para>
 
 <screenshot>
@@ -2187,14 +2306,14 @@ in random order with the following dialog box.</para>
 </mediaobject>
 </screenshot>
 
-<para>In the area with the original expression there are some properties
-you can enable to give you some hints.</para>
+<para>In the dialog area with the original expression there are some properties
+you can enable to give you some hints. You have to enter the solution in the
+according text field.</para>
  
-<variablelist>
 <varlistentry>
-<term><guilabel>Edit</guilabel></term>
-<listitem><para>If you find a mistake with a query you can invoke the
-edit dialog immediately and correct it.</para></listitem>
+<term><guilabel>Show all</guilabel></term>
+<listitem><para>Shows the complete solution in the <guilabel>Translation</guilabel>
+field.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -2204,16 +2323,10 @@ of the solution to give you a little help.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Show all</guilabel></term>
-<listitem><para>Shows the complete solution in the <guilabel>Translation</guilabel>
-field.</para></listitem>
-</varlistentry>
-
-<varlistentry>
 <term><guilabel>Verify</guilabel></term>
-<listitem><para>Not implemented yet. Later version will take the
-content in the field translation and determine using a more or less
-smart algorithm if the answer was correct.</para></listitem>
+<listitem><para>Compares your answer with the correct solution. Currently
+your solution must match exactly to be accepted. If the answer was correct the
+color of the translation changes to green, otherwise to red</para></listitem>
 </varlistentry>
    
 <varlistentry>
@@ -2225,8 +2338,15 @@ that the according grade must be lowered.</para></listitem>
 <varlistentry>
 <term><guilabel>Know it</guilabel></term>
 <listitem><para>Click this button to tell &kvoctrain; that you
-knew the answer correctly. This entry is then removed from the <quote>bad
+knew the answer correctly. This entry is then removed from the current<quote>bad
 list</quote>.</para></listitem>
+</varlistentry>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Edit</guilabel></term>
+<listitem><para>If you find a mistake with a query you can invoke the
+edit dialog immediately and correct it.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -2235,19 +2355,16 @@ list</quote>.</para></listitem>
 again.</para></listitem>
 </varlistentry>
    
-<varlistentry>
-<term><guilabel>Options</guilabel></term>
-<listitem><para>Invoke <link linkend="options-dlg">options
-dialog</link>.</para></listitem>
-</varlistentry>
 </variablelist>
 
-<para>In the right top corner you see two progress display that indicate
+<para>In the right bottom corner you see two progressbars that indicate
 the remaining time and the amount of queries to come.</para>
 
 <para>The query of the current lesson is repeated until all its
 expressions are known. The amount of retries of the current lesson is
-shown below the progress indicator.</para>
+shown below the progress indicator. Once the current lesson is
+finished &kvoctrain; continues with the next (provided that you have set up
+the <link linkend="q-opt3-dlg">query options</link> accordingly).</para>
 
 <para>I regret to admit, but usually I don`t know the solution. For
 this reason the <keycap>Return</keycap> key has special behaviour,
@@ -2260,16 +2377,16 @@ is the default button) and makes <guibutton>Don`t know</guibutton>
 the default button.</para></listitem>
 
 <listitem><para>Pressing <keycap>Return</keycap> the second time
-will leave this dialog and tell &kvoctrain; you did not know the
+will leave this dialog and tell &kvoctrain; that you did not know the
 answer.</para></listitem>
 </itemizedlist></para>
 
 <para>At the moment you must decide for yourself, if you knew the answer
 or failed. Later versions may provide a more or less smart algorithm to
-make this decision from a string you entered.</para>
+make this decision from the answer you entered.</para>
 
 <para>If you knew the corrent answer, the grade is increased by one
-step. If you did not know it, the grade is reset to level 1.</para>
+step. If you did not know it, the grade is reset to level 1 which is worst.</para>
 
 </sect2>
 
@@ -2288,6 +2405,11 @@ step. If you did not know it, the grade is reset to level 1.</para>
 <para>This type of query works similar to the previous one. The solution
 is shown together with random other expressions and you have to choose
 one answer from the five provided.</para>
+
+<para>This query works most efficiently if you provide similar solutions on the
+<link linkend="entry2-dlg">according entry dialog pages</link>. Additionally
+<link linkend="entry6-dlg">a false friend</link>
+is added if available.</para>
 
 </sect2>
 
@@ -2325,7 +2447,7 @@ course you must know all of them for a successful result.</para>
 <para>In this dialog the article of the noun is queried.</para>
 
 <para>It is important to having selected the correct subtype in the
-entry dialog.</para>
+<link linkend="entry1-dlg">entry dialog</link>.</para>
 
 </sect2>
 
@@ -2341,7 +2463,8 @@ entry dialog.</para>
 </mediaobject>
 </screenshot>
 
-<para>All adjectives that contain also comparison forms are shown. One
+<para>All expressions that contain also
+<link linkend="entry5-dlg">comparison forms</link> are shown. One
 word is chosen randomly and you must complete the remaining two.</para>
 
 </sect2>
@@ -2359,8 +2482,8 @@ word is chosen randomly and you must complete the remaining two.</para>
 </mediaobject>
 </screenshot>
 
-<para>The query for the above mentioned additional properties of your
-expression looks basically the same for all types.</para>
+<para>The queries for the above mentioned additional properties of your
+expression look basically the same for all types.</para>
 
 <para>You are prompted the expression and have to enter the according
 property. Querying by <guilabel>example</guilabel> is a bit different
@@ -2433,21 +2556,16 @@ me about it. I plan to collect pointers to those files and include
 them in this handbook. If I find an electronic abode for &kvoctrain;
 with enough space, I might also store them there.</para>
 
-<para>This also applies if you have dictionaries for <ulink
-url="http://ohfw65.hf.op.dlr.de/qvocab/qvocab.html">QVocab</ulink>
-or <ulink
-url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">KVoclearn</ulink>
-as I will write converters if necessary.</para>
-
 <para>But please:</para>
 <itemizedlist>
-<listitem><para>Don't send me any files before asking me. Maybe someone
-else has already contributed this type of dictionary.</para></listitem>
+<listitem><para>Don't send me any files before telling me. Maybe someone
+else has already started this type of dictionary.</para></listitem>
 <listitem><para>The dictionaries should have a reasonable good quality
 as I don't want to do any revision.</para></listitem>
 <listitem><para>If you modify existing vocabularies or create
-vocabularies based on copyrighted material ask the author or for
-permission.</para></listitem>
+vocabularies based on copyrighted material you must ask the author for
+permission. Even taking literal examples from schoolbooks might be
+problematic!</para></listitem>
 </itemizedlist>
 
 </sect1>
@@ -2464,14 +2582,31 @@ list provided by the German magazine <ulink url=
 <command>spotlight2kvtml</command> to transform those lists
 in kvtml format. The original files come as &Windows; Word DOC-files
 so you have to save them as ANSI-TXT files before starting
-conversion. <application>StarOffice</application> can do this
- job.</para> <!-- so can kword -->
+conversion. <application>StarOffice</application> or <application>kword</application>
+can do this job.</para>
 <para><command>spotlight2kvtml</command> needs the 3 parameters
 <parameter>filename</parameter>, <parameter>month</parameter> and
 <parameter>year</parameter> and produces a file in the same directory
 with the same name and the extension <literal role="extension">kvtml</literal>:</para>
 <para><userinput><command>spotlight2kvtml</command>
 <replaceable>0199.txt 01 99</replaceable></userinput></para></listitem>
+
+<listitem>
+<para>Thanks to a contribution by Andreas Neuper you
+can download files from
+<ulink url="http://www.vokabeln.de/files.htm">Langenscheidt</ulink>.
+This is a german site and contains files in several languages.
+This distribution contains his perl script
+<command>langen2kvtml</command> to transform those lists
+in kvtml format.</para>
+
+<para><command>langen2kvtml</command> needs only the original filename as parameter
+and tries to extract as much information as possible from the source file.
+For example is keeps the lesson names, conjugations and articles.</para>
+
+<para>It produces a file in the same directory
+with the same name and the extension <literal role="extension">kvtml</literal>.</para>
+</listitem>
 
 <listitem><para>Dictionaries in ascii-format are for example available
  at:</para>
@@ -2494,17 +2629,23 @@ e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
   </itemizedlist>
 </listitem>
 
-<listitem><para>Another possibility is to download
-the files that are available on the homepage of <ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
-ary
-Trainer</ulink>.</para>
-<para>These are in the <quote>lex</quote> format which can also be read by
-&kvoctrain;. As I also implemented the ability to write this format,
-you should also send your vocabulary files in <quote>lex</quote> format to the
-author at <email>100700.1757@compuserve.com</email>.</para></listitem>
+<listitem><para>Dictionaries from the
+<ulink url="http://www3.futureware.at/kquick.htm">*Quick project</ulink> in
+<quote>CSV</quote> format but encoded in <quote>UTF8</quote> so you should have
+all characters rendered correctly.
+
+The files are available from it's
+<ulink url="http://www3.futureware.at/1dim.htm">download section</ulink>.
+They are in compressed &Windows; <literal role="extension">.EXE</literal>
+format so you have
+to use <application>unzip</application> to extract the files.</para>
+</listitem>
+
 </itemizedlist>
 
+<para>If you know another source please tell
+<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
+to include it here.</para>
 </sect1>
 
 <sect1 id="translators">
@@ -2560,8 +2701,7 @@ url="http://pweb.uunet.de/reger.kuen/">Vokabel-Trainer</ulink>
 (Tcl/Tk)</para></listitem>
 
 <listitem><para><ulink
-url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvi
-sto</ulink>
+url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvisto</ulink>
 (X)</para></listitem>
 
 <listitem><para><ulink
@@ -2637,6 +2777,9 @@ Educational Projects</ulink></para></listitem>
 url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
 (Linux at school, German)</para></listitem>
 
+<listitem><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
+Reference and Introduction to Phonetic Symbols</ulink></listitem>
+
 </itemizedlist>
 
 </sect1>
@@ -2652,9 +2795,10 @@ url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
 borrow a lot of code from other applications. The biggest chunks are
 taken from</para>
 <itemizedlist>
-<listitem><para>&klpq; (table functionality)</para></listitem>
+<listitem><para>&klpq; (table functionality in versions up to 0.7)</para></listitem>
 <listitem><para>&killustrator; (XML reading/writing).</para></listitem>
-<listitem><para>&khexedit; (<quote>about</quote> dialog).</para></listitem>
+<listitem><para>&khexedit; (<quote>about</quote> dialog in versions up to
+0.7).</para></listitem>
 </itemizedlist>
 
 <para>I'd like to thank the following people personally for their
@@ -2664,12 +2808,15 @@ contribution to &kvoctrain;:</para>
  Italian</para></listitem>
 <listitem><para>Hans Kottman for localisation to
  French</para></listitem>
+<listitem><para>Grzegorz Ilczuk for localisation to
+ Polish</para></listitem>
 <listitem><para>Eric Bischoff for converting the documentation to
 DocBook</para></listitem>
 </itemizedlist>
 
-<para>I also want to thank all the other unamed persons for their
- constructive criticisim, suggestions or bug-reports.</para>
+<para>I also want to thank all the other unamed persons, especially the
+whole &kde; team,
+for their help, constructive criticisim, suggestions or bug-reports.</para>
 
 </sect1>
 
@@ -2698,13 +2845,16 @@ DocBook</para></listitem>
 
 &install.intro.documentation;
 
-<para>Current snapshots, dictionary files  and tools
-needed to make modifications can be found on the <ulink
+<para>Current snapshots and dictionary files
+can be found on the <ulink
 url="http://kvoctrain.sourceforge.net/download/download.html">kvoctrain
 homepage</ulink>.</para>
 
-<para><ulink url="http://sourceforge.net/cvs/?group_id=9265">Anonymous
-CVS download</ulink> is also available.</para>
+<para><ulink url="http://www.kde.org/anoncvs.html">Anonymous
+CVS download</ulink> is also available.
+
+<important>Don't use the CVS code from the Sourceforge server because ths
+branch is obsolete.</important></para>
 
 <para>You can find precompiled binaries as rpm packages
 for the SuSE distribution (of almost all KDE apps): <ulink
@@ -2725,8 +2875,9 @@ you need the &kde; libraries as well as the &Qt; C++
 library. All required libraries can be found on <ulink
 url="ftp://ftp.kde.org/pub/kde/">ftp.kde.org/pub/kde/</ulink>.</para>
 
-<para>&kvoctrain; is tested with &kde; 1.1.2 and &Qt; 1.44 as well
-as &kde; 2.0 and &Qt; 2.2.3.</para>
+<para>&kvoctrain; is tested with &kde; 3.0 and &Qt; 3.0. It should also
+basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
+but I can't promise.</para>
 
 </sect1>
 
