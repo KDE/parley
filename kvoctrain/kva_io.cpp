@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.24  2002/01/27 07:17:44  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.23  2002/01/23 18:17:40  arnold
     fix for multiple selections
 
@@ -124,7 +127,7 @@
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"
 
-#define PATTERN_ALL  "*.*"            "|All files (*.*)\n"
+#define PATTERN_ALL  "*"            "|All files (*)\n"
 #define PATTERN_ML   "*." KVTML_EXT   "|KVoctrain Markup (*.kvtml)\n"
 #define PATTERN_LEX  "*." VT5_LEX_EXT "|Vocabulary Trainer 5.0 (*.lex)\n"
 #define PATTERN_VL   "*." KVL_EXT     "|KVoclearn (*.vl)\n"
