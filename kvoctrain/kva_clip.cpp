@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.7  2001/11/25 11:11:02  arnold
     switch for inline edit, splitted kv_resource.h
 
@@ -142,7 +145,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
 /*  perhaps skip missing ??
   for (int i = csv_order.size()-1; i >= 0; i--)
     if (csv_order[i] == -1)
-      csv_order.erase(&csv_order[i], &csv_order[i+1]);
+      csv_order.erase(csv_order.begin() + i);
 */
   // append indices from doc if no order given
   for (int i = 0; i < doc->numLangs(); i++)
@@ -150,7 +153,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
        csv_order.push_back(i);
 /*
   if (csv_order.size() > doc->numLangs() )
-    csv_order.erase(&csv_order[doc->numLangs()], csv_order.end());
+    csv_order.erase(csv_order.begin() + doc->numLangs(), csv_order.end());
 */
 
   // remove trailing garbage
@@ -158,7 +161,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc,
     if (csv_order[i] != -1)
       break;
     else
-      csv_order.erase(&csv_order[i], &csv_order[i+1]);
+      csv_order.erase(csv_order.begin() + i);
   }
 
   return csv_order;

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.8  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -202,7 +205,7 @@ void TypeOptPage::slotDeleteType()
      }
 
      typeList->removeItem (act);
-     typeIndex.erase (&typeIndex[act], &typeIndex[act+1]);
+     typeIndex.erase (typeIndex.begin() + act);
 
      if ((int) typeList->count() <= act)
         act = typeList->count()-1;

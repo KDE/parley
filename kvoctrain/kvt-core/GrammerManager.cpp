@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2002/01/07 17:22:45  arnold
+    fixed i18n() issues
+
     Revision 1.4  2001/12/29 10:40:24  arnold
     merged fixes from POST-branch
 
@@ -307,7 +310,7 @@ void Conjugation::cleanUp ()
         && ctp->pers3_f_plur.stripWhiteSpace().isEmpty()
         && ctp->pers3_n_plur.stripWhiteSpace().isEmpty()
        )
-     conjugations.erase(&conjugations[i], &conjugations[i+1]);
+     conjugations.erase(conjugations.begin() + i);
   }
 }
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.11  2002/01/18 04:40:09  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -219,7 +222,7 @@ void UsageOptPage::slotDeleteUsage()
      }
 
      usageList->removeItem (act);
-     usageIndex.erase (&usageIndex[act], &usageIndex[act+1]);
+     usageIndex.erase (usageIndex.begin() + act);
 
      if ((int) usageList->count() <= act)
        act = usageList->count()-1;

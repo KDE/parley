@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.8  2001/12/29 10:40:24  arnold
     merged fixes from POST-branch
 
@@ -315,7 +318,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    // remove empty lesson elements
    for (int i = (int) random.size()-1; i >= 0; i--)
      if (random[i].size() == 0)
-       random.erase(&random[i], &random[i+1]);
+       random.erase(random.begin() + i);
    return random;
 }
 
@@ -382,7 +385,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    // remove empty lesson elements
    for (int i = (int) random.size()-1; i >= 0; i--)
      if (random[i].size() == 0)
-       random.erase(&random[i], &random[i+1]);
+       random.erase(random.begin() + i);
 
    return random;
 }
@@ -461,7 +464,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    // remove empty lesson elements
    for (int i = (int) random.size()-1; i >= 0; i--)
      if (random[i].size() == 0)
-       random.erase(&random[i], &random[i+1]);
+       random.erase(random.begin() + i);
 
    return random;
 }

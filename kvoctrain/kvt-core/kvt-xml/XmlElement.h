@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.1  2001/10/05 15:43:20  arnold
+  import of version 0.7.0pre8 to kde-edu
+
 
   -----------------------------------------------------------------------
 
@@ -134,7 +137,7 @@ public:
    *
    * @return The list of attributes.
    */
-  inline const list<XmlAttribute>& attributes () const { return attribs; }
+  inline const std::list<XmlAttribute>& attributes () const { return attribs; }
 
   /**
    * Return @p true if the element is closed.
@@ -154,7 +157,7 @@ private:
   KOXML_STRING       tagId;
   bool               closed;
   bool               endTag;
-  list<XmlAttribute> attribs;
+  std::list<XmlAttribute> attribs;
 };
 
 #endif

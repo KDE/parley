@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.10  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -486,67 +489,67 @@ void kvoctrainExpr::removeTranslation (int idx)
      return;
 
    if (idx <= numTranslations())
-     translations.erase (&translations[idx-1], &translations[idx]);
+     translations.erase (translations.begin() + idx-1);
 
    if (idx < (int)remarks.size() )
-     remarks.erase (&remarks[idx], &remarks[idx+1]);
+     remarks.erase (remarks.begin() + idx);
 
    if (idx < (int)conjugations.size() )
-     conjugations.erase (&conjugations[idx], &conjugations[idx+1]);
+     conjugations.erase (conjugations.begin() + idx);
 
    if (idx < (int)comparisons.size() )
-     comparisons.erase (&comparisons[idx], &comparisons[idx+1]);
+     comparisons.erase (comparisons.begin() + idx);
 
    if (idx < (int)fauxAmi.size() )
-     fauxAmi.erase (&fauxAmi[idx], &fauxAmi[idx+1]);
+     fauxAmi.erase (fauxAmi.begin() + idx);
 
    if (idx < (int)rev_fauxAmi.size() )
-     rev_fauxAmi.erase (&rev_fauxAmi[idx], &rev_fauxAmi[idx+1]);
+     rev_fauxAmi.erase (rev_fauxAmi.begin() + idx);
 
    if (idx < (int)synonym.size() )
-     synonym.erase (&synonym[idx], &synonym[idx+1]);
+     synonym.erase (synonym.begin() + idx);
 
    if (idx < (int)example.size() )
-     example.erase (&example[idx], &example[idx+1]);
+     example.erase (example.begin() + idx);
 
    if (idx < (int)usageLabels.size() )
-     usageLabels.erase (&usageLabels[idx], &usageLabels[idx+1]);
+     usageLabels.erase (usageLabels.begin() + idx);
 
    if (idx < (int)paraphrases.size() )
-     paraphrases.erase (&paraphrases[idx], &paraphrases[idx+1]);
+     paraphrases.erase (paraphrases.begin() + idx);
 
    if (idx < (int)antonym.size() )
-     antonym.erase (&antonym[idx], &antonym[idx+1]);
+     antonym.erase (antonym.begin() + idx);
 
    if (idx < (int)exprtypes.size() )
-     exprtypes.erase (&exprtypes[idx], &exprtypes[idx+1]);
+     exprtypes.erase (exprtypes.begin() + idx);
 
    if (idx < (int)pronunces.size() )
-     pronunces.erase (&pronunces[idx], &pronunces[idx+1]);
+     pronunces.erase (pronunces.begin() + idx);
 
    if (idx < (int)grades.size() )
-     grades.erase (&grades[idx], &grades[idx+1]);
+     grades.erase (grades.begin() + idx);
 
    if (idx < (int)rev_grades.size() )
-     rev_grades.erase (&rev_grades[idx], &rev_grades[idx+1]);
+     rev_grades.erase (rev_grades.begin() + idx);
 
    if (idx < (int)qcounts.size() )
-     qcounts.erase (&qcounts[idx], &qcounts[idx+1]);
+     qcounts.erase (qcounts.begin() + idx);
 
    if (idx < (int)rev_qcounts.size() )
-     rev_qcounts.erase (&rev_qcounts[idx], &rev_qcounts[idx+1]);
+     rev_qcounts.erase (rev_qcounts.begin() + idx);
 
    if (idx < (int)bcounts.size() )
-     bcounts.erase (&bcounts[idx], &bcounts[idx+1]);
+     bcounts.erase (bcounts.begin() + idx);
 
    if (idx < (int)rev_bcounts.size() )
-     rev_bcounts.erase (&rev_bcounts[idx], &rev_bcounts[idx+1]);
+     rev_bcounts.erase (rev_bcounts.begin() + idx);
 
    if (idx < (int)qdates.size() )
-     qdates.erase (&qdates[idx], &qdates[idx+1]);
+     qdates.erase (qdates.begin() + idx);
 
    if (idx < (int)rev_qdates.size() )
-     rev_qdates.erase (&rev_qdates[idx], &rev_qdates[idx+1]);
+     rev_qdates.erase (rev_qdates.begin() + idx);
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/04/10 12:26:19  mueller
+    we aint need no values.h here
+
     Revision 1.20  2002/03/20 23:00:03  mueller
     it seems to compile fine without strstream.h
 
@@ -374,7 +377,7 @@ kvoctrainExpr *kvoctrainDoc::getEntry(int index)
 void kvoctrainDoc::removeEntry(int index)
 {
   if (index >= 0 && index < (int)vocabulary.size() )
-    vocabulary.erase (&vocabulary[index], &vocabulary[index+1]);
+    vocabulary.erase (vocabulary.begin() + index);
 }
 
 
@@ -579,7 +582,7 @@ public:
 void kvoctrainDoc::removeIdent (int index)
 {
   if (index < (int)langs.size() && index >= 1 ) {
-    langs.erase(&langs[index], &langs[index+1]);
+    langs.erase(langs.begin() + index);
     for_each (vocabulary.begin(), vocabulary.end(), eraseTrans(index));
   }
 }

@@ -9,6 +9,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.1  2001/10/05 15:43:20  arnold
+  import of version 0.7.0pre8 to kde-edu
+
 
   -----------------------------------------------------------------------
 
@@ -100,7 +103,7 @@ public:
 protected:
   bool parseEndElement (XmlElement& elem);
   bool parseElement (const KOXML_STRING& id, XmlElement& elem);
-  bool readAttributes (list<XmlAttribute>& attrib_list);
+  bool readAttributes (std::list<XmlAttribute>& attrib_list);
 
 private:
   XmlTokenizer tokenizer;

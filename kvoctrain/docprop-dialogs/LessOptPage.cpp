@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.7  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -192,7 +195,7 @@ void LessOptPage::slotDeleteLesson()
      }
 
      lessonList->removeItem (act);
-     lessonIndex.erase (&lessonIndex[act], &lessonIndex[act+1]);
+     lessonIndex.erase (lessonIndex.begin() + act);
 
      if ((int) lessonList->count() <= act)
         act = lessonList->count()-1;
@@ -294,7 +297,7 @@ void LessOptPage::cleanUnused (kvoctrainDoc *doc,
      if (translate_index[lessons_in_query[i]] > 0)
        lessons_in_query[i] = translate_index[lessons_in_query[i]];
      else
-       lessons_in_query.erase(&lessons_in_query[i]);
+       lessons_in_query.erase(lessons_in_query.begin() + i);
    }
 
    // only keep remaining lesson member indices

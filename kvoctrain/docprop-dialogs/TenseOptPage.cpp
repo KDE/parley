@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/01/27 07:17:47  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.8  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -207,7 +210,7 @@ void TenseOptPage::slotDeleteTense()
      }
 
      tenseList->removeItem (act);
-     tenseIndex.erase (&tenseIndex[act], &tenseIndex[act+1]);
+     tenseIndex.erase (tenseIndex.begin() + act);
 
      if ((int) tenseList->count() <= act)
         act = tenseList->count()-1;

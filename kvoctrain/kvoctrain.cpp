@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.44  2002/03/13 08:22:29  waba
+    * Use KRandomSequence instead of rand()
+    * Fix crash in "resume query".
+
     Revision 1.43  2002/02/08 19:24:02  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -1021,7 +1025,7 @@ void kvoctrainApp::slotCreateLesson(int header)
     // include non-lesson and non-empty string
     if (kv->getLesson() == 0) {
       kv->setLesson(1);
-      sel.erase (&sel[nr], &sel[nr+1]);
+      sel.erase (sel.begin() + nr);
       cnt++;
     }
   }
@@ -1093,7 +1097,7 @@ void kvoctrainApp::slotCreateRandom()
        }
        int nr = random.getLong(randomList.size());
        randomList[nr]->setLesson(less_no);
-       randomList.erase(&randomList[nr], &randomList[nr+1]);
+       randomList.erase(randomList.begin() + nr);
      }
 
      vector<QString> new_lessonStr;

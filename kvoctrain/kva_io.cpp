@@ -15,6 +15,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.29  2002/03/14 02:00:52  waba
+    * A bunch of fixes for saving files on exit.
+    * Use saveAs-dialog to save modified examples
+    * Don't add examples to list of recent document.
+
     Revision 1.28  2002/03/13 08:22:29  waba
     * Use KRandomSequence instead of rand()
     * Fix crash in "resume query".
@@ -760,7 +765,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
   // remove empty elements
   for (int i = (int) queryList.size()-1; i >= 0; i--)
     if (queryList[i].size() == 0) {
-      queryList.erase(&queryList[i], &queryList[i+1]);
+      queryList.erase(queryList.begin() + i);
     }
 
   query_cycle = 1;

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2002/03/13 08:22:29  waba
+    * Use KRandomSequence instead of rand()
+    * Fix crash in "resume query".
+
     Revision 1.22  2002/01/27 07:17:44  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -198,7 +202,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
   query_startnum = 0;
   if (queryList.size() > 0) {
    random_expr1 = queryList[0];
-   queryList.erase(&queryList[0], &queryList[0+1]);
+   queryList.erase(queryList.begin());
    query_startnum = (int) random_expr1.size();
   }
 
@@ -274,21 +278,21 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       }
       else {
         random_expr2.push_back (random_expr1[random_query_nr]);
-        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+        random_expr1.erase (random_expr1.begin() + random_query_nr);
       }
     break;
 
     case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[random_query_nr]);
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
     break;
 
     case QueryDlgBase::Known :
       num_queryTimeout = 0;
       query_num--;
 
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
       if (   random_expr1.size() != 0
           || random_expr2.size() != 0
           || queryList.size() != 0 ) {
@@ -326,7 +330,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     else {  // next lesson
       query_cycle = 1;
       random_expr1 = queryList[0];
-      queryList.erase(&queryList[0], &queryList[0+1]);
+      queryList.erase(queryList.begin());
     }
   }
 
@@ -376,7 +380,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type)
   query_startnum = 0;
   if (queryList.size() > 0) {
    random_expr1 = queryList[0];
-   queryList.erase(&queryList[0], &queryList[0+1]);
+   queryList.erase(queryList.begin());
    query_startnum = (int) random_expr1.size();
   }
   for (int i = 0; i < (int) queryList.size(); i++) {
@@ -492,21 +496,21 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       }
       else {
         random_expr2.push_back (random_expr1[random_query_nr]);
-        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+        random_expr1.erase (random_expr1.begin() + random_query_nr);
       }
     break;
 
     case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[random_query_nr]);
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
     break;
 
     case QueryDlgBase::Known :
       num_queryTimeout = 0;
       query_num--;
 
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
       if (   random_expr1.size() != 0
           || random_expr2.size() != 0
           || queryList.size() != 0 ) {
@@ -545,7 +549,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     else {  // next lesson
       query_cycle = 1;
       random_expr1 = queryList[0];
-      queryList.erase(&queryList[0], &queryList[0+1]);
+      queryList.erase(queryList.begin());
     }
   }
   hide();
@@ -672,7 +676,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
   query_startnum = 0;
   if (queryList.size() > 0) {
    random_expr1 = queryList[0];
-   queryList.erase(&queryList[0], &queryList[0+1]);
+   queryList.erase(queryList.begin());
    query_startnum = (int) random_expr1.size();
   }
   for (int i = 0; i < (int) queryList.size(); i++) {
@@ -811,7 +815,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       }
       else {
         random_expr2.push_back (random_expr1[random_query_nr]);
-        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+        random_expr1.erase (random_expr1.begin() + random_query_nr);
 
         if (oindex == 0) {
           exp->incBadCount(tindex, false);
@@ -827,7 +831,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
       random_expr2.push_back (random_expr1[random_query_nr]);
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
 
       if (oindex == 0) {
         exp->incBadCount(tindex, false);
@@ -860,7 +864,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       }
 
       exp->setInQuery(false);
-      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      random_expr1.erase (random_expr1.begin() + random_query_nr);
       if (!(   random_expr1.size() != 0
             || random_expr2.size() != 0
             || queryList.size() != 0 )) {
@@ -896,7 +900,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     else {  // next lesson
       query_cycle = 1;
       random_expr1 = queryList[0];
-      queryList.erase(&queryList[0], &queryList[0+1]);
+      queryList.erase(queryList.begin());
     }
   }
 

@@ -10,6 +10,9 @@
   -----------------------------------------------------------------------
 
   $Log$
+  Revision 1.2  2002/02/08 19:24:03  arnold
+  fixed sleeping dialog, applied patches for Tru64 unix
+
   Revision 1.1  2001/10/05 15:43:20  arnold
   import of version 0.7.0pre8 to kde-edu
 
@@ -173,7 +176,7 @@ bool XmlReader::parseEndElement (XmlElement& elem) {
 bool XmlReader::parseElement (const KOXML_STRING& id, XmlElement& elem) {
   KOXML_STRING tag = id;
   bool closed = false;
-  list<XmlAttribute> attrib_list;
+  std::list<XmlAttribute> attrib_list;
 
   XmlTokenizer::Token tok = tokenizer.nextToken ();
   while (tok != XmlTokenizer::Tok_Gt) {
@@ -202,7 +205,7 @@ bool XmlReader::parseElement (const KOXML_STRING& id, XmlElement& elem) {
   return true;
 }
 
-bool XmlReader::readAttributes (list<XmlAttribute>& attrib_list) {
+bool XmlReader::readAttributes (std::list<XmlAttribute>& attrib_list) {
   XmlTokenizer::Token tok = tokenizer.nextToken ();
 
   while (tok != XmlTokenizer::Tok_Gt) {
