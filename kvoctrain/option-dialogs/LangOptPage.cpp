@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/10/25 17:34:19  arnold
+    replaced qtarch dialog files by qtdesigner
+
     Revision 1.4  2001/10/21 15:29:50  arnold
     removed all the 'charset' stuff
 
@@ -52,6 +55,7 @@
 #include <qlabel.h>
 #include <qcombobox.h>
 #include <qradiobutton.h>
+#include <qpushbutton.h>
 
 #include <kfiledialog.h>
 #include <kapp.h>
