@@ -77,35 +77,35 @@
       <default code="true">true</default>
     </entry>
       <entry name="GradeCol0" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for not queried</label>
       <default code="true">Qt::black</default>
     </entry>
           <entry name="GradeCol1" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 1</label>
 <default code="true">Qt::red</default>
     </entry>
           <entry name="GradeCol2" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 2</label>
       <default code="true">Qt::red</default>
     </entry>
           <entry name="GradeCol3" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 3</label>
       <default code="true">Qt::red</default>
     </entry>
           <entry name="GradeCol4" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 4</label>
       <default code="true">Qt::red</default>
     </entry>
           <entry name="GradeCol5" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 5</label>
       <default code="true">Qt::green</default>
     </entry>
           <entry name="GradeCol6" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 6</label>
       <default code="true">Qt::green</default>
     </entry>
           <entry name="GradeCol7" type="Color">
-      <label>Enable or not Inline Editing</label>
+      <label>Color for grade 7</label>
       <default code="true">Qt::green</default>
     </entry>
     </group>
