@@ -19,11 +19,12 @@ kvoctrain_LDADD =   -lkfile -lkhtml \
                     ./docprop-dialogs/libdocpropdlg.a \
                     ./entry-dialogs/libentrydlg.a \
                     ./kvt-core/libkvoctraincore.a \
+                    ./kvt-core/kvt-xml/libkvtxml.a \
                     ./option-dialogs/liboptiondlg.a \
                     ./query-dialogs/libquerydlg.a \
                     ./queryoption-dialogs/libqueryoptiondlg.a \
                     ./statistik-dialogs/libstatdlg.a \
-                    ./common-dialogs/libcommondlg.a \
+                    ./common-dialogs/libcommondlg.a 
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs entry-dialogs docprop-dialogs kvt-core \
@@ -88,7 +89,10 @@ bin_PROGRAMS = kvoctrain spotlight2kvtml
 kvoctrain_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 spotlight2kvtml_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
-CLEANFILES = *.i 
+CLEANFILES = *.i *~
+
+# them while "make clean", use CLEANFILES
+DISTCLEANFILES = $(kvoctrain_METASOURCES)
 
 i18n_files=  query-dialogs/*.cpp \
              entry-dialogs/*.cpp \
