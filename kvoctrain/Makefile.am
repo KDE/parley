@@ -1,8 +1,8 @@
 METASOURCES = AUTO
 
-kvoctrain_SOURCES = kva_io.cpp kvoctrain.cpp kvoctrainview.cpp rowtable.cpp \
-	main.cpp kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp \
-	prefs.kcfgc
+kvoctrain_SOURCES = kva_io.cpp kvoctrain.cpp kvoctrainview.cpp main.cpp \
+	kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp prefs.kcfgc \
+	kvoctraintable.cpp kvoctraintableitem.cpp
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 

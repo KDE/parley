@@ -8,7 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
+                           (C) 2004-2005 Peter Hedlund
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -74,7 +74,7 @@ void kvoctrainApp::slotCancelSelection ()
 void kvoctrainApp::slotSelectAll ()
 {
   QTableSelection ts;
-  RowTable *table = view->getTable();
+  KVocTrainTable *table = view->getTable();
   table->clearSelection();
   ts.init(0,0);
   ts.expandTo(table->numRows()-1, table->numCols()-1);
@@ -128,8 +128,7 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 
 void kvoctrainApp::slotEditRow()
 {
-  slotEditEntry (view->getTable()->currentRow(),
-                 view->getTable()->currentColumn());
+  slotEditEntry (view->getTable()->currentRow(), view->getTable()->currentColumn());
 }
 
 
@@ -143,12 +142,14 @@ void kvoctrainApp::slotEditCallBack(int res)
 
     case EntryDlg::EditApply:
       commitEntryDlg(true);
-      if (smartAppend) {
+      if (smartAppend)
+      {
         int row = view->getTable()->currentRow();
-        if (row == view->getTable()->numRows()-1) {
+        if (row == view->getTable()->numRows()-1) 
+        {
           int col = view->getTable()->currentColumn();
-          if (   col < view->getTable()->numCols()-1
-              && col >= KV_COL_ORG ) {
+          if (col < view->getTable()->numCols()-1 && col >= KV_COL_ORG )
+          {
             int lesson = doc->getEntry(row)->getLesson();
             if (lesson >= lessons->count())
               lesson = QMAX (0, lessons->count()-1);
@@ -419,8 +420,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
 
-   configInlineEditing->setEnabled(false);
-   view->getTable()->setEditorBlocked(true);
+   view->getTable()->setReadOnly(true);
 
    if (col == 0)
      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
@@ -443,8 +443,7 @@ void kvoctrainApp::removeEntryDlg()
     entryDlg = 0;
   }
 
-  configInlineEditing->setEnabled(true);
-  view->getTable()->setEditorBlocked(false);
+  view->getTable()->setReadOnly(false);
 }
 
 
@@ -707,14 +706,12 @@ bool kvoctrainApp::hasSelection()
 
 void kvoctrainApp::slotRemoveRow()
 {
-  view->setInlineEnabled(false);
-
   if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   i18n("Do you really want to delete the selected entry?\n"),
                   kapp->makeStdCaption("")))
     {
-      RowTable *table = view->getTable();
+      KVocTrainTable *table = view->getTable();
       doc->removeEntry(table->currentRow());
       doc->setModified();
       table->updateContents();
@@ -725,7 +722,7 @@ void kvoctrainApp::slotRemoveRow()
                   i18n("Do you really want to delete the selected range?\n"),
                   kapp->makeStdCaption("")))
     {
-      RowTable *table = view->getTable();
+      KVocTrainTable *table = view->getTable();
 
       int numRows = table->numRows();
       // Must count backwards otherwise entry-numbering goes wrong when
@@ -738,21 +735,22 @@ void kvoctrainApp::slotRemoveRow()
     }
   }
   editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
-  view->setInlineEnabled(Prefs::enableInlineEdit());
 }
 
 
 void kvoctrainApp::slotAppendRow ()
 {
-    kvoctrainExpr expr;
-    expr.setLesson(act_lesson);
-    doc->appendEntry(&expr);
-    doc->setModified();
-    int row = doc->numEntries()-1;
-    view->getTable()->updateContents(row, KV_COL_ORG);
-    view->getTable()->setRowHeight(row, view->getTable()->fontMetrics().lineSpacing() );
-    view->getTable()->setCurrentRow(row, KV_COL_ORG);
-    editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  kvoctrainExpr expr;
+  expr.setLesson(act_lesson);
+  doc->appendEntry(&expr);
+  doc->setModified();
+  int row = doc->numEntries()-1;
+  view->getTable()->setRowHeight(row, view->getTable()->fontMetrics().lineSpacing() );
+  view->getTable()->setCurrentRow(row, KV_COL_ORG);
+  view->getTable()->updateContents(row, KV_COL_ORG);
+  view->getTable()->clearSelection();
+  view->getTable()->selectRow(row);
+  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 }
 
 
@@ -1124,16 +1122,6 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
 
   searchstr = s;
   QApplication::restoreOverrideCursor();
-  slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void kvoctrainApp::slotViewInline()
-{
-  Prefs::setEnableInlineEdit(!Prefs::enableInlineEdit());
-  configInlineEditing->setChecked(Prefs::enableInlineEdit());
-  //menuBar()->setItemChecked(ID_VIEW_INLINE, inline_edit);
-  view->setInlineEnabled(Prefs::enableInlineEdit());
   slotStatusMsg(IDS_DEFAULT);
 }
 

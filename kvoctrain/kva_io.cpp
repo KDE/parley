@@ -8,7 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
+                           (C) 2004-2005 Peter Hedlund
 
     email                : kvoctrain@ewald-arnold.de
 

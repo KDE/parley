@@ -8,7 +8,7 @@
 
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
+                           (C) 2004-2005 Peter Hedlund
 
     email                : kvoctrain@ewald-arnold.de
 
@@ -85,8 +85,9 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
     cc = KV_COL_LESS+1;
 
   view->getTable()->updateContents(cr, cc);
+  view->getTable()->clearSelection();
+  view->getTable()->selectRow(cr);
 
-  configInlineEditing->setChecked(Prefs::enableInlineEdit());
   configSaveOptions->setEnabled(!autosaveopts);
   editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 
@@ -154,7 +155,7 @@ void kvoctrainApp::initActions()
   editAppend->setWhatsThis(i18n("Appends a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
-  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), QPixmap(locate("data", "kvoctrain/edit-row.xpm")), "Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
+  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), QPixmap(locate("data", "kvoctrain/edit-row.xpm")), "Ctrl+Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
   editEditSelectedArea->setWhatsThis(i18n("Edits the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
@@ -232,10 +233,6 @@ void kvoctrainApp::initActions()
   configQueryOptions = new KAction(i18n("Configure &Query..."), QPixmap(locate("data", "kvoctrain/query-conf.xpm")), 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
   configQueryOptions->setWhatsThis(i18n("Shows the query configuration dialog"));
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());
-
-  configInlineEditing = new KToggleAction(i18n("&Inline Editing"), 0, 0, this, SLOT(slotViewInline()), actionCollection(),"config_inline_editing");
-  configInlineEditing->setWhatsThis(i18n("Toggles inline editing"));
-  configInlineEditing->setToolTip(configInlineEditing->whatsThis());
 
   configSaveOptions =  KStdAction::saveOptions(this, SLOT(slotSaveOptions()), actionCollection());
   configSaveOptions->setWhatsThis(i18n("Saves current configuration"));

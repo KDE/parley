@@ -7,7 +7,7 @@
 
   <group name="General">
    <entry name="SmartAppend" type="Bool">
-      <label>If true, the entry dialog will popup repeatedly</label>
+      <label>If true, when using the entry dialog, new rows will be appended as needed</label>
       <default code="true">false</default>
     </entry>
      <entry name="UseCurrent" type="Bool">
@@ -101,16 +101,7 @@
       <default code="true">true</default>
     </entry>
   </group>
-  <group name="KFileDialog Settings">
-  <entry name="RecentFiles" type="StringList">
-      <label>Files recently opened</label>
-    </entry>
-  </group>
   <group name="Appearance">
-  <entry name="EnableInlineEdit" type="Bool">
-      <label>Enable or not Inline Editing</label>
-      <default code="true">false</default>
-    </entry>
     <entry name="UseGradeCol" type="Bool">
       <label>Use your own colors</label>
       <default code="true">true</default>
@@ -119,33 +110,33 @@
       <label>Color for not queried</label>
       <default code="true">Qt::black</default>
     </entry>
-          <entry name="GradeCol1" type="Color">
+      <entry name="GradeCol1" type="Color">
       <label>Color for grade 1</label>
-<default code="true">Qt::red</default>
+      <default code="true">Qt::red</default>
     </entry>
-          <entry name="GradeCol2" type="Color">
+      <entry name="GradeCol2" type="Color">
       <label>Color for grade 2</label>
       <default code="true">Qt::red</default>
     </entry>
-          <entry name="GradeCol3" type="Color">
+      <entry name="GradeCol3" type="Color">
       <label>Color for grade 3</label>
       <default code="true">Qt::red</default>
     </entry>
-          <entry name="GradeCol4" type="Color">
+      <entry name="GradeCol4" type="Color">
       <label>Color for grade 4</label>
       <default code="true">Qt::red</default>
     </entry>
-          <entry name="GradeCol5" type="Color">
+    <entry name="GradeCol5" type="Color">
       <label>Color for grade 5</label>
       <default code="true">Qt::green</default>
     </entry>
-          <entry name="GradeCol6" type="Color">
+    <entry name="GradeCol6" type="Color">
       <label>Color for grade 6</label>
       <default code="true">Qt::green</default>
     </entry>
-          <entry name="GradeCol7" type="Color">
+    <entry name="GradeCol7" type="Color">
       <label>Color for grade 7</label>
       <default code="true">Qt::green</default>
     </entry>
-    </group>
+  </group>
 </kcfg>

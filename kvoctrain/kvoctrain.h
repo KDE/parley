@@ -1,18 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                          main part of kvoctrain
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund 
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -23,13 +19,13 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 
 #ifndef KVOCTRAIN_H
-#define KVOCTRAIN_H 
+#define KVOCTRAIN_H
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
@@ -38,8 +34,8 @@
 // include files for QT
 #include <qpainter.h>
 
-// include files for KDE 
-#include <kapplication.h> 
+// include files for KDE
+#include <kapplication.h>
 #include <kmainwindow.h>
 #include <kaction.h>
 #include <kmenubar.h>
@@ -48,6 +44,7 @@
 
 // application specific includes
 #include "kvoctrainview.h"
+#include "kvoctraintable.h"
 #include "queryoption-dialogs/GroupOptPage.h"
 #include "query-dialogs/QueryDlgBase.h"
 
@@ -73,7 +70,7 @@ class KProgress;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class kvoctrainApp : public KMainWindow 
+class kvoctrainApp : public KMainWindow
 {
   Q_OBJECT
 
@@ -208,7 +205,6 @@ public:
   /** paste the clipboard into the document*/
   void slotEditPaste();
 
-  void slotViewInline();
   /** change the status message to text */
   void slotStatusMsg(const QString &text);
   /** change the status message of the whole statusbar temporary */
@@ -265,7 +261,6 @@ private:
   KAction* configApp;
   KAction* configQueryOptions;
   KAction* configSaveOptions;
-  KToggleAction* configInlineEditing;
 
   QString lastPixName;
 

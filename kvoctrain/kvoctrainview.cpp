@@ -1,18 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                       view to kvoctrain parts
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -59,7 +55,7 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
 
  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
- lb_list = new kvoctrainTable( the_doc, &ls, &gradecols, this, "ListBox_1" );
+ lb_list = new KVocTrainTable( the_doc, &ls, &gradecols, this, "ListBox_1" );
 
  lb_list->setLineWidth( 2 );
 
@@ -216,12 +212,6 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
 }
 
 
-void kvoctrainView::setInlineEnabled(bool state)
-{
-  lb_list->setInlineEnabled(state);
-}
-
-
 kvoctrainView::~kvoctrainView()
 {
   // write the config file entries
@@ -243,7 +233,7 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
   }
   else
   {
-    QPixmap pix;     
+    QPixmap pix;
     if (QFile::exists(pixfile))
       pix.load(pixfile);
     else
@@ -252,9 +242,9 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
       //see kdebase/kxkb/pixmap.cpp/LayoutIcon::findPixmap()
       pix.resize(21, 14);
       pix.fill(Qt::white);
-      
+
       QPainter p(&pix);
-      
+
       QFont font("sans");
       font.setPixelSize(10);
       font.setWeight(QFont::Bold);
@@ -262,9 +252,9 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
       p.setPen(Qt::red);
       p.drawText(2, 1, pix.width(), pix.height()-2, Qt::AlignCenter, "err");
       p.setPen(Qt::blue);
-      p.drawText(1, 0, pix.width(), pix.height()-2, Qt::AlignCenter, "err");     
+      p.drawText(1, 0, pix.width(), pix.height()-2, Qt::AlignCenter, "err");
     }
-     
+
      int w = pix.width();
      int h = pix.height();
 
@@ -307,126 +297,5 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
      header->setLabel(id, set, name);
   }
 }
-
-
-///////////////////////////////////////////////////////////
-
-
-kvoctrainTable::kvoctrainTable(kvoctrainDoc *doc,
-                               const LangSet *ls, const GradeCols *gc,
-                               QWidget *parent, const char *name )
-  : RowTable( doc, SelectCell, gc, parent, name ), langs(ls)
-{
-  setNumCols( doc->numLangs() );
-  setNumRows( doc->numEntries() );
-}
-
-
-void kvoctrainTable::setCurrentItem(int row)
-{
-  setCurrentRow( row, currentColumn() );
-}
-
-QWidget* kvoctrainTable::beginEdit(int row, int col, bool replace)
-{
-  if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
-  
-    if (m_rows) {
-      QString id = (col == KV_COL_ORG) ? m_rows->getOriginalIdent()
-	: m_rows->getIdent(col - KV_EXTRA_COLS);
-      
-      if (langs) {
-	QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
-	if (!kbLayout.isEmpty()) {
-	  QByteArray data, replyData;
-	  QCString replyType;
-	  QDataStream arg(data, IO_WriteOnly);
-	  arg << kbLayout;
-
-	  if (!KApplication::dcopClient()->call("kxkb", "kxkb", 
-						"setLayout(QString)",
-						data, replyType, replyData)) {
-	    kdDebug() << "kskb dcop error" << endl;
-	  }
-	}
-      }
-    }
-  }
-  return RowTable::beginEdit(row, col, replace);
-}
-
-void kvoctrainTable::endEdit(int row, int col, bool accept, bool replace)
-{
-//   if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
-//     QByteArray data, replyData;
-//     QCString replyType;
-    
-//     if (!KApplication::dcopClient()->call("kxkb", "kxkb", 
-// 					  "setLayout(QString)",
-// 					  data, replyType, replyData)) {
-//   }
-  RowTable::endEdit(row, col, accept, replace);
-}
-
-void kvoctrainTable::sortByColumn(int header, bool alpha) {
-  if (header == KV_COL_MARK)
-   return;
-
-  if (header >= numRows() ) {
-    kdError() << "header >= numRows()\n";
-    return;
-  }
-
-  if (m_rows && !m_rows->isAllowedSorting() ) {
-     KMessageBox::information(this, 
-               i18n("Sorting is currently turned off for this document.\n"
-                    "\n"
-                    "Use the document properties dialog to turn sorting on."),
-                    kapp->makeStdCaption(""));
-    return;
-  }
-
-  QApplication::setOverrideCursor( waitCursor );
-
-  clearSelection();
-
-  bool hasinlineenabled = getInlineEnabled();
-  setInlineEnabled(false);
-
-  bool sortdir = false;
-  if (m_rows) {
-    if (header >= KV_COL_ORG)
-      sortdir = m_rows->sort (header-KV_EXTRA_COLS);
-    else
-      if (alpha)
-        sortdir = m_rows->sortByLesson_alpha();
-      else
-        sortdir = m_rows->sortByLesson_index();
-  }
-  horizontalHeader()->setSortIndicator ( header, sortdir);
-  repaintContents();
-  m_rows->setModified();
-  emit currentChanged(currentRow(), currentColumn());
-  setInlineEnabled(hasinlineenabled);
-  QApplication::restoreOverrideCursor();
-}
-
-void kvoctrainTable::sortByColumn_alpha(int header)
-{
-  sortByColumn(header, true);
-}
-
-
-void kvoctrainTable::slotSelectionChanged()
-{
-  emit currentChanged(currentRow(), currentColumn());
-}
-
-
-void kvoctrainTable::sortByColumn_index(int header)
-{
-  sortByColumn(header, false);
-}
-
 
 #include "kvoctrainview.moc"

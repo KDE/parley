@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                      clipboard part of kvoctrain
 
     -----------------------------------------------------------------------
@@ -120,7 +118,7 @@ void kvoctrainApp::slotEditCopy()
 
   vector <int> csv_order = getCsvOrder(doc, &paste_order);
 
-  RowTable *table = view->getTable();
+  KVocTrainTable *table = view->getTable();
 
   for (int j = table->numRows()-1; j >= 0; j--) {
     if (table->isRowSelected(j))
