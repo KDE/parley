@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.1-Based Variant V1.0//EN" "dtd/kdex.dtd" [
   <!ENTITY kappname "&kvoctrain;">
+  <!ENTITY kvoctrain "kvoctrain">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"> <!-- change language only here -->
 ]>
@@ -36,7 +37,7 @@
 <date>2001-05-17</date>
 <releaseinfo>0.07.00</releaseinfo>
 
-<abstract><para>This handbook describes &kvoctrain; version 0.7.0.
+<abstract><para>This handbook describes &kvoctrain; version 0.8.0.
 &kvoctrain; is a little utility to help you train your vocabulary,
 when you are trying to learn a foreign language.</para></abstract>
 
@@ -203,7 +204,6 @@ others to the right of it represent the respective translations.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="mainview.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="mainview.png" format="PNG" /></imageobject>
 <textobject><phrase>[main view]</phrase></textobject>
 </mediaobject>
@@ -752,33 +752,31 @@ articles and comparisons).</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="filemenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="filemenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[file menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>New</guimenuitem></term>
 <listitem><para>Creates a new document.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Open</guimenuitem></term>
 <listitem><para>Opens an existing
 document. <filename>sample-en.kvtml</filename> is included as an
 example.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Open recent</guimenuitem></term>
 <listitem><para>Opens one of the recently opened documents.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Merge..</guimenuitem></term>
 <listitem><para>Merges another vocabulary to the current.</para>
 <para>Only those parts of the second
 vocabulary are merged, that have the same <ulink
@@ -789,17 +787,17 @@ with others.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Save</guimenuitem></term>
 <listitem><para>Saves the document.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Save as</guimenuitem></term>
 <listitem><para>Saves the document under another name.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Quit</guimenuitem></term>
 <listitem><para>Exits &kvoctrain;.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -811,23 +809,21 @@ with others.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="editmenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="editmenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[edit menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Copy</guimenuitem></term>
 <listitem><para>Copies the current row to the clipboard. The entries
 are separated by a special sequence of characters which can be chosen in
 the <link linkend="options2-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Paste</guimenuitem></term>
 <listitem><para>Pastes from clipboard. The entries are divided by
 the above mentioned <link linkend="cut-n-paste">separator</link>
 character and inserted as a new row with one or more columns. You can
@@ -838,45 +834,45 @@ them all as new rows one after another.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Select all</guimenuitem></term>
 <listitem><para>Marks the whole vocabulary as "selected" for further
 processing.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Remove</guimenuitem></term>
 <listitem><para>Removes all multiple selection marks.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Search from clipboard</guimenuitem></term>
 <listitem><para>Pastes the clipboard content into the <link
 linkend="smart-search">smart search</link> entry field and search this
 expression in all the entries in the current column.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Append new entry</guimenuitem></term>
 <listitem><para>Appends one or more new expressions. See
 <link linkend="key-insert">Insert key</link> section for more
 information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Edit selected area</guimenuitem></term>
 <listitem><para>Edits current expression. See <link
 linkend="key-enter">Enter key</link> section for more
 information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Remove selected area</guimenuitem></term>
 <listitem><para>Removes selection. See <link linkend="key-delete">Delete
 key</link> for more information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Save selected area</guimenuitem></term>
 <listitem><para>Saves the selection to a file.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -888,52 +884,50 @@ key</link> for more information.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="vocmenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="vocmenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[vocabulary menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Show statistics</guimenuitem></term>
 <listitem><para>Invokes the <link linkend="stat-dlg">statistics
 dialog</link> to display the most important facts about your
 vocabulary.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Assign lessons</guimenuitem></term>
 <listitem><para>Searches the vocabulary for entries that are
 not yet assigned a lesson. They are randomly assigned new
 lessons.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Clean up</guimenuitem></term>
 <listitem><para>Searches for entries which are exactly the same (original
 and all translations) and removes all but one.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Append language</guimenuitem></term>
 <listitem><para>Appends a new column (a new language).</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Remove language</guimenuitem></term>
 <listitem><para>Removes one of the translations.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Document properties</guimenuitem></term>
 <listitem><para>Invokes the <link linkend="docprop-dlg">document
 properties dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Language properties</guimenuitem></term>
 <listitem><para>Invokes the <link linkend="langprop-dlg">language
 properties dialog</link>.</para></listitem>
 </varlistentry>
@@ -946,29 +940,27 @@ properties dialog</link>.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="learnmenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="learnmenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[learn menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Column menu</guimenuitem></term>
 <listitem><para>Provides a submenu for each language with all the
 query dialogs. Exactly the same as the menu appearing in a <link
 linkend="header-menu">table header button</link>.</para></listitem>
 </varlistentry>
          
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Resume random query</guimenuitem></term>
 <listitem><para>Resumes the previous random query if you terminated one
 before. Selected entries appear in a bold face font.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Resume multiple choice</guimenuitem></term>
 <listitem><para>Same as the previous topic but query with multiple
 choice.</para></listitem>
 </varlistentry>
@@ -981,40 +973,38 @@ choice.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="optmenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="optmenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[options menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Toolbar</guimenuitem></term>
 <listitem><para>Toggles the visibility of the toolbar
 buttons.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Statusbar</guimenuitem></term>
 <listitem><para>The same for the status line at the
 bottom.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>General options</guimenuitem></term>
 <listitem><para>Invokes the <link linkend="options-dlg">general options
 dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query options</guimenuitem></term>
 <listitem><para>Invokes the <link linkend="options-dlg">query options
 dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Save options</guimenuitem></term>
 <listitem><para>Saves the options. Only selectable if the options are
 not already saved automatically.</para></listitem>
 </varlistentry>
@@ -1022,51 +1012,6 @@ not already saved automatically.</para></listitem>
   
 </sect1>
 
-<sect1 id="help-menu">
-<title>Help</title>
-
-<screenshot>
-<mediaobject>
-<imageobject><imagedata fileref="helpmenu.eps" format="EPS" /></imageobject>
-<imageobject><imagedata fileref="helpmenu.png" format="PNG" /></imageobject>
-<textobject><phrase>[help menu]</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<!-- Here, the explained items are missing. Please add them -->
-<variablelist>
-<varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Invokes &kvoctrain; online help in the
-current language. If this is not possible, english invoked as
-default.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Only KDE2 and currently unused.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Only KDE2: invoke a dialog to send a bug report.</para>
-<para>To submit bug reports you should use the <ulink url=
-"http://sourceforge.net/bugs/?group_id=9265">bug tracking system</ulink>
-on sourceforge instead.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Shows some information about &kvoctrain;.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Shows some information about the &kde; project.</para></listitem>
-</varlistentry>
-</variablelist>
-  
-</sect1>
 
 <sect1 id="header-menu">
 <title>Table header</title>
@@ -1081,80 +1026,78 @@ to choose which of the translations you want learn from.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="headmenu.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="headmenu.png" format="PNG" /></imageobject>
 <textobject><phrase>[header menu]</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<!-- Here, the explained items are missing. Please add them -->
 <variablelist>
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Create random query</guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
 linkend="threshholds">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Create multiple choice</guimenuitem></term>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions according
 to your <link linkend="threshholds">threshholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query verbs</guimenuitem></term>
 <listitem><para>All of the verbs with its conjugations are
 queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query articles</guimenuitem></term>
 <listitem><para>Queries the articles if the gender of the nouns is
 defined.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query comparison</guimenuitem></term>
 <listitem><para>Queries comparison forms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query synonyms</guimenuitem></term>
 <listitem><para>Queries the synonyms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
-<listitem><para>Queries the synonyms.</para></listitem>
+<term><guimenuitem>Query antonyms</guimenuitem></term>
+<listitem><para>Queries the antonyms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query the examples</guimenuitem></term>
 <listitem><para>Queries the examples.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Query paraphrase</guimenuitem></term>
 <listitem><para>Queries the paraphrases.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Sort</guimenuitem></term>
 <listitem><para>Sorts this row in ascending resp. descending
 order.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Set language</guimenuitem></term>
 <listitem><para>Chooses a language for this column. If your desired
 language does not yet exists in this menu, you have to add it with the
 <link linkend="options2-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Reset properties</guimenuitem></term>
 <listitem><para>Resets the properties of all the selected entries to
 their initial state as if you just had appended them.</para>
 <para>If you have chosen a lesson in the appropriate box in the toolbar,
@@ -1163,7 +1106,7 @@ affected.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem></guimenuitem></term>
+<term><guimenuitem>Remove language</guimenuitem></term>
 <listitem><para>Removes this column and all its entries.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1186,7 +1129,6 @@ vocabulary.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="docprop1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="docprop1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[general document properties]</phrase></textobject>
 </mediaobject>
@@ -1229,7 +1171,6 @@ one of the other categories.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="docprop2-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="docprop2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[lesson descriptions]</phrase></textobject>
 </mediaobject>
@@ -1278,7 +1219,6 @@ include them in the application as standard item.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="docprop6-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="docprop6-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[document options]</phrase></textobject>
 </mediaobject>
@@ -1315,7 +1255,6 @@ files with others <emphasis>(and I really recommend that you do ;-)
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="lang1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="lang1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[language elements]</phrase></textobject>
 </mediaobject>
@@ -1367,7 +1306,6 @@ equally.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="options1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[general options dialog]</phrase></textobject>
 </mediaobject>
@@ -1435,7 +1373,6 @@ done.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options2-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[language options dialog]</phrase></textobject>
 </mediaobject>
@@ -1500,7 +1437,6 @@ list.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options3-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[view options dialog]</phrase></textobject>
 </mediaobject>
@@ -1530,7 +1466,6 @@ according check box.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="options4-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[clipboard options dialog]</phrase></textobject>
 </mediaobject>
@@ -1577,7 +1512,6 @@ be in the same language order as the current document.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[option groups]</phrase></textobject>
 </mediaobject>
@@ -1624,7 +1558,6 @@ settings.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt2-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[general query options]</phrase></textobject>
 </mediaobject>
@@ -1665,7 +1598,6 @@ that the directions are altered randomly.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt3-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[query threshholds]</phrase></textobject>
 </mediaobject>
@@ -1726,7 +1658,6 @@ want a property to be ignored, choose "Dont care" for it.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt4-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[query blocking]</phrase></textobject>
 </mediaobject>
@@ -1764,7 +1695,6 @@ entries and their properties.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="entry1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="entry1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[entry dialog]</phrase></textobject>
 </mediaobject>
@@ -1833,7 +1763,6 @@ page are located here.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="entry2-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="entry2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[additional entry dialog]</phrase></textobject>
 </mediaobject>
@@ -1884,7 +1813,6 @@ is also a query type for this expression.</para></listitem>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="entry3-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="entry3-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[verb entry dialog]</phrase></textobject>
 </mediaobject>
@@ -1910,7 +1838,6 @@ already entered conjugations.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="entry4-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="entry4-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[comparison entry dialog]</phrase></textobject>
 </mediaobject>
@@ -1931,7 +1858,6 @@ one of the translations is given (=> to).</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="entry5-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="entry5-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[from/to entry dialog]</phrase></textobject>
 </mediaobject>
@@ -1994,7 +1920,6 @@ in random order with the following dialog box.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[random query dialog]</phrase></textobject>
 </mediaobject>
@@ -2091,7 +2016,6 @@ step. If you did not know it, the grade is reset to level 1.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="mu-query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="mu-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[multiple choice query dialog]</phrase></textobject>
 </mediaobject>
@@ -2108,7 +2032,6 @@ is shown together with random other expressions and you have to choose
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="verb-query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="verb-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[conjugation query dialog]</phrase></textobject>
 </mediaobject>
@@ -2126,7 +2049,6 @@ course you must know all of them for a successful result.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="art-query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="art-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[article query dialog]</phrase></textobject>
 </mediaobject>
@@ -2144,7 +2066,6 @@ entry dialog.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="comp-query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="comp-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[comparison query dialog]</phrase></textobject>
 </mediaobject>
@@ -2160,7 +2081,6 @@ word is chosen randomly and you must complete the remaining two.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="syn-query-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="syn-query-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[synonym query dialog]</phrase></textobject>
 </mediaobject>
@@ -2185,7 +2105,6 @@ this is mainly useful when your expression is a single word.</para>
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="stat1-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="stat1-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[general document statistics]</phrase></textobject>
 </mediaobject>
@@ -2207,7 +2126,6 @@ your document:
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="stat2-dlg.eps" format="EPS" /></imageobject>
 <imageobject><imagedata fileref="stat2-dlg.png" format="PNG" /></imageobject>
 <textobject><phrase>[per language statistics]</phrase></textobject>
 </mediaobject>
