@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>GenOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>568</width>
-            <height>433</height>
+            <height>436</height>
         </rect>
     </property>
     <property name="caption">
@@ -63,6 +63,15 @@
                             <property name="text">
                                 <string>Automatic &amp;backup interval (min):</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+B</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Allow automatic savings of your work</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Your work will be automatically saved if you check this option</string>
+                            </property>
                         </widget>
                         <widget class="QCheckBox" row="3" column="0" rowspan="1" colspan="3">
                             <property name="name">
@@ -70,6 +79,15 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Save options automatically </string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+S</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>If checked, KVocTrain will save automatically all your changes when quitting</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>When checked, all options are save upon termination of KVocTrain. Otherwise you have to select the appropriate menu item.</string>
                             </property>
                         </widget>
                         <widget class="QLineEdit" row="0" column="1">
@@ -84,6 +102,12 @@
                                     <verstretch>0</verstretch>
                                 </sizepolicy>
                             </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Number of secondes between 2 automatic backups</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>You can fix here the number of seconds between 2 backups of yopur current work</string>
+                            </property>
                         </widget>
                         <spacer row="0" column="2">
                             <property name="name">
@@ -95,6 +119,12 @@
                             <property name="sizeType">
                                 <enum>Expanding</enum>
                             </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>20</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
                         </spacer>
                         <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="3">
                             <property name="name">
@@ -103,6 +133,15 @@
                             <property name="text">
                                 <string>Smart a&amp;ppending</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+P</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>If checked, the entry dialog will popup repeatedly</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>If this feature is activated, you will repeatedly be prompted with the entry dialog. After entering the first original you have to enter the corresponding translations. Afterwards you proceed with the next original and its translations until you stop by pressing the ESC key.</string>
+                            </property>
                         </widget>
                         <widget class="QCheckBox" row="2" column="0" rowspan="1" colspan="3">
                             <property name="name">
@@ -110,6 +149,15 @@
                             </property>
                             <property name="text">
                                 <string>Apply changes &amp;without asking</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+W</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Your changes will be applied automatically.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>If checked, no dialog will ask you if you really want this change, it will be applied automatically.</string>
                             </property>
                         </widget>
                     </grid>
@@ -138,6 +186,15 @@
                             <property name="text">
                                 <string>A&amp;utomatic</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+U</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>KVocTrain decides of the resizing of the columns</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>KVocTrain makes each columns the same width except the leftmost with the lesson names which has half the size of the others. The second column which contains the picture that describes the state of the row has a fixed width.</string>
+                            </property>
                         </widget>
                         <widget class="QRadioButton">
                             <property name="name">
@@ -146,6 +203,15 @@
                             <property name="text">
                                 <string>P&amp;ercentage</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+E</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>The columns resize whith the same factor the window is resized to.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>If this is checked, the columns resize accordingly to the window resizing rate</string>
+                            </property>
                         </widget>
                         <widget class="QRadioButton">
                             <property name="name">
@@ -153,6 +219,15 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Fixed</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+F</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>There is no resizing of the columns</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>When checked, no resizing of the columns is done</string>
                             </property>
                         </widget>
                     </vbox>
