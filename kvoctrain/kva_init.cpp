@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.22  2002/01/02 11:38:27  arnold
+    fixed displaying of modified doc
+
     Revision 1.21  2001/12/30 10:36:04  arnold
     fixed and improved dialogs
 
@@ -373,8 +376,8 @@ void kvoctrainApp::initToolBar()
   toolBar()->insertButton(KGlobal::iconLoader()->loadIcon("editpaste", KIcon::Toolbar), ID_EDIT_PASTE, true, i18n("Paste"));
 
   toolBar()->insertSeparator();
-  QStrList slist;
-  toolBar()->insertCombo (&slist, ID_TLESSON, false,
+  QStringList slist;
+  toolBar()->insertCombo (slist, ID_TLESSON, false,
                           SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)),
                           true, i18n("Choose current lesson"), 160);
   lessons = toolBar()->getCombo(ID_TLESSON);
