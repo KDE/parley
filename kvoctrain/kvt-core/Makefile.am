@@ -8,6 +8,7 @@ libkvoctraincore_a_SOURCES = \
  langset.cpp \
  LineList.cpp \
  kvoctrainexpr.cpp \
+ kvoctraindoc.cpp \
  kvd_rh_kvtml.cpp \
  kvd_rb_kvtml1.cpp kvd_rb_kvtml2.cpp \
  kvd_wkvtml.cpp \
