@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2002/01/07 17:20:56  arnold
+    fixed i18n() issues
+
     Revision 1.2  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -42,7 +45,7 @@
 #endif
 
 #ifndef _DocDlg_USAGES
-#define _DocDlg_USAGES i18n("usage (area) of a language", "&Usage")
+#define _DocDlg_USAGES i18n("usage (area) of an expression", "&Usage")
 #endif
 
 #ifndef _DocDlg_TITLE

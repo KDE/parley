@@ -140,6 +140,6 @@ messages:
 	-rm *.i.c rc.cpp
 
 messages-local:
-	$(MAKE) messages EXTRACTRC=extractrc podir=. XGETTEXT="xgettext -kI18N_NOOP -ki18n"
+	$(MAKE) messages EXTRACTRC=extractrc podir=. XGETTEXT="xgettext -C -kI18N_NOOP -ki18n"
 	iconv -futf-8 -tutf-16 kvoctrain.pot > /dev/null
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.32  2002/01/07 17:19:44  arnold
+    fixed i18n() issues
+
     Revision 1.31  2001/12/30 18:41:38  arnold
     improved reaction upon 'empty' query selections
 
@@ -535,7 +538,7 @@ void kvoctrainApp::slotDocProps ()
       TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
       Conjugation::setTenseNames (new_tenseStr);
 
-      slotStatusMsg(i18n("usage (area) of a language",
+      slotStatusMsg(i18n("usage (area) of an expression",
                          "updating usage label indices..."));
       UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
       UsageManager::setUsageNames (new_usageStr);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/07 17:21:34  arnold
+    fixed i18n() issues
+
     Revision 1.7  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -83,7 +86,7 @@ UsageOptPage::UsageOptPage
 	UsageOptPageForm( parent, name ),
         doc(_doc)
 {
-	usage_group->setTitle(i18n("usage (area) of a language", "Usage Labels" ));
+	usage_group->setTitle(i18n("usage (area) of an expression", "Usage Labels" ));
 
 	connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
 	connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteUsage()) );
@@ -125,8 +128,8 @@ void UsageOptPage::slotUsageChosen(int index)
 
 void UsageOptPage::slotNewUsage()
 {
-     LessonInputDlg lid ("", i18n("usage (area) of a language", "Input usage description"),
-                             i18n("usage (area) of a language", "Usage description"));
+     LessonInputDlg lid ("", i18n("usage (area) of an expression", "Input usage description"),
+                             i18n("usage (area) of an expression", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str;
        int i = usageList->count()+1;
@@ -150,8 +153,8 @@ void UsageOptPage::slotModifyUsage()
      QString str = usageList->text (act_usage);
      int pos = str.find (USAGE_TAG);
      str.remove (0, pos+strlen (USAGE_TAG));
-     LessonInputDlg lid (str, i18n("usage (area) of a language", "Input usage description"),
-                              i18n("usage (area) of a language", "Usage description"));
+     LessonInputDlg lid (str, i18n("usage (area) of an expression", "Input usage description"),
+                              i18n("usage (area) of an expression", "Usage description"));
      if (lid.exec() == QDialog::Accepted) {
        QString str2;
        str2.setNum (act_usage+1);
@@ -195,10 +198,10 @@ void UsageOptPage::slotDeleteUsage()
          QString ul = exp->getUsageLabel(lang) + UL_USAGE_DIV;
          if (ul.find(t) >= 0 ) {
            KMessageBox::information(this,
-                     i18n("usage (area) of a language",
+                     i18n("usage (area) of an expression",
                           "This user defined usage label could not be deleted\n"
                           "because it is in use."),
-                     kapp->makeStdCaption(i18n("usage (area) of a language",
+                     kapp->makeStdCaption(i18n("usage (area) of an expression",
                                                "Deleting a usage label")));
            return;
          }
