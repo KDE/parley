@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
+            <width>580</width>
             <height>277</height>
         </rect>
     </property>
@@ -171,6 +171,7 @@
 </widget>
 <tabstops>
     <tabstop>d_sep</tabstop>
+    <tabstop>item_curr_doc</tabstop>
     <tabstop>order_list</tabstop>
     <tabstop>item_up</tabstop>
     <tabstop>item_skip</tabstop>

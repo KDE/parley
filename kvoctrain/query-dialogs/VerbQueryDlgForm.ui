@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>603</width>
-            <height>482</height>
+            <width>594</width>
+            <height>507</height>
         </rect>
     </property>
     <property stdset="1">
@@ -55,22 +55,11 @@
                     <name>spacing</name>
                     <number>6</number>
                 </property>
-                <widget row="5"  column="0" >
+                <widget row="4"  column="0" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
                         <cstring>p3sfLabel</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget row="3"  column="0" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>p2sLabel</cstring>
                     </property>
                     <property stdset="1">
                         <name>text</name>
@@ -95,7 +84,7 @@
                         <cstring>p1sField</cstring>
                     </property>
                 </widget>
-                <widget row="6"  column="0" >
+                <widget row="5"  column="0" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
@@ -106,7 +95,7 @@
                         <string>-</string>
                     </property>
                 </widget>
-                <widget row="7"  column="0" >
+                <widget row="6"  column="0" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
@@ -115,24 +104,6 @@
                     <property stdset="1">
                         <name>text</name>
                         <string>-</string>
-                    </property>
-                </widget>
-                <widget row="4"  column="3" >
-                    <class>Line</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>Line1</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>orientation</name>
-                        <enum>Vertical</enum>
-                    </property>
-                </widget>
-                <widget row="3"  column="1" >
-                    <class>QLineEdit</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>p2sField</cstring>
                     </property>
                 </widget>
                 <widget row="2"  column="2" >
@@ -172,7 +143,7 @@
                         <string>-</string>
                     </property>
                 </widget>
-                <widget row="5"  column="2" >
+                <widget row="4"  column="2" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
@@ -183,7 +154,7 @@
                         <string>-</string>
                     </property>
                 </widget>
-                <widget row="6"  column="2" >
+                <widget row="5"  column="2" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
@@ -194,7 +165,7 @@
                         <string>-</string>
                     </property>
                 </widget>
-                <widget row="7"  column="2" >
+                <widget row="6"  column="2" >
                     <class>QLabel</class>
                     <property stdset="1">
                         <name>name</name>
@@ -205,14 +176,14 @@
                         <string>-</string>
                     </property>
                 </widget>
-                <widget row="7"  column="3" >
+                <widget row="6"  column="3" >
                     <class>QLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
                         <cstring>p3pnField</cstring>
                     </property>
                 </widget>
-                <widget row="8"  column="0"  rowspan="1"  colspan="4" >
+                <widget row="7"  column="0"  rowspan="1"  colspan="4" >
                     <class>QFrame</class>
                     <property stdset="1">
                         <name>name</name>
@@ -531,7 +502,7 @@
                         </widget>
                     </hbox>
                 </widget>
-                <widget row="6"  column="3" >
+                <widget row="5"  column="3" >
                     <class>QLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
@@ -622,28 +593,46 @@
                     <class>QLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
-                        <cstring>p3sfField</cstring>
+                        <cstring>p3smField</cstring>
                     </property>
                 </widget>
                 <widget row="6"  column="1" >
                     <class>QLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
-                        <cstring>p3smField</cstring>
-                    </property>
-                </widget>
-                <widget row="7"  column="1" >
-                    <class>QLineEdit</class>
-                    <property stdset="1">
-                        <name>name</name>
                         <cstring>p3snField</cstring>
                     </property>
                 </widget>
-                <widget row="5"  column="3" >
+                <widget row="4"  column="3" >
                     <class>QLineEdit</class>
                     <property stdset="1">
                         <name>name</name>
                         <cstring>p3pfField</cstring>
+                    </property>
+                </widget>
+                <widget row="3"  column="0" >
+                    <class>QLabel</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>p2sLabel</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>-</string>
+                    </property>
+                </widget>
+                <widget row="3"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>p2sField</cstring>
+                    </property>
+                </widget>
+                <widget row="4"  column="1" >
+                    <class>QLineEdit</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>p3sfField</cstring>
                     </property>
                 </widget>
             </grid>
@@ -761,4 +750,22 @@
         <data format="XPM.GZ" length="646">789c6dd2c10ac2300c00d07bbf2234b7229d1be245fc04c5a3201e4615f430059d0711ff5ddb2e6bb236ec90eed134cb5a19d8ef36602af5ecdbfeeac05dda0798d3abebde87e3faa374d3807fa0d633a52d38d8de6f679fe33fc776e196f53cd010188256a3600a292882096246517815ca99884606e18044a3a40d91824820924265a7923a2e8bcd05f33db1173e002913175f2a6be6d3294871a2d95fa00e8a94ee017b69d339d90df1e77c57ea072ede6758</data>
     </image>
 </images>
+<tabstops>
+    <tabstop>p1sField</tabstop>
+    <tabstop>p2sField</tabstop>
+    <tabstop>p3sfField</tabstop>
+    <tabstop>p3smField</tabstop>
+    <tabstop>p3snField</tabstop>
+    <tabstop>p1pField</tabstop>
+    <tabstop>p2pField</tabstop>
+    <tabstop>p3pfField</tabstop>
+    <tabstop>p3pmField</tabstop>
+    <tabstop>p3pnField</tabstop>
+    <tabstop>show_all</tabstop>
+    <tabstop>know_it</tabstop>
+    <tabstop>verify</tabstop>
+    <tabstop>dont_know</tabstop>
+    <tabstop>b_edit</tabstop>
+    <tabstop>stop_it</tabstop>
+</tabstops>
 </UI>

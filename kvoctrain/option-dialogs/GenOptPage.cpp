@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/26 15:12:13  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.7  2001/11/10 22:29:11  arnold
     removed compatibility for kde1
 
@@ -88,6 +91,7 @@ GenOptPage::GenOptPage
   group_resize->insert(hb_fixed);
 
   connect( c_smart, SIGNAL(toggled(bool)), SLOT(slotSmartAppend(bool)) );
+  connect( c_btime, SIGNAL(toggled(bool)), SLOT(slotBTimeUsed(bool)) );
   connect( c_saveopt, SIGNAL(toggled(bool)), SLOT(slotAutoSaveOpts(bool)) );
   connect( e_btime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeBTime(const QString&)) );
   connect( hb_fixed, SIGNAL(clicked()), SLOT(slotHBfixed()) );
@@ -105,9 +109,8 @@ GenOptPage::GenOptPage
   validator = new QIntValidator (0, 60*60*24*7, 0); // at least once a week
 
   e_btime->setValidator (validator);
-  s.setNum (btime);
-  e_btime->setText (s);
-  label_btime->setBuddy (e_btime);
+  c_btime->setChecked(btime > 0);
+  slotBTimeUsed(btime > 0);
 
   switch (resizer) {
     case kvoctrainView::Automatic :
@@ -138,7 +141,31 @@ GenOptPage::~GenOptPage()
 
 void GenOptPage::initFocus() const
 {
-  e_btime->setFocus();
+  c_btime->setFocus();
+}
+
+
+void GenOptPage::slotBTimeUsed(bool on)
+{
+  e_btime->setEnabled(on);
+
+  if (on) {
+    if (btime < 0 )
+      btime = -btime;
+    if (btime == 0)
+      btime = 10;
+  }
+  else {
+    if (btime > 0 )
+      btime = -btime;
+  }
+
+  QString s;
+  s.setNum (abs(btime));
+  bool b = e_btime->signalsBlocked();
+  e_btime->blockSignals(true);
+  e_btime->setText (s);
+  e_btime->blockSignals(b);
 }
 
 
@@ -146,6 +173,7 @@ void GenOptPage::slotChangeBTime(const QString& s)
 {
    btime = atoi (s.local8Bit());
 }
+
 
 void GenOptPage::slotSmartAppend(bool b)
 {

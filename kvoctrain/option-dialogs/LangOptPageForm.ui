@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>540</width>
+            <width>536</width>
             <height>480</height>
         </rect>
     </property>
@@ -257,5 +257,6 @@
     <tabstop>e_newName</tabstop>
     <tabstop>b_langNew</tabstop>
     <tabstop>b_lang_kde</tabstop>
+    <tabstop>b_lang_iso1</tabstop>
 </tabstops>
 </UI>

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.18  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.17  2001/12/24 13:02:23  arnold
     fixed crash with recent files menu
 
@@ -144,11 +147,12 @@ static QString getFileName(const QString &caption,
 
 void kvoctrainApp::slotTimeOutBackup()
 {
-  if (backupTime != 0 && doc && doc->isModified() ) {
+  if (backupTime > 0 && doc && doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
-  btimer->start(backupTime, TRUE);
+  if (backupTime > 0)
+    btimer->start(backupTime, TRUE);
   slotStatusMsg(IDS_DEFAULT);
 }
 

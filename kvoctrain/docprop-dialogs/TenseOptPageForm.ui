@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
+            <width>580</width>
             <height>480</height>
         </rect>
     </property>
@@ -151,4 +151,11 @@
         </widget>
     </vbox>
 </widget>
+<tabstops>
+    <tabstop>tenseList</tabstop>
+    <tabstop>b_new</tabstop>
+    <tabstop>b_modify</tabstop>
+    <tabstop>b_delete</tabstop>
+    <tabstop>b_cleanup</tabstop>
+</tabstops>
 </UI>

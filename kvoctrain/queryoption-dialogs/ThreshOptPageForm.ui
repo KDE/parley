@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>576</width>
+            <width>572</width>
             <height>480</height>
         </rect>
     </property>
@@ -358,4 +358,20 @@
         </widget>
     </hbox>
 </widget>
+<tabstops>
+    <tabstop>lessoncomp</tabstop>
+    <tabstop>lessonlist</tabstop>
+    <tabstop>b_all_less</tabstop>
+    <tabstop>b_none_less</tabstop>
+    <tabstop>typecomp</tabstop>
+    <tabstop>typelist</tabstop>
+    <tabstop>gradecomp</tabstop>
+    <tabstop>gradelist</tabstop>
+    <tabstop>querycomp</tabstop>
+    <tabstop>querylist</tabstop>
+    <tabstop>badcomp</tabstop>
+    <tabstop>badlist</tabstop>
+    <tabstop>datecomp</tabstop>
+    <tabstop>datelist</tabstop>
+</tabstops>
 </UI>

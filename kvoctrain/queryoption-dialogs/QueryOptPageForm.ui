@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
+            <width>576</width>
             <height>480</height>
         </rect>
     </property>
@@ -350,4 +350,20 @@
         </widget>
     </hbox>
 </widget>
+<tabstops>
+    <tabstop>r_nolimit_to</tabstop>
+    <tabstop>r_show_to</tabstop>
+    <tabstop>r_cont_to</tabstop>
+    <tabstop>e_mqtime</tabstop>
+    <tabstop>showrem</tabstop>
+    <tabstop>ask_sub</tabstop>
+    <tabstop>ask_verbcon</tabstop>
+    <tabstop>ask_article</tabstop>
+    <tabstop>ask_compare</tabstop>
+    <tabstop>ask_syno</tabstop>
+    <tabstop>ask_anto</tabstop>
+    <tabstop>ask_examp</tabstop>
+    <tabstop>ask_para</tabstop>
+    <tabstop>swap</tabstop>
+</tabstops>
 </UI>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/12/26 15:11:29  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.8  2001/11/10 22:28:25  arnold
     removed compatibility for kde1
 
@@ -203,6 +206,11 @@ FromToEntryPage::FromToEntryPage
         qcount_dirty = false;
         date_dirty = false;
         grade_dirty = false;
+
+        setTabOrder(fauxami_line, year_spin);
+        setTabOrder(year_spin, month_spin);
+        setTabOrder(month_spin, day_spin);
+        setTabOrder(day_spin, today);
 }
 
 

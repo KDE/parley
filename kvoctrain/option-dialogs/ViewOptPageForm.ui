@@ -12,7 +12,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>556</width>
+            <width>552</width>
             <height>480</height>
         </rect>
     </property>
@@ -452,6 +452,8 @@
     </vbox>
 </widget>
 <tabstops>
+    <tabstop>b_choose</tabstop>
+    <tabstop>b_choose_ipa</tabstop>
     <tabstop>c_use</tabstop>
     <tabstop>b_col7</tabstop>
     <tabstop>b_col6</tabstop>

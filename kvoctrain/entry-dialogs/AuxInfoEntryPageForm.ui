@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>588</width>
+            <width>584</width>
             <height>309</height>
         </rect>
     </property>
@@ -141,4 +141,11 @@
         </widget>
     </hbox>
 </widget>
+<tabstops>
+    <tabstop>synonym_line</tabstop>
+    <tabstop>antonym_line</tabstop>
+    <tabstop>examp_line</tabstop>
+    <tabstop>remark_line</tabstop>
+    <tabstop>para_line</tabstop>
+</tabstops>
 </UI>

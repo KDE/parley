@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
+            <width>580</width>
             <height>480</height>
         </rect>
     </property>
@@ -297,4 +297,22 @@
         </widget>
     </hbox>
 </widget>
+<tabstops>
+    <tabstop>c_blocking</tabstop>
+    <tabstop>block7</tabstop>
+    <tabstop>block6</tabstop>
+    <tabstop>block5</tabstop>
+    <tabstop>block4</tabstop>
+    <tabstop>block3</tabstop>
+    <tabstop>block2</tabstop>
+    <tabstop>block1</tabstop>
+    <tabstop>c_expire</tabstop>
+    <tabstop>expire7</tabstop>
+    <tabstop>expire6</tabstop>
+    <tabstop>expire5</tabstop>
+    <tabstop>expire4</tabstop>
+    <tabstop>expire3</tabstop>
+    <tabstop>expire2</tabstop>
+    <tabstop>expire1</tabstop>
+</tabstops>
 </UI>

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
+            <width>580</width>
             <height>390</height>
         </rect>
     </property>
@@ -446,5 +446,6 @@
     <tabstop>b_TypeDlg</tabstop>
     <tabstop>usage_box</tabstop>
     <tabstop>b_usageDlg</tabstop>
+    <tabstop>c_active</tabstop>
 </tabstops>
 </UI>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.20  2001/12/26 15:10:25  mueller
+    CVSSILINT: fixincludes
+
     Revision 1.19  2001/12/24 13:01:03  arnold
     fixed crash with recent files menu
 
@@ -171,7 +174,7 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   querying = false;
   btimer = new QTimer( this );
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
-  if (backupTime != 0)
+  if (backupTime > 0)
     btimer->start(backupTime, TRUE);
 }
 

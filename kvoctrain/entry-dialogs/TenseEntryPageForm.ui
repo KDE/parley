@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>584</width>
+            <width>580</width>
             <height>328</height>
         </rect>
     </property>
@@ -429,4 +429,20 @@
         </widget>
     </vbox>
 </widget>
+<tabstops>
+    <tabstop>tensebox</tabstop>
+    <tabstop>b_next</tabstop>
+    <tabstop>first_singular</tabstop>
+    <tabstop>second_singular</tabstop>
+    <tabstop>third_s_common</tabstop>
+    <tabstop>thirdF_singular</tabstop>
+    <tabstop>thirdM_singular</tabstop>
+    <tabstop>thirdN_singular</tabstop>
+    <tabstop>first_plural</tabstop>
+    <tabstop>second_plural</tabstop>
+    <tabstop>third_p_common</tabstop>
+    <tabstop>thirdF_plural</tabstop>
+    <tabstop>thirdM_plural</tabstop>
+    <tabstop>thirdN_plural</tabstop>
+</tabstops>
 </UI>

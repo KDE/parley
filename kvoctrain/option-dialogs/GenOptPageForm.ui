@@ -11,8 +11,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>588</width>
-            <height>480</height>
+            <width>580</width>
+            <height>433</height>
         </rect>
     </property>
     <property stdset="1">
@@ -47,17 +47,6 @@
                     <name>spacing</name>
                     <number>6</number>
                 </property>
-                <widget row="0"  column="0" >
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>label_btime</cstring>
-                    </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>&amp;Backup interval (min):</string>
-                    </property>
-                </widget>
                 <widget row="1"  column="0"  rowspan="1"  colspan="3" >
                     <class>QCheckBox</class>
                     <property stdset="1">
@@ -77,7 +66,7 @@
                     </property>
                     <property stdset="1">
                         <name>text</name>
-                        <string>sa&amp;ve options automatically </string>
+                        <string>Sa&amp;ve options automatically </string>
                     </property>
                 </widget>
                 <widget row="0"  column="1" >
@@ -169,8 +158,27 @@
                         </widget>
                     </vbox>
                 </widget>
+                <widget row="0"  column="0" >
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>c_btime</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>Automatic &amp;backup interval (min):</string>
+                    </property>
+                </widget>
             </grid>
         </widget>
     </hbox>
 </widget>
+<tabstops>
+    <tabstop>e_btime</tabstop>
+    <tabstop>c_smart</tabstop>
+    <tabstop>c_saveopt</tabstop>
+    <tabstop>hb_auto</tabstop>
+    <tabstop>hb_percent</tabstop>
+    <tabstop>hb_fixed</tabstop>
+</tabstops>
 </UI>

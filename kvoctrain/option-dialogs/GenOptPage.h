@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/02 10:18:58  arnold
+    fixed colum resizing and diplaying of grade colors
+
     Revision 1.3  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -85,6 +88,7 @@ protected slots:
     void slotChangeBTime(const QString&);
     void slotSmartAppend(bool);
     void slotAutoSaveOpts(bool);
+    void slotBTimeUsed(bool);
 
 protected:
     QValidator              *validator;

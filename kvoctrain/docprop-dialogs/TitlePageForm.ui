@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>568</width>
+            <width>564</width>
             <height>480</height>
         </rect>
     </property>
@@ -193,4 +193,10 @@
         </widget>
     </vbox>
 </widget>
+<tabstops>
+    <tabstop>e_title</tabstop>
+    <tabstop>e_author</tabstop>
+    <tabstop>e_license</tabstop>
+    <tabstop>e_remark</tabstop>
+</tabstops>
 </UI>

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>748</width>
+            <width>744</width>
             <height>480</height>
         </rect>
     </property>
@@ -629,10 +629,22 @@
 </widget>
 <tabstops>
     <tabstop>def_female</tabstop>
-    <tabstop>indef_female</tabstop>
     <tabstop>def_male</tabstop>
+    <tabstop>indef_natural</tabstop>
+    <tabstop>indef_female</tabstop>
     <tabstop>indef_male</tabstop>
     <tabstop>def_natural</tabstop>
-    <tabstop>indef_natural</tabstop>
+    <tabstop>first_singular</tabstop>
+    <tabstop>second_singular</tabstop>
+    <tabstop>thirdS_common</tabstop>
+    <tabstop>thirdF_singular</tabstop>
+    <tabstop>thirdM_singular</tabstop>
+    <tabstop>thirdN_singular</tabstop>
+    <tabstop>first_plural</tabstop>
+    <tabstop>second_plural</tabstop>
+    <tabstop>thirdP_common</tabstop>
+    <tabstop>thirdF_plural</tabstop>
+    <tabstop>thirdM_plural</tabstop>
+    <tabstop>thirdN_plural</tabstop>
 </tabstops>
 </UI>

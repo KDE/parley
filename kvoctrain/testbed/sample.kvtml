@@ -65,13 +65,13 @@ Valid xml means:
   encoding="UTF-8"
   generator="kvoctrain v2.2.2"
   cols="2"
-  lines="21"
+  lines="12"
   title="Sample vocabulary"
   author="author1&nl;author2"
   license="GPL"
   remark="doc remark&nl;line2">
 
- <lesson width="158">
+ <lesson width="229">
   <desc no="1" query="1">- 1</desc>
   <desc no="2" query="1">- 2</desc>
   <desc no="3" query="1">- 3</desc>
@@ -141,7 +141,7 @@ Valid xml means:
   <desc no="1">#20 3</desc>
  </usage>
 
- <e m="2"><o width="316" l="en" q="t" y="-">aback (taken ~)</o><t width="316" l="de" q="o" p="ɵʋɧŋʬɲɹλθ">verblüfft</t></e>
+ <e m="2"><o width="229" l="en" q="t" y="-">aback (taken ~)</o><t width="332" l="de" q="o" p="ɵʋɧŋʬɲɹλθ">verblüfft</t></e>
  <e m="1" t="aj"><o r="bem">balmy</o><t>mild</t></e>
  <e m="2"><o>chunk</o><t r="Klotz">Klotz</t></e>
  <e m="3"><o>decline</o><t>Niedergang, Verfall</t></e>
@@ -171,22 +171,5 @@ Valid xml means:
    gut</t></e>
  <e m="2"><o r="dfgh" y="-">handsome</o><t>stattlich</t></e>
  <e m="8"><o r="rema">itch</o><t>jucken, darauf brennen</t></e>
- <e m="2"><o r="rem" y="-">jaggy</o><t>zackig, gekerbt</t></e>
- <e m="9"><o y="-">knuckles</o><t r="rem" y="sysbsefgr" x="xmplr Knöchel" h="asdf knöchel sdfg" a="asdf">Knöchel</t></e>
- <e m="2"><o y="-">laboured</o><t>schwerfällig, mühsam</t></e>
- <e m="2" t="n"><o r="dfgh" y="-" p="mischief">mischief</o><t r="remark">Unheil, Schaden</t></e>
- <e m="5"><o y="-">neat</o><t>niedlich, ordentlich</t></e>
- <e m="2"><o>opinionated</o><t>starrsinnig</t></e>
- <e m="10" s="1" t="n:f"><o y="-">
-  <multiplechoice>
-   <mc1>pi1</mc1><mc2>pi2</mc2><mc3>pi3</mc3><mc4>pi4</mc4><mc5>pi5</mc5>
-  </multiplechoice>
-  pea</o><t ff="erber  erb von" tf="piii  erb zum">
-  <multiplechoice>
-   <mc1>erb1</mc1><mc2>erb2</mc2>
-  </multiplechoice>
-  Erbse</t></e>
- <e><o>quell</o><t>bezwingen</t></e>
- <e m="2"><o y="-">tallow</o><t>Talg</t></e>
  <e><o y="-">utterly</o><t>gänzlich</t></e>
 </kvtml>
