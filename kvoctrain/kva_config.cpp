@@ -29,12 +29,9 @@
 #include "kvoctrain.h"
 #include <kvoctraincore.h>
 
-#include <qmessagebox.h>
 #include <qfile.h>
 
-#include <kconfig.h>
 #include <kstatusbar.h>
-#include <klocale.h>
 #include <kdebug.h>
 
 #include "common-dialogs/ProgressDlg.h"

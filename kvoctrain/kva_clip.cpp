@@ -27,7 +27,6 @@
  ***************************************************************************/
 
 #include "kvoctrain.h"
-#include <kvoctraincore.h>
 
 #include <qclipboard.h>
 

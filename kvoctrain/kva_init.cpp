@@ -26,7 +26,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kvoctraincore.h>
 #include "kvoctrain.h"
 
 #include "common-dialogs/ProgressDlg.h"
@@ -41,7 +40,6 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <kconfig.h>
 
 #include "prefs.h"
 
