@@ -30,16 +30,14 @@ bin_SCRIPTS = langen2kvtml
 xdg_apps_DATA = kvoctrain.desktop
 kde_kcfg_DATA = kvoctrain.kcfg
 
-INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
- -I$(top_srcdir)/kvoctrain/kvoctrain \
- -I$(top_builddir)/kvoctrain/kvoctrain/option-dialogs \
- -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs \
- -I$(top_builddir)/kvoctrain/kvoctrain/docprop-dialogs \
- -I$(top_srcdir)/kvoctrain/kvoctrain/queryoption-dialogs \
- -I$(top_builddir)/kvoctrain/kvoctrain/queryoption-dialogs \
- -I$(top_builddir)/kvoctrain/kvoctrain/query-dialogs \
- -I$(top_builddir)/kvoctrain/kvoctrain/entry-dialogs \
- -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
+INCLUDES= -I$(srcdir)/.. \
+ -I$(srcdir)/kvt-core \
+ -I$(srcdir)/option-dialogs \
+ -I$(srcdir)/common-dialogs \
+ -I$(srcdir)/docprop-dialogs \
+ -I$(srcdir)/queryoption-dialogs \
+ -I$(srcdir)/query-dialogs \
+ -I$(srcdir)/entry-dialogs \
  $(all_includes)
 
 bin_PROGRAMS = kvoctrain spotlight2kvtml

@@ -1,13 +1,5 @@
-# please provide kvoctrain/* AND kvoctrain/kvoctrain/*
-# this enables me to create a personal tar ball
-
-INCLUDES = -I$(top_srcdir)/kvoctrain/kvoctrain/common-dialogs \
-           -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs \
-           -I$(top_srcdir)/kvoctrain/kvoctrain \
-           -I$(top_srcdir)/kvoctrain \
-           -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
-           -I$(top_srcdir)/kvoctrain/kvt-core \
-           $(all_includes)
+INCLUDES = -I$(srcdir)/.. -I$(srcdir)/../kvt-core \
+ $(all_includes)
 
 noinst_LTLIBRARIES = libqueryoptiondlg.la
 
