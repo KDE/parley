@@ -55,6 +55,15 @@ public:
         KComboBox    *lessons,
         QueryManager *manager,
         bool          swapdir,
+        bool          suggestions,
+        bool          split,
+        bool          periods,
+        bool          colons,
+        bool          semicolons,
+        bool          commas,
+        int           fields,
+        bool          show_more,
+        bool          i_know,
         bool          altlearn,
         bool          block,
         bool          expire,
@@ -69,6 +78,16 @@ public:
     int  getAltLearn()    const { return queryOptPage->getAltLearn(); }
     kvq_timeout_t getTypeQueryTimeout()   const
            { return queryOptPage->getTypeQueryTimeout(); }
+
+    bool getSuggestions() const { return queryOptPage->getSuggestions(); }
+    bool getSplit()       const { return queryOptPage->getSplit(); }
+    bool getPeriods()     const { return queryOptPage->getPeriods(); }
+    bool getColons()      const { return queryOptPage->getColons(); }
+    bool getSemicolons()  const { return queryOptPage->getSemicolons(); }
+    bool getCommas()      const { return queryOptPage->getCommas(); }
+    int  getFields()      const { return queryOptPage->getFields(); }
+    bool getShowMore()    const { return queryOptPage->getShowMore(); }
+    bool getIKnow()       const { return queryOptPage->getIKnow(); }
 
     int getBlock()       const { return blockOptPage->getBlock(); }
     int getExpire()      const { return blockOptPage->getExpire(); }
@@ -89,6 +108,7 @@ protected slots:
     void slotModifyGroup(int);
 
 protected:
+    virtual void showEvent (QShowEvent*);
 
     QueryManager   manager;
     ThreshOptPage *threshOptPage;

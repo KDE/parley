@@ -128,6 +128,15 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setBlock(block);
     Prefs::setExpire(expire);
     Prefs::setQueryTimeout(type_querytimeout);
+    Prefs::setSuggestions(suggestions);
+    Prefs::setSplit(split);
+    Prefs::setPeriods(periods);
+    Prefs::setColons(colons);
+    Prefs::setSemicolons(semicolons);
+    Prefs::setCommas(commas);
+    Prefs::setFields(fields);
+    Prefs::setShowMore(show_more);
+    Prefs::setIKnow(i_know);
     Prefs::writeConfig();
    
     config->setGroup(CFG_QUERYMANAG);
@@ -242,6 +251,15 @@ void kvoctrainApp::readOptions()
   alt_learn= Prefs::altLearn();
   block = Prefs::block();
   expire = Prefs::expire();
+  suggestions = Prefs::suggestions();
+  split = Prefs::split();
+  periods = Prefs::periods();
+  colons = Prefs::colons();
+  semicolons = Prefs::semicolons();
+  commas = Prefs::commas();
+  fields = Prefs::fields();
+  show_more = Prefs::showMore();
+  i_know = Prefs::iKnow();
   config->setGroup(CFG_QUERYMANAG);
   querymanager.loadConfig (config);
 }

@@ -50,6 +50,15 @@ public:
         kvq_timeout_t type_timeout,
         QueryManager *_manager,
         bool          swapdir,
+        bool          _suggestions,
+        bool          _split,
+        bool          _periods,
+        bool          _colons,
+        bool          _semicolons,
+        bool          _commas,
+        int           _fields,
+        bool          _show_more,
+        bool          _i_know,
         bool          altlearn,
         QWidget      *parent = NULL,
         const char   *name = NULL
@@ -60,8 +69,19 @@ public:
     bool getSwapDir()      const { return swapdir; }
     bool getAltLearn()     const { return altlearn; }
     bool getShowCounter()  const { return showCounter; }
+    bool getSuggestions()  const { return suggestions; }
+    bool getSplit()        const { return split; }
+    bool getPeriods()      const { return periods; }
+    bool getColons()       const { return colons; }
+    bool getSemicolons()   const { return semicolons; }
+    bool getCommas()       const { return commas; }
+    int  getFields()       const { return fields; }
+    bool getShowMore()     const { return show_more; }
+    bool getIKnow()        const { return i_know; }
 
-    void setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to);
+    void setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to,
+      bool _suggestions, bool _split, bool _periods, bool _colons, bool _semicolons,
+      bool _commas, int _fields, bool _show_more, bool _i_know);
 
 protected:
     void keyPressEvent( QKeyEvent * );
@@ -80,6 +100,15 @@ protected slots:
     void slotNoTimeout();
     void slotShowTimeout();
     void slotShowRemTime(bool);
+    void slotCheckSuggestions(bool);
+    void slotCheckSplit(bool);
+    void slotCheckPeriods(bool);
+    void slotCheckColons(bool);
+    void slotCheckSemicolons(bool);
+    void slotCheckCommas(bool);
+    void slotChangeFields(const QString&);
+    void slotCheckShowMore(bool);
+    void slotCheckIKnow(bool);
 
 protected:
 
@@ -90,6 +119,15 @@ protected:
     bool          altlearn;
     kvq_timeout_t type_timeout;
     bool          showCounter;
+    bool          suggestions;
+    bool          split;
+    bool          periods;
+    bool          colons;
+    bool          semicolons;
+    bool          commas;
+    int           fields;
+    bool          show_more;
+    bool          i_know;
 };
 
 #endif // QueryOptPage_included

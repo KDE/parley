@@ -47,6 +47,15 @@ QueryOptPage::QueryOptPage
         kvq_timeout_t type_to,
         QueryManager *_manager,
         bool          _swapdir,
+        bool          _suggestions,
+        bool          _split,
+        bool          _periods,
+        bool          _colons,
+        bool          _semicolons,
+        bool          _commas,
+        int           _fields,
+        bool          _show_more,
+        bool          _i_know,
         bool          _altlearn,
 	QWidget      *parent,
 	const char   *name
@@ -63,9 +72,18 @@ QueryOptPage::QueryOptPage
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
    connect( kcfg_SwapDir, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
+   connect( enable_crib_lists, SIGNAL(toggled(bool)), SLOT(slotCheckSuggestions(bool)) );
+   connect( split_translations, SIGNAL(toggled(bool)), SLOT(slotCheckSplit(bool)) );
+   connect( split_at_periods, SIGNAL(toggled(bool)), SLOT(slotCheckPeriods(bool)) );
+   connect( split_at_colons, SIGNAL(toggled(bool)), SLOT(slotCheckColons(bool)) );
+   connect( split_at_semicolons, SIGNAL(toggled(bool)), SLOT(slotCheckSemicolons(bool)) );
+   connect( split_at_commas, SIGNAL(toggled(bool)), SLOT(slotCheckCommas(bool)) );
+   connect( enable_show_more, SIGNAL(toggled(bool)), SLOT(slotCheckShowMore(bool)) );
+   connect( enable_i_know, SIGNAL(toggled(bool)), SLOT(slotCheckIKnow(bool)) );
    connect( kcfg_AltLearn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
 
    connect( kcfg_maxTimePer, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
+   connect( split_max_fields, SIGNAL(textChanged(const QString&)), SLOT(slotChangeFields(const QString&)) );
 
    manager = *_manager;
    setCaption(i18n("Options" ));
@@ -74,7 +92,12 @@ QueryOptPage::QueryOptPage
 
    kcfg_maxTimePer->setValidator (validator);
 
-   setStates(_mqtime, _swapdir, _altlearn, show, type_to);
+   validator = new QIntValidator (2, 10, 0);
+
+   split_max_fields->setValidator (validator);
+
+   setStates(_mqtime, _swapdir, _altlearn, show, type_to, _suggestions, _split,
+     _periods, _colons, _semicolons, _commas, _fields, _show_more, _i_know);
 
    // FIXME: until really needed
    GroupBox5->hide();
@@ -89,7 +112,16 @@ QueryOptPage::QueryOptPage
 }
 
 
-void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to)
+void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to,
+        bool          _suggestions,
+        bool          _split,
+        bool          _periods,
+        bool          _colons,
+        bool          _semicolons,
+        bool          _commas,
+        int           _fields,
+        bool          _show_more,
+        bool          _i_know)
 {
    ask_sub->setEnabled(false);
    ask_verbcon->setEnabled(false);
@@ -105,6 +137,15 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    mqtime = _mqtime;
    showCounter = show;
    type_timeout = type_to;
+   suggestions = _suggestions;
+   split = _split;
+   periods = _periods;
+   colons = _colons;
+   semicolons = _semicolons;
+   commas = _commas;
+   fields = _fields;
+   show_more = _show_more;
+   i_know = _i_know;
 
    QString s;
 
@@ -113,6 +154,11 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    kcfg_SwapDir->setChecked(swapdir);
    kcfg_AltLearn->setChecked(altlearn);
    kcfg_showcounter->setChecked(show);
+   enable_crib_lists->setChecked(suggestions);
+   split_translations->setChecked(split);
+   slotCheckSplit (split);
+   enable_show_more->setChecked(show_more);
+   enable_i_know->setChecked(i_know);
 
    if (type_to == kvq_show) {
      kcfg_maxTimePer->setEnabled(true);
@@ -141,6 +187,13 @@ void QueryOptPage::initFocus() const
 void QueryOptPage::slotChangeMQTime(const QString& s)
 {
    mqtime = atoi (s.local8Bit());
+   emit modifySetting();
+}
+
+void QueryOptPage::slotChangeFields(const QString& s)
+{
+   if ( split_max_fields -> isEnabled() )
+     fields = atoi (s.local8Bit());
    emit modifySetting();
 }
 
@@ -185,6 +238,78 @@ void QueryOptPage::slotNoTimeout()
 void QueryOptPage::slotShowRemTime(bool state)
 {
    showCounter = state;
+}
+
+void QueryOptPage::slotCheckSuggestions(bool _suggestions)
+{
+   suggestions = _suggestions;
+}
+
+void QueryOptPage::slotCheckSplit(bool _split)
+{
+   split = _split;
+   if (split) {
+     label_at->setEnabled(true);
+     split_at_periods->setEnabled(true);
+     split_at_periods->setChecked(periods);
+     split_at_colons->setEnabled(true);
+     split_at_colons->setChecked(colons);
+     split_at_semicolons->setEnabled(true);
+     split_at_semicolons->setChecked(semicolons);
+     split_at_commas->setEnabled(true);
+     split_at_commas->setChecked(commas);
+     label_split_max_fields->setEnabled(true);
+     split_max_fields->setEnabled(true);
+     split_max_fields->setText (QString::number(fields));
+   }
+   else {
+     label_at->setEnabled(false);
+     split_at_periods->setEnabled(false);
+     split_at_periods->setChecked(false);
+     split_at_colons->setEnabled(false);
+     split_at_colons->setChecked(false);
+     split_at_semicolons->setEnabled(false);
+     split_at_semicolons->setChecked(false);
+     split_at_commas->setEnabled(false);
+     split_at_commas->setChecked(false);
+     label_split_max_fields->setEnabled(false);
+     split_max_fields->setEnabled(false);
+     split_max_fields->setText ("");
+   }
+}
+
+void QueryOptPage::slotCheckPeriods(bool _periods)
+{
+   if ( split_at_periods -> isEnabled() )
+     periods = _periods;
+}
+
+void QueryOptPage::slotCheckColons(bool _colons)
+{
+   if ( split_at_colons -> isEnabled() )
+     colons = _colons;
+}
+
+void QueryOptPage::slotCheckSemicolons(bool _semicolons)
+{
+   if ( split_at_semicolons -> isEnabled() )
+     semicolons = _semicolons;
+}
+
+void QueryOptPage::slotCheckCommas(bool _commas)
+{
+   if ( split_at_commas -> isEnabled() )
+     commas = _commas;
+}
+
+void QueryOptPage::slotCheckShowMore(bool _show_more)
+{
+   show_more = _show_more;
+}
+
+void QueryOptPage::slotCheckIKnow(bool _i_know)
+{
+   i_know = _i_know;
 }
 
 

@@ -50,6 +50,15 @@ QueryOptionsDlg::QueryOptionsDlg
         KComboBox    *lessons,
         QueryManager *_manager,
         bool          swapdir,
+        bool          suggestions,
+        bool          split,
+        bool          periods,
+        bool          colons,
+        bool          semicolons,
+        bool          commas,
+        int           fields,
+        bool          show_more,
+        bool          i_know,
         bool          altlearn,
         bool          block,
         bool          expire,
@@ -69,8 +78,8 @@ QueryOptionsDlg::QueryOptionsDlg
 
   groupOptPage = new GroupOptPage (settings, this, name);
   threshOptPage = new ThreshOptPage (&manager, lessons, this, name);
-  queryOptPage = new QueryOptPage (mqtime, showcounter, type_timeout, &manager,
-                                   swapdir, altlearn, this, name);
+  queryOptPage = new QueryOptPage (mqtime, showcounter, type_timeout, &manager, swapdir,
+    suggestions, split, periods, colons, semicolons, commas, fields, show_more, i_know, altlearn, this, name);
   blockOptPage = new BlockOptPage (&manager, block, expire, this, name);
 
   addTab( groupOptPage, i18n("&Groups"));
@@ -100,6 +109,12 @@ QueryOptionsDlg::QueryOptionsDlg
   threshOptPage->slotBlockExpire (getBlock(), getExpire());
 
   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+}
+
+void QueryOptionsDlg::showEvent (QShowEvent* event)
+{
+  Inherited::showEvent (event);
+  resize (width(), minimumSize().height());
 }
 
 
@@ -142,6 +157,15 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
     bool altlearn = false;
     bool show = false;
     kvq_timeout_t type_to = kvq_notimeout;
+    bool suggestions = false;
+    bool split = false;
+    bool periods = true;
+    bool colons = false;
+    bool semicolons = true;
+    bool commas = false;
+    int  fields = 5;
+    bool show_more = true;
+    bool i_know = true;
     if (extract (line, s))
       mqtime = s.toInt();
     if (extract (line, s))
@@ -152,7 +176,26 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
       show = (bool) s.toInt();
     if (extract (line, s))
       type_to = (kvq_timeout_t) s.toInt();
-    queryOptPage->setStates (mqtime, swap, altlearn, show, type_to);
+    if (extract (line, s))
+      suggestions = (bool) s.toInt();
+    if (extract (line, s))
+      split = (bool) s.toInt();
+    if (extract (line, s))
+      periods = (bool) s.toInt();
+    if (extract (line, s))
+      colons = (bool) s.toInt();
+    if (extract (line, s))
+      semicolons = (bool) s.toInt();
+    if (extract (line, s))
+      commas = (bool) s.toInt();
+    if (extract (line, s))
+      fields = s.toInt();
+    if (extract (line, s))
+      show_more = (bool) s.toInt();
+    if (extract (line, s))
+      i_know = (bool) s.toInt();
+    queryOptPage->setStates (mqtime, swap, altlearn, show, type_to, suggestions,
+      split, periods, colons, semicolons, commas, fields, show_more, i_know);
 
 #define QCT(x)  QueryManager::CompType(x)
 
@@ -262,6 +305,24 @@ void QueryOptionsDlg::slotModifyGroup(int grp)
     s.setNum((int) getShowCounter());
     line += s + ',';
     s.setNum( (int) getTypeQueryTimeout());
+    line += s + ',';
+    s.setNum((int) getSuggestions());
+    line += s + ',';
+    s.setNum((int) getSplit());
+    line += s + ',';
+    s.setNum((int) getPeriods());
+    line += s + ',';
+    s.setNum((int) getColons());
+    line += s + ',';
+    s.setNum((int) getSemicolons());
+    line += s + ',';
+    s.setNum((int) getCommas());
+    line += s + ',';
+    s.setNum(getFields());
+    line += s + ',';
+    s.setNum((int) getShowMore());
+    line += s + ',';
+    s.setNum((int) getIKnow());
     line += s + ',';
     settings[grp].query_set = line;
 

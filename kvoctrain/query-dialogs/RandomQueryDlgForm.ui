@@ -54,8 +54,8 @@
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>3</vsizetype>
+                            <hsizetype>5</hsizetype>
+                            <vsizetype>1</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
@@ -182,17 +182,23 @@
                         <string>Enter the correct translation:</string>
                     </property>
                 </widget>
-                <widget class="QLineEdit">
+                <widget class="QFrame">
                     <property name="name">
-                        <cstring>transField</cstring>
+                        <cstring>Frame18</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>1</vsizetype>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>3</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
                     </property>
                 </widget>
                 <widget class="QFrame">
@@ -540,7 +546,6 @@
     <tabstop>c_falsefriend</tabstop>
     <tabstop>c_remark</tabstop>
     <tabstop>c_type</tabstop>
-    <tabstop>transField</tabstop>
     <tabstop>show_all</tabstop>
     <tabstop>show_more</tabstop>
     <tabstop>know_it</tabstop>

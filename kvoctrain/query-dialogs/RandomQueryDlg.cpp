@@ -36,11 +36,96 @@
 #include <klocale.h>
 #include <kapplication.h>
 
-#include <qtimer.h>
-#include <qpushbutton.h>
 #include <qcheckbox.h>
-#include <qlineedit.h>
+#include <qgroupbox.h>
 #include <qlabel.h>
+#include <qlayout.h>
+#include <qlineedit.h>
+#include <qpushbutton.h>
+#include <qregexp.h>
+#include <qtimer.h>
+
+QStringList RandomQueryDlg::extractTranslations (QString trans)
+{
+   QRegExp full_stop ("^(.*[^\\. ])\\.* *$");
+   //full_stop.setMinimal (true);
+   if ( full_stop.search (trans) >= 0 )
+     trans = full_stop.cap (1);
+   int i;
+   QStringList translations;
+   if ( periods )
+     for ( i = fields - 1; i > 0; i -- )
+     {
+       QString regexp ("^ *");
+       for ( int j = 0; j < i; j ++ )
+         regexp += "([^ ][^.]*)\\.[. ]*";
+       regexp += "([^. ].*)$";
+       QRegExp regex (regexp);
+       if ( regex.search (trans) >= 0 )
+       {
+         translations = regex.capturedTexts();
+         translations.remove (translations.at (0));
+         break;
+       }
+     }
+   if ( colons && translations.count() <= 1 )
+   {
+     translations.clear();
+     for ( i = fields - 1; i > 0; i -- )
+     {
+       QString regexp ("^ *");
+       for ( int j = 0; j < i; j ++ )
+         regexp += "([^ ][^:]*):[: ]*";
+       regexp += "([^: ].*)$";
+       QRegExp regex (regexp);
+       if ( regex.search (trans) >= 0 )
+       {
+         translations = regex.capturedTexts();
+         translations.remove (translations.at (0));
+         break;
+       }
+     }
+   }
+   if ( semicolons && translations.count() <= 1 )
+   {
+     translations.clear();
+     for ( i = fields - 1; i > 0; i -- )
+     {
+       QString regexp ("^ *");
+       for ( int j = 0; j < i; j ++ )
+         regexp += "([^ ][^;]*);[; ]*";
+       regexp += "([^; ].*)$";
+       QRegExp regex (regexp);
+       if ( regex.search (trans) >= 0 )
+       {
+         translations = regex.capturedTexts();
+         translations.remove (translations.at (0));
+         break;
+       }
+     }
+   }
+   if ( commas && translations.count() <= 1 )
+   {
+     translations.clear();
+     for ( i = fields - 1; i > 0; i -- )
+     {
+       QString regexp ("^ *");
+       for ( int j = 0; j < i; j ++ )
+         regexp += "([^ ][^,]*),[, ]*";
+       regexp += "([^, ].*)$";
+       QRegExp regex (regexp);
+       if ( regex.search (trans) >= 0 )
+       {
+         translations = regex.capturedTexts();
+         translations.remove (translations.at (0));
+         break;
+       }
+     }
+   }
+   if ( translations.count() <= 1 )
+     translations = QStringList (trans);
+   return translations;
+}
 
 RandomQueryDlg::RandomQueryDlg(
                    QString org,
@@ -57,6 +142,15 @@ RandomQueryDlg::RandomQueryDlg(
                    int mqtime,
                    bool show,
                    kvq_timeout_t type_to,
+                   bool _suggestions,
+                   bool _split,
+                   bool _periods,
+                   bool _colons,
+                   bool _semicolons,
+                   bool _commas,
+                   int  _fields,
+                   bool _show_more,
+                   bool _i_know,
                    QWidget *parent,
                    char *name)
 	: QueryDlgForm(parent, name, false),
@@ -72,15 +166,59 @@ RandomQueryDlg::RandomQueryDlg(
    connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
    connect( show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
    connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
-   connect( transField, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)) );
+   show_more -> setEnabled (_show_more);
+   know_it -> setEnabled (_i_know);
+   if ( ! _split )
+     _fields = 1;
+   int i;
+   if ( _suggestions )
+   {
+     for ( i = 0; i < _fields; i ++ )
+     {
+       transCombos.append (new QComboBox (false, simpleGroup, QCString ("transCombo") + QCString().setNum (i)));
+       transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
+       transCombos.at(i) -> setEditable (true);
+       transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsertion);
+       transCombos.at(i) -> setDuplicatesEnabled (false);
+       simpleGroupLayout -> insertWidget (simpleGroupLayout -> findWidget (Frame18), transCombos.at(i));
+       connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+       connect (transCombos.at(i) -> lineEdit(), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+     }
+   }
+   else
+   {
+     for ( i = 0; i < _fields; i ++ )
+     {
+       transFields.append (new QLineEdit (simpleGroup, QCString ("transField") + QCString().setNum (i)));
+       transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
+       simpleGroupLayout -> insertWidget (simpleGroupLayout -> findWidget (Frame18), transFields.at(i));
+       connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+       connect (transFields.at(i), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+     }
+   }
 
    kv_doc = 0;
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Random Query")));
-   setQuery (org, trans, entry, orgcol, transcol,
-             q_cycle, q_num, q_start,
-             exp, doc, mqtime, show, type_to);
+   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show, type_to,
+     _suggestions, _split, _periods, _colons, _semicolons, _commas, _fields, _show_more, _i_know);
    setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
+
+   if ( suggestions )
+   {
+     for ( i = 0; i < kv_doc -> numEntries(); i ++ )
+     {
+       kvoctrainExpr* expr = kv_doc -> getEntry (i);
+       if ( _split )
+         vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
+       else
+         vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
+     }
+     vocabulary.sort();
+     for ( uint k = 1; k < vocabulary.count(); k ++ )
+       if ( vocabulary [k - 1] == vocabulary [k] )
+         vocabulary.remove (vocabulary.at (k --));
+   }
 }
 
 
@@ -96,7 +234,16 @@ void RandomQueryDlg::setQuery(QString org,
                          kvoctrainDoc  *doc,
                          int mqtime,
                          bool _show,
-                         kvq_timeout_t type_to)
+                         kvq_timeout_t type_to,
+                         bool _suggestions,
+                         bool _split,
+                         bool _periods,
+                         bool _colons,
+                         bool _semicolons,
+                         bool _commas,
+                         int  _fields,
+                         bool /*_show_more*/,
+                         bool /*_i_know*/)
 {
    type_timeout = type_to;
    kv_doc = doc;
@@ -104,11 +251,49 @@ void RandomQueryDlg::setQuery(QString org,
    q_ocol = orgcol;
    q_tcol = transcol;
    translation = trans;
-   showCounter = _show,
+   showCounter = _show;
+   suggestions = _suggestions;
+   periods = _periods;
+   colons = _colons;
+   semicolons = _semicolons;
+   commas = _commas;
+   if ( ! _split )
+     _fields = 1;
+   fields = _fields;
+   if ( _split )
+     translations = extractTranslations (trans);
+   else
+     translations = trans;
    timebar->setEnabled(showCounter);
    timelabel->setEnabled(showCounter);
-   transField->setFont(word_font);
-   transField->setText ("");
+   int i;
+   uint k;
+   if ( suggestions )
+   {
+     for ( i = 0; i < fields; i ++ )
+     {
+       transCombos.at(i) -> clearEdit();
+       resetField (transCombos.at(i) -> lineEdit());
+     }
+     for ( k = 0; k < translations.count(); k ++ )
+       transCombos.at(k) -> show();
+     for ( i = k; i < fields; i ++ )
+       transCombos.at(i) -> hide();
+   }
+   else
+   {
+     for ( i = 0; i < fields; i ++ )
+     {
+       transFields.at(i) -> clear();
+       transFields.at(i) -> setFont (word_font);
+       resetField (transFields.at(i));
+     }
+     for ( k = 0; k < translations.count(); k ++ )
+       transFields.at(k) -> show();
+     for ( i = k; i < fields; i ++ )
+       transFields.at(i) -> hide();
+   }
+   verify -> setEnabled (true);
    orgField->setFont(word_font);
    orgField->setText (org);
    show_all->setDefault(true);
@@ -145,58 +330,187 @@ void RandomQueryDlg::setQuery(QString org,
    }
    else
      timebar->setEnabled(false);
-   resetField (transField);
+
+   status -> clear();
+   suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::initFocus() const
 {
-  transField->setFocus();
+  RandomQueryDlg* that = (RandomQueryDlg*) this;
+  if ( suggestions )
+    that -> transCombos.at(0) -> setFocus();
+  else
+    that -> transFields.at(0) -> setFocus();
 }
 
 
 void RandomQueryDlg::verifyClicked()
 {
-  if (verifyField (transField, translation)) {
-    status->setText(getOKComment(countbar->getPercentage()));
-    knowItClicked();
+  QStringList trans (translations);
+  uint i, j;
+  if ( suggestions )
+  {
+    QPtrList<QComboBox> combos (transCombos);
+    for ( i = combos.count() - 1; i >= translations.count(); i -- )
+      combos.remove (i);
+    for ( i = 0; i < combos.count(); i ++ )
+      for ( j = 0; j < trans.count(); j ++ )
+        if ( smartCompare (trans[j], combos.at(i) -> currentText(), 0) )
+        {
+          verifyField (combos.at(i) -> lineEdit(), trans[j]);
+          trans.remove (trans.at(j));
+          combos.remove (i --);
+          break;
+        }
+    if ( trans.count() == 0 )
+    {
+      status->setText(getOKComment(countbar->getPercentage()));
+      knowItClicked();
+    }
+    else
+    {
+      for ( i = 0; i < combos.count(); i ++ )
+        verifyField (combos.at(i) -> lineEdit(), trans[i]);
+      status->setText(getNOKComment(countbar->getPercentage()));
+      dont_know->setDefault(true);
+    }
   }
-  else {
-    status->setText(getNOKComment(countbar->getPercentage()));
-    dont_know->setDefault(true);
+  else
+  {
+    QPtrList<QLineEdit> fields (transFields);
+    for ( i = fields.count() - 1; i >= translations.count(); i -- )
+      fields.remove (i);
+    for ( i = 0; i < fields.count(); i ++ )
+      for ( j = 0; j < trans.count(); j ++ )
+        if ( smartCompare (trans[j], fields.at(i) -> text(), 0) )
+        {
+          verifyField (fields.at(i), trans[j]);
+          trans.remove (trans.at(j));
+          fields.remove (i --);
+          break;
+        }
+    if ( trans.count() == 0 )
+    {
+      status->setText(getOKComment(countbar->getPercentage()));
+      knowItClicked();
+    }
+    else
+    {
+      for ( i = 0; i < fields.count(); i ++ )
+        verifyField (fields.at(i), trans[i]);
+      status->setText(getNOKComment(countbar->getPercentage()));
+      dont_know->setDefault(true);
+    }
   }
+  suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::showMoreClicked()
 {
-  resetField (transField);
-  if (QString(transField->text()).length() < translation.length() ) {
-    transField->setText (translation.left(QString(transField->text()).length()+1));
-    dont_know->setDefault(true);
-  }
+  if ( suggestions )
+    for ( uint i = 0; i < translations.count(); i ++ )
+    {
+      QComboBox* combo = transCombos.at(i);
+      if ( ! smartCompare (combo -> currentText(), translations[i], 0) )
+      {
+        uint length = combo -> currentText().length() + 1;
+        if ( length >= translations[i].length() )
+        {
+          combo -> setEditText (translations[i]);
+          verifyField (combo -> lineEdit(), translations[i]);
+          verify -> setEnabled (false);
+        }
+        else
+	{
+          combo -> setEditText (translations[i].left (length));
+          resetField (combo -> lineEdit());
+	}
+        dont_know -> setDefault (true);
+        break;
+      }
+    }
+  else
+    for ( uint i = 0; i < translations.count(); i ++ )
+    {
+      QLineEdit* field = transFields.at(i);
+      if ( ! smartCompare (field -> text(), translations[i], 0) )
+      {
+        uint length = field -> text().length() + 1;
+        if ( length >= translations[i].length() )
+        {
+          field -> setText (translations[i]);
+          verifyField (field, translations[i]);
+          verify -> setEnabled (false);
+        }
+        else
+	{
+          field -> setText (translations[i].left (length));
+          resetField (field);
+	}
+        dont_know -> setDefault (true);
+        break;
+      }
+    }
+  status -> clear();
+  suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::showAllClicked()
 {
-  transField->setText (translation);
-  verifyField (transField, translation);
+  if ( suggestions )
+    for ( uint i = 0; i < translations.count(); i ++ )
+    {
+      transCombos.at(i) -> setEditText (translations[i]);
+      verifyField (transCombos.at(i) -> lineEdit(), translations[i]);
+    }
+  else
+    for ( uint i = 0; i < translations.count(); i ++ )
+    {
+      transFields.at(i) -> setText (translations[i]);
+      verifyField (transFields.at(i), translations[i]);
+    }
+  verify -> setEnabled (false);
   dont_know->setDefault(true);
+  status -> clear();
+  suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::slotTransChanged(const QString&)
 {
   verify->setDefault(true);
-  resetField (transField);
+  if ( suggestions && sender() && sender() -> isA ("QComboBox") )
+  {
+    QLineEdit* edit = ((QComboBox*) sender()) -> lineEdit();
+    resetField (edit);
+    suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
+    if ( suggestion_hint )
+      status -> setText (QString (i18n("Press F5 for a list of translations starting with '%1'\n"
+        "Press F6 for a list of translations containing '%2'")).arg (edit -> text()).arg (edit -> text()));
+    else
+      status -> clear();
+  }
+  else if ( ! suggestions && sender() && sender() -> isA ("QLineEdit") )
+    resetField ((QLineEdit*) sender());
+}
+
+void RandomQueryDlg::slotTransLostFocus()
+{
+  if ( suggestion_hint )
+    status -> clear();
+  suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::knowItClicked()
 {
-   status->setText("");
-   emit sigQueryChoice (Known);
+  status -> clear();
+  suggestion_hint = false;
+  emit sigQueryChoice (Known);
 }
 
 
@@ -210,7 +524,6 @@ void RandomQueryDlg::timeoutReached()
    }
 
    if (timercount <= 0) {
-     status->setText(getTimeoutComment(countbar->getPercentage()));
      timebar->setData (-1, 0, false);
      timebar->repaint();
      if (type_timeout == kvq_show) {
@@ -220,17 +533,18 @@ void RandomQueryDlg::timeoutReached()
      else if (type_timeout == kvq_cont) {
        emit sigQueryChoice (Timeout);
      }
+     status->setText(getTimeoutComment(countbar->getPercentage()));
    }
-   else
-     status->setText("");
 
+   suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::dontKnowClicked()
 {
-   status->setText("");
-   emit sigQueryChoice (Unknown);
+  status -> clear();
+  suggestion_hint = false;
+  emit sigQueryChoice (Unknown);
 }
 
 
@@ -277,7 +591,15 @@ void RandomQueryDlg::editEntryClicked()
    orgField->setText (q_ocol == 0
                         ? exp->getOriginal()
                         : exp->getTranslation(q_ocol));
-   transField->setText ("");
+
+   if ( suggestions )
+     for ( int i = 0; i < fields; i ++ )
+       transCombos.at(i) -> clearEdit();
+   else
+     for ( int i = 0; i < fields; i ++ )
+       transFields.at(i) -> clear();
+   status -> clear();
+   suggestion_hint = false;
 
    setHintFields();
 }
@@ -312,6 +634,40 @@ void RandomQueryDlg::slotTypeClicked()
 
 void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
 {
+  if ( suggestions )
+  {
+    QComboBox* combo = 0;
+    if ( e -> key() == Key_F4 || e -> key() == Key_F5 || e -> key() == Key_F6 )
+      for ( uint i = 0; i < translations.count(); i ++ )
+        if ( transCombos.at(i) -> hasFocus() )
+        {
+          combo = transCombos.at(i);
+          break;
+        }
+    switch( e->key() )
+    {
+      case Key_F5:
+      case Key_F6:
+        if ( combo && ! combo -> currentText().isEmpty() )
+        {
+          QString curText (combo -> currentText());
+          combo -> clear();
+          for ( uint i = 0; i < vocabulary.count(); i ++ )
+          {
+            QString trans (vocabulary[i]);
+            if ( (e -> key() == Key_F5 && trans.startsWith (curText, false)
+                || e -> key() == Key_F6 && trans.contains (curText, false)) )
+              combo -> insertItem (trans);
+          }
+          combo -> setEditText (curText);
+        }
+      case Key_F4:
+        if ( combo )
+          combo -> popup();
+      break;
+    }
+  }
+
   switch( e->key() )
   {
     case Key_Escape:

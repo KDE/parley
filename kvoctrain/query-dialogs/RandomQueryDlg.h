@@ -35,6 +35,8 @@
 
 /* Library Includes */
 
+#include <qcombobox.h>
+#include <qlineedit.h>
 
 class kvoctrainDoc;
 
@@ -59,6 +61,15 @@ public:
                  int mqtime,
                  bool show,
                  kvq_timeout_t type_timeout,
+                 bool _suggestions,
+                 bool _split,
+                 bool _periods,
+                 bool _colons,
+                 bool _semicolons,
+                 bool _commas,
+                 int  _fields,
+                 bool _show_more,
+                 bool _i_know,
                  QWidget *parent=0,
                  char *name=0);
 
@@ -74,14 +85,19 @@ public:
                       kvoctrainDoc  *,
                       int   mqtime,
                       bool show,
-                      kvq_timeout_t type_timeout);
+                      kvq_timeout_t type_timeout,
+                      bool _suggestions,
+                      bool _split,
+                      bool _periods,
+                      bool _colons,
+                      bool _semicolons,
+                      bool _commas,
+                      int  _fields,
+                      bool _show_more,
+                      bool _i_know);
 
 public slots:
     virtual void initFocus() const;
-
-protected:
-    void keyPressEvent( QKeyEvent *e );
-    void setHintFields();
 
 signals:
    void sigQueryChoice(QueryDlgBase::Result userchoice);
@@ -97,14 +113,32 @@ public slots:
     void timeoutReached();
     void editEntryClicked();
     void slotTransChanged(const QString&);
+    void slotTransLostFocus();
     void slotFFClicked();
     void slotTypeClicked();
     void slotRemClicked();
 
 protected:
+    virtual void keyPressEvent( QKeyEvent *e );
     virtual void closeEvent (QCloseEvent*e);
+    void setHintFields();
+    QStringList extractTranslations (QString trans);
 
     kvoctrainDoc *kv_doc;
+
+    QPtrList<QComboBox> transCombos;
+    QPtrList<QLineEdit> transFields;
+
+    QStringList translations;
+    QStringList vocabulary;
+
+    bool suggestion_hint;
+    bool suggestions;
+    bool periods;
+    bool colons;
+    bool semicolons;
+    bool commas;
+    int  fields;
 };
 
 #endif

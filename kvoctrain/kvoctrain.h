@@ -348,6 +348,15 @@ private:
   bool             autosaveopts;
   bool             autoentryApply;
   KRandomSequence  random;
+  bool             suggestions;
+  bool             split;
+  bool             periods;
+  bool             colons;
+  bool             semicolons;
+  bool             commas;
+  int              fields;
+  bool             show_more;
+  bool             i_know;
 };
  
 #endif // KVOCTRAIN_H

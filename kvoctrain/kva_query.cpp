@@ -74,6 +74,15 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
                     lessons,
                     &querymanager,
                     swap_querydir,
+                    suggestions,
+                    split,
+                    periods,
+                    colons,
+                    semicolons,
+                    commas,
+                    fields,
+                    show_more,
+                    i_know,
                     alt_learn,
                     block,
                     expire,
@@ -90,6 +99,15 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
       showcounter = qodlg.getShowCounter();
       querymanager = qodlg.getQueryManager();
       swap_querydir = qodlg.getSwapDir();
+      suggestions = qodlg.getSuggestions();
+      split = qodlg.getSplit();
+      periods = qodlg.getPeriods();
+      colons = qodlg.getColons();
+      semicolons = qodlg.getSemicolons();
+      commas = qodlg.getCommas();
+      fields = qodlg.getFields();
+      show_more = qodlg.getShowMore();
+      i_know = qodlg.getIKnow();
       alt_learn = qodlg.getAltLearn();
       block = qodlg.getBlock();
       expire = qodlg.getExpire();
@@ -658,8 +676,16 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
                              doc,
                              maxqueryTime,
                              showcounter,
-                             type_querytimeout
-			     );
+                             type_querytimeout,
+                             suggestions,
+                             split,
+                             periods,
+                             colons,
+                             semicolons,
+                             commas,
+                             fields,
+                             show_more,
+                             i_know);
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -999,7 +1025,16 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              doc,
                              maxqueryTime,
                              showcounter,
-                             type_querytimeout);
+                             type_querytimeout,
+                             suggestions,
+                             split,
+                             periods,
+                             colons,
+                             semicolons,
+                             commas,
+                             fields,
+                             show_more,
+                             i_know);
       randomQueryDlg->initFocus();
   }
   else if (queryType == QT_Multiple) {

@@ -15,7 +15,7 @@
     <property name="caption">
         <string>-</string>
     </property>
-    <hbox>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
@@ -316,7 +316,247 @@
                 </widget>
             </vbox>
         </widget>
-    </hbox>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="title">
+                <string>Random Query Options</string>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>11</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>enable_crib_lists</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Enable suggestion lists</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>split_translations</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Split &amp;translations</string>
+                    </property>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>Frame1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>label_spacer_1</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>20</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>label_at</cstring>
+                            </property>
+                            <property name="text">
+                                <string>at</string>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>split_at_periods</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="text">
+                                <string>pe&amp;riods</string>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>split_at_colons</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="text">
+                                <string>co&amp;lons</string>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>split_at_semicolons</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="text">
+                                <string>sem&amp;icolons</string>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox">
+                            <property name="name">
+                                <cstring>split_at_commas</cstring>
+                            </property>
+                            <property name="enabled">
+                                <bool>true</bool>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>comma&amp;s</string>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QFrame">
+                    <property name="name">
+                        <cstring>Frame2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>label_spacer_2</cstring>
+                            </property>
+                            <property name="minimumSize">
+                                <size>
+                                    <width>20</width>
+                                    <height>0</height>
+                                </size>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>label_split_max_fields</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Maximum number of &amp;fields</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>split_max_fields</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>split_max_fields</cstring>
+                            </property>
+                            <property name="maximumSize">
+                                <size>
+                                    <width>50</width>
+                                    <height>32767</height>
+                                </size>
+                            </property>
+                        </widget>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>label_spacer_3</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>enable_show_more</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Enable S&amp;how More button</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox">
+                    <property name="name">
+                        <cstring>enable_i_know</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Enable I &amp;Know button</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </vbox>
 </widget>
 <tabstops>
     <tabstop>kcfg_queryTimeout</tabstop>

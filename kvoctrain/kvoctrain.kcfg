@@ -61,6 +61,42 @@
       <label>Maximum time allowed per query</label>
       <default code="true">20*1000</default>
     </entry>
+    <entry name="Suggestions" type="Bool">
+      <label>Enable suggestion lists in Random Query.</label>
+      <default code="true">false</default>
+    </entry>
+    <entry name="Split" type="Bool">
+      <label>Split translations in Random Query.</label>
+      <default code="true">false</default>
+    </entry>
+    <entry name="Periods" type="Bool">
+      <label>Split translations at periods.</label>
+      <default code="true">true</default>
+    </entry>
+    <entry name="Colons" type="Bool">
+      <label>Split translations at colons.</label>
+      <default code="true">false</default>
+    </entry>
+    <entry name="Semicolons" type="Bool">
+      <label>Split translations at semicolons.</label>
+      <default code="true">true</default>
+    </entry>
+    <entry name="Commas" type="Bool">
+      <label>Split translations at commas.</label>
+      <default code="true">false</default>
+    </entry>
+    <entry name="Fields" type="Int">
+      <label>Maximum number of fields to split translations into.</label>
+      <default code="true">5</default>
+    </entry>
+    <entry name="ShowMore" type="Bool">
+      <label>Enable Show More button in Random Query.</label>
+      <default code="true">true</default>
+    </entry>
+    <entry name="IKnow" type="Bool">
+      <label>Enable I Know button in Random Query.</label>
+      <default code="true">true</default>
+    </entry>
   </group>
   <group name="KFileDialog Settings">
   <entry name="RecentFiles" type="StringList">
