@@ -11,6 +11,5 @@ DocPath=kvoctrain/index.html
 Type=Application
 Terminal=0
 MimeType=text/x-kvtml
-#Protocols=file;
 #ServiceTypes=Browser/View
 #X-KDE-Library=libkorganizer
