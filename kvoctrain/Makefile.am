@@ -27,8 +27,7 @@ KDE_ICON = kvoctrain
 
 bin_SCRIPTS = langen2kvtml
 
-apps_DATA = kvoctrain.desktop
-appsdir = $(kde_appsdir)/Edutainment/Languages
+xdg_apps_DATA = kvoctrain.desktop
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
  -I$(top_srcdir)/kvoctrain/kvoctrain \
