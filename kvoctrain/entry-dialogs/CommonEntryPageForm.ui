@@ -457,9 +457,6 @@
                     <property name="text">
                         <string>Acti&amp;ve</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+V</string>
-                    </property>
                 </widget>
             </vbox>
         </widget>
