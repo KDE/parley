@@ -1530,13 +1530,14 @@ equally.</para>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Backup interval</guilabel></term>
+<term><guilabel>Automatic backup interval</guilabel></term>
 <listitem><para>&kvoctrain; will automatically save the document if it
-was modified after the period you enter here.</para>
+was modified after the period you enter here when the option is
+checked.</para>
 <para>As a side effect it also does not ask for confirmation to save
  when quiting with modified data but saves the vocabulary without
  asking.</para>
-<para>A number of 0 stops this behaviour.</para></listitem>
+<para>An interval of 0 also stops this behaviour.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1576,19 +1577,15 @@ if the columns resize automatically, too.</para>
 
   <varlistentry>
   <term><guilabel>Percent</guilabel></term>
-  <listitem><para><emphasis>NOTE: this feature is currently not working.</emphasis>
-
-<!-- DEFERRED AFTER KDE RELEASE but valid
-
+  <listitem><para>
   The widths of the columns are altered with the same
   factor the main window grew or shrunk.
--->
   </para></listitem>
   </varlistentry>
   </variablelist></para>
 
-<para>If the last button labeled <quote>fixed</quote> is set, no resizing is
-done.</para></listitem>
+<para>If the last button labeled <quote>fixed</quote> is set, no resizing of
+the columns is done.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1663,7 +1660,8 @@ button.</para></listitem>
 <term><guilabel>Add language from KDE database</guilabel></term>
 <listitem><para>Pressing this button opens a menu that contains all the countries
 that are known in your &kde; installation. Ordered by country you can add your
-desired language properties to your personal list. </para>
+desired language properties to your personal list.</para>
+
 <para>Maybe you want to change the
 language name or the according picture but I strongly recommend you keep at least the
 2-byte language code and it's 3-byte alternative if you don't have a special reason.
@@ -1671,22 +1669,19 @@ This is to achieve compatible document files that can be shared among all users.
 </para></listitem>
 </varlistentry>
 
-<!-- DEFERRED AFTER KDE RELEASE but valid
-
 <varlistentry>
-<term><guilabel>Add language from ISO639</guilabel></term>
+<term><guilabel>Add language from ISO639-1</guilabel></term>
 <listitem><para>Pressing this button opens a menu that contains all the language codes
-that are covered by <quote>ISO639</quote>.</para>
+that are covered by <quote>ISO639-1</quote>.</para>
+
 </listitem>
 </varlistentry>
 
+</variablelist>
+
 <para>Basically the previous two button provide the same data. The former contains
 the language codes known in &kde; sorted by country whereas the second contains
-<emphasis>all</emphasis> ISO639 codes sorted alphabetically.</para>
-
--->
-
-</variablelist>
+<emphasis>all</emphasis> <quote>ISO639-1</quote> codes sorted alphabetically.</para>
 
 </sect2>
 
@@ -1719,11 +1714,21 @@ on the bottom in the statusbar.</para>
 <para>Probably you don't have an IPA enabled font since those characters are seldom used.
 You may download a free font from
 <ulink url="http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html">http://bibliofile.mc.duke.edu/gww/fonts/Unicode.html
-</ulink>. Install this font for example with kfontinst.</para>
+</ulink> or
+<ulink url="http://www.hclrss.demon.co.uk/unicode/fonts.html">http://www.hclrss.demon.co.uk/unicode/fonts.html
+</ulink>. Install these fonts for example with kfontinst.</para>
+
+<para>If you have <application>StarOffice</application> installed you probably
+have the font <quote>Lucida Sans Unicode</quote> which also contains most of the
+needed characters (but be sure to select the font which ends with
+<quote>Unicode</quote>).</para>
 
 <para>I also found a <ulink url="http://esl.about.com/library/weekly/aa040998.htm">
 Reference and Introduction to Phonetic Symbols</ulink> that explains a bit about
-the background.</para>
+the background. There is also
+<ulink url="http://www2.arts.gla.ac.uk/IPA/ipa.html">
+The International Phonetic Association</ulink> where you can find even more information.
+</para>
 
 </listitem>
 </varlistentry>
@@ -2779,6 +2784,9 @@ url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
 
 <listitem><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
 Reference and Introduction to Phonetic Symbols</ulink></listitem>
+
+<listitem><ulink url="http://www2.arts.gla.ac.uk/IPA/ipa.html">
+The INTERNATIONAL PHONETIC ASSOCIATION</ulink></listitem>
 
 </itemizedlist>
 
