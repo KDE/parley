@@ -833,8 +833,8 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
        "in tag <%2>.\n"
       "Maybe your version of KVocTrain is too old, "
       "or the document is damaged.\n"
-      "If you proceed and save afterwards you are likely to lose data!\n"
-      "Do you want to proceed anyway?\n"
+      "If you proceed and save afterwards you are likely to lose data;\n"
+      "do you want to proceed anyway?\n"
      );
    QString msg = format.arg(attr).arg(name);
 

@@ -94,7 +94,7 @@
                                 <string>&amp;No time limitation</string>
                             </property>
                             <property name="toolTip" stdset="0">
-                                <string>Check this if you don't want any time limitation per query.</string>
+                                <string>Check this if you do not want any time limitation per query.</string>
                             </property>
                             <property name="whatsThis" stdset="0">
                                 <string>When this is checked, there is no time limitation for each query</string>

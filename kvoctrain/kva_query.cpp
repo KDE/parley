@@ -50,11 +50,11 @@ static const char not_answered[] = I18N_NOOP(
 static const char not_contain[] = I18N_NOOP(
     "There are currently no suitable expressions for the "
     "query you started.\n"
-    "Several reasons can cause this. Maybe you don't have "
+    "There are several possible reasons for this; maybe you do not have "
     "any expressions for the type of query you requested.\n"
-    "Most likely you should adjust your settings referring to "
-    "thresholds and blocking values in the query options.\n"
-    "Should the query options dialog be invoked now?");
+    "Most likely, you should adjust your settings referring to "
+    "thresholds and blocking values in the query options:\n"
+    "should the query options dialog be invoked now?");
 
 
 void kvoctrainApp::slotQueryOptions()
