@@ -1,17 +1,15 @@
 /***************************************************************************
 
-    $Id$
-
                       statistics dialog class
 
     -----------------------------------------------------------------------
 
     begin                : Sun Sep 19 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -53,7 +51,6 @@ StatistikDlg::StatistikDlg
 	Inherited( parent, name, true )
 {
   setCaption( kapp->makeStdCaption(i18n("Document Statistics")));
-
   GenStatPage *gspage = new GenStatPage (doc, this, name);
   addTab( gspage, i18n("General"));
   setOkButton(i18n("&OK"));
@@ -67,8 +64,6 @@ StatistikDlg::StatistikDlg
       s = i18n(s.local8Bit());
     addTab( spage, s);
   }
-
-  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

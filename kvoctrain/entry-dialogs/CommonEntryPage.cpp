@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                        edit common properties
 
     -----------------------------------------------------------------------
 
     begin                : Mon Jun 28 21:02:16 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
+
     email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
@@ -395,7 +393,6 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
   QTabDialog usageOpt(0, "", true);
-  usageOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   usageOpt.setCaption (kapp->makeStdCaption(i18n("usage (area) of an expression",
                                                  "Edit User-Defined Usage Labels")));
   UsageOptPage *usageOptPage
@@ -427,7 +424,6 @@ void CommonEntryPage::invokeLessDlg()
 */
   int old_lessons = (int) lesson_box->count();
   QTabDialog lessOpt(0, "", true);
-  lessOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
   lessOpt.setCaption (kapp->makeStdCaption(i18n("Edit Lesson Names")));
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
@@ -458,7 +454,6 @@ void CommonEntryPage::invokeTypeDlg()
 
   int old_types = (int) doc->getTypeDescr().size();
   QTabDialog typeOpt(0, "", true);
-  typeOpt.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   typeOpt.setCaption (kapp->makeStdCaption(i18n("Edit User Defined Types")));
   TypeOptPage *typeOptPage
     = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");

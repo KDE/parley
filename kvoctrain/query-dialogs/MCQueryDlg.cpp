@@ -87,7 +87,6 @@ MCQueryDlg::MCQueryDlg(
    setQuery (org, trans, entry, orgcol, transcol,
              q_cycle, q_num, q_start,
              exp, doc, mqtime, _show, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -410,7 +409,7 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -420,7 +419,7 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (show_all->isDefault() )
         showItClicked();
     break;
-      
+
     default:
       e->ignore();
     break;

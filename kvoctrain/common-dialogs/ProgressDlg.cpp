@@ -41,7 +41,6 @@ ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const
   setCaption (title);
   l_title->setText (doctitle);
   l_file->setText (filename);
-  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
   progress-> setTotalSteps(100);
 }
 

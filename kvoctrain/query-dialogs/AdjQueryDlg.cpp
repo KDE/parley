@@ -32,7 +32,7 @@
 #include <QueryManager.h>
 #include <langset.h>
 
-#include <kapplication.h> 
+#include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kprogress.h>
@@ -89,7 +89,6 @@ AdjQueryDlg::AdjQueryDlg
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, _comp, mqtime, _show, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -271,7 +270,7 @@ void AdjQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -283,7 +282,7 @@ void AdjQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (verify->isDefault() )
         verifyClicked();
     break;
-      
+
     default:
       e->ignore();
     break;

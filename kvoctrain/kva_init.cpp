@@ -75,7 +75,6 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 
   initDoc();
   initView();
-  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 
   int cc = Prefs::currentCol();
   int cr = Prefs::currentRow();

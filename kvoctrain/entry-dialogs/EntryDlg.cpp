@@ -167,7 +167,6 @@ EntryDlg::EntryDlg(
         undoButton->setEnabled(false);
         applyButton->setDefault(true);
         initFocus();
-        setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

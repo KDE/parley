@@ -82,7 +82,6 @@ ArtQueryDlg::ArtQueryDlg
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, articles, mqtime, _show, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -308,7 +307,7 @@ void ArtQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -320,7 +319,7 @@ void ArtQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (verify->isDefault() )
         verifyClicked();
     break;
-      
+
     default:
       e->ignore();
     break;

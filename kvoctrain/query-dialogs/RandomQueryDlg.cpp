@@ -20,7 +20,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -212,7 +212,6 @@ RandomQueryDlg::RandomQueryDlg(
    qtimer = 0;
    setCaption (kapp->makeStdCaption(i18n("Random Query")));
    setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 
@@ -690,7 +689,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -702,7 +701,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (verify->isDefault() )
         verifyClicked();
     break;
-      
+
     default:
       e->ignore();
     break;

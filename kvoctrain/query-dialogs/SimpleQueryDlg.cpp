@@ -73,7 +73,6 @@ SimpleQueryDlg::SimpleQueryDlg(
    setQuery (querytype, entry, column,
              q_cycle, q_num, q_start,
              exp, doc, mqtime, showcounter, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -309,7 +308,7 @@ void SimpleQueryDlg::editClicked()
      break;
 
      default:
-       ;      
+       ;
    }
 }
 
@@ -321,7 +320,7 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -333,7 +332,7 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (verify->isDefault() )
         verifyClicked();
     break;
-      
+
     default:
       e->ignore();
     break;

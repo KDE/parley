@@ -34,7 +34,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 
-#include <qinputdialog.h>
+#include <kinputdialog.h>
 #include <qtimer.h>
 
 #include <time.h>
@@ -145,7 +145,7 @@ void kvoctrainApp::slotEditCallBack(int res)
       if (smartAppend)
       {
         int row = view->getTable()->currentRow();
-        if (row == view->getTable()->numRows()-1) 
+        if (row == view->getTable()->numRows()-1)
         {
           int col = view->getTable()->currentColumn();
           if (col < view->getTable()->numCols()-1 && col >= KV_COL_ORG )
@@ -912,7 +912,7 @@ void kvoctrainApp::slotCreateRandom()
 {
    bool ok = FALSE;
    //shouldn't this dialog display the previous setting i.e Prefs::entriesPerLesson()?
-   int res = QInputDialog::getInteger(
+   int res = KInputDialog::getInteger(
                 i18n( "Entries in Lesson" ),
                 i18n( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );
    if (!ok)

@@ -1,17 +1,15 @@
 /***************************************************************************
 
-    $Id$
-
                        options dialog class
 
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+
+    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -89,8 +87,6 @@ DocPropsDlg::DocPropsDlg
 
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
-
-  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

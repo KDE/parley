@@ -53,8 +53,6 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc,
  the_doc = doc;
  parent = _parent;
 
- setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
-
  lb_list = new KVocTrainTable( the_doc, &ls, &gradecols, this, "ListBox_1" );
 
  lb_list->setLineWidth( 2 );

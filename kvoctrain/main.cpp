@@ -47,7 +47,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
                        KAboutData::License_GPL,
                        I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
                        "(c) 2001-2002\tThe KDE team\n"
-                       "(c) 2004\t\tPeter Hedlund\n"),
+                       "(c) 2004-2005\tPeter Hedlund\n"),
                        I18N_NOOP("Helps you train your vocabulary"),
                        "http://edu.kde.org/kvoctrain",
                        "submit@bugs.kde.org");
@@ -102,13 +102,13 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
       n++;
     }
   }
-  else 
+  else
   {
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     kva = new kvoctrainApp;
-    
+
     if ( args && args->count() == 1 )
-      kva->loadfileFromPath(args->arg(0), true);  
+      kva->loadfileFromPath(args->arg(0), true);
 
     kva->show();
   }

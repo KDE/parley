@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                     viewing options dialog page
 
     -----------------------------------------------------------------------
@@ -93,7 +91,6 @@ void ViewOptPage::initFocus() const
 void ViewOptPage::slotChooseFont()
 {
         KFontDialog fdlg (0L, 0L, false, true);
-        fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
         fdlg.setCaption(i18n("Choose Table Font"));
         fdlg.setFont(tablefont);
         if (fdlg.exec() == QDialog::Accepted ) {
@@ -109,7 +106,6 @@ void ViewOptPage::slotChooseFont()
 void ViewOptPage::slotChooseIPAFont()
 {
    KFontDialog fdlg (0L, 0L, false, true);
-   fdlg.setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    fdlg.setCaption(i18n("Choose IPA Font"));
    fdlg.setFont(ipa_font);
    if (fdlg.exec() == QDialog::Accepted ) {

@@ -91,8 +91,6 @@ DocPropsLangDlg::DocPropsLangDlg
 
   connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
   connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
-
-  setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 
 

@@ -95,7 +95,6 @@ VerbQueryDlg::VerbQueryDlg
    setQuery (type, entry, col,
              query_cycle, query_num, query_startnum,
              exp, doc, prefix, conjug, mqtime, _show, type_to);
-   setIcon (QPixmap (locate("data",  "kvoctrain/mini-kvoctrain.xpm" )));
    countbar->setFormat("%v/%m");
    timebar->setFormat("%v");
 }
@@ -314,7 +313,7 @@ void VerbQueryDlg::verifyClicked()
   if (!common) {
     if (!verifyField (p3smField, conjugations.pers3MaleSingular(type)))
       known = false;
-  
+
     if (!verifyField (p3snField, conjugations.pers3NaturalSingular(type)))
       known = false;
   }
@@ -332,7 +331,7 @@ void VerbQueryDlg::verifyClicked()
   if (!common) {
     if (!verifyField (p3pmField, conjugations.pers3MalePlural(type)))
       known = false;
-  
+
     if (!verifyField (p3pnField, conjugations.pers3NaturalPlural(type)))
       known = false;
   }
@@ -447,7 +446,7 @@ void VerbQueryDlg::keyPressEvent( QKeyEvent *e )
     case Key_Escape:
       dontKnowClicked();
     break;
-      
+
     case Key_Return:
     case Key_Enter:
       if (dont_know->isDefault() )
@@ -459,7 +458,7 @@ void VerbQueryDlg::keyPressEvent( QKeyEvent *e )
       else if (verify->isDefault() )
         verifyClicked();
     break;
-      
+
     default:
       e->ignore();
     break;
