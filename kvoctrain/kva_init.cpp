@@ -223,8 +223,8 @@ void kvoctrainApp::initMenuBar()
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove Language"), remove_m, ID_REMOVE_LANG);
 
   voc_menu->insertSeparator();
-  voc_menu->insertItem(i18n("Document &Properties..."), ID_DOC_PROPS );
-  voc_menu->insertItem(i18n("Lan&guage Properties..."), ID_DOC_PROPS_LANG );
+  voc_menu->insertItem(i18n("Document &Properties"), ID_DOC_PROPS );
+  voc_menu->insertItem(i18n("Lan&guage Properties"), ID_DOC_PROPS_LANG );
   connect( voc_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabulary()));
 
   ///////////////////////////////////////////////////////////////////
