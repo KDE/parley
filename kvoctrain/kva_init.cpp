@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.30  2002/09/17 20:24:59  binner
+    CVS_SILENT Style guide fix, use "cvslastchange" or X-WebCVS header line to view
+
     Revision 1.29  2002/07/21 04:27:08  binner
     CVS_SILENT Style guide fixes
 
@@ -315,7 +318,7 @@ void kvoctrainApp::initMenuBar()
   QPopupMenu *add_m = new QPopupMenu();
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/append-col.xpm")), i18n("&Append Language"), add_m, ID_APPEND_LANG );
   QPopupMenu *set_m = new QPopupMenu();
-  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), ("Set &language"), set_m, ID_SET_LANG );
+  voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &Language"), set_m, ID_SET_LANG );
   QPopupMenu *remove_m = new QPopupMenu();
   voc_menu->insertItem(QPixmap(locate("data", "kvoctrain/delete-col.xpm")), i18n("&Remove Language"), remove_m, ID_REMOVE_LANG);
 
