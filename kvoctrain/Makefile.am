@@ -136,8 +136,9 @@ messages:
 	$(CPP) -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT entry-dialogs/EntryDlg.h >EntryDlg.i.c
 	$(CPP) -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT docprop-dialogs/DocPropDlg.h >DocPropDlg.i.c
 	$(CPP) -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i.c
-	$(XGETTEXT) `ls $(i18n_files)` -o $(podir)/kvoctrain.pot
-	-rm *.i.c
+	$(EXTRACTRC) `find . -name "*.ui"` > rc.cpp
+	$(XGETTEXT) `ls $(i18n_files)` rc.cpp -o $(podir)/kvoctrain.pot
+	-rm *.i.c rc.cpp
 
 messages-local:
 	$(MAKE) messages podir=. XGETTEXT="xgettext -kI18N_NOOP"
