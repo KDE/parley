@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 21:11:02  arnold
+    tested and fixed changes from previous cvs update
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -41,7 +44,12 @@
 
 #include <qkeycode.h>
 
-#define Inherited ThreshOptPageData
+#include <qcheckbox.h>
+#include <qlabel.h>
+#include <qcombobox.h>
+#include <qlistbox.h>
+#include <qbuttongroup.h>
+#include <qpushbutton.h>
 
 #define _QM  QueryManager
 #define _QT(x) QueryManager::CompType(x)
@@ -169,7 +177,7 @@ ThreshOptPage::ThreshOptPage
 	const char   *name
 )
 	:
-	Inherited( parent, name )
+	ThreshOptPageForm( parent, name )
 {
    connect( lessoncomp, SIGNAL(activated(int)), SLOT(slotSetLessonComp(int)) );
    connect( datelist, SIGNAL(activated(int)), SLOT(slotSetDateItem(int)) );

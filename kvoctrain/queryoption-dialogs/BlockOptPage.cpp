@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.3  2001/10/13 21:11:02  arnold
     tested and fixed changes from previous cvs update
 
@@ -46,8 +53,9 @@
 #include <kmessagebox.h>
 
 #include <qkeycode.h>
-
-#define Inherited BlockOptPageData
+#include <qcombobox.h>
+#include <qlabel.h>
+#include <qcheckbox.h>
 
 #ifndef i18n_noop
 # define i18n_noop(x) (x)
@@ -103,7 +111,7 @@ BlockOptPage::BlockOptPage
         const char   *name
 )
 	:
-	Inherited( parent, name )
+	BlockOptPageForm( parent, name )
 {
 
    connect( expire1, SIGNAL(activated(int)), SLOT(slotSetExpire1(int)) );

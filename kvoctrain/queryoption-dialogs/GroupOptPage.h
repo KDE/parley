@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:46:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,7 +34,7 @@
 #ifndef GroupOptPage_included
 #define GroupOptPage_included
 
-#include "GroupOptPageData.h"
+#include "GroupOptPageForm.h"
 
 #include <vector.h>
 
@@ -49,7 +52,7 @@ struct PreSetting {
 };
 
 
-class GroupOptPage : public GroupOptPageData
+class GroupOptPage : public GroupOptPageForm
 {
     Q_OBJECT
 

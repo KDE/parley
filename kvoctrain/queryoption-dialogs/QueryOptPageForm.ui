@@ -1,0 +1,199 @@
+<!DOCTYPE UI><UI>
+<class>QueryOptPageForm</class>
+<widget>
+    <class>QDialog</class>
+    <property stdset="1">
+        <name>name</name>
+        <cstring>QueryOptPageForm</cstring>
+    </property>
+    <property stdset="1">
+        <name>geometry</name>
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>588</width>
+            <height>480</height>
+        </rect>
+    </property>
+    <property stdset="1">
+        <name>caption</name>
+        <string>Form1</string>
+    </property>
+    <hbox>
+        <property stdset="1">
+            <name>margin</name>
+            <number>11</number>
+        </property>
+        <property stdset="1">
+            <name>spacing</name>
+            <number>6</number>
+        </property>
+        <widget>
+            <class>QGroupBox</class>
+            <property stdset="1">
+                <name>name</name>
+                <cstring></cstring>
+            </property>
+            <property stdset="1">
+                <name>title</name>
+                <string>Query options</string>
+            </property>
+            <vbox>
+                <property stdset="1">
+                    <name>margin</name>
+                    <number>11</number>
+                </property>
+                <property stdset="1">
+                    <name>spacing</name>
+                    <number>6</number>
+                </property>
+                <widget>
+                    <class>QButtonGroup</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>query_group</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>Time per query</string>
+                    </property>
+                    <grid>
+                        <property stdset="1">
+                            <name>margin</name>
+                            <number>11</number>
+                        </property>
+                        <property stdset="1">
+                            <name>spacing</name>
+                            <number>6</number>
+                        </property>
+                        <widget row="0"  column="2" >
+                            <class>QLineEdit</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>e_mqtime</cstring>
+                            </property>
+                        </widget>
+                        <widget row="0"  column="1" >
+                            <class>QLabel</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>label_mqtime</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;Max. time (s):</string>
+                            </property>
+                        </widget>
+                        <widget row="1"  column="0" >
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>r_show_to</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;show solution</string>
+                            </property>
+                        </widget>
+                        <widget row="2"  column="0" >
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>r_cont_to</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;continue after timeout</string>
+                            </property>
+                        </widget>
+                        <widget row="2"  column="1"  rowspan="1"  colspan="2" >
+                            <class>QCheckBox</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>showrem</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>S&amp;how remaining time</string>
+                            </property>
+                        </widget>
+                        <widget row="0"  column="0" >
+                            <class>QRadioButton</class>
+                            <property stdset="1">
+                                <name>name</name>
+                                <cstring>r_nolimit_to</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;no time limitation</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget>
+                    <class>QGroupBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>GroupBox5</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>title</name>
+                        <string>Subproperties</string>
+                    </property>
+                    <widget>
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>ask_sub</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>geometry</name>
+                            <rect>
+                                <x>11</x>
+                                <y>21</y>
+                                <width>200</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>As&amp;k subproperties</string>
+                        </property>
+                    </widget>
+                    <widget>
+                        <class>QCheckBox</class>
+                        <property stdset="1">
+                            <name>name</name>
+                            <cstring>CheckBox4</cstring>
+                        </property>
+                        <property stdset="1">
+                            <name>geometry</name>
+                            <rect>
+                                <x>87</x>
+                                <y>48</y>
+                                <width>450</width>
+                                <height>21</height>
+                            </rect>
+                        </property>
+                        <property stdset="1">
+                            <name>text</name>
+                            <string>&amp;Synonyms</string>
+                        </property>
+                    </widget>
+                </widget>
+                <widget>
+                    <class>QCheckBox</class>
+                    <property stdset="1">
+                        <name>name</name>
+                        <cstring>swap</cstring>
+                    </property>
+                    <property stdset="1">
+                        <name>text</name>
+                        <string>S&amp;wap direction randomly</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </hbox>
+</widget>
+</UI>

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/13 21:11:02  arnold
+    tested and fixed changes from previous cvs update
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -38,11 +41,13 @@
 #include "GroupOptPage.h"
 #include "../common-dialogs/LessonInputDlg.h"
 
-#define Inherited GroupOptPageData
-
 #include <qkeycode.h>
+#include <qcombobox.h>
+#include <qlabel.h>
+#include <qpushbutton.h>
 
 #include <kapp.h>
+#include <klocale.h>
 
 GroupOptPage::GroupOptPage
 (
@@ -51,7 +56,7 @@ GroupOptPage::GroupOptPage
 	const char         *name
 )
 	:
-	Inherited( parent, name )
+	GroupOptPageForm( parent, name )
 {
 	connect( ps_del, SIGNAL(clicked()), SLOT(slotDeleteGroup()) );
 	connect( ps_new, SIGNAL(clicked()), SLOT(slotNewGroup()) );
@@ -59,7 +64,7 @@ GroupOptPage::GroupOptPage
 	connect( ps_store, SIGNAL(clicked()), SLOT(slotStoreGroup()) );
 	connect( ps_name, SIGNAL(activated(int)), SLOT(slotGroupSelected(int)) );
 
-	setCaption(i18n("Groups" ));
+	setCaption(i18n("Groups"));
         l_name->setBuddy(ps_name);
         for (int i = 0; i < (int) preset.size(); i++)
           ps_name->insertItem (preset[i].name);

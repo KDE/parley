@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:16  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -109,9 +116,6 @@ QueryOptionsDlg::QueryOptionsDlg
 
   threshOptPage->slotBlockExpire (getBlock(), getExpire());
 
-  resize( 520+16,360+76 );
-  setMinimumSize( 520+16,360+76 );
-  setMaximumSize( 520+16,360+76 );
   setIcon (QPixmap (EA_KDEDATADIR("",  "kvoctrain/mini-kvoctrain.xpm" )));
 }
 

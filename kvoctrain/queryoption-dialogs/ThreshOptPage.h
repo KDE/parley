@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:46:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,10 +34,10 @@
 #ifndef ThreshOptPage_included
 #define ThreshOptPage_included
 
-#include "ThreshOptPageData.h"
+#include "ThreshOptPageForm.h"
 #include <QueryManager.h>
 
-class ThreshOptPage : public ThreshOptPageData
+class ThreshOptPage : public ThreshOptPageForm
 {
     Q_OBJECT
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:46:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -31,12 +34,14 @@
 #ifndef QueryOptPage_included
 #define QueryOptPage_included
 
-#include "QueryOptPageData.h"
+#include "QueryOptPageForm.h"
 
 #include <QueryManager.h>
 #include <compat_2x.h>
 
-class QueryOptPage : public QueryOptPageData
+class QValidator;
+
+class QueryOptPage : public QueryOptPageForm
 {
     Q_OBJECT
 

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/13 11:45:29  coolo
+    includemocs and other smaller cleanups. I tried to fix it, but as it's still
+    qt2 I can't test :(
+
     Revision 1.1  2001/10/05 15:46:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -34,10 +38,15 @@
 #include <qvalidator.h>
 
 #include <qkeycode.h>
+#include <qcheckbox.h>
+#include <qlabel.h>
+#include <qgroupbox.h>
+#include <qradiobutton.h>
+#include <qbuttongroup.h>
+#include <qvalidator.h>
+#include <qlineedit.h>
+
 #include <stdlib.h>
-
-#define Inherited QueryOptPageData
-
 
 #include <kapp.h>
 
@@ -52,7 +61,7 @@ QueryOptPage::QueryOptPage
 	const char   *name
 )
 	:
-	Inherited( parent, name )
+	QueryOptPageForm( parent, name )
 {
    query_group->insert( r_show_to );
    query_group->insert( r_cont_to );

@@ -2,27 +2,10 @@ INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/
 
 noinst_LTLIBRARIES = libqueryoptiondlg.la
 
-libqueryoptiondlg_a_DLG_sources = \
-  GroupOptPage.dlg \
-  QueryOptPage.dlg \
-  ThreshOptPage.dlg \
-  BlockOptPage.dlg
-
-libqueryoptiondlg_a_QOBJ_sources =   \
-  $(libqueryoptiondlg_a_DLG_sources:.dlg=.cpp) \
-  $(libqueryoptiondlg_a_DLG_sources:.dlg=Data.cpp) \
+libqueryoptiondlg_la_SOURCES = \
+ GroupOptPage.cpp    QueryOptPage.cpp    ThreshOptPage.cpp    BlockOptPage.cpp \
+ GroupOptPageForm.ui QueryOptPageForm.ui ThreshOptPageForm.ui BlockOptPageForm.ui \
  QueryOptionsDlg.cpp
-
-libqueryoptiondlg_la_SOURCES = $(libqueryoptiondlg_a_QOBJ_sources)
-                        
-EXTRA_DIST = \
-  $(libqueryoptiondlg_a_QOBJ_sources:.cpp=.h) \
-  $(libqueryoptiondlg_a_DLG_sources)
-
-# CLEANFILES += *~ # Breaks badly with automake 1.5
-
-#%Data.cpp %Data.h: %.dlg
-#	-qtarch -g $<
 
 METASOURCES = AUTO
 

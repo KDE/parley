@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:46:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -32,7 +35,7 @@
 #ifndef BlockOptPage_included
 #define BlockOptPage_included
 
-#include "BlockOptPageData.h"
+#include "BlockOptPageForm.h"
 
 #include <time.h>
 #include <time.h>
@@ -40,7 +43,7 @@
 
 class QueryManager;
 
-class BlockOptPage : public BlockOptPageData
+class BlockOptPage : public BlockOptPageForm
 {
     Q_OBJECT
 
