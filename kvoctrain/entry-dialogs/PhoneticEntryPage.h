@@ -1,17 +1,14 @@
  /***************************************************************************
 
-    $Id$
-
               dialog page for characters from the phonetic alphabet
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Dec 9 2001
+    begin          : Sun Dec 9 2001
 
-    copyright            : (C) 1999-2002 Ewald Arnold
-                           (C) 2001-2002 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001-2002 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -34,18 +31,16 @@
 
 #include <qpushbutton.h>
 
-class PhoneticEntryPage : public PhoneticEntryPageForm
+#include <kdialogbase.h>
+
+class PhoneticEntryPage : public KDialogBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-	PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0, const char *name = 0);
-	
-protected slots:
-  void slotAbort();
+  PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0, const char *name = 0, bool modal = false);
 
 signals:
-  void wantClose();
   void charSelected(wchar_t);
 
 protected:
@@ -60,11 +55,8 @@ class PhoneticButton : public QPushButton
   Q_OBJECT
 
 public:
-
-  PhoneticButton (const QString & text, QWidget * parent,
-                  PhoneticEntryPage *_page, const char * name = 0)
-    : QPushButton (text, parent, name),
-      page(_page) {}
+  PhoneticButton (const QString & text, QWidget * parent, PhoneticEntryPage *_page, const char * name = 0)
+  : QPushButton (text, parent, name), page(_page) {}
 
 protected slots:
   void slotClicked();

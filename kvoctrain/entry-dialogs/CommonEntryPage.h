@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                          edit common properties
 
     -----------------------------------------------------------------------
 
-    begin                : Mon Jun 28 21:02:16 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Mon Jun 28 21:02:16 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -39,117 +36,105 @@ class EntryDlg;
 
 class CommonEntryPage : public CommonEntryPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
+  CommonEntryPage
+  (
+    EntryDlg     *dlgbook,
+    kvoctrainDoc *doc,
+    bool          multi_sel,
+    QString       expr,
+    int           less,
+    QComboBox    *lessBox,
+    QString       lang,
+    QString       type,
+    QString       pronunce,
+    QString       usage,
+    QString       label,
+    QueryManager &querymanager,
+    bool          active,
+    const QFont&  ipafont,
+    QWidget* parent = NULL,
+    const char* name = NULL
+  );
 
-    CommonEntryPage
-    (
-        EntryDlg     *dlgbook,
-        kvoctrainDoc *doc,
-        bool          multi_sel,
-        QString       expr,
-        int           less,
-        QComboBox    *lessBox,
-        QString       lang,
-        QString       type,
-        QString       pronunce,
-        QString       usage,
-        QString       label,
-        QueryManager &querymanager,
-        bool          active,
-        const QFont&  ipafont,
-        QWidget* parent = NULL,
-        const char* name = NULL
-    );
+  void setData(
+    bool          multi_sel,
+    QString       expr,
+    int           less,
+    QComboBox    *lessBox,
+    QString       lang,
+    QString       type,
+    QString       pronunce,
+    QString       usage,
+    QString       label,
+    QueryManager &querymanager,
+    bool          active);
 
-    void setData(
-        bool          multi_sel,
-        QString       expr,
-        int           less,
-        QComboBox    *lessBox,
-        QString       lang,
-        QString       type,
-        QString       pronunce,
-        QString       usage,
-        QString       label,
-        QueryManager &querymanager,
-        bool          active);
+  bool isDirty() const;
+  bool lessonDirty     () const { return lesson_dirty; }
+  bool activeDirty     () const { return active_dirty; }
+  bool typeDirty       () const { return type_dirty; }
+  bool usageDirty      () const { return usage_dirty; }
 
-    ~CommonEntryPage ();
+  int getLesson        () const { return lesson; }
+  QString getType      () const { return type; }
+  QString getExpr      () const { return expression; }
+  QString getPronunce  () const { return pronunce; }
+  QString getUsageLabel() const { return usageCollection; }
+  bool    getActive    () const { return entry_active; }
 
-
-    bool isDirty() const;
-
-    bool    lessonDirty  () const { return lesson_dirty; }
-    bool    activeDirty  () const { return active_dirty; }
-    bool    typeDirty    () const { return type_dirty; }
-    bool    usageDirty   () const { return usage_dirty; }
-
-    int     getLesson  ()   const { return lesson; }
-    QString getType    ()   const { return type; }
-    QString getExpr    ()   const { return expression; }
-    QString getPronunce()   const { return pronunce; }
-    QString getUsageLabel() const { return usageCollection; }
-    bool    getActive()     const { return entry_active; }
-
-    bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
-
-public slots:
-    void initFocus() const;
+  bool isModified();
+  void setModified(bool mod = true);
+  void setEnabled(int enable_type);
 
 signals:
-    void typeSelected(const QString &);
+  void typeSelected(const QString &);
 
 protected:
-    void keyPressEvent( QKeyEvent * );
-    void setTypeBox(const QString &act_type);
-    void setLessonBox(QComboBox *lessbox, int lesson);
-    void setUsageBox(const QString & act_type);
+  void setTypeBox(const QString &act_type);
+  void setLessonBox(QComboBox *lessbox, int lesson);
+  void setUsageBox(const QString & act_type);
 
 protected slots:
-    void slotLessonSelected(int);
-    void slotExprSelected(const QString&);
-    void slotTypeSelected(int);
-    void slotSubTypeSelected(int);
-    void slotPronunceSelected (const QString&);
-    void slotUsageChanged();
-    void slotActiveChanged(bool state);
-    void phoneticSelected(wchar_t);
-    void deletePronDlg();
-
-    void invokeLessDlg();
-    void invokeTypeDlg();
-    void invokePronDlg();
-    void invokeUsageDlg();
+  void slotLessonSelected(int);
+  void slotExprSelected(const QString&);
+  void slotTypeSelected(int);
+  void slotSubTypeSelected(int);
+  void slotPronunceSelected (const QString&);
+  void slotUsageChanged();
+  void slotActiveChanged(bool state);
+  void phoneticSelected(wchar_t);
+  void invokeLessDlg();
+  void invokeTypeDlg();
+  void invokePronDlg();
+  void invokeUsageDlg();
 
 signals:
-    void sigModified();
+  void sigModified();
 
 protected:
-    QString       pronunce;
-    QString       expression;
-    QString       usageCollection;
-    int           lesson;
-    QString       type;
-    EntryDlg     *dlgbook;
-    bool          lesson_dirty;
-    bool          type_dirty;
-    kvoctrainDoc *doc;
-    bool          entry_active;
-    bool          active_dirty;
-    bool          usage_dirty;
+  QString       pronunce;
+  QString       expression;
+  QString       usageCollection;
+  int           lesson;
+  QString       type;
+  EntryDlg     *dlgbook;
+  bool          lesson_dirty;
+  bool          type_dirty;
+  kvoctrainDoc *doc;
+  QueryManager &querymanager;
+  bool          entry_active;
+  bool          active_dirty;
+  bool          usage_dirty;
 
-    PhoneticEntryPage  *phoneticDlg;
+  vector<TypeRelation>  all_maintypes;
+  vector<TypeRelation>  all_types;
+  vector<UsageRelation> usages;
+  vector<QString>       current_subtypes;
 
-    vector<TypeRelation>  all_maintypes;
-    vector<TypeRelation>  all_types;
-    vector<UsageRelation> usages;
-    vector<QString>       current_subtypes;
-    QueryManager         &querymanager;
-    QFont                 ipafont;
-    bool                  modified;
+  QFont                 ipafont;
+  bool                  modified;
 };
 #endif // CommonEntryPage_included

@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
               dialog page for multiple choice suggestions
 
     -----------------------------------------------------------------------
 
-    begin                : Mon Oct 29 18:09:29 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Mon Oct 29 18:09:29 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -35,117 +32,74 @@
 #include <qlineedit.h>
 
 
-MCEntryPage::MCEntryPage
-(
-        EntryDlg              *_dlgbook,
-        bool                    multi_sel,
-        const MultipleChoice   &mc,
-        QWidget                *parent,
-        const char             *name
-)
-	:
-        dlgbook(_dlgbook),
-	MCEntryPageForm( parent, name )
+MCEntryPage::MCEntryPage(EntryDlg *_dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent, const char *name)
+  : MCEntryPageForm( parent, name ), dlgbook(_dlgbook)
 {
-   multiplechoice = mc;
+  multiplechoice = mc;
 
-   connect( mc1Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( mc2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( mc3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( mc4Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( mc5Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+  connect( mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)) );
+  connect( mc2Field, SIGNAL(textChanged(const QString&)), SLOT(mc2Changed(const QString&)) );
+  connect( mc3Field, SIGNAL(textChanged(const QString&)), SLOT(mc3Changed(const QString&)) );
+  connect( mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)) );
+  connect( mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)) );
 
-   connect( mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)) );
-   connect( mc2Field, SIGNAL(textChanged(const QString&)), SLOT(mc2Changed(const QString&)) );
-   connect( mc3Field, SIGNAL(textChanged(const QString&)), SLOT(mc3Changed(const QString&)) );
-   connect( mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)) );
-   connect( mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)) );
-
-   setData(multi_sel, mc);
+  setData(multi_sel, mc);
 }
 
 
-void MCEntryPage::setData(bool multi_sel,
-                          const MultipleChoice &mc)
+void MCEntryPage::setData(bool multi_sel, const MultipleChoice &mc)
 {
-     mc1Field->setText (mc.mc1());
-     mc2Field->setText (mc.mc2());
-     mc3Field->setText (mc.mc3());
-     mc4Field->setText (mc.mc4());
-     mc5Field->setText (mc.mc5());
+  mc1Field->setText (mc.mc1());
+  mc2Field->setText (mc.mc2());
+  mc3Field->setText (mc.mc3());
+  mc4Field->setText (mc.mc4());
+  mc5Field->setText (mc.mc5());
 
-     if (multi_sel) {
-       mc1Field->setEnabled(false);
-       mc2Field->setEnabled(false);
-       mc3Field->setEnabled(false);
-       mc4Field->setEnabled(false);
-       mc5Field->setEnabled(false);
-     }
+  if (multi_sel)
+  {
+    mc1Field->setEnabled(false);
+    mc2Field->setEnabled(false);
+    mc3Field->setEnabled(false);
+    mc4Field->setEnabled(false);
+    mc5Field->setEnabled(false);
+  }
 
-     setModified(false);
-}
-
-
-void MCEntryPage::initFocus() const
-{
-  mc1Field->setFocus();
-}
-
-
-void MCEntryPage::returnPressed()
-{
-   dlgbook->slotApply();
+  setModified(false);
 }
 
 
 void MCEntryPage::mc1Changed(const QString& s)
 {
-    setModified(true);
-    multiplechoice.setMC1 (s);
+  setModified(true);
+  multiplechoice.setMC1 (s);
 }
 
 
 void MCEntryPage::mc2Changed(const QString& s)
 {
-    setModified(true);
-    multiplechoice.setMC2 (s);
+  setModified(true);
+  multiplechoice.setMC2 (s);
 }
 
 
 void MCEntryPage::mc3Changed(const QString& s)
 {
-    setModified(true);
-    multiplechoice.setMC3 (s);
+  setModified(true);
+  multiplechoice.setMC3 (s);
 }
 
 
 void MCEntryPage::mc4Changed(const QString& s)
 {
-    setModified(true);
-    multiplechoice.setMC4 (s);
+  setModified(true);
+  multiplechoice.setMC4 (s);
 }
 
 
 void MCEntryPage::mc5Changed(const QString& s)
 {
-    setModified(true);
-    multiplechoice.setMC5 (s);
-}
-
-
-void MCEntryPage::keyPressEvent( QKeyEvent *e )
-{
-   if (e->state() & AltButton & ControlButton & ShiftButton == 0) {
-     if (  e->key() == Key_Escape )
-       emit dlgbook->slotCancel();
-     else if (  e->key() == Key_Enter
-              ||e->key() == Key_Return)
-       emit dlgbook->slotApply();
-     else
-       e->ignore();
-   }
-   else
-     e->ignore();
+  setModified(true);
+  multiplechoice.setMC5 (s);
 }
 
 
@@ -173,6 +127,5 @@ void MCEntryPage::setEnabled(int enable)
   mc4Field->setEnabled (ena);
   mc5Field->setEnabled (ena);
 }
-
 
 #include "MCEntryPage.moc"

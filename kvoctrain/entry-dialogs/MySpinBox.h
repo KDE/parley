@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     display special spinbox
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Oct 21 18:02:16 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sat Oct 21 18:02:16 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -26,26 +23,26 @@
  *                                                                         *
  ***************************************************************************/
 
+#ifndef MySpinbox_included
+#define MySpinbox_included
 
 #include <qspinbox.h>
 
 class QStringlist;
 
-#ifndef MySpinbox_included
-#define MySpinbox_included
+class MySpinBox : public QSpinBox
+{
+public:
+  MySpinBox (QWidget* parent = 0, const char* name = 0);
 
-  class MySpinBox : public QSpinBox {
-  public:
-    MySpinBox (QWidget* parent = 0, const char* name = 0);
+  void setSpecial(const QString &str);
+  void setData (QStringList *names, int minValue, int maxValue);
+  virtual QString mapValueToText( int value );
+  virtual int mapTextToValue( bool* ok );
 
-    void setSpecial(const QString &str);
-    void setData (QStringList *names, int minValue, int maxValue);
-    virtual QString mapValueToText( int value );
-    virtual int	    mapTextToValue( bool* ok );
-
-  protected:
-    QStringList    *spin_names;
-    QString         special_str;
-  };
+protected:
+  QStringList *spin_names;
+  QString special_str;
+};
 
 #endif // MySpinbox_included

@@ -6,12 +6,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Mon Jun 28 21:02:16 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Mon Jun 28 21:02:16 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -40,57 +39,51 @@ class EntryDlg;
 
 class FromToEntryPage : public FromToEntryPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
 
-    FromToEntryPage
-    (
-        EntryDlg   *dlgbook,
-        bool        multi_sel,
-        grade_t     _grade,
-        time_t      _date,
-        count_t     _qcount,
-        count_t     _bcount,
-        QString     faux,
-        QString     label,
-        QWidget    *parent = NULL,
-        const char *name = NULL
-    );
+  FromToEntryPage
+  (
+      EntryDlg   *dlgbook,
+      bool        multi_sel,
+      grade_t     _grade,
+      time_t      _date,
+      count_t     _qcount,
+      count_t     _bcount,
+      QString     faux,
+      QString     label,
+      QWidget    *parent = NULL,
+      const char *name = NULL
+  );
 
-    void setData(
-        bool        multi_sel,
-        grade_t     _grade,
-        time_t      _date,
-        count_t     _qcount,
-        count_t     _bcount,
-        QString     faux,
-        QString     label);
+  void setData(
+      bool        multi_sel,
+      grade_t     _grade,
+      time_t      _date,
+      count_t     _qcount,
+      count_t     _bcount,
+      QString     faux,
+      QString     label);
 
-    time_t  dateDirty   () const { return date_dirty; }
-    grade_t gradeDirty  () const { return grade_dirty; }
-    count_t qCountDirty () const { return qcount_dirty; }
-    count_t bCountDirty () const { return bcount_dirty; }
+  time_t  dateDirty   () const { return date_dirty; }
+  grade_t gradeDirty  () const { return grade_dirty; }
+  count_t qCountDirty () const { return qcount_dirty; }
+  count_t bCountDirty () const { return bcount_dirty; }
 
-    time_t  getDate   () const;
-    grade_t getGrade  () const { return grade; }
-    count_t getQCount () const { return qcount; }
-    count_t getBCount () const { return bcount; }
+  time_t  getDate   () const;
+  grade_t getGrade  () const { return grade; }
+  count_t getQCount () const { return qcount; }
+  count_t getBCount () const { return bcount; }
 
-    QString getFauxAmi () const { return fauxami; }
+  QString getFauxAmi () const { return fauxami; }
 
-    bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
-
-public slots:
-    void initFocus() const;
+  bool isModified();
+  void setModified(bool mod = true);
+  void setEnabled(int enable_type);
 
 signals:
     void sigModified();
-
-protected:
-    void keyPressEvent( QKeyEvent * );
 
 protected slots:
     void slotGradeSelected(int);

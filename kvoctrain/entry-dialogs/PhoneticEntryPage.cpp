@@ -1,17 +1,14 @@
  /***************************************************************************
 
-    $Id$
-
               dialog page for characters from the phonetic alphabet
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Dec 9 2001
+    begin          : Sun Dec 9 2001
 
-    copyright            : (C) 1999-2002 Ewald Arnold
-                           (C) 2001-2002 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001-2002 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -30,6 +27,7 @@
 #include "PhoneticEntryPage.h"
 
 #include <qlayout.h>
+#include <qframe.h>
 #include <qgroupbox.h>
 #include <qtooltip.h>
 
@@ -177,12 +175,12 @@ void PhoneticButton::slotClicked()
 }
 
 
-PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, const char *name)
-  : PhoneticEntryPageForm(parent, name, /*modal*/false)
+PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, const char *name, bool modal)
+  : KDialogBase(Plain, i18n("Select Characters From Phonetic Alphabet"), Close, Close, parent, name, modal)
 {
   int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
+  QFrame * phoneticbox = plainPage();
   QGridLayout *gbox = new QGridLayout(phoneticbox, KV_MAX_HORIZ, (num+KV_MAX_HORIZ-1)/KV_MAX_HORIZ, 1);
-  connect (b_close, SIGNAL(clicked()), SLOT(slotAbort()) );
 
   KV_Unicode_Ref *uni_ref = kv_unicode_ref;
   int vert = 0;
@@ -211,12 +209,6 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     ++uni_ref;
   }
   resize(sizeHint());
-}
-
-
-void PhoneticEntryPage::slotAbort()
-{
-  emit wantClose();
 }
 
 

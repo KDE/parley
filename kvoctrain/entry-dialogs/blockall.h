@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                    dummy validator which blocks all
 
     -----------------------------------------------------------------------
@@ -32,12 +30,9 @@
 
 class BlockAllValidator : public QValidator
 {
- public:
-
+public:
   BlockAllValidator ();
-
   State validate (QString&, int& ) const;
 };
 
 #endif // BlockAll_included
-

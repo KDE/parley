@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
               dialog page for multiple choice suggestions
 
     -----------------------------------------------------------------------
 
-    begin                : Mon Oct 29 18:09:29 1999
+    begin          : Mon Oct 29 18:09:29 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -37,49 +34,33 @@ class EntryDlg;
 
 class MCEntryPage : public MCEntryPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
+  MCEntryPage(EntryDlg *dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent = NULL, const char *name = NULL);
 
-    MCEntryPage
-    (
-        EntryDlg             *dlgbook,
-        bool                  multi_sel,
-        const MultipleChoice &mc,
-        QWidget              *parent = NULL,
-        const char           *name = NULL
-    );
+  void setData(bool multi_sel, const MultipleChoice &mc);
 
-    void setData(bool multi_sel,
-                 const MultipleChoice &mc);
+  MultipleChoice getMultipleChoice() const { return multiplechoice; }
 
-    MultipleChoice getMultipleChoice() const { return multiplechoice; }
-
-    bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
-
-public slots:
-    void initFocus() const;
+  bool isModified();
+  void setModified(bool mod = true);
+  void setEnabled(int enable_type);
 
 signals:
-    void sigModified();
-
-protected:
-    void keyPressEvent( QKeyEvent * );
+  void sigModified();
 
 protected slots:
-    void mc1Changed(const QString&);
-    void mc2Changed(const QString&);
-    void mc3Changed(const QString&);
-    void mc4Changed(const QString&);
-    void mc5Changed(const QString&);
-    void returnPressed();
+  void mc1Changed(const QString&);
+  void mc2Changed(const QString&);
+  void mc3Changed(const QString&);
+  void mc4Changed(const QString&);
+  void mc5Changed(const QString&);
 
 protected:
-    MultipleChoice  multiplechoice;
-    bool            modified;
-    EntryDlg       *dlgbook;
+  MultipleChoice  multiplechoice;
+  bool            modified;
+  EntryDlg       *dlgbook;
 };
 
 #endif // MCEntryPage_included

@@ -430,7 +430,6 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
    vector<QTableSelection> tabsel;
    entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
-   entryDlg->initFocus();
    entryDlg->show();
 }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>TenseEntryPageForm</class>
-<widget class="QDialog">
+<widget class="QWidget">
     <property name="name">
         <cstring>TenseEntryPageForm</cstring>
     </property>
@@ -20,7 +20,7 @@
             <cstring>unnamed</cstring>
         </property>
         <property name="margin">
-            <number>11</number>
+            <number>0</number>
         </property>
         <property name="spacing">
             <number>6</number>
@@ -367,5 +367,21 @@
         </widget>
     </grid>
 </widget>
+<tabstops>
+    <tabstop>tensebox</tabstop>
+    <tabstop>b_next</tabstop>
+    <tabstop>first_singular</tabstop>
+    <tabstop>second_singular</tabstop>
+    <tabstop>first_plural</tabstop>
+    <tabstop>second_plural</tabstop>
+    <tabstop>third_s_common</tabstop>
+    <tabstop>thirdF_singular</tabstop>
+    <tabstop>thirdM_singular</tabstop>
+    <tabstop>thirdN_singular</tabstop>
+    <tabstop>third_p_common</tabstop>
+    <tabstop>thirdF_plural</tabstop>
+    <tabstop>thirdM_plural</tabstop>
+    <tabstop>thirdN_plural</tabstop>
+</tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

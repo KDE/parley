@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    tenses of irreg. verbs dialog page
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Nov 27 20:20:34 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sat Nov 27 20:20:34 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -37,60 +34,56 @@ class EntryDlg;
 
 class TenseEntryPage : public TenseEntryPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
+  TenseEntryPage
+  (
+    EntryDlg          *dlgbook,
+    bool               multi_sel,
+    const Conjugation &con_prefix,
+    const Conjugation &conjugations,
+    QWidget           *parent = NULL,
+    const char        *name = NULL
+  );
 
-    TenseEntryPage
-    (
-        EntryDlg          *dlgbook,
-        bool               multi_sel,
-        const Conjugation &con_prefix,
-        const Conjugation &conjugations,
-        QWidget           *parent = NULL,
-        const char        *name = NULL
-    );
+  void setData(bool multi_sel, const Conjugation &conjugations);
 
-    void setData(bool multi_sel, const Conjugation &conjugations);
+  Conjugation getConjugation();
 
-    Conjugation getConjugation();
-
-    bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
-
-public slots:
-    void initFocus() const;
+  bool isModified();
+  void setModified(bool mod = true);
+  void setEnabled(int enable_type);
 
 signals:
-    void sigModified();
+  void sigModified();
 
 protected:
-    void keyPressEvent( QKeyEvent * );
-    void updateFields();
+  void updateFields();
 
 protected slots:
-    void secondPluralChanged(const QString&);
-    void secondSingularChanged(const QString&);
-    void thirdNSingularChanged(const QString&);
-    void thirdFPluralChanged(const QString&);
-    void thirdMSingularChanged(const QString&);
-    void thirdFSingularChanged(const QString&);
-    void slotTenseSelected(int);
-    void thirdMPluralChanged(const QString&);
-    void thirdNPluralChanged(const QString&);
-    void firstSingularChanged(const QString&);
-    void firstPluralChanged(const QString&);
-    void slotThirdSCommonToggled(bool);
-    void slotThirdPCommonToggled(bool);
-    void slotNextConj();
+  void secondPluralChanged(const QString&);
+  void secondSingularChanged(const QString&);
+  void thirdNSingularChanged(const QString&);
+  void thirdFPluralChanged(const QString&);
+  void thirdMSingularChanged(const QString&);
+  void thirdFSingularChanged(const QString&);
+  void slotTenseSelected(int);
+  void thirdMPluralChanged(const QString&);
+  void thirdNPluralChanged(const QString&);
+  void firstSingularChanged(const QString&);
+  void firstPluralChanged(const QString&);
+  void slotThirdSCommonToggled(bool);
+  void slotThirdPCommonToggled(bool);
+  void slotNextConj();
 
 protected:
-    Conjugation   prefix,
-                  conjugations;
-    QString       selection;
-    bool          multi_mode;
-    bool          modified;
-    EntryDlg     *dlgbook;
+  Conjugation   prefix,
+                conjugations;
+  QString       selection;
+  bool          multi_mode;
+  bool          modified;
+  EntryDlg     *dlgbook;
 };
+
 #endif // TenseEntryPage_included

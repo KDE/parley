@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                      dummy validator which blocks all
 
     -----------------------------------------------------------------------
@@ -25,17 +23,16 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #include "blockall.h"
 
-BlockAllValidator::BlockAllValidator ()
-    : QValidator (0, 0)
+BlockAllValidator::BlockAllValidator() : QValidator (0, 0)
 {
 }
 
+
 BlockAllValidator::State BlockAllValidator::validate (QString&, int& ) const
 {
-    return Invalid;
+  return Invalid;
 }
 
 
