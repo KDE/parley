@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/10/30 14:09:46  arnold
+    added property 'multiple choice'
+
     Revision 1.7  2001/10/21 15:28:43  arnold
     removed all the 'charset' stuff
 
@@ -1356,6 +1359,7 @@ void kvoctrainApp::statusCallback(int id_){ /*FOLD00*/
   }
 }
 
+#include "kvoctrain.moc"
+
 #endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT
 
-#include "kvoctrain.moc"

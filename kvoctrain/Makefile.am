@@ -82,7 +82,7 @@ bin_PROGRAMS = kvoctrain spotlight2kvtml
 kvoctrain_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 spotlight2kvtml_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
-CLEANFILES = *.i *~
+CLEANFILES = *.i.c
 
 # them while "make clean", use CLEANFILES
 #DISTCLEANFILES = $(kvoctrain_METASOURCES)
@@ -97,18 +97,20 @@ i18n_files=  query-dialogs/*.cpp \
              statistik-dialogs/*.cpp \
              kvt-core/*.cpp \
              kvt-core/kvt-xml/*.cpp \
-             *.i           \
+             *.i.c           \
              $(spotlight2kvtml_SOURCES) \
              $(kvoctrain_SOURCES)
 
 messages:
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvoctrain.cpp >kvoctrain.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kv_resource.h >kv_resource.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kva_header.cpp >kva_header.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT option-dialogs/GeneralOptionsDlg.h >GeneralOptionsDlg.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT entry-dialogs/EntryDlg.h >EntryDlg.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT docprop-dialogs/DocPropDlg.h >DocPropDlg.i
-	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvoctrain.cpp >kvoctrain.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kv_resource.h >kv_resource.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kva_header.cpp >kva_header.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT option-dialogs/GeneralOptionsDlg.h >GeneralOptionsDlg.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT entry-dialogs/EntryDlg.h >EntryDlg.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT docprop-dialogs/DocPropDlg.h >DocPropDlg.i.c
+	cpp -P -I.. -DVERSION=\"$(VERSION)\" -D__ONLY_TO_BE_SEEN_BY_XGETTEXT kvt-core/kvoctrainexpr.h >kvoctrainexpr.i.c
 	$(XGETTEXT) `ls $(i18n_files)` -o $(podir)/kvoctrain.pot
-	-rm *.i
+	-rm *.i.c
+
+#-C -ki18n -ki18n_noop
