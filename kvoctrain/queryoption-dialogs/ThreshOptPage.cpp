@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:30:01  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/09 14:19:54  arnold
     fixed and improved some dialog pages
 
@@ -92,12 +95,12 @@ static QueryManager::CompType
                           _QM::OneOf, _QM::NotOneOf, _QM::Current,
                           _QM::NotAssigned, _QT(-1)};
 
-struct ListRef {
+struct ThreshListRef {
           const char *text;
           long int num;
        };
 
-static ListRef bad_itemlist [] =
+static ThreshListRef Threshbad_itemlist [] =
       { {"0",   0},
         {"1",   1},
         {"2",   2},
@@ -117,7 +120,7 @@ static ListRef bad_itemlist [] =
         {  0 ,  0}
       };
 
-static ListRef query_itemlist [] =
+static ThreshListRef Threshquery_itemlist [] =
       { {"0", 0},
         {"1", 1},
         {"2", 2},
@@ -141,7 +144,7 @@ static ListRef query_itemlist [] =
 # define i18n_noop(x) (x)
 #endif
 
-static ListRef date_itemlist [] =
+static ThreshListRef Threshdate_itemlist [] =
       {
         {i18n_noop("30 min"),        30*60   },
         {i18n_noop("1 hour"),    1 * 60*60   },
@@ -218,7 +221,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
 {
    manager = _manager;
    QueryManager::CompType *ct;
-   ListRef *ref;
+   ThreshListRef *ref;
    int index;
 
    // fill in all listboxes and select last choice
@@ -262,34 +265,34 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    typelist->setCurrentItem (index);
 
    index = 0;
-   ref = bad_itemlist;
+   ref = Threshbad_itemlist;
    badlist->clear();
    while (ref->text != 0 ) {
      badlist->insertItem (ref->text);
      if (manager->badItem() == ref->num)
-       index = ref - bad_itemlist;
+       index = ref - Threshbad_itemlist;
      ref++;
    }
    badlist->setCurrentItem (index);
 
    index = 0;
-   ref = query_itemlist;
+   ref = Threshquery_itemlist;
    querylist->clear();
    while (ref->text != 0 ) {
      querylist->insertItem (ref->text);
      if (manager->queryItem() == ref->num)
-       index = ref - query_itemlist;
+       index = ref - Threshquery_itemlist;
      ref++;
    }
    querylist->setCurrentItem (index);
 
    index = 0;
-   ref = date_itemlist;
+   ref = Threshdate_itemlist;
    datelist->clear();
    while (ref->text != 0 ) {
      datelist->insertItem (i18n(ref->text));
      if (manager->dateItem() == ref->num)
-       index = ref - date_itemlist;
+       index = ref - Threshdate_itemlist;
      ref++;
    }
    datelist->setCurrentItem (index);
@@ -484,21 +487,21 @@ void ThreshOptPage::slotSetGradeItem(int i)
 
 void ThreshOptPage::slotSetQueryItem(int i)
 {
-   manager->setQueryItem (query_itemlist[i].num);
+   manager->setQueryItem (Threshquery_itemlist[i].num);
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetDateItem(int i)
 {
-   manager->setDateItem (date_itemlist[i].num);
+   manager->setDateItem (Threshdate_itemlist[i].num);
    emit modifySetting();
 }
 
 
 void ThreshOptPage::slotSetBadItem(int i)
 {
-   manager->setBadItem (bad_itemlist[i].num);
+   manager->setBadItem (Threshbad_itemlist[i].num);
    emit modifySetting();
 }
 

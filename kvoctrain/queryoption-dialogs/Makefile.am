@@ -1,4 +1,5 @@
-INCLUDES = -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
+INCLUDES = -I$(top_srcdir)/kvoctrain/kvoctrain/common-dialogs \
+	   -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs \
  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
  $(all_includes)
 

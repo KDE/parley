@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/28 16:56:56  arnold
+    replaced qtarch dialog files with qtdesigner
+
     Revision 1.3  2001/10/13 21:11:02  arnold
     tested and fixed changes from previous cvs update
 
@@ -39,7 +42,7 @@
  ***************************************************************************/
 
 #include "GroupOptPage.h"
-#include "../common-dialogs/LessonInputDlg.h"
+#include "LessonInputDlg.h"
 
 #include <qkeycode.h>
 #include <qcombobox.h>

@@ -1,10 +1,10 @@
 
 METASOURCES = AUTO
 
-kvoctrain_SOURCES = \
+kvoctrain_SOURCES = kva_io.cpp \
    kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
    main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
-   kva_io.cpp kva_clip.cpp kva_query.cpp
+   kva_clip.cpp kva_query.cpp
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
@@ -84,7 +84,15 @@ uninstall-local:
 	done
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
- -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
+ -I$(top_srcdir)/kvoctrain/kvoctrain \
+ -I$(top_builddir)/kvoctrain/kvoctrain/option-dialogs \
+ -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs \
+ -I$(top_builddir)/kvoctrain/kvoctrain/docprop-dialogs \
+ -I$(top_srcdir)/kvoctrain/kvoctrain/queryoption-dialogs \
+ -I$(top_builddir)/kvoctrain/kvoctrain/queryoption-dialogs \
+ -I$(top_builddir)/kvoctrain/kvoctrain/query-dialogs \
+ -I$(top_builddir)/kvoctrain/kvoctrain/entry-dialogs \
+ -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core \
  $(all_includes)
 
 bin_PROGRAMS = kvoctrain spotlight2kvtml

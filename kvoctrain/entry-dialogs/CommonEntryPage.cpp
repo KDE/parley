@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/17 17:58:55  arnold
+    added inline editing of all columns
+
     Revision 1.8  2001/11/10 22:28:25  arnold
     removed compatibility for kde1
 
@@ -76,8 +79,8 @@
 #include <kv_resource.h>
 #include <langset.h>
 
-#include "../docprop-dialogs/DocPropDlg.h"
-#include "../docprop-dialogs/LessOptPage.h"
+#include "DocPropDlg.h"
+#include "LessOptPage.h"
 #include "blockall.h"
 
 CommonEntryPage::CommonEntryPage
