@@ -81,6 +81,7 @@ protected:
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );
         virtual void setItem ( int row, int col, QTableItem * item );
         void setInlineEnabled(bool state);
+        bool getInlineEnabled();
 
 protected slots:
         void menuTriggerTimeout();

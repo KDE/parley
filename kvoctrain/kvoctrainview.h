@@ -1,3 +1,4 @@
+// -*- C++ -*-
 /***************************************************************************
 
     $Id$
@@ -127,6 +128,9 @@ public slots:
 
 protected:
   int             current;
+
+ private:
+  void sortByColumn(int, bool);
 
 };
 

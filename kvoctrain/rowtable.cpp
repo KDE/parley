@@ -202,36 +202,33 @@ RowTable::~RowTable()
 {
 }
 
+bool RowTable::getInlineEnabled() {
+  if (defaultItem &&
+      defaultItem->editType() == QTableItem::WhenCurrent)
+    return true;
+  return false;
+}
 
 void RowTable::setInlineEnabled(bool state)
 {
-   if (defaultItem != 0) {
-     QTableItem::EditType type = defaultItem->editType();
-     if (!(   (type == QTableItem::WhenCurrent && state)
-           || (type == QTableItem::OnTyping && !state)
-          )) {
-       endEdit(defaultItem->row(), defaultItem->col(), true, false);
-       // the qtableitem destructor does this too, and doing it twice
-       // seems to cause a crash..
-//       takeItem(defaultItem);
-       delete defaultItem;
-       defaultItem = 0;
-       if (state) {
-         defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, m_rows);
-         beginEdit (currentRow(), currentColumn(), true);
-       }
-       else
-         defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
-     }
-   }
-   else {
-     if (state) {
-       defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, m_rows);
-       beginEdit (currentRow(), currentColumn(), true);
-     }
-     else
-       defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
-   }
+  //should never happen, but if it does allow it
+  if (!defaultItem)
+      defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
+
+  if (getInlineEnabled() != state) {
+    if (state) {
+      delete defaultItem;
+      defaultItem = new KvoctrainItem(this, QTableItem::WhenCurrent, m_rows);
+      beginEdit (currentRow(), currentColumn(), true);
+    }
+    else {
+      int row = defaultItem->row(), col = defaultItem->col();
+      endEdit(row, col, true, false);
+      delete defaultItem;
+      defaultItem = new KvoctrainItem(this, QTableItem::OnTyping, m_rows);
+      setCurrentCell( row, col );
+    }
+  }
 }
 
 
@@ -275,7 +272,6 @@ void RowTable::setDoc(kvoctrainDoc *rows,  const GradeCols *gc)
   KvoctrainItem *d = defaultItem;
   defaultItem = 0;
 
-  defaultItem = 0;
   if (rows) {
      m_rows = rows;
      setNumRows( rows->numEntries() );

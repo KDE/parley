@@ -313,9 +313,7 @@ void kvoctrainTable::setCurrentItem(int row)
   setCurrentRow( row, currentColumn() );
 }
 
-
-void kvoctrainTable::sortByColumn_alpha(int header)
-{
+void kvoctrainTable::sortByColumn(int header, bool alpha) {
   if (header == KV_COL_MARK)
    return;
 
@@ -333,21 +331,34 @@ void kvoctrainTable::sortByColumn_alpha(int header)
     return;
   }
 
+  QApplication::setOverrideCursor( waitCursor );
+
   clearSelection();
 
+  bool hasinlineenabled = getInlineEnabled();
+  setInlineEnabled(false);
+
   bool sortdir = false;
-  QApplication::setOverrideCursor( waitCursor );
   if (m_rows) {
     if (header >= KV_COL_ORG)
       sortdir = m_rows->sort (header-KV_EXTRA_COLS);
     else
-      sortdir = m_rows->sortByLesson_alpha();
+      if (alpha)
+        sortdir = m_rows->sortByLesson_alpha();
+      else
+        sortdir = m_rows->sortByLesson_index();
   }
   horizontalHeader()->setSortIndicator ( header, sortdir);
   repaintContents();
   m_rows->setModified();
   emit currentChanged(currentRow(), currentColumn());
+  setInlineEnabled(hasinlineenabled);
   QApplication::restoreOverrideCursor();
+}
+
+void kvoctrainTable::sortByColumn_alpha(int header)
+{
+  sortByColumn(header, true);
 }
 
 
@@ -359,38 +370,7 @@ void kvoctrainTable::slotSelectionChanged()
 
 void kvoctrainTable::sortByColumn_index(int header)
 {
-  if (header == KV_COL_MARK)
-   return;
-
-  if (header >= numRows() ) {
-    kdError() << "header >= numRows()\n";
-    return;
-  }
-
-  if (m_rows && !m_rows->isAllowedSorting() ) {
-     KMessageBox::information(this, 
-               i18n("Sorting is currently turned off for this document.\n"
-                    "\n"
-                    "Use the document properties dialog to turn sorting on."),
-                    kapp->makeStdCaption(""));
-    return;
-  }
-
-  clearSelection();
-
-  bool sortdir = false;
-  QApplication::setOverrideCursor( waitCursor );
-  if (m_rows) {
-    if (header >= KV_COL_ORG)
-      sortdir = m_rows->sort (header-KV_EXTRA_COLS);
-    else
-      sortdir = m_rows->sortByLesson_index();
-  }
-  horizontalHeader()->setSortIndicator ( header, sortdir);
-  repaintContents();
-  m_rows->setModified();
-  emit currentChanged(currentRow(), currentColumn());
-  QApplication::restoreOverrideCursor();
+  sortByColumn(header, false);
 }
 
 
