@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/02/08 19:24:03  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.7  2001/12/13 18:39:52  arnold
     added phonetic alphabet stuff
 
@@ -501,7 +504,7 @@ class kvoctrainDoc : public QObject
   inline QString getFileName() const { return mainfile; }
 
   /** sets name of xml file  */
-  inline void setFileName(QString &s) { mainfile = s; }
+  inline void setFileName(const QString &s) { mainfile = s; }
 
   /** returns title of xml file  */
   QString getTitle() const;
@@ -518,7 +521,7 @@ class kvoctrainDoc : public QObject
   inline void getQueryLang(QString &org, QString &trans) const
     { org = queryorg; trans = querytrans; }
 
-  inline void setQueryLang(QString &org, QString &trans)
+  inline void setQueryLang(const QString &org, const QString &trans)
     { queryorg = org; querytrans = trans; }
 
   /** sets title of xml file  */

@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.26  2002/03/13 09:25:42  staikos
+    Don't crash on exit
+
+    Initialise the KMainWindow constructor
+
     Revision 1.25  2002/03/13 08:22:29  waba
     * Use KRandomSequence instead of rand()
     * Fix crash in "resume query".
@@ -290,7 +295,7 @@ public:
   void slotFileOpen();
   /** open a sample document */
   void slotFileOpenExample();
-  void loadfileFromPath(QString &path);
+  void loadfileFromPath(QString &path, bool addRecent=true);
   /** merge a document */
   void slotFileMerge();
   /** save a document */

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.28  2002/03/13 08:22:29  waba
+    * Use KRandomSequence instead of rand()
+    * Fix crash in "resume query".
+
     Revision 1.27  2002/02/08 19:24:02  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -128,6 +132,7 @@
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>
+#include <kstdguiitem.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
 
@@ -205,23 +210,35 @@ bool kvoctrainApp::queryExit()
   saveOptions(false);
   if (!doc || !doc->isModified() ) return true;
 
-  if (backupTime > 0) {  // autobackup on: save without asking
-    slotFileSave();       // save and exit
-    return true;
+  bool save = (backupTime > 0); // autobackup on: save without asking
+
+  if (!save)
+  {
+     int exit = KMessageBox::warningYesNoCancel(this,
+               i18n("Vocabulary is modified.\n\nSave file before exit ?\n"),
+               kapp->makeStdCaption(""),
+               KStdGuiItem::save(), KStdGuiItem::discard());
+     if (exit==KMessageBox::Yes) {
+       save = true;   // save and exit
+     }
+     else if (exit == KMessageBox::No) {
+       save = false;  // dont save but exit
+     }
+     else {
+       return false;  // continue work
+     }
   }
 
-  int exit = KMessageBox::warningYesNoCancel(this,
-            i18n("Vocabulary is modified.\n\nSave file before exit ?\n"),
-            kapp->makeStdCaption(""));
-  if(exit==KMessageBox::Yes) {
-    slotFileSave();   // save and exit
-    return true;
+  if (save) {  
+    if (!doc->getFileName().isEmpty())
+      slotFileSave();       // save and exit
+    if (doc->isModified())
+    {
+      // Error while saving or no name
+      slotFileSaveAs();
+    }
   }
-  else if (exit == KMessageBox::No) {
-    return true;     // dont save but exit
-  }
-
-  return false;      // continue work
+  return true;
 }
 
 
@@ -231,6 +248,7 @@ void kvoctrainApp::slotFileQuit()
   // exits the Application
   if(this->queryExit())
     {
+      doc->setModified(false);  // Make sure not to bother about saving again.
       kapp->quit();
     }
   else
@@ -369,7 +387,7 @@ void kvoctrainApp::slotFileOpen()
 }
 
 
-void kvoctrainApp::loadfileFromPath(QString &name)
+void kvoctrainApp::loadfileFromPath(QString &name, bool addRecent)
 {
     if (!name.isEmpty() ) {
       view->setView(0, langset, gradecols);
@@ -387,7 +405,8 @@ void kvoctrainApp::loadfileFromPath(QString &name)
       view->setView(doc, langset, gradecols);
       view->getTable()->setFont(tablefont);
       view->adjustContent();
-      addRecentFile (name);
+      if (addRecent)
+         addRecentFile (name);
       connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
       doc->setModified(false);
     }
@@ -402,7 +421,9 @@ void kvoctrainApp::slotFileOpenExample()
     s = locate("data",  "kvoctrain/examples/");
     QString name = getFileName(kapp->makeStdCaption(i18n("Open Example Vocabulary File")),
                                s, FILTER_RPATTERN, parentWidget());
-    loadfileFromPath(name);
+    loadfileFromPath(name, false);
+    if (doc)
+       doc->setFileName(QString::null);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -709,7 +730,6 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
 {
   fillLessonBox(the_doc);
 
-qWarning("kvoctrainApp::loadDocProps: random_expr1.clear()");
   random_expr1.clear();
   random_expr2.clear();
   queryList.clear();
