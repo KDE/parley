@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/10/20 12:08:37  arnold
+    removed aboutdialog files
+
     Revision 1.5  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -373,7 +376,6 @@ void kvoctrainApp::slotDocProps () /*FOLD00*/
       vector<int> new_lessoninquery;
 
       doc->allowSorting(ddlg.getSorting() );
-      doc->setEncoding(ddlg.getEncoding() );
 
       doc->setTitle(ddlg.getTitle() );
       doc->setAuthor(ddlg.getAuthor() );
@@ -446,10 +448,6 @@ void kvoctrainApp::slotDocPropsLang ()
       }
 
       for (int i = 0; i < doc->numLangs(); i++) {
-#if QT_VERSION < 300
-        doc->setCharSet(i, ldlg.getCharSet(i));
-#endif
-
         QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
         int idx = langset.indexShortId (id);
         QFont font;
@@ -458,12 +456,6 @@ void kvoctrainApp::slotDocPropsLang ()
           id = langset.longId (idx);
           langset.Font (idx, font, specfont);
         }
-
-#if QT_VERSION < 300
-        font.setCharSet (ldlg.getCharSet(i));
-        kvoctrainApp::checkFontInfo (font, id);
-        doc->setCharSet(i, font.charSet());
-#endif
 
         if (idx >= 0)
           langset.setFont (font, specfont, idx);

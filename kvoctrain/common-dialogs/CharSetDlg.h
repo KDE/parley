@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/12 19:13:50  arnold
     switched dialog files to qt-designer
 
@@ -41,39 +48,5 @@
 
 #include <qglobal.h>
 
-#if QT_VERSION < 300
-
-#include <qstrlist.h>
-
-#include <vector.h>
-
-class CharSetDlg : public CharSetDlgForm
-{
-    Q_OBJECT
-
-public:
-
-    CharSetDlg
-    (
-        bool          flag,
-        QString       exact_name,
-        QStrList     &rawnames,
-        QWidget      *parent = NULL,
-        const char   *name = NULL
-    );
-
-    QFont getFont () const;
-
-protected slots:
-    void slotItemSelected (int item);
-    void slotSelected(int dummy);
-
-private:
-
-    int           sel;
-    vector<QFont> fonts;
-
-};
-#endif
 
 #endif // CharSetDlg_included

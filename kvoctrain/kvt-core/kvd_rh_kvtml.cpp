@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:42:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -42,7 +45,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
 {
   // important, first action
   // switch to actual encoding afterwards, otherwise blocked
-  is.setEncoding(QTextStream::Latin1);
+  is.setCodec(QTextCodec::codecForName("UTF-8"));
 
   langs.clear();
   vocabulary.clear();
@@ -54,7 +57,6 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   }
 
   generator = "";
-  setEncoding (KE_8BIT);
   cols = 0;
   lines = 0;
   doctitle = "";
@@ -80,38 +82,17 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
 
     if ((*first).name () == KV_ENCODING) {
   
-      if ((*first).stringValue () == KES_UTF8 ) {
-        setEncoding (KE_UTF8);
-        is.setCodec(QTextCodec::codecForName(KES_UTF8));
+      if ((*first).stringValue().upper() == (QString)"UTF-8" ) {
+        is.setCodec(QTextCodec::codecForName("UTF-8"));
       }
-      if ((*first).stringValue () == KES_8BIT ) {
-        setEncoding (KE_8BIT);
-        is.setCodec(QTextCodec::codecForName(KES_8859_1));
+      else if ((*first).stringValue().upper() == (QString)"8BIT" ) {  // old compatibility mode
+        is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
       }
-  /*
-      else ==> possibly autodetect byte 1+2?
-           case UTF16:
-              stream.setEncoding(QTextStream::RawUnicode);
-              break;
-  */
       else {
-        setEncoding (KE_8BIT);
-        is.setCodec(QTextCodec::codecForName(KES_8859_1));
-/* #ifndef EA_QT2x
-        QString msg;
-        QString format = i18n("Encountered unknown document encoding \"%s\"\n\n"
-                         "This will just be ignored. Encoding is now \"%s\".");
-        msg.resize (format.length()+(*first).stringValue().length()+strlen(KES_8BIT));
-        msg.sprintf ((const char*) format,
-                     (const char*) (*first).stringValue (),
-                     (const char*) KES_8BIT );
-#else */
+        is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
         QString format = i18n("Encountered unknown document encoding \"%1\"\n\n"
                          "This will just be ignored. Encoding is now \"%2\".");
-        QString msg =format.arg((*first).stringValue ()).arg(KES_8BIT);
-
-// #endif
-
+        QString msg =format.arg((*first).stringValue ().upper()).arg("ISO 8859-1");
         warningKvtMl (xml.lineNumber(), msg);
       }
   

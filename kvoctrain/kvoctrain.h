@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/10/20 12:07:44  arnold
+    removed aboutdialog files
+
     Revision 1.5  2001/10/20 00:58:26  waba
     * Selection fixes
     * Compile fixes
@@ -250,14 +253,6 @@ public:
   void fillLessonBox(kvoctrainDoc *the_doc);
   void loadDocProps(kvoctrainDoc *the_doc);
   void saveDocProps(kvoctrainDoc *);
-#if QT_VERSION < 300
-  QFont::CharSet dlgMergeCharsets (
-     QFont::CharSet old_charset,
-     QFont::CharSet new_charset,
-     QString id);
-  static void checkFontInfo (QFont &font, QString &charsetname);
-  static bool substituteFontInfo (QFont &font, QString &charsetname);
-#endif
   static QString generateCaption (const QString &title, bool force_kde2 = false);
   /** exits the application */
   static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *paste_order);

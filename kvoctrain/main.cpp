@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 12:09:40  arnold
+    removed aboutdialog files
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -59,23 +62,23 @@ static KCmdLineOptions options[] =
 static const char *description = 
 	i18n_noop("KDE Vocabulary trainer");
 
-static const char *version = VERSION;
+static const char *version = "0.7.0";
 
   KAboutData aboutData("kvoctrain",
                        "kvoctrain",
                        version,
                        description,
                        KAboutData::License_GPL,
-                       "(c) 1999-2000, Ewald Arnold",
+                       "(c) 1999-2001, Ewald Arnold\n(c) 2001, The KDE edu team",
                        i18n_noop("Helps you train your vocabulary"),
 		      "http://kvoctrain.sourceforge.net/",
                       "kvoctrain@ewald-arnold.de");
-  aboutData.addAuthor("Ewald Arnold", i18n_noop("Original author and naintainer"), "kvoctrain@ewald-arnold.de",
+  aboutData.addAuthor("Ewald Arnold", i18n_noop("Original author and maintainer"), "kvoctrain@ewald-arnold.de",
 		      "http://www.ewald-arnold.de" );
-  aboutData.addCredit("Waldo Bastian", i18n_noop("Porting to Qt3/KDE3"),  "");
-  aboutData.addCredit("Andrea Marconi", i18n_noop("Initial localisator for italian"),  "");
-  aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"),   "");
-  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polsih"), "");
+  aboutData.addCredit("Waldo Bastian", i18n_noop("Porting to Qt3/KDE3"));
+  aboutData.addCredit("Andrea Marconi", i18n_noop("Initial localisator for italian"));
+  aboutData.addCredit("Hans Kottmann", i18n_noop("Initial localisator for french"));
+  aboutData.addCredit("Grzegorz Ilczuk", i18n_noop("Initial localisator for polish"));
   KCmdLineArgs::init( argc, argv, &aboutData );
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;

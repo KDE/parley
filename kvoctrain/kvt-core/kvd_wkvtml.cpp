@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -524,20 +531,7 @@ bool kvoctrainDoc::saveOptionsKvtMl (XmlWriter &xml)
 bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
   bool first_expr = true;
 
-  if (doc_encoder == KE_UTF8)
-    os.setCodec(QTextCodec::codecForName(KES_UTF8));
-  else if (doc_encoder == KE_8BIT)
-    os.setCodec(QTextCodec::codecForName(KES_8859_1));  // use latin1 for 8bit
-/*
-    else ==> possibly write byte 1+2?
-         case UTF16:
-            stream.setEncoding(QTextStream::RawUnicode);
-            break;
-*/
-  else {
-    cerr << "kvcotrainDoc::saveToKvtMl(): unknown encoding, using Latin1\n";
-    os.setCodec(QTextCodec::codecForName(KES_8859_1));  // use latin1 for 8bit
-  }
+  os.setCodec(QTextCodec::codecForName("UTF-8"));
 
   XmlWriter xml (os);
   xml.setAutoEndl (false);
@@ -611,16 +605,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
 
   xml.startTag (KV_DOCTYPE, false);
   xml.writeText ("\n ");
-
-  // FIRST attribute is encoding to read correctly from this place
-  switch  (doc_encoder) {
-   case KE_UTF8   : xml.addAttribute (KV_ENCODING, (QString)KES_UTF8);
-   break;
-   case KE_8BIT   : xml.addAttribute (KV_ENCODING, (QString)KES_8BIT);
-   break;
-   default:
-     cerr << "kvcotrainDoc::saveToKvtMl(): unknown encoding name\n";
-  }
+  xml.addAttribute (KV_ENCODING, (QString)"UTF-8");
   xml.writeText ("\n ");
 
   xml.addAttribute (KV_GENERATOR, (QString) "kvoctrain" KVD_VERS_PREFIX VERSION);
@@ -729,11 +714,6 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
       else if (s == q_trans)
         xml.addAttribute (KV_QUERY, (QString) KV_T);
 
-#if QT_VERSION < 300
-      if (!getCharSetString(0).isEmpty() ) {
-        xml.addAttribute (KV_CHARSET, getCharSetString(0));
-      }
-#endif
     }
 
     if (!(*first).getRemark(0).isEmpty() ) {
@@ -804,12 +784,6 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
           xml.addAttribute (KV_QUERY, (QString) KV_O);
         else if (s == q_trans)
           xml.addAttribute (KV_QUERY, (QString) KV_T);
-
-#if QT_VERSION < 300
-        if (!getCharSetString(trans).isEmpty() ) {
-          xml.addAttribute (KV_CHARSET, getCharSetString(trans));
-        }
-#endif
       }
 
       QString s1, s2;

@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -311,9 +318,6 @@ bool kvoctrainDoc::extract_O_T_attr (
                        QString &query_id,
                        QString &pronunce,
                        int &width,
-#if QT_VERSION < 300
-                       QFont::CharSet &cs,
-#endif
                        QString &type,
                        QString &faux_ami_f,
                        QString &faux_ami_t,
@@ -343,9 +347,6 @@ bool kvoctrainDoc::extract_O_T_attr (
   paraphrase = "";
   antonym = "";
   width = -1;
-#if QT_VERSION < 300
-  cs = QFont::AnyCharSet;
-#endif
 //type = exprtype
   list<XmlAttribute>::const_iterator first = elem.attributes ().begin ();
   int pos;
@@ -358,10 +359,6 @@ bool kvoctrainDoc::extract_O_T_attr (
       width = (*first).intValue();
 
     else if ((*first).name () == KV_CHARSET) {
-#if QT_VERSION < 300
-      QString s = (*first).stringValue();
-      cs = kvoctrainDoc::string2CharSet(s);
-#endif
     }
 
     else if ((*first).name () == KV_GRADE) {

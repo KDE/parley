@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.2  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still
     qt2 I can't test :(
@@ -357,21 +364,7 @@ void LangOptPage::keyPressEvent( QKeyEvent *e )
 
 QString LangOptPage::fontName(const QFont &font)
 {
-#if QT_VERSION < 300
-   QString sz;
-   sz.setNum (font.pointSize());
-   QString CharSet = kvoctrainDoc::charSet2String(font.charSet() );
-
-   QString s;
-   if (CharSet.length() != 0)
-     s = QString(font.family()) + " "+sz+"pt, "+CharSet;
-   else
-     s = QString(font.family()) + " "+sz+"pt";
-
-   return s;
-#else
    return QString("%1 %2pt").arg(font.family()).arg(font.pointSize());
-#endif
 }
 
 

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/17 21:41:15  waba
+    Cleanup & port to Qt3, QTableView -> QTable
+    TODO:
+    * Fix actions that work on selections
+    * Fix sorting
+    * Fix language-menu
+
     Revision 1.1  2001/10/05 15:42:01  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -228,103 +235,6 @@
 
 #define LEX_IDENT_50   "Vocabulary Trainer V5.0"
 
-enum KV_Encoding {
-/*
-                   KE_ANY,
-                   KE_8859_1,
-                   KE_8859_2,
-                   KE_8859_3,
-                   KE_8859_4,
-                   KE_8859_5,
-                   KE_8859_6,
-                   KE_8859_7,
-                   KE_8859_8,
-                   KE_8859_9,
-                   KE_8859_15,
-                   KE_KOI8_R,
-                   KE_Locale,
-*/
-                   KE_8BIT,
-                   KE_UTF8 };
-
-#define KES_ANY         ""
-#define KES_8859_1      "ISO 8859-1"
-#define KES_8859_2      "ISO 8859-2"
-#define KES_8859_3      "ISO 8859-3"
-#define KES_8859_4      "ISO 8859-4"
-#define KES_8859_5      "ISO 8859-5"
-#define KES_8859_6      "ISO 8859-6"
-#define KES_8859_7      "ISO 8859-7"
-#define KES_8859_8      "ISO 8859-8"
-#define KES_8859_9      "ISO 8859-9"
-#define KES_KOI8_R      "KIO8-R"
-//#define KES_KOI8_1      "KIO8-1"
-
-#define KES_8BIT        "8Bit"
-#define KES_UTF8        "UTF-8"
-
-/*  from qt2.1 qtfont_x11.cpp
-
-    { "ISO 8859-1", QFont::ISO_8859_1 },
-    { "ISO 8859-2", QFont::ISO_8859_2 },
-    { "ISO 8859-3", QFont::ISO_8859_3 },
-    { "ISO 8859-4", QFont::ISO_8859_4 },
-    { "ISO 8859-5", QFont::ISO_8859_5 },
-    { "ISO 8859-6", QFont::ISO_8859_6 },
-    { "ISO 8859-7", QFont::ISO_8859_7 },
-    { "ISO 8859-8-I", QFont::ISO_8859_8 },
-    { "ISO 8859-9", QFont::ISO_8859_9 },
-    { "ISO 8859-10", QFont::ISO_8859_10 },
-    { "ISO 8859-11", QFont::ISO_8859_11 },
-    { "ISO 8859-12", QFont::ISO_8859_12 },
-    { "ISO 8859-13", QFont::ISO_8859_13 },
-    { "ISO 8859-14", QFont::ISO_8859_14 },
-    { "ISO 8859-15", QFont::ISO_8859_15 },
-    { "KOI8-R", QFont::KOI8R },
-    { "eucJP", QFont::Set_Ja },
-    { "SJIS", QFont::Set_Ja },
-    { "JIS7", QFont::Set_Ja },
-    { "eucKR", QFont::Set_Ko },
-    { "TACTIS", QFont::Set_Th_TH },
-    { "GBK", QFont::Set_GBK },
-    { "zh_CN.GBK", QFont::Set_GBK },
-    { "eucCN", QFont::Set_Zh },
-    { "eucTW", QFont::Set_Zh_TW },
-    { "zh_TW.Big5", QFont::Set_Big5 },
-    { "Big5", QFont::Set_Big5 },
-*/
-
-# define KES_8859_10      "ISO 8859-10"  // additional charsets for font selection in QT2.x
-# define KES_8859_11      "ISO 8859-11"
-# define KES_8859_12      "ISO 8859-12"
-# define KES_8859_13      "ISO 8859-13"
-# define KES_8859_14      "ISO 8859-14"
-# define KES_8859_15      "ISO 8859-15"
-
-# define KES_SET_JA       "jisx0208.1983-0"
-//# define KES_JA_eucJP     "eucJP"
-//# define KES_JA_SJIS      "SJIS"
-//# define KES_JA_JIS7      "JIS7"
-
-# define KES_SET_KO       "ksc5601.1987-0"
-//# define KES_KO_eucKR     "eucKR"
-
-# define KES_SET_TH_TH    "Set_Th_TH"
-//# define KES_TH_TH_TACTIS "TACTIS"
-
-# define KES_SET_ZH       "Set_Zh"
-# define KES_SET_ZH_TW    "Set_Zh_TW"
-//# define KES_ZH_eucCN     "eucCN"
-//# define KES_ZH_eucTW     "eucTW"
-
-//# define KES_GBK_0        "GBK"
-//# define KES_GBK_zh_CN    "zh_CN.GBK"
-
-# define KES_UNICODE      "Unicode"
-
-# define KES_SET_BIG5     "Set_Big5"
-//# define KES_BIG5         "Big5"
-//# define KES_BIG5_zh_TW   "zh_TW.Big5"
 
 class QTextStream;
 class QStringList;
@@ -589,12 +499,6 @@ class kvoctrainDoc : public QObject
   /** gets version of loaded file  */
   void getVersion(int &major, int &minor, int &patch);
 
-  /** gets encoding loaded file  */
-  inline KV_Encoding getEncoding() const { return doc_encoder; }
-
-  /** gets encoding loaded file  */
-  inline void setEncoding(KV_Encoding enc) { doc_encoder = enc; }
-
   /** returns current lesson index  */
   inline int getCurrentLesson() const { return current_lesson; }
 
@@ -665,37 +569,6 @@ class kvoctrainDoc : public QObject
    */
   void setSizeHint (int index, const int width);
 
-#if QT_VERSION < 300
-  /** returns recommended charset
-   *
-   * @param index            number of expr
-   * @result                 charset
-   */
-  QFont::CharSet getCharSet (int index) const;
-
-  /** returns recommended charset as string
-   *
-   * @param index            number of expr
-   * @result                 charset in string form
-   */
-  QString getCharSetString (int index) const;
-
-  // relation QFont::xx -> readable names
-  static QString charSet2String (QFont::CharSet cs, bool show_std = false, bool show_countries = false);
-  static QFont::CharSet string2CharSet (QString &s);
-
-  // X uses different names
-  static QString charSet2XName(QFont::CharSet charSet);
-  static QFont::CharSet XName2CharSet (QString &s);
-
-  /** sets recommended charset
-   *
-   * @param index            number of expr
-   * @param width            charset
-   */
-  void setCharSet (int index, const QFont::CharSet cs);
-#endif
-
   bool unknownAttribute (int line, const QString &name, const QString &attr);
   void unknownElement (int line, const QString &elem );
   void errorKvtMl (int line, const QString &text );
@@ -743,9 +616,6 @@ protected:
                          QString &query_id,
                          QString &pronunce,
                          int &width,
-#if QT_VERSION < 300
-                         QFont::CharSet &cs,
-#endif
                          QString &type,
                          QString &faux_ami_f,
                          QString &faux_ami_t,
@@ -841,9 +711,6 @@ protected:
   int                    current_lesson;
   vector<int>            extraSizehints;
   vector<int>            sizehints;
-#if QT_VERSION < 300
-  vector<QFont::CharSet> charsets;
-#endif
   QString                generator;
   QString                queryorg,
                          querytrans;
@@ -861,7 +728,6 @@ protected:
 
   vector<Article>        articles;
   vector<Conjugation>    conjugations;
-  KV_Encoding            doc_encoder;
 };
 
 

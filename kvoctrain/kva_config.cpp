@@ -16,6 +16,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.2  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -85,9 +89,6 @@ void kvoctrainApp::saveOptions(bool all)
   
     config->setGroup(CFG_APPEARANCE);
     config->writeEntry(CFG_FFAMILY, tablefont.family());
-#if QT_VERSION < 300
-    config->writeEntry(CFG_FCHARSET, kvoctrainDoc::charSet2String (tablefont.charSet()));
-#endif
     config->writeEntry(CFG_FSIZE, tablefont.pointSize());
     config->writeEntry(CFG_GC_USE, gradecols.use);
     config->writeEntry(CFG_GCOL0, gradecols.col0);
@@ -174,76 +175,6 @@ static char **getXFontNames( const char *pattern, int *count )
     }
 }
 
-#if QT_VERSION < 300
-bool kvoctrainApp::substituteFontInfo (QFont &font, QString &langname)
-{
-   char      **xFontNames;
-   int 	       count;
-
-   QString s = kvoctrainDoc::charSet2XName (font.charSet());
-
-   QString pattern = "-*-*-*-*-*-*-*-*-*-*-*-*-"+s;
-   xFontNames = getXFontNames( pattern.local8Bit(), &count );
-   QStrList rawnames;
-   for( int i = 0; i < count; i++ ) {
-      rawnames.append (xFontNames[i]);
-   }
-
-   XFreeFontNames( xFontNames );
-
-   if (count <= 0)
-     return false;
-
-   s = kvoctrainDoc::charSet2String (font.charSet() );
-   QString fs = font.family();
-
-   QString format =
-     i18n("Could not find a font for \"%1\" with charset\n"
-          "\"%3\" which matches font name \"%3\"\n"
-          "\n"
-          "Please select one of the following for temporary use\n"
-          "and do not forget to adjust your settings.\n");
-   QString msg = format.arg(langname).arg(s).arg(fs);
-
-   QApplication::setOverrideCursor( arrowCursor, true );
-   CharSetDlg sdlg (false, msg, rawnames);
-   if (sdlg.exec() == QDialog::Accepted) {
-     font = sdlg.getFont();
-   }
-   QApplication::restoreOverrideCursor();
-   return true;
-}
-
-void kvoctrainApp::checkFontInfo (QFont &font, QString &langname)
-{
-    QFontInfo fi (font);
-
-    if (font.charSet() != QFont::AnyCharSet && // exact font found ?
-        font.charSet() != fi.charSet()) {
-
-      if (kvoctrainApp::substituteFontInfo (font, langname)) // substitute charset
-        return;
-
-      QString s1 = kvoctrainDoc::charSet2String(font.charSet());
-      QString s3 = kvoctrainDoc::charSet2String(fi.charSet(), true);
-      QString format = i18n("Could not find a font with charset \"%1\" on your system\n"
-                            "which is needed to display \"%2\".\n"
-                            "\n"
-                            "\"%3\" will be used instead, but please take into\n"
-                            " account,that characters might be rendered wrong!\n");
-      QString msg = format.arg(s1).arg(langname).arg(s3);
-
-      QApplication::setOverrideCursor( arrowCursor, true );
-
-      KMessageBox::information(0,
-                 msg,
-                 kvoctrainApp::generateCaption(i18n("Missing charset")),
-                  i18n("&OK"));
-     QApplication::restoreOverrideCursor();
-
-    }
-}
-#endif
 
 void kvoctrainApp::readOptions()
 {
@@ -270,17 +201,10 @@ void kvoctrainApp::readOptions()
   tool_bar_pos = (KToolBar::BarPosition)config->readNumEntry("ToolBar_Pos", KToolBar::Top);
   QFont fdefault;
   QString family = config->readEntry(CFG_FFAMILY, fdefault.family());
-#if QT_VERSION < 300
-  QString charset = config->readEntry(CFG_FCHARSET, "");
-  QFont::CharSet cs = kvoctrainDoc::string2CharSet (charset);
-#endif  
   int size = config->readNumEntry(CFG_FSIZE, fdefault.pointSize());
   tablefont.setPointSize(size);
   tablefont.setFamily(family);
   tablefont.setWeight(QFont::Normal);
-#if QT_VERSION < 300
-  tablefont.setCharSet(cs);
-#endif
   gradecols.use = config->readBoolEntry(CFG_GC_USE, true);
   QColor qc = KV_NORM_COLOR;
   gradecols.col0 = config->readColorEntry(CFG_GCOL0, &qc);
@@ -345,10 +269,6 @@ void kvoctrainApp::readOptions()
     s.setNum (i);
     s.insert (0, CFG_L_FONT);
     QFont font = config->readFontEntry(s);
-
-#if QT_VERSION < 300
-    checkFontInfo (font, longId);
-#endif
 
     s.setNum (i);
     s.insert (0, CFG_L_STDFONT);

@@ -15,6 +15,10 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/10/20 00:58:26  waba
+    * Selection fixes
+    * Compile fixes
+
     Revision 1.3  2001/10/17 21:41:15  waba
     Cleanup & port to Qt3, QTableView -> QTable
     TODO:
@@ -301,49 +305,6 @@ void kvoctrainApp::slotFileOpen() /*FOLD00*/
   slotStatusMsg(IDS_DEFAULT);
 }
 
-#if QT_VERSION < 300
-QFont::CharSet kvoctrainApp::dlgMergeCharsets (
-   QFont::CharSet old_charset,
-   QFont::CharSet new_charset,
-   QString id)
-{
-   int idx = langset.indexShortId (id);
-   if (idx >= 0)
-     id = langset.longId (idx);
-
-   QString os = kvoctrainDoc::charSet2String (old_charset);
-   QString ns = kvoctrainDoc::charSet2String (new_charset);
-   QString msg;
-   QString format =
-     i18n("The document you chose to merge uses \"%1\"\n"
-          "as charset to display \"%2\".\n"
-          "\n"
-          "This is different from \"%3\" which is used\n"
-          "in the current document.\n"
-          "\n"
-          "Please select one of the charsets below for future use but do\n"
-          "not forget that characters might be rendered wrong.\n");
-
-   msg = format.arg(ns).arg(id).arg(os);
-
-   QApplication::setOverrideCursor( arrowCursor, true );
-   int button = QMessageBox::warning(0,
-                  kvoctrainApp::generateCaption(i18n("Merging with different charsets"), true),
-                  msg,
-                  os,
-                  ns,
-                  QString::null,
-                  0,
-                  1);
-   QApplication::restoreOverrideCursor();
-
-   if (button == 0)
-     return old_charset;
-   else
-     return new_charset;
-}
-#endif
-
 void kvoctrainApp::slotFileMerge() /*FOLD00*/
 {
   slotStatusMsg(i18n("Merging file..."));
@@ -430,26 +391,6 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
         equal = false;
 
     if (equal) {   // easy way: same language codes, just append
-
-#if QT_VERSION < 300
-      if (   doc->getCharSet(0) != QFont::AnyCharSet
-          && new_doc->getCharSet(0) != QFont::AnyCharSet
-          && doc->getCharSet(0) != new_doc->getCharSet(0)) {
-          doc->setCharSet (0, dlgMergeCharsets (doc->getCharSet(0),
-                                   new_doc->getCharSet(0),
-                                   doc->getOriginalIdent()));
-      }
-
-      for (int i = 1; i < doc->numLangs(); i++) {
-        if (   doc->getCharSet(i) != QFont::AnyCharSet
-            && new_doc->getCharSet(i) != QFont::AnyCharSet
-            && doc->getCharSet(i) != new_doc->getCharSet(i)) {
-            doc->setCharSet (i, dlgMergeCharsets (doc->getCharSet(i),
-                                     new_doc->getCharSet(i),
-                                     doc->getIdent(i)));
-        }
-      }
-#endif
 
       for (int i = 0; i < new_doc->numEntries(); i++) {
         kvoctrainExpr *expr = new_doc->getEntry(i);
@@ -551,15 +492,6 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
               cs_equal[lpos] = true;
               QString id = lpos == 0 ? doc->getOriginalIdent()
                                      : doc->getIdent(lpos);
-#if QT_VERSION < 300
-              if (   doc->getCharSet(lpos) != QFont::AnyCharSet
-                  && new_doc->getCharSet(i) != QFont::AnyCharSet
-                  && doc->getCharSet(lpos) != new_doc->getCharSet(i)) {
-                  doc->setCharSet (lpos, dlgMergeCharsets (doc->getCharSet(lpos),
-                                           new_doc->getCharSet(i),
-                                           id));
-              }
-#endif
             }
 
             if (i == 0)
@@ -615,30 +547,6 @@ void kvoctrainApp::slotFileMerge() /*FOLD00*/
     delete (new_doc);
     addRecentFile (name);
   }
-
-#if QT_VERSION < 300
-  for (int i = 0; i < doc->numLangs(); i++) {
-    QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
-    int idx = langset.indexShortId (id);
-    QFont font;
-    bool specfont;
-    if (idx >= 0) {
-      id = langset.longId (idx);
-      langset.Font (idx, font, specfont);
-    }
-
-    cout << EA_LOCAL(id) << " 1 " << doc->getCharSet(i) << endl;
-    font.setCharSet (doc->getCharSet(i));
-
-    checkFontInfo (font, id);
-    doc->setCharSet(i, font.charSet());
-
-    cout << EA_LOCAL(id) << " 2 " << doc->getCharSet(i) << endl;
-
-    if (idx >= 0)
-      langset.setFont (font, specfont, idx);
-  }
-#endif
 
   view->getTable()->setLangSet (&langset);
   view->setView(doc, langset, gradecols);
@@ -732,24 +640,6 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
     query_startnum += queryList[i].size();
   query_num = query_startnum;
 
-#if QT_VERSION < 300
-  for (int i = 0; i < doc->numLangs(); i++ ) {
-    QFont font;
-    bool specfont;
-    QString id = i == 0 ? doc->getOriginalIdent() : doc->getIdent(i);
-    int idx = langset.indexShortId (id);
-    if (idx >= 0) {
-      id = langset.longId (idx);
-      langset.Font (idx, font, specfont);
-    }
-    if (doc->getCharSet(i) != QFont::AnyCharSet)
-      font.setCharSet (doc->getCharSet (i));
-    checkFontInfo (font, id);
-    doc->setCharSet(i, font.charSet());
-    if (idx >= 0)
-      langset.setFont (font, specfont, idx);
-  }
-#endif
 }
 
 
