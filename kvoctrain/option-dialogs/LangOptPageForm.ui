@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Languages Codes</string>
+                <string>Language Codes</string>
             </property>
             <vbox>
                 <property stdset="1">
