@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/12/29 10:40:45  arnold
+    merged fixes from POST-branch
+
     Revision 1.16  2001/12/26 15:12:15  mueller
     CVSSILINT: fixincludes
 
@@ -227,7 +230,7 @@ KV_ISO639_Code kv_iso639_1[] = {
 	{{"nr"}, {"nbl"}, {I18N_NOOP("Ndebele, South")}},
 	{{"nv"}, {"nav"}, {I18N_NOOP("Navajo")}},
 	{{"ny"}, {"nya"}, {I18N_NOOP("Chichewa")}},
-	{{"ny"}, {"nya"}, {I18N_NOOP("Nyanja; Chichewa")}},
+	{{"ny"}, {"nya"}, {I18N_NOOP("Nyanja")}},
 	{{"oc"}, {"oci"}, {I18N_NOOP("Occitan")}},
 	{{"oc"}, {"oci"}, {I18N_NOOP("Provencal")}},
 	{{"om"}, {"orm"}, {I18N_NOOP("Oromo")}},
@@ -281,7 +284,7 @@ KV_ISO639_Code kv_iso639_1[] = {
 	{{"ur"}, {"urd"}, {I18N_NOOP("Urdu")}},
 	{{"uz"}, {"uzb"}, {I18N_NOOP("Uzbek")}},
 	{{"vi"}, {"vie"}, {I18N_NOOP("Vietnamese")}},
-	{{"vo"}, {"vol"}, {I18N_NOOP("Volap&#252;k")}},
+	{{"vo"}, {"vol"}, {I18N_NOOP("Volapük")}},
 	{{"wo"}, {"wol"}, {I18N_NOOP("Wolof")}},
 	{{"xh"}, {"xho"}, {I18N_NOOP("Xhosa")}},
 	{{"yi"}, {"yid"}, {I18N_NOOP("Yiddish")}},

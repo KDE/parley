@@ -140,5 +140,5 @@ messages:
 	-rm *.i.c
 
 messages-local:
-	$(MAKE) messages podir=. XGETTEXT="xgettext -ki18n -ki18n_noop"?	
+	$(MAKE) messages podir=. XGETTEXT="xgettext -kI18N_NOOP"
 
