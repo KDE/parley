@@ -55,7 +55,7 @@ void LangSet::addSet (QString _shortId, QString _shortId2, QString _longId,
 
 void LangSet::appendSet(const LangSet &set)
 {
-  for (int i = 0; i < set.size(); ++i) {
+  for (int i = 0; i < (int) set.size(); ++i) {
     LangDef def;
     def.shortId = set.langs[i].shortId;
     def.shortId2 = set.langs[i].shortId2;

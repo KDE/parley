@@ -208,7 +208,7 @@ void PasteOptPage::slotSelectSep(int idx)
 }
 
 
-void PasteOptPage::slotSelectOrder(int idx)
+void PasteOptPage::slotSelectOrder(int )
 {
   slotEnableCursor();
 }

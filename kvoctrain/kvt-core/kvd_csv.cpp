@@ -34,30 +34,30 @@
 #include <vector>
 using namespace std;
 
-bool kvoctrainDoc::saveTypeNameCsv (QTextStream &os)
+bool kvoctrainDoc::saveTypeNameCsv (QTextStream &)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::loadTypeNameCsv (QTextStream &is)
+bool kvoctrainDoc::loadTypeNameCsv (QTextStream &)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::saveLessonCsv (QTextStream &os)
+bool kvoctrainDoc::saveLessonCsv (QTextStream &)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::loadLessonCsv (QTextStream &is)
+bool kvoctrainDoc::loadLessonCsv (QTextStream &)
 {
  return true;
 }
 
-bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &title,
+bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &,
                               const QString &separator, QStringList *lang_order)
 {
   saveTypeNameCsv (os);
@@ -81,7 +81,7 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &title,
 
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      emit progressChanged(this, ent_no / f_ent_percent);
+      emit progressChanged(this, ent_no / (int) f_ent_percent);
 
     exp = "";
     // now concat columns according to paste-order
@@ -137,7 +137,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
 
     // autodetect utf8
     if (!utf8_mode) {
-      for (int i = 0; !utf8_mode && i < s.length(); ++i) {
+      for (int i = 0; !utf8_mode && i < (int) s.length(); ++i) {
         ushort trigger = s[i].unicode();
         if (trigger >= 0x80) {
           int remain = s.length() - i;
@@ -190,7 +190,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
     ln--;
     if (ln <= 0) {
       ln = size / 20 / 100;  // assume each line about 20 chars
-      emit progressChanged(this, is.device()->at() / f_ent_percent);
+      emit progressChanged(this, is.device()->at() / (int) f_ent_percent);
     }
 
     // similar in kva_clip.cpp::slotEditPaste()
