@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/09 11:06:40  arnold
+    removed ability to display a different font for each column
+
     Revision 1.8  2001/11/09 10:39:25  arnold
     removed ability to display a different font for each column
 
@@ -50,7 +53,11 @@
 #include <qscrollbar.h>
 #include <qpainter.h>
 #include <qtimer.h>
+#include <qlineedit.h>
+#include <qcombobox.h>
+
 #include <kapp.h>
+#include <kdebug.h>
 
 #include <iostream.h>
 
@@ -216,9 +223,20 @@ void RowTable::paintCell( QPainter *p, int row, int col, const QRect &cr, bool s
 }
 
 
-QWidget *RowTable::createEditor(int, int, bool) const
+void RowTable::setCellWidget ( int row, int col, QWidget * e )
 {
-   return 0; // No inline editing
+  kdDebug() << "setCellWidget " << row << " " << col << " " << (long) e << endl;
+  kdDebug() << ((QLineEdit*) e)->text().latin1() << endl;
+}
+
+
+QWidget *RowTable::createEditor(int row, int col, bool initfrom) const
+{
+  kdDebug() << "createEditor " << row << " " << col << " " << (long) viewport() << endl;
+  QLineEdit *edit = new QLineEdit( viewport() );
+  edit ->setText("hello inlineedit");
+  return edit;
+//   return 0; // No inline editing
 }
 
 
@@ -245,6 +263,9 @@ void RowTable::setSelectColumn( int col )
 
 void RowTable::contentsMouseDoubleClickEvent( QMouseEvent *e )
 {
+  QTable::contentsMouseDoubleClickEvent(e);
+  return;
+
   delayTimer->stop();
   int cc = columnAt(e->x());
   int cr = rowAt(e->y());

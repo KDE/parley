@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.7  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -618,7 +621,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc) /*FOLD00*/
     for (int i = 0; i < the_doc->numEntries(); i++)
     {
       kvoctrainExpr *entry = the_doc->getEntry(i);
-      if (entry->isSelected())
+      if (entry->isInQuery())
       {
          int less = entry->getLesson();
          for (int l = (int) queryList.size(); l <= less; l++) {
@@ -718,7 +721,7 @@ void kvoctrainApp::slotSaveSelection () /*FOLD00*/
   seldoc.setTypeDescr(doc->getTypeDescr());
 
   for (int i = doc->numEntries()-1; i >= 0; i--)
-    if (doc->getEntry(i)->isSelected() )
+    if (doc->getEntry(i)->isInQuery() )
       seldoc.appendEntry(doc->getEntry(i));
 
   QString s;

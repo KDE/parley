@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.16  2001/11/10 22:59:17  arnold
     fixed some bugs
 
@@ -203,14 +206,28 @@ void kvoctrainApp::slotSelectEntry (int row, int col, int key_state)
        || col < 0)
      return;
 
-   if (key_state != 0) { // some shift/ctrl key
-     if (doc->getEntry(row)->getLesson () == 0)
-       doc->getEntry(row)->setLesson (act_lesson);
-     else
-       doc->getEntry(row)->setLesson (0);
+   if (col == KV_COL_LESS) {
+     if (key_state != 0) { // some shift/ctrl key
+       if (doc->getEntry(row)->getLesson () == 0)
+         doc->getEntry(row)->setLesson (act_lesson);
+       else
+         doc->getEntry(row)->setLesson (0);
+     }
    }
-   else
-     doc->getEntry(row)->setSelected (!doc->getEntry(row)->isSelected());
+   else if (col == KV_COL_MARK) {
+     // Quick'N'dirty
+     kvoctrainExpr *expr = doc->getEntry(row);
+     if (expr->isActive() && !expr->isInQuery()) {
+       expr->setInQuery();
+     }
+     else if (expr->isActive() && expr->isInQuery()) {
+       expr->setInQuery(false);
+       expr->setActive(false);
+     }
+     else if (!expr->isActive() && !expr->isInQuery()) {
+       expr->setActive(true);
+     }
+   }
 
    doc->setModified(true);
    // update current row with all cols

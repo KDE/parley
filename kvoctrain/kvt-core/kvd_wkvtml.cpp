@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.4  2001/10/30 14:10:53  arnold
     added property 'multiple choice'
 
@@ -47,6 +50,7 @@
 #include "kv_resource.h"
 #include "QueryManager.h"
 
+#include <kdebug.h>
 #include <kapp.h>
 #include <klocale.h>
 #include <kstddirs.h>
@@ -753,15 +757,19 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString title) {
       QString ls;
       int lm = (*first).getLesson();
       if (lm > (int) lesson_descr.size() ) { // should not be
-        cerr << "index of lesson member too high: " << lm << endl;
+        kdError() << "index of lesson member too high: " << lm << endl;
         lm = 0;
       }
       ls.setNum (lm);
       xml.addAttribute (KV_LESS_MEMBER, ls);
     }
 
-    if ((*first).isSelected() != 0) {   // entry was selected
+    if ((*first).isInQuery()) {   // entry was selected for query
       xml.addAttribute (KV_SELECTED, (QString) "1");
+    }
+
+    if (!(*first).isActive()) {   // entry was inactive
+      xml.addAttribute (KV_INACTIVE, (QString) "1");
     }
 
     if ((*first).uniqueType() && !(*first).getType(0).isEmpty()) {

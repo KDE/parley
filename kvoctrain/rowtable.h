@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/09 10:39:25  arnold
+    removed ability to display a different font for each column
+
     Revision 1.5  2001/11/02 17:50:23  arnold
     fixed sorting basically
 
@@ -95,6 +98,7 @@ protected:
         virtual void paintCell( QPainter *p, int row, int col, const QRect &cr, bool selected);
 	virtual void paletteChange( const QPalette &oldPalette );
         virtual QWidget *createEditor(int, int, bool) const;
+        void setCellWidget ( int row, int col, QWidget * e );
         virtual void keyPressEvent( QKeyEvent *e );
         virtual void contentsMousePressEvent (QMouseEvent *e);
         virtual void contentsMouseDoubleClickEvent( QMouseEvent *e );

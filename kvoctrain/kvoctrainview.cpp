@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.11  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -254,7 +257,7 @@ void kvoctrainView::setView(kvoctrainDoc *doc,
    int id = ls.indexShortId (the_doc->getOriginalIdent());
 
    setHeaderProp( KV_COL_LESS, i18n("Lesson"),  locate("data", "kvoctrain/lesson.xpm"));
-   setHeaderProp( KV_COL_MARK, QString::null,  locate("data", "kvoctrain/mark.png"));
+   setHeaderProp( KV_COL_MARK, QString::null,  QString::null); //locate("data", "kvoctrain/mark.png"));
    lb_list->setColumnWidth(KV_COL_MARK, 20);
 
    if (id < 0 )

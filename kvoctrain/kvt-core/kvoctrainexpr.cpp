@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.6  2001/11/09 10:40:25  arnold
     removed ability to display a different font for each column
 
@@ -59,15 +62,30 @@
 
 #include "kv_resource.h"
 #include <klocale.h>
+#include <kdebug.h>
 #include <kstddirs.h>
 
 QPixmap * kvoctrainExpr::s_pm_mark = 0;
+QPixmap * kvoctrainExpr::s_pm_inactive = 0;
 
 // static
-void kvoctrainExpr::setPixmap(const QPixmap &pm)
+void kvoctrainExpr::setPixmap(PixmapRole role, const QPixmap &pm)
 {
-  delete s_pm_mark;
-  s_pm_mark = new QPixmap(pm);
+  switch (role) {
+    case ExprInQuery:
+      delete s_pm_mark;
+      s_pm_mark = new QPixmap(pm);
+    break;
+
+    case ExprInactive:
+      delete s_pm_inactive;
+      s_pm_inactive = new QPixmap(pm);
+    break;
+
+    default:
+      kdError() << ((QString)"unknown role <%1> for pixmap in ").arg((int) role)
+                << __FILE__ << endl;
+  }
 }
 
 
@@ -75,7 +93,8 @@ void kvoctrainExpr::Init()
 {
   grades.push_back(KV_NORM_GRADE);
   rev_grades.push_back(KV_NORM_GRADE);
-  selected = false;
+  inquery = false;
+  active = true;
   qcounts.push_back(0);
   rev_qcounts.push_back(0);
   bcounts.push_back(0);
@@ -838,9 +857,14 @@ void kvoctrainExpr::paint(QPainter *p, int col, int width, bool cell_selected,
 
     case KV_COL_MARK: // mark 
       {
-        if (isSelected() )
+        if (!isActive() )
         {
-	  p->drawPixmap((width - s_pm_mark->width()) / 2, 
+	  p->drawPixmap((width - s_pm_inactive->width()) / 2,
+                        (p->fontMetrics().lineSpacing() - s_pm_inactive->height())/2, *s_pm_inactive);
+        }
+        else if (isInQuery() )
+        {
+	  p->drawPixmap((width - s_pm_mark->width()) / 2,
                         (p->fontMetrics().lineSpacing() - s_pm_mark->height())/2, *s_pm_mark);
         }
       }
@@ -900,17 +924,6 @@ void kvoctrainExpr::incQueryCount (int index, bool rev_count)
 void kvoctrainExpr::incBadCount (int index, bool rev_count)
 {
   setBadCount (index, getBadCount(index, rev_count)+1, rev_count);
-}
-
-
-bool kvoctrainExpr::isSelected() const
-{
-  return selected;
-}
-
-void kvoctrainExpr::setSelected(bool flag)
-{
-  selected = flag;
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/02 17:50:44  arnold
+    fixed sorting basically
+
     Revision 1.4  2001/10/30 14:10:53  arnold
     added property 'multiple choice'
 
@@ -71,7 +74,7 @@
 #define KV_LINES       "lines"     // entries
 #define KV_GENERATOR   "generator" // who generated the doc
 #define KV_COLS        "cols"      // columns
-#define KV_ENCODING    "encoding"  // document encoding
+#define KV_ENCODING    "encoding"  // document encoding  (obsolete!)
 
 #define KV_EXPR        "e"         // entry for one expression
 #define KV_ORG         "o"         // original expression in specified language
@@ -84,7 +87,7 @@
 #define KV_LESS_MEMBER "m"         // member of lesson 1 .. x
 #define KV_COUNT       "c"         // number of times queried
 #define KV_SIZEHINT    "width"     // recommended column width
-#define KV_CHARSET     "charset"   // recommended charset
+#define KV_CHARSET     "charset"   // recommended charset (obsolete!)
 #define KV_BAD         "b"         // number of times failed
 #define KV_DATE        "d"         // last query date
 #define KV_DATE2       "w"         // last query date, compressed format
@@ -94,7 +97,8 @@
 #define KV_SYNONYM     "y"         // synonym (same meaning) of expr
 #define KV_ANTONYM     "a"         // antonym (oppositite) of expr
 #define KV_PRONUNCE    "p"         // how to pronunce this expression
-#define KV_SELECTED    "s"         // entry selected
+#define KV_SELECTED    "s"         // entry selected for queries
+#define KV_INACTIVE    "i"         // entry inactive (for queries)
 #define KV_EXPRTYPE    "t"         // type of expression
 #define KV_EXAMPLE     "x"         // example string with word
 #define KV_USAGE       "u"         // usage label
@@ -658,6 +662,7 @@ protected:
                            XmlElement   &elem,
                            int          &lesson,
                            bool         &sel,
+                           bool         &active,
                            QString      &type);
   bool check_Empty_attr (QString tag_name,
                          XmlReader &xml,

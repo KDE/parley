@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/09 15:52:20  arnold
     fixed error messages for correct i18n use
 
@@ -69,7 +72,8 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   QString       pronunce;
   time_t        qdate,
                 r_qdate;
-  bool          sel;
+  bool          inquery;
+  bool          active;
   QString       lang;
   QString       textstr;
   QString       exprtype;
@@ -92,7 +96,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   Comparison     comparison;
   MultipleChoice mc;
 
-  if (!extract_KVT_E_attr (xml, elem, lesson, sel, exprtype))
+  if (!extract_KVT_E_attr (xml, elem, lesson, inquery, active, exprtype))
     return false;
 
   if (lesson
@@ -248,7 +252,8 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
       expr = kvoctrainExpr (textstr);
       expr.setLesson (lesson);
-      expr.setSelected(sel);
+      expr.setInQuery(inquery);
+      expr.setActive(active);
 
       if (conjug.size() > 0) {
         expr.setConjugation(0, conjug[0]);

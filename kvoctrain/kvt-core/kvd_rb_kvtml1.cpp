@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.5  2001/11/09 15:52:20  arnold
     fixed error messages for correct i18n use
 
@@ -513,10 +516,12 @@ bool kvoctrainDoc::extract_KVT_E_attr (
                          XmlElement   &elem,
                          int          &lesson,
                          bool         &sel,
+                         bool         &active,
                          QString      &type)
 {
   lesson = 0;
   sel = false;
+  active = true;
   type = "";
   list<XmlAttribute>::const_iterator first =  elem.attributes ().begin ();
   while (first != elem.attributes ().end ()) {
@@ -524,6 +529,8 @@ bool kvoctrainDoc::extract_KVT_E_attr (
       lesson = (*first).intValue();
     else if ((*first).name () == KV_SELECTED)
       sel = (*first).intValue() != 0;
+    else if ((*first).name () == KV_INACTIVE)
+      active = (*first).intValue() != 0;
     else if ((*first).name () == KV_EXPRTYPE) {
       type = (*first).stringValue();
       if (type == "1")

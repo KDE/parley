@@ -37,7 +37,7 @@ APPS_FILES = \
  pics/run-query.xpm  pics/run-multi.xpm \
  pics/sort_alpha.xpm pics/sort_num.xpm pics/cleanup.xpm \
  pics/run-syno.xpm pics/run-anto.xpm  pics/run-exmp.xpm  pics/run-para.xpm \
- pics/mark.png
+ pics/entry-in-query.png  pics/entry-inactive.png
  
 install-data-local:
 	$(mkinstalldirs) $(kde_appsdir)/Edutainment/

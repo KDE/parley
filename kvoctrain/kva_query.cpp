@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.7  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -769,7 +772,7 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
         }
       }
 
-      exp->setSelected(false);
+      exp->setInQuery(false);
       random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
       if (   random_expr1.size() != 0
           || random_expr2.size() != 0

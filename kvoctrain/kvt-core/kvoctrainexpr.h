@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2001/11/10 22:59:41  arnold
+    fixed some bugs
+
     Revision 1.6  2001/11/10 22:28:46  arnold
     removed compatibility for kde1
 
@@ -185,11 +188,19 @@ class kvoctrainExpr
 
   /** returns flag if entry is "selected" for queries
    */
-  bool isSelected() const;
+  bool isInQuery() const {return inquery; }
 
   /** set entry "selected"
    */
-  void setSelected(bool flag = true);
+  void setInQuery(bool flag = true) { inquery = flag; }
+
+  /** returns flag if entry is activated for queries
+   */
+  bool isActive() const  {return active; }
+
+  /** set entry active (enabled for queries)
+   */
+  void setActive(bool flag = true) { active = flag; }
 
   /** returns translation of this expression
    *
@@ -487,7 +498,9 @@ class kvoctrainExpr
   void paint( QPainter *painter, int col, int width, bool selected,
               kvoctrainDoc *doc, int current_col, const GradeCols *gc);
 
-  static void setPixmap(const QPixmap &pm);
+  enum PixmapRole {ExprInQuery, ExprInactive};
+
+  static void setPixmap(PixmapRole role, const QPixmap &pm);
 
  protected:
 
@@ -521,10 +534,11 @@ class kvoctrainExpr
   vector<MultipleChoice> mcs;
 
   int                lesson;
-  bool               selected;
-  bool               tagged;
+  bool               inquery;
+  bool               active;
 
-  static QPixmap *   s_pm_mark;
+  static QPixmap   *s_pm_mark;
+  static QPixmap   *s_pm_inactive;
 };
 
 #endif  // ONLY XGETTEXT

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/11/11 12:51:45  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.10  2001/11/10 22:27:08  arnold
     removed compatibility for kde1
 
@@ -420,7 +423,10 @@ void kvoctrainApp::initView(const QString &name)
                 kapp->makeStdCaption("Loading vocabulary file"));
   pdlg->show();
 
-  kvoctrainExpr::setPixmap(QPixmap(locate("data", "kvoctrain/mark.png")));
+  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInQuery,
+                           QPixmap(locate("data", "kvoctrain/entry-in-query.png")));
+  kvoctrainExpr::setPixmap(kvoctrainExpr::ExprInactive,
+                           QPixmap(locate("data", "kvoctrain/entry-inactive.png")));
 
   if (!name.isEmpty()) {
     doc = new kvoctrainDoc(this, name, separator, &paste_order);

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/10 22:28:46  arnold
+    removed compatibility for kde1
+
     Revision 1.2  2001/11/09 14:19:13  arnold
     fixed and improved some dialog pages
 
@@ -259,7 +262,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    QuerySelection random;
    random.resize(doc->numLessons()+1);
    for (int i = 0; i < doc->numEntries(); i++)
-     doc->getEntry(i)->setSelected(false);
+     doc->getEntry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
@@ -273,23 +276,25 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
        emit doc->progressChanged(doc, ent_no / f_ent_percent);
 
      kvoctrainExpr *expr = doc->getEntry(i);
-     if (swap) {
-       if (  validate (expr, act_lesson,
-                     oindex, tindex,
-                     block, expire)
-           ||validate (expr, act_lesson,
-                     tindex, oindex,
-                     block, expire)) {
-         random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
-         expr->setSelected(true);
+     if (expr->isActive() ){
+       if (swap) {
+         if (  validate (expr, act_lesson,
+                       oindex, tindex,
+                       block, expire)
+             ||validate (expr, act_lesson,
+                       tindex, oindex,
+                       block, expire)) {
+           random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+           expr->setInQuery(true);
+         }
        }
-     }
-     else {
-       if (validate (expr, act_lesson,
-                     oindex, tindex,
-                     block, expire)) {
-         random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
-         expr->setSelected(true);
+       else {
+         if (validate (expr, act_lesson,
+                       oindex, tindex,
+                       block, expire)) {
+           random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+           expr->setInQuery(true);
+         }
        }
      }
    }
@@ -340,6 +345,8 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
+   for (int i = 0; i < doc->numEntries(); i++)
+     doc->getEntry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
@@ -353,8 +360,9 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
        emit doc->progressChanged(doc, ent_no / f_ent_percent);
 
      kvoctrainExpr *expr = doc->getEntry(i);
-     if (validate (expr, act_lesson, idx, type)) {
+     if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
        random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+       expr->setInQuery(true);
      }
    }
 
@@ -415,6 +423,8 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
+   for (int i = 0; i < doc->numEntries(); i++)
+     doc->getEntry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
@@ -428,8 +438,9 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
        emit doc->progressChanged(doc, ent_no / f_ent_percent);
 
      kvoctrainExpr *expr = doc->getEntry(i);
-     if (validate (expr, act_lesson, idx, type)) {
+     if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
        random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+       expr->setInQuery(true);
      }
    }
 

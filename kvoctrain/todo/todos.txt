@@ -18,8 +18,6 @@ still left flaws:
 
 - multiline input anon-query
 
-- loading: missing charsets?
-
 = tabreihenfolge in dialogen testen
 
 
@@ -48,10 +46,6 @@ doc
 
   uft8 for kde2x envs
   8859-x/koi if special
-
-  Use of fonts in general
-
-KDE2 : pixmaps, Identifier neu eingeben, sind getrennt von KDE1
 
 wishes from users
 =================
@@ -97,12 +91,6 @@ Vokalverschiebung (D) Mann -> Maenner oder Unregelmaessigkeiten a la
   effektiver, als eine getrennte Abfrage.
   Evtl. koennte man das auch mit Adjektivformen oder Verbformen machen,
   aber das wird wahrscheinlich zu umstaendlich bei der Abfrage.
-
->Und als Enduser, wäre es toll, wenn ich das auf der Homepage
->nachlesen könnte. Nicht jeder verwendet ja kde, hätte aber dann doch
->gerne ein paar Programme aus der K-Welt.  Das zum Kompilieren nur die
->kdelibs, qt und ein paar andere Zerquetschte notwendig sind, läßt das
->Enduser-Das-Kann-Ich-Doch-Auch-Rasch-Schaffen Herz  hochschlagen ;-).
 
 --  Wenn bei mehreren selektierten Einträgen über Return das
 Eingabefeld zur Bearbeitung der Eigenschaften des Ursrungs aufgerufen
@@ -160,16 +148,6 @@ personal ideas
 >a) keine Trennung von benutzerspezifischen Informationen und
 >   dein eigentlichen Daten. Sehr schlecht. Insbesondere unter
 
->Aua. Gute MC-Aufgaben beinhalten nicht zufällig ausgewählte
->Wörter sondern welche, die "nah dran" sind um abzulenken,
->mehrere richtige Lösungen
-
-====>
-<e> ...
-  mc1="text21"    x Text für MC-Abfragen
-  mc2="text22"
-  mc3="text23"
-</e>
 
 current feature list to implement
 =================================
@@ -181,8 +159,6 @@ feature list following release
 false friends query
 
 printing
-
-createheadernames beschleunigen
 
 z.B. Eingabe :    "der Mann"  ==>   setzt Nomen/männlich  und Text "Mann"
 
