@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ViewOptPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -106,7 +106,7 @@
                                 <string>Level &amp;5:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col5</cstring>
+                                <cstring>kcfg_gradeCol5</cstring>
                             </property>
                         </widget>
                         <widget class="QLabel" row="6" column="0">
@@ -117,7 +117,7 @@
                                 <string>Level &amp;2:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col2</cstring>
+                                <cstring>kcfg_gradeCol2</cstring>
                             </property>
                         </widget>
                         <widget class="QLabel" row="4" column="0">
@@ -128,7 +128,7 @@
                                 <string>Level &amp;4:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col4</cstring>
+                                <cstring>kcfg_gradeCol4</cstring>
                             </property>
                         </widget>
                         <widget class="QLabel" row="7" column="0">
@@ -139,7 +139,7 @@
                                 <string>Level &amp;1:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col1</cstring>
+                                <cstring>kcfg_gradeCol1</cstring>
                             </property>
                         </widget>
                         <widget class="KColorButton" row="1" column="1">
@@ -178,7 +178,7 @@
                                 <string>Level &amp;3:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col3</cstring>
+                                <cstring>kcfg_gradeCol3</cstring>
                             </property>
                         </widget>
                         <widget class="KColorButton" row="4" column="1">
@@ -245,7 +245,7 @@
                                 <string>Level &amp;6:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col6</cstring>
+                                <cstring>kcfg_gradeCol6</cstring>
                             </property>
                         </widget>
                         <widget class="QLabel" row="1" column="0">
@@ -256,7 +256,7 @@
                                 <string>Level &amp;7:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col7</cstring>
+                                <cstring>kcfg_gradeCol7</cstring>
                             </property>
                         </widget>
                         <widget class="KColorButton" row="7" column="1">
@@ -289,7 +289,7 @@
                                 <string>&amp;Not queried:</string>
                             </property>
                             <property name="buddy" stdset="0">
-                                <cstring>b_col0</cstring>
+                                <cstring>kcfg_gradeCol0</cstring>
                             </property>
                         </widget>
                     </grid>
@@ -448,4 +448,14 @@
     <include location="global" impldecl="in declaration">kcolorbutton.h</include>
 </includes>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+</includehints>
 </UI>
