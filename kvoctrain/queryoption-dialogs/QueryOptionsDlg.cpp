@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/12/30 18:42:19  arnold
+    improved reaction upon 'empty' query selections
+
     Revision 1.7  2001/12/26 15:12:58  mueller
     CVSSILINT: fixincludes
 
@@ -336,8 +339,11 @@ void QueryOptionsDlg::slotModifyGroup(int grp)
 
 void QueryOptionsDlg::slotDeleteGroup(int grp)
 {
-  if (grp < (int) settings.size() )
-    settings.erase (&settings[grp], &settings[grp+1]);
+  if (grp < (int) settings.size() ) {
+    vector<PreSetting>::iterator start(&settings[grp]);
+    vector<PreSetting>::iterator end(&settings[grp+1]);
+    settings.erase (start, end);
+  }
 }
 
 
