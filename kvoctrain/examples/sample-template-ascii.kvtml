@@ -1,0 +1,165 @@
+<?xml version="1.0"?>
+<!doctype kvtml system "kvoctrain.dtd">
+<!--
+This is a machine generated file.
+Be careful when editing here.
+
+Short definition:
+
+lesson       lesson group
+ desc        name
+   %no       its index
+   %query    is in query selection
+   %current  is current lesson
+type         type group
+ desc        name
+   %no       its index
+e            entry of dictionary
+  %s         is selected
+  %m         lesson member
+  %t         common expression type
+ o           original
+   %q        in query ("o" is given, "t" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type (see QueryManager.h)
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+ t           translation ..
+   %q        in query ("t" is given, "o" is wanted)
+   %l        language code
+   %r        remark
+   %p        pronunciation
+   %width    column width
+   %t        expression type
+   %tf       false friend from
+   %ff       false friend to
+   %a        antonym
+   %y        synonym
+   %x        example
+   %u        usage label
+   %h        paraphrase
+
+   %d        last query date (from;to)
+   %w        dito, compressed and deprecated
+   %g        grade (from;to)
+   %c        count (from;to)
+   %b        bad count (from;to)
+
+
+Valid xml means:
+ - Close all tags
+ - Keep proper hierarchy
+ - All attributes are quoted
+
+--
+>
+<kvtml
+  encoding="UTF-8"
+  generator="kvoctrain v0.8.0"
+  cols="2"
+  lines="6"
+  title="Example file: your language - English"
+  author="Your Name"
+  license="Your License"
+  remark="Your remark about the document">
+
+ <lesson width="172">
+  <desc no="1">Lesson one</desc>
+  <desc no="2">Lesson two</desc>
+  <desc no="3">Lesson three</desc>
+  <desc no="4">Lesson four</desc>
+ </lesson>
+
+ <article>
+  <e l="gb">
+   <fd>die</fd>
+   <fi>eine</fi>
+   <md>der</md>
+   <mi>einer</mi>
+   <nd>das</nd>
+   <ni>ein</ni>
+  </e>
+  <e l="en">
+   <fd>fd en</fd>
+   <fi>fi en</fi>
+   <md>md en</md>
+   <mi>mi en</mi>
+   <nd>nd en</nd>
+   <ni>ni en</ni>
+  </e>
+ </article>
+
+ <conjugation>
+  <e l="gb">
+   <s1>ich</s1>
+   <s2>du</s2>
+   <s3f>sie</s3f>
+   <s3m>er</s3m>
+   <s3n>es</s3n>
+   <p1>wir</p1>
+   <p2>ihr</p2>
+   <p3f common="1">sie</p3f>
+   <p3m>sie</p3m>
+   <p3n>sie</p3n>
+  </e>
+  <e l="en">
+   <s1>I</s1>
+   <s2>you</s2>
+   <s3f>he</s3f>
+   <s3m>she</s3m>
+   <s3n>it</s3n>
+   <p1>we</p1>
+   <p2>you</p2>
+   <p3f common="1">they</p3f>
+  </e>
+ </conjugation>
+
+ <options>
+  <sort on="1"/>
+ </options>
+
+ <type>
+  <desc no="1">grammar type a</desc>
+  <desc no="2">grammer type b</desc>
+ </type>
+
+ <tense>
+  <desc no="1">Special tense</desc>
+ </tense>
+
+ <usage>
+  <desc no="1">slang usage</desc>
+  <desc no="2">professional usage</desc>
+ </usage>
+
+ <e m="1" t="v:ir"><o width="344" l="gb" q="t">encumber</o><t width="348" l="en" q="o">encumber</t></e>
+ <e m="1" t="n:f"><o y="-">pea</o><t p="pi">pea</t></e>
+ <e m="2" t="v:re"><o y="-">go</o><t>go</t></e>
+ <e m="2" t="aj"><o u="#1:#2">
+  <comparison>
+   <l1>gut</l1><l2>besser</l2><l3>am besten</l3>
+  </comparison>
+  good</o><t>
+   <comparison>
+    <l1>good</l1><l2>better</l2><l3>best</l3>
+   </comparison>
+   good</t></e>
+ <e m="3" t="aj"><o>
+  <comparison>
+   <l1>bad</l1><l2>worse</l2><l3>worst</l3>
+  </comparison>
+  bad</o><t>
+   <comparison>
+    <l1>bad</l1><l2>worse</l2><l3>worst</l3>
+   </comparison>
+   bad</t></e>
+ <e m="3" t="#1"><o u="Am:anat">utterly</o><t>utterly</t></e>
+</kvtml>
