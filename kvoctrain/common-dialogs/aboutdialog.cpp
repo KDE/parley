@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:37:45  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -499,3 +502,4 @@ bool CURLLabel::eventFilter( QObject *object, QEvent *e )
 
   return( false );
 }
+#include "aboutdialog.moc"

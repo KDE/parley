@@ -72,3 +72,4 @@ TenseOptPageData::TenseOptPageData
 //TenseOptPageData::~TenseOptPageData()
 //{
 //}
+#include "TenseOptPageData.moc"

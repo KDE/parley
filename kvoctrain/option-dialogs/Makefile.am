@@ -14,8 +14,7 @@ liboptiondlg_a_QOBJ_SOURCES =   \
   GeneralOptionsDlg.cpp 
 
 
-liboptiondlg_a_LIBADD=$(liboptiondlg_a_SOURCES:.cpp=.o)
-liboptiondlg_a_SOURCES = $(liboptiondlg_a_QOBJ_SOURCES) $(liboptiondlg_a_QOBJ_SOURCES:.cpp=.moc.cpp)
+liboptiondlg_a_SOURCES = $(liboptiondlg_a_QOBJ_SOURCES) 
                         
 EXTRA_DIST = \
   $(liboptiondlg_a_QOBJ_SOURCES:.cpp=.h) \

@@ -181,3 +181,4 @@ QueryDlgData::QueryDlgData
 //QueryDlgData::~QueryDlgData()
 //{
 //}
+#include "QueryDlgData.moc"

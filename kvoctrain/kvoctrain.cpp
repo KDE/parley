@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/12 20:55:31  arnold
+    added include file
+
     Revision 1.1  2001/10/05 15:36:34  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -1555,3 +1558,4 @@ void kvoctrainApp::statusCallback(int id_){ /*FOLD00*/
 
 #endif // __ONLY_TO_BE_SEEN_BY_XGETTEXT
 
+#include "kvoctrain.moc"

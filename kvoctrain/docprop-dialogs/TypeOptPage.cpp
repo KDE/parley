@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:38:38  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -300,3 +303,4 @@ void TypeOptPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+#include "TypeOptPage.moc"

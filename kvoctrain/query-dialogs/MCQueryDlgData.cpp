@@ -224,3 +224,4 @@ MCQueryDlgData::MCQueryDlgData
 //MCQueryDlgData::~MCQueryDlgData()
 //{
 //}
+#include "MCQueryDlgData.moc"

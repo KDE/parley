@@ -88,3 +88,4 @@ QueryOptPageData::QueryOptPageData
 //QueryOptPageData::~QueryOptPageData()
 //{
 //}
+#include "QueryOptPageData.moc"

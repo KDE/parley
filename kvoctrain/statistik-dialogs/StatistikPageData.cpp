@@ -42,3 +42,4 @@ StatistikPageData::StatistikPageData
 //StatistikPageData::~StatistikPageData()
 //{
 //}
+#include "StatistikPageData.moc"

@@ -74,3 +74,4 @@ GroupOptPageData::GroupOptPageData
 //GroupOptPageData::~GroupOptPageData()
 //{
 //}
+#include "GroupOptPageData.moc"

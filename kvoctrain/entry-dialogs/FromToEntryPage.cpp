@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/05 17:33:17  arnold
+    FIX: slot signature changed to KDE2
+
     Revision 1.1  2001/10/05 15:40:37  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -365,3 +368,4 @@ void FromToEntryPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+#include "FromToEntryPage.moc"

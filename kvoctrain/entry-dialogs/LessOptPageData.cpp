@@ -72,3 +72,4 @@ LessOptPageData::LessOptPageData
 //LessOptPageData::~LessOptPageData()
 //{
 //}
+#include "LessOptPageData.moc"

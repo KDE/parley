@@ -94,3 +94,4 @@ PasteOptPageData::PasteOptPageData
 //PasteOptPageData::~PasteOptPageData()
 //{
 //}
+#include "PasteOptPageData.moc"

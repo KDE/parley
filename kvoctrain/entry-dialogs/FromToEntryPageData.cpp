@@ -123,3 +123,4 @@ FromToEntryPageData::FromToEntryPageData
 //FromToEntryPageData::~FromToEntryPageData()
 //{
 //}
+#include "FromToEntryPageData.moc"

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:45:05  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -582,3 +585,4 @@ void VerbQueryDlg::slotP2pChanged(const QString&)
   resetField(p2pField);
 }
 
+#include "VerbQueryDlg.moc"

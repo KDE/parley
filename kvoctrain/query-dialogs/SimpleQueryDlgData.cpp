@@ -150,3 +150,4 @@ SimpleQueryDlgData::SimpleQueryDlgData
 //SimpleQueryDlgData::~SimpleQueryDlgData()
 //{
 //}
+#include "SimpleQueryDlgData.moc"

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:46:01  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -324,3 +327,4 @@ void QueryOptionsDlg::slotNewGroup(const QString &name)
   settings.push_back(PreSetting(name, "", "", ""));
   slotModifyGroup(settings.size()-1);
 }
+#include "QueryOptionsDlg.moc"

@@ -141,3 +141,4 @@ ArtQueryDlgData::ArtQueryDlgData
 //ArtQueryDlgData::~ArtQueryDlgData()
 //{
 //}
+#include "ArtQueryDlgData.moc"

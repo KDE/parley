@@ -144,3 +144,4 @@ LangOptPageData::LangOptPageData
 //LangOptPageData::~LangOptPageData()
 //{
 //}
+#include "LangOptPageData.moc"

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/12 19:14:28  arnold
+    switched dialog files to qt-designer
+
     Revision 1.1  2001/10/05 15:37:45  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -84,3 +87,4 @@ void ProgressDlg::setValue( kvoctrainDoc *new_doc, int val)
 }
 
 
+#include "ProgressDlg.moc"

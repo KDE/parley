@@ -72,3 +72,4 @@ TypeOptPageData::TypeOptPageData
 //TypeOptPageData::~TypeOptPageData()
 //{
 //}
+#include "TypeOptPageData.moc"

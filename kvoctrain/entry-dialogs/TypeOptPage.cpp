@@ -29,3 +29,4 @@ TypeOptPage::TypeOptPage
 //TypeOptPage::~TypeOptPage()
 //{
 //}
+#include "TypeOptPage.moc"

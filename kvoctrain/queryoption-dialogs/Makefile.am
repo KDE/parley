@@ -1,6 +1,6 @@
-INCLUDES = $(all_includes)  -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core
+INCLUDES = -I$(top_srcdir)/kvoctrain/kvoctrain -I$(top_srcdir)/kvoctrain/kvoctrain/kvt-core $(all_includes)
 
-noinst_LIBRARIES = libqueryoptiondlg.a
+noinst_LTLIBRARIES = libqueryoptiondlg.la
 
 libqueryoptiondlg_a_DLG_SOURCES = \
   GroupOptPage.dlg \
@@ -13,9 +13,7 @@ libqueryoptiondlg_a_QOBJ_SOURCES =   \
   $(libqueryoptiondlg_a_DLG_SOURCES:.dlg=Data.cpp) \
  QueryOptionsDlg.cpp
 
-libqueryoptiondlg_a_LIBADD = $(libqueryoptiondlg_a_SOURCES:.cpp=.o)
-libqueryoptiondlg_a_SOURCES = $(libqueryoptiondlg_a_QOBJ_SOURCES) \
-                              $(libqueryoptiondlg_a_QOBJ_SOURCES:.cpp=.moc.cpp)
+libqueryoptiondlg_a_SOURCES = $(libqueryoptiondlg_a_QOBJ_SOURCES) 
                         
 EXTRA_DIST = \
   $(libqueryoptiondlg_a_QOBJ_SOURCES:.cpp=.h) \

@@ -247,3 +247,4 @@ LangPropPageData::LangPropPageData
 //LangPropPageData::~LangPropPageData()
 //{
 //}
+#include "LangPropPageData.moc"

@@ -86,3 +86,4 @@ CharSetDlgData::CharSetDlgData
 //CharSetDlgData::~CharSetDlgData()
 //{
 //}
+#include "CharSetDlgData.moc"

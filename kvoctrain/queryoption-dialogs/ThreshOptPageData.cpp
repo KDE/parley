@@ -191,3 +191,4 @@ ThreshOptPageData::ThreshOptPageData
 //ThreshOptPageData::~ThreshOptPageData()
 //{
 //}
+#include "ThreshOptPageData.moc"

@@ -29,3 +29,4 @@ TenseOptPage::TenseOptPage
 //TenseOptPage::~TenseOptPage()
 //{
 //}
+#include "TenseOptPage.moc"

@@ -56,3 +56,4 @@ LessonInputDlgData::LessonInputDlgData
 //LessonInputDlgData::~LessonInputDlgData()
 //{
 //}
+#include "LessonInputDlgData.moc"

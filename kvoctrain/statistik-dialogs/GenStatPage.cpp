@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:47:12  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -73,3 +76,4 @@ void GenStatPage::keyPressEvent( QKeyEvent *e )
    else
      e->ignore();
 }
+#include "GenStatPage.moc"

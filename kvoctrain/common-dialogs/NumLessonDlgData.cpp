@@ -56,3 +56,4 @@ NumLessonDlgData::NumLessonDlgData
 //NumLessonDlgData::~NumLessonDlgData()
 //{
 //}
+#include "NumLessonDlgData.moc"

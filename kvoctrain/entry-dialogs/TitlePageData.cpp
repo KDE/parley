@@ -93,3 +93,4 @@ TitlePageData::TitlePageData
 //TitlePageData::~TitlePageData()
 //{
 //}
+#include "TitlePageData.moc"

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -442,3 +445,4 @@ void kvoctrainTable::sortByColumn_index(int header)
 }
 
 
+#include "kvoctrainview.moc"

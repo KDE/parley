@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -43,7 +46,7 @@
 
 // include files for KDE 
 #include <kapp.h> 
-#include <ktmainwindow.h> 
+#include <kmainwindow.h> 
 #include <kaccel.h>
 #include <kmenubar.h>
 #include <ktoolbar.h>

@@ -167,3 +167,4 @@ AdjQueryDlgData::AdjQueryDlgData
 //AdjQueryDlgData::~AdjQueryDlgData()
 //{
 //}
+#include "AdjQueryDlgData.moc"

@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.2  2001/10/12 19:15:05  arnold
+    switched dialog files to qt-designer
+
     Revision 1.1  2001/10/05 15:37:45  arnold
     import of version 0.7.0pre8 to kde-edu
 
@@ -63,3 +66,4 @@ void NumLessonDlg::slotInputChanged(const QString& s)
 {
   input = QString(s).toInt();
 }
+#include "NumLessonDlg.moc"

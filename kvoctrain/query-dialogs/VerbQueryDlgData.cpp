@@ -291,3 +291,4 @@ VerbQueryDlgData::VerbQueryDlgData
 //VerbQueryDlgData::~VerbQueryDlgData()
 //{
 //}
+#include "VerbQueryDlgData.moc"

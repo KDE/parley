@@ -29,3 +29,4 @@ DocOptionsPage::DocOptionsPage
 //DocOptionsPage::~DocOptionsPage()
 //{
 //}
+#include "DocOptionsPage.moc"

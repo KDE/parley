@@ -29,3 +29,4 @@ UsageOptPage::UsageOptPage
 //UsageOptPage::~UsageOptPage()
 //{
 //}
+#include "UsageOptPage.moc"

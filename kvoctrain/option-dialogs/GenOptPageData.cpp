@@ -88,3 +88,4 @@ GenOptPageData::GenOptPageData
 //GenOptPageData::~GenOptPageData()
 //{
 //}
+#include "GenOptPageData.moc"

@@ -78,3 +78,4 @@ AdjEntryPageData::AdjEntryPageData
 //AdjEntryPageData::~AdjEntryPageData()
 //{
 //}
+#include "AdjEntryPageData.moc"

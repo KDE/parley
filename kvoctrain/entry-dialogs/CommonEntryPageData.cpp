@@ -147,3 +147,4 @@ CommonEntryPageData::CommonEntryPageData
 //CommonEntryPageData::~CommonEntryPageData()
 //{
 //}
+#include "CommonEntryPageData.moc"

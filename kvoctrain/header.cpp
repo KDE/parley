@@ -14,6 +14,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:36:34  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************/
 
@@ -33,6 +36,7 @@
 #include <ctype.h>
 
 #include <compat_2x.h>
+#include <qstyle.h>
 
 // delay im ms (microsoft seconds) before delayed popup pops up
 #define POPUP_DELAY 500
@@ -609,3 +613,4 @@ char KHeader::getHeaderAccel( int header )
 {
     return labels[header]->getAccel();
 }
+#include "header.moc"

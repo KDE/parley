@@ -92,3 +92,4 @@ ProgressDlgData::ProgressDlgData
 //ProgressDlgData::~ProgressDlgData()
 //{
 //}
+#include "ProgressDlgData.moc"

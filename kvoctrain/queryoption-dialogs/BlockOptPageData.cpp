@@ -195,3 +195,4 @@ BlockOptPageData::BlockOptPageData
 //BlockOptPageData::~BlockOptPageData()
 //{
 //}
+#include "BlockOptPageData.moc"

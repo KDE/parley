@@ -72,3 +72,4 @@ UsageOptPageData::UsageOptPageData
 //UsageOptPageData::~UsageOptPageData()
 //{
 //}
+#include "UsageOptPageData.moc"

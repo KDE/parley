@@ -15,9 +15,7 @@ libentrydlg_a_QOBJ_SOURCES =   \
   EntryDlg.cpp MySpinBox.cpp
 
 
-libentrydlg_a_LIBADD= $(libentrydlg_a_SOURCES:.cpp=.o)
-libentrydlg_a_SOURCES = $(libentrydlg_a_QOBJ_SOURCES) $(libentrydlg_a_QOBJ_SOURCES:.cpp=.moc.cpp) \
-                        blockall.cpp
+libentrydlg_a_SOURCES = $(libentrydlg_a_QOBJ_SOURCES) blockall.cpp
 
 EXTRA_DIST = \
   $(libentrydlg_a_QOBJ_SOURCES:.cpp=.h) \

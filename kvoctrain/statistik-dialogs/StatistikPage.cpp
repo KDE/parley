@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.1  2001/10/05 15:47:12  arnold
+    import of version 0.7.0pre8 to kde-edu
+
 
  ***************************************************************************
 
@@ -39,6 +42,7 @@
 #include <kapp.h>
 
 #include <kvoctraindoc.h>
+#include <qcursor.h>
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2
@@ -345,3 +349,4 @@ void StatistikPage::slotPopupMenu(int row, int col)
 StatistikPage::~StatistikPage()
 {
 }
+#include "StatistikPage.moc"

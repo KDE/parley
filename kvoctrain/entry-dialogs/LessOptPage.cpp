@@ -29,3 +29,4 @@ LessOptPage::LessOptPage
 //LessOptPage::~LessOptPage()
 //{
 //}
+#include "LessOptPage.moc"

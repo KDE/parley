@@ -28,3 +28,4 @@ TitlePage::TitlePage
 //TitlePage::~TitlePage()
 //{
 //}
+#include "TitlePage.moc"

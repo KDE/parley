@@ -17,8 +17,7 @@ libdocpropdlg_a_QOBJ_SOURCES =   \
   DocPropDlg.cpp    DocPropLangDlg.cpp 
 
 
-libdocpropdlg_a_SOURCES = $(libdocpropdlg_a_QOBJ_SOURCES) $(libdocpropdlg_a_QOBJ_SOURCES:.cpp=.moc.cpp)
-libdocpropdlg_a_LIBADD = $(libdocpropdlg_a_SOURCES:.cpp=.o)
+libdocpropdlg_a_SOURCES = $(libdocpropdlg_a_QOBJ_SOURCES)
 
 EXTRA_DIST = \
   $(libdocpropdlg_a_QOBJ_SOURCES:.cpp=.h) \

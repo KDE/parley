@@ -63,3 +63,4 @@ DocOptionsPageData::DocOptionsPageData
 //DocOptionsPageData::~DocOptionsPageData()
 //{
 //}
+#include "DocOptionsPageData.moc"

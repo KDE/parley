@@ -163,3 +163,4 @@ ViewOptPageData::ViewOptPageData
 //ViewOptPageData::~ViewOptPageData()
 //{
 //}
+#include "ViewOptPageData.moc"

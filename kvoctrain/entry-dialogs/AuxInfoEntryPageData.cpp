@@ -115,3 +115,4 @@ AuxInfoEntryPageData::AuxInfoEntryPageData
 //AuxInfoEntryPageData::~AuxInfoEntryPageData()
 //{
 //}
+#include "AuxInfoEntryPageData.moc"

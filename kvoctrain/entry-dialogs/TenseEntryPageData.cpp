@@ -173,3 +173,4 @@ TenseEntryPageData::TenseEntryPageData
 //TenseEntryPageData::~TenseEntryPageData()
 //{
 //}
+#include "TenseEntryPageData.moc"

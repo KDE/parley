@@ -1,13 +1,8 @@
 
-kvoctrain_QOBJ_SOURCES =  \
-      header.cpp kvoctrain.cpp \
-      kvoctrainview.cpp \
-      rowtable.cpp 
-
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = \
- $(kvoctrain_QOBJ_SOURCES)  \
+    header.cpp kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
  main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
  kva_io.cpp kva_clip.cpp kva_query.cpp
 
@@ -24,7 +19,7 @@ kvoctrain_LDADD =   -lkfile -lkhtml \
                     ./query-dialogs/libquerydlg.a \
                     ./queryoption-dialogs/libqueryoptiondlg.a \
                     ./statistik-dialogs/libstatdlg.a \
-                    ./common-dialogs/libcommondlg.a 
+                    ./common-dialogs/libcommondlg.la 
 
 SUBDIRS = common-dialogs query-dialogs queryoption-dialogs \
           option-dialogs entry-dialogs docprop-dialogs kvt-core \

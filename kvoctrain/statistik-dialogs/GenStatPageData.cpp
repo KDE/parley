@@ -132,3 +132,4 @@ GenStatPageData::GenStatPageData
 //GenStatPageData::~GenStatPageData()
 //{
 //}
+#include "GenStatPageData.moc"
