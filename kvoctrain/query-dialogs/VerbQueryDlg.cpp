@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/16 16:26:23  arnold
+    improved dialogs
+
     Revision 1.8  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -239,7 +242,7 @@ bool VerbQueryDlg::next()
     current++;
 
   type = conjugations.getType(current);
-  QString format = i18n("Enter the correct conjugation forms for tense %1:");
+  QString format = i18n("Current tense is %1.");
   QString msg = format.arg(conjugations.getName(type));
 
   instructionLabel->setText (msg);
@@ -408,9 +411,9 @@ void VerbQueryDlg::knowItClicked()
    resetAllFields();
    if (current >= (int) conjugations.numEntries()-1 ) {
      if (all_known)
-       done (Known);
+       emit sigQueryChoice (Known);
      else
-       done (Unknown);
+       emit sigQueryChoice (Unknown);
    }
    else
      next();
@@ -436,7 +439,7 @@ void VerbQueryDlg::timeoutReached()
          dont_know->setDefault(true);
        }
        else if (type_timeout == kvq_cont)
-         done (Timeout);
+         emit sigQueryChoice (Timeout);
      else {
        next();
        qtimer->start(1000, TRUE);
@@ -450,7 +453,7 @@ void VerbQueryDlg::dontKnowClicked()
 {
    all_known = false;
    if (current >= (int) conjugations.numEntries()-1 )
-     done (Unknown);
+     emit sigQueryChoice (Unknown);
    else
      next();
 }
@@ -458,7 +461,7 @@ void VerbQueryDlg::dontKnowClicked()
 
 void VerbQueryDlg::stopItClicked()
 {
-   done (StopIt);
+   emit sigQueryChoice (StopIt);
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 11:07:24  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column
 
@@ -71,7 +74,7 @@ public:
 
    QueryDlgBase ();
 
-   virtual ~QueryDlgBase () {}
+   virtual ~QueryDlgBase ();
 
    bool smartCompare (const QString&, const QString&, int level) const;
 
@@ -85,6 +88,11 @@ public:
    void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
    void resetButton (QRadioButton *radio, QWidget *widget2 = 0);
 
+   // Show string after selceting known/unknown
+   // depending on progress and randomness
+   QString  getOKComment(int percent);
+   QString  getNOKComment(int percent);
+
    int getRandom(int range)
      {
 //        srand((unsigned int)time((time_t *)NULL));
@@ -92,8 +100,6 @@ public:
      }
 
    virtual void initFocus() const;
-
-//   void sigEditEntry(int row, int col);
 
 protected:
 

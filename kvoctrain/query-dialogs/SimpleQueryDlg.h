@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/09 10:41:18  arnold
+    removed ability to display a different font for each column
+
     Revision 1.3  2001/10/28 09:17:06  arnold
     replaced qtarch dialog files with qtdesigner
 
@@ -88,7 +91,8 @@ public slots:
     virtual void initFocus() const;
 
 signals:
-    void sigEditEntry(int row, int col);
+   void sigQueryChoice(QueryDlgBase::Result userchoice);
+   void sigEditEntry(int row, int col);
 
 protected:
     void keyPressEvent( QKeyEvent *e );

@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/25 11:11:23  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.4  2001/11/16 18:53:21  arnold
     added possibility to disable expressions
 
@@ -399,6 +402,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
    else if (qtype == QM_VERB) {
      type_ok = (   expr_type == QM_VERB
                 || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
+                || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
                )
                && expr->getConjugation(idx).numEntries() > 0;
 

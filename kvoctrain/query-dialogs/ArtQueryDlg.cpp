@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2001/11/10 22:29:40  arnold
+    removed compatibility for kde1
+
     Revision 1.7  2001/11/10 21:14:30  arnold
     removed icons and compatibilty for kde1
 
@@ -285,7 +288,7 @@ void ArtQueryDlg::verifyClicked()
 
 void ArtQueryDlg::knowItClicked()
 {
-   done (Known);
+   emit sigQueryChoice(Known);
 }
 
 
@@ -307,20 +310,20 @@ void ArtQueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)
-       done (Timeout);
+       emit sigQueryChoice(Timeout);
    }
 }
 
 
 void ArtQueryDlg::dontKnowClicked()
 {
-   done (Unknown);
+   emit sigQueryChoice (Unknown);
 }
 
 
 void ArtQueryDlg::stopItClicked()
 {
-   done (StopIt);
+   emit sigQueryChoice (StopIt);
 }
 
 

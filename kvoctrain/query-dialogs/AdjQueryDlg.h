@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.5  2001/11/09 10:41:18  arnold
+    removed ability to display a different font for each column
+
     Revision 1.4  2001/10/28 10:16:31  arnold
     quick 'n dirty fixes for new query dialogs
 
@@ -92,12 +95,13 @@ public:
 public slots:
     virtual void initFocus() const;
 
+signals:
+   void sigQueryChoice(QueryDlgBase::Result userchoice);
+   void sigEditEntry(int row, int col);
+
 protected:
     void keyPressEvent( QKeyEvent *e );
     void resetAllFields();
-
-signals:
-    void sigEditEntry(int row, int col);
 
 protected slots:
 

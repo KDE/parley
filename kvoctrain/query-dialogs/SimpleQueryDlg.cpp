@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/16 16:26:23  arnold
+    improved dialogs
+
     Revision 1.8  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -253,7 +256,7 @@ void SimpleQueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont )
-       done (Timeout);
+       emit sigQueryChoice (Timeout);
    }
 }
 
@@ -291,19 +294,19 @@ void SimpleQueryDlg::verifyClicked()
 
 void SimpleQueryDlg::knowItClicked()
 {
-   done (QueryDlgBase::Known);
+   emit sigQueryChoice (Known);
 }
 
 
 void SimpleQueryDlg::dontKnowClicked()
 {
-   done (QueryDlgBase::Unknown);
+   emit sigQueryChoice (Unknown);
 }
 
 
 void SimpleQueryDlg::stopItClicked()
 {
-   done (QueryDlgBase::StopIt);
+   emit sigQueryChoice (StopIt);
 }
 
 

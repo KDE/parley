@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/11/25 11:11:03  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.14  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -104,6 +107,7 @@
 #include "langset.h"
 #include "QueryManager.h"
 #include "queryoption-dialogs/GroupOptPage.h"
+#include "query-dialogs/QueryDlgBase.h"
 
 class QTimer;
 class KLined;
@@ -237,11 +241,13 @@ public:
   void slotStartPropertyQuery(int col, QueryType property);
   void slotStartQuery(QString trans, QString org);
 
-  void slotTimeOutRandomQuery();
-  void slotTimeOutMultipleChoice();
-  void slotTimeOutQuery();
-  void slotTimeOutType();
-  void slotTimeOutProperty();
+  void slotTimeOutRandomQuery(QueryDlgBase::Result res);
+  void slotTimeOutMultipleChoice(QueryDlgBase::Result res);
+  void slotTimeOutQuery(QueryDlgBase::Result res);
+  void slotTimeOutType(QueryDlgBase::Result res);
+  void slotTimeOutProperty(QueryDlgBase::Result res);
+
+
   void slotTimeOutBackup();
 
   /** open a new application window */
@@ -336,8 +342,8 @@ private:
   vector<QueryEntryRef> random_expr1, random_expr2;
   QuerySelection queryList;
 
-  QTimer          *qtimer;
   QTimer          *btimer;
+  int              random_query_nr;
   int              maxqueryTime;
   int              backupTime;
   bool             smartAppend;

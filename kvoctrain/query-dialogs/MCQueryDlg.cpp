@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/11/24 17:16:08  arnold
+    fixes for table view and query
+
     Revision 1.9  2001/11/16 16:26:23  arnold
     improved dialogs
 
@@ -351,7 +354,7 @@ void MCQueryDlg::verifyClicked()
 
 void MCQueryDlg::knowItClicked()
 {
-   done (Known);
+   emit sigQueryChoice (Known);
 }
 
 
@@ -373,20 +376,20 @@ void MCQueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)
-       done (Timeout);
+       emit sigQueryChoice (Timeout);
    }
 }
 
 
 void MCQueryDlg::dontKnowClicked()
 {
-   done (Unknown);
+   emit sigQueryChoice (Unknown);
 }
 
 
 void MCQueryDlg::stopItClicked()
 {
-   done (StopIt);
+   emit sigQueryChoice (StopIt);
 }
 
 

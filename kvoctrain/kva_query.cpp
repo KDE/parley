@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/16 18:52:59  arnold
+    added possibility to disable expressions
+
     Revision 1.8  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -59,6 +62,7 @@
 #include <qtimer.h>
 
 #include <klocale.h>
+#include <kdebug.h>
 
 #include "kvoctrain.h"
 #include "query-dialogs/RandomQueryDlg.h"
@@ -85,8 +89,6 @@ static const char * not_answered = i18n_noop(
 
 void kvoctrainApp::slotQueryOptions() /*FOLD00*/
 {
-   qtimer->stop();
-
    vector<int> old_liq = doc->getLessonsInQuery();
    QueryOptionsDlg qodlg (
                     maxqueryTime /1000,
@@ -117,12 +119,8 @@ void kvoctrainApp::slotQueryOptions() /*FOLD00*/
         querymanager.setLessonItems(qodlg.getQueryManager().lessonItems() );
       }
 
-//      view->getTable()->updateContents();
-     
       slotStatusMsg(IDS_DEFAULT);
    }
-   if (querymode && !querying)
-     qtimer->start(0, TRUE);
 }
 
 
@@ -148,6 +146,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
    queryList.erase(&queryList[0], &queryList[0+1]);
    query_startnum = (int) random_expr1.size();
   }
+
   for (int i = 0; i < (int) queryList.size(); i++) {
     int n = queryList[i].size();
     query_startnum += n;
@@ -156,7 +155,6 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?
@@ -164,23 +162,98 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Starting query")));
     return;
   }
 
   hide();
-  srand((unsigned int)time((time_t *)NULL));
-  delete qtimer;
-  qtimer = new QTimer( this );
-  connect( qtimer, SIGNAL(timeout()), this, SLOT(slotTimeOutProperty()) );
-  qtimer->start(0, TRUE);
   querymode = true;
+
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+
+  simpleQueryDlg = new SimpleQueryDlg (
+                           queryType,
+                           random_expr1[random_query_nr].nr,
+                           act_query_col,
+                           query_cycle,
+                           query_num,
+                           query_startnum,
+                           exp,
+                           doc,
+                           maxqueryTime,
+                           showcounter,
+                           type_querytimeout);
+
+  connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
+           this, SLOT(slotEditEntry(int,int)));
+
+  connect( simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+           this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
+
+  simpleQueryDlg->initFocus();
+  simpleQueryDlg->exec();
   slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void kvoctrainApp::slotTimeOutProperty()
+void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 {
+
+  if (simpleQueryDlg == 0) {
+    kdError() << "simpleQueryDlg == 0\n";
+    slotStopQuery(true);
+    return;
+  }
+
+  // FIXME: keep track of knowledge ?
+
+  switch (res) {
+    case QueryDlgBase::Timeout:
+      if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        KMessageBox::information(this, i18n(not_answered),
+                                 kapp->makeStdCaption("Stopping query"));
+        slotStopQuery(true);
+      }
+      else {
+        random_expr2.push_back (random_expr1[random_query_nr]);
+        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      }
+    break;
+
+    case QueryDlgBase::Unknown :
+//      doc->setModified();
+      num_queryTimeout = 0;
+      random_expr2.push_back (random_expr1[random_query_nr]);
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+    break;
+
+    case QueryDlgBase::Known :
+//      doc->setModified();
+      num_queryTimeout = 0;
+      query_num--;
+
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      if (   random_expr1.size() != 0
+          || random_expr2.size() != 0
+          || queryList.size() != 0 ) {
+      }
+      else {
+        slotStopQuery (true);
+      }
+    break;
+
+    case QueryDlgBase::StopIt :
+        num_queryTimeout = 0;
+        slotStopQuery(true);
+    break;
+
+    default :
+     slotStopQuery(true);
+      kdError() << "unknown result from QueryDlg\n";
+      return;
+  }
+
   if (random_expr1.size() == 0 ) {
     if (   random_expr2.size() == 0
         && queryList.size() == 0) {
@@ -199,22 +272,18 @@ void kvoctrainApp::slotTimeOutProperty()
       queryList.erase(&queryList[0], &queryList[0+1]);
     }
   }
-  hide();
 
   if (random_expr1.size() == 0) { // should not happen !!
-//    KDEBUG (KDEBUG_INFO, 0, "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0");
-    cout << "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0\n";
+    kdError() << "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
 
-  querying = true;
-  int nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
-  kvoctrainExpr *exp = random_expr1[nr].exp;
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
-  simpleQueryDlg = new SimpleQueryDlg (
-                           queryType,
-                           random_expr1[nr].nr,
+  simpleQueryDlg->setQuery(queryType,
+                           random_expr1[random_query_nr].nr,
                            act_query_col,
                            query_cycle,
                            query_num,
@@ -226,61 +295,6 @@ void kvoctrainApp::slotTimeOutProperty()
                            type_querytimeout);
 
   simpleQueryDlg->initFocus();
-  connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
-           this, SLOT(slotEditEntry(int,int)));
-  int res = simpleQueryDlg->exec();
-  delete simpleQueryDlg;
-  simpleQueryDlg = 0;
-
-  // FIXME: keep track of knowledge ?
-
-  switch (res) {
-    case QueryDlgBase::Timeout:
-      if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-        KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption(""), i18n("&OK"));
-        slotStopQuery(true);
-      }
-      else {
-        random_expr2.push_back (random_expr1[nr]);
-        random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-        qtimer->start(0, TRUE);
-      }
-    break;
-
-    case QueryDlgBase::Unknown :
-//      doc->setModified();
-      num_queryTimeout = 0;
-      random_expr2.push_back (random_expr1[nr]);
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-      qtimer->start(0, TRUE);
-    break;
-
-    case QueryDlgBase::Known :
-//      doc->setModified();
-      num_queryTimeout = 0;
-      query_num--;
-
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-      if (   random_expr1.size() != 0
-          || random_expr2.size() != 0
-          || queryList.size() != 0 ) {
-        qtimer->start(0, TRUE);
-      }
-      else {
-        slotStopQuery (true);
-      }
-    break;
-
-    case QueryDlgBase::StopIt :
-        num_queryTimeout = 0;
-        slotStopQuery(true);
-    break;
-
-    default :
-      cerr << "unknown result from QueryDlg\n";
-  }
-  querying = false;
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -298,6 +312,8 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
   prepareProgressBar();
   QApplication::setOverrideCursor( waitCursor );
   random_expr2.clear();
+  kdDebug() << "type: " << type << endl;
+
   queryList = querymanager.select (doc, act_lesson, act_query_col, type);
 
   query_startnum = 0;
@@ -314,7 +330,6 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?
@@ -322,23 +337,142 @@ void kvoctrainApp::slotStartTypeQuery(int col, QString type) /*FOLD00*/
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Starting query")));
     return;
   }
 
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+
   hide();
-  srand((unsigned int)time((time_t *)NULL));
-  delete qtimer;
-  qtimer = new QTimer( this );
-  connect( qtimer, SIGNAL(timeout()), this, SLOT(slotTimeOutType()) );
-  qtimer->start(0, TRUE);
   querymode = true;
+  if (queryType == QT_Conjugation) {
+    verbQueryDlg = new VerbQueryDlg (exp->getType(act_query_col),
+                            random_expr1[random_query_nr].nr,
+                            act_query_col,
+                            query_cycle,
+                            query_num,
+                            query_startnum,
+                            exp,
+                            doc,
+                            doc->getConjugation(act_query_col),
+                            exp->getConjugation(act_query_col),
+                            maxqueryTime,
+                            showcounter,
+                            type_querytimeout);
+
+    verbQueryDlg->initFocus();
+    connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
+             this, SLOT(slotEditEntry(int,int)));
+
+    connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+                   this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
+    verbQueryDlg->exec();
+  }
+  else if (queryType == QT_Articles) {
+    artQueryDlg = new ArtQueryDlg(exp->getType(act_query_col),
+                          random_expr1[random_query_nr].nr,
+                          act_query_col,
+                          query_cycle,
+                          query_num,
+                          query_startnum,
+                          exp,
+                          doc,
+                          doc->getArticle(act_query_col),
+                          maxqueryTime,
+                          showcounter,
+                          type_querytimeout);
+    artQueryDlg->initFocus();
+    connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
+             this, SLOT(slotEditEntry(int,int)));
+    connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+                      this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
+    artQueryDlg->exec();
+  }
+  else if (queryType == QT_Comparison) {
+    adjQueryDlg = new AdjQueryDlg(exp->getType(act_query_col),
+                          random_expr1[random_query_nr].nr,
+                          act_query_col,
+                          query_cycle,
+                          query_num,
+                          query_startnum,
+                          exp,
+                          doc,
+                          exp->getComparison(act_query_col),
+                          maxqueryTime,
+                          showcounter,
+                          type_querytimeout);
+    adjQueryDlg->initFocus();
+    connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
+              this, SLOT(slotEditEntry(int,int)));
+
+    connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+                    this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
+    adjQueryDlg->exec();
+  }
+  else {
+    slotStopQuery(true);
+    kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    return;
+  }
   slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void kvoctrainApp::slotTimeOutType() /*FOLD00*/
+void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 {
+
+  // FIXME: keep track of knowledge ?
+
+  switch (res) {
+    case QueryDlgBase::Timeout:
+      if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        KMessageBox::information(this, i18n(not_answered),
+                                 kapp->makeStdCaption("Stopping query"));
+        slotStopQuery(true);
+      }
+      else {
+        random_expr2.push_back (random_expr1[random_query_nr]);
+        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      }
+    break;
+
+    case QueryDlgBase::Unknown :
+//      doc->setModified();
+      num_queryTimeout = 0;
+      random_expr2.push_back (random_expr1[random_query_nr]);
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+    break;
+
+    case QueryDlgBase::Known :
+//      doc->setModified();
+      num_queryTimeout = 0;
+      query_num--;
+
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      if (   random_expr1.size() != 0
+          || random_expr2.size() != 0
+          || queryList.size() != 0 ) {
+      }
+      else {
+        slotStopQuery (true);
+        return;
+      }
+    break;
+
+    case QueryDlgBase::StopIt :
+        num_queryTimeout = 0;
+        slotStopQuery(true);
+        return;
+    break;
+
+    default :
+      slotStopQuery(true);
+      kdError() << "unknown result from QueryDlg\n";
+      return;
+  }
+
+
   if (random_expr1.size() == 0 ) {
     if (   random_expr2.size() == 0
         && queryList.size() == 0) {
@@ -360,141 +494,81 @@ void kvoctrainApp::slotTimeOutType() /*FOLD00*/
   hide();
 
   if (random_expr1.size() == 0) { // should not happen !!
-//    KDEBUG (KDEBUG_INFO, 0, "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0");
-    cout << "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
+    kdError() << "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
 
-  querying = true;
-  int nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
-  kvoctrainExpr *exp = random_expr1[nr].exp;
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
-  int res = 0;
   if (queryType == QT_Conjugation) {
-    verbQueryDlg = new VerbQueryDlg (
-                             exp->getType(act_query_col),
-                             random_expr1[nr].nr,
-                             act_query_col,
-                             query_cycle,
-                             query_num,
-                             query_startnum,
-                             exp,
-                             doc,
-                             doc->getConjugation(act_query_col),
-                             exp->getConjugation(act_query_col),
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout);
+    if (verbQueryDlg == 0) {
+      kdError() << "verbQueryDlg == 0\n";
+      slotStopQuery(true);
+      return;
+    }
+    verbQueryDlg->setQuery (exp->getType(act_query_col),
+                            random_expr1[random_query_nr].nr,
+                            act_query_col,
+                            query_cycle,
+                            query_num,
+                            query_startnum,
+                            exp,
+                            doc,
+                            doc->getConjugation(act_query_col),
+                            exp->getConjugation(act_query_col),
+                            maxqueryTime,
+                            showcounter,
+                            type_querytimeout);
 
-           verbQueryDlg->initFocus();
-           connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
-                    this, SLOT(slotEditEntry(int,int)));
-           res = verbQueryDlg->exec();
-           delete verbQueryDlg;
-           verbQueryDlg = 0;
-
+    verbQueryDlg->initFocus();
   }
   else if (queryType == QT_Articles) {
-    artQueryDlg = new ArtQueryDlg (
-                             exp->getType(act_query_col),
-                             random_expr1[nr].nr,
-                             act_query_col,
-                             query_cycle,
-                             query_num,
-                             query_startnum,
-                             exp,
-                             doc,
-                             doc->getArticle(act_query_col),
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout);
-           artQueryDlg->initFocus();
-           connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
-                    this, SLOT(slotEditEntry(int,int)));
-           res = artQueryDlg->exec();
-           delete artQueryDlg;
-           artQueryDlg = 0;
-
+    if (artQueryDlg == 0) {
+      kdError() << "artQueryDlg == 0\n";
+      slotStopQuery(true);
+      return;
+    }
+    artQueryDlg->setQuery(exp->getType(act_query_col),
+                          random_expr1[random_query_nr].nr,
+                          act_query_col,
+                          query_cycle,
+                          query_num,
+                          query_startnum,
+                          exp,
+                          doc,
+                          doc->getArticle(act_query_col),
+                          maxqueryTime,
+                          showcounter,
+                          type_querytimeout);
+    artQueryDlg->initFocus();
   }
   else if (queryType == QT_Comparison) {
-    adjQueryDlg = new AdjQueryDlg (
-                             exp->getType(act_query_col),
-                             random_expr1[nr].nr,
-                             act_query_col,
-                             query_cycle,
-                             query_num,
-                             query_startnum,
-                             exp,
-                             doc,
-                             exp->getComparison(act_query_col),
-                             maxqueryTime,
-                             showcounter,
-                             type_querytimeout);
-
-           adjQueryDlg->initFocus();
-           connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
-                    this, SLOT(slotEditEntry(int,int)));
-           res = adjQueryDlg->exec();
-           delete adjQueryDlg;
-           adjQueryDlg = 0;
-
+    if (adjQueryDlg == 0) {
+      kdError() << "adjQueryDlg == 0\n";
+      slotStopQuery(true);
+      return;
+    }
+    adjQueryDlg->setQuery(exp->getType(act_query_col),
+                          random_expr1[random_query_nr].nr,
+                          act_query_col,
+                          query_cycle,
+                          query_num,
+                          query_startnum,
+                          exp,
+                          doc,
+                          exp->getComparison(act_query_col),
+                          maxqueryTime,
+                          showcounter,
+                          type_querytimeout);
+    adjQueryDlg->initFocus();
   }
   else {
-//  KDEBUG (KDEBUG_ERROR, 0, "[kvoctrainApp::slotTimeOutType]: unknown type");
-    cout << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    slotStopQuery(true);
+    kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
     return;
   }
-
-  // FIXME: keep track of knowledge ?
-
-  switch (res) {
-    case QueryDlgBase::Timeout:
-      if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-        KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption(""), i18n("&OK"));
-        slotStopQuery(true);
-      }
-      else {
-        random_expr2.push_back (random_expr1[nr]);
-        random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-        qtimer->start(0, TRUE);
-      }
-    break;
-
-    case QueryDlgBase::Unknown :
-//      doc->setModified();
-      num_queryTimeout = 0;
-      random_expr2.push_back (random_expr1[nr]);
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-      qtimer->start(0, TRUE);
-    break;
-
-    case QueryDlgBase::Known :
-//      doc->setModified();
-      num_queryTimeout = 0;
-      query_num--;
-
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-      if (   random_expr1.size() != 0
-          || random_expr2.size() != 0
-          || queryList.size() != 0 ) {
-        qtimer->start(0, TRUE);
-      }
-      else {
-        slotStopQuery (true);
-      }
-    break;
-
-    case QueryDlgBase::StopIt :
-        num_queryTimeout = 0;
-        slotStopQuery(true);
-    break;
-
-    default :
-      cerr << "unknown result from QueryDlg\n";
-  }
-  querying = false;
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -545,7 +619,6 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang) /*FOLD00*/
 
   QApplication::restoreOverrideCursor();
   removeProgressBar();
-  view->getTable()->updateContents();
   query_cycle = 1;
 
   // something left to query ?
@@ -553,108 +626,33 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang) /*FOLD00*/
     KMessageBox::information(this,
       i18n("Your selection does not contain any\n"
            "expressions for the query"),
-      kapp->makeStdCaption(i18n("Random query")), i18n("&OK"));
+      kapp->makeStdCaption(i18n("Starting query")));
     return;
   }
 
   hide();
-  srand((unsigned int)time((time_t *)NULL));
-  delete qtimer;
-  qtimer = new QTimer( this );
-  connect( qtimer, SIGNAL(timeout()), this, SLOT(slotTimeOutQuery()) );
-  qtimer->start(0, TRUE);
   querymode = true;
-  slotStatusMsg(IDS_DEFAULT);
-}
 
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
-void kvoctrainApp::slotTimeOutRandomQuery() /*FOLD00*/
-{
-  queryType = QT_Random;
-  slotTimeOutQuery();
-}
-
-
-void kvoctrainApp::slotTimeOutMultipleChoice() /*FOLD00*/
-{
-  queryType = QT_Multiple;
-  slotTimeOutQuery();
-}
-
-
-void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
-{
-  if (random_expr1.size() == 0 ) {
-    if (   random_expr2.size() == 0
-        && queryList.size() == 0) {
-      slotStopQuery(true);
-      return;
-    }
-
-    if (random_expr2.size() != 0) {  // next cycle with current lesson
-      random_expr1 = random_expr2;
-      random_expr2.clear();
-      query_cycle++;
-    }
-    else {  // next lesson
-      query_cycle = 1;
-      random_expr1 = queryList[0];
-      queryList.erase(&queryList[0], &queryList[0+1]);
-    }
-  }
-  hide();
-
-  if (random_expr1.size() == 0) { // should not happen !!
-//    KDEBUG (KDEBUG_INFO, 0, "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0");
-    cout << "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
-    slotStopQuery(true);
-    return;
-  }
-
-  querying = true;
-  int nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
-  kvoctrainExpr *exp = random_expr1[nr].exp;
-  int tindex = view->getTable()->findIdent(act_query_trans);
-  int oindex = view->getTable()->findIdent(act_query_org);
   QString q_org,
           q_trans;
-  grade_t q_grade;
-
-  if (swap_querydir) {
-    float rnd = ((1.0*rand())/RAND_MAX);
-    bool rand_swap = rnd >= 0.5 ? true : false;
-
-    if (rand_swap) {        // random direction
-      int tmp = oindex;
-      oindex = tindex;
-      tindex = tmp;
-    }
-
-    if (!querymanager.validate (exp, act_lesson, oindex, tindex,
-                                block, expire)) {
-      int tmp = oindex;  // must use other direction which is the only valid
-      oindex = tindex;
-      tindex = tmp;
-    }
-  }
 
   if (oindex == 0) {  // usual: give original, ask for translation x
     q_org = exp->getOriginal();
     q_trans = exp->getTranslation(tindex);
-    q_grade  =  exp->getGrade(tindex, false);
   }
   else {   // alternative: give translation x, ask for original
     q_org = exp->getTranslation(oindex);
     q_trans = exp->getOriginal();
-    q_grade = exp->getGrade(oindex, true);
   }
 
-  int res;
   if (queryType == QT_Random) {
     randomQueryDlg = new RandomQueryDlg (
                              q_org,
                              q_trans,
-                             random_expr1[nr].nr,
+                             random_expr1[random_query_nr].nr,
                              oindex,
                              tindex,
                              query_cycle,
@@ -668,17 +666,15 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
-
-      res = randomQueryDlg->exec();
-      delete randomQueryDlg;
-      randomQueryDlg = 0;
-
+      connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+               this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
+      randomQueryDlg->exec();
   }
   else if (queryType == QT_Multiple) {
     mcQueryDlg = new MCQueryDlg(
                              q_org,
                              q_trans,
-                             random_expr1[nr].nr,
+                             random_expr1[random_query_nr].nr,
                              oindex,
                              tindex,
                              query_cycle,
@@ -692,12 +688,33 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       mcQueryDlg->initFocus();
       connect( mcQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
-
-      res = mcQueryDlg->exec();
-      delete mcQueryDlg;
-      mcQueryDlg = 0;
-
+      connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
+               this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
+      mcQueryDlg->exec();
   }
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+
+void kvoctrainApp::slotTimeOutRandomQuery(QueryDlgBase::Result res)
+{
+  queryType = QT_Random;
+  slotTimeOutQuery(res);
+}
+
+
+void kvoctrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
+{
+  queryType = QT_Multiple;
+  slotTimeOutQuery(res);
+}
+
+
+void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
+{
+  int tindex = view->getTable()->findIdent(act_query_trans);
+  int oindex = view->getTable()->findIdent(act_query_org);
+  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
 
   if (res != QueryDlgBase::StopIt) {
     doc->setModified();
@@ -716,13 +733,14 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
         KMessageBox::information(this, i18n(not_answered),
-                                 kapp->makeStdCaption(""), i18n("&OK"));
+                                 kapp->makeStdCaption("Stopping query"));
         slotStopQuery(true);
+        return;
       }
       else {
-        random_expr2.push_back (random_expr1[nr]);
-        random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-  
+        random_expr2.push_back (random_expr1[random_query_nr]);
+        random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+
         if (oindex == 0) {
           exp->incBadCount(tindex, false);
           exp->setGrade(tindex, KV_LEV1_GRADE, false);  // unknown: reset grade
@@ -731,14 +749,13 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
           exp->incBadCount(oindex, true);
           exp->setGrade(oindex, KV_LEV1_GRADE, true);
         }
-        qtimer->start(0, TRUE);
       }
     break;
 
     case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
-      random_expr2.push_back (random_expr1[nr]);
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
+      random_expr2.push_back (random_expr1[random_query_nr]);
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
 
       if (oindex == 0) {
         exp->incBadCount(tindex, false);
@@ -748,8 +765,6 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
         exp->incBadCount(oindex, true);
         exp->setGrade(oindex, KV_LEV1_GRADE, true);
       }
-
-      qtimer->start(0, TRUE);
     break;
 
     case QueryDlgBase::Known :
@@ -773,13 +788,10 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
       }
 
       exp->setInQuery(false);
-      random_expr1.erase (&random_expr1[nr], &random_expr1[nr+1]);
-      if (   random_expr1.size() != 0
-          || random_expr2.size() != 0
-          || queryList.size() != 0 ) {
-        qtimer->start(0, TRUE);
-      }
-      else {
+      random_expr1.erase (&random_expr1[random_query_nr], &random_expr1[random_query_nr+1]);
+      if (!(   random_expr1.size() != 0
+            || random_expr2.size() != 0
+            || queryList.size() != 0 )) {
         slotStopQuery (true);
       }
     break;
@@ -787,24 +799,140 @@ void kvoctrainApp::slotTimeOutQuery() /*FOLD00*/
     case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
         slotStopQuery(true);
+        return;
     break;
 
     default :
-      cerr << "unknown result from QueryDlg\n";
+      slotStopQuery(true);
+      kdError() << "unknown result from QueryDlg\n";
+      return;
   }
 
-  querying = false;
+  if (random_expr1.size() == 0 ) {
+    if (   random_expr2.size() == 0
+        && queryList.size() == 0) {
+      slotStopQuery(true);
+      return;
+    }
+
+    if (random_expr2.size() != 0) {  // next cycle with current lesson
+      random_expr1 = random_expr2;
+      random_expr2.clear();
+      query_cycle++;
+    }
+    else {  // next lesson
+      query_cycle = 1;
+      random_expr1 = queryList[0];
+      queryList.erase(&queryList[0], &queryList[0+1]);
+    }
+  }
+
+  if (random_expr1.size() == 0) { // should not happen !!
+    kdError() << "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
+    slotStopQuery(true);
+    return;
+  }
+
+  random_query_nr = (int) (random_expr1.size() * ((1.0*rand())/RAND_MAX));
+  exp = random_expr1[random_query_nr].exp;
+
+  tindex = view->getTable()->findIdent(act_query_trans);
+  oindex = view->getTable()->findIdent(act_query_org);
+  QString q_org,
+          q_trans;
+
+  if (swap_querydir) {
+    float rnd = ((1.0*rand())/RAND_MAX);
+    bool rand_swap = rnd >= 0.5 ? true : false;
+
+    if (rand_swap) {        // random direction
+      int tmp = oindex;
+      oindex = tindex;
+      tindex = tmp;
+    }
+
+    if (!querymanager.validate (exp, act_lesson, oindex, tindex,
+                                block, expire)) {
+      int tmp = oindex;  // must use other direction which is the only valid
+      oindex = tindex;
+      tindex = tmp;
+    }
+  }
+
+  if (oindex == 0) {  // usual: give original, ask for translation x
+    q_org = exp->getOriginal();
+    q_trans = exp->getTranslation(tindex);
+  }
+  else {   // alternative: give translation x, ask for original
+    q_org = exp->getTranslation(oindex);
+    q_trans = exp->getOriginal();
+  }
+
+  if (queryType == QT_Random) {
+    if (randomQueryDlg == 0) {
+      kdError() << "randomQueryDlg == 0\n";
+      slotStopQuery(true);
+      return;
+    }
+    randomQueryDlg->setQuery(q_org,
+                             q_trans,
+                             random_expr1[random_query_nr].nr,
+                             oindex,
+                             tindex,
+                             query_cycle,
+                             query_num,
+                             query_startnum,
+                             exp,
+                             doc,
+                             maxqueryTime,
+                             showcounter,
+                             type_querytimeout);
+      randomQueryDlg->initFocus();
+  }
+  else if (queryType == QT_Multiple) {
+    if (mcQueryDlg == 0) {
+      kdError() << "mcQueryDlg == 0\n";
+      slotStopQuery(true);
+      return;
+    }
+    mcQueryDlg->setQuery(q_org,
+                         q_trans,
+                         random_expr1[random_query_nr].nr,
+                         oindex,
+                         tindex,
+                         query_cycle,
+                         query_num,
+                         query_startnum,
+                         exp,
+                         doc,
+                         maxqueryTime,
+                         showcounter,
+                         type_querytimeout);
+      mcQueryDlg->initFocus();
+  }
   slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void kvoctrainApp::slotStopQuery(bool show_view) /*FOLD00*/
+void kvoctrainApp::slotStopQuery(bool )
 {
+    delete simpleQueryDlg;
+    delete mcQueryDlg;
+    delete verbQueryDlg;
+    delete randomQueryDlg;
+    delete adjQueryDlg;
+    delete artQueryDlg;
+
+    simpleQueryDlg = 0;
+    mcQueryDlg = 0;
+    verbQueryDlg = 0;
+    randomQueryDlg = 0;
+    adjQueryDlg = 0;
+    artQueryDlg = 0;
+
+    querying = false;
     querymode = false;
-    qtimer->stop();
-    if (show_view) {
-      show();
-      kapp->setTopWidget(this);
-      kapp->setMainWidget( this );
-    }
+    show();
+    kapp->setTopWidget(this);
+    kapp->setMainWidget( this );
 }

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/20 01:38:03  jsinger
+    Proofreading changes for grammar and spelling. No functional changes.
+
     Revision 1.8  2001/11/11 12:51:45  arnold
     fixed some strings for i18n purposes
 
@@ -444,11 +447,13 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     case ID_RESUME_QUERY:
-      slotTimeOutRandomQuery();
+//      slotTimeOutRandomQuery();
+//      slotRestartRandomQuery();
     break;
 
     case ID_RESUME_MULTIPLE:
-      slotTimeOutMultipleChoice();
+//      slotStartMultipleChoice();
+//      slotTimeOutMultipleChoice();
     break;
 
     case IDH_SORT_COL_ALPHA:

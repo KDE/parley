@@ -144,7 +144,7 @@ Valid xml means:
  <e m="1" t="aj"><o width="324" l="en" q="o" r="bem">balmy</o><t width="325" l="de" q="t" g="1;0" c="14;1" b="12;0" d="1006617594;992361257">mild</t></e>
  <e m="2"><o>aback (taken ~)</o><t g="1;0" c="2;1" b="1;0" d="1006617600;992361254">verblüfft</t></e>
  <e m="2"><o>chunk</o><t g="1;1" c="2;2" b="1;1" d="1006617599;1005777089" r="Klotz">Klotz</t></e>
- <e m="2"><o y="-" u="#1">
+ <e m="2" s="1" t="v:ir"><o y="-" u="#1">
   <multiplechoice>
    <mc1>go 1a</mc1><mc2>go 2a</mc2><mc3>go 3a</mc3><mc4>go 4a</mc4><mc5>go 5a</mc5>
   </multiplechoice>
@@ -156,7 +156,7 @@ Valid xml means:
  <e m="2"><o r="dfgh" y="-">handsome</o><t g="1;0" c="3;2" b="2;0" d="1006617601;992361258">stattlich</t></e>
  <e m="2"><o r="rem" y="-">jaggy</o><t g="1;0" c="3;1" b="2;0" d="1006617601;992361255">zackig, gekerbt</t></e>
  <e m="2"><o y="-">laboured</o><t g="1;0" c="3;1" b="2;0" d="1006617601;992361256">schwerfällig, mühsam</t></e>
- <e m="2" t="n:m"><o r="dfgh" y="-" p="mischief">mischief</o><t g="1;0" c="2;1" d="1006617595;992304000" r="remark">Unheil, Schaden</t></e>
+ <e m="2" t="n"><o r="dfgh" y="-" p="mischief">mischief</o><t g="1;0" c="2;1" d="1006617595;992304000" r="remark">Unheil, Schaden</t></e>
  <e m="2"><o>opinionated</o><t g="1;0" c="2;1" b="1;0" d="1006617600;992361257">starrsinnig</t></e>
  <e m="2"><o y="-">tallow</o><t g="1;0" c="2;1" d="1006617596;992361256">Talg</t></e>
  <e m="3"><o>decline</o><t c="1;1" d="0;992361255">Niedergang, Verfall</t></e>
@@ -168,7 +168,7 @@ Valid xml means:
    <t n="PrPe"><s1>pperf</s1></t>
   </conjugation>
   encumber</o><t>behindern</t></e>
- <e m="5" i="1"><o y="-">favour</o><t g="0;1" c="1;2" d="0;1005777040">Gunst, Gefallen</t></e>
+ <e m="5" i="1" t="v:ir"><o y="-">favour</o><t g="0;1" c="1;2" d="0;1005777040">Gunst, Gefallen</t></e>
  <e m="5"><o y="-">neat</o><t c="1;1" d="0;992361237">niedlich, ordentlich</t></e>
  <e m="6"><o>genuflect</o><t g="0;1" c="1;2" d="0;1003212929">Kniebeugen</t></e>
  <e m="7" t="aj"><o y="-">good</o><t c="1;1" d="0;992304000">

@@ -96,20 +96,26 @@ type=DATA
 [Config for BinMakefileAm]
 addcxxflags=
 bin_program=kvoctrain
-cxxflags=
+cxxflags=\s-O1
 ldadd=
 ldflags=
+libtool_dir=
+path_to_bin_program=.
 
 [General]
 AMChanged=false
 author=earnold
 configure_args=
+dir_where_make_will_be_called=/var/compile/kdeedu-3/kvoctrain/kvoctrain/
 email=earnold@presario
 kdevprj_version=1.3
-lfv_open_groups=User Interface
+lfv_open_groups=
+make_options=\s-j1
 makefiles=./Makefile.am,kvoctrain/Makefile.am,kvoctrain/query-dialogs/Makefile.am,kvoctrain/entry-dialogs/Makefile.am,kvoctrain/statistik-dialogs/Makefile.am,kvoctrain/option-dialogs/Makefile.am,kvoctrain/testbed/Makefile.am,kvoctrain/kvt-core/Makefile.am,kvoctrain/kvt-core/kvt-xml/Makefile.am,kvoctrain/queryoption-dialogs/Makefile.am,kvoctrain/common-dialogs/Makefile.am,kvoctrain/docprop-dialogs/Makefile.am,kvoctrain/pics/Makefile.am,kvoctrain/docs/Makefile.am,Makefile.am,kvoctrain/todo/Makefile.am
+modifyMakefiles=true
 project_name=kvoctrain
 project_type=normal_empty
+short_info=
 sub_dir=kvoctrain/
 version=
 version_control=CVS

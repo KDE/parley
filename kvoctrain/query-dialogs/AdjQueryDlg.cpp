@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2001/11/11 12:53:27  arnold
+    fixed some strings for i18n purposes
+
     Revision 1.8  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -244,7 +247,7 @@ void AdjQueryDlg::resetAllFields()
 
 void AdjQueryDlg::knowItClicked()
 {
-   done (Known);
+  emit sigQueryChoice(Known);
 }
 
 
@@ -266,20 +269,20 @@ void AdjQueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont )
-       done (Timeout);
+       emit sigQueryChoice(Timeout);
    }
 }
 
 
 void AdjQueryDlg::dontKnowClicked()
 {
-   done (Unknown);
+   emit sigQueryChoice(Unknown);
 }
 
 
 void AdjQueryDlg::stopItClicked()
 {
-   done (StopIt);
+   emit sigQueryChoice(StopIt);
 }
 
 

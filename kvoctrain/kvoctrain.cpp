@@ -17,6 +17,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.23  2001/11/25 11:11:02  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.22  2001/11/20 01:38:03  jsinger
     Proofreading changes for grammar and spelling. No functional changes.
 
@@ -151,7 +154,6 @@ void kvoctrainApp::slotSaveOptions()
 kvoctrainApp::~kvoctrainApp()
 {
    delete header_m;
-   delete qtimer;
    delete btimer;
    delete view;
    delete doc;
@@ -443,7 +445,6 @@ bool kvoctrainApp::slotEditEntry (int row, int col)
 
 void kvoctrainApp::slotDocProps ()
 {
-   qtimer->stop();
    int old_lessons = (int) lessons->count();
    int old_types = (int) doc->getTypeDescr().size();
    int old_tenses = (int) doc->getTenseDescr().size();
@@ -521,15 +522,11 @@ void kvoctrainApp::slotDocProps ()
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
    }
-
-   if (querymode && !querying)
-     qtimer->start(0, TRUE);
 }
 
 
 void kvoctrainApp::slotDocPropsLang ()
 {
-   qtimer->stop();
    DocPropsLangDlg ldlg (doc, &langset);
    int res = ldlg.exec();
 
@@ -545,9 +542,6 @@ void kvoctrainApp::slotDocPropsLang ()
 
       slotStatusMsg(IDS_DEFAULT);
    }
-
-   if (querymode && !querying)
-     qtimer->start(0, TRUE);
 }
 
 
@@ -904,8 +898,6 @@ void kvoctrainApp::slotGeneralOptions()
 
 void kvoctrainApp::slotGeneralOptionsPage(int index)
 {
-   qtimer->stop();
-
    QString defTrans;
    GeneralOptionsDlg godlg (defTrans,
                     separator,
@@ -967,8 +959,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 
       slotStatusMsg(IDS_DEFAULT);
    }
-   if (querymode && !querying)
-     qtimer->start(0, TRUE);
 }
 
 

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.3  2001/11/24 17:16:08  arnold
+    fixes for table view and query
+
     Revision 1.2  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column
 
@@ -107,7 +110,8 @@ protected:
     void setHintFields();
 
 signals:
-    void sigEditEntry(int row, int col);
+   void sigQueryChoice(QueryDlgBase::Result userchoice);
+   void sigEditEntry(int row, int col);
 
 public slots:
     void verifyClicked();

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2001/11/25 11:11:02  arnold
+    switch for inline edit, splitted kv_resource.h
+
     Revision 1.14  2001/11/18 12:28:25  arnold
     provided menu entry for example files
 
@@ -112,6 +115,7 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   type_label = 0;
   pdlg = 0;
   pbar = 0;
+
   simpleQueryDlg = 0;
   mcQueryDlg = 0;
   verbQueryDlg = 0;
@@ -153,7 +157,6 @@ kvoctrainApp::kvoctrainApp(const QString &name)
   // disable menu and toolbar items at startup
 
   querying = false;
-  qtimer = new QTimer( this );
   btimer = new QTimer( this );
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
   if (backupTime != 0)

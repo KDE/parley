@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/11/24 17:16:08  arnold
+    fixes for table view and query
+
     Revision 1.5  2001/11/10 22:29:40  arnold
     removed compatibility for kde1
 
@@ -230,7 +233,7 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 
 void RandomQueryDlg::knowItClicked()
 {
-   done (RandomQueryDlg::Known);
+   emit sigQueryChoice (Known);
 }
 
 
@@ -252,20 +255,20 @@ void RandomQueryDlg::timeoutReached()
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont)
-       done (RandomQueryDlg::Timeout);
+       emit sigQueryChoice (Timeout);
    }
 }
 
 
 void RandomQueryDlg::dontKnowClicked()
 {
-   done (RandomQueryDlg::Unknown);
+   emit sigQueryChoice (Unknown);
 }
 
 
 void RandomQueryDlg::stopItClicked()
 {
-   done (RandomQueryDlg::StopIt);
+   emit sigQueryChoice (StopIt);
 }
 
 

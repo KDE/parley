@@ -13,4 +13,3 @@ libquerydlg_la_SOURCES =  \
 
 METASOURCES = AUTO
 
-QueryDlgForm.h QueryDlgForm.cpp :  QueryDlgForm.ui
