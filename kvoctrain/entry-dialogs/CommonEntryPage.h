@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.6  2001/12/30 12:12:57  arnold
+    fixed smart appending and editing
+
     Revision 1.5  2001/12/13 18:39:29  arnold
     added phonetic alphabet stuff
 
@@ -103,7 +106,7 @@ protected:
     void keyPressEvent( QKeyEvent * );
     void setTypeBox(const QString &act_type);
     void setLessonBox(QComboBox *lessbox, int lesson);
-    void setUsageBox(const QString &act_type);
+    void setUsageBox( QString act_type);
 
 protected slots:
     void slotLessonSelected(int);

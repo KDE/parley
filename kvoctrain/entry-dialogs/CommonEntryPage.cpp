@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.14  2002/01/05 18:50:23  arnold
+    fixed i18n() related isuses
+
     Revision 1.13  2002/01/04 21:08:27  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -271,14 +274,13 @@ void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
 }
 
 
-void CommonEntryPage::setUsageBox(const QString &act_usage)
+void CommonEntryPage::setUsageBox(QString act_usage)
 {
     usages = UsageManager::getRelation();
     usage_box->clear();
     for (int i = 0; i < (int) usages.size(); i++) {
       usage_box->insertItem (usages[i].longStr());
       if (UsageManager::contains(QString(usages[i].identStr()), act_usage)) {
-        usage_box->setCurrentItem (i);   // important with qt1.x!
         usage_box->setSelected (i, true);
       }
     }
