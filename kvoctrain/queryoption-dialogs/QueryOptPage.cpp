@@ -63,7 +63,7 @@ QueryOptPage::QueryOptPage
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
    connect( swap, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
-   connect( alt_learn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
+   connect( kcfg_AltLearn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
 
    connect( e_mqtime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
 
@@ -112,7 +112,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
    s.setNum (mqtime);
    e_mqtime->setText (s);
    swap->setChecked(swapdir);
-   alt_learn->setChecked(altlearn);
+   kcfg_AltLearn->setChecked(altlearn);
    showrem->setChecked(show);
 
    if (type_to == kvq_show) {

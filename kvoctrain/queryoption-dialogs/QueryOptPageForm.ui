@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>576</width>
-            <height>487</height>
+            <height>490</height>
         </rect>
     </property>
     <property name="caption">
@@ -299,7 +299,7 @@
                 </widget>
                 <widget class="QCheckBox">
                     <property name="name">
-                        <cstring>alt_learn</cstring>
+                        <cstring>kcfg_AltLearn</cstring>
                     </property>
                     <property name="text">
                         <string>&amp;Use alternative learning method</string>

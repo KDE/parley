@@ -3,7 +3,7 @@ METASOURCES = AUTO
 kvoctrain_SOURCES = kva_io.cpp \
    kvoctrain.cpp  kvoctrainview.cpp rowtable.cpp \
    main.cpp kva_init.cpp kva_config.cpp kva_header.cpp \
-   kva_clip.cpp kva_query.cpp
+   kva_clip.cpp kva_query.cpp prefs.kcfgc
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp 
 
@@ -28,6 +28,7 @@ KDE_ICON = kvoctrain
 bin_SCRIPTS = langen2kvtml
 
 xdg_apps_DATA = kvoctrain.desktop
+kde_kcfg_DATA = kvoctrain.kcfg
 
 INCLUDES= -I$(top_srcdir)/kvoctrain -I$(top_srcdir)/kvoctrain/kvt-core \
  -I$(top_srcdir)/kvoctrain/kvoctrain \
