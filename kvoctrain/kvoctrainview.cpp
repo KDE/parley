@@ -38,6 +38,7 @@
 
 #include <qlayout.h>
 #include <qbitmap.h>
+#include <qfile.h>
 
 #include <ctype.h>
 
@@ -250,7 +251,28 @@ void kvoctrainView::setHeaderProp (int id, const QString &name,
   }
   else
   {
-     QPixmap pix(pixfile);
+    QPixmap pix;     
+    if (QFile::exists(pixfile))
+      pix.load(pixfile);
+    else
+    {
+      //this is the code used by kxkb when a flag image can't be found
+      //see kdebase/kxkb/pixmap.cpp/LayoutIcon::findPixmap()
+      pix.resize(21, 14);
+      pix.fill(Qt::white);
+      
+      QPainter p(&pix);
+      
+      QFont font("sans");
+      font.setPixelSize(10);
+      font.setWeight(QFont::Bold);
+      p.setFont(font);
+      p.setPen(Qt::red);
+      p.drawText(2, 1, pix.width(), pix.height()-2, Qt::AlignCenter, "err");
+      p.setPen(Qt::blue);
+      p.drawText(1, 0, pix.width(), pix.height()-2, Qt::AlignCenter, "err");     
+    }
+     
      int w = pix.width();
      int h = pix.height();
 
