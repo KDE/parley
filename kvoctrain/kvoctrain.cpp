@@ -750,6 +750,7 @@ void kvoctrainApp::slotAppendRow ()
     doc->setModified();
     int row = doc->numEntries()-1;
     view->getTable()->updateContents(row, KV_COL_ORG);
+    view->getTable()->setRowHeight(row, view->getTable()->fontMetrics().lineSpacing() );
     view->getTable()->setCurrentRow(row, KV_COL_ORG);
     editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
 }
@@ -1304,7 +1305,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
     QPopupMenu * set_m = vocabSetLanguage->popupMenu();
 
     QStringList names;
-    for (int i = 0; i < (int) langset.size(); i++) 
+    for (int i = 0; i < (int) langset.size(); i++)
     {
       if(langset.longId(i).isEmpty() )
         names.append(langset.shortId(i));
@@ -1312,7 +1313,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
         names.append(langset.longId(i));
     }
 
-    for (int header = 0; header < doc->numLangs(); ++header ) 
+    for (int header = 0; header < doc->numLangs(); ++header )
     {
       // select one of the available languages for the column
       QPopupMenu *langs_m = new QPopupMenu();
@@ -1349,7 +1350,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
     QPopupMenu * remove_m = vocabRemoveLanguage->popupMenu();
 
     QStringList names;
-    for (int j = 1; j < (int) doc->numLangs(); j++) 
+    for (int j = 1; j < (int) doc->numLangs(); j++)
     {
       int i;
       if ((i = langset.indexShortId(doc->getIdent(j))) >= 0)
@@ -1358,7 +1359,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
         names.append(doc->getIdent(j));
     }
 
-    for (int i = 1; i < (int) doc->numLangs(); i++) 
+    for (int i = 1; i < (int) doc->numLangs(); i++)
     {
       // show pixmap and long name if available
       int j;
