@@ -35,12 +35,6 @@
 
 /* Library Includes */
 
-#include <qdialog.h>
-#include <qwidget.h>
-#include <qpushbutton.h>
-#include <qbuttongroup.h>
-#include <qlineedit.h>
-#include <qmultilineedit.h>
 
 class kvoctrainDoc;
 

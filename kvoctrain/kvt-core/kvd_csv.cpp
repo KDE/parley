@@ -26,14 +26,9 @@
  ***************************************************************************/
 
 #include <klocale.h>
-#include <kapplication.h>
-#include <kmessagebox.h>
 
-#include "kvoctraindoc.h"
 #include "kvoctrain.h"
-#include "kvoctraincore.h"
 
-#include <qtextstream.h>
 #include <qtextcodec.h>
 
 #include <vector>

@@ -28,8 +28,6 @@
 
 #include "TenseOptPage.h"
 
-#include <qkeycode.h>
-#include <qlistbox.h>
 #include <qpushbutton.h>
 
 #include <kapplication.h>
@@ -37,7 +35,6 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #define TENSE_TAG ". "

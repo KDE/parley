@@ -71,8 +71,6 @@
 #include <config.h>
 #endif 
 
-#include <qstring.h>
-#include <qcolor.h>
 #include <qpixmap.h>
 # include <qnamespace.h>
 

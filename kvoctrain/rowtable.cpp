@@ -15,12 +15,9 @@
 
  ***************************************************************************/
 
-#include <qkeycode.h>
-#include <qscrollbar.h>
 #include <qpainter.h>
 #include <qtimer.h>
 #include <qlineedit.h>
-#include <qpushbutton.h>
 #include <qcombobox.h>
 
 #include <kapplication.h>
@@ -32,7 +29,6 @@
 
 #include "kvoctraindoc.h"
 #include "rowtable.h"
-#include "kv_resource.h"
 #include "kvoctraincore.h"
 
 // delay im ms (microsoft seconds) before delayed popup pops up

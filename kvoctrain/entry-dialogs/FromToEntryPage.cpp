@@ -30,17 +30,13 @@
 #include "FromToEntryPage.h"
 #include "EntryDlg.h"
 
-#include <qkeycode.h>
 #include <qlineedit.h>
-#include <qlabel.h>
 #include <qcombobox.h>
 #include <qpushbutton.h>
 #include <qgroupbox.h>
 
-#include <kapplication.h>
 #include <klocale.h>
 
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include <langset.h>
 

@@ -28,12 +28,10 @@
 
 #include "GroupOptPage.h"
 
-#include <qkeycode.h>
 #include <qcombobox.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
 
-#include <kapplication.h>
 #include <klocale.h>
 #include <klineeditdlg.h>
 

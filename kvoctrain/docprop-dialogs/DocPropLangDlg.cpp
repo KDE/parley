@@ -30,7 +30,6 @@
 #include "DocPropLangDlg.h"
 #include "LangPropPage.h"
 
-#include <kv_resource.h>
 #include <kvoctraindoc.h>
 #include <langset.h>
 
@@ -40,8 +39,6 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 
-#include <qcombobox.h>
-#include <qpixmap.h>
 
 #define Inherited QTabDialog
 

@@ -29,15 +29,11 @@
 
 #include "kvoctraindoc.h"
 #include <qpainter.h>
-#include "qdatastream.h"
 
 #include <vector>
 using namespace std;
 
-#include "kvoctraincore.h"
-#include <klocale.h>
 #include <kdebug.h>
-#include <kstandarddirs.h>
 
 #include "kv_resource.h"  // FIXME: remove include
 

@@ -26,9 +26,7 @@
 
 #include "kv_resource.h"
 
-#include <qglobal.h>
 #include <qtable.h>
-#include <qheader.h>
 
 #include <vector>
 using namespace std;

@@ -30,7 +30,6 @@
 #define GeneralOptionsDlg_included
 
 #include <qtabdialog.h>
-#include <qstrlist.h>
 
 #include "LangOptPage.h"
 #include "ViewOptPage.h"

@@ -34,8 +34,6 @@
 #include <qlabel.h>
 
 #include <kstandarddirs.h>
-#include <klocale.h>
-#include <kapplication.h>
 
 
 ProgressDlg::ProgressDlg

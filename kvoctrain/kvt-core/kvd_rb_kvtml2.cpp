@@ -26,15 +26,10 @@
  ***************************************************************************/
 
 
-#include "kvoctraindoc.h"
-#include "kvoctraincore.h"
 #include "QueryManager.h"
 
-#include <kapplication.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
 
-#include <qmessagebox.h>
 
 bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 {

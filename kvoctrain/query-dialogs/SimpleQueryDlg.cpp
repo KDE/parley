@@ -26,15 +26,12 @@
  ***************************************************************************/
 
 #include "SimpleQueryDlg.h"
-#include "QueryDlgBase.h"
 
 #include <kv_resource.h>
 
 #include <qtimer.h>
-#include <qkeycode.h>
 #include <qmultilineedit.h>
 #include <qlabel.h>
-#include <qgroupbox.h>
 #include <qpushbutton.h>
 
 #include <kapplication.h>

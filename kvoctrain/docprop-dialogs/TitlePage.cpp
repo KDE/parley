@@ -28,12 +28,10 @@
 
 #include "TitlePage.h"
 
-#include <kv_resource.h>
 
 #include <kapplication.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
 #include <qlineedit.h>
 #include <qmultilineedit.h>
 #include <qlabel.h>

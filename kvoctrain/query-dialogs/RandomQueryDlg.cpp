@@ -30,7 +30,6 @@
 #include "MyProgress.h"
 
 #include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #include <kstandarddirs.h>
@@ -38,16 +37,10 @@
 #include <kapplication.h>
 
 #include <qtimer.h>
-#include <qdialog.h>
-#include <qwidget.h>
 #include <qpushbutton.h>
 #include <qcheckbox.h>
-#include <qbuttongroup.h>
 #include <qlineedit.h>
-#include <qmultilineedit.h>
 #include <qlabel.h>
-#include <qkeycode.h>
-#include <qpainter.h>
 
 RandomQueryDlg::RandomQueryDlg(
                    QString org,

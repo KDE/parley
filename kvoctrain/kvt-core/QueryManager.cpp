@@ -29,10 +29,8 @@
 #include "kvoctraincore.h"
 
 #include <klocale.h>
-#include <kapplication.h>
 #include <kconfig.h>
 
-#include "kvoctraindoc.h"
 
 #include <iostream>
 #include <vector>

@@ -28,7 +28,6 @@
 #include "GrammerManager.h"
 
 #include <klocale.h>
-#include <kapplication.h>
 
 Conjugation::conjug_name_t
 Conjugation::names [] =

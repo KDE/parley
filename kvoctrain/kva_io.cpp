@@ -28,10 +28,6 @@
 #include <unistd.h>
 
 #include <qtimer.h>
-#include <qprogressbar.h>
-#include <qfile.h>
-#include <qfileinfo.h>
-#include <qmessagebox.h>
 
 #include <kfiledialog.h>
 #include <kcombobox.h>
@@ -39,11 +35,9 @@
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>
-#include <kstdguiitem.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
 
-#include <kvoctraincore.h>
 #include "kvoctrain.h"
 #include "UsageManager.h"
 #include "common-dialogs/ProgressDlg.h"

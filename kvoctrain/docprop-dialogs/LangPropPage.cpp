@@ -28,15 +28,12 @@
 
 
 #include <langset.h>
-#include <kvoctraindoc.h>
 #include <GrammerManager.h>
 
 #include "LangPropPage.h"
 
-#include <kapplication.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
 #include <qlineedit.h>
 #include <qcheckbox.h>
 #include <qlabel.h>

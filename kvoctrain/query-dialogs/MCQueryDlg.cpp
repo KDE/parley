@@ -26,10 +26,8 @@
  ***************************************************************************/
 
 #include "MCQueryDlg.h"
-#include "QueryDlgBase.h"
 
 #include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include "MyProgress.h"
 
@@ -39,10 +37,8 @@
 #include <kdebug.h>
 
 #include <qtimer.h>
-#include <qkeycode.h>
 #include <qlabel.h>
 #include <qradiobutton.h>
-#include <qgroupbox.h>
 #include <qbuttongroup.h>
 #include <qpushbutton.h>
 

@@ -31,7 +31,6 @@
 #include <qlineedit.h>
 #include <qmultilineedit.h>
 #include <qradiobutton.h>
-#include <qfont.h>
 
 #include <LineList.h>
 

@@ -27,12 +27,8 @@
  ***************************************************************************/
 
 
-#include <qkeycode.h>
 #include <qmultilineedit.h>
-#include <qlabel.h>
-#include <qlistbox.h>
 
-#include <kapplication.h>
 
 #include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"

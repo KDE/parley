@@ -32,7 +32,6 @@
 #include "kvoctraindoc.h"
 #include "kvoctraincore.h"
 
-#include <qtextstream.h>
 
 
 bool kvoctrainDoc::saveTypeNameVcb (QTextStream &os)

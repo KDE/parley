@@ -27,10 +27,8 @@
 
 #include "QueryOptPage.h"
 
-#include <qkeycode.h>
 #include <qcheckbox.h>
 #include <qlabel.h>
-#include <qgroupbox.h>
 #include <qradiobutton.h>
 #include <qbuttongroup.h>
 #include <qlineedit.h>
@@ -38,7 +36,6 @@
 
 #include <stdlib.h>
 
-#include <kapplication.h>
 
 QueryOptPage::QueryOptPage
 (
@@ -62,7 +59,7 @@ QueryOptPage::QueryOptPage
    connect( r_nolimit_to, SIGNAL(clicked()), SLOT(slotNoTimeout()) );
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
-   connect( swap, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
+   connect( kcfg_SwapDir, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
    connect( kcfg_AltLearn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
 
    connect( e_mqtime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
@@ -111,7 +108,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool sh
 
    s.setNum (mqtime);
    e_mqtime->setText (s);
-   swap->setChecked(swapdir);
+   kcfg_SwapDir->setChecked(swapdir);
    kcfg_AltLearn->setChecked(altlearn);
    showrem->setChecked(show);
 

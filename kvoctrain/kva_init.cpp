@@ -32,15 +32,12 @@
 #include "common-dialogs/ProgressDlg.h"
 
 #include <qclipboard.h>
-#include <qprogressbar.h>
 #include <qtimer.h>
 
-#include <kstdaccel.h>
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kstatusbar.h>
 #include <kpopupmenu.h>
-#include <khelpmenu.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>

@@ -35,11 +35,9 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 
-#include <qcombobox.h>
 
 #include <langset.h>
 #include <kvoctraindoc.h>
-#include <kv_resource.h>
 
 #define Inherited QTabDialog
 

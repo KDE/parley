@@ -26,14 +26,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qkeycode.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
 #include <qpushbutton.h>
 #include <qlineedit.h>
-#include <qlabel.h>
 
-#include <kapplication.h>
 
 #include <langset.h>
 

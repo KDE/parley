@@ -30,7 +30,6 @@
 #include "PhoneticEntryPage.h"
 
 #include <qlayout.h>
-#include <qpushbutton.h>
 #include <qgroupbox.h>
 #include <qtooltip.h>
 

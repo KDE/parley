@@ -27,14 +27,9 @@
  ***************************************************************************/
 
 
-#include <qpixmap.h>
-#include <qkeycode.h>
-#include <qfileinfo.h>
 #include <qlabel.h>
 #include <kcombobox.h>
-#include <qradiobutton.h>
 #include <qpushbutton.h>
-#include <qlineedit.h>
 #include <qpopupmenu.h>
 
 #include <kfiledialog.h>
@@ -47,9 +42,7 @@
 #include "LangOptPage.h"
 
 #include <langset.h>
-#include <kv_resource.h>
 #include <kvoctraincore.h>
-#include <kvoctraindoc.h>
 
 #include <map>
 #include <algorithm>

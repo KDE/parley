@@ -28,26 +28,16 @@
 
 
 #include <kvoctraincore.h>
-#include "kv_resource.h"
 #include "kvoctrain.h"
-#include "rowtable.h"
-#include "entry-dialogs/EntryDlg.h"
-#include "kvoctraindoc.h"
 #include "kvoctrainview.h"
 
-#include <kapplication.h>
-#include <kmessagebox.h>
 #include <kstandarddirs.h>
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
 
-#include <qwidget.h>
 #include <qlayout.h>
-#include <qlistbox.h>
-#include <qiconset.h>
 #include <qbitmap.h>
-#include <qstyle.h>
 
 #include <ctype.h>
 

@@ -31,7 +31,6 @@
 #define PasteOptPage_included
 
 #include "PasteOptPageForm.h"
-#include <qstrlist.h>
 
 class LangSet;
 class kvoctrainDoc;

@@ -30,7 +30,6 @@
 #define DocPropsDlg_included
 
 #include <qtabdialog.h>
-#include <qlabel.h>
 
 #include "DocOptionsPage.h"
 #include "LessOptPage.h"
@@ -40,7 +39,6 @@
 #include "TitlePage.h"
 
 #include <GrammerManager.h>
-#include <kvoctraindoc.h>
 
 #include <vector>
 using namespace std;

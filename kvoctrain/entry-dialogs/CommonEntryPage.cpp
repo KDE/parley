@@ -29,13 +29,11 @@
 #include "CommonEntryPage.h"
 #include "EntryDlg.h"
 
-#include <qkeycode.h>
 #include <qlineedit.h>
 #include <qlabel.h>
 #include <qlistbox.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
-#include <qpushbutton.h>
 #include <qgroupbox.h>
 
 #include <kapplication.h>
@@ -44,11 +42,9 @@
 #include <kstandarddirs.h>
 
 #include <QueryManager.h>
-#include <kv_resource.h>
 #include <langset.h>
 
 #include "DocPropDlg.h"
-#include "LessOptPage.h"
 #include "blockall.h"
 #include "PhoneticEntryPage.h"
 

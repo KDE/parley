@@ -32,11 +32,8 @@
 
 #include <langset.h>
 
-#include <qkeycode.h>
 #include <qlineedit.h>
-#include <qlabel.h>
 
-#include <kapplication.h>
 
 AdjEntryPage::AdjEntryPage
 (

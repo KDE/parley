@@ -28,10 +28,7 @@
 #include "MyProgress.h"
 
 #include <qpainter.h>
-#include <qframe.h>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
 
 #define Inherited QFrame
 

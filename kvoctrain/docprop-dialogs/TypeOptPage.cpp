@@ -33,11 +33,8 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
-#include <qlistbox.h>
 #include <qpushbutton.h>
 
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #define TYPE_TAG ". "

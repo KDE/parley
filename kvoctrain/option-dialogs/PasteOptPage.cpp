@@ -27,23 +27,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qkeycode.h>
 #include <qlistbox.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
-#include <qgroupbox.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
 
 #include <iostream>
 using namespace std;
 
-#include <kapplication.h>
 #include <klocale.h>
 
 
 #include <langset.h>
-#include <kvoctraindoc.h>
 
 #include "PasteOptPage.h"
 #include "GeneralOptionsDlg.h"

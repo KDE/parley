@@ -25,9 +25,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qtimer.h>
 
-#include <klocale.h>
 #include <kdebug.h>
 
 #include "kvoctrain.h"

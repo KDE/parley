@@ -27,11 +27,9 @@
 
 
 #include "ArtQueryDlg.h"
-#include "QueryDlgBase.h"
 #include "MyProgress.h"
 
 #include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #include <kstandarddirs.h>

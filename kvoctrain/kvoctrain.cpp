@@ -30,31 +30,22 @@
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kprogress.h>
-#include <kapplication.h>
 #include <kconfig.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>
 
-#include <qcursor.h>
 #include <qinputdialog.h>
-#include <qtimer.h>
-#include <qfile.h>
-#include <qtooltip.h>
-#include <qprogressbar.h>
 
 #include <time.h>
 #include <ctype.h>
 
 #include <kvoctraincore.h>
-#include "kvoctraindoc.h"
-#include "langset.h"
 #include "kvoctrain.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "option-dialogs/GeneralOptionsDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
-#include "common-dialogs/ProgressDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"
 
 

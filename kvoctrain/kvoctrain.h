@@ -36,23 +36,16 @@
 
 // include files for QT
 #include <qpainter.h>
-#include <qcombobox.h>
 
 // include files for KDE 
 #include <kapplication.h> 
 #include <kmainwindow.h>
-#include <kaccel.h>
 #include <kmenubar.h>
-#include <ktoolbar.h>
-#include <kiconloader.h>
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
 // application specific includes
 #include "kvoctrainview.h"
-#include "kv_resource.h"
-#include "langset.h"
-#include "QueryManager.h"
 #include "queryoption-dialogs/GroupOptPage.h"
 #include "query-dialogs/QueryDlgBase.h"
 

@@ -33,7 +33,6 @@
 
 #include <QueryManager.h>
 
-#include <kstandarddirs.h>
 #include <klocale.h>
 
 class QValidator;

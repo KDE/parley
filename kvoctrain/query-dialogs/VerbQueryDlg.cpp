@@ -26,11 +26,9 @@
  ***************************************************************************/
 
 #include "VerbQueryDlg.h"
-#include "QueryDlgBase.h"
 #include "MyProgress.h"
 
 #include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #include <kapplication.h>
@@ -38,10 +36,8 @@
 #include <klocale.h>
 
 #include <qtimer.h>
-#include <qkeycode.h>
 #include <qpushbutton.h>
 #include <qlabel.h>
-#include <qgroupbox.h>
 #include <qlineedit.h>
 
 VerbQueryDlg::VerbQueryDlg

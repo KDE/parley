@@ -30,18 +30,14 @@
 #include <kcolorbutton.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
 #include <qlabel.h>
 #include <qcheckbox.h>
 
 #include "ViewOptPage.h"
-#include "LangOptPage.h"
 
 #include <QueryManager.h>
-#include <kv_resource.h>
 
 #include <kstandarddirs.h>
-#include  <kconfig.h>
 
 ViewOptPage::ViewOptPage
 (

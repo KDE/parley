@@ -25,14 +25,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctraindoc.h"
 #include "kvoctraincore.h"
 #include "QueryManager.h"
 
 #include <kdebug.h>
-#include <kapplication.h>
-#include <klocale.h>
-#include <kstandarddirs.h>
 
 #include <qtextcodec.h>
 

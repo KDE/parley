@@ -33,12 +33,9 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
-#include <qlistbox.h>
 #include <qgroupbox.h>
 #include <qpushbutton.h>
 
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 
 #define USAGE_TAG ". "

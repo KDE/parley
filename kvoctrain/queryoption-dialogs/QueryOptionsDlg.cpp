@@ -29,15 +29,12 @@
 
 #include "QueryOptionsDlg.h"
 
-#include <kv_resource.h>
 
 #include <kstandarddirs.h>
-#include <klocale.h>
 #include <kdebug.h>
 #include <kapplication.h>
 #include <kcombobox.h>
 
-#include <qpixmap.h>
 
 
 #define Inherited QTabDialog

@@ -34,9 +34,7 @@
 #include <kdebug.h>
 #include <kmessagebox.h>
 
-#include <qfile.h>
 #include <qfileinfo.h>
-#include <qtextstream.h>
 
 #include <algorithm>
 #include <functional>

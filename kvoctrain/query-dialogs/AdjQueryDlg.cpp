@@ -28,11 +28,9 @@
 
 
 #include "AdjQueryDlg.h"
-#include "QueryDlgBase.h"
 #include "MyProgress.h"
 
 #include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <QueryManager.h>
 #include <langset.h>
 
@@ -42,7 +40,6 @@
 
 #include <qtimer.h>
 #include <qpushbutton.h>
-#include <qkeycode.h>
 #include <qlineedit.h>
 #include <qlabel.h>
 

@@ -33,12 +33,9 @@
 #include <vector>
 using namespace std;
 
-#include <qkeycode.h>
-#include <qcheckbox.h>
 #include <qlabel.h>
 #include <qcombobox.h>
 #include <qlistbox.h>
-#include <qbuttongroup.h>
 #include <qpushbutton.h>
 
 #include <klocale.h>
@@ -155,7 +152,6 @@ static ThreshListRef Threshdate_itemlist [] =
 #undef _QM
 #undef _QT
 
-#include <kapplication.h>
 
 ThreshOptPage::ThreshOptPage
 (

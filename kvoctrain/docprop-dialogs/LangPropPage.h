@@ -30,7 +30,6 @@
 #ifndef LangPropPage_included
 #define LangPropPage_included
 
-#include <qglobal.h>
 
 #include "LangPropPageForm.h"
 

@@ -34,7 +34,6 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
 #include <qcombobox.h>
 #include <qlabel.h>
 #include <qcheckbox.h>

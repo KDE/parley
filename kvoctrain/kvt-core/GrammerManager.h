@@ -29,7 +29,6 @@
 #ifndef GrammerManager_included
 #define GrammerManager_included
 
-#include <qstring.h>
 #include <qdatastream.h>
 
 #include <vector>

@@ -28,20 +28,12 @@
 
 
 #include "DocPropDlg.h"
-#include "DocOptionsPage.h"
-#include "TitlePage.h"
-#include "TypeOptPage.h"
-#include "LangPropPage.h"
 
-#include <kv_resource.h>
-#include <kvoctraindoc.h>
 #include <langset.h>
 
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kapplication.h>
-#include <qcombobox.h>
-#include <qpixmap.h>
 
 #define Inherited QTabDialog
 

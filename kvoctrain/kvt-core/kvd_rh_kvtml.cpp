@@ -25,15 +25,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctraindoc.h"
-#include "kvoctraincore.h"
 #include "QueryManager.h"
 
-#include <kapplication.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
 
-#include <qmessagebox.h>
 #include <qtextcodec.h>
 
 bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)

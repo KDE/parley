@@ -27,20 +27,14 @@
 
 
 #include "EntryDlg.h"
-#include <kvoctraindoc.h>
 #include <kmainwindow.h>
 
 #include <iostream>
 
-#include <qpixmap.h>
 #include <qlayout.h>
-#include <qframe.h>
-#include <qcheckbox.h>
 #include <qtabwidget.h>
 #include <qpushbutton.h>
-#include <qapplication.h>
 
-#include <kv_resource.h>
 #include <langset.h>
 #include <klocale.h>
 #include <kstandarddirs.h>

@@ -30,9 +30,7 @@
 
 #include <kvoctraindoc.h>
 
-#include <kapplication.h>
 
-#include <qkeycode.h>
 #include <qlabel.h>
 
 GenStatPage::GenStatPage

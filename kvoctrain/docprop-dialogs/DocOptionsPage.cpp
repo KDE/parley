@@ -29,10 +29,8 @@
 
 #include "DocOptionsPage.h"
 
-#include <kapplication.h>
 #include <klocale.h>
 
-#include <qkeycode.h>
 #include <qcheckbox.h>
 
 DocOptionsPage::DocOptionsPage

@@ -43,10 +43,8 @@ class kvoctrainApp;
 class kvoctrainDoc;
 class GradeCols;
 
-#include <qwidget.h>
 #include "rowtable.h"
 #include "kvoctraindoc.h"
-#include "langset.h"
 
 /**
   * This class provides an incomplete base for your application view. 

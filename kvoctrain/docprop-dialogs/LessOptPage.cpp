@@ -34,8 +34,6 @@
 #include <kmessagebox.h>
 
 #include <qcombobox.h>
-#include <qkeycode.h>
-#include <qlistbox.h>
 #include <qpushbutton.h>
 
 #include <kvoctraindoc.h>

@@ -7,5 +7,9 @@
       <label>Use the Leitner learning method</label>
       <default code="true">false</default>
     </entry>
+    <entry name="SwapDir" type="Bool">
+      <label>Swap direction randomly</label>
+      <default code="true">false</default>
+    </entry>
   </group>
 </kcfg>

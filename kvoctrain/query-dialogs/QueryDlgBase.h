@@ -30,7 +30,6 @@
 #ifndef Query_Dlg_Base_H
 #define Query_Dlg_Base_H
 
-#include <qstring.h>
 #include <qdialog.h>
 #include <time.h>
 #include <stdlib.h>

@@ -30,9 +30,7 @@
 #include <kmessagebox.h>
 
 #include "kvoctraindoc.h"
-#include "kvoctraincore.h"
 
-#include <qtextstream.h>
 
 #include <vector>
 using namespace std;

@@ -30,7 +30,6 @@
 #define QueryOptionsDlg_included
 
 #include <qtabdialog.h>
-#include <qstrlist.h>
 
 #include "ThreshOptPage.h"
 #include "QueryOptPage.h"

@@ -31,7 +31,6 @@
 
 #include "DocOptionsPageForm.h"
 
-#include <kvoctraindoc.h>
 
 class DocOptionsPage : public DocOptionsPageForm
 {

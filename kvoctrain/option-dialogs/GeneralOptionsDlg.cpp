@@ -29,7 +29,6 @@
 
 #include "GeneralOptionsDlg.h"
 
-#include <kv_resource.h>
 #include <langset.h>
 
 #include <klocale.h>
@@ -37,8 +36,6 @@
 #include <kstandarddirs.h>
 #include <kapplication.h>
 
-#include <qcombobox.h>
-#include <qpixmap.h>
 
 #define Inherited QTabDialog
 

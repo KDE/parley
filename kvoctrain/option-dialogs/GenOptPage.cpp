@@ -27,15 +27,12 @@
  ***************************************************************************/
 
 #include "GenOptPage.h"
-#include <qkeycode.h>
-#include <qlabel.h>
 #include <qlineedit.h>
 #include <qcheckbox.h>
 #include <qbuttongroup.h>
 #include <qradiobutton.h>
 #include <qvalidator.h>
 #include <stdlib.h>
-#include <kapplication.h>
 #include <klocale.h>
 
 #include <QueryManager.h>

@@ -27,12 +27,9 @@
  ***************************************************************************/
 
 #include "UsageManager.h"
-#include "kvoctraincore.h"
 
-#include <kapplication.h>
 #include <klocale.h>
 
-#include "kvoctraindoc.h"
 
 #include <iostream>
 #include <vector>
