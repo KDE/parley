@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.4  2001/11/10 22:29:11  arnold
+    removed compatibility for kde1
+
     Revision 1.3  2001/10/25 17:34:19  arnold
     replaced qtarch dialog files by qtdesigner
 
@@ -157,8 +160,6 @@ PasteOptPage::PasteOptPage
   item_down->setEnabled(!useCurrent);
   item_skip->setEnabled(!useCurrent);
   item_up->setEnabled(!useCurrent);
-  label_order->setEnabled(!useCurrent);
-//  label_order->setBuddy(order_list);
   slotEnableCursor();
 }
 
@@ -272,7 +273,6 @@ void PasteOptPage::slotItemSkip()
 void PasteOptPage::slotEnableCursor()
 {
   order_list->setEnabled(!useCurrent);
-  label_order->setEnabled(!useCurrent);
   if (order_list->count() > 1 && !useCurrent) {
     item_down->setEnabled(order_list->currentItem() < (int) order_list->count()-1);
     item_skip->setEnabled(true);
@@ -320,7 +320,7 @@ void PasteOptPage::slotItemDown()
 
 void PasteOptPage::slotCurrentDoc(bool use)
 {
-/*
+
   order_list->clear();
   order_list->insertItem (langset.findLongId(doc->getOriginalIdent()));
   for (int i = 1; i < (int) doc->numLangs(); i++)
@@ -338,15 +338,14 @@ void PasteOptPage::slotCurrentDoc(bool use)
   }
 
   order_list->setCurrentItem (0);
-*/
+
   useCurrent = use;
-/*
+
   order_list->setEnabled(!useCurrent);
   item_down->setEnabled(!useCurrent);
   item_skip->setEnabled(!useCurrent);
   item_up->setEnabled(!useCurrent);
-  label_order->setEnabled(!useCurrent);
-*/
+
   slotEnableCursor();
 }
 
