@@ -47,7 +47,7 @@ GenStatPage::GenStatPage
     l_author->setText(doc->getAuthor());
     QString s;
     s.setNum(doc->numEntries());
-    l_entries->setText(s);
+    kcfg_entriesPerLesson->setText(s);
     vector<QString> lesson = doc->getLessonDescr();
     s.setNum(lesson.size());
     l_lessons->setText(s);

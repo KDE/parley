@@ -12,8 +12,12 @@
       <default code="true">true</default>
     </entry>
     <entry name="Separator" type="String">
-      <label>If true, it uses the same language order than the current document for the clipboard</label>
+      <label>This sets the separator used when copying/pasting text, default is Tab</label>
       <default code="true">"\t"</default>
+    </entry>
+        <entry name="EntriesPerLesson" type="Int">
+      <label>The number of entries per lesson</label>
+      <default code="true">50</default>
     </entry>
    </group>
   <group name="QueryProperties">

@@ -99,7 +99,7 @@ void kvoctrainApp::saveOptions(bool all)
     Prefs::setSeparator(s);
     config->writeEntry(CFG_PASTEORDER, paste_order);
     Prefs::setUseCurrent(useCurrent);
-    config->writeEntry(CFG_ENTRIESLESSON, entriesPerLesson);
+    Prefs::setEntriesPerLesson(entriesPerLesson);
     config->writeEntry(CFG_BACKTIME, backupTime);
   
     config->writeEntry(CFG_NUMLANGSET, langset.size() );
@@ -205,7 +205,7 @@ void kvoctrainApp::readOptions()
 
   paste_order = config->readListEntry(CFG_PASTEORDER);
   useCurrent = Prefs::useCurrent();
-  entriesPerLesson = config->readNumEntry(CFG_ENTRIESLESSON, 50);
+  entriesPerLesson =Prefs::entriesPerLesson();
   separator = Prefs::separator();
   if (separator == TAB_REP)
     separator = "\t";

@@ -909,6 +909,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 void kvoctrainApp::slotCreateRandom()
 {
    bool ok = FALSE;
+   //shouldn't this dialog display the previous setting i.e Prefs::entriesPerLesson()?
    int res = QInputDialog::getInteger(
                 i18n( "Entries in Lesson" ),
                 i18n( "Enter number of entries in lesson:" ), 1, 1, 1000, 1, &ok, this );

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>GenStatPageForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>592</width>
-            <height>499</height>
+            <width>583</width>
+            <height>609</height>
         </rect>
     </property>
     <property name="caption">
@@ -109,7 +109,7 @@
         </widget>
         <widget class="QLabel" row="3" column="1">
             <property name="name">
-                <cstring>l_entries</cstring>
+                <cstring>kcfg_entriesPerLesson</cstring>
             </property>
             <property name="sizePolicy">
                 <sizepolicy>
