@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2001/12/08 10:29:16  arnold
+    fixed timeout behaviour
+
     Revision 1.10  2001/12/01 11:28:54  arnold
     fixed flickering in query dialogs
 
@@ -160,12 +163,18 @@ void AdjQueryDlg::setQuery(QString type,
    s.setNum (q_cycle);
    progCount->setText (s);
 
+   lev1Field->setText ("");
+   lev2Field->setText ("");
+   lev3Field->setText ("");
+
    int sel = getRandom(3);
    switch (sel) {
      case 0: lev1Field->setText (comp.l1() );
      break;
+
      case 1: lev2Field->setText (comp.l2() );
      break;
+
      case 2: lev3Field->setText (comp.l3() );
      break;
    }

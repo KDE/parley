@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>615</width>
+            <width>611</width>
             <height>414</height>
         </rect>
     </property>
@@ -240,6 +240,10 @@
                             <property stdset="1">
                                 <name>name</name>
                                 <cstring>verify</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>enabled</name>
+                                <bool>false</bool>
                             </property>
                             <property stdset="1">
                                 <name>sizePolicy</name>

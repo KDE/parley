@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>629</width>
+            <width>625</width>
             <height>447</height>
         </rect>
     </property>
@@ -302,6 +302,28 @@
                             <class>QPushButton</class>
                             <property stdset="1">
                                 <name>name</name>
+                                <cstring>verify</cstring>
+                            </property>
+                            <property stdset="1">
+                                <name>enabled</name>
+                                <bool>false</bool>
+                            </property>
+                            <property stdset="1">
+                                <name>sizePolicy</name>
+                                <sizepolicy>
+                                    <hsizetype>7</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                </sizepolicy>
+                            </property>
+                            <property stdset="1">
+                                <name>text</name>
+                                <string>&amp;Verify</string>
+                            </property>
+                        </widget>
+                        <widget row="0"  column="0" >
+                            <class>QPushButton</class>
+                            <property stdset="1">
+                                <name>name</name>
                                 <cstring>show_all</cstring>
                             </property>
                             <property stdset="1">
@@ -314,24 +336,6 @@
                             <property stdset="1">
                                 <name>text</name>
                                 <string>Show &amp;all</string>
-                            </property>
-                        </widget>
-                        <widget row="1"  column="0" >
-                            <class>QPushButton</class>
-                            <property stdset="1">
-                                <name>name</name>
-                                <cstring>verify</cstring>
-                            </property>
-                            <property stdset="1">
-                                <name>sizePolicy</name>
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>5</vsizetype>
-                                </sizepolicy>
-                            </property>
-                            <property stdset="1">
-                                <name>text</name>
-                                <string>&amp;Verify</string>
                             </property>
                         </widget>
                         <widget row="0"  column="1" >

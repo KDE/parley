@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/01 11:28:54  arnold
+    fixed flickering in query dialogs
+
     Revision 1.9  2001/11/16 16:26:23  arnold
     improved dialogs
 
@@ -146,9 +149,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    QString s;
    switch (querytype) {
      case QT_Synonym: {
-       answerLabel->setText (i18n("Synonym"));
        queryLabel->setText (i18n("Expression"));
-       s = i18n("Enter the synonym");
+       s = i18n("Enter the synonym:");
        instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getSynonym(column);
@@ -158,9 +160,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      break;
 
      case QT_Antonym: {
-       answerLabel->setText(i18n("Antonym"));
        queryLabel->setText (i18n("Expression"));
-       s = i18n("Enter the antonym");
+       s = i18n("Enter the antonym:");
        instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        answerstring = exp->getAntonym(column);
@@ -170,9 +171,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      break;
 
      case QT_Paraphrase: {
-       answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Paraphrase"));
-       s = i18n("Enter the paraphrase");
+       s = i18n("Enter the word:");
        instructionLabel->setText(s);
        setCaption (kapp->makeStdCaption(s));
        queryField->setText (exp->getParaphrase(column));
@@ -182,9 +182,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      break;
 
      case QT_Example: {
-       answerLabel->setText (i18n("Expression"));
        queryLabel->setText (i18n("Example sentence"));
-       s = i18n("Fill in the gap");
+       s = i18n("Fill in the missing word:");
        instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(s));
        QString s = exp->getExample(column);
@@ -252,7 +251,6 @@ void SimpleQueryDlg::timeoutReached()
      timebar->repaint();
      if (type_timeout == kvq_show ) {
        showAllClicked();
-//       verifyClicked();
        dont_know->setDefault(true);
      }
      else if (type_timeout == kvq_cont )
@@ -263,12 +261,11 @@ void SimpleQueryDlg::timeoutReached()
 
 void SimpleQueryDlg::showMoreClicked()
 {
-  resetField (answerField);
-  if (showCounter < (int)answerstring.length() ) {
-    answerField->setText (answerstring.left(++showCounter));
+  if (answerField->text().length() < answerstring.length()) {
+    answerField->setText (answerstring.left(answerField->text().length()+1));
     dont_know->setDefault(true);
   }
-
+  resetField (answerField);
 }
 
 

@@ -11,7 +11,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>626</width>
+            <width>622</width>
             <height>432</height>
         </rect>
     </property>
@@ -103,17 +103,6 @@
                         <font>
                             <bold>1</bold>
                         </font>
-                    </property>
-                    <property stdset="1">
-                        <name>text</name>
-                        <string>-</string>
-                    </property>
-                </widget>
-                <widget>
-                    <class>QLabel</class>
-                    <property stdset="1">
-                        <name>name</name>
-                        <cstring>answerLabel</cstring>
                     </property>
                     <property stdset="1">
                         <name>text</name>
