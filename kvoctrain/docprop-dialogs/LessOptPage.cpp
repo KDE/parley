@@ -29,7 +29,7 @@
 #include "LessOptPage.h"
 
 #include <kapplication.h>
-#include <klineeditdlg.h>
+#include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
@@ -93,21 +93,22 @@ void LessOptPage::slotLessonChosen(int index)
 
 void LessOptPage::slotNewLesson()
 {
-     KLineEditDlg dlg(i18n("Enter lesson description:"), QString::null, this);
-     dlg.setCaption(i18n("Lesson Description"));
-     if (dlg.exec()) {
-       QString str;
-       int i = lessonList->count()+1;
-       str.setNum (i);
-       if (i <= 9)
-         str.insert (0, " ");
-       lessonList->insertItem (str+LESS_TAG+dlg.text().stripWhiteSpace());
-       lessonIndex.push_back(-(i-1));
-       act_lesson = lessonList->count();
-       lessonList->setCurrentItem (i-1);
-       b_modify->setEnabled(true);
-       b_delete->setEnabled(true);
-     }
+     bool ok;
+     QString getLesson = KInputDialog::getText(
+                 i18n( "Lesson Description" ), i18n( "Enter lesson description" ), QString::null, &ok );
+     if( !ok )
+       return;
+     QString str;
+     int i = lessonList->count()+1;
+     str.setNum (i);
+     if (i <= 9)
+       str.insert (0, " ");
+     lessonList->insertItem (str+LESS_TAG+getLesson.stripWhiteSpace());
+     lessonIndex.push_back(-(i-1));
+     act_lesson = lessonList->count();
+     lessonList->setCurrentItem (i-1);
+     b_modify->setEnabled(true);
+     b_delete->setEnabled(true);
 }
 
 
@@ -118,15 +119,16 @@ void LessOptPage::slotModifyLesson()
      QString str = lessonList->text (act_lesson);
      int pos = str.find (LESS_TAG);
      str.remove (0, pos+strlen (LESS_TAG));
-     KLineEditDlg dlg(i18n("Enter lesson description:"), str, this);
-     dlg.setCaption(i18n("Lesson Description"));
-     if (dlg.exec()) {
-       QString str2;
-       str2.setNum (act_lesson+1);
-       if (act_lesson <= 9)
-         str2.insert (0, " ");
-       lessonList->changeItem (str2+LESS_TAG+dlg.text().stripWhiteSpace(), act_lesson);
-     }
+     bool ok;
+     QString getLesson = KInputDialog::getText(
+                 i18n( "Lesson Description" ), i18n( "Enter lesson description" ), str, &ok );
+     if( !ok )
+       return;
+     QString str2;
+     str2.setNum (act_lesson+1);
+     if (act_lesson <= 9)
+       str2.insert (0, " ");
+     lessonList->changeItem (str2+LESS_TAG+getLesson.stripWhiteSpace(), act_lesson);
    }
 }
 
