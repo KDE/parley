@@ -68,7 +68,7 @@ number of possible wrong characters. Example: "dic +1 worck" will find
 a word. Combine this opening the exact match sides: "dic *worck* +1"  
 will find then "pieceworker", next to all possible other combinations.  
 Searches using this function will of course take longer, depending on 
-the ammount of combinations.
+the amount of combinations.
 
 You can search for phrases also and you do NOT need to encapsulate them
 in `"`. Example: "dic where the devil"  There is no order of setting

@@ -96,7 +96,7 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   view->getTable()->updateContents(cr, cc);
 
   ///////////////////////////////////////////////////////////////////
-  // enable bars dependend on config file setups
+  // enable bars dependent on config file setups
   if (!bViewToolbar)
     toolBar()->hide();
   if (!bViewStatusbar)
