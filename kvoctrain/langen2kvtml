@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-# lang2kvt.pl - Converts langenscheidt *.voc to kvoctrain's *.kvtml
+# langen2kvtml - Converts langenscheidt *.voc to kvoctrain's *.kvtml
 #            Does the following:
 #		analyse general header
 #		remove langenscheidt specific information
@@ -84,7 +84,7 @@ $/="\r\n";	# we work with dos files
 #
 # Initialise internal global variables
 #
-$rcfile		= "$ENV{HOME}/.kde/share/config/kvoctrainrc" ;
+$rcfile		= "$ENV{HOME}/.kde2/share/config/kvoctrainrc" ;
 $vocfile 	= "";		# Passed from command line
 $kvtfile 	= "";		# adopt to command line
 $lang		= "";		# initially unset
@@ -137,7 +137,7 @@ if ( ! &GetOptions(
 		"outdir=s" => \$outdir,
 		"country=s" => \$country,
 		"longlesson" => \$longlesson) ) {
-   print "Usage:\tlang2kvt.pl [--lang=xx] [--trans=xx] [--autor=<name>]\n";
+   print "Usage:\tlangen2kvtml [--lang=xx] [--trans=xx] [--autor=<name>]\n";
    print "\t\t [--longsession] [--outdir=<dir>] { --country=x | vocfile }\n";
    exit 1;
 }
@@ -150,7 +150,7 @@ if ($ARGV[0] eq '' &&  $country eq "") {
 }
 
 # All logging information goes into this file
-$logfile = "/tmp/lang2kvt.log";
+$logfile = "/tmp/langen2kvtml.log";
 open(LOG, ">$logfile") || die "Cannot create $logfile: $!";
 
 &printflush(STDOUT,"Waiting for generating files ...\n");
@@ -276,7 +276,7 @@ sub get_info {
     }
     if (/^.[sS]tandard.,. ./) {
         $filestage = 1;
-	print KVT '<kvtml generator="lang2kvt v0.4.0"'."\n";
+	print KVT '<kvtml generator="langen2kvtml v0.4.0"'."\n";
 	print KVT 'title="'."$title".'" author="'."$author".'">'."\n\n";
 	# print "$tlang $ttrans\n";
     }
