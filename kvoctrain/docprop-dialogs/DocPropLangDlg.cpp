@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Jun 2 20:50:53 MET 1999
+    begin          : Sat Jun 2 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -28,34 +27,31 @@
 #include "DocPropLangDlg.h"
 #include "LangPropPage.h"
 
-#include <kvoctraindoc.h>
-#include <langset.h>
+#include <qstringlist.h>
+#include <qlayout.h>
+#include <qvaluelist.h>
+#include <qtabwidget.h>
 
 #include <kapplication.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 
+#include <kvoctraindoc.h>
+#include <langset.h>
 
-#define Inherited QTabDialog
 
 class kvoctraindoc;
 
-DocPropsLangDlg::DocPropsLangDlg
-(
-        kvoctrainDoc    *doc,
-        LangSet         *langset,
-	QWidget         *parent,
-	const char      *name
-)
-	:
-	Inherited( parent, name, true )
+DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *parent, const char *name, bool modal)
+  :
+  KDialogBase(Tabbed, i18n("Language Properties"), Ok|Cancel, Ok, parent, name, modal)
 {
-  setCaption( kapp->makeStdCaption(i18n("Language Properties")));
+  QFrame * page;
+  QVBoxLayout * topLayout;
+  LangPropPage* lpp;
 
-  vector<QString> tabs;
-  vector<QString> own_tabs;
-  vector<QString> own_pixmaps;
-  for (int i = 0; i < (int) doc->numLangs(); i++) {
+  for (int i = 0; i < (int) doc->numLangs(); i++) 
+  {
     QString s;
     if (i == 0)
       s = doc->getOriginalIdent();
@@ -64,62 +60,38 @@ DocPropsLangDlg::DocPropsLangDlg
 
     int idx = langset->indexShortId(s);
 
-    LangPropPage* lpp = new LangPropPage (doc, s,
-                                          doc->getConjugation(i),
-                                          doc->getArticle(i)
-					  );
-    connect (this, SIGNAL(aboutToShow()), lpp, SLOT(initFocus() ));
+    QString tabCaption;
 
-    langPages.push_back (lpp);
-
-    own_pixmaps.push_back (langset->PixMapFile(idx));
     if (idx >= 0)
-      own_tabs.push_back (langset->longId(idx));
+      tabCaption = (langset->longId(idx));
     else
-      own_tabs.push_back (s);
+      tabCaption = (s);
+
+    page = addPage(s, s, QPixmap(langset->PixMapFile(idx))); ///@todo The pixmaps don't show up in tabbed dialog
+    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+    lpp = new LangPropPage (doc, s, doc->getConjugation(i), doc->getArticle(i), page, name);
+    topLayout->addWidget( lpp );
+
+    langPages.append (lpp);
   }
-
-  for (int i = 0; i < (int) own_tabs.size(); i++) {
-    QString s = own_tabs[i];
-    QPixmap pix (own_pixmaps[i]);
-    QIconSet iconset (pix);
-    addTab (langPages[i], iconset, s);
-  }
-
-  setCancelButton(i18n("&Cancel"));
-  setOkButton(i18n("&OK"));
-
-  connect( this, SIGNAL(applyButtonPressed()), SLOT(okButton()) );
-  connect( this, SIGNAL(cancelButtonPressed()), SLOT(cancelButton()) );
 }
 
 
 Conjugation DocPropsLangDlg::getConjugation(int idx) const
 {
-   if (idx < (int) langPages.size() )
-     return langPages[idx]->getConjugation();
-   else
-     return Conjugation();
+  if (idx < (int) langPages.size())
+    return langPages[idx]->getConjugation();
+  else
+    return Conjugation();
 }
 
 
 Article DocPropsLangDlg::getArticle(int idx) const
 {
-   if (idx < (int) langPages.size() )
-     return langPages[idx]->getArticle();
-   else
-     return Article();
-}
-
-void DocPropsLangDlg::cancelButton()
-{
-  emit reject();
-}
-
-
-void DocPropsLangDlg::okButton()
-{
-  emit accept();
+  if (idx < (int) langPages.size() )
+    return langPages[idx]->getArticle();
+  else
+    return Article();
 }
 
 #include "DocPropLangDlg.moc"

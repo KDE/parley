@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    document language dialog class
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Jun 2 20:50:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                         
-    email                : kvoctrain@ewald-arnold.de                                    
+    begin          : Sat Jun 2 20:50:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -29,41 +26,33 @@
 #ifndef DocPropsLangDlg_included
 #define DocPropsLangDlg_included
 
-#include <qtabdialog.h>
+#include <qvaluelist.h>
+
+#include <kdialogbase.h>
 
 #include <GrammerManager.h>
 
-#include <vector>
-using namespace std;
+//#include <vector>
+//using namespace std;
 
 class kvoctrainDoc;
 class LangPropPage;
 class LangSet;
 
-class DocPropsLangDlg : public QTabDialog
+class DocPropsLangDlg : public KDialogBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
 
-    DocPropsLangDlg
-    (
-        kvoctrainDoc    *doc,
-        LangSet         *langset,
-        QWidget         *parent = NULL,
-        const char      *name = NULL
-    );
+  DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
-    Conjugation getConjugation(int idx) const;
-    Article     getArticle(int idx) const;
-
-protected slots:
-    void cancelButton();
-    void okButton();
+  Conjugation getConjugation(int idx) const;
+  Article     getArticle(int idx) const;
 
 protected:
-
-    vector<LangPropPage*> langPages;
+  typedef QValueList<LangPropPage*> LangPagesList;
+  LangPagesList langPages;
 };
 
 #endif // DocPropsLangDlg_included
