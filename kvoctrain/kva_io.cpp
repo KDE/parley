@@ -125,7 +125,7 @@ void kvoctrainApp::slotFileQuit()
 {
   ///////////////////////////////////////////////////////////////////
   // exits the Application
-  if(this->queryExit())
+  if(queryExit())
     {
       doc->setModified(false);  // Make sure not to bother about saving again.
       kapp->quit();
