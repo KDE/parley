@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.17  2003/05/18 19:55:04  binner
+    CVS_SILENT i18n style guide fixes
+
     Revision 1.16  2002/11/14 22:52:35  mueller
     compiler warning fixes
 
@@ -43,7 +46,7 @@
     removed compatibility for kde1
 
     Revision 1.7  2001/11/10 21:14:30  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.6  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column

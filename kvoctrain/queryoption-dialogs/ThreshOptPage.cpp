@@ -2,7 +2,7 @@
 
     $Id$
 
-                     threshhold options dialog page
+                     threshold options dialog page
 
     -----------------------------------------------------------------------
 

@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2003/02/27 00:41:22  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.11  2002/02/03 08:39:23  arnold
     moved checkbox to options dialog
 
@@ -32,7 +39,7 @@
     removed compatibility for kde1
 
     Revision 1.6  2001/11/10 21:13:42  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.5  2001/11/02 10:18:58  arnold
     fixed colum resizing and diplaying of grade colors

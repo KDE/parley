@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.10  2002/02/08 19:24:03  arnold
     fixed sleeping dialog, applied patches for Tru64 unix
 
@@ -308,7 +315,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_ARTICLE_GRP) {
       if (inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ARTICLE_GRP));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ARTICLE_GRP));
         return false;
       }
       if (! elem.isEndTag ()) {
@@ -323,7 +330,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
       if (! elem.isEndTag ()) {
         if (inEntry) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("unallowed occurence of tag <%1>").arg(KV_ART_ENTRY));
+                      i18n("unallowed occurrence of tag <%1>").arg(KV_ART_ENTRY));
           return false;
         }
         inEntry = true;
@@ -361,7 +368,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_FD && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_FD));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_FD));
         return false;
       }
       if (!extract_simple_tag (KV_ART_FD, xml, elem, fem_def))
@@ -370,7 +377,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_FI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_FI));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_FI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_FI, xml, elem, fem_indef))
@@ -379,7 +386,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_MD && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_MD));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_MD));
         return false;
       }
       if (!extract_simple_tag (KV_ART_MD, xml, elem, mal_def))
@@ -388,7 +395,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_MI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_MI));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_MI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_MI, xml, elem, mal_indef))
@@ -397,7 +404,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_ND && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_ND));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_ND));
         return false;
       }
       if (!extract_simple_tag (KV_ART_ND, xml, elem, nat_def))
@@ -406,7 +413,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_NI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_ART_NI));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_ART_NI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_NI, xml, elem, nat_indef))
@@ -542,7 +549,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     if (elem.tag () == KV_CONJUG_GRP) {
       if (inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CONJUG_GRP));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CONJUG_GRP));
         return false;
       }
       if (! elem.isEndTag ()) {
@@ -557,7 +564,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
       if (! elem.isEndTag ()) {
         if (inEntry) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("unallowed occurence of tag <%1>").arg(entry_tag));
+                      i18n("unallowed occurrence of tag <%1>").arg(entry_tag));
           return false;
         }
         inEntry = true;
@@ -635,7 +642,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P1S && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P1S));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P1S));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P1S, xml, elem, pers1_sing) )
@@ -644,7 +651,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P2S && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P2S));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P2S));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P2S, xml, elem, pers2_sing))
@@ -653,7 +660,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SF && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3SF));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3SF));
         return false;
       }
 
@@ -667,7 +674,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SM && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3SM));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3SM));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3SM, xml, elem, pers3_m_sing))
@@ -676,7 +683,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SN && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3SN));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3SN));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3SN, xml, elem, pers3_n_sing))
@@ -685,7 +692,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P1P && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P1P));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P1P));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P1P, xml, elem, pers1_plur) )
@@ -694,7 +701,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P2P && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P2P));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P2P));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P2P, xml, elem, pers2_plur))
@@ -703,7 +710,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PF && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3PF));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3PF));
         return false;
       }
 
@@ -717,7 +724,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PM && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3PM));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3PM));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3PM, xml, elem, pers3_m_plur))
@@ -726,7 +733,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PN && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unallowed occurence of tag <%1>").arg(KV_CON_P3PN));
+                    i18n("unallowed occurrence of tag <%1>").arg(KV_CON_P3PN));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3PN, xml, elem, pers3_n_plur))

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.7  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.6  2001/12/26 15:10:47  mueller
     CVSSILINT: fixincludes
 
@@ -23,7 +26,7 @@
     removed compatibility for kde1
 
     Revision 1.4  2001/11/10 21:12:18  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.3  2001/10/13 11:45:29  coolo
     includemocs and other smaller cleanups. I tried to fix it, but as it's still

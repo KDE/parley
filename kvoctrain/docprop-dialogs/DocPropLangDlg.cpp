@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2002/01/04 21:07:58  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.9  2001/12/26 15:11:08  mueller
     CVSSILINT: fixincludes
 
@@ -23,7 +26,7 @@
     removed compatibility for kde1
 
     Revision 1.7  2001/11/10 21:12:40  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.6  2001/11/09 14:18:28  arnold
     fixed and improved some dialog pages

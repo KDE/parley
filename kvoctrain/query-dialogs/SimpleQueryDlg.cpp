@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/11/14 22:52:35  mueller
+    compiler warning fixes
+
     Revision 1.14  2002/09/24 15:07:40  binner
     CVS_SILENT Style guide text fix, use "cvslastchange" or X-WebCVS header to view
 
@@ -37,7 +40,7 @@
     removed compatibility for kde1
 
     Revision 1.7  2001/11/10 21:14:30  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.6  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2002/03/21 00:50:15  staikos
+    Build fix for gcc 3.1 approved by dirk
+
     Revision 1.8  2001/12/30 18:42:19  arnold
     improved reaction upon 'empty' query selections
 
@@ -26,7 +29,7 @@
     removed compatibility for kde1
 
     Revision 1.5  2001/11/10 21:14:50  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.4  2001/10/28 16:56:56  arnold
     replaced qtarch dialog files with qtdesigner

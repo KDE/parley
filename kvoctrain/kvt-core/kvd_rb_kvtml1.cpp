@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.12  2002/01/19 11:24:52  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.11  2002/01/18 04:40:09  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -757,7 +760,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_LESS_GRP && !elem.isEndTag() ) {
       if (lessgroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       lessgroup = true;
@@ -768,7 +771,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ARTICLE_GRP && !elem.isEndTag() ) {
       if (articlegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       articlegroup = true;
@@ -779,7 +782,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_CONJUG_GRP && !elem.isEndTag() ) {
       if (conjuggroup) {
          errorKvtMl (xml.lineNumber(),
-                     i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                     i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
          return false;
       }
       conjuggroup = true;
@@ -790,7 +793,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_OPTION_GRP && !elem.isEndTag() ) {
       if (optgroup)  {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       optgroup = true;
@@ -801,7 +804,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TYPE_GRP && !elem.isEndTag() ) {
       if (attrgroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       attrgroup = true;
@@ -812,7 +815,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TENSE_GRP && !elem.isEndTag() ) {
       if (tensegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       tensegroup = true;
@@ -824,7 +827,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_USAGE_GRP && !elem.isEndTag() ) {
       if (usagegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       usagegroup = true;

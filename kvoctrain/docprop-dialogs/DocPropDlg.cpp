@@ -16,6 +16,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.9  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.8  2002/01/04 21:07:58  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -26,7 +33,7 @@
     removed compatibility for kde1
 
     Revision 1.5  2001/11/10 21:12:40  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.4  2001/10/21 15:22:00  arnold
     replaced qtarch dialog files by qtdesigner

@@ -15,6 +15,13 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.11  2003/02/27 00:41:21  antlarr
+    Made _many_ changes to kvoctrain when trying to fix the comparisons to "" and found
+    some _very_ strange uses of QString and i18n, together with some very wrong
+    and strange usages.
+
+    CCMAIL:ewald@ewald-arnold.de
+
     Revision 1.10  2001/12/26 15:11:53  mueller
     CVSSILINT: fixincludes
 
@@ -128,7 +135,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
   if (elem.tag() == KV_EXPR && !elem.isEndTag() ) {
     errorKvtMl (xml.lineNumber(),
-                i18n("unallowed occurence of tag <%1>").arg(elem.tag()));
+                i18n("unallowed occurrence of tag <%1>").arg(elem.tag()));
     return false;
   }
 
@@ -143,7 +150,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     if (elem.tag() == KV_ORG && !elem.isEndTag() ) {
       if (org_found) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
         return false;
       }
       org_found = true;
@@ -300,7 +307,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     // found translation <t>
 
     else if (elem.tag() == KV_TRANS && !elem.isEndTag() ) {
-      if (!org_found) {   // must be preceeded by "original"
+      if (!org_found) {   // must be preceded by "original"
         errorKvtMl (xml.lineNumber(),
                     i18n("starting tag <%1> is mssing").arg(KV_ORG));
         return false;

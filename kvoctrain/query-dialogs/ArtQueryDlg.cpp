@@ -15,6 +15,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.13  2002/01/20 11:41:01  arnold
+    fixed issues with modeless dialogs
+
     Revision 1.12  2002/01/04 21:09:16  binner
     CVS_SILENT Fixed capitalisation.
 
@@ -31,7 +34,7 @@
     removed compatibility for kde1
 
     Revision 1.7  2001/11/10 21:14:30  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.6  2001/11/09 10:41:18  arnold
     removed ability to display a different font for each column

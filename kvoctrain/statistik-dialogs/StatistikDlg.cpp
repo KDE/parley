@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.8  2002/01/04 21:09:38  binner
+    CVS_SILENT Fixed capitalisation.
+
     Revision 1.7  2001/12/26 15:13:19  mueller
     CVSSILINT: fixincludes
 
@@ -23,7 +26,7 @@
     removed compatibility for kde1
 
     Revision 1.5  2001/11/10 21:15:11  arnold
-    removed icons and compatibilty for kde1
+    removed icons and compatibility for kde1
 
     Revision 1.4  2001/10/19 17:52:18  arnold
     replaced dialog files from qtarch by qtdesigner
