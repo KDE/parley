@@ -54,7 +54,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Common properties</string>
+                <string>Common Properties</string>
             </property>
             <vbox>
                 <property stdset="1">

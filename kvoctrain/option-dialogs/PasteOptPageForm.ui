@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Paste and copy options</string>
+                <string>Paste and Copy Options</string>
             </property>
             <grid>
                 <property stdset="1">

@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Query options</string>
+                <string>Query Options</string>
             </property>
             <vbox>
                 <property stdset="1">
@@ -55,7 +55,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Time per query</string>
+                        <string>Time per Query</string>
                     </property>
                     <grid>
                         <property stdset="1">

@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Query blocking and expiring times</string>
+                <string>Query Blocking and Expiring Times</string>
             </property>
             <grid>
                 <property stdset="1">

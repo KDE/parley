@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>General options</string>
+                <string>General Options</string>
             </property>
             <hbox>
                 <property stdset="1">
@@ -151,7 +151,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Column resizing</string>
+                        <string>Column Resizing</string>
                     </property>
                     <vbox>
                         <property stdset="1">

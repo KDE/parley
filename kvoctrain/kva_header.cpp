@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.15  2002/01/19 11:04:02  mhunter
+    CVS_SILENT Corrected typographical errors
+
     Revision 1.14  2002/01/18 04:40:08  waba
     Remove linbreaks from messageboxes.
     Use KMessageBox.
@@ -598,12 +601,12 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
           name = langset.longId(i);
 
         format = i18n("You are about to reset the knowledge data of a "
-                      "whole language.\n\nDo you really want to reset \"%1\" ?");
+                      "whole language.\n\nDo you really want to reset \"%1\"?");
       }
       else {
         name = lessons->text(act_lesson);
         format = i18n("You are about to reset the knowledge data of a "
-                      "lesson.\n\nDo you really want to reset \"%1\" ?");
+                      "lesson.\n\nDo you really want to reset \"%1\"?");
       }
 
       msg = format.arg(name);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.21  2002/02/08 19:24:02  arnold
+    fixed sleeping dialog, applied patches for Tru64 unix
+
     Revision 1.20  2002/01/26 15:51:26  arnold
     fixes due to new entry dialog
 
@@ -169,7 +172,7 @@ CommonEntryPage::CommonEntryPage
     connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
     connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
-    usage_label->setTitle(i18n("usage (area) of an expression", "&Usage Labels"));
+    usage_label->setTitle(i18n("Usage (area) of an Expression", "&Usage Labels"));
     pronunce_line->setFont(ipafont);
 
     lesson_box->setValidator (new BlockAllValidator() );

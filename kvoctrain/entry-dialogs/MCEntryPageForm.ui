@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Suggestions for multiple choice</string>
+                <string>Suggestions for Multiple Choice</string>
             </property>
             <grid>
                 <property stdset="1">

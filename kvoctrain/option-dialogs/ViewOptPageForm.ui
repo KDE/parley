@@ -37,7 +37,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Viewing options</string>
+                <string>Viewing Options</string>
             </property>
             <grid>
                 <property stdset="1">
@@ -63,7 +63,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Grade colors</string>
+                        <string>Grade Colors</string>
                     </property>
                     <grid>
                         <property stdset="1">

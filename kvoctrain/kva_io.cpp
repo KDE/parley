@@ -15,6 +15,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.30  2002/04/12 10:09:55  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.29  2002/03/14 02:00:52  waba
     * A bunch of fixes for saving files on exit.
     * Use saveAs-dialog to save modified examples
@@ -220,7 +225,7 @@ bool kvoctrainApp::queryExit()
   if (!save)
   {
      int exit = KMessageBox::warningYesNoCancel(this,
-               i18n("Vocabulary is modified.\n\nSave file before exit ?\n"),
+               i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
                kapp->makeStdCaption(""),
                KStdGuiItem::save(), KStdGuiItem::discard());
      if (exit==KMessageBox::Yes) {

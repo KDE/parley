@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>General document properties</string>
+                <string>General Document Properties</string>
             </property>
             <grid>
                 <property stdset="1">

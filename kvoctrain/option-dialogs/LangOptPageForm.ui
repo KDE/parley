@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Languages codes</string>
+                <string>Languages Codes</string>
             </property>
             <vbox>
                 <property stdset="1">
@@ -55,7 +55,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Available languages</string>
+                        <string>Available Languages</string>
                     </property>
                     <grid>
                         <property stdset="1">
@@ -184,7 +184,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Add a new language code</string>
+                        <string>Add a new Language Code</string>
                     </property>
                     <grid>
                         <property stdset="1">

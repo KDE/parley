@@ -70,7 +70,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Original expression</string>
+                        <string>Original Expression</string>
                     </property>
                     <grid>
                         <property stdset="1">

@@ -16,6 +16,11 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.45  2002/04/12 10:09:55  coolo
+    replacing tons of these (for gcc 3):
+    -      queryList.erase(&queryList[i], &queryList[i+1]);
+    +      queryList.erase(queryList.begin() + i);
+
     Revision 1.44  2002/03/13 08:22:29  waba
     * Use KRandomSequence instead of rand()
     * Fix crash in "resume query".
@@ -867,7 +872,7 @@ void kvoctrainApp::slotRemoveRow()
 
   if (!hasSelection()) {
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                  i18n("Do you really want to delete the selected entry ?\n"),
+                  i18n("Do you really want to delete the selected entry?\n"),
                   kapp->makeStdCaption("")))
     {
       RowTable *table = view->getTable();
@@ -878,7 +883,7 @@ void kvoctrainApp::slotRemoveRow()
   }
   else {
     if(KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                  i18n("Do you really want to delete the selected range ?\n"),
+                  i18n("Do you really want to delete the selected range?\n"),
                   kapp->makeStdCaption("")));
     {
       RowTable *table = view->getTable();
@@ -1198,7 +1203,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
      QString msg = i18n("To append a new language which is not listed in "
                         "the submenu, you must first add its data in the "
                         "general options dialog.\n"
-                        "Should this dialog be invoked now ?");
+                        "Should this dialog be invoked now?");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
                   kapp->makeStdCaption("")));

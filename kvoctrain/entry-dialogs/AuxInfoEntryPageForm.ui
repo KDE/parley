@@ -54,7 +54,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Additional properties</string>
+                <string>Additional Properties</string>
             </property>
             <grid>
                 <property stdset="1">

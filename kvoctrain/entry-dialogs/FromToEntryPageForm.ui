@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Properties from original</string>
+                <string>Properties From Original</string>
             </property>
             <vbox>
                 <property stdset="1">
@@ -159,7 +159,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Last query &amp;date</string>
+                        <string>Last Query &amp;Date</string>
                     </property>
                     <hbox>
                         <property stdset="1">
@@ -265,7 +265,7 @@
                     </property>
                     <property stdset="1">
                         <name>title</name>
-                        <string>Query counters</string>
+                        <string>Query Counters</string>
                     </property>
                     <grid>
                         <property stdset="1">

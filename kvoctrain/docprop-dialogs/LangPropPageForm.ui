@@ -36,7 +36,7 @@
             </property>
             <property stdset="1">
                 <name>title</name>
-                <string>Language elements</string>
+                <string>Language Elements</string>
             </property>
             <grid>
                 <property stdset="1">
@@ -524,7 +524,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>&amp;common</string>
+                                <string>&amp;Common</string>
                             </property>
                         </widget>
                         <widget row="4"  column="3" >
@@ -542,7 +542,7 @@
                             </property>
                             <property stdset="1">
                                 <name>text</name>
-                                <string>c&amp;ommon</string>
+                                <string>C&amp;ommon</string>
                             </property>
                         </widget>
                         <widget row="5"  column="0"  rowspan="1"  colspan="2" >
