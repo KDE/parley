@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.10  2001/12/01 11:28:13  arnold
+    fixed flickering in query dialogs
+
     Revision 1.9  2001/11/20 01:38:03  jsinger
     Proofreading changes for grammar and spelling. No functional changes.
 
@@ -81,6 +84,7 @@
 #include <kglobal.h>
 #include <ksimpleconfig.h>
 #include <klocale.h>
+#include <kdebug.h>
 #include <kstddirs.h>
 
 void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
@@ -150,7 +154,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-exmp.xpm")), i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/run-para.xpm")), i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
     header_m->insertSeparator();
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/reset.xpm")), i18n("Reset &grades"), (header << 16) | IDH_RESET_GRADE);
@@ -212,7 +216,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     header_m->insertSeparator();
-    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(QPixmap(locate("data", "kvoctrain/sort_alpha.xpm")), SORT_ALPHA, (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(QPixmap(locate("data", "kvoctrain/flags.xpm")), i18n("Set &language"), langs_m, (2 << 16) | IDH_NULL);
   }
 
@@ -423,7 +427,7 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-      cerr << "kvoctrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
+      kdError() << "kvoctrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
   }
 }
 
@@ -436,11 +440,27 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
 //cout << header1 << " " << header2 << " " << cmd << endl;
 
-  if (header1 >= (int) doc->numLangs())
-    return;
+  switch (cmd) {
+    case IDH_SORT_COL_ALPHA:
+      view->getTable()->sortByColumn_alpha(header1);
+      return;
+    break;
 
-  if (header2 >= (int) doc->numLangs())
+    case IDH_SORT_COL_NUM:
+      view->getTable()->sortByColumn_index(header1);
+      return;
+    break;
+  }
+
+  if (header1 >= (int) doc->numLangs()) {
+    kdError() << "header1 >= (int) doc->numLangs()\n";
     return;
+  }
+
+  if (header2 >= (int) doc->numLangs()) {
+    kdError() << "header2 >= (int) doc->numLangs()\n";
+    return;
+  }
 
   switch (cmd) {
     case IDH_NULL:
@@ -454,14 +474,6 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     case ID_RESUME_MULTIPLE:
 //      slotStartMultipleChoice();
 //      slotTimeOutMultipleChoice();
-    break;
-
-    case IDH_SORT_COL_ALPHA:
-      view->getTable()->sortByColumn_alpha(header1);
-    break;
-
-    case IDH_SORT_COL_NUM:
-      view->getTable()->sortByColumn_index(header1);
     break;
 
     case IDH_REMOVE: {
@@ -597,7 +609,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-      cerr << "kvoctrainApp::slotHeaderCallBack: got unknown command\n";
+       kdError() << "kvoctrainApp::slotHeaderCallBack: got unknown command\n";
 
   }
   slotStatusMsg(IDS_DEFAULT);

@@ -16,6 +16,9 @@
     -----------------------------------------------------------------------
 
     $Log$
+    Revision 1.19  2001/12/16 16:51:25  arnold
+    fixed keyboard handling in main view
+
     Revision 1.18  2001/12/14 16:05:49  arnold
     fixed handling of table font
 
@@ -377,6 +380,11 @@ void kvoctrainTable::sortByColumn_alpha(int header)
   if (header == KV_COL_MARK)
    return;
 
+  if (header >= numRows() ) {
+    kdError() << "header >= numRows()\n";
+    return;
+  }
+
   if (m_rows && !m_rows->isAllowedSorting() ) {
      KMessageBox::information(this, 
                i18n("Sorting is currently turned off for this document.\n"
@@ -396,7 +404,7 @@ void kvoctrainTable::sortByColumn_alpha(int header)
       sortdir = m_rows->sortByLesson_alpha();
   }
   horizontalHeader()->setSortIndicator ( header, sortdir);
-  updateContents(0, currentColumn());
+  repaintContents();
   m_rows->setModified();
   QApplication::restoreOverrideCursor();
 }
@@ -406,6 +414,11 @@ void kvoctrainTable::sortByColumn_index(int header)
 {
   if (header == KV_COL_MARK)
    return;
+
+  if (header >= numRows() ) {
+    kdError() << "header >= numRows()\n";
+    return;
+  }
 
   if (m_rows && !m_rows->isAllowedSorting() ) {
      KMessageBox::information(this, 
@@ -426,7 +439,7 @@ void kvoctrainTable::sortByColumn_index(int header)
       sortdir = m_rows->sortByLesson_index();
   }
   horizontalHeader()->setSortIndicator ( header, sortdir);
-  updateContents(0, currentColumn());
+  repaintContents();
   m_rows->setModified();
   QApplication::restoreOverrideCursor();
 }
