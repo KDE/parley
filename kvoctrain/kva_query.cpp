@@ -76,6 +76,7 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
                     lessons,
                     &querymanager,
                     swap_querydir,
+                    alt_learn,
                     block,
                     expire,
                     presettings);
@@ -91,6 +92,7 @@ void kvoctrainApp::slotQueryOptions(int pageindex)
       showcounter = qodlg.getShowCounter();
       querymanager = qodlg.getQueryManager();
       swap_querydir = qodlg.getSwapDir();
+      alt_learn = qodlg.getAltLearn();
       block = qodlg.getBlock();
       expire = qodlg.getExpire();
       presettings = qodlg.getPreSetting();
@@ -598,7 +600,7 @@ void kvoctrainApp::slotStartQuery(QString translang, QString orglang, bool creat
 
   if (create_new || queryList.size() == 0)
     queryList = querymanager.select (doc, act_lesson, oindex, tindex,
-                                     swap_querydir, block, expire);
+                                     swap_querydir, alt_learn, block, expire);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -720,7 +722,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   int tindex = view->getTable()->findIdent(act_query_trans);
   int oindex = view->getTable()->findIdent(act_query_org);
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  QueryEntryRef qer = random_expr1[random_query_nr];
+  kvoctrainExpr *exp = qer.exp;
 
   if (res != QueryDlgBase::StopIt) {
     doc->setModified();
@@ -744,8 +747,14 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
         return;
       }
       else {
-        random_expr2.push_back (random_expr1[random_query_nr]);
         random_expr1.erase (random_expr1.begin() + random_query_nr);
+
+        //When you get it wrong Leisner style, it ends up in the back
+        //of the line
+        if (alt_learn)
+          random_expr1.push_back (qer);
+        else
+          random_expr2.push_back (qer);
 
         if (oindex == 0) {
           exp->incBadCount(tindex, false);
@@ -760,8 +769,14 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
     case QueryDlgBase::Unknown :
       num_queryTimeout = 0;
-      random_expr2.push_back (random_expr1[random_query_nr]);
       random_expr1.erase (random_expr1.begin() + random_query_nr);
+
+      //When you get it wrong Leisner style, it ends up in the back
+      //of the line
+      if (alt_learn)
+        random_expr1.push_back (qer);
+      else
+        random_expr2.push_back (qer);
 
       if (oindex == 0) {
         exp->incBadCount(tindex, false);
@@ -775,6 +790,52 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
     case QueryDlgBase::Known :
       num_queryTimeout = 0;
+      if (alt_learn) {
+        //we always store the current question in the random_expr
+        //array, so delete it from there.
+        random_expr1.erase (random_expr1.begin() + random_query_nr);
+
+        //The user guessed right (or she actually knew the
+        //answer). Move the exp up to next level.
+        switch (query_cycle) {
+        case 1:
+          correct_1_times.push_back (qer);
+          break;
+        case 2:
+          correct_2_times.push_back (qer);
+          break;
+        case 3:
+          correct_3_times.push_back (qer);
+          break;
+        case 4:
+          //The user has answered correctly four times in a row. She
+          //is good!
+          exp->setInQuery(false);
+          
+          query_num--;
+          if (oindex == 0) {
+            exp->incGrade(tindex, false);
+          }
+          else {
+            exp->incGrade(oindex, true);
+          }
+          break;
+        default:
+          kdError() << "You should not be able to answer correctly more than 4 times\n";
+          slotStopQuery(true);
+          return;
+        }
+
+        if (random_expr1.size() == 0
+            && correct_1_times.size() == 0
+            && correct_2_times.size() == 0
+            && correct_3_times.size() == 0) {
+          slotStopQuery (true);
+          return;
+        }
+
+      }
+      else { //not alt_learn
       query_num--;
       if (query_cycle <= 1) {
         if (oindex == 0) {
@@ -801,6 +862,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
         slotStopQuery (true);
         return;
       }
+      }
     break;
 
     case QueryDlgBase::StopIt :
@@ -815,6 +877,51 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       return;
   }
 
+  if (alt_learn) {
+
+    if (correct_3_times.size() > 7 ||
+        (correct_3_times.size() > 0
+         && correct_2_times.size() == 0
+         && correct_1_times.size() == 0
+         && random_expr1.size() == 0)) {
+      QueryEntryRef t_qer = correct_3_times[0];
+      correct_3_times.erase(correct_3_times.begin());
+      random_query_nr = random_expr1.size();
+      random_expr1.push_back(t_qer);
+      query_cycle = 4;
+    }
+    else if (correct_2_times.size() > 5 ||
+             (correct_2_times.size() > 0
+              && correct_1_times.size() == 0
+              && random_expr1.size() == 0)) {
+      QueryEntryRef t_qer = correct_2_times[0];
+      correct_2_times.erase(correct_2_times.begin());
+      random_query_nr = random_expr1.size();
+      random_expr1.push_back(t_qer);
+      query_cycle = 3;
+    }
+    else if (correct_1_times.size() > 5 ||
+             (correct_1_times.size() > 0
+              && random_expr1.size() == 0)) {
+      QueryEntryRef t_qer = correct_1_times[0];
+      correct_1_times.erase(correct_1_times.begin());
+      random_query_nr = random_expr1.size();
+      random_expr1.push_back(t_qer);
+      query_cycle = 2;
+    }
+    else {
+      //else we just pick from random_expr1 then
+      if (random_expr1.size() == 0 ) {
+        slotStopQuery(true);
+        return;
+      }
+      query_cycle = 1;
+
+      random_query_nr = random.getLong(random_expr1.size());
+    }
+
+  }
+  else {  // not alt_learn
   if (random_expr1.size() == 0 ) {
     if (   random_expr2.size() == 0
         && queryList.size() == 0) {
@@ -841,6 +948,8 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
   
   random_query_nr = random.getLong(random_expr1.size());
+  }
+
   exp = random_expr1[random_query_nr].exp;
 
   tindex = view->getTable()->findIdent(act_query_trans);

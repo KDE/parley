@@ -291,6 +291,9 @@ private:
   friend class kvoctrainView;
 
   vector<QueryEntryRef> random_expr1, random_expr2;
+  // Vectors for use in Leitner style learning. There is no
+  // correct_0_times, we simply reuse random_expr1.
+  vector<QueryEntryRef> correct_1_times, correct_2_times, correct_3_times;
   QuerySelection queryList;
 
   QTimer          *btimer;
@@ -301,6 +304,7 @@ private:
   bool             querymode;
   bool             querying;
   bool             swap_querydir;
+  bool             alt_learn;
   bool             expire;
   bool             block;
   QString          def_lang;

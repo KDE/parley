@@ -53,6 +53,7 @@ QueryOptionsDlg::QueryOptionsDlg
         KComboBox    *lessons,
         QueryManager *_manager,
         bool          swapdir,
+        bool          altlearn,
         bool          block,
         bool          expire,
         vector<PreSetting>  preset,
@@ -72,7 +73,7 @@ QueryOptionsDlg::QueryOptionsDlg
   groupOptPage = new GroupOptPage (settings, this, name);
   threshOptPage = new ThreshOptPage (&manager, lessons, this, name);
   queryOptPage = new QueryOptPage (mqtime, showcounter, type_timeout, &manager,
-                                   swapdir, this, name);
+                                   swapdir, altlearn, this, name);
   blockOptPage = new BlockOptPage (&manager, block, expire, this, name);
 
   addTab( groupOptPage, i18n("&Groups"));
@@ -141,6 +142,7 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
     QString s;
     int mqtime = 0;
     bool swap = false;
+    bool altlearn = false;
     bool show = false;
     kvq_timeout_t type_to = kvq_notimeout;
     if (extract (line, s))
@@ -148,10 +150,12 @@ void QueryOptionsDlg::slotSelectGroup(int grp)
     if (extract (line, s))
       swap = (bool) s.toInt();
     if (extract (line, s))
+      altlearn = (bool) s.toInt();
+    if (extract (line, s))
       show = (bool) s.toInt();
     if (extract (line, s))
       type_to = (kvq_timeout_t) s.toInt();
-    queryOptPage->setStates (mqtime, swap, show, type_to);
+    queryOptPage->setStates (mqtime, swap, altlearn, show, type_to);
 
 #define QCT(x)  QueryManager::CompType(x)
 
@@ -255,6 +259,8 @@ void QueryOptionsDlg::slotModifyGroup(int grp)
     s.setNum(getMQueryTime());
     line += s + ',';
     s.setNum(getSwapDir());
+    line += s + ',';
+    s.setNum(getAltLearn());
     line += s + ',';
     s.setNum((int) getShowCounter());
     line += s + ',';

@@ -56,6 +56,7 @@ public:
         KComboBox    *lessons,
         QueryManager *manager,
         bool          swapdir,
+        bool          altlearn,
         bool          block,
         bool          expire,
         vector<PreSetting>  preset,
@@ -66,6 +67,7 @@ public:
     int  getMQueryTime()  const { return queryOptPage->getMQueryTime(); }
     bool getShowCounter() const { return queryOptPage->getShowCounter(); }
     int  getSwapDir()     const { return queryOptPage->getSwapDir(); }
+    int  getAltLearn()    const { return queryOptPage->getAltLearn(); }
     kvq_timeout_t getTypeQueryTimeout()   const
            { return queryOptPage->getTypeQueryTimeout(); }
 

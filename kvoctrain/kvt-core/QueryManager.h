@@ -177,7 +177,7 @@ class QueryManager
 
   QuerySelection select(kvoctrainDoc*, int act_lesson,
                         int oindex, int tindex,
-                        bool swap, bool block, bool expire);
+                        bool swap, bool altlearn, bool block, bool expire);
 
   bool validate(kvoctrainExpr *expr, int act_lesson,
                 int index, QString type);

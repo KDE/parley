@@ -85,6 +85,7 @@
 #define       CFG_MAXTIME_PER          "MaxTimePer"
 #define       CFG_QUERYMODE            "QueryMode"
 #define       CFG_SWAP_DIR             "SwapDir"
+#define       CFG_ALT_LEARN            "AltLearn"
 #define       CFG_EXPIRE               "Expire"
 #define       CFG_BLOCK                "Block"
 #define       CFG_DEFTRANS             "DefaultTranslation"

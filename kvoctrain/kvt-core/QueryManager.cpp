@@ -244,7 +244,7 @@ void QueryManager::setExpireItem (int item, int grade)
 
 QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
                                     int oindex, int tindex,
-                                    bool swap, bool block, bool expire)
+                                    bool swap, bool altlearn, bool block, bool expire)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -257,12 +257,20 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    float f_ent_percent = doc->numEntries() / 100.0;
    emit doc->progressChanged(doc, 0);
 
+   //Note that Leitner style learning (altlearn) normally only uses 20
+   //entries, we just ignore that here
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
      if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
        emit doc->progressChanged(doc, ent_no / f_ent_percent);
 
      kvoctrainExpr *expr = doc->getEntry(i);
+     unsigned int lessonno;
+     if (altlearn)
+       lessonno = 1; //We only use a single array in Leitner style
+     else
+       lessonno = expr->getLesson();
+
      if (expr->isActive() ){
        if (swap) {
          if (  validate (expr, act_lesson,
@@ -271,7 +279,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
              ||validate (expr, act_lesson,
                        tindex, oindex,
                        block, expire)) {
-           random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+           random[lessonno].push_back (QueryEntryRef(expr, i));
            expr->setInQuery(true);
          }
        }
@@ -279,7 +287,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
          if (validate (expr, act_lesson,
                        oindex, tindex,
                        block, expire)) {
-           random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+           random[lessonno].push_back (QueryEntryRef(expr, i));
            expr->setInQuery(true);
          }
        }

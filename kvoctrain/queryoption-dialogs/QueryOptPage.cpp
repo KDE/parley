@@ -47,6 +47,7 @@ QueryOptPage::QueryOptPage
         kvq_timeout_t type_to,
         QueryManager *_manager,
         bool          _swapdir,
+        bool          _altlearn,
 	QWidget      *parent,
 	const char   *name
 )
@@ -62,6 +63,7 @@ QueryOptPage::QueryOptPage
    connect( r_cont_to, SIGNAL(clicked()), SLOT(slotContTimeOut()) );
    connect( r_show_to, SIGNAL(clicked()), SLOT(slotShowTimeout()) );
    connect( swap, SIGNAL(toggled(bool)), SLOT(slotCheckSwap(bool)) );
+   connect( alt_learn, SIGNAL(toggled(bool)), SLOT(slotAltLearn(bool)) );
 
    connect( e_mqtime, SIGNAL(textChanged(const QString&)), SLOT(slotChangeMQTime(const QString&)) );
 
@@ -73,7 +75,7 @@ QueryOptPage::QueryOptPage
    e_mqtime->setValidator (validator);
    label_mqtime->setBuddy(e_mqtime);
 
-   setStates(_mqtime, _swapdir, show, type_to);
+   setStates(_mqtime, _swapdir, _altlearn, show, type_to);
 
    // FIXME: until really needed
    GroupBox5->hide();
@@ -88,7 +90,7 @@ QueryOptPage::QueryOptPage
 }
 
 
-void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool show, kvq_timeout_t type_to)
+void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to)
 {
    ask_sub->setEnabled(false);
    ask_verbcon->setEnabled(false);
@@ -100,6 +102,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool show, kvq_timeout_
    ask_para->setEnabled(false);
 
    swapdir = _swapdir;
+   altlearn = _altlearn;
    mqtime = _mqtime;
    showCounter = show;
    type_timeout = type_to;
@@ -109,6 +112,7 @@ void QueryOptPage::setStates(int _mqtime, bool _swapdir, bool show, kvq_timeout_
    s.setNum (mqtime);
    e_mqtime->setText (s);
    swap->setChecked(swapdir);
+   alt_learn->setChecked(altlearn);
    showrem->setChecked(show);
 
    if (type_to == kvq_show) {
@@ -145,6 +149,12 @@ void QueryOptPage::slotChangeMQTime(const QString& s)
 void QueryOptPage::slotCheckSwap(bool state)
 {
    swapdir = state;
+   emit modifySetting();
+}
+
+void QueryOptPage::slotAltLearn(bool state)
+{
+   altlearn = state;
    emit modifySetting();
 }
 

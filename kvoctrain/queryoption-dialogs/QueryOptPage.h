@@ -51,6 +51,7 @@ public:
         kvq_timeout_t type_timeout,
         QueryManager *_manager,
         bool          swapdir,
+        bool          altlearn,
         QWidget      *parent = NULL,
         const char   *name = NULL
     );
@@ -58,9 +59,10 @@ public:
     kvq_timeout_t  getTypeQueryTimeout()   const { return type_timeout; }
     int  getMQueryTime()   const { return mqtime; }
     bool getSwapDir()      const { return swapdir; }
+    bool getAltLearn()     const { return altlearn; }
     bool getShowCounter()  const { return showCounter; }
 
-    void setStates(int _mqtime, bool _swapdir, bool show, kvq_timeout_t type_to);
+    void setStates(int _mqtime, bool _swapdir, bool _altlearn, bool show, kvq_timeout_t type_to);
 
 protected:
     void keyPressEvent( QKeyEvent * );
@@ -74,6 +76,7 @@ public slots:
 protected slots:
     void slotChangeMQTime(const QString&);
     void slotCheckSwap(bool);
+    void slotAltLearn(bool);
     void slotContTimeOut();
     void slotNoTimeout();
     void slotShowTimeout();
@@ -85,6 +88,7 @@ protected:
     QueryManager  manager;
     int           mqtime;
     bool          swapdir;
+    bool          altlearn;
     kvq_timeout_t type_timeout;
     bool          showCounter;
 };

@@ -124,6 +124,7 @@ void kvoctrainApp::saveOptions(bool all)
     config->writeEntry(CFG_MAXTIME_PER, maxqueryTime);
     config->writeEntry(CFG_SHOWCOUNTER, showcounter);
     config->writeEntry(CFG_SWAP_DIR, swap_querydir);
+    config->writeEntry(CFG_ALT_LEARN, alt_learn);
     config->writeEntry(CFG_BLOCK, block);
     config->writeEntry(CFG_EXPIRE, expire);
     config->writeEntry(CFG_QUERYTIMEOUT, type_querytimeout);
@@ -244,6 +245,7 @@ void kvoctrainApp::readOptions()
   maxqueryTime = config->readNumEntry(CFG_MAXTIME_PER, 20*1000);
   showcounter = config->readNumEntry(CFG_SHOWCOUNTER, false);
   swap_querydir= config->readBoolEntry(CFG_SWAP_DIR, false);
+  alt_learn= config->readBoolEntry(CFG_ALT_LEARN, false);
   block = config->readBoolEntry(CFG_BLOCK, true);
   expire = config->readBoolEntry(CFG_EXPIRE, true);
 
