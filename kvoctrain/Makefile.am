@@ -45,7 +45,7 @@ EXTRA_DIST = $(APPS_FILES) $(XMP_FILES) langen2kvtml
 
 install-data-local:
 	$(mkinstalldirs) $(DESTDIR)$(kde_bindir)
-	$(INSTALL_PROGRAM) $(srcdir)/langen2kvtml $(DESTDIR)$(kde_bindir)/langen2kvtml
+	$(INSTALL_SCRIPT) $(srcdir)/langen2kvtml $(DESTDIR)$(kde_bindir)/langen2kvtml
 	$(mkinstalldirs) $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/
 	$(INSTALL_DATA) $(srcdir)/kvoctrain.desktop $(DESTDIR)$(kde_appsdir)/Edutainment/Languages/kvoctrain.desktop
 	$(mkinstalldirs) $(DESTDIR)$(kde_icondir)/
