@@ -536,7 +536,7 @@
                                 <cstring>label_split_max_fields</cstring>
                             </property>
                             <property name="text">
-                                <string>Maximum number of &amp;fields</string>
+                                <string>Maximum number of &amp;fields:</string>
                             </property>
                             <property name="buddy" stdset="0">
                                 <cstring>split_max_fields</cstring>
