@@ -1,13 +1,10 @@
-<!DOCTYPE UI><UI>
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
 <class>GenStatPageForm</class>
-<widget>
-    <class>QDialog</class>
-    <property stdset="1">
-        <name>name</name>
+<widget class="QDialog">
+    <property name="name">
         <cstring>Form1</cstring>
     </property>
-    <property stdset="1">
-        <name>geometry</name>
+    <property name="geometry">
         <rect>
             <x>0</x>
             <y>0</y>
@@ -15,249 +12,200 @@
             <height>499</height>
         </rect>
     </property>
-    <property stdset="1">
-        <name>caption</name>
+    <property name="caption">
         <string>-</string>
     </property>
     <grid>
-        <property stdset="1">
-            <name>margin</name>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
             <number>11</number>
         </property>
-        <property stdset="1">
-            <name>spacing</name>
+        <property name="spacing">
             <number>6</number>
         </property>
-        <widget row="0"  column="0" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
                 <cstring>TextLabel1</cstring>
             </property>
-            <property stdset="1">
-                <name>font</name>
+            <property name="font">
                 <font>
-                    <bold>1</bold>
                 </font>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string>Filename:</string>
             </property>
         </widget>
-        <widget row="1"  column="0" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="1" column="0">
+            <property name="name">
                 <cstring>TextLabel1_2</cstring>
             </property>
-            <property stdset="1">
-                <name>font</name>
+            <property name="font">
                 <font>
-                    <bold>1</bold>
                 </font>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string>Title:</string>
             </property>
         </widget>
-        <widget row="3"  column="0" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="3" column="0">
+            <property name="name">
                 <cstring>TextLabel1_2_2_2</cstring>
             </property>
-            <property stdset="1">
-                <name>font</name>
+            <property name="font">
                 <font>
-                    <bold>1</bold>
                 </font>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string>Entries:</string>
             </property>
         </widget>
-        <widget row="2"  column="0" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="2" column="0">
+            <property name="name">
                 <cstring>TextLabel1_2_2</cstring>
             </property>
-            <property stdset="1">
-                <name>font</name>
+            <property name="font">
                 <font>
-                    <bold>1</bold>
                 </font>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string>Author:</string>
             </property>
         </widget>
-        <widget row="4"  column="0" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="4" column="0">
+            <property name="name">
                 <cstring>TextLabel1_2_2_2_2</cstring>
             </property>
-            <property stdset="1">
-                <name>font</name>
+            <property name="font">
                 <font>
-                    <bold>1</bold>
                 </font>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string>Lessons:</string>
             </property>
         </widget>
-        <widget row="4"  column="1" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="4" column="1">
+            <property name="name">
                 <cstring>l_lessons</cstring>
             </property>
-            <property stdset="1">
-                <name>sizePolicy</name>
+            <property name="sizePolicy">
                 <sizepolicy>
                     <hsizetype>3</hsizetype>
                     <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property stdset="1">
-                <name>frameShape</name>
+            <property name="frameShape">
                 <enum>Panel</enum>
             </property>
-            <property stdset="1">
-                <name>frameShadow</name>
+            <property name="frameShadow">
                 <enum>Sunken</enum>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string></string>
             </property>
         </widget>
-        <widget row="3"  column="1" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="3" column="1">
+            <property name="name">
                 <cstring>l_entries</cstring>
             </property>
-            <property stdset="1">
-                <name>sizePolicy</name>
+            <property name="sizePolicy">
                 <sizepolicy>
                     <hsizetype>3</hsizetype>
                     <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property stdset="1">
-                <name>frameShape</name>
+            <property name="frameShape">
                 <enum>Panel</enum>
             </property>
-            <property stdset="1">
-                <name>frameShadow</name>
+            <property name="frameShadow">
                 <enum>Sunken</enum>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string></string>
             </property>
         </widget>
-        <widget row="2"  column="1" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="2" column="1">
+            <property name="name">
                 <cstring>l_author</cstring>
             </property>
-            <property stdset="1">
-                <name>sizePolicy</name>
+            <property name="sizePolicy">
                 <sizepolicy>
                     <hsizetype>3</hsizetype>
                     <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property stdset="1">
-                <name>frameShape</name>
+            <property name="frameShape">
                 <enum>Panel</enum>
             </property>
-            <property stdset="1">
-                <name>frameShadow</name>
+            <property name="frameShadow">
                 <enum>Sunken</enum>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string></string>
             </property>
         </widget>
-        <widget row="1"  column="1" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="1" column="1">
+            <property name="name">
                 <cstring>l_title</cstring>
             </property>
-            <property stdset="1">
-                <name>sizePolicy</name>
+            <property name="sizePolicy">
                 <sizepolicy>
                     <hsizetype>3</hsizetype>
                     <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property stdset="1">
-                <name>frameShape</name>
+            <property name="frameShape">
                 <enum>Panel</enum>
             </property>
-            <property stdset="1">
-                <name>frameShadow</name>
+            <property name="frameShadow">
                 <enum>Sunken</enum>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string></string>
             </property>
         </widget>
-        <widget row="0"  column="1" >
-            <class>QLabel</class>
-            <property stdset="1">
-                <name>name</name>
+        <widget class="QLabel" row="0" column="1">
+            <property name="name">
                 <cstring>l_filename</cstring>
             </property>
-            <property stdset="1">
-                <name>sizePolicy</name>
+            <property name="sizePolicy">
                 <sizepolicy>
                     <hsizetype>3</hsizetype>
                     <vsizetype>1</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
                 </sizepolicy>
             </property>
-            <property stdset="1">
-                <name>frameShape</name>
+            <property name="frameShape">
                 <enum>Panel</enum>
             </property>
-            <property stdset="1">
-                <name>frameShadow</name>
+            <property name="frameShadow">
                 <enum>Sunken</enum>
             </property>
-            <property stdset="1">
-                <name>text</name>
+            <property name="text">
                 <string></string>
             </property>
         </widget>
-        <spacer row="5"  column="0" >
-            <property>
-                <name>name</name>
+        <spacer row="5" column="0">
+            <property name="name">
                 <cstring>Spacer2</cstring>
             </property>
-            <property stdset="1">
-                <name>orientation</name>
+            <property name="orientation">
                 <enum>Vertical</enum>
             </property>
-            <property stdset="1">
-                <name>sizeType</name>
+            <property name="sizeType">
                 <enum>Expanding</enum>
             </property>
-            <property>
-                <name>sizeHint</name>
+            <property name="sizeHint">
                 <size>
                     <width>20</width>
                     <height>20</height>
@@ -266,4 +214,5 @@
         </spacer>
     </grid>
 </widget>
+<layoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.0" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
 <class>AdjQueryDlgForm</class>
 <widget class="QDialog">
     <property name="name">
@@ -9,7 +9,7 @@
             <x>0</x>
             <y>0</y>
             <width>632</width>
-            <height>387</height>
+            <height>419</height>
         </rect>
     </property>
     <property name="sizePolicy">
@@ -144,6 +144,9 @@
                                     <property name="text">
                                         <string>Level &amp;3:</string>
                                     </property>
+                                    <property name="buddy" stdset="0">
+                                        <cstring>lev3Field</cstring>
+                                    </property>
                                 </widget>
                                 <widget class="QLabel" row="2" column="0">
                                     <property name="name">
@@ -151,6 +154,9 @@
                                     </property>
                                     <property name="text">
                                         <string>Level &amp;2:</string>
+                                    </property>
+                                    <property name="buddy" stdset="0">
+                                        <cstring>lev2Field</cstring>
                                     </property>
                                 </widget>
                                 <widget class="QLineEdit" row="2" column="1">
@@ -186,6 +192,9 @@
                                     <property name="text">
                                         <string>Level &amp;1:</string>
                                     </property>
+                                    <property name="buddy" stdset="0">
+                                        <cstring>lev1Field</cstring>
+                                    </property>
                                 </widget>
                                 <widget class="QLabel" row="0" column="0" rowspan="1" colspan="2">
                                     <property name="name">
@@ -197,7 +206,7 @@
                                         </font>
                                     </property>
                                     <property name="text">
-                                        <string>Fill in the missing comparision expressions:</string>
+                                        <string>Fill in the missing comparison expressions:</string>
                                     </property>
                                 </widget>
                             </grid>
@@ -482,6 +491,12 @@
                     <property name="sizeType">
                         <enum>MinimumExpanding</enum>
                     </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>20</width>
+                            <height>20</height>
+                        </size>
+                    </property>
                 </spacer>
                 <widget class="QPushButton">
                     <property name="name">
@@ -538,4 +553,8 @@
     <tabstop>stop_it</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>myprogressbar.h</includehint>
+    <includehint>myprogressbar.h</includehint>
+</includehints>
 </UI>
