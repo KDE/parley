@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    maintain a document in vocabbox format
 
     -----------------------------------------------------------------------
 
-    begin                : Thr Mar 23 21:00:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    begin          : Thr Mar 23 21:00:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -21,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -125,7 +123,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
               tgrade = KV_LEV1_GRADE;
       size_t  odate = time(0),
               tdate = time(0);
- 
+
       int pos = s.find (VCB_SEPARATOR);
       if (pos >= 0) {
         o = s.left(pos);
@@ -140,29 +138,29 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
       else {
         t = s;
       }
- 
+
       pos = s.find (VCB_SEPARATOR);
       if (pos >= 0) {
         ograde = s.left(pos).toInt();
         s.remove (0, pos+QString(VCB_SEPARATOR).length());
       }
- 
+
       pos = s.find (VCB_SEPARATOR);
       if (pos >= 0) {
         tgrade = s.left(pos).toInt();
         s.remove (0, pos+QString(VCB_SEPARATOR).length());
       }
- 
+
       pos = s.find (VCB_SEPARATOR);
       if (pos >= 0) {
         odate = s.left(pos).toInt();
         s.remove (0, pos+QString(VCB_SEPARATOR).length());
       }
- 
-      if (s.stripWhiteSpace().length() >= 0) {
+
+      if (s.stripWhiteSpace().length() > 0) {
         tdate = s.toInt();
       }
- 
+
       kvoctrainExpr bucket;
       bucket.setOriginal(o);
       bucket.addTranslation(t);
@@ -172,12 +170,12 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
         bucket.setQueryCount(1, 1, false);
 
       bucket.setGrade(1, tgrade, true);
-      if (tgrade != 0) 
+      if (tgrade != 0)
         bucket.setQueryCount(1, 1, true);
 
       bucket.setQueryDate(1, odate, false);
       bucket.setQueryDate(1, tdate, true);
- 
+
       appendEntry (&bucket);
     }
   }
