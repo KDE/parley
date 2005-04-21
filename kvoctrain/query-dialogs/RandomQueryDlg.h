@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    dialog when in random query mode
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -33,20 +30,17 @@
 #include "RandomQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
-/* Library Includes */
-
 #include <qcombobox.h>
 #include <qlineedit.h>
 
 class kvoctrainDoc;
 
-class RandomQueryDlg : public QueryDlgForm,
-                       public QueryDlgBase
+class RandomQueryDlg : public QueryDlgBase
 {
   Q_OBJECT
 
 public:
-	RandomQueryDlg(
+  RandomQueryDlg(
                  QString org,
                  QString trans,
                  int entry,
@@ -69,11 +63,9 @@ public:
                  int  _fields,
                  bool _show_more,
                  bool _i_know,
-                 bool _swap,
-                 QWidget *parent=0,
-                 char *name=0);
+                 bool _swap);
 
-	void setQuery(QString org,
+  void setQuery(QString org,
                       QString trans,
                       int entry,
                       int orgcol,
@@ -87,49 +79,47 @@ public:
                       bool show);
 
 public slots:
-    virtual void initFocus() const;
-
-signals:
-   void sigQueryChoice(QueryDlgBase::Result userchoice);
-   void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 public slots:
-    void verifyClicked();
-    void showMoreClicked();
-    void showAllClicked();
-    void knowItClicked();
-    void dontKnowClicked();
-    void stopItClicked();
-    void timeoutReached();
-    void editEntryClicked();
-    void slotTransChanged(const QString&);
-    void slotTransLostFocus();
-    void slotFFClicked();
-    void slotTypeClicked();
-    void slotRemClicked();
+  void verifyClicked();
+  void showMoreClicked();
+  void showAllClicked();
+  void knowItClicked();
+  void dontKnowClicked();
+  void timeoutReached();
+  void slotUser2();
+  void slotTransChanged(const QString&);
+  void slotTransLostFocus();
+  void slotFFClicked();
+  void slotTypeClicked();
+  void slotRemClicked();
 
 protected:
-    virtual void keyPressEvent( QKeyEvent *e );
-    virtual void closeEvent (QCloseEvent*e);
-    void setHintFields();
-    QStringList extractTranslations (QString trans);
+  virtual void keyPressEvent(QKeyEvent *e);
 
-    kvoctrainDoc *kv_doc;
+  void setHintFields();
+  QStringList extractTranslations (QString trans);
 
-    QPtrList<QComboBox> transCombos;
-    QPtrList<QLineEdit> transFields;
+  kvoctrainDoc * kv_doc;
 
-    QStringList translations;
-    QStringList vocabulary;
+  QPtrList<QComboBox> transCombos;
+  QPtrList<QLineEdit> transFields;
 
-    bool suggestion_hint;
-    bool suggestions;
-    bool split;
-    bool periods;
-    bool colons;
-    bool semicolons;
-    bool commas;
-    int  fields;
+  QStringList translations;
+  QStringList vocabulary;
+
+  bool suggestion_hint;
+  bool suggestions;
+  bool split;
+  bool periods;
+  bool colons;
+  bool semicolons;
+  bool commas;
+  int  fields;
+
+private:
+  QueryDlgForm * mw;
 };
 
 #endif

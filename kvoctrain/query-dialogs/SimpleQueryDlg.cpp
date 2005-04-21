@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Apr 9 18:55:34 2000
+    begin          : Sun Apr 9 18:55:34 2000
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -27,7 +26,6 @@
 #include "SimpleQueryDlg.h"
 
 #include <kv_resource.h>
-#include <prefs.h>
 
 #include <qtimer.h>
 #include <qmultilineedit.h>
@@ -50,37 +48,30 @@ SimpleQueryDlg::SimpleQueryDlg(
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         int mqtime,
-        bool showcounter,
-	QWidget* parent,
-	const char* name
-)
-	:
-	SimpleQueryDlgForm( parent, name, false),
-        QueryDlgBase(font)
+        bool showcounter)
+  : QueryDlgBase("")
 {
-   connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-   connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
-   connect( show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
+  mw = new SimpleQueryDlgForm(this);
+  setMainWidget(mw);
 
-   connect( answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()) );
+  connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+  connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
+  connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
+  connect(mw->answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()) );
 
-   kv_doc = 0;
-   qtimer = 0;
-   setQuery (querytype, entry, column,
-             q_cycle, q_num, q_start,
-             exp, doc, mqtime, showcounter);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  kv_doc = 0;
+  qtimer = 0;
+  setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc, mqtime, showcounter);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
 }
 
 
 void SimpleQueryDlg::initFocus() const
 {
-  answerField->setFocus();
+  mw->answerField->setFocus();
 }
 
 
@@ -101,51 +92,51 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    q_row = entry;
    q_ocol = column;
    showCounter = _show,
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
-   queryField->setFont(word_font);
-   answerField->setFont(word_font);
-   answerField->setText ("");
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
+   mw->queryField->setFont(Prefs::tableFont());
+   mw->answerField->setFont(Prefs::tableFont());
+   mw->answerField->setText ("");
 
    QString s;
    switch (querytype) {
      case QT_Synonym: {
-       queryLabel->setText (i18n("Expression"));
+       mw->queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the synonym:");
-       instructionLabel->setText (s);
+       mw->instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(i18n("Synonym Training")));
        answerstring = exp->getSynonym(column);
-       queryField->setText (column == 0 ? exp->getOriginal()
+       mw->queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
      }
      break;
 
      case QT_Antonym: {
-       queryLabel->setText (i18n("Expression"));
+       mw->queryLabel->setText (i18n("Expression"));
        s = i18n("Enter the antonym:");
-       instructionLabel->setText (s);
+       mw->instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(i18n("Antonym Training")));
        answerstring = exp->getAntonym(column);
-       queryField->setText (column == 0 ? exp->getOriginal()
+       mw->queryField->setText (column == 0 ? exp->getOriginal()
                                         : exp->getTranslation(column));
      }
      break;
 
      case QT_Paraphrase: {
-       queryLabel->setText (i18n("Paraphrase"));
+       mw->queryLabel->setText (i18n("Paraphrase"));
        s = i18n("Enter the word:");
-       instructionLabel->setText(s);
+       mw->instructionLabel->setText(s);
        setCaption (kapp->makeStdCaption(i18n("Paraphrase Training")));
-       queryField->setText (exp->getParaphrase(column));
+       mw->queryField->setText (exp->getParaphrase(column));
        answerstring = column == 0 ? exp->getOriginal()
                                   : exp->getTranslation(column);
      }
      break;
 
      case QT_Example: {
-       queryLabel->setText (i18n("Example sentence"));
+       mw->queryLabel->setText (i18n("Example sentence"));
        s = i18n("Fill in the missing word:");
-       instructionLabel->setText (s);
+       mw->instructionLabel->setText (s);
        setCaption (kapp->makeStdCaption(i18n("Example Training")));
        QString s = exp->getExample(column);
        answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace()
@@ -155,7 +146,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
          s.remove(pos, answerstring.length());
          s.insert (pos, "..");
        }
-       queryField->setText (s);
+       mw->queryField->setText (s);
      }
      break;
 
@@ -163,12 +154,12 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        ;
    }
 
-   show_all->setDefault(true);
+   mw->show_all->setDefault(true);
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -178,23 +169,23 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
-   resetField (answerField);
+     mw->timebar->setEnabled(false);
+   resetField (mw->answerField);
 }
 
 
 void SimpleQueryDlg::slotAnswerChanged()
 {
-  verify->setDefault(true);
-  resetField (answerField);
+  mw->verify->setDefault(true);
+  resetField (mw->answerField);
 }
 
 
@@ -202,15 +193,15 @@ void SimpleQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setProgress(0);
+     mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
-       dont_know->setDefault(true);
+       mw->dont_know->setDefault(true);
      }
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice (Timeout);
@@ -220,31 +211,31 @@ void SimpleQueryDlg::timeoutReached()
 
 void SimpleQueryDlg::showMoreClicked()
 {
-  if (answerField->text().length() < answerstring.length()) {
-    answerField->setText (answerstring.left(answerField->text().length()+1));
-    dont_know->setDefault(true);
+  if (mw->answerField->text().length() < answerstring.length()) {
+    mw->answerField->setText (answerstring.left(mw->answerField->text().length()+1));
+    mw->dont_know->setDefault(true);
   }
-  resetField (answerField);
+  resetField (mw->answerField);
 }
 
 
 void SimpleQueryDlg::showAllClicked()
 {
-  answerField->setText (answerstring);
-  verifyField (answerField, answerstring,
+  mw->answerField->setText (answerstring);
+  verifyField (mw->answerField, answerstring,
                querytype == QT_Synonym || querytype == QT_Antonym);
-  dont_know->setDefault(true);
+  mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-  if (verifyField (answerField, answerstring,
+  if (verifyField (mw->answerField, answerstring,
                    querytype == QT_Synonym || querytype == QT_Antonym))
 //    know_it->setDefault(true);
     knowItClicked();
   else
-    dont_know->setDefault(true);
+    mw->dont_know->setDefault(true);
 }
 
 
@@ -260,13 +251,7 @@ void SimpleQueryDlg::dontKnowClicked()
 }
 
 
-void SimpleQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice (StopIt);
-}
-
-
-void SimpleQueryDlg::editClicked()
+void SimpleQueryDlg::slotUser2()
 {
    if (qtimer != 0)
      qtimer->stop();
@@ -279,20 +264,20 @@ void SimpleQueryDlg::editClicked()
    switch (querytype) {
      case QT_Synonym: {
        answerstring = exp->getSynonym(q_ocol);
-       queryField->setText (q_ocol == 0 ? exp->getOriginal()
+       mw->queryField->setText (q_ocol == 0 ? exp->getOriginal()
                                         : exp->getTranslation(q_ocol));
      }
      break;
 
      case QT_Antonym: {
        answerstring = exp->getAntonym(q_ocol);
-       queryField->setText (q_ocol == 0 ? exp->getOriginal()
+       mw->queryField->setText (q_ocol == 0 ? exp->getOriginal()
                                         : exp->getTranslation(q_ocol));
      }
      break;
 
      case QT_Paraphrase: {
-       queryField->setText (exp->getParaphrase(q_ocol));
+       mw->queryField->setText (exp->getParaphrase(q_ocol));
        answerstring = q_ocol == 0 ? exp->getOriginal()
                                   : exp->getTranslation(q_ocol);
      }
@@ -300,7 +285,7 @@ void SimpleQueryDlg::editClicked()
 
      case QT_Example: {
        QString s = exp->getExample(q_ocol);
-       queryField->setText (s);
+       mw->queryField->setText (s);
        answerstring = q_ocol == 0 ? exp->getOriginal()
                                   : exp->getTranslation(q_ocol);
      }
@@ -322,13 +307,13 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showAllClicked();
-      else if (verify->isDefault() )
+      else if (mw->verify->isDefault() )
         verifyClicked();
     break;
 
@@ -336,12 +321,6 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
       e->ignore();
     break;
   }
-}
-
-
-void SimpleQueryDlg::closeEvent (QCloseEvent*)
-{
-   emit sigQueryChoice (StopIt);
 }
 
 

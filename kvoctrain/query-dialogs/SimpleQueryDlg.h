@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     query dialog for properties
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Apr 9 18:55:34 2000
+    begin          : Sun Apr 9 18:55:34 2000
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -32,66 +30,58 @@
 #include "SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
-class SimpleQueryDlg : public SimpleQueryDlgForm,
-                       public QueryDlgBase
+class SimpleQueryDlg : public QueryDlgBase
 {
     Q_OBJECT
 
 public:
+  SimpleQueryDlg
+  (
+    QueryType querytpe,
+    int entry,
+    int column,
+    int q_cycle,
+    int q_num,
+    int q_start,
+    QFont font,
+    kvoctrainExpr *exp,
+    kvoctrainDoc  *doc,
+    int mqtime,
+    bool showcounter);
 
-    SimpleQueryDlg
-    (
-        QueryType querytpe,
-        int entry,
-        int column,
-        int q_cycle,
-        int q_num,
-        int q_start,
-        QFont font,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
-        int mqtime,
-        bool showcounter,
-        QWidget* parent = NULL,
-        const char* name = NULL
-    );
-
-    void setQuery(QueryType querytpe,
-                  int entry,
-                  int column,
-                  int q_cycle,
-                  int q_num,
-                  int q_start,
-                  kvoctrainExpr *exp,
-                  kvoctrainDoc  *doc,
-                  int mqtime,
-                  bool showcounter);
+  void setQuery(QueryType querytpe,
+                int entry,
+                int column,
+                int q_cycle,
+                int q_num,
+                int q_start,
+                kvoctrainExpr *exp,
+                kvoctrainDoc  *doc,
+                int mqtime,
+                bool showcounter);
 
 public slots:
-    virtual void initFocus() const;
-
-signals:
-    void sigQueryChoice(QueryDlgBase::Result userchoice);
-    void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 protected:
-    void keyPressEvent( QKeyEvent *e );
+  void keyPressEvent( QKeyEvent *e );
 
 public slots:
-    void stopItClicked();
-    void showMoreClicked();
-    void showAllClicked();
-    void knowItClicked();
-    void dontKnowClicked();
-    void slotAnswerChanged();
-    void editClicked();
-    void verifyClicked();
-    void timeoutReached();
+  void showMoreClicked();
+  void showAllClicked();
+  void knowItClicked();
+  void dontKnowClicked();
+  void slotAnswerChanged();
+  void slotUser2();
+  void verifyClicked();
+  void timeoutReached();
 
 protected:
-    virtual void closeEvent (QCloseEvent*e);
+  QString answerstring;
+  QueryType querytype;
 
-    QString        answerstring;
-    QueryType      querytype;
+private:
+  SimpleQueryDlgForm * mw;
 };
+
 #endif // SimpleQueryDlg_included

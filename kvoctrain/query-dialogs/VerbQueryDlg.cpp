@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Fri Dec 3 18:28:18 1999
+    begin          : Fri Dec 3 18:28:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -27,8 +26,6 @@
 #include "VerbQueryDlg.h"
 
 #include <kv_resource.h>
-#include <QueryManager.h>
-#include <prefs.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -42,7 +39,7 @@
 
 VerbQueryDlg::VerbQueryDlg
 (
-	QString type,
+  QString type,
         int entry,
         int col,
         int query_cycle,
@@ -54,55 +51,50 @@ VerbQueryDlg::VerbQueryDlg
         const Conjugation &prefix,
         const Conjugation &conjug,
         int mqtime,
-        bool _show,
-        QWidget *parent,
-        char *name)
-	:
-	VerbQueryDlgForm( parent, name, false),
-        QueryDlgBase(font)
+        bool _show)
+ : QueryDlgBase(i18n("Verb Training"))
 {
-	connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-        connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-	connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-	connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-	connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-	connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
+  mw = new VerbQueryDlgForm(this);
+  setMainWidget(mw);
 
-	connect( p3pmField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p3pnField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p3snField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p3smField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p3pfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p3sfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p2pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p2sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p1pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
-	connect( p1sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+  connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
 
-	connect( p3pmField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pmChanged(const QString&)) );
-	connect( p3snField, SIGNAL(textChanged(const QString&)), SLOT(slotP3snChanged(const QString&)) );
-	connect( p3pnField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pnChanged(const QString&)) );
-	connect( p3smField, SIGNAL(textChanged(const QString&)), SLOT(slotP3smChanged(const QString&)) );
-	connect( p3pfField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pfChanged(const QString&)) );
-	connect( p3sfField, SIGNAL(textChanged(const QString&)), SLOT(slotP3sfChanged(const QString&)) );
-	connect( p2pField, SIGNAL(textChanged(const QString&)), SLOT(slotP2pChanged(const QString&)) );
-	connect( p2sField, SIGNAL(textChanged(const QString&)), SLOT(slotP2sChanged(const QString&)) );
-	connect( p1pField, SIGNAL(textChanged(const QString&)), SLOT(slotP1pChanged(const QString&)) );
-	connect( p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)) );
+  connect(mw->p3pmField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p3pnField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p3snField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p3smField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p3pfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p3sfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p2pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p2sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p1pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
+  connect(mw->p1sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()) );
 
-   qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Training with Verbs")));
-   setQuery (type, entry, col,
-             query_cycle, query_num, query_startnum,
-             exp, doc, prefix, conjug, mqtime, _show);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  connect(mw->p3pmField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pmChanged(const QString&)) );
+  connect(mw->p3snField, SIGNAL(textChanged(const QString&)), SLOT(slotP3snChanged(const QString&)) );
+  connect(mw->p3pnField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pnChanged(const QString&)) );
+  connect(mw->p3smField, SIGNAL(textChanged(const QString&)), SLOT(slotP3smChanged(const QString&)) );
+  connect(mw->p3pfField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pfChanged(const QString&)) );
+  connect(mw->p3sfField, SIGNAL(textChanged(const QString&)), SLOT(slotP3sfChanged(const QString&)) );
+  connect(mw->p2pField, SIGNAL(textChanged(const QString&)), SLOT(slotP2pChanged(const QString&)) );
+  connect(mw->p2sField, SIGNAL(textChanged(const QString&)), SLOT(slotP2sChanged(const QString&)) );
+  connect(mw->p1pField, SIGNAL(textChanged(const QString&)), SLOT(slotP1pChanged(const QString&)) );
+  connect(mw->p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)) );
+
+  qtimer = 0;
+
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug, mqtime, _show);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
 }
 
 
 void VerbQueryDlg::initFocus() const
 {
-  p1sField->setFocus();
+  mw->p1sField->setFocus();
 }
 
 
@@ -126,42 +118,29 @@ void VerbQueryDlg::setQuery(QString,
    q_ocol = col;
    query_time = mqtime;
    showCounter = _show,
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
-   show_all->setDefault(true);
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
+   mw->show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
    conjugations = conjug;
 
-   p1sLabel->setText  (prefix.pers1Singular(CONJ_PREFIX));
-   p2sLabel->setText  (prefix.pers2Singular(CONJ_PREFIX));
-   p3sfLabel->setText (prefix.pers3FemaleSingular(CONJ_PREFIX));
-   p3smLabel->setText (prefix.pers3MaleSingular(CONJ_PREFIX));
-   p3snLabel->setText (prefix.pers3NaturalSingular(CONJ_PREFIX));
+   mw->p1sLabel->setText  (prefix.pers1Singular(CONJ_PREFIX));
+   mw->p2sLabel->setText  (prefix.pers2Singular(CONJ_PREFIX));
+   mw->p3sfLabel->setText (prefix.pers3FemaleSingular(CONJ_PREFIX));
+   mw->p3smLabel->setText (prefix.pers3MaleSingular(CONJ_PREFIX));
+   mw->p3snLabel->setText (prefix.pers3NaturalSingular(CONJ_PREFIX));
 
-   p1pLabel->setText  (prefix.pers1Plural(CONJ_PREFIX));
-   p2pLabel->setText  (prefix.pers2Plural(CONJ_PREFIX));
-   p3pfLabel->setText (prefix.pers3FemalePlural(CONJ_PREFIX));
-   p3pmLabel->setText (prefix.pers3MalePlural(CONJ_PREFIX));
-   p3pnLabel->setText (prefix.pers3NaturalPlural(CONJ_PREFIX));
-/*
-   p1sAccel->setBuddy(p1sField);
-   p2sAccel->setBuddy(p2sField);
-   p3snAccel->setBuddy(p3snField);
-   p3smAccel->setBuddy(p3smField);
-   p3sfAccel->setBuddy(p3sfField);
-*/
-/*
-   p1pLabel->setBuddy(p1pField);
-   p2pLabel->setBuddy(p2pField);
-   p3pnLabel->setBuddy(p3pnField);
-   p3pmLabel->setBuddy(p3pmField);
-   p3pfLabel->setBuddy(p3pfField);
-*/
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->p1pLabel->setText  (prefix.pers1Plural(CONJ_PREFIX));
+   mw->p2pLabel->setText  (prefix.pers2Plural(CONJ_PREFIX));
+   mw->p3pfLabel->setText (prefix.pers3FemalePlural(CONJ_PREFIX));
+   mw->p3pmLabel->setText (prefix.pers3MalePlural(CONJ_PREFIX));
+   mw->p3pnLabel->setText (prefix.pers3NaturalPlural(CONJ_PREFIX));
+
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -171,15 +150,15 @@ void VerbQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
+     mw->timebar->setEnabled(false);
    all_known = true;
    current = -1;
    next();
@@ -202,49 +181,49 @@ bool VerbQueryDlg::next()
   QString format = i18n("Current tense is: %1.");
   QString msg = format.arg(conjugations.getName(type));
 
-  instructionLabel->setText (msg);
-  baseLabel->setText (s);
+  mw->instructionLabel->setText (msg);
+  mw->baseLabel->setText (s);
 
-  p1sField->setText("");
-  p1sField->setEnabled (!conjugations.pers1Singular(type).isEmpty());
+  mw->p1sField->setText("");
+  mw->p1sField->setEnabled (!conjugations.pers1Singular(type).isEmpty());
 
-  p2sField->setText("");
-  p2sField->setEnabled (!conjugations.pers2Singular(type).isEmpty());
+  mw->p2sField->setText("");
+  mw->p2sField->setEnabled (!conjugations.pers2Singular(type).isEmpty());
 
-  p3sfField->setText("");
-  p3sfField->setEnabled (!conjugations.pers3FemaleSingular(type).isEmpty());
+  mw->p3sfField->setText("");
+  mw->p3sfField->setEnabled (!conjugations.pers3FemaleSingular(type).isEmpty());
 
-  p3smField->setText("");
-  p3smField->setEnabled (!conjugations.pers3MaleSingular(type).isEmpty());
+  mw->p3smField->setText("");
+  mw->p3smField->setEnabled (!conjugations.pers3MaleSingular(type).isEmpty());
 
-  p3snField->setText("");
-  p3snField->setEnabled (!conjugations.pers3NaturalSingular(type).isEmpty());
+  mw->p3snField->setText("");
+  mw->p3snField->setEnabled (!conjugations.pers3NaturalSingular(type).isEmpty());
 
-  p1pField->setText("");
-  p1pField->setEnabled (!conjugations.pers1Plural(type).isEmpty());
+  mw->p1pField->setText("");
+  mw->p1pField->setEnabled (!conjugations.pers1Plural(type).isEmpty());
 
-  p2pField->setText("");
-  p2pField->setEnabled (!conjugations.pers2Plural(type).isEmpty());
+  mw->p2pField->setText("");
+  mw->p2pField->setEnabled (!conjugations.pers2Plural(type).isEmpty());
 
-  p3pfField->setText("");
-  p3pfField->setEnabled (!conjugations.pers3FemalePlural(type).isEmpty());
+  mw->p3pfField->setText("");
+  mw->p3pfField->setEnabled (!conjugations.pers3FemalePlural(type).isEmpty());
 
-  p3pmField->setText("");
-  p3pmField->setEnabled (!conjugations.pers3MalePlural(type).isEmpty());
+  mw->p3pmField->setText("");
+  mw->p3pmField->setEnabled (!conjugations.pers3MalePlural(type).isEmpty());
 
-  p3pnField->setText("");
-  p3pnField->setEnabled (!conjugations.pers3NaturalPlural(type).isEmpty());
+  mw->p3pnField->setText("");
+  mw->p3pnField->setEnabled (!conjugations.pers3NaturalPlural(type).isEmpty());
 
   bool common = conjugations.pers3SingularCommon(type);
   if (common) {
-    p3smField->setEnabled(false);
-    p3snField->setEnabled(false);
+    mw->p3smField->setEnabled(false);
+    mw->p3snField->setEnabled(false);
   }
 
   common = conjugations.pers3PluralCommon(type);
   if (common) {
-    p3pmField->setEnabled(false);
-    p3pnField->setEnabled(false);
+    mw->p3pmField->setEnabled(false);
+    mw->p3pnField->setEnabled(false);
   }
 
   return false;
@@ -254,40 +233,40 @@ bool VerbQueryDlg::next()
 void VerbQueryDlg::showAllClicked()
 {
   resetAllFields();
-  dont_know->setDefault(true);
+  mw->dont_know->setDefault(true);
 
   QString type = conjugations.getType (current);
 
-  p1sField->setText  (conjugations.pers1Singular(type));
-  p2sField->setText  (conjugations.pers2Singular(type));
-  p3sfField->setText (conjugations.pers3FemaleSingular(type));
-  p3smField->setText (conjugations.pers3MaleSingular(type));
-  p3snField->setText (conjugations.pers3NaturalSingular(type));
+  mw->p1sField->setText  (conjugations.pers1Singular(type));
+  mw->p2sField->setText  (conjugations.pers2Singular(type));
+  mw->p3sfField->setText (conjugations.pers3FemaleSingular(type));
+  mw->p3smField->setText (conjugations.pers3MaleSingular(type));
+  mw->p3snField->setText (conjugations.pers3NaturalSingular(type));
 
-  p1pField->setText  (conjugations.pers1Plural(type));
-  p2pField->setText  (conjugations.pers2Plural(type));
-  p3pfField->setText (conjugations.pers3FemalePlural(type));
-  p3pmField->setText (conjugations.pers3MalePlural(type));
-  p3pnField->setText (conjugations.pers3NaturalPlural(type));
+  mw->p1pField->setText  (conjugations.pers1Plural(type));
+  mw->p2pField->setText  (conjugations.pers2Plural(type));
+  mw->p3pfField->setText (conjugations.pers3FemalePlural(type));
+  mw->p3pmField->setText (conjugations.pers3MalePlural(type));
+  mw->p3pnField->setText (conjugations.pers3NaturalPlural(type));
 
-  verifyField (p1sField, conjugations.pers1Singular(type));
-  verifyField (p2sField, conjugations.pers2Singular(type));
-  verifyField (p3sfField, conjugations.pers3FemaleSingular(type));
+  verifyField (mw->p1sField, conjugations.pers1Singular(type));
+  verifyField (mw->p2sField, conjugations.pers2Singular(type));
+  verifyField (mw->p3sfField, conjugations.pers3FemaleSingular(type));
 
   bool common = conjugations.pers3SingularCommon(type);
   if (!common) {
-    verifyField (p3smField, conjugations.pers3MaleSingular(type));
-    verifyField (p3snField, conjugations.pers3NaturalSingular(type));
+    verifyField (mw->p3smField, conjugations.pers3MaleSingular(type));
+    verifyField (mw->p3snField, conjugations.pers3NaturalSingular(type));
   }
 
-  verifyField (p1pField, conjugations.pers1Plural(type));
-  verifyField (p2pField, conjugations.pers2Plural(type));
-  verifyField (p3pfField, conjugations.pers3FemalePlural(type));
+  verifyField (mw->p1pField, conjugations.pers1Plural(type));
+  verifyField (mw->p2pField, conjugations.pers2Plural(type));
+  verifyField (mw->p3pfField, conjugations.pers3FemalePlural(type));
 
   common = conjugations.pers3PluralCommon(type);
   if (!common) {
-    verifyField (p3pmField, conjugations.pers3MalePlural(type));
-    verifyField (p3pnField, conjugations.pers3NaturalPlural(type));
+    verifyField (mw->p3pmField, conjugations.pers3MalePlural(type));
+    verifyField (mw->p3pnField, conjugations.pers3NaturalPlural(type));
   }
 
 }
@@ -299,39 +278,39 @@ void VerbQueryDlg::verifyClicked()
 
   bool known = true;
 
-  if (!verifyField (p1sField, conjugations.pers1Singular(type)))
+  if (!verifyField (mw->p1sField, conjugations.pers1Singular(type)))
     known = false;
 
-  if (!verifyField (p2sField, conjugations.pers2Singular(type)))
+  if (!verifyField (mw->p2sField, conjugations.pers2Singular(type)))
     known = false;
 
-  if (!verifyField (p3sfField, conjugations.pers3FemaleSingular(type)))
+  if (!verifyField (mw->p3sfField, conjugations.pers3FemaleSingular(type)))
     known = false;
 
   bool common = conjugations.pers3SingularCommon(type);
   if (!common) {
-    if (!verifyField (p3smField, conjugations.pers3MaleSingular(type)))
+    if (!verifyField (mw->p3smField, conjugations.pers3MaleSingular(type)))
       known = false;
 
-    if (!verifyField (p3snField, conjugations.pers3NaturalSingular(type)))
+    if (!verifyField (mw->p3snField, conjugations.pers3NaturalSingular(type)))
       known = false;
   }
 
-  if (!verifyField (p1pField, conjugations.pers1Plural(type)))
+  if (!verifyField (mw->p1pField, conjugations.pers1Plural(type)))
     known = false;
 
-  if (!verifyField (p2pField, conjugations.pers2Plural(type)))
+  if (!verifyField (mw->p2pField, conjugations.pers2Plural(type)))
     known = false;
 
-  if (!verifyField (p3pfField, conjugations.pers3FemalePlural(type)))
+  if (!verifyField (mw->p3pfField, conjugations.pers3FemalePlural(type)))
     known = false;
 
   common = conjugations.pers3PluralCommon(type);
   if (!common) {
-    if (!verifyField (p3pmField, conjugations.pers3MalePlural(type)))
+    if (!verifyField (mw->p3pmField, conjugations.pers3MalePlural(type)))
       known = false;
 
-    if (!verifyField (p3pnField, conjugations.pers3NaturalPlural(type)))
+    if (!verifyField (mw->p3pnField, conjugations.pers3NaturalPlural(type)))
       known = false;
   }
 
@@ -339,24 +318,24 @@ void VerbQueryDlg::verifyClicked()
     knowItClicked();
   else {
     all_known = false;
-    dont_know->setDefault(true);
+    mw->dont_know->setDefault(true);
   }
 }
 
 
 void VerbQueryDlg::resetAllFields()
 {
-  resetField(p1sField);
-  resetField(p2sField);
-  resetField(p3sfField);
-  resetField(p3smField);
-  resetField(p3snField);
+  resetField(mw->p1sField);
+  resetField(mw->p2sField);
+  resetField(mw->p3sfField);
+  resetField(mw->p3smField);
+  resetField(mw->p3snField);
 
-  resetField(p1pField);
-  resetField(p2pField);
-  resetField(p3pfField);
-  resetField(p3pmField);
-  resetField(p3pnField);
+  resetField(mw->p1pField);
+  resetField(mw->p2pField);
+  resetField(mw->p3pfField);
+  resetField(mw->p3pmField);
+  resetField(mw->p3pnField);
 }
 
 
@@ -364,17 +343,17 @@ void VerbQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setProgress(0);
+     mw->timebar->setProgress(0);
      if (current >= (int) conjugations.numEntries()-1 ) {
        qtimer->stop();
        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
          showAllClicked();
-         dont_know->setDefault(true);
+         mw->dont_know->setDefault(true);
        }
        else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
          emit sigQueryChoice (Timeout);
@@ -383,7 +362,7 @@ void VerbQueryDlg::timeoutReached()
        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
          qtimer->stop();
          showAllClicked();
-         dont_know->setDefault(true);
+         mw->dont_know->setDefault(true);
        }
        else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
          next();
@@ -422,13 +401,7 @@ void VerbQueryDlg::dontKnowClicked()
 }
 
 
-void VerbQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice (StopIt);
-}
-
-
-void VerbQueryDlg::editClicked()
+void VerbQueryDlg::slotUser2()
 {
 
    if (qtimer != 0)
@@ -448,13 +421,13 @@ void VerbQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showAllClicked();
-      else if (verify->isDefault() )
+      else if (mw->verify->isDefault() )
         verifyClicked();
     break;
 
@@ -467,16 +440,15 @@ void VerbQueryDlg::keyPressEvent( QKeyEvent *e )
 
 void VerbQueryDlg::slotP3pfChanged(const QString&)
 {
-  verify->setDefault(true);
-
-  resetField(p3pfField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3pfField);
 }
 
 
 void VerbQueryDlg::slotP3snChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p3snField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3snField);
 }
 
 
@@ -487,64 +459,57 @@ void VerbQueryDlg::slotReturnPressed()
 
 void VerbQueryDlg::slotP3smChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p3smField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3smField);
 }
 
 
 void VerbQueryDlg::slotP3pnChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p3pnField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3pnField);
 }
 
 
 void VerbQueryDlg::slotP3sfChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p3sfField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3sfField);
 }
 
 
 void VerbQueryDlg::slotP1sChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p1sField);
+  mw->verify->setDefault(true);
+  resetField(mw->p1sField);
 }
 
 
 void VerbQueryDlg::slotP2sChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p2sField);
+  mw->verify->setDefault(true);
+  resetField(mw->p2sField);
 }
 
 
 void VerbQueryDlg::slotP3pmChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p3pmField);
+  mw->verify->setDefault(true);
+  resetField(mw->p3pmField);
 }
 
 
 void VerbQueryDlg::slotP1pChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p1pField);
+  mw->verify->setDefault(true);
+  resetField(mw->p1pField);
 }
 
 
 void VerbQueryDlg::slotP2pChanged(const QString&)
 {
-  verify->setDefault(true);
-  resetField(p2pField);
+  mw->verify->setDefault(true);
+  resetField(mw->p2pField);
 }
-
-
-void VerbQueryDlg::closeEvent (QCloseEvent*)
-{
-   emit sigQueryChoice (StopIt);
-}
-
 
 #include "VerbQueryDlg.moc"

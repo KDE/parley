@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Fri Dec 3 18:28:18 1999
+    begin          : Fri Dec 3 18:28:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -28,8 +27,6 @@
 #include "ArtQueryDlg.h"
 
 #include <kv_resource.h>
-#include <QueryManager.h>
-#include <prefs.h>
 
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -55,35 +52,30 @@ ArtQueryDlg::ArtQueryDlg
         kvoctrainDoc  *doc,
         const Article &articles,
         int   mqtime,
-        bool _show,
-        QWidget *parent,
-        char    *name)
-	:
-	ArtQueryDlgForm( parent, name, false),
-        QueryDlgBase(font)
+        bool _show)
+  : QueryDlgBase(i18n("Article Training"))
 {
-   qtimer = 0;
+  mw = new ArtQueryDlgForm(this);
+  setMainWidget(mw);
 
-   artGroup->insert (natural);
-   artGroup->insert (male);
-   artGroup->insert (rb_fem);
+  qtimer = 0;
 
-   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-   connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
-   connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-   connect( natural, SIGNAL(clicked()), SLOT(slotNaturalClicked()) );
-   connect( male, SIGNAL(clicked()), SLOT(slotMaleClicked()) );
-   connect( rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()) );
+  mw->artGroup->insert (mw->natural);
+  mw->artGroup->insert (mw->male);
+  mw->artGroup->insert (mw->rb_fem);
 
-   setCaption(kapp->makeStdCaption(i18n("Article Training")));
-   setQuery (type, entry, col,
-             query_cycle, query_num, query_startnum,
-             exp, doc, articles, mqtime, _show);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+  connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
+
+  connect(mw->natural, SIGNAL(clicked()), SLOT(slotNaturalClicked()) );
+  connect(mw->male, SIGNAL(clicked()), SLOT(slotMaleClicked()) );
+  connect(mw->rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()) );
+
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles, mqtime, _show);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
 }
 
 
@@ -105,9 +97,9 @@ void ArtQueryDlg::setQuery(QString,
    q_row = entry;
    q_ocol = col;
    showCounter = _show,
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
-   show_all->setDefault(true);
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
+   mw->show_all->setDefault(true);
    articles = art;
 
    QString s;
@@ -120,8 +112,8 @@ void ArtQueryDlg::setQuery(QString,
    bool removed = false;
 
    articles.female(def, indef);
-   rb_fem->setText (i18n("&female:\t")+def+" / "+indef);
-   rb_fem->setEnabled (!QString(def+indef).isEmpty() );
+   mw->rb_fem->setText (i18n("&female:\t")+def+" / "+indef);
+   mw->rb_fem->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.find(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
@@ -132,8 +124,8 @@ void ArtQueryDlg::setQuery(QString,
    }
 
    articles.male(def, indef);
-   male->setText (i18n("&male:\t")+def+" / "+indef);
-   male->setEnabled (!QString(def+indef).isEmpty() );
+   mw->male->setText (i18n("&male:\t")+def+" / "+indef);
+   mw->male->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.find(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
@@ -144,8 +136,8 @@ void ArtQueryDlg::setQuery(QString,
    }
 
    articles.natural(def, indef);
-   natural->setText (i18n("&natural:\t")+def+" / "+indef);
-   natural->setEnabled (!QString(def+indef).isEmpty() );
+   mw->natural->setText (i18n("&natural:\t")+def+" / "+indef);
+   mw->natural->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.find(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
@@ -155,12 +147,12 @@ void ArtQueryDlg::setQuery(QString,
      removed = true;
    }
 
-   orgField->setText(s);
+   mw->orgField->setText(s);
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -170,45 +162,45 @@ void ArtQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
+     mw->timebar->setEnabled(false);
 }
 
 
 void ArtQueryDlg::initFocus() const
 {
-  rb_fem->setFocus();
+  mw->rb_fem->setFocus();
 }
 
 
 void ArtQueryDlg::showAllClicked()
 {
-  resetButton(rb_fem);
-  resetButton(male);
-  resetButton(natural);
+  resetButton(mw->rb_fem);
+  resetButton(mw->male);
+  resetButton(mw->natural);
 
   if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
-    rb_fem->setChecked (true);
-    verifyButton(rb_fem, true);
+    mw->rb_fem->setChecked (true);
+    verifyButton(mw->rb_fem, true);
   }
   else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
-    male->setChecked (true);
-    verifyButton(male, true);
+    mw->male->setChecked (true);
+    verifyButton(mw->male, true);
   }
   else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
-    natural->setChecked (true);
-    verifyButton(natural, true);
+    mw->natural->setChecked (true);
+    verifyButton(mw->natural, true);
   }
   else
     ;
-  dont_know->setDefault(true);
+  mw->dont_know->setDefault(true);
 }
 
 
@@ -221,33 +213,33 @@ void ArtQueryDlg::verifyClicked()
 {
   bool known = false;
   if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
-    known = rb_fem->isChecked ();
+    known = mw->rb_fem->isChecked ();
   else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
-    known = male->isChecked ();
+    known = mw->male->isChecked ();
   else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
-    known = natural->isChecked ();
+    known = mw->natural->isChecked ();
 
-  if (rb_fem->isChecked() ) {
-    verifyButton(rb_fem, known);
-    resetButton(male);
-    resetButton(natural);
+  if (mw->rb_fem->isChecked() ) {
+    verifyButton(mw->rb_fem, known);
+    resetButton(mw->male);
+    resetButton(mw->natural);
   }
-  else if (male->isChecked() ) {
-    verifyButton(male, known);
-    resetButton(rb_fem);
-    resetButton(natural);
+  else if (mw->male->isChecked() ) {
+    verifyButton(mw->male, known);
+    resetButton(mw->rb_fem);
+    resetButton(mw->natural);
   }
-  else if (natural->isChecked() ) {
-    verifyButton(natural, known);
-    resetButton(male);
-    resetButton(rb_fem);
+  else if (mw->natural->isChecked() ) {
+    verifyButton(mw->natural, known);
+    resetButton(mw->male);
+    resetButton(mw->rb_fem);
   }
 
   if (known)
 //    know_it->setDefault(true);
     knowItClicked();
   else
-    dont_know->setDefault(true);
+    mw->dont_know->setDefault(true);
 }
 
 
@@ -261,15 +253,15 @@ void ArtQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setProgress(0);
+     mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
-       dont_know->setDefault(true);
+       mw->dont_know->setDefault(true);
      }
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice(Timeout);
@@ -283,13 +275,7 @@ void ArtQueryDlg::dontKnowClicked()
 }
 
 
-void ArtQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice (StopIt);
-}
-
-
-void ArtQueryDlg::editClicked()
+void ArtQueryDlg::slotUser2()
 {
 
    if (qtimer != 0)
@@ -309,13 +295,13 @@ void ArtQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showAllClicked();
-      else if (verify->isDefault() )
+      else if (mw->verify->isDefault() )
         verifyClicked();
     break;
 
@@ -333,34 +319,28 @@ void ArtQueryDlg::returnPressed()
 
 void ArtQueryDlg::slotFemClicked()
 {
-  resetButton(rb_fem);
-  resetButton(male);
-  resetButton(natural);
+  resetButton(mw->rb_fem);
+  resetButton(mw->male);
+  resetButton(mw->natural);
   verifyClicked();
 }
 
 
 void ArtQueryDlg::slotMaleClicked()
 {
-  resetButton(male);
-  resetButton(natural);
-  resetButton(rb_fem);
+  resetButton(mw->male);
+  resetButton(mw->natural);
+  resetButton(mw->rb_fem);
   verifyClicked();
 }
 
 
 void ArtQueryDlg::slotNaturalClicked()
 {
-  resetButton(natural);
-  resetButton(male);
-  resetButton(rb_fem);
+  resetButton(mw->natural);
+  resetButton(mw->male);
+  resetButton(mw->rb_fem);
   verifyClicked();
-}
-
-
-void ArtQueryDlg::closeEvent (QCloseEvent*)
-{
-   emit sigQueryChoice (StopIt);
 }
 
 

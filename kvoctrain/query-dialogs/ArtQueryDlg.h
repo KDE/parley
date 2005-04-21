@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                      query dialog for articles
 
     -----------------------------------------------------------------------
 
-    begin                : Fri Dec 3 18:28:18 1999
+    begin          : Fri Dec 3 18:28:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -30,71 +28,63 @@
 
 #include "ArtQueryDlgForm.h"
 #include "QueryDlgBase.h"
-#include <GrammerManager.h>
 
-class ArtQueryDlg : public ArtQueryDlgForm,
-		    public QueryDlgBase
+class ArtQueryDlg : public QueryDlgBase
 {
-    Q_OBJECT
+
+  Q_OBJECT
 
 public:
+  ArtQueryDlg(
+              QString type,
+              int entry,
+              int col,
+              int query_cycle,
+              int query_num,
+              int query_startnum,
+              QFont font,
+              kvoctrainExpr *exp,
+              kvoctrainDoc  *doc,
+              const Article &articles,
+              int   mqtime,
+              bool show);
 
-    ArtQueryDlg(
-                QString type,
-                int entry,
-                int col,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                QFont font,
-                kvoctrainExpr *exp,
-                kvoctrainDoc  *doc,
-                const Article &articles,
-                int   mqtime,
-                bool show,
-                QWidget *parent=0,
-                char    *name=0);
-
-    void setQuery (QString type,
-                int entry,
-                int col,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                kvoctrainExpr *exp,
-                kvoctrainDoc  *doc,
-                const Article &articles,
-                int   mqtime,
-                bool show);
+  void setQuery (QString type,
+              int entry,
+              int col,
+              int query_cycle,
+              int query_num,
+              int query_startnum,
+              kvoctrainExpr *exp,
+              kvoctrainDoc  *doc,
+              const Article &articles,
+              int   mqtime,
+              bool show);
 
 public slots:
-    virtual void initFocus() const;
-
-signals:
-   void sigQueryChoice(QueryDlgBase::Result userchoice);
-   void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 protected:
-    void keyPressEvent( QKeyEvent *e );
+  void keyPressEvent( QKeyEvent *e );
 
 protected slots:
-    void stopItClicked();
-    void showMoreClicked();
-    void showAllClicked();
-    void slotFemClicked();
-    void editClicked();
-    void knowItClicked();
-    void slotNaturalClicked();
-    void slotMaleClicked();
-    void dontKnowClicked();
-    void verifyClicked();
-    void returnPressed();
-    void timeoutReached();
+  void showMoreClicked();
+  void showAllClicked();
+  void slotFemClicked();
+  void slotUser2();
+  void knowItClicked();
+  void slotNaturalClicked();
+  void slotMaleClicked();
+  void dontKnowClicked();
+  void verifyClicked();
+  void returnPressed();
+  void timeoutReached();
 
 protected:
-    virtual void closeEvent (QCloseEvent*e);
+  Article   articles;
 
-    Article   articles;
-
+private:
+  ArtQueryDlgForm * mw;
 };
+
 #endif // ArtQueryDlg_included

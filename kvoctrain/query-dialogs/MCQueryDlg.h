@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     multiple choice query dialog
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Nov 25 11:45:53 MET 1999
+    begin          : Thu Nov 25 11:45:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -33,76 +30,64 @@
 #include "MCQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
-/* Library Includes */
-
-class kvoctrainExpr;
-class kvoctrainDoc;
-
-class MCQueryDlg : public MCQueryDlgForm,
-		   public QueryDlgBase
+class MCQueryDlg : public QueryDlgBase
 {
   Q_OBJECT
 
 public:
-	MCQueryDlg(
-                   QString org,
-                   QString trans,
-                   int entry,
-                   int orgcol,
-                   int transcol,
-                   int query_cycle,
-                   int query_num,
-                   int query_startnum,
-                   QFont font,
-                   kvoctrainExpr *exp,
-                   kvoctrainDoc  *doc,
-                   int mqtime,
-                   bool show,
-                   QWidget *parent=0,
-                   char *name=0);
+  MCQueryDlg(
+            QString org,
+            QString trans,
+            int entry,
+            int orgcol,
+            int transcol,
+            int query_cycle,
+            int query_num,
+            int query_startnum,
+            QFont font,
+            kvoctrainExpr *exp,
+            kvoctrainDoc  *doc,
+            int mqtime,
+            bool show);
 
-	void setQuery(QString org,
-                      QString trans,
-                      int entry,
-                      int orgcol,
-                      int transcol,
-                      int query_cycle,
-                      int query_num,
-                      int query_startnum,
-                      kvoctrainExpr *exp,
-                      kvoctrainDoc  *doc,
-                      int   mqtime,
-                      bool show);
+  void setQuery(QString org,
+                QString trans,
+                int entry,
+                int orgcol,
+                int transcol,
+                int query_cycle,
+                int query_num,
+                int query_startnum,
+                kvoctrainExpr *exp,
+                kvoctrainDoc  *doc,
+                int   mqtime,
+                bool show);
 
 public slots:
-        virtual void initFocus() const;
-
-signals:
-   void sigQueryChoice(QueryDlgBase::Result userchoice);
-   void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 protected:
-        void keyPressEvent( QKeyEvent *e );
+  void keyPressEvent(QKeyEvent *e);
 
 public slots:
-        void showItClicked();
-        void knowItClicked();
-        void dontKnowClicked();
-        void stopItClicked();
-        void timeoutReached();
-        void editEntryClicked();
-        void trans1clicked();
-        void trans2clicked();
-        void trans3clicked();
-        void trans4clicked();
-        void trans5clicked();
-        void verifyClicked();
+  void showItClicked();
+  void knowItClicked();
+  void dontKnowClicked();
+  void timeoutReached();
+  void slotUser2();
+  void trans1clicked();
+  void trans2clicked();
+  void trans3clicked();
+  void trans4clicked();
+  void trans5clicked();
+  void verifyClicked();
 
 protected:
-    virtual void closeEvent (QCloseEvent*e);
-
-  int            solution;
+  int solution;
   vector<RB_Label> button_ref;
+
+private:
+  MCQueryDlgForm * mw;
 };
 
 #endif // MCQuery_Dlg_H

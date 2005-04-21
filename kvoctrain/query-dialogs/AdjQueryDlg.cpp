@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Dec 4 15:09:18 1999
+    begin          : Sat Dec 4 15:09:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -25,13 +24,10 @@
  ***************************************************************************/
 
 
-
 #include "AdjQueryDlg.h"
 
 #include <kv_resource.h>
-#include <QueryManager.h>
 #include <langset.h>
-#include <prefs.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -45,52 +41,45 @@
 
 AdjQueryDlg::AdjQueryDlg
 (
-        QString type,
-        int entry,
-        int col,
-        int query_cycle,
-        int query_num,
-        int query_startnum,
-        QFont font,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
-        const Comparison &_comp,
-        int   mqtime,
-        bool _show,
-        QWidget* parent,
-        const char* name
-)
-	:
-	AdjQueryDlgForm( parent, name, false),
-        QueryDlgBase(font)
+  QString type,
+  int entry,
+  int col,
+  int query_cycle,
+  int query_num,
+  int query_startnum,
+  QFont font,
+  kvoctrainExpr *exp,
+  kvoctrainDoc  *doc,
+  const Comparison &_comp,
+  int   mqtime,
+  bool _show)
+  : QueryDlgBase(i18n("Comparison Training"))
 {
-   connect( b_edit, SIGNAL(clicked()), SLOT(editClicked()) );
-   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-   connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
+  mw = new AdjQueryDlgForm(this);
+  setMainWidget(mw);
 
-   connect( lev1Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
-   connect( lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+  connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+  connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
 
-   connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
-   connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
-   connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
+  connect(mw->lev1Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+  connect(mw->lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
+  connect(mw->lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()) );
 
-   qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Comparison Training")));
+  connect(mw->lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
+  connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
+  connect(mw->lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
 
-   lev1Label->setBuddy(lev1Field);
-   lev2Label->setBuddy(lev2Field);
-   lev3Label->setBuddy(lev3Field);
+  qtimer = 0;
 
-   setQuery (type, entry, col,
-             query_cycle, query_num, query_startnum,
-             exp, doc, _comp, mqtime, _show);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  mw->lev1Label->setBuddy(mw->lev1Field);
+  mw->lev2Label->setBuddy(mw->lev2Field);
+  mw->lev3Label->setBuddy(mw->lev3Field);
+
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp, mqtime, _show);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
 }
 
 
@@ -112,36 +101,36 @@ void AdjQueryDlg::setQuery(QString,
    q_row = entry;
    q_ocol = col;
    showCounter = _show,
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
    comp = _comp;
-   show_all->setDefault(true);
+   mw->show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
-   lev1Field->setText ("");
-   lev2Field->setText ("");
-   lev3Field->setText ("");
+   mw->lev1Field->setText ("");
+   mw->lev2Field->setText ("");
+   mw->lev3Field->setText ("");
 
    int sel = getRandom(3);
    switch (sel) {
-     case 0: lev1Field->setText (comp.l1() );
+     case 0: mw->lev1Field->setText (comp.l1() );
      break;
 
-     case 1: lev2Field->setText (comp.l2() );
+     case 1: mw->lev2Field->setText (comp.l2() );
      break;
 
-     case 2: lev3Field->setText (comp.l3() );
+     case 2: mw->lev3Field->setText (comp.l3() );
      break;
    }
 
-   lev1Field->setEnabled(!comp.l1().isEmpty() );
-   lev2Field->setEnabled(!comp.l2().isEmpty() );
-   lev3Field->setEnabled(!comp.l3().isEmpty() );
+   mw->lev1Field->setEnabled(!comp.l1().isEmpty() );
+   mw->lev2Field->setEnabled(!comp.l2().isEmpty() );
+   mw->lev3Field->setEnabled(!comp.l3().isEmpty() );
 
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -151,37 +140,37 @@ void AdjQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
+     mw->timebar->setEnabled(false);
    resetAllFields();
 }
 
 
 void AdjQueryDlg::initFocus() const
 {
-  lev1Field->setFocus();
+  mw->lev1Field->setFocus();
 }
 
 
 void AdjQueryDlg::showAllClicked()
 {
   resetAllFields();
-  lev1Field->setText (comp.l1() );
-  lev2Field->setText (comp.l2() );
-  lev3Field->setText (comp.l3() );
+  mw->lev1Field->setText (comp.l1() );
+  mw->lev2Field->setText (comp.l2() );
+  mw->lev3Field->setText (comp.l3() );
 
-  verifyField (lev1Field, comp.l1());
-  verifyField (lev2Field, comp.l2());
-  verifyField (lev3Field, comp.l3());
+  verifyField (mw->lev1Field, comp.l1());
+  verifyField (mw->lev2Field, comp.l2());
+  verifyField (mw->lev3Field, comp.l3());
 
-  dont_know->setDefault(true);
+  mw->dont_know->setDefault(true);
 }
 
 
@@ -189,28 +178,28 @@ void AdjQueryDlg::verifyClicked()
 {
   bool all_known = true;
 
-  if (!verifyField (lev1Field, comp.l1()) )
+  if (!verifyField (mw->lev1Field, comp.l1()) )
     all_known = false;
 
-  if (!verifyField (lev2Field, comp.l2()) )
+  if (!verifyField (mw->lev2Field, comp.l2()) )
     all_known = false;
 
-  if (!verifyField (lev3Field, comp.l3()) )
+  if (!verifyField (mw->lev3Field, comp.l3()) )
     all_known = false;
 
   if (all_known)
 //  know_it->setDefault(true);
     knowItClicked();
   else
-    dont_know->setDefault(true);
+    mw->dont_know->setDefault(true);
 }
 
 
 void AdjQueryDlg::resetAllFields()
 {
-  resetField(lev1Field);
-  resetField(lev2Field);
-  resetField(lev3Field);
+  resetField(mw->lev1Field);
+  resetField(mw->lev2Field);
+  resetField(mw->lev3Field);
 }
 
 
@@ -224,15 +213,15 @@ void AdjQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setProgress(0);
+     mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
-       dont_know->setDefault(true);
+       mw->dont_know->setDefault(true);
      }
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice(Timeout);
@@ -246,13 +235,7 @@ void AdjQueryDlg::dontKnowClicked()
 }
 
 
-void AdjQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice(StopIt);
-}
-
-
-void AdjQueryDlg::editClicked()
+void AdjQueryDlg::slotUser2()
 {
 
    if (qtimer != 0)
@@ -272,13 +255,13 @@ void AdjQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showAllClicked();
-      else if (verify->isDefault() )
+      else if (mw->verify->isDefault() )
         verifyClicked();
     break;
 
@@ -296,28 +279,22 @@ void AdjQueryDlg::returnPressed()
 
 void AdjQueryDlg::lev1Changed(const QString&)
 {
-  verify->setDefault(true);
-  resetField (lev1Field);
+  mw->verify->setDefault(true);
+  resetField (mw->lev1Field);
 }
 
 
 void AdjQueryDlg::lev2Changed(const QString&)
 {
-  verify->setDefault(true);
-  resetField (lev2Field);
+  mw->verify->setDefault(true);
+  resetField (mw->lev2Field);
 }
 
 
 void AdjQueryDlg::lev3Changed(const QString&)
 {
-  verify->setDefault(true);
-  resetField (lev3Field);
-}
-
-
-void AdjQueryDlg::closeEvent (QCloseEvent*)
-{
-  emit sigQueryChoice(StopIt);
+  mw->verify->setDefault(true);
+  resetField (mw->lev3Field);
 }
 
 

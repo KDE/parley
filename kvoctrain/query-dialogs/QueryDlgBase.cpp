@@ -1,17 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     base class for query dialogs
 
     -----------------------------------------------------------------------
 
-    begin                : Wed Feb 16 20:50:53 MET 2000
+    begin          : Wed Feb 16 20:50:53 MET 2000
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -36,9 +33,10 @@
 
 #include <klocale.h>
 
-QueryDlgBase::QueryDlgBase (QFont &font)
+QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
+  : KDialogBase(Swallow, caption, User1|User2, NoDefault, parent, name, modal, false,
+    KGuiItem(i18n("&Stop Query")), KGuiItem(i18n("&Edit Expression...")))
 {
-  word_font = font;
   kv_doc = 0;
   kv_exp = 0;
   //type_timeout = kvq_notimeout;
@@ -130,10 +128,9 @@ void QueryDlgBase::resetField(QLineEdit *field)
 }
 
 
-bool QueryDlgBase::verifyField(QMultiLineEdit *field, const QString &really,
-                               bool mixed)
+bool QueryDlgBase::verifyField(QMultiLineEdit *field, const QString &really, bool mixed)
 {
-  if (!field->isEnabled() )
+  if (!field->isEnabled())
     return true;
   QColorGroup u_normal = field->colorGroup();
   u_normal.setColor(QColorGroup::Text, QColor(0xff, 0x00, 0x00));
@@ -322,3 +319,14 @@ QString  QueryDlgBase::getNOKComment(int percent_done)
 {
   return i18n("Your answer was wrong. %1% done.").arg(percent_done);
 }
+
+void QueryDlgBase::closeEvent(QCloseEvent * e)
+{
+  emit sigQueryChoice(StopIt);
+}
+
+void QueryDlgBase::slotUser1()
+{
+  emit sigQueryChoice(StopIt);
+}
+

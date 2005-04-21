@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                    query dialog for adjectives
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Dec 4 15:09:18 1999
+    begin          : Sat Dec 4 15:09:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -31,73 +29,62 @@
 
 #include "AdjQueryDlgForm.h"
 #include "QueryDlgBase.h"
-#include <GrammerManager.h>
 
-class AdjQueryDlg : public AdjQueryDlgForm,
-    		    public QueryDlgBase
+class AdjQueryDlg : public QueryDlgBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
+  AdjQueryDlg
+  (
+    QString type,
+    int entry,
+    int col,
+    int query_cycle,
+    int query_num,
+    int query_startnum,
+    QFont font,
+    kvoctrainExpr *exp,
+    kvoctrainDoc *doc,
+    const Comparison &comp,
+    int mqtime,
+    bool show);
 
-    AdjQueryDlg
-    (
-        QString type,
-        int entry,
-        int col,
-        int query_cycle,
-        int query_num,
-        int query_startnum,
-        QFont font,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
-        const Comparison &comp,
-        int   mqtime,
-        bool show,
-        QWidget* parent = NULL,
-        const char* name = NULL
-    );
-
-    void setQuery (QString type,
-                int entry,
-                int col,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                kvoctrainExpr *exp,
-                kvoctrainDoc  *doc,
-                const Comparison &comp,
-                int   mqtime,
-                bool show);
+  void setQuery(QString type,
+              int entry,
+              int col,
+              int query_cycle,
+              int query_num,
+              int query_startnum,
+              kvoctrainExpr *exp,
+              kvoctrainDoc *doc,
+              const Comparison &comp,
+              int mqtime,
+              bool show);
 
 public slots:
-    virtual void initFocus() const;
-
-signals:
-   void sigQueryChoice(QueryDlgBase::Result userchoice);
-   void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 protected:
-    void keyPressEvent( QKeyEvent *e );
-    void resetAllFields();
+  void keyPressEvent(QKeyEvent *e);
+  void resetAllFields();
 
 protected slots:
-    virtual void closeEvent (QCloseEvent*e);
-
-    void lev1Changed(const QString&);
-    void lev2Changed(const QString&);
-    void lev3Changed(const QString&);
-    void stopItClicked();
-    void showAllClicked();
-    void editClicked();
-    void knowItClicked();
-    void returnPressed();
-    void dontKnowClicked();
-    void verifyClicked();
-    void timeoutReached();
+  void lev1Changed(const QString&);
+  void lev2Changed(const QString&);
+  void lev3Changed(const QString&);
+  void showAllClicked();
+  void slotUser2();
+  void knowItClicked();
+  void returnPressed();
+  void dontKnowClicked();
+  void verifyClicked();
+  void timeoutReached();
 
 protected:
+  Comparison  comp;
 
-    Comparison  comp;
+private:
+  AdjQueryDlgForm * mw;
 };
 #endif // AdjQueryDlg_included

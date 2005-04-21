@@ -1,6 +1,6 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>VerbQueryDlgForm</class>
-<widget class="QDialog">
+<widget class="QWidget">
     <property name="name">
         <cstring>VerbQueryDlgForm</cstring>
     </property>
@@ -8,305 +8,192 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>580</width>
-            <height>429</height>
+            <width>473</width>
+            <height>326</height>
         </rect>
     </property>
     <property name="caption">
-        <string>-</string>
+        <string>VerbQueryDlgForm</string>
     </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
         <property name="margin">
-            <number>11</number>
+            <number>0</number>
         </property>
-        <property name="spacing">
-            <number>6</number>
-        </property>
-        <widget class="QGroupBox" row="0" column="0">
+        <widget class="QLayoutWidget" row="1" column="0">
             <property name="name">
-                <cstring>GroupBox4</cstring>
+                <cstring>layout20</cstring>
             </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>3</hsizetype>
-                    <vsizetype>7</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
-            <property name="frameShape">
-                <enum>Box</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Sunken</enum>
-            </property>
-            <property name="title">
-                <string></string>
-            </property>
-            <grid>
+            <hbox>
                 <property name="name">
                     <cstring>unnamed</cstring>
                 </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
-                </property>
-                <widget class="QFrame" row="1" column="0">
+                <widget class="QLabel">
                     <property name="name">
-                        <cstring>Frame19</cstring>
+                        <cstring>lab1</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <bold>1</bold>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>Enter the correct conjugation forms.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>instructionLabel</cstring>
                     </property>
                     <property name="sizePolicy">
                         <sizepolicy>
-                            <hsizetype>3</hsizetype>
+                            <hsizetype>7</hsizetype>
                             <vsizetype>1</vsizetype>
                             <horstretch>0</horstretch>
                             <verstretch>0</verstretch>
                         </sizepolicy>
                     </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
+                    <property name="font">
+                        <font>
+                            <bold>1</bold>
+                        </font>
                     </property>
-                    <property name="frameShadow">
-                        <enum>Plain</enum>
+                    <property name="text">
+                        <string>Current tense is %1.</string>
                     </property>
-                    <grid>
-                        <property name="name">
-                            <cstring>unnamed</cstring>
-                        </property>
-                        <property name="margin">
-                            <number>0</number>
-                        </property>
-                        <property name="spacing">
-                            <number>6</number>
-                        </property>
-                        <widget class="QPushButton" row="0" column="0">
-                            <property name="name">
-                                <cstring>show_all</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>5</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>Show &amp;All</string>
-                            </property>
-                        </widget>
-                        <widget class="QPushButton" row="1" column="0">
-                            <property name="name">
-                                <cstring>verify</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>5</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Verify</string>
-                            </property>
-                        </widget>
-                        <widget class="QPushButton" row="0" column="1">
-                            <property name="name">
-                                <cstring>know_it</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>5</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>I &amp;Know It</string>
-                            </property>
-                        </widget>
-                        <widget class="QPushButton" row="1" column="1">
-                            <property name="name">
-                                <cstring>dont_know</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>5</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="text">
-                                <string>&amp;Do Not Know</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="2" column="0" rowspan="1" colspan="2">
-                            <property name="name">
-                                <cstring>status</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>7</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="frameShape">
-                                <enum>WinPanel</enum>
-                            </property>
-                            <property name="frameShadow">
-                                <enum>Sunken</enum>
-                            </property>
-                            <property name="text">
-                                <string></string>
-                            </property>
-                        </widget>
-                        <widget class="QGroupBox" row="0" column="2" rowspan="3" colspan="1">
-                            <property name="name">
-                                <cstring>progressgroup</cstring>
-                            </property>
-                            <property name="sizePolicy">
-                                <sizepolicy>
-                                    <hsizetype>1</hsizetype>
-                                    <vsizetype>1</vsizetype>
-                                    <horstretch>0</horstretch>
-                                    <verstretch>0</verstretch>
-                                </sizepolicy>
-                            </property>
-                            <property name="title">
-                                <string>Progress</string>
-                            </property>
-                            <grid>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <property name="margin">
-                                    <number>11</number>
-                                </property>
-                                <property name="spacing">
-                                    <number>6</number>
-                                </property>
-                                <widget class="KProgress" row="0" column="1">
-                                    <property name="name">
-                                        <cstring>countbar</cstring>
-                                    </property>
-                                </widget>
-                                <widget class="KProgress" row="1" column="1">
-                                    <property name="name">
-                                        <cstring>timebar</cstring>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel" row="0" column="0">
-                                    <property name="name">
-                                        <cstring>countlabel</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>5</hsizetype>
-                                            <vsizetype>5</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                    <property name="text">
-                                        <string>Count:</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel" row="1" column="0">
-                                    <property name="name">
-                                        <cstring>timelabel</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>5</hsizetype>
-                                            <vsizetype>5</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                    <property name="text">
-                                        <string>Time:</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel" row="2" column="0">
-                                    <property name="name">
-                                        <cstring>Cyclelabel</cstring>
-                                    </property>
-                                    <property name="frameShape">
-                                        <enum>NoFrame</enum>
-                                    </property>
-                                    <property name="text">
-                                        <string>Cycle:</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel" row="2" column="1">
-                                    <property name="name">
-                                        <cstring>progCount</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>5</hsizetype>
-                                            <vsizetype>5</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                </widget>
-                            </grid>
-                        </widget>
-                    </grid>
                 </widget>
-                <widget class="QGroupBox" row="0" column="0">
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget" row="2" column="0">
+            <property name="name">
+                <cstring>layout30</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget">
                     <property name="name">
-                        <cstring>groupBox83</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>7</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="frameShape">
-                        <enum>NoFrame</enum>
-                    </property>
-                    <property name="title">
-                        <string></string>
+                        <cstring>layout29</cstring>
                     </property>
                     <grid>
                         <property name="name">
                             <cstring>unnamed</cstring>
                         </property>
-                        <property name="margin">
-                            <number>0</number>
-                        </property>
-                        <widget class="QLabel" row="5" column="2">
+                        <widget class="QLabel" row="3" column="0">
                             <property name="name">
-                                <cstring>p3pmLabel</cstring>
+                                <cstring>p3smLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>-</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p3smField</cstring>
+                            </property>
                         </widget>
-                        <widget class="QLabel" row="2" column="2">
+                        <widget class="QLineEdit" row="1" column="1">
+                            <property name="name">
+                                <cstring>p2sField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="3" column="1">
+                            <property name="name">
+                                <cstring>p3smField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="4" column="0">
+                            <property name="name">
+                                <cstring>p3snLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p3snField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>p1sLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p1sField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
+                                <cstring>p3sfLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p3sfField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="4" column="1">
+                            <property name="name">
+                                <cstring>p3snField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="2" column="1">
+                            <property name="name">
+                                <cstring>p3sfField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
+                                <cstring>p2sLabel</cstring>
+                            </property>
+                            <property name="text">
+                                <string>-</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p2sField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="0" column="1">
+                            <property name="name">
+                                <cstring>p1sField</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout27</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLineEdit" row="1" column="1">
+                            <property name="name">
+                                <cstring>p2pField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLineEdit" row="4" column="1">
+                            <property name="name">
+                                <cstring>p3pnField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
                             <property name="name">
                                 <cstring>p1pLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>-</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p1pField</cstring>
+                            </property>
                         </widget>
-                        <widget class="QLabel" row="3" column="2">
+                        <widget class="QLabel" row="1" column="0">
                             <property name="name">
                                 <cstring>p2pLabel</cstring>
                             </property>
@@ -327,296 +214,348 @@
                             <property name="text">
                                 <string>-</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p2pField</cstring>
+                            </property>
                         </widget>
-                        <widget class="QFrame" row="0" column="0" rowspan="1" colspan="4">
+                        <widget class="QLineEdit" row="3" column="1">
                             <property name="name">
-                                <cstring>Frame5</cstring>
+                                <cstring>p3pmField</cstring>
                             </property>
-                            <property name="frameShape">
-                                <enum>NoFrame</enum>
-                            </property>
-                            <property name="frameShadow">
-                                <enum>Raised</enum>
-                            </property>
-                            <property name="layoutMargin" stdset="0">
-                            </property>
-                            <property name="layoutSpacing" stdset="0">
-                            </property>
-                            <hbox>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <property name="margin">
-                                    <number>0</number>
-                                </property>
-                                <property name="spacing">
-                                    <number>6</number>
-                                </property>
-                                <widget class="QLabel">
-                                    <property name="name">
-                                        <cstring>TextLabel2</cstring>
-                                    </property>
-                                    <property name="text">
-                                        <string>Base form:</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel">
-                                    <property name="name">
-                                        <cstring>baseLabel</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>7</hsizetype>
-                                            <vsizetype>1</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                    <property name="frameShape">
-                                        <enum>WinPanel</enum>
-                                    </property>
-                                    <property name="frameShadow">
-                                        <enum>Sunken</enum>
-                                    </property>
-                                    <property name="text">
-                                        <string>-</string>
-                                    </property>
-                                </widget>
-                            </hbox>
                         </widget>
-                        <widget class="QLabel" row="6" column="2">
+                        <widget class="QLabel" row="3" column="0">
                             <property name="name">
-                                <cstring>p3pnLabel</cstring>
+                                <cstring>p3pmLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>-</string>
                             </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>p3pmField</cstring>
+                            </property>
                         </widget>
-                        <widget class="QLabel" row="4" column="2">
+                        <widget class="QLineEdit" row="2" column="1">
+                            <property name="name">
+                                <cstring>p3pfField</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
                             <property name="name">
                                 <cstring>p3pfLabel</cstring>
                             </property>
                             <property name="text">
                                 <string>-</string>
                             </property>
-                        </widget>
-                        <widget class="QFrame" row="1" column="0" rowspan="1" colspan="4">
-                            <property name="name">
-                                <cstring>Frame6</cstring>
-                            </property>
-                            <property name="frameShape">
-                                <enum>NoFrame</enum>
-                            </property>
-                            <property name="frameShadow">
-                                <enum>Plain</enum>
-                            </property>
-                            <hbox>
-                                <property name="name">
-                                    <cstring>unnamed</cstring>
-                                </property>
-                                <property name="margin">
-                                    <number>11</number>
-                                </property>
-                                <property name="spacing">
-                                    <number>6</number>
-                                </property>
-                                <widget class="QLabel">
-                                    <property name="name">
-                                        <cstring>lab1</cstring>
-                                    </property>
-                                    <property name="font">
-                                        <font>
-                                            <bold>1</bold>
-                                        </font>
-                                    </property>
-                                    <property name="text">
-                                        <string>Enter the correct conjugation forms.</string>
-                                    </property>
-                                </widget>
-                                <widget class="QLabel">
-                                    <property name="name">
-                                        <cstring>instructionLabel</cstring>
-                                    </property>
-                                    <property name="sizePolicy">
-                                        <sizepolicy>
-                                            <hsizetype>7</hsizetype>
-                                            <vsizetype>1</vsizetype>
-                                            <horstretch>0</horstretch>
-                                            <verstretch>0</verstretch>
-                                        </sizepolicy>
-                                    </property>
-                                    <property name="font">
-                                        <font>
-                                            <bold>1</bold>
-                                        </font>
-                                    </property>
-                                    <property name="text">
-                                        <string>Current tense is %1.</string>
-                                    </property>
-                                </widget>
-                            </hbox>
-                        </widget>
-                        <widget class="QLabel" row="2" column="0">
-                            <property name="name">
-                                <cstring>p1sLabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>-</string>
+                            <property name="buddy" stdset="0">
+                                <cstring>p3pfField</cstring>
                             </property>
                         </widget>
-                        <widget class="QLabel" row="3" column="0">
-                            <property name="name">
-                                <cstring>p2sLabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>-</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="4" column="0">
-                            <property name="name">
-                                <cstring>p3sfLabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>-</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="5" column="0">
-                            <property name="name">
-                                <cstring>p3smLabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>-</string>
-                            </property>
-                        </widget>
-                        <widget class="QLabel" row="6" column="0">
-                            <property name="name">
-                                <cstring>p3snLabel</cstring>
-                            </property>
-                            <property name="text">
-                                <string>-</string>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="2" column="1">
-                            <property name="name">
-                                <cstring>p1sField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="3" column="1">
-                            <property name="name">
-                                <cstring>p2sField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="4" column="1">
-                            <property name="name">
-                                <cstring>p3sfField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="5" column="1">
-                            <property name="name">
-                                <cstring>p3smField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="6" column="1">
-                            <property name="name">
-                                <cstring>p3snField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="2" column="3">
+                        <widget class="QLineEdit" row="0" column="1">
                             <property name="name">
                                 <cstring>p1pField</cstring>
                             </property>
                         </widget>
-                        <widget class="QLineEdit" row="3" column="3">
+                        <widget class="QLabel" row="4" column="0">
                             <property name="name">
-                                <cstring>p2pField</cstring>
+                                <cstring>p3pnLabel</cstring>
                             </property>
-                        </widget>
-                        <widget class="QLineEdit" row="4" column="3">
-                            <property name="name">
-                                <cstring>p3pfField</cstring>
+                            <property name="text">
+                                <string>-</string>
                             </property>
-                        </widget>
-                        <widget class="QLineEdit" row="5" column="3">
-                            <property name="name">
-                                <cstring>p3pmField</cstring>
-                            </property>
-                        </widget>
-                        <widget class="QLineEdit" row="6" column="3">
-                            <property name="name">
+                            <property name="buddy" stdset="0">
                                 <cstring>p3pnField</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget" row="0" column="0">
+            <property name="name">
+                <cstring>layout19</cstring>
+            </property>
+            <hbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>TextLabel2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Base form:</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>baseLabel</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>GroupBoxPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <property name="text">
+                        <string>-</string>
+                    </property>
+                </widget>
+            </hbox>
+        </widget>
+        <widget class="QLayoutWidget" row="4" column="0">
+            <property name="name">
+                <cstring>layout32</cstring>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLayoutWidget" row="0" column="0">
+                    <property name="name">
+                        <cstring>layout31</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton" row="0" column="1">
+                            <property name="name">
+                                <cstring>know_it</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>I &amp;Know It</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+K</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="1" column="0">
+                            <property name="name">
+                                <cstring>verify</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Verify</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+V</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="0" column="0">
+                            <property name="name">
+                                <cstring>show_all</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Show &amp;All</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+A</string>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="1" column="1">
+                            <property name="name">
+                                <cstring>dont_know</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>1</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Do Not Know</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+D</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>status</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>GroupBoxPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                </widget>
+                <widget class="QGroupBox" row="0" column="1" rowspan="2" colspan="1">
+                    <property name="name">
+                        <cstring>progressgroup</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="title">
+                        <string>Progress</string>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>11</number>
+                        </property>
+                        <property name="spacing">
+                            <number>6</number>
+                        </property>
+                        <widget class="KProgress" row="0" column="1">
+                            <property name="name">
+                                <cstring>countbar</cstring>
+                            </property>
+                        </widget>
+                        <widget class="KProgress" row="1" column="1">
+                            <property name="name">
+                                <cstring>timebar</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>countlabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Count:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
+                                <cstring>timelabel</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>5</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>Time:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
+                                <cstring>Cyclelabel</cstring>
+                            </property>
+                            <property name="frameShape">
+                                <enum>NoFrame</enum>
+                            </property>
+                            <property name="text">
+                                <string>Cycle:</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="1">
+                            <property name="name">
+                                <cstring>progCount</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>5</hsizetype>
+                                    <vsizetype>1</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
                             </property>
                         </widget>
                     </grid>
                 </widget>
             </grid>
         </widget>
-        <widget class="QLayoutWidget" row="1" column="0">
+        <spacer row="3" column="0">
             <property name="name">
-                <cstring>layout17</cstring>
+                <cstring>spacer11</cstring>
             </property>
-            <hbox>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>b_edit</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>1</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Edit Expression...</string>
-                    </property>
-                </widget>
-                <spacer>
-                    <property name="name">
-                        <cstring>Spacer2_2</cstring>
-                    </property>
-                    <property name="orientation">
-                        <enum>Horizontal</enum>
-                    </property>
-                    <property name="sizeType">
-                        <enum>MinimumExpanding</enum>
-                    </property>
-                    <property name="sizeHint">
-                        <size>
-                            <width>180</width>
-                            <height>20</height>
-                        </size>
-                    </property>
-                </spacer>
-                <widget class="QPushButton">
-                    <property name="name">
-                        <cstring>stop_it</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>1</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Stop Query</string>
-                    </property>
-                </widget>
-            </hbox>
-        </widget>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>390</width>
+                    <height>16</height>
+                </size>
+            </property>
+        </spacer>
     </grid>
 </widget>
 <customwidgets>
 </customwidgets>
 <tabstops>
+    <tabstop>p1sField</tabstop>
+    <tabstop>p2sField</tabstop>
+    <tabstop>p3sfField</tabstop>
+    <tabstop>p3smField</tabstop>
+    <tabstop>p3snField</tabstop>
+    <tabstop>p1pField</tabstop>
+    <tabstop>p2pField</tabstop>
+    <tabstop>p3pfField</tabstop>
+    <tabstop>p3pmField</tabstop>
+    <tabstop>p3pnField</tabstop>
     <tabstop>show_all</tabstop>
-    <tabstop>know_it</tabstop>
     <tabstop>verify</tabstop>
+    <tabstop>know_it</tabstop>
     <tabstop>dont_know</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>

@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Nov 25 11:45:53 MET 1999
+    begin          : Thu Nov 25 11:45:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -27,8 +26,6 @@
 #include "MCQueryDlg.h"
 
 #include <kv_resource.h>
-#include <QueryManager.h>
-#include <prefs.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -58,37 +55,33 @@ MCQueryDlg::MCQueryDlg(
                    kvoctrainExpr *exp,
                    kvoctrainDoc  *doc,
                    int mqtime,
-                   bool _show,
-                   QWidget *parent,
-                   char *name)
-	: MCQueryDlgForm(parent, name, false),
-	  QueryDlgBase(font)
+                   bool _show)
+  : QueryDlgBase(i18n("Multiple Choice"))
 {
-   transgroup->insert(rb_trans1);
-   transgroup->insert(rb_trans2);
-   transgroup->insert(rb_trans3);
-   transgroup->insert(rb_trans4);
-   transgroup->insert(rb_trans5);
+  mw = new MCQueryDlgForm(this);
+  setMainWidget(mw);
 
-   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  mw->transgroup->insert(mw->rb_trans1);
+  mw->transgroup->insert(mw->rb_trans2);
+  mw->transgroup->insert(mw->rb_trans3);
+  mw->transgroup->insert(mw->rb_trans4);
+  mw->transgroup->insert(mw->rb_trans5);
+
+  connect( mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect( mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
 // connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_all, SIGNAL(clicked()), SLOT(showItClicked()) );
-   connect( rb_trans5, SIGNAL(clicked()), SLOT(trans5clicked()) );
-   connect( rb_trans4, SIGNAL(clicked()), SLOT(trans4clicked()) );
-   connect( rb_trans3, SIGNAL(clicked()), SLOT(trans3clicked()) );
-   connect( rb_trans2, SIGNAL(clicked()), SLOT(trans2clicked()) );
-   connect( rb_trans1, SIGNAL(clicked()), SLOT(trans1clicked()) );
-   connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
+  connect( mw->show_all, SIGNAL(clicked()), SLOT(showItClicked()) );
+  connect( mw->rb_trans5, SIGNAL(clicked()), SLOT(trans5clicked()) );
+  connect( mw->rb_trans4, SIGNAL(clicked()), SLOT(trans4clicked()) );
+  connect( mw->rb_trans3, SIGNAL(clicked()), SLOT(trans3clicked()) );
+  connect( mw->rb_trans2, SIGNAL(clicked()), SLOT(trans2clicked()) );
+  connect( mw->rb_trans1, SIGNAL(clicked()), SLOT(trans1clicked()) );
 
-   qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Multiple Choice")));
-   setQuery (org, trans, entry, orgcol, transcol,
-             q_cycle, q_num, q_start,
-             exp, doc, mqtime, _show);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  qtimer = 0;
+
+  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, _show);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
 }
 
 
@@ -112,17 +105,17 @@ void MCQueryDlg::setQuery(QString org,
    q_tcol = transcol;
    translation = trans;
    showCounter = _show,
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
-   orgField->setFont(word_font);
-   orgField->setText (org);
-   show_all->setDefault(true);
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
+   mw->orgField->setFont(Prefs::tableFont());
+   mw->orgField->setText (org);
+   mw->show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -132,23 +125,23 @@ void MCQueryDlg::setQuery(QString org,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
+     mw->timebar->setEnabled(false);
 
    vector<QString> strings;
    button_ref.clear();
-   button_ref.push_back(RB_Label(rb_trans1, trans1));
-   button_ref.push_back(RB_Label(rb_trans2, trans2));
-   button_ref.push_back(RB_Label(rb_trans3, trans3));
-   button_ref.push_back(RB_Label(rb_trans4, trans4));
-   button_ref.push_back(RB_Label(rb_trans5, trans5));
+   button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
+   button_ref.push_back(RB_Label(mw->rb_trans2, mw->trans2));
+   button_ref.push_back(RB_Label(mw->rb_trans3, mw->trans3));
+   button_ref.push_back(RB_Label(mw->rb_trans4, mw->trans4));
+   button_ref.push_back(RB_Label(mw->rb_trans5, mw->trans5));
    random_shuffle(button_ref.begin(), button_ref.end() );
    resetButton(button_ref[0].rb, button_ref[0].label);
    resetButton(button_ref[1].rb, button_ref[1].label);
@@ -240,29 +233,29 @@ void MCQueryDlg::setQuery(QString org,
    button_ref[4].label->setEnabled(!strings[4].isEmpty() );
 
    button_ref[0].label->setText(strings[0]);
-   button_ref[0].label->setFont(word_font);
+   button_ref[0].label->setFont(Prefs::tableFont());
    button_ref[1].label->setText(strings[1]);
-   button_ref[1].label->setFont(word_font);
+   button_ref[1].label->setFont(Prefs::tableFont());
    button_ref[2].label->setText(strings[2]);
-   button_ref[2].label->setFont(word_font);
+   button_ref[2].label->setFont(Prefs::tableFont());
    button_ref[3].label->setText(strings[3]);
-   button_ref[3].label->setFont(word_font);
+   button_ref[3].label->setFont(Prefs::tableFont());
    button_ref[4].label->setText(strings[4]);
-   button_ref[4].label->setFont(word_font);
+   button_ref[4].label->setFont(Prefs::tableFont());
 
-   rb_trans1->setChecked (false);
-   rb_trans2->setChecked (false);
-   rb_trans3->setChecked (false);
-   rb_trans4->setChecked (false);
-   rb_trans5->setChecked (false);
+   mw->rb_trans1->setChecked (false);
+   mw->rb_trans2->setChecked (false);
+   mw->rb_trans3->setChecked (false);
+   mw->rb_trans4->setChecked (false);
+   mw->rb_trans5->setChecked (false);
 
-   show_all->setFocus();
+   mw->show_all->setFocus();
 }
 
 
 void MCQueryDlg::initFocus() const
 {
-  rb_trans1->setFocus();
+  mw->rb_trans1->setFocus();
 }
 
 
@@ -277,7 +270,7 @@ void MCQueryDlg::showItClicked()
   button_ref[solution].rb->setFocus();
   button_ref[solution].rb->setChecked(true);
   verifyButton(button_ref[solution].rb, true, button_ref[solution].label);
-  dont_know->setDefault(true);
+  mw->dont_know->setDefault(true);
 }
 
 
@@ -333,19 +326,19 @@ void MCQueryDlg::verifyClicked()
   }
 
   if (known) {
-    status->setText(getOKComment((countbar->progress()/countbar->totalSteps()) * 100));
+    mw->status->setText(getOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
     knowItClicked();
   }
   else {
-    status->setText(getNOKComment((countbar->progress()/countbar->totalSteps()) * 100));
-    dont_know->setDefault(true);
+    mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+    mw->dont_know->setDefault(true);
   }
 }
 
 
 void MCQueryDlg::knowItClicked()
 {
-   status->setText("");
+   mw->status->setText("");
    emit sigQueryChoice (Known);
 }
 
@@ -354,40 +347,34 @@ void MCQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     status->setText(getTimeoutComment((countbar->progress()/countbar->totalSteps()) * 100));
-     timebar->setProgress(0);
+     mw->status->setText(getTimeoutComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+     mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show)
      {
        showItClicked();
-       dont_know->setDefault(true);
+       mw->dont_know->setDefault(true);
      }
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
        emit sigQueryChoice (Timeout);
    }
    else
-     status->setText("");
+     mw->status->setText("");
 }
 
 
 void MCQueryDlg::dontKnowClicked()
 {
-   status->setText("");
+   mw->status->setText("");
    emit sigQueryChoice (Unknown);
 }
 
 
-void MCQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice (StopIt);
-}
-
-
-void MCQueryDlg::editEntryClicked()
+void MCQueryDlg::slotUser2()
 {
 
    if (qtimer != 0)
@@ -396,7 +383,7 @@ void MCQueryDlg::editEntryClicked()
    emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
 
    kvoctrainExpr *exp = kv_doc->getEntry(q_row);
-   orgField->setText (q_ocol == 0
+   mw->orgField->setText (q_ocol == 0
                         ? exp->getOriginal()
                         : exp->getTranslation(q_ocol));
 }
@@ -412,11 +399,11 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showItClicked();
     break;
 
@@ -454,12 +441,6 @@ void MCQueryDlg::trans4clicked()
 void MCQueryDlg::trans5clicked()
 {
   verifyClicked();
-}
-
-
-void MCQueryDlg::closeEvent (QCloseEvent*)
-{
-   emit sigQueryChoice (StopIt);
 }
 
 

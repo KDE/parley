@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-                           (C) 2004 Peter Hedlund
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2004-2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -28,8 +27,6 @@
 #include "common-dialogs/ProgressDlg.h"
 
 #include <kv_resource.h>
-#include <QueryManager.h>
-#include <prefs.h>
 
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -150,108 +147,109 @@ RandomQueryDlg::RandomQueryDlg(
                    int  _fields,
                    bool _show_more,
                    bool _i_know,
-                   bool _swap,
-                   QWidget *parent,
-                   char *name)
-        : QueryDlgForm(parent, name, false),
-          QueryDlgBase(font)
+                   bool _swap)
+  : QueryDlgBase(i18n("Random Query"))
 {
-   connect( c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
-   connect( c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
-   connect( c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()) );
-   connect( stop_it, SIGNAL(clicked()), SLOT(stopItClicked()) );
-   connect( dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
-   connect( know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
-   connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
-   connect( show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
-   connect( show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
-   connect( b_edit, SIGNAL(clicked()), SLOT(editEntryClicked()) );
-   show_more -> setEnabled (_show_more);
-   know_it -> setEnabled (_i_know);
+  mw = new QueryDlgForm(this);
+  setMainWidget(mw);
 
-   if ( ! _split || _fields < 1 )
-     _fields = 1;
-   else if ( _fields > 10 )
-     _fields = 10;
-   suggestions = _suggestions;
-   split = _split;
-   periods = _periods;
-   colons = _colons;
-   semicolons = _semicolons;
-   commas = _commas;
-   fields = _fields;
+  connect( mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
+  connect( mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
+  connect( mw->c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()) );
+  connect( mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
+  connect( mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
+  connect( mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
+  connect( mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
+  connect( mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
 
-   int i;
-   if ( suggestions )
-   {
-     for ( i = 0; i < fields; i ++ )
-     {
-       transCombos.append (new QComboBox (false, simpleGroup, QCString ("transCombo") + QCString().setNum (i)));
-       transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
-       transCombos.at(i) -> setEditable (true);
-       transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsertion);
-       transCombos.at(i) -> setDuplicatesEnabled (false);
-       simpleGroupLayout -> insertWidget (simpleGroupLayout -> findWidget (Frame18), transCombos.at(i));
-       connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
-       connect (transCombos.at(i) -> lineEdit(), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
-     }
-   }
-   else
-   {
-     for ( i = 0; i < fields; i ++ )
-     {
-       transFields.append (new QLineEdit (simpleGroup, QCString ("transField") + QCString().setNum (i)));
-       transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
-       simpleGroupLayout -> insertWidget (simpleGroupLayout -> findWidget (Frame18), transFields.at(i));
-       connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
-       connect (transFields.at(i), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
-     }
-   }
+  mw->show_more -> setEnabled (_show_more);
+  mw->know_it -> setEnabled (_i_know);
 
-   kv_doc = 0;
-   qtimer = 0;
-   setCaption (kapp->makeStdCaption(i18n("Random Query")));
-   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show);
-   countbar->setFormat("%v/%m");
-   timebar->setFormat("%v");
+  if ( ! _split || _fields < 1 )
+    _fields = 1;
+  else if ( _fields > 10 )
+    _fields = 10;
+  suggestions = _suggestions;
+  split = _split;
+  periods = _periods;
+  colons = _colons;
+  semicolons = _semicolons;
+  commas = _commas;
+  fields = _fields;
 
-   if ( suggestions )
-   {
-     ProgressDlg* pdlg = 0;
-     if ( split && kv_doc -> numEntries() >= 500 )
-     {
-       pdlg = new ProgressDlg (QString(), QString(), kapp -> makeStdCaption (i18n("Loading Random Query")));
-       pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
-       pdlg -> show();
-       kapp -> processEvents();
-     }
-     for ( i = 0; i < kv_doc -> numEntries(); i ++ )
-     {
-       kvoctrainExpr* expr = kv_doc -> getEntry (i);
-       if ( split )
-         vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
-       else
-         vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
-       if ( _swap )
-       {
-         if ( split )
-           vocabulary += extractTranslations (q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal());
-         else
-           vocabulary += q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal();
-       }
-       if ( pdlg )
-       {
-         pdlg -> setValue (doc, i * 100 / kv_doc -> numEntries());
-         kapp -> processEvents();
-       }
-     }
-     vocabulary.sort();
-     for ( uint k = 1; k < vocabulary.count(); k ++ )
-       if ( vocabulary [k - 1] == vocabulary [k] )
-         vocabulary.remove (vocabulary.at (k --));
-     if ( pdlg )
-       delete pdlg;
-   }
+  QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame, 0, KDialog::spacingHint());
+
+  int i;
+  if ( suggestions )
+  {
+    for ( i = 0; i < fields; i ++ )
+    {
+      transCombos.append (new QComboBox (false, mw->TranslationFrame, QCString ("transCombo") + QCString().setNum (i)));
+      transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
+      transCombos.at(i) -> setEditable (true);
+      transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsertion);
+      transCombos.at(i) -> setDuplicatesEnabled (false);
+      vb->addWidget(transCombos.at(i));
+      connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+      connect (transCombos.at(i) -> lineEdit(), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+    }
+  }
+  else
+  {
+    for ( i = 0; i < fields; i ++ )
+    {
+      transFields.append (new QLineEdit (mw->TranslationFrame, QCString ("transField") + QCString().setNum (i)));
+      transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
+      vb->addWidget(transFields.at(i));
+      connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+      connect (transFields.at(i), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+    }
+  }
+
+  kv_doc = 0;
+  qtimer = 0;
+  //setCaption (kapp->makeStdCaption(i18n("Random Query")));
+  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show);
+  mw->countbar->setFormat("%v/%m");
+  mw->timebar->setFormat("%v");
+
+  if ( suggestions )
+  {
+    ProgressDlg* pdlg = 0;
+    if ( split && kv_doc -> numEntries() >= 500 )
+    {
+      pdlg = new ProgressDlg (QString(), QString(), kapp -> makeStdCaption (i18n("Loading Random Query")));
+      pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
+      pdlg -> show();
+      kapp -> processEvents();
+    }
+    for ( i = 0; i < kv_doc -> numEntries(); i ++ )
+    {
+      kvoctrainExpr* expr = kv_doc -> getEntry (i);
+      if ( split )
+        vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
+      else
+        vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
+      if ( _swap )
+      {
+        if ( split )
+          vocabulary += extractTranslations (q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal());
+        else
+          vocabulary += q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal();
+      }
+      if ( pdlg )
+      {
+        pdlg -> setValue (doc, i * 100 / kv_doc -> numEntries());
+        kapp -> processEvents();
+      }
+    }
+    vocabulary.sort();
+    for ( uint k = 1; k < vocabulary.count(); k ++ )
+      if ( vocabulary [k - 1] == vocabulary [k] )
+        vocabulary.remove (vocabulary.at (k --));
+    if ( pdlg )
+      delete pdlg;
+  }
 }
 
 
@@ -279,8 +277,8 @@ void RandomQueryDlg::setQuery(QString org,
      translations = extractTranslations (trans);
    else
      translations = trans;
-   timebar->setEnabled(showCounter);
-   timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(showCounter);
+   mw->timelabel->setEnabled(showCounter);
    int i;
    uint k;
    if ( suggestions )
@@ -300,7 +298,7 @@ void RandomQueryDlg::setQuery(QString org,
      for ( i = 0; i < fields; i ++ )
      {
        transFields.at(i) -> clear();
-       transFields.at(i) -> setFont (word_font);
+       transFields.at(i) -> setFont (Prefs::tableFont());
        resetField (transFields.at(i));
      }
      for ( k = 0; k < translations.count(); k ++ )
@@ -308,25 +306,25 @@ void RandomQueryDlg::setQuery(QString org,
      for ( i = k; i < fields; i ++ )
        transFields.at(i) -> hide();
    }
-   verify -> setEnabled (true);
-   orgField->setFont(word_font);
-   orgField->setText (org);
-   show_all->setDefault(true);
+   mw->verify -> setEnabled (true);
+   mw->orgField->setFont(Prefs::tableFont());
+   mw->orgField->setText (org);
+   mw->show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);
-   progCount->setText (s);
+   mw->progCount->setText (s);
 
-   remark->hide();
-   falseFriend->hide();
-   type->hide();
+   mw->remark->hide();
+   mw->falseFriend->hide();
+   mw->type->hide();
 
-   c_remark->setChecked(false);
-   c_falsefriend->setChecked(false);
-   c_type->setChecked(false);
+   mw->c_remark->setChecked(false);
+   mw->c_falsefriend->setChecked(false);
+   mw->c_type->setChecked(false);
    setHintFields();
 
-   countbar->setTotalSteps(q_start);
-   countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setTotalSteps(q_start);
+   mw->countbar->setProgress(q_start - q_num + 1);
 
    if (mqtime >= 1000) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -336,17 +334,17 @@ void RandomQueryDlg::setQuery(QString org,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime/1000;
-       timebar->setTotalSteps(timercount);
-       timebar->setProgress(timercount);
+       mw->timebar->setTotalSteps(timercount);
+       mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
      }
      else
-       timebar->setEnabled(false);
+       mw->timebar->setEnabled(false);
    }
    else
-     timebar->setEnabled(false);
+     mw->timebar->setEnabled(false);
 
-   status -> clear();
+   mw->status -> clear();
    suggestion_hint = false;
 }
 
@@ -381,17 +379,17 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      int percent = (countbar->progress()/countbar->totalSteps()) * 100;
+      int percent = (mw->countbar->progress()/mw->countbar->totalSteps()) * 100;
       //status->setText(getOKComment(countbar->getPercentage()));
-      status->setText(getOKComment(percent));
+      mw->status->setText(getOKComment(percent));
       knowItClicked();
     }
     else
     {
       for ( i = 0; i < combos.count(); i ++ )
         verifyField (combos.at(i) -> lineEdit(), "a\na"); // always fail
-      status->setText(getNOKComment((countbar->progress()/countbar->totalSteps()) * 100));
-      dont_know->setDefault(true);
+      mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+      mw->dont_know->setDefault(true);
     }
   }
   else
@@ -410,15 +408,15 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      status->setText(getOKComment((countbar->progress()/countbar->totalSteps()) * 100));
+      mw->status->setText(getOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
       knowItClicked();
     }
     else
     {
       for ( i = 0; i < fields.count(); i ++ )
         verifyField (fields.at(i), trans[i]);
-      status->setText(getNOKComment((countbar->progress()/countbar->totalSteps()) * 100));
-      dont_know->setDefault(true);
+      mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+      mw->dont_know->setDefault(true);
     }
   }
   suggestion_hint = false;
@@ -438,14 +436,14 @@ void RandomQueryDlg::showMoreClicked()
         {
           combo -> setEditText (translations[i]);
           verifyField (combo -> lineEdit(), translations[i]);
-          verify -> setEnabled (false);
+          mw->verify -> setEnabled (false);
         }
         else
         {
           combo -> setEditText (translations[i].left (length));
           resetField (combo -> lineEdit());
         }
-        dont_know -> setDefault (true);
+        mw->dont_know -> setDefault (true);
         break;
       }
     }
@@ -460,18 +458,18 @@ void RandomQueryDlg::showMoreClicked()
         {
           field -> setText (translations[i]);
           verifyField (field, translations[i]);
-          verify -> setEnabled (false);
+          mw->verify -> setEnabled (false);
         }
         else
         {
           field -> setText (translations[i].left (length));
           resetField (field);
         }
-        dont_know -> setDefault (true);
+        mw->dont_know -> setDefault (true);
         break;
       }
     }
-  status -> clear();
+  mw->status -> clear();
   suggestion_hint = false;
 }
 
@@ -490,26 +488,26 @@ void RandomQueryDlg::showAllClicked()
       transFields.at(i) -> setText (translations[i]);
       verifyField (transFields.at(i), translations[i]);
     }
-  verify -> setEnabled (false);
-  dont_know->setDefault(true);
-  status -> clear();
+  mw->verify -> setEnabled (false);
+  mw->dont_know->setDefault(true);
+  mw->status -> clear();
   suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::slotTransChanged(const QString&)
 {
-  verify->setDefault(true);
+  mw->verify->setDefault(true);
   if ( suggestions && sender() && sender() -> isA ("QComboBox") )
   {
     QLineEdit* edit = ((QComboBox*) sender()) -> lineEdit();
     resetField (edit);
     suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
     if ( suggestion_hint )
-      status -> setText (QString (i18n("Press F5 for a list of translations starting with '%1'\n"
+      mw->status -> setText (QString (i18n("Press F5 for a list of translations starting with '%1'\n"
         "Press F6 for a list of translations containing '%2'")).arg (edit -> text()).arg (edit -> text()));
     else
-      status -> clear();
+      mw->status -> clear();
   }
   else if ( ! suggestions && sender() && sender() -> isA ("QLineEdit") )
     resetField ((QLineEdit*) sender());
@@ -518,14 +516,14 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 void RandomQueryDlg::slotTransLostFocus()
 {
   if ( suggestion_hint )
-    status -> clear();
+    mw->status -> clear();
   suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::knowItClicked()
 {
-  status -> clear();
+  mw->status -> clear();
   suggestion_hint = false;
   emit sigQueryChoice (Known);
 }
@@ -535,20 +533,20 @@ void RandomQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     timebar->setProgress(timercount);
+     mw->timebar->setProgress(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     timebar->setProgress(0);
+     mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
-       dont_know->setDefault(true);
+       mw->dont_know->setDefault(true);
      }
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
        emit sigQueryChoice (Timeout);
      }
-     status->setText(getTimeoutComment((countbar->progress()/countbar->totalSteps()) * 100));
+     mw->status->setText(getTimeoutComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
    }
 
    suggestion_hint = false;
@@ -557,15 +555,9 @@ void RandomQueryDlg::timeoutReached()
 
 void RandomQueryDlg::dontKnowClicked()
 {
-  status -> clear();
+  mw->status -> clear();
   suggestion_hint = false;
   emit sigQueryChoice (Unknown);
-}
-
-
-void RandomQueryDlg::stopItClicked()
-{
-   emit sigQueryChoice (StopIt);
 }
 
 
@@ -575,12 +567,12 @@ void RandomQueryDlg::setHintFields()
    kvoctrainExpr *exp = kv_doc->getEntry(q_row);
 
    s = exp->getRemark(q_ocol);
-   remark->setText (s);
-   c_remark->setEnabled(!s.isEmpty() );
+   mw->remark->setText (s);
+   mw->c_remark->setEnabled(!s.isEmpty() );
 
    s = exp->getFauxAmi(q_ocol, q_ocol != 0);
-   falseFriend->setText (s);
-   c_falsefriend->setEnabled(!s.isEmpty() );
+   mw->falseFriend->setText (s);
+   mw->c_falsefriend->setEnabled(!s.isEmpty() );
 
    s = "";
    vector<TypeRelation> all_types = QueryManager::getRelation(false);
@@ -590,12 +582,12 @@ void RandomQueryDlg::setHintFields()
        break;
      }
    }
-   type->setText (s);
-   c_type->setEnabled(!s.isEmpty() );
+   mw->type->setText (s);
+   mw->c_type->setEnabled(!s.isEmpty() );
 }
 
 
-void RandomQueryDlg::editEntryClicked()
+void RandomQueryDlg::slotUser2()
 {
    if (qtimer != 0)
      qtimer->stop();
@@ -603,7 +595,7 @@ void RandomQueryDlg::editEntryClicked()
    emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
 
    kvoctrainExpr *exp = kv_doc->getEntry(q_row);
-   orgField->setText (q_ocol == 0
+   mw->orgField->setText (q_ocol == 0
                         ? exp->getOriginal()
                         : exp->getTranslation(q_ocol));
 
@@ -613,7 +605,7 @@ void RandomQueryDlg::editEntryClicked()
    else
      for ( int i = 0; i < fields; i ++ )
        transFields.at(i) -> clear();
-   status -> clear();
+   mw->status -> clear();
    suggestion_hint = false;
 
    setHintFields();
@@ -622,28 +614,28 @@ void RandomQueryDlg::editEntryClicked()
 
 void RandomQueryDlg::slotFFClicked()
 {
-   if (c_falsefriend->isChecked() )
-     falseFriend->show();
+   if (mw->c_falsefriend->isChecked() )
+     mw->falseFriend->show();
    else
-     falseFriend->hide();
+     mw->falseFriend->hide();
 }
 
 
 void RandomQueryDlg::slotRemClicked()
 {
-   if (c_remark->isChecked())
-     remark->show();
+   if (mw->c_remark->isChecked())
+     mw->remark->show();
    else
-     remark->hide();
+     mw->remark->hide();
 }
 
 
 void RandomQueryDlg::slotTypeClicked()
 {
-   if (c_type->isChecked() )
-     type->show();
+   if (mw->c_type->isChecked() )
+     mw->type->show();
    else
-     type->hide();
+     mw->type->hide();
 }
 
 
@@ -691,13 +683,13 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
 
     case Key_Return:
     case Key_Enter:
-      if (dont_know->isDefault() )
+      if (mw->dont_know->isDefault() )
         dontKnowClicked();
-      else if (know_it->isDefault() )
+      else if (mw->know_it->isDefault() )
         knowItClicked();
-      else if (show_all->isDefault() )
+      else if (mw->show_all->isDefault() )
         showAllClicked();
-      else if (verify->isDefault() )
+      else if (mw->verify->isDefault() )
         verifyClicked();
     break;
 
@@ -706,12 +698,5 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
     break;
   }
 }
-
-
-void RandomQueryDlg::closeEvent (QCloseEvent*)
-{
-   emit sigQueryChoice (StopIt);
-}
-
 
 #include "RandomQueryDlg.moc"

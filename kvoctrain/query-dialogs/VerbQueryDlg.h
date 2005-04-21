@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     query dialog for verbs
 
     -----------------------------------------------------------------------
 
-    begin                : Fri Dec 3 18:28:18 1999
+    begin          : Fri Dec 3 18:28:18 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -32,83 +30,75 @@
 #include "VerbQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
-#include <GrammerManager.h>
-
-class VerbQueryDlg : public VerbQueryDlgForm,
-                     public QueryDlgBase
+class VerbQueryDlg : public QueryDlgBase
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
 
-	VerbQueryDlg(
-                     QString type,
-                     int entry,
-                     int col,
-                     int query_cycle,
-                     int query_num,
-                     int query_startnum,
-                     QFont font,
-                     kvoctrainExpr *exp,
-                     kvoctrainDoc  *doc,
-                     const Conjugation &prefix,
-                     const Conjugation &conjug,
-                     int   mqtime,
-                     bool show,
-                     QWidget *parent=0,
-                     char    *name=0);
+  VerbQueryDlg(
+                QString type,
+                int entry,
+                int col,
+                int query_cycle,
+                int query_num,
+                int query_startnum,
+                QFont font,
+                kvoctrainExpr *exp,
+                kvoctrainDoc  *doc,
+                const Conjugation &prefix,
+                const Conjugation &conjug,
+                int   mqtime,
+                bool show);
 
-	void setQuery(QString type,
-                      int entry,
-                      int col,
-                      int query_cycle,
-                      int query_num,
-                      int query_startnum,
-                      kvoctrainExpr *exp,
-                      kvoctrainDoc  *doc,
-                      const Conjugation &prefix,
-                      const Conjugation &conjug,
-                      int   mqtime,
-                      bool show);
+  void setQuery(QString type,
+                int entry,
+                int col,
+                int query_cycle,
+                int query_num,
+                int query_startnum,
+                kvoctrainExpr *exp,
+                kvoctrainDoc  *doc,
+                const Conjugation &prefix,
+                const Conjugation &conjug,
+                int   mqtime,
+                bool show);
 
 public slots:
-    virtual void initFocus() const;
-
-signals:
-   void sigQueryChoice(QueryDlgBase::Result userchoice);
-   void sigEditEntry(int row, int col);
+  virtual void initFocus() const;
 
 protected:
-    bool next();
-    void keyPressEvent( QKeyEvent *e );
-    void resetAllFields();
+  bool next();
+  void keyPressEvent( QKeyEvent *e );
+  void resetAllFields();
 
 protected slots:
-    void editClicked();
-    void stopItClicked();
-    void slotP3pfChanged(const QString&);
-    void slotP3snChanged(const QString&);
-    void showAllClicked();
-    void slotReturnPressed();
-    void slotP3smChanged(const QString&);
-    void knowItClicked();
-    void dontKnowClicked();
-    void slotP3pnChanged(const QString&);
-    void slotP3sfChanged(const QString&);
-    void slotP1sChanged(const QString&);
-    void slotP2sChanged(const QString&);
-    void slotP3pmChanged(const QString&);
-    void slotP1pChanged(const QString&);
-    void slotP2pChanged(const QString&);
-    void verifyClicked();
-    void timeoutReached();
+  void slotUser2();
+  void slotP3pfChanged(const QString&);
+  void slotP3snChanged(const QString&);
+  void showAllClicked();
+  void slotReturnPressed();
+  void slotP3smChanged(const QString&);
+  void knowItClicked();
+  void dontKnowClicked();
+  void slotP3pnChanged(const QString&);
+  void slotP3sfChanged(const QString&);
+  void slotP1sChanged(const QString&);
+  void slotP2sChanged(const QString&);
+  void slotP3pmChanged(const QString&);
+  void slotP1pChanged(const QString&);
+  void slotP2pChanged(const QString&);
+  void verifyClicked();
+  void timeoutReached();
 
 protected:
-    virtual void closeEvent (QCloseEvent*e);
+  int current;
+  Conjugation conjugations;
+  bool all_known;
+  int query_time;
 
-    int         current;
-    Conjugation conjugations;
-    bool        all_known;
-    int         query_time;
+private:
+  VerbQueryDlgForm * mw;
 };
+
 #endif // VerbQueryDlg_included
