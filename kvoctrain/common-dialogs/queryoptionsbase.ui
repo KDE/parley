@@ -129,10 +129,10 @@
                         <bool>true</bool>
                     </property>
                     <property name="text">
-                        <string>Enable I &amp;Know button</string>
+                        <string>Enable I Know &amp;button</string>
                     </property>
                     <property name="accel">
-                        <string>Alt+K</string>
+                        <string>Alt+B</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Enable the I Know It button on the Random Query screen</string>
@@ -393,6 +393,9 @@
                             <property name="accel">
                                 <string>Alt+S</string>
                             </property>
+                            <property name="buttonGroupId">
+                                <number>1</number>
+                            </property>
                         </widget>
                         <widget class="QRadioButton" row="0" column="0">
                             <property name="name">
@@ -403,6 +406,9 @@
                             </property>
                             <property name="accel">
                                 <string>Alt+N</string>
+                            </property>
+                            <property name="buttonGroupId">
+                                <number>0</number>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>Check this if you do not want any time limitation per query.</string>
