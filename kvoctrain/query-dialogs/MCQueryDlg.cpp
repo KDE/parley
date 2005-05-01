@@ -51,7 +51,6 @@ MCQueryDlg::MCQueryDlg(
                    int q_cycle,
                    int q_num,
                    int q_start,
-                   QFont font,
                    kvoctrainExpr *exp,
                    kvoctrainDoc  *doc,
                    int mqtime,

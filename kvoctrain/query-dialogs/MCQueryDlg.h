@@ -44,7 +44,6 @@ public:
             int query_cycle,
             int query_num,
             int query_startnum,
-            QFont font,
             kvoctrainExpr *exp,
             kvoctrainDoc  *doc,
             int mqtime,
