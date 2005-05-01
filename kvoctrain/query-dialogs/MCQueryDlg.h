@@ -50,6 +50,8 @@ public:
             int mqtime,
             bool show);
 
+  ~MCQueryDlg();
+
   void setQuery(QString org,
                 QString trans,
                 int entry,

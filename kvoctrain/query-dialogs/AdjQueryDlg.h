@@ -50,6 +50,8 @@ public:
     int mqtime,
     bool show);
 
+  ~AdjQueryDlg();
+
   void setQuery(QString type,
               int entry,
               int col,

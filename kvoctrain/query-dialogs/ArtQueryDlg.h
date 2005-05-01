@@ -49,6 +49,8 @@ public:
               int   mqtime,
               bool show);
 
+  ~ArtQueryDlg();
+
   void setQuery (QString type,
               int entry,
               int col,

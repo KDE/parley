@@ -49,6 +49,8 @@ public:
     int mqtime,
     bool showcounter);
 
+  ~SimpleQueryDlg();
+
   void setQuery(QueryType querytpe,
                 int entry,
                 int column,

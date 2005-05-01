@@ -65,6 +65,8 @@ public:
                  bool _i_know,
                  bool _swap);
 
+  ~RandomQueryDlg();
+
   void setQuery(QString org,
                       QString trans,
                       int entry,

@@ -76,6 +76,13 @@ ArtQueryDlg::ArtQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles, mqtime, _show);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
+  resize(configDialogSize("ArtQueryDialog"));
+}
+
+
+ArtQueryDlg::~ArtQueryDlg()
+{
+  saveDialogSize("ArtQueryDialog");
 }
 
 

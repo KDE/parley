@@ -89,6 +89,13 @@ VerbQueryDlg::VerbQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug, mqtime, _show);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
+  resize(configDialogSize("VerbQueryDialog"));
+}
+
+
+VerbQueryDlg::~ VerbQueryDlg( )
+{
+  saveDialogSize("VerbQueryDialog");
 }
 
 

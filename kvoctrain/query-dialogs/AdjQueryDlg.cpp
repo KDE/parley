@@ -80,6 +80,13 @@ AdjQueryDlg::AdjQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp, mqtime, _show);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
+  resize(configDialogSize("AdjQueryDialog"));
+}
+
+
+AdjQueryDlg::~AdjQueryDlg()
+{
+  saveDialogSize("AdjQueryDialog");
 }
 
 

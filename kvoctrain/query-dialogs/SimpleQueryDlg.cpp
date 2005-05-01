@@ -66,6 +66,13 @@ SimpleQueryDlg::SimpleQueryDlg(
   setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc, mqtime, showcounter);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
+  resize(configDialogSize("SimpleQueryDialog"));
+}
+
+
+SimpleQueryDlg::~ SimpleQueryDlg( )
+{
+  saveDialogSize("SimpleQueryDialog");
 }
 
 

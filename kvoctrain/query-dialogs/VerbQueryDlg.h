@@ -51,6 +51,8 @@ public:
                 int   mqtime,
                 bool show);
 
+  ~VerbQueryDlg();
+
   void setQuery(QString type,
                 int entry,
                 int col,

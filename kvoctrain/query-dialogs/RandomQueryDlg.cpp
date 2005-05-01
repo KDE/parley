@@ -250,6 +250,13 @@ RandomQueryDlg::RandomQueryDlg(
     if ( pdlg )
       delete pdlg;
   }
+  resize(configDialogSize("RandomQueryDialog"));
+}
+
+
+RandomQueryDlg::~RandomQueryDlg()
+{
+  saveDialogSize("RandomQueryDialog");
 }
 
 
