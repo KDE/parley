@@ -1,5 +1,5 @@
 <!DOCTYPE kpartgui>
-<kpartgui version="0.2" name="kvoctrain" >
+<kpartgui version="0.3" name="kvoctrain" >
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />
@@ -32,10 +32,11 @@
 <!--<Action name="learning_language" />
    <Separator/>
    <Action name="learning_resume_query" />
-   <Action name="learning_resume_multiple_choice" /> -->  </Menu>
-  <Menu name="settings" >
-   <Action append="configure_merge" name="config_query_options" />
+   <Action name="learning_resume_multiple_choice" /> -->
   </Menu>
+<!--  <Menu name="settings" >
+   <Action append="configure_merge" name="config_query_options" />
+  </Menu>-->
  </MenuBar>
  <ToolBar noMerge="1" name="mainToolBar" >
   <text>Main Toolbar</text>

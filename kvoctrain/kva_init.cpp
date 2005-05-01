@@ -90,8 +90,8 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   querying = false;
   btimer = new QTimer( this );
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
-  if (Prefs::backupTime() > 0)
-    btimer->start(Prefs::backupTime(), TRUE);
+  if (Prefs::autoBackup())
+    btimer->start(Prefs::backupTime() * 60 * 1000, TRUE);
 }
 
 
@@ -227,9 +227,9 @@ void kvoctrainApp::initActions()
   configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
 
-  configQueryOptions = new KAction(i18n("Configure &Query..."), "configure_query", 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
+  /*configQueryOptions = new KAction(i18n("Configure &Query..."), "configure_query", 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
   configQueryOptions->setWhatsThis(i18n("Show the query configuration dialog"));
-  configQueryOptions->setToolTip(configQueryOptions->whatsThis());
+  configQueryOptions->setToolTip(configQueryOptions->whatsThis());*/
 
   actionCollection()->setHighlightingEnabled(true);
   connect(actionCollection(), SIGNAL(actionStatusText(const QString &)), this, SLOT(slotStatusHelpMsg(const QString &)));

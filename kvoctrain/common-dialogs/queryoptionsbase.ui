@@ -1,0 +1,612 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>QueryOptionsBase</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>QueryOptionsBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>452</width>
+            <height>404</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>QueryOptionsBase</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QCheckBox" row="2" column="0">
+            <property name="name">
+                <cstring>kcfg_AltLearn</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Use alternative learning method</string>
+            </property>
+            <property name="accel">
+                <string>Alt+U</string>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Use the Leitner learning method</string>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 4 times in a row. </string>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="1" column="0">
+            <property name="name">
+                <cstring>kcfg_SwapDirection</cstring>
+            </property>
+            <property name="text">
+                <string>S&amp;wap direction randomly</string>
+            </property>
+            <property name="accel">
+                <string>Alt+W</string>
+            </property>
+        </widget>
+        <widget class="QGroupBox" row="3" column="0">
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <property name="title">
+                <string>Random Query Options</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="7">
+                    <property name="name">
+                        <cstring>kcfg_Suggestions</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Enable suggestion lists</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+E</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>If checked, pressing F5 or F6 will display a list of suggestions</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, you can enter part of an answer, then press F5 or F6 to get a list of translations starting with or containing the text you typed.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="1" column="0" rowspan="1" colspan="7">
+                    <property name="name">
+                        <cstring>kcfg_Split</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Split &amp;translations</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+T</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Split translations and show multiple answer fields</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, the program will split translations into several parts, show multiple answer fields, and you will need to answer each one of them. This is useful for example when a word has several meanings that have different translations in the other language.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="1" rowspan="1" colspan="3">
+                    <property name="name">
+                        <cstring>label_split_max_fields</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Maximum number of &amp;fields:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_Fields</cstring>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Maximum number of fields to split translations into</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="5" column="0" rowspan="1" colspan="7">
+                    <property name="name">
+                        <cstring>kcfg_IKnow</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Enable I &amp;Know button</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+K</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Enable the I Know It button on the Random Query screen</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>If this is checked, the I Know button will be available. It allows you to tell the query that you know the result without writing it or having it checked. This is available by default. If you uncheck this, the I Know button will not be available.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="1">
+                    <property name="name">
+                        <cstring>label_at</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>at</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="2" column="2">
+                    <property name="name">
+                        <cstring>kcfg_Periods</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>pe&amp;riods</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+R</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Split translations at periods</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, translations will be split at periods if they have any (except any trailing periods that will be removed).</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="2" column="4">
+                    <property name="name">
+                        <cstring>kcfg_Semicolons</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>sem&amp;icolons</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+I</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Split translations at semicolons</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, translations that have not been split at periods or colons will be split at semicolons if they have any.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="2" column="5" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>kcfg_Commas</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>co&amp;mmas</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+M</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Split translations at commas</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, translations that have not been split at periods, colons or semicolons will be split at commas if they have any.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="2" column="3">
+                    <property name="name">
+                        <cstring>kcfg_Colons</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>co&amp;lons</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+L</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Split translations at colons</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this options is enabled, translations that have not been split at periods will be split at colons if they have any.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="4" column="0" rowspan="1" colspan="7">
+                    <property name="name">
+                        <cstring>kcfg_ShowMore</cstring>
+                    </property>
+                    <property name="enabled">
+                        <bool>true</bool>
+                    </property>
+                    <property name="text">
+                        <string>Enable S&amp;how More button</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+H</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Enable the Show More button on the Random Query screen</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When this is checked, you will be able to use a Show More button which allow you to get the next letter in your answer in the query. If this is unchecked, the Show More button will not be enabled, you will not be able to use it.</string>
+                    </property>
+                </widget>
+                <spacer row="2" column="0" rowspan="2" colspan="1">
+                    <property name="name">
+                        <cstring>spacer12</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Minimum</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>16</width>
+                            <height>48</height>
+                        </size>
+                    </property>
+                </spacer>
+                <widget class="KIntNumInput" row="3" column="4" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>kcfg_Fields</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="maximumSize">
+                        <size>
+                            <width>32767</width>
+                            <height>32767</height>
+                        </size>
+                    </property>
+                    <property name="minValue">
+                        <number>2</number>
+                    </property>
+                    <property name="maxValue">
+                        <number>10</number>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Maximum number of fields to split translations into</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
+                    </property>
+                </widget>
+                <spacer row="3" column="6">
+                    <property name="name">
+                        <cstring>spacer13</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Horizontal</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>111</width>
+                            <height>20</height>
+                        </size>
+                    </property>
+                </spacer>
+            </grid>
+        </widget>
+        <spacer row="4" column="0">
+            <property name="name">
+                <cstring>spacer6</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>290</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QGroupBox" row="0" column="0">
+            <property name="name">
+                <cstring>QueryTimeout</cstring>
+            </property>
+            <property name="title">
+                <string>Time Per Query</string>
+            </property>
+            <property name="exclusive" stdset="0">
+                <bool>false</bool>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QButtonGroup" row="0" column="0" rowspan="2" colspan="1">
+                    <property name="name">
+                        <cstring>kcfg_QueryTimeout</cstring>
+                    </property>
+                    <property name="frameShape">
+                        <enum>NoFrame</enum>
+                    </property>
+                    <property name="title">
+                        <string></string>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <property name="margin">
+                            <number>0</number>
+                        </property>
+                        <widget class="QRadioButton" row="1" column="0">
+                            <property name="name">
+                                <cstring>r_show_to</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Show solution</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+S</string>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="0" column="0">
+                            <property name="name">
+                                <cstring>r_no_limit</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;No time limitation</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+N</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Check this if you do not want any time limitation per query.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>When this is checked, there is no time limitation for each query</string>
+                            </property>
+                        </widget>
+                        <widget class="QRadioButton" row="2" column="0">
+                            <property name="name">
+                                <cstring>r_cont_to</cstring>
+                            </property>
+                            <property name="text">
+                                <string>&amp;Continue after timeout</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+C</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLayoutWidget" row="0" column="1">
+                    <property name="name">
+                        <cstring>layout3</cstring>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>label_mqtime</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Ma&amp;x. time (s):</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>kcfg_MaxTimePer</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QCheckBox" row="1" column="1">
+                            <property name="name">
+                                <cstring>kcfg_ShowCounter</cstring>
+                            </property>
+                            <property name="sizePolicy">
+                                <sizepolicy>
+                                    <hsizetype>3</hsizetype>
+                                    <vsizetype>0</vsizetype>
+                                    <horstretch>0</horstretch>
+                                    <verstretch>0</verstretch>
+                                </sizepolicy>
+                            </property>
+                            <property name="text">
+                                <string>S&amp;how remaining time</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+H</string>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>If checked, activate a progress bar to show the remaining time.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
+                            </property>
+                        </widget>
+                        <spacer row="1" column="0">
+                            <property name="name">
+                                <cstring>Spacer1</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Minimum</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>83</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="KIntNumInput" row="0" column="1">
+                            <property name="name">
+                                <cstring>kcfg_MaxTimePer</cstring>
+                            </property>
+                            <property name="minValue">
+                                <number>0</number>
+                            </property>
+                            <property name="maxValue">
+                                <number>604800</number>
+                            </property>
+                            <property name="toolTip" stdset="0">
+                                <string>Set the maximum time allowed per query.</string>
+                            </property>
+                            <property name="whatsThis" stdset="0">
+                                <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <spacer row="1" column="1">
+                    <property name="name">
+                        <cstring>spacer9</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>200</width>
+                            <height>16</height>
+                        </size>
+                    </property>
+                </spacer>
+            </grid>
+        </widget>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_Periods</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_Colons</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_Semicolons</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_Commas</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_Fields</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>r_no_limit</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_MaxTimePer</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>r_no_limit</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_ShowCounter</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>label_at</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_Split</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>label_split_max_fields</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>r_no_limit</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>label_mqtime</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>kcfg_MaxTimePer</tabstop>
+    <tabstop>kcfg_ShowCounter</tabstop>
+    <tabstop>kcfg_SwapDirection</tabstop>
+    <tabstop>kcfg_AltLearn</tabstop>
+    <tabstop>kcfg_Suggestions</tabstop>
+    <tabstop>kcfg_Split</tabstop>
+    <tabstop>kcfg_Periods</tabstop>
+    <tabstop>kcfg_Colons</tabstop>
+    <tabstop>kcfg_Semicolons</tabstop>
+    <tabstop>kcfg_Commas</tabstop>
+    <tabstop>kcfg_Fields</tabstop>
+    <tabstop>kcfg_ShowMore</tabstop>
+    <tabstop>kcfg_IKnow</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+    <includehint>knuminput.h</includehint>
+</includehints>
+</UI>

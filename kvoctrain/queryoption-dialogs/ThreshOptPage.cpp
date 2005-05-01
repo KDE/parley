@@ -193,7 +193,7 @@ ThreshOptPage::ThreshOptPage
 
 void ThreshOptPage::setStates(QueryManager *_manager)
 {
-   manager = _manager;
+ /*  manager = _manager;
    QueryManager::CompType *ct;
    ThreshListRef *ref;
    int index;
@@ -278,7 +278,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
    typecomp->clear();
    while (*ct != QueryManager::CompType(-1) ) {
      typecomp->insertItem (manager->compStr(*ct));
-     if (Prefs::compType(Prefs::EnumType::WordType) /*manager->typeComp()*/ == *ct)
+     if (Prefs::compType(Prefs::EnumType::WordType) /*manager->typeComp()*/ /*== *ct)
        index = ct - type_complist;
      ct++;
    }
@@ -347,7 +347,7 @@ void ThreshOptPage::setStates(QueryManager *_manager)
        || date_complist[index] == QueryManager::Within)
      datelist->setEnabled(true);
    else
-     datelist->setEnabled(false);
+     datelist->setEnabled(false);*/
 }
 
 

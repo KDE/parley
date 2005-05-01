@@ -46,6 +46,7 @@
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"
+#include "common-dialogs/kvoctrainprefs.h"
 #include "prefs.h"
 
 /*void kvoctrainApp::slotSaveOptions()
@@ -966,6 +967,16 @@ void kvoctrainApp::slotGeneralOptions()
 
 void kvoctrainApp::slotGeneralOptionsPage(int index)
 {
+  //if (KVocTrainPrefs::showDialog( "settings" ))
+  //  return;
+
+  //KConfigDialog didn't find an instance of this dialog, so lets create it :
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, doc, lessons, &querymanager, this, "settings",  Prefs::self() );
+  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyPreferences()));
+  if (index >= 0)
+    dialog->selectPage(index);
+  dialog->show();
+/*
    QString defTrans;
    GeneralOptionsDlg godlg (defTrans,
                     Prefs::separator(),
@@ -1019,7 +1030,35 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
         view->setHeaderProp (i+KV_EXTRA_COLS, lid, pm);
       }
       slotStatusMsg(IDS_DEFAULT);
-   }
+   }*/
+}
+
+
+void kvoctrainApp::slotApplyPreferences()
+{
+  kdDebug() << "Prefs Update" << endl;
+  if (pron_label)
+    pron_label->setFont(Prefs::iPAFont());
+  view->getTable()->setFont(Prefs::tableFont());
+  view->getTable()->updateContents();
+
+  readLanguages();
+  // update header buttons
+  for (int i = 0; i < (int) doc->numLangs(); i++)
+  {
+    QString sid = i>0 ? doc->getIdent(i): doc->getOriginalIdent();
+    int idx = langset.indexShortId(sid);
+    QString pm = "";
+    QString lid = sid;
+    if (idx >= 0)
+    {
+      lid = langset.longId(idx);
+      pm = langset.PixMapFile(idx);
+    }
+    view->setHeaderProp(i+KV_EXTRA_COLS, lid, pm);
+  }
+
+  //emit settingsChanged();
 }
 
 

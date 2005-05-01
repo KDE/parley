@@ -1,0 +1,545 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ViewOptionsBase</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>ViewOptionsBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>592</width>
+            <height>412</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>ViewOptionsBase</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="KFontRequester" row="0" column="1">
+            <property name="name">
+                <cstring>kcfg_TableFont</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>TableFontLabel</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;Table font:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>kcfg_TableFont</cstring>
+            </property>
+        </widget>
+        <widget class="KFontRequester" row="1" column="1">
+            <property name="name">
+                <cstring>kcfg_IPAFont</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="1" column="0">
+            <property name="name">
+                <cstring>IPAFontLabel</cstring>
+            </property>
+            <property name="text">
+                <string>&amp;IPA font:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>kcfg_IPAFont</cstring>
+            </property>
+        </widget>
+        <widget class="QGroupBox" row="2" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>gradegroup</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>5</hsizetype>
+                    <vsizetype>5</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="title">
+                <string>Grade Colors</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>11</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QLabel" row="4" column="0">
+                    <property name="name">
+                        <cstring>l_lev4</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;4:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol4</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>l_lev5</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;5:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol5</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>l_lev7</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;7:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol7</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>l_lev6</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;6:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol6</cstring>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="8" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol0</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;N</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+N</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="8" column="0">
+                    <property name="name">
+                        <cstring>l_lev0</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Not &amp;queried:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol0</cstring>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="7" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;1</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+1</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 1</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 1.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="7" column="0">
+                    <property name="name">
+                        <cstring>l_lev1</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;1:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol1</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="6" column="0">
+                    <property name="name">
+                        <cstring>l_lev2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;2:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol2</cstring>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="6" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol2</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;2</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+2</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 2</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 2.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="5" column="0">
+                    <property name="name">
+                        <cstring>l_lev3</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>5</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>Level &amp;3:</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>kcfg_GradeCol3</cstring>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="5" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol3</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;3</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+3</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 3</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 3.</string>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="4" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol4</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;4</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+4</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 4</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 4.</string>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="3" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol5</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;5</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+5</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 5</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 5.</string>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="2" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol6</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;6</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+6</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 6</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 6.</string>
+                    </property>
+                </widget>
+                <widget class="KColorButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>kcfg_GradeCol7</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>0</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="text">
+                        <string>&amp;7</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+7</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Color for the grade 7</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>Click here to change the color for grade 7.</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>kcfg_UseGradeCol</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Use colors</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+U</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+        <spacer row="3" column="0" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>spacer9</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>61</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol7</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol6</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol5</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol4</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol3</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol2</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol1</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseGradeCol</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>kcfg_GradeCol0</receiver>
+        <slot>setEnabled(bool)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>kcfg_GradeCol0</tabstop>
+    <tabstop>kcfg_GradeCol7</tabstop>
+    <tabstop>kcfg_GradeCol6</tabstop>
+    <tabstop>kcfg_GradeCol5</tabstop>
+    <tabstop>kcfg_GradeCol4</tabstop>
+    <tabstop>kcfg_GradeCol3</tabstop>
+    <tabstop>kcfg_GradeCol2</tabstop>
+    <tabstop>kcfg_GradeCol1</tabstop>
+</tabstops>
+<includes>
+    <include location="global" impldecl="in declaration">kcolorbutton.h</include>
+</includes>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kfontrequester.h</includehint>
+    <includehint>kfontrequester.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+    <includehint>kcolorbutton.h</includehint>
+</includehints>
+</UI>

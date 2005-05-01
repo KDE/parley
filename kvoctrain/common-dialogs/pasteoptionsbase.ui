@@ -1,0 +1,229 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>PasteOptionsBase</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>PasteOptionsBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>379</width>
+            <height>275</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>PasteOptionsBase</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <property name="spacing">
+            <number>6</number>
+        </property>
+        <widget class="QLabel" row="0" column="0">
+            <property name="name">
+                <cstring>label_sep</cstring>
+            </property>
+            <property name="text">
+                <string>Sep&amp;arator:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>SeparatorCombo</cstring>
+            </property>
+        </widget>
+        <widget class="KComboBox" row="0" column="1">
+            <property name="name">
+                <cstring>SeparatorCombo</cstring>
+            </property>
+            <property name="minimumSize">
+                <size>
+                    <width>140</width>
+                    <height>0</height>
+                </size>
+            </property>
+            <property name="toolTip" stdset="0">
+                <string>Choose which separator you want to use to separate your data.</string>
+            </property>
+            <property name="whatsThis" stdset="0">
+                <string>Choose one separator which will divide the parts of an expression when transferring data from or to another application over the clipboard.</string>
+            </property>
+        </widget>
+        <spacer row="0" column="2">
+            <property name="name">
+                <cstring>Spacer3</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>310</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QGroupBox" row="1" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>label_order</cstring>
+            </property>
+            <property name="title">
+                <string>Order</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <property name="margin">
+                    <number>11</number>
+                </property>
+                <property name="spacing">
+                    <number>6</number>
+                </property>
+                <widget class="QListBox" row="1" column="0" rowspan="4" colspan="1">
+                    <property name="name">
+                        <cstring>OrderList</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>3</hsizetype>
+                            <vsizetype>3</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="3" column="1">
+                    <property name="name">
+                        <cstring>DownButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Down</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+D</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="2" column="1">
+                    <property name="name">
+                        <cstring>SkipButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>S&amp;kip</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+K</string>
+                    </property>
+                </widget>
+                <widget class="QPushButton" row="1" column="1">
+                    <property name="name">
+                        <cstring>UpButton</cstring>
+                    </property>
+                    <property name="text">
+                        <string>&amp;Up</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+U</string>
+                    </property>
+                </widget>
+                <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
+                    <property name="name">
+                        <cstring>kcfg_UseCurrent</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Use &amp;current document</string>
+                    </property>
+                    <property name="accel">
+                        <string>Alt+C</string>
+                    </property>
+                    <property name="toolTip" stdset="0">
+                        <string>Check this if you want the items in the clipboard to be in the same language order as the current document.</string>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>When checked, the items in the clipboard are assumed to be in the same language order as the current document.</string>
+                    </property>
+                </widget>
+                <spacer row="4" column="1">
+                    <property name="name">
+                        <cstring>spacer5</cstring>
+                    </property>
+                    <property name="orientation">
+                        <enum>Vertical</enum>
+                    </property>
+                    <property name="sizeType">
+                        <enum>Expanding</enum>
+                    </property>
+                    <property name="sizeHint">
+                        <size>
+                            <width>21</width>
+                            <height>21</height>
+                        </size>
+                    </property>
+                </spacer>
+            </grid>
+        </widget>
+        <spacer row="2" column="1" rowspan="1" colspan="2">
+            <property name="name">
+                <cstring>spacer4</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>80</width>
+                    <height>31</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<connections>
+    <connection>
+        <sender>kcfg_UseCurrent</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>OrderList</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseCurrent</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>UpButton</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseCurrent</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>DownButton</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+    <connection>
+        <sender>kcfg_UseCurrent</sender>
+        <signal>toggled(bool)</signal>
+        <receiver>SkipButton</receiver>
+        <slot>setDisabled(bool)</slot>
+    </connection>
+</connections>
+<tabstops>
+    <tabstop>SeparatorCombo</tabstop>
+    <tabstop>kcfg_UseCurrent</tabstop>
+    <tabstop>OrderList</tabstop>
+    <tabstop>UpButton</tabstop>
+    <tabstop>SkipButton</tabstop>
+    <tabstop>DownButton</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>kcombobox.h</includehint>
+</includehints>
+</UI>

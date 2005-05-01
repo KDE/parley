@@ -30,10 +30,13 @@
 using namespace std;
 
 #include "kvoctraindoc.h"
+#include "prefs.h"
 
 class kvoctrainDoc;
 class KConfig;
 class kvoctrainExpr;
+class Prefs;
+class EnumCompType;
 
 // internal types, indented are subtypes
 
@@ -130,12 +133,12 @@ class QueryManager
   static QString getSubType (const QString & type);
   static QString getMainType (const QString & type);
 
-  static QString compStr (CompType type);
-  static QString gradeStr (int i);
-  static QString typeStr (const QString id);
+  static QString compStr(Prefs::EnumCompType::type type);
+  static QString gradeStr(int i);
+  static QString typeStr(const QString id);
 
-  void setLessonItems (vector<int> indices) { lessonitems = indices; }
-  void setLessonItemStr (const QString & indices);
+  void setLessonItems(vector<int> indices) { lessonitems = indices; }
+  void setLessonItemStr(const QString & indices);
   //void setDateItem (time_t time) { dateitem = time; }
   //void setQueryItem (int query) { queryitem = query; }
   //void setBadItem (int bad) { baditem = bad; }

@@ -1,5 +1,5 @@
 INCLUDES = -I$(srcdir)/.. -I$(srcdir)/../kvt-core \
-     -I../docprop-dialogs -I$(srcdir)/../docprop-dialogs  $(all_includes)
+     -I../docprop-dialogs -I$(srcdir)/../docprop-dialogs  -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs $(all_includes)
 
 noinst_LTLIBRARIES = libentrydlg.la
 

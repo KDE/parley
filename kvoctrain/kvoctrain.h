@@ -92,6 +92,10 @@ public:
   void saveOptions();
   /** read the app-specific options on init() or by an Options dialog */
   void readOptions();
+
+  void saveLanguages();
+  void readLanguages();
+
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
   * opened file by a temporary filename provided by KApplication.
   * @see KMainWindow#saveProperties
@@ -151,8 +155,9 @@ public:
   /** set up options */
   void slotGeneralOptionsPage(int index);
   void slotGeneralOptions();
-  void slotQueryOptions();
-  void slotQueryOptions(int pageindex);
+  //void slotQueryOptions();
+  //void slotQueryOptions(int pageindex);
+  void slotApplyPreferences();
   void slotDocProps();
   void slotDocPropsLang();
   void slotShowStatist();
@@ -258,7 +263,7 @@ private:
   KAction* configToolbar;
   KAction* configNotifications;
   KAction* configApp;
-  KAction* configQueryOptions;
+  //KAction* configQueryOptions;
 
   QString lastPixName;
 

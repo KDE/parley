@@ -1,0 +1,281 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>BlockOptionsBase</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>BlockOptionsBase</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>402</width>
+            <height>255</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>BlockOptionsBase</string>
+    </property>
+    <grid>
+        <property name="name">
+            <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
+        </property>
+        <widget class="QComboBox" row="6" column="2">
+            <property name="name">
+                <cstring>expire2</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="1" column="2">
+            <property name="name">
+                <cstring>expire7</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="6" column="0">
+            <property name="name">
+                <cstring>l_lev2</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;2:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block2</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="7" column="2">
+            <property name="name">
+                <cstring>expire1</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="3" column="0">
+            <property name="name">
+                <cstring>l_lev5</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;5:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block5</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="2" column="0">
+            <property name="name">
+                <cstring>l_lev6</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;6:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block6</cstring>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="0" column="2">
+            <property name="name">
+                <cstring>kcfg_Expire</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>3</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>E&amp;xpiring</string>
+            </property>
+            <property name="accel">
+                <string>Alt+X</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="4" column="1">
+            <property name="name">
+                <cstring>block4</cstring>
+            </property>
+        </widget>
+        <widget class="QCheckBox" row="0" column="1">
+            <property name="name">
+                <cstring>kcfg_Block</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>3</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+            <property name="text">
+                <string>Bl&amp;ocking</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="7" column="1">
+            <property name="name">
+                <cstring>block1</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="1" column="1">
+            <property name="name">
+                <cstring>block7</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>3</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="2" column="2">
+            <property name="name">
+                <cstring>expire6</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="4" column="0">
+            <property name="name">
+                <cstring>l_lev4</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;4:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block4</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="1" column="0">
+            <property name="name">
+                <cstring>l_lev7</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;7:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block7</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="3" column="2">
+            <property name="name">
+                <cstring>expire5</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="5" column="1">
+            <property name="name">
+                <cstring>block3</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="6" column="1">
+            <property name="name">
+                <cstring>block2</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="4" column="2">
+            <property name="name">
+                <cstring>expire4</cstring>
+            </property>
+        </widget>
+        <widget class="QLabel" row="7" column="0">
+            <property name="name">
+                <cstring>l_lev1</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;1:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block1</cstring>
+            </property>
+        </widget>
+        <spacer row="0" column="0">
+            <property name="name">
+                <cstring>Spacer1</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Horizontal</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Minimum</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>41</width>
+                    <height>20</height>
+                </size>
+            </property>
+        </spacer>
+        <widget class="QComboBox" row="5" column="2">
+            <property name="name">
+                <cstring>expire3</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="3" column="1">
+            <property name="name">
+                <cstring>block5</cstring>
+            </property>
+        </widget>
+        <widget class="QComboBox" row="2" column="1">
+            <property name="name">
+                <cstring>block6</cstring>
+            </property>
+            <property name="sizePolicy">
+                <sizepolicy>
+                    <hsizetype>3</hsizetype>
+                    <vsizetype>0</vsizetype>
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                </sizepolicy>
+            </property>
+        </widget>
+        <widget class="QLabel" row="5" column="0">
+            <property name="name">
+                <cstring>l_lev3</cstring>
+            </property>
+            <property name="text">
+                <string>Level &amp;3:</string>
+            </property>
+            <property name="buddy" stdset="0">
+                <cstring>block3</cstring>
+            </property>
+        </widget>
+        <spacer row="8" column="0" rowspan="1" colspan="3">
+            <property name="name">
+                <cstring>spacer10</cstring>
+            </property>
+            <property name="orientation">
+                <enum>Vertical</enum>
+            </property>
+            <property name="sizeType">
+                <enum>Expanding</enum>
+            </property>
+            <property name="sizeHint">
+                <size>
+                    <width>380</width>
+                    <height>30</height>
+                </size>
+            </property>
+        </spacer>
+    </grid>
+</widget>
+<tabstops>
+    <tabstop>kcfg_Block</tabstop>
+    <tabstop>kcfg_Expire</tabstop>
+    <tabstop>block7</tabstop>
+    <tabstop>expire7</tabstop>
+    <tabstop>block6</tabstop>
+    <tabstop>expire6</tabstop>
+    <tabstop>block5</tabstop>
+    <tabstop>expire5</tabstop>
+    <tabstop>block4</tabstop>
+    <tabstop>expire4</tabstop>
+    <tabstop>block3</tabstop>
+    <tabstop>expire3</tabstop>
+    <tabstop>block2</tabstop>
+    <tabstop>expire2</tabstop>
+    <tabstop>block1</tabstop>
+    <tabstop>expire1</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

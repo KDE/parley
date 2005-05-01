@@ -4,7 +4,6 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kvoctrainrc"/>
-
   <group name="General">
     <entry name="NumPreSetting" type="Int">
       <label>Number of stored setting profiles</label>
@@ -28,7 +27,7 @@
     </entry>
     <entry name="Separator" type="String">
       <label>This sets the separator used when copying/pasting text, default is Tab</label>
-      <default>"\t"</default>
+      <default code="true">QChar('\t')</default>
     </entry>
     <entry name="PasteOrder" type="StringList">
       <label>The order in which languages get pasted</label>
@@ -38,9 +37,17 @@
       <label>The number of entries per lesson</label>
       <default>50</default>
     </entry>
-       <entry name="BackupTime" type="Int">
+    <entry name="AutoSave" type="Bool">
+      <label>If true, vocabularies are automatically saved on close and exit</label>
+      <default>false</default>
+    </entry>
+    <entry name="AutoBackup" type="Bool">
+      <label>If true, a backup is save every BackupTime minutes</label>
+      <default>false</default>
+    </entry>
+    <entry name="BackupTime" type="Int">
       <label>Time interval between two automatic backups</label>
-      <default code="true">15*60*1000</default>
+      <default>15</default>
     </entry>
     <entry name="HeaderResizeMode" type="Enum">
       <label>How the columns should be resized.</label>
@@ -53,7 +60,7 @@
     </entry>
   </group>
   <group name="QueryProperties">
-   <entry name="Block" type="Bool">
+    <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
       <default>true</default>
     </entry>
@@ -84,7 +91,7 @@
     </entry>
     <entry name="MaxTimePer" type="Int">
       <label>Maximum time allowed per query</label>
-      <default code="true">20*1000</default>
+      <default>20</default>
     </entry>
     <entry name="Suggestions" type="Bool">
       <label>Enable suggestion lists in Random Query.</label>

@@ -42,7 +42,7 @@ void kvoctrainApp::saveOptions()
     Prefs::setCurrentRow(view->getTable()->currentRow());
     Prefs::setCurrentCol(view->getTable()->currentColumn());
   }
-
+  /*
   Prefs::setNumPreSetting(presettings.size());
   for (int i = 0 ; i < (int) presettings.size(); i++)
   {
@@ -53,7 +53,13 @@ void kvoctrainApp::saveOptions()
     preSettings.setBlocking(presettings[i].block_set);
     preSettings.writeConfig();
   }
+  */
+  saveLanguages();
+  Prefs::writeConfig();
+}
 
+void kvoctrainApp::saveLanguages()
+{
   Prefs::setNumLangSet(langset.size());
   for (int i = 0 ; i < (int) langset.size(); i++)
   {
@@ -65,16 +71,13 @@ void kvoctrainApp::saveOptions()
     languageSettings.setKeyboardLayout(langset.keyboardLayout(i));
     languageSettings.writeConfig();
   }
-
-  Prefs::writeConfig();
 }
-
 
 void kvoctrainApp::readOptions()
 {
   KConfig *config = KApplication::kApplication()->config();
   fileOpenRecent->loadEntries(config, "Recent Files");
-
+  /*
   int ls = Prefs::numPreSetting();
   for (int i = 0 ; i < ls; i++)
   {
@@ -83,8 +86,14 @@ void kvoctrainApp::readOptions()
     presettings.push_back(PreSetting(preSettings.name(), preSettings.query(),
       preSettings.threshold(), preSettings.blocking()));
   }
+  */
+  readLanguages();
+}
 
-  ls = Prefs::numLangSet();
+void kvoctrainApp::readLanguages()
+{
+  langset.clear();
+  int ls = Prefs::numLangSet();
   for (int i = 0 ; i < ls; i++)
   {
     LanguageSettings languageSettings(QString::number(i));
@@ -106,8 +115,6 @@ void kvoctrainApp::readOptions()
       languageSettings.keyboardLayout());
   }
 }
-
-
 void kvoctrainApp::saveProperties(KConfig *config )
 {
   saveOptions();

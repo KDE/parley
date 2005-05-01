@@ -58,12 +58,12 @@
 
 void kvoctrainApp::slotTimeOutBackup()
 {
-  if (Prefs::backupTime() > 0 && doc && doc->isModified() ) {
+  if (Prefs::autoBackup() && doc && doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
   if (Prefs::backupTime() > 0)
-    btimer->start(Prefs::backupTime(), TRUE);
+    btimer->start(Prefs::backupTime() * 60 * 1000, TRUE);
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -82,7 +82,7 @@ bool kvoctrainApp::queryExit()
   saveOptions();
   if (!doc || !doc->isModified() ) return true;
 
-  bool save = (Prefs::backupTime() > 0); // autobackup on: save without asking
+  bool save = (Prefs::autoSave()); //save without asking
 
   if (!save)
   {
