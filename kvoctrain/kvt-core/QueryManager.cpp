@@ -479,7 +479,7 @@ QString QueryManager::compStr(Prefs::EnumCompType::type type)
    QString str = "???";
    switch (type)
    {
-    case DontCare: str = i18n("Don't Care"); break;
+    case DontCare: str = i18n("Do not Care"); break;
     case WorseThan: str = i18n("Worse Than"); break;
     case WorseEqThan: str = i18n("Equal/Worse Than"); break;
     case MoreThan: str = i18n(">"); break;

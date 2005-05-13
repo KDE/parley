@@ -40,7 +40,7 @@ struct ListRef
 
 static ListRef date_itemlist [] =
 {
-  {I18N_NOOP("Don't Care"),    0},
+  {I18N_NOOP("Do not Care"),    0},
 
   {I18N_NOOP("30 Min"),        30*60},
   {I18N_NOOP("1 Hour"),    1 * 60*60},
