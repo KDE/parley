@@ -35,6 +35,7 @@
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
+#include <knewstuff/downloaddialog.h>
 
 #include "kvoctrain.h"
 #include "UsageManager.h"
@@ -225,6 +226,14 @@ void kvoctrainApp::slotFileOpenExample()
        doc->URL().setFileName(QString::null);
   }
   slotStatusMsg(IDS_DEFAULT);
+}
+
+
+void kvoctrainApp::slotGHNS()
+{
+  if (!m_newStuff)
+    m_newStuff = new KVTNewStuff(this);
+  m_newStuff->download();
 }
 
 

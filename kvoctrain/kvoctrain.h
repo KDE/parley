@@ -47,6 +47,7 @@
 #include "kvoctraintable.h"
 #include "queryoption-dialogs/GroupOptPage.h"
 #include "query-dialogs/QueryDlgBase.h"
+#include "kvtnewstuff.h"
 
 class QTimer;
 class KLined;
@@ -63,6 +64,8 @@ class EntryDlg;
 class KLineEdit;
 class KComboBox;
 class KProgress;
+
+class KVTNewStuff;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -191,6 +194,8 @@ public:
   void slotFileOpenRecent(const KURL& url);
   /** open a sample document */
   void slotFileOpenExample();
+  /** download new vocabularies */
+  void slotGHNS();
   void loadfileFromPath(const KURL &, bool addRecent=true);
   /** merge a document */
   void slotFileMerge();
@@ -230,6 +235,7 @@ private:
   KAction* fileNew;
   KAction* fileOpen;
   KAction* fileOpenExample;
+  KAction* fileGHNS;
   KRecentFilesAction* fileOpenRecent;
   KAction* fileMerge;
   KAction* fileSave;
@@ -286,7 +292,7 @@ private:
   // correct_0_times, we simply reuse random_expr1.
   vector<QueryEntryRef> correct_1_times, correct_2_times, correct_3_times;
   QuerySelection queryList;
-
+  //KNewStuff       *m_GHNS;
   QTimer          *btimer;
   int              random_query_nr;
   bool             querymode;
@@ -326,6 +332,7 @@ private:
   vector<PreSetting>  presettings;
   QueryType        queryType;
   KRandomSequence  random;
+  KVTNewStuff     *m_newStuff;
 };
 
 #endif // KVOCTRAIN_H

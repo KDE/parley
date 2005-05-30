@@ -1,8 +1,9 @@
 <!DOCTYPE kpartgui>
-<kpartgui version="0.3" name="kvoctrain" >
+<kpartgui version="0.4" name="kvoctrain" >
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />
+   <Action append="open_merge" name="file_ghns" />
    <Separator append="open_merge" />
    <Action append="open_merge" name="file_merge" />
    <Action append="save_merge" name="edit_save_selected_area" />

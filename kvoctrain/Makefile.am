@@ -1,22 +1,17 @@
 METASOURCES = AUTO
 
 kvoctrain_SOURCES = kva_io.cpp kvoctrain.cpp kvoctrainview.cpp main.cpp \
-	kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp \
-	kvoctraintable.cpp kvoctraintableitem.cpp
+		kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp \
+		kvoctraintable.cpp kvoctraintableitem.cpp kvtnewstuff.cpp
 
 spotlight2kvtml_SOURCES = spotlight2kvtml.cpp
 
 spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 
-kvoctrain_LDADD =   ./docprop-dialogs/libdocpropdlg.la \
-                    ./entry-dialogs/libentrydlg.la \
-                    ./kvt-core/libkvoctraincore.la \
-                    ./kvt-core/kvt-xml/libkvtxml.la \
-                    ./option-dialogs/liboptiondlg.la \
-                    ./query-dialogs/libquerydlg.la \
-                    ./queryoption-dialogs/libqueryoptiondlg.la \
-                    ./statistik-dialogs/libstatdlg.la \
-                    ./common-dialogs/libcommondlg.la $(LIB_KHTML)
+kvoctrain_LDADD = ./docprop-dialogs/libdocpropdlg.la \
+	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la ./kvt-core/kvt-xml/libkvtxml.la \
+	./option-dialogs/liboptiondlg.la ./query-dialogs/libquerydlg.la \
+	./queryoption-dialogs/libqueryoptiondlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la -lknewstuff
 
 EXTRA_DIST = kvoctrainui.rc
 
@@ -27,7 +22,7 @@ bin_SCRIPTS = langen2kvtml
 
 rcdir = $(kde_datadir)/kvoctrain
 rc_DATA = kvoctrainui.rc
-
+kde_conf_DATA = kvoctrainrc
 xdg_apps_DATA = kvoctrain.desktop
 
 
@@ -66,3 +61,4 @@ messages-local:
 	$(MAKE) messages EXTRACTRC=extractrc podir=. XGETTEXT="xgettext -C -kI18N_NOOP -ki18n"
 	iconv -futf-8 -tutf-16 kvoctrain.pot > /dev/null
 
+noinst_HEADERS = kvtnewstuff.h
