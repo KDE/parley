@@ -246,4 +246,10 @@
       <default param="7">10368000</default>
     </entry>
   </group>
+  <group name="KNewStuff">
+    <entry name="ProvidersUrl" type="Path">
+       <label>The Providers path for KVocTrain</label>
+         <default code="true">"http://edu.kde.org/kvoctrain/providers.xml"</default>
+     </entry>
+  </group>
 </kcfg>
