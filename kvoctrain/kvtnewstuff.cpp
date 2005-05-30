@@ -18,7 +18,7 @@
 
 #include "kvtnewstuff.h"
 
-KVTNewStuff::KVTNewStuff(QWidget *parent, const char *name) : QObject(), KNewStuff("kvoctrain", parent)
+KVTNewStuff::KVTNewStuff(QWidget *parent, const char *name) : QObject(), KNewStuff("kdeedu/vocabularies", parent)
 {
   m_app = (kvoctrainApp*) parent;
 }

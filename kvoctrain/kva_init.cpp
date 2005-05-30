@@ -59,6 +59,7 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   type_label = 0;
   pdlg = 0;
   pbar = 0;
+  m_newStuff = 0;
 
   simpleQueryDlg = 0;
   mcQueryDlg = 0;
