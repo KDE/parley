@@ -14,8 +14,6 @@
 
 #include <knewstuff/knewstuff.h>
 
-#include "kvoctrain.h"
-
 /**
 @author Peter Hedlund
 */
@@ -25,10 +23,34 @@ Q_OBJECT
 public:
   KVTNewStuff(QWidget *parent = 0, const char *name = 0);
 
+  /**
+    Installs a downloaded file according to the application's configuration.
+
+    @param fileName filename of the donwloaded file
+    @return @c true in case of installation success, @c false otherwise
+  */
   bool install(const QString &fileName);
+
+  /**
+    Creates a file suitable for upload.
+    Note that this method always fails, since using KNewStuffGeneric
+    means that the provided file must already be in a usable format.
+
+    @param fileName the name of the file to upload after its creation
+    @return @c true in case of creation success, @c false otherwise
+  */
   bool createUploadFile(const QString &fileName);
+
+  /**
+    Queries the preferred destination file for a download.
+
+    @param entry a Hotstuff data entry
+    @return destination filename, or 0 to return directory only
+  */
+  QString downloadDestination(KNS::Entry *entry);
+
 private:
-  kvoctrainApp * m_app;
+  QString destinationPath(KNS::Entry *entry);
 };
 
 #endif
