@@ -249,16 +249,16 @@
   <group name="KNewStuff">
     <entry name="ProvidersUrl" type="Path">
        <label>The Providers path for KVocTrain</label>
-         <default code="true">"http://edu.kde.org/kvoctrain/providers.xml"</default>
-     </entry>
-          <entry name="InstallationCommand" type="String">
-        <label>The command used to start a downloaded vocabulary</label>
-        <default>kvoctrain %f</default>
-     </entry>
-     <entry name="InstallPath" type="Path">
-        <label>The folder where downloaded vocabularies are saved by 
+         <default>"http://edu.kde.org/kvoctrain/providers.xml"</default>
+    </entry>
+    <entry name="InstallationCommand" type="String">
+       <label>The command used to start a downloaded vocabulary</label>
+         <default>kvoctrain %f</default>
+    </entry>
+    <entry name="InstallPath" type="Path">
+       <label>The folder where downloaded vocabularies are saved by 
 default (relative to $HOME)</label>
-        <default>Vocabularies</default>
-     </entry>
+         <default>Vocabularies</default>
+    </entry>
   </group>
 </kcfg>
