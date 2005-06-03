@@ -145,7 +145,7 @@ void ThresholdOptions::fillWidgets()
 
   badlist->clear();
   querylist->clear();
-  for (int i; i <= 15; i++)
+  for (int i = 0; i <= 15; i++)
   {
     badlist->insertItem(QString::number(i));
     querylist->insertItem(QString::number(i));
