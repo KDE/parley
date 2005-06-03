@@ -111,6 +111,8 @@ void kvoctrainApp::initActions()
   fileOpen->setToolTip(fileOpen->whatsThis());
 
   fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", CTRL+Key_G, this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+  fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
+  fileGHNS->setToolTip(fileSave->whatsThis());
 
   fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KURL&)), actionCollection());
 
