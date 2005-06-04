@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "GrammerManager.h"
+#include "grammarmanager.h"
 
 #include <klocale.h>
 

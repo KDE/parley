@@ -24,8 +24,8 @@
  ***************************************************************************/
 
 
-#ifndef GrammerManager_included
-#define GrammerManager_included
+#ifndef grammarmanager_included
+#define grammarmanager_included
 
 #include <qdatastream.h>
 
@@ -211,5 +211,5 @@ protected:
 };
 
 
-#endif // GrammerManager_included
+#endif // grammarmanager_included
 

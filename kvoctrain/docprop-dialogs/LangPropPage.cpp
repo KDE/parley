@@ -25,7 +25,7 @@
 
 
 #include <langset.h>
-#include <GrammerManager.h>
+#include <grammarmanager.h>
 
 #include "LangPropPage.h"
 

@@ -65,7 +65,7 @@
 #include <qpixmap.h>
 # include <qnamespace.h>
 
-#include "GrammerManager.h"
+#include "grammarmanager.h"
 #include "MultipleChoice.h"
 
 /*struct GradeCols {
