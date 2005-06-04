@@ -12,9 +12,6 @@
             <height>275</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>PasteOptionsBase</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -107,9 +104,6 @@
                     <property name="text">
                         <string>&amp;Down</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+D</string>
-                    </property>
                 </widget>
                 <widget class="QPushButton" row="2" column="1">
                     <property name="name">
@@ -117,9 +111,6 @@
                     </property>
                     <property name="text">
                         <string>S&amp;kip</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+K</string>
                     </property>
                 </widget>
                 <widget class="QPushButton" row="1" column="1">
@@ -129,9 +120,6 @@
                     <property name="text">
                         <string>&amp;Up</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+U</string>
-                    </property>
                 </widget>
                 <widget class="QCheckBox" row="0" column="0" rowspan="1" colspan="2">
                     <property name="name">
@@ -139,9 +127,6 @@
                     </property>
                     <property name="text">
                         <string>Use &amp;current document</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Check this if you want the items in the clipboard to be in the same language order as the current document.</string>

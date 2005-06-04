@@ -12,9 +12,6 @@
             <height>326</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>VerbQueryDlgForm</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -341,9 +338,6 @@
                             <property name="text">
                                 <string>I &amp;Know It</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+K</string>
-                            </property>
                         </widget>
                         <widget class="QPushButton" row="1" column="0">
                             <property name="name">
@@ -359,9 +353,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Verify</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+V</string>
                             </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="0">
@@ -379,9 +370,6 @@
                             <property name="text">
                                 <string>Show &amp;All</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+A</string>
-                            </property>
                         </widget>
                         <widget class="QPushButton" row="1" column="1">
                             <property name="name">
@@ -397,9 +385,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Do Not Know</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+D</string>
                             </property>
                         </widget>
                     </grid>

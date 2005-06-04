@@ -57,9 +57,6 @@
                     <property name="text">
                         <string>Smart &amp;appending</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>If checked, the entry dialog will popup repeatedly</string>
                     </property>
@@ -73,9 +70,6 @@
                     </property>
                     <property name="text">
                         <string>Appl&amp;y changes without asking</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+Y</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Your changes will be applied automatically.</string>
@@ -109,9 +103,6 @@
                     </property>
                     <property name="text">
                         <string>Automatic &amp;backup interval (min):</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+B</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Allow automatic saving of your work</string>
@@ -171,9 +162,6 @@
                     <property name="text">
                         <string>A&amp;utomatic</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+U</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>KVocTrain determines the resizing of the columns</string>
                     </property>
@@ -187,9 +175,6 @@
                     </property>
                     <property name="text">
                         <string>Per&amp;centage</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+C</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>The columns resize using the same factor that the window is resized to.</string>

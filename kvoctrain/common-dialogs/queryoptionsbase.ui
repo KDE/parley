@@ -12,9 +12,6 @@
             <height>404</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>QueryOptionsBase</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -32,9 +29,6 @@
             <property name="text">
                 <string>&amp;Use alternative learning method</string>
             </property>
-            <property name="accel">
-                <string>Alt+U</string>
-            </property>
             <property name="toolTip" stdset="0">
                 <string>Use the Leitner learning method</string>
             </property>
@@ -48,9 +42,6 @@
             </property>
             <property name="text">
                 <string>S&amp;wap direction randomly</string>
-            </property>
-            <property name="accel">
-                <string>Alt+W</string>
             </property>
         </widget>
         <widget class="QGroupBox" row="3" column="0">
@@ -74,9 +65,6 @@
                     <property name="text">
                         <string>&amp;Enable suggestion lists</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+E</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>If checked, pressing F5 or F6 will display a list of suggestions</string>
                     </property>
@@ -93,9 +81,6 @@
                     </property>
                     <property name="text">
                         <string>Split &amp;translations</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+T</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Split translations and show multiple answer fields</string>
@@ -131,9 +116,6 @@
                     <property name="text">
                         <string>Enable I Know &amp;button</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+B</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Enable the I Know It button on the Random Query screen</string>
                     </property>
@@ -167,9 +149,6 @@
                     <property name="text">
                         <string>pe&amp;riods</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+R</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Split translations at periods</string>
                     </property>
@@ -186,9 +165,6 @@
                     </property>
                     <property name="text">
                         <string>sem&amp;icolons</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+I</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Split translations at semicolons</string>
@@ -215,9 +191,6 @@
                     <property name="text">
                         <string>co&amp;mmas</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+M</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Split translations at commas</string>
                     </property>
@@ -235,9 +208,6 @@
                     <property name="text">
                         <string>co&amp;lons</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+L</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Split translations at colons</string>
                     </property>
@@ -254,9 +224,6 @@
                     </property>
                     <property name="text">
                         <string>Enable S&amp;how More button</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+H</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Enable the Show More button on the Random Query screen</string>
@@ -390,9 +357,6 @@
                             <property name="text">
                                 <string>&amp;Show solution</string>
                             </property>
-                            <property name="accel">
-                                <string>Alt+S</string>
-                            </property>
                             <property name="buttonGroupId">
                                 <number>1</number>
                             </property>
@@ -403,9 +367,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;No time limitation</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+N</string>
                             </property>
                             <property name="buttonGroupId">
                                 <number>0</number>
@@ -423,9 +384,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Continue after timeout</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+C</string>
                             </property>
                         </widget>
                     </grid>
@@ -463,9 +421,6 @@
                             </property>
                             <property name="text">
                                 <string>S&amp;how remaining time</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+H</string>
                             </property>
                             <property name="toolTip" stdset="0">
                                 <string>If checked, activate a progress bar to show the remaining time.</string>

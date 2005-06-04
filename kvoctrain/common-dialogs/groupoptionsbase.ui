@@ -12,9 +12,6 @@
             <height>93</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>GroupOptionsBase</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -56,9 +53,6 @@
                     <property name="text">
                         <string>&amp;Save</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+S</string>
-                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
@@ -74,9 +68,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Load</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+L</string>
                     </property>
                 </widget>
                 <widget class="QPushButton">
@@ -94,9 +85,6 @@
                     <property name="text">
                         <string>&amp;New</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+N</string>
-                    </property>
                 </widget>
                 <widget class="QPushButton">
                     <property name="name">
@@ -112,9 +100,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Delete</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+D</string>
                     </property>
                 </widget>
             </hbox>

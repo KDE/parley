@@ -12,9 +12,6 @@
             <height>327</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>LanguageOptionsBase</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -48,9 +45,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Delete</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+D</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Delete the selected language</string>
@@ -260,9 +254,6 @@
                     <property name="text">
                         <string>Add Language Data From &amp;KDE Database</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+K</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>Obtains the language choices from the KDE database</string>
                     </property>
@@ -293,9 +284,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Add</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+A</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>Allow addition of the language you typed.</string>

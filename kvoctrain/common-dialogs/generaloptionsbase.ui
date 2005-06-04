@@ -12,9 +12,6 @@
             <height>369</height>
         </rect>
     </property>
-    <property name="caption">
-        <string>GeneralOptionsBase</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -29,9 +26,6 @@
             <property name="text">
                 <string>&amp;Save vocabularies automatically on close and quit</string>
             </property>
-            <property name="accel">
-                <string>Alt+S</string>
-            </property>
             <property name="toolTip" stdset="0">
                 <string>Allow automatic saving of your work</string>
             </property>
@@ -45,9 +39,6 @@
             </property>
             <property name="text">
                 <string>&amp;Create a backup every</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
             </property>
             <property name="toolTip" stdset="0">
                 <string>Allow automatic saving of your work</string>
@@ -85,9 +76,6 @@
             <property name="text">
                 <string>Smart a&amp;ppending</string>
             </property>
-            <property name="accel">
-                <string>Alt+P</string>
-            </property>
             <property name="toolTip" stdset="0">
                 <string>If checked, the entry dialog will popup repeatedly</string>
             </property>
@@ -101,9 +89,6 @@
             </property>
             <property name="text">
                 <string>Appl&amp;y changes without asking</string>
-            </property>
-            <property name="accel">
-                <string>Alt+Y</string>
             </property>
             <property name="toolTip" stdset="0">
                 <string>Your changes will be applied automatically.</string>
@@ -133,9 +118,6 @@
                     <property name="text">
                         <string>A&amp;utomatic</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+U</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>KVocTrain determines the resizing of the columns</string>
                     </property>
@@ -150,9 +132,6 @@
                     <property name="text">
                         <string>P&amp;ercentage</string>
                     </property>
-                    <property name="accel">
-                        <string>Alt+E</string>
-                    </property>
                     <property name="toolTip" stdset="0">
                         <string>The columns resize using the same factor that the window is resized to.</string>
                     </property>
@@ -166,9 +145,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;Fixed</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+F</string>
                     </property>
                     <property name="toolTip" stdset="0">
                         <string>There is no resizing of the columns</string>

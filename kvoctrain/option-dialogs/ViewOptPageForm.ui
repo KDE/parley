@@ -32,9 +32,6 @@
             <property name="text">
                 <string>&amp;Use colors</string>
             </property>
-            <property name="accel">
-                <string>Alt+U</string>
-            </property>
             <property name="toolTip" stdset="0">
                 <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
             </property>
@@ -415,9 +412,6 @@
                     </property>
                     <property name="text">
                         <string>&amp;N</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+N</string>
                     </property>
                 </widget>
             </grid>
