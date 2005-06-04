@@ -18,49 +18,20 @@
 #include <kmessagebox.h>
 #include <knewstuff/entry.h>
 
+#include "kvoctrain.h"
 #include "kvtnewstuff.h"
 #include "prefs.h"
 
 KVTNewStuff::KVTNewStuff(QWidget *parent, const char *name) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
 {
-  //m_app = (kvoctrainApp*) parent;
+  m_app = (kvoctrainApp*) parent;
 }
 
 
 bool KVTNewStuff::install(const QString & fileName)
 {
-  //m_app->loadfileFromPath(fileName, true);
-
-  //kdDebug(5850) << "KNewStuffGeneric::install(): " << fileName << endl;
-  QStringList list, list2;
-
-//   mConfig->setGroup("KNewStuff");
-//
-//   QString uncompress = mConfig->readEntry( "Uncompress" );
-//   if ( !uncompress.isEmpty() ) {
-//     kdDebug(5850) << "Uncompression method: " << uncompress << endl;
-//     KTar tar(fileName, uncompress);
-//     tar.open(IO_ReadOnly);
-//     const KArchiveDirectory *dir = tar.directory();
-//     dir->copyTo(destinationPath(0));
-//     tar.close();
-//     QFile::remove(fileName);
-//   }
-
-  QString cmd = Prefs::installationCommand();
-  if (!cmd.isEmpty())
-  {
-    //kdDebug(5850) << "InstallationCommand: " << cmd << endl;
-    list = QStringList::split(" ", cmd);
-    for (QStringList::iterator it = list.begin(); it != list.end(); it++ )
-    {
-      list2 << (*it).replace("%f", fileName);
-    }
-    KProcess proc;
-    proc << list2;
-    proc.start(KProcess::DontCare);
-  }
-
+  if (m_app->queryExit())
+    m_app->loadfileFromPath(fileName, true);
   return true;
 }
 
