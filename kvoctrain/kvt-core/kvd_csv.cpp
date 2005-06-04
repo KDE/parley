@@ -232,7 +232,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is)
 }
 
 
-void kvoctrainDoc::errorCsv (int line, const QString &text )
+void kvoctrainDoc::errorCsv (int /*line*/, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( arrowCursor, true );

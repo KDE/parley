@@ -112,132 +112,11 @@ QString QueryManager::getMainType (const QString & type)
 }
 
 
-QueryManager::QueryManager ()
+QueryManager::QueryManager()
 {
-  //datecomp = DontCare;
-  //badcomp = DontCare;
-  //querycomp = DontCare;
-  //gradecomp = DontCare;
-  //typecomp = DontCare;
-  //lessoncomp = DontCare;
-
-  //dateitem = 0;
-  //queryitem = 0;
-  //baditem = 0;
-  //typeitem = QString::null;
-  //gradeitem = 0;
   lessonitems.clear();
 }
 
-
-/*void QueryManager::loadConfig (KConfig *config)
-{
-  //datecomp = (CompType) config->readNumEntry(CFG_QM_DATE_COMP, DontCare);
-  //badcomp = (CompType) config->readNumEntry(CFG_QM_BAD_COMP, DontCare);
-  //querycomp = (CompType) config->readNumEntry(CFG_QM_QUERY_COMP, DontCare);
-  //gradecomp = (CompType) config->readNumEntry(CFG_QM_GRADE_COMP, DontCare);
-  //typecomp = (CompType) config->readNumEntry(CFG_QM_TYPE_COMP, DontCare);
-  //lessoncomp = (CompType) config->readNumEntry(CFG_QM_LESSON_COMP, Current);
-
-  //dateitem = (CompType) config->readNumEntry(CFG_QM_DATE_ITEM, 0);
-  //baditem = (CompType) config->readNumEntry(CFG_QM_BAD_ITEM, 0);
-  //queryitem = (CompType) config->readNumEntry(CFG_QM_QUERY_ITEM, 0);
-  //gradeitem = (CompType) config->readNumEntry(CFG_QM_GRADE_ITEM, 0);
-  //typeitem = config->readEntry(CFG_QM_TYPE_ITEM);
-//  setLessonItemStr (config->readEntry(CFG_QM_LESSON_ITEM));
-
-  //blockItems.clear();
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"1", 1 *      60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"2", 2 *      60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"3", 4 *      60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"4", 1 *    7*60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"5", 2 *    7*60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"6", 1 *   30*60*60*24));
-  //blockItems.push_back(config->readNumEntry(CFG_QM_BLOCK_ITEM"7", 2 *   30*60*60*24));
-
-  //expireItems.clear();
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"1", 2 *      60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"2", 4 *      60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"3", 1 *    7*60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"4", 2 *    7*60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"5", 1 *   30*60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"6", 2 *   30*60*60*24));
-  //expireItems.push_back(config->readNumEntry(CFG_QM_EXPIRE_ITEM"7", 4 *   30*60*60*24));
-}
-
-
-void QueryManager::saveConfig (KConfig *config)
-{
-  //config->writeEntry(CFG_QM_DATE_COMP, (int) datecomp);
-  //config->writeEntry(CFG_QM_BAD_COMP, (int) badcomp);
-  //config->writeEntry(CFG_QM_QUERY_COMP, (int) querycomp);
-  //config->writeEntry(CFG_QM_GRADE_COMP, (int) gradecomp);
-  //config->writeEntry(CFG_QM_TYPE_COMP, (int) typecomp);
-  //config->writeEntry(CFG_QM_LESSON_COMP, (int) lessoncomp);
-
-  //config->writeEntry(CFG_QM_DATE_ITEM, (int) dateitem);
-  //config->writeEntry(CFG_QM_BAD_ITEM, (int) baditem);
-  //config->writeEntry(CFG_QM_QUERY_ITEM, (int) queryitem);
-  //config->writeEntry(CFG_QM_GRADE_ITEM, (int) gradeitem);
-  //config->writeEntry(CFG_QM_TYPE_ITEM, typeitem);
-//  config->writeEntry(CFG_QM_LESSON_ITEM, lessonItemStr());
-
-  /*QString s;
-  for (int i = KV_LEV1_GRADE;
-       i <= KV_MAX_GRADE && i <= (int) blockItems.size(); i++) {
-    s.setNum(i);
-    s.insert(0, CFG_QM_BLOCK_ITEM);
-    config->writeEntry(s, blockItems[i-1]);
-  }
-
-  for (int i = KV_LEV1_GRADE;
-       i <= KV_MAX_GRADE && i <= (int) expireItems.size(); i++) {
-    s.setNum(i);
-    s.insert(0, CFG_QM_EXPIRE_ITEM);
-    config->writeEntry(s, expireItems[i-1]);
-  }*/
-/*}*/
-
-/*
-int QueryManager::blockItem (int grade) const
-{
-   if (grade <= (int) blockItems.size() && grade > 0)
-    return  blockItems[grade-1];
-   else
-    return 0;
-}
-
-
-int QueryManager::expireItem (int grade) const
-{
-   if (grade <= (int) expireItems().size() && grade > 0)
-    return expireItems[grade-1];
-   else
-    return 0;
-}
-
-
-void QueryManager::setBlockItem (int item, int grade)
-{
-   if (grade > KV_MAX_GRADE || grade <= 0)
-     return;
-
-   for (int i = (int) blockItems.size(); i <= grade; i++)
-     blockItems.push_back(0);
-   blockItems[grade-1] = item;
-}
-
-
-void QueryManager::setExpireItem (int item, int grade)
-{
-   if (grade > KV_MAX_GRADE || grade <= 0)
-     return;
-
-   for (int i = (int) expireItems.size(); i <= grade; i++)
-     expireItems.push_back(0);
-   expireItems[grade-1] = item;
-}
-*/
 
 QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
                                     int oindex, int tindex,
@@ -259,7 +138,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
      if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, ent_no / f_ent_percent);
+       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
      kvoctrainExpr *expr = doc->getEntry(i);
      unsigned int lessonno;
@@ -349,7 +228,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
      if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, ent_no / f_ent_percent);
+       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
      kvoctrainExpr *expr = doc->getEntry(i);
      if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
@@ -428,7 +307,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
      if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, ent_no / f_ent_percent);
+       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
      kvoctrainExpr *expr = doc->getEntry(i);
      if (expr->isActive() && validate (expr, act_lesson, idx, type)) {

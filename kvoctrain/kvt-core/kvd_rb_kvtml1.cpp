@@ -793,7 +793,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
       if (lines != 0) {
         ent_no++;
         if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-          emit progressChanged(this, ent_no / f_ent_percent);
+          emit progressChanged(this, int(ent_no / f_ent_percent));
       }
       if (!parseBody_e (elem, xml)) return false;
     }

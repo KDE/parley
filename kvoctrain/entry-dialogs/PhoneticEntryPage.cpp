@@ -197,7 +197,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     tip += i18n(uni_ref->audible);
     butt->setFont(ipafont);
     butt->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
-    int sz = QMAX(14, 1.7*ipafont.pointSize());
+    int sz = QMAX(14, int(1.7*ipafont.pointSize()));
     butt->setMaximumSize(QSize (sz, sz));
     gbox->addWidget( butt, vert, horiz, AlignCenter );
     QToolTip::add (butt, tip);

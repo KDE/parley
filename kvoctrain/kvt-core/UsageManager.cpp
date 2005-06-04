@@ -73,7 +73,7 @@ static internalRelation_t InternalUsageRelations [] =
   { UL_MOT,       0,   I18N_NOOP("mot."),     I18N_NOOP("motoring")},
   { UL_MOUNT,     0,   I18N_NOOP("mount."),   I18N_NOOP("mountaineering")},
   { UL_MYT,       0,   I18N_NOOP("myth."),    I18N_NOOP("mythology")},
-  { UL_NPR,       I18N_NOOP2("abbreviation: proper name",  "npr."),  I18N_NOOP("proper name")},
+  { UL_NPR,       0,   I18N_NOOP2("abbreviation: proper name",  "npr."),  I18N_NOOP("proper name")},
   { UL_OPT,       0,   I18N_NOOP("opt."),     I18N_NOOP("optics")},
   { UL_ORN,       0,   I18N_NOOP("orn."),     I18N_NOOP("ornithology")},
   { UL_OS,        0,   I18N_NOOP("o.s."),     I18N_NOOP("oneself")},

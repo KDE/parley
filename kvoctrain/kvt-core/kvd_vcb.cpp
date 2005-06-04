@@ -32,31 +32,31 @@
 
 
 
-bool kvoctrainDoc::saveTypeNameVcb (QTextStream &os)
+bool kvoctrainDoc::saveTypeNameVcb (QTextStream &/*os*/)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::loadTypeNameVcb (QTextStream &is)
+bool kvoctrainDoc::loadTypeNameVcb (QTextStream &/*is*/)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::saveLessonVcb (QTextStream &os)
+bool kvoctrainDoc::saveLessonVcb (QTextStream &/*os*/)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::loadLessonVcb (QTextStream &is)
+bool kvoctrainDoc::loadLessonVcb (QTextStream &/*is*/)
 {
  return true;
 }
 
 
-bool kvoctrainDoc::saveToVcb (QTextStream& os, QString &title)
+bool kvoctrainDoc::saveToVcb (QTextStream& os, QString &/*title*/)
 {
   saveTypeNameVcb (os);
   saveLessonVcb (os);
@@ -71,7 +71,7 @@ bool kvoctrainDoc::saveToVcb (QTextStream& os, QString &title)
 
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      emit progressChanged(this, ent_no / f_ent_percent);
+      emit progressChanged(this, int(ent_no / f_ent_percent));
 
     QString s, exp;
 
@@ -114,7 +114,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
     ln--;
     if (ln <= 0) {
       ln = size / 40 / 100;  // assume each line about 40 chars
-      emit progressChanged(this, is.device()->at() / f_ent_percent);
+      emit progressChanged(this, int(is.device()->at() / f_ent_percent));
     }
 
     if (!s.stripWhiteSpace().isEmpty()) {
@@ -188,7 +188,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
 }
 
 
-void kvoctrainDoc::errorVcb (int line, const QString &text )
+void kvoctrainDoc::errorVcb (int /*line*/, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( arrowCursor, true );

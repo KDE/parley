@@ -176,7 +176,7 @@ bool kvoctrainDoc::loadLessonLex (QTextStream &is)
 }
 
 
-bool kvoctrainDoc::saveToLex (QTextStream& os, QString &title)
+bool kvoctrainDoc::saveToLex (QTextStream& os, QString & /*title*/)
 {
   os << LEX_IDENT_50 "\n";
   os << "LEX|" << getOriginalIdent() << "|" << getIdent(1) << "|"
@@ -216,7 +216,7 @@ bool kvoctrainDoc::saveToLex (QTextStream& os, QString &title)
 
     ent_no++;
     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      emit progressChanged(this, ent_no / f_ent_percent);
+      emit progressChanged(this, int(ent_no / f_ent_percent));
 
     os << "0" // type
        <<  " " << "255 255 255 255 255 255 255"
@@ -331,7 +331,7 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
 
   for (int i = 0; !is.eof() && i < lines; i++) {
     if (ent_percent != 0 && (i % ent_percent) == 0 ) {
-      emit progressChanged(this, i / f_ent_percent);
+      emit progressChanged(this, int(i / f_ent_percent));
     }
 
     is >> type;
@@ -384,7 +384,7 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
 }
 
 
-void kvoctrainDoc::errorLex (int line, const QString &text )
+void kvoctrainDoc::errorLex (int /*line*/, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( arrowCursor, true );

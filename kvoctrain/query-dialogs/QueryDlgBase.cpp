@@ -320,7 +320,7 @@ QString  QueryDlgBase::getNOKComment(int percent_done)
   return i18n("Your answer was wrong. %1% done.").arg(percent_done);
 }
 
-void QueryDlgBase::closeEvent(QCloseEvent * e)
+void QueryDlgBase::closeEvent(QCloseEvent * /*e*/)
 {
   emit sigQueryChoice(StopIt);
 }
