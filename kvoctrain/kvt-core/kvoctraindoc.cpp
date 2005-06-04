@@ -21,7 +21,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -46,6 +46,7 @@ using namespace std;
 #include <float.h>
 
 #include "kvoctraincore.h"
+#include "prefs.h"
 
 //********************************************************
 //  kvoctrainDoc
@@ -89,7 +90,7 @@ void kvoctrainDoc::Init ()
 }
 
 
-kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url, QString separator, QStringList *lang_order)
+kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url)
 {
   Init();
   if (!url.isEmpty())
@@ -137,8 +138,8 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url, QString separator, 
 
         case csv:
         {
-          QTextStream is (&f);
-          read = loadFromCsv (is, separator, lang_order);
+          QTextStream is(&f);
+          read = loadFromCsv(is);
         }
         break;
 
@@ -178,8 +179,7 @@ kvoctrainDoc::~kvoctrainDoc()
 }
 
 
-bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, FileType ft, const QString &separator, 
-  QStringList *lang_order)
+bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, FileType ft)
 {
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
@@ -189,7 +189,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
   if (title == doc_url.fileName())
     title = QString::null;
 
-  if (ft == automatic) 
+  if (ft == automatic)
   {
     if (tmp.path().right(strlen("." KVTML_EXT)) == "." KVTML_EXT)
       ft = kvtml;
@@ -199,7 +199,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
       ft = vt_vcb;
     else if (tmp.path().right(strlen("." CSV_EXT)) == "." CSV_EXT)
       ft = csv;
-    else 
+    else
     {
       tmp.setFileName(tmp.path() + "." KVTML_EXT);
       ft = kvtml;
@@ -240,7 +240,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
 
       case csv: {
         QTextStream os( &f );                       // serialize using f
-        saved = saveToCsv(os, title, separator, lang_order);
+        saved = saveToCsv(os, title);
       }
       break;
 

@@ -298,9 +298,9 @@ void kvoctrainApp::clearStatusBar()
 void kvoctrainApp::initDoc( )
 {
   if (fileOpenRecent->items().count() > 0)
-    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0], Prefs::separator(), &Prefs::pasteOrder());
+    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0]);
   else
-    doc = new kvoctrainDoc(this, KURL(""), Prefs::separator(), &Prefs::pasteOrder());
+    doc = new kvoctrainDoc(this, KURL(""));
 
   loadDocProps(doc);
   if (doc->numLangs() == 0)

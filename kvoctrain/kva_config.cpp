@@ -128,7 +128,7 @@ void kvoctrainApp::saveProperties(KConfig *config )
     QString filename=doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
     saveDocProps(doc);
-    doc->saveAs(this, KURL(tempname), doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
+    doc->saveAs(this, KURL(tempname), doc->getTitle(), kvoctrainDoc::automatic);
   }
 }
 
@@ -145,10 +145,9 @@ void kvoctrainApp::readProperties(KConfig *config)
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
 
     if(b_canRecover){
-      pdlg = new ProgressDlg (QString(), QString(),
-                              kapp->makeStdCaption(""));
+      pdlg = new ProgressDlg(QString(), QString(), kapp->makeStdCaption(""));
       pdlg->show();
-      doc = new kvoctrainDoc (this, KURL(tempname), Prefs::separator(), &Prefs::pasteOrder());
+      doc = new kvoctrainDoc(this, KURL(tempname));
       removeProgressBar();
       doc->setModified();
       doc->setTitle(title);
@@ -161,7 +160,7 @@ void kvoctrainApp::readProperties(KConfig *config)
     pdlg = new ProgressDlg (QString(), QString(),
                             kapp->makeStdCaption(""));
     pdlg->show();
-    doc = new kvoctrainDoc (this, KURL(filename), Prefs::separator(), &Prefs::pasteOrder());
+    doc = new kvoctrainDoc(this, KURL(filename));
     removeProgressBar();
     setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   }

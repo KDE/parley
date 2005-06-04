@@ -159,7 +159,7 @@ void kvoctrainApp::slotFileNew()
     view->setView (0, langset);
     delete doc;
     QString name = "";
-    doc = new kvoctrainDoc (this, 0 /*KURL(name)*/, Prefs::separator(), &Prefs::pasteOrder());
+    doc = new kvoctrainDoc (this, 0 /*KURL(name)*/);
     loadDocProps(doc);
     if (doc->numLangs() == 0) {
       QString l = "en";
@@ -200,7 +200,7 @@ void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 
       slotStatusMsg(msg);
       prepareProgressBar();
-      doc = new kvoctrainDoc (this, url, Prefs::separator(), &Prefs::pasteOrder());
+      doc = new kvoctrainDoc (this, url);
       removeProgressBar();
       loadDocProps(doc);
       view->setView(doc, langset);
@@ -251,7 +251,7 @@ void kvoctrainApp::slotFileMerge()
 
     slotStatusMsg(msg);
     prepareProgressBar();
-    kvoctrainDoc *new_doc = new kvoctrainDoc (this, url, Prefs::separator(), &Prefs::pasteOrder());
+    kvoctrainDoc *new_doc = new kvoctrainDoc (this, url);
     connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     doc->setModified(false);
     removeProgressBar();
@@ -508,8 +508,8 @@ void kvoctrainApp::slotFileSave()
 
   prepareProgressBar();
   saveDocProps(doc);
-  doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
-  fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
+  doc->saveAs(this, doc->URL(), doc->getTitle(), kvoctrainDoc::automatic);
+  fileOpenRecent->addURL(doc->URL());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -612,8 +612,8 @@ void kvoctrainApp::slotFileSaveAs()
       saveDocProps(doc);
 
       prepareProgressBar();
-      doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
-      fileOpenRecent->addURL(doc->URL()); //addRecentFile(doc->URL().path());
+      doc->saveAs(this, url, doc->getTitle(), kvoctrainDoc::automatic);
+      fileOpenRecent->addURL(doc->URL());
       removeProgressBar();
     }
   }
@@ -627,8 +627,9 @@ void kvoctrainApp::slotSaveSelection ()
     commitEntryDlg(false);
 
   slotStatusMsg(i18n("Saving selected area under new filename..."));
-
-  kvoctrainDoc seldoc(this, "", "\t");
+  QString save_separator = Prefs::separator();
+  Prefs::setSeparator("\t");
+  kvoctrainDoc seldoc(this, "");
   // transfer most important parts
   seldoc.appendLang(doc->getOriginalIdent());
   for (int i = 1; i < doc->numLangs(); i++)
@@ -643,7 +644,8 @@ void kvoctrainApp::slotSaveSelection ()
 
   KURL url = KFileDialog::getSaveURL(QString::null, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
-  if (!url.isEmpty() ) {
+  if (!url.isEmpty() )
+  {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::questionYesNo(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
@@ -663,10 +665,11 @@ void kvoctrainApp::slotSaveSelection ()
       saveDocProps(&seldoc);
 
       prepareProgressBar();
-      seldoc.saveAs(this, url, i18n ("Part of: ") + doc->getTitle(), kvoctrainDoc::automatic, Prefs::separator(), &Prefs::pasteOrder());
+      seldoc.saveAs(this, url, i18n ("Part of: ") + doc->getTitle(), kvoctrainDoc::automatic);
       removeProgressBar();
     }
   }
+  Prefs::setSeparator(save_separator);
   slotStatusMsg(IDS_DEFAULT);
 }
 

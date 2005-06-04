@@ -60,14 +60,17 @@ void kvoctrainApp::slotSmartSearchClip()
 }
 
 
-vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc, QStringList *lang_order)
+vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc)
 {
   vector<int> csv_order;
+  QStringList lang_order = Prefs::pasteOrder();
 
-  if (!Prefs::useCurrent()) {
-    if (lang_order && lang_order->count() != 0) {
-      for (int i = 0; i < (int) lang_order->count(); i++) {
-        int j = doc->findIdent((*lang_order)[i]);
+  if (!Prefs::useCurrent())
+  {
+    if (/*lang_order &&*/ lang_order.count() != 0) {
+      for (int i = 0; i < (int) lang_order.count(); i++)
+      {
+        int j = doc->findIdent((lang_order)[i]);
         if (j >= 0)
           csv_order.push_back (j);
         else
@@ -115,7 +118,7 @@ void kvoctrainApp::slotEditCopy()
   QString exp;
   QString s;
 
-  vector <int> csv_order = getCsvOrder(doc, &Prefs::pasteOrder() /*&paste_order*/);
+  vector <int> csv_order = getCsvOrder(doc);
 
   KVocTrainTable *table = view->getTable();
 
@@ -166,7 +169,7 @@ void kvoctrainApp::slotEditPaste()
   QString s;
   QString entries = QApplication::clipboard()->text();
 
-  vector <int> csv_order = getCsvOrder(doc, &Prefs::pasteOrder() /*&paste_order*/);
+  vector <int> csv_order = getCsvOrder(doc);
 
   bool changed = false;
   QString num;

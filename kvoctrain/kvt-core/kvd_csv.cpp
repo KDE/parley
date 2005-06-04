@@ -55,9 +55,10 @@ bool kvoctrainDoc::loadLessonCsv (QTextStream &)
  return true;
 }
 
-bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &,
-                              const QString &separator, QStringList *lang_order)
+bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &)
 {
+  QString separator = Prefs::separator();
+
   saveTypeNameCsv (os);
   saveLessonCsv (os);
 
@@ -69,7 +70,7 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &,
   os << i18n("! Title:")  << separator << getTitle() << "\n";
   os << i18n("! Author:") << separator << getAuthor() << "\n";
 
-  vector <int> csv_order = kvoctrainApp::getCsvOrder(this, lang_order);
+  vector <int> csv_order = kvoctrainApp::getCsvOrder(this);
 
   vector<kvoctrainExpr>::const_iterator first =  vocabulary.begin ();
   QString exp;
@@ -109,9 +110,10 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &,
 }
 
 
-bool kvoctrainDoc::loadFromCsv (QTextStream& is,
-                                QString &separator, QStringList *lang_order)
+bool kvoctrainDoc::loadFromCsv (QTextStream& is)
 {
+  QString separator = Prefs::separator();
+  QStringList lang_order = Prefs::pasteOrder();
 
   langs.clear();
   vocabulary.clear();
@@ -211,8 +213,8 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is,
   }
 
   for (int j = 0; j < lang_num; j++) {
-    if (j < (int) lang_order->count() ) {
-      langs.push_back((*lang_order)[j]);
+    if (j < (int) lang_order.count() ) {
+      langs.push_back((lang_order)[j]);
     }
     else {
       if (j == 0)

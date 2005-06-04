@@ -22,7 +22,7 @@
 #include "kvtnewstuff.h"
 #include "prefs.h"
 
-KVTNewStuff::KVTNewStuff(QWidget *parent, const char *name) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
+KVTNewStuff::KVTNewStuff(QWidget *parent, const char * /*name*/) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
 {
   m_app = (kvoctrainApp*) parent;
 }
@@ -36,7 +36,7 @@ bool KVTNewStuff::install(const QString & fileName)
 }
 
 
-bool KVTNewStuff::createUploadFile(const QString & fileName)
+bool KVTNewStuff::createUploadFile(const QString & /*fileName*/)
 {
   return true;
 }

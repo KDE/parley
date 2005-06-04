@@ -262,10 +262,10 @@ class kvoctrainDoc : public QObject
 
   /** Constructor for the fileclass of the application
    *
-   * @param obj              calling object
-   * @param filename         name of file to parse
+   * @param obj calling object
+   * @param url URL of file to parse
    */
-  kvoctrainDoc(QObject* obj, const KURL& url, QString separator, QStringList *lang_order = 0);
+  kvoctrainDoc(QObject* obj, const KURL& url);
 
   /** Destructor for the fileclass of the application */
   ~kvoctrainDoc();
@@ -424,8 +424,7 @@ class kvoctrainDoc : public QObject
    * @param url     if url is empty (or NULL) actual name is preserved
    * @result         true if successful
    */
-  bool saveAs (QObject *parent, const KURL & url, QString title, FileType ft, const QString &separator,
-    QStringList *lang_order = 0);
+  bool saveAs (QObject *parent, const KURL & url, QString title, FileType ft);
 
   /** returns count of entries
    */
@@ -693,8 +692,8 @@ protected:
   bool saveTypeNameLex   (QTextStream& os);
   bool loadTypeNameLex   (QTextStream& is);
 
-  bool saveToCsv     (QTextStream& os, QString &title, const QString &separator, QStringList *lang_order);
-  bool loadFromCsv   (QTextStream& is, QString &separator, QStringList *lang_order);
+  bool saveToCsv     (QTextStream& os, QString &title);
+  bool loadFromCsv   (QTextStream& is);
   bool loadLessonCsv (QTextStream& is);
   bool saveLessonCsv (QTextStream& os);
   bool saveTypeNameCsv   (QTextStream& os);

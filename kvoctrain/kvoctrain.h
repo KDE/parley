@@ -219,15 +219,12 @@ public:
   void slotStatusHelpMsg(const QString &text);
 
 public:
-  void removeProgressBar ();
-  void prepareProgressBar ();
-  void fillLessonBox(kvoctrainDoc *the_doc);
-  void loadDocProps(kvoctrainDoc *the_doc);
+  void removeProgressBar();
+  void prepareProgressBar();
+  void fillLessonBox(kvoctrainDoc *);
+  void loadDocProps(kvoctrainDoc *);
   void saveDocProps(kvoctrainDoc *);
-  /** exits the application */
-  static vector<int> getCsvOrder(kvoctrainDoc *doc, QStringList *);
-
-//  void doSM();
+  static vector<int> getCsvOrder(kvoctrainDoc *);
 
 private:
   // KAction pointers to enable/disable actions
