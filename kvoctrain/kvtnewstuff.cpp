@@ -109,6 +109,11 @@ QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
     if (result == KMessageBox::No)
       return QString::null;
   }
+  KMessageBox::information(parentWidget(),
+    i18n("<qt>The selected file will now be downloaded and saved as\n<b>'%1'</b>.</qt>")
+    .arg(file),
+    QString::null,
+    "NewStuffDownloadLocation");
   return file;
 }
 
