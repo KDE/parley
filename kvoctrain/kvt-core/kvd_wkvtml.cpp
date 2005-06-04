@@ -1,13 +1,11 @@
 /***************************************************************************
 
-    $Id$
-
                          write a kvtml document
 
     -----------------------------------------------------------------------
 
     begin                : Thu Mar 11 20:50:53 MET 1999
-                                           
+
     copyright            : (C) 1999-2001 Ewald Arnold
                            (C) 2001 The KDE-EDU team
     email                : kvoctrain@ewald-arnold.de
@@ -21,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -42,7 +40,7 @@ bool kvoctrainDoc::saveTypeNameKvtMl (XmlWriter &xml)
 
   for (int lfn = 0; lfn < (int) type_descr.size(); lfn++) {
     if (!type_descr[lfn].isNull() ) {
-      xml.writeText("  ");         
+      xml.writeText("  ");
       xml.startTag (KV_TYPE_DESC, false);
       xml.addAttribute (KV_TYPE_NO, lfn+1 );
       xml.closeTag();
@@ -51,7 +49,7 @@ bool kvoctrainDoc::saveTypeNameKvtMl (XmlWriter &xml)
     }
   }
 
-  xml.writeText(" ");            
+  xml.writeText(" ");
   xml.endTag (KV_TYPE_GRP, true);
   xml.writeText("\n");
   return true;
@@ -68,7 +66,7 @@ bool kvoctrainDoc::saveTenseNameKvtMl (XmlWriter &xml)
 
   for (int lfn = 0; lfn < (int) tense_descr.size(); lfn++) {
     if (!tense_descr[lfn].isNull() ) {
-      xml.writeText("  ");         
+      xml.writeText("  ");
       xml.startTag (KV_TENSE_DESC, false);
       xml.addAttribute (KV_TENSE_NO, lfn+1 );
       xml.closeTag();
@@ -77,7 +75,7 @@ bool kvoctrainDoc::saveTenseNameKvtMl (XmlWriter &xml)
     }
   }
 
-  xml.writeText(" ");            
+  xml.writeText(" ");
   xml.endTag (KV_TENSE_GRP, true);
   xml.writeText("\n");
   return true;
@@ -94,7 +92,7 @@ bool kvoctrainDoc::saveUsageNameKvtMl (XmlWriter &xml)
 
   for (int lfn = 0; lfn < (int) usage_descr.size(); lfn++) {
     if (!usage_descr[lfn].isNull() ) {
-      xml.writeText("  ");         
+      xml.writeText("  ");
       xml.startTag (KV_USAGE_DESC, false);
       xml.addAttribute (KV_USAGE_NO, lfn+1 );
       xml.closeTag();
@@ -103,7 +101,7 @@ bool kvoctrainDoc::saveUsageNameKvtMl (XmlWriter &xml)
     }
   }
 
-  xml.writeText(" ");            
+  xml.writeText(" ");
   xml.endTag (KV_USAGE_GRP, true);
   xml.writeText("\n");
   return true;
@@ -122,7 +120,7 @@ bool kvoctrainDoc::saveLessonKvtMl (XmlWriter &xml)
 
   for (int lfn = 0; lfn < (int) lesson_descr.size(); lfn++) {
     if (!lesson_descr[lfn].isNull() ) {
-      xml.writeText("  ");         
+      xml.writeText("  ");
       xml.startTag (KV_LESS_DESC, false);
       xml.addAttribute (KV_LESS_NO, lfn+1 );
       if (getCurrentLesson() == lfn+1)
@@ -135,7 +133,7 @@ bool kvoctrainDoc::saveLessonKvtMl (XmlWriter &xml)
     }
   }
 
-  xml.writeText(" ");            
+  xml.writeText(" ");
   xml.endTag (KV_LESS_GRP, true);
   xml.writeText("\n");
   return true;
@@ -315,7 +313,7 @@ bool kvoctrainDoc::saveComparison (const Comparison &comp,
   QString identstr;
   identstr.fill (' ', ident+1);
 
-  xml.writeText(identstr);         
+  xml.writeText(identstr);
   xml.startTag (KV_COMPARISON_GRP, false);
   xml.closeTag(false, true);
   xml.writeText(identstr+" ");
@@ -338,7 +336,7 @@ bool kvoctrainDoc::saveComparison (const Comparison &comp,
     xml.endTag (KV_COMP_L3, false);
   }
 
-  xml.writeText("\n"+identstr);    
+  xml.writeText("\n"+identstr);
   xml.endTag (KV_COMPARISON_GRP, true);
   xml.writeText(identstr);   // indent next element
   return true;
@@ -414,7 +412,7 @@ bool kvoctrainDoc::saveConjugEntry (Conjugation &curr_conjug,
 
 /*
  <conjugation>        in entry for definition of tenses of (irreg.) verbs
-  <t n="sipa">       
+  <t n="sipa">
    <s1>go</s1>
    <s2>go</s2>
    <s3f>goes</s3f>
@@ -504,7 +502,7 @@ bool kvoctrainDoc::saveArticleKvtMl (XmlWriter &xml)
     }
     xml.addAttribute (KV_LANG, s);
     xml.closeTag(false, true);
-  
+
     articles[lfn].female(def, indef);
     if (!def.isEmpty() ) {
       xml.writeText("   ");
@@ -518,7 +516,7 @@ bool kvoctrainDoc::saveArticleKvtMl (XmlWriter &xml)
       xml.writeText (indef);
       xml.endTag (KV_ART_FI, true);
     }
-  
+
     articles[lfn].male(def, indef);
     if (!def.isEmpty() ) {
       xml.writeText("   ");
@@ -546,7 +544,7 @@ bool kvoctrainDoc::saveArticleKvtMl (XmlWriter &xml)
       xml.writeText (indef);
       xml.endTag (KV_ART_NI, true);
     }
-  
+
     xml.writeText("  ");
     xml.endTag (KV_ART_ENTRY, true);
     xml.writeText("");
@@ -570,7 +568,7 @@ bool kvoctrainDoc::saveOptionsKvtMl (XmlWriter &xml)
   xml.addAttribute (KV_BOOL_FLAG, sort_allowed );
   xml.closeTag (true, true);
 
-  xml.writeText(" ");            
+  xml.writeText(" ");
   xml.endTag (KV_OPTION_GRP, true);
   xml.writeText("\n");
   return true;
@@ -811,7 +809,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       entype = s.left (pos);
     else
       entype = s;
-        
+
     if (   entype == QM_VERB
         && (*first).getConjugation(0).numEntries() > 0) {
       Conjugation conj = (*first).getConjugation(0);
@@ -913,11 +911,11 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       if (!(*first).getPronunce(trans).isEmpty() ) {
         xml.addAttribute (KV_PRONUNCE, (*first).getPronunce(trans));
       }
-  
+
       if (!(*first).uniqueType() && !(*first).getType(trans).isEmpty()) {
         xml.addAttribute (KV_EXPRTYPE, (*first).getType(trans));
       }
-  
+
       xml.closeTag ();
 
       // only save conjugations when type == verb
@@ -932,7 +930,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
         entype = s.left (pos);
       else
         entype = s;
-  
+
       if (   entype == QM_VERB
           && (*first).getConjugation(trans).numEntries() > 0) {
         Conjugation conj = (*first).getConjugation(trans);

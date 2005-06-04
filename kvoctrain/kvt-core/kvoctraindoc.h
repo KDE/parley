@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
                          maintain a kvoctrain document
 
     -----------------------------------------------------------------------
@@ -27,11 +25,11 @@
  ***************************************************************************/
 
 #ifndef KVOCTRAINDOC_H
-#define KVOCTRAINDOC_H 
+#define KVOCTRAINDOC_H
 
 #ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif 
+#endif
 
 #include <qobject.h>
 
@@ -210,7 +208,7 @@
  </conjugation>
 
  <conjugation>        and in entry for definition of tenses of (irreg.) verbs
-  <t n="sipa">       
+  <t n="sipa">
    <s1>go</s1>
    <s2>go</s2>
    <s3f>goes</s3f>
@@ -360,7 +358,7 @@ class kvoctrainDoc : public QObject
    */
   int findIdent (const QString &lang) const;
 
-  /** returns attribute string 
+  /** returns attribute string
    *
    * @param index            number of attribute
    * @result                 string

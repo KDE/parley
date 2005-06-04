@@ -1,7 +1,5 @@
 /* -*- C++ -*-
 
-  $Id$
-
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)
 
@@ -15,7 +13,7 @@
 #include "koxml_config.h"
 
 /**
- * The XMLTokenizer class allows an application to break a XML stream 
+ * The XMLTokenizer class allows an application to break a XML stream
  * into tokens.
  *
  * @short     A class for tokenizing an XML stream.

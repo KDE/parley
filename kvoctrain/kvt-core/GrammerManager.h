@@ -1,7 +1,5 @@
 /***************************************************************************
 
-    $Id$
-
               manage grammer parts (articles, conjugation)
 
     -----------------------------------------------------------------------
@@ -131,7 +129,7 @@ public:
    Conjugation () {}
 
    int numEntries() const;
-   
+
    static vector<TenseRelation> getRelation ();
    static void setTenseNames (vector<QString> names);
 

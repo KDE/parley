@@ -1,7 +1,5 @@
 /* -*- C++ -*-
 
-  $Id$
-
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)
 
@@ -13,7 +11,7 @@
 
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU Library General Public License as
-  published by  
+  published by
   the Free Software Foundation; either version 2 of the License, or
   (at your option) any later version.
 
@@ -21,7 +19,7 @@
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
+
   You should have received a copy of the GNU Library General Public License
   along with this program; if not, write to the Free Software
   Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
@@ -60,7 +58,7 @@ bool XmlReader::validHeader () {
     return false;
   if (tokenizer.nextToken () != XmlTokenizer::Tok_String)
     return false;
-  else if (tokenizer.element () != "1.0") 
+  else if (tokenizer.element () != "1.0")
     return false;
 
   if (tokenizer.nextToken () != XmlTokenizer::Tok_QSign)
@@ -100,7 +98,7 @@ bool XmlReader::validHeader () {
 
   return true;
 }
-  
+
 const KOXML_STRING& XmlReader::doctype () const {
   return s_dtype;
 }
@@ -126,9 +124,9 @@ bool XmlReader::readElement (XmlElement& elem) {
       tok = tokenizer.nextToken ();
       if (tok == XmlTokenizer::Tok_Comment) {
 	// skip comment
-      }  	
+      }
       else {
-	if (tok == XmlTokenizer::Tok_Slash) 
+	if (tok == XmlTokenizer::Tok_Slash)
 	  result = parseEndElement (elem);
 	else if (tok == XmlTokenizer::Tok_Symbol)
 	  result = parseElement (tokenizer.element (), elem);
@@ -161,7 +159,7 @@ bool XmlReader::parseEndElement (XmlElement& elem) {
       elem.endTag = true;
       elem.closed = true;
       result = true;
-    }      
+    }
   }
   return result;
 }

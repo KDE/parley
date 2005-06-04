@@ -1,5 +1,4 @@
 /* -*- C++ -*-
-  $Id$
 
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)

@@ -1,7 +1,5 @@
 /* -*- C++ -*-
 
-  $Id$
-
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)
 
@@ -16,8 +14,8 @@
 #include <list>
 
 /**
- * An instance of XmlAttribute represents an attribute of 
- * XML elements. It provides methods for accessing the attribute 
+ * An instance of XmlAttribute represents an attribute of
+ * XML elements. It provides methods for accessing the attribute
  * value.
  *
  * @short     A class for representing attributes of XML elements.
@@ -82,7 +80,7 @@ private:
 };
 
 /**
- * An instance of XmlElement represents an element (object) of a XML 
+ * An instance of XmlElement represents an element (object) of a XML
  * document. The elements consists of the tag (element ID) and a list
  * of attributes.
  *

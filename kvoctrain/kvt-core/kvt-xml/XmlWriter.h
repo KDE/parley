@@ -1,7 +1,5 @@
 /* -*- C++ -*-
 
-  $Id$
-
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)
 
@@ -26,7 +24,7 @@ class KOXML_OSTREAM;
 /**
  * The XMLWriter class provides support for writing XML streams.
  * It contains methods for output XML elements with attributes.
- * 
+ *
  * Sample code:
  * <pre>
  *  KOXML_OSTREAM os (fname);
@@ -50,7 +48,7 @@ class XmlWriter {
 public:
   /**
    * Create a XmlWriter instance for the given output stream.
-   * 
+   *
    * @param os       The open output stream for writing.
    */
   XmlWriter (KOXML_OSTREAM& os);
@@ -66,7 +64,7 @@ public:
    *
    * @param id       The element ID.
    * @param closeIt  If @p true the tag is closed by >,
-   *                 otherwise not. 
+   *                 otherwise not.
    * @param empty    If @p true an empty element is written, which
    *                 is closed by />.
    * @param eol      If @p true an eol char is appended
@@ -79,7 +77,7 @@ public:
    * last opened element.
    *
    * @param id       The element ID. If @p "" the last opened
-   *                 element is ended. (default). 
+   *                 element is ended. (default).
    * @param eol      If @p true an eol char is appended
    *                 even if autoendl is false
    */
@@ -108,7 +106,7 @@ public:
   void closeTag (bool empty = false, bool eol = false);
 
   /**
-   * Add an attribute with the given value to the current element. 
+   * Add an attribute with the given value to the current element.
    * This method doesn't check, if an element is open.
    *
    * @param name     The attribute name.
@@ -117,7 +115,7 @@ public:
   void addAttribute (KOXML_STRING name, const KOXML_STRING& value);
 
   /**
-   * Add an attribute with the given value to the current element. 
+   * Add an attribute with the given value to the current element.
    * This method doesn't check, if an element is open.
    *
    * @param name     The attribute name.
@@ -126,7 +124,7 @@ public:
   void addAttribute (KOXML_STRING name, int value);
 
   /**
-   * Add an attribute with the given value to the current element. 
+   * Add an attribute with the given value to the current element.
    * This method doesn't check, if an element is open.
    *
    * @param name     The attribute name.
@@ -135,7 +133,7 @@ public:
   void addAttribute (KOXML_STRING name, float value);
 
   /**
-   * Add an attribute with the given value to the current element. 
+   * Add an attribute with the given value to the current element.
    * This method doesn't check, if an element is open.
    *
    * @param name     The attribute name.
