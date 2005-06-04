@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 
@@ -26,6 +25,7 @@
 
 
 #include <kdebug.h>
+#include <klocale.h>
 
 #include "kvoctrain.h"
 #include "query-dialogs/RandomQueryDlg.h"
@@ -34,8 +34,6 @@
 #include "query-dialogs/ArtQueryDlg.h"
 #include "query-dialogs/AdjQueryDlg.h"
 #include "query-dialogs/SimpleQueryDlg.h"
-
-#include "queryoption-dialogs/QueryOptionsDlg.h"
 #include "prefs.h"
 
 #define MAX_QUERY_TIMEOUT 3

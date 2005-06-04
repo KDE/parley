@@ -10,13 +10,13 @@ spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 
 kvoctrain_LDADD = ./docprop-dialogs/libdocpropdlg.la \
 	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la ./kvt-core/kvt-xml/libkvtxml.la \
-	./option-dialogs/liboptiondlg.la ./query-dialogs/libquerydlg.la \
-	./queryoption-dialogs/libqueryoptiondlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la -lknewstuff
+	./query-dialogs/libquerydlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la \
+	-lknewstuff
 
 EXTRA_DIST = kvoctrainui.rc
 
-SUBDIRS = common-dialogs query-dialogs queryoption-dialogs option-dialogs \
-	docprop-dialogs entry-dialogs statistik-dialogs kvt-core examples pics
+SUBDIRS = common-dialogs query-dialogs docprop-dialogs entry-dialogs \
+	statistik-dialogs kvt-core examples pics
 
 bin_SCRIPTS = langen2kvtml
 
@@ -26,11 +26,9 @@ kde_conf_DATA = kvoctrainrc
 xdg_apps_DATA = kvoctrain.desktop
 
 
-INCLUDES = -I$(srcdir)/.. -I$(srcdir)/kvt-core -I$(srcdir)/option-dialogs \
-	-Ioption-dialogs -Icommon-dialogs -I$(srcdir)/common-dialogs -I$(srcdir)/docprop-dialogs \
-	-Idocprop-dialogs -I$(srcdir)/queryoption-dialogs -Iqueryoption-dialogs \
-	-I$(srcdir)/query-dialogs -Iquery-dialogs -I$(srcdir)/entry-dialogs -Ientry-dialogs \
-	$(all_includes)
+INCLUDES = -I$(srcdir)/.. -I$(srcdir)/kvt-core -Icommon-dialogs \
+	-I$(srcdir)/common-dialogs -I$(srcdir)/docprop-dialogs -Idocprop-dialogs -I$(srcdir)/query-dialogs \
+	-Iquery-dialogs -I$(srcdir)/entry-dialogs -Ientry-dialogs $(all_includes)
 
 bin_PROGRAMS = kvoctrain spotlight2kvtml
 

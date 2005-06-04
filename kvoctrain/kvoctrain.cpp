@@ -42,7 +42,6 @@
 #include <kvoctraincore.h>
 #include "kvoctrain.h"
 #include "entry-dialogs/EntryDlg.h"
-#include "option-dialogs/GeneralOptionsDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistik-dialogs/StatistikDlg.h"

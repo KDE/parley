@@ -1,16 +1,14 @@
 /***************************************************************************
 
-    $Id$
-
                     maintain a document in text format
 
     -----------------------------------------------------------------------
 
-    begin                : Sat Sep 06 11:00:53 MET 1999
-                                           
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    begin          : Sat Sep 06 11:00:53 MET 1999
+
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
 
     -----------------------------------------------------------------------
 

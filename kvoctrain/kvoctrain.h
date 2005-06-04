@@ -45,7 +45,6 @@
 // application specific includes
 #include "kvoctrainview.h"
 #include "kvoctraintable.h"
-#include "queryoption-dialogs/GroupOptPage.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
 
@@ -329,7 +328,6 @@ private:
   int              query_cycle;
   int              query_num;
   int              query_startnum;
-  vector<PreSetting>  presettings;
   QueryType        queryType;
   KRandomSequence  random;
   KVTNewStuff     *m_newStuff;
