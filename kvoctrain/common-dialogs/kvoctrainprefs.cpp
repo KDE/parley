@@ -89,6 +89,8 @@ KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, kvoctrainDoc * doc, KComboBox * les
   connect(m_blockOptions, SIGNAL(blockExpireChanged(bool, bool)), m_thresholdOptions, SLOT(slotBlockExpire(bool, bool)));
 
   setButtonGuiItem(KDialogBase::User1, KGuiItem(i18n("&Profiles...")));
+  setButtonTip(KDialogBase::User1, i18n("Save or load specific Query settings which consist in a profile"));
+  setButtonWhatsThis(KDialogBase::User1, i18n("A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
 }
 
 void KVocTrainPrefs::selectPage(int index)
