@@ -149,7 +149,7 @@ void kvoctrainApp::initActions()
   editClearSelection->setToolTip(editClearSelection->whatsThis());
 
   editSearchFromClipboard =  KStdAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
-  editSearchFromClipboard->setWhatsThis(i18n("Search for clipboard content in the vocabulary"));
+  editSearchFromClipboard->setWhatsThis(i18n("Search for the clipboard contents in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
   editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
