@@ -26,6 +26,13 @@
 <contrib>Reviewer</contrib>
 </othercredit>
 
+<author>
+<firstname>Mahfouf</firstname>
+<surname>Anne-Marie</surname>
+<affiliation><address><email>annma@kde.org</email>
+</address></affiliation>
+</author>
+
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
@@ -55,16 +62,12 @@ when you are trying to learn a foreign language.</para></abstract>
 <chapter id="introduction">
 <title>Introduction</title>
 
-<mediaobject>
-<imageobject><imagedata fileref="logo-kvoctrain.png" format="PNG" /></imageobject>
-</mediaobject>
-
 <sect1 id="what-is-it">
 <title>What is it?</title>
 
 <para>&kvoctrain; is a little utility to help you train your vocabulary,
-when you are trying to learn a foreign language. You can create your
-own database with the words you need.</para>
+when you are trying to learn a foreign language for example. You can create your
+own files with the words you need.</para>
 
 <para>It is intended as a replacement for index (flash) cards.</para>
 
@@ -79,155 +82,6 @@ sophisticated things. This is, and probably will stay, beyond the scope
 of this application.</para>
 
 </sect1>
-
-<!--
-<sect1 id="changes">
-<title>Changes</title>
-
-<variablelist>
-<varlistentry>
-<term>0.7.0 2001 January 2.</term>
-<listitem><para><itemizedlist>
-      <listitem><para>further steps towards KDE 2. Runs almost as
- reliable as previous
-            versions under KDE1</para></listitem>
-      <listitem><para>new file format for vocabbox</para></listitem>
-      <listitem><para>new doc properties "license" and
- "remark"</para></listitem>
-      <listitem><para>new vocabulary properties "usage label" and
- "paraphrase"</para></listitem>
-      <listitem><para>experimental unicode support with utf-8 encoding
- of kvtml files
-            (QT2.x only)</para></listitem>
-      <listitem><para>invoke header menu with left mouse button (instead
- right mouse button)
-            similar to menu buttons in toolbars</para></listitem>
-      <listitem><para>customizable action after query
- timeout</para></listitem>
-      <listitem><para>provide the possibility to enable different
- charsets and fonts per
-            language</para></listitem>
-      <listitem><para>query dialogs for synonyms, antonyms, examples and
- paraphrases.</para></listitem>
-      <listitem><para>Synonyms and antonys may form a list of several
- lines and answering
-            one of them is good.</para></listitem>
-      <listitem><para>reduced size of executable by almost 1000kb ;-) by
- eleminating
-            multiple instantiations of templates.</para></listitem>
-      <listitem><para>query may contain arbitrary many lessons, not just
- one (or all).</para></listitem>
-      <listitem><para>user defined names for
- conjugations</para></listitem>
-      <listitem><para>found some minor bugs</para></listitem>
-      <listitem><para>adopted spotlight2kvtml to differing file
- format</para></listitem>
-      <listitem><para>several properties may spawn multiple
- lines</para></listitem>
-      <listitem><para>switch to have settings always saved on exit (not
- only upon request)</para></listitem>
-      <listitem><para>Thanks to Hans Kottmann there is also a
- localization for French and
-            Grzegorz Ilzuk has created one for polish.</para></listitem>
-      <listitem><para>lesson which are included for the next query are
- now stored with the
-             document instead of the global configuration
- file.</para></listitem>
-      <listitem><para>as always: fixed a bunch of new and old
- bugs...</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.6.0 2000 February 6.</term>
-<listitem><para><itemizedlist>
-      <listitem><para>extended query dialog (properties and progress
- chart)</para></listitem>
-      <listitem><para>support up to 7 levels</para></listitem>
-      <listitem><para>new property "faux ami"</para></listitem>
-      <listitem><para>added blocking/expiring query
- dates</para></listitem>
-      <listitem><para>setting groups for the query</para></listitem>
-      <listitem><para>new properties "article", "conjugation" and
- "comparison"
-            for querying</para></listitem>
-      <listitem><para>reorganized source tree</para></listitem>
-      <listitem><para>first preparations for KDE 2.x: compiles but does
- not
-            run correctly</para></listitem>
-      <listitem><para>substituted all pictures *.gif by
- *.png</para></listitem>
-      <listitem><para>simple verify functions in query
- dialogs</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.5.0 1999 October 24.</term>
-<listitem><para><itemizedlist>
-      <listitem><para>show progress while
- loading/saving</para></listitem>
-      <listitem><para>customize resizing strategy of
- columns</para></listitem>
-      <listitem><para>mark arbitrary ranges to work on</para></listitem>
-      <listitem><para>binary file format (for my testing purposes
- only)</para></listitem>
-      <listitem><para>added import/export filter for *.lex and *.csv
- files</para></listitem>
-      <listitem><para>limit time for each query</para></listitem>
-      <listitem><para>tried to be more conforming to the style
- guidelines</para></listitem>
-      <listitem><para>some minor corrections and
- improvements</para></listitem>
-      <listitem><para>user defined expression types, revised internal
- types</para></listitem>
-      <listitem><para>added converter for <ulink
- url="http://www.spotlight-online.de">Spotlight-Online</ulink>
-            vocabulary list ==> spotlight2kvtml</para></listitem>
-      <listitem><para>access header buttons and lesson box also with
- keyboard</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.4.0 1999 August 15.</term>
-<listitem><para><itemizedlist>
-      <listitem><para>improved learning support</para></listitem>
-      <listitem><para>german handbook</para></listitem>
-      <listitem><para>some nicer icons</para></listitem>
-      <listitem><para>fixed a serious bug</para></listitem>
-      <listitem><para>lots of minor improvements</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.3.2 1999 June 12</term>
-<listitem><para><itemizedlist>
-      <listitem><para>smart search facility</para></listitem>
-      <listitem><para>creation of lessons</para></listitem>
-      <listitem><para>bidirectional query</para></listitem>
-      <listitem><para>security backup before saving</para></listitem>
-      <listitem><para>fixed loads of flaws :-(</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.2 1999 May 1</term>
-<listitem><para><itemizedlist>
-    <listitem><para>First release</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>0.1 1999 April 14</term>
-<listitem><para><itemizedlist>
-    <listitem><para>Basic functions completed</para></listitem>
-</itemizedlist></para></listitem>
-</varlistentry>
-
-</variablelist>
-</sect1>
--->
 
 </chapter>
 
@@ -258,13 +112,13 @@ the vocabulary have a visual representation:</para>
 
 <itemizedlist>
 
-<listitem><para>colors show the grade (Level 1 to 7) of your
+<listitem><para>Colors show the grade (Level 1 to 7) of your
 knowledge</para></listitem>
 <listitem><para>A green check mark in the second columns means that this
 line is in use for a query (when you did not finish last time) whereas a
 red cross appears when you deactivated the line.</para></listitem>
 
-<listitem><para>if you mark a range of entries to work with, they
+<listitem><para>If you mark a range of entries to work with, they
 appear with a different background.</para></listitem>
 </itemizedlist>
 
@@ -303,7 +157,7 @@ the phonetic alphabet. See more about this in the according
 </variablelist>
 
 <para>While &kvoctrain; is loading, saving a large file or otherwise
-busy doing something time consuming, you will see a progress bar in this
+busy doing something time consuming, you will see a progress bar on the right in this
 status line.</para>
 
 </sect1>
@@ -874,9 +728,19 @@ green check mark in the <link linkend="overview">main view</link>.</para>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Open example file...</guimenuitem></menuchoice></term>
+<guimenuitem>Open example...</guimenuitem></menuchoice></term>
 <listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
 </para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Get New Vocabularies...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens</action> the Get Hot New Stuff dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
+</listitem>
 </varlistentry>
 
 <varlistentry>
@@ -981,35 +845,21 @@ columns are concatenated before copying all to the clipboard.</para>
 <term>
 <menuchoice>
 <shortcut><keycombo action="simul">&Ctrl;
-<keycap>Del</keycap></keycombo></shortcut>
+<keycap>&Shift;</keycap><keycap>A</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Clear selection</guimenuitem></menuchoice></term>
+<guimenuitem>Deselect</guimenuitem></menuchoice></term>
 <listitem><para><action>Removes all multiple selection
  marks.</action></para></listitem>
 </varlistentry>
 
-<varlistentry>
-<term>
-<menuchoice>
-<shortcut><keycombo action="simul">
-&Ctrl;<keycap>F</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Search from clipboard</guimenuitem></menuchoice></term>
-<listitem><para><action>Pastes the clipboard content</action> into the
- <link
-linkend="smart-search">smart search</link> entry field and searches this
-expression in all the entries in the current column.</para></listitem>
-</varlistentry>
 
 <varlistentry>
-<term><menuchoice>
-<shortcut><keycap>Ins</keycap></shortcut>
+<term><menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Append new entry</guimenuitem></menuchoice></term>
-<listitem><para><action>Appends one or more new expressions.</action>
- See
-<link linkend="key-insert">Insert key</link> section for more
-information.</para></listitem>
+<guimenuitem>Find</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches</action> for the clipboard content in the vocabulary file using the search field in the toolbar.
+.</para></listitem>
 </varlistentry>
 
 <varlistentry>
