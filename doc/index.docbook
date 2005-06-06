@@ -88,7 +88,61 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &kvoctrain;</title>
 
-<para>To be written</para>
+<para>Here is &kvoctrain; the first time you run it.</para>
+<screenshot>
+<screeninfo>&kvoctrain; main window</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="quick-1.png" format="PNG" /></imageobject>
+<textobject><phrase>K&kvoctrain; main window</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>
+You can study a file in the examples by using the <guimenu>File</guimenu> <guimenuitem>Open examples...</guimenuitem> menu. There are 2 files here for you to learn how to use &kvoctrain;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
+</para>
+
+<para>
+You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Get Vocabularies...</guimenuitem>. The KNewStuff dialog will open with a list of available documents.
+</para>
+
+<screenshot>
+<screeninfo>Get Vocabularies dialog</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="quick-2.png" format="PNG" /></imageobject>
+<textobject><phrase>Get Vocabularies dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>Here I choose the Katakana file to learn Japanese and with a click on the <guibutton>Install</guibutton> button in the dialog, the file is installed. Click on the <guibutton>Close</guibutton> button to exit the dialog. The Katakana vocabulary file is opened in the &kvoctrain; window.</para>
+
+<screenshot>
+<screeninfo>The Katakana file</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="quick-3.png" format="PNG" /></imageobject>
+<textobject><phrase>The Katakana file</phrase></textobject>
+</mediaobject>
+</screenshot>
+<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the Thresholds tab. You can set which lessons you want to learn. We put Lesson 1.</para>
+
+<screenshot>
+<screeninfo>Configure your lesson</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="quick-4.png" format="PNG" /></imageobject>
+<textobject><phrase>Configure your lesson</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>
+In the <guimenu>Learning</guimenu> menu, choose what you want to learn. For example I choose <guimenuitem>ri</guimenuitem> as I want to learn the Katakana signs associated with Romaji.  I then choose <guimenuitem>Create multiple choice</guimenuitem> <guimenuitem>from jp</guimenuitem> and the following dialog appears:
+</para>
+
+<screenshot>
+<screeninfo>Lesson 1 - Multiple choice query</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="quick-5.png" format="PNG" /></imageobject>
+<textobject><phrase>Lesson 1 - Multiple choice query</phrase></textobject>
+</mediaobject>
+</screenshot>
 
 <!-- This chapter should tell the user how to quickly start using your app.  It should include screenshots 
 with short explanations in a Step 1, Step 2 way maybe.-->
@@ -832,13 +886,6 @@ This is no more supported. The files are always stored
 in Unicode to prevent wrong rendering of characters.</para>
 <para>Unfortunately there is no backwards
 compatibility to versions below 0.6 any more but I think the benefit is worth it.</para>
-<para>If you have important files that are rendered wrong in the new version
-you may contact
-<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
-since it might be worth the effort
-to create some conversion tool.
-</para>
-
 
 </sect2>
 </sect1>
@@ -891,21 +938,31 @@ to create some conversion tool.
 </sect1>
 
 <sect1 id="options-dlg">
-<title>Options dialog</title>
+<title>Settings dialog</title>
 
 <para>The settings of this dialog are global and affect all vocabularies
 equally.</para>
 
-<sect2 id="options1-dlg">
-<title>General options</title>
+<sect2 id="settings1-dlg">
+<title>General</title>
 
 <screenshot>
-<screeninfo>General options dialog screenshot</screeninfo>
+<screeninfo>General settings dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>General Options Dialog</phrase></textobject>
+<textobject><phrase>General Settings Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
+
+<varlistentry>
+<term><guilabel>Save vocabularies automaticaly on close and quit</guilabel></term>
+<listitem><para>If you check this option, &kvoctrain; will automatically save the document if it
+was modified when you use the close button or when you quit &kvoctrain;.</para>
+<para>As a side effect it also does not ask for confirmation to save
+ when quitting with modified data but saves the vocabulary without
+ asking.</para>
+</listitem>
+</varlistentry>
 
 <variablelist>
 <varlistentry>
@@ -934,11 +991,12 @@ document settings.</para></listitem>
 </varlistentry>
     
 <varlistentry>
-<term><guilabel>Save options automatically</guilabel></term>
+<term><guilabel>Apply changes without asking</guilabel></term>
 <listitem><para>When checked, all options are save upon termination
 of &kvoctrain;. Otherwise you have to select the appropriate menu
 item.</para></listitem>
 </varlistentry>
+
 
 <varlistentry>
 <term><guilabel>Column resizing</guilabel></term>
@@ -970,14 +1028,14 @@ the columns is done.</para></listitem>
 
 </sect2>
 
-<sect2 id="options2-dlg">
-<title>Available languages</title>
+<sect2 id="settings2-dlg">
+<title>Languages</title>
 
 <screenshot>
-<screeninfo>Language options dialog screenshot</screeninfo>
+<screeninfo>Language settings dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Language options dialog</phrase></textobject>
+<textobject><phrase>Language settings dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1063,13 +1121,14 @@ the language codes known in &kde; sorted by country whereas the second contains
 
 </sect2>
 
-<sect2 id="options3-dlg">
-<title>Table View</title>
+<sect2 id="settings3-dlg">
+<title>View</title>
 
 <screenshot>
+<screeninfo>View settings dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>[view options dialog]</phrase></textobject>
+<textobject><phrase>View settings dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1122,13 +1181,13 @@ according check box.</para></listitem>
 </sect2>
 
 <sect2 id="options4-dlg">
-<title>Clipboard</title>
+<title>Copy &amp; Paste</title>
 
 <screenshot>
-<screeninfo>Clipboard options dialog screenshot</screeninfo>
+<screeninfo>Copy &amp; Paste settings dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Clipboard options dialog</phrase></textobject>
+<textobject><phrase>Copy &amp; Paste settings dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1161,6 +1220,91 @@ down. <guibutton>Skip</guibutton> will insert a hole which means that
 <listitem><para>When checked, the items in the clipboard are assumed to
 be in the same language order as the current document.</para></listitem>
 </varlistentry>
+</variablelist>
+
+</sect2>
+<sect2 id="options5-dlg">
+<title>Query</title>
+
+<screenshot>
+<screeninfo>Query settings dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="options5-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Query settings dialog </phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry id="no-time">
+<term><guilabel>No time limitation</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Show solution</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Continue after timeout</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="options6-dlg">
+<title>Thresholds</title>
+
+<screenshot>
+<screeninfo>Thresholds settings dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="options6-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Thresholds settings dialog </phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry id="lesson">
+<term><guilabel>Lesson</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Word Type</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Grade</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="options7-dlg">
+<title>Blocking</title>
+
+<screenshot>
+<screeninfo>Blocking settings dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="options7-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Blocking settings dialog </phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Blocking</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Expiring</guilabel></term>
+<listitem><para></para></listitem>
+</varlistentry>
+
 </variablelist>
 
 </sect2>
@@ -2275,7 +2419,7 @@ The International Phonetic Association</ulink></para></listitem>
 language code</ulink> as your current one.</para>
 <para>So always use the correct codes. This helps you share vocabularies
 with others. &kvoctrain; supports you in this and offers all codes in the
-according <link linkend="options2-dlg">options page</link>
+according <link linkend="settings2-dlg">options page</link>
 </para></listitem>
 </varlistentry>
 
@@ -2656,7 +2800,7 @@ order.</para></listitem>
 <term><guimenuitem>Set language</guimenuitem></term>
 <listitem><para>Chooses a language for this column. If your desired
 language does not yet exists in this menu, you have to add it with the
-<link linkend="options2-dlg">options dialog</link>.</para></listitem>
+<link linkend="settings2-dlg">options dialog</link>.</para></listitem>
 </varlistentry>
 </variablelist>
 
