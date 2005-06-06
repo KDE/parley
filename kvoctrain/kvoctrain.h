@@ -47,6 +47,7 @@
 #include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
+#include "langset.h"
 
 class QTimer;
 class KLined;

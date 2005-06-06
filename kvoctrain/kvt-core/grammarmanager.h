@@ -27,7 +27,7 @@
 #ifndef grammarmanager_included
 #define grammarmanager_included
 
-#include <qdatastream.h>
+#include <qstring.h>
 
 #include <vector>
 using namespace std;

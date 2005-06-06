@@ -32,9 +32,6 @@
 
 #include <grammarmanager.h>
 
-//#include <vector>
-//using namespace std;
-
 class kvoctrainDoc;
 class LangPropPage;
 class LangSet;

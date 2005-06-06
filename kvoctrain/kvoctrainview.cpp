@@ -28,6 +28,7 @@
 #include "kvoctrain.h"
 #include "kvoctrainview.h"
 #include "prefs.h"
+#include "langset.h"
 
 #include <kstandarddirs.h>
 #include <kconfig.h>

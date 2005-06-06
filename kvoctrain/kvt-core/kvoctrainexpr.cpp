@@ -23,15 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctraindoc.h"
-
-#include <vector>
-using namespace std;
-
-#include <kdebug.h>
-
-#include "kv_resource.h"  // FIXME: remove include
-
+#include "kvoctrainexpr.h"
 
 void kvoctrainExpr::Init()
 {

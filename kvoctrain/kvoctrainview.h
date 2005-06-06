@@ -39,6 +39,7 @@ class KVocTrainTable;
 class kvoctrainApp;
 class kvoctrainDoc;
 class GradeCols;
+class LangSet;
 
 #include "kvoctraindoc.h"
 

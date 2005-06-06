@@ -31,6 +31,7 @@
 
 #include "kvt-core/kvoctraindoc.h"
 #include "kvt-core/kvoctrainexpr.h"
+#include "kvt-core/langset.h"
 #include "kvoctraintableitem.h"
 
 /**

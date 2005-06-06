@@ -30,7 +30,7 @@
 Conjugation::conjug_name_t
 Conjugation::names [] =
 {
-  { CONJ_SIMPLE_PRESENT,    I18N_NOOP("Simple Preset") },
+  { CONJ_SIMPLE_PRESENT,    I18N_NOOP("Simple Present") },
   { CONJ_PRESENT_PROGR,     I18N_NOOP("Preset Progressive") },
   { CONJ_PRESENT_PERFECT,   I18N_NOOP("Preset Perfect") },
 

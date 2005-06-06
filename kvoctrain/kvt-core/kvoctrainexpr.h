@@ -54,30 +54,15 @@
 #define KV_LEV7_GRADE      7
 #define KV_LEV7_TEXT       I18N_NOOP("Level 7")
 
-#include "langset.h"
-
 #include <time.h>
-
-#ifdef HAVE_CONFIG_H
-#include <config.h>
-#endif
-
-#include <qpixmap.h>
-# include <qnamespace.h>
+#include <vector>
+using namespace std;
 
 #include "grammarmanager.h"
 #include "MultipleChoice.h"
 
-/*struct GradeCols {
-   bool   use;
-   QColor col0, col1, col2, col3, col4, col5, col6, col7;
-};
-*/
 typedef signed char grade_t;
 typedef unsigned short count_t;
-
-class kvoctrainDoc;
-class QPainter;
 
 /***************************************************************
   * This class contains one expression as original or in one
