@@ -29,7 +29,7 @@
 <author>
 <firstname>Mahfouf</firstname>
 <surname>Anne-Marie</surname>
-<affiliation><address><email>annma@kde.org</email>
+<affiliation><address><email>annma@kde.org</email>	
 </address></affiliation>
 </author>
 
@@ -87,6 +87,9 @@ of this application.</para>
 
 <chapter id="quick-start">
 <title>Quick Start to &kvoctrain;</title>
+
+<para>To be written</para>
+
 <!-- This chapter should tell the user how to quickly start using your app.  It should include screenshots 
 with short explanations in a Step 1, Step 2 way maybe.-->
 </chapter>
