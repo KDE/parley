@@ -43,8 +43,8 @@
 
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2002-10-08</date>
-<releaseinfo>0.8.1</releaseinfo>
+<date>2005-06-06</date>
+<releaseinfo>0.8.2</releaseinfo>
 
 <abstract><para>This handbook describes &kvoctrain; version 0.8.0.
 &kvoctrain; is a little utility to help you train your vocabulary,
@@ -85,8 +85,14 @@ of this application.</para>
 
 </chapter>
 
+<chapter id="quick-start">
+<title>Quick Start to &kvoctrain;</title>
+<!-- This chapter should tell the user how to quickly start using your app.  It should include screenshots 
+with short explanations in a Step 1, Step 2 way maybe.-->
+</chapter>
+
 <chapter id="usage">
-<title>Usage</title>
+<title>Using &kvoctrain;</title>
 
 <sect1 id="overview">
 <title>Overview</title>
@@ -687,478 +693,7 @@ green check mark in the <link linkend="overview">main view</link>.</para>
 </sect1>
 </chapter>
 
-<chapter id="menus">
-<title>The Menubar</title>
 
-<sect1 id="file-menu">
-<title>The <guimenu>File</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>New</guimenuitem>
-</menuchoice>
-</term>
-<listitem><para><action>Creates</action> a new
- document.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><shortcut>
-<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Open...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens an existing document.</action>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>Open recent...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens one of the recently opened
- documents.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>Open example...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><shortcut>
-<keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Get New Vocabularies...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens</action> the Get Hot New Stuff dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>File</guimenu>
-<guimenuitem>Merge..</guimenuitem></menuchoice></term>
-<listitem><para><action>Merges another vocabulary to the
- current.</action></para>
-<para>Only those parts of the second vocabulary are merged, that have
- the same 
-<ulink url="http://www.loc.gov/standards/iso639-2/englangn.html">
- international
-language code</ulink> as your current one.</para>
-<para>So always use the correct codes. This helps you share vocabularies
-with others. &kvoctrain; supports you in this and offers all codes in the
-according <link linkend="options2-dlg">options page</link>
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<shortcut><keycombo
- action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
-<guimenu>File</guimenu>
-<guimenuitem>Save</guimenuitem></menuchoice></term>
-<listitem><para><action>Saves the document.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>File</guimenu>
-<guimenuitem>Save as</guimenuitem></menuchoice></term>
-<listitem><para><action>Saves the document under another
- name.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-  <term><menuchoice>
-      <guimenu>File</guimenu>
-      <guimenuitem>Save Entries In Query As...</guimenuitem></menuchoice></term>
-  <listitem><para><action>Saves the entries marked In Query as a new vocabulary.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>File</guimenu>
-<guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para><action>Exits</action> &kvoctrain;.</para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect1>
-
-<sect1 id="edit-menu">
-<title>The <guimenu>Edit</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term>
-<menuchoice>
-<shortcut><keycombo action="simul">
-&Ctrl;<keycap>C</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Copy</guimenuitem></menuchoice></term>
-<listitem><para><action>Copies the current row to the
- clipboard.</action> The entries are separated by a special sequence of
- characters which can be chosen in the <link
- linkend="options4-dlg">options dialog</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut><keycombo action="simul">
-&Ctrl;<keycap>V</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Paste</guimenuitem></menuchoice></term>
-<listitem><para><action>Pastes from clipboard.</action> The entries are
- divided by
-the above mentioned <link linkend="cut-n-paste">separator</link>
-character and inserted as a new row with one or more columns. You can
-also <link linkend="options4-dlg">adjust the order</link> in which the
-columns are concatenated before copying all to the clipboard.</para>
-<para>Pasting multiple lines (&eg; from a <literal role="extension">CSV</literal>
- data base file) will
- append them all as new rows one after another.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<shortcut><keycombo action="simul">
-&Ctrl;<keycap>A</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Select all</guimenuitem></menuchoice></term>
-<listitem><para><action>Marks the whole vocabulary</action> as
- <quote>selected</quote>
- for further processing.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<shortcut><keycombo action="simul">&Ctrl;
-<keycap>&Shift;</keycap><keycap>A</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Deselect</guimenuitem></menuchoice></term>
-<listitem><para><action>Removes all multiple selection
- marks.</action></para></listitem>
-</varlistentry>
-
-
-<varlistentry>
-<term><menuchoice><shortcut>
-<keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Find</guimenuitem></menuchoice></term>
-<listitem><para><action>Searches</action> for the clipboard content in the vocabulary file using the search field in the toolbar.
-.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><shortcut><keycap>Enter</keycap></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Edit selected area</guimenuitem></menuchoice></term>
-<listitem><para><action>Edits current expression.</action> See <link
-linkend="key-enter">Enter key</link> section for more
-information.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><shortcut><keycap>Del</keycap></shortcut>
-<guimenu>Edit</guimenu>
-<guimenuitem>Remove selected area</guimenuitem></menuchoice></term>
-<listitem><para><action>Removes selection.</action> See <link
- linkend="key-delete">Delete
-key</link> for more information.</para></listitem>
-</varlistentry>
-
-</variablelist>
-
-</sect1>
-
-<sect1 id="voc-menu">
-<title>The <guimenu>Vocabulary</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Show statistics</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="stat-dlg">statistics
-dialog</link> to <action>display the most important facts about your
-vocabulary.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Assign lessons</guimenuitem></menuchoice></term>
-<listitem><para><action>Searches the vocabulary for entries that are
-not yet assigned a lesson.</action> They are randomly assigned new
-lessons.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Clean up</guimenuitem></menuchoice></term>
-<listitem><para><action>Searches for entries which are exactly the
- same</action>
-(original and all translations) and removes all but
- one.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Append language</guimenuitem></menuchoice></term>
-<listitem><para><action>Appends a new column</action> (a new
- language).</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Set language</guimenuitem></menuchoice></term>
-<listitem><para><action>Sets the language code and name for a column</action>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Remove language</guimenuitem></menuchoice></term>
-<listitem><para><action>Removes one of the
- translations.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Document properties</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="docprop-dlg">document
-properties dialog</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Language properties</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="langprop-dlg">language
-properties dialog</link>.</para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect1>
-
-<sect1 id="learn-menu">
-<title>The <guimenu>Learn</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>Learn</guimenu>
-<guimenuitem><replaceable>Language Names</replaceable></guimenuitem>
-</menuchoice></term>
-<listitem><para>Provides a submenu for each language with all the
-query dialogs. Exactly the same as the menu appearing in a <link
-linkend="header-menu">table header button</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice>
-<guimenu>Learn</guimenu>
-<guimenuitem>Resume random query</guimenuitem></menuchoice></term>
-<listitem><para><action>Resumes the previous random query if you
- terminated one
-before.</action> Remaining entries appear with a green check mark.
-</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice>
-<guimenu>Learn</guimenu><guimenuitem>Resume multiple
- choice</guimenuitem>
-</menuchoice></term>
-<listitem><para><action>Resumes the previous random query with multiple
-choice.</action></para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect1>
-
-<sect1 id="opt-menu">
-<title>The <guimenu>Options</guimenu> Menu</title>
-
-<variablelist>
-<varlistentry>
-<term><menuchoice>
-<guimenu>Options</guimenu>
-<guimenuitem>Toolbar</guimenuitem></menuchoice></term>
-<listitem><para><action>Toggles the visibility of the toolbar
-buttons.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Options</guimenu>
-<guimenuitem>Statusbar</guimenuitem></menuchoice></term>
-<listitem><para><action>Toggles on or off the status line at the
-bottom.</action></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Options</guimenu>
-<guimenuitem>Inline editing</guimenuitem></menuchoice></term>
-<listitem><para>Toggles on or off <link linkend="inline-edit">
-inline editing</link> in the
-table cell.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Options</guimenu>
-<guimenuitem>General options</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="options-dlg">general options
-dialog</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><menuchoice><guimenu>Options</guimenu>
-<guimenuitem>Query options</guimenuitem></menuchoice></term>
-<listitem><para>Invokes the <link linkend="query-opt-dlg">query options
-dialog</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term>
-<menuchoice><guimenu>Options</guimenu>
-<guimenuitem>Save options</guimenuitem></menuchoice></term>
-<listitem><para><action>Saves the options.</action> Only selectable if
- the options are
-not already saved automatically.</para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect1>
-
-<sect1 id="help-menu">
-<title>The <guimenu>Help</guimenu> menu</title>
-
-&help.menu.documentation;
-
-</sect1>
-
-<sect1 id="header-menu">
-<title>Table header menu</title>
-
-<para>The following context menu will appear when you keep the
-third button (your original expressions) in the table header
-pressed for about a second.</para>
-
-<variablelist>
-<varlistentry>
-<term><guimenuitem>Create random query</guimenuitem></term>
-<listitem><para>Creates a <link linkend="query-dlg">random query</link>
-on this column with all unknown expressions according to your <link
-linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Create multiple choice</guimenuitem></term>
-<listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
-choice query</link> on this column with all unknown expressions
- according to your <link
- linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query verbs</guimenuitem></term>
-<listitem><para>All of the verbs with its conjugations are
-queried.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query articles</guimenuitem></term>
-<listitem><para>Queries the articles if the gender of the nouns is
-defined.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query comparison</guimenuitem></term>
-<listitem><para>Queries comparison forms.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query synonyms</guimenuitem></term>
-<listitem><para>Queries the synonyms.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query antonyms</guimenuitem></term>
-<listitem><para>Queries the antonyms.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query the examples</guimenuitem></term>
-<listitem><para>Queries the examples.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Query paraphrase</guimenuitem></term>
-<listitem><para>Queries the paraphrases.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Sort</guimenuitem></term>
-<listitem><para>Sorts this row in ascending resp. descending
-order.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Set language</guimenuitem></term>
-<listitem><para>Chooses a language for this column. If your desired
-language does not yet exists in this menu, you have to add it with the
-<link linkend="options2-dlg">options dialog</link>.</para></listitem>
-</varlistentry>
-</variablelist>
-
-<para>The following two topics only appear if you keep a header button pressed
-that belongs to a translation.
-</para>
-
-<variablelist>
-<varlistentry>
-<term><guimenuitem>Reset properties</guimenuitem></term>
-<listitem><para>Resets the properties of all the selected entries to
-their initial state as if you just had appended them.</para>
-<para>If you have chosen a lesson in the appropriate box in the toolbar,
-then only those lesson members are reset. Otherwise all entries are
-affected.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guimenuitem>Remove language</guimenuitem></term>
-<listitem><para>Removes this column and all its
- entries.</para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect1>
-
-</chapter>
 
 <chapter id="dialogs">
 <title>Dialogs</title>
@@ -2663,6 +2198,489 @@ The International Phonetic Association</ulink></para></listitem>
 </itemizedlist>
 
 </sect1>
+</chapter>
+
+<chapter id="commands">
+<title>Command Reference</title>
+
+<sect1 id="kapp-mainwindow">
+<title>The main &kvoctrain; window</title>
+
+<sect2 id="file-menu">
+<title>The <guimenu>File</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>New</guimenuitem>
+</menuchoice>
+</term>
+<listitem><para><action>Creates</action> a new
+ document.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>O</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Open...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens an existing document.</action>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open recent...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens one of the recently opened
+ documents.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Open example...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Get New Vocabularies...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens</action> the Get Hot New Stuff dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>File</guimenu>
+<guimenuitem>Merge..</guimenuitem></menuchoice></term>
+<listitem><para><action>Merges another vocabulary to the
+ current.</action></para>
+<para>Only those parts of the second vocabulary are merged, that have
+ the same 
+<ulink url="http://www.loc.gov/standards/iso639-2/englangn.html">
+ international
+language code</ulink> as your current one.</para>
+<para>So always use the correct codes. This helps you share vocabularies
+with others. &kvoctrain; supports you in this and offers all codes in the
+according <link linkend="options2-dlg">options page</link>
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<shortcut><keycombo
+ action="simul">&Ctrl;<keycap>S</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Save</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the document.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>File</guimenu>
+<guimenuitem>Save as</guimenuitem></menuchoice></term>
+<listitem><para><action>Saves the document under another
+ name.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+  <term><menuchoice>
+      <guimenu>File</guimenu>
+      <guimenuitem>Save Entries In Query As...</guimenuitem></menuchoice></term>
+  <listitem><para><action>Saves the entries marked In Query as a new vocabulary.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>File</guimenu>
+<guimenuitem>Quit</guimenuitem></menuchoice></term>
+<listitem><para><action>Exits</action> &kvoctrain;.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="edit-menu">
+<title>The <guimenu>Edit</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>C</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Copy</guimenuitem></menuchoice></term>
+<listitem><para><action>Copies the current row to the
+ clipboard.</action> The entries are separated by a special sequence of
+ characters which can be chosen in the <link
+ linkend="options4-dlg">options dialog</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>V</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Paste</guimenuitem></menuchoice></term>
+<listitem><para><action>Pastes from clipboard.</action> The entries are
+ divided by
+the above mentioned <link linkend="cut-n-paste">separator</link>
+character and inserted as a new row with one or more columns. You can
+also <link linkend="options4-dlg">adjust the order</link> in which the
+columns are concatenated before copying all to the clipboard.</para>
+<para>Pasting multiple lines (&eg; from a <literal role="extension">CSV</literal>
+ data base file) will
+ append them all as new rows one after another.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycombo action="simul">
+&Ctrl;<keycap>A</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Select All</guimenuitem></menuchoice></term>
+<listitem><para><action>Marks the whole vocabulary</action> as
+ <quote>selected</quote>
+ for further processing.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<shortcut><keycombo action="simul">&Ctrl;
+<keycap>&Shift;</keycap><keycap>A</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Deselect</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes all multiple selection
+ marks.</action></para></listitem>
+</varlistentry>
+
+
+<varlistentry>
+<term><menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Find</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches</action> for the clipboard content in the vocabulary file using the search field in the toolbar.
+.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<shortcut><keycap>Ins</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Append new entry</guimenuitem></menuchoice></term>
+<listitem><para><action>Appends one or more new expressions.</action>
+ See
+<link linkend="key-insert">Insert key</link> section for more
+information.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><shortcut><keycap>Enter</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Edit selected area</guimenuitem></menuchoice></term>
+<listitem><para><action>Edits current expression.</action> See <link
+linkend="key-enter">Enter key</link> section for more
+information.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><shortcut><keycap>Del</keycap></shortcut>
+<guimenu>Edit</guimenu>
+<guimenuitem>Remove selected area</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes selection.</action> See <link
+ linkend="key-delete">Delete
+key</link> for more information.</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="voc-menu">
+<title>The <guimenu>Vocabulary</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Show statistics</guimenuitem></menuchoice></term>
+<listitem><para>Invokes the <link linkend="stat-dlg">statistics
+dialog</link> to <action>display the most important facts about your
+vocabulary.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Assign lessons</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches the vocabulary for entries that are
+not yet assigned a lesson.</action> They are randomly assigned new
+lessons.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Clean up</guimenuitem></menuchoice></term>
+<listitem><para><action>Searches for entries which are exactly the
+ same</action>
+(original and all translations) and removes all but
+ one.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Append language</guimenuitem></menuchoice></term>
+<listitem><para><action>Appends a new column</action> (a new
+ language).</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Set language</guimenuitem></menuchoice></term>
+<listitem><para><action>Sets the language code and name for a column</action>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Remove language</guimenuitem></menuchoice></term>
+<listitem><para><action>Removes one of the
+ translations.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Document properties</guimenuitem></menuchoice></term>
+<listitem><para>Invokes the <link linkend="docprop-dlg">document
+properties dialog</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Vocabulary</guimenu>
+<guimenuitem>Language properties</guimenuitem></menuchoice></term>
+<listitem><para>Invokes the <link linkend="langprop-dlg">language
+properties dialog</link>.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="learn-menu">
+<title>The <guimenu>Learning</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>Learn</guimenu>
+<guimenuitem><replaceable>Language Names</replaceable></guimenuitem>
+</menuchoice></term>
+<listitem><para>Provides a submenu for each language with all the
+query dialogs. Exactly the same as the menu appearing in a <link
+linkend="header-menu">table header button</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<guimenu>Learn</guimenu>
+<guimenuitem>Resume random query</guimenuitem></menuchoice></term>
+<listitem><para><action>Resumes the previous random query if you
+ terminated one
+before.</action> Remaining entries appear with a green check mark.
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Learn</guimenu><guimenuitem>Resume multiple
+ choice</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Resumes the previous random query with multiple
+choice.</action></para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+
+<sect2 id="opt-menu">
+<title>The <guimenu>Settings</guimenu> Menu</title>
+
+<variablelist>
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Show/Hide Toolbar</guimenuitem></menuchoice></term>
+<listitem><para><action>Toggles the visibility of the toolbar
+buttons.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice><guimenu>Settings</guimenu>
+<guimenuitem>Show/Hide Statusbar</guimenuitem></menuchoice></term>
+<listitem><para><action>Toggles on or off the status line at the
+bottom.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Shortcuts...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Configure</action> the keyboard keys you use to access the different actions.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure Toolbars...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Configure</action> the items you want to put in the toolbar
+</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><menuchoice>
+<guimenu>Settings</guimenu>
+<guimenuitem>Configure &kvoctrain;...</guimenuitem>
+</menuchoice></term>
+<listitem><para><action>Display</action> the &kvoctrain; settings dialog
+</para></listitem>
+</varlistentry>
+
+</variablelist>
+
+</sect2>
+
+<sect2 id="help-menu">
+<title>The <guimenu>Help</guimenu> menu</title>
+
+&help.menu.documentation;
+
+</sect2>
+
+<sect2 id="header-menu">
+<title>Table header menu</title>
+
+<para>The following context menu will appear when you keep the
+third button (your original expressions) in the table header
+pressed for about a second.</para>
+
+<variablelist>
+<varlistentry>
+<term><guimenuitem>Create random query</guimenuitem></term>
+<listitem><para>Creates a <link linkend="query-dlg">random query</link>
+on this column with all unknown expressions according to your <link
+linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Create multiple choice</guimenuitem></term>
+<listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
+choice query</link> on this column with all unknown expressions
+ according to your <link
+ linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query verbs</guimenuitem></term>
+<listitem><para>All of the verbs with its conjugations are
+queried.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query articles</guimenuitem></term>
+<listitem><para>Queries the articles if the gender of the nouns is
+defined.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query comparison</guimenuitem></term>
+<listitem><para>Queries comparison forms.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query synonyms</guimenuitem></term>
+<listitem><para>Queries the synonyms.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query antonyms</guimenuitem></term>
+<listitem><para>Queries the antonyms.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query the examples</guimenuitem></term>
+<listitem><para>Queries the examples.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Query paraphrase</guimenuitem></term>
+<listitem><para>Queries the paraphrases.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Sort</guimenuitem></term>
+<listitem><para>Sorts this row in ascending resp. descending
+order.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Set language</guimenuitem></term>
+<listitem><para>Chooses a language for this column. If your desired
+language does not yet exists in this menu, you have to add it with the
+<link linkend="options2-dlg">options dialog</link>.</para></listitem>
+</varlistentry>
+</variablelist>
+
+<para>The following two topics only appear if you keep a header button pressed
+that belongs to a translation.
+</para>
+
+<variablelist>
+<varlistentry>
+<term><guimenuitem>Reset properties</guimenuitem></term>
+<listitem><para>Resets the properties of all the selected entries to
+their initial state as if you just had appended them.</para>
+<para>If you have chosen a lesson in the appropriate box in the toolbar,
+then only those lesson members are reset. Otherwise all entries are
+affected.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guimenuitem>Remove language</guimenuitem></term>
+<listitem><para>Removes this column and all its
+ entries.</para></listitem>
+</varlistentry>
+</variablelist>
+
+</sect2>
+</sect1>
+
 </chapter>
 
 <chapter id="credits-and-license">
