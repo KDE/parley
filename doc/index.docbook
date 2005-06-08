@@ -734,7 +734,7 @@ nouns.</para></listitem>
 </itemizedlist>
 
 <para>All these settings can be summarized into
-<link linkend="q-opt1-dlg">query groups</link> and retained
+<link linkend="profiles">profiles</link> and retained
 under an arbitrarily name.</para>
 
 <para>When querying &kvoctrain; shows the expressions in random order
@@ -1416,6 +1416,58 @@ the same level.</para></listitem>
 on the previous dialog page are not taken into account.</para>
 
 </sect2>
+
+<sect2 id="profiles">
+<title>Profiles</title>
+
+<screenshot>
+<screeninfo>Profiles dialog</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="profiles.png" format="PNG" /></imageobject>
+<textobject><phrase>Profiles dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>Depending on the dictionary or the time you have to learn the
+vocabulary different settings may be optimal.</para> 
+
+<para>For that reason all the settings of the pages of this dialog can
+be summarized under an arbitrarily chosen name.  You can store the
+settings and recall them whenever you want.</para>
+
+<!--<variablelist>
+<varlistentry>
+<term><guilabel>Retain</guilabel></term>
+<listitem><para>Retains the settings of the other pages under the
+current name.</para>
+<para>Saving to disk is done as with all the other settings using the
+according menu item of the
+<link linkend="opt-menu">options menu</link>.
+Some properties are stored
+with the document. For example the lessons to include since this
+depends on the document in use.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Recall</guilabel></term>
+<listitem><para>Recalls the settings from the group in the
+listbox.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>New</guilabel></term>
+<listitem><para>Creates a new group with the current
+settings.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Delete</guilabel></term>
+<listitem><para>Removes the current group.</para></listitem>
+</varlistentry>
+</variablelist> -->
+ 
+</sect2>
+
 </sect1>
 
 <sect1 id="entry-dlg">
@@ -1425,7 +1477,7 @@ on the previous dialog page are not taken into account.</para>
 <title>General properties</title>
 
 <para>Here you enter a new expression into a table cell or modify
- existing entries and their properties. This dialog is accessed when a cell is chosen and you select the <guimenu>Edit</guimenu> <guimenuitem>Edit Selected Area...</guimenuitem> menu.</para>
+ existing entries and their properties. This dialog is accessed when a cell is chosen and you select the <guimenu>Edit</guimenu> -&gt; <guimenuitem>Edit Selected Area...</guimenuitem> menu or from the Random Query dialog -&gt; <guibutton>Edit Expression...</guibutton> button.</para>
 
 <screenshot>
 <screeninfo>Entry dialog screenshot</screeninfo>
@@ -1693,11 +1745,19 @@ answer.</para></listitem>
 <sect2>
 <title>Docking to the main window</title>
 
+<screenshot>
+<screeninfo>Docking buttons</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="entry7-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Docking buttons</phrase></textobject>
+</mediaobject>
+</screenshot>
+
 <para>If you have to enter or change a lot of words you may want to place the main
 window next to the entry dialog and occupy the whole screen.
 
 You may do this manually or use one of the two
-buttons in the bottom left corner. The left one resizes the windows to an optimal
+buttons in the bottom (see picture above). The left one resizes the windows to an optimal
 height and places them one upon the other. The second places them accordingly
 side by side.</para>
 
@@ -1706,62 +1766,6 @@ position and size.</para>
 
 </sect2>
 </sect1>
-<!--in Settings now -->
-<!--<sect1 id="query-opt-dlg">
-<title>Query options dialog</title>
-
-<sect2 id="q-opt1-dlg">
-<title>Option groups</title>
-
-<screenshot>
-<screeninfo>Option groups dialog screenshot</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Option groups</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<para>Depending on the dictionary or the time you have to learn the
-vocabulary different settings may be optimal.</para> 
-
-<para>For that reason all the settings of the pages of this dialog can
-be summarized under an arbitrarily chosen name.  You can store the
-settings and recall them whenever you want.</para>
-
-<variablelist>
-<varlistentry>
-<term><guilabel>Retain</guilabel></term>
-<listitem><para>Retains the settings of the other pages under the
-current name.</para>
-<para>Saving to disk is done as with all the other settings using the
-according menu item of the
-<link linkend="opt-menu">options menu</link>.
-Some properties are stored
-with the document. For example the lessons to include since this
-depends on the document in use.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Recall</guilabel></term>
-<listitem><para>Recalls the settings from the group in the
-listbox.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>New</guilabel></term>
-<listitem><para>Creates a new group with the current
-settings.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Delete</guilabel></term>
-<listitem><para>Removes the current group.</para></listitem>
-</varlistentry>
-</variablelist>
- 
-</sect2>
-
--->
 
 <sect1 id="query-dlg">
 <title>Query dialogs</title>
