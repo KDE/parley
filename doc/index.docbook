@@ -122,7 +122,7 @@ You can also get vocabulary files through the Internet using <guimenu>File</guim
 <textobject><phrase>The Katakana file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the Thresholds tab. You can set which lessons you want to learn. We put Lesson 1.</para>
+<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the Thresholds tab. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton>.</para>
 
 <screenshot>
 <screeninfo>Configure your lesson</screeninfo>
@@ -460,8 +460,8 @@ linkend="encodings">encodings and charsets.</link></para>
 
 <para>There are a lot of dictionaries on the internet which use the
 tabular character or one or two colons to separate the different
-languages. To select this separator use the dialog for setting the <link
-linkend="options4-dlg">clipboard options</link>.</para></listitem>
+languages. To select this separator use the tab for setting the <link
+linkend="options4-dlg">Copy &amp; Paste options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
 
 </itemizedlist>
 
@@ -1235,147 +1235,6 @@ be in the same language order as the current document.</para></listitem>
 </screenshot>
 
 <variablelist>
-<varlistentry id="no-time">
-<term><guilabel>No time limitation</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Show solution</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Continue after timeout</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect2>
-
-<sect2 id="options6-dlg">
-<title>Thresholds</title>
-
-<screenshot>
-<screeninfo>Thresholds settings dialog screenshot</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="options6-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Thresholds settings dialog </phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<variablelist>
-<varlistentry id="lesson">
-<term><guilabel>Lesson</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Word Type</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Grade</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-</variablelist>
-
-</sect2>
-
-<sect2 id="options7-dlg">
-<title>Blocking</title>
-
-<screenshot>
-<screeninfo>Blocking settings dialog screenshot</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="options7-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Blocking settings dialog </phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<variablelist>
-<varlistentry>
-<term><guilabel>Blocking</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Expiring</guilabel></term>
-<listitem><para></para></listitem>
-</varlistentry>
-
-</variablelist>
-
-</sect2>
-</sect1>
-
-<sect1 id="query-opt-dlg">
-<title>Query options dialog</title>
-
-<sect2 id="q-opt1-dlg">
-<title>Option groups</title>
-
-<screenshot>
-<screeninfo>Option groups dialog screenshot</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Option groups</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<para>Depending on the dictionary or the time you have to learn the
-vocabulary different settings may be optimal.</para>
-
-<para>For that reason all the settings of the pages of this dialog can
-be summarized under an arbitrarily chosen name.  You can store the
-settings and recall them whenever you want.</para>
-
-<variablelist>
-<varlistentry>
-<term><guilabel>Retain</guilabel></term>
-<listitem><para>Retains the settings of the other pages under the
-current name.</para>
-<para>Saving to disk is done as with all the other settings using the
-according menu item of the
-<link linkend="opt-menu">options menu</link>.
-Some properties are stored
-with the document. For example the lessons to include since this
-depends on the document in use.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Recall</guilabel></term>
-<listitem><para>Recalls the settings from the group in the
-listbox.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>New</guilabel></term>
-<listitem><para>Creates a new group with the current
-settings.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><guilabel>Delete</guilabel></term>
-<listitem><para>Removes the current group.</para></listitem>
-</varlistentry>
-</variablelist>
- 
-</sect2>
-
-<sect2 id="q-opt2-dlg">
-<title>General query options</title>
-
-<screenshot>
-<screeninfo>General query options dialog screenshot</screeninfo>
-<mediaobject>
-<imageobject><imagedata fileref="q-opt2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>General query options</phrase></textobject>
-</mediaobject>
-</screenshot>
-
-<variablelist>
 <varlistentry>
 <term><guilabel>Time per query</guilabel></term>
 <listitem><para>Here you can influence the behavior of &kvoctrain;
@@ -1454,14 +1313,14 @@ correctly while located in the top row.</para>
 
 </sect2>
 
-<sect2 id="q-opt3-dlg">
-<title>Query thresholds</title>
+<sect2 id="options6-dlg">
+<title>Thresholds</title>
 
 <screenshot>
-<screeninfo>Query thresholds dialog screenshot</screeninfo>
+<screeninfo>Thresholds settings dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Query thresholds</phrase></textobject>
+<imageobject><imagedata fileref="options6-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Thresholds settings dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1525,14 +1384,14 @@ want a property to be ignored, choose <guilabel>Do not care </guilabel>for it.</
 
 </sect2>
 
-<sect2 id="q-opt4-dlg">
-<title>Blocking and expiring</title>
+<sect2 id="options7-dlg">
+<title>Blocking</title>
 
 <screenshot>
-<screeninfo>Query blocking dialog screenshot</screeninfo>
+<screeninfo>Blocking settings dialog screenshot</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="q-opt4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Query blocking</phrase></textobject>
+<imageobject><imagedata fileref="options7-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Blocking settings dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1566,7 +1425,7 @@ on the previous dialog page are not taken into account.</para>
 <title>General properties</title>
 
 <para>Here you enter a new expression into a table cell or modify
- existing entries and their properties.</para>
+ existing entries and their properties. This dialog is accessed when a cell is chosen and you select the <guimenu>Edit</guimenu> <guimenuitem>Edit Selected Area...</guimenuitem> menu.</para>
 
 <screenshot>
 <screeninfo>Entry dialog screenshot</screeninfo>
@@ -1655,13 +1514,10 @@ should look like this:</para>
 about the <link linkend="opt-dlg-ipa">view options</link>.</para>
 </sect3>
 
-</sect2>
 
+</sect2>
 <sect2 id="entry2-dlg">
 <title>Additional properties</title>
-
-<para>Less important properties that did not find place on the previous
-page are located here.</para>
 
 <para>For most of these fields there are special queries, too.</para>
 
@@ -1812,7 +1668,7 @@ same meaning. But in fact, it is not.</para>
 <term><guilabel>Last query date</guilabel></term>
 <listitem><para>This is the date when this entry was
 last queried. If it was never queried yet you only see
-<computeroutput>--</computeroutput>.</para>
+<computeroutput>&#150;&#150;</computeroutput>.</para>
 <para>For convenience reasons there are two buttons to set the current
 date or reset to <quote>never queried</quote>.</para>
 <para>Due to internal reasons, it is not possible to store dates before
@@ -1849,8 +1705,63 @@ side by side.</para>
 position and size.</para>
 
 </sect2>
-
 </sect1>
+<!--in Settings now -->
+<!--<sect1 id="query-opt-dlg">
+<title>Query options dialog</title>
+
+<sect2 id="q-opt1-dlg">
+<title>Option groups</title>
+
+<screenshot>
+<screeninfo>Option groups dialog screenshot</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="q-opt1-dlg.png" format="PNG" /></imageobject>
+<textobject><phrase>Option groups</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>Depending on the dictionary or the time you have to learn the
+vocabulary different settings may be optimal.</para> 
+
+<para>For that reason all the settings of the pages of this dialog can
+be summarized under an arbitrarily chosen name.  You can store the
+settings and recall them whenever you want.</para>
+
+<variablelist>
+<varlistentry>
+<term><guilabel>Retain</guilabel></term>
+<listitem><para>Retains the settings of the other pages under the
+current name.</para>
+<para>Saving to disk is done as with all the other settings using the
+according menu item of the
+<link linkend="opt-menu">options menu</link>.
+Some properties are stored
+with the document. For example the lessons to include since this
+depends on the document in use.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Recall</guilabel></term>
+<listitem><para>Recalls the settings from the group in the
+listbox.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>New</guilabel></term>
+<listitem><para>Creates a new group with the current
+settings.</para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guilabel>Delete</guilabel></term>
+<listitem><para>Removes the current group.</para></listitem>
+</varlistentry>
+</variablelist>
+ 
+</sect2>
+
+-->
 
 <sect1 id="query-dlg">
 <title>Query dialogs</title>
@@ -1862,7 +1773,7 @@ position and size.</para>
 the main window disappears.</para>
 
 <para>Then all entries that match your current <link
-linkend="q-opt3-dlg">thresholds</link> are put into a list and shown
+linkend="thresholds">thresholds</link> are put into a list and shown
 in random order with the following dialog box.</para>
 
 <screenshot>
@@ -1931,7 +1842,7 @@ the remaining time and the amount of queries to come.</para>
 expressions are known. The amount of retries of the current lesson is
 shown below the progress indicator. Once the current lesson is
 finished &kvoctrain; continues with the next (provided that you have set up
-the <link linkend="q-opt3-dlg">query options</link> accordingly).</para>
+the <link linkend="thresholds">query options</link> accordingly).</para>
 
 <para>I regret to admit, but usually I don`t know the solution. For
 this reason the <keycap>Return</keycap> key has special behavior,
@@ -2742,7 +2653,7 @@ pressed for about a second.</para>
 <term><guimenuitem>Create random query</guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
-linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
+linkend="thresholds">thresholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -2750,7 +2661,7 @@ linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions
  according to your <link
- linkend="q-opt3-dlg">thresholds</link>.</para></listitem>
+ linkend="thresholds">thresholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
