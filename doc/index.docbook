@@ -1419,7 +1419,10 @@ on the previous dialog page are not taken into account.</para>
 
 <sect2 id="profiles">
 <title>Profiles</title>
-
+<para>
+A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This Profiles button at the bottom of the Configure &kvoctrain; dialog allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile.
+</para>
+<para>Clicking on the <guibutton>Profiles</guibutton> button will display the following dialog.</para>
 <screenshot>
 <screeninfo>Profiles dialog</screeninfo>
 <mediaobject>
@@ -1428,43 +1431,37 @@ on the previous dialog page are not taken into account.</para>
 </mediaobject>
 </screenshot>
 
-<para>Depending on the dictionary or the time you have to learn the
-vocabulary different settings may be optimal.</para> 
-
-<para>For that reason all the settings of the pages of this dialog can
-be summarized under an arbitrarily chosen name.  You can store the
-settings and recall them whenever you want.</para>
-
-<!--<variablelist>
+<variablelist>
 <varlistentry>
-<term><guilabel>Retain</guilabel></term>
-<listitem><para>Retains the settings of the other pages under the
+<term><guilabel>Save</guilabel></term>
+<listitem><para>Saves the current query settings under the
 current name.</para>
-<para>Saving to disk is done as with all the other settings using the
-according menu item of the
-<link linkend="opt-menu">options menu</link>.
-Some properties are stored
-with the document. For example the lessons to include since this
-depends on the document in use.</para></listitem>
+</listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Recall</guilabel></term>
-<listitem><para>Recalls the settings from the group in the
+<term><guilabel>Load</guilabel></term>
+<listitem><para>Load the settings from the profile in the
 listbox.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>New</guilabel></term>
-<listitem><para>Creates a new group with the current
+<listitem><para>Creates a new profile with the current
 settings.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guilabel>Delete</guilabel></term>
-<listitem><para>Removes the current group.</para></listitem>
+<listitem><para>Removes the current profile.</para></listitem>
 </varlistentry>
-</variablelist> -->
+
+<varlistentry>
+<term><guilabel>Close</guilabel></term>
+<listitem><para>Closes the Profiles dialog.</para></listitem>
+</varlistentry>
+
+</variablelist> 
  
 </sect2>
 
