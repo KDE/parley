@@ -27,8 +27,8 @@
 </othercredit>
 
 <author>
-<firstname>Mahfouf</firstname>
-<surname>Anne-Marie</surname>
+<firstname>Anne-Marie</firstname>
+<surname>Mahfouf</surname>
 <affiliation><address><email>annma@kde.org</email>	
 </address></affiliation>
 </author>
@@ -39,6 +39,8 @@
 <copyright>
 <year>1999</year><year>2000</year><year>2001</year><year>2002</year>
 <holder>Ewald Arnold</holder>
+<year>2005</year>
+<holder>Anne-Marie Mahfouf</holder>
 </copyright>
 
 <legalnotice>&FDLNotice;</legalnotice>
@@ -46,9 +48,9 @@
 <date>2005-06-06</date>
 <releaseinfo>0.8.2</releaseinfo>
 
-<abstract><para>This handbook describes &kvoctrain; version 0.8.0.
-&kvoctrain; is a little utility to help you train your vocabulary,
-when you are trying to learn a foreign language.</para></abstract>
+<abstract><para>This handbook describes &kvoctrain; version 0.8.2.
+&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
+when you are trying to learn a foreign language for example.</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -65,7 +67,7 @@ when you are trying to learn a foreign language.</para></abstract>
 <sect1 id="what-is-it">
 <title>What is it?</title>
 
-<para>&kvoctrain; is a little utility to help you train your vocabulary,
+<para>&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
 when you are trying to learn a foreign language for example. You can create your
 own files with the words you need.</para>
 
@@ -225,7 +227,7 @@ status line.</para>
 
 </sect1>
 
-<sect1 id="inline-edit">
+<!--<sect1 id="inline-edit">
 <title>Inline editing</title>
 <para>
   There are two modes that allow you to modify the content of the
@@ -263,7 +265,7 @@ or double click on it.
 
 </variablelist>
 
-</sect1>
+</sect1>-->
 
 <sect1 id="keyboard">
 <title>Using the keyboard</title>
@@ -436,20 +438,6 @@ the only file format that is capable of containing
 <emphasis>all</emphasis> the properties in
 &kvoctrain;.</para></listitem>
 
-<listitem><para>Vocabulary files from <ulink
-url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> which is the
-leanest vocabulary trainer I know. I recommend this application if you
-need a really compact one.</para></listitem>
-
-<listitem><para>Files created by <ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">
-Vocabulary
-Trainer</ulink> This is an application for &Microsoft; &Windows;. It
-uses the file extension <literal role="extension">lex</literal>.
-Unfortunately the link to the original files at Compuserve is dead
-but there may still be files available elsewhere so I kept it.
-</para></listitem>
-
 <listitem><para>Simple text files with special delimiters between the
 entries which are also used by simple database programs. The
 extension is <literal role="extension">csv</literal> in this
@@ -458,7 +446,7 @@ since such files are also available to preserve the correct characters,
 see more about this in the section about <link
 linkend="encodings">encodings and charsets.</link></para>
 
-<para>There are a lot of dictionaries on the internet which use the
+<para>There are a lot of files on the internet which use the
 tabular character or one or two colons to separate the different
 languages. To select this separator use the tab for setting the <link
 linkend="options4-dlg">Copy &amp; Paste options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
@@ -2017,29 +2005,38 @@ popup a menu which shows the exact numbers.</para>
 </chapter>
 
 <chapter id="dictionaries">
-<title>Dictionaries</title>
+<title>Sharing files and downloading dictionaries</title>
 
 <sect1 id="dictionary">
-<title>Contributing a dictionary to &kvoctrain;</title>
+<title>Contributing your files to &kvoctrain;</title>
 
-<para>If you have created a dictionary, please send an email to
-<email>kvoctrain@ewald-arnold.de</email> and tell
-me about it. I plan to collect pointers to those files and include
-them in this handbook. If I find an electronic abode for &kvoctrain;
-with enough space, I might also store them there.</para>
+<para>If you have created a kvtml file, please send an email to
+<email>annma@kde.org</email> with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the KDE-Edu website</ulink> so other people will be able to use it.</para>
 
-<para>But please:</para>
-<itemizedlist>
-<listitem><para>Do not send me any files before telling me. Maybe someone
-else has already started this type of dictionary.</para></listitem>
-<listitem><para>The dictionaries should have a reasonable good quality
-as I do not want to do any revision.</para></listitem>
-<listitem><para>If you modify existing vocabularies or create
-vocabularies based on copyrighted material you must ask the author for
+<para>If you modify existing files or create
+new files based on copyrighted material you must ask the author for
 permission. Even taking literal examples from schoolbooks might be
-problematic!</para></listitem>
-</itemizedlist>
+problematic! The files must be licensed under a free license, please indicate it in your mail when you send the file.</para>
 
+</sect1>
+
+<sect1 id="new-stuff">
+<title>Downloading and installing existing files</title>
+
+<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <guimenu>File</guimenu> -&gt; <guimenuitem>Get New Vocabularies...</guimenuitem> menu, provided you have an internet connection. The following dialog is then displayed:</para>
+
+<screenshot>
+<screeninfo>Get New Vocabularies... dialog</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="get-new-stuff.png" format="PNG" /></imageobject>
+<textobject><phrase>Get New Vocabularies... dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
+<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the internet, saved on your hard disk and opened in KVocTrain current window.
+</para>
+
+<note>The files you download are saved in your home directory in the <filename>Vocabularies</filename> folder.</note>
 </sect1>
 
 <sect1 id="other-dict">
@@ -2079,24 +2076,34 @@ For example is keeps the lesson names, conjugations and articles.</para>
 with the same name and the extension <literal role="extension">kvtml</literal>.</para>
 </listitem>
 
+<listitem><para>Files in kvtml format are available at:</para>
+  <itemizedlist>
+<listitem><para>
+  <ulink
+ url="http://edu.kde.org/contrib/kvtml.php">
+ KDE-Edu Contributed Learning Files</ulink>
+  </para></listitem>
+</itemizedlist>
+</listitem>
+
 <listitem><para>Dictionaries in ascii-format are for example available
  at:</para>
   <itemizedlist>
-  <listitem><para>
+  <!-- obsolete <listitem><para>
   <ulink
  url="ftp://ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">ftp.uni-
 ulm.de/pub/misc/dict/english_german.tar.gz</ulink> (approx. 350 kB)
-  </para></listitem>
+  </para></listitem>-->
   <listitem><para>
   <ulink
  url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.d
 e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
   </para></listitem>
-  <listitem><para>
+  <!-- obsolete <listitem><para>
   <ulink
  url="ftp://sable.ox.ac.uk/pub/wordlists">
  sable.ox.ac.uk/pub/wordlists</ulink>
-  </para></listitem>
+  </para></listitem>-->
   </itemizedlist>
 </listitem>
 
@@ -2115,7 +2122,7 @@ to use <application>unzip</application> to extract the files.</para>
 </itemizedlist>
 
 <para>If you know another source please tell
-<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
+<ulink url="mailto:annma@kde.org">me</ulink>
 to include it here.</para>
 </sect1>
 
@@ -2142,14 +2149,10 @@ steak/xsteak</ulink> (console/X).
 
 <listitem><para>
 <ulink
- url="http://www.tu-chemnitz.de/urz/netz/forms/ding.html">Ding</ulink>
+ url="http://dict.tu-chemnitz.de/">Ding</ulink>
  (TCL).
 </para></listitem>
 
-<listitem><para>
-<ulink url="http://digilander.iol.it/merlim/english.html">qtrans</ulink>
- (&Qt; 2.x).
-</para></listitem>
 </itemizedlist>
 
 </sect1>
@@ -2165,77 +2168,18 @@ steak/xsteak</ulink> (console/X).
 I have found (sorted by the time when I found them):</para>
 <itemizedlist>
 <listitem><para><ulink
-url="HTTP://www.daniel-graefe.de">QVocab</ulink> (&Qt;)</para></listitem>
-
-<listitem><para><ulink
-url="http://pweb.uunet.de/reger.kuen/">Vokabel-Trainer</ulink>
-(Tcl/Tk)</para></listitem>
-
-<listitem><para><ulink
-url="ftp://ftp.inf.ru/mnt/.8/linux/apps/cai/Lingvisto-1.0.tar.gz">Lingvisto</ulink>
-(X)</para></listitem>
-
-<listitem><para><ulink
-url="http://n.ethz.ch/student/dradovic/kvoclearn/index.html">
-KVoclearn</ulink> (&kde;)</para></listitem>
+url="http://edu.kde.org/kwordquiz/">KWordQuiz</ulink> (&kde;)</para></listitem>
 
 <listitem><para><ulink
 url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
 (console)</para></listitem>
-
-<listitem><para><ulink
-url="ftp://sunsite.unc.edu/pub/Linux/apps/chinese/chflashcard-0.1.tar.gz
-">chflashcard</ulink>
-(X11, for Chinese)</para></listitem>
-
-<listitem><para><ulink
-url="http://ourworld.compuserve.com/homepages/michael_m_werner/">Vocabul
-ary
-Trainer</ulink> (freeware, all flavors of &Windows;)</para></listitem>
-
-<listitem><para><ulink
-url="http://ella.phil.uni-freiburg.de/RomSeminar/Deutscher/Zula/index.ht
-ml">Acavoc
-(Java)</ulink></para>
-<para>The author of this application has also written a theoretical
-article about learning languages (German only).</para></listitem>
-
-<listitem><para><ulink
-url="http://www.daniel-graefe.de/">wordtrain</ulink>
-(console)</para></listitem>
-
-<listitem><para><ulink
-url="http://www.kiecza.de/daniel/linux/">vocabbox</ulink> (Python
-&Qt;/&kde;)</para></listitem>
-
-<listitem><para><ulink
-url="http://rcswww.urz.tu-dresden.de/~kossebau/dokvok">DokVok</ulink>
-(&kde;)</para></listitem>
-
-<listitem><para><ulink
-url="http://www.stud.fernuni-hagen.de/q4576411/andreas/gvoc.shtml">
-gvoc</ulink></para></listitem>
-
-<listitem><para><ulink
-url="http://www.brainsystems.com/english/index.html">Wordlearn</ulink>
-(&Windows; 32/commercial)</para></listitem>
-
-<listitem><para><ulink
-url="http://www.stud.uni-wuppertal.de/~ma0035/gsoftware/gvoctra.html">
-GVoctra</ulink>
-(DOS)</para></listitem>
-
-<listitem><para><ulink
-url="http://a.die.supsi.ch/~gull/vocitrainer">Vocitrainer</ulink>
-(Mac/Win32, commercial)</para></listitem>
 </itemizedlist>
-
 </sect1>
 
 <sect1 id="other-links">
 <title>Other interesting links</title>
 
-<para>Maybe you are interrested in the one or the other links I found
+<para>Maybe you are interested in the one or the other links I found
 while working on &kvoctrain;.</para>
 <itemizedlist>
 <listitem><para><ulink url="http://czyborra.com/unifont/">&GNU; Unifont
@@ -2243,10 +2187,6 @@ Projekt</ulink></para></listitem>
 
 <listitem><para><ulink url="http://www.seul.org/edu/projects.html">SEUL
 Educational Projects</ulink></para></listitem>
-
-<listitem><para><ulink
-url="http://www.lxschule.de/txt/software.html">&Linux; Schulserver</ulink>
-(Linux at school, German)</para></listitem>
 
 <listitem><para><ulink url="http://esl.about.com/library/weekly/aa040998.htm">
 Reference and Introduction to Phonetic Symbols</ulink></para></listitem>
@@ -2780,11 +2720,16 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <sect1 id="copyright">
 <title>Copyright</title>
 
-<para>&kvoctrain; Program copyright 1999-2001 Ewald Arnold
-<email>ewald@ewald-arnold.de</email></para>
+<para>&kvoctrain; Program copyright 1999-2003 Ewald Arnold
+<email>ewald@ewald-arnold.de</email>
+2004-2005 Peter Hedlund <email>peter AT peterandlinda DOT com</email>
+</para>
 
 <para>Documentation copyright 1999-2000 Ewald Arnold
-<email>ewald@ewald-arnold.de</email></para>
+<email>ewald@ewald-arnold.de</email>
+2005 Anne-Marie Mahfouf
+<email>annma@kde.org</email>
+</para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
 
@@ -2801,25 +2746,6 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <title>How to obtain kvoctrain</title>
 
 &install.intro.documentation;
-
-<para>Current snapshots and dictionary files
-can be found on the <ulink
-url="http://kvoctrain.sourceforge.net/download/download.html">kvoctrain
-homepage</ulink>.</para>
-
-<para><ulink url="http://www.kde.org/anoncvs.html">Anonymous
-CVS download</ulink> is also available.</para>
-
-<important><para>Do not use the CVS code from the Sourceforge server because this
-branch is obsolete.</para></important>
-
-<para>You can find precompiled binaries as rpm packages
-for the SuSE distribution (of almost all KDE apps): <ulink
-url="http://www.suse.de/download/LinuKS/">LinuKS: SuSE Linux KDE
-Service</ulink>.</para>
-
-<para>Another place for precompiled packages is <ulink
-url="http://xmission.linuxberg.com/kdehtml/ent_educational.html#kvoctrain">Linuxberg</ulink>.</para>
 
 </sect1>
 
