@@ -290,6 +290,20 @@ void KVocTrainTable::setFont(const QFont & font)
     setRowHeight(i, fontMetrics().lineSpacing());
 }
 
+int cellAlignment(const QString & text)
+{
+  bool num;
+  bool ok1 = false;
+  bool ok2 = false;
+  text.toInt(&ok1);
+  if (!ok1)
+    text.toDouble(&ok2);
+  num = ok1 || ok2;
+
+  return ( num ? Qt::AlignRight : Qt::AlignAuto ) | Qt::AlignVCenter;
+}
+
+
 void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr, bool selected, const QColorGroup &cg)
 {
   if (cr.width() == 0 || cr.height() == 0)
@@ -393,12 +407,14 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
 
       case KV_COL_ORG: // original
       {
-        p->drawText(3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, expr->getOriginal());
+        QString s = expr->getOriginal();
+        p->drawText(3, fontpos, w - 6, p->fontMetrics().lineSpacing(), cellAlignment(s), s);
       }
       break;
 
       default: // translation x
-        p->drawText(3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, expr->getTranslation(col - KV_COL_ORG));
+        QString s = expr->getTranslation(col - KV_COL_ORG);
+        p->drawText(3, fontpos, w - 6, p->fontMetrics().lineSpacing(), cellAlignment(s), s);
         break;
     }
     p->restore();
