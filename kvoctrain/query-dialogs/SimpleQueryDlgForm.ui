@@ -8,13 +8,19 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>477</width>
-            <height>323</height>
+            <width>491</width>
+            <height>342</height>
         </rect>
+    </property>
+    <property name="caption">
+        <string>SimpleQueryDlgForm</string>
     </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
+        </property>
+        <property name="margin">
+            <number>0</number>
         </property>
         <widget class="QMultiLineEdit" row="3" column="0">
             <property name="name">
@@ -243,7 +249,7 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>&amp;Do Not Know</string>
+                                <string>Do &amp;Not Know</string>
                             </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="0">
@@ -291,7 +297,7 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>&amp;Verify</string>
+                                <string>Verif&amp;y</string>
                             </property>
                         </widget>
                     </grid>
@@ -300,8 +306,6 @@
         </widget>
     </grid>
 </widget>
-<customwidgets>
-</customwidgets>
 <tabstops>
     <tabstop>answerField</tabstop>
     <tabstop>show_all</tabstop>
