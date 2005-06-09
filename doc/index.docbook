@@ -39,10 +39,11 @@
 <copyright>
 <year>1999</year><year>2000</year><year>2001</year><year>2002</year>
 <holder>Ewald Arnold</holder>
+</copyright>
+<copyright>
 <year>2005</year>
 <holder>Anne-Marie Mahfouf</holder>
 </copyright>
-
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2005-06-06</date>
@@ -90,7 +91,7 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &kvoctrain;</title>
 
-<para>Here is &kvoctrain; the first time you run it.</para>
+<para>Here is &kvoctrain; the first time you run it, either form the K menu,  Edutaintment, Languages or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
 <screenshot>
 <screeninfo>&kvoctrain; main window</screeninfo>
 <mediaobject>
