@@ -943,6 +943,7 @@ equally.</para>
 </mediaobject>
 </screenshot>
 
+<variablelist>
 <varlistentry>
 <term><guilabel>Save vocabularies automaticaly on close and quit</guilabel></term>
 <listitem><para>If you check this option, &kvoctrain; will automatically save the document if it
@@ -953,7 +954,6 @@ was modified when you use the close button or when you quit &kvoctrain;.</para>
 </listitem>
 </varlistentry>
 
-<variablelist>
 <varlistentry>
 <term><guilabel>Automatic backup interval</guilabel></term>
 <listitem><para>&kvoctrain; will automatically save the document if it
@@ -2037,7 +2037,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the internet, saved on your hard disk and opened in KVocTrain current window.
 </para>
 
-<note>The files you download are saved in your home directory in the <filename>Vocabularies</filename> folder.</note>
+<note><para>The files you download are saved in your home directory in the <filename>Vocabularies</filename> folder.</para></note>
 </sect1>
 
 <sect1 id="other-dict">
