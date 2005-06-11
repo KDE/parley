@@ -297,7 +297,10 @@
                                 </sizepolicy>
                             </property>
                             <property name="text">
-                                <string>Verif&amp;y</string>
+                                <string>&amp;Verify</string>
+                            </property>
+                            <property name="accel">
+                                <string>Alt+V</string>
                             </property>
                         </widget>
                     </grid>

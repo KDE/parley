@@ -8,7 +8,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>358</width>
+            <width>369</width>
             <height>240</height>
         </rect>
     </property>
@@ -19,6 +19,9 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
         </sizepolicy>
+    </property>
+    <property name="caption">
+        <string>ArtQueryDlgForm</string>
     </property>
     <grid>
         <property name="name">
@@ -253,6 +256,9 @@
                             <property name="text">
                                 <string>&amp;Verify</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+V</string>
+                            </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="1">
                             <property name="name">
@@ -330,8 +336,6 @@
         </widget>
     </grid>
 </widget>
-<customwidgets>
-</customwidgets>
 <tabstops>
     <tabstop>rb_fem</tabstop>
     <tabstop>male</tabstop>

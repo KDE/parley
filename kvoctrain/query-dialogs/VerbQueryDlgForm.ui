@@ -12,6 +12,9 @@
             <height>326</height>
         </rect>
     </property>
+    <property name="caption">
+        <string>VerbQueryDlgForm</string>
+    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -354,6 +357,9 @@
                             <property name="text">
                                 <string>&amp;Verify</string>
                             </property>
+                            <property name="accel">
+                                <string>Alt+V</string>
+                            </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="0">
                             <property name="name">
@@ -525,8 +531,6 @@
         </spacer>
     </grid>
 </widget>
-<customwidgets>
-</customwidgets>
 <tabstops>
     <tabstop>p1sField</tabstop>
     <tabstop>p2sField</tabstop>
