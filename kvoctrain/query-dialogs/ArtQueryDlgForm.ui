@@ -20,9 +20,6 @@
             <verstretch>0</verstretch>
         </sizepolicy>
     </property>
-    <property name="caption">
-        <string>ArtQueryDlgForm</string>
-    </property>
     <grid>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -255,9 +252,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Verify</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+V</string>
                             </property>
                         </widget>
                         <widget class="QPushButton" row="0" column="1">

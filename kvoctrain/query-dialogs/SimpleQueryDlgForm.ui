@@ -20,9 +20,6 @@
             <verstretch>0</verstretch>
         </sizepolicy>
     </property>
-    <property name="caption">
-        <string>SimpleQueryDlgForm</string>
-    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -327,9 +324,6 @@
                             </property>
                             <property name="text">
                                 <string>&amp;Verify</string>
-                            </property>
-                            <property name="accel">
-                                <string>Alt+V</string>
                             </property>
                         </widget>
                     </grid>
