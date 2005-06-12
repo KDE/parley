@@ -8,55 +8,98 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>491</width>
-            <height>342</height>
+            <width>471</width>
+            <height>324</height>
         </rect>
+    </property>
+    <property name="sizePolicy">
+        <sizepolicy>
+            <hsizetype>5</hsizetype>
+            <vsizetype>5</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+        </sizepolicy>
     </property>
     <property name="caption">
         <string>SimpleQueryDlgForm</string>
     </property>
-    <grid>
+    <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
         </property>
         <property name="margin">
             <number>0</number>
         </property>
-        <widget class="QMultiLineEdit" row="3" column="0">
+        <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>answerField</cstring>
+                <cstring>layout5</cstring>
             </property>
-            <property name="sizePolicy">
-                <sizepolicy>
-                    <hsizetype>7</hsizetype>
-                    <vsizetype>1</vsizetype>
-                    <horstretch>0</horstretch>
-                    <verstretch>0</verstretch>
-                </sizepolicy>
-            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>queryLabel</cstring>
+                    </property>
+                    <property name="text">
+                        <string>-</string>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>queryField</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>1</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                    <property name="frameShape">
+                        <enum>GroupBoxPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                        <enum>Plain</enum>
+                    </property>
+                    <property name="text">
+                        <string></string>
+                    </property>
+                    <property name="alignment">
+                        <set>AlignVCenter</set>
+                    </property>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>instructionLabel</cstring>
+                    </property>
+                    <property name="font">
+                        <font>
+                            <bold>1</bold>
+                        </font>
+                    </property>
+                    <property name="text">
+                        <string>-</string>
+                    </property>
+                </widget>
+                <widget class="QMultiLineEdit">
+                    <property name="name">
+                        <cstring>answerField</cstring>
+                    </property>
+                    <property name="sizePolicy">
+                        <sizepolicy>
+                            <hsizetype>7</hsizetype>
+                            <vsizetype>1</vsizetype>
+                            <horstretch>0</horstretch>
+                            <verstretch>0</verstretch>
+                        </sizepolicy>
+                    </property>
+                </widget>
+            </vbox>
         </widget>
-        <widget class="QLabel" row="2" column="0">
-            <property name="name">
-                <cstring>instructionLabel</cstring>
-            </property>
-            <property name="font">
-                <font>
-                    <bold>1</bold>
-                </font>
-            </property>
-            <property name="text">
-                <string>-</string>
-            </property>
-        </widget>
-        <widget class="QLabel" row="0" column="0">
-            <property name="name">
-                <cstring>queryLabel</cstring>
-            </property>
-            <property name="text">
-                <string>-</string>
-            </property>
-        </widget>
-        <spacer row="4" column="0">
+        <spacer>
             <property name="name">
                 <cstring>spacer9</cstring>
             </property>
@@ -69,25 +112,11 @@
             <property name="sizeHint">
                 <size>
                     <width>300</width>
-                    <height>32</height>
+                    <height>16</height>
                 </size>
             </property>
         </spacer>
-        <widget class="QLabel" row="1" column="0">
-            <property name="name">
-                <cstring>queryField</cstring>
-            </property>
-            <property name="frameShape">
-                <enum>GroupBoxPanel</enum>
-            </property>
-            <property name="frameShadow">
-                <enum>Plain</enum>
-            </property>
-            <property name="text">
-                <string></string>
-            </property>
-        </widget>
-        <widget class="QLayoutWidget" row="5" column="0">
+        <widget class="QLayoutWidget">
             <property name="name">
                 <cstring>layout17</cstring>
             </property>
@@ -307,7 +336,7 @@
                 </widget>
             </grid>
         </widget>
-    </grid>
+    </vbox>
 </widget>
 <tabstops>
     <tabstop>answerField</tabstop>
