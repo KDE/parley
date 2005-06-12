@@ -250,6 +250,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
      entryDlg->setModified(false);
      doc->setModified(true);
      view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+     view->getTable()->updateCell(row, KV_COL_LESS);
    }
    else {
      col -= KV_EXTRA_COLS;
