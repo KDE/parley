@@ -41,8 +41,6 @@ CLEANFILES = *.i.c
 i18n_files=  query-dialogs/*.cpp \
              entry-dialogs/*.cpp \
              common-dialogs/*.cpp \
-             queryoption-dialogs/*.cpp \
-             option-dialogs/*.cpp \
              docprop-dialogs/*.cpp \
              statistik-dialogs/*.cpp \
              kvt-core/*.cpp \
