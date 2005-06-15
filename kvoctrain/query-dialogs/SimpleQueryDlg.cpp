@@ -31,6 +31,7 @@
 #include <qmultilineedit.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
+#include <qlayout.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -50,8 +51,13 @@ SimpleQueryDlg::SimpleQueryDlg(
         bool showcounter)
   : QueryDlgBase("")
 {
-  mw = new SimpleQueryDlgForm(this);
-  setMainWidget(mw);
+  QFrame *page = new QFrame;
+  QVBoxLayout *topLayout;
+  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+
+  mw = new SimpleQueryDlgForm(page);
+  topLayout->addWidget(mw);
+  setMainWidget(page);
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );

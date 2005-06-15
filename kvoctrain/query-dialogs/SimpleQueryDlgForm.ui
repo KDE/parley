@@ -20,6 +20,9 @@
             <verstretch>0</verstretch>
         </sizepolicy>
     </property>
+    <property name="caption">
+        <string>SimpleQueryDlgForm</string>
+    </property>
     <vbox>
         <property name="name">
             <cstring>unnamed</cstring>
@@ -65,7 +68,7 @@
                         <string></string>
                     </property>
                     <property name="alignment">
-                        <set>AlignVCenter</set>
+                        <set>WordBreak|AlignVCenter</set>
                     </property>
                 </widget>
                 <widget class="QLabel">
