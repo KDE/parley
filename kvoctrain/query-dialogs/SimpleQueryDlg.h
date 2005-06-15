@@ -83,6 +83,7 @@ protected:
 
 private:
   SimpleQueryDlgForm * mw;
+  void setQueryFieldWordwrap();
 };
 
 #endif // SimpleQueryDlg_included

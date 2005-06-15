@@ -31,7 +31,6 @@
 #include <qmultilineedit.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
-#include <qlayout.h>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -51,13 +50,8 @@ SimpleQueryDlg::SimpleQueryDlg(
         bool showcounter)
   : QueryDlgBase("")
 {
-  QFrame *page = new QFrame;
-  QVBoxLayout *topLayout;
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-
-  mw = new SimpleQueryDlgForm(page);
-  topLayout->addWidget(mw);
-  setMainWidget(page);
+  mw = new SimpleQueryDlgForm(this);
+  setMainWidget(mw);
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -68,14 +62,15 @@ SimpleQueryDlg::SimpleQueryDlg(
 
   kv_doc = 0;
   qtimer = 0;
+  resize(configDialogSize("SimpleQueryDialog"));
   setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc, mqtime, showcounter);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
-  resize(configDialogSize("SimpleQueryDialog"));
+
 }
 
 
-SimpleQueryDlg::~ SimpleQueryDlg( )
+SimpleQueryDlg::~ SimpleQueryDlg()
 {
   saveDialogSize("SimpleQueryDialog");
 }
@@ -108,57 +103,60 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    mw->timelabel->setEnabled(showCounter);
    mw->queryField->setFont(Prefs::tableFont());
    mw->answerField->setFont(Prefs::tableFont());
-   mw->answerField->setText ("");
+   mw->answerField->setText("");
 
    QString s;
-   switch (querytype) {
-     case QT_Synonym: {
-       mw->queryLabel->setText (i18n("Expression"));
-       s = i18n("Enter the synonym:");
-       mw->instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(i18n("Synonym Training")));
+   switch (querytype)
+   {
+     case QT_Synonym:
+     {
+       mw->queryLabel->setText(i18n("Expression"));
+       mw->instructionLabel->setText(i18n("Enter the synonym:"));
+       setCaption (i18n("Synonym Training"));
        answerstring = exp->getSynonym(column);
-       mw->queryField->setText (column == 0 ? exp->getOriginal()
-                                        : exp->getTranslation(column));
+       mw->queryField->setAlignment(Qt::AlignVCenter);
+       mw->queryField->setText(column == 0 ? exp->getOriginal() : exp->getTranslation(column));
+       setQueryFieldWordwrap();
      }
      break;
 
-     case QT_Antonym: {
-       mw->queryLabel->setText (i18n("Expression"));
-       s = i18n("Enter the antonym:");
-       mw->instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(i18n("Antonym Training")));
+     case QT_Antonym:
+     {
+       mw->queryLabel->setText(i18n("Expression"));
+       mw->instructionLabel->setText(i18n("Enter the antonym:"));
+       setCaption (i18n("Antonym Training"));
        answerstring = exp->getAntonym(column);
-       mw->queryField->setText (column == 0 ? exp->getOriginal()
-                                        : exp->getTranslation(column));
+       mw->queryField->setText(column == 0 ? exp->getOriginal() : exp->getTranslation(column));
+       setQueryFieldWordwrap();
      }
      break;
 
-     case QT_Paraphrase: {
-       mw->queryLabel->setText (i18n("Paraphrase"));
-       s = i18n("Enter the word:");
-       mw->instructionLabel->setText(s);
-       setCaption (kapp->makeStdCaption(i18n("Paraphrase Training")));
-       mw->queryField->setText (exp->getParaphrase(column));
-       answerstring = column == 0 ? exp->getOriginal()
-                                  : exp->getTranslation(column);
+     case QT_Paraphrase:
+     {
+       mw->queryLabel->setText(i18n("Paraphrase"));
+       mw->instructionLabel->setText(i18n("Enter the word:"));
+       setCaption (i18n("Paraphrase Training"));
+       mw->queryField->setText(exp->getParaphrase(column));
+       answerstring = column == 0 ? exp->getOriginal() : exp->getTranslation(column);
+       setQueryFieldWordwrap();
      }
      break;
 
-     case QT_Example: {
-       mw->queryLabel->setText (i18n("Example sentence"));
-       s = i18n("Fill in the missing word:");
-       mw->instructionLabel->setText (s);
-       setCaption (kapp->makeStdCaption(i18n("Example Training")));
-       QString s = exp->getExample(column);
-       answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace()
-                                  : exp->getTranslation(column).stripWhiteSpace();
+     case QT_Example:
+     {
+       mw->queryLabel->setText(i18n("Example sentence"));
+       mw->instructionLabel->setText(i18n("Fill in the missing word:"));
+       setCaption(i18n("Example Training"));
+       s = exp->getExample(column);
+       answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace() : exp->getTranslation(column).stripWhiteSpace();
        int pos = -1;
-       while ((pos = s.find(answerstring)) > 0) {
+       while ((pos = s.find(answerstring)) > 0)
+       {
          s.remove(pos, answerstring.length());
          s.insert (pos, "..");
        }
-       mw->queryField->setText (s);
+       mw->queryField->setText(s);
+       setQueryFieldWordwrap();
      }
      break;
 
@@ -234,17 +232,14 @@ void SimpleQueryDlg::showMoreClicked()
 void SimpleQueryDlg::showAllClicked()
 {
   mw->answerField->setText (answerstring);
-  verifyField (mw->answerField, answerstring,
-               querytype == QT_Synonym || querytype == QT_Antonym);
+  verifyField (mw->answerField, answerstring, querytype == QT_Synonym || querytype == QT_Antonym);
   mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-  if (verifyField (mw->answerField, answerstring,
-                   querytype == QT_Synonym || querytype == QT_Antonym))
-//    know_it->setDefault(true);
+  if (verifyField (mw->answerField, answerstring, querytype == QT_Synonym || querytype == QT_Antonym))
     knowItClicked();
   else
     mw->dont_know->setDefault(true);
@@ -253,13 +248,13 @@ void SimpleQueryDlg::verifyClicked()
 
 void SimpleQueryDlg::knowItClicked()
 {
-   emit sigQueryChoice (Known);
+   emit sigQueryChoice(Known);
 }
 
 
 void SimpleQueryDlg::dontKnowClicked()
 {
-   emit sigQueryChoice (Unknown);
+   emit sigQueryChoice(Unknown);
 }
 
 
@@ -268,7 +263,7 @@ void SimpleQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry(q_row, KV_COL_ORG+q_ocol);
 
    kvoctrainExpr *exp = kv_doc->getEntry(q_row);
 //   queryField->setText (exp->getTranslation(q_ocol));
@@ -276,30 +271,25 @@ void SimpleQueryDlg::slotUser2()
    switch (querytype) {
      case QT_Synonym: {
        answerstring = exp->getSynonym(q_ocol);
-       mw->queryField->setText (q_ocol == 0 ? exp->getOriginal()
-                                        : exp->getTranslation(q_ocol));
+       mw->queryField->setText(q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol));
      }
      break;
 
      case QT_Antonym: {
        answerstring = exp->getAntonym(q_ocol);
-       mw->queryField->setText (q_ocol == 0 ? exp->getOriginal()
-                                        : exp->getTranslation(q_ocol));
+       mw->queryField->setText(q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol));
      }
      break;
 
      case QT_Paraphrase: {
-       mw->queryField->setText (exp->getParaphrase(q_ocol));
-       answerstring = q_ocol == 0 ? exp->getOriginal()
-                                  : exp->getTranslation(q_ocol);
+       mw->queryField->setText(exp->getParaphrase(q_ocol));
+       answerstring = q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol);
      }
      break;
 
      case QT_Example: {
-       QString s = exp->getExample(q_ocol);
-       mw->queryField->setText (s);
-       answerstring = q_ocol == 0 ? exp->getOriginal()
-                                  : exp->getTranslation(q_ocol);
+       mw->queryField->setText(exp->getExample(q_ocol));
+       answerstring = q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol);
      }
      break;
 
@@ -309,7 +299,7 @@ void SimpleQueryDlg::slotUser2()
 }
 
 
-void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
+void SimpleQueryDlg::keyPressEvent(QKeyEvent *e)
 {
   switch( e->key() )
   {
@@ -333,6 +323,17 @@ void SimpleQueryDlg::keyPressEvent( QKeyEvent *e )
       e->ignore();
     break;
   }
+}
+
+void SimpleQueryDlg::setQueryFieldWordwrap()
+{
+  QFontMetrics fm(Prefs::tableFont());
+  int w = fm.width(mw->queryField->text());
+  int w2 = mw->width();
+  if (w > w2)
+    mw->queryField->setAlignment(Qt::AlignVCenter | Qt::WordBreak);
+  else
+    mw->queryField->setAlignment(Qt::AlignVCenter);
 }
 
 
