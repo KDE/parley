@@ -47,11 +47,12 @@
 #define PATTERN_LEX  I18N_NOOP("*.lex|Vocabulary Trainer 5.0 (*.lex)\n")
 #define PATTERN_VL   I18N_NOOP("*.vl|KVoclearn (*.vl)\n")
 #define PATTERN_QVO  I18N_NOOP("*.qvo|QVocab (*.qvo)\n")
+#define PATTERN_VOC  I18N_NOOP("*.voc|Vokabeltrainer (*.voc)\n")
 #define PATTERN_CSV  I18N_NOOP("*.csv|Text (*.csv)\n")
 #define PATTERN_VCB  I18N_NOOP("*.vocab|Vocabbox (*.vocab)\n")
 
 // we can read these
-#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
+#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_VOC)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
 
 // we can write these
 #define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
@@ -190,7 +191,8 @@ void kvoctrainApp::slotFileOpen()
 
 void kvoctrainApp::loadfileFromPath(const KURL & url, bool addRecent)
 {
-    if (!url.path().isEmpty() ) {
+    if (!url.path().isEmpty())
+    {
       view->setView(0, langset);
       delete doc;
       doc = 0;

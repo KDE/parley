@@ -258,7 +258,7 @@ class kvoctrainDoc : public QObject
   enum FileType { kvd_none, automatic,
                   kvtml,
                   kvtbin,
-                  vt_lex, vt_vcb, csv /*, kvoclearn, qvocab*/ };
+                  vt_lex, vt_vcb, csv, vt_voc /*, kvoclearn, qvocab*/ };
 
   /** Constructor for the fileclass of the application
    *
@@ -705,6 +705,7 @@ protected:
   bool loadLessonVcb (QTextStream &is);
   bool saveToVcb (QTextStream& os, QString &title);
   bool loadFromVcb (QTextStream& is);
+  bool loadFromVoc(QTextStream& is);
   void errorVcb (int line, const QString &text );
 
  private:

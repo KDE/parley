@@ -35,6 +35,7 @@
 #include <kio/netaccess.h>
 
 #include <qfileinfo.h>
+#include <qregexp.h>
 
 #include <algorithm>
 #include <functional>
@@ -133,6 +134,13 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url)
         {
           QTextStream is (&f);
           read = loadFromVcb (is);
+        }
+        break;
+
+        case vt_voc:
+        {
+          QTextStream is (&f);
+          read = loadFromVoc(is);
         }
         break;
 
@@ -940,6 +948,9 @@ kvoctrainDoc::FileType kvoctrainDoc::detectFT(const QString &filename)
 
    if (line == LEX_IDENT_50)
      return vt_lex;
+
+   if (c1 == '"' && (line.contains('"') == 1 || line.contains(QRegExp("\",[0-9]"))))
+     return vt_voc;
 
    return csv;
 }

@@ -18,7 +18,7 @@ EXTRA_DIST = kvoctrainui.rc
 SUBDIRS = common-dialogs query-dialogs docprop-dialogs entry-dialogs \
 	statistik-dialogs kvt-core examples pics
 
-bin_SCRIPTS = langen2kvtml
+
 
 rcdir = $(kde_datadir)/kvoctrain
 rc_DATA = kvoctrainui.rc
