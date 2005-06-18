@@ -244,7 +244,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
              QueryManager::getMainType(entryDlg->getType()) )
            expr->setType(j, entryDlg->getType());
      }
-     expr->setLesson (entryDlg->getLesson());
+     expr->setLesson(entryDlg->getLesson());
      expr->setActive(entryDlg->getActive());
 
      entryDlg->setModified(false);
@@ -573,6 +573,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
                        doc->getEntry(row)->isActive());
    }
    view->getTable()->updateCell(row, col);
+   view->getTable()->updateCell(row, KV_COL_LESS);
    vector<QTableSelection> tabsel;
    if (hasSel) {
      for (int i = 0; i < view->getTable()->numSelections(); ++i)
