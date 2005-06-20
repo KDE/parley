@@ -203,6 +203,7 @@ public:
   void slotFileSave();
   /** save a document under a different filename*/
   void slotFileSaveAs();
+  void slotFilePrint();
   void slotFileQuit();
 
   /** put the marked text/object into the clipboard*/
@@ -237,6 +238,7 @@ private:
   KAction* fileMerge;
   KAction* fileSave;
   KAction* fileSaveAs;
+  KAction* filePrint;
   KAction* fileQuit;
 
   KAction* editCopy;

@@ -44,6 +44,8 @@ public:
   public:
     KVocTrainTable( kvoctrainDoc *_doc, const LangSet *ls, QWidget *parent = NULL, const char *name = NULL );
 
+    friend class kvoctrainView;
+
     int currentItem() { return currentRow(); }
     void setCurrentItem(int row);
     int count() { return numRows(); }

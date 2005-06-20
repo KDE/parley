@@ -32,6 +32,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 #include <kiconloader.h>
+#include <kprinter.h>
 
 #include <kinputdialog.h>
 #include <qtimer.h>
@@ -1393,6 +1394,19 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text)
   // change status message of whole statusbar temporary (text, msec)
   if (pbar == 0 || !pbar->isVisible() )
     statusBar()->message(text, 3000);
+}
+
+void kvoctrainApp::slotFilePrint()
+{
+  slotStatusMsg(i18n("Printing..."));
+  KPrinter printer;
+  printer.setFullPage(true);
+  if (printer.setup(this))
+  {
+    view->print(&printer);
+  }
+
+  slotStatusMsg(i18n("Ready"));
 }
 
 #include "kvoctrain.moc"

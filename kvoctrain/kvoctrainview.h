@@ -34,6 +34,7 @@
 class QGridLayout;
 class QFrame;
 class KApplication;
+class KPrinter;
 class kvoctrainExpr;
 class KVocTrainTable;
 class kvoctrainApp;
@@ -52,13 +53,6 @@ class kvoctrainView : public QWidget
   Q_OBJECT
 
  public:
-
-   /*enum Resizer { Automatic,  // guess something meaningful for resizing
-                  Fixed,      // keep users sizes
-                  Percent};   // keep percentage of size
-   */
-  //void setResizer (Resizer res) { header_resizer = res; }
-
   /** Constructor for the main view */
   kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp *parent = 0);
 
@@ -66,26 +60,28 @@ class kvoctrainView : public QWidget
   ~kvoctrainView();
 
   /** sets view to another vocabulary */
-  void setView (kvoctrainDoc *doc, const LangSet &ls);
+  void setView(kvoctrainDoc *doc, const LangSet &ls);
 
-  KVocTrainTable* getTable() { return lb_list; }
-  void setHeaderProp (int id, const QString &name, const QString &pixfile=QString::null);
+  KVocTrainTable* getTable() { return m_table; }
+  void setHeaderProp(int id, const QString &name, const QString &pixfile=QString::null);
 
   void adjustContent();
+  void print(KPrinter *pPrinter);
 
- private:
+private:
+  void newPage(QPainter &, int, int);
+  void endOfPage(QPainter &, int, int, int, int);
 
- protected:
-  KVocTrainTable  *lb_list;
-  bool             autoResize;
-  kvoctrainDoc    *the_doc;
-  QGridLayout     *list_layout;
-  //Resizer          header_resizer;
-  kvoctrainApp    *parent;
+protected:
+  KVocTrainTable  * m_table;
+  bool              autoResize;
+  kvoctrainDoc    * m_doc;
+  QGridLayout     * list_layout;
+  kvoctrainApp    * parent;
 
   /** resizes table when frame is resized */
-  virtual void resizeEvent ( QResizeEvent * );
-  void showEvent (  QShowEvent * s_ev);
+  virtual void resizeEvent(QResizeEvent *);
+  void showEvent(QShowEvent * s_ev);
 };
 
 #endif // KVOCTRAINVIEW_H

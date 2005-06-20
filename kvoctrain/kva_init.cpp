@@ -128,6 +128,10 @@ void kvoctrainApp::initActions()
   fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
   fileSaveAs->setToolTip(fileSaveAs->whatsThis());
 
+  filePrint = KStdAction::print(this, SLOT(slotFilePrint()), actionCollection());
+  filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
+  filePrint->setToolTip(filePrint->whatsThis());
+
   fileQuit = KStdAction::quit(this, SLOT(slotFileQuit()), actionCollection());
   fileQuit->setWhatsThis(i18n("Quit KVocTrain"));
   fileQuit->setToolTip(fileQuit->whatsThis());

@@ -11,7 +11,7 @@ spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 kvoctrain_LDADD = ./docprop-dialogs/libdocpropdlg.la \
 	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la ./kvt-core/kvt-xml/libkvtxml.la \
 	./query-dialogs/libquerydlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la \
-	-lknewstuff
+	-lknewstuff $(LIB_KDEPRINT)
 
 EXTRA_DIST = kvoctrainui.rc
 
