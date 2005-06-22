@@ -277,28 +277,6 @@ void kvoctrainApp::initStatusBar()
 }
 
 
-void kvoctrainApp::clearStatusBar()
-{
-  statusBar()->removeWidget(rem_label);
-  delete rem_label;
-  rem_label = 0;
-
-  statusBar()->removeWidget(pron_label);
-  delete pron_label;
-  pron_label = 0;
-
-  statusBar()->removeWidget(type_label);
-  delete type_label;
-  type_label = 0;
-
-/*
-  statusBar()->removeWidget(pbar);
-  delete pbar;
-  pbar = 0;
-*/
-}
-
-
 void kvoctrainApp::initDoc( )
 {
   if (fileOpenRecent->items().count() > 0)

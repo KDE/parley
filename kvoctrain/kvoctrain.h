@@ -86,7 +86,6 @@ public:
 
   /** setup the statusbar */
   void initStatusBar();
-  void clearStatusBar();
   /** setup the main document*/
   void initDoc();
   /** setup the main view*/
