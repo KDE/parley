@@ -41,14 +41,6 @@
 #define KV_COL_ORG       2   // col: original
 #define KV_COL_TRANS     3   // col: first translation
 
-#ifndef I18N_NOOP2
-#define I18N_NOOP2(context, str) context, str
-#endif
-
-#define PREFIX_Type                 I18N_NOOP2("Abbreviation for T)ype of word", "T:")
-#define PREFIX_Remark               I18N_NOOP2("Abbreviation for R)emark","R:")
-#define PREFIX_Pronunce             I18N_NOOP2("Abbreviation for P)ronouncation","P:")
-
 //#define IDS_DEFAULT                 (doc && doc->isModified() ? " * Ready." : " Ready.")
 #define IDS_DEFAULT                 I18N_NOOP("Ready.")
 

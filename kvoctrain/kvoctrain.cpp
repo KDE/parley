@@ -87,19 +87,16 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
   col -= KV_EXTRA_COLS;
 
   statusBar()->clear();
-  if (  doc->numEntries() <= row
-      ||doc->numLangs() <= col
-      || row < 0
-      || col < 0) {
+  if (doc->numEntries() <= row ||doc->numLangs() <= col || row < 0 || col < 0) {
     if (rem_label != 0)
-      rem_label->setText  (i18n (PREFIX_Remark));
+      rem_label->setText(i18n("Abbreviation for R)emark","R:"));
     if (pron_label != 0)
-      pron_label->setText (i18n (PREFIX_Pronunce));
+      pron_label->setText(i18n("Abbreviation for P)ronouncation","P:"));
     if (type_label != 0)
-      type_label->setText (i18n (PREFIX_Type));
+      type_label->setText(i18n("Abbreviation for T)ype of word", "T:"));
 
     if (entryDlg != 0) {
-      slotEditEntry(row, col+KV_EXTRA_COLS);
+      slotEditEntry(row, col + KV_EXTRA_COLS);
       entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
     }
 
@@ -109,19 +106,18 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
   kvoctrainExpr *expr = doc->getEntry(row);
 
   if (rem_label != 0)
-    rem_label->setText( i18n(PREFIX_Remark) + expr->getRemark (col) );
+    rem_label->setText(i18n("Abbreviation for R)emark","R: %1").arg(expr->getRemark(col)));
   if (pron_label != 0)
-    pron_label->setText( i18n(PREFIX_Pronunce) + expr->getPronunce (col) );
+    pron_label->setText(i18n("Abbreviation for P)ronouncation","P: %1").arg(expr->getPronunce(col)));
   if (type_label != 0)
-    type_label->setText( i18n(PREFIX_Type)
-            + QueryManager::typeStr(expr->getType(col)) );
+    type_label->setText(i18n("Abbreviation for T)ype of word", "T: %1").arg(QueryManager::typeStr(expr->getType(col))));
 
   if (entryDlg != 0) {
     if (col == 0)
       entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
     else
       entryDlg->setEnabled(EntryDlg::EnableAll);
-    slotEditEntry(row, col+KV_EXTRA_COLS);
+    slotEditEntry(row, col + KV_EXTRA_COLS);
   }
 }
 
