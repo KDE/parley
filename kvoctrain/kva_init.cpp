@@ -295,7 +295,6 @@ void kvoctrainApp::initDoc( )
 void kvoctrainApp::initView()
 {
   view = new kvoctrainView(doc, langset, this);
-  view->getTable()->setFont(Prefs::tableFont());
   setCentralWidget(view);
   slotStatusMsg(IDS_DEFAULT);
 }

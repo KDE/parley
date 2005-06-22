@@ -964,70 +964,11 @@ void kvoctrainApp::slotGeneralOptions()
 
 void kvoctrainApp::slotGeneralOptionsPage(int index)
 {
-  //if (KVocTrainPrefs::showDialog( "settings" ))
-  //  return;
-
-  //KConfigDialog didn't find an instance of this dialog, so lets create it :
   KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, doc, lessons, &querymanager, this, "settings",  Prefs::self() );
   connect(dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
   dialog->show();
-/*
-   QString defTrans;
-   GeneralOptionsDlg godlg (defTrans,
-                    Prefs::separator(),
-                    Prefs::backupTime() /(60*1000),
-                    langset,
-                    lastPixName,
-                    lessons,
-                    Prefs::pasteOrder(),
-                    Prefs::useCurrent(),
-                    doc,
-                    Prefs::tableFont(),
-                    Prefs::iPAFont(),
-                    &querymanager,
-                    Prefs::smartAppend(),
-                    Prefs::autoEntryApply());
-
-   if (index >= 0)
-     godlg.selectPage(index);
-
-   int res = godlg.exec();
-   if (res == QDialog::Accepted) {
-
-      defTrans = godlg.getDefaultLang();
-      Prefs::setBackupTime(godlg.getBackupTime()*60*1000);
-      Prefs::setSmartAppend(godlg.getSmartAppend());
-      Prefs::setAutoEntryApply(godlg.getAutoApply());
-      Prefs::setSeparator(godlg.getSeparator());
-      langset = godlg.getLangSet();
-      Prefs::setPasteOrder(godlg.getPasteOrder());
-      Prefs::setUseCurrent(godlg.getUseCurrent()),
-      Prefs::setTableFont(godlg.getFont());
-      Prefs::setIPAFont(godlg.getIPAFont());
-
-      if (pron_label)
-        pron_label->setFont(Prefs::iPAFont());
-      view->getTable()->setFont(Prefs::tableFont());
-      view->getTable()->updateContents();
-
-      // update header buttons
-      for (int i = 0; i < (int) doc->numLangs(); i++) {
-        QString sid = i>0 ? doc->getIdent(i)
-                          : doc->getOriginalIdent();
-
-        int idx = langset.indexShortId(sid);
-        QString pm = "";
-        QString lid = sid;
-        if  (idx >= 0) {
-          lid = langset.longId(idx);
-          pm = langset.PixMapFile(idx);
-        }
-        view->setHeaderProp (i+KV_EXTRA_COLS, lid, pm);
-      }
-      slotStatusMsg(IDS_DEFAULT);
-   }*/
 }
 
 
@@ -1052,10 +993,8 @@ void kvoctrainApp::slotApplyPreferences()
       lid = langset.longId(idx);
       pm = langset.PixMapFile(idx);
     }
-    view->setHeaderProp(i+KV_EXTRA_COLS, lid, pm);
+    view->setHeaderProp(i + KV_EXTRA_COLS, lid, pm);
   }
-
-  //emit settingsChanged();
 }
 
 
@@ -1079,7 +1018,6 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
 
    if (lang_id >= (int) langset.size())
      return;
-   kdDebug() << "I'm here" << endl;
    doc->appendLang("");
    int num = doc->numEntries()-1;
    for (int i = 0; i < (int) num; i++) {
@@ -1102,7 +1040,6 @@ void kvoctrainApp::slotInitSearch()
 
 void kvoctrainApp::slotSearchNext()
 {
-  kdDebug() << "Searching..." << endl;
   slotResumeSearch(searchstr);
 }
 

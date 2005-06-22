@@ -53,6 +53,7 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp 
   parent = _parent;
 
   m_table = new KVocTrainTable(m_doc, &ls, this, "ListBox_1");
+  m_table->setFont(Prefs::tableFont());
   m_table->setLineWidth( 2 );
 
   if (m_doc->numLangs() == 0)
