@@ -690,7 +690,6 @@ void kvoctrainApp::slotDocPropsLang ()
 void kvoctrainApp::slotModifiedDoc(bool mod)
 {
   setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
-  toolBar()->setItemEnabled(ID_FILE_SAVE, mod);
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1154,12 +1153,7 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
 
 void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
 {
-/*
-  ///////////////////////////////////////////////////////////////////
-  // change status message permanently
-  statusBar()->clear();
-  statusBar()->changeItem(text, ID_STATUS_MSG );
-*/
+//
 }
 
 
