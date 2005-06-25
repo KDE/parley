@@ -85,38 +85,34 @@ void kvoctrainApp::slotSelectAll ()
 void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 {
   col -= KV_EXTRA_COLS;
+  bool noData = false;
+  kvoctrainExpr *expr;
 
   statusBar()->clear();
-  if (doc->numEntries() <= row ||doc->numLangs() <= col || row < 0 || col < 0) {
-    if (rem_label != 0)
-      rem_label->setText(i18n("Abbreviation for R)emark","R:"));
-    if (pron_label != 0)
-      pron_label->setText(i18n("Abbreviation for P)ronouncation","P:"));
-    if (type_label != 0)
-      type_label->setText(i18n("Abbreviation for T)ype of word", "T:"));
-
-    if (entryDlg != 0) {
-      slotEditEntry(row, col + KV_EXTRA_COLS);
-      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
-    }
-
-    return;
-  }
-
-  kvoctrainExpr *expr = doc->getEntry(row);
+  if (doc->numEntries() <= row || doc->numLangs() <= col || row < 0 || col < 0)
+    noData = true;
+  else
+    expr = doc->getEntry(row);
 
   if (rem_label != 0)
-    rem_label->setText(i18n("Abbreviation for R)emark","R: %1").arg(expr->getRemark(col)));
+    rem_label->setText(i18n("Abbreviation for R)emark","R: %1")
+                       .arg(noData ? QString::null : expr->getRemark(col)));
   if (pron_label != 0)
-    pron_label->setText(i18n("Abbreviation for P)ronouncation","P: %1").arg(expr->getPronunce(col)));
+    pron_label->setText(i18n("Abbreviation for P)ronouncation","P: %1")
+                        .arg(noData ? QString::null : expr->getPronunce(col)));
   if (type_label != 0)
-    type_label->setText(i18n("Abbreviation for T)ype of word", "T: %1").arg(QueryManager::typeStr(expr->getType(col))));
+    type_label->setText(i18n("Abbreviation for T)ype of word", "T: %1")
+                        .arg(noData ? QString::null : QueryManager::typeStr(expr->getType(col))));
 
   if (entryDlg != 0) {
-    if (col == 0)
-      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-    else
-      entryDlg->setEnabled(EntryDlg::EnableAll);
+    if (noData)
+      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+    else {
+      if (col == 0)
+        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+      else
+        entryDlg->setEnabled(EntryDlg::EnableAll);
+    }
     slotEditEntry(row, col + KV_EXTRA_COLS);
   }
 }
