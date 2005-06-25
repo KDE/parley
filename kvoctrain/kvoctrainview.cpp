@@ -285,121 +285,112 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
 void kvoctrainView::print(KPrinter * pPrinter)
 {
   QPainter painter;
-
-  //type 0 Vocabulary list
-  int type = 0;
-  //I think working with screen resolution is enough for our purposes
   int res = pPrinter->resolution();
-  int pad = 2;
   int marg = res;
 
-  painter.begin(pPrinter);
-
+  int pw;
+  int c = 0;
+  int currentWidth;
+  int startCol;
   int pageNum = 1;
 
-  int cw0 = m_table->columnWidth(KV_COL_LESS);
-  int cw1 = m_table->columnWidth(KV_COL_MARK);
-  int cw2 = m_table->columnWidth(KV_COL_ORG);
-  int cw3 = m_table->columnWidth(KV_COL_TRANS);
+  int colCount = m_table->numCols();
+  int hh = m_table->horizontalHeader()->height();
+  int tPos = marg + hh;
 
-  int gridWidth = cw0 + cw1 + cw2 + cw3;
-  int lPos = marg;
-  int tPos = marg + m_table->horizontalHeader()->height();
+  QColorGroup cg;
 
+  painter.begin(pPrinter);
   QRect w = painter.window();
   QRect cr;
-  newPage(painter, res, type);
 
-  for (int rc = 0; rc < m_table->numRows(); ++rc)
+  pw = w.width() - (2 * marg);
+
+  while (c < colCount)
   {
-    int rh = m_table->rowHeight(rc);
+    startCol = c;
+    currentWidth = marg;
 
-    painter.drawLine(lPos, tPos, lPos + gridWidth, tPos);
-
-    painter.setFont(Prefs::tableFont());
-
-    kvoctrainExpr *expr = m_table->getRow(rc);
-
-    cr.setRect(lPos + pad, tPos, cw0 - pad, rh);
-
-    QString less_str;
-    if (m_doc != 0 && expr->getLesson() != 0)
-      less_str = m_doc->getLessonDescr(expr->getLesson());
-    painter.drawText(cr, AlignAuto | AlignVCenter, less_str);
-
-    cr.setRect(lPos + cw0 + pad, tPos, cw1, rh);
-    if (!expr->isActive())
-      painter.drawPixmap(cr.left() + pad, cr.top() + pad, m_table->m_pixInactive);
-    else if (expr->isInQuery())
-      painter.drawPixmap(cr.left() + pad, cr.top() + pad, m_table->m_pixInQuery);
-
-    cr.setRect(lPos + cw0 + cw1 + pad, tPos, cw2 - pad, rh);
-    QString s = expr->getOriginal();
-    painter.drawText(cr, AlignAuto | AlignVCenter, s);
-
-    cr.setRect(lPos + cw0 + cw1 + cw2 + pad, tPos, cw3 - pad, rh);
-    s = expr->getTranslation(1);
-    painter.drawText(cr, AlignAuto | AlignVCenter, s);
-
-    tPos = tPos + m_table->rowHeight(rc);
-
-    if (tPos + m_table->rowHeight(rc + 1) > w.height() - marg)
+    while ((currentWidth < pw) && (c < colCount))
     {
-      endOfPage(painter, tPos, pageNum++, res, type);
-      tPos = marg + m_table->horizontalHeader()->height();
+      currentWidth = currentWidth + m_table->columnWidth(c);
+      c++;
+    }
+    if (c < colCount)
+      c--;
+
+    newPage(painter, res, startCol, c);
+
+    for (int rc = 0; rc < m_table->numRows(); ++rc)
+    {
+      int rh = m_table->rowHeight(rc);
+
+      painter.resetXForm();
+      painter.setFont(Prefs::tableFont());
+      painter.translate(marg, tPos);
+      painter.drawLine(-1 , 0, -1, rh - 1);
+
+      for (int i = startCol; i <= c && i < colCount; ++i)
+      {
+        cr.setRect(0, 0, m_table->columnWidth(i), rh);
+        m_table->paintCell(&painter, rc, i, cr, false, cg);
+        painter.translate(m_table->columnWidth(i), 0);
+      }
+
+      tPos = tPos + m_table->rowHeight(rc);
+
+      if (tPos + m_table->rowHeight(rc + 1) > w.height() - marg)
+      {
+        endOfPage(painter, pageNum++, res);
+        tPos = marg + hh;
+        pPrinter->newPage();
+        newPage(painter, res, startCol, c);
+      }
+    }
+    endOfPage(painter, pageNum++, res);
+
+    if (c < colCount)
+    {
       pPrinter->newPage();
-      newPage(painter, res, type);
+      tPos = marg + hh;
+      c++;
+      kdDebug() << c <<endl;
     }
   }
-
-  endOfPage(painter, tPos, pageNum++,  res, type);
   painter.end();
 }
 
-void kvoctrainView::newPage(QPainter & painter, int res, int type)
+void kvoctrainView::newPage(QPainter & painter, int res, int startCol, int endCol)
 {
-  int cw0 = m_table->columnWidth(KV_COL_LESS);
-  int cw1 = m_table->columnWidth(KV_COL_MARK);
-  int cw2 = m_table->columnWidth(KV_COL_ORG);
-  int cw3 = m_table->columnWidth(KV_COL_TRANS);
   int marg = res;
-  int pad = 2;
-
-  QRect w = painter.window();
-
-  painter.setFont(KGlobalSettings::generalFont());
-
-  painter.drawLine(marg, marg, marg + cw0 + cw1 + cw2 + cw3, marg);
-  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1").arg(m_doc->getTitle()));
-
   int hh = m_table->horizontalHeader()->height();
-  painter.drawText(marg + pad, marg, cw0 - pad, hh, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(0));
-  painter.drawText(marg + cw0 + pad, marg, cw1 - pad, hh, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(1));
-  painter.drawText(marg + cw0 + cw1 + pad, marg, cw2 - pad, hh, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(2));
-  painter.drawText(marg + cw0 + cw1 + cw2 + pad, marg, cw3 - pad, hh, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(3));
+  int cw;
+  QRect cr;
+  QRect w = painter.window();
+  painter.resetXForm();
+  painter.setFont(KGlobalSettings::generalFont());
+  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1").arg(m_doc->getTitle()));
+  painter.translate(marg, marg);
+  painter.drawLine(-1 , 0, -1, hh - 1);
+  for (int i = startCol; i <= endCol && i < m_table->numCols(); ++i)
+  {
+    cw = m_table->columnWidth(i);
+    painter.drawLine(0, -1, cw - 1, -1);
+    painter.drawLine(0, hh - 1, cw - 1, hh - 1);
+    painter.drawLine(cw - 1, 0, cw - 1, hh - 1);
+    cr.setRect(3, 0, m_table->columnWidth(i)- 6, hh);
+    painter.drawText(cr, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(i));
+    painter.translate(cw, 0);
+  }
 }
 
-void kvoctrainView::endOfPage(QPainter & painter, int vPos, int pageNum, int res, int type)
+void kvoctrainView::endOfPage(QPainter & painter, int pageNum, int res)
 {
-  int marg = res;
+  painter.resetXForm();
   painter.setFont(KGlobalSettings::generalFont());
   QRect w = painter.window();
   QRect r = painter.boundingRect(0, 0, 0, 0, AlignAuto, QString::number(pageNum));
-  painter.drawText((w.width()/2) - (r.width()/2), w.height() - marg + 20, QString::number(pageNum));
-
-  int cw0 = m_table->columnWidth(KV_COL_LESS);
-  int cw1 = m_table->columnWidth(KV_COL_MARK);
-  int cw2 = m_table->columnWidth(KV_COL_ORG);
-  int cw3 = m_table->columnWidth(KV_COL_TRANS);
-
-  //Last horizontal line
-  painter.drawLine(marg, vPos, marg + cw0 + cw1 + cw2 + cw3, vPos);
-  //Five vertical lines
-  painter.drawLine(marg, marg, marg, vPos);
-  painter.drawLine(marg + cw0, marg, marg + cw0, vPos);
-  painter.drawLine(marg + cw0 + cw1, marg, marg + cw0 + cw1, vPos);
-  painter.drawLine(marg + cw0 + cw1 + cw2, marg, marg + cw0 + cw1 + cw2, vPos);
-  painter.drawLine(marg + cw0 + cw1 + cw2 + cw3, marg, marg + cw0 + cw1 + cw2 + cw3, vPos);
+  painter.drawText((w.width()/2) - (r.width()/2), w.height() - res + 20, QString::number(pageNum));
 }
 
 

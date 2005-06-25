@@ -69,8 +69,8 @@ class kvoctrainView : public QWidget
   void print(KPrinter *pPrinter);
 
 private:
-  void newPage(QPainter &, int, int);
-  void endOfPage(QPainter &, int, int, int, int);
+  void newPage(QPainter &, int, int, int);
+  void endOfPage(QPainter &, int, int);
 
 protected:
   KVocTrainTable  * m_table;
