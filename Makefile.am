@@ -16,3 +16,5 @@ lsm : $(PACKAGE)/$(PACKAGE).lsm.tpl $(distdir).tar.bz2
 	cp $(PACKAGE)-$(VERSION).lsm $(PACKAGE).lsm
 
 
+
+include ../admin/Doxyfile.am
