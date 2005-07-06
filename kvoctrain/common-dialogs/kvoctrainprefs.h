@@ -54,7 +54,7 @@ public:
    * calls showPage() to display a particular page in the dialog.
    * @param  page The page to display
    */
-  void selectPage(int);
+  void selectPage(int page);
 
 protected slots:
   /**

@@ -30,9 +30,9 @@ class KOXML_OSTREAM;
  *  KOXML_OSTREAM os (fname);
  *  XmlWriter xml (os); // writes the XML header
  *
- *  xml.startTag ("head"); // writes <head>
+ *  xml.startTag ("head"); // writes &lt;head&gt;
  *
- *  // write <layout format="a4" orientation="landscape">
+ *  // write &lt;layout format="a4" orientation="landscape"&gt;
  *  xml.startTag ("layout", false);
  *  xml.addAttribute ("format", "a4");
  *  xml.addAttribute ("orientation", "landscape");
@@ -89,7 +89,7 @@ public:
    *
    * @param auto     If @p true, append eol character. Otherwise caller has to do it
    */
-  void setAutoEndl (const bool flag = true);
+  void setAutoEndl (const bool auto = true);
 
   /**
    * append end-of-line char to stream
