@@ -87,9 +87,9 @@ public:
    * flag, indicating to automatically append end-of-line character after
    * closing bracket
    *
-   * @param auto     If @p true, append eol character. Otherwise caller has to do it
+   * @param autoflag     If @p true, append eol character. Otherwise caller has to do it
    */
-  void setAutoEndl (const bool auto = true);
+  void setAutoEndl (const bool autoflag = true);
 
   /**
    * append end-of-line char to stream
