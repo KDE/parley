@@ -102,9 +102,8 @@ void AdjQueryDlg::setQuery(QString,
    kv_exp = exp;
    q_row = entry;
    q_ocol = col;
-   showCounter = Prefs::showCounter();
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    comp = _comp;
    mw->show_all->setDefault(true);
    QString s;

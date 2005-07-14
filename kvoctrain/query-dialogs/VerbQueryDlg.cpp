@@ -119,9 +119,8 @@ void VerbQueryDlg::setQuery(QString,
    q_row = entry;
    q_ocol = col;
    int mqtime = Prefs::maxTimePer();
-   showCounter = Prefs::showCounter();
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    mw->show_all->setDefault(true);
    QString s;
    s.setNum (q_cycle);

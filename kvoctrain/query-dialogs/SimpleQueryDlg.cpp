@@ -94,9 +94,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    kv_doc = doc;
    q_row = entry;
    q_ocol = column;
-   showCounter = Prefs::showCounter();
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    mw->queryField->setFont(Prefs::tableFont());
    mw->answerField->setFont(Prefs::tableFont());
    mw->answerField->setText("");

@@ -106,9 +106,8 @@ void MCQueryDlg::setQuery(QString org,
    q_ocol = orgcol;
    q_tcol = transcol;
    translation = trans;
-   showCounter = Prefs::showCounter();
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    mw->orgField->setFont(Prefs::tableFont());
    mw->orgField->setText (org);
    mw->show_all->setDefault(true);

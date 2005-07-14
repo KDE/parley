@@ -98,9 +98,8 @@ void ArtQueryDlg::setQuery(QString,
    kv_doc = doc;
    q_row = entry;
    q_ocol = col;
-   showCounter = Prefs::showCounter();
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    mw->show_all->setDefault(true);
    articles = art;
 

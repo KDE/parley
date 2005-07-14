@@ -260,13 +260,12 @@ void RandomQueryDlg::setQuery(QString org,
    q_ocol = orgcol;
    q_tcol = transcol;
    translation = trans;
-   showCounter = Prefs::showCounter();
    if ( Prefs::split() )
      translations = extractTranslations (trans);
    else
      translations = trans;
-   mw->timebar->setEnabled(showCounter);
-   mw->timelabel->setEnabled(showCounter);
+   mw->timebar->setEnabled(Prefs::showCounter());
+   mw->timelabel->setEnabled(Prefs::showCounter());
    int i;
    uint k;
    if ( Prefs::suggestions() )

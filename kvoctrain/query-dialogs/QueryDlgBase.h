@@ -98,14 +98,12 @@ protected:
     QLabel        *label;
   };
 
-  //kvq_timeout_t  type_timeout;
   int            q_row,
-                q_ocol,
-                q_tcol;
+                 q_ocol,
+                 q_tcol;
   kvoctrainDoc  *kv_doc;
   kvoctrainExpr *kv_exp;
   QString        translation;
-  bool           showCounter;
   QTimer        *qtimer;
   int            timercount;
 };
