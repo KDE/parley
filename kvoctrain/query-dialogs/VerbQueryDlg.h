@@ -92,7 +92,6 @@ protected:
   int current;
   Conjugation conjugations;
   bool all_known;
-  int query_time; //in seconds
 
 private:
   VerbQueryDlgForm * mw;

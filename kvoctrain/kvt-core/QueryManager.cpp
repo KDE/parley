@@ -118,9 +118,7 @@ QueryManager::QueryManager()
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
-                                    int oindex, int tindex,
-                                    bool swap, bool altlearn, bool block, bool expire)
+QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int oindex, int tindex)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -142,27 +140,21 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 
      kvoctrainExpr *expr = doc->getEntry(i);
      unsigned int lessonno;
-     if (altlearn)
+     if (Prefs::altLearn())
        lessonno = 0; //We only use a single array in Leitner style
      else
        lessonno = expr->getLesson();
 
      if (expr->isActive() ){
-       if (swap) {
-         if (  validate (expr, act_lesson,
-                       oindex, tindex,
-                       block, expire)
-             ||validate (expr, act_lesson,
-                       tindex, oindex,
-                       block, expire)) {
+       if (Prefs::swapDirection()) {
+         if (  validate (expr, act_lesson, oindex, tindex)
+             || validate (expr, act_lesson, tindex, oindex)) {
            random[lessonno].push_back (QueryEntryRef(expr, i));
            expr->setInQuery(true);
          }
        }
        else {
-         if (validate (expr, act_lesson,
-                       oindex, tindex,
-                       block, expire)) {
+         if (validate (expr, act_lesson, oindex, tindex)) {
            random[lessonno].push_back (QueryEntryRef(expr, i));
            expr->setInQuery(true);
          }
@@ -178,13 +170,11 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
-                            int oindex, int tindex,
-                            bool block, bool expire)
+bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int oindex, int tindex)
 {
    int index = tindex ? tindex : oindex;
    if ((compareExpiring(expr->getGrade(index, oindex != 0),
-                        expr->getQueryDate(index, oindex != 0), expire)
+                        expr->getQueryDate(index, oindex != 0), Prefs::expire())
         ||
 
         (
@@ -194,7 +184,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
          && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date), expr->getQueryDate(index, oindex != 0), Prefs::dateItem())
 
          && compareBlocking(expr->getGrade(index, oindex != 0),
-                            expr->getQueryDate(index, oindex != 0), block)
+                            expr->getQueryDate(index, oindex != 0), Prefs::block())
         )
        )
 //     lesson + word type must ALWAYS match
@@ -211,8 +201,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
-                                    int idx, QString type)
+QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, QString type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -246,8 +235,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
-                            int idx, QString query_type)
+bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QString query_type)
 {
    QString qtype;
    int pos = query_type.find (QM_TYPE_DIV);
@@ -290,8 +278,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
-                                    int idx, QueryType type)
+QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, QueryType type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -325,8 +312,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson,
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson,
-                            int idx, QueryType query_type)
+bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QueryType query_type)
 {
    bool type_ok = false;
    if (query_type == QT_Synonym) {

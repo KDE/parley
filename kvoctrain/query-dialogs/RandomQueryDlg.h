@@ -97,12 +97,6 @@ protected:
   QStringList vocabulary;
 
   bool suggestion_hint;
-  bool suggestions;
-  bool split;
-  bool periods;
-  bool colons;
-  bool semicolons;
-  bool commas;
   int  fields;
 
 private:

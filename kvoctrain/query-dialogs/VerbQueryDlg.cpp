@@ -119,7 +119,6 @@ void VerbQueryDlg::setQuery(QString,
    q_row = entry;
    q_ocol = col;
    int mqtime = Prefs::maxTimePer();
-   query_time = mqtime;
    showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
@@ -370,7 +369,7 @@ void VerbQueryDlg::timeoutReached()
        else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
          next();
          qtimer->start(1000, TRUE);
-         timercount = query_time;
+         timercount = Prefs::maxTimePer();
        }
      }
    }
@@ -398,7 +397,7 @@ void VerbQueryDlg::dontKnowClicked()
      emit sigQueryChoice (Unknown);
    else {
      qtimer->start(1000, TRUE);
-     timercount = query_time;
+     timercount = Prefs::maxTimePer();
      next();
    }
 }

@@ -172,12 +172,10 @@ class QueryManager
   //CompType gradeComp () const { return gradecomp; }
 
   bool validate(kvoctrainExpr *expr, int act_lesson,
-                int oindex, int tindex,
-                bool block, bool expire);
+                int oindex, int tindex);
 
   QuerySelection select(kvoctrainDoc*, int act_lesson,
-                        int oindex, int tindex,
-                        bool swap, bool altlearn, bool block, bool expire);
+                        int oindex, int tindex);
 
   bool validate(kvoctrainExpr *expr, int act_lesson,
                 int index, QString type);

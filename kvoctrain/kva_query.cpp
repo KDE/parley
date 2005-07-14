@@ -584,8 +584,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
   random_expr2.clear();
 
   if (create_new || queryList.size() == 0)
-    queryList = querymanager.select (doc, act_lesson, oindex, tindex,
-                                     Prefs::swapDirection(), Prefs::altLearn(), Prefs::block(), Prefs::expire());
+    queryList = querymanager.select (doc, act_lesson, oindex, tindex);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -942,8 +941,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       tindex = tmp;
     }
 
-    if (!querymanager.validate (exp, act_lesson, oindex, tindex,
-                                Prefs::block(), Prefs::expire())) {
+    if (!querymanager.validate (exp, act_lesson, oindex, tindex)) {
       int tmp = oindex;  // must use other direction which is the only valid
       oindex = tindex;
       tindex = tmp;
