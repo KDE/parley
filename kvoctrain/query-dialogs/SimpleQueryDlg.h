@@ -35,18 +35,14 @@ class SimpleQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-  SimpleQueryDlg
-  (
-    QueryType querytpe,
-    int entry,
-    int column,
-    int q_cycle,
-    int q_num,
-    int q_start,
-    kvoctrainExpr *exp,
-    kvoctrainDoc  *doc,
-    int mqtime,
-    bool showcounter);
+  SimpleQueryDlg (QueryType querytpe,
+                  int entry,
+                  int column,
+                  int q_cycle,
+                  int q_num,
+                  int q_start,
+                  kvoctrainExpr *exp,
+                  kvoctrainDoc  *doc);
 
   ~SimpleQueryDlg();
 
@@ -57,9 +53,7 @@ public:
                 int q_num,
                 int q_start,
                 kvoctrainExpr *exp,
-                kvoctrainDoc  *doc,
-                int mqtime,
-                bool showcounter);
+                kvoctrainDoc  *doc);
 
 public slots:
   virtual void initFocus() const;

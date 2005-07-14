@@ -44,9 +44,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc  *doc,
-              const Article &articles,
-              int   mqtime,
-              bool show);
+              const Article &articles);
 
   ~ArtQueryDlg();
 
@@ -58,9 +56,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc  *doc,
-              const Article &articles,
-              int   mqtime,
-              bool show);
+              const Article &articles);
 
 public slots:
   virtual void initFocus() const;

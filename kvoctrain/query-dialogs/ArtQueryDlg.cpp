@@ -49,9 +49,7 @@ ArtQueryDlg::ArtQueryDlg
         int query_startnum,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
-        const Article &articles,
-        int   mqtime,
-        bool _show)
+        const Article &articles)
   : QueryDlgBase(i18n("Article Training"))
 {
   mw = new ArtQueryDlgForm(this);
@@ -72,7 +70,7 @@ ArtQueryDlg::ArtQueryDlg
   connect(mw->male, SIGNAL(clicked()), SLOT(slotMaleClicked()) );
   connect(mw->rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()) );
 
-  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles, mqtime, _show);
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
   resize(configDialogSize("ArtQueryDialog"));
@@ -93,16 +91,14 @@ void ArtQueryDlg::setQuery(QString,
                            int q_start,
                            kvoctrainExpr *exp,
                            kvoctrainDoc  *doc,
-                           const Article &art,
-                           int mqtime,
-                           bool _show)
+                           const Article &art)
 {
    //type_timeout = type_to;
    kv_exp = exp;
    kv_doc = doc;
    q_row = entry;
    q_ocol = col;
-   showCounter = _show,
+   showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
    mw->show_all->setDefault(true);
@@ -159,15 +155,15 @@ void ArtQueryDlg::setQuery(QString,
 
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
-
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   int mqtime = Prefs::maxTimePer();
+   if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);

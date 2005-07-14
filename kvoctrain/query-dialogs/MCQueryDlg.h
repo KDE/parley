@@ -45,9 +45,7 @@ public:
             int query_num,
             int query_startnum,
             kvoctrainExpr *exp,
-            kvoctrainDoc  *doc,
-            int mqtime,
-            bool show);
+            kvoctrainDoc  *doc);
 
   ~MCQueryDlg();
 
@@ -60,9 +58,7 @@ public:
                 int query_num,
                 int query_startnum,
                 kvoctrainExpr *exp,
-                kvoctrainDoc  *doc,
-                int   mqtime,
-                bool show);
+                kvoctrainDoc  *doc);
 
 public slots:
   virtual void initFocus() const;

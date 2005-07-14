@@ -45,9 +45,7 @@ SimpleQueryDlg::SimpleQueryDlg(
         int q_num,
         int q_start,
         kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
-        int mqtime,
-        bool showcounter)
+        kvoctrainDoc  *doc)
   : QueryDlgBase("")
 {
   mw = new SimpleQueryDlgForm(this);
@@ -63,7 +61,7 @@ SimpleQueryDlg::SimpleQueryDlg(
   kv_doc = 0;
   qtimer = 0;
   resize(configDialogSize("SimpleQueryDialog"));
-  setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc, mqtime, showcounter);
+  setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
@@ -89,16 +87,14 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
                          int q_num,
                          int q_start,
                          kvoctrainExpr *exp,
-                         kvoctrainDoc  *doc,
-                         int mqtime,
-                         bool _show)
+                         kvoctrainDoc  *doc)
 {
    //type_timeout = type_to;
    querytype = _querytype;
    kv_doc = doc;
    q_row = entry;
    q_ocol = column;
-   showCounter = _show,
+   showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
    mw->queryField->setFont(Prefs::tableFont());
@@ -170,15 +166,16 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
 
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
+   int mqtime = Prefs::maxTimePer();
 
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);

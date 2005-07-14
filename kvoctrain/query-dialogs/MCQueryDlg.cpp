@@ -52,9 +52,7 @@ MCQueryDlg::MCQueryDlg(
                    int q_num,
                    int q_start,
                    kvoctrainExpr *exp,
-                   kvoctrainDoc  *doc,
-                   int mqtime,
-                   bool _show)
+                   kvoctrainDoc  *doc)
   : QueryDlgBase(i18n("Multiple Choice"))
 {
   mw = new MCQueryDlgForm(this);
@@ -78,7 +76,7 @@ MCQueryDlg::MCQueryDlg(
 
   qtimer = 0;
 
-  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, _show);
+  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
   resize(configDialogSize("MCQueryDialog"));
@@ -100,9 +98,7 @@ void MCQueryDlg::setQuery(QString org,
                          int q_num,
                          int q_start,
                          kvoctrainExpr *exp,
-                         kvoctrainDoc  *doc,
-                         int mqtime,
-                         bool _show)
+                         kvoctrainDoc  *doc)
 {
    //type_timeout = type_to;
    kv_doc = doc;
@@ -110,7 +106,7 @@ void MCQueryDlg::setQuery(QString org,
    q_ocol = orgcol;
    q_tcol = transcol;
    translation = trans;
-   showCounter = _show,
+   showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
    mw->orgField->setFont(Prefs::tableFont());
@@ -122,15 +118,15 @@ void MCQueryDlg::setQuery(QString org,
 
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
-
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   int mqtime = Prefs::maxTimePer();
+   if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);

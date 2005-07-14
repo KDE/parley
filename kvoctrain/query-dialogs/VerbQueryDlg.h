@@ -46,9 +46,7 @@ public:
                 kvoctrainExpr *exp,
                 kvoctrainDoc  *doc,
                 const Conjugation &prefix,
-                const Conjugation &conjug,
-                int   mqtime,
-                bool show);
+                const Conjugation &conjug);
 
   ~VerbQueryDlg();
 
@@ -61,9 +59,7 @@ public:
                 kvoctrainExpr *exp,
                 kvoctrainDoc  *doc,
                 const Conjugation &prefix,
-                const Conjugation &conjug,
-                int   mqtime,
-                bool show);
+                const Conjugation &conjug);
 
 public slots:
   virtual void initFocus() const;
@@ -96,7 +92,7 @@ protected:
   int current;
   Conjugation conjugations;
   bool all_known;
-  int query_time;
+  int query_time; //in seconds
 
 private:
   VerbQueryDlgForm * mw;

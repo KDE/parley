@@ -48,9 +48,7 @@ VerbQueryDlg::VerbQueryDlg
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
         const Conjugation &prefix,
-        const Conjugation &conjug,
-        int mqtime,
-        bool _show)
+        const Conjugation &conjug)
  : QueryDlgBase(i18n("Verb Training"))
 {
   mw = new VerbQueryDlgForm(this);
@@ -85,7 +83,7 @@ VerbQueryDlg::VerbQueryDlg
 
   qtimer = 0;
 
-  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug, mqtime, _show);
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
   resize(configDialogSize("VerbQueryDialog"));
@@ -113,17 +111,16 @@ void VerbQueryDlg::setQuery(QString,
                             kvoctrainExpr *exp,
                             kvoctrainDoc  *doc,
                             const Conjugation &prefix,
-                            const Conjugation &conjug,
-                            int mqtime,
-                            bool _show)
+                            const Conjugation &conjug)
 {
    //type_timeout = type_to;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
    q_ocol = col;
+   int mqtime = Prefs::maxTimePer();
    query_time = mqtime;
-   showCounter = _show,
+   showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
    mw->show_all->setDefault(true);
@@ -148,14 +145,14 @@ void VerbQueryDlg::setQuery(QString,
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
 
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   if (mqtime > 0) { // more than 1000 milli-seconds
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);
@@ -373,7 +370,7 @@ void VerbQueryDlg::timeoutReached()
        else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
          next();
          qtimer->start(1000, TRUE);
-         timercount = query_time/1000;
+         timercount = query_time;
        }
      }
    }
@@ -401,7 +398,7 @@ void VerbQueryDlg::dontKnowClicked()
      emit sigQueryChoice (Unknown);
    else {
      qtimer->start(1000, TRUE);
-     timercount = query_time/1000;
+     timercount = query_time;
      next();
    }
 }

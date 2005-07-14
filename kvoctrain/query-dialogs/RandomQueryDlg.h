@@ -50,19 +50,7 @@ public:
                  int query_num,
                  int query_startnum,
                  kvoctrainExpr *exp,
-                 kvoctrainDoc  *,
-                 int mqtime,
-                 bool show,
-                 bool _suggestions,
-                 bool _split,
-                 bool _periods,
-                 bool _colons,
-                 bool _semicolons,
-                 bool _commas,
-                 int  _fields,
-                 bool _show_more,
-                 bool _i_know,
-                 bool _swap);
+                 kvoctrainDoc  *);
 
   ~RandomQueryDlg();
 
@@ -75,9 +63,7 @@ public:
                       int query_num,
                       int query_startnum,
                       kvoctrainExpr *exp,
-                      kvoctrainDoc  *,
-                      int   mqtime,
-                      bool show);
+                      kvoctrainDoc  *);
 
 public slots:
   virtual void initFocus() const;

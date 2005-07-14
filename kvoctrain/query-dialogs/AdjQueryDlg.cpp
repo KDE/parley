@@ -49,9 +49,7 @@ AdjQueryDlg::AdjQueryDlg
   int query_startnum,
   kvoctrainExpr *exp,
   kvoctrainDoc  *doc,
-  const Comparison &_comp,
-  int   mqtime,
-  bool _show)
+  const Comparison &_comp)
   : QueryDlgBase(i18n("Comparison Training"))
 {
   mw = new AdjQueryDlgForm(this);
@@ -76,7 +74,7 @@ AdjQueryDlg::AdjQueryDlg
   mw->lev2Label->setBuddy(mw->lev2Field);
   mw->lev3Label->setBuddy(mw->lev3Field);
 
-  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp, mqtime, _show);
+  setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
   resize(configDialogSize("AdjQueryDialog"));
@@ -97,16 +95,14 @@ void AdjQueryDlg::setQuery(QString,
                            int q_start,
                            kvoctrainExpr *exp,
                            kvoctrainDoc  *doc,
-                           const Comparison &_comp,
-                           int mqtime,
-                           bool _show)
+                           const Comparison &_comp)
 {
    //type_timeout = type_to;
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
    q_ocol = col;
-   showCounter = _show,
+   showCounter = Prefs::showCounter();
    mw->timebar->setEnabled(showCounter);
    mw->timelabel->setEnabled(showCounter);
    comp = _comp;
@@ -138,14 +134,15 @@ void AdjQueryDlg::setQuery(QString,
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
 
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   int mqtime = Prefs::maxTimePer();
+   if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);

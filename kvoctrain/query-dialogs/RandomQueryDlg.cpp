@@ -134,19 +134,7 @@ RandomQueryDlg::RandomQueryDlg(
                    int q_num,
                    int q_start,
                    kvoctrainExpr *exp,
-                   kvoctrainDoc  *doc,
-                   int mqtime,
-                   bool show,
-                   bool _suggestions,
-                   bool _split,
-                   bool _periods,
-                   bool _colons,
-                   bool _semicolons,
-                   bool _commas,
-                   int  _fields,
-                   bool _show_more,
-                   bool _i_know,
-                   bool _swap)
+                   kvoctrainDoc  *doc)
   : QueryDlgBase(i18n("Random Query"))
 {
   mw = new QueryDlgForm(this);
@@ -161,20 +149,20 @@ RandomQueryDlg::RandomQueryDlg(
   connect( mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()) );
   connect( mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()) );
 
-  mw->show_more -> setEnabled (_show_more);
-  mw->know_it -> setEnabled (_i_know);
+  mw->show_more -> setEnabled (Prefs::showMore());
+  mw->know_it -> setEnabled (Prefs::iKnow());
 
-  if ( ! _split || _fields < 1 )
-    _fields = 1;
-  else if ( _fields > 10 )
-    _fields = 10;
-  suggestions = _suggestions;
-  split = _split;
-  periods = _periods;
-  colons = _colons;
-  semicolons = _semicolons;
-  commas = _commas;
-  fields = _fields;
+  suggestions = Prefs::suggestions();
+  split = Prefs::split();
+  periods = Prefs::periods();
+  colons = Prefs::colons();
+  semicolons = Prefs::semicolons();
+  commas = Prefs::commas();
+  fields = Prefs::fields();
+  if ( ! split || fields < 1 )
+    fields = 1;
+  else if ( fields > 10 )
+    fields = 10;
 
   QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame, 0, KDialog::spacingHint());
 
@@ -208,7 +196,7 @@ RandomQueryDlg::RandomQueryDlg(
   kv_doc = 0;
   qtimer = 0;
   //setCaption (kapp->makeStdCaption(i18n("Random Query")));
-  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc, mqtime, show);
+  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
@@ -229,7 +217,7 @@ RandomQueryDlg::RandomQueryDlg(
         vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
       else
         vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
-      if ( _swap )
+      if ( Prefs::swapDirection() )
       {
         if ( split )
           vocabulary += extractTranslations (q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal());
@@ -268,9 +256,7 @@ void RandomQueryDlg::setQuery(QString org,
                          int q_num,
                          int q_start,
                          kvoctrainExpr *,
-                         kvoctrainDoc  *doc,
-                         int mqtime,
-                         bool _show)
+                         kvoctrainDoc  *doc)
 {
    //type_timeout = type_to;
    kv_doc = doc;
@@ -278,7 +264,7 @@ void RandomQueryDlg::setQuery(QString org,
    q_ocol = orgcol;
    q_tcol = transcol;
    translation = trans;
-   showCounter = _show;
+   showCounter = Prefs::showCounter();
    if ( split )
      translations = extractTranslations (trans);
    else
@@ -331,15 +317,15 @@ void RandomQueryDlg::setQuery(QString org,
 
    mw->countbar->setTotalSteps(q_start);
    mw->countbar->setProgress(q_start - q_num + 1);
-
-   if (mqtime >= 1000) { // more than 1000 milli-seconds
+   int mqtime = Prefs::maxTimePer();
+   if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-       timercount = mqtime/1000;
+       timercount = mqtime;
        mw->timebar->setTotalSteps(timercount);
        mw->timebar->setProgress(timercount);
        qtimer->start(1000, TRUE);

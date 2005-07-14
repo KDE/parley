@@ -45,9 +45,7 @@ public:
     int query_startnum,
     kvoctrainExpr *exp,
     kvoctrainDoc *doc,
-    const Comparison &comp,
-    int mqtime,
-    bool show);
+    const Comparison &comp);
 
   ~AdjQueryDlg();
 
@@ -59,9 +57,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc *doc,
-              const Comparison &comp,
-              int mqtime,
-              bool show);
+              const Comparison &comp);
 
 public slots:
   virtual void initFocus() const;

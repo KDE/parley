@@ -177,9 +177,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
                            query_num,
                            query_startnum,
                            exp,
-                           doc,
-                           Prefs::maxTimePer() * 1000,
-                           Prefs::showCounter());
+                           doc);
 
   connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
            this, SLOT(slotEditEntry(int,int)));
@@ -287,9 +285,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
                            query_num,
                            query_startnum,
                            exp,
-                           doc,
-                           Prefs::maxTimePer() * 1000,
-                           Prefs::showCounter());
+                           doc);
 
   simpleQueryDlg->initFocus();
   slotStatusMsg(IDS_DEFAULT);
@@ -353,9 +349,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                             exp,
                             doc,
                             doc->getConjugation(act_query_col),
-                            exp->getConjugation(act_query_col),
-                            Prefs::maxTimePer() * 1000,
-                            Prefs::showCounter());
+                            exp->getConjugation(act_query_col));
 
     verbQueryDlg->initFocus();
     connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
@@ -374,9 +368,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_startnum,
                           exp,
                           doc,
-                          doc->getArticle(act_query_col),
-                          Prefs::maxTimePer() * 1000,
-                          Prefs::showCounter());
+                          doc->getArticle(act_query_col));
     artQueryDlg->initFocus();
     connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
              this, SLOT(slotEditEntry(int,int)));
@@ -393,9 +385,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_startnum,
                           exp,
                           doc,
-                          exp->getComparison(act_query_col),
-                          Prefs::maxTimePer() * 1000,
-                          Prefs::showCounter());
+                          exp->getComparison(act_query_col));
     adjQueryDlg->initFocus();
     connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
               this, SLOT(slotEditEntry(int,int)));
@@ -511,9 +501,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                             exp,
                             doc,
                             doc->getConjugation(act_query_col),
-                            exp->getConjugation(act_query_col),
-                            Prefs::maxTimePer() * 1000,
-                            Prefs::showCounter());
+                            exp->getConjugation(act_query_col));
 
     verbQueryDlg->initFocus();
   }
@@ -531,9 +519,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_startnum,
                           exp,
                           doc,
-                          doc->getArticle(act_query_col),
-                          Prefs::maxTimePer() * 1000,
-                          Prefs::showCounter());
+                          doc->getArticle(act_query_col));
     artQueryDlg->initFocus();
   }
   else if (queryType == QT_Comparison) {
@@ -550,9 +536,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_startnum,
                           exp,
                           doc,
-                          exp->getComparison(act_query_col),
-                          Prefs::maxTimePer() * 1000,
-                          Prefs::showCounter());
+                          exp->getComparison(act_query_col));
     adjQueryDlg->initFocus();
   }
   else {
@@ -657,19 +641,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_num,
                              query_startnum,
                              exp,
-                             doc,
-                             Prefs::maxTimePer() * 1000,
-                             Prefs::showCounter(),
-                             Prefs::suggestions(),
-                             Prefs::split(),
-                             Prefs::periods(),
-                             Prefs::colons(),
-                             Prefs::semicolons(),
-                             Prefs::commas(),
-                             Prefs::fields(),
-                             Prefs::showMore(),
-                             Prefs::iKnow(),
-                             Prefs::swapDirection());
+                             doc);
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -688,9 +660,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_num,
                              query_startnum,
                              exp,
-                             doc,
-                             Prefs::maxTimePer() * 1000,
-                             Prefs::showCounter());
+                             doc);
       mcQueryDlg->initFocus();
       connect( mcQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -1004,9 +974,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              query_num,
                              query_startnum,
                              exp,
-                             doc,
-                             Prefs::maxTimePer() * 1000,
-                             Prefs::showCounter());
+                             doc);
       randomQueryDlg->initFocus();
   }
   else if (queryType == QT_Multiple) {
@@ -1024,9 +992,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                          query_num,
                          query_startnum,
                          exp,
-                         doc,
-                         Prefs::maxTimePer() * 1000,
-                         Prefs::showCounter());
+                         doc);
       mcQueryDlg->initFocus();
   }
   slotStatusMsg(IDS_DEFAULT);
