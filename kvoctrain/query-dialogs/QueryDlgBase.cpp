@@ -330,3 +330,5 @@ void QueryDlgBase::slotUser1()
   emit sigQueryChoice(StopIt);
 }
 
+
+#include "QueryDlgBase.moc"
