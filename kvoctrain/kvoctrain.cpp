@@ -699,9 +699,9 @@ bool kvoctrainApp::hasSelection()
 void kvoctrainApp::slotRemoveRow()
 {
   if (!hasSelection()) {
-    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
+    if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected entry?\n"),
-                  kapp->makeStdCaption("")))
+                  kapp->makeStdCaption(""),KStdGuiItem::del()))
     {
       KVocTrainTable *table = view->getTable();
       doc->removeEntry(table->currentRow());
@@ -710,9 +710,9 @@ void kvoctrainApp::slotRemoveRow()
     }
   }
   else {
-    if(KMessageBox::Yes == KMessageBox::questionYesNo(this,
+    if(KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected range?\n"),
-                  kapp->makeStdCaption("")))
+                  kapp->makeStdCaption(""),KStdGuiItem::del()))
     {
       KVocTrainTable *table = view->getTable();
 
@@ -1005,7 +1005,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
                         "Should this dialog be invoked now?");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
-                  kapp->makeStdCaption("")));
+                  kapp->makeStdCaption(""),i18n("Invoke Dialog"), i18n("Do Not Invoke")));
      {
        slotGeneralOptionsPage(1);
      }

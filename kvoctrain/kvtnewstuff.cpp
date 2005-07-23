@@ -73,11 +73,11 @@ QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
 
   if (KStandardDirs::exists(file))
   {
-    int result = KMessageBox::questionYesNo(parentWidget(),
+    int result = KMessageBox::warningContinueCancel(parentWidget(),
         i18n("The file '%1' already exists. Do you want to overwrite it?")
         .arg(file),
         QString::null, i18n("Overwrite") );
-    if (result == KMessageBox::No)
+    if (result == KMessageBox::Cancel)
       return QString::null;
   }
   KMessageBox::information(parentWidget(),

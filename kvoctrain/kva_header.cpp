@@ -445,9 +445,9 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
                             "Do you really want to delete \"%1\"?");
       msg = format.arg(name);
 
-      int exit = KMessageBox::warningYesNo(this, msg,
-                    kapp->makeStdCaption(""));
-      if(exit==KMessageBox::Yes) {
+      int exit = KMessageBox::warningContinueCancel(this, msg,
+                    kapp->makeStdCaption(""),KStdGuiItem::del());
+      if(exit==KMessageBox::Continue) {
         doc->removeIdent(header1);
         view->setView (doc, langset);
         doc->setModified();
@@ -550,9 +550,9 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
       msg = format.arg(name);
 
-      int exit = KMessageBox::warningYesNo(this, msg,
-                    kapp->makeStdCaption(""));
-      if(exit==KMessageBox::Yes) {
+      int exit = KMessageBox::warningContinueCancel(this, msg,
+                    kapp->makeStdCaption(""),i18n("Reset"));
+      if(exit==KMessageBox::Continue) {
         doc->resetEntry (header1, act_lesson);
         doc->setModified();
         view->getTable()->updateContents();
