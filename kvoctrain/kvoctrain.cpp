@@ -1140,11 +1140,11 @@ void kvoctrainApp::aboutToShowLearn()
         if((j = langset.indexShortId(doc->getIdent(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from %1").arg(main_names[i]),
+          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(main_names[i]),
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
-          query_m->insertItem(i18n("from %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_QUERY);
+          query_m->insertItem(i18n("From %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_QUERY);
         }
       }
 
@@ -1158,11 +1158,11 @@ void kvoctrainApp::aboutToShowLearn()
         if((j = langset.indexShortId(doc->getIdent(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("from %1").arg(main_names[i]),
+          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(main_names[i]),
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
-          multiple_m->insertItem(i18n("from %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
+          multiple_m->insertItem(i18n("From %1").arg(doc->getIdent(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
