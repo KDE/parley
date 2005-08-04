@@ -29,6 +29,8 @@
 
 #include "kvoctraindoc.h"
 #include "kvoctraincore.h"
+//Added by qt3to4:
+#include <QTextStream>
 
 
 
@@ -108,7 +110,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
   float f_ent_percent = size / 100.0;
   emit progressChanged (this, 0);
 
-  for (int l = 0; !is.eof(); l++) {
+  for (int l = 0; !is.atEnd(); l++) {
     QString s = is.readLine();
 
     ln--;

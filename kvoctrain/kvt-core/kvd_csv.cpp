@@ -28,6 +28,8 @@
 #include "kvoctrain.h"
 
 #include <qtextcodec.h>
+//Added by qt3to4:
+#include <QTextStream>
 
 #include <vector>
 using namespace std;
@@ -132,7 +134,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is)
 
   bool utf8_mode = false;
   int lang_num = 0;
-  for (int l = 0; !is.eof(); l++) {
+  for (int l = 0; !is.atEnd(); l++) {
     QString s = is.readLine();
 
     // autodetect utf8
@@ -235,7 +237,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is)
 void kvoctrainDoc::errorCsv (int /*line*/, const QString &text )
 {
    unknown_elem = true;
-   QApplication::setOverrideCursor( arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error in csv file"));
    QString msg = text;
    KMessageBox::error( 0, msg, s);

@@ -36,6 +36,8 @@
 
 #include <qfileinfo.h>
 #include <qregexp.h>
+//Added by qt3to4:
+#include <QTextStream>
 
 #include <algorithm>
 #include <functional>
@@ -103,7 +105,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url)
   if (KIO::NetAccess::download( url, tmpfile, 0 ))
   {
     QFile f(tmpfile);
-    if (!f.open(IO_ReadOnly))
+    if (!f.open(QIODevice::ReadOnly))
     {
       KMessageBox::error(0, i18n("<qt>Cannot open file<br><b>%1</b></qt>").arg(url.path()));
       return;
@@ -114,7 +116,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url)
     bool read = false;
     while (!read) {
 
-      QApplication::setOverrideCursor( waitCursor );
+      QApplication::setOverrideCursor( Qt::WaitCursor );
       switch (ft) {
         case kvtml:
         {
@@ -220,7 +222,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
 
     QFile f(tmp.path());
 
-    if (!f.open(IO_WriteOnly))
+    if (!f.open(QIODevice::WriteOnly))
     {
       KMessageBox::error(0, i18n("<qt>Cannot write to file<br><b>%1</b></qt>").arg(tmp.path()));
       return false;
@@ -915,7 +917,7 @@ unsigned long kvoctrainDoc::decompressDate(QString s) const
 kvoctrainDoc::FileType kvoctrainDoc::detectFT(const QString &filename)
 {
    QFile f( filename );
-   if (!f.open( IO_ReadOnly ))
+   if (!f.open( QIODevice::ReadOnly ))
      return csv;
 
    QDataStream is( &f );

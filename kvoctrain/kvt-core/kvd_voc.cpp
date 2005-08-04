@@ -28,6 +28,8 @@
 
 #include "kvoctraindoc.h"
 #include "kvoctraincore.h"
+//Added by qt3to4:
+#include <QTextStream>
 
 
 bool kvoctrainDoc::loadFromVoc(QTextStream& is)
@@ -124,7 +126,7 @@ bool kvoctrainDoc::loadFromVoc(QTextStream& is)
   is.readLine();
   is.readLine();
 
-  for (int i = 0; !is.eof() && i < lines; i++)
+  for (int i = 0; !is.atEnd() && i < lines; i++)
   {
     lessonDescr = is.readLine();
     lessonDescr = lessonDescr.mid(1, lessonDescr.length() - 2);

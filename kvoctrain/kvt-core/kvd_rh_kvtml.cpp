@@ -24,6 +24,8 @@
  ***************************************************************************/
 
 #include "QueryManager.h"
+//Added by qt3to4:
+#include <QTextStream>
 
 #include <klocale.h>
 

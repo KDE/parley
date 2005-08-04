@@ -31,6 +31,8 @@
 
 
 #include <vector>
+//Added by qt3to4:
+#include <QTextStream>
 using namespace std;
 
 #define LEX_MAX_ATTR    20
@@ -285,7 +287,7 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
   langs.push_back (orgID.left(2).lower());
   langs.push_back (transID.left(2).lower());
 
-  QTextStream params (info1, IO_ReadOnly);
+  QTextStream params (&info1, QIODevice::ReadOnly);
   params >> i_dummy;
   params >> i_dummy;
   params >> i_dummy;
@@ -329,7 +331,7 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
   float f_ent_percent = (int) lines / 100.0;
   emit progressChanged(this, 0);
 
-  for (int i = 0; !is.eof() && i < lines; i++) {
+  for (int i = 0; !is.atEnd() && i < lines; i++) {
     if (ent_percent != 0 && (i % ent_percent) == 0 ) {
       emit progressChanged(this, int(i / f_ent_percent));
     }
