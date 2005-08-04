@@ -36,7 +36,7 @@ XmlTokenizer::~XmlTokenizer () {
 
 /*
 bool XmlTokenizer::hasMoreTokens () {
-  return ! istrm.eof ();
+  return ! istrm.atEnd();
 }
 */
 
@@ -50,7 +50,7 @@ void XmlTokenizer::skipWhitespace () {
       putback (c);
       return;
     }
-    else if (istrm.eof ())
+    else if (istrm.atEnd())
       return;
   } while (1);
 }
@@ -95,7 +95,7 @@ XmlTokenizer::Token XmlTokenizer::nextToken () {
   }
 
   skipWhitespace ();
-  if (istrm.eof ())
+  if (istrm.atEnd())
     return last_tok = Tok_EOF;
 
   c = readchar ();
@@ -209,7 +209,7 @@ XmlTokenizer::Token XmlTokenizer::readSymbol () {
     c = readchar ();
     if (c == '\n')
       lineno++;
-    if (istrm.eof () || isspace (c))
+    if (istrm.atEnd() || isspace (c))
       // Symbol ist abgeschlossen
       break;
     else if (c == '=' || c == '/' || c == '>' || c == '?' || c == '|' ||
@@ -242,7 +242,7 @@ XmlTokenizer::Token XmlTokenizer::readString () {
     if (c == '\n')
       lineno++;
 
-    if (istrm.eof ())
+    if (istrm.atEnd())
       // String ist noch nicht abgeschlossen
       return Tok_Invalid;
     else if (c == '\\') {
@@ -268,12 +268,12 @@ XmlTokenizer::Token XmlTokenizer::readComment () {
   if (c2 == '\n')
     lineno++;
 
-  if (c1 != '-' || c2 != '-' || istrm.eof ())
+  if (c1 != '-' || c2 != '-' || istrm.atEnd())
     return Tok_Invalid;
 
   while (1) {
     c1 = readchar ();
-    if (istrm.eof ())
+    if (istrm.atEnd())
       return Tok_Invalid;
     else if (c1 == '\n')
       lineno++;
@@ -293,7 +293,7 @@ XmlTokenizer::Token XmlTokenizer::readText () {
     if (c == '\n')
       lineno++;
 
-    if (istrm.eof ())
+    if (istrm.atEnd())
       return Tok_EOF;
     else if (c == '<') {
       putback (c);
@@ -306,7 +306,7 @@ XmlTokenizer::Token XmlTokenizer::readText () {
 	c = readchar ();
         if (c == '\n')
           lineno++;
-	if (istrm.eof ())
+	if (istrm.atEnd())
 	  return Tok_EOF;
       }
       if (s == "&lt")
