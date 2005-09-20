@@ -46,7 +46,8 @@ void XmlTokenizer::skipWhitespace () {
     c = readchar ();
     if (c == '\n')
       lineno++;
-    if (! isspace (c)) {
+#warning "KDE4 ? unicode() correct ?"	
+    if (! isspace (c.unicode())) {
       putback (c);
       return;
     }
@@ -108,7 +109,8 @@ XmlTokenizer::Token XmlTokenizer::nextToken () {
       return last_tok = readText ();
     }
   }
-  switch (c) {
+#warning "KDE4 ? c.unicode correct ???"  
+  switch (c.unicode()) {
   case '<':
     is_open = true;
     return last_tok = Tok_Lt;
@@ -168,7 +170,8 @@ XmlTokenizer::Token XmlTokenizer::nextToken () {
     break;
   default:
     if (is_open) {
-      if (isalpha (c) || isdigit (c)) {
+#warning "KDE4: unicode() is correct ?"			
+      if (isalpha (c.unicode()) || isdigit (c.unicode())) {
 	// Symbol (Element oder Attributbezeichner)
 	putback (c);
 	return last_tok = readSymbol ();
@@ -209,7 +212,8 @@ XmlTokenizer::Token XmlTokenizer::readSymbol () {
     c = readchar ();
     if (c == '\n')
       lineno++;
-    if (istrm.atEnd() || isspace (c))
+#warning "KDE4: unicode() is correct ?"	
+    if (istrm.atEnd() || isspace (c.unicode()))
       // Symbol ist abgeschlossen
       break;
     else if (c == '=' || c == '/' || c == '>' || c == '?' || c == '|' ||
@@ -219,7 +223,8 @@ XmlTokenizer::Token XmlTokenizer::readSymbol () {
       putback (c);
       break;
     }
-    else if (isalnum (c) || c == '-' || (c == '_' && elem.length () > 0))
+#warning "KDE4: unicode() is correct ?"	
+    else if (isalnum (c.unicode()) || c == '-' || (c == '_' && elem.length () > 0))
       // korrektes Zeichen -> anhaengen
 //      elem += tolower (c);   ?????????
       elem += c;

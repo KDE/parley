@@ -42,7 +42,7 @@ XmlWriter::~XmlWriter () {
 
 void XmlWriter::startTag (KOXML_STRING id, bool closeIt, bool empty, bool eol)
 {
-  if (!id) return;
+  if (id.isEmpty()) return;
 
   strm << "<" << id;
   if (!empty) {
@@ -111,7 +111,7 @@ void XmlWriter::endline()
 
 void XmlWriter::addAttribute (KOXML_STRING name, const KOXML_STRING& value)
 {
-  if (!name) return;
+  if (name.isEmpty()) return;
 
   KOXML_STRING val = value;
   // escape dangerous characters in sgml-style
@@ -246,7 +246,8 @@ void XmlWriter::writeTag (KOXML_STRING s)
 void XmlWriter::flush ()
 {
 #ifndef KOXML_USE_STL
-  stream()->flush ();
+#warning "KDE4: Porting ?????"		
+  //stream()->flush ();
 #else
   strm.flush();
 #endif
