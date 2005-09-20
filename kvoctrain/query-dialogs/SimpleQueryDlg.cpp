@@ -28,9 +28,11 @@
 #include <kv_resource.h>
 
 #include <qtimer.h>
-#include <qmultilineedit.h>
+#include <q3multilineedit.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -299,12 +301,12 @@ void SimpleQueryDlg::keyPressEvent(QKeyEvent *e)
 {
   switch( e->key() )
   {
-    case Key_Escape:
+    case Qt::Key_Escape:
       dontKnowClicked();
     break;
 
-    case Key_Return:
-    case Key_Enter:
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
       if (mw->dont_know->isDefault() )
         dontKnowClicked();
       else if (mw->know_it->isDefault() )

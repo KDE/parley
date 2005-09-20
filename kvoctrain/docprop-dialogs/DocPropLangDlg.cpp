@@ -29,8 +29,12 @@
 
 #include <qstringlist.h>
 #include <qlayout.h>
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 #include <qtabwidget.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QVBoxLayout>
+#include <Q3Frame>
 
 #include <kapplication.h>
 #include <klocale.h>

@@ -27,9 +27,12 @@
 #include "PhoneticEntryPage.h"
 
 #include <qlayout.h>
-#include <qframe.h>
-#include <qgroupbox.h>
+#include <q3frame.h>
+#include <q3groupbox.h>
 #include <qtooltip.h>
+//Added by qt3to4:
+#include <QGridLayout>
+#include <QKeyEvent>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -187,7 +190,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
   int horiz = 0;
   while (uni_ref->code != 0) {
     QChar qc = uni_ref->code;
-    QString text = qc;
+    QString text(qc);
     PhoneticButton *butt = new PhoneticButton(text, phoneticbox, this);
     connect (butt, SIGNAL(clicked()), butt, SLOT(slotClicked()) );
     QString tip = i18n("Unicode name: ");
@@ -199,7 +202,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     butt->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
     int sz = QMAX(14, int(1.7*ipafont.pointSize()));
     butt->setMaximumSize(QSize (sz, sz));
-    gbox->addWidget( butt, vert, horiz, AlignCenter );
+    gbox->addWidget( butt, vert, horiz, Qt::AlignCenter );
     QToolTip::add (butt, tip);
 
     if (++horiz >= KV_MAX_HORIZ) {
@@ -214,9 +217,9 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
 
 void PhoneticEntryPage::keyPressEvent( QKeyEvent *e )
 {
-  if ((e->state() & (ControlButton | AltButton)) == 0) {
+  if ((e->state() & (Qt::ControlButton | Qt::AltButton)) == 0) {
     QString s = e->text();
-    for (unsigned i = 0; i < s.length(); ++i) {
+    for (int i = 0; i < s.length(); ++i) {
       emit charSelected(s[i].unicode());
     }
     e->accept();

@@ -24,7 +24,7 @@
  ***************************************************************************/
 
 #include <qpushbutton.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qcheckbox.h>
 #include <qstringlist.h>
 
@@ -50,7 +50,7 @@ static const char *separator_id[] =
   0
 };
 
-PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent, const char* name, WFlags fl)
+PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent, const char* name, Qt::WFlags fl)
 : PasteOptionsBase(parent,name,fl), m_langSet(langset)
 {
   OrderList->setEnabled(!kcfg_UseCurrent->isChecked());

@@ -26,7 +26,7 @@
 #ifndef BLOCKOPTIONS_H
 #define BLOCKOPTIONS_H
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include "blockoptionsbase.h"
 #include "QueryManager.h"
@@ -38,7 +38,7 @@ class BlockOptions : public BlockOptionsBase
   Q_OBJECT
 
 public:
-  BlockOptions(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  BlockOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
   void updateWidgets();
   bool hasChanged();
   bool isDefault();
@@ -59,8 +59,8 @@ private:
   void updateComboBox(int, QComboBox *);
   void checkValidity();
 
-  QValueList<QComboBox *> m_blockComboList;
-  QValueList<QComboBox *> m_expireComboList;
+  Q3ValueList<QComboBox *> m_blockComboList;
+  Q3ValueList<QComboBox *> m_expireComboList;
 };
 
 #endif

@@ -20,7 +20,7 @@
 #ifndef PROFILESDIALOG_H
 #define PROFILESDIALOG_H
 
-#include <qvaluelist.h>
+#include <q3valuelist.h>
 
 #include <kdialogbase.h>
 
@@ -64,7 +64,7 @@ private:
   void modifyProfile(int profile);
   void saveProfiles();
 
-  typedef QValueList<SettingsProfile> Profiles;
+  typedef Q3ValueList<SettingsProfile> Profiles;
   Profiles profiles;
   QueryManager * m_queryManager;
   GroupOptions * mw;

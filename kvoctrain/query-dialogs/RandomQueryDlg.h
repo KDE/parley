@@ -32,6 +32,9 @@
 
 #include <qcombobox.h>
 #include <qlineedit.h>
+//Added by qt3to4:
+#include <QKeyEvent>
+#include <Q3PtrList>
 
 class kvoctrainDoc;
 
@@ -90,8 +93,8 @@ protected:
 
   kvoctrainDoc * kv_doc;
 
-  QPtrList<QComboBox> transCombos;
-  QPtrList<QLineEdit> transFields;
+  Q3PtrList<QComboBox> transCombos;
+  Q3PtrList<QLineEdit> transFields;
 
   QStringList translations;
   QStringList vocabulary;

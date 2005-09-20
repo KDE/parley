@@ -33,7 +33,7 @@ class GeneralOptions : public GeneralOptionsBase
   Q_OBJECT
 
 public:
-  GeneralOptions(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  GeneralOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
 };
 
 #endif

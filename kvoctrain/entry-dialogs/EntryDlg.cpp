@@ -28,6 +28,10 @@
 
 #include <qlayout.h>
 #include <qlineedit.h>
+//Added by qt3to4:
+#include <QVBoxLayout>
+#include <Q3Frame>
+#include <QCloseEvent>
 
 #include <kmainwindow.h>
 #include <kapplication.h>
@@ -382,7 +386,7 @@ void EntryDlg::slotDisplayModified()
 }
 
 
-void EntryDlg::setCell(int row, int col, const vector<QTableSelection>& sel)
+void EntryDlg::setCell(int row, int col, const vector<Q3TableSelection>& sel)
 {
   edit_row = row;
   edit_col = col;
@@ -390,7 +394,7 @@ void EntryDlg::setCell(int row, int col, const vector<QTableSelection>& sel)
 }
 
 
-void EntryDlg::getCell(int &row, int &col, vector<QTableSelection>& sel) const
+void EntryDlg::getCell(int &row, int &col, vector<Q3TableSelection>& sel) const
 {
   row = edit_row;
   col = edit_col;

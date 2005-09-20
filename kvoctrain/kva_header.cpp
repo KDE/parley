@@ -34,6 +34,9 @@
 #include "query-dialogs/VerbQueryDlg.h"
 #include "query-dialogs/ArtQueryDlg.h"
 #include "query-dialogs/SimpleQueryDlg.h"
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3PopupMenu>
 
 
 #include <kcombobox.h>
@@ -48,7 +51,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   header_m = 0;
 
   if (header == KV_COL_LESS) {
-    header_m = new QPopupMenu();
+    header_m = new Q3PopupMenu();
     header_m->insertItem(SmallIconSet("sort_incr"), i18n(SORT_ALPHA), (header << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(SmallIconSet("sort_num"), i18n(SORT_NUM), (header << 16) | IDH_SORT_COL_NUM);
 
@@ -70,7 +73,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     curr_lang = langset.longId(langset.indexShortId(id));
 
   // select one of the available languages for the column
-  QPopupMenu *langs_m = new QPopupMenu();
+  Q3PopupMenu *langs_m = new Q3PopupMenu();
   // hack: ID => header-id + language
 
   for (int i = 0; i < (int) langset.size(); i++) {
@@ -92,7 +95,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
   connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  header_m = new QPopupMenu();
+  header_m = new Q3PopupMenu();
 
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
     header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
@@ -116,8 +119,8 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(SmallIconSet("delete_table_col"), i18n("&Remove Column"), (header << 16) | IDH_REMOVE );
   }
   else {
-    QPopupMenu *query_m =  new QPopupMenu();
-    QPopupMenu *multiple_m =  new QPopupMenu();
+    Q3PopupMenu *query_m =  new Q3PopupMenu();
+    Q3PopupMenu *multiple_m =  new Q3PopupMenu();
 
     names.clear();
     for (int j = 1; j < (int) doc->numLangs(); j++) {

@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qcombobox.h>
@@ -101,7 +101,7 @@ static ThreshListRef Threshdate_itemlist [] =
       };
 
 
-ThresholdOptions::ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent, const char* name, WFlags fl)
+ThresholdOptions::ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent, const char* name, Qt::WFlags fl)
 : ThresholdOptionsBase(parent, name, fl), m_lessons(lessons)
 {
   connect(lessoncomp,  SIGNAL(activated(int)), SLOT(slotSetLessonComp(int)));

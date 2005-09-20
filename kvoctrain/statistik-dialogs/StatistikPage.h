@@ -30,7 +30,9 @@
 
 #include <kvoctrainexpr.h>
 
-#include <qlistview.h>
+#include <q3listview.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 class kvoctrainDoc;
 class GradeCols;
@@ -44,7 +46,7 @@ public:
 
 public slots:
   void slotPopupMenu(int row, int col);
-  void slotRMB( QListViewItem* Item, const QPoint & point, int );
+  void slotRMB( Q3ListViewItem* Item, const QPoint & point, int );
 
 protected:
   void setupPixmaps();

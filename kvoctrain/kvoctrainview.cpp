@@ -41,6 +41,12 @@
 #include <qlayout.h>
 #include <qbitmap.h>
 #include <qfile.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QGridLayout>
+#include <QKeyEvent>
+#include <QShowEvent>
+#include <QResizeEvent>
 
 #include <ctype.h>
 
@@ -98,7 +104,7 @@ void kvoctrainView::resizeEvent (QResizeEvent *r_ev)
   if (r_ev == 0)
     return;
 
-  QHeader *header = m_table->horizontalHeader();
+  Q3Header *header = m_table->horizontalHeader();
   unsigned oldwidth = 0;
   for (int i = 0; i < m_table->numCols(); ++i)
     oldwidth += header->sectionSize(i);
@@ -209,7 +215,7 @@ kvoctrainView::~kvoctrainView()
 
 void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &pixfile)
 {
-  QHeader *header = m_table->horizontalHeader();
+  Q3Header *header = m_table->horizontalHeader();
 
   if (pixfile.isEmpty())
   {
@@ -277,7 +283,7 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
     p.end();
     arrow.setMask(mask);
 
-    QIconSet set(arrow, QIconSet::Small);
+    QIcon set(arrow, QIcon::Small);
     header->setLabel(id, set, name);
   }
 }
@@ -379,7 +385,7 @@ void kvoctrainView::newPage(QPainter & painter, int res, int startCol, int endCo
     painter.drawLine(0, hh - 1, cw - 1, hh - 1);
     painter.drawLine(cw - 1, 0, cw - 1, hh - 1);
     cr.setRect(3, 0, m_table->columnWidth(i)- 6, hh);
-    painter.drawText(cr, AlignAuto | AlignVCenter, m_table->horizontalHeader()->label(i));
+    painter.drawText(cr, Qt::AlignLeft | Qt::AlignVCenter, m_table->horizontalHeader()->label(i));
     painter.translate(cw, 0);
   }
 }
@@ -389,7 +395,7 @@ void kvoctrainView::endOfPage(QPainter & painter, int pageNum, int res)
   painter.resetXForm();
   painter.setFont(KGlobalSettings::generalFont());
   QRect w = painter.window();
-  QRect r = painter.boundingRect(0, 0, 0, 0, AlignAuto, QString::number(pageNum));
+  QRect r = painter.boundingRect(0, 0, 0, 0, Qt::AlignLeft, QString::number(pageNum));
   painter.drawText((w.width()/2) - (r.width()/2), w.height() - res + 20, QString::number(pageNum));
 }
 

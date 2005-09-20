@@ -24,6 +24,8 @@
  ***************************************************************************/
 
 #include <qfile.h>
+//Added by qt3to4:
+#include <QTextStream>
 
 #include <vector>
 #include <iostream>
@@ -320,7 +322,7 @@ int main(int argc, char **argv)
   }
 
   QFile fs(spot);
-  fs.open( IO_ReadOnly );
+  fs.open( QIODevice::ReadOnly );
   QTextStream is( &fs );
   readToMem (is, argv[2], argv[3]);
   fs.close();
@@ -331,7 +333,7 @@ int main(int argc, char **argv)
   }
 
   QFile fk(kvtml);
-  fk.open( IO_WriteOnly );
+  fk.open( QIODevice::WriteOnly );
   QTextStream os( &fk );
   writeToKvtml(os, argv[2], argv[3]);
   fk.close();

@@ -33,6 +33,9 @@
 #include <kdialogbase.h>
 
 #include <QueryManager.h>
+//Added by qt3to4:
+#include <QLabel>
+#include <QCloseEvent>
 #include <grammarmanager.h>
 #include "prefs.h"
 
@@ -40,7 +43,7 @@ class kvoctrainExpr;
 class kvoctrainDoc;
 
 class QLineEdit;
-class QMultiLineEdit;
+class Q3MultiLineEdit;
 class QLabel;
 class QRadioButton;
 
@@ -61,9 +64,9 @@ public:
   bool verifyField(QLineEdit *field, const QString &really);
   void resetField (QLineEdit *field);
 
-  bool verifyField(QMultiLineEdit *field, const QString &really,
+  bool verifyField(Q3MultiLineEdit *field, const QString &really,
                     bool mixed);
-  void resetField (QMultiLineEdit *field);
+  void resetField (Q3MultiLineEdit *field);
 
   void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
   void resetButton (QRadioButton *radio, QWidget *widget2 = 0);

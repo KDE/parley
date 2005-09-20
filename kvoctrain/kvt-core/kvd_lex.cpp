@@ -222,8 +222,8 @@ bool kvoctrainDoc::saveToLex (QTextStream& os, QString & /*title*/)
 
     os << "0" // type
        <<  " " << "255 255 255 255 255 255 255"
-       <<  " " << QMIN (2, (*first).getGrade(false))
-       <<  " " << QMIN (2, (*first).getGrade(true))
+       <<  " " << QMIN (2, (int)(*first).getGrade(false))
+       <<  " " << QMIN (2, (int)(*first).getGrade(true))
        <<  " " << (*first).getLesson()
        <<  " " << (*first).getOriginal()
        <<  " " << "||||"  // synonyms
@@ -389,7 +389,7 @@ bool kvoctrainDoc::loadFromLex (QTextStream& is)
 void kvoctrainDoc::errorLex (int /*line*/, const QString &text )
 {
    unknown_elem = true;
-   QApplication::setOverrideCursor( arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error in lex file"));
    QString msg = text;
    KMessageBox::error(0, msg, s);

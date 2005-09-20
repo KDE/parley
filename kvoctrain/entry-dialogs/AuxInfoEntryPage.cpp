@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qmultilineedit.h>
+#include <q3multilineedit.h>
 
 #include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"

@@ -26,8 +26,12 @@
 #ifndef KVOCTRAINTABLE_H
 #define KVOCTRAINTABLE_H
 
-#include <qtable.h>
+#include <q3table.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QMouseEvent>
+#include <QPixmap>
+#include <QKeyEvent>
 
 #include "kvt-core/kvoctraindoc.h"
 #include "kvt-core/kvoctrainexpr.h"
@@ -37,7 +41,7 @@
 /**
 @author Peter Hedlund
 */
-class KVocTrainTable : public QTable
+class KVocTrainTable : public Q3Table
 {
 Q_OBJECT
 public:
@@ -82,8 +86,8 @@ public:
     QWidget* beginEdit(int row, int col, bool replace);
     void endEdit(int row, int col, bool accept, bool replace);
     void paintCell(QPainter *p, int row, int col, const QRect &cr, bool selected, const QColorGroup &cg);
-    void setItem(int row, int col, QTableItem * item);
-    QTableItem* item (int row, int col) const;
+    void setItem(int row, int col, Q3TableItem * item);
+    Q3TableItem* item (int row, int col) const;
     void keyPressEvent(QKeyEvent *e);
     void keyReleaseEvent(QKeyEvent *e);
     void contentsMousePressEvent(QMouseEvent *e);

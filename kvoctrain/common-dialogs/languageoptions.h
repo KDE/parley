@@ -26,7 +26,9 @@
 #ifndef LANGUAGEOPTIONS_H
 #define LANGUAGEOPTIONS_H
 
-#include <qpopupmenu.h>
+#include <q3popupmenu.h>
+//Added by qt3to4:
+#include <Q3ValueList>
 
 #include "languageoptionsbase.h"
 #include "langset.h"
@@ -36,18 +38,18 @@ class LanguageOptions : public LanguageOptionsBase
   Q_OBJECT
 
 public:
-  LanguageOptions(LangSet & langset, QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  LanguageOptions(LangSet & langset, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
   virtual ~LanguageOptions ();
 
   LangSet getLangSet () const;
 
   struct Country
   {
-    Country(const QString& c, const QValueList<int> l, const QString& p, int i)
+    Country(const QString& c, const Q3ValueList<int> l, const QString& p, int i)
       : country(c), langs(l), pixmap(p), id(i) { }
     Country() { }
     QString country;
-    QValueList<int> langs;
+    Q3ValueList<int> langs;
     QString pixmap;
     int id;
   };
@@ -58,7 +60,7 @@ public:
       : region(reg) {}
     Region() {}
     QString region;
-    QValueList<Country> countries;
+    Q3ValueList<Country> countries;
   };
 
   void updateWidgets();
@@ -90,8 +92,8 @@ private:
 
   LangSet global_langset;
   QMap<int, Country> countryIdMap;
-  QPopupMenu * langset_popup;
-  QPopupMenu * iso6391_popup;
+  Q3PopupMenu * langset_popup;
+  Q3PopupMenu * iso6391_popup;
   LangSet m_langSet;
   QString m_lastPix;
   bool m_hasChanged;

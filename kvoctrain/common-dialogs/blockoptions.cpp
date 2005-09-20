@@ -74,7 +74,7 @@ static ListRef date_itemlist [] =
 };
 
 
-BlockOptions::BlockOptions(QWidget* parent, const char* name, WFlags fl)
+BlockOptions::BlockOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : BlockOptionsBase(parent, name, fl)
 {
    connect(expire1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));

@@ -26,7 +26,7 @@
 #ifndef KVOCTRAINTABLEITEM_H
 #define KVOCTRAINTABLEITEM_H
 
-#include <qtable.h>
+#include <q3table.h>
 
 #include "kvoctraindoc.h"
 #include "kv_resource.h"
@@ -34,10 +34,10 @@
 /**
 @author Peter Hedlund
  */
-class KVocTrainTableItem : public QTableItem
+class KVocTrainTableItem : public Q3TableItem
 {
   public:
-    KVocTrainTableItem( QTable *t, EditType et, kvoctrainDoc *doc );
+    KVocTrainTableItem( Q3Table *t, EditType et, kvoctrainDoc *doc );
     QWidget *createEditor() const;
     void setContentFromEditor( QWidget *w );
     void setPosition(int row, int col);

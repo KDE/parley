@@ -33,7 +33,7 @@ class GroupOptions : public GroupOptionsBase
   Q_OBJECT
 
 public:
-  GroupOptions(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  GroupOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
 
   void updateButtons();
 };

@@ -36,6 +36,10 @@
 
 #include <kinputdialog.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <QKeyEvent>
+#include <Q3PopupMenu>
 
 #include <time.h>
 #include <ctype.h>
@@ -73,7 +77,7 @@ void kvoctrainApp::slotCancelSelection ()
 
 void kvoctrainApp::slotSelectAll ()
 {
-  QTableSelection ts;
+  Q3TableSelection ts;
   KVocTrainTable *table = view->getTable();
   table->clearSelection();
   ts.init(0,0);
@@ -160,7 +164,7 @@ void kvoctrainApp::slotEditCallBack(int res)
 
     case EntryDlg::EditUndo:
       int row, col;
-      vector<QTableSelection> tabsel;
+      vector<Q3TableSelection> tabsel;
       entryDlg->getCell(row, col, tabsel);
       setDataEntryDlg(row, col);
     break;
@@ -187,7 +191,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
    }
 
    int row, col;
-   vector<QTableSelection> tabsel;
+   vector<Q3TableSelection> tabsel;
    entryDlg->getCell(row, col, tabsel);
    int hasSel = tabsel.size() > 1;
    if (tabsel.size() == 1)
@@ -420,7 +424,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
    else
      entryDlg->setEnabled(EntryDlg::EnableAll);
 
-   vector<QTableSelection> tabsel;
+   vector<Q3TableSelection> tabsel;
    entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
    entryDlg->show();
 }
@@ -567,7 +571,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
    }
    view->getTable()->updateCell(row, col);
    view->getTable()->updateCell(row, KV_COL_LESS);
-   vector<QTableSelection> tabsel;
+   vector<Q3TableSelection> tabsel;
    if (hasSel) {
      for (int i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
@@ -691,7 +695,7 @@ bool kvoctrainApp::hasSelection()
   int num = view->getTable()->numSelections();
   if (num < 1) return false;
   if (num > 1) return true;
-  QTableSelection ts = view->getTable()->selection(0);
+  Q3TableSelection ts = view->getTable()->selection(0);
   return (ts.bottomRow() - ts.topRow()) > 0;
 }
 
@@ -1112,7 +1116,7 @@ void kvoctrainApp::aboutToShowLearn()
   for (int header = 0; header < (int) doc->numLangs(); header++) {
     // show pixmap and long name if available
     int j;
-    header_m = new QPopupMenu();
+    header_m = new Q3PopupMenu();
     if (header != 0 ) {
       header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
@@ -1131,8 +1135,8 @@ void kvoctrainApp::aboutToShowLearn()
       header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     }
     else {
-      QPopupMenu *query_m =  new QPopupMenu();
-      QPopupMenu *multiple_m =  new QPopupMenu();
+      Q3PopupMenu *query_m =  new Q3PopupMenu();
+      Q3PopupMenu *multiple_m =  new Q3PopupMenu();
 
       for (int i = 1; i < (int) doc->numLangs(); i++) {
         // show pixmap and long name if available
@@ -1210,7 +1214,7 @@ void kvoctrainApp::aboutToShowVocabAppendLanguage()
   if (doc != 0)
   {
     vocabAppendLanguage->clear();
-    QPopupMenu * add_m = vocabAppendLanguage->popupMenu();
+    Q3PopupMenu * add_m = vocabAppendLanguage->popupMenu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1239,7 +1243,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
   if (doc != 0)
   {
     vocabSetLanguage->clear();
-    QPopupMenu * set_m = vocabSetLanguage->popupMenu();
+    Q3PopupMenu * set_m = vocabSetLanguage->popupMenu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1253,7 +1257,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
     for (int header = 0; header < doc->numLangs(); ++header )
     {
       // select one of the available languages for the column
-      QPopupMenu *langs_m = new QPopupMenu();
+      Q3PopupMenu *langs_m = new Q3PopupMenu();
         // hack: ID => header-id + language
 
       for (int i = 0; i < (int) langset.size(); i++) {
@@ -1284,7 +1288,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
   if (doc != 0)
   {
     vocabRemoveLanguage->clear();
-    QPopupMenu * remove_m = vocabRemoveLanguage->popupMenu();
+    Q3PopupMenu * remove_m = vocabRemoveLanguage->popupMenu();
 
     QStringList names;
     for (int j = 1; j < (int) doc->numLangs(); j++)

@@ -26,6 +26,8 @@
 #include <unistd.h>
 
 #include <qtimer.h>
+//Added by qt3to4:
+#include <Q3Frame>
 
 #include <kfiledialog.h>
 #include <kcombobox.h>
@@ -680,7 +682,7 @@ void kvoctrainApp::prepareProgressBar ()
 {
     statusBar()->clear ();
     pbar = new KProgress (statusBar());
-    pbar->setFrameStyle( QFrame::Panel | QFrame::Sunken );
+    pbar->setFrameStyle( Q3Frame::Panel | Q3Frame::Sunken );
     statusBar()->addWidget(pbar, 150, true);
     pbar->show();
 }

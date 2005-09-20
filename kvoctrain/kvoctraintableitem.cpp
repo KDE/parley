@@ -32,8 +32,8 @@
 #include "kvoctraintableitem.h"
 
 
-KVocTrainTableItem::KVocTrainTableItem( QTable *t, EditType et, kvoctrainDoc *doc)
-  : QTableItem( t, et, QString::null )
+KVocTrainTableItem::KVocTrainTableItem( Q3Table *t, EditType et, kvoctrainDoc *doc)
+  : Q3TableItem( t, et, QString::null )
 {
   m_doc = doc;
   // we do not want that this item can be replaced

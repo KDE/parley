@@ -34,13 +34,18 @@
 #include <kprogress.h>
 
 #include <qcheckbox.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qlineedit.h>
 #include <qpushbutton.h>
 #include <qregexp.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QVBoxLayout>
+#include <QKeyEvent>
+#include <Q3CString>
+#include <Q3PtrList>
 
 QStringList RandomQueryDlg::extractTranslations (QString trans)
 {
@@ -167,10 +172,10 @@ RandomQueryDlg::RandomQueryDlg(
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transCombos.append (new QComboBox (false, mw->TranslationFrame, QCString ("transCombo") + QCString().setNum (i)));
+      transCombos.append (new QComboBox (false, mw->TranslationFrame, Q3CString ("transCombo") + Q3CString().setNum (i)));
       transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
       transCombos.at(i) -> setEditable (true);
-      transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsertion);
+      transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsert);
       transCombos.at(i) -> setDuplicatesEnabled (false);
       vb->addWidget(transCombos.at(i));
       connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
@@ -181,7 +186,7 @@ RandomQueryDlg::RandomQueryDlg(
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transFields.append (new QLineEdit (mw->TranslationFrame, QCString ("transField") + QCString().setNum (i)));
+      transFields.append (new QLineEdit (mw->TranslationFrame, Q3CString ("transField") + Q3CString().setNum (i)));
       transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
       vb->addWidget(transFields.at(i));
       connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
@@ -263,7 +268,7 @@ void RandomQueryDlg::setQuery(QString org,
    if ( Prefs::split() )
      translations = extractTranslations (trans);
    else
-     translations = trans;
+     translations << trans;
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    int i;
@@ -352,7 +357,7 @@ void RandomQueryDlg::verifyClicked()
   uint i, j;
   if ( Prefs::suggestions() )
   {
-    QPtrList<QComboBox> combos (transCombos);
+    Q3PtrList<QComboBox> combos (transCombos);
     for ( i = combos.count() - 1; i >= translations.count(); i -- )
       combos.remove (i);
     for ( i = 0; i < combos.count(); i ++ )
@@ -381,7 +386,7 @@ void RandomQueryDlg::verifyClicked()
   }
   else
   {
-    QPtrList<QLineEdit> fields (transFields);
+    Q3PtrList<QLineEdit> fields (transFields);
     for ( i = fields.count() - 1; i >= translations.count(); i -- )
       fields.remove (i);
     for ( i = 0; i < fields.count(); i ++ )
@@ -632,7 +637,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
   if ( Prefs::suggestions() )
   {
     QComboBox* combo = 0;
-    if ( e -> key() == Key_F4 || e -> key() == Key_F5 || e -> key() == Key_F6 )
+    if ( e -> key() == Qt::Key_F4 || e -> key() == Qt::Key_F5 || e -> key() == Qt::Key_F6 )
       for ( uint i = 0; i < translations.count(); i ++ )
         if ( transCombos.at(i) -> hasFocus() )
         {
@@ -641,8 +646,8 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
         }
     switch( e->key() )
     {
-      case Key_F5:
-      case Key_F6:
+      case Qt::Key_F5:
+      case Qt::Key_F6:
         if ( combo && ! combo -> currentText().isEmpty() )
         {
           QString curText (combo -> currentText());
@@ -650,13 +655,13 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
           for ( uint i = 0; i < vocabulary.count(); i ++ )
           {
             QString trans (vocabulary[i]);
-            if ( (e -> key() == Key_F5 && trans.startsWith (curText, false)
-                || e -> key() == Key_F6 && trans.contains (curText, false)) )
+            if ( (e -> key() == Qt::Key_F5 && trans.startsWith (curText, false)
+                || e -> key() == Qt::Key_F6 && trans.contains (curText, false)) )
               combo -> insertItem (trans);
           }
           combo -> setEditText (curText);
         }
-      case Key_F4:
+      case Qt::Key_F4:
         if ( combo )
           combo -> popup();
       break;
@@ -665,12 +670,12 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
 
   switch( e->key() )
   {
-    case Key_Escape:
+    case Qt::Key_Escape:
       dontKnowClicked();
     break;
 
-    case Key_Return:
-    case Key_Enter:
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
       if (mw->dont_know->isDefault() )
         dontKnowClicked();
       else if (mw->know_it->isDefault() )

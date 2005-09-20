@@ -36,7 +36,7 @@ class PasteOptions : public PasteOptionsBase
   Q_OBJECT
 
 public:
-  PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
 
   void updateWidgets();
   bool hasChanged();

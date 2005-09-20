@@ -25,6 +25,12 @@
 
 #include <qpainter.h>
 #include <qstyle.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3CString>
+#include <QEvent>
+#include <QKeyEvent>
+#include <QMouseEvent>
 
 #include <kapplication.h>
 #include <kdebug.h>
@@ -40,7 +46,7 @@
 #include "prefs.h"
 
 KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, QWidget *parent, const char *name)
-  : QTable(parent, name), langs(ls)
+  : Q3Table(parent, name), langs(ls)
 {
   m_doc = doc;
   defaultItem = 0;
@@ -63,7 +69,7 @@ KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, QWidget *pa
   delayTimer = new QTimer(this);
   connect(delayTimer, SIGNAL(timeout()), this, SLOT(menuTriggerTimeout()));
 
-  QHeader *header = horizontalHeader();
+  Q3Header *header = horizontalHeader();
   connect(header, SIGNAL(pressed(int)), this, SLOT(headerPressEvent(int)));
   connect(header, SIGNAL(released(int)), this, SLOT(headerReleaseEvent(int)));
 }
@@ -86,8 +92,8 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
         if (!kbLayout.isEmpty()) {
           QByteArray data, replyData;
-          QCString replyType;
-          QDataStream arg(data, IO_WriteOnly);
+          Q3CString replyType;
+          QDataStream arg(data, QIODevice::WriteOnly);
           arg << kbLayout;
 
           if (!KApplication::dcopClient()->call("kxkb", "kxkb",
@@ -99,7 +105,7 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
       }
     }
   }
-  return QTable::beginEdit(row, col, replace);
+  return Q3Table::beginEdit(row, col, replace);
 }
 
 void KVocTrainTable::endEdit(int row, int col, bool accept, bool replace)
@@ -112,7 +118,7 @@ void KVocTrainTable::endEdit(int row, int col, bool accept, bool replace)
 //            "setLayout(QString)",
 //            data, replyType, replyData)) {
 //   }
-  QTable::endEdit(row, col, accept, replace);
+  Q3Table::endEdit(row, col, accept, replace);
 }
 
 void KVocTrainTable::sortByColumn(int header, bool alpha) {
@@ -170,7 +176,7 @@ void KVocTrainTable::sortByColumn_index(int header)
 
 void KVocTrainTable::setCurrentRow(int row, int col)
 {
-  QTable::setCurrentCell(row, col);
+  Q3Table::setCurrentCell(row, col);
 }
 
 void KVocTrainTable::updateContents(int row, int col)
@@ -233,7 +239,7 @@ void KVocTrainTable::setDoc(kvoctrainDoc * rows)
   }
 
   if (d == 0) {
-    defaultItem = new KVocTrainTableItem(this, QTableItem::OnTyping, rows);
+    defaultItem = new KVocTrainTableItem(this, Q3TableItem::OnTyping, rows);
   }
   else {
     defaultItem = d;
@@ -251,7 +257,7 @@ void KVocTrainTable::menuTriggerTimeout()
   int mt = triggerSect;
   triggerSect = -1;
 
-  QHeader *header = horizontalHeader();
+  Q3Header *header = horizontalHeader();
   int x = leftMargin();
   for (int i = 0; i < mt; ++i)
     x += header->sectionSize(i);
@@ -260,7 +266,7 @@ void KVocTrainTable::menuTriggerTimeout()
   if (mt != KV_COL_MARK)
     emit rightButtonClicked(mt, mpos.x(), mpos.y());
 
-  QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), QMouseEvent::LeftButton, QMouseEvent::LeftButton);
+  QMouseEvent me(QEvent::MouseButtonRelease, QPoint(0, 0), Qt::LeftButton, Qt::LeftButton);
   QApplication::sendEvent(header, &me);
 }
 
@@ -284,7 +290,7 @@ void KVocTrainTable::headerPressEvent(int sec)
 
 void KVocTrainTable::setFont(const QFont & font)
 {
-  QTable::setFont(font);
+  Q3Table::setFont(font);
   horizontalHeader()->setFont(KGlobalSettings::generalFont());
   for (unsigned i = 0; i < (unsigned) numRows(); ++i)
     setRowHeight(i, fontMetrics().lineSpacing());
@@ -438,13 +444,13 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
   p->setPen( pen );
 }
 
-void KVocTrainTable::setItem(int row, int col, QTableItem * /*item*/)
+void KVocTrainTable::setItem(int row, int col, Q3TableItem * /*item*/)
 {
   // ignore item!
   updateContents(row, col);
 }
 
-QTableItem * KVocTrainTable::item(int row, int col) const
+Q3TableItem * KVocTrainTable::item(int row, int col) const
 {
  if (defaultItem)
   defaultItem->setPosition(row, col);
@@ -467,11 +473,11 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
     case Key_Down:
     case Key_Next:
     case Key_Prior:
-      QTable::keyPressEvent(e);
+      Q3Table::keyPressEvent(e);
       break;
 
       case Key_Left: {
-        QTable::keyPressEvent(e);
+        Q3Table::keyPressEvent(e);
         int topCell = rowAt(0);
         int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
         if (numCols() > 2)
@@ -483,19 +489,19 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
     case Key_Shift:
     case Key_Alt:
       case Key_Control:  // fallthrough
-        QTable::keyPressEvent(e);
+        Q3Table::keyPressEvent(e);
         emit forwardKeyPressEvent(e);
         break;
 
-    case Key_Minus:
-    case Key_Plus:
-    case Key_Tab:
-      case Key_Backtab:  // fallthrough
+    case Qt::Key_Minus:
+    case Qt::Key_Plus:
+    case Qt::Key_Tab:
+      case Qt::Key_Backtab:  // fallthrough
         emit forwardKeyPressEvent(e);
         break;
 
     default:
-      QTable::keyPressEvent(e);
+      Q3Table::keyPressEvent(e);
       break;
   }
 }
@@ -508,7 +514,7 @@ void KVocTrainTable::keyReleaseEvent(QKeyEvent * e)
     case Key_Shift:
     case Key_Alt:
     case Key_Control:  // fallthrough
-      QTable::keyPressEvent(e);
+      Q3Table::keyPressEvent(e);
       emit forwardKeyReleaseEvent(e);
       break;
   }
@@ -521,7 +527,7 @@ void KVocTrainTable::contentsMousePressEvent(QMouseEvent * e)
   int cr = rowAt(e->y());
   int co = currentColumn();
 
-  QTable::contentsMousePressEvent(e);
+  Q3Table::contentsMousePressEvent(e);
 
   if(cc >= KV_EXTRA_COLS) {
     // update color of original when column changes and more than 1 translation
@@ -542,7 +548,7 @@ void KVocTrainTable::contentsMousePressEvent(QMouseEvent * e)
 void KVocTrainTable::contentsMouseDoubleClickEvent(QMouseEvent * e)
 {
   delayTimer->stop();
-  QTable::contentsMouseDoubleClickEvent(e);
+  Q3Table::contentsMouseDoubleClickEvent(e);
 }
 
 void KVocTrainTable::activateNextCell()
@@ -550,7 +556,7 @@ void KVocTrainTable::activateNextCell()
   int currRow = currentRow();
   int currCol = currentColumn();
 
-  QTableSelection currentSel = selection(0);
+  Q3TableSelection currentSel = selection(0);
 
   int tr = currentSel.topRow();
   int br = currentSel.bottomRow();

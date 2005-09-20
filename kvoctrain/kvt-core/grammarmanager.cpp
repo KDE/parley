@@ -176,7 +176,7 @@ void Conjugation::setTenseNames (vector<QString> names)
 
 QString Conjugation::getName (const QString &abbrev)
 {
-   if (abbrev.length() >= 2 && abbrev[0] == QString(UL_USER_TENSE)) {
+   if (abbrev.length() >= 2 && QString(abbrev[0]) == QString(UL_USER_TENSE)) {
      QString s = abbrev;
      s.remove(0, 1);
      int i = s.toInt() - 1;

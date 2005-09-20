@@ -36,7 +36,7 @@ class ThresholdOptions : public ThresholdOptionsBase
   Q_OBJECT
 
 public:
-  ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
 
   void updateWidgets();
   bool hasChanged();

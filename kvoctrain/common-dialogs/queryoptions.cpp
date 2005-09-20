@@ -23,18 +23,18 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 #include <qcheckbox.h>
 #include <qradiobutton.h>
 #include <qlabel.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 
 #include <knuminput.h>
 
 #include "queryoptions.h"
 #include "prefs.h"
 
-QueryOptions::QueryOptions(QWidget* parent, const char* name, WFlags fl)
+QueryOptions::QueryOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : QueryOptionsBase(parent,name,fl)
 {
   kcfg_MaxTimePer->setDisabled(r_no_limit->isChecked());

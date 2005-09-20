@@ -29,6 +29,10 @@
 
 #include <qclipboard.h>
 #include <qtimer.h>
+//Added by qt3to4:
+#include <QLabel>
+#include <Q3Frame>
+#include <Q3PopupMenu>
 
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -253,7 +257,7 @@ void kvoctrainApp::initActions()
   configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
   configToolbar->setToolTip(configToolbar->whatsThis());
 
-  learn_menu = (QPopupMenu*) child( "learning", "KPopupMenu" );
+  learn_menu = (Q3PopupMenu*) child( "learning", "KPopupMenu" );
   connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
@@ -263,16 +267,16 @@ void kvoctrainApp::initActions()
 void kvoctrainApp::initStatusBar()
 {
   type_label = new QLabel(statusBar());
-  type_label->setFrameStyle(QFrame::NoFrame);
+  type_label->setFrameStyle(Q3Frame::NoFrame);
   statusBar()->addWidget(type_label, 150);
 
   pron_label = new QLabel(statusBar());
-  pron_label->setFrameStyle(QFrame::NoFrame);
+  pron_label->setFrameStyle(Q3Frame::NoFrame);
   pron_label->setFont(Prefs::iPAFont());
   statusBar()->addWidget(pron_label, 200);
 
   rem_label = new QLabel(statusBar());
-  rem_label->setFrameStyle(QFrame::NoFrame);
+  rem_label->setFrameStyle(Q3Frame::NoFrame);
   statusBar()->addWidget(rem_label, 150);
 }
 

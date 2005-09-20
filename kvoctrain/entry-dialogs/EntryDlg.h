@@ -26,7 +26,9 @@
 #ifndef EntryDlg_included
 #define EntryDlg_included
 
-#include <qtable.h>
+#include <q3table.h>
+//Added by qt3to4:
+#include <QCloseEvent>
 
 #include <kdialogbase.h>
 
@@ -182,8 +184,8 @@ public:
   void setModified(bool mod);
   void setEnabled(int);
 
-  void setCell(int row, int col, const vector<QTableSelection>& sel);
-  void getCell(int &row, int &col, vector<QTableSelection>& sel) const;
+  void setCell(int row, int col, const vector<Q3TableSelection>& sel);
+  void getCell(int &row, int &col, vector<Q3TableSelection>& sel) const;
 
 signals:
   void sigEditChoice(int);
@@ -212,7 +214,7 @@ protected:
   int               edit_row, edit_col;
   QTabWidget       *tabber;
 
-  vector<QTableSelection> selections;
+  vector<Q3TableSelection> selections;
   KMainWindow     *mainwin;
   QSize            oldMainSize;
   QPoint           oldMainPos;

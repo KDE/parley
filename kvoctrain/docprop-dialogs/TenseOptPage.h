@@ -30,10 +30,12 @@
 #include "TenseOptPageForm.h"
 
 #include <vector>
+//Added by qt3to4:
+#include <Q3StrList>
 using namespace std;
 
 class kvoctrainDoc;
-class QStrList;
+class Q3StrList;
 
 class TenseOptPage : public TenseOptPageForm
 {

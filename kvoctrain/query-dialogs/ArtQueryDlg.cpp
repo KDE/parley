@@ -37,7 +37,9 @@
 #include <qradiobutton.h>
 #include <qlabel.h>
 #include <qpushbutton.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 ArtQueryDlg::ArtQueryDlg
 (
@@ -290,12 +292,12 @@ void ArtQueryDlg::keyPressEvent( QKeyEvent *e )
 {
   switch( e->key() )
   {
-    case Key_Escape:
+    case Qt::Key_Escape:
       dontKnowClicked();
     break;
 
-    case Key_Return:
-    case Key_Enter:
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
       if (mw->dont_know->isDefault() )
         dontKnowClicked();
       else if (mw->know_it->isDefault() )

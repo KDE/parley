@@ -580,7 +580,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
   act_query_org = orglang;
 
   prepareProgressBar();
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
 
   if (create_new || queryList.size() == 0)

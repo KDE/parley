@@ -30,7 +30,7 @@
 #include <qlineedit.h>
 #include <qcombobox.h>
 #include <qpushbutton.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
 
 #include <klocale.h>
 

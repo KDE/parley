@@ -1,3 +1,8 @@
+//Added by qt3to4:
+#include <QShowEvent>
+#include <Q3Frame>
+#include <QGridLayout>
+#include <QResizeEvent>
 /***************************************************************************
 
                          view to kvoctrain parts
@@ -32,7 +37,7 @@
 #endif
 
 class QGridLayout;
-class QFrame;
+class Q3Frame;
 class KApplication;
 class KPrinter;
 class kvoctrainExpr;

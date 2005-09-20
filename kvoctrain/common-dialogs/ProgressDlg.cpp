@@ -28,7 +28,7 @@
 #include <kvoctraindoc.h>
 #include "ProgressDlg.h"
 
-#include <qprogressbar.h>
+#include <q3progressbar.h>
 #include <qlabel.h>
 
 #include <kstandarddirs.h>

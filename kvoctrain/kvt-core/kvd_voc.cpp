@@ -98,7 +98,7 @@ bool kvoctrainDoc::loadFromVoc(QTextStream& is)
     while (c < 2)
     {
       temp = is.readLine();
-      c+= temp.contains("\",");
+      c+= temp.count("\",");
       expression.append(temp);
       if (c < 2)
         expression.append(" ");

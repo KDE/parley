@@ -28,6 +28,8 @@
 #define PHONETICENTRYPAGE_H
 
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 #include <kdialogbase.h>
 

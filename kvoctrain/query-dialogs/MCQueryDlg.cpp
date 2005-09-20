@@ -36,8 +36,10 @@
 #include <qtimer.h>
 #include <qlabel.h>
 #include <qradiobutton.h>
-#include <qbuttongroup.h>
+#include <q3buttongroup.h>
 #include <qpushbutton.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 #include <algorithm>
 using namespace std;
@@ -153,7 +155,7 @@ void MCQueryDlg::setQuery(QString org,
    solution = 0;
 
    MultipleChoice mc = exp->getMultipleChoice(q_tcol);
-   for (unsigned i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, mc.size()); ++i)
+   for (unsigned i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
    std::random_shuffle(strings.begin(), strings.end());
 
@@ -394,12 +396,12 @@ void MCQueryDlg::keyPressEvent( QKeyEvent *e )
 {
   switch( e->key() )
   {
-    case Key_Escape:
+    case Qt::Key_Escape:
       dontKnowClicked();
     break;
 
-    case Key_Return:
-    case Key_Enter:
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
       if (mw->dont_know->isDefault() )
         dontKnowClicked();
       else if (mw->know_it->isDefault() )

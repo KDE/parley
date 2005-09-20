@@ -29,6 +29,11 @@
 #include <qlineedit.h>
 #include <qlabel.h>
 #include <qfileinfo.h>
+//Added by qt3to4:
+#include <QPixmap>
+#include <Q3ValueList>
+#include <Q3CString>
+#include <Q3PopupMenu>
 
 #include <kapplication.h>
 #include <klocale.h>
@@ -677,7 +682,7 @@ KV_ISO639_Code kv_iso639_2[] = {
 };
 */
 
-LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent, const char* name, WFlags fl)
+LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent, const char* name, Qt::WFlags fl)
   : LanguageOptionsBase(parent, name, fl), m_langSet(langset)
 {
   langset_popup = 0;
@@ -803,7 +808,7 @@ void LanguageOptions::enableLangWidgets()
   if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
   {
     QByteArray data;
-    QCString replyType;
+    Q3CString replyType;
     QByteArray replyData;
 
     if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()", data, replyType, replyData))
@@ -815,7 +820,7 @@ void LanguageOptions::enableLangWidgets()
       if (replyType == "QStringList")
       {
         QStringList layouts;
-        QDataStream stream(replyData, IO_ReadOnly);
+        QDataStream stream(replyData, QIODevice::ReadOnly);
         stream >> layouts;
         layouts.prepend(QString::null);
         d_kblayout->clear();
@@ -1060,7 +1065,7 @@ void LanguageOptions::loadCountryData()
       continue;
 
     QStringList all_langs = QStringList::split(",", entry.readEntry(QString::fromLatin1("Languages")));
-    QValueList<int> langs;
+    Q3ValueList<int> langs;
 
     QString pixmap = *sit;
     index = pixmap.findRev('/');
@@ -1092,7 +1097,7 @@ void LanguageOptions::loadCountryData()
     regions[submenu].countries.append(countryIdMap[id]);
   }
 
-  langset_popup = new QPopupMenu();
+  langset_popup = new Q3PopupMenu();
 
   // To have it sorted by name
   QMap<QString, Region> regmap;
@@ -1102,14 +1107,14 @@ void LanguageOptions::loadCountryData()
   connect(langset_popup, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
   for (QMap<QString, Region>::Iterator it = regmap.begin(); it != regmap.end(); ++it)
   {
-    QPopupMenu *regpop = new QPopupMenu();
+    Q3PopupMenu *regpop = new Q3PopupMenu();
     connect(regpop, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
     langset_popup->insertItem(it.key(), regpop);
     Region r = it.data();
 
     // To have it sorted by name
     QMap<QString, Country> countrymap;
-    for (QValueList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it)
+    for (Q3ValueList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it)
     {
       countrymap.insert((*it).country, *it);
     }
@@ -1130,7 +1135,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
   {
     Country c = countryIdMap[i];
     bool first = true;
-    for (QValueList<int>::Iterator it = c.langs.begin(); it != c.langs.end(); ++it)
+    for (Q3ValueList<int>::Iterator it = c.langs.begin(); it != c.langs.end(); ++it)
     {
       QString s = global_langset.shortId(*it);
 
@@ -1192,15 +1197,15 @@ void LanguageOptions::createISO6391Menus()
     languages.insert(s, id);
   }
 
-  iso6391_popup = new QPopupMenu();
+  iso6391_popup = new Q3PopupMenu();
 
-  QPopupMenu *pop = 0;
+  Q3PopupMenu *pop = 0;
   QString lang = "";
   for (QMap<QString, int>::Iterator it = languages.begin(); it != languages.end(); ++it)
   {
     if (it.key()[0].upper() != lang[0].upper())
     {
-      pop = new QPopupMenu();
+      pop = new Q3PopupMenu();
       connect(pop, SIGNAL(activated(int)), this, SLOT(slotLangFromISO6391Activated(int)));
       iso6391_popup->insertItem(it.key()[0].upper(), pop, 1);
     }

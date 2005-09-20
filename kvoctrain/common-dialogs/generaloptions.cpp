@@ -29,7 +29,7 @@
 
 #include "generaloptions.h"
 
-GeneralOptions::GeneralOptions(QWidget* parent, const char* name, WFlags fl)
+GeneralOptions::GeneralOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : GeneralOptionsBase(parent,name,fl)
 {
  kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());

@@ -29,6 +29,8 @@
 
 #include "VerbQueryDlgForm.h"
 #include "QueryDlgBase.h"
+//Added by qt3to4:
+#include <QKeyEvent>
 
 class VerbQueryDlg : public QueryDlgBase
 {

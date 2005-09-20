@@ -29,6 +29,8 @@
 
 #include "SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
+//Added by qt3to4:
+#include <QKeyEvent>
 
 class SimpleQueryDlg : public QueryDlgBase
 {

@@ -33,7 +33,7 @@ class ViewOptions : public ViewOptionsBase
   Q_OBJECT
 
 public:
-  ViewOptions(QWidget* parent = 0, const char* name = 0, WFlags fl = 0 );
+  ViewOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
 
 };
 

@@ -27,7 +27,7 @@
 
 #include "viewoptions.h"
 
-ViewOptions::ViewOptions(QWidget* parent, const char* name, WFlags fl)
+ViewOptions::ViewOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : ViewOptionsBase(parent,name,fl)
 {
   kcfg_GradeCol0->setEnabled(kcfg_UseGradeCol->isChecked());

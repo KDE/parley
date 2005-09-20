@@ -193,7 +193,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
 void kvoctrainDoc::errorVcb (int /*line*/, const QString &text )
 {
    unknown_elem = true;
-   QApplication::setOverrideCursor( arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::arrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error in vocabbox file"));
    QString msg = text;
    KMessageBox::error(0, msg, s);

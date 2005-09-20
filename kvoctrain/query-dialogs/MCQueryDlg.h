@@ -29,6 +29,8 @@
 
 #include "MCQueryDlgForm.h"
 #include "QueryDlgBase.h"
+//Added by qt3to4:
+#include <QKeyEvent>
 
 class MCQueryDlg : public QueryDlgBase
 {

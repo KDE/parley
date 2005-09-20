@@ -28,7 +28,7 @@
 
 #include "groupoptions.h"
 
-GroupOptions::GroupOptions(QWidget* parent, const char* name, WFlags fl)
+GroupOptions::GroupOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : GroupOptionsBase(parent,name,fl)
 {
 

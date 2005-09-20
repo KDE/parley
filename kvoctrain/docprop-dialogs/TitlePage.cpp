@@ -30,7 +30,7 @@
 #include <klocale.h>
 
 #include <qlineedit.h>
-#include <qmultilineedit.h>
+#include <q3multilineedit.h>
 #include <qlabel.h>
 
 TitlePage::TitlePage

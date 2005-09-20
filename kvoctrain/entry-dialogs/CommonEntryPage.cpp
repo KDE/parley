@@ -28,10 +28,12 @@
 
 #include <qlineedit.h>
 #include <qlabel.h>
-#include <qlistbox.h>
+#include <q3listbox.h>
 #include <qcombobox.h>
 #include <qcheckbox.h>
-#include <qgroupbox.h>
+#include <q3groupbox.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #include <kapplication.h>
 #include <kdebug.h>

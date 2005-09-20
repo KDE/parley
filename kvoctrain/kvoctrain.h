@@ -33,6 +33,10 @@
 
 // include files for QT
 #include <qpainter.h>
+//Added by qt3to4:
+#include <QLabel>
+#include <QKeyEvent>
+#include <Q3PopupMenu>
 
 // include files for KDE
 #include <kapplication.h>
@@ -271,7 +275,7 @@ private:
 
   QString lastPixName;
 
-  QPopupMenu *learn_menu;
+  Q3PopupMenu *learn_menu;
 
   /** view is the main widget which represents your working area. The View
     * class should handle all events of the view widget.  It is kept empty so
@@ -296,7 +300,7 @@ private:
   bool             querymode;
   bool             querying;
   QString          def_lang;
-  QPopupMenu      *header_m;
+  Q3PopupMenu      *header_m;
   int              act_query_col;
   QString          act_query_trans;
   QString          act_query_org;

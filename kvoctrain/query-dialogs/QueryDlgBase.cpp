@@ -26,8 +26,10 @@
 #include "QueryDlgBase.h"
 
 #include <qlineedit.h>
-#include <qmultilineedit.h>
+#include <q3multilineedit.h>
 #include <qradiobutton.h>
+//Added by qt3to4:
+#include <QCloseEvent>
 
 #include <LineList.h>
 
@@ -128,7 +130,7 @@ void QueryDlgBase::resetField(QLineEdit *field)
 }
 
 
-bool QueryDlgBase::verifyField(QMultiLineEdit *field, const QString &really, bool mixed)
+bool QueryDlgBase::verifyField(Q3MultiLineEdit *field, const QString &really, bool mixed)
 {
   if (!field->isEnabled())
     return true;
@@ -191,7 +193,7 @@ bool QueryDlgBase::verifyField(QMultiLineEdit *field, const QString &really, boo
 }
 
 
-void QueryDlgBase::resetField(QMultiLineEdit *field)
+void QueryDlgBase::resetField(Q3MultiLineEdit *field)
 {
   if (!field->isEnabled() )
     return;

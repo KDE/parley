@@ -36,6 +36,8 @@
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qlineedit.h>
+//Added by qt3to4:
+#include <QKeyEvent>
 
 VerbQueryDlg::VerbQueryDlg
 (
@@ -416,12 +418,12 @@ void VerbQueryDlg::keyPressEvent( QKeyEvent *e )
 {
   switch( e->key() )
   {
-    case Key_Escape:
+    case Qt::Key_Escape:
       dontKnowClicked();
     break;
 
-    case Key_Return:
-    case Key_Enter:
+    case Qt::Key_Return:
+    case Qt::Key_Enter:
       if (mw->dont_know->isDefault() )
         dontKnowClicked();
       else if (mw->know_it->isDefault() )

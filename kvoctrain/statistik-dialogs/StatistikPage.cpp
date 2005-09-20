@@ -34,6 +34,8 @@
 
 #include <qcursor.h>
 #include <qpainter.h>
+//Added by qt3to4:
+#include <QPixmap>
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2
@@ -47,10 +49,10 @@
 #define TB_LESSON          3
 
 
-class GradeListItem : public QListViewItem
+class GradeListItem : public Q3ListViewItem
 {
 public:
-  inline GradeListItem (QListView* parent, int _lesson): QListViewItem(parent), lesson(_lesson) {}
+  inline GradeListItem (Q3ListView* parent, int _lesson): Q3ListViewItem(parent), lesson(_lesson) {}
   inline int getLesson() const { return lesson; }
 
 private:
@@ -74,8 +76,8 @@ StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent, cons
   // accumulate numbers of grades per lesson
   for (int i = 0; i < (int) doc->numEntries(); i++) {
     kvoctrainExpr *expr = doc->getEntry(i);
-    int fg = QMIN(KV_MAX_GRADE, expr->getGrade(col, false));
-    int tg = QMIN(KV_MAX_GRADE, expr->getGrade(col, true));
+    int fg = QMIN(KV_MAX_GRADE, (int)expr->getGrade(col, false));
+    int tg = QMIN(KV_MAX_GRADE, (int)expr->getGrade(col, true));
     int l = expr->getLesson();
     if (l >= 0 && l <= (int) lesson.size() ) {
       fsc[l].grade[fg]++;
@@ -85,8 +87,8 @@ StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent, cons
     }
   }
   setupPixmaps();
-  connect(StatListView, SIGNAL( rightButtonPressed( QListViewItem *, const QPoint& , int ) ),
-          this, SLOT( slotRMB( QListViewItem *, const QPoint &, int ) ) );
+  connect(StatListView, SIGNAL( rightButtonPressed( Q3ListViewItem *, const QPoint& , int ) ),
+          this, SLOT( slotRMB( Q3ListViewItem *, const QPoint &, int ) ) );
 }
 
 
@@ -102,7 +104,7 @@ void StatistikPage::setupPixmaps()
     QPixmap fpix (SIZE_GRADE, height);
     p.begin( &fpix);
     p.eraseRect (0, 0, fpix.width(), fpix.height());
-    p.setPen( black );
+    p.setPen( Qt::black );
     if (fsc[entry].num != 0) {
 
       int num = 0;
@@ -161,7 +163,7 @@ void StatistikPage::setupPixmaps()
     QPixmap tpix (SIZE_GRADE, height);
     p.begin( &tpix );
     p.eraseRect (0, 0, tpix.width(), tpix.height());
-    p.setPen( black );
+    p.setPen( Qt::black );
     if (tsc[entry].num != 0) {
       int num = 0;
       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
@@ -242,7 +244,7 @@ void StatistikPage::setupPixmaps()
 }
 
 
-void StatistikPage::slotRMB( QListViewItem* Item, const QPoint & /*point*/, int col)
+void StatistikPage::slotRMB( Q3ListViewItem* Item, const QPoint & /*point*/, int col)
 {
   if( Item != 0)
     slotPopupMenu(((GradeListItem*)Item)->getLesson(), col);

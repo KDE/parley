@@ -28,7 +28,7 @@
 #include <kvoctraindoc.h>
 
 #include <qlabel.h>
-#include <qvaluevector.h>
+#include <q3valuevector.h>
 
 GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent, const char* name): GenStatPageForm( parent, name )
 {
