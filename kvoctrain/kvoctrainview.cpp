@@ -254,7 +254,7 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
     mask.fill(Qt::black);
 
     bitBlt(&arrow, 0, 0, &pix, 0, 0);
-    if (pix.mask() != 0)
+    if (!pix.mask().isNull())
       bitBlt(&mask, 0, 0, pix.mask(), 0, 0);
     else {
       QBitmap bmp(pix.createHeuristicMask());

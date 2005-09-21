@@ -354,7 +354,7 @@ void RandomQueryDlg::initFocus() const
 void RandomQueryDlg::verifyClicked()
 {
   QStringList trans (translations);
-  uint i, j;
+  int i, j;
   if ( Prefs::suggestions() )
   {
     Q3PtrList<QComboBox> combos (transCombos);
@@ -652,7 +652,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
         {
           QString curText (combo -> currentText());
           combo -> clear();
-          for ( uint i = 0; i < vocabulary.count(); i ++ )
+          for ( int i = 0; i < vocabulary.count(); i ++ )
           {
             QString trans (vocabulary[i]);
             if ( (e -> key() == Qt::Key_F5 && trans.startsWith (curText, false)
