@@ -37,7 +37,7 @@
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <kstatusbar.h>
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
@@ -257,7 +257,7 @@ void kvoctrainApp::initActions()
   configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
   configToolbar->setToolTip(configToolbar->whatsThis());
 
-  learn_menu = (Q3PopupMenu*) child( "learning", "KPopupMenu" );
+  learn_menu = (Q3PopupMenu*) child( "learning", "KMenu" );
   connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));

@@ -25,7 +25,7 @@
 
 #include "StatistikPage.h"
 
-#include <kpopupmenu.h>
+#include <kmenu.h>
 #include <klocale.h>
 #include <kdebug.h>
 
@@ -274,7 +274,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
   else
     return;
 
-  KPopupMenu *header_m = new KPopupMenu(i18n("Number of Entries per Grade"));
+  KMenu *header_m = new KMenu(i18n("Number of Entries per Grade"));
 
   header_m->insertItem (i18n(KV_NORM_TEXT) + "\t" + QString::number(sc->grade[KV_NORM_GRADE]) );
   header_m->insertItem (i18n(KV_LEV1_TEXT) + "\t" + QString::number(sc->grade[KV_LEV1_GRADE]) );
