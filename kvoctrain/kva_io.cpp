@@ -279,7 +279,7 @@ void kvoctrainApp::slotFileMerge()
     msg = format.arg(url.path());
     slotStatusMsg(msg);
 
-    QApplication::setOverrideCursor( waitCursor );
+    QApplication::setOverrideCursor( Qt::WaitCursor );
 
     int lesson_offset = lessons->count()-1;
     for (int i = 0; i < (int) new_names.size(); i++) {

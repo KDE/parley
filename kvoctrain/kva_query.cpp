@@ -133,7 +133,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
     return;
 
   prepareProgressBar();
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
   queryList = querymanager.select (doc, act_lesson, act_query_col, property);
 
@@ -304,7 +304,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
     return;
 
   prepareProgressBar();
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
 
   queryList = querymanager.select (doc, act_lesson, act_query_col, type);

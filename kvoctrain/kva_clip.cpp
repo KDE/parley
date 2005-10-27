@@ -114,7 +114,7 @@ void kvoctrainApp::slotEditCopy()
 {
   slotStatusMsg(i18n("Copying selection to clipboard..."));
 
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
   QString exp;
   QString s;
 
@@ -165,7 +165,7 @@ void kvoctrainApp::slotEditPaste()
 {
   slotStatusMsg(i18n("Inserting clipboard contents..."));
 
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
   QString s;
   QString entries = QApplication::clipboard()->text();
 

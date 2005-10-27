@@ -86,6 +86,9 @@ void writeSpotty (QTextStream &os, spotty& spot_line, bool first) {
 
 void readToMem (QTextStream &is, QString month, QString year)
 {
+   ///@todo
+   ///port
+   /*
    QString line;
    bool    lesson_pending = false;
    QString lesson_str;
@@ -217,6 +220,7 @@ void readToMem (QTextStream &is, QString month, QString year)
        }
      }
    }
+   */
 }
 
 void writeToKvtml(QTextStream &os, QString month, QString year)
@@ -300,6 +304,9 @@ void writeToKvtml(QTextStream &os, QString month, QString year)
 
 int main(int argc, char **argv)
 {
+  ///@todo
+  ///port
+  /*
   // use i18n-strings from kvoctrain
   KApplication app(argc,argv, "kvoctrain");
 
@@ -341,7 +348,7 @@ int main(int argc, char **argv)
   if (os.device()->status() != IO_Ok ) {
     cerr << i18n("Could not write ").local8Bit() << kvtml.local8Bit() << endl;
     exit (1);
-  }
+  }*/
 
   exit (0);
 }

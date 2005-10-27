@@ -120,7 +120,7 @@ void KVocTrainPrefs::updateSettings()
   m_languageOptions->updateSettings();
   m_thresholdOptions->updateSettings();
   m_blockOptions->updateSettings();
-  emit settingsChanged();
+  emit settingsChanged("");
 }
 
 void KVocTrainPrefs::updateWidgetsDefault()

@@ -620,7 +620,7 @@ void kvoctrainApp::slotDocProps ()
       doc->setDocRemark(ddlg.getDocRemark() );
 
       slotStatusMsg(i18n("Updating lesson indices..."));
-      QApplication::setOverrideCursor( waitCursor );
+      QApplication::setOverrideCursor( Qt::WaitCursor );
 
       ddlg.getLesson(lessons, lessonIndex);
       ddlg.getTypeNames(new_typeStr, typeIndex);
@@ -753,13 +753,13 @@ void kvoctrainApp::slotAppendRow ()
 void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
 {
   switch( e->key() ) {
-    case Key_Shift:  shiftActive = false;
+    case Qt::Key_Shift:  shiftActive = false;
     break;
 
-    case Key_Alt:  altActive = false;
+    case Qt::Key_Alt:  altActive = false;
     break;
 
-    case Key_Control:  controlActive = false;
+    case Qt::Key_Control:  controlActive = false;
     break;
   }
 }
@@ -767,12 +767,15 @@ void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
 
 void kvoctrainApp::keyPressEvent( QKeyEvent *e )
 {
+  ///@todo
+  ///port
+  /*
   controlActive = (e->state() & ControlButton) != 0;
   shiftActive = (e->state() & ShiftButton) != 0;
   altActive = (e->state() & AltButton) != 0;
-
+  */
   switch( e->key() ) {
-    case Key_Plus:
+    case Qt::Key_Plus:
       if (controlActive) {
         int less = lessons->currentItem();
         if (less == lessons->count()-1)
@@ -783,7 +786,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       }
     break;
 
-    case Key_Minus:
+    case Qt::Key_Minus:
       if (controlActive) {
         int less = lessons->currentItem();
         if (less == 0)
@@ -794,16 +797,16 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       }
     break;
 
-    case Key_Shift:  shiftActive = true;
+    case Qt::Key_Shift:  shiftActive = true;
     break;
 
-    case Key_Alt:  altActive = true;
+    case Qt::Key_Alt:  altActive = true;
     break;
 
-    case Key_Control:  controlActive = true;
+    case Qt::Key_Control:  controlActive = true;
     break;
 
-    case Key_Tab:
+    case Qt::Key_Tab:
       if (view->getTable()->hasFocus() )  {
         searchLine->setFocus();
         searchLine->selectAll();
@@ -812,7 +815,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
         view->getTable()->setFocus();
     break;
 
-    case Key_Backtab:
+    case Qt::Key_Backtab:
       if (searchLine->hasFocus() )
         view->getTable()->setFocus();
       else {
@@ -821,11 +824,11 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       }
     break;
 
-    case Key_Delete:
+    case Qt::Key_Delete:
       slotRemoveRow();
     break;
 
-    case Key_Insert: {
+    case Qt::Key_Insert: {
       slotAppendRow();
     }
     break;
@@ -884,7 +887,7 @@ void kvoctrainApp::slotShowStatist()
 void kvoctrainApp::slotCleanVocabulary ()
 {
    prepareProgressBar();
-   QApplication::setOverrideCursor( waitCursor );
+   QApplication::setOverrideCursor( Qt::WaitCursor );
    int num = doc->cleanUp();
    QApplication::restoreOverrideCursor();
    removeProgressBar();
@@ -915,7 +918,7 @@ void kvoctrainApp::slotCreateRandom()
    Prefs::setEntriesPerLesson(res);
 
    slotStatusMsg(i18n("Creating random lessons..."));
-   QApplication::setOverrideCursor( waitCursor );
+   QApplication::setOverrideCursor( Qt::WaitCursor );
 
    vector<kvoctrainExpr*> randomList;
    for (int i = 0; i < doc->numEntries(); i++) {
@@ -1052,7 +1055,7 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
   }
 
   slotStatusMsg(i18n("Searching expression..."));
-  QApplication::setOverrideCursor( waitCursor );
+  QApplication::setOverrideCursor( Qt::WaitCursor );
 
   // new word or shortend word
   if (s.length() < searchstr.length() )
@@ -1214,7 +1217,7 @@ void kvoctrainApp::aboutToShowVocabAppendLanguage()
   if (doc != 0)
   {
     vocabAppendLanguage->clear();
-    Q3PopupMenu * add_m = vocabAppendLanguage->popupMenu();
+    QMenu * add_m = vocabAppendLanguage->popupMenu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1243,7 +1246,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
   if (doc != 0)
   {
     vocabSetLanguage->clear();
-    Q3PopupMenu * set_m = vocabSetLanguage->popupMenu();
+    QMenu * set_m = vocabSetLanguage->popupMenu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1257,7 +1260,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
     for (int header = 0; header < doc->numLangs(); ++header )
     {
       // select one of the available languages for the column
-      Q3PopupMenu *langs_m = new Q3PopupMenu();
+      QMenu *langs_m = new QMenu();
         // hack: ID => header-id + language
 
       for (int i = 0; i < (int) langset.size(); i++) {
@@ -1288,7 +1291,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
   if (doc != 0)
   {
     vocabRemoveLanguage->clear();
-    Q3PopupMenu * remove_m = vocabRemoveLanguage->popupMenu();
+    QMenu * remove_m = vocabRemoveLanguage->popupMenu();
 
     QStringList names;
     for (int j = 1; j < (int) doc->numLangs(); j++)

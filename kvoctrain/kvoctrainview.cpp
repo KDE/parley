@@ -215,6 +215,9 @@ kvoctrainView::~kvoctrainView()
 
 void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &pixfile)
 {
+  ///@todo
+  ///port
+  /*
   Q3Header *header = m_table->horizontalHeader();
 
   if (pixfile.isEmpty())
@@ -285,7 +288,7 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
 
     QIcon set(arrow, QIcon::Small);
     header->setLabel(id, set, name);
-  }
+  }*/
 }
 
 void kvoctrainView::print(KPrinter * pPrinter)

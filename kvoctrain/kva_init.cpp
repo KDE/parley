@@ -114,7 +114,7 @@ void kvoctrainApp::initActions()
   fileOpen->setWhatsThis(i18n("Open a vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
 
-  fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", CTRL+Key_G, this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+  fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", "CTRL+Key_G", this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
 
@@ -212,14 +212,14 @@ void kvoctrainApp::initActions()
   lessons = new KComboBox(this);
   lessons->setMinimumWidth(160);
   connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
-  lessons->setFocusPolicy(QWidget::NoFocus);
+  lessons->setFocusPolicy(Qt::NoFocus);
 
   vocabLessons = new KWidgetAction(lessons, i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
 
   searchLine = new KLineEdit(this);
-  searchLine->setFocusPolicy(QWidget::ClickFocus);
+  searchLine->setFocusPolicy(Qt::ClickFocus);
   connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 

@@ -82,6 +82,9 @@ void KVocTrainTable::setCurrentItem(int row)
 
 QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
 {
+  ///@todo
+  ///port
+  /*
   if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
 
     if (m_doc) {
@@ -104,7 +107,7 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
         }
       }
     }
-  }
+  }*/
   return Q3Table::beginEdit(row, col, replace);
 }
 
@@ -136,7 +139,7 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
     return;
   }
 
-  QApplication::setOverrideCursor(waitCursor);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   clearSelection();
 
@@ -427,7 +430,7 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
   }
 
   QPen pen( p->pen() );
-  int gridColor = style().styleHint( QStyle::SH_Table_GridLineColor, this );
+  int gridColor = 0; ///@todo port style().styleHint( QStyle::SH_Table_GridLineColor, this );
   if (gridColor != -1) {
     const QPalette &pal = palette();
     if (cg != colorGroup()
@@ -462,21 +465,21 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
   delayTimer->stop();
   switch(e->key())
   {
-    case Key_Right: {
+    case Qt::Key_Right: {
       int topCell = rowAt(0);
       int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
       if (numCols() > 2)
         for (int i = topCell; i <= lastRowVisible; i++)
           updateCell(i, KV_COL_ORG);
     }  // fallthrough
-    case Key_Up:
-    case Key_Down:
-    case Key_Next:
-    case Key_Prior:
+    case Qt::Key_Up:
+    case Qt::Key_Down:
+    case Qt::Key_Next:
+    case Qt::Key_Prior:
       Q3Table::keyPressEvent(e);
       break;
 
-      case Key_Left: {
+      case Qt::Key_Left: {
         Q3Table::keyPressEvent(e);
         int topCell = rowAt(0);
         int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
@@ -486,9 +489,9 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
       }
       break;
 
-    case Key_Shift:
-    case Key_Alt:
-      case Key_Control:  // fallthrough
+    case Qt::Key_Shift:
+    case Qt::Key_Alt:
+      case Qt::Key_Control:  // fallthrough
         Q3Table::keyPressEvent(e);
         emit forwardKeyPressEvent(e);
         break;
@@ -511,9 +514,9 @@ void KVocTrainTable::keyReleaseEvent(QKeyEvent * e)
   delayTimer->stop();
   switch(e->key())
   {
-    case Key_Shift:
-    case Key_Alt:
-    case Key_Control:  // fallthrough
+    case Qt::Key_Shift:
+    case Qt::Key_Alt:
+    case Qt::Key_Control:  // fallthrough
       Q3Table::keyPressEvent(e);
       emit forwardKeyReleaseEvent(e);
       break;
@@ -541,7 +544,7 @@ void KVocTrainTable::contentsMousePressEvent(QMouseEvent * e)
       for (int i = topCell; i <= lastRowVisible; i++)
         updateCell(i, KV_COL_ORG);
   }
-  if(e->button() == LeftButton)
+  if(e->button() == Qt::LeftButton)
     setCurrentCell(cr, cc);
 }
 

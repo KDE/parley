@@ -30,6 +30,8 @@
 //Added by qt3to4:
 #include <Q3ValueList>
 
+#include <kmenu.h>
+
 #include "languageoptionsbase.h"
 #include "langset.h"
 
@@ -92,8 +94,8 @@ private:
 
   LangSet global_langset;
   QMap<int, Country> countryIdMap;
-  Q3PopupMenu * langset_popup;
-  Q3PopupMenu * iso6391_popup;
+  KMenu * langset_popup;
+  KMenu * iso6391_popup;
   LangSet m_langSet;
   QString m_lastPix;
   bool m_hasChanged;

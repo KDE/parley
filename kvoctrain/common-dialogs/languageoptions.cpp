@@ -42,6 +42,7 @@
 #include <kstandarddirs.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
+#include <kmenu.h>
 
 #include "languageoptions.h"
 #include "kvoctraincore.h"
@@ -804,7 +805,9 @@ void LanguageOptions::enableLangWidgets()
   e_shortName2->setEnabled(enabled);
 
   //kdDebug() << "enabled? " << enabled << endl;
-
+  ///@todo
+  ///port
+  /*
   if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
   {
     QByteArray data;
@@ -833,7 +836,7 @@ void LanguageOptions::enableLangWidgets()
     //kdDebug() << "kxkb not enabled" << endl;
     d_kblayout->clear();
     d_kblayout->setEnabled(false);
-  }
+  }*/
 }
 
 
@@ -1097,7 +1100,7 @@ void LanguageOptions::loadCountryData()
     regions[submenu].countries.append(countryIdMap[id]);
   }
 
-  langset_popup = new Q3PopupMenu();
+  langset_popup = new KMenu();
 
   // To have it sorted by name
   QMap<QString, Region> regmap;
@@ -1107,7 +1110,7 @@ void LanguageOptions::loadCountryData()
   connect(langset_popup, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
   for (QMap<QString, Region>::Iterator it = regmap.begin(); it != regmap.end(); ++it)
   {
-    Q3PopupMenu *regpop = new Q3PopupMenu();
+    KMenu *regpop = new KMenu();
     connect(regpop, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
     langset_popup->insertItem(it.key(), regpop);
     Region r = it.data();
@@ -1197,17 +1200,17 @@ void LanguageOptions::createISO6391Menus()
     languages.insert(s, id);
   }
 
-  iso6391_popup = new Q3PopupMenu();
+  iso6391_popup = new KMenu();
 
-  Q3PopupMenu *pop = 0;
+  QMenu *pop = 0;
   QString lang = "";
   for (QMap<QString, int>::Iterator it = languages.begin(); it != languages.end(); ++it)
   {
     if (it.key()[0].upper() != lang[0].upper())
     {
-      pop = new Q3PopupMenu();
+      pop = new QMenu();
       connect(pop, SIGNAL(activated(int)), this, SLOT(slotLangFromISO6391Activated(int)));
-      iso6391_popup->insertItem(it.key()[0].upper(), pop, 1);
+      iso6391_popup->insertItem(QString(it.key()[0].upper()), pop, 1);
     }
 
     lang = it.key();
