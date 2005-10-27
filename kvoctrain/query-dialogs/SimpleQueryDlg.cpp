@@ -329,7 +329,7 @@ void SimpleQueryDlg::setQueryFieldWordwrap()
   int w = fm.width(mw->queryField->text());
   int w2 = mw->width();
   if (w > w2)
-    mw->queryField->setAlignment(Qt::AlignVCenter | Qt::WordBreak);
+    mw->queryField->setAlignment(Qt::AlignVCenter | Qt::TextWordWrap);
   else
     mw->queryField->setAlignment(Qt::AlignVCenter);
 }

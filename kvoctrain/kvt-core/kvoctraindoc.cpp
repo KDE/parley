@@ -228,7 +228,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
       return false;
     }
 
-    QApplication::setOverrideCursor( Qt::waitCursor );
+    QApplication::setOverrideCursor( Qt::WaitCursor );
     switch (ft) {
       case kvtml: {
         QTextStream os( &f );                       // serialize using f

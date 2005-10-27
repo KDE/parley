@@ -836,7 +836,7 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
      );
    QString msg = format.arg(attr).arg(name);
 
-   QApplication::setOverrideCursor( Qt::arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown attribute"));
    bool result = (KMessageBox::warningContinueCancel(0, ln+msg, s) == KMessageBox::Continue);
    QApplication::restoreOverrideCursor();
@@ -858,7 +858,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
       "read documents with unknown elements.\n"
      );
    QString msg = format.arg(elem);
-   QApplication::setOverrideCursor( Qt::arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown element"));
    KMessageBox::sorry(0, ln+msg, s);
    QApplication::restoreOverrideCursor();
@@ -867,7 +867,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 
 void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 {
-   QApplication::setOverrideCursor( Qt::arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error"));
    QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
 
@@ -879,7 +879,7 @@ void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 
 void kvoctrainDoc::warningKvtMl (int line, const QString &text )
 {
-   QApplication::setOverrideCursor( Qt::arrowCursor, true );
+   QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Warning"));
    QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
    QString msg = text;

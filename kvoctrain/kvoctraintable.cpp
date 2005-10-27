@@ -474,8 +474,8 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
     }  // fallthrough
     case Qt::Key_Up:
     case Qt::Key_Down:
-    case Qt::Key_Next:
-    case Qt::Key_Prior:
+    case Qt::Key_PageDown:
+    case Qt::Key_PageUp:
       Q3Table::keyPressEvent(e);
       break;
 

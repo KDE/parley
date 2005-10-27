@@ -93,7 +93,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
   KApplication app;
 
   kvoctrainApp *kva = 0;
-  if (app.isRestored()) {
+  if (app.isSessionRestored()) {
     int n = 1;
     while (KMainWindow::canBeRestored(n)){
       kva = new kvoctrainApp;
