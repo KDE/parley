@@ -23,14 +23,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qfile.h>
-//Added by qt3to4:
+#include <QCoreApplication>
+#include <QFile>
 #include <QTextStream>
-
-#include <vector>
-#include <iostream>
-using namespace std;
-
+#include <QList>
 
 #include <klocale.h>
 #include <kapplication.h>
@@ -42,7 +38,7 @@ using namespace std;
 
 #define SPOT_VERSION   "v0.2.1"
 
-vector<QString> lesson_names;
+QList<QString> lesson_names;
 
 struct spotty {
   QString  type;
@@ -53,7 +49,7 @@ struct spotty {
            de;
 };
 
-vector<spotty> spottys;
+QList<spotty> spottys;
 
 void writeSpotty (QTextStream &os, spotty& spot_line, bool first) {
    os << " <e";
@@ -86,16 +82,13 @@ void writeSpotty (QTextStream &os, spotty& spot_line, bool first) {
 
 void readToMem (QTextStream &is, QString month, QString year)
 {
-   ///@todo
-   ///port
-   /*
    QString line;
    bool    lesson_pending = false;
    QString lesson_str;
    spotty spot;
 
    bool first_line = true;
-   while (!is.eof() && is.device()->status() == IO_Ok) {
+   while (!is.atEnd() && is.device()->status() == IO_Ok) {
      line = is.readLine();
 
      int pos;
@@ -220,7 +213,6 @@ void readToMem (QTextStream &is, QString month, QString year)
        }
      }
    }
-   */
 }
 
 void writeToKvtml(QTextStream &os, QString month, QString year)
@@ -304,15 +296,10 @@ void writeToKvtml(QTextStream &os, QString month, QString year)
 
 int main(int argc, char **argv)
 {
-  ///@todo
-  ///port
-  /*
-  // use i18n-strings from kvoctrain
-  KApplication app(argc,argv, "kvoctrain");
+  QCoreApplication app(argc, argv);
 
   if (argc != 4) {
-    cerr << i18n("usage: spotlight2kvtml spotfile month year\n\n").local8Bit();
-    exit (1);
+    qFatal("usage: spotlight2kvtml spotfile month year");
   }
 
   QString spot (argv[1]);
@@ -335,8 +322,7 @@ int main(int argc, char **argv)
   fs.close();
 
   if (is.device()->status() != IO_Ok ) {
-    cerr << i18n("Could not read ").local8Bit() << spot.local8Bit() << endl;
-    exit (1);
+    qFatal("Could not read %s", argv[1]);
   }
 
   QFile fk(kvtml);
@@ -346,9 +332,8 @@ int main(int argc, char **argv)
   fk.close();
 
   if (os.device()->status() != IO_Ok ) {
-    cerr << i18n("Could not write ").local8Bit() << kvtml.local8Bit() << endl;
-    exit (1);
-  }*/
+    qFatal("Could not write %s", QLatin1String(kvtml.toLocal8Bit()).latin1());
+  }
 
-  exit (0);
+  return 0;
 }
