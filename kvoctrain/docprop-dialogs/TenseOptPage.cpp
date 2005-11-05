@@ -92,7 +92,7 @@ void TenseOptPage::slotNewTense()
   str.setNum (i);
   if (i <= 9)
     str.insert (0, " ");
-  tenseList->insertItem (str+TENSE_TAG+getTense.stripWhiteSpace());
+  tenseList->insertItem (str+TENSE_TAG+getTense.simplified());
   tenseIndex.push_back(-(i-1));
   act_tense = tenseList->count();
   tenseList->setCurrentItem (i-1);
@@ -117,7 +117,7 @@ void TenseOptPage::slotModifyTense()
     str2.setNum (act_tense+1);
     if (act_tense <= 9)
       str2.insert (0, " ");
-    tenseList->changeItem (str2+TENSE_TAG+getTense.stripWhiteSpace(), act_tense);
+    tenseList->changeItem (str2+TENSE_TAG+getTense.simplified(), act_tense);
   }
 }
 

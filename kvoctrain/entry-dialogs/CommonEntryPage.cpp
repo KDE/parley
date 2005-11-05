@@ -306,7 +306,7 @@ void CommonEntryPage::slotTypeSelected(int idx)
             first = false;
           }
           QString s = all_types[sub_idx].longStr();
-          subtype_box->insertItem (s.stripWhiteSpace());
+          subtype_box->insertItem (s.simplified());
           current_subtypes.push_back(all_types[sub_idx].shortStr());
         }
       }

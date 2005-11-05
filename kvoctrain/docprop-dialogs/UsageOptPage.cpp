@@ -92,7 +92,7 @@ void UsageOptPage::slotNewUsage()
   str.setNum (i);
   if (i <= 9)
     str.insert (0, " ");
-  usageList->insertItem (str+USAGE_TAG+getUsage.stripWhiteSpace());
+  usageList->insertItem (str+USAGE_TAG+getUsage.simplified());
   usageIndex.push_back(-(i-1));
   act_usage = usageList->count();
   usageList->setCurrentItem (i-1);
@@ -118,7 +118,7 @@ void UsageOptPage::slotModifyUsage()
     str2.setNum (act_usage+1);
     if (act_usage <= 9)
       str2.insert (0, " ");
-    usageList->changeItem (str2+USAGE_TAG+getUsage.stripWhiteSpace(), act_usage);
+    usageList->changeItem (str2+USAGE_TAG+getUsage.simplified(), act_usage);
   }
 }
 

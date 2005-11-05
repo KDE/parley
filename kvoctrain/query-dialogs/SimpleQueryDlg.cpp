@@ -145,7 +145,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        mw->instructionLabel->setText(i18n("Fill in the missing word:"));
        setCaption(i18n("Example Training"));
        s = exp->getExample(column);
-       answerstring = column == 0 ? exp->getOriginal().stripWhiteSpace() : exp->getTranslation(column).stripWhiteSpace();
+       answerstring = column == 0 ? exp->getOriginal().simplified() : exp->getTranslation(column).simplified();
        int pos = -1;
        while ((pos = s.find(answerstring)) > 0)
        {

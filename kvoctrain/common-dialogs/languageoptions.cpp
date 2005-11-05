@@ -843,14 +843,14 @@ void LanguageOptions::enableLangWidgets()
 void LanguageOptions::slotNewNameChanged(const QString& _s)
 {
    QString s = _s;
-   b_langNew->setEnabled(s.stripWhiteSpace().length() >= 2);
+   b_langNew->setEnabled(s.simplified().length() >= 2);
 }
 
 
 void LanguageOptions::slotNewClicked()
 {
    QString s = e_newName->text();
-   d_shortName->insertItem(s.stripWhiteSpace());
+   d_shortName->insertItem(s.simplified());
    d_shortName->setCurrentItem(d_shortName->count()-1);
    enableLangWidgets();
    slotShortActivated(s);
@@ -862,7 +862,7 @@ void LanguageOptions::slotNewClicked()
 void LanguageOptions::slotShortActivated(const QString& _id)
 {
    int i = 0;
-   QString id = _id.stripWhiteSpace();
+   QString id = _id.simplified();
    if (d_shortName->count() > (int) m_langSet.size() )
    {
      // avoid duplicates in language code
@@ -1142,7 +1142,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
     {
       QString s = global_langset.shortId(*it);
 
-      if (d_shortName->contains(s.stripWhiteSpace()))
+      if (d_shortName->contains(s.simplified()))
       {
         if (first)
         {
@@ -1153,7 +1153,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
         continue;
       }
 
-      d_shortName->insertItem(s.stripWhiteSpace());
+      d_shortName->insertItem(s.simplified());
       m_langSet.addSet(s, global_langset.longId(*it), global_langset.PixMapFile(*it), global_langset.shortId2(*it));
       emit widgetModified();
       m_hasChanged = true;
@@ -1231,14 +1231,14 @@ void LanguageOptions::slotLangFromISO6391Activated(int id)
    {
      QString shortid = global_langset.shortId(id);
 
-     if (d_shortName->contains(shortid.stripWhiteSpace()))
+     if (d_shortName->contains(shortid.simplified()))
      {
        d_shortName->setCurrentItem(shortid);
        slotShortActivated(shortid);
        return;
      }
 
-     d_shortName->insertItem(shortid.stripWhiteSpace());
+     d_shortName->insertItem(shortid.simplified());
      d_shortName->setCurrentItem(d_shortName->count()-1);
      slotShortActivated(shortid);
      enableLangWidgets();

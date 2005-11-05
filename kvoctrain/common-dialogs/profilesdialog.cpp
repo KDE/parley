@@ -86,7 +86,7 @@ void ProfilesDialog::slotNewGroup()
 
   if (ok)
   {
-    newGroupName = newGroupName.stripWhiteSpace();
+    newGroupName = newGroupName.simplified();
     mw->ps_name->insertItem(newGroupName);
     profiles.append(SettingsProfile(newGroupName, "", "", ""));
     modifyProfile(profiles.count()-1);
@@ -182,7 +182,7 @@ void ProfilesDialog::selectProfile(int profile)
 
     line = profiles[profile].thresh_set;
 
-    line.stripWhiteSpace();
+    line.simplified();
     if (line.length() != 0 && line[0] == '(')
     { // new style: multiple lessons
       int pos;

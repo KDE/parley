@@ -66,17 +66,17 @@ void writeSpotty (QTextStream &os, spotty& spot_line, bool first) {
      os << " l=\"en\"";
 
    if (!spot_line.en_rem.isEmpty() )
-     os << " r=\"" << spot_line.en_rem.stripWhiteSpace() << "\"";
+     os << " r=\"" << spot_line.en_rem.simplified() << "\"";
 
-   os << ">" << spot_line.en.stripWhiteSpace() << "</o><t";
+   os << ">" << spot_line.en.simplified() << "</o><t";
 
    if (first)
      os << " l=\"de\"";
 
    if (!spot_line.de_rem.isEmpty() )
-     os << " r=\"" << spot_line.de_rem.stripWhiteSpace() << "\"";
+     os << " r=\"" << spot_line.de_rem.simplified() << "\"";
 
-   os << ">" << spot_line.de.stripWhiteSpace() << "</t></e>\n";
+   os << ">" << spot_line.de.simplified() << "</t></e>\n";
 }
 
 
@@ -95,11 +95,11 @@ void readToMem (QTextStream &is, QString month, QString year)
      while ((pos = line.find("  ")) >= 0)
        line.remove (pos, 1);
 
-     bool head_line = (!line.stripWhiteSpace().isEmpty() && line == line.upper() );
+     bool head_line = (!line.simplified().isEmpty() && line == line.upper() );
 
      if (first_line && !head_line) {
        line = is.readLine();
-       head_line = (!line.stripWhiteSpace().isEmpty() && line == line.upper() );
+       head_line = (!line.simplified().isEmpty() && line == line.upper() );
      }
      first_line = false;
 
@@ -146,7 +146,7 @@ void readToMem (QTextStream &is, QString month, QString year)
          if (pos >= 0) {
            if (lesson_pending) {
              lesson_pending = false;
-             lesson_names.push_back(lesson_str.stripWhiteSpace());
+             lesson_names.push_back(lesson_str.simplified());
            }
 
            spot.lesson = lesson_names.size();

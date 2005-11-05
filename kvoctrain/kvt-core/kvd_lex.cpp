@@ -133,7 +133,7 @@ bool kvoctrainDoc::loadTypeNameLex (QTextStream &is)
     s = is.readLine();
     attr = extract (s);
 /*
-    if (attr.stripWhiteSpace().isEmpty()) {
+    if (attr.simplified().isEmpty()) {
       attr.setNum (i+1);
       attr.insert (0, "#");
     }
@@ -168,7 +168,7 @@ bool kvoctrainDoc::loadLessonLex (QTextStream &is)
   for (int i = 0; i < LEX_MAX_LESSON; i++) {
     s = is.readLine();
     lesson = extract (s);
-    if (lesson.stripWhiteSpace().isEmpty()) {
+    if (lesson.simplified().isEmpty()) {
       lesson = "#" + QString::number(i+1);
     }
     lesson_descr.push_back (lesson);

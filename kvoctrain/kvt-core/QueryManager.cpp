@@ -191,8 +191,8 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int oindex, int
 //     (and there must be a word on both sides)
        && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(), lessonitems, act_lesson)
        && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType), expr->getType(index), Prefs::typeItem())
-       && !expr->getOriginal().stripWhiteSpace().isEmpty()
-       && !expr->getTranslation(index).stripWhiteSpace().isEmpty()
+       && !expr->getOriginal().simplified().isEmpty()
+       && !expr->getTranslation(index).simplified().isEmpty()
       )
      return true;
    else
@@ -316,16 +316,16 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QueryT
 {
    bool type_ok = false;
    if (query_type == QT_Synonym) {
-     type_ok = !expr->getSynonym(idx).stripWhiteSpace().isEmpty();
+     type_ok = !expr->getSynonym(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Antonym) {
-     type_ok = !expr->getAntonym(idx).stripWhiteSpace().isEmpty();
+     type_ok = !expr->getAntonym(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Paraphrase) {
-     type_ok = !expr->getParaphrase(idx).stripWhiteSpace().isEmpty();
+     type_ok = !expr->getParaphrase(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Example) {
-     type_ok = !expr->getExample(idx).stripWhiteSpace().isEmpty();
+     type_ok = !expr->getExample(idx).simplified().isEmpty();
    }
 
    if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(),

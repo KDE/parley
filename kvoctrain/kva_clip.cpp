@@ -52,7 +52,7 @@ void kvoctrainApp::slotSmartSearchClip()
       s = entries.left(pos);
 
     searchpos = 0;                      // search from beginning
-    searchstr = s.stripWhiteSpace();    // in case RETURN is pressed
+    searchstr = s.simplified();    // in case RETURN is pressed
     searchLine->setFocus();
     searchLine->setText (searchstr);
   }
@@ -192,7 +192,7 @@ void kvoctrainApp::slotEditPaste()
 
     // similar block in kvd_csv.cpp::loadFromCsv()
 
-    if (!s.stripWhiteSpace().isEmpty()) {
+    if (!s.simplified().isEmpty()) {
       if (Prefs::pasteOrder().count() != 0) {
         kvoctrainExpr bucket (s, Prefs::separator(), act_lesson);
         kvoctrainExpr expr;

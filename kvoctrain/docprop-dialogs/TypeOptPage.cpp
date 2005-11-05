@@ -91,7 +91,7 @@ void TypeOptPage::slotNewType()
   str.setNum (i);
   if (i <= 9)
     str.insert (0, " ");
-  typeList->insertItem (str+TYPE_TAG+getType.stripWhiteSpace());
+  typeList->insertItem (str+TYPE_TAG+getType.simplified());
   typeIndex.push_back(-(i-1));
   act_type = typeList->count();
   typeList->setCurrentItem (i-1);
@@ -116,7 +116,7 @@ void TypeOptPage::slotModifyType()
     str2.setNum (act_type+1);
     if (act_type <= 9)
       str2.insert (0, " ");
-    typeList->changeItem (str2+TYPE_TAG+getType.stripWhiteSpace(), act_type);
+    typeList->changeItem (str2+TYPE_TAG+getType.simplified(), act_type);
   }
 }
 

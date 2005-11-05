@@ -268,12 +268,12 @@ bool kvoctrainDoc::saveConjugHeader(vector<Conjugation> &curr_conjug,
     xml.startTag (KV_CON_ENTRY, false);
 
     if (ent == 0) {
-      s = getOriginalIdent().stripWhiteSpace();
+      s = getOriginalIdent().simplified();
       if (s.isEmpty() )
          s = "original";
     }
     else {
-      s = getIdent(ent).stripWhiteSpace();
+      s = getIdent(ent).simplified();
       if (s.isEmpty() ) {
          s.setNum (ent);
          s.insert (0, "translation ");
@@ -491,12 +491,12 @@ bool kvoctrainDoc::saveArticleKvtMl (XmlWriter &xml)
     xml.writeText("  ");            // indent entry a bit
     xml.startTag (KV_ART_ENTRY, false);
     if (lfn == 0) {
-      s = getOriginalIdent().stripWhiteSpace();
+      s = getOriginalIdent().simplified();
       if (s.isEmpty() )
          s = "original";
     }
     else {
-      s = getIdent(lfn).stripWhiteSpace();
+      s = getIdent(lfn).simplified();
       if (s.isEmpty() ) {
          s.setNum (lfn);
          s.insert (0, "translation ");
@@ -756,7 +756,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       s.setNum (getSizeHint (0));
       xml.addAttribute (KV_SIZEHINT, s);
 
-      s = getOriginalIdent().stripWhiteSpace();
+      s = getOriginalIdent().simplified();
       if (s.isEmpty() )
          s = "original";
       xml.addAttribute (KV_LANG, s);
@@ -836,7 +836,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
         s.setNum (getSizeHint (trans));
         xml.addAttribute (KV_SIZEHINT, s);
 
-        s = getIdent(trans).stripWhiteSpace();
+        s = getIdent(trans).simplified();
         if (s.isEmpty() ) {
            s.setNum (trans);
            s.insert (0, "translation ");

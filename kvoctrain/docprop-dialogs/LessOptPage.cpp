@@ -93,7 +93,7 @@ void LessOptPage::slotNewLesson()
   str.setNum (i);
   if (i <= 9)
     str.insert (0, " ");
-  lessonList->insertItem (str+LESS_TAG+getLesson.stripWhiteSpace());
+  lessonList->insertItem (str+LESS_TAG+getLesson.simplified());
   lessonIndex.push_back(-(i-1));
   act_lesson = lessonList->count();
   lessonList->setCurrentItem (i-1);
@@ -118,7 +118,7 @@ void LessOptPage::slotModifyLesson()
     str2.setNum (act_lesson+1);
     if (act_lesson <= 9)
       str2.insert (0, " ");
-    lessonList->changeItem (str2+LESS_TAG+getLesson.stripWhiteSpace(), act_lesson);
+    lessonList->changeItem (str2+LESS_TAG+getLesson.simplified(), act_lesson);
   }
 }
 

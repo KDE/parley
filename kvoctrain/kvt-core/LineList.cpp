@@ -57,7 +57,7 @@ void LineList::setLines(const QString &the_lines )
 void LineList::normalizeWS()
 {
   for (int i = 0; i < (int) multilines.size(); i++) {
-    multilines[i] = multilines[i].stripWhiteSpace();
+    multilines[i] = multilines[i].simplified();
 // FIXME: more tolerance with WS?  2*SPC = 1*SPC...
   }
 }

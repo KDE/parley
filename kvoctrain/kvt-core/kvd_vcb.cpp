@@ -119,7 +119,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
       emit progressChanged(this, int(is.device()->at() / f_ent_percent));
     }
 
-    if (!s.stripWhiteSpace().isEmpty()) {
+    if (!s.simplified().isEmpty()) {
       QString o, t;
       grade_t ograde = KV_LEV1_GRADE,
               tgrade = KV_LEV1_GRADE;
@@ -159,7 +159,7 @@ bool kvoctrainDoc::loadFromVcb (QTextStream& is)
         s.remove (0, pos+QString(VCB_SEPARATOR).length());
       }
 
-      if (s.stripWhiteSpace().length() > 0) {
+      if (s.simplified().length() > 0) {
         tdate = s.toInt();
       }
 

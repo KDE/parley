@@ -197,7 +197,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is)
 
     // similar in kva_clip.cpp::slotEditPaste()
 
-    if (!s.stripWhiteSpace().isEmpty()) {
+    if (!s.simplified().isEmpty()) {
       kvoctrainExpr bucket (s, separator);
       kvoctrainExpr expr;
       // now move columns according to paste-order

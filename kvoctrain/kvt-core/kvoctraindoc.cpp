@@ -809,25 +809,25 @@ QString kvoctrainDoc::getDocRemark() const
 
 void kvoctrainDoc::setTitle(const QString & title)
 {
-  doctitle = title.stripWhiteSpace();
+  doctitle = title.simplified();
 }
 
 
 void kvoctrainDoc::setAuthor(const QString & s)
 {
-  author = s.stripWhiteSpace();
+  author = s.simplified();
 }
 
 
 void kvoctrainDoc::setLicense(const QString & s)
 {
-  license = s.stripWhiteSpace();
+  license = s.simplified();
 }
 
 
 void kvoctrainDoc::setDocRemark(const QString & s)
 {
-  doc_remark = s.stripWhiteSpace();
+  doc_remark = s.simplified();
 }
 
 

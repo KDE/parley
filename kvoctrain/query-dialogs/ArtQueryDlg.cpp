@@ -107,9 +107,9 @@ void ArtQueryDlg::setQuery(QString,
 
    QString s;
    if (col == 0)
-     s = exp->getOriginal().stripWhiteSpace();
+     s = exp->getOriginal().simplified();
    else
-     s = exp->getTranslation(q_ocol).stripWhiteSpace();
+     s = exp->getTranslation(q_ocol).simplified();
 
    QString def, indef;
    bool removed = false;

@@ -44,7 +44,7 @@ void kvoctrainExpr::Init()
 kvoctrainExpr::kvoctrainExpr (QString &expr, int _lesson)
 {
   Init();
-  setOriginal(expr.stripWhiteSpace() );
+  setOriginal(expr.simplified() );
   lesson = _lesson;
 }
 
@@ -65,22 +65,22 @@ kvoctrainExpr::kvoctrainExpr (QString &s, QString separator, int _lesson)
     int pos = s.find(separator);
 
     if (pos == -1) {
-      setOriginal(s.stripWhiteSpace());
+      setOriginal(s.simplified());
     }
     else {
-      se = s.left(pos).stripWhiteSpace();
+      se = s.left(pos).simplified();
       setOriginal(se);
       s.remove (0, pos+separator.length() );
-//      s.stripWhiteSpace();
+//      s.simplified();
 
       // gather all translations
       while ((pos = s.find(separator)) != -1) {
-        se = s.left(pos).stripWhiteSpace();
+        se = s.left(pos).simplified();
         addTranslation(se, KV_NORM_GRADE, KV_NORM_GRADE);
         s.remove (0, pos+separator.length() );
-//        s.stripWhiteSpace();
+//        s.simplified();
       }
-      addTranslation(s.stripWhiteSpace(), KV_NORM_GRADE, KV_NORM_GRADE);
+      addTranslation(s.simplified(), KV_NORM_GRADE, KV_NORM_GRADE);
     }
   }
 }
@@ -117,7 +117,7 @@ void kvoctrainExpr::setRemark (int idx, const QString & expr)
     for (int i = remarks.size(); i < idx+1; i++)
       remarks.push_back ("");
 
-  remarks[idx] = expr.stripWhiteSpace();
+  remarks[idx] = expr.simplified();
 }
 
 
@@ -131,7 +131,7 @@ void kvoctrainExpr::setFauxAmi (int idx, const QString & expr, bool rev_ami)
       for (int i = rev_fauxAmi.size(); i < idx+1; i++)
         rev_fauxAmi.push_back ("");
 
-    rev_fauxAmi[idx] = expr.stripWhiteSpace();
+    rev_fauxAmi[idx] = expr.simplified();
 
   }
   else {
@@ -140,7 +140,7 @@ void kvoctrainExpr::setFauxAmi (int idx, const QString & expr, bool rev_ami)
       for (int i = fauxAmi.size(); i < idx+1; i++)
         fauxAmi.push_back ("");
 
-    fauxAmi[idx] = expr.stripWhiteSpace();
+    fauxAmi[idx] = expr.simplified();
   }
 }
 
@@ -172,7 +172,7 @@ void kvoctrainExpr::setSynonym (int idx, const QString & expr)
     for (int i = synonym.size(); i < idx+1; i++)
       synonym.push_back ("-");
 
-  synonym[idx] = expr.stripWhiteSpace();
+  synonym[idx] = expr.simplified();
 }
 
 
@@ -196,7 +196,7 @@ void kvoctrainExpr::setExample (int idx, const QString & expr)
     for (int i = example.size(); i < idx+1; i++)
       example.push_back ("");
 
-  example[idx] = expr.stripWhiteSpace();
+  example[idx] = expr.simplified();
 }
 
 
@@ -220,7 +220,7 @@ void kvoctrainExpr::setUsageLabel (int idx, const QString & expr)
     for (int i = usageLabels.size(); i < idx+1; i++)
       usageLabels.push_back ("");
 
-  usageLabels[idx] = expr.stripWhiteSpace();
+  usageLabels[idx] = expr.simplified();
 }
 
 
@@ -244,7 +244,7 @@ void kvoctrainExpr::setParaphrase (int idx, const QString & expr)
     for (int i = paraphrases.size(); i < idx+1; i++)
       paraphrases.push_back ("");
 
-  paraphrases[idx] = expr.stripWhiteSpace();
+  paraphrases[idx] = expr.simplified();
 }
 
 
@@ -268,7 +268,7 @@ void kvoctrainExpr::setAntonym (int idx, const QString & expr)
     for (int i = antonym.size(); i < idx+1; i++)
       antonym.push_back ("");
 
-  antonym[idx] = expr.stripWhiteSpace();
+  antonym[idx] = expr.simplified();
 }
 
 
@@ -375,7 +375,7 @@ void kvoctrainExpr::setPronunce (int idx, const QString & expr)
     for (int i = pronunces.size(); i < idx+1; i++)
       pronunces.push_back ("");
 
-  pronunces[idx] = expr.stripWhiteSpace();
+  pronunces[idx] = expr.simplified();
 }
 
 
@@ -390,7 +390,7 @@ void kvoctrainExpr::addTranslation (QString expr,
 
   grades.push_back (grade);
   rev_grades.push_back (rev_grade);
-  translations.push_back (expr.stripWhiteSpace());
+  translations.push_back (expr.simplified());
 }
 
 
@@ -483,7 +483,7 @@ void kvoctrainExpr::setTranslation (int idx, const QString & expr)
       translations.push_back ("");
 
 //  if (idx <= (int)translations.size())
-  translations[idx-1] = expr.stripWhiteSpace();
+  translations[idx-1] = expr.simplified();
 }
 
 
@@ -794,6 +794,6 @@ void kvoctrainExpr::setType (int idx, const QString &type)
     for (int i = exprtypes.size(); i < idx+1; i++)
       exprtypes.push_back ("");
 
-  exprtypes[idx] = type.stripWhiteSpace();
+  exprtypes[idx] = type.simplified();
 }
 

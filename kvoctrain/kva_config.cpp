@@ -100,13 +100,13 @@ void kvoctrainApp::readLanguages()
     languageSettings.readConfig();
 
     QString shortId = languageSettings.shortId();
-    if (shortId.stripWhiteSpace().length() == 0) {
+    if (shortId.simplified().length() == 0) {
       shortId.setNum (i);
       shortId.insert (0, "id");
     }
 
     QString longId = languageSettings.longId();
-    if (longId.stripWhiteSpace().length() == 0) {
+    if (longId.simplified().length() == 0) {
       longId.setNum (i);
       longId.insert (0, "ident");
     }

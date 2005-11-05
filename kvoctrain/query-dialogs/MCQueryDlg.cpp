@@ -162,9 +162,9 @@ void MCQueryDlg::setQuery(QString org,
    // always include false friend
    QString ff;
    if (q_tcol != 0)
-     ff = exp->getFauxAmi (q_tcol, false).stripWhiteSpace();
+     ff = exp->getFauxAmi (q_tcol, false).simplified();
    else
-     ff = exp->getFauxAmi (q_ocol, true).stripWhiteSpace();
+     ff = exp->getFauxAmi (q_ocol, true).simplified();
 
    if (ff.length())
      strings.insert(strings.begin(), ff);
