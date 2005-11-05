@@ -32,7 +32,9 @@
 GeneralOptions::GeneralOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 : GeneralOptionsBase(parent,name,fl)
 {
- kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
+  connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
+
+  kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
 
 

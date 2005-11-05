@@ -457,56 +457,6 @@
         </spacer>
     </grid>
 </widget>
-<connections>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol7</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol6</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol5</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol4</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol3</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol2</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol1</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseGradeCol</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>kcfg_GradeCol0</receiver>
-        <slot>setEnabled(bool)</slot>
-    </connection>
-</connections>
 <tabstops>
     <tabstop>kcfg_GradeCol0</tabstop>
     <tabstop>kcfg_GradeCol7</tabstop>

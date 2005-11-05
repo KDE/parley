@@ -53,10 +53,10 @@ static const char *separator_id[] =
 PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent, const char* name, Qt::WFlags fl)
 : PasteOptionsBase(parent,name,fl), m_langSet(langset)
 {
-  OrderList->setEnabled(!kcfg_UseCurrent->isChecked());
-  UpButton->setEnabled(!kcfg_UseCurrent->isChecked());
-  SkipButton->setEnabled(!kcfg_UseCurrent->isChecked());
-  DownButton->setEnabled(!kcfg_UseCurrent->isChecked());
+  connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), OrderList, SLOT(setDisabled(bool)));
+  connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), UpButton, SLOT(setDisabled(bool)));
+  connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), DownButton, SLOT(setDisabled(bool)));
+  connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), SkipButton, SLOT(setDisabled(bool)));
 
   connect(OrderList, SIGNAL(selectionChanged()), this, SLOT(syncButtons()));
   connect(DownButton, SIGNAL(clicked()), this, SLOT(slotDownButtonClicked()));
@@ -65,6 +65,11 @@ PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* paren
 
   connect(SeparatorCombo, SIGNAL(activated(int)), this, SLOT(slotSeparatorComboActivated(int)));
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), this, SLOT(slotUseCurrentDocToggled(bool)));
+
+  OrderList->setEnabled(!kcfg_UseCurrent->isChecked());
+  UpButton->setEnabled(!kcfg_UseCurrent->isChecked());
+  SkipButton->setEnabled(!kcfg_UseCurrent->isChecked());
+  DownButton->setEnabled(!kcfg_UseCurrent->isChecked());
 
   m_doc = doc;
   fillWidgets();

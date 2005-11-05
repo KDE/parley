@@ -173,32 +173,6 @@
         </spacer>
     </grid>
 </widget>
-<connections>
-    <connection>
-        <sender>kcfg_UseCurrent</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>OrderList</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseCurrent</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>UpButton</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseCurrent</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>DownButton</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-    <connection>
-        <sender>kcfg_UseCurrent</sender>
-        <signal>toggled(bool)</signal>
-        <receiver>SkipButton</receiver>
-        <slot>setDisabled(bool)</slot>
-    </connection>
-</connections>
 <tabstops>
     <tabstop>SeparatorCombo</tabstop>
     <tabstop>kcfg_UseCurrent</tabstop>
