@@ -87,7 +87,7 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 {
   col -= KV_EXTRA_COLS;
   bool noData = false;
-  kvoctrainExpr *expr;
+  kvoctrainExpr *expr = 0;
 
   statusBar()->clear();
   if (doc->numEntries() <= row || doc->numLangs() <= col || row < 0 || col < 0)
@@ -680,7 +680,7 @@ void kvoctrainApp::slotDocPropsLang ()
 }
 
 
-void kvoctrainApp::slotModifiedDoc(bool mod)
+void kvoctrainApp::slotModifiedDoc(bool /*mod*/)
 {
   setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
   slotStatusMsg(IDS_DEFAULT);
