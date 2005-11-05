@@ -22,6 +22,9 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#include <QTimer>
+#include <QPixmap>
+#include <QKeyEvent>
 
 #include <kstatusbar.h>
 #include <klineedit.h>
@@ -33,13 +36,7 @@
 #include <kdebug.h>
 #include <kiconloader.h>
 #include <kprinter.h>
-
 #include <kinputdialog.h>
-#include <qtimer.h>
-//Added by qt3to4:
-#include <QPixmap>
-#include <QKeyEvent>
-#include <Q3PopupMenu>
 
 #include <time.h>
 #include <ctype.h>
@@ -1119,7 +1116,7 @@ void kvoctrainApp::aboutToShowLearn()
   for (int header = 0; header < (int) doc->numLangs(); header++) {
     // show pixmap and long name if available
     int j;
-    header_m = new Q3PopupMenu();
+    header_m = new QMenu();
     if (header != 0 ) {
       header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
@@ -1138,8 +1135,8 @@ void kvoctrainApp::aboutToShowLearn()
       header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     }
     else {
-      Q3PopupMenu *query_m =  new Q3PopupMenu();
-      Q3PopupMenu *multiple_m =  new Q3PopupMenu();
+      QMenu *query_m = new QMenu();
+      QMenu *multiple_m = new QMenu();
 
       for (int i = 1; i < (int) doc->numLangs(); i++) {
         // show pixmap and long name if available
