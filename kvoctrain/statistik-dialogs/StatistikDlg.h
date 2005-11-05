@@ -26,9 +26,10 @@
 #ifndef StatistikDlg_included
 #define StatistikDlg_included
 
+#include <vector>
+
 #include <kdialogbase.h>
 
-#include <vector>
 using namespace std;
 
 class kvoctrainDoc;
@@ -38,7 +39,6 @@ class GradeCols;
 class StatistikDlg : public KDialogBase
 {
   Q_OBJECT
-
 public:
   StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 

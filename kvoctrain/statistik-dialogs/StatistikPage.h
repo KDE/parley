@@ -26,27 +26,25 @@
 #ifndef StatistikPage_included
 #define StatistikPage_included
 
-#include "StatistikPageForm.h"
-
-#include <kvoctrainexpr.h>
-
-#include <q3listview.h>
-//Added by qt3to4:
+#include <Q3ListView>
 #include <QPixmap>
+
+#include "StatistikPageForm.h"
+#include <kvoctrainexpr.h>
 
 class kvoctrainDoc;
 class GradeCols;
 
-class StatistikPage : public StatistikPageForm
+class StatistikPage : public QWidget, public Ui::StatistikPageForm
 {
   Q_OBJECT
 
 public:
-  StatistikPage(int col, kvoctrainDoc *doc, QWidget *parent = NULL, const char *name = NULL);
+  StatistikPage(int col, kvoctrainDoc *doc, QWidget *parent = 0);
 
 public slots:
   void slotPopupMenu(int row, int col);
-  void slotRMB( Q3ListViewItem* Item, const QPoint & point, int );
+  void slotRMB(Q3ListViewItem* Item, const QPoint & point, int);
 
 protected:
   void setupPixmaps();

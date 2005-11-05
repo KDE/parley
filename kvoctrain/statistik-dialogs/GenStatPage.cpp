@@ -19,19 +19,19 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
-#include "GenStatPage.h"
+#include <QLabel>
+#include <Q3ValueVector>
 
+#include "GenStatPage.h"
 #include <kvoctraindoc.h>
 
-#include <qlabel.h>
-#include <q3valuevector.h>
-
-GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent, const char* name): GenStatPageForm( parent, name )
+GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent): QWidget(parent)
 {
+  setupUi(this);
   l_filename->setText(doc->URL().path());
   l_title->setText(doc->getTitle());
   l_author->setText(doc->getAuthor());

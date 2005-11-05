@@ -23,17 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlayout.h>
-//Added by qt3to4:
+#include <QLayout>
 #include <QVBoxLayout>
-#include <Q3Frame>
+
+#include <klocale.h>
 
 #include "StatistikDlg.h"
 #include "StatistikPage.h"
 #include "GenStatPage.h"
-
-#include <klocale.h>
-
 #include <langset.h>
 #include <kvoctraindoc.h>
 
@@ -46,7 +43,7 @@ StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent,
 
   page = addPage(i18n("General"));
   topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  GenStatPage *gspage = new GenStatPage (doc, page, name);
+  GenStatPage *gspage = new GenStatPage (doc, page);
   topLayout->addWidget(gspage);
 
   for (int i = 1; i < (int) doc->numLangs(); i++)
@@ -59,7 +56,7 @@ StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent,
 
     page = addPage(s);
     topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    spage = new StatistikPage (i, doc, page, name);
+    spage = new StatistikPage (i, doc, page);
     topLayout->addWidget(spage);
   }
 }

@@ -19,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -31,13 +31,11 @@
 
 class kvoctrainDoc;
 
-class GenStatPage : public GenStatPageForm
+class GenStatPage : public QWidget, public Ui::GenStatPageForm
 {
   Q_OBJECT
-
 public:
-
-  GenStatPage(kvoctrainDoc *doc, QWidget* parent = NULL, const char* name = NULL);
-
+  GenStatPage(kvoctrainDoc *doc, QWidget* parent = 0);
 };
+
 #endif // GenStatPage_included

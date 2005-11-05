@@ -23,7 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "StatistikPage.h"
+#include <QCursor>
+#include <QPainter>
+#include <QPixmap>
 
 #include <kmenu.h>
 #include <klocale.h>
@@ -31,11 +33,8 @@
 
 #include <kvoctraindoc.h>
 #include <prefs.h>
+#include "StatistikPage.h"
 
-#include <qcursor.h>
-#include <qpainter.h>
-//Added by qt3to4:
-#include <QPixmap>
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2
@@ -60,9 +59,9 @@ private:
 };
 
 
-StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent, const char *name)
-  : StatistikPageForm( parent, name ), doc(_doc)
+StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
 {
+  setupUi(this);
   StatListView->setColumnWidth(0, SIZE_GRADE + 10);
   StatListView->setColumnWidth(1, SIZE_GRADE + 10);
   StatListView->setColumnWidth(2, SIZE_COUNT);
