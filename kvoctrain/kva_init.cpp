@@ -23,16 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrain.h"
-
-#include "common-dialogs/ProgressDlg.h"
-
-#include <qclipboard.h>
-#include <qtimer.h>
-//Added by qt3to4:
+#include <QClipboard>
+#include <QTimer>
 #include <QLabel>
-#include <Q3Frame>
-#include <Q3PopupMenu>
 
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -42,6 +35,8 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
+#include "kvoctrain.h"
+#include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 
 kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
@@ -257,7 +252,7 @@ void kvoctrainApp::initActions()
   configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
   configToolbar->setToolTip(configToolbar->whatsThis());
 
-  learn_menu = (Q3PopupMenu*) child( "learning", "KMenu" );
+  learn_menu = (QMenu *) child( "learning", "KMenu" );
   connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
