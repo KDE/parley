@@ -21,13 +21,12 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <kcmdlineargs.h>
+#include <kaboutdata.h>
+#include <klocale.h>
 
 #include "kvoctrain.h"
 #include "kvoctraincore.h"
-
-# include <kcmdlineargs.h>
-# include <kaboutdata.h>
-# include <klocale.h>
 
 int main(int argc, char* argv[]) {
 

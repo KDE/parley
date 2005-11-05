@@ -36,6 +36,8 @@
 #include <config.h>
 #endif
 
+#include "kvoctraindoc.h"
+
 class QGridLayout;
 class Q3Frame;
 class KApplication;
@@ -46,8 +48,6 @@ class kvoctrainApp;
 class kvoctrainDoc;
 class GradeCols;
 class LangSet;
-
-#include "kvoctraindoc.h"
 
 /**
   * This class provides an incomplete base for your application view.

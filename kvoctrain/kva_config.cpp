@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qfile.h>
+#include <QFile>
 
 #include "kvoctrain.h"
 #include <kvoctraincore.h>

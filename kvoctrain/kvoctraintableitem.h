@@ -26,7 +26,7 @@
 #ifndef KVOCTRAINTABLEITEM_H
 #define KVOCTRAINTABLEITEM_H
 
-#include <q3table.h>
+#include <Q3Table>
 
 #include "kvoctraindoc.h"
 #include "kv_resource.h"

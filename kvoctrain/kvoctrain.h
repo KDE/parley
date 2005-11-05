@@ -31,12 +31,10 @@
 #include <config.h>
 #endif
 
-// include files for QT
 #include <QPainter>
 #include <QLabel>
 #include <QKeyEvent>
 
-// include files for KDE
 #include <kapplication.h>
 #include <kmainwindow.h>
 #include <kaction.h>
@@ -44,7 +42,6 @@
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
-// application specific includes
 #include "kvoctrainview.h"
 #include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"

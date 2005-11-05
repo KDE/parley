@@ -23,11 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qpainter.h>
-#include <qstyle.h>
-//Added by qt3to4:
+#include <QPainter>
+#include <QStyle>
 #include <QPixmap>
-#include <Q3CString>
 #include <QEvent>
 #include <QKeyEvent>
 #include <QMouseEvent>

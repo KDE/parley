@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlineedit.h>
-#include <qcombobox.h>
+#include <QLineEdit>
+#include <QComboBox>
 
 #include <klocale.h>
 #include <kglobalsettings.h>

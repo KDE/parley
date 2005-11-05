@@ -24,15 +24,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrain.h"
+#include <algorithm>
 
-#include <qclipboard.h>
+#include <QClipboard>
 
 #include <klineedit.h>
 #include <klocale.h>
 
 #include "prefs.h"
-#include <algorithm>
+#include "kvoctrain.h"
+
 using namespace std;
 
 void kvoctrainApp::slotSmartSearchClip()

@@ -10,7 +10,7 @@
 //
 //
 
-#include <qdir.h>
+#include <QDir>
 
 #include <kprocess.h>
 #include <klocale.h>

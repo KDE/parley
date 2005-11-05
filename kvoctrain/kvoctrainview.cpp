@@ -23,12 +23,16 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <ctype.h>
 
-#include <kvoctraincore.h>
-#include "kvoctrain.h"
-#include "kvoctrainview.h"
-#include "prefs.h"
-#include "langset.h"
+#include <QLayout>
+#include <QBitmap>
+#include <QFile>
+#include <QPixmap>
+#include <QGridLayout>
+#include <QKeyEvent>
+#include <QShowEvent>
+#include <QResizeEvent>
 
 #include <kstandarddirs.h>
 #include <kconfig.h>
@@ -38,17 +42,11 @@
 #include <kapplication.h>
 #include <kprinter.h>
 
-#include <qlayout.h>
-#include <qbitmap.h>
-#include <qfile.h>
-//Added by qt3to4:
-#include <QPixmap>
-#include <QGridLayout>
-#include <QKeyEvent>
-#include <QShowEvent>
-#include <QResizeEvent>
-
-#include <ctype.h>
+#include <kvoctraincore.h>
+#include "kvoctrain.h"
+#include "kvoctrainview.h"
+#include "prefs.h"
+#include "langset.h"
 
 #define HEADER_MINSIZE   24
 #define KV_COLWIDTH_MARK 20

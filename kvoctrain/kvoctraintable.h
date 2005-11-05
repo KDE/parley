@@ -26,9 +26,8 @@
 #ifndef KVOCTRAINTABLE_H
 #define KVOCTRAINTABLE_H
 
-#include <q3table.h>
-#include <qtimer.h>
-//Added by qt3to4:
+#include <Q3Table>
+#include <QTimer>
 #include <QMouseEvent>
 #include <QPixmap>
 #include <QKeyEvent>

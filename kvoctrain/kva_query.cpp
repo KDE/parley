@@ -23,7 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #include <kdebug.h>
 #include <klocale.h>
 
@@ -37,7 +36,6 @@
 #include "prefs.h"
 
 #define MAX_QUERY_TIMEOUT 3
-
 
 static const char not_answered[] = I18N_NOOP(
     "The query dialog was not answered several times in a row.\n"
