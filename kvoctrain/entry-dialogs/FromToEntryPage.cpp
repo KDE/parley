@@ -41,7 +41,6 @@ static QStringList  monthnames;
 
 FromToEntryPage::FromToEntryPage
 (
-  EntryDlg   *_dlgbook,
   bool        multi_sel,
   grade_t     _grade,
   time_t      _time,
@@ -52,7 +51,7 @@ FromToEntryPage::FromToEntryPage
   QWidget    *parent
 )
   :
-  QWidget(parent), fauxami(faux), dlgbook(_dlgbook)
+  QWidget(parent), fauxami(faux)
 {
   setupUi(this);
   monthnames.clear();

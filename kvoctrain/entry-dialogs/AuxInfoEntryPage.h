@@ -28,14 +28,12 @@
 
 #include "AuxInfoEntryPageForm.h"
 
-class EntryDlg;
-
 class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 {
   Q_OBJECT
 
 public:
-  AuxInfoEntryPage(EntryDlg *dlgbook, bool multi_sel, QString syno, QString anto, QString example,
+  AuxInfoEntryPage(bool multi_sel, QString syno, QString anto, QString example,
     QString remark, QString para, QWidget *parent = 0);
 
   void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString  para);
@@ -70,7 +68,6 @@ protected:
   QString       remark;
   QString       paraphrase;
   bool          modified;
-  EntryDlg     *dlgbook;
 };
 
 #endif // AuxInfoEntryPage_included

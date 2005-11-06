@@ -33,8 +33,6 @@
 #include "FromToEntryPageForm.h"
 #include <kvoctraindoc.h>
 
-class EntryDlg;
-
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
   Q_OBJECT
@@ -43,7 +41,6 @@ public:
 
   FromToEntryPage
   (
-      EntryDlg   *dlgbook,
       bool        multi_sel,
       grade_t     _grade,
       time_t      _date,
@@ -116,7 +113,6 @@ protected:
     int        year,
                month,
                day;
-    EntryDlg  *dlgbook;
     bool       modified;
 };
 

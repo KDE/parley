@@ -29,14 +29,12 @@
 #include "AdjEntryPageForm.h"
 #include <grammarmanager.h>
 
-class EntryDlg;
-
 class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 {
   Q_OBJECT
 
 public:
-  AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent = 0);
+  AdjEntryPage(bool multi_sel, const Comparison &comp, QWidget *parent = 0);
 
   void setData (bool multi_sel, const Comparison  &comp);
 
@@ -57,6 +55,6 @@ protected slots:
 protected:
   Comparison    comparisons;
   bool          modified;
-  EntryDlg     *dlgbook;
 };
+
 #endif // AdjEntryPage_included

@@ -23,15 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "AdjEntryPage.h"
-#include "EntryDlg.h"
-
 #include <QLineEdit>
 
 #include <langset.h>
+#include "AdjEntryPage.h"
+#include "EntryDlg.h"
 
-AdjEntryPage::AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent)
-  : QWidget(parent), dlgbook(_dlgbook)
+AdjEntryPage::AdjEntryPage(bool multi_sel, const Comparison &comp, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   comparisons = comp;

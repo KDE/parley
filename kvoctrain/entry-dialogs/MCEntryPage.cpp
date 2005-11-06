@@ -29,8 +29,7 @@
 #include "EntryDlg.h"
 #include <langset.h>
 
-MCEntryPage::MCEntryPage(EntryDlg *_dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent)
-  : QWidget(parent), dlgbook(_dlgbook)
+MCEntryPage::MCEntryPage(bool multi_sel, const MultipleChoice &mc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   multiplechoice = mc;

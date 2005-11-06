@@ -29,15 +29,13 @@
 #include "TenseEntryPageForm.h"
 #include <grammarmanager.h>
 
-class EntryDlg;
-
 class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 {
   Q_OBJECT
 
 public:
-  TenseEntryPage(EntryDlg *dlgbook, bool multi_sel, const Conjugation &con_prefix,
-    const Conjugation &conjugations, QWidget *parent = 0);
+  TenseEntryPage(bool multi_sel, const Conjugation &con_prefix, const Conjugation &conjugations,
+    QWidget *parent = 0);
 
   void setData(bool multi_sel, const Conjugation &conjugations);
 
@@ -75,7 +73,6 @@ protected:
   QString       selection;
   bool          multi_mode;
   bool          modified;
-  EntryDlg     *dlgbook;
 };
 
 #endif // TenseEntryPage_included

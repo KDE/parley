@@ -34,13 +34,12 @@
 
 TenseEntryPage::TenseEntryPage
 (
-  EntryDlg         *_dlgbook,
   bool               multi_sel,
   const Conjugation &con_prefix,
   const Conjugation &conjug,
   QWidget           *parent
 )
-  : QWidget(parent), multi_mode(multi_sel), dlgbook(_dlgbook)
+  : QWidget(parent), multi_mode(multi_sel)
 {
   setupUi(this);
   connect( third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );

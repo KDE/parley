@@ -32,7 +32,6 @@
 
 AuxInfoEntryPage::AuxInfoEntryPage
 (
-  EntryDlg   *_dlgbook,
   bool        multi_sel,
   QString     syno,
   QString     anto,
@@ -41,7 +40,7 @@ AuxInfoEntryPage::AuxInfoEntryPage
   QString     para,
   QWidget    *parent
 )
- : QWidget(parent), dlgbook(_dlgbook)
+ : QWidget(parent)
 
 {
   setupUi(this);

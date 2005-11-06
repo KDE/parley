@@ -29,14 +29,12 @@
 #include "MCEntryPageForm.h"
 #include <MultipleChoice.h>
 
-class EntryDlg;
-
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
   Q_OBJECT
 
 public:
-  MCEntryPage(EntryDlg *dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent = 0);
+  MCEntryPage(bool multi_sel, const MultipleChoice &mc, QWidget *parent = 0);
 
   void setData(bool multi_sel, const MultipleChoice &mc);
 
@@ -59,7 +57,6 @@ protected slots:
 protected:
   MultipleChoice  multiplechoice;
   bool            modified;
-  EntryDlg       *dlgbook;
 };
 
 #endif // MCEntryPage_included
