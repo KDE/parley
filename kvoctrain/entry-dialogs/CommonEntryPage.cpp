@@ -23,16 +23,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "CommonEntryPage.h"
-#include "EntryDlg.h"
-
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <q3listbox.h>
-#include <qcombobox.h>
-#include <qcheckbox.h>
-#include <q3groupbox.h>
-//Added by qt3to4:
+#include <QLineEdit>
+#include <QLabel>
+#include <Q3ListBox>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QGroupBox>
 #include <QPixmap>
 
 #include <kapplication.h>
@@ -43,11 +39,11 @@
 
 #include <QueryManager.h>
 #include <langset.h>
-
 #include "DocPropDlg.h"
 #include "blockall.h"
 #include "PhoneticEntryPage.h"
-
+#include "CommonEntryPage.h"
+#include "EntryDlg.h"
 
 CommonEntryPage::CommonEntryPage
 (
@@ -65,11 +61,10 @@ CommonEntryPage::CommonEntryPage
   QueryManager &_querymanager,
   bool          active,
   const QFont&  _ipafont,
-  QWidget      *parent,
-  const char   *name
+  QWidget      *parent
 )
   :
-  CommonEntryPageForm( parent, name ),
+  QWidget(parent),
   pronunce(pron),
   expression(expr),
   usageCollection (act_usage),
@@ -81,7 +76,7 @@ CommonEntryPage::CommonEntryPage
   entry_active(active),
   ipafont(_ipafont)
 {
-
+  setupUi(this);
   connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
   connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
   connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );

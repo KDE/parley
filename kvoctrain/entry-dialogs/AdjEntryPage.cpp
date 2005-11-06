@@ -19,22 +19,21 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 
 #include "AdjEntryPage.h"
 #include "EntryDlg.h"
 
+#include <QLineEdit>
+
 #include <langset.h>
 
-#include <qlineedit.h>
-
-
-AdjEntryPage::AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent, const char *name)
-  : AdjEntryPageForm( parent, name ), dlgbook(_dlgbook)
+AdjEntryPage::AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent)
+  : QWidget(parent), dlgbook(_dlgbook)
 {
+  setupUi(this);
   comparisons = comp;
 
   connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );

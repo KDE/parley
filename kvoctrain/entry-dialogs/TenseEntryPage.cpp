@@ -19,17 +19,16 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
-#include <qcombobox.h>
-#include <qcheckbox.h>
-#include <qpushbutton.h>
-#include <qlineedit.h>
+#include <QComboBox>
+#include <QCheckBox>
+#include <QPushButton>
+#include <QLineEdit>
 
 #include <langset.h>
-
 #include "TenseEntryPage.h"
 #include "EntryDlg.h"
 
@@ -39,12 +38,11 @@ TenseEntryPage::TenseEntryPage
   bool               multi_sel,
   const Conjugation &con_prefix,
   const Conjugation &conjug,
-  QWidget           *parent,
-  const char        *name
+  QWidget           *parent
 )
-  : TenseEntryPageForm( parent, name ), multi_mode(multi_sel), dlgbook(_dlgbook)
+  : QWidget(parent), multi_mode(multi_sel), dlgbook(_dlgbook)
 {
-
+  setupUi(this);
   connect( third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
   connect( third_s_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
   connect( b_next, SIGNAL(clicked()), SLOT(slotNextConj()) );

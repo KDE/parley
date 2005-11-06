@@ -23,20 +23,17 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "EntryDlg.h"
-
-#include <qlayout.h>
-#include <qlineedit.h>
-//Added by qt3to4:
+#include <QLayout>
+#include <QLineEdit>
 #include <QVBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 #include <QCloseEvent>
 
 #include <kmainwindow.h>
 #include <kapplication.h>
 #include <kwinmodule.h>
 
+#include "EntryDlg.h"
 #include <langset.h>
 #include <klocale.h>
 
@@ -106,76 +103,76 @@ EntryDlg::EntryDlg(
   if (origin)
   {
     page = addPage( i18n("Co&mmon") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
     comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
                                       i18n("Original &expression in %1:").arg(s), querymanager, active,
-                                      ipafont, page, name);
+                                      ipafont, page);
     topLayout->addWidget(comm_page);
 
     page = addPage( i18n("A&dditional") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase, page, name);
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase, page);
     topLayout->addWidget(aux_page);
 
     page = addPage( i18n("&Multiple Choice") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    mc_page = new MCEntryPage (this, multi_sel, mc, page, "MultipleChoice");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    mc_page = new MCEntryPage (this, multi_sel, mc, page);
     topLayout->addWidget(mc_page);
 
     page = addPage( i18n("Con&jugation") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, page, "Conjugation");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, page);
     topLayout->addWidget(tense_page);
 
     page = addPage( i18n("Compar&ison") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    adj_page = new AdjEntryPage (this, multi_sel, comp, page, "Comparison");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    adj_page = new AdjEntryPage (this, multi_sel, comp, page);
     topLayout->addWidget(adj_page);
   }
   else
   {
     page = addPage( i18n("Co&mmon") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
     comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
                                       i18n("Translated &expression in %1:").arg(s), querymanager, active,
-                                      ipafont, page, name);
+                                      ipafont, page);
     topLayout->addWidget(comm_page);
 
     page = addPage( i18n("A&dditional") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase, page, name);
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    aux_page = new AuxInfoEntryPage (this, multi_sel, synonym, antonym, example, rem, paraphrase, page);
     topLayout->addWidget(aux_page);
 
     page = addPage( i18n("&Multiple Choice") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    mc_page = new MCEntryPage (this, multi_sel, mc, page, "MultipleChoice");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    mc_page = new MCEntryPage (this, multi_sel, mc, page);
     topLayout->addWidget(mc_page);
 
     page = addPage( i18n("Con&jugation") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, page, "Conjugation");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    tense_page = new TenseEntryPage (this, multi_sel, con_prefix, conjugations, page);
     topLayout->addWidget(tense_page);
 
     page = addPage( i18n("Compar&ison") );
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    adj_page = new AdjEntryPage (this, multi_sel, comp, page, "Comparison");
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    adj_page = new AdjEntryPage (this, multi_sel, comp, page);
     topLayout->addWidget(adj_page);
   }
 
   page = addPage( i18n("&From Original") );
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
   from_page = new FromToEntryPage (this, multi_sel, f_grd, f_qdate, f_qcount, f_bcount,
                                     f_faux_ami,
-                                    i18n("Properties From Original"), page, name);
+                                    i18n("Properties From Original"), page);
   topLayout->addWidget(from_page);
 
   page = addPage( i18n("&To Original") );
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
   to_page   = new FromToEntryPage (this, multi_sel, t_grd, t_qdate, t_qcount, t_bcount,
                                     t_faux_ami,
-                                    i18n("Properties to Original"), page, name);
+                                    i18n("Properties to Original"), page);
   topLayout->addWidget(to_page);
 
   updatePages (type);

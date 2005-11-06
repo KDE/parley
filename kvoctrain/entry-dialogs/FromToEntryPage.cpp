@@ -19,24 +19,21 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
-
-#include "FromToEntryPage.h"
-#include "EntryDlg.h"
-
-#include <qlineedit.h>
-#include <qcombobox.h>
-#include <qpushbutton.h>
-#include <q3groupbox.h>
+#include <QLineEdit>
+#include <QComboBox>
+#include <QPushButton>
+#include <QGroupBox>
 
 #include <klocale.h>
 
 #include <QueryManager.h>
 #include <langset.h>
-
+#include "FromToEntryPage.h"
+#include "EntryDlg.h"
 #include "blockall.h"
 #include "MySpinBox.h"
 
@@ -52,12 +49,12 @@ FromToEntryPage::FromToEntryPage
   count_t     _bcount,
   QString     faux,
   QString     label,
-  QWidget    *parent,
-  const char *name
+  QWidget    *parent
 )
   :
-  FromToEntryPageForm( parent, name ), fauxami(faux), dlgbook(_dlgbook)
+  QWidget(parent), fauxami(faux), dlgbook(_dlgbook)
 {
+  setupUi(this);
   monthnames.clear();
   monthnames.append ("");
   monthnames.append (i18n("January"));

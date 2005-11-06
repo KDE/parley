@@ -27,17 +27,16 @@
 #define MCEntryPage_included
 
 #include "MCEntryPageForm.h"
-
 #include <MultipleChoice.h>
 
 class EntryDlg;
 
-class MCEntryPage : public MCEntryPageForm
+class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
   Q_OBJECT
 
 public:
-  MCEntryPage(EntryDlg *dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent = NULL, const char *name = NULL);
+  MCEntryPage(EntryDlg *dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent = 0);
 
   void setData(bool multi_sel, const MultipleChoice &mc);
 

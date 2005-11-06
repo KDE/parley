@@ -19,22 +19,20 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
+#include <QLineEdit>
 
 #include "MCEntryPage.h"
 #include "EntryDlg.h"
-
 #include <langset.h>
 
-#include <qlineedit.h>
-
-
-MCEntryPage::MCEntryPage(EntryDlg *_dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent, const char *name)
-  : MCEntryPageForm( parent, name ), dlgbook(_dlgbook)
+MCEntryPage::MCEntryPage(EntryDlg *_dlgbook, bool multi_sel, const MultipleChoice &mc, QWidget *parent)
+  : QWidget(parent), dlgbook(_dlgbook)
 {
+  setupUi(this);
   multiplechoice = mc;
 
   connect( mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)) );

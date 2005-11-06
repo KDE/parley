@@ -19,7 +19,7 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
@@ -30,23 +30,13 @@
 
 class EntryDlg;
 
-class AuxInfoEntryPage : public AuxInfoEntryPageForm
+class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 {
   Q_OBJECT
 
 public:
-  AuxInfoEntryPage
-  (
-    EntryDlg   *dlgbook,
-    bool        multi_sel,
-    QString     syno,
-    QString     anto,
-    QString     example,
-    QString     remark,
-    QString     para,
-    QWidget    *parent = 0,
-    const char *name = 0
-  );
+  AuxInfoEntryPage(EntryDlg *dlgbook, bool multi_sel, QString syno, QString anto, QString example,
+    QString remark, QString para, QWidget *parent = 0);
 
   void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString  para);
 

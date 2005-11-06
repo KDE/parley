@@ -27,25 +27,17 @@
 #define TenseEntryPage_included
 
 #include "TenseEntryPageForm.h"
-
 #include <grammarmanager.h>
 
 class EntryDlg;
 
-class TenseEntryPage : public TenseEntryPageForm
+class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 {
   Q_OBJECT
 
 public:
-  TenseEntryPage
-  (
-    EntryDlg          *dlgbook,
-    bool               multi_sel,
-    const Conjugation &con_prefix,
-    const Conjugation &conjugations,
-    QWidget           *parent = NULL,
-    const char        *name = NULL
-  );
+  TenseEntryPage(EntryDlg *dlgbook, bool multi_sel, const Conjugation &con_prefix,
+    const Conjugation &conjugations, QWidget *parent = 0);
 
   void setData(bool multi_sel, const Conjugation &conjugations);
 

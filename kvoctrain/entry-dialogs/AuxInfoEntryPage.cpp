@@ -19,17 +19,15 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
-#include <q3multilineedit.h>
+#include <QTextEdit>
 
 #include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"
-
 #include <langset.h>
-
 #include <LineList.h>
 
 AuxInfoEntryPage::AuxInfoEntryPage
@@ -41,12 +39,12 @@ AuxInfoEntryPage::AuxInfoEntryPage
   QString     exam,
   QString     rem,
   QString     para,
-  QWidget    *parent,
-  const char *name
+  QWidget    *parent
 )
- : AuxInfoEntryPageForm( parent, name ), dlgbook(_dlgbook)
+ : QWidget(parent), dlgbook(_dlgbook)
 
 {
+  setupUi(this);
   QFontMetrics fm (synonym_line->font());
   int sz = fm.lineSpacing();
 

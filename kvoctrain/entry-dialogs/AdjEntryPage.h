@@ -27,17 +27,16 @@
 #define AdjEntryPage_included
 
 #include "AdjEntryPageForm.h"
-
 #include <grammarmanager.h>
 
 class EntryDlg;
 
-class AdjEntryPage : public AdjEntryPageForm
+class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 {
   Q_OBJECT
 
 public:
-  AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent = NULL, const char *name = NULL);
+  AdjEntryPage(EntryDlg *_dlgbook, bool multi_sel, const Comparison &comp, QWidget *parent = 0);
 
   void setData (bool multi_sel, const Comparison  &comp);
 

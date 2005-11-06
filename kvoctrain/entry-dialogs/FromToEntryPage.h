@@ -23,19 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef FromToEntryPage_included
 #define FromToEntryPage_included
 
-#include "FromToEntryPageForm.h"
 #include <time.h>
-#include <qdatetime.h>
 
+#include <QDateTime>
+
+#include "FromToEntryPageForm.h"
 #include <kvoctraindoc.h>
 
 class EntryDlg;
 
-class FromToEntryPage : public FromToEntryPageForm
+class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
   Q_OBJECT
 
@@ -51,8 +51,7 @@ public:
       count_t     _bcount,
       QString     faux,
       QString     label,
-      QWidget    *parent = NULL,
-      const char *name = NULL
+      QWidget    *parent = 0
   );
 
   void setData(
