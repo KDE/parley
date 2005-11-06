@@ -19,36 +19,30 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 #ifndef TypeOptPage_included
 #define TypeOptPage_included
 
+#include <vector>
+
+#include <Q3StrList>
+
 #include "TypeOptPageForm.h"
 
-#include <vector>
-//Added by qt3to4:
-#include <Q3StrList>
 using namespace std;
 
 class kvoctrainDoc;
 class Q3StrList;
 
-class TypeOptPage : public TypeOptPageForm
+class TypeOptPage : public QWidget, public Ui::TypeOptPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-
-  TypeOptPage
-  (
-    const vector<QString> &types,
-    kvoctrainDoc    *doc,
-    QWidget         *parent = NULL,
-    const char      *name = NULL
-  );
+  TypeOptPage(const vector<QString> &types, kvoctrainDoc *doc, QWidget *parent = 0);
 
   void getTypeNames (vector<QString> &ret_types, vector<int> &ret_Index);
 
@@ -58,7 +52,6 @@ protected:
   void updateListBox(int start);
 
 protected slots:
-
   void slotDeleteType();
   void slotNewType();
   void slotTypeChosen(int);
@@ -71,4 +64,5 @@ private:
   vector<int>    typeIndex; // contains indices of types on exec()
                             // negative values are new lessons
 };
+
 #endif // TypeOptPage_included

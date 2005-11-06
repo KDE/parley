@@ -23,28 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "TitlePage.h"
-
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QLabel>
 
 #include <kapplication.h>
 #include <klocale.h>
 
-#include <qlineedit.h>
-#include <q3multilineedit.h>
-#include <qlabel.h>
+#include "TitlePage.h"
 
-TitlePage::TitlePage
-(
-  QString  _title,
-  QString  _author,
-  QString  _license,
-  QString  _doc_remark,
-  QWidget* parent,
-  const char* name
-)
-  :
-  TitlePageForm( parent, name )
+TitlePage::TitlePage(QString  _title, QString  _author, QString  _license, QString  _doc_remark, QWidget* parent)
+  : QWidget(parent)
 {
+  setupUi(this);
   title = _title;
   author = _author;
   license = _license;

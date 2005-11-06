@@ -19,31 +19,21 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
 
 #ifndef TitleDialog_included
 #define TitleDialog_included
 
 #include "TitlePageForm.h"
 
-class TitlePage : public TitlePageForm
+class TitlePage : public QWidget, public Ui::TitlePageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-
-  TitlePage
-  (
-    QString      title,
-    QString      author,
-    QString      license,
-    QString      doc_remark,
-    QWidget     *parent = NULL,
-    const char  *name = NULL
-  );
+  TitlePage(QString title, QString author, QString license, QString doc_remark, QWidget *parent = 0);
 
   QString getTitle() { return title; }
   QString getAuthor() { return author; }

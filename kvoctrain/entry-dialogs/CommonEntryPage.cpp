@@ -47,7 +47,6 @@
 
 CommonEntryPage::CommonEntryPage
 (
-  EntryDlg     *_dlgbook,
   kvoctrainDoc *_doc,
   bool          multi_sel,
   QString       expr,
@@ -70,7 +69,6 @@ CommonEntryPage::CommonEntryPage
   usageCollection (act_usage),
   lesson(less),
   type (act_type),
-  dlgbook(_dlgbook),
   doc(_doc),
   querymanager(_querymanager),
   entry_active(active),
@@ -341,10 +339,11 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
 
-  KDialogBase usageOpt(KDialogBase::Swallow, i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, dlgbook, "usage", true);
+  KDialogBase usageOpt(KDialogBase::Swallow,
+    i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, this, "usage", true);
 
-  UsageOptPage *usageOptPage = new UsageOptPage (doc->getUsageDescr(), doc, this, "name");
+  UsageOptPage *usageOptPage = new UsageOptPage (doc->getUsageDescr(), doc, this);
   usageOpt.setMainWidget(usageOptPage);
 
   if (usageOpt.exec() == QDialog::Accepted)
@@ -366,9 +365,9 @@ void CommonEntryPage::invokeLessDlg()
 
   int old_lessons = (int) lesson_box->count();
   KDialogBase lessOpt(KDialogBase::Swallow, i18n("Edit Lesson Names"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, dlgbook, "lesson", true);
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, this, "lesson", true);
 
-  LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this, "name");
+  LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this);
   lessOpt.setMainWidget(lessOptPage);
 
   vector<int> lessoninquery = doc->getLessonsInQuery();
@@ -393,9 +392,9 @@ void CommonEntryPage::invokeTypeDlg()
 
   int old_types = (int) doc->getTypeDescr().size();
   KDialogBase typeOpt(KDialogBase::Swallow, i18n("Edit User Defined Types"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, dlgbook, "types", true);
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, this, "types", true);
 
-  TypeOptPage *typeOptPage = new TypeOptPage (doc->getTypeDescr(), doc, this, "name");
+  TypeOptPage *typeOptPage = new TypeOptPage (doc->getTypeDescr(), doc, this);
   typeOpt.setMainWidget(typeOptPage);
 
   if (typeOpt.exec() == QDialog::Accepted)

@@ -104,7 +104,7 @@ EntryDlg::EntryDlg(
   {
     page = addPage( i18n("Co&mmon") );
     topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
-    comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
+    comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
                                       i18n("Original &expression in %1:").arg(s), querymanager, active,
                                       ipafont, page);
@@ -134,7 +134,7 @@ EntryDlg::EntryDlg(
   {
     page = addPage( i18n("Co&mmon") );
     topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
-    comm_page = new CommonEntryPage (this, doc, multi_sel, expr, lesson, lessonbox,
+    comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
                                       i18n("Translated &expression in %1:").arg(s), querymanager, active,
                                       ipafont, page);

@@ -40,7 +40,6 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
   CommonEntryPage
   (
-    EntryDlg     *dlgbook,
     kvoctrainDoc *doc,
     bool          multi_sel,
     QString       expr,
@@ -118,7 +117,6 @@ protected:
   QString       usageCollection;
   int           lesson;
   QString       type;
-  EntryDlg     *dlgbook;
   bool          lesson_dirty;
   bool          type_dirty;
   kvoctrainDoc *doc;

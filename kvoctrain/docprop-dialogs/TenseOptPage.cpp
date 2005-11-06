@@ -23,29 +23,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "TenseOptPage.h"
-
-#include <qpushbutton.h>
+#include <QPushButton>
 
 #include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
+#include "TenseOptPage.h"
 #include <QueryManager.h>
 
 #define TENSE_TAG ". "
 
-TenseOptPage::TenseOptPage
-(
-  const vector<QString> &tenses,
-  kvoctrainDoc    *_doc,
-  QWidget         *parent,
-  const char      *name
-)
-  :
-  TenseOptPageForm( parent, name )
+TenseOptPage::TenseOptPage(const vector<QString> &tenses, kvoctrainDoc *_doc, QWidget *parent) :
+  QWidget(parent)
 {
+  setupUi(this);
   connect( tenseList, SIGNAL(highlighted(int)), SLOT(slotTenseChosen(int)) );
   connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
   connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteTense()) );
@@ -103,7 +96,7 @@ void TenseOptPage::slotNewTense()
 
 void TenseOptPage::slotModifyTense()
 {
-  if (tenseList->count() != 0 && (int) tenseList->count() > act_tense) 
+  if (tenseList->count() != 0 && (int) tenseList->count() > act_tense)
   {
     QString str = tenseList->text (act_tense);
     int pos = str.find (TENSE_TAG);
@@ -125,7 +118,7 @@ void TenseOptPage::slotModifyTense()
 void TenseOptPage::updateListBox(int start)
 {
   QString str, str2;
-  for (int i = start; i < (int) tenseList->count(); i++) 
+  for (int i = start; i < (int) tenseList->count(); i++)
   {
     str = tenseList->text (i);
     int pos = str.find (TENSE_TAG);
@@ -182,7 +175,7 @@ void TenseOptPage::slotDeleteTense()
 void TenseOptPage::getTenseNames (vector<QString> &ret_tense, vector<int> &ret_Index)
 {
   QString str;    ret_tense.clear();
-  for (int i = 0; i < (int) tenseList->count(); i++) 
+  for (int i = 0; i < (int) tenseList->count(); i++)
   {
     str = tenseList->text(i);
     int pos = str.find (TENSE_TAG);

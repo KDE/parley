@@ -23,26 +23,21 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "DocPropLangDlg.h"
-#include "LangPropPage.h"
-
-#include <qstringlist.h>
-#include <qlayout.h>
-#include <q3valuelist.h>
-#include <qtabwidget.h>
-//Added by qt3to4:
+#include <QStringList>
+#include <QLayout>
+#include <QList>
 #include <QPixmap>
 #include <QVBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 
 #include <kapplication.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 
+#include "DocPropLangDlg.h"
+#include "LangPropPage.h"
 #include <kvoctraindoc.h>
 #include <langset.h>
-
 
 class kvoctraindoc;
 
@@ -72,8 +67,8 @@ DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *p
       tabCaption = (s);
 
     page = addPage(s, s, QPixmap(langset->PixMapFile(idx))); ///@todo The pixmaps don't show up in tabbed dialog
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-    lpp = new LangPropPage (doc, s, doc->getConjugation(i), doc->getArticle(i), page, name);
+    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    lpp = new LangPropPage (doc, s, doc->getConjugation(i), doc->getArticle(i), page);
     topLayout->addWidget( lpp );
 
     langPages.append (lpp);

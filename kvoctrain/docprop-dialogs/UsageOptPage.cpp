@@ -23,31 +23,23 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "UsageOptPage.h"
+#include <QGroupBox>
+#include <QPushButton>
 
 #include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <q3groupbox.h>
-#include <qpushbutton.h>
-
+#include "UsageOptPage.h"
 #include <QueryManager.h>
 
 #define USAGE_TAG ". "
 
-UsageOptPage::UsageOptPage
-(
-  const vector<QString> &usages,
-  kvoctrainDoc    *_doc,
-  QWidget         *parent,
-  const char      *name
-)
-  :
-  UsageOptPageForm( parent, name ),
-  doc(_doc)
+UsageOptPage::UsageOptPage(const vector<QString> &usages, kvoctrainDoc *_doc, QWidget *parent)
+ : QWidget(parent), doc(_doc)
 {
+  setupUi(this);
   connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
   connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteUsage()) );
   connect( b_modify, SIGNAL(clicked()), SLOT(slotModifyUsage()) );
@@ -126,7 +118,7 @@ void UsageOptPage::slotModifyUsage()
 void UsageOptPage::updateListBox(int start)
 {
   QString str, str2;
-  for (int i = start; i < (int) usageList->count(); i++) 
+  for (int i = start; i < (int) usageList->count(); i++)
   {
     str = usageList->text (i);
     int pos = str.find (USAGE_TAG);
@@ -142,7 +134,7 @@ void UsageOptPage::updateListBox(int start)
 void UsageOptPage::slotDeleteUsage()
 {
   int act = act_usage;
-  if (usageList->count() != 0 && (int) usageList->count() > act) 
+  if (usageList->count() != 0 && (int) usageList->count() > act)
   {
     QString t;
     t.setNum(usageIndex[act_usage]+1);

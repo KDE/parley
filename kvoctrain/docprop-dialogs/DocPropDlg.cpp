@@ -23,10 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qlayout.h>
-//Added by qt3to4:
+#include <QLayout>
 #include <QVBoxLayout>
-#include <Q3Frame>
+#include <QFrame>
 
 #include <klocale.h>
 #include <kstandarddirs.h>
@@ -34,7 +33,6 @@
 
 #include "DocPropDlg.h"
 #include <langset.h>
-
 
 class kvoctraindoc;
 
@@ -58,35 +56,34 @@ DocPropsDlg::DocPropsDlg
   KDialogBase(Tabbed, i18n("Document Properties"), Ok|Cancel, Ok, parent, name, modal)
 {
   QFrame *page = addPage( i18n("&General") );
-  QVBoxLayout *topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  titleOptPage = new TitlePage (title, author, license, doc_remark, page, name);
+  QVBoxLayout *topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  titleOptPage = new TitlePage (title, author, license, doc_remark, page);
   topLayout->addWidget( titleOptPage );
 
   page = addPage( i18n("L&essons"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  lessOptPage = new LessOptPage (lessons, doc, page, name);
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  lessOptPage = new LessOptPage (lessons, doc, page);
   topLayout->addWidget( lessOptPage );
 
   page = addPage( i18n("word types","T&ypes"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  typeOptPage = new TypeOptPage (types, doc, page, name);
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  typeOptPage = new TypeOptPage (types, doc, page);
   topLayout->addWidget( typeOptPage );
 
   page = addPage( i18n("Te&nses"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  tenseOptPage = new TenseOptPage (tenses, doc, page, name);
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  tenseOptPage = new TenseOptPage (tenses, doc, page);
   topLayout->addWidget( tenseOptPage );
 
   page = addPage( i18n("usage (area) of an expression", "&Usage"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  useOptPage = new UsageOptPage (usages, doc, page, name);
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  useOptPage = new UsageOptPage (usages, doc, page);
   topLayout->addWidget( useOptPage );
 
   page = addPage( i18n("&Options"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
-  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), page, name);
+  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), page);
   topLayout->addWidget( docOptPage );
 }
-
 
 #include "DocPropDlg.moc"

@@ -26,6 +26,8 @@
 #ifndef DocPropsDlg_included
 #define DocPropsDlg_included
 
+#include <vector>
+
 #include <kdialogbase.h>
 
 #include "DocOptionsPage.h"
@@ -35,7 +37,6 @@
 #include "UsageOptPage.h"
 #include "TitlePage.h"
 
-#include <vector>
 using namespace std;
 
 class kvoctrainDoc;

@@ -23,31 +23,23 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "LessOptPage.h"
+#include <QComboBox>
+#include <QPushButton>
+#include <QLayout>
 
 #include <kapplication.h>
 #include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
-#include <qcombobox.h>
-#include <qpushbutton.h>
-#include <qlayout.h>
-
+#include "LessOptPage.h"
 #include <kvoctraindoc.h>
 
 #define LESS_TAG ". "
 
-LessOptPage::LessOptPage
-(
-  QComboBox     *lessons,
-  kvoctrainDoc  *_doc,
-  QWidget       *parent,
-  const char    *name
-)
-  :
-  LessOptPageForm( parent, name )
+LessOptPage::LessOptPage(QComboBox *lessons, kvoctrainDoc *_doc, QWidget *parent) : QWidget(parent)
 {
+  setupUi(this);
   connect( lessonList, SIGNAL(highlighted(int)), SLOT(slotLessonChosen(int)) );
   connect( b_new, SIGNAL(clicked()), SLOT(slotNewLesson()) );
   connect( b_modify, SIGNAL(clicked()), SLOT(slotModifyLesson()) );

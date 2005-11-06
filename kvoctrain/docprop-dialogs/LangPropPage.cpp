@@ -23,32 +23,26 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include <langset.h>
-
-#include "LangPropPage.h"
+#include <QLineEdit>
+#include <QCheckBox>
+#include <QLabel>
 
 #include <klocale.h>
 
-#include <qlineedit.h>
-#include <qcheckbox.h>
-#include <qlabel.h>
+#include <langset.h>
+#include "LangPropPage.h"
 
 LangPropPage::LangPropPage
-(
+  (
   kvoctrainDoc      *_doc,
   QString            curr_lang,
   const Conjugation &conjug,
   const Article     &art,
-  QWidget           *parent,
-  const char        *name
-)
-  :
-  LangPropPageForm( parent, name ),
-  doc(_doc),
-  conjugations(conjug),
-  articles(art)
+  QWidget           *parent
+  )
+  : QWidget( parent), doc(_doc), conjugations(conjug), articles(art)
 {
+  setupUi(this);
   l_langcode->setText(curr_lang);
 
   connect( indef_female, SIGNAL(textChanged(const QString&)), SLOT(indefFemaleChanged(const QString&)) );

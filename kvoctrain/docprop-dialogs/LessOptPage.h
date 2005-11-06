@@ -19,34 +19,28 @@
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
  *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   * 
+ *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
 
 #ifndef LessOptPage_included
 #define LessOptPage_included
 
+#include <vector>
+
 #include "LessOptPageForm.h"
 
-#include <vector>
 using namespace std;
 
 class kvoctrainDoc;
 class QComboBox;
 
-class LessOptPage : public LessOptPageForm
+class LessOptPage : public QWidget, public Ui::LessOptPageForm
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-
-  LessOptPage
-  (
-    QComboBox     *lessons,
-    kvoctrainDoc  *doc,
-    QWidget       *parent = NULL,
-    const char    *name = NULL
-  );
+  LessOptPage(QComboBox *lessons, kvoctrainDoc *doc, QWidget *parent = 0);
 
   void getLesson (QComboBox *ret_lesson, vector<int>& ret_Index);
 
@@ -73,4 +67,5 @@ private:
   vector<int>    lessonIndex; // contains indices of lesson on exec()
                               // negative values are new lessons
 };
+
 #endif // LessOptPage_included

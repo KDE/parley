@@ -28,32 +28,22 @@
 #define LangPropPage_included
 
 #include "LangPropPageForm.h"
-
 #include <grammarmanager.h>
 
 class kvoctrainDoc;
 
-class LangPropPage : public LangPropPageForm
+class LangPropPage : public QWidget, public Ui::LangPropPageForm
 {
   Q_OBJECT
 
 public:
-
-  LangPropPage
-  (
-    kvoctrainDoc      *doc,
-    QString            curr_lang,
-    const Conjugation &conjugations,
-    const Article     &article,
-    QWidget           *parent = NULL,
-    const char        *name = NULL
-  );
+  LangPropPage(kvoctrainDoc *doc, QString curr_lang, const Conjugation &conjugations, const Article &article,
+    QWidget *parent = 0);
 
   Conjugation getConjugation();
   Article getArticle() const { return articles; }
 
 protected slots:
-
   void secondPluralChanged(const QString&);
   void secondSingularChanged(const QString&);
   void thirdNSingularChanged(const QString&);
@@ -75,7 +65,6 @@ protected slots:
   void defMaleChanged(const QString& );
 
 protected:
-
   kvoctrainDoc  *doc;
   Conjugation    conjugations;
   Article        articles;

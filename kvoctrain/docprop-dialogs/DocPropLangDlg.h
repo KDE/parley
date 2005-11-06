@@ -26,7 +26,7 @@
 #ifndef DocPropsLangDlg_included
 #define DocPropsLangDlg_included
 
-#include <q3valuelist.h>
+#include <QList>
 
 #include <kdialogbase.h>
 
@@ -48,7 +48,7 @@ public:
   Article     getArticle(int idx) const;
 
 protected:
-  typedef Q3ValueList<LangPropPage*> LangPagesList;
+  typedef QList<LangPropPage*> LangPagesList;
   LangPagesList langPages;
 };
 

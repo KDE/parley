@@ -23,30 +23,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "TypeOptPage.h"
+#include <QPushButton>
 
 #include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <qpushbutton.h>
-
+#include "TypeOptPage.h"
 #include <QueryManager.h>
 
 #define TYPE_TAG ". "
 
-TypeOptPage::TypeOptPage
-(
-  const vector<QString> &types,
-  kvoctrainDoc    *_doc,
-  QWidget         *parent,
-  const char      *name
-)
-  :
-  TypeOptPageForm( parent, name ),
-  doc(_doc)
+TypeOptPage::TypeOptPage(const vector<QString> &types, kvoctrainDoc *_doc,  QWidget *parent)
+  : QWidget(parent), doc(_doc)
 {
+  setupUi(this);
   connect( typeList, SIGNAL(highlighted(int)), SLOT(slotTypeChosen(int)) );
   connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
   connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteType()) );
