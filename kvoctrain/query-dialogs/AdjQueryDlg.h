@@ -27,10 +27,10 @@
 #ifndef AdjQueryDlg_included
 #define AdjQueryDlg_included
 
+#include <QKeyEvent>
+
 #include "AdjQueryDlgForm.h"
 #include "QueryDlgBase.h"
-//Added by qt3to4:
-#include <QKeyEvent>
 
 class AdjQueryDlg : public QueryDlgBase
 {
@@ -84,6 +84,6 @@ protected:
   Comparison  comp;
 
 private:
-  AdjQueryDlgForm * mw;
+  Ui::AdjQueryDlgForm * mw;
 };
 #endif // AdjQueryDlg_included

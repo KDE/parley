@@ -23,21 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "VerbQueryDlg.h"
-
-#include <kv_resource.h>
+#include <QTimer>
+#include <QPushButton>
+#include <QLabel>
+#include <QLineEdit>
+#include <QKeyEvent>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kprogress.h>
 
-#include <qtimer.h>
-#include <qpushbutton.h>
-#include <qlabel.h>
-#include <qlineedit.h>
-//Added by qt3to4:
-#include <QKeyEvent>
+#include "VerbQueryDlg.h"
+#include <kv_resource.h>
 
 VerbQueryDlg::VerbQueryDlg
 (
@@ -53,8 +51,8 @@ VerbQueryDlg::VerbQueryDlg
         const Conjugation &conjug)
  : QueryDlgBase(i18n("Verb Training"))
 {
-  mw = new VerbQueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::VerbQueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );

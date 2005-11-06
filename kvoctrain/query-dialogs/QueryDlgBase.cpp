@@ -23,20 +23,18 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "QueryDlgBase.h"
-
-#include <qlineedit.h>
-#include <q3multilineedit.h>
-#include <qradiobutton.h>
-//Added by qt3to4:
+#include <QLineEdit>
+#include <QTextEdit>
+#include <QRadioButton>
 #include <QCloseEvent>
-
-#include <LineList.h>
 
 #include <klocale.h>
 
+#include "QueryDlgBase.h"
+#include <LineList.h>
+
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
-  : KDialogBase(Swallow, caption, User1|User2, NoDefault, parent, name, modal, false,
+  : KDialogBase(parent, name, modal, caption, User1|User2, NoDefault, false,
     KGuiItem(i18n("&Stop Query")), KGuiItem(i18n("&Edit Expression...")))
 {
   kv_doc = 0;
@@ -130,7 +128,7 @@ void QueryDlgBase::resetField(QLineEdit *field)
 }
 
 
-bool QueryDlgBase::verifyField(Q3MultiLineEdit *field, const QString &really, bool mixed)
+bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mixed)
 {
   if (!field->isEnabled())
     return true;
@@ -193,7 +191,7 @@ bool QueryDlgBase::verifyField(Q3MultiLineEdit *field, const QString &really, bo
 }
 
 
-void QueryDlgBase::resetField(Q3MultiLineEdit *field)
+void QueryDlgBase::resetField(QTextEdit *field)
 {
   if (!field->isEnabled() )
     return;

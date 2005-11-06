@@ -23,14 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef SimpleQueryDlg_included
 #define SimpleQueryDlg_included
 
+#include <QKeyEvent>
+
 #include "SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
-//Added by qt3to4:
-#include <QKeyEvent>
 
 class SimpleQueryDlg : public QueryDlgBase
 {
@@ -78,7 +77,7 @@ protected:
   QueryType querytype;
 
 private:
-  SimpleQueryDlgForm * mw;
+  Ui::SimpleQueryDlgForm * mw;
   void setQueryFieldWordwrap();
 };
 

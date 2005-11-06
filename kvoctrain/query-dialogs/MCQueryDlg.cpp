@@ -23,9 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "MCQueryDlg.h"
+#include <algorithm>
 
-#include <kv_resource.h>
+#include <QTimer>
+#include <QLabel>
+#include <QRadioButton>
+#include <QButtonGroup>
+#include <QPushButton>
+#include <QKeyEvent>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
@@ -33,15 +38,9 @@
 #include <kdebug.h>
 #include <kprogress.h>
 
-#include <qtimer.h>
-#include <qlabel.h>
-#include <qradiobutton.h>
-#include <q3buttongroup.h>
-#include <qpushbutton.h>
-//Added by qt3to4:
-#include <QKeyEvent>
+#include "MCQueryDlg.h"
+#include <kv_resource.h>
 
-#include <algorithm>
 using namespace std;
 
 MCQueryDlg::MCQueryDlg(
@@ -57,14 +56,14 @@ MCQueryDlg::MCQueryDlg(
                    kvoctrainDoc  *doc)
   : QueryDlgBase(i18n("Multiple Choice"))
 {
-  mw = new MCQueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::MCQueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
-  mw->transgroup->insert(mw->rb_trans1);
-  mw->transgroup->insert(mw->rb_trans2);
-  mw->transgroup->insert(mw->rb_trans3);
-  mw->transgroup->insert(mw->rb_trans4);
-  mw->transgroup->insert(mw->rb_trans5);
+  //mw->transgroup->insert(mw->rb_trans1);
+  //mw->transgroup->insert(mw->rb_trans2);
+  //mw->transgroup->insert(mw->rb_trans3);
+  //mw->transgroup->insert(mw->rb_trans4);
+  //mw->transgroup->insert(mw->rb_trans5);
 
   connect( mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect( mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -155,7 +154,7 @@ void MCQueryDlg::setQuery(QString org,
    solution = 0;
 
    MultipleChoice mc = exp->getMultipleChoice(q_tcol);
-   for (unsigned i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
+   for (int i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
    std::random_shuffle(strings.begin(), strings.end());
 

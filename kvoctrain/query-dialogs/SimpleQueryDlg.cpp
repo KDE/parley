@@ -23,21 +23,20 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "SimpleQueryDlg.h"
-
-#include <kv_resource.h>
-
-#include <qtimer.h>
-#include <q3multilineedit.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-//Added by qt3to4:
+#include <QTimer>
+#include <QTextEdit>
+#include <QLabel>
+#include <QPushButton>
 #include <QKeyEvent>
+#include <QWidget>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kprogress.h>
+
+#include "SimpleQueryDlg.h"
+#include <kv_resource.h>
 
 SimpleQueryDlg::SimpleQueryDlg(
         QueryType querytype,
@@ -50,8 +49,8 @@ SimpleQueryDlg::SimpleQueryDlg(
         kvoctrainDoc  *doc)
   : QueryDlgBase("")
 {
-  mw = new SimpleQueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::SimpleQueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
@@ -327,7 +326,7 @@ void SimpleQueryDlg::setQueryFieldWordwrap()
 {
   QFontMetrics fm(Prefs::tableFont());
   int w = fm.width(mw->queryField->text());
-  int w2 = mw->width();
+  int w2 = mainWidget()->width();
   if (w > w2)
     mw->queryField->setAlignment(Qt::AlignVCenter | Qt::TextWordWrap);
   else

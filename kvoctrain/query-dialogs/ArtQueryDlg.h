@@ -26,14 +26,13 @@
 #ifndef ArtQueryDlg_included
 #define ArtQueryDlg_included
 
+#include <QKeyEvent>
+
 #include "ArtQueryDlgForm.h"
 #include "QueryDlgBase.h"
-//Added by qt3to4:
-#include <QKeyEvent>
 
 class ArtQueryDlg : public QueryDlgBase
 {
-
   Q_OBJECT
 
 public:
@@ -83,7 +82,7 @@ protected:
   Article   articles;
 
 private:
-  ArtQueryDlgForm * mw;
+  Ui::ArtQueryDlgForm * mw;
 };
 
 #endif // ArtQueryDlg_included

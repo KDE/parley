@@ -23,23 +23,20 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "AdjQueryDlg.h"
-
-#include <kv_resource.h>
-#include <langset.h>
+#include <QTimer>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
+#include <QKeyEvent>
 
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kprogress.h>
 
-#include <qtimer.h>
-#include <qpushbutton.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-//Added by qt3to4:
-#include <QKeyEvent>
+#include "AdjQueryDlg.h"
+#include <kv_resource.h>
+#include <langset.h>
 
 AdjQueryDlg::AdjQueryDlg
 (
@@ -54,8 +51,8 @@ AdjQueryDlg::AdjQueryDlg
   const Comparison &_comp)
   : QueryDlgBase(i18n("Comparison Training"))
 {
-  mw = new AdjQueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::AdjQueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );

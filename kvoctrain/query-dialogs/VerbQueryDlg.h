@@ -23,14 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef VerbQueryDlg_included
 #define VerbQueryDlg_included
 
+#include <QKeyEvent>
+
 #include "VerbQueryDlgForm.h"
 #include "QueryDlgBase.h"
-//Added by qt3to4:
-#include <QKeyEvent>
 
 class VerbQueryDlg : public QueryDlgBase
 {
@@ -96,7 +95,7 @@ protected:
   bool all_known;
 
 private:
-  VerbQueryDlgForm * mw;
+  Ui::VerbQueryDlgForm * mw;
 };
 
 #endif // VerbQueryDlg_included

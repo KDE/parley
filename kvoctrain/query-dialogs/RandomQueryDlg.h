@@ -23,18 +23,17 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef Query_Dlg_H
 #define Query_Dlg_H
 
-#include "RandomQueryDlgForm.h"
-#include "QueryDlgBase.h"
-
-#include <qcombobox.h>
-#include <qlineedit.h>
-//Added by qt3to4:
+#include <QComboBox>
+#include <QLineEdit>
 #include <QKeyEvent>
 #include <Q3PtrList>
+#include <QList>
+
+#include "RandomQueryDlgForm.h"
+#include "QueryDlgBase.h"
 
 class kvoctrainDoc;
 
@@ -103,7 +102,7 @@ protected:
   int  fields;
 
 private:
-  QueryDlgForm * mw;
+  Ui::QueryDlgForm * mw;
 };
 
 #endif

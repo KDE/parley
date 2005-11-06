@@ -23,19 +23,18 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef Query_Dlg_Base_H
 #define Query_Dlg_Base_H
 
 #include <time.h>
 #include <stdlib.h>
 
+#include <QLabel>
+#include <QCloseEvent>
+
 #include <kdialogbase.h>
 
 #include <QueryManager.h>
-//Added by qt3to4:
-#include <QLabel>
-#include <QCloseEvent>
 #include <grammarmanager.h>
 #include "prefs.h"
 
@@ -43,15 +42,13 @@ class kvoctrainExpr;
 class kvoctrainDoc;
 
 class QLineEdit;
-class Q3MultiLineEdit;
+class QTextEdit;
 class QLabel;
 class QRadioButton;
 
 class QueryDlgBase : public KDialogBase
 {
-
   Q_OBJECT
-
 public:
   enum Result { Unknown, Known, Timeout, StopIt };
 
@@ -64,9 +61,8 @@ public:
   bool verifyField(QLineEdit *field, const QString &really);
   void resetField (QLineEdit *field);
 
-  bool verifyField(Q3MultiLineEdit *field, const QString &really,
-                    bool mixed);
-  void resetField (Q3MultiLineEdit *field);
+  bool verifyField(QTextEdit *field, const QString &really, bool mixed);
+  void resetField (QTextEdit *field);
 
   void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
   void resetButton (QRadioButton *radio, QWidget *widget2 = 0);

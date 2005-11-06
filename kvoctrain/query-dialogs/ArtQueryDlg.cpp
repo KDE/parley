@@ -23,23 +23,20 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "ArtQueryDlg.h"
-
-#include <kv_resource.h>
+#include <QTimer>
+#include <QRadioButton>
+#include <QLabel>
+#include <QPushButton>
+#include <QButtonGroup>
+#include <QKeyEvent>
 
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
 #include <kprogress.h>
 
-#include <qtimer.h>
-#include <qradiobutton.h>
-#include <qlabel.h>
-#include <qpushbutton.h>
-#include <q3buttongroup.h>
-//Added by qt3to4:
-#include <QKeyEvent>
+#include "ArtQueryDlg.h"
+#include <kv_resource.h>
 
 ArtQueryDlg::ArtQueryDlg
 (
@@ -54,14 +51,14 @@ ArtQueryDlg::ArtQueryDlg
         const Article &articles)
   : QueryDlgBase(i18n("Article Training"))
 {
-  mw = new ArtQueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::ArtQueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
   qtimer = 0;
 
-  mw->artGroup->insert (mw->natural);
-  mw->artGroup->insert (mw->male);
-  mw->artGroup->insert (mw->rb_fem);
+  //mw->artGroup->insert (mw->natural);
+  //mw->artGroup->insert (mw->male);
+  //mw->artGroup->insert (mw->rb_fem);
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );

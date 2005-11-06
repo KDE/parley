@@ -23,14 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef MCQuery_Dlg_H
 #define MCQuery_Dlg_H
 
+#include <QKeyEvent>
+
 #include "MCQueryDlgForm.h"
 #include "QueryDlgBase.h"
-//Added by qt3to4:
-#include <QKeyEvent>
 
 class MCQueryDlg : public QueryDlgBase
 {
@@ -86,7 +85,7 @@ protected:
   vector<RB_Label> button_ref;
 
 private:
-  MCQueryDlgForm * mw;
+  Ui::MCQueryDlgForm * mw;
 };
 
 #endif // MCQuery_Dlg_H

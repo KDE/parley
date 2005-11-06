@@ -23,29 +23,27 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "RandomQueryDlg.h"
-#include "common-dialogs/ProgressDlg.h"
-
-#include <kv_resource.h>
+#include <QCheckBox>
+#include <QGroupBox>
+#include <QLabel>
+#include <QLayout>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QRegExp>
+#include <QTimer>
+#include <QVBoxLayout>
+#include <QKeyEvent>
+#include <Q3CString>
+#include <QList>
 
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
 #include <kprogress.h>
 
-#include <qcheckbox.h>
-#include <q3groupbox.h>
-#include <qlabel.h>
-#include <qlayout.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
-#include <qregexp.h>
-#include <qtimer.h>
-//Added by qt3to4:
-#include <QVBoxLayout>
-#include <QKeyEvent>
-#include <Q3CString>
-#include <Q3PtrList>
+#include "RandomQueryDlg.h"
+#include "common-dialogs/ProgressDlg.h"
+#include <kv_resource.h>
 
 QStringList RandomQueryDlg::extractTranslations (QString trans)
 {
@@ -142,8 +140,8 @@ RandomQueryDlg::RandomQueryDlg(
                    kvoctrainDoc  *doc)
   : QueryDlgBase(i18n("Random Query"))
 {
-  mw = new QueryDlgForm(this);
-  setMainWidget(mw);
+  mw = new Ui::QueryDlgForm();
+  mw->setupUi(makeMainWidget());
 
   connect( mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
   connect( mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );
@@ -232,7 +230,7 @@ RandomQueryDlg::RandomQueryDlg(
       }
     }
     vocabulary.sort();
-    for ( uint k = 1; k < vocabulary.count(); k ++ )
+    for (int k = 1; k < vocabulary.count(); k ++)
       if ( vocabulary [k - 1] == vocabulary [k] )
         vocabulary.remove (vocabulary.at (k --));
     if ( pdlg )
@@ -272,7 +270,7 @@ void RandomQueryDlg::setQuery(QString org,
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    int i;
-   uint k;
+   int k;
    if ( Prefs::suggestions() )
    {
      for ( i = 0; i < fields; i ++ )
@@ -354,7 +352,8 @@ void RandomQueryDlg::initFocus() const
 void RandomQueryDlg::verifyClicked()
 {
   QStringList trans (translations);
-  int i, j;
+  int i;
+  int j;
   if ( Prefs::suggestions() )
   {
     Q3PtrList<QComboBox> combos (transCombos);
@@ -418,12 +417,12 @@ void RandomQueryDlg::verifyClicked()
 void RandomQueryDlg::showMoreClicked()
 {
   if ( Prefs::suggestions() )
-    for ( uint i = 0; i < translations.count(); i ++ )
+    for (int i = 0; i < translations.count(); i ++)
     {
       QComboBox* combo = transCombos.at(i);
       if ( ! smartCompare (combo -> currentText(), translations[i], 0) )
       {
-        uint length = combo -> currentText().length() + 1;
+        int length = combo -> currentText().length() + 1;
         if ( length >= translations[i].length() )
         {
           combo -> setEditText (translations[i]);
@@ -440,12 +439,12 @@ void RandomQueryDlg::showMoreClicked()
       }
     }
   else
-    for ( uint i = 0; i < translations.count(); i ++ )
+    for (int i = 0; i < translations.count(); i ++)
     {
       QLineEdit* field = transFields.at(i);
       if ( ! smartCompare (field -> text(), translations[i], 0) )
       {
-        uint length = field -> text().length() + 1;
+        int length = field -> text().length() + 1;
         if ( length >= translations[i].length() )
         {
           field -> setText (translations[i]);
@@ -469,13 +468,13 @@ void RandomQueryDlg::showMoreClicked()
 void RandomQueryDlg::showAllClicked()
 {
   if ( Prefs::suggestions() )
-    for ( uint i = 0; i < translations.count(); i ++ )
+    for (int i = 0; i < translations.count(); i ++)
     {
       transCombos.at(i) -> setEditText (translations[i]);
       verifyField (transCombos.at(i) -> lineEdit(), translations[i]);
     }
   else
-    for ( uint i = 0; i < translations.count(); i ++ )
+    for (int i = 0; i < translations.count(); i ++)
     {
       transFields.at(i) -> setText (translations[i]);
       verifyField (transFields.at(i), translations[i]);
@@ -638,7 +637,7 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
   {
     QComboBox* combo = 0;
     if ( e -> key() == Qt::Key_F4 || e -> key() == Qt::Key_F5 || e -> key() == Qt::Key_F6 )
-      for ( uint i = 0; i < translations.count(); i ++ )
+      for (int i = 0; i < translations.count(); i ++)
         if ( transCombos.at(i) -> hasFocus() )
         {
           combo = transCombos.at(i);
