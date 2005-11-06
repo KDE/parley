@@ -217,7 +217,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
 
 void PhoneticEntryPage::keyPressEvent( QKeyEvent *e )
 {
-  if ((e->state() & (Qt::ControlButton | Qt::AltButton)) == 0) {
+  if ((e->state() & (Qt::ControlModifier | Qt::AltModifier)) == 0) {
     QString s = e->text();
     for (int i = 0; i < s.length(); ++i) {
       emit charSelected(s[i].unicode());

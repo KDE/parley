@@ -83,7 +83,7 @@ QString parseTD(QString& line)
   QString retVal(result);
   retVal = retVal.left(pos+1);
 
-  return retVal.simplifyWhiteSpace();
+  return retVal.simplified();
 }
 
 bool parseTR(QString& line, QTextIStream& in)
