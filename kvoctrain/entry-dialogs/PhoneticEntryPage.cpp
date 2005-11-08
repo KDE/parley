@@ -8,7 +8,7 @@
 
     copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001-2002 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter@peterandlinda.com>
+                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 

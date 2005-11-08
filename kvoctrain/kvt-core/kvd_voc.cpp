@@ -6,7 +6,7 @@
 
     begin          : Wed Jun 15 19:32:00 PDT 2005
 
-    copyright      : (C) 2005 Peter Hedlund <peter@peterandlinda.com>
+    copyright      : (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 

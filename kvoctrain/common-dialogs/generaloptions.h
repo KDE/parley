@@ -8,7 +8,7 @@
 
     copyright            :(C) 2005 Peter Hedlund
 
-    email                : peter@peterandlinda.com
+    email                : peter.hedlund@kdemail.net
 
     -----------------------------------------------------------------------
 

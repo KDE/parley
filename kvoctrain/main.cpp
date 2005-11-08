@@ -52,7 +52,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
                        "submit@bugs.kde.org");
 
   aboutData.addAuthor("Peter Hedlund",
-                      I18N_NOOP("Current Maintainer"), "peter@peterandlinda.com");
+                      I18N_NOOP("Current Maintainer"), "peter.hedlund@kdemail.net");
 
   aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
                       "http://www.ewald-arnold.de" );

@@ -4,7 +4,7 @@
 // Description:
 //
 //
-// Author: Peter Hedlund <peter@peterandlinda.com>, (C) 2005
+// Author: Peter Hedlund <peter.hedlund@kdemail.net>, (C) 2005
 //
 // Copyright: See COPYING file that comes with this distribution
 //
