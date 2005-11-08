@@ -31,14 +31,12 @@
 #include <config.h>
 #endif
 
-#include <qobject.h>
-//Added by qt3to4:
+#include <QObject>
 #include <QTextStream>
 
 #include <kurl.h>
 
 #include "kvoctrainexpr.h"
-
 #include "kvt-xml/XmlReader.h"
 #include "kvt-xml/XmlWriter.h"
 

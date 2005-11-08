@@ -23,14 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctraincore.h"
-#include "QueryManager.h"
-//Added by qt3to4:
 #include <QTextStream>
+#include <QTextCodec>
 
 #include <kdebug.h>
 
-#include <qtextcodec.h>
+#include "kvoctraincore.h"
+#include "QueryManager.h"
 
 bool kvoctrainDoc::saveTypeNameKvtMl (XmlWriter &xml)
 {

@@ -26,8 +26,7 @@
 #ifndef LANGUAGEOPTIONS_H
 #define LANGUAGEOPTIONS_H
 
-#include <q3popupmenu.h>
-//Added by qt3to4:
+#include <Q3PopupMenu>
 #include <Q3ValueList>
 
 #include <kmenu.h>

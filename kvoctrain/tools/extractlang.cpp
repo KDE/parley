@@ -1,6 +1,3 @@
-#include <qtextstream.h>
-#include <qstring.h>
-
 ///////////////////////////////////////////////////////////
 //
 // (c) Kevin Krammer <kevin.krammer@gmx.at>
@@ -13,6 +10,9 @@
 // see also extractlang.README
 //
 ///////////////////////////////////////////////////////////
+
+#include <QTextStream>
+#include <QString>
 
 QString twoLangs;
 QString threeLangs;
@@ -97,7 +97,7 @@ bool parseTR(QString& line, QTextIStream& in)
 
   uint count = 0;
   while (line.contains("<td"))
-    { 
+    {
       if (count > 3)
 	return true;
 

@@ -23,15 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <klocale.h>
+#include <vector>
 
-#include "kvoctrain.h"
-
-#include <qtextcodec.h>
-//Added by qt3to4:
+#include <QTextCodec>
 #include <QTextStream>
 
-#include <vector>
+#include <klocale.h>
+#include "kvoctrain.h"
+
 using namespace std;
 
 bool kvoctrainDoc::saveTypeNameCsv (QTextStream &)

@@ -20,7 +20,7 @@
 #ifndef PROFILESDIALOG_H
 #define PROFILESDIALOG_H
 
-#include <q3valuelist.h>
+#include <Q3ValueList>
 
 #include <kdialogbase.h>
 

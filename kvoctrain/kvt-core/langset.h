@@ -24,16 +24,13 @@
  *                                                                         *
  ***************************************************************************/
 
-
-
 #ifndef langset_h
 #define langset_h
 
 #include <vector>
 using namespace std;
 
-#include <qstring.h>
-
+#include <QString>
 
 class LangSet
 {

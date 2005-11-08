@@ -23,13 +23,12 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "QueryManager.h"
-//Added by qt3to4:
 #include <QTextStream>
+#include <QTextCodec>
 
 #include <klocale.h>
 
-#include <qtextcodec.h>
+#include "QueryManager.h"
 
 bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
 {
@@ -72,7 +71,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   while (first != elem.attributes ().end ()) {
 
     if ((*first).name () == KV_ENCODING) {
-  
+
       if ((*first).stringValue().upper() == (QString)"UTF-8" ) {
         is.setCodec(QTextCodec::codecForName("UTF-8"));
         is.setEncoding(QTextStream::UnicodeUTF8);
@@ -89,7 +88,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
         QString msg =format.arg((*first).stringValue ().upper()).arg("ISO 8859-1");
         warningKvtMl (xml.lineNumber(), msg);
       }
-  
+
     }
     else if ((*first).name () == KV_TITLE) {
         doctitle = (*first).stringValue ();

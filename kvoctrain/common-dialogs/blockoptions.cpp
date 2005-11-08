@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qcombobox.h>
-#include <qcheckbox.h>
+#include <QComboBox>
+#include <QCheckBox>
 
 #include <klocale.h>
 #include <kmessagebox.h>

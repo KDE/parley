@@ -23,19 +23,17 @@
  *                                                                         *
  ***************************************************************************/
 
-
-#include "PhoneticEntryPage.h"
-
-#include <qlayout.h>
-#include <q3frame.h>
-#include <q3groupbox.h>
-#include <qtooltip.h>
-//Added by qt3to4:
+#include <QLayout>
+#include <Q3Frame>
+#include <Q3GroupBox>
+#include <QToolTip>
 #include <QGridLayout>
 #include <QKeyEvent>
 
 #include <kdebug.h>
 #include <klocale.h>
+
+#include "PhoneticEntryPage.h"
 
 #define KV_MAX_HORIZ  20
 #define KV_FONTSIZE   14

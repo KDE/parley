@@ -28,11 +28,10 @@
 #include <kvoctraindoc.h>
 #include "ProgressDlg.h"
 
-#include <q3progressbar.h>
-#include <qlabel.h>
+#include <Q3ProgressBar>
+#include <QLabel>
 
 #include <kstandarddirs.h>
-
 
 ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const QString &title, QWidget* parent, const char* name)
   : ProgressDlgForm( parent, name )

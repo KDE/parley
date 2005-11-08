@@ -27,7 +27,7 @@
 #ifndef MultipleChoice_included
 #define MultipleChoice_included
 
-#include <qstring.h>
+#include <QString>
 
 #define MAX_MULTIPLE_CHOICE  5  // select one out of x
 

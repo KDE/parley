@@ -27,7 +27,7 @@
 #ifndef LineList_h
 #define LineList_h
 
-#include <qstring.h>
+#include <QString>
 
 #include <vector>
 using namespace std;

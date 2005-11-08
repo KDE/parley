@@ -16,8 +16,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qcombobox.h>
-#include <qpushbutton.h>
+#include <QComboBox>
+#include <QPushButton>
 
 #include <kdialogbase.h>
 #include <klocale.h>

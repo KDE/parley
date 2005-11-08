@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qpushbutton.h>
-#include <qcombobox.h>
+#include <QPushButton>
+#include <QComboBox>
 
 #include "groupoptions.h"
 

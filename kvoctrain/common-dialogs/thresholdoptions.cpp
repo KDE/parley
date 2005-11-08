@@ -23,10 +23,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <q3listbox.h>
-#include <qpushbutton.h>
-#include <qlabel.h>
-#include <qcombobox.h>
+#include <Q3ListBox>
+#include <QPushButton>
+#include <QLabel>
+#include <QComboBox>
 
 #include <kcombobox.h>
 #include <klocale.h>

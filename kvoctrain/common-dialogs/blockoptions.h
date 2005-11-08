@@ -26,7 +26,7 @@
 #ifndef BLOCKOPTIONS_H
 #define BLOCKOPTIONS_H
 
-#include <q3valuelist.h>
+#include <Q3ValueList>
 
 #include "blockoptionsbase.h"
 #include "QueryManager.h"

@@ -23,11 +23,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <q3groupbox.h>
-#include <qcheckbox.h>
-#include <qradiobutton.h>
-#include <qlabel.h>
-#include <q3buttongroup.h>
+#include <Q3GroupBox>
+#include <QCheckBox>
+#include <QRadioButton>
+#include <QLabel>
+#include <Q3ButtonGroup>
 
 #include <knuminput.h>
 

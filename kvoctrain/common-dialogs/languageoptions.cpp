@@ -25,11 +25,10 @@
 
 //based on code copyright (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
 
-#include <qpushbutton.h>
-#include <qlineedit.h>
-#include <qlabel.h>
-#include <qfileinfo.h>
-//Added by qt3to4:
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
+#include <QFileInfo>
 #include <QPixmap>
 #include <Q3ValueList>
 #include <Q3CString>

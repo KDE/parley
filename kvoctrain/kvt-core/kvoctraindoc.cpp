@@ -25,8 +25,16 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <algorithm>
+#include <functional>
+#include <vector>
+using namespace std;
+#include <iostream>
+#include <float.h>
 
-#include "kvoctraindoc.h"
+#include <QFileInfo>
+#include <QRegExp>
+#include <QTextStream>
 
 #include <kapplication.h>
 #include <klocale.h>
@@ -34,20 +42,7 @@
 #include <kmessagebox.h>
 #include <kio/netaccess.h>
 
-#include <qfileinfo.h>
-#include <qregexp.h>
-//Added by qt3to4:
-#include <QTextStream>
-
-#include <algorithm>
-#include <functional>
-#include <vector>
-using namespace std;
-
-#include <iostream>
-
-#include <float.h>
-
+#include "kvoctraindoc.h"
 #include "kvoctraincore.h"
 #include "prefs.h"
 

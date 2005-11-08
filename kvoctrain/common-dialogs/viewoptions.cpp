@@ -23,7 +23,7 @@
  * *
  ***************************************************************************/
 
-#include <qcheckbox.h>
+#include <QCheckBox>
 
 #include "viewoptions.h"
 
