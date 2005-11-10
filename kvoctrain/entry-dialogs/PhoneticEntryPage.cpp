@@ -24,9 +24,7 @@
  ***************************************************************************/
 
 #include <QLayout>
-#include <Q3Frame>
-#include <Q3GroupBox>
-#include <QToolTip>
+#include <QFrame>
 #include <QGridLayout>
 #include <QKeyEvent>
 
@@ -180,28 +178,36 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
   : KDialogBase(Plain, i18n("Select Characters From Phonetic Alphabet"), Close, Close, parent, name, modal)
 {
   int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
-  QFrame * phoneticbox = plainPage();
-  QGridLayout *gbox = new QGridLayout(phoneticbox, KV_MAX_HORIZ, (num+KV_MAX_HORIZ-1)/KV_MAX_HORIZ, 1);
+  QFrame * dialogFrame = plainPage();
 
+  QGridLayout *gridLayoutTop = new QGridLayout(dialogFrame);
+  gridLayoutTop->setMargin(0);
+  QSpacerItem *spacerItem = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+  gridLayoutTop->addItem(spacerItem, 1, 0, 1, 1);
+  QSpacerItem *spacerItem1 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+  gridLayoutTop->addItem(spacerItem1, 0, 1, 1, 1);
+
+  QGridLayout *gridLayoutButtons = new QGridLayout();
+  gridLayoutButtons->setMargin(0);
   KV_Unicode_Ref *uni_ref = kv_unicode_ref;
   int vert = 0;
   int horiz = 0;
   while (uni_ref->code != 0) {
     QChar qc = uni_ref->code;
     QString text(qc);
-    PhoneticButton *butt = new PhoneticButton(text, phoneticbox, this);
-    connect (butt, SIGNAL(clicked()), butt, SLOT(slotClicked()) );
+    PhoneticButton *phoneticButton = new PhoneticButton(text, dialogFrame, this);
+    connect (phoneticButton, SIGNAL(clicked()), phoneticButton, SLOT(slotClicked()) );
     QString tip = i18n("Unicode name: ");
     tip += QString::fromLatin1(uni_ref->unicodename);
     tip += "\n";
     tip += i18n("Describing the sound of the character", "Sound: ");
     tip += i18n(uni_ref->audible);
-    butt->setFont(ipafont);
-    butt->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
+    phoneticButton->setFont(ipafont);
+    phoneticButton->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
     int sz = QMAX(14, int(1.7*ipafont.pointSize()));
-    butt->setMaximumSize(QSize (sz, sz));
-    gbox->addWidget( butt, vert, horiz, Qt::AlignCenter );
-    QToolTip::add (butt, tip);
+    phoneticButton->setMaximumSize(QSize (sz, sz));
+    phoneticButton->setToolTip(tip);
+    gridLayoutButtons->addWidget( phoneticButton, vert, horiz, 0 /*Qt::AlignCenter*/ );
 
     if (++horiz >= KV_MAX_HORIZ) {
       ++vert;
@@ -209,7 +215,8 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     }
     ++uni_ref;
   }
-  resize(sizeHint());
+
+  gridLayoutTop->addLayout(gridLayoutButtons, 0, 0, 1, 1);
 }
 
 

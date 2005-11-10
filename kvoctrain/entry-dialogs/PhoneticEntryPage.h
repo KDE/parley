@@ -53,8 +53,8 @@ class PhoneticButton : public QPushButton
   Q_OBJECT
 
 public:
-  PhoneticButton (const QString & text, QWidget * parent, PhoneticEntryPage *_page, const char * name = 0)
-  : QPushButton (text, parent, name), page(_page) {}
+  PhoneticButton (const QString & text, QWidget * parent, PhoneticEntryPage *_page)
+  : QPushButton (text, parent), page(_page) {}
 
 protected slots:
   void slotClicked();
