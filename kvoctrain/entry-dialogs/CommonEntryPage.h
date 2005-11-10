@@ -53,7 +53,8 @@ public:
     QueryManager &querymanager,
     bool          active,
     const QFont&  ipafont,
-    QWidget* parent = NULL
+    QWidget* parent = 0,
+    EntryDlg * entryDialog = 0
   );
 
   void setData(
@@ -132,5 +133,6 @@ protected:
 
   QFont                 ipafont;
   bool                  modified;
+  EntryDlg            * entryDlg;
 };
 #endif // CommonEntryPage_included
