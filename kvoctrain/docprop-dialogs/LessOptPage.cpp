@@ -77,7 +77,7 @@ void LessOptPage::slotNewLesson()
 {
   bool ok;
   QString getLesson = KInputDialog::getText(
-              i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), QString::null, &ok );
+    i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), QString::null, &ok, this );
   if( !ok )
     return;
   QString str;
@@ -103,7 +103,7 @@ void LessOptPage::slotModifyLesson()
     str.remove (0, pos+strlen (LESS_TAG));
     bool ok;
     QString getLesson = KInputDialog::getText(
-                i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), str, &ok );
+                i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), str, &ok, this );
     if( !ok )
       return;
     QString str2;

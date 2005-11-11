@@ -60,8 +60,7 @@ CommonEntryPage::CommonEntryPage
   QueryManager &_querymanager,
   bool          active,
   const QFont&  _ipafont,
-  QWidget      *parent,
-  EntryDlg     *entryDialog
+  QWidget      *parent
 )
   :
   QWidget(parent),
@@ -73,8 +72,7 @@ CommonEntryPage::CommonEntryPage
   doc(_doc),
   querymanager(_querymanager),
   entry_active(active),
-  ipafont(_ipafont),
-  entryDlg(entryDialog)
+  ipafont(_ipafont)
 {
   setupUi(this);
   connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
@@ -106,6 +104,7 @@ CommonEntryPage::CommonEntryPage
   b_pronDlg->setPixmap(pron_pm);
 
   setData(multi_sel, expr, less, lessbox, lang, type, pronunce, act_usage, label, querymanager, active);
+  subDialog = 0L;
 }
 
 
@@ -324,13 +323,9 @@ void CommonEntryPage::phoneticSelected(wchar_t wc)
 
 void CommonEntryPage::invokePronDlg()
 {
-  //if (phoneticDlg == 0) {
-    PhoneticEntryPage * phoneticDlg = new PhoneticEntryPage (ipafont, this);
-    connect (phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)) );
-    phoneticDlg->show();
-  //}
-  //else
-    //phoneticDlg->show();
+  PhoneticEntryPage * phoneticDlg = new PhoneticEntryPage (ipafont, this);
+  connect (phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)) );
+  phoneticDlg->show();
 }
 
 
@@ -341,14 +336,16 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
 
-  KDialogBase usageOpt(KDialogBase::Swallow,
+  KDialogBase *subDialog= new KDialogBase(b_usageDlg, "usage", true,
     i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, entryDlg, "usage", true);
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+
+  connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
   UsageOptPage *usageOptPage = new UsageOptPage (doc->getUsageDescr(), doc, this);
-  usageOpt.setMainWidget(usageOptPage);
+  subDialog->setMainWidget(usageOptPage);
 
-  if (usageOpt.exec() == QDialog::Accepted)
+  if (subDialog->exec() == QDialog::Accepted)
   {
     usageOptPage->getUsageLabels(new_usageStr, usageIndex);
     UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
@@ -366,14 +363,16 @@ void CommonEntryPage::invokeLessDlg()
   vector<QString> new_lessonStr;
 
   int old_lessons = (int) lesson_box->count();
-  KDialogBase lessOpt(KDialogBase::Swallow, i18n("Edit Lesson Names"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, entryDlg, "lesson", true);
+  KDialogBase *subDialog = new KDialogBase(b_LessDlg, "lesson", true, i18n("Edit Lesson Names"),
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+
+  connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
   LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this);
-  lessOpt.setMainWidget(lessOptPage);
+  subDialog->setMainWidget(lessOptPage);
 
   vector<int> lessoninquery = doc->getLessonsInQuery();
-  if (lessOpt.exec() == QDialog::Accepted)
+  if (subDialog->exec() == QDialog::Accepted)
   {
     lessOptPage->getLesson(lesson_box, lessonIndex);
     LessOptPage::cleanUnused(doc, lesson_box, lessonIndex, old_lessons, lessoninquery);
@@ -393,13 +392,15 @@ void CommonEntryPage::invokeTypeDlg()
   vector<QString> new_typeStr;
 
   int old_types = (int) doc->getTypeDescr().size();
-  KDialogBase typeOpt(KDialogBase::Swallow, i18n("Edit User Defined Types"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok, entryDlg, "types", true);
+  KDialogBase *subDialog = new KDialogBase(b_TypeDlg, "types", true, i18n("Edit User Defined Types"),
+    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+
+  connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
   TypeOptPage *typeOptPage = new TypeOptPage (doc->getTypeDescr(), doc, this);
-  typeOpt.setMainWidget(typeOptPage);
+  subDialog->setMainWidget(typeOptPage);
 
-  if (typeOpt.exec() == QDialog::Accepted)
+  if (subDialog->exec() == QDialog::Accepted)
   {
     typeOptPage->getTypeNames(new_typeStr, typeIndex);
     TypeOptPage::cleanUnused(doc, typeIndex, old_types);
@@ -437,6 +438,16 @@ void CommonEntryPage::setModified(bool mod)
   modified = mod;
   if (mod)
     emit sigModified();
+}
+
+void CommonEntryPage::slotSubDialogClosed( )
+{
+  if (subDialog)
+  {
+    disconnect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
+    subDialog->deleteLater();
+    subDialog = 0L;
+  }
 }
 
 #include "CommonEntryPage.moc"

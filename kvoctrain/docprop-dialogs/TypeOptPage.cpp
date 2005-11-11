@@ -75,7 +75,7 @@ void TypeOptPage::slotNewType()
 {
   bool ok;
   QString getType = KInputDialog::getText(
-              i18n( "Type Description" ), i18n( "Enter type description:" ), QString::null, &ok );
+              i18n( "Type Description" ), i18n( "Enter type description:" ), QString::null, &ok, this );
   if( !ok )
     return;
   QString str;
@@ -101,7 +101,7 @@ void TypeOptPage::slotModifyType()
     str.remove (0, pos+strlen (TYPE_TAG));
     bool ok;
     QString getType = KInputDialog::getText(
-                i18n( "Type Description" ), i18n( "Enter type description:" ), str, &ok );
+                i18n( "Type Description" ), i18n( "Enter type description:" ), str, &ok, this );
     if( !ok )
       return;
     QString str2;

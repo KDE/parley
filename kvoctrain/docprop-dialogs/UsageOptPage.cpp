@@ -76,7 +76,7 @@ void UsageOptPage::slotNewUsage()
 {
   bool ok;
   QString getUsage = KInputDialog::getText(
-              i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), QString::null, &ok );
+              i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), QString::null, &ok, this );
   if( !ok )
     return;
   QString str;
@@ -103,7 +103,7 @@ void UsageOptPage::slotModifyUsage()
 
     bool ok;
     QString getUsage = KInputDialog::getText(
-                i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), str, &ok );
+                i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), str, &ok, this );
     if( !ok )
       return;
     QString str2;

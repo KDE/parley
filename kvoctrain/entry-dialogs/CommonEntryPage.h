@@ -31,7 +31,7 @@
 #include <UsageManager.h>
 
 class PhoneticEntryPage;
-class EntryDlg;
+class KDialogBase;
 
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
@@ -53,8 +53,7 @@ public:
     QueryManager &querymanager,
     bool          active,
     const QFont&  ipafont,
-    QWidget* parent = 0,
-    EntryDlg * entryDialog = 0
+    QWidget* parent = 0
   );
 
   void setData(
@@ -108,6 +107,7 @@ protected slots:
   void invokeTypeDlg();
   void invokePronDlg();
   void invokeUsageDlg();
+  void slotSubDialogClosed();
 
 signals:
   void sigModified();
@@ -133,6 +133,6 @@ protected:
 
   QFont                 ipafont;
   bool                  modified;
-  EntryDlg            * entryDlg;
+  KDialogBase         * subDialog;
 };
 #endif // CommonEntryPage_included
