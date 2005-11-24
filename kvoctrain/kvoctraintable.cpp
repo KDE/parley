@@ -307,7 +307,7 @@ int cellAlignment(const QString & text)
     text.toDouble(&ok2);
   num = ok1 || ok2;
 
-  return ( num ? Qt::AlignRight : Qt::AlignAuto ) | Qt::AlignVCenter;
+  return ( num ? Qt::AlignRight : Qt::AlignLeft ) | Qt::AlignVCenter;
 }
 
 
