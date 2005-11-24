@@ -28,14 +28,11 @@
 
 #include "viewoptionsbase.h"
 
-class ViewOptions : public ViewOptionsBase
+class ViewOptions : public QWidget, public Ui::ViewOptionsBase
 {
   Q_OBJECT
-
 public:
-  ViewOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
-
+  ViewOptions(QWidget* parent = 0);
 };
 
 #endif
-

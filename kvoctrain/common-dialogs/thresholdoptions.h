@@ -31,12 +31,11 @@
 
 class KComboBox;
 
-class ThresholdOptions : public ThresholdOptionsBase
+class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
   Q_OBJECT
-
 public:
-  ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
+  ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -68,4 +67,3 @@ private:
 };
 
 #endif
-

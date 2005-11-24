@@ -28,10 +28,9 @@
 
 #include "groupoptions.h"
 
-GroupOptions::GroupOptions(QWidget* parent, const char* name, Qt::WFlags fl)
-: GroupOptionsBase(parent,name,fl)
+GroupOptions::GroupOptions(QWidget* parent) : QWidget(parent)
 {
-
+  setupUi(this);
 }
 
 void GroupOptions::updateButtons()
@@ -43,4 +42,3 @@ void GroupOptions::updateButtons()
 }
 
 #include "groupoptions.moc"
-

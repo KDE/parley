@@ -101,9 +101,9 @@ static ThreshListRef Threshdate_itemlist [] =
       };
 
 
-ThresholdOptions::ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent, const char* name, Qt::WFlags fl)
-: ThresholdOptionsBase(parent, name, fl), m_lessons(lessons)
+ThresholdOptions::ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent) : QWidget(parent), m_lessons(lessons)
 {
+  setupUi(this);
   connect(lessoncomp,  SIGNAL(activated(int)), SLOT(slotSetLessonComp(int)));
   connect(lessonlist,  SIGNAL(selectionChanged()), SIGNAL(widgetModified()));
   connect(b_all_less,  SIGNAL(clicked()), SLOT(slotSelectAll()));

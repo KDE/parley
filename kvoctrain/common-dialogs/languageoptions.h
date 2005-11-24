@@ -26,31 +26,29 @@
 #ifndef LANGUAGEOPTIONS_H
 #define LANGUAGEOPTIONS_H
 
-#include <Q3PopupMenu>
-#include <Q3ValueList>
+#include <QList>
 
 #include <kmenu.h>
 
 #include "languageoptionsbase.h"
 #include "langset.h"
 
-class LanguageOptions : public LanguageOptionsBase
+class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
 {
   Q_OBJECT
-
 public:
-  LanguageOptions(LangSet & langset, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
-  virtual ~LanguageOptions ();
+  LanguageOptions(LangSet & langset, QWidget* parent = 0);
+  virtual ~LanguageOptions();
 
   LangSet getLangSet () const;
 
   struct Country
   {
-    Country(const QString& c, const Q3ValueList<int> l, const QString& p, int i)
+    Country(const QString& c, const QList<int> l, const QString& p, int i)
       : country(c), langs(l), pixmap(p), id(i) { }
     Country() { }
     QString country;
-    Q3ValueList<int> langs;
+    QList<int> langs;
     QString pixmap;
     int id;
   };
@@ -61,7 +59,7 @@ public:
       : region(reg) {}
     Region() {}
     QString region;
-    Q3ValueList<Country> countries;
+    QList<Country> countries;
   };
 
   void updateWidgets();

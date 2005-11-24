@@ -28,15 +28,13 @@
 
 #include "queryoptionsbase.h"
 
-class QueryOptions : public QueryOptionsBase
+class QueryOptions : public QWidget, public Ui::QueryOptionsBase
 {
   Q_OBJECT
-
 public:
-  QueryOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
+  QueryOptions(QWidget* parent = 0);
 
   void updateWidgets();
 };
 
 #endif
-

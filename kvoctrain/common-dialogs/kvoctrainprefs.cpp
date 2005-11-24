@@ -62,28 +62,28 @@ KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, kvoctrainDoc * doc, KComboBox * les
   m_config = config;
   m_queryManager = m;
 
-  m_generalOptions = new GeneralOptions(0, "General Settings");
+  m_generalOptions = new GeneralOptions(0);
   addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
 
-  m_languageOptions = new LanguageOptions(m_langSet, 0, "Language Settings");
+  m_languageOptions = new LanguageOptions(m_langSet, 0);
   addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
   connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
-  m_viewOptions = new ViewOptions(0, "View Settings");
+  m_viewOptions = new ViewOptions(0);
   addPage(m_viewOptions, i18n("View"), "view_choose", i18n("View Settings"), true);
 
-  m_pasteOptions = new PasteOptions(m_langSet, doc, 0, "Copy & Paste Settings");
+  m_pasteOptions = new PasteOptions(m_langSet, doc, 0);
   addPage(m_pasteOptions, i18n("Copy & Paste"), "editpaste", i18n("Copy & Paste Settings"), true);
   connect(m_pasteOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
-  m_queryOptions = new QueryOptions(0, "Query Settings");
+  m_queryOptions = new QueryOptions(0);
   addPage(m_queryOptions, i18n("Query"), "run_query", i18n("Query Settings"), true);
 
-  m_thresholdOptions = new ThresholdOptions(lessons, m_queryManager, 0, "Threshold Settings");
+  m_thresholdOptions = new ThresholdOptions(lessons, m_queryManager, 0);
   addPage(m_thresholdOptions, i18n("Thresholds"), "configure", i18n("Threshold Settings"), true);
   connect(m_thresholdOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
-  m_blockOptions = new BlockOptions(0, "Blocking Settings");
+  m_blockOptions = new BlockOptions(0);
   addPage(m_blockOptions, i18n("Blocking"), "configure", i18n("Blocking Settings"), true);
   connect(m_blockOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
   connect(m_blockOptions, SIGNAL(blockExpireChanged(bool, bool)), m_thresholdOptions, SLOT(slotBlockExpire(bool, bool)));

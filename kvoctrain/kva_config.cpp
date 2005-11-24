@@ -34,8 +34,8 @@
 
 void kvoctrainApp::saveOptions()
 {
-  KConfig *config = KApplication::kApplication()->config();
-  fileOpenRecent->saveEntries(config, "Recent Files");
+  //KConfig *config = KApplication::kApplication()->config();
+  fileOpenRecent->saveEntries(KGlobal::config(), "Recent Files");
 
   if (view)
   {
@@ -75,8 +75,8 @@ void kvoctrainApp::saveLanguages()
 
 void kvoctrainApp::readOptions()
 {
-  KConfig *config = KApplication::kApplication()->config();
-  fileOpenRecent->loadEntries(config, "Recent Files");
+  //KConfig *config = KApplication::kApplication()->config();
+  fileOpenRecent->loadEntries(KGlobal::config(), "Recent Files");
   /*
   int ls = Prefs::numPreSetting();
   for (int i = 0 ; i < ls; i++)

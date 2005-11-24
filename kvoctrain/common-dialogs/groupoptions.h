@@ -28,15 +28,13 @@
 
 #include "groupoptionsbase.h"
 
-class GroupOptions : public GroupOptionsBase
+class GroupOptions : public QWidget, public Ui::GroupOptionsBase
 {
   Q_OBJECT
-
 public:
-  GroupOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
+  GroupOptions(QWidget* parent = 0);
 
   void updateButtons();
 };
 
 #endif
-

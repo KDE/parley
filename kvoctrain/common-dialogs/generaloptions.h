@@ -28,12 +28,11 @@
 
 #include "generaloptionsbase.h"
 
-class GeneralOptions : public GeneralOptionsBase
+class GeneralOptions : public QWidget, public Ui::GeneralOptionsBase
 {
   Q_OBJECT
-
 public:
-  GeneralOptions(QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
+  GeneralOptions(QWidget* parent = 0);
 };
 
 #endif

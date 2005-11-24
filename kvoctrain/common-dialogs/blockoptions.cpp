@@ -74,29 +74,29 @@ static ListRef date_itemlist [] =
 };
 
 
-BlockOptions::BlockOptions(QWidget* parent, const char* name, Qt::WFlags fl)
-: BlockOptionsBase(parent, name, fl)
+BlockOptions::BlockOptions(QWidget* parent): QWidget(parent)
 {
-   connect(expire1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(expire7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
-   connect(block7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  setupUi(this);
+  connect(expire1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block1, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block2, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block3, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block4, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block5, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block6, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(expire7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
+  connect(block7, SIGNAL(activated(int)), this, SLOT(slotComboBoxActivated(int)));
 
-   connect(kcfg_Block, SIGNAL(toggled(bool)), this, SLOT(slotBlockToggled(bool)));
-   connect(kcfg_Expire, SIGNAL(toggled(bool)), this, SLOT(slotExpireToggled(bool)));
+  connect(kcfg_Block, SIGNAL(toggled(bool)), this, SLOT(slotBlockToggled(bool)));
+  connect(kcfg_Expire, SIGNAL(toggled(bool)), this, SLOT(slotExpireToggled(bool)));
 
-   fillWidgets();
-   updateWidgets();
+  fillWidgets();
+  updateWidgets();
 }
 
 void BlockOptions::fillWidgets()

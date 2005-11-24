@@ -682,9 +682,9 @@ KV_ISO639_Code kv_iso639_2[] = {
 };
 */
 
-LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent, const char* name, Qt::WFlags fl)
-  : LanguageOptionsBase(parent, name, fl), m_langSet(langset)
+LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
+  setupUi(this);
   langset_popup = 0;
 
   connect(b_langDel, SIGNAL(clicked()), this, SLOT(slotDeleteClicked()));
@@ -1116,7 +1116,7 @@ void LanguageOptions::loadCountryData()
 
     // To have it sorted by name
     QMap<QString, Country> countrymap;
-    for (Q3ValueList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it)
+    for (QList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it)
     {
       countrymap.insert((*it).country, *it);
     }
@@ -1137,7 +1137,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
   {
     Country c = countryIdMap[i];
     bool first = true;
-    for (Q3ValueList<int>::Iterator it = c.langs.begin(); it != c.langs.end(); ++it)
+    for (QList<int>::Iterator it = c.langs.begin(); it != c.langs.end(); ++it)
     {
       QString s = global_langset.shortId(*it);
 

@@ -50,9 +50,9 @@ static const char *separator_id[] =
   0
 };
 
-PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent, const char* name, Qt::WFlags fl)
-: PasteOptionsBase(parent,name,fl), m_langSet(langset)
+PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
+  setupUi(this);
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), OrderList, SLOT(setDisabled(bool)));
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), UpButton, SLOT(setDisabled(bool)));
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), DownButton, SLOT(setDisabled(bool)));

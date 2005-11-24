@@ -8,7 +8,7 @@
 
     copyright    :(C) 2005 Peter Hedlund
 
-    email: peter.hedlund@kdemail.net
+    email        : peter.hedlund@kdemail.net
 
     -----------------------------------------------------------------------
 
@@ -27,9 +27,9 @@
 
 #include "viewoptions.h"
 
-ViewOptions::ViewOptions(QWidget* parent, const char* name, Qt::WFlags fl)
-: ViewOptionsBase(parent,name,fl)
+ViewOptions::ViewOptions(QWidget* parent) : QWidget(parent)
 {
+  setupUi(this);
   connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol7, SLOT(setEnabled(bool)));
   connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol6, SLOT(setEnabled(bool)));
   connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol5, SLOT(setEnabled(bool)));
@@ -50,4 +50,3 @@ ViewOptions::ViewOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 }
 
 #include "viewoptions.moc"
-

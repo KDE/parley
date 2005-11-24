@@ -23,20 +23,19 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <Q3GroupBox>
+#include <QGroupBox>
 #include <QCheckBox>
 #include <QRadioButton>
 #include <QLabel>
-#include <Q3ButtonGroup>
 
 #include <knuminput.h>
 
 #include "queryoptions.h"
 #include "prefs.h"
 
-QueryOptions::QueryOptions(QWidget* parent, const char* name, Qt::WFlags fl)
-: QueryOptionsBase(parent,name,fl)
+QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
 {
+  setupUi(this);
   connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Periods, SLOT(setEnabled(bool)));
   connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Colons, SLOT(setEnabled(bool)));
   connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Semicolons, SLOT(setEnabled(bool)));
@@ -63,7 +62,7 @@ QueryOptions::QueryOptions(QWidget* parent, const char* name, Qt::WFlags fl)
 void QueryOptions::updateWidgets()
 {
   //This is required for loading profiles properly
-  kcfg_QueryTimeout->setButton((int) Prefs::queryTimeout());
+  /*@todo port  kcfg_QueryTimeout->setButton((int) Prefs::queryTimeout()); */
   kcfg_MaxTimePer->setValue(Prefs::maxTimePer());
   kcfg_ShowCounter->setChecked(Prefs::showCounter());
   kcfg_SwapDirection->setChecked(Prefs::swapDirection());
@@ -80,4 +79,3 @@ void QueryOptions::updateWidgets()
 }
 
 #include "queryoptions.moc"
-

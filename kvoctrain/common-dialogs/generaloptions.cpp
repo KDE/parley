@@ -29,14 +29,12 @@
 
 #include "generaloptions.h"
 
-GeneralOptions::GeneralOptions(QWidget* parent, const char* name, Qt::WFlags fl)
-: GeneralOptionsBase(parent,name,fl)
+GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 {
+  setupUi(this);
   connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
 
   kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
 
-
 #include "generaloptions.moc"
-

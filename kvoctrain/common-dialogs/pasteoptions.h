@@ -31,12 +31,11 @@
 
 class kvoctrainDoc;
 
-class PasteOptions : public PasteOptionsBase
+class PasteOptions : public QWidget, public Ui::PasteOptionsBase
 {
   Q_OBJECT
-
 public:
-  PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent = 0, const char* name = 0, Qt::WFlags fl = 0 );
+  PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -61,8 +60,6 @@ private:
   QStringList preparePasteOrderList();
   kvoctrainDoc * m_doc;
   LangSet m_langSet;
-
 };
 
 #endif
-

@@ -1,352 +1,333 @@
-<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>LanguageOptionsBase</class>
-<widget class="QWidget">
-    <property name="name">
-        <cstring>LanguageOptionsBase</cstring>
-    </property>
-    <property name="geometry">
-        <rect>
-            <x>0</x>
-            <y>0</y>
-            <width>392</width>
-            <height>327</height>
-        </rect>
-    </property>
-    <grid>
-        <property name="name">
-            <cstring>unnamed</cstring>
+<ui version="4.0" >
+ <author></author>
+ <comment></comment>
+ <exportmacro></exportmacro>
+ <class>LanguageOptionsBase</class>
+ <widget class="QWidget" name="LanguageOptionsBase" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>392</width>
+    <height>443</height>
+   </rect>
+  </property>
+  <layout class="QGridLayout" >
+   <property name="margin" >
+    <number>0</number>
+   </property>
+   <property name="spacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="GroupBox3" >
+     <property name="title" >
+      <string>Available Languages</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>11</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="2" >
+       <widget class="QPushButton" name="b_langDel" >
+        <property name="toolTip" >
+         <string>Delete the selected language</string>
         </property>
-        <property name="margin">
-            <number>0</number>
+        <property name="whatsThis" >
+         <string>By clicking on this button you can delete the selected language.</string>
         </property>
-        <property name="spacing">
-            <number>6</number>
+        <property name="text" >
+         <string>&amp;Delete</string>
         </property>
-        <widget class="QGroupBox" row="0" column="0">
-            <property name="name">
-                <cstring>GroupBox3</cstring>
-            </property>
-            <property name="title">
-                <string>Available Languages</string>
-            </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
-                </property>
-                <widget class="QPushButton" row="0" column="2">
-                    <property name="name">
-                        <cstring>b_langDel</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Delete</string>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Delete the selected language</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>By clicking on this button you can delete the selected language.</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="1" column="1">
-                    <property name="name">
-                        <cstring>e_shortName2</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>7</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Alternative language code</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>An alternative language code is set here but you can change it if you want</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="2" column="1">
-                    <property name="name">
-                        <cstring>e_langLong</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Your own description of the language code.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>A description of the language is written here and you can modify it if you want.</string>
-                    </property>
-                </widget>
-                <widget class="KComboBox" row="4" column="1">
-                    <property name="name">
-                        <cstring>d_kblayout</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Select a language or use the Add New Language Code to add one.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="3" column="1">
-                    <property name="name">
-                        <cstring>b_langPixmap</cstring>
-                    </property>
-                    <property name="text">
-                        <string></string>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>The flag representing the language</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>The default flag representing the language is set here but you can choose another picture by clicking on the button.</string>
-                    </property>
-                </widget>
-                <widget class="KComboBox" row="0" column="1">
-                    <property name="name">
-                        <cstring>d_shortName</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Select a language or use the Add New Language Code to add one.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="0" column="0">
-                    <property name="name">
-                        <cstring>label_shortName</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>1</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Language c&amp;ode:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>d_shortName</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>You can assign a language to each column</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="1" column="0">
-                    <property name="name">
-                        <cstring>label_shortName2</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Alte&amp;rnative code:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>e_shortName2</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Select a second language code if necessary</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Sometimes it may be useful to have a second language code because some languages have the usual short code and one or two longer codes.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="2" column="0">
-                    <property name="name">
-                        <cstring>label_langLong</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Lang&amp;uage name:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>e_langLong</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Describe the language in your own terms.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Here you can give the language code a descriptive name in your own language which is shown in the header buttons in the main view. </string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="3" column="0">
-                    <property name="name">
-                        <cstring>label_langPixmap</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Picture:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>b_langPixmap</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Set a picture for the language</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Choose a picture to represent the language above.</string>
-                    </property>
-                </widget>
-                <widget class="QLabel" row="4" column="0">
-                    <property name="name">
-                        <cstring>label_kblayout</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>1</hsizetype>
-                            <vsizetype>0</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="text">
-                        <string>Keyboard layout:</string>
-                    </property>
-                    <property name="buddy" stdset="0">
-                        <cstring>d_kblayout</cstring>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>You can assign a language to each column</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
-                    </property>
-                </widget>
-            </grid>
-        </widget>
-        <widget class="QGroupBox" row="1" column="0">
-            <property name="name">
-                <cstring>GroupBox2</cstring>
-            </property>
-            <property name="title">
-                <string>Add New Language Code</string>
-            </property>
-            <grid>
-                <property name="name">
-                    <cstring>unnamed</cstring>
-                </property>
-                <property name="margin">
-                    <number>11</number>
-                </property>
-                <property name="spacing">
-                    <number>6</number>
-                </property>
-                <widget class="QPushButton" row="1" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>b_lang_kde</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Add Language Data From &amp;KDE Database</string>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Obtains the language choices from the KDE database</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Pressing this button opens a menu that contains all the countries that are known in your KDE installation. Ordered by country you can add your desired language properties to your personal list.</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="2" column="0" rowspan="1" colspan="2">
-                    <property name="name">
-                        <cstring>b_lang_iso1</cstring>
-                    </property>
-                    <property name="text">
-                        <string>Add Language Data From ISO639-&amp;1</string>
-                    </property>
-                    <property name="accel">
-                        <string>Alt+1</string>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>List of languages covered by ISO639-1</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Pressing this button opens a menu that contains all the language codes that are covered by "ISO639-1"</string>
-                    </property>
-                </widget>
-                <widget class="QPushButton" row="0" column="1">
-                    <property name="name">
-                        <cstring>b_langNew</cstring>
-                    </property>
-                    <property name="text">
-                        <string>&amp;Add</string>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Allow addition of the language you typed.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>This button becomes available when you type a language code in the field.</string>
-                    </property>
-                </widget>
-                <widget class="QLineEdit" row="0" column="0">
-                    <property name="name">
-                        <cstring>e_newName</cstring>
-                    </property>
-                    <property name="sizePolicy">
-                        <sizepolicy>
-                            <hsizetype>3</hsizetype>
-                            <vsizetype>1</vsizetype>
-                            <horstretch>0</horstretch>
-                            <verstretch>0</verstretch>
-                        </sizepolicy>
-                    </property>
-                    <property name="toolTip" stdset="0">
-                        <string>Type your language code if you know it.</string>
-                    </property>
-                    <property name="whatsThis" stdset="0">
-                        <string>Type the language code if you know it or use one of the 2 buttons below to choose a language code.</string>
-                    </property>
-                </widget>
-            </grid>
-        </widget>
-        <spacer row="2" column="0">
-            <property name="name">
-                <cstring>spacer1</cstring>
-            </property>
-            <property name="orientation">
-                <enum>Vertical</enum>
-            </property>
-            <property name="sizeType">
-                <enum>Expanding</enum>
-            </property>
-            <property name="sizeHint">
-                <size>
-                    <width>390</width>
-                    <height>20</height>
-                </size>
-            </property>
-        </spacer>
-    </grid>
-</widget>
-<tabstops>
-    <tabstop>d_shortName</tabstop>
-    <tabstop>e_shortName2</tabstop>
-    <tabstop>e_langLong</tabstop>
-    <tabstop>b_langPixmap</tabstop>
-    <tabstop>d_kblayout</tabstop>
-    <tabstop>b_langDel</tabstop>
-    <tabstop>e_newName</tabstop>
-    <tabstop>b_langNew</tabstop>
-    <tabstop>b_lang_kde</tabstop>
-    <tabstop>b_lang_iso1</tabstop>
-</tabstops>
-<layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>kcombobox.h</includehint>
-    <includehint>kcombobox.h</includehint>
-</includehints>
-</UI>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="QLineEdit" name="e_shortName2" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>7</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Alternative language code</string>
+        </property>
+        <property name="whatsThis" >
+         <string>An alternative language code is set here but you can change it if you want</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QLineEdit" name="e_langLong" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>3</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Your own description of the language code.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>A description of the language is written here and you can modify it if you want.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="KComboBox" name="d_kblayout" >
+        <property name="toolTip" >
+         <string>Select a language or use the Add New Language Code to add one.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="QPushButton" name="b_langPixmap" >
+        <property name="toolTip" >
+         <string>The flag representing the language</string>
+        </property>
+        <property name="whatsThis" >
+         <string>The default flag representing the language is set here but you can choose another picture by clicking on the button.</string>
+        </property>
+        <property name="text" >
+         <string/>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="KComboBox" name="d_shortName" >
+        <property name="toolTip" >
+         <string>Select a language or use the Add New Language Code to add one.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QLabel" name="label_shortName" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>1</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>You can assign a language to each column</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
+        </property>
+        <property name="text" >
+         <string>Language c&amp;ode:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>d_shortName</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QLabel" name="label_shortName2" >
+        <property name="toolTip" >
+         <string>Select a second language code if necessary</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Sometimes it may be useful to have a second language code because some languages have the usual short code and one or two longer codes.</string>
+        </property>
+        <property name="text" >
+         <string>Alte&amp;rnative code:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>e_shortName2</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_langLong" >
+        <property name="toolTip" >
+         <string>Describe the language in your own terms.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Here you can give the language code a descriptive name in your own language which is shown in the header buttons in the main view. </string>
+        </property>
+        <property name="text" >
+         <string>Lang&amp;uage name:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>e_langLong</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="0" >
+       <widget class="QLabel" name="label_langPixmap" >
+        <property name="toolTip" >
+         <string>Set a picture for the language</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Choose a picture to represent the language above.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;Picture:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>b_langPixmap</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="label_kblayout" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>1</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>You can assign a language to each column</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Each column can be assigned a language. This is internally done with the usual international language codes.</string>
+        </property>
+        <property name="text" >
+         <string>Keyboard layout:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>d_kblayout</cstring>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QGroupBox" name="GroupBox2" >
+     <property name="title" >
+      <string>Add New Language Code</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>11</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="1" column="0" colspan="2" >
+       <widget class="QPushButton" name="b_lang_kde" >
+        <property name="toolTip" >
+         <string>Obtains the language choices from the KDE database</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Pressing this button opens a menu that contains all the countries that are known in your KDE installation. Ordered by country you can add your desired language properties to your personal list.</string>
+        </property>
+        <property name="text" >
+         <string>Add Language Data From &amp;KDE Database</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" colspan="2" >
+       <widget class="QPushButton" name="b_lang_iso1" >
+        <property name="toolTip" >
+         <string>List of languages covered by ISO639-1</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Pressing this button opens a menu that contains all the language codes that are covered by &quot;ISO639-1&quot;</string>
+        </property>
+        <property name="text" >
+         <string>Add Language Data From ISO639-&amp;1</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <widget class="QPushButton" name="b_langNew" >
+        <property name="toolTip" >
+         <string>Allow addition of the language you typed.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>This button becomes available when you type a language code in the field.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;Add</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QLineEdit" name="e_newName" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>3</hsizetype>
+          <vsizetype>1</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Type your language code if you know it.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Type the language code if you know it or use one of the 2 buttons below to choose a language code.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>390</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11" />
+ <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends></extends>
+   <header>kcombobox.h</header>
+   <container>0</container>
+   <pixmap></pixmap>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>d_shortName</tabstop>
+  <tabstop>e_shortName2</tabstop>
+  <tabstop>e_langLong</tabstop>
+  <tabstop>b_langPixmap</tabstop>
+  <tabstop>d_kblayout</tabstop>
+  <tabstop>b_langDel</tabstop>
+  <tabstop>e_newName</tabstop>
+  <tabstop>b_langNew</tabstop>
+  <tabstop>b_lang_kde</tabstop>
+  <tabstop>b_lang_iso1</tabstop>
+ </tabstops>
+ <resources/>
+ <connections/>
+</ui>
