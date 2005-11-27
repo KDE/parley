@@ -34,7 +34,6 @@
 
 void kvoctrainApp::saveOptions()
 {
-  //KConfig *config = KApplication::kApplication()->config();
   fileOpenRecent->saveEntries(KGlobal::config(), "Recent Files");
 
   if (view)
@@ -42,18 +41,6 @@ void kvoctrainApp::saveOptions()
     Prefs::setCurrentRow(view->getTable()->currentRow());
     Prefs::setCurrentCol(view->getTable()->currentColumn());
   }
-  /*
-  Prefs::setNumPreSetting(presettings.size());
-  for (int i = 0 ; i < (int) presettings.size(); i++)
-  {
-    PreSettings preSettings(QString::number(i));
-    preSettings.setName(presettings[i].name);
-    preSettings.setQuery(presettings[i].query_set);
-    preSettings.setThreshold(presettings[i].thresh_set);
-    preSettings.setBlocking(presettings[i].block_set);
-    preSettings.writeConfig();
-  }
-  */
   saveLanguages();
   Prefs::writeConfig();
 }
@@ -75,18 +62,7 @@ void kvoctrainApp::saveLanguages()
 
 void kvoctrainApp::readOptions()
 {
-  //KConfig *config = KApplication::kApplication()->config();
   fileOpenRecent->loadEntries(KGlobal::config(), "Recent Files");
-  /*
-  int ls = Prefs::numPreSetting();
-  for (int i = 0 ; i < ls; i++)
-  {
-    PreSettings preSettings(QString::number(i));
-    preSettings.readConfig();
-    presettings.push_back(PreSetting(preSettings.name(), preSettings.query(),
-      preSettings.threshold(), preSettings.blocking()));
-  }
-  */
   readLanguages();
 }
 

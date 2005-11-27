@@ -62,7 +62,23 @@ QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
 void QueryOptions::updateWidgets()
 {
   //This is required for loading profiles properly
-  /*@todo port  kcfg_QueryTimeout->setButton((int) Prefs::queryTimeout()); */
+  switch(Prefs::queryTimeout())
+  {
+    case Prefs::EnumQueryTimeout::NoTimeout:
+      r_no_limit->setChecked(true);
+      break;
+
+    case Prefs::EnumQueryTimeout::Show:
+      r_show_to->setChecked(true);
+      break;
+
+    case Prefs::EnumQueryTimeout::Continue:
+      r_cont_to->setChecked(true);
+      break;
+
+    default:
+       r_no_limit->setChecked(true);
+  }
   kcfg_MaxTimePer->setValue(Prefs::maxTimePer());
   kcfg_ShowCounter->setChecked(Prefs::showCounter());
   kcfg_SwapDirection->setChecked(Prefs::swapDirection());
