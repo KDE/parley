@@ -43,10 +43,10 @@
                   r       CDATA  #IMPLIED
 >
                 
-<!ENTITY  ouml  "ö">
-<!ENTITY  Ouml  "Ö">
-<!ENTITY  uuml  "ü">
-<!ENTITY  Uuml  "Ü">
-<!ENTITY  auml  "ä">
-<!ENTITY  Auml  "Ä">
-<!ENTITY  szlig "ß">
+<!ENTITY  ouml  "Ã¶">
+<!ENTITY  Ouml  "Ã–">
+<!ENTITY  uuml  "Ã¼">
+<!ENTITY  Uuml  "Ãœ">
+<!ENTITY  auml  "Ã¤">
+<!ENTITY  Auml  "Ã„">
+<!ENTITY  szlig "ÃŸ">

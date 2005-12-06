@@ -109,7 +109,7 @@ typedef vector<vector<QueryEntryRef> > QuerySelection;
 class QueryManager
 {
  public:
-                // don´t change the order/remove one of these,
+                // don't change the order/remove one of these,
                 // just APPEND new types
  enum CompType { DontCare,
                   MoreEqThan, MoreThan,

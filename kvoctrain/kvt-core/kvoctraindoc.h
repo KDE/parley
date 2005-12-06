@@ -323,11 +323,11 @@ class kvoctrainDoc : public QObject
   /** returns the modification state of the doc */
   inline bool isModified () const { return dirty; }
 
-  /** returns original´s identifier
+  /** returns original's identifier
    */
   QString getOriginalIdent () const;
 
-  /** set original´s identifier
+  /** set original's identifier
    */
   void setOriginalIdent (const QString &id);
 

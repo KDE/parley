@@ -31,7 +31,7 @@ using namespace std;
 # define KOXML_CHAR char    // evtl. wchar
 
 ////////////////////////////////////////////////////////
-//evtl. an MFC o.ä. anpassen
+//evtl. an MFC o.Ã¤. anpassen
 #ifdef __MFC_STRING_BENUTZT__
 
 #else

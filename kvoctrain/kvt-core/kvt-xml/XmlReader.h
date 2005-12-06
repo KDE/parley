@@ -3,7 +3,7 @@
   This file is part of KIllustrator.
   Copyright (C) 1998 Kai-Uwe Sattler (kus@iti.cs.uni-magdeburg.de)
 
-  modified for kvoctrain by Ewald Arnold kvoctrain@ewald-arnold.dein April ´99
+  modified for kvoctrain by Ewald Arnold kvoctrain@ewald-arnold.dein April '99
 */
 
 #ifndef XmlReader_h_
