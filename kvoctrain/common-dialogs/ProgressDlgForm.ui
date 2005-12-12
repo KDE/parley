@@ -36,9 +36,6 @@
      <property name="frameShadow" >
       <enum>QFrame::Plain</enum>
      </property>
-     <property name="margin" >
-      <number>0</number>
-     </property>
      <layout class="QGridLayout" >
       <property name="margin" >
        <number>0</number>

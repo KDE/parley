@@ -217,7 +217,7 @@ bool PasteOptions::hasChanged()
   result = (pl.count() != ol.count());
   if (result)
     return true;
-  for (uint i = 0; i < ol.count(); i--)
+  for (int i = 0; i < ol.count(); i--)
   {
     result = (ol[i] != pl[i]);
     if (result)
