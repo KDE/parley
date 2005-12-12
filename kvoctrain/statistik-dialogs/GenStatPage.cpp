@@ -24,7 +24,6 @@
  ***************************************************************************/
 
 #include <QLabel>
-#include <Q3ValueVector>
 
 #include "GenStatPage.h"
 #include <kvoctraindoc.h>

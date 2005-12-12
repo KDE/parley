@@ -30,7 +30,6 @@
 #include <QLabel>
 #include <QFileInfo>
 #include <QPixmap>
-#include <Q3ValueList>
 #include <Q3CString>
 #include <Q3PopupMenu>
 
@@ -1067,7 +1066,7 @@ void LanguageOptions::loadCountryData()
       continue;
 
     QStringList all_langs = QStringList::split(",", entry.readEntry(QString::fromLatin1("Languages")));
-    Q3ValueList<int> langs;
+    QList<int> langs;
 
     QString pixmap = *sit;
     index = pixmap.findRev('/');

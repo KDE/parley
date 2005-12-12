@@ -262,16 +262,16 @@ void kvoctrainApp::initActions()
 void kvoctrainApp::initStatusBar()
 {
   type_label = new QLabel(statusBar());
-  type_label->setFrameStyle(Q3Frame::NoFrame);
+  type_label->setFrameStyle(QFrame::NoFrame);
   statusBar()->addWidget(type_label, 150);
 
   pron_label = new QLabel(statusBar());
-  pron_label->setFrameStyle(Q3Frame::NoFrame);
+  pron_label->setFrameStyle(QFrame::NoFrame);
   pron_label->setFont(Prefs::iPAFont());
   statusBar()->addWidget(pron_label, 200);
 
   rem_label = new QLabel(statusBar());
-  rem_label->setFrameStyle(Q3Frame::NoFrame);
+  rem_label->setFrameStyle(QFrame::NoFrame);
   statusBar()->addWidget(rem_label, 150);
 }
 

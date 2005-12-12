@@ -70,7 +70,7 @@ void ProfilesDialog::slotDeleteGroup()
   {
     int curr = mw->ps_name->currentItem();
     mw->ps_name->removeItem(curr);
-    profiles.remove(profiles.at(curr));
+    profiles.removeAt(curr);
     if (curr >= mw->ps_name->count()-1)
       mw->ps_name->setCurrentItem(mw->ps_name->count()-1);
   }
