@@ -198,8 +198,6 @@ void ArtQueryDlg::showAllClicked()
     mw->natural->setChecked (true);
     verifyButton(mw->natural, true);
   }
-  else
-    ;
   mw->dont_know->setDefault(true);
 }
 
