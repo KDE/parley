@@ -30,7 +30,7 @@
 #include <QLabel>
 #include <QFileInfo>
 #include <QPixmap>
-#include <Q3CString>
+#include <QByteArray>
 #include <Q3PopupMenu>
 
 #include <kapplication.h>
@@ -808,9 +808,9 @@ void LanguageOptions::enableLangWidgets()
   /*
   if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
   {
-    QByteArray data;
-    Q3CString replyType;
-    QByteArray replyData;
+    DCOPCString data;
+    DCOPCString replyType;
+    DCOPCString replyData;
 
     if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()", data, replyType, replyData))
     {

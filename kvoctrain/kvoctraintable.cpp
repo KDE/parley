@@ -92,8 +92,8 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
       if (langs) {
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
         if (!kbLayout.isEmpty()) {
-          QByteArray data, replyData;
-          Q3CString replyType;
+          DCOPCString data, replyData;
+          DCOPCString replyType;
           QDataStream arg(data, QIODevice::WriteOnly);
           arg << kbLayout;
 

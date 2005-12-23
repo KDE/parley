@@ -33,7 +33,7 @@
 #include <QTimer>
 #include <QVBoxLayout>
 #include <QKeyEvent>
-#include <Q3CString>
+#include <QByteArray>
 #include <QList>
 
 #include <kstandarddirs.h>
@@ -170,7 +170,7 @@ RandomQueryDlg::RandomQueryDlg(
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transCombos.append (new QComboBox (false, mw->TranslationFrame, Q3CString ("transCombo") + Q3CString().setNum (i)));
+      transCombos.append (new QComboBox (false, mw->TranslationFrame, QByteArray ("transCombo") + QByteArray().setNum (i)));
       transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
       transCombos.at(i) -> setEditable (true);
       transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsert);
@@ -184,7 +184,7 @@ RandomQueryDlg::RandomQueryDlg(
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transFields.append (new QLineEdit (mw->TranslationFrame, Q3CString ("transField") + Q3CString().setNum (i)));
+      transFields.append (new QLineEdit (mw->TranslationFrame, QByteArray ("transField") + QByteArray().setNum (i)));
       transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
       vb->addWidget(transFields.at(i));
       connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
