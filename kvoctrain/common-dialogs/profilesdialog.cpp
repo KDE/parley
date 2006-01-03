@@ -82,7 +82,7 @@ void ProfilesDialog::slotNewGroup()
 {
   bool ok;
   QString newGroupName = KInputDialog::getText(i18n("Profile Description"),
-    i18n("Enter profile description:"), QString::null, &ok);
+    i18n("Enter profile description:"), QString(), &ok);
 
   if (ok)
   {

@@ -131,9 +131,9 @@ void FromToEntryPage::setData(
     day_spin->setValue(day);
     month_spin->setValue(month);
     year_spin->setValue(year);
-    year_spin->setSpecial(QString::null);
-    month_spin->setSpecial(QString::null);
-    day_spin->setSpecial(QString::null);
+    year_spin->setSpecial(QString());
+    month_spin->setSpecial(QString());
+    day_spin->setSpecial(QString());
   }
   else {
     dt.setTime_t (time(0L));
@@ -243,7 +243,7 @@ void FromToEntryPage::slotYearChanged(int new_year)
     new_year = year;
   }
 
-  year_spin->setSpecial(QString::null);
+  year_spin->setSpecial(QString());
 
   year = new_year;
   validate();
@@ -272,7 +272,7 @@ void FromToEntryPage::slotMonthChanged(int new_month)
     new_month = month;
   }
 
-  month_spin->setSpecial(QString::null);
+  month_spin->setSpecial(QString());
 
   month = new_month;
   validate();
@@ -300,7 +300,7 @@ void FromToEntryPage::slotDayChanged(int new_day)
     new_day = day;
   }
 
-  day_spin->setSpecial(QString::null);
+  day_spin->setSpecial(QString());
 
   day = new_day;
   validate();
@@ -333,9 +333,9 @@ void FromToEntryPage::slotToday()
   day_spin->setValue(day);
   month_spin->setValue(month);
   year_spin->setValue(year);
-  year_spin->setSpecial(QString::null);
-  month_spin->setSpecial(QString::null);
-  day_spin->setSpecial(QString::null);
+  year_spin->setSpecial(QString());
+  month_spin->setSpecial(QString());
+  day_spin->setSpecial(QString());
   validate();
 }
 

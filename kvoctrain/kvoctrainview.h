@@ -67,7 +67,7 @@ class kvoctrainView : public QWidget
   void setView(kvoctrainDoc *doc, const LangSet &ls);
 
   KVocTrainTable* getTable() { return m_table; }
-  void setHeaderProp(int id, const QString &name, const QString &pixfile=QString::null);
+  void setHeaderProp(int id, const QString &name, const QString &pixfile=QString());
 
   void adjustContent();
   void print(KPrinter *pPrinter);

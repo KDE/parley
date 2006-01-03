@@ -183,7 +183,7 @@ void kvoctrainApp::slotFileOpen()
 
   if (queryExit() ) {
     QString s;
-    KURL url = KFileDialog::getOpenURL(QString::null, FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
+    KURL url = KFileDialog::getOpenURL(QString(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
     loadfileFromPath(url, true);
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -226,7 +226,7 @@ void kvoctrainApp::slotFileOpenExample()
     KURL url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
     loadfileFromPath(url, false);
     if (doc)
-       doc->URL().setFileName(QString::null);
+       doc->URL().setFileName(QString());
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -245,7 +245,7 @@ void kvoctrainApp::slotFileMerge()
   slotStatusMsg(i18n("Merging file..."));
 
   QString s;
-  KURL url = KFileDialog::getOpenURL(QString::null, FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+  KURL url = KFileDialog::getOpenURL(QString(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty() ) {
 
@@ -593,13 +593,13 @@ void kvoctrainApp::slotFileSaveAs()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  KURL url = KFileDialog::getSaveURL(QString::null, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KURL url = KFileDialog::getSaveURL(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
-       .arg(url.path()),QString::null,i18n("Overwrite")) == KMessageBox::Cancel)
+       .arg(url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
     {
     // do nothing
     }
@@ -645,14 +645,14 @@ void kvoctrainApp::slotSaveSelection ()
     if (doc->getEntry(i)->isInQuery() )
       seldoc.appendEntry(doc->getEntry(i));
 
-  KURL url = KFileDialog::getSaveURL(QString::null, FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KURL url = KFileDialog::getSaveURL(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() )
   {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
-       .arg(url.path()),QString::null,i18n("Overwrite")) == KMessageBox::Cancel)
+       .arg(url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
     {
     // do nothing
     }

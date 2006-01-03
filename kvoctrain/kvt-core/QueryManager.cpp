@@ -98,7 +98,7 @@ QString QueryManager::getSubType (const QString & type)
     return t;
   }
   else
-    return QString::null;
+    return QString();
 }
 
 
@@ -420,7 +420,7 @@ QString QueryManager::typeStr (const QString id)
     if (i >= 0 && i < (int) userTypes.size() )
       return userTypes[i];
     else
-      return QString::null;
+      return QString();
   }
   else {
     t_type_rel *type = InternalTypeRelations;
@@ -430,7 +430,7 @@ QString QueryManager::typeStr (const QString id)
       type++;
     }
   }
-  return QString::null;
+  return QString();
 }
 
 

@@ -76,7 +76,7 @@ void TenseOptPage::slotNewTense()
 {
   bool ok;
   QString getTense = KInputDialog::getText(
-              i18n( "Tense Description" ), i18n( "Enter tense description:" ), QString::null, &ok, this );
+              i18n( "Tense Description" ), i18n( "Enter tense description:" ), QString(), &ok, this );
   if( !ok )
     return;
 

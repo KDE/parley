@@ -39,12 +39,12 @@ class LangSet
    LangSet () {}
 
    void addSet (QString shortId, QString longId, QString PixMapFile,
-		const QString& shortId2 = QString::null,
-		const QString& keyboardLayout = QString::null);
+		const QString& shortId2 = QString(),
+		const QString& keyboardLayout = QString());
 
 /*    void addSet (QString shortId, QString shortId2, QString longId, */
 /* 		QString PixMapFile,  */
-/* 		const QString& keyboardLayout = QString::null); */
+/* 		const QString& keyboardLayout = QString()); */
 
    void appendSet(const LangSet &set);
 

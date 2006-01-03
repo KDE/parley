@@ -180,8 +180,8 @@ void kvoctrainView::setView(kvoctrainDoc *doc, const LangSet& ls)
   if (m_doc) {
     int id = ls.indexShortId (m_doc->getOriginalIdent());
 
-    setHeaderProp(KV_COL_LESS, i18n("Lesson"),  QString::null);
-    setHeaderProp(KV_COL_MARK, "",  QString::null);
+    setHeaderProp(KV_COL_LESS, i18n("Lesson"),  QString());
+    setHeaderProp(KV_COL_MARK, "",  QString());
     m_table->setColumnWidth(KV_COL_MARK, KV_COLWIDTH_MARK);
 
     if (id < 0)

@@ -190,9 +190,9 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, Fil
 
   KURL tmp (url);
   if (title == i18n("Untitled"))
-    title = QString::null;
+    title.clear();
   if (title == doc_url.fileName())
-    title = QString::null;
+    title.clear();
 
   if (ft == automatic)
   {

@@ -80,8 +80,8 @@ EntryDlg::EntryDlg(
   :
   KDialogBase(Tabbed, title, User1|User2|User3|Apply|Close, Apply, parent, name, modal, false,
     KGuiItem(i18n("&Reset")),
-    KGuiItem(QString::null, "view_left_right"),
-    KGuiItem(QString::null, "view_top_bottom"))
+    KGuiItem(QString(), "view_left_right"),
+    KGuiItem(QString(), "view_top_bottom"))
 
 {
   mainwin = main;

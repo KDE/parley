@@ -82,7 +82,7 @@ QString LangSet::shortId (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].shortId;
 
-  return QString::null;
+  return QString();
 }
 
 
@@ -91,7 +91,7 @@ QString LangSet::shortId2 (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].shortId2;
 
-  return QString::null;
+  return QString();
 }
 
 
@@ -100,7 +100,7 @@ QString LangSet::longId (int index) const
   if (index >= 0 && index < (int) langs.size() )
     return langs[index].longId;
 
-  return QString::null;
+  return QString();
 }
 
 
@@ -117,7 +117,7 @@ QString LangSet::keyboardLayout (int index) const
     return langs[index].keyboardLayout;
   }
   else {
-    return QString::null;
+    return QString();
   }
 }
 
@@ -131,7 +131,7 @@ QString LangSet::findShortId (const QString &_longId) const
     if (_longId == langs[i].longId)
       return langs[i].shortId;
 
-  return QString::null;
+  return QString();
 }
 
 
@@ -145,7 +145,7 @@ QString LangSet::findLongId (const QString &_shortId) const
         || _shortId == langs[i].shortId2)
       return langs[i].longId;
 
-  return QString::null;
+  return QString();
 }
 
 

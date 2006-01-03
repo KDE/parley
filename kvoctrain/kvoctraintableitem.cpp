@@ -33,7 +33,7 @@
 
 
 KVocTrainTableItem::KVocTrainTableItem( Q3Table *t, EditType et, kvoctrainDoc *doc)
-  : Q3TableItem( t, et, QString::null )
+  : Q3TableItem( t, et, QString() )
 {
   m_doc = doc;
   // we do not want that this item can be replaced

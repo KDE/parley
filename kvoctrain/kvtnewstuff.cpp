@@ -63,7 +63,7 @@ QString KVTNewStuff::destinationPath(KNS::Entry * entry)
     return file;
   }
   else
-    return QString::null;
+    return QString();
 }
 
 
@@ -76,14 +76,14 @@ QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
     int result = KMessageBox::warningContinueCancel(parentWidget(),
         i18n("The file '%1' already exists. Do you want to overwrite it?")
         .arg(file),
-        QString::null, i18n("Overwrite") );
+        QString(), i18n("Overwrite") );
     if (result == KMessageBox::Cancel)
-      return QString::null;
+      return QString();
   }
   KMessageBox::information(parentWidget(),
     i18n("<qt>The selected file will now be downloaded and saved as\n<b>'%1'</b>.</qt>")
     .arg(file),
-    QString::null,
+    QString(),
     "NewStuffDownloadLocation");
   return file;
 }

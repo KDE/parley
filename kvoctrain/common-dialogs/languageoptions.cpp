@@ -823,7 +823,7 @@ void LanguageOptions::enableLangWidgets()
         QStringList layouts;
         QDataStream stream(replyData, QIODevice::ReadOnly);
         stream >> layouts;
-        layouts.prepend(QString::null);
+        layouts.prepend(QString());
         d_kblayout->clear();
         d_kblayout->insertStringList(layouts);
       }
@@ -1017,7 +1017,7 @@ void LanguageOptions::loadCountryData()
   QString curr_lang = lsave->language();
 
 //  KLocale locale("kvoctrain");
-  KLocale locale(QString::null);
+  KLocale locale(QString());
   locale.setLanguage(curr_lang);
   KGlobal::_locale = &locale;
 
@@ -1184,7 +1184,7 @@ void LanguageOptions::loadISO6391Data()
   for (unsigned id = 0; id < (int)(sizeof(kv_iso639_1) / sizeof(kv_iso639_1[0])) && kv_iso639_1[id].iso1code != 0; ++id)
   {
     QString s = i18n(kv_iso639_1[id].langname);
-    global_langset.addSet(kv_iso639_1[id].iso1code, s, QString::null, kv_iso639_1[id].iso2code);
+    global_langset.addSet(kv_iso639_1[id].iso1code, s, QString(), kv_iso639_1[id].iso2code);
   }
 }
 

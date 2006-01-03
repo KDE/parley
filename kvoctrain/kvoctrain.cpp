@@ -97,13 +97,13 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 
   if (rem_label != 0)
     rem_label->setText(i18n("Abbreviation for R)emark","R: %1")
-                       .arg(noData ? QString::null : expr->getRemark(col)));
+                       .arg(noData ? QString() : expr->getRemark(col)));
   if (pron_label != 0)
     pron_label->setText(i18n("Abbreviation for P)ronouncation","P: %1")
-                        .arg(noData ? QString::null : expr->getPronunce(col)));
+                        .arg(noData ? QString() : expr->getPronunce(col)));
   if (type_label != 0)
     type_label->setText(i18n("Abbreviation for T)ype of word", "T: %1")
-                        .arg(noData ? QString::null : QueryManager::typeStr(expr->getType(col))));
+                        .arg(noData ? QString() : QueryManager::typeStr(expr->getType(col))));
 
   if (entryDlg != 0) {
     if (noData)
@@ -334,21 +334,21 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     0,
                     0,
                     0,
-                    QString::null,
-                    QString::null,
-                    QString::null,
+                    QString(),
+                    QString(),
+                    QString(),
                     lesson,
                     lessons,
                     doc->getOriginalIdent(),
                     langset,
-                    QString::null,
+                    QString(),
                     doc->getEntry(row)->getType(col),
-                    QString::null,
-                    QString::null,
-                    QString::null,
-                    QString::null,
-                    QString::null,
-                    QString::null,
+                    QString(),
+                    QString(),
+                    QString(),
+                    QString(),
+                    QString(),
+                    QString(),
                     doc->getConjugation(0),
                     Conjugation(),
                     doc->getArticle(0),
@@ -493,21 +493,21 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
                        0,
                        0,
                        0,
-                       QString::null,
-                       QString::null,
-                       QString::null,
+                       QString(),
+                       QString(),
+                       QString(),
                        lesson,
                        lessons,
                        doc->getOriginalIdent(),
                        langset,
-                       QString::null,
+                       QString(),
                        doc->getEntry(row)->getType(0),
-                       QString::null,
-                       QString::null,
-                       QString::null,
-                       QString::null,
-                       QString::null,
-                       QString::null,
+                       QString(),
+                       QString(),
+                       QString(),
+                       QString(),
+                       QString(),
+                       QString(),
                        doc->getConjugation(0),
                        Conjugation(),
                        doc->getArticle(0),
