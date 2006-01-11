@@ -111,11 +111,11 @@ void kvoctrainApp::saveProperties(KConfig *config )
 
 void kvoctrainApp::readProperties(KConfig *config)
 {
-  querymode = config->readBoolEntry(CFG_QUERYMODE, 0);
+  querymode = config->readEntry(CFG_QUERYMODE, 0);
 
   QString filename = config->readEntry(CFG_FILENAME);
   QString title = config->readEntry(CFG_TITLE);
-  bool modified = config->readBoolEntry(CFG_MODIFIED,false);
+  bool modified = config->readEntry(CFG_MODIFIED,false);
   if( modified ){
     bool b_canRecover;
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
