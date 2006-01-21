@@ -1054,7 +1054,7 @@ void LanguageOptions::loadCountryData()
     KSimpleConfig entry(*sit);
     entry.setGroup(QString::fromLatin1("KCM Locale"));
     QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
-    QString submenu = entry.readEntry(QString::fromLatin1("Region"));
+    QString submenu = entry.readEntry(QString::fromLatin1("Region"),QString());
 
     QString tag = *sit;
     int index = tag.findRev('/');
@@ -1065,7 +1065,7 @@ void LanguageOptions::loadCountryData()
     if (tag == "C")
       continue;
 
-    QStringList all_langs = QStringList::split(",", entry.readEntry(QString::fromLatin1("Languages")));
+    QStringList all_langs = QStringList::split(",", entry.readEntry(QString::fromLatin1("Languages"),QString()));
     QList<int> langs;
 
     QString pixmap = *sit;
