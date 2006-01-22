@@ -1017,7 +1017,7 @@ void LanguageOptions::loadCountryData()
   QString curr_lang = lsave->language();
 
 //  KLocale locale("kvoctrain");
-  KLocale locale(QString());
+  KLocale locale(QString::null);
   locale.setLanguage(curr_lang);
   KGlobal::_locale = &locale;
 
