@@ -36,7 +36,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <kprogress.h>
+#include <kprogressbar.h>
 
 #include "MCQueryDlg.h"
 #include <kv_resource.h>

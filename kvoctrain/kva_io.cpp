@@ -30,7 +30,7 @@
 
 #include <kfiledialog.h>
 #include <kcombobox.h>
-#include <kprogress.h>
+#include <kprogressbar.h>
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>

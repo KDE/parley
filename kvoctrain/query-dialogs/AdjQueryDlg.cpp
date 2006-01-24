@@ -32,7 +32,7 @@
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <kprogress.h>
+#include <kprogressbar.h>
 
 #include "AdjQueryDlg.h"
 #include <kv_resource.h>
