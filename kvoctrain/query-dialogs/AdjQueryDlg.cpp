@@ -129,8 +129,8 @@ void AdjQueryDlg::setQuery(QString,
    mw->lev2Field->setEnabled(!comp.l2().isEmpty() );
    mw->lev3Field->setEnabled(!comp.l3().isEmpty() );
 
-   mw->countbar->setTotalSteps(q_start);
-   mw->countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setMaximum(q_start);
+   mw->countbar->setValue(q_start - q_num + 1);
 
    int mqtime = Prefs::maxTimePer();
    if (mqtime > 0) {
@@ -141,8 +141,8 @@ void AdjQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime;
-       mw->timebar->setTotalSteps(timercount);
-       mw->timebar->setProgress(timercount);
+       mw->timebar->setMaximum(timercount);
+       mw->timebar->setValue(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -214,12 +214,12 @@ void AdjQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     mw->timebar->setProgress(timercount);
+     mw->timebar->setValue(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     mw->timebar->setProgress(0);
+     mw->timebar->setValue(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
        mw->dont_know->setDefault(true);

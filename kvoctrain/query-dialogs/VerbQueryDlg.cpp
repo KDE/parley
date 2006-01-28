@@ -140,8 +140,8 @@ void VerbQueryDlg::setQuery(QString,
    mw->p3pmLabel->setText (prefix.pers3MalePlural(CONJ_PREFIX));
    mw->p3pnLabel->setText (prefix.pers3NaturalPlural(CONJ_PREFIX));
 
-   mw->countbar->setTotalSteps(q_start);
-   mw->countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setMaximum(q_start);
+   mw->countbar->setValue(q_start - q_num + 1);
 
    if (mqtime > 0) { // more than 1000 milli-seconds
      if (qtimer == 0) {
@@ -151,8 +151,8 @@ void VerbQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime;
-       mw->timebar->setTotalSteps(timercount);
-       mw->timebar->setProgress(timercount);
+       mw->timebar->setMaximum(timercount);
+       mw->timebar->setValue(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -344,12 +344,12 @@ void VerbQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     mw->timebar->setProgress(timercount);
+     mw->timebar->setValue(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     mw->timebar->setProgress(0);
+     mw->timebar->setValue(0);
      if (current >= (int) conjugations.numEntries()-1 ) {
        qtimer->stop();
        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {

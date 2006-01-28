@@ -313,8 +313,8 @@ void RandomQueryDlg::setQuery(QString org,
    mw->c_type->setChecked(false);
    setHintFields();
 
-   mw->countbar->setTotalSteps(q_start);
-   mw->countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setMaximum(q_start);
+   mw->countbar->setValue(q_start - q_num + 1);
    int mqtime = Prefs::maxTimePer();
    if (mqtime > 0) {
      if (qtimer == 0) {
@@ -324,8 +324,8 @@ void RandomQueryDlg::setQuery(QString org,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime;
-       mw->timebar->setTotalSteps(timercount);
-       mw->timebar->setProgress(timercount);
+       mw->timebar->setMaximum(timercount);
+       mw->timebar->setValue(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -370,7 +370,7 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      int percent = (mw->countbar->progress()/mw->countbar->totalSteps()) * 100;
+      int percent = (mw->countbar->value()/mw->countbar->maximum()) * 100;
       //status->setText(getOKComment(countbar->getPercentage()));
       mw->status->setText(getOKComment(percent));
       knowItClicked();
@@ -379,7 +379,7 @@ void RandomQueryDlg::verifyClicked()
     {
       for ( i = 0; i < combos.count(); i ++ )
         verifyField (combos.at(i) -> lineEdit(), "a\na"); // always fail
-      mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+      mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
       mw->dont_know->setDefault(true);
     }
   }
@@ -399,14 +399,14 @@ void RandomQueryDlg::verifyClicked()
         }
     if ( trans.count() == 0 )
     {
-      mw->status->setText(getOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+      mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
       knowItClicked();
     }
     else
     {
       for ( i = 0; i < fields.count(); i ++ )
         verifyField (fields.at(i), trans[i]);
-      mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+      mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
       mw->dont_know->setDefault(true);
     }
   }
@@ -525,12 +525,12 @@ void RandomQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     mw->timebar->setProgress(timercount);
+     mw->timebar->setValue(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     mw->timebar->setProgress(0);
+     mw->timebar->setValue(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
        mw->dont_know->setDefault(true);
@@ -538,7 +538,7 @@ void RandomQueryDlg::timeoutReached()
      else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
        emit sigQueryChoice (Timeout);
      }
-     mw->status->setText(getTimeoutComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+     mw->status->setText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
    }
 
    suggestion_hint = false;

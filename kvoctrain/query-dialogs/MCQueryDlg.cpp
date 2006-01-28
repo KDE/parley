@@ -116,8 +116,8 @@ void MCQueryDlg::setQuery(QString org,
    s.setNum (q_cycle);
    mw->progCount->setText (s);
 
-   mw->countbar->setTotalSteps(q_start);
-   mw->countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setMaximum(q_start);
+   mw->countbar->setValue(q_start - q_num + 1);
    int mqtime = Prefs::maxTimePer();
    if (mqtime > 0) {
      if (qtimer == 0) {
@@ -127,8 +127,8 @@ void MCQueryDlg::setQuery(QString org,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime;
-       mw->timebar->setTotalSteps(timercount);
-       mw->timebar->setProgress(timercount);
+       mw->timebar->setMaximum(timercount);
+       mw->timebar->setValue(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -349,13 +349,13 @@ void MCQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     mw->timebar->setProgress(timercount);
+     mw->timebar->setValue(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
      mw->status->setText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
-     mw->timebar->setProgress(0);
+     mw->timebar->setValue(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show)
      {
        showItClicked();

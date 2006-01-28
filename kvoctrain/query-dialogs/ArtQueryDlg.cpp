@@ -151,8 +151,8 @@ void ArtQueryDlg::setQuery(QString,
    s.setNum (q_cycle);
    mw->progCount->setText (s);
 
-   mw->countbar->setTotalSteps(q_start);
-   mw->countbar->setProgress(q_start - q_num + 1);
+   mw->countbar->setMaximum(q_start);
+   mw->countbar->setValue(q_start - q_num + 1);
    int mqtime = Prefs::maxTimePer();
    if (mqtime > 0) {
      if (qtimer == 0) {
@@ -162,8 +162,8 @@ void ArtQueryDlg::setQuery(QString,
 
      if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
        timercount = mqtime;
-       mw->timebar->setTotalSteps(timercount);
-       mw->timebar->setProgress(timercount);
+       mw->timebar->setMaximum(timercount);
+       mw->timebar->setValue(timercount);
        qtimer->start(1000, TRUE);
      }
      else
@@ -251,12 +251,12 @@ void ArtQueryDlg::timeoutReached()
 {
    if (timercount > 0) {
      timercount--;
-     mw->timebar->setProgress(timercount);
+     mw->timebar->setValue(timercount);
      qtimer->start(1000, TRUE);
    }
 
    if (timercount <= 0) {
-     mw->timebar->setProgress(0);
+     mw->timebar->setValue(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
        showAllClicked();
        mw->dont_know->setDefault(true);
