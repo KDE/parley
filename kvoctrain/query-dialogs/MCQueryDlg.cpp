@@ -328,11 +328,11 @@ void MCQueryDlg::verifyClicked()
   }
 
   if (known) {
-    mw->status->setText(getOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+    mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
     knowItClicked();
   }
   else {
-    mw->status->setText(getNOKComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+    mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
     mw->dont_know->setDefault(true);
   }
 }
@@ -354,7 +354,7 @@ void MCQueryDlg::timeoutReached()
    }
 
    if (timercount <= 0) {
-     mw->status->setText(getTimeoutComment((mw->countbar->progress()/mw->countbar->totalSteps()) * 100));
+     mw->status->setText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
      mw->timebar->setProgress(0);
      if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show)
      {
