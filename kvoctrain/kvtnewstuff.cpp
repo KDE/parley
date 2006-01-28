@@ -46,7 +46,7 @@ QString KVTNewStuff::destinationPath(KNS::Entry * entry)
 {
   if (entry)
   {
-    KURL url = entry->payload();
+    KUrl url = entry->payload();
     QString fileName = url.fileName();
 
     QString path = Prefs::installPath(); //default is Vocabularies which will be created in the user's home directory

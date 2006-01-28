@@ -189,12 +189,12 @@ public:
   /** open a document */
   void slotFileOpen();
   /** opens a file from the recent files menu */
-  void slotFileOpenRecent(const KURL& url);
+  void slotFileOpenRecent(const KUrl& url);
   /** open a sample document */
   void slotFileOpenExample();
   /** download new vocabularies */
   void slotGHNS();
-  void loadfileFromPath(const KURL &, bool addRecent=true);
+  void loadfileFromPath(const KUrl &, bool addRecent=true);
   /** merge a document */
   void slotFileMerge();
   /** save a document */

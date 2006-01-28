@@ -113,7 +113,7 @@ void kvoctrainApp::initActions()
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
 
-  fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KURL&)), actionCollection());
+  fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
   fileMerge = new KAction(i18n("&Merge..."), 0, 0, this, SLOT(slotFileMerge()), actionCollection(), "file_merge");
   fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));

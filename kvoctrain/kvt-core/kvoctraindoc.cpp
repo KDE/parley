@@ -88,7 +88,7 @@ void kvoctrainDoc::Init ()
 }
 
 
-kvoctrainDoc::kvoctrainDoc(QObject *parent, const KURL& url)
+kvoctrainDoc::kvoctrainDoc(QObject *parent, const KUrl& url)
 {
   Init();
   if (!url.isEmpty())
@@ -184,11 +184,11 @@ kvoctrainDoc::~kvoctrainDoc()
 }
 
 
-bool kvoctrainDoc::saveAs (QObject *parent, const KURL & url, QString title, FileType ft)
+bool kvoctrainDoc::saveAs (QObject *parent, const KUrl & url, QString title, FileType ft)
 {
   connect( this, SIGNAL(progressChanged(kvoctrainDoc*,int)), parent, SLOT(slotProgress(kvoctrainDoc*,int)) );
 
-  KURL tmp (url);
+  KUrl tmp (url);
   if (title == i18n("Untitled"))
     title.clear();
   if (title == doc_url.fileName())

@@ -265,7 +265,7 @@ class kvoctrainDoc : public QObject
    * @param obj calling object
    * @param url URL of file to parse
    */
-  kvoctrainDoc(QObject* obj, const KURL& url);
+  kvoctrainDoc(QObject* obj, const KUrl& url);
 
   /** Destructor for the fileclass of the application */
   ~kvoctrainDoc();
@@ -424,7 +424,7 @@ class kvoctrainDoc : public QObject
    * @param url     if url is empty (or NULL) actual name is preserved
    * @result         true if successful
    */
-  bool saveAs (QObject *parent, const KURL & url, QString title, FileType ft);
+  bool saveAs (QObject *parent, const KUrl & url, QString title, FileType ft);
 
   /** returns count of entries
    */
@@ -468,10 +468,10 @@ class kvoctrainDoc : public QObject
              int first=0, int last=-1, bool word_start = false, bool tolerant=false);
 
   /** returns url of xml file  */
-  inline KURL URL() const {return doc_url; }
+  inline KUrl URL() const {return doc_url; }
 
   /** sets url of xml file  */
-  inline void setURL(const KURL& url) {doc_url = url;}
+  inline void setURL(const KUrl& url) {doc_url = url;}
 
   /** returns title of xml file  */
   QString getTitle() const;
@@ -710,7 +710,7 @@ protected:
 
  private:
   bool                  dirty;
-  KURL                  doc_url;
+  KUrl                  doc_url;
   vector<bool>          sort_lang;
   bool                  sort_lesson;
   bool                  unknown_attr;
