@@ -336,9 +336,11 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->getUsageDescr().size();
 
-  KDialogBase *subDialog= new KDialogBase(b_usageDlg, "usage", true,
+  KDialog *subDialog= new KDialog(b_usageDlg,
     i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+    KDialog::Ok|KDialog::Cancel);
+
+  subDialog->setDefaultButton(KDialog::Ok);
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
@@ -363,8 +365,10 @@ void CommonEntryPage::invokeLessDlg()
   vector<QString> new_lessonStr;
 
   int old_lessons = (int) lesson_box->count();
-  KDialogBase *subDialog = new KDialogBase(b_LessDlg, "lesson", true, i18n("Edit Lesson Names"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+  KDialog *subDialog = new KDialog(b_LessDlg, i18n("Edit Lesson Names"),
+    KDialog::Ok|KDialog::Cancel);
+
+  subDialog->setDefaultButton(KDialog::Ok);
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
@@ -392,8 +396,10 @@ void CommonEntryPage::invokeTypeDlg()
   vector<QString> new_typeStr;
 
   int old_types = (int) doc->getTypeDescr().size();
-  KDialogBase *subDialog = new KDialogBase(b_TypeDlg, "types", true, i18n("Edit User Defined Types"),
-    KDialogBase::Ok|KDialogBase::Cancel, KDialogBase::Ok);
+  KDialog *subDialog = new KDialog(b_TypeDlg, i18n("Edit User Defined Types"),
+    KDialog::Ok|KDialog::Cancel);
+
+  subDialog->setDefaultButton(KDialog::Ok);
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
