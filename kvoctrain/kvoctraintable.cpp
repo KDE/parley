@@ -4,11 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Jan 4 19:04:53 PST 2005
+    begin          : Tue Jan 4 19:04:53 PST 2005
 
-    copyright            :(C) 2005 Peter Hedlund
-
-    email                : peter.hedlund@kdemail.net
+    copyright      :(C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -80,9 +78,6 @@ void KVocTrainTable::setCurrentItem(int row)
 
 QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
 {
-  ///@todo
-  ///port
-  /*
   if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
 
     if (m_doc) {
@@ -92,9 +87,9 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
       if (langs) {
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
         if (!kbLayout.isEmpty()) {
-          DCOPCString data, replyData;
+          QByteArray data, replyData;
           DCOPCString replyType;
-          QDataStream arg(data, QIODevice::WriteOnly);
+          QDataStream arg(&data, QIODevice::WriteOnly);
           arg << kbLayout;
 
           if (!KApplication::dcopClient()->call("kxkb", "kxkb",
@@ -105,7 +100,7 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
         }
       }
     }
-  }*/
+  }
   return Q3Table::beginEdit(row, col, replace);
 }
 

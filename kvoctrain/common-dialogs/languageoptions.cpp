@@ -804,14 +804,12 @@ void LanguageOptions::enableLangWidgets()
   e_shortName2->setEnabled(enabled);
 
   //kdDebug() << "enabled? " << enabled << endl;
-  ///@todo
-  ///port
-  /*
+
   if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
   {
-    DCOPCString data;
+    QByteArray data;
     DCOPCString replyType;
-    DCOPCString replyData;
+    QByteArray replyData;
 
     if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()", data, replyType, replyData))
     {
@@ -822,7 +820,7 @@ void LanguageOptions::enableLangWidgets()
       if (replyType == "QStringList")
       {
         QStringList layouts;
-        QDataStream stream(replyData, QIODevice::ReadOnly);
+        QDataStream stream(&replyData, QIODevice::ReadOnly);
         stream >> layouts;
         layouts.prepend(QString());
         d_kblayout->clear();
@@ -835,7 +833,7 @@ void LanguageOptions::enableLangWidgets()
     //kdDebug() << "kxkb not enabled" << endl;
     d_kblayout->clear();
     d_kblayout->setEnabled(false);
-  }*/
+  }
 }
 
 
