@@ -8,8 +8,7 @@ METASOURCES = AUTO
 
 libkvoctraincore_la_SOURCES = langset.cpp LineList.cpp kvoctrainexpr.cpp \
 	kvoctraindoc.cpp kvd_rh_kvtml.cpp kvd_rb_kvtml1.cpp kvd_rb_kvtml2.cpp kvd_wkvtml.cpp \
-	kvd_csv.cpp kvd_lex.cpp kvd_vcb.cpp UsageManager.cpp QueryManager.cpp \
-	MultipleChoice.cpp kvd_voc.cpp
+	kvd_csv.cpp kvd_lex.cpp kvd_vcb.cpp UsageManager.cpp QueryManager.cpp kvd_voc.cpp
 
 SUBDIRS = kvt-xml
 

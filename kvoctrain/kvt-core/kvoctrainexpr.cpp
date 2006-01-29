@@ -331,23 +331,23 @@ KEduVocComparison kvoctrainExpr::getComparison (int idx) const
 }
 
 
-void kvoctrainExpr::setMultipleChoice (int idx, const MultipleChoice &mc)
+void kvoctrainExpr::setMultipleChoice (int idx, const KEduVocMultipleChoice &mc)
 {
   if ( idx < 0) return;
 
   // extend comparison with empty elements
   if ((int)mcs.size() <= idx )
     for (int i = mcs.size(); i < idx+1; i++)
-      mcs.push_back (MultipleChoice());
+      mcs.push_back (KEduVocMultipleChoice());
 
   mcs[idx] = mc;
 }
 
 
-MultipleChoice kvoctrainExpr::getMultipleChoice (int idx) const
+KEduVocMultipleChoice kvoctrainExpr::getMultipleChoice (int idx) const
 {
   if (idx >= (int)mcs.size() || idx < 0) {
-    return MultipleChoice();
+    return KEduVocMultipleChoice();
   }
   else {
     return mcs[idx];

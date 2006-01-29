@@ -244,7 +244,7 @@
 
 class QTextStream;
 class QStringList;
-class MultipleChoice;
+class KEduVocMultipleChoice;
 
 /*************************************************************
   * This class contains the expressions of your vocabulary
@@ -682,8 +682,8 @@ protected:
   bool saveComparison    (const KEduVocComparison &comp, XmlWriter &xml, int ident);
   bool loadComparison    (KEduVocComparison &comp, XmlElement elem, XmlReader &xml);
 
-  bool saveMultipleChoice(const MultipleChoice &mc, XmlWriter &xml, int ident);
-  bool loadMultipleChoice(MultipleChoice &mc, XmlElement elem, XmlReader &xml);
+  bool saveMultipleChoice(const KEduVocMultipleChoice &mc, XmlWriter &xml, int ident);
+  bool loadMultipleChoice(KEduVocMultipleChoice &mc, XmlElement elem, XmlReader &xml);
 
   bool saveToLex     (QTextStream& os, QString &title);
   bool loadFromLex   (QTextStream& is);

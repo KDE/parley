@@ -344,8 +344,7 @@ bool kvoctrainDoc::saveComparison (const KEduVocComparison &comp,
 }
 
 
-bool kvoctrainDoc::saveMultipleChoice (const MultipleChoice &mc,
-                                       XmlWriter &xml, int ident)
+bool kvoctrainDoc::saveMultipleChoice (const KEduVocMultipleChoice &mc, XmlWriter &xml, int ident)
 
 /*
  <multiplechoice>

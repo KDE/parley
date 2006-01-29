@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -69,7 +69,7 @@ EntryDlg::EntryDlg(
   const          KEduVocConjugation &conjugations,
   const          KEduVocArticle &/*article*/,
   const          KEduVocComparison &comp,
-  const          MultipleChoice &mc,
+  const          KEduVocMultipleChoice &mc,
   QueryManager  &querymanager,
   const QString &title,
   bool           active,
@@ -230,7 +230,7 @@ void EntryDlg::setData(
   const          KEduVocConjugation &conjugations,
   const          KEduVocArticle &/*article*/,
   const          KEduVocComparison &comp,
-  const          MultipleChoice &mc,
+  const          KEduVocMultipleChoice &mc,
   QueryManager  &querymanager,
   const QString &title,
   bool           active)

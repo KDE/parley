@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Mon Oct 29 18:09:29 1999
+    begin         : Mon Oct 29 18:09:29 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -27,18 +27,18 @@
 #define MCEntryPage_included
 
 #include "MCEntryPageForm.h"
-#include <MultipleChoice.h>
+#include <keduvocmultiplechoice.h>
 
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
   Q_OBJECT
 
 public:
-  MCEntryPage(bool multi_sel, const MultipleChoice &mc, QWidget *parent = 0);
+  MCEntryPage(bool multi_sel, const KEduVocMultipleChoice &mc, QWidget *parent = 0);
 
-  void setData(bool multi_sel, const MultipleChoice &mc);
+  void setData(bool multi_sel, const KEduVocMultipleChoice &mc);
 
-  MultipleChoice getMultipleChoice() const { return multiplechoice; }
+  KEduVocMultipleChoice getMultipleChoice() const { return multiplechoice; }
 
   bool isModified();
   void setModified(bool mod = true);
@@ -55,7 +55,7 @@ protected slots:
   void mc5Changed(const QString&);
 
 protected:
-  MultipleChoice  multiplechoice;
+  KEduVocMultipleChoice  multiplechoice;
   bool            modified;
 };
 

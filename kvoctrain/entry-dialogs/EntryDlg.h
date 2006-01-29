@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -85,7 +85,7 @@ public:
     const          KEduVocConjugation &conjugations,
     const          KEduVocArticle &article,
     const          KEduVocComparison &comp,
-    const          MultipleChoice &mc,
+    const          KEduVocMultipleChoice &mc,
     QueryManager  &querymanager,
     const QString &title,
     bool           active,
@@ -128,7 +128,7 @@ public:
     const          KEduVocConjugation &conjugations,
     const          KEduVocArticle &article,
     const          KEduVocComparison &comp,
-    const          MultipleChoice &mc,
+    const          KEduVocMultipleChoice &mc,
     QueryManager  &querymanager,
     const QString &title,
     bool           active);
@@ -177,7 +177,7 @@ public:
 
   KEduVocComparison getComparison() const { return adj_page->getComparison(); }
 
-  MultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
+  KEduVocMultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
 
   bool isModified();
   void setModified(bool mod);

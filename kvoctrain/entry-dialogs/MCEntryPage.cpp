@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Mon Oct 29 18:09:29 1999
+    begin         : Mon Oct 29 18:09:29 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,7 +29,7 @@
 #include "EntryDlg.h"
 #include <langset.h>
 
-MCEntryPage::MCEntryPage(bool multi_sel, const MultipleChoice &mc, QWidget *parent) : QWidget(parent)
+MCEntryPage::MCEntryPage(bool multi_sel, const KEduVocMultipleChoice &mc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   multiplechoice = mc;
@@ -44,7 +44,7 @@ MCEntryPage::MCEntryPage(bool multi_sel, const MultipleChoice &mc, QWidget *pare
 }
 
 
-void MCEntryPage::setData(bool multi_sel, const MultipleChoice &mc)
+void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
 {
   mc1Field->setText (mc.mc1());
   mc2Field->setText (mc.mc2());

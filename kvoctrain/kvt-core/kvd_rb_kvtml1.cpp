@@ -596,7 +596,7 @@ bool kvoctrainDoc::loadComparison (KEduVocComparison &comp, XmlElement elem,
 }
 
 
-bool kvoctrainDoc::loadMultipleChoice (MultipleChoice &mc, XmlElement elem,
+bool kvoctrainDoc::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement elem,
                                        XmlReader &xml)
 /*
  <multiplechoice>

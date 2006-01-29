@@ -59,7 +59,7 @@
 using namespace std;
 
 #include <keduvocgrammar.h>
-#include "MultipleChoice.h"
+#include "keduvocmultiplechoice.h"
 
 typedef signed char grade_t;
 typedef unsigned short count_t;
@@ -372,14 +372,14 @@ class kvoctrainExpr
    *
    * @param index            index of multiple choice
    */
-  MultipleChoice getMultipleChoice(int index) const;
+  KEduVocMultipleChoice getMultipleChoice(int index) const;
 
   /** sets multiple choice
    *
    * @param index            index of translation
    * @param con              multiple choice block
    */
-  void setMultipleChoice(int index, const MultipleChoice &mc);
+  void setMultipleChoice(int index, const KEduVocMultipleChoice &mc);
 
   /** returns query count of given translation as int
    *
@@ -452,7 +452,7 @@ class kvoctrainExpr
   vector<time_t>      rev_qdates;
   vector<KEduVocConjugation> conjugations;
   vector<KEduVocComparison>  comparisons;
-  vector<MultipleChoice> mcs;
+  vector<KEduVocMultipleChoice> mcs;
 
   int                lesson;
   bool               inquery;

@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -153,7 +153,7 @@ void MCQueryDlg::setQuery(QString org,
 
    solution = 0;
 
-   MultipleChoice mc = exp->getMultipleChoice(q_tcol);
+   KEduVocMultipleChoice mc = exp->getMultipleChoice(q_tcol);
    for (int i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
    std::random_shuffle(strings.begin(), strings.end());

@@ -63,7 +63,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   QString       paraphrase;
   vector<KEduVocConjugation> conjug;
   KEduVocComparison     comparison;
-  MultipleChoice mc;
+  KEduVocMultipleChoice mc;
 
   if (!extract_KVT_E_attr (xml, elem, lesson, inquery, active, exprtype))
     return false;
