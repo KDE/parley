@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Apr 9 18:55:34 2000
+    begin         : Sun Apr 9 18:55:34 2000
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -61,7 +61,11 @@ SimpleQueryDlg::SimpleQueryDlg(
 
   kv_doc = 0;
   qtimer = 0;
-  resize(configDialogSize("SimpleQueryDialog"));
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("SimpleQueryDlg");
+  restoreDialogSize(cfg);
+
   setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
@@ -71,7 +75,9 @@ SimpleQueryDlg::SimpleQueryDlg(
 
 SimpleQueryDlg::~ SimpleQueryDlg()
 {
-  saveDialogSize("SimpleQueryDialog");
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("SimpleQueryDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 

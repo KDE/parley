@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Fri Dec 3 18:28:18 1999
+    begin         : Fri Dec 3 18:28:18 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -72,13 +72,18 @@ ArtQueryDlg::ArtQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
-  resize(configDialogSize("ArtQueryDialog"));
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("ArtQueryDlg");
+  restoreDialogSize(cfg);
 }
 
 
 ArtQueryDlg::~ArtQueryDlg()
 {
-  saveDialogSize("ArtQueryDialog");
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("ArtQueryDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 

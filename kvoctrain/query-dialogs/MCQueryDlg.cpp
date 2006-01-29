@@ -80,13 +80,18 @@ MCQueryDlg::MCQueryDlg(
   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
-  resize(configDialogSize("MCQueryDialog"));
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("MCQueryDlg");
+  restoreDialogSize(cfg);
 }
 
 
 MCQueryDlg::~MCQueryDlg()
 {
-  saveDialogSize("MCQueryDialog");
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("MCQueryDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 

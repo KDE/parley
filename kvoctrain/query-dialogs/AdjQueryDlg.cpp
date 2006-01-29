@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Dec 4 15:09:18 1999
+    begin         : Sat Dec 4 15:09:18 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -76,13 +76,18 @@ AdjQueryDlg::AdjQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
-  resize(configDialogSize("AdjQueryDialog"));
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("AdjQueryDlg");
+  restoreDialogSize(cfg);
 }
 
 
 AdjQueryDlg::~AdjQueryDlg()
 {
-  saveDialogSize("AdjQueryDialog");
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("AdjQueryDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 

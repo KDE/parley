@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Fri Dec 3 18:28:18 1999
+    begin         : Fri Dec 3 18:28:18 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -86,13 +86,18 @@ VerbQueryDlg::VerbQueryDlg
   setQuery (type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
-  resize(configDialogSize("VerbQueryDialog"));
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("VerbQueryDlg");
+  restoreDialogSize(cfg);
 }
 
 
 VerbQueryDlg::~ VerbQueryDlg( )
 {
-  saveDialogSize("VerbQueryDialog");
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("VerbQueryDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 
