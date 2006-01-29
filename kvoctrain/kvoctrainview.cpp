@@ -212,9 +212,6 @@ kvoctrainView::~kvoctrainView()
 
 void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &pixfile)
 {
-  ///@todo
-  ///port
-  /*
   Q3Header *header = m_table->horizontalHeader();
 
   if (pixfile.isEmpty())
@@ -254,8 +251,11 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
     mask.fill(Qt::black);
 
     bitBlt(&arrow, 0, 0, &pix, 0, 0);
-    if (!pix.mask().isNull())
-      bitBlt(&mask, 0, 0, pix.mask(), 0, 0);
+
+    QBitmap pixMask = pix.mask();
+
+    if (!pixMask.isNull())
+      bitBlt(&mask, 0, 0, &pixMask, 0, 0);
     else {
       QBitmap bmp(pix.createHeuristicMask());
       bitBlt(&mask, 0, 0, &bmp, 0, 0);
@@ -283,9 +283,9 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
     p.end();
     arrow.setMask(mask);
 
-    QIcon set(arrow, QIcon::Small);
+    QIcon set(arrow/*, QIcon::Small*/);
     header->setLabel(id, set, name);
-  }*/
+  }
 }
 
 void kvoctrainView::print(KPrinter * pPrinter)
