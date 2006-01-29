@@ -48,7 +48,7 @@ ArtQueryDlg::ArtQueryDlg
         int query_startnum,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
-        const Article &articles)
+        const KEduVocArticle &articles)
   : QueryDlgBase(i18n("Article Training"))
 {
   mw = new Ui::ArtQueryDlgForm();
@@ -90,7 +90,7 @@ void ArtQueryDlg::setQuery(QString,
                            int q_start,
                            kvoctrainExpr *exp,
                            kvoctrainDoc  *doc,
-                           const Article &art)
+                           const KEduVocArticle &art)
 {
    //type_timeout = type_to;
    kv_exp = exp;

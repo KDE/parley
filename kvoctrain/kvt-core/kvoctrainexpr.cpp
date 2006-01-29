@@ -283,23 +283,23 @@ QString kvoctrainExpr::getAntonym (int idx) const
 }
 
 
-void kvoctrainExpr::setConjugation (int idx, const Conjugation &con)
+void kvoctrainExpr::setConjugation (int idx, const KEduVocConjugation &con)
 {
   if ( idx < 0) return;
 
   // extend conjugation with empty elements
   if ((int)conjugations.size() <= idx )
     for (int i = conjugations.size(); i < idx+1; i++)
-      conjugations.push_back (Conjugation());
+      conjugations.push_back (KEduVocConjugation());
 
   conjugations[idx] = con;
 }
 
 
-Conjugation kvoctrainExpr::getConjugation (int idx) const
+KEduVocConjugation kvoctrainExpr::getConjugation (int idx) const
 {
   if (idx >= (int)conjugations.size() || idx < 0) {
-    return Conjugation();
+    return KEduVocConjugation();
   }
   else {
     return conjugations[idx];
@@ -307,23 +307,23 @@ Conjugation kvoctrainExpr::getConjugation (int idx) const
 }
 
 
-void kvoctrainExpr::setComparison (int idx, const Comparison &con)
+void kvoctrainExpr::setComparison (int idx, const KEduVocComparison &con)
 {
   if ( idx < 0) return;
 
   // extend comparison with empty elements
   if ((int)comparisons.size() <= idx )
     for (int i = comparisons.size(); i < idx+1; i++)
-      comparisons.push_back (Comparison());
+      comparisons.push_back (KEduVocComparison());
 
   comparisons[idx] = con;
 }
 
 
-Comparison kvoctrainExpr::getComparison (int idx) const
+KEduVocComparison kvoctrainExpr::getComparison (int idx) const
 {
   if (idx >= (int)comparisons.size() || idx < 0) {
-    return Comparison();
+    return KEduVocComparison();
   }
   else {
     return comparisons[idx];

@@ -27,18 +27,18 @@
 #define AdjEntryPage_included
 
 #include "AdjEntryPageForm.h"
-#include <grammarmanager.h>
+#include <keduvocgrammar.h>
 
 class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 {
   Q_OBJECT
 
 public:
-  AdjEntryPage(bool multi_sel, const Comparison &comp, QWidget *parent = 0);
+  AdjEntryPage(bool multi_sel, const KEduVocComparison &comp, QWidget *parent = 0);
 
-  void setData (bool multi_sel, const Comparison  &comp);
+  void setData (bool multi_sel, const KEduVocComparison  &comp);
 
-  Comparison getComparison() const { return comparisons; }
+  KEduVocComparison getComparison() const { return comparisons; }
 
   bool isModified();
   void setModified(bool mod = true);
@@ -53,7 +53,7 @@ protected slots:
   void lev3Changed(const QString&);
 
 protected:
-  Comparison    comparisons;
+  KEduVocComparison    comparisons;
   bool          modified;
 };
 

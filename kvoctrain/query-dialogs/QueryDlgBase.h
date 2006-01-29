@@ -35,7 +35,7 @@
 #include <kdialogbase.h>
 
 #include <QueryManager.h>
-#include <grammarmanager.h>
+#include <keduvocgrammar.h>
 #include "prefs.h"
 
 class kvoctrainExpr;

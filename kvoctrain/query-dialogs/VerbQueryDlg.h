@@ -46,8 +46,8 @@ public:
                 int query_startnum,
                 kvoctrainExpr *exp,
                 kvoctrainDoc  *doc,
-                const Conjugation &prefix,
-                const Conjugation &conjug);
+                const KEduVocConjugation &prefix,
+                const KEduVocConjugation &conjug);
 
   ~VerbQueryDlg();
 
@@ -59,8 +59,8 @@ public:
                 int query_startnum,
                 kvoctrainExpr *exp,
                 kvoctrainDoc  *doc,
-                const Conjugation &prefix,
-                const Conjugation &conjug);
+                const KEduVocConjugation &prefix,
+                const KEduVocConjugation &conjug);
 
 public slots:
   virtual void initFocus() const;
@@ -91,7 +91,7 @@ protected slots:
 
 protected:
   int current;
-  Conjugation conjugations;
+  KEduVocConjugation conjugations;
   bool all_known;
 
 private:

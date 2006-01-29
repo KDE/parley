@@ -45,7 +45,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc  *doc,
-              const Article &articles);
+              const KEduVocArticle &articles);
 
   ~ArtQueryDlg();
 
@@ -57,7 +57,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc  *doc,
-              const Article &articles);
+              const KEduVocArticle &articles);
 
 public slots:
   virtual void initFocus() const;
@@ -79,7 +79,7 @@ protected slots:
   void timeoutReached();
 
 protected:
-  Article   articles;
+  KEduVocArticle   articles;
 
 private:
   Ui::ArtQueryDlgForm * mw;

@@ -35,8 +35,8 @@
 TenseEntryPage::TenseEntryPage
 (
   bool               multi_sel,
-  const Conjugation &con_prefix,
-  const Conjugation &conjug,
+  const KEduVocConjugation &con_prefix,
+  const KEduVocConjugation &conjug,
   QWidget           *parent
 )
   : QWidget(parent), multi_mode(multi_sel)
@@ -79,13 +79,13 @@ TenseEntryPage::TenseEntryPage
 }
 
 
-void TenseEntryPage::setData(bool /*multi_sel*/, const Conjugation &conjug)
+void TenseEntryPage::setData(bool /*multi_sel*/, const KEduVocConjugation &conjug)
 {
   if (multi_mode)
     tensebox->setEnabled(false);
 
-  for (int i = 0; i <  Conjugation::numTenses(); i++)
-    tensebox->insertItem (Conjugation::getName(i) );
+  for (int i = 0; i <  KEduVocConjugation::numTenses(); i++)
+    tensebox->insertItem (KEduVocConjugation::getName(i) );
 
   conjugations = conjug;
   slotTenseSelected(0);
@@ -195,7 +195,7 @@ void TenseEntryPage::slotTenseSelected(int sel)
   }
   else
   {
-    selection = Conjugation::getAbbrev(sel);
+    selection = KEduVocConjugation::getAbbrev(sel);
     first_plural->setText (conjugations.pers1Plural (selection ));
     first_singular->setText (conjugations.pers1Singular (selection ));
     second_plural->setText (conjugations.pers2Plural (selection ));
@@ -244,7 +244,7 @@ void TenseEntryPage::slotNextConj()
   for (int i = tensebox->currentItem()+1; i < tensebox->count(); i++) {
 
     for (j = 0; j < conjugations.numEntries(); j++ ) {
-      if (Conjugation::getAbbrev(i) == conjugations.getType(j)) {
+      if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
         tensebox->setCurrentItem (i);
         slotTenseSelected(i);
         return;
@@ -254,7 +254,7 @@ void TenseEntryPage::slotNextConj()
 
   for (int i = 0; i < tensebox->currentItem()-1; i++) {
     for (j = 0; j < conjugations.numEntries(); j++ ) {
-      if (Conjugation::getAbbrev(i) == conjugations.getType(j)) {
+      if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
         tensebox->setCurrentItem (i);
         slotTenseSelected(i);
         return;
@@ -264,7 +264,7 @@ void TenseEntryPage::slotNextConj()
 }
 
 
-Conjugation TenseEntryPage::getConjugation()
+KEduVocConjugation TenseEntryPage::getConjugation()
 {
   conjugations.cleanUp();
   return conjugations;

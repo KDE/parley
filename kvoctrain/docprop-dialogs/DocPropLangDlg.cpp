@@ -76,21 +76,21 @@ DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *p
 }
 
 
-Conjugation DocPropsLangDlg::getConjugation(int idx) const
+KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
 {
   if (idx < (int) langPages.size())
     return langPages[idx]->getConjugation();
   else
-    return Conjugation();
+    return KEduVocConjugation();
 }
 
 
-Article DocPropsLangDlg::getArticle(int idx) const
+KEduVocArticle DocPropsLangDlg::getArticle(int idx) const
 {
   if (idx < (int) langPages.size() )
     return langPages[idx]->getArticle();
   else
-    return Article();
+    return KEduVocArticle();
 }
 
 #include "DocPropLangDlg.moc"

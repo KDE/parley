@@ -1,4 +1,5 @@
-INCLUDES = -I$(srcdir)/.. -I$(srcdir)/../kvt-core $(all_includes)
+INCLUDES = -I$(srcdir)/../../../libkdeedu/kdeeducore -I$(srcdir)/.. \
+	-I$(srcdir)/../kvt-core $(all_includes)
 
 noinst_LTLIBRARIES = libcommondlg.la
 

@@ -48,7 +48,7 @@ AdjQueryDlg::AdjQueryDlg
   int query_startnum,
   kvoctrainExpr *exp,
   kvoctrainDoc  *doc,
-  const Comparison &_comp)
+  const KEduVocComparison &_comp)
   : QueryDlgBase(i18n("Comparison Training"))
 {
   mw = new Ui::AdjQueryDlgForm();
@@ -94,7 +94,7 @@ void AdjQueryDlg::setQuery(QString,
                            int q_start,
                            kvoctrainExpr *exp,
                            kvoctrainDoc  *doc,
-                           const Comparison &_comp)
+                           const KEduVocComparison &_comp)
 {
    //type_timeout = type_to;
    kv_doc = doc;

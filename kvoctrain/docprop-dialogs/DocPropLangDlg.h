@@ -30,7 +30,7 @@
 
 #include <kdialogbase.h>
 
-#include <grammarmanager.h>
+#include <keduvocgrammar.h>
 
 class kvoctrainDoc;
 class LangPropPage;
@@ -44,8 +44,8 @@ public:
 
   DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
-  Conjugation getConjugation(int idx) const;
-  Article     getArticle(int idx) const;
+  KEduVocConjugation getConjugation(int idx) const;
+  KEduVocArticle     getArticle(int idx) const;
 
 protected:
   typedef QList<LangPropPage*> LangPagesList;

@@ -141,7 +141,7 @@ bool kvoctrainDoc::saveLessonKvtMl (XmlWriter &xml)
 }
 
 
-bool kvoctrainDoc::saveConjug (const Conjugation &curr_conjug, QString type,
+bool kvoctrainDoc::saveConjug (const KEduVocConjugation &curr_conjug, QString type,
                                XmlWriter &xml, QString identstr)
 {
   bool linefeed = type == CONJ_PREFIX;
@@ -234,7 +234,7 @@ bool kvoctrainDoc::saveConjug (const Conjugation &curr_conjug, QString type,
 
 }
 
-bool kvoctrainDoc::saveConjugHeader(vector<Conjugation> &curr_conjug,
+bool kvoctrainDoc::saveConjugHeader(vector<KEduVocConjugation> &curr_conjug,
                                     XmlWriter &xml)
 {
 /*
@@ -295,7 +295,7 @@ bool kvoctrainDoc::saveConjugHeader(vector<Conjugation> &curr_conjug,
 }
 
 
-bool kvoctrainDoc::saveComparison (const Comparison &comp,
+bool kvoctrainDoc::saveComparison (const KEduVocComparison &comp,
                                    XmlWriter &xml, int ident)
 
 /*
@@ -407,7 +407,7 @@ bool kvoctrainDoc::saveMultipleChoice (const MultipleChoice &mc,
 }
 
 
-bool kvoctrainDoc::saveConjugEntry (Conjugation &curr_conjug,
+bool kvoctrainDoc::saveConjugEntry (KEduVocConjugation &curr_conjug,
                                     XmlWriter &xml,
                                     int ident)
 
@@ -813,13 +813,13 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
 
     if (   entype == QM_VERB
         && (*first).getConjugation(0).numEntries() > 0) {
-      Conjugation conj = (*first).getConjugation(0);
+      KEduVocConjugation conj = (*first).getConjugation(0);
       if (!saveConjugEntry(conj, xml, 1))
         return false;
     }
     else if (entype == QM_ADJ
         && !(*first).getComparison(0).isEmpty()) {
-      Comparison comp = (*first).getComparison(0);
+      KEduVocComparison comp = (*first).getComparison(0);
       if (!saveComparison (comp, xml, 1))
         return false;
     }
@@ -934,14 +934,14 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
 
       if (   entype == QM_VERB
           && (*first).getConjugation(trans).numEntries() > 0) {
-        Conjugation conj = (*first).getConjugation(trans);
+        KEduVocConjugation conj = (*first).getConjugation(trans);
         if (!saveConjugEntry(conj, xml, 1+trans))
           return false;
       }
 
       if (   entype == QM_ADJ
           && !(*first).getComparison(trans).isEmpty()) {
-        Comparison comp = (*first).getComparison(trans);
+        KEduVocComparison comp = (*first).getComparison(trans);
         if (!saveComparison (comp, xml, 1+trans))
           return false;
       }

@@ -81,10 +81,10 @@ public:
     QString        example,
     QString        usagelabel,
     QString        paraphrase,
-    const          Conjugation &con_prefix,
-    const          Conjugation &conjugations,
-    const          Article &article,
-    const          Comparison &comp,
+    const          KEduVocConjugation &con_prefix,
+    const          KEduVocConjugation &conjugations,
+    const          KEduVocArticle &article,
+    const          KEduVocComparison &comp,
     const          MultipleChoice &mc,
     QueryManager  &querymanager,
     const QString &title,
@@ -124,10 +124,10 @@ public:
     QString        example,
     QString        usagelabel,
     QString        paraphrase,
-    const          Conjugation &con_prefix,
-    const          Conjugation &conjugations,
-    const          Article &article,
-    const          Comparison &comp,
+    const          KEduVocConjugation &con_prefix,
+    const          KEduVocConjugation &conjugations,
+    const          KEduVocArticle &article,
+    const          KEduVocComparison &comp,
     const          MultipleChoice &mc,
     QueryManager  &querymanager,
     const QString &title,
@@ -173,9 +173,9 @@ public:
   QString getExample  () const { return aux_page->getExample(); }
   QString getParaphrase () const { return aux_page->getParaphrase(); }
 
-  Conjugation getConjugation() const { return tense_page->getConjugation(); }
+  KEduVocConjugation getConjugation() const { return tense_page->getConjugation(); }
 
-  Comparison getComparison() const { return adj_page->getComparison(); }
+  KEduVocComparison getComparison() const { return adj_page->getComparison(); }
 
   MultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
 

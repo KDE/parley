@@ -350,9 +350,9 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     QString(),
                     QString(),
                     doc->getConjugation(0),
-                    Conjugation(),
+                    KEduVocConjugation(),
                     doc->getArticle(0),
-                    Comparison(),
+                    KEduVocComparison(),
                     MultipleChoice(),
                     querymanager,
                     title,
@@ -509,9 +509,9 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
                        QString(),
                        QString(),
                        doc->getConjugation(0),
-                       Conjugation(),
+                       KEduVocConjugation(),
                        doc->getArticle(0),
-                       Comparison(),
+                       KEduVocComparison(),
                        MultipleChoice(),
                        querymanager,
                        title,
@@ -635,7 +635,7 @@ void kvoctrainApp::slotDocProps ()
 
       slotStatusMsg(i18n("Updating tense indices..."));
       TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
-      Conjugation::setTenseNames (new_tenseStr);
+      ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
 
       slotStatusMsg(i18n("usage (area) of an expression",
                          "Updating usage label indices..."));

@@ -47,8 +47,8 @@ VerbQueryDlg::VerbQueryDlg
         int query_startnum,
         kvoctrainExpr *exp,
         kvoctrainDoc  *doc,
-        const Conjugation &prefix,
-        const Conjugation &conjug)
+        const KEduVocConjugation &prefix,
+        const KEduVocConjugation &conjug)
  : QueryDlgBase(i18n("Verb Training"))
 {
   mw = new Ui::VerbQueryDlgForm();
@@ -110,8 +110,8 @@ void VerbQueryDlg::setQuery(QString,
                             int q_start,
                             kvoctrainExpr *exp,
                             kvoctrainDoc  *doc,
-                            const Conjugation &prefix,
-                            const Conjugation &conjug)
+                            const KEduVocConjugation &prefix,
+                            const KEduVocConjugation &conjug)
 {
    //type_timeout = type_to;
    kv_doc = doc;

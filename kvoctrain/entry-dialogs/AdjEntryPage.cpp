@@ -29,7 +29,7 @@
 #include "AdjEntryPage.h"
 #include "EntryDlg.h"
 
-AdjEntryPage::AdjEntryPage(bool multi_sel, const Comparison &comp, QWidget *parent) : QWidget(parent)
+AdjEntryPage::AdjEntryPage(bool multi_sel, const KEduVocComparison &comp, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   comparisons = comp;
@@ -42,7 +42,7 @@ AdjEntryPage::AdjEntryPage(bool multi_sel, const Comparison &comp, QWidget *pare
 }
 
 
-void AdjEntryPage::setData(bool multi_sel, const Comparison  &comp)
+void AdjEntryPage::setData(bool multi_sel, const KEduVocComparison  &comp)
 {
   if (multi_sel) {
     lev1Field->setEnabled(false);

@@ -28,7 +28,7 @@
 #define LangPropPage_included
 
 #include "LangPropPageForm.h"
-#include <grammarmanager.h>
+#include <keduvocgrammar.h>
 
 class kvoctrainDoc;
 
@@ -37,11 +37,11 @@ class LangPropPage : public QWidget, public Ui::LangPropPageForm
   Q_OBJECT
 
 public:
-  LangPropPage(kvoctrainDoc *doc, QString curr_lang, const Conjugation &conjugations, const Article &article,
-    QWidget *parent = 0);
+  LangPropPage(kvoctrainDoc *doc, QString curr_lang, const KEduVocConjugation &conjugations,
+  const KEduVocArticle &article, QWidget *parent = 0);
 
-  Conjugation getConjugation();
-  Article getArticle() const { return articles; }
+  KEduVocConjugation getConjugation();
+  KEduVocArticle getArticle() const { return articles; }
 
 protected slots:
   void secondPluralChanged(const QString&);
@@ -66,8 +66,8 @@ protected slots:
 
 protected:
   kvoctrainDoc  *doc;
-  Conjugation    conjugations;
-  Article        articles;
+  KEduVocConjugation    conjugations;
+  KEduVocArticle        articles;
 };
 
 #endif // LangPropPage_included

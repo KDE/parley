@@ -305,7 +305,7 @@ void kvoctrainApp::slotFileMerge()
       old_tenses.push_back(new_tenses[i]);
     }
     doc->setTenseDescr(old_tenses);
-    Conjugation::setTenseNames(old_tenses);
+    ///@todo port KEduVocConjugation::setTenseNames(old_tenses);
 
 
     int usages_offset = old_usages.size();
@@ -375,7 +375,7 @@ void kvoctrainApp::slotFileMerge()
             expr->setUsageLabel (lang, tg);
           }
 
-          Conjugation conj = expr->getConjugation(lang);
+          KEduVocConjugation conj = expr->getConjugation(lang);
           bool condirty = false;
           for (int ci = 0; ci < conj.numEntries(); ci++) {
             t = conj.getType(ci);
@@ -452,7 +452,7 @@ void kvoctrainApp::slotFileMerge()
               new_expr.setUsageLabel (i, t2);
             }
 
-            Conjugation conj = expr->getConjugation(lpos);
+            KEduVocConjugation conj = expr->getConjugation(lpos);
             for (int ci = 0; ci < conj.numEntries(); ci++) {
               t = conj.getType(ci);
               if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
@@ -562,7 +562,7 @@ void kvoctrainApp::loadDocProps(kvoctrainDoc *the_doc)
 
   QueryManager::setTypeNames (doc->getTypeDescr() );
   UsageManager::setUsageNames (doc->getUsageDescr() );
-  Conjugation::setTenseNames (doc->getTenseDescr() );
+  ///@todo port KEduVocConjugation::setTenseNames (doc->getTenseDescr() );
 
   querymanager.setLessonItems(doc->getLessonsInQuery() );
 

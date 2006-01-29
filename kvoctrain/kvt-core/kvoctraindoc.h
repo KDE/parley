@@ -534,27 +534,27 @@ class kvoctrainDoc : public QObject
    *
    * @param index            index of translation
    */
-  Conjugation getConjugation(int index) const;
+  KEduVocConjugation getConjugation(int index) const;
 
   /** sets conjugations
    *
    * @param index            index of translation
    * @param con              conjugation block
    */
-  void setConjugation(int index, const Conjugation &con);
+  void setConjugation(int index, const KEduVocConjugation &con);
 
   /** returns pointer to articles if available
    *
    * @param index            index of translation
    */
-  Article getArticle(int index) const;
+  KEduVocArticle getArticle(int index) const;
 
   /** sets articles
    *
    * @param index            index of translation
    * @param art              article block
    */
-  void setArticle(int index, const Article &art);
+  void setArticle(int index, const KEduVocArticle &art);
 
   /** compress date */
   QString compressDate(unsigned long) const;
@@ -670,17 +670,17 @@ protected:
   bool loadOptionsKvtMl  (XmlElement elem, XmlReader& xml);
   bool saveArticleKvtMl  (XmlWriter &xml);
   bool loadArticleKvtMl  (XmlElement elem, XmlReader& xml);
-  bool saveConjugHeader  (vector<Conjugation> &curr_conjug,
+  bool saveConjugHeader  (vector<KEduVocConjugation> &curr_conjug,
                           XmlWriter &xml);
-  bool saveConjug        (const Conjugation &curr_conjug, QString type,
+  bool saveConjug        (const KEduVocConjugation &curr_conjug, QString type,
                           XmlWriter &xml, QString identstr);
-  bool saveConjugEntry   (Conjugation &curr_conjug,
+  bool saveConjugEntry   (KEduVocConjugation &curr_conjug,
                           XmlWriter &xml, int ident);
-  bool loadConjugKvtMl   (vector<Conjugation> &curr_conjug, const QString &entry_tag,
+  bool loadConjugKvtMl   (vector<KEduVocConjugation> &curr_conjug, const QString &entry_tag,
                           XmlElement elem, XmlReader& xml);
 
-  bool saveComparison    (const Comparison &comp, XmlWriter &xml, int ident);
-  bool loadComparison    (Comparison &comp, XmlElement elem, XmlReader &xml);
+  bool saveComparison    (const KEduVocComparison &comp, XmlWriter &xml, int ident);
+  bool loadComparison    (KEduVocComparison &comp, XmlElement elem, XmlReader &xml);
 
   bool saveMultipleChoice(const MultipleChoice &mc, XmlWriter &xml, int ident);
   bool loadMultipleChoice(MultipleChoice &mc, XmlElement elem, XmlReader &xml);
@@ -739,8 +739,8 @@ protected:
   QString                doc_remark;
   QString                doc_version;
 
-  vector<Article>        articles;
-  vector<Conjugation>    conjugations;
+  vector<KEduVocArticle>        articles;
+  vector<KEduVocConjugation>    conjugations;
 };
 
 

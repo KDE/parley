@@ -36,8 +36,8 @@ LangPropPage::LangPropPage
   (
   kvoctrainDoc      *_doc,
   QString            curr_lang,
-  const Conjugation &conjug,
-  const Article     &art,
+  const KEduVocConjugation &conjug,
+  const KEduVocArticle     &art,
   QWidget           *parent
   )
   : QWidget( parent), doc(_doc), conjugations(conjug), articles(art)
@@ -104,7 +104,7 @@ LangPropPage::LangPropPage
 }
 
 
-Conjugation LangPropPage::getConjugation()
+KEduVocConjugation LangPropPage::getConjugation()
 {
   conjugations.cleanUp();
   return conjugations;

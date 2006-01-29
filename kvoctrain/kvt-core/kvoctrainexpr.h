@@ -58,7 +58,7 @@
 #include <vector>
 using namespace std;
 
-#include "grammarmanager.h"
+#include <keduvocgrammar.h>
 #include "MultipleChoice.h"
 
 typedef signed char grade_t;
@@ -346,27 +346,27 @@ class kvoctrainExpr
    *
    * @param index            index of translation
    */
-  Conjugation getConjugation(int index) const;
+  KEduVocConjugation getConjugation(int index) const;
 
   /** sets conjugations
    *
    * @param index            index of translation
    * @param con              conjugation block
    */
-  void setConjugation(int index, const Conjugation &con);
+  void setConjugation(int index, const KEduVocConjugation &con);
 
   /** returns comparison if available
    *
    * @param index            index of translation
    */
-  Comparison getComparison(int index) const;
+  KEduVocComparison getComparison(int index) const;
 
   /** sets comparison
    *
    * @param index            index of translation
    * @param con              comparison block
    */
-  void setComparison(int index, const Comparison &comp);
+  void setComparison(int index, const KEduVocComparison &comp);
 
   /** returns multiple choice if available
    *
@@ -450,8 +450,8 @@ class kvoctrainExpr
   vector<count_t>     rev_bcounts;
   vector<time_t>      qdates;
   vector<time_t>      rev_qdates;
-  vector<Conjugation> conjugations;
-  vector<Comparison>  comparisons;
+  vector<KEduVocConjugation> conjugations;
+  vector<KEduVocComparison>  comparisons;
   vector<MultipleChoice> mcs;
 
   int                lesson;

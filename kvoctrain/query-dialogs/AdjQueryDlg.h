@@ -47,7 +47,7 @@ public:
     int query_startnum,
     kvoctrainExpr *exp,
     kvoctrainDoc *doc,
-    const Comparison &comp);
+    const KEduVocComparison &comp);
 
   ~AdjQueryDlg();
 
@@ -59,7 +59,7 @@ public:
               int query_startnum,
               kvoctrainExpr *exp,
               kvoctrainDoc *doc,
-              const Comparison &comp);
+              const KEduVocComparison &comp);
 
 public slots:
   virtual void initFocus() const;
@@ -81,7 +81,7 @@ protected slots:
   void timeoutReached();
 
 protected:
-  Comparison  comp;
+  KEduVocComparison  comp;
 
 private:
   Ui::AdjQueryDlgForm * mw;

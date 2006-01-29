@@ -314,7 +314,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
       else {
         count++;
         inEntry = false;
-        articles.push_back (Article(fem_def, fem_indef,
+        articles.push_back (KEduVocArticle(fem_def, fem_indef,
                                     mal_def, mal_indef,
                                     nat_def, nat_indef));
       }
@@ -432,7 +432,7 @@ bool kvoctrainDoc::extract_BOOL_attr (
 }
 
 
-bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
+bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
                                     const QString &entry_tag,
                                     XmlElement elem, XmlReader& xml)
 
@@ -494,7 +494,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
   QString lang;
   QString type;
   int count = 0;
-  curr_conjug.push_back (Conjugation());
+  curr_conjug.push_back (KEduVocConjugation());
 
   do {
     if (! xml.readElement (elem))
@@ -574,7 +574,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<Conjugation> &curr_conjug,
         inEntry = false;
         if (entry_tag == KV_CON_ENTRY)
           while (count+1 > (int) curr_conjug.size() )
-            curr_conjug.push_back (Conjugation());
+            curr_conjug.push_back (KEduVocConjugation());
 
         curr_conjug[count].setPers3SingularCommon(type, s3_common);
         curr_conjug[count].setPers3PluralCommon(type, p3_common);

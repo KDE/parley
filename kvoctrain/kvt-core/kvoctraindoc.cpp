@@ -377,23 +377,23 @@ void kvoctrainDoc::setUsageName (int idx, QString &id)
 }
 
 
-void kvoctrainDoc::setConjugation (int idx, const Conjugation &con)
+void kvoctrainDoc::setConjugation (int idx, const KEduVocConjugation &con)
 {
   if ( idx < 0) return;
 
   // extend conjugation with empty elements
   if ((int)conjugations.size() <= idx )
     for (int i = conjugations.size(); i < idx+1; i++)
-      conjugations.push_back (Conjugation());
+      conjugations.push_back (KEduVocConjugation());
 
   conjugations[idx] = con;
 }
 
 
-Conjugation kvoctrainDoc::getConjugation (int idx) const
+KEduVocConjugation kvoctrainDoc::getConjugation (int idx) const
 {
   if (idx >= (int)conjugations.size() || idx < 0) {
-    return Conjugation();
+    return KEduVocConjugation();
   }
   else {
     return conjugations[idx];
@@ -401,23 +401,23 @@ Conjugation kvoctrainDoc::getConjugation (int idx) const
 }
 
 
-void kvoctrainDoc::setArticle (int idx, const Article &art)
+void kvoctrainDoc::setArticle (int idx, const KEduVocArticle &art)
 {
   if ( idx < 0) return;
 
   // extend conjugation with empty elements
   if ((int)articles.size() <= idx )
     for (int i = articles.size(); i < idx+1; i++)
-      articles.push_back (Article());
+      articles.push_back (KEduVocArticle());
 
   articles[idx] = art;
 }
 
 
-Article kvoctrainDoc::getArticle (int idx) const
+KEduVocArticle kvoctrainDoc::getArticle (int idx) const
 {
   if (idx >= (int)articles.size() || idx < 0) {
-    return Article();
+    return KEduVocArticle();
   }
   else {
     return articles[idx];

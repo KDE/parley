@@ -27,19 +27,19 @@
 #define TenseEntryPage_included
 
 #include "TenseEntryPageForm.h"
-#include <grammarmanager.h>
+#include <keduvocgrammar.h>
 
 class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 {
   Q_OBJECT
 
 public:
-  TenseEntryPage(bool multi_sel, const Conjugation &con_prefix, const Conjugation &conjugations,
+  TenseEntryPage(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations,
     QWidget *parent = 0);
 
-  void setData(bool multi_sel, const Conjugation &conjugations);
+  void setData(bool multi_sel, const KEduVocConjugation &conjugations);
 
-  Conjugation getConjugation();
+  KEduVocConjugation getConjugation();
 
   bool isModified();
   void setModified(bool mod = true);
@@ -68,7 +68,7 @@ protected slots:
   void slotNextConj();
 
 protected:
-  Conjugation   prefix,
+  KEduVocConjugation   prefix,
                 conjugations;
   QString       selection;
   bool          multi_mode;

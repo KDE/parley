@@ -144,7 +144,7 @@ void TenseOptPage::slotDeleteTense()
       // FIXME: ProgressDlg here?
       kvoctrainExpr *exp = doc->getEntry(ent);
       for (int lang = 0; lang < doc->numLangs(); lang++) {
-        Conjugation conj = exp->getConjugation(lang);
+        KEduVocConjugation conj = exp->getConjugation(lang);
         for (int con = 0; con < conj.numEntries(); con++ ) {
           if (conj.getType(con) == t) {
             KMessageBox::information(this,
@@ -194,7 +194,7 @@ void TenseOptPage::slotCleanup()
 
   for (int col = 0; col < doc->numLangs(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
-      Conjugation conj = doc->getEntry(i)->getConjugation(col);
+      KEduVocConjugation conj = doc->getEntry(i)->getConjugation(col);
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString t = conj.getType(ci);
         if (t.left(strlen(UL_USER_TENSE)) == UL_USER_TENSE) {
@@ -249,7 +249,7 @@ void TenseOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex,
 
   for (int col = 0; col < doc->numLangs(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
-      Conjugation conj = doc->getEntry(i)->getConjugation (col);
+      KEduVocConjugation conj = doc->getEntry(i)->getConjugation (col);
       bool dirty = false;
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString old = conj.getType(ci);

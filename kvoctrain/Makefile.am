@@ -8,7 +8,7 @@ spotlight2kvtml_SOURCES = spotlight2kvtml.cpp
 
 spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 
-kvoctrain_LDADD = ./docprop-dialogs/libdocpropdlg.la \
+kvoctrain_LDADD = ../../libkdeedu/kdeeducore/libkdeeducore.la ./docprop-dialogs/libdocpropdlg.la \
 	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la ./kvt-core/kvt-xml/libkvtxml.la \
 	./query-dialogs/libquerydlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la \
 	-lknewstuff $(LIB_KDEPRINT)
@@ -26,7 +26,8 @@ kde_conf_DATA = kvoctrainrc
 xdg_apps_DATA = kvoctrain.desktop
 
 
-INCLUDES = -I$(srcdir)/.. -I$(srcdir)/kvt-core -Icommon-dialogs \
+INCLUDES = -I$(top_builddir)/libkdeedu/kdeeducore \
+	-I$(srcdir)/../../libkdeedu/kdeeducore -I$(srcdir)/.. -I$(srcdir)/kvt-core -Icommon-dialogs \
 	-I$(srcdir)/common-dialogs -I$(srcdir)/docprop-dialogs -Idocprop-dialogs -I$(srcdir)/query-dialogs \
 	-Iquery-dialogs -I$(srcdir)/entry-dialogs -Ientry-dialogs $(all_includes)
 

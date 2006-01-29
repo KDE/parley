@@ -532,7 +532,7 @@ bool kvoctrainDoc::extract_KVT_E_attr (
 }
 
 
-bool kvoctrainDoc::loadComparison (Comparison &comp, XmlElement elem,
+bool kvoctrainDoc::loadComparison (KEduVocComparison &comp, XmlElement elem,
                                    XmlReader &xml)
 /*
  <comparison>
