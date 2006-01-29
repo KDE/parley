@@ -28,7 +28,7 @@
 
 #include <kdebug.h>
 
-#include "kvoctraincore.h"
+#include "version.h"
 #include "QueryManager.h"
 
 bool kvoctrainDoc::saveTypeNameKvtMl (XmlWriter &xml)

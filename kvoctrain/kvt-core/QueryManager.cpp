@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Jul 11 20:50:53 MET 1999
+    begin         : Sat Jul 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,7 +31,6 @@
 using namespace std;
 
 #include "QueryManager.h"
-#include "kvoctraincore.h"
 #include <prefs.h>
 
 vector<QString> QueryManager::userTypes;

@@ -41,7 +41,6 @@
 #include <time.h>
 #include <ctype.h>
 
-#include <kvoctraincore.h>
 #include "kvoctrain.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
@@ -49,6 +48,9 @@
 #include "statistik-dialogs/StatistikDlg.h"
 #include "common-dialogs/kvoctrainprefs.h"
 #include "prefs.h"
+
+#define MAX_LESSON       25
+#define THRESH_LESSON    KV_MIN_GRADE
 
 /*void kvoctrainApp::slotSaveOptions()
 {

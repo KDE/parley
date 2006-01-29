@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004, 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,7 +26,6 @@
 #include <QFile>
 
 #include "kvoctrain.h"
-#include <kvoctraincore.h>
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 #include "languagesettings.h"
@@ -95,11 +94,11 @@ void kvoctrainApp::saveProperties(KConfig *config )
 {
   saveOptions();
   if (doc) {
-    config->writeEntry(CFG_FILENAME,doc->URL().path());
-    config->writeEntry(CFG_TITLE,doc->getTitle());
-    config->writeEntry(CFG_MODIFIED,doc->isModified());
+    config->writeEntry("Filename", doc->URL().path());
+    config->writeEntry("Title", doc->getTitle());
+    config->writeEntry("Modified", doc->isModified());
 
-    config->writeEntry(CFG_QUERYMODE, querymode);
+    config->writeEntry("QueryMode", querymode);
 
     QString filename=doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
@@ -111,11 +110,11 @@ void kvoctrainApp::saveProperties(KConfig *config )
 
 void kvoctrainApp::readProperties(KConfig *config)
 {
-  querymode = config->readEntry(CFG_QUERYMODE, 0);
+  querymode = config->readEntry("QueryMode", 0);
 
-  QString filename = config->readEntry(CFG_FILENAME);
-  QString title = config->readEntry(CFG_TITLE);
-  bool modified = config->readEntry(CFG_MODIFIED,false);
+  QString filename = config->readEntry("Filename");
+  QString title = config->readEntry("Title");
+  bool modified = config->readEntry("Modified", false);
   if( modified ){
     bool b_canRecover;
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);

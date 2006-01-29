@@ -34,8 +34,6 @@
 #define KVD_VERS_PREFIX " v"     //#include "kvoctraindoc.h"
 #define QM_VERB         "v"      //#include "QueryManager.h"
 
-#include "kvoctraincore.h"
-
 #define SPOT_VERSION   "v0.2.1"
 
 QList<QString> lesson_names;
@@ -307,12 +305,12 @@ int main(int argc, char **argv)
 
   int dot = spot.findRev('.');
   if (dot < 0) {
-    kvtml = spot + "." KVTML_EXT;
+    kvtml = spot + ".kvtml";
   }
   else {
     kvtml = spot;
     kvtml.remove (dot, kvtml.length()-dot);
-    kvtml += "." KVTML_EXT;
+    kvtml += ".kvtml";
   }
 
   QFile fs(spot);

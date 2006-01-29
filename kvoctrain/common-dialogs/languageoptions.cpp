@@ -6,7 +6,7 @@
 
     begin                : Tue Apr 5 2005
 
-    copyright            :(C) 2005 Peter Hedlund
+    copyright            :(C) 2005-2006 Peter Hedlund
 
     email                : peter.hedlund@kdemail.net
 
@@ -43,9 +43,10 @@
 #include <kmenu.h>
 
 #include "languageoptions.h"
-#include "kvoctraincore.h"
 #include "languagesettings.h"
 #include "prefs.h"
+
+#define MAX_LANGSET      100
 
 // automatically extracted from http://www.loc.gov/standards/iso639-2/englangn.html
 // with .../tools/extractlang

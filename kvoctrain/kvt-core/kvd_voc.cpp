@@ -27,7 +27,6 @@
 #include <kdebug.h>
 
 #include "kvoctraindoc.h"
-#include "kvoctraincore.h"
 //Added by qt3to4:
 #include <QTextStream>
 

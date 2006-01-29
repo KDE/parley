@@ -40,6 +40,13 @@
 #include "kvt-xml/XmlReader.h"
 #include "kvt-xml/XmlWriter.h"
 
+
+#define KVTML_EXT        "kvtml"
+#define VT5_LEX_EXT      "lex"
+#define VCB_EXT          "vocab"
+#define CSV_EXT          "csv"
+#define VCB_SEPARATOR    "__"
+
 #define KVD_ZERO_TIME  934329599   // 1999-08-10 23:59:59, never change
 #define KVD_VERS_PREFIX " v"       // kvoctrain v0.1.0
 

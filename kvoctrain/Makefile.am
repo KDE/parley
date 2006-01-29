@@ -58,4 +58,4 @@ messages-local:
 	$(MAKE) messages EXTRACTRC=extractrc podir=. XGETTEXT="xgettext -C -kI18N_NOOP -ki18n"
 	iconv -futf-8 -tutf-16 kvoctrain.pot > /dev/null
 
-noinst_HEADERS = kvtnewstuff.h
+noinst_HEADERS = kvtnewstuff.h version.h

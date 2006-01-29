@@ -2,11 +2,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,7 +26,7 @@
 #include <klocale.h>
 
 #include "kvoctrain.h"
-#include "kvoctraincore.h"
+#include "version.h"
 
 int main(int argc, char* argv[]) {
 

@@ -43,8 +43,9 @@ using namespace std;
 #include <kio/netaccess.h>
 
 #include "kvoctraindoc.h"
-#include "kvoctraincore.h"
+#include "version.h"
 #include "prefs.h"
+
 
 //********************************************************
 //  kvoctrainDoc
