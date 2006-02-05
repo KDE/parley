@@ -42,8 +42,8 @@ public:
                   int q_cycle,
                   int q_num,
                   int q_start,
-                  kvoctrainExpr *exp,
-                  kvoctrainDoc  *doc);
+                  KEduVocExpression *exp,
+                  KEduVocDocument  *doc);
 
   ~SimpleQueryDlg();
 
@@ -53,8 +53,8 @@ public:
                 int q_cycle,
                 int q_num,
                 int q_start,
-                kvoctrainExpr *exp,
-                kvoctrainDoc  *doc);
+                KEduVocExpression *exp,
+                KEduVocDocument  *doc);
 
 public slots:
   virtual void initFocus() const;

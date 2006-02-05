@@ -32,8 +32,8 @@
 #include <QPixmap>
 #include <QKeyEvent>
 
-#include "kvt-core/kvoctraindoc.h"
-#include "kvt-core/kvoctrainexpr.h"
+#include <keduvocdocument.h>
+#include <keduvocexpression.h>
 #include "kvt-core/langset.h"
 #include "kvoctraintableitem.h"
 
@@ -45,7 +45,7 @@ class KVocTrainTable : public Q3Table
 Q_OBJECT
 public:
   public:
-    KVocTrainTable( kvoctrainDoc *_doc, const LangSet *ls, QWidget *parent = NULL, const char *name = NULL );
+    KVocTrainTable( KEduVocDocument *_doc, const LangSet *ls, QWidget *parent = NULL, const char *name = NULL );
 
     friend class kvoctrainView;
 
@@ -54,13 +54,13 @@ public:
     int count() { return numRows(); }
 
     void setModified(bool _dirty = true) { m_doc->setModified(_dirty); }
-    QString getIdent(int i) const { return m_doc->getIdent(i); }
-    QString getOriginalIdent() const { return m_doc->getOriginalIdent(); }
-    int findIdent(QString id) const { return m_doc->findIdent(id); }
+    QString indentifier(int i) const { return m_doc->identifier(i); }
+    QString originalIdentifier() const { return m_doc->originalIdentifier(); }
+    int findIdent(QString id) const { return m_doc->findIdentifier(id); }
     void setCurrentRow(int row, int col);
     void updateContents(int row = -1, int col = -1);
-    kvoctrainExpr *getRow(int row);
-    void setDoc(kvoctrainDoc *rows);
+    KEduVocExpression *getRow(int row);
+    void setDoc(KEduVocDocument *rows);
     void setFont(const QFont &);
 
   signals:
@@ -94,7 +94,7 @@ public:
     void activateNextCell();
 
   private:
-    kvoctrainDoc * m_doc;
+    KEduVocDocument * m_doc;
     void sortByColumn(int, bool);
     const LangSet* langs;
     //const GradeCols *gradecols;

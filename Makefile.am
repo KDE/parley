@@ -1,8 +1,8 @@
-SUBDIRS = kvoctrain 
+SUBDIRS = kvoctrain
 
-EXTRA_DIST = AUTHORS kvoctrain.kdevprj
+EXTRA_DIST = AUTHORS
 
-AUTOMAKE_OPTIONS = foreign 
+AUTOMAKE_OPTIONS = foreign
 
 install-data-local:
 

@@ -36,7 +36,7 @@
 #include <kcombobox.h>
 
 #include "kvoctrainprefs.h"
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 #include "generaloptions.h"
 #include "languageoptions.h"
 #include "viewoptions.h"
@@ -54,7 +54,7 @@ static const char unapplied[] = I18N_NOOP(
     "If you save a profile, those changes will not be included.\n"
     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, kvoctrainDoc * doc, KComboBox * lessons, QueryManager * m, QWidget *parent,
+KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, KEduVocDocument * doc, KComboBox * lessons, QueryManager * m, QWidget *parent,
   const char *name,  KConfigSkeleton *config, DialogType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
   bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)

@@ -36,12 +36,12 @@
 
 #include "DocPropLangDlg.h"
 #include "LangPropPage.h"
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 #include <langset.h>
 
-class kvoctraindoc;
+class KEduVocDocument;
 
-DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *parent, const char *name, bool modal)
+DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget *parent, const char *name, bool modal)
   :
   KDialogBase(Tabbed, i18n("Language Properties"), Ok|Cancel, Ok, parent, name, modal)
 {
@@ -49,13 +49,13 @@ DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *p
   QVBoxLayout * topLayout;
   LangPropPage* lpp;
 
-  for (int i = 0; i < (int) doc->numLangs(); i++)
+  for (int i = 0; i < (int) doc->numIdentifiers(); i++)
   {
     QString s;
     if (i == 0)
-      s = doc->getOriginalIdent();
+      s = doc->originalIdentifier();
     else
-      s = doc->getIdent(i);
+      s = doc->identifier(i);
 
     int idx = langset->indexShortId(s);
 
@@ -68,7 +68,7 @@ DocPropsLangDlg::DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *p
 
     page = addPage(s, s, QPixmap(langset->PixMapFile(idx))); ///@todo The pixmaps don't show up in tabbed dialog
     topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
-    lpp = new LangPropPage (doc, s, doc->getConjugation(i), doc->getArticle(i), page);
+    lpp = new LangPropPage (doc, s, doc->conjugation(i), doc->article(i), page);
     topLayout->addWidget( lpp );
 
     langPages.append (lpp);

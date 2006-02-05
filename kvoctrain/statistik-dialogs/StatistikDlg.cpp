@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Sep 19 20:50:53 MET 1999
+    begin         : Sun Sep 19 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -32,9 +32,9 @@
 #include "StatistikPage.h"
 #include "GenStatPage.h"
 #include <langset.h>
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 
-StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent, const char *name, bool modal)
+StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *parent, const char *name, bool modal)
   : KDialogBase(Tabbed, i18n("Document Statistics"), Close, Close, parent, name, modal)
 {
   QFrame * page;
@@ -46,11 +46,11 @@ StatistikDlg::StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent,
   GenStatPage *gspage = new GenStatPage (doc, page);
   topLayout->addWidget(gspage);
 
-  for (int i = 1; i < (int) doc->numLangs(); i++)
+  for (int i = 1; i < (int) doc->numIdentifiers(); i++)
   {
-    QString s = langset.findLongId(doc->getIdent(i));
+    QString s = langset.findLongId(doc->identifier(i));
     if (s.isEmpty() )
-      s = doc->getIdent(i);
+      s = doc->identifier(i);
     else
       s = i18n(s.local8Bit());
 

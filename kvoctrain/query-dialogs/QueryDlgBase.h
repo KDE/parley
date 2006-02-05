@@ -38,8 +38,8 @@
 #include <keduvocgrammar.h>
 #include "prefs.h"
 
-class kvoctrainExpr;
-class kvoctrainDoc;
+class KEduVocExpression;
+class KEduVocDocument;
 
 class QLineEdit;
 class QTextEdit;
@@ -100,8 +100,8 @@ protected:
   int            q_row,
                  q_ocol,
                  q_tcol;
-  kvoctrainDoc  *kv_doc;
-  kvoctrainExpr *kv_exp;
+  KEduVocDocument  *kv_doc;
+  KEduVocExpression *kv_exp;
   QString        translation;
   QTimer        *qtimer;
   int            timercount;

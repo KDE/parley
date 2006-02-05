@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Sep 21 20:50:53 MET 1999
+    begin         : Thu Sep 21 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,18 +26,18 @@
 #include <QLabel>
 
 #include "GenStatPage.h"
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 
-GenStatPage::GenStatPage(kvoctrainDoc *doc, QWidget* parent): QWidget(parent)
+GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
 {
   setupUi(this);
   l_filename->setText(doc->URL().path());
-  l_title->setText(doc->getTitle());
-  l_author->setText(doc->getAuthor());
+  l_title->setText(doc->title());
+  l_author->setText(doc->author());
   QString s;
   s.setNum(doc->numEntries());
   kcfg_entriesPerLesson->setText(s);
-  vector<QString> lesson = doc->getLessonDescr();
+  QStringList lesson = doc->lessonDescriptions();
   s.setNum(lesson.size());
   l_lessons->setText(s);
 }

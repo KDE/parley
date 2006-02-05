@@ -6,7 +6,7 @@
 
     begin                : Thu Mar 31 2005
 
-    copyright            :(C) 2005 Peter Hedlund
+    copyright            :(C) 2005-2006 Peter Hedlund
 
     email                : peter.hedlund@kdemail.net
 
@@ -33,7 +33,7 @@
 
 #include "pasteoptions.h"
 #include "prefs.h"
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 #include "langset.h"
 
 static const char *separator_id[] =
@@ -50,7 +50,7 @@ static const char *separator_id[] =
   0
 };
 
-PasteOptions::PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent) : QWidget(parent), m_langSet(langset)
+PasteOptions::PasteOptions(LangSet & langset, KEduVocDocument * doc, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
   setupUi(this);
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), OrderList, SLOT(setDisabled(bool)));
@@ -186,9 +186,9 @@ void PasteOptions::slotSeparatorComboActivated(int)
 void PasteOptions::slotUseCurrentDocToggled(bool)
 {
   OrderList->clear();
-  OrderList->insertItem (m_langSet.findLongId(m_doc->getOriginalIdent()));
-  for (int i = 1; i < (int) m_doc->numLangs(); i++)
-    OrderList->insertItem (m_langSet.findLongId(m_doc->getIdent(i)));
+  OrderList->insertItem (m_langSet.findLongId(m_doc->originalIdentifier()));
+  for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
+    OrderList->insertItem (m_langSet.findLongId(m_doc->identifier(i)));
 
   // any other languages to append besides those from doc?
   for (int i = 0; i < (int) m_langSet.size(); i++)

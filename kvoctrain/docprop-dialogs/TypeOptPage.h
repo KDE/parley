@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Sep 12 15:38:31 1999
+    begin         : Sun Sep 12 15:38:31 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -28,13 +28,11 @@
 
 #include <vector>
 
-#include <Q3StrList>
-
 #include "TypeOptPageForm.h"
 
 using namespace std;
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class Q3StrList;
 
 class TypeOptPage : public QWidget, public Ui::TypeOptPageForm
@@ -42,11 +40,11 @@ class TypeOptPage : public QWidget, public Ui::TypeOptPageForm
   Q_OBJECT
 
 public:
-  TypeOptPage(const vector<QString> &types, kvoctrainDoc *doc, QWidget *parent = 0);
+  TypeOptPage(const QStringList &types, KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getTypeNames (vector<QString> &ret_types, vector<int> &ret_Index);
+  void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
 
-  static void cleanUnused(kvoctrainDoc *doc, const vector<int> &lessonIndex, int old_lessons);
+  static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
 protected:
   void updateListBox(int start);
@@ -59,10 +57,10 @@ protected slots:
   void slotCleanup();
 
 private:
-  kvoctrainDoc  *doc;
-  int            act_type;
-  vector<int>    typeIndex; // contains indices of types on exec()
-                            // negative values are new lessons
+  KEduVocDocument  *doc;
+  int               act_type;
+  QList<int>       typeIndex; // contains indices of types on exec()
+                               // negative values are new lessons
 };
 
 #endif // TypeOptPage_included

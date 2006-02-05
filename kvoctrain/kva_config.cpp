@@ -95,7 +95,7 @@ void kvoctrainApp::saveProperties(KConfig *config )
   saveOptions();
   if (doc) {
     config->writeEntry("Filename", doc->URL().path());
-    config->writeEntry("Title", doc->getTitle());
+    config->writeEntry("Title", doc->title());
     config->writeEntry("Modified", doc->isModified());
 
     config->writeEntry("QueryMode", querymode);
@@ -103,7 +103,7 @@ void kvoctrainApp::saveProperties(KConfig *config )
     QString filename=doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
     saveDocProps(doc);
-    doc->saveAs(this, KURL(tempname), doc->getTitle(), kvoctrainDoc::automatic);
+    doc->saveAs(this, KURL(tempname), KEduVocDocument::automatic, "KVocTrain");
   }
 }
 
@@ -122,12 +122,13 @@ void kvoctrainApp::readProperties(KConfig *config)
     if(b_canRecover){
       pdlg = new ProgressDlg(QString(), QString(), kapp->makeStdCaption(""));
       pdlg->show();
-      doc = new kvoctrainDoc(this, KURL(tempname));
+      doc = new KEduVocDocument(this);
+      doc->setURL(KURL(tempname));
       removeProgressBar();
       doc->setModified();
       doc->setTitle(title);
       doc->setURL(KURL(filename));
-      setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
+      setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
       QFile::remove(tempname);
     }
   }
@@ -135,9 +136,10 @@ void kvoctrainApp::readProperties(KConfig *config)
     pdlg = new ProgressDlg (QString(), QString(),
                             kapp->makeStdCaption(""));
     pdlg->show();
-    doc = new kvoctrainDoc(this, KURL(filename));
+    doc = new KEduVocDocument(this);
+    doc->setURL(KURL(filename));
     removeProgressBar();
-    setCaption(kapp->makeStdCaption(doc->getTitle(), false, doc->isModified()));
+    setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
   }
 
   show();

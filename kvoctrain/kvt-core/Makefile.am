@@ -6,12 +6,8 @@ lib_LTLIBRARIES = libkvoctraincore.la
 
 METASOURCES = AUTO
 
-libkvoctraincore_la_SOURCES = langset.cpp LineList.cpp kvoctrainexpr.cpp \
-	kvoctraindoc.cpp kvd_rh_kvtml.cpp kvd_rb_kvtml1.cpp kvd_rb_kvtml2.cpp kvd_wkvtml.cpp \
-	kvd_csv.cpp kvd_lex.cpp kvd_vcb.cpp UsageManager.cpp QueryManager.cpp kvd_voc.cpp
+libkvoctraincore_la_SOURCES = langset.cpp LineList.cpp UsageManager.cpp QueryManager.cpp
 
-SUBDIRS = kvt-xml
 
-libkvoctraincore_la_LIBADD= kvt-xml/libkvtxml.la
 
 

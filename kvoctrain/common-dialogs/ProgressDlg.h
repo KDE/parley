@@ -28,7 +28,7 @@
 
 #include "ProgressDlgForm.h"
 
-class kvoctrainDoc;
+class KEduVocDocument;
 
 class ProgressDlg : public QWidget, public Ui::ProgressDlgForm
 {
@@ -37,10 +37,10 @@ public:
   ProgressDlg(const QString &doctitle, const QString &filename, const QString &title, QWidget* parent = 0);
 
 public slots:
-  void setValue(kvoctrainDoc *doc, int);
+  void setValue(KEduVocDocument *doc, int);
 
 protected:
-  kvoctrainDoc *doc;
+  KEduVocDocument *doc;
 };
 
 #endif // ProgressDlg_included

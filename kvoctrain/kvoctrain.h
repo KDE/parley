@@ -51,7 +51,7 @@
 class QTimer;
 class KLined;
 class ProgressDlg;
-class kvoctrainDoc;
+class KEduVocDocument;
 class SimpleQueryDlg;
 class MCQueryDlg;
 class VerbQueryDlg;
@@ -112,7 +112,7 @@ public:
   bool hasSelection();
 
  signals:
-  void progressChanged (kvoctrainDoc *, int curr_percent);
+  void progressChanged (KEduVocDocument *, int curr_percent);
 
  public slots:
   void keyPressEvent( QKeyEvent *e );
@@ -134,7 +134,7 @@ public:
   void slotSaveSelection ();
   void slotCancelSelection ();
   void slotSelectAll();
-  void slotProgress(kvoctrainDoc*,int);
+  void slotProgress(KEduVocDocument*,int);
   void slotResumeSearch(const QString&);
   void slotSearchNext();
   void slotInitSearch();
@@ -221,10 +221,10 @@ public:
 public:
   void removeProgressBar();
   void prepareProgressBar();
-  void fillLessonBox(kvoctrainDoc *);
-  void loadDocProps(kvoctrainDoc *);
-  void saveDocProps(kvoctrainDoc *);
-  static vector<int> getCsvOrder(kvoctrainDoc *);
+  void fillLessonBox(KEduVocDocument *);
+  void loadDocProps(KEduVocDocument *);
+  void saveDocProps(KEduVocDocument *);
+  static vector<int> getCsvOrder(KEduVocDocument *);
 
 private:
   // KAction pointers to enable/disable actions
@@ -280,7 +280,7 @@ private:
   /** doc represents your actual document and is created only once. It keeps
     * information such as filename and does the serialization of your files.
     */
-  kvoctrainDoc *doc;
+  KEduVocDocument *doc;
 
   friend class kvoctrainView;
 

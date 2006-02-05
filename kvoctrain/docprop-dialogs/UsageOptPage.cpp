@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 30 20:38:31 1999
+    begin         : Thu Mar 30 20:38:31 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,7 +36,7 @@
 
 #define USAGE_TAG ". "
 
-UsageOptPage::UsageOptPage(const vector<QString> &usages, kvoctrainDoc *_doc, QWidget *parent)
+UsageOptPage::UsageOptPage(const QStringList &usages, KEduVocDocument *_doc, QWidget *parent)
  : QWidget(parent), doc(_doc)
 {
   setupUi(this);
@@ -142,9 +142,9 @@ void UsageOptPage::slotDeleteUsage()
     t += UL_USAGE_DIV;
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       // FIXME: ProgressDlg here?
-      kvoctrainExpr *exp = doc->getEntry(ent);
-      for (int lang = 0; lang < doc->numLangs(); lang++) {
-        QString ul = exp->getUsageLabel(lang) + UL_USAGE_DIV;
+      KEduVocExpression *exp = doc->entry(ent);
+      for (int lang = 0; lang < doc->numIdentifiers(); lang++) {
+        QString ul = exp->usageLabel(lang) + UL_USAGE_DIV;
         if (ul.find(t) >= 0 ) {
           KMessageBox::information(this,
                     i18n("usage (area) of an expression",
@@ -173,10 +173,10 @@ void UsageOptPage::slotDeleteUsage()
 }
 
 
-void UsageOptPage::getUsageLabels (vector<QString> &ret_usage,
-                                   vector<int> &ret_Index)
+void UsageOptPage::getUsageLabels(QStringList &ret_usage, QList<int> &ret_Index)
 {
-  QString str;    ret_usage.clear();
+  QString str;
+  ret_usage.clear();
   for (int i = 0; i < (int) usageList->count(); i++) {
     str = usageList->text(i);
     int pos = str.find (USAGE_TAG);
@@ -193,9 +193,9 @@ void UsageOptPage::slotCleanup()
   for (int i = 0; i <= (int) usageList->count(); i++)
     used_usage.push_back(false);
 
-  for (int col = 0; col < doc->numLangs(); col++)
+  for (int col = 0; col < doc->numIdentifiers(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
-      QString t = doc->getEntry(i)->getUsageLabel(col);
+      QString t = doc->entry(i)->usageLabel(col);
       QString n;
       while (t.left(strlen(UL_USER_USAGE)) == UL_USER_USAGE) {
         t.remove (0, 1);
@@ -235,12 +235,12 @@ void UsageOptPage::slotCleanup()
 }
 
 
-void UsageOptPage::cleanUnused(kvoctrainDoc *doc,
-                               const vector<int> &usageIndex,
+void UsageOptPage::cleanUnused(KEduVocDocument *doc,
+                               const QList<int> &usageIndex,
                                int old_usages)
 {
-  vector<int> translate_index;
-  vector<QString> new_usageStr;
+  QList<int> translate_index;
+  QStringList new_usageStr;
 
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each
@@ -260,9 +260,9 @@ void UsageOptPage::cleanUnused(kvoctrainDoc *doc,
   // set usage index to 0 when not needed any more
   // and translate to new index
 
-  for (int col = 0; col < doc->numLangs(); col++) {
+  for (int col = 0; col < doc->numIdentifiers(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
-      QString t = doc->getEntry(i)->getUsageLabel (col);
+      QString t = doc->entry(i)->usageLabel (col);
       if (!t.isEmpty() && t.left(strlen(UL_USER_USAGE)) == UL_USER_USAGE) {
         QString tg;
         while (t.left(strlen(UL_USER_USAGE)) == UL_USER_USAGE) {
@@ -297,7 +297,7 @@ void UsageOptPage::cleanUnused(kvoctrainDoc *doc,
         else if (t.length() != 0)
           tg += UL_USAGE_DIV + t;
 
-        doc->getEntry(i)->setUsageLabel (col, tg);
+        doc->entry(i)->setUsageLabel (col, tg);
       }
     }
   }

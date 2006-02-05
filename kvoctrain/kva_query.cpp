@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -165,7 +165,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
   querymode = true;
 
   random_query_nr = random.getLong(random_expr1.size());
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg = new SimpleQueryDlg (
                            queryType,
@@ -274,7 +274,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
   }
 
   random_query_nr = random.getLong(random_expr1.size());
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg->setQuery(queryType,
                            random_expr1[random_query_nr].nr,
@@ -333,12 +333,12 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
   }
 
   random_query_nr = random.getLong(random_expr1.size());
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   hide();
   querymode = true;
   if (queryType == QT_Conjugation) {
-    verbQueryDlg = new VerbQueryDlg (exp->getType(act_query_col),
+    verbQueryDlg = new VerbQueryDlg (exp->type(act_query_col),
                             random_expr1[random_query_nr].nr,
                             act_query_col,
                             query_cycle,
@@ -346,8 +346,8 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                             query_startnum,
                             exp,
                             doc,
-                            doc->getConjugation(act_query_col),
-                            exp->getConjugation(act_query_col));
+                            doc->conjugation(act_query_col),
+                            exp->conjugation(act_query_col));
 
     verbQueryDlg->initFocus();
     connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
@@ -358,7 +358,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
     verbQueryDlg->show();
   }
   else if (queryType == QT_Articles) {
-    artQueryDlg = new ArtQueryDlg(exp->getType(act_query_col),
+    artQueryDlg = new ArtQueryDlg(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
                           query_cycle,
@@ -366,7 +366,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_startnum,
                           exp,
                           doc,
-                          doc->getArticle(act_query_col));
+                          doc->article(act_query_col));
     artQueryDlg->initFocus();
     connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
              this, SLOT(slotEditEntry(int,int)));
@@ -375,7 +375,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
     artQueryDlg->show();
   }
   else if (queryType == QT_Comparison) {
-    adjQueryDlg = new AdjQueryDlg(exp->getType(act_query_col),
+    adjQueryDlg = new AdjQueryDlg(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
                           query_cycle,
@@ -383,7 +383,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_startnum,
                           exp,
                           doc,
-                          exp->getComparison(act_query_col));
+                          exp->comparison(act_query_col));
     adjQueryDlg->initFocus();
     connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
               this, SLOT(slotEditEntry(int,int)));
@@ -482,7 +482,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   }
 
   random_query_nr = random.getLong(random_expr1.size());
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   if (queryType == QT_Conjugation) {
     if (verbQueryDlg == 0) {
@@ -490,7 +490,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       slotStopQuery(true);
       return;
     }
-    verbQueryDlg->setQuery (exp->getType(act_query_col),
+    verbQueryDlg->setQuery (exp->type(act_query_col),
                             random_expr1[random_query_nr].nr,
                             act_query_col,
                             query_cycle,
@@ -498,8 +498,8 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                             query_startnum,
                             exp,
                             doc,
-                            doc->getConjugation(act_query_col),
-                            exp->getConjugation(act_query_col));
+                            doc->conjugation(act_query_col),
+                            exp->conjugation(act_query_col));
 
     verbQueryDlg->initFocus();
   }
@@ -509,7 +509,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       slotStopQuery(true);
       return;
     }
-    artQueryDlg->setQuery(exp->getType(act_query_col),
+    artQueryDlg->setQuery(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
                           query_cycle,
@@ -517,7 +517,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_startnum,
                           exp,
                           doc,
-                          doc->getArticle(act_query_col));
+                          doc->article(act_query_col));
     artQueryDlg->initFocus();
   }
   else if (queryType == QT_Comparison) {
@@ -526,7 +526,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
       slotStopQuery(true);
       return;
     }
-    adjQueryDlg->setQuery(exp->getType(act_query_col),
+    adjQueryDlg->setQuery(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
                           query_cycle,
@@ -534,7 +534,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_startnum,
                           exp,
                           doc,
-                          exp->getComparison(act_query_col));
+                          exp->comparison(act_query_col));
     adjQueryDlg->initFocus();
   }
   else {
@@ -613,18 +613,18 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
   querymode = true;
 
   random_query_nr = random.getLong(random_expr1.size());
-  kvoctrainExpr *exp = random_expr1[random_query_nr].exp;
+  KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   QString q_org,
           q_trans;
 
   if (oindex == 0) {  // usual: give original, ask for translation x
-    q_org = exp->getOriginal();
-    q_trans = exp->getTranslation(tindex);
+    q_org = exp->original();
+    q_trans = exp->translation(tindex);
   }
   else {   // alternative: give translation x, ask for original
-    q_org = exp->getTranslation(oindex);
-    q_trans = exp->getOriginal();
+    q_org = exp->translation(oindex);
+    q_trans = exp->original();
   }
 
   if (queryType == QT_Random) {
@@ -696,18 +696,20 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   int tindex = view->getTable()->findIdent(act_query_trans);
   int oindex = view->getTable()->findIdent(act_query_org);
   QueryEntryRef qer = random_expr1[random_query_nr];
-  kvoctrainExpr *exp = qer.exp;
+  KEduVocExpression *exp = qer.exp;
 
   if (res != QueryDlgBase::StopIt) {
     doc->setModified();
     time_t now = time(0);
+    ///@todo check the time functions here
+    QDateTime dt;
     if (oindex == 0) {
       exp->incQueryCount(tindex, false);
-      exp->setQueryDate(tindex, now, false);
+      exp->setQueryDate(tindex, dt, false);
     }
     else {
       exp->incQueryCount(oindex, true);
-      exp->setQueryDate(oindex, now, true);
+      exp->setQueryDate(oindex, dt, true);
     }
   }
 
@@ -947,12 +949,12 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
 
   if (oindex == 0) {  // usual: give original, ask for translation x
-    q_org = exp->getOriginal();
-    q_trans = exp->getTranslation(tindex);
+    q_org = exp->original();
+    q_trans = exp->translation(tindex);
   }
   else {   // alternative: give translation x, ask for original
-    q_org = exp->getTranslation(oindex);
-    q_trans = exp->getOriginal();
+    q_org = exp->translation(oindex);
+    q_trans = exp->original();
   }
 
   if (queryType == QT_Random) {

@@ -31,7 +31,7 @@
 #include <config.h>
 #endif
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 //Added by qt3to4:
 #include <QShowEvent>
 #include <QGridLayout>
@@ -41,10 +41,10 @@
 class QGridLayout;
 class KApplication;
 class KPrinter;
-class kvoctrainExpr;
+class KEduVocExpression;
 class KVocTrainTable;
 class kvoctrainApp;
-class kvoctrainDoc;
+class KEduVocDocument;
 class GradeCols;
 class LangSet;
 
@@ -58,13 +58,13 @@ class kvoctrainView : public QWidget
 
  public:
   /** Constructor for the main view */
-  kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp *parent = 0);
+  kvoctrainView(KEduVocDocument* doc, const LangSet &ls, kvoctrainApp *parent = 0);
 
   /** Destructor for the main view */
   ~kvoctrainView();
 
   /** sets view to another vocabulary */
-  void setView(kvoctrainDoc *doc, const LangSet &ls);
+  void setView(KEduVocDocument *doc, const LangSet &ls);
 
   KVocTrainTable* getTable() { return m_table; }
   void setHeaderProp(int id, const QString &name, const QString &pixfile=QString());
@@ -79,7 +79,7 @@ private:
 protected:
   KVocTrainTable  * m_table;
   bool              autoResize;
-  kvoctrainDoc    * m_doc;
+  KEduVocDocument    * m_doc;
   QGridLayout     * list_layout;
   kvoctrainApp    * parent;
 

@@ -35,7 +35,7 @@
 #include "RandomQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
-class kvoctrainDoc;
+class KEduVocDocument;
 
 class RandomQueryDlg : public QueryDlgBase
 {
@@ -51,8 +51,8 @@ public:
                  int query_cycle,
                  int query_num,
                  int query_startnum,
-                 kvoctrainExpr *exp,
-                 kvoctrainDoc  *);
+                 KEduVocExpression *exp,
+                 KEduVocDocument  *);
 
   ~RandomQueryDlg();
 
@@ -64,8 +64,8 @@ public:
                       int query_cycle,
                       int query_num,
                       int query_startnum,
-                      kvoctrainExpr *exp,
-                      kvoctrainDoc  *);
+                      KEduVocExpression *exp,
+                      KEduVocDocument  *);
 
 public slots:
   virtual void initFocus() const;
@@ -90,7 +90,7 @@ protected:
   void setHintFields();
   QStringList extractTranslations (QString trans);
 
-  kvoctrainDoc * kv_doc;
+  KEduVocDocument * kv_doc;
 
   Q3PtrList<QComboBox> transCombos;
   Q3PtrList<QLineEdit> transFields;

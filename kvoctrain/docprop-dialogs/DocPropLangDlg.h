@@ -32,7 +32,7 @@
 
 #include <keduvocgrammar.h>
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class LangPropPage;
 class LangSet;
 
@@ -42,7 +42,7 @@ class DocPropsLangDlg : public KDialogBase
 
 public:
 
-  DocPropsLangDlg(kvoctrainDoc *doc, LangSet *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
   KEduVocConjugation getConjugation(int idx) const;
   KEduVocArticle     getArticle(int idx) const;

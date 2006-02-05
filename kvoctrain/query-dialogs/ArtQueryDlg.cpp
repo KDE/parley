@@ -46,8 +46,8 @@ ArtQueryDlg::ArtQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc,
         const KEduVocArticle &articles)
   : QueryDlgBase(i18n("Article Training"))
 {
@@ -93,8 +93,8 @@ void ArtQueryDlg::setQuery(QString,
                            int q_cycle,
                            int q_num,
                            int q_start,
-                           kvoctrainExpr *exp,
-                           kvoctrainDoc  *doc,
+                           KEduVocExpression *exp,
+                           KEduVocDocument  *doc,
                            const KEduVocArticle &art)
 {
    //type_timeout = type_to;
@@ -109,9 +109,9 @@ void ArtQueryDlg::setQuery(QString,
 
    QString s;
    if (col == 0)
-     s = exp->getOriginal().simplified();
+     s = exp->original().simplified();
    else
-     s = exp->getTranslation(q_ocol).simplified();
+     s = exp->translation(q_ocol).simplified();
 
    QString def, indef;
    bool removed = false;
@@ -191,15 +191,15 @@ void ArtQueryDlg::showAllClicked()
   resetButton(mw->male);
   resetButton(mw->natural);
 
-  if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
+  if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
     mw->rb_fem->setChecked (true);
     verifyButton(mw->rb_fem, true);
   }
-  else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
     mw->male->setChecked (true);
     verifyButton(mw->male, true);
   }
-  else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
     mw->natural->setChecked (true);
     verifyButton(mw->natural, true);
   }
@@ -215,11 +215,11 @@ void ArtQueryDlg::showMoreClicked()
 void ArtQueryDlg::verifyClicked()
 {
   bool known = false;
-  if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+  if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
     known = mw->rb_fem->isChecked ();
-  else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
     known = mw->male->isChecked ();
-  else if (kv_exp->getType (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
     known = mw->natural->isChecked ();
 
   if (mw->rb_fem->isChecked() ) {

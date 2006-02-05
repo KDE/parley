@@ -52,8 +52,8 @@ MCQueryDlg::MCQueryDlg(
                    int q_cycle,
                    int q_num,
                    int q_start,
-                   kvoctrainExpr *exp,
-                   kvoctrainDoc  *doc)
+                   KEduVocExpression *exp,
+                   KEduVocDocument  *doc)
   : QueryDlgBase(i18n("Multiple Choice"))
 {
   mw = new Ui::MCQueryDlgForm();
@@ -103,8 +103,8 @@ void MCQueryDlg::setQuery(QString org,
                          int q_cycle,
                          int q_num,
                          int q_start,
-                         kvoctrainExpr *exp,
-                         kvoctrainDoc  *doc)
+                         KEduVocExpression *exp,
+                         KEduVocDocument  *doc)
 {
    //type_timeout = type_to;
    kv_doc = doc;
@@ -158,7 +158,7 @@ void MCQueryDlg::setQuery(QString org,
 
    solution = 0;
 
-   KEduVocMultipleChoice mc = exp->getMultipleChoice(q_tcol);
+   KEduVocMultipleChoice mc = exp->multipleChoice(q_tcol);
    for (int i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
    std::random_shuffle(strings.begin(), strings.end());
@@ -166,27 +166,27 @@ void MCQueryDlg::setQuery(QString org,
    // always include false friend
    QString ff;
    if (q_tcol != 0)
-     ff = exp->getFauxAmi (q_tcol, false).simplified();
+     ff = exp->fauxAmi (q_tcol, false).simplified();
    else
-     ff = exp->getFauxAmi (q_ocol, true).simplified();
+     ff = exp->fauxAmi (q_ocol, true).simplified();
 
    if (ff.length())
      strings.insert(strings.begin(), ff);
 
    if (doc->numEntries() <= MAX_MULTIPLE_CHOICE) {
      for (int i = strings.size(); i < doc->numEntries(); ++i ) {
-       kvoctrainExpr *act = doc->getEntry(i);
+       KEduVocExpression *act = doc->entry(i);
 
        if (act != exp) {
          if (q_tcol == 0)
-           strings.push_back(act->getOriginal());
+           strings.push_back(act->original());
          else
-           strings.push_back(act->getTranslation(q_tcol));
+           strings.push_back(act->translation(q_tcol));
        }
      }
    }
    else {
-     vector<kvoctrainExpr*> exprlist;
+     vector<KEduVocExpression*> exprlist;
      solution = 0;
 
      srand((unsigned int)time((time_t *)NULL));
@@ -197,29 +197,29 @@ void MCQueryDlg::setQuery(QString org,
        // append if new expr found
        bool newex = true;
        for (int i = 0; newex && i < (int) exprlist.size(); i++) {
-         if (exprlist[i] == doc->getEntry(nr))
+         if (exprlist[i] == doc->entry(nr))
            newex = false;
        }
-       if (newex && exp != doc->getEntry(nr)) {
+       if (newex && exp != doc->entry(nr)) {
          count--;
-         exprlist.push_back(doc->getEntry(nr));
+         exprlist.push_back(doc->entry(nr));
        }
      }
 
      for (int i = 0; i < (int) exprlist.size(); i++) {
        if (q_tcol == 0)
-         strings.push_back(exprlist[i]->getOriginal());
+         strings.push_back(exprlist[i]->original());
        else
-         strings.push_back(exprlist[i]->getTranslation(q_tcol));
+         strings.push_back(exprlist[i]->translation(q_tcol));
      }
 
    }
 
    // solution is always the first
    if (q_tcol == 0)
-     strings.insert(strings.begin(), exp->getOriginal());
+     strings.insert(strings.begin(), exp->original());
    else
-     strings.insert(strings.begin(), exp->getTranslation(q_tcol));
+     strings.insert(strings.begin(), exp->translation(q_tcol));
 
    for (int i = strings.size(); i < MAX_MULTIPLE_CHOICE; i++ )
      strings.push_back("");
@@ -389,10 +389,10 @@ void MCQueryDlg::slotUser2()
 
    emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
 
-   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
+   KEduVocExpression *exp = kv_doc->entry(q_row);
    mw->orgField->setText (q_ocol == 0
-                        ? exp->getOriginal()
-                        : exp->getTranslation(q_ocol));
+                        ? exp->original()
+                        : exp->translation(q_ocol));
 }
 
 

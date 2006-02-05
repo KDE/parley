@@ -39,7 +39,7 @@
 
 EntryDlg::EntryDlg(
   KMainWindow   *main,
-  kvoctrainDoc  *doc,
+  KEduVocDocument  *doc,
   bool           multi_sel,
   bool           origin,
   grade_t        f_grd,
@@ -48,8 +48,8 @@ EntryDlg::EntryDlg(
   count_t        t_qcount,
   count_t        f_bcount,
   count_t        t_bcount,
-  time_t         f_qdate,
-  time_t         t_qdate,
+  QDateTime      f_qdate,
+  QDateTime      t_qdate,
   QString        f_faux_ami,
   QString        t_faux_ami,
   QString        expr,
@@ -200,7 +200,7 @@ EntryDlg::EntryDlg(
 
 
 void EntryDlg::setData(
-  kvoctrainDoc  */*doc*/,
+  KEduVocDocument  */*doc*/,
   bool           multi_sel,
   bool           origin,
   grade_t        f_grd,
@@ -209,8 +209,8 @@ void EntryDlg::setData(
   count_t        t_qcount,
   count_t        f_bcount,
   count_t        t_bcount,
-  time_t         f_qdate,
-  time_t         t_qdate,
+  QDateTime      f_qdate,
+  QDateTime      t_qdate,
   QString        f_faux_ami,
   QString        t_faux_ami,
   QString        expr,

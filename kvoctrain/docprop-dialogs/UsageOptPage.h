@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Sep 12 15:38:31 1999
+    begin         : Sun Sep 12 15:38:31 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -28,26 +28,23 @@
 
 #include <vector>
 
-#include <Q3StrList>
-
 #include "UsageOptPageForm.h"
 #include <UsageManager.h>
 
 using namespace std;
 
-class kvoctrainDoc;
-class Q3StrList;
+class KEduVocDocument;
 
 class UsageOptPage : public QWidget, public Ui::UsageOptPageForm
 {
   Q_OBJECT
 
 public:
-  UsageOptPage(const vector<QString> &usages, kvoctrainDoc *doc, QWidget *parent = 0);
+  UsageOptPage(const QStringList &usages, KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getUsageLabels (vector<QString> &ret_usages, vector<int> &ret_Index);
+  void getUsageLabels (QStringList &ret_usages, QList<int> &ret_Index);
 
-  static void cleanUnused(kvoctrainDoc *doc, const vector<int> &lessonIndex, int old_lessons);
+  static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
 protected:
   void updateListBox(int start);
@@ -60,9 +57,9 @@ protected slots:
   void slotCleanup();
 
 private:
-  kvoctrainDoc  *doc;
+  KEduVocDocument  *doc;
   int            act_usage;
-  vector<int>    usageIndex; // contains indices of usages on exec()
+  QList<int>    usageIndex; // contains indices of usages on exec()
                             // negative values are new lessons
 };
 

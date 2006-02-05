@@ -46,8 +46,8 @@ AdjQueryDlg::AdjQueryDlg
   int query_cycle,
   int query_num,
   int query_startnum,
-  kvoctrainExpr *exp,
-  kvoctrainDoc  *doc,
+  KEduVocExpression *exp,
+  KEduVocDocument  *doc,
   const KEduVocComparison &_comp)
   : QueryDlgBase(i18n("Comparison Training"))
 {
@@ -97,8 +97,8 @@ void AdjQueryDlg::setQuery(QString,
                            int q_cycle,
                            int q_num,
                            int q_start,
-                           kvoctrainExpr *exp,
-                           kvoctrainDoc  *doc,
+                           KEduVocExpression *exp,
+                           KEduVocDocument  *doc,
                            const KEduVocComparison &_comp)
 {
    //type_timeout = type_to;

@@ -41,7 +41,7 @@
 class LangSet;
 class QTabWidget;
 class KMainWindow;
-class kvoctrainDoc;
+class KEduVocDocument;
 
 class EntryDlg : public KDialogBase
 {
@@ -55,7 +55,7 @@ public:
 
   EntryDlg
   ( KMainWindow   *main,
-    kvoctrainDoc  *doc,
+    KEduVocDocument  *doc,
     bool           multi_sel,
     bool           origin,
     grade_t        f_grd,
@@ -64,8 +64,8 @@ public:
     count_t        t_qcount,
     count_t        f_bcount,
     count_t        t_bcount,
-    time_t         f_qdate,
-    time_t         t_qdate,
+    QDateTime      f_qdate,
+    QDateTime      t_qdate,
     QString        f_faux_ami,
     QString        t_faux_ami,
     QString        _expr,
@@ -98,7 +98,7 @@ public:
   ~EntryDlg ();
 
   void setData
-    (kvoctrainDoc  *doc,
+    (KEduVocDocument  *doc,
     bool           multi_sel,
     bool           origin,
     grade_t        f_grd,
@@ -107,8 +107,8 @@ public:
     count_t        t_qcount,
     count_t        f_bcount,
     count_t        t_bcount,
-    time_t         f_qdate,
-    time_t         t_qdate,
+    QDateTime      f_qdate,
+    QDateTime      t_qdate,
     QString        f_faux_ami,
     QString        t_faux_ami,
     QString        _expr,

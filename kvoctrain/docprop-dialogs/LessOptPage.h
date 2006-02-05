@@ -32,7 +32,7 @@
 
 using namespace std;
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class QComboBox;
 
 class LessOptPage : public QWidget, public Ui::LessOptPageForm
@@ -40,15 +40,15 @@ class LessOptPage : public QWidget, public Ui::LessOptPageForm
   Q_OBJECT
 
 public:
-  LessOptPage(QComboBox *lessons, kvoctrainDoc *doc, QWidget *parent = 0);
+  LessOptPage(QComboBox *lessons, KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getLesson (QComboBox *ret_lesson, vector<int>& ret_Index);
+  void getLesson (QComboBox *ret_lesson, QList<int>& ret_Index);
 
-  static void cleanUnused(kvoctrainDoc *doc,
+  static void cleanUnused(KEduVocDocument *doc,
                           const QComboBox *lessons,
-                          const vector<int> &lessonIndex,
+                          const QList<int> &lessonIndex,
                           int old_lessons,
-                          vector<int> &lessons_in_use);
+                          QList<int> &lessons_in_use);
 
 protected:
   void updateListBox(int start);
@@ -62,9 +62,9 @@ protected slots:
   void slotCleanup();
 
 private:
-  kvoctrainDoc  *doc;
+  KEduVocDocument  *doc;
   int            act_lesson;
-  vector<int>    lessonIndex; // contains indices of lesson on exec()
+  QList<int>    lessonIndex; // contains indices of lesson on exec()
                               // negative values are new lessons
 };
 

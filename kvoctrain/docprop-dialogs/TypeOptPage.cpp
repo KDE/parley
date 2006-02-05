@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Sep 12 15:38:31 1999
+    begin         : Sun Sep 12 15:38:31 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -35,7 +35,7 @@
 
 #define TYPE_TAG ". "
 
-TypeOptPage::TypeOptPage(const vector<QString> &types, kvoctrainDoc *_doc,  QWidget *parent)
+TypeOptPage::TypeOptPage(const QStringList &types, KEduVocDocument *_doc,  QWidget *parent)
   : QWidget(parent), doc(_doc)
 {
   setupUi(this);
@@ -139,9 +139,9 @@ void TypeOptPage::slotDeleteType()
     t.insert (0, QM_USER_TYPE);
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       // FIXME: ProgressDlg here?
-      kvoctrainExpr *exp = doc->getEntry(ent);
-      for (int lang = 0; lang < (int) doc->numLangs(); lang++) {
-        if (exp->getType(lang) == t) {
+      KEduVocExpression *exp = doc->entry(ent);
+      for (int lang = 0; lang < (int) doc->numIdentifiers(); lang++) {
+        if (exp->type(lang) == t) {
           KMessageBox::information(this,
                     i18n("This user defined type could not be deleted\nbecause it is in use."),
                     kapp->makeStdCaption(i18n("Deleting Type Description")));
@@ -166,7 +166,7 @@ void TypeOptPage::slotDeleteType()
 }
 
 
-void TypeOptPage::getTypeNames (vector<QString> &ret_type, vector<int> &ret_Index)
+void TypeOptPage::getTypeNames (QStringList &ret_type, QList<int> &ret_Index)
 {
   QString str;    ret_type.clear();
   for (int i = 0; i < (int) typeList->count(); i++) {
@@ -185,9 +185,9 @@ void TypeOptPage::slotCleanup()
   for (int i = 0; i <= (int) typeList->count(); i++)
     used_type.push_back(false);
 
-  for (int col = 0; col < doc->numLangs(); col++)
+  for (int col = 0; col < doc->numIdentifiers(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
-      QString t = doc->getEntry(i)->getType(col);
+      QString t = doc->entry(i)->type(col);
       if (t.left(strlen(QM_USER_TYPE)) == QM_USER_TYPE) {
         t.remove (0, 1);
         int idx = t.toInt();
@@ -214,7 +214,7 @@ void TypeOptPage::slotCleanup()
 }
 
 
-void TypeOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &typeIndex, int old_types)
+void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex, int old_types)
 {
   vector<int> translate_index;
   vector<QString> new_typeStr;
@@ -237,9 +237,9 @@ void TypeOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &typeIndex, i
   // set type index to 0 when not needed any more
   // and translate to new index
 
-  for (int col = 0; col < doc->numLangs(); col++) {
+  for (int col = 0; col < doc->numIdentifiers(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
-      QString old = doc->getEntry(i)->getType (col);
+      QString old = doc->entry(i)->type (col);
       if (!old.isEmpty() && old.left(strlen(QM_USER_TYPE)) == QM_USER_TYPE) {
         old.remove (0, 1);
         int o = old.toInt();
@@ -248,10 +248,10 @@ void TypeOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &typeIndex, i
         if (translate_index[o] != 0) {
           newtype.setNum (translate_index[o]);
           newtype.insert (0, QM_USER_TYPE);
-          doc->getEntry(i)->setType (col, newtype);
+          doc->entry(i)->setType (col, newtype);
         }
         else
-          doc->getEntry(i)->setType (col, "");
+          doc->entry(i)->setType (col, "");
       }
     }
   }

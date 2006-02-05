@@ -61,7 +61,7 @@ void kvoctrainApp::slotSmartSearchClip()
 }
 
 
-vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc)
+vector<int> kvoctrainApp::getCsvOrder(KEduVocDocument *doc)
 {
   vector<int> csv_order;
   QStringList lang_order = Prefs::pasteOrder();
@@ -71,7 +71,7 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc)
     if (/*lang_order &&*/ lang_order.count() != 0) {
       for (int i = 0; i < (int) lang_order.count(); i++)
       {
-        int j = doc->findIdent((lang_order)[i]);
+        int j = doc->findIdentifier((lang_order)[i]);
         if (j >= 0)
           csv_order.push_back (j);
         else
@@ -91,12 +91,12 @@ vector<int> kvoctrainApp::getCsvOrder(kvoctrainDoc *doc)
       csv_order.erase(csv_order.begin() + i);
 */
   // append indices from doc if no order given
-  for (int i = 0; i < doc->numLangs(); i++)
+  for (int i = 0; i < doc->numIdentifiers(); i++)
     if (::find (csv_order.begin(), csv_order.end(), i) == csv_order.end())
        csv_order.push_back(i);
 /*
-  if (csv_order.size() > doc->numLangs() )
-    csv_order.erase(csv_order.begin() + doc->numLangs(), csv_order.end());
+  if (csv_order.size() > doc->numIdentifiers() )
+    csv_order.erase(csv_order.begin() + doc->numIdentifiers(), csv_order.end());
 */
 
   // remove trailing garbage
@@ -126,7 +126,7 @@ void kvoctrainApp::slotEditCopy()
   for (int j = table->numRows()-1; j >= 0; j--) {
     if (table->isRowSelected(j))
     {
-      kvoctrainExpr *expr = table->getRow(j);
+      KEduVocExpression *expr = table->getRow(j);
       if (expr == 0 ) return;
 
       bool sep =  false;
@@ -138,9 +138,9 @@ void kvoctrainApp::slotEditCopy()
 
         if (csv_order[i] >= 0) {
           if (csv_order[i] == 0)
-            exp += expr->getOriginal();
+            exp += expr->original();
           else
-            exp += expr->getTranslation(csv_order[i]);
+            exp += expr->translation(csv_order[i]);
         }
       }
     }
@@ -194,17 +194,17 @@ void kvoctrainApp::slotEditPaste()
 
     if (!s.simplified().isEmpty()) {
       if (Prefs::pasteOrder().count() != 0) {
-        kvoctrainExpr bucket (s, Prefs::separator(), act_lesson);
-        kvoctrainExpr expr;
+        KEduVocExpression bucket (s, Prefs::separator(), act_lesson);
+        KEduVocExpression expr;
         expr.setLesson(act_lesson);
         // now move columns according to paste-order
         QString s;
         for (int i = 0; i < (int) csv_order.size(); i++) {
           if (csv_order[i] >= 0) {
             if (i == 0)
-              s = bucket.getOriginal();
+              s = bucket.original();
             else
-              s = bucket.getTranslation(i);
+              s = bucket.translation(i);
 
             if (csv_order[i] == 0)
               expr.setOriginal(s);
@@ -216,7 +216,7 @@ void kvoctrainApp::slotEditPaste()
         doc->appendEntry (&expr);
       }
       else {
-        kvoctrainExpr expr (s, Prefs::separator(), act_lesson);
+        KEduVocExpression expr (s, Prefs::separator(), act_lesson);
         changed = true;
         doc->appendEntry (&expr);
       }

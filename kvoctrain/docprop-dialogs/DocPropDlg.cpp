@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -38,16 +38,16 @@ class kvoctraindoc;
 
 DocPropsDlg::DocPropsDlg
 (
-  kvoctrainDoc    *doc,
+  KEduVocDocument *doc,
   const char      * /*start_page*/,
   QComboBox       *lessons,
   QString          title,
   QString          author,
   QString          license,
   QString          doc_remark,
-  vector<QString>  types,
-  vector<QString>  tenses,
-  vector<QString>  usages,
+  QStringList      types,
+  QStringList      tenses,
+  QStringList      usages,
   QWidget         *parent,
   const char      *name,
   bool             modal
@@ -82,7 +82,7 @@ DocPropsDlg::DocPropsDlg
 
   page = addPage( i18n("&Options"));
   topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
-  docOptPage = new DocOptionsPage (doc->isAllowedSorting(), page);
+  docOptPage = new DocOptionsPage (doc->isSortingEnabled(), page);
   topLayout->addWidget( docOptPage );
 }
 

@@ -45,8 +45,8 @@ VerbQueryDlg::VerbQueryDlg
         int query_cycle,
         int query_num,
         int query_startnum,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc,
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc,
         const KEduVocConjugation &prefix,
         const KEduVocConjugation &conjug)
  : QueryDlgBase(i18n("Verb Training"))
@@ -113,8 +113,8 @@ void VerbQueryDlg::setQuery(QString,
                             int q_cycle,
                             int q_num,
                             int q_start,
-                            kvoctrainExpr *exp,
-                            kvoctrainDoc  *doc,
+                            KEduVocExpression *exp,
+                            KEduVocDocument  *doc,
                             const KEduVocConjugation &prefix,
                             const KEduVocConjugation &conjug)
 {
@@ -176,9 +176,9 @@ bool VerbQueryDlg::next()
   resetAllFields();
   QString s, type;
   if (q_ocol == 0)
-    s = kv_exp->getOriginal();
+    s = kv_exp->original();
   else
-    s = kv_exp->getTranslation(q_ocol);
+    s = kv_exp->translation(q_ocol);
 
   if (current < (int) conjugations.numEntries()-1 )
     current++;

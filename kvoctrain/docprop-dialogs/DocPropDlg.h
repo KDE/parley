@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Fri Sep 10 20:50:53 MET 1999
+    begin         : Fri Sep 10 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -39,7 +39,7 @@
 
 using namespace std;
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class LangPropPage;
 
 class DocPropsDlg : public KDialogBase
@@ -50,16 +50,16 @@ public:
 
   DocPropsDlg
   (
-    kvoctrainDoc    *doc,
+    KEduVocDocument    *doc,
     const char      *start_page,
     QComboBox       *lessons,
     QString          title,
     QString          author,
     QString          license,
     QString          doc_remark,
-    vector<QString>  types,
-    vector<QString>  tenses,
-    vector<QString>  usages,
+    QStringList      types,
+    QStringList      tenses,
+    QStringList      usages,
     QWidget         *parent = NULL,
     const char      *name = NULL,
     bool             modal = true
@@ -72,16 +72,16 @@ public:
   inline QString getLicense()    { return titleOptPage->getLicense(); }
   inline QString getDocRemark()  { return titleOptPage->getDocRemark(); }
 
-  inline void getLesson (QComboBox *lessons, vector<int>& ret_index) const
+  inline void getLesson (QComboBox *lessons, QList<int>& ret_index) const
     { lessOptPage->getLesson (lessons, ret_index); }
 
-  inline void getTypeNames (vector<QString> &types, vector<int>& ret_index) const
+  inline void getTypeNames (QStringList &types, QList<int>& ret_index) const
     { typeOptPage->getTypeNames (types, ret_index); }
 
-  inline void getTenseNames (vector<QString> &tenses, vector<int>& ret_index) const
+  inline void getTenseNames (QStringList &tenses, QList<int>& ret_index) const
     { tenseOptPage->getTenseNames (tenses, ret_index); }
 
-  inline void getUsageLabels (vector<QString> &usages, vector<int>& ret_index) const
+  inline void getUsageLabels (QStringList &usages, QList<int>& ret_index) const
     { useOptPage->getUsageLabels (usages, ret_index); }
 
 

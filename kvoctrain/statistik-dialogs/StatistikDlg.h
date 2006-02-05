@@ -32,7 +32,7 @@
 
 using namespace std;
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class LangSet;
 class GradeCols;
 
@@ -40,7 +40,7 @@ class StatistikDlg : public KDialogBase
 {
   Q_OBJECT
 public:
-  StatistikDlg(LangSet &langset, kvoctrainDoc *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
 };
 

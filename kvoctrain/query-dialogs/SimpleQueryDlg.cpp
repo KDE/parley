@@ -45,8 +45,8 @@ SimpleQueryDlg::SimpleQueryDlg(
         int q_cycle,
         int q_num,
         int q_start,
-        kvoctrainExpr *exp,
-        kvoctrainDoc  *doc)
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc)
   : QueryDlgBase("")
 {
   mw = new Ui::SimpleQueryDlgForm();
@@ -93,8 +93,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
                          int q_cycle,
                          int q_num,
                          int q_start,
-                         kvoctrainExpr *exp,
-                         kvoctrainDoc  *doc)
+                         KEduVocExpression *exp,
+                         KEduVocDocument  *doc)
 {
    //type_timeout = type_to;
    querytype = _querytype;
@@ -115,9 +115,9 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the synonym:"));
        setCaption (i18n("Synonym Training"));
-       answerstring = exp->getSynonym(column);
+       answerstring = exp->synonym(column);
        mw->queryField->setAlignment(Qt::AlignVCenter);
-       mw->queryField->setText(column == 0 ? exp->getOriginal() : exp->getTranslation(column));
+       mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
        setQueryFieldWordwrap();
      }
      break;
@@ -127,8 +127,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the antonym:"));
        setCaption (i18n("Antonym Training"));
-       answerstring = exp->getAntonym(column);
-       mw->queryField->setText(column == 0 ? exp->getOriginal() : exp->getTranslation(column));
+       answerstring = exp->antonym(column);
+       mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
        setQueryFieldWordwrap();
      }
      break;
@@ -138,8 +138,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        mw->queryLabel->setText(i18n("Paraphrase"));
        mw->instructionLabel->setText(i18n("Enter the word:"));
        setCaption (i18n("Paraphrase Training"));
-       mw->queryField->setText(exp->getParaphrase(column));
-       answerstring = column == 0 ? exp->getOriginal() : exp->getTranslation(column);
+       mw->queryField->setText(exp->paraphrase(column));
+       answerstring = column == 0 ? exp->original() : exp->translation(column);
        setQueryFieldWordwrap();
      }
      break;
@@ -149,8 +149,8 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        mw->queryLabel->setText(i18n("Example sentence"));
        mw->instructionLabel->setText(i18n("Fill in the missing word:"));
        setCaption(i18n("Example Training"));
-       s = exp->getExample(column);
-       answerstring = column == 0 ? exp->getOriginal().simplified() : exp->getTranslation(column).simplified();
+       s = exp->example(column);
+       answerstring = column == 0 ? exp->original().simplified() : exp->translation(column).simplified();
        int pos = -1;
        while ((pos = s.find(answerstring)) > 0)
        {
@@ -268,31 +268,31 @@ void SimpleQueryDlg::slotUser2()
 
    emit sigEditEntry(q_row, KV_COL_ORG+q_ocol);
 
-   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
+   KEduVocExpression *exp = kv_doc->entry(q_row);
 //   queryField->setText (exp->getTranslation(q_ocol));
 
    switch (querytype) {
      case QT_Synonym: {
-       answerstring = exp->getSynonym(q_ocol);
-       mw->queryField->setText(q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol));
+       answerstring = exp->synonym(q_ocol);
+       mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
      }
      break;
 
      case QT_Antonym: {
-       answerstring = exp->getAntonym(q_ocol);
-       mw->queryField->setText(q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol));
+       answerstring = exp->antonym(q_ocol);
+       mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
      }
      break;
 
      case QT_Paraphrase: {
-       mw->queryField->setText(exp->getParaphrase(q_ocol));
-       answerstring = q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol);
+       mw->queryField->setText(exp->paraphrase(q_ocol));
+       answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
      }
      break;
 
      case QT_Example: {
-       mw->queryField->setText(exp->getExample(q_ocol));
-       answerstring = q_ocol == 0 ? exp->getOriginal() : exp->getTranslation(q_ocol);
+       mw->queryField->setText(exp->example(q_ocol));
+       answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
      }
      break;
 

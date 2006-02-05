@@ -31,7 +31,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
-bool kvoctrainDoc::extract_T_DESCR_attr (XmlReader &xml,
+bool KEduVocDocument::extract_T_DESCR_attr (XmlReader &xml,
                                          XmlElement &elem, int &no)
 {
   no = 0;
@@ -49,7 +49,7 @@ bool kvoctrainDoc::extract_T_DESCR_attr (XmlReader &xml,
 }
 
 
-bool kvoctrainDoc::extract_T_GROUP_attr (XmlReader &xml,
+bool KEduVocDocument::extract_T_GROUP_attr (XmlReader &xml,
                                          XmlElement &elem)
 {
   list<XmlAttribute>::const_iterator first =  elem.attributes ().begin ();
@@ -67,7 +67,7 @@ bool kvoctrainDoc::extract_T_GROUP_attr (XmlReader &xml,
 }
 
 
-bool kvoctrainDoc::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
+bool KEduVocDocument::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
 {
   bool endOfGroup = false;
   QString s;
@@ -141,7 +141,7 @@ bool kvoctrainDoc::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
 }
 
 
-bool kvoctrainDoc::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
+bool KEduVocDocument::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
 {
   bool endOfGroup = false;
   QString s;
@@ -215,7 +215,7 @@ bool kvoctrainDoc::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
 }
 
 
-bool kvoctrainDoc::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
+bool KEduVocDocument::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
 {
   bool endOfGroup = false;
   QString s;
@@ -289,7 +289,7 @@ bool kvoctrainDoc::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
 }
 
 
-bool kvoctrainDoc::extract_O_T_attr (
+bool KEduVocDocument::extract_O_T_attr (
                        XmlReader &xml,
                        XmlElement &elem,
                        QString &lang,
@@ -481,7 +481,7 @@ bool kvoctrainDoc::extract_O_T_attr (
 }
 
 
-bool kvoctrainDoc::extract_KVT_E_attr (
+bool KEduVocDocument::extract_KVT_E_attr (
                          XmlReader& xml,
                          XmlElement   &elem,
                          int          &lesson,
@@ -532,7 +532,7 @@ bool kvoctrainDoc::extract_KVT_E_attr (
 }
 
 
-bool kvoctrainDoc::loadComparison (KEduVocComparison &comp, XmlElement elem,
+bool KEduVocDocument::loadComparison (KEduVocComparison &comp, XmlElement elem,
                                    XmlReader &xml)
 /*
  <comparison>
@@ -596,7 +596,7 @@ bool kvoctrainDoc::loadComparison (KEduVocComparison &comp, XmlElement elem,
 }
 
 
-bool kvoctrainDoc::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement elem,
+bool KEduVocDocument::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement elem,
                                        XmlReader &xml)
 /*
  <multiplechoice>
@@ -676,7 +676,7 @@ bool kvoctrainDoc::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement ele
 }
 
 
-bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
+bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
 {
   bool endOfBody = false;
   bool lessgroup = false;
@@ -816,7 +816,7 @@ bool kvoctrainDoc::parseBody_kvtml (XmlElement elem, XmlReader& xml)
 }
 
 
-bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
+bool KEduVocDocument::unknownAttribute (int line, const QString &name,
                                      const QString &attr )
 {
    if (unknown_attr) // show dialog only once
@@ -844,7 +844,7 @@ bool kvoctrainDoc::unknownAttribute (int line, const QString &name,
 }
 
 
-void kvoctrainDoc::unknownElement (int line, const QString &elem )
+void KEduVocDocument::unknownElement (int line, const QString &elem )
 {
    unknown_elem = true;
 
@@ -865,7 +865,7 @@ void kvoctrainDoc::unknownElement (int line, const QString &elem )
 }
 
 
-void kvoctrainDoc::errorKvtMl (int line, const QString &text )
+void KEduVocDocument::errorKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error"));
@@ -877,7 +877,7 @@ void kvoctrainDoc::errorKvtMl (int line, const QString &text )
 }
 
 
-void kvoctrainDoc::warningKvtMl (int line, const QString &text )
+void KEduVocDocument::warningKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Warning"));

@@ -40,7 +40,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
   CommonEntryPage
   (
-    kvoctrainDoc *doc,
+    KEduVocDocument *doc,
     bool          multi_sel,
     QString       expr,
     int           less,
@@ -120,7 +120,7 @@ protected:
   QString       type;
   bool          lesson_dirty;
   bool          type_dirty;
-  kvoctrainDoc *doc;
+  KEduVocDocument *doc;
   QueryManager &querymanager;
   bool          entry_active;
   bool          active_dirty;

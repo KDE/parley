@@ -30,10 +30,12 @@
 #include <vector>
 using namespace std;
 
+#include <keduvocexpression.h>
+
 #include "QueryManager.h"
 #include <prefs.h>
 
-vector<QString> QueryManager::userTypes;
+QStringList QueryManager::userTypes;
 
 struct t_type_rel
 {
@@ -117,32 +119,32 @@ QueryManager::QueryManager()
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int oindex, int tindex)
+QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
    for (int i = 0; i < doc->numEntries(); i++)
-     doc->getEntry(i)->setInQuery(false);
+     doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
    int ent_percent = doc->numEntries() / 100;
    float f_ent_percent = doc->numEntries() / 100.0;
-   emit doc->progressChanged(doc, 0);
+   ///@todo port emit doc->progressChanged(doc, 0);
 
    //Note that Leitner style learning (altlearn) normally only uses 20
    //entries, we just ignore that here
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
-     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     kvoctrainExpr *expr = doc->getEntry(i);
+     KEduVocExpression *expr = doc->entry(i);
      unsigned int lessonno;
      if (Prefs::altLearn())
        lessonno = 0; //We only use a single array in Leitner style
      else
-       lessonno = expr->getLesson();
+       lessonno = expr->lesson();
 
      if (expr->isActive() ){
        if (Prefs::swapDirection()) {
@@ -169,29 +171,35 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int oinde
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int oindex, int tindex)
+bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
 {
    int index = tindex ? tindex : oindex;
-   if ((compareExpiring(expr->getGrade(index, oindex != 0),
-                        expr->getQueryDate(index, oindex != 0), Prefs::expire())
+   if ((compareExpiring(expr->grade(index, oindex != 0),
+                        expr->queryDate(index, oindex != 0), Prefs::expire())
         ||
 
         (
-            compareGrade ((CompType) Prefs::compType(Prefs::EnumType::Grade), expr->getGrade(index, oindex != 0), Prefs::gradeItem())
-         && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query), expr->getQueryCount(index, oindex != 0), Prefs::queryItem())
-         && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->getBadCount(index, oindex != 0), Prefs::badItem())
-         && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date), expr->getQueryDate(index, oindex != 0), Prefs::dateItem())
+            compareGrade ((CompType) Prefs::compType(Prefs::EnumType::Grade),
+              expr->grade(index, oindex != 0), Prefs::gradeItem())
+         && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query),
+              expr->queryCount(index, oindex != 0), Prefs::queryItem())
+         && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad),
+              expr->badCount(index, oindex != 0), Prefs::badItem())
+         && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date),
+              expr->queryDate(index, oindex != 0), Prefs::dateItem())
 
-         && compareBlocking(expr->getGrade(index, oindex != 0),
-                            expr->getQueryDate(index, oindex != 0), Prefs::block())
+         && compareBlocking(expr->grade(index, oindex != 0),
+              expr->queryDate(index, oindex != 0), Prefs::block())
         )
        )
 //     lesson + word type must ALWAYS match
 //     (and there must be a word on both sides)
-       && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(), lessonitems, act_lesson)
-       && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType), expr->getType(index), Prefs::typeItem())
-       && !expr->getOriginal().simplified().isEmpty()
-       && !expr->getTranslation(index).simplified().isEmpty()
+       && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson),
+            expr->lesson(), lessonitems, act_lesson)
+       && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType),
+            expr->type(index), Prefs::typeItem())
+       && !expr->original().simplified().isEmpty()
+       && !expr->translation(index).simplified().isEmpty()
       )
      return true;
    else
@@ -200,27 +208,27 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int oindex, int
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, QString type)
+QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
    for (int i = 0; i < doc->numEntries(); i++)
-     doc->getEntry(i)->setInQuery(false);
+     doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
    int ent_percent = doc->numEntries() / 100;
    float f_ent_percent = doc->numEntries() / 100.0;
-   emit doc->progressChanged(doc, 0);
+   ///@todo port emit doc->progressChanged(doc, 0);
 
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
-     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     kvoctrainExpr *expr = doc->getEntry(i);
+     KEduVocExpression *expr = doc->entry(i);
      if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
-       random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+       random[expr->lesson()].push_back (QueryEntryRef(expr, i));
        expr->setInQuery(true);
      }
    }
@@ -234,7 +242,7 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, 
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QString query_type)
+bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
 {
    QString qtype;
    int pos = query_type.find (QM_TYPE_DIV);
@@ -243,7 +251,7 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QStrin
    else
      qtype = query_type;
 
-   QString expr_type = expr->getType(idx);
+   QString expr_type = expr->type(idx);
    bool type_ok = false;
    if (qtype == QM_NOUN) {
      type_ok =    expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
@@ -256,17 +264,17 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QStrin
                 || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
                 || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
                )
-               && expr->getConjugation(idx).numEntries() > 0;
+               && expr->conjugation(idx).numEntries() > 0;
 
    }
    else if (qtype == QM_ADJ) {
      type_ok =    expr_type == QM_ADJ
-               && !expr->getComparison(idx).isEmpty();
+               && !expr->comparison(idx).isEmpty();
    }
    else
      return false;
 
-   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(),
+   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(),
                       lessonitems, act_lesson)
        && type_ok) {
      return true;
@@ -277,27 +285,27 @@ bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QStrin
 }
 
 
-QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, QueryType type)
+QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
    for (int i = 0; i < doc->numEntries(); i++)
-     doc->getEntry(i)->setInQuery(false);
+     doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
    int ent_percent = doc->numEntries() / 100;
    float f_ent_percent = doc->numEntries() / 100.0;
-   emit doc->progressChanged(doc, 0);
+   ///@todo port emit doc->progressChanged(doc, 0);
 
    for (int i = 0; i < doc->numEntries(); i++) {
      ent_no++;
-     if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     kvoctrainExpr *expr = doc->getEntry(i);
+     KEduVocExpression *expr = doc->entry(i);
      if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
-       random[expr->getLesson()].push_back (QueryEntryRef(expr, i));
+       random[expr->lesson()].push_back (QueryEntryRef(expr, i));
        expr->setInQuery(true);
      }
    }
@@ -311,23 +319,23 @@ QuerySelection QueryManager::select(kvoctrainDoc *doc, int act_lesson, int idx, 
 }
 
 
-bool QueryManager::validate(kvoctrainExpr *expr, int act_lesson, int idx, QueryType query_type)
+bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
 {
    bool type_ok = false;
    if (query_type == QT_Synonym) {
-     type_ok = !expr->getSynonym(idx).simplified().isEmpty();
+     type_ok = !expr->synonym(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Antonym) {
-     type_ok = !expr->getAntonym(idx).simplified().isEmpty();
+     type_ok = !expr->antonym(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Paraphrase) {
-     type_ok = !expr->getParaphrase(idx).simplified().isEmpty();
+     type_ok = !expr->paraphrase(idx).simplified().isEmpty();
    }
    else if (query_type == QT_Example) {
-     type_ok = !expr->getExample(idx).simplified().isEmpty();
+     type_ok = !expr->example(idx).simplified().isEmpty();
    }
 
-   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->getLesson(),
+   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(),
                       lessonitems, act_lesson)
        && type_ok) {
      return true;
@@ -433,31 +441,31 @@ QString QueryManager::typeStr (const QString id)
 }
 
 
-bool QueryManager::compareBlocking (int grade, int date, bool use_it)
+bool QueryManager::compareBlocking (int grade, QDateTime date, bool use_it)
 {
    time_t cmp = Prefs::blockItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
      return true;
    else {
      time_t now = time(0);
-     return date+cmp < now;
+     return date.toTime_t() + cmp < now;
    }
 }
 
 
-bool QueryManager::compareExpiring (int grade, int date, bool use_it)
+bool QueryManager::compareExpiring (int grade, QDateTime date, bool use_it)
 {
    time_t cmp = Prefs::expireItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
      return false;
    else {
      time_t now = time(0);
-     return date+cmp < now;
+     return date.toTime_t() + cmp < now;
    }
 }
 
 
-bool QueryManager::compareDate (CompType type, time_t qd, time_t limit)
+bool QueryManager::compareDate (CompType type, QDateTime qd, time_t limit)
 {
    time_t now = time(0);
    bool erg = true;
@@ -465,13 +473,13 @@ bool QueryManager::compareDate (CompType type, time_t qd, time_t limit)
     case DontCare: erg = true;
     break;
 
-    case Before: erg = qd == 0 || qd < now-limit; // never queried or older date
+    case Before: erg = qd.toTime_t() == 0 || qd.toTime_t() < now - limit; // never queried or older date
     break;
 
-    case Within: erg = qd >= now-limit;           // newer date
+    case Within: erg = qd.toTime_t() >= now - limit;           // newer date
     break;
 
-    case NotQueried: erg = qd == 0;
+    case NotQueried: erg = qd.toTime_t() == 0;
     break;
 
     default:
@@ -597,7 +605,7 @@ bool QueryManager::compareType (CompType type, const QString & exprtype, const Q
 }
 
 
-bool QueryManager::compareLesson (CompType type, int less, const vector<int> &limit, int current)
+bool QueryManager::compareLesson (CompType type, int less, const QList<int> &limit, int current)
 {
    bool erg = true;
    switch (type) {
@@ -638,7 +646,7 @@ bool QueryManager::compareLesson (CompType type, int less, const vector<int> &li
 }
 
 
-void QueryManager::setTypeNames (vector<QString> names)
+void QueryManager::setTypeNames (QStringList names)
 {
   userTypes = names;
 }

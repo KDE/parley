@@ -33,7 +33,7 @@
 #include <vector>
 using namespace std;
 
-vector<QString> UsageManager::userUsages;
+QStringList UsageManager::userUsages;
 
 // user usages are strings like this: #1
 
@@ -149,7 +149,7 @@ bool UsageManager::contains (const QString& label, const QString& collection)
 }
 
 
-void UsageManager::setUsageNames (vector<QString> names)
+void UsageManager::setUsageNames(QStringList names)
 {
   userUsages = names;
 }

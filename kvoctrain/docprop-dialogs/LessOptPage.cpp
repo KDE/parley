@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Jun 3 22:03:50 1999
+    begin         : Thu Jun 3 22:03:50 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -33,11 +33,11 @@
 #include <kmessagebox.h>
 
 #include "LessOptPage.h"
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 
 #define LESS_TAG ". "
 
-LessOptPage::LessOptPage(QComboBox *lessons, kvoctrainDoc *_doc, QWidget *parent) : QWidget(parent)
+LessOptPage::LessOptPage(QComboBox *lessons, KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   connect( lessonList, SIGNAL(highlighted(int)), SLOT(slotLessonChosen(int)) );
@@ -139,7 +139,7 @@ void LessOptPage::slotDeleteLesson()
 
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       // FIXME: ProgressDlg here?
-      if (doc->getEntry(ent)->getLesson() == lessonIndex[act_lesson]+1) {
+      if (doc->entry(ent)->lesson() == lessonIndex[act_lesson]+1) {
         KMessageBox::information(this,
                   i18n("This lesson could not be deleted\nbecause it is in use."),
                   kapp->makeStdCaption(i18n("Deleting Lesson")));
@@ -163,7 +163,7 @@ void LessOptPage::slotDeleteLesson()
 }
 
 
-void LessOptPage::getLesson (QComboBox *ret_lesson, vector<int> &ret_Index)
+void LessOptPage::getLesson (QComboBox *ret_lesson, QList<int> &ret_Index)
 {
   while (ret_lesson->count() > 1) /* first entry is "no lesson" */
     ret_lesson->removeItem (1);
@@ -186,7 +186,7 @@ void LessOptPage::slotCleanup()
     used_lesson.push_back(false);
 
   for (int i = 0; i < (int) doc->numEntries(); i++) {
-    int idx = doc->getEntry(i)->getLesson();
+    int idx = doc->entry(i)->lesson();
     if ((int) used_lesson.size() < idx)
       used_lesson.resize(idx);
     if (idx != 0)
@@ -209,11 +209,11 @@ void LessOptPage::slotCleanup()
 }
 
 
-void LessOptPage::cleanUnused (kvoctrainDoc *doc,
+void LessOptPage::cleanUnused (KEduVocDocument *doc,
                                const QComboBox * /*lessons*/,
-                               const vector<int> &lessonIndex,
+                               const QList<int> &lessonIndex,
                                int old_lessons,
-                               vector<int> &lessons_in_query)
+                               QList<int> &lessons_in_query)
 {
   vector<int> translate_index;
 
@@ -242,8 +242,8 @@ void LessOptPage::cleanUnused (kvoctrainDoc *doc,
   // set lesson index to 0 when not needed any more
   // and translate to new index
   for (int i = 0; i < doc->numEntries(); i++) {
-    if (doc->getEntry(i)->getLesson () != 0)
-      doc->getEntry(i)->setLesson (translate_index[doc->getEntry(i)->getLesson ()]);
+    if (doc->entry(i)->lesson () != 0)
+      doc->entry(i)->setLesson (translate_index[doc->entry(i)->lesson ()]);
   }
 }
 #include "LessOptPage.moc"

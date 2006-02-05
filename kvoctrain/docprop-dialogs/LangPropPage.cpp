@@ -34,7 +34,7 @@
 
 LangPropPage::LangPropPage
   (
-  kvoctrainDoc      *_doc,
+  KEduVocDocument      *_doc,
   QString            curr_lang,
   const KEduVocConjugation &conjug,
   const KEduVocArticle     &art,

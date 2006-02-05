@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun May 28 12:14:31 2000
+    begin         : Sun May 28 12:14:31 2000
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -28,25 +28,22 @@
 
 #include <vector>
 
-#include <Q3StrList>
-
 #include "TenseOptPageForm.h"
 
 using namespace std;
 
-class kvoctrainDoc;
-class Q3StrList;
+class KEduVocDocument;
 
 class TenseOptPage : public QWidget, public Ui::TenseOptPageForm
 {
   Q_OBJECT
 
 public:
-  TenseOptPage(const vector<QString> &tenses, kvoctrainDoc * doc, QWidget *parent = 0);
+  TenseOptPage(const QStringList &tenses, KEduVocDocument * doc, QWidget *parent = 0);
 
-  void getTenseNames (vector<QString> &ret_types, vector<int> &ret_Index);
+  void getTenseNames (QStringList &ret_types, QList<int> &ret_Index);
 
-  static void cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex, int old_tenses);
+  static void cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses);
 
 protected:
   void updateListBox(int start);
@@ -59,9 +56,9 @@ protected slots:
   void slotCleanup();
 
 private:
-  kvoctrainDoc  *doc;
+  KEduVocDocument  *doc;
   int            act_tense;
-  vector<int>    tenseIndex; // contains indices of tenses on exec()
+  QList<int>    tenseIndex; // contains indices of tenses on exec()
                               // negative values are new tenses
 };
 

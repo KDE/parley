@@ -35,7 +35,7 @@
 
 #define TENSE_TAG ". "
 
-TenseOptPage::TenseOptPage(const vector<QString> &tenses, kvoctrainDoc *_doc, QWidget *parent) :
+TenseOptPage::TenseOptPage(const QStringList &tenses, KEduVocDocument *_doc, QWidget *parent) :
   QWidget(parent)
 {
   setupUi(this);
@@ -142,9 +142,9 @@ void TenseOptPage::slotDeleteTense()
     t.insert (0, QM_USER_TYPE);
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       // FIXME: ProgressDlg here?
-      kvoctrainExpr *exp = doc->getEntry(ent);
-      for (int lang = 0; lang < doc->numLangs(); lang++) {
-        KEduVocConjugation conj = exp->getConjugation(lang);
+      KEduVocExpression *exp = doc->entry(ent);
+      for (int lang = 0; lang < doc->numIdentifiers(); lang++) {
+        KEduVocConjugation conj = exp->conjugation(lang);
         for (int con = 0; con < conj.numEntries(); con++ ) {
           if (conj.getType(con) == t) {
             KMessageBox::information(this,
@@ -172,7 +172,7 @@ void TenseOptPage::slotDeleteTense()
 }
 
 
-void TenseOptPage::getTenseNames (vector<QString> &ret_tense, vector<int> &ret_Index)
+void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
 {
   QString str;    ret_tense.clear();
   for (int i = 0; i < (int) tenseList->count(); i++)
@@ -192,9 +192,9 @@ void TenseOptPage::slotCleanup()
   for (int i = 0; i <= (int) tenseList->count(); i++)
     used_tense.push_back(false);
 
-  for (int col = 0; col < doc->numLangs(); col++)
+  for (int col = 0; col < doc->numIdentifiers(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
-      KEduVocConjugation conj = doc->getEntry(i)->getConjugation(col);
+      KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString t = conj.getType(ci);
         if (t.left(strlen(UL_USER_TENSE)) == UL_USER_TENSE) {
@@ -224,7 +224,7 @@ void TenseOptPage::slotCleanup()
 }
 
 
-void TenseOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex, int old_tenses)
+void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses)
 {
   vector<int> translate_index;
   vector<QString> new_tenseStr;
@@ -247,9 +247,9 @@ void TenseOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex,
   // set tense index to 0 when not needed any more
   // and translate to new index
 
-  for (int col = 0; col < doc->numLangs(); col++) {
+  for (int col = 0; col < doc->numIdentifiers(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
-      KEduVocConjugation conj = doc->getEntry(i)->getConjugation (col);
+      KEduVocConjugation conj = doc->entry(i)->conjugation (col);
       bool dirty = false;
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString old = conj.getType(ci);
@@ -269,7 +269,7 @@ void TenseOptPage::cleanUnused(kvoctrainDoc *doc, const vector<int> &tenseIndex,
         }
       }
       if (dirty)
-        doc->getEntry(i)->setConjugation (col, conj);
+        doc->entry(i)->setConjugation (col, conj);
     }
   }
 }

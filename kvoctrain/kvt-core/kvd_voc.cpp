@@ -26,7 +26,7 @@
 #include <kmessagebox.h>
 #include <kdebug.h>
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 //Added by qt3to4:
 #include <QTextStream>
 

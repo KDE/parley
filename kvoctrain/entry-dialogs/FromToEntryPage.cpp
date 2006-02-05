@@ -43,7 +43,7 @@ FromToEntryPage::FromToEntryPage
 (
   bool        multi_sel,
   grade_t     _grade,
-  time_t      _time,
+  QDateTime   _time,
   count_t     _qcount,
   count_t     _bcount,
   QString     faux,
@@ -104,7 +104,7 @@ FromToEntryPage::FromToEntryPage
 void FromToEntryPage::setData(
   bool        multi_sel,
   grade_t     _grade,
-  time_t      _time,
+  QDateTime   _time,
   count_t     _qcount,
   count_t     _bcount,
   QString     faux,
@@ -117,10 +117,10 @@ void FromToEntryPage::setData(
   fauxami_line->setText(fauxami);
 
   valid_date = false;
-  QDateTime dt;
+  QDateTime dt = _time;
   QDate date;
-  if (_time != 0 && !multi_sel) {
-    dt.setTime_t (_time);
+  if (_time.toTime_t() != 0 && !multi_sel) {
+    //dt.setTime_t (_time);
     valid_date = true;
 
     date = dt.date();

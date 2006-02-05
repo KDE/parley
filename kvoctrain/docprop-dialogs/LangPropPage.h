@@ -30,14 +30,14 @@
 #include "LangPropPageForm.h"
 #include <keduvocgrammar.h>
 
-class kvoctrainDoc;
+class KEduVocDocument;
 
 class LangPropPage : public QWidget, public Ui::LangPropPageForm
 {
   Q_OBJECT
 
 public:
-  LangPropPage(kvoctrainDoc *doc, QString curr_lang, const KEduVocConjugation &conjugations,
+  LangPropPage(KEduVocDocument *doc, QString curr_lang, const KEduVocConjugation &conjugations,
   const KEduVocArticle &article, QWidget *parent = 0);
 
   KEduVocConjugation getConjugation();
@@ -65,7 +65,7 @@ protected slots:
   void defMaleChanged(const QString& );
 
 protected:
-  kvoctrainDoc  *doc;
+  KEduVocDocument  *doc;
   KEduVocConjugation    conjugations;
   KEduVocArticle        articles;
 };

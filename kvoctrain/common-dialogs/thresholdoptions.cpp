@@ -6,7 +6,7 @@
 
     begin                : Tue Apr 5 2005
 
-    copyright            :(C) 2005 Peter Hedlund
+    copyright            :(C) 2005-2006 Peter Hedlund
 
     email                : peter.hedlund@kdemail.net
 
@@ -212,7 +212,7 @@ void ThresholdOptions::updateWidgets()
   Prefs::EnumCompType::type *ct;
   ThreshListRef *ref;
 
-  vector<int> sel = m_queryManager->lessonItems();
+  QList<int> sel = m_queryManager->lessonItems();
   if (sel.size() != 0)
   {
     for (int i = 0; i < (int) sel.size(); i++)
@@ -332,7 +332,7 @@ void ThresholdOptions::slotSetTypeComp(int i)
 
 void ThresholdOptions::slotSetLessonItems()
 {
-  vector<int> sel;
+  QList<int> sel;
   int cnt = 0;
 
   for (int i = 0; i < (int) lessonlist->count(); i++)

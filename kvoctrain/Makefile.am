@@ -9,7 +9,7 @@ spotlight2kvtml_SOURCES = spotlight2kvtml.cpp
 spotlight2kvtml_LDADD =  $(LIB_KDECORE)
 
 kvoctrain_LDADD = ../../libkdeedu/kdeeducore/libkdeeducore.la ./docprop-dialogs/libdocpropdlg.la \
-	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la ./kvt-core/kvt-xml/libkvtxml.la \
+	./entry-dialogs/libentrydlg.la ./kvt-core/libkvoctraincore.la \
 	./query-dialogs/libquerydlg.la ./statistik-dialogs/libstatdlg.la ./common-dialogs/libcommondlg.la \
 	-lknewstuff $(LIB_KDEPRINT)
 
@@ -45,7 +45,6 @@ i18n_files=  query-dialogs/*.cpp \
              docprop-dialogs/*.cpp \
              statistik-dialogs/*.cpp \
              kvt-core/*.cpp \
-             kvt-core/kvt-xml/*.cpp \
              $(spotlight2kvtml_SOURCES) \
              $(kvoctrain_SOURCES)
 

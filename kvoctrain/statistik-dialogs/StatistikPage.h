@@ -30,9 +30,9 @@
 #include <QPixmap>
 
 #include "StatistikPageForm.h"
-#include <kvoctrainexpr.h>
+#include <keduvocexpression.h>
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class GradeCols;
 
 class StatistikPage : public QWidget, public Ui::StatistikPageForm
@@ -40,7 +40,7 @@ class StatistikPage : public QWidget, public Ui::StatistikPageForm
   Q_OBJECT
 
 public:
-  StatistikPage(int col, kvoctrainDoc *doc, QWidget *parent = 0);
+  StatistikPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
 public slots:
   void slotPopupMenu(int row, int col);
@@ -64,7 +64,7 @@ protected:
   int calc_width (struct StatistikPage::stat_counter *gc, int grade, int max_width);
 
   vector<QPixmap>  from_pix, to_pix;
-  kvoctrainDoc    *doc;
+  KEduVocDocument    *doc;
 
   vector<stat_counter>  fsc;
   vector<stat_counter>  tsc;

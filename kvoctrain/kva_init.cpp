@@ -276,16 +276,18 @@ void kvoctrainApp::initStatusBar()
 }
 
 
-void kvoctrainApp::initDoc( )
+void kvoctrainApp::initDoc()
 {
-  if (fileOpenRecent->items().count() > 0)
-    doc = new kvoctrainDoc(this, fileOpenRecent->items()[0]);
+  if (fileOpenRecent->items().count() > 0){
+    doc = new KEduVocDocument(this);
+    doc->setURL(KURL(fileOpenRecent->items()[0]));
+  }
   else
-    doc = new kvoctrainDoc(this, KURL(""));
+    doc = new KEduVocDocument(this);
 
   loadDocProps(doc);
-  if (doc->numLangs() == 0)
-    doc->appendLang("en");
+  if (doc->numIdentifiers() == 0)
+    doc->appendIdentifier("en");
   connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   doc->setModified(false);
 }

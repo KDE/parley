@@ -41,12 +41,12 @@
 #include "kv_resource.h"
 #include "prefs.h"
 
-KVocTrainTable::KVocTrainTable(kvoctrainDoc *doc, const LangSet *ls, QWidget *parent, const char *name)
+KVocTrainTable::KVocTrainTable(KEduVocDocument *doc, const LangSet *ls, QWidget *parent, const char *name)
   : Q3Table(parent, name), langs(ls)
 {
   m_doc = doc;
   defaultItem = 0;
-  setNumCols(m_doc->numLangs());
+  setNumCols(m_doc->numIdentifiers());
   setNumRows(m_doc->numEntries());
 
   setLeftMargin(0);
@@ -81,8 +81,8 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
   if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
 
     if (m_doc) {
-      QString id = (col == KV_COL_ORG) ? m_doc->getOriginalIdent()
-        : m_doc->getIdent(col - KV_EXTRA_COLS);
+      QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
+        : m_doc->identifier(col - KV_EXTRA_COLS);
 
       if (langs) {
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
@@ -126,7 +126,7 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
     return;
   }
 
-  if (m_doc && !m_doc->isAllowedSorting()) {
+  if (m_doc && !m_doc->isSortingEnabled()) {
     KMessageBox::information(this, i18n("Sorting is currently turned off for this document.\n"
       "\nUse the document properties dialog to turn sorting on."), kapp->makeStdCaption(""));
     return;
@@ -137,6 +137,8 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
   clearSelection();
 
   bool sortdir = false;
+  ///@todo port
+  /*
   if (m_doc) {
     if (header >= KV_COL_ORG)
       sortdir = m_doc->sort(header-KV_EXTRA_COLS);
@@ -145,7 +147,7 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
         sortdir = m_doc->sortByLesson_alpha();
     else
       sortdir = m_doc->sortByLesson_index();
-  }
+  }*/
   horizontalHeader()->setSortIndicator(header, sortdir);
   repaintContents();
   m_doc->setModified();
@@ -186,7 +188,7 @@ void KVocTrainTable::updateContents(int row, int col)
   int ncols, nrows;
   if (m_doc) {
     nrows = m_doc->numEntries();
-    ncols = QMAX(1, m_doc->numLangs())+KV_EXTRA_COLS;
+    ncols = QMAX(1, m_doc->numIdentifiers())+KV_EXTRA_COLS;
   }
   else {
     nrows = 0;
@@ -206,15 +208,15 @@ void KVocTrainTable::updateContents(int row, int col)
   emit currentChanged(current_row, current_col);
 }
 
-kvoctrainExpr *KVocTrainTable::getRow(int row)
+KEduVocExpression *KVocTrainTable::getRow(int row)
 {
   if (m_doc)
-    return m_doc->getEntry(row);
+    return m_doc->entry(row);
   else
     return 0;
 }
 
-void KVocTrainTable::setDoc(kvoctrainDoc * rows)
+void KVocTrainTable::setDoc(KEduVocDocument * rows)
 {
   if (defaultItem)
     endEdit(defaultItem->row(), defaultItem->col(), true, false);
@@ -225,7 +227,7 @@ void KVocTrainTable::setDoc(kvoctrainDoc * rows)
   if (rows) {
     m_doc = rows;
     setNumRows(rows->numEntries());
-    setNumCols(QMAX(1+KV_EXTRA_COLS, m_doc->numLangs()+KV_EXTRA_COLS));
+    setNumCols(QMAX(1+KV_EXTRA_COLS, m_doc->numIdentifiers()+KV_EXTRA_COLS));
     setCurrentRow(0, 0);
   }
   else {
@@ -321,7 +323,7 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
 
   p->fillRect( 0, 0, w, h, selected ? cg.brush( QColorGroup::Highlight ) : cg.brush( QColorGroup::Base ) );
 
-  kvoctrainExpr *expr = getRow(row);
+  KEduVocExpression *expr = getRow(row);
   if (expr)
   {
     p->save();
@@ -335,9 +337,9 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
       if (col > KV_COL_ORG)
       {
         color = Prefs::gradeCol(0);
-        if (expr->getQueryCount(col - KV_EXTRA_COLS, false) != 0)
+        if (expr->queryCount(col - KV_EXTRA_COLS, false) != 0)
         {
-          switch (expr->getGrade(col-KV_EXTRA_COLS, false))
+          switch (expr->grade(col-KV_EXTRA_COLS, false))
           {
             case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
             case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
@@ -356,9 +358,9 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
         color = Prefs::gradeCol(0);
         if (expr->numTranslations() != 0 && current_col > KV_COL_ORG )
         {
-          if (expr->getQueryCount(current_col - KV_EXTRA_COLS, true) != 0 )
+          if (expr->queryCount(current_col - KV_EXTRA_COLS, true) != 0 )
           {
-            switch (expr->getGrade(current_col - KV_EXTRA_COLS, true))
+            switch (expr->grade(current_col - KV_EXTRA_COLS, true))
             {
               case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
               case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
@@ -386,8 +388,8 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
       case KV_COL_LESS: // lesson
       {
         QString less_str;
-        if (m_doc != 0 && expr->getLesson() != 0)
-          less_str = m_doc->getLessonDescr(expr->getLesson());
+        if (m_doc != 0 && expr->lesson() != 0)
+          less_str = m_doc->lessonDescription(expr->lesson());
         p->drawText( 3, fontpos, w, p->fontMetrics().lineSpacing(), Qt::AlignLeft, less_str);
       }
       break;
@@ -409,13 +411,13 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
 
       case KV_COL_ORG: // original
       {
-        QString s = expr->getOriginal();
+        QString s = expr->original();
         p->drawText(3, fontpos, w - 6, p->fontMetrics().lineSpacing(), cellAlignment(s), s);
       }
       break;
 
       default: // translation x
-        QString s = expr->getTranslation(col - KV_COL_ORG);
+        QString s = expr->translation(col - KV_COL_ORG);
         p->drawText(3, fontpos, w - 6, p->fontMetrics().lineSpacing(), cellAlignment(s), s);
         break;
     }

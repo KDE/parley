@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Jul 11 20:50:53 MET 1999
+    begin         : Sat Jul 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,12 +29,12 @@
 #include <vector>
 using namespace std;
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 #include "prefs.h"
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class KConfig;
-class kvoctrainExpr;
+class KEduVocExpression;
 class Prefs;
 class EnumCompType;
 
@@ -95,12 +95,12 @@ class TypeRelation
 
 
 struct QueryEntryRef {
- QueryEntryRef (kvoctrainExpr *_exp,
+ QueryEntryRef (KEduVocExpression *_exp,
                 int            _nr)
      : exp(_exp), nr(_nr) {}
 
 
-   kvoctrainExpr *exp;
+   KEduVocExpression *exp;
    int            nr;
 };
 
@@ -108,20 +108,20 @@ typedef vector<vector<QueryEntryRef> > QuerySelection;
 
 class QueryManager
 {
- public:
+public:
                 // don't change the order/remove one of these,
                 // just APPEND new types
- enum CompType { DontCare,
-                  MoreEqThan, MoreThan,
-                  Before, Within,
-                  WorseThan, WorseEqThan,
-                  EqualTo, NotEqual,
-                  LessEqThan, LessThan,
-                  BetterThan, BetterEqThan,
-                  Current, NotAssigned, NotQueried,
-                  Auto_Time, Auto_Count,
-                  OneOf, NotOneOf
-                };
+enum CompType { DontCare,
+                MoreEqThan, MoreThan,
+                Before, Within,
+                WorseThan, WorseEqThan,
+                EqualTo, NotEqual,
+                LessEqThan, LessThan,
+                BetterThan, BetterEqThan,
+                Current, NotAssigned, NotQueried,
+                Auto_Time, Auto_Count,
+                OneOf, NotOneOf
+               };
 
   QueryManager ();
 
@@ -129,7 +129,7 @@ class QueryManager
   //void saveConfig (KConfig *);
 
   static vector<TypeRelation> getRelation (bool only_maintypes);
-  static void setTypeNames (vector<QString> names);
+  static void setTypeNames (QStringList names);
   static QString getSubType (const QString & type);
   static QString getMainType (const QString & type);
 
@@ -137,7 +137,7 @@ class QueryManager
   static QString gradeStr(int i);
   static QString typeStr(const QString id);
 
-  void setLessonItems(vector<int> indices) { lessonitems = indices; }
+  void setLessonItems(QList<int> indices) { lessonitems = indices; }
   void setLessonItemStr(const QString & indices);
   //void setDateItem (time_t time) { dateitem = time; }
   //void setQueryItem (int query) { queryitem = query; }
@@ -147,7 +147,7 @@ class QueryManager
   //void setBlockItem (int item, int grade);
   //void setExpireItem (int item, int grade);
 
-  vector<int> lessonItems() const { return lessonitems; }
+  QList<int> lessonItems() const { return lessonitems; }
   QString lessonItemStr() const;
   //time_t dateItem () const { return dateitem; }
   //int queryItem () const { return queryitem; }
@@ -171,34 +171,27 @@ class QueryManager
   //CompType typeComp () const { return typecomp; }
   //CompType gradeComp () const { return gradecomp; }
 
-  bool validate(kvoctrainExpr *expr, int act_lesson,
-                int oindex, int tindex);
+  bool validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex);
 
-  QuerySelection select(kvoctrainDoc*, int act_lesson,
-                        int oindex, int tindex);
+  QuerySelection select(KEduVocDocument*, int act_lesson, int oindex, int tindex);
 
-  bool validate(kvoctrainExpr *expr, int act_lesson,
-                int index, QString type);
+  bool validate(KEduVocExpression *expr, int act_lesson, int index, QString type);
 
-  QuerySelection select(kvoctrainDoc*, int act_lesson,
-                        int index, QString type);
+  QuerySelection select(KEduVocDocument*, int act_lesson, int index, QString type);
 
-  bool validate(kvoctrainExpr *expr, int act_lesson,
-                int index, QueryType type);
+  bool validate(KEduVocExpression *expr, int act_lesson, int index, QueryType type);
 
-  QuerySelection select(kvoctrainDoc*, int act_lesson,
-                        int index, QueryType type);
+  QuerySelection select(KEduVocDocument*, int act_lesson, int index, QueryType type);
 
- protected:
-
-  bool compareBlocking (int grade, int limit, bool use_it);
-  bool compareExpiring (int grade, int limit, bool use_it);
-  bool compareDate (CompType, time_t, time_t);
+protected:
+  bool compareBlocking (int grade, QDateTime limit, bool use_it);
+  bool compareExpiring (int grade, QDateTime limit, bool use_it);
+  bool compareDate (CompType, QDateTime, long int);
   bool compareQuery (CompType, int, int);
   bool compareBad (CompType, int, int);
   bool compareGrade (CompType, grade_t, grade_t);
   bool compareType (CompType, const QString &, const QString &);
-  bool compareLesson (CompType type, int less, const vector<int> &limit, int current);
+  bool compareLesson (CompType type, int less, const QList<int> &limit, int current);
 
  /* CompType    typecomp,
               querycomp,
@@ -212,13 +205,13 @@ class QueryManager
   //            baditem;
   //QString     typeitem;
   //grade_t     gradeitem;
-  vector<int> lessonitems;
+  QList<int> lessonitems;
 
   //vector<int> blockItems,
   //            expireItems;
 
- private:
-  static vector<QString> userTypes;
+private:
+  static QStringList userTypes;
 };
 
 #endif // QueryManager_included

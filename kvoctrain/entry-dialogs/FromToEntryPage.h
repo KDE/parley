@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Mon Jun 28 21:02:16 1999
+    begin         : Mon Jun 28 21:02:16 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,7 +31,7 @@
 #include <QDateTime>
 
 #include "FromToEntryPageForm.h"
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
@@ -43,7 +43,7 @@ public:
   (
       bool        multi_sel,
       grade_t     _grade,
-      time_t      _date,
+      QDateTime   _date,
       count_t     _qcount,
       count_t     _bcount,
       QString     faux,
@@ -54,7 +54,7 @@ public:
   void setData(
       bool        multi_sel,
       grade_t     _grade,
-      time_t      _date,
+      QDateTime   _date,
       count_t     _qcount,
       count_t     _bcount,
       QString     faux,

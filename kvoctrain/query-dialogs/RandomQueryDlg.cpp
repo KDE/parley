@@ -136,8 +136,8 @@ RandomQueryDlg::RandomQueryDlg(
                    int q_cycle,
                    int q_num,
                    int q_start,
-                   kvoctrainExpr *exp,
-                   kvoctrainDoc  *doc)
+                   KEduVocExpression *exp,
+                   KEduVocDocument  *doc)
   : QueryDlgBase(i18n("Random Query"))
 {
   mw = new Ui::QueryDlgForm();
@@ -211,17 +211,17 @@ RandomQueryDlg::RandomQueryDlg(
     }
     for ( i = 0; i < kv_doc -> numEntries(); i ++ )
     {
-      kvoctrainExpr* expr = kv_doc -> getEntry (i);
+      KEduVocExpression* expr = kv_doc -> entry (i);
       if ( split )
-        vocabulary += extractTranslations (q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal());
+        vocabulary += extractTranslations (q_tcol ? expr -> translation (q_tcol) : expr -> original());
       else
-        vocabulary += q_tcol ? expr -> getTranslation (q_tcol) : expr -> getOriginal();
+        vocabulary += q_tcol ? expr -> translation (q_tcol) : expr -> original();
       if ( Prefs::swapDirection() )
       {
         if ( split )
-          vocabulary += extractTranslations (q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal());
+          vocabulary += extractTranslations (q_ocol ? expr ->translation (q_ocol) : expr ->original());
         else
-          vocabulary += q_ocol ? expr -> getTranslation (q_ocol) : expr -> getOriginal();
+          vocabulary += q_ocol ? expr ->translation (q_ocol) : expr ->original();
       }
       if ( pdlg )
       {
@@ -259,8 +259,8 @@ void RandomQueryDlg::setQuery(QString org,
                          int q_cycle,
                          int q_num,
                          int q_start,
-                         kvoctrainExpr *,
-                         kvoctrainDoc  *doc)
+                         KEduVocExpression *,
+                         KEduVocDocument  *doc)
 {
    //type_timeout = type_to;
    kv_doc = doc;
@@ -561,20 +561,20 @@ void RandomQueryDlg::dontKnowClicked()
 void RandomQueryDlg::setHintFields()
 {
    QString s;
-   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
+   KEduVocExpression *exp = kv_doc->entry(q_row);
 
-   s = exp->getRemark(q_ocol);
+   s = exp->remark(q_ocol);
    mw->remark->setText (s);
    mw->c_remark->setEnabled(!s.isEmpty() );
 
-   s = exp->getFauxAmi(q_ocol, q_ocol != 0);
+   s = exp->fauxAmi(q_ocol, q_ocol != 0);
    mw->falseFriend->setText (s);
    mw->c_falsefriend->setEnabled(!s.isEmpty() );
 
    s = "";
    vector<TypeRelation> all_types = QueryManager::getRelation(false);
    for (int i = 0; i < (int) all_types.size(); i++) {
-     if ( exp->getType(q_ocol) == all_types[i].shortStr()) {
+     if ( exp->type(q_ocol) == all_types[i].shortStr()) {
        s = all_types[i].longStr();
        break;
      }
@@ -591,10 +591,8 @@ void RandomQueryDlg::slotUser2()
 
    emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
 
-   kvoctrainExpr *exp = kv_doc->getEntry(q_row);
-   mw->orgField->setText (q_ocol == 0
-                        ? exp->getOriginal()
-                        : exp->getTranslation(q_ocol));
+   KEduVocExpression *exp = kv_doc->entry(q_row);
+   mw->orgField->setText (q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
 
    if ( Prefs::suggestions() )
      for ( int i = 0; i < fields; i ++ )

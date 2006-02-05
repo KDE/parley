@@ -27,7 +27,7 @@
 #include <klocale.h>
 #include <kmessagebox.h>
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 
 
 #include <vector>

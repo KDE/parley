@@ -50,7 +50,7 @@
 #define HEADER_MINSIZE   24
 #define KV_COLWIDTH_MARK 20
 
-kvoctrainView::kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp *_parent) : QWidget(_parent)
+kvoctrainView::kvoctrainView(KEduVocDocument* doc, const LangSet &ls, kvoctrainApp *_parent) : QWidget(_parent)
 {
   m_doc = doc;
   parent = _parent;
@@ -59,8 +59,8 @@ kvoctrainView::kvoctrainView(kvoctrainDoc* doc, const LangSet &ls, kvoctrainApp 
   m_table->setFont(Prefs::tableFont());
   m_table->setLineWidth( 2 );
 
-  if (m_doc->numLangs() == 0)
-    m_doc->appendLang(i18n("Original"));
+  if (m_doc->numIdentifiers() == 0)
+    m_doc->appendIdentifier(i18n("Original"));
 
   connect(m_table, SIGNAL(selected(int)), m_table, SLOT(sortByColumn_alpha(int)));
   connect(m_table, SIGNAL(rightButtonClicked(int, int, int)), parent, SLOT(slotHeaderMenu(int, int, int)));
@@ -171,29 +171,29 @@ void kvoctrainView::resizeEvent (QResizeEvent *r_ev)
 }
 
 
-void kvoctrainView::setView(kvoctrainDoc *doc, const LangSet& ls)
+void kvoctrainView::setView(KEduVocDocument *doc, const LangSet& ls)
 {
   // set header
   m_doc = doc;
   m_table->setDoc(m_doc);
   if (m_doc) {
-    int id = ls.indexShortId (m_doc->getOriginalIdent());
+    int id = ls.indexShortId (m_doc->originalIdentifier());
 
     setHeaderProp(KV_COL_LESS, i18n("Lesson"),  QString());
     setHeaderProp(KV_COL_MARK, "",  QString());
     m_table->setColumnWidth(KV_COL_MARK, KV_COLWIDTH_MARK);
 
     if (id < 0)
-      setHeaderProp(KV_COL_ORG, m_doc->getOriginalIdent());
+      setHeaderProp(KV_COL_ORG, m_doc->originalIdentifier());
     else
       setHeaderProp(KV_COL_ORG, ls.longId(id), ls.PixMapFile(id));
 
     for (int i = KV_COL_TRANS; i < m_table->numCols(); i++)
     {
-      int id = ls.indexShortId(m_doc->getIdent(i - KV_EXTRA_COLS));
+      int id = ls.indexShortId(m_doc->identifier(i - KV_EXTRA_COLS));
 
       if (id < 0)
-        setHeaderProp(i, m_doc->getIdent(i-KV_EXTRA_COLS));
+        setHeaderProp(i, m_doc->identifier(i-KV_EXTRA_COLS));
       else
         setHeaderProp(i, ls.longId(id), ls.PixMapFile(id));
     }
@@ -375,7 +375,7 @@ void kvoctrainView::newPage(QPainter & painter, int res, int startCol, int endCo
   QRect w = painter.window();
   painter.resetXForm();
   painter.setFont(KGlobalSettings::generalFont());
-  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1").arg(m_doc->getTitle()));
+  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1").arg(m_doc->title()));
   painter.translate(marg, marg);
   painter.drawLine(-1 , 0, -1, hh - 1);
   for (int i = startCol; i <= endCol && i < m_table->numCols(); ++i)

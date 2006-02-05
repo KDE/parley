@@ -28,7 +28,7 @@
 
 #include <Q3Table>
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 #include "kv_resource.h"
 
 /**
@@ -37,14 +37,14 @@
 class KVocTrainTableItem : public Q3TableItem
 {
   public:
-    KVocTrainTableItem( Q3Table *t, EditType et, kvoctrainDoc *doc );
+    KVocTrainTableItem( Q3Table *t, EditType et, KEduVocDocument *doc );
     QWidget *createEditor() const;
     void setContentFromEditor( QWidget *w );
     void setPosition(int row, int col);
-    void setDoc(kvoctrainDoc *doc);
+    void setDoc(KEduVocDocument *doc);
 
   private:
-    kvoctrainDoc * m_doc;
+    KEduVocDocument * m_doc;
 };
 
 #endif

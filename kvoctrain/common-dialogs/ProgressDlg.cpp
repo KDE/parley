@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Mon Aug 16 17:41:11 1999
+    begin         : Mon Aug 16 17:41:11 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,7 +30,7 @@
 
 #include <kstandarddirs.h>
 
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 #include "ProgressDlg.h"
 
 ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const QString &title, QWidget* parent)
@@ -45,13 +45,13 @@ ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const
 }
 
 
-void ProgressDlg::setValue(kvoctrainDoc *new_doc, int val)
+void ProgressDlg::setValue(KEduVocDocument *new_doc, int val)
 {
   progress->setValue(val);
   if (doc == 0 && new_doc != 0)
   {
     doc = new_doc;
-    l_title->setText(doc->getTitle());
+    l_title->setText(doc->title());
     l_file->setText(doc->URL().fileName());
   }
 }

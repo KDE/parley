@@ -29,13 +29,13 @@
 #include "pasteoptionsbase.h"
 #include "langset.h"
 
-class kvoctrainDoc;
+class KEduVocDocument;
 
 class PasteOptions : public QWidget, public Ui::PasteOptionsBase
 {
   Q_OBJECT
 public:
-  PasteOptions(LangSet & langset, kvoctrainDoc * doc, QWidget* parent = 0);
+  PasteOptions(LangSet & langset, KEduVocDocument * doc, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -58,7 +58,7 @@ private slots:
 private:
   void slotSyncPasteOrderList();
   QStringList preparePasteOrderList();
-  kvoctrainDoc * m_doc;
+  KEduVocDocument * m_doc;
   LangSet m_langSet;
 };
 

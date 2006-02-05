@@ -4,12 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Sun Dec 19 11:26:53 MET 1999
+    begin         : Sun Dec 19 11:26:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,11 +29,11 @@
 #include <vector>
 using namespace std;
 
-#include "kvoctraindoc.h"
+#include <keduvocdocument.h>
 
-class kvoctrainDoc;
+class KEduVocDocument;
 class KConfig;
-class kvoctrainExpr;
+class KEduVocExpression;
 
 // internal usage labels, never change !
 
@@ -92,7 +91,7 @@ class kvoctrainExpr;
 
 struct UsageRelation
 {
- public:
+public:
 
   UsageRelation (const QString & id, const QString & shorty, const QString & longy)
     :ident(id), shortId(shorty), longId(longy) {}
@@ -101,27 +100,25 @@ struct UsageRelation
   QString shortStr() const { return shortId; }
   QString longStr()  const { return longId;  }
 
- protected:
-  QString ident,
-          shortId,
-          longId;
+protected:
+  QString ident;
+  QString shortId;
+  QString longId;
 };
 
 
 class UsageManager
 {
- public:
+public:
 
   UsageManager ();
 
   static bool contains (const QString& label, const QString& collection);
   static vector<UsageRelation> getRelation ();
-  static void setUsageNames (vector<QString> names);
+  static void setUsageNames (QStringList names);
 
- protected:
-
- private:
-  static vector<QString> userUsages;
+private:
+  static QStringList userUsages;
 };
 
 #endif // UsageManager_included

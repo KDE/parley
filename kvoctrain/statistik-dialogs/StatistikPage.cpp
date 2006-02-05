@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Sep 21 20:50:53 MET 1999
+    begin         : Thu Sep 21 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,7 +31,7 @@
 #include <klocale.h>
 #include <kdebug.h>
 
-#include <kvoctraindoc.h>
+#include <keduvocdocument.h>
 #include <prefs.h>
 #include "StatistikPage.h"
 
@@ -59,7 +59,7 @@ private:
 };
 
 
-StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
+StatistikPage::StatistikPage(int col, KEduVocDocument  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
 {
   setupUi(this);
   StatListView->setColumnWidth(0, SIZE_GRADE + 10);
@@ -67,17 +67,17 @@ StatistikPage::StatistikPage(int col, kvoctrainDoc  *_doc, QWidget *parent) : QW
   StatListView->setColumnWidth(2, SIZE_COUNT);
   StatListView->setColumnWidth(3, SIZE_LESSON);
 
-  vector<QString> lesson = doc->getLessonDescr();
+  QStringList lesson = doc->lessonDescriptions();
 
   fsc.resize(lesson.size()+1);
   tsc.resize(lesson.size()+1);
 
   // accumulate numbers of grades per lesson
   for (int i = 0; i < (int) doc->numEntries(); i++) {
-    kvoctrainExpr *expr = doc->getEntry(i);
-    int fg = QMIN(KV_MAX_GRADE, (int)expr->getGrade(col, false));
-    int tg = QMIN(KV_MAX_GRADE, (int)expr->getGrade(col, true));
-    int l = expr->getLesson();
+    KEduVocExpression *expr = doc->entry(i);
+    int fg = QMIN(KV_MAX_GRADE, (int)expr->grade(col, false));
+    int tg = QMIN(KV_MAX_GRADE, (int)expr->grade(col, true));
+    int l = expr->lesson();
     if (l >= 0 && l <= (int) lesson.size() ) {
       fsc[l].grade[fg]++;
       fsc[l].num++;
@@ -219,7 +219,7 @@ void StatistikPage::setupPixmaps()
   }
 
   // setup rows with pixmaps and strings
-  vector<QString> lesson = doc->getLessonDescr();
+  QStringList lesson = doc->lessonDescriptions();
 
   QString s;
 

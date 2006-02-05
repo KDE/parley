@@ -43,8 +43,8 @@ public:
               int query_cycle,
               int query_num,
               int query_startnum,
-              kvoctrainExpr *exp,
-              kvoctrainDoc  *doc,
+              KEduVocExpression *exp,
+              KEduVocDocument  *doc,
               const KEduVocArticle &articles);
 
   ~ArtQueryDlg();
@@ -55,8 +55,8 @@ public:
               int query_cycle,
               int query_num,
               int query_startnum,
-              kvoctrainExpr *exp,
-              kvoctrainDoc  *doc,
+              KEduVocExpression *exp,
+              KEduVocDocument  *doc,
               const KEduVocArticle &articles);
 
 public slots:
