@@ -803,7 +803,7 @@ void LanguageOptions::enableLangWidgets()
   e_langLong->setEnabled(enabled);
   e_shortName2->setEnabled(enabled);
 
-  //kdDebug() << "enabled? " << enabled << endl;
+  //kDebug() << "enabled? " << enabled << endl;
 
   if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
   {
@@ -813,7 +813,7 @@ void LanguageOptions::enableLangWidgets()
 
     if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()", data, replyType, replyData))
     {
-      //kdDebug() << "kxkb dcop error" << endl;
+      //kDebug() << "kxkb dcop error" << endl;
     }
     else
     {
@@ -830,7 +830,7 @@ void LanguageOptions::enableLangWidgets()
   }
   else
   {
-    //kdDebug() << "kxkb not enabled" << endl;
+    //kDebug() << "kxkb not enabled" << endl;
     d_kblayout->clear();
     d_kblayout->setEnabled(false);
   }
@@ -905,7 +905,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
      QString layout = m_langSet.keyboardLayout(d_shortName->currentItem());
 
-     //kdDebug() << "layout to select " << layout << endl;
+     //kDebug() << "layout to select " << layout << endl;
 
      for (int i = 0; i < d_kblayout->count(); i++)
      {
@@ -1089,7 +1089,7 @@ void LanguageOptions::loadCountryData()
           global_langset.setPixMapFile(pixmap, id);
       }
       //else
-        //kdDebug() << "Couldn't find the language for: " << *it << endl;
+        //kDebug() << "Couldn't find the language for: " << *it << endl;
     }
 
     int id = idx++;
