@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Nov 25 11:45:53 MET 1999
+    begin         : Thu Nov 25 11:45:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,8 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <algorithm>
-
 #include <QTimer>
 #include <QLabel>
 #include <QRadioButton>
@@ -37,11 +35,10 @@
 #include <klocale.h>
 #include <kdebug.h>
 #include <kprogressbar.h>
+#include <krandomsequence.h>
 
 #include "MCQueryDlg.h"
 #include <kv_resource.h>
-
-using namespace std;
 
 MCQueryDlg::MCQueryDlg(
                    QString org,
@@ -142,14 +139,15 @@ void MCQueryDlg::setQuery(QString org,
    else
      mw->timebar->setEnabled(false);
 
-   vector<QString> strings;
+   KRandomSequence * rs = new KRandomSequence();
+   QList<QString> strings;
    button_ref.clear();
    button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
    button_ref.push_back(RB_Label(mw->rb_trans2, mw->trans2));
    button_ref.push_back(RB_Label(mw->rb_trans3, mw->trans3));
    button_ref.push_back(RB_Label(mw->rb_trans4, mw->trans4));
    button_ref.push_back(RB_Label(mw->rb_trans5, mw->trans5));
-   random_shuffle(button_ref.begin(), button_ref.end() );
+   rs->randomize(button_ref);
    resetButton(button_ref[0].rb, button_ref[0].label);
    resetButton(button_ref[1].rb, button_ref[1].label);
    resetButton(button_ref[2].rb, button_ref[2].label);
@@ -161,7 +159,7 @@ void MCQueryDlg::setQuery(QString org,
    KEduVocMultipleChoice mc = exp->multipleChoice(q_tcol);
    for (int i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
-   std::random_shuffle(strings.begin(), strings.end());
+   rs->randomize(strings);
 
    // always include false friend
    QString ff;
@@ -186,7 +184,7 @@ void MCQueryDlg::setQuery(QString org,
      }
    }
    else {
-     vector<KEduVocExpression*> exprlist;
+     QList<KEduVocExpression*> exprlist;
      solution = 0;
 
      srand((unsigned int)time((time_t *)NULL));
