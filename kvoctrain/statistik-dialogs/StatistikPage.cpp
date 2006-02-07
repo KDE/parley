@@ -256,7 +256,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
 
   if (col == TB_FGRADE) {
     if (row >= (int) fsc.size() ) {
-      kdError() << "row >= fsc.size()" << endl;
+      kError() << "row >= fsc.size()" << endl;
       return;
     }
     else
@@ -264,7 +264,7 @@ void StatistikPage::slotPopupMenu(int row, int col)
   }
   else if (col == TB_TGRADE) {
     if (row >= (int) tsc.size() ) {
-      kdError() << "row >= tsc.size()" << endl;
+      kError() << "row >= tsc.size()" << endl;
       return;
     }
     else

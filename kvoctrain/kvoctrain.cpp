@@ -175,7 +175,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
 {
 //  cout << "ced\n";
    if (entryDlg == 0) {
-     kdError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
+     kError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
      return;
    }
 
@@ -311,7 +311,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
 void kvoctrainApp::createEntryDlg(int row, int col)
 {
    if (entryDlg != 0) {
-     kdError() << "kvoctrainApp::createEntryDlg: entryDlg != 0\n";
+     kError() << "kvoctrainApp::createEntryDlg: entryDlg != 0\n";
      return;
    }
 
@@ -465,7 +465,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
 {
 //  cout << "sded\n";
    if (entryDlg == 0) {
-     kdError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
+     kError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
      return;
    }
 

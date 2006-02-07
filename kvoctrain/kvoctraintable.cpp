@@ -122,7 +122,7 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
     return;
 
   if (header >= numRows()) {
-    kdError() << "header >= numRows()\n";
+    kError() << "header >= numRows()\n";
     return;
   }
 

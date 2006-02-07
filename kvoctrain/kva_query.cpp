@@ -193,7 +193,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 {
 
   if (simpleQueryDlg == 0) {
-    kdError() << "simpleQueryDlg == 0\n";
+    kError() << "simpleQueryDlg == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -243,7 +243,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     break;
 
     default :
-      kdError() << "unknown result from QueryDlg\n";
+      kError() << "unknown result from QueryDlg\n";
       slotStopQuery(true);
       return;
   }
@@ -268,7 +268,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
   }
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kdError() << "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0\n";
+    kError() << "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -393,7 +393,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
     adjQueryDlg->show();
   }
   else {
-    kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    kError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -449,7 +449,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     break;
 
     default :
-      kdError() << "unknown result from QueryDlg\n";
+      kError() << "unknown result from QueryDlg\n";
       slotStopQuery(true);
       return;
   }
@@ -476,7 +476,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   hide();
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kdError() << "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
+    kError() << "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -486,7 +486,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
   if (queryType == QT_Conjugation) {
     if (verbQueryDlg == 0) {
-      kdError() << "verbQueryDlg == 0\n";
+      kError() << "verbQueryDlg == 0\n";
       slotStopQuery(true);
       return;
     }
@@ -505,7 +505,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   }
   else if (queryType == QT_Articles) {
     if (artQueryDlg == 0) {
-      kdError() << "artQueryDlg == 0\n";
+      kError() << "artQueryDlg == 0\n";
       slotStopQuery(true);
       return;
     }
@@ -522,7 +522,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   }
   else if (queryType == QT_Comparison) {
     if (adjQueryDlg == 0) {
-      kdError() << "adjQueryDlg == 0\n";
+      kError() << "adjQueryDlg == 0\n";
       slotStopQuery(true);
       return;
     }
@@ -538,7 +538,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     adjQueryDlg->initFocus();
   }
   else {
-    kdError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    kError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -666,7 +666,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
       mcQueryDlg->show();
   }
   else {
-    kdError() << "kvoctrainApp::slotStartQuery: unknown type\n";
+    kError() << "kvoctrainApp::slotStartQuery: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -796,7 +796,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
           }
           break;
         default:
-          kdError() << "You should not be able to answer correctly more than 4 times\n";
+          kError() << "You should not be able to answer correctly more than 4 times\n";
           slotStopQuery(true);
           return;
         }
@@ -847,7 +847,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     break;
 
     default :
-      kdError() << "unknown result from QueryDlg\n";
+      kError() << "unknown result from QueryDlg\n";
       slotStopQuery(true);
       return;
   }
@@ -917,7 +917,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kdError() << "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
+    kError() << "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -959,7 +959,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   if (queryType == QT_Random) {
     if (randomQueryDlg == 0) {
-      kdError() << "randomQueryDlg == 0\n";
+      kError() << "randomQueryDlg == 0\n";
       slotStopQuery(true);
       return;
     }
@@ -977,7 +977,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
   else if (queryType == QT_Multiple) {
     if (mcQueryDlg == 0) {
-      kdError() << "mcQueryDlg == 0\n";
+      kError() << "mcQueryDlg == 0\n";
       slotStopQuery(true);
       return;
     }

@@ -382,7 +382,7 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-      kdError() << "kvoctrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
+      kError() << "kvoctrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
   }
 }
 
@@ -406,12 +406,12 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
   }
 
   if (header1 >= (int) doc->numIdentifiers()) {
-    kdError() << "header1 >= (int) doc->numIdentifiers()\n";
+    kError() << "header1 >= (int) doc->numIdentifiers()\n";
     return;
   }
 
   if (header2 >= (int) doc->numIdentifiers()) {
-    kdError() << "header2 >= (int) doc->numIdentifiers()\n";
+    kError() << "header2 >= (int) doc->numIdentifiers()\n";
     return;
   }
 
@@ -559,7 +559,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-       kdError() << "kvoctrainApp::slotHeaderCallBack: got unknown command\n";
+       kError() << "kvoctrainApp::slotHeaderCallBack: got unknown command\n";
 
   }
   slotStatusMsg(IDS_DEFAULT);

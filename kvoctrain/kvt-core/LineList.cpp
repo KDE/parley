@@ -74,7 +74,7 @@ QString LineList::getLine (int index) const
    if (index < (int) multilines.size())
      return multilines[index];
    else {
-     kdError() << "LineList::getLine: index too big";
+     kError() << "LineList::getLine: index too big";
      return "";
    }
 }

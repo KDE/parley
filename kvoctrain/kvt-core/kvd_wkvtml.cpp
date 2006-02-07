@@ -728,7 +728,7 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       QString ls;
       int lm = (*first).getLesson();
       if (lm > (int) lesson_descr.size() ) { // should not be
-        kdError() << "index of lesson member too high: " << lm << endl;
+        kError() << "index of lesson member too high: " << lm << endl;
         lm = 0;
       }
       ls.setNum (lm);
