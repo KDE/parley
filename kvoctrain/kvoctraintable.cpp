@@ -95,7 +95,7 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
           if (!KApplication::dcopClient()->call("kxkb", "kxkb",
                "setLayout(QString)",
                data, replyType, replyData)) {
-                 kDebug() << "kskb dcop error" << endl;
+                 //kDebug() << "kskb dcop error" << endl;
                }
         }
       }

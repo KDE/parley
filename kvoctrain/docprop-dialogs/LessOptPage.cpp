@@ -181,7 +181,7 @@ void LessOptPage::getLesson (QComboBox *ret_lesson, QList<int> &ret_Index)
 
 void LessOptPage::slotCleanup()
 {
-  vector<bool> used_lesson;
+  QVector<bool> used_lesson;
   for (int i = 0; i < (int) lessonList->count(); i++)
     used_lesson.push_back(false);
 
@@ -215,7 +215,7 @@ void LessOptPage::cleanUnused (KEduVocDocument *doc,
                                int old_lessons,
                                QList<int> &lessons_in_query)
 {
-  vector<int> translate_index;
+  QList<int> translate_index;
 
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each

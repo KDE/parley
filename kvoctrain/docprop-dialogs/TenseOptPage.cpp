@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun May 28 12:14:31 2000
+    begin         : Sun May 28 12:14:31 2000
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -188,7 +188,7 @@ void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
 
 void TenseOptPage::slotCleanup()
 {
-  vector<bool> used_tense;
+  QVector<bool> used_tense;
   for (int i = 0; i <= (int) tenseList->count(); i++)
     used_tense.push_back(false);
 
@@ -226,8 +226,8 @@ void TenseOptPage::slotCleanup()
 
 void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses)
 {
-  vector<int> translate_index;
-  vector<QString> new_tenseStr;
+  QList<int> translate_index;
+  QStringList new_tenseStr;
 
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each

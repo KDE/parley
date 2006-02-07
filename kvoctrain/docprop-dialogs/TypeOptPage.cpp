@@ -181,7 +181,7 @@ void TypeOptPage::getTypeNames (QStringList &ret_type, QList<int> &ret_Index)
 
 void TypeOptPage::slotCleanup()
 {
-  vector<bool> used_type;
+  QVector<bool> used_type;
   for (int i = 0; i <= (int) typeList->count(); i++)
     used_type.push_back(false);
 
@@ -216,8 +216,8 @@ void TypeOptPage::slotCleanup()
 
 void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex, int old_types)
 {
-  vector<int> translate_index;
-  vector<QString> new_typeStr;
+  QList<int> translate_index;
+  QList<QString> new_typeStr;
 
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each

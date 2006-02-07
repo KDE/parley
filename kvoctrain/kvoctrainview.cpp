@@ -360,7 +360,6 @@ void kvoctrainView::print(KPrinter * pPrinter)
       pPrinter->newPage();
       tPos = marg + hh;
       c++;
-      kDebug() << c <<endl;
     }
   }
   painter.end();

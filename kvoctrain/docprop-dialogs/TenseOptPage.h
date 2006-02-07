@@ -26,11 +26,7 @@
 #ifndef TenseOptPage_included
 #define TenseOptPage_included
 
-#include <vector>
-
 #include "TenseOptPageForm.h"
-
-using namespace std;
 
 class KEduVocDocument;
 

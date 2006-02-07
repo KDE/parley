@@ -26,12 +26,8 @@
 #ifndef UsageOptPage_included
 #define UsageOptPage_included
 
-#include <vector>
-
 #include "UsageOptPageForm.h"
 #include <UsageManager.h>
-
-using namespace std;
 
 class KEduVocDocument;
 

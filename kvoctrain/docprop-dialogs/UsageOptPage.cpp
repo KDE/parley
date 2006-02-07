@@ -189,7 +189,7 @@ void UsageOptPage::getUsageLabels(QStringList &ret_usage, QList<int> &ret_Index)
 
 void UsageOptPage::slotCleanup()
 {
-  vector<bool> used_usage;
+  QVector<bool> used_usage;
   for (int i = 0; i <= (int) usageList->count(); i++)
     used_usage.push_back(false);
 

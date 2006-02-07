@@ -26,14 +26,9 @@
 #ifndef TypeOptPage_included
 #define TypeOptPage_included
 
-#include <vector>
-
 #include "TypeOptPageForm.h"
 
-using namespace std;
-
 class KEduVocDocument;
-class Q3StrList;
 
 class TypeOptPage : public QWidget, public Ui::TypeOptPageForm
 {

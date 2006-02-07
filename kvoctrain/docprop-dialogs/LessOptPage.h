@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Jun 3 22:03:50 1999
+    begin         : Thu Jun 3 22:03:50 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,11 +26,7 @@
 #ifndef LessOptPage_included
 #define LessOptPage_included
 
-#include <vector>
-
 #include "LessOptPageForm.h"
-
-using namespace std;
 
 class KEduVocDocument;
 class QComboBox;

@@ -26,8 +26,6 @@
 #ifndef DocPropsDlg_included
 #define DocPropsDlg_included
 
-#include <vector>
-
 #include <kdialogbase.h>
 
 #include "DocOptionsPage.h"
@@ -36,8 +34,6 @@
 #include "TenseOptPage.h"
 #include "UsageOptPage.h"
 #include "TitlePage.h"
-
-using namespace std;
 
 class KEduVocDocument;
 class LangPropPage;

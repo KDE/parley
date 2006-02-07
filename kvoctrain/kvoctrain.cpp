@@ -979,7 +979,6 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 
 void kvoctrainApp::slotApplyPreferences()
 {
-  kDebug() << "Prefs Update" << endl;
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
   view->getTable()->setFont(Prefs::tableFont());
