@@ -228,7 +228,7 @@ bool PasteOptions::hasChanged()
 
 bool PasteOptions::isDefault()
 {
-  return separator_id[SeparatorCombo->currentItem()] == "\t";
+  return !strcmp(separator_id[SeparatorCombo->currentItem()], "\t");
 }
 
 void PasteOptions::updateSettings()
