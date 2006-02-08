@@ -256,10 +256,10 @@
         <property name="whatsThis" >
          <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
         </property>
-        <property name="minValue" >
+        <property name="minimum" >
          <number>2</number>
         </property>
-        <property name="maxValue" >
+        <property name="maximum" >
          <number>10</number>
         </property>
        </widget>
@@ -416,10 +416,10 @@
           <property name="whatsThis" >
            <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
           </property>
-          <property name="minValue" >
+          <property name="minimum" >
            <number>0</number>
           </property>
-          <property name="maxValue" >
+          <property name="maximum" >
            <number>604800</number>
           </property>
          </widget>
