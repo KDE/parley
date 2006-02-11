@@ -397,9 +397,9 @@ void kvoctrainApp::slotFileMerge()
       doc->setModified();
     }
     else { // hard way: move entries around, most attributes get lost
-      vector<int> move_matrix;
+      QList<int> move_matrix;
+      QList<bool> cs_equal;
 
-      vector <bool> cs_equal;
       for (int i = 0; i < QMAX (doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
         cs_equal.push_back (false);
 

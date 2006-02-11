@@ -62,7 +62,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
   header -= KV_EXTRA_COLS; // adjust doc == header button
 
-  vector<QString> names;
+  QList<QString> names;
   QString curr_lang;
   QString id = header == 0 ? doc->originalIdentifier() : doc->identifier(header);
 

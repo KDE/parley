@@ -855,7 +855,7 @@ void kvoctrainApp::slotChooseLesson(int idx)
 
 void kvoctrainApp::slotCreateLesson(int header)
 {
-  vector <int> sel;
+  QList<int> sel;
   doc->setModified();
   for (int i = 0; i < view->getTable()->count(); i++) {
     KEduVocExpression *kv = view->getTable()->getRow(i);
@@ -922,7 +922,7 @@ void kvoctrainApp::slotCreateRandom()
    slotStatusMsg(i18n("Creating random lessons..."));
    QApplication::setOverrideCursor( Qt::WaitCursor );
 
-   vector<KEduVocExpression*> randomList;
+   QList<KEduVocExpression*> randomList;
    for (int i = 0; i < doc->numEntries(); i++) {
      KEduVocExpression *expr = doc->entry(i);
      if (expr->lesson() == 0)
@@ -1098,7 +1098,7 @@ void kvoctrainApp::aboutToShowLearn()
 {
   learn_menu->clear();
 
-  vector<QString> set_names;
+  QList<QString> set_names;
   for (int i = 0; i < (int) langset.size(); i++) {
     if(langset.longId(i).isEmpty() )
       set_names.push_back(langset.shortId(i));
@@ -1106,7 +1106,7 @@ void kvoctrainApp::aboutToShowLearn()
       set_names.push_back(langset.longId(i));
   }
 
-  vector<QString> main_names;
+  QList<QString> main_names;
   for (int j = 0; j < (int) doc->numIdentifiers(); j++) {
    int i;
    QString did = j == 0 ? doc->originalIdentifier() : doc->identifier(j);

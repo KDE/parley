@@ -224,7 +224,7 @@ public:
   void fillLessonBox(KEduVocDocument *);
   void loadDocProps(KEduVocDocument *);
   void saveDocProps(KEduVocDocument *);
-  static vector<int> getCsvOrder(KEduVocDocument *);
+  QList<int> getCsvOrder(KEduVocDocument *);
 
 private:
   // KAction pointers to enable/disable actions
@@ -288,9 +288,9 @@ private:
   QList<QueryEntryRef> random_expr2;
   // Vectors for use in Leitner style learning. There is no
   // correct_0_times, we simply reuse random_expr1.
-  vector<QueryEntryRef> correct_1_times;
-  vector<QueryEntryRef> correct_2_times;
-  vector<QueryEntryRef> correct_3_times;
+  QList<QueryEntryRef> correct_1_times;
+  QList<QueryEntryRef> correct_2_times;
+  QList<QueryEntryRef> correct_3_times;
   QuerySelection queryList;
   //KNewStuff       *m_GHNS;
   QTimer          *btimer;
