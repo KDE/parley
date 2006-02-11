@@ -183,8 +183,8 @@ public:
   void setModified(bool mod);
   void setEnabled(int);
 
-  void setCell(int row, int col, const vector<Q3TableSelection>& sel);
-  void getCell(int &row, int &col, vector<Q3TableSelection>& sel) const;
+  void setCell(int row, int col, const QList<Q3TableSelection>& sel);
+  void getCell(int &row, int &col, QList<Q3TableSelection>& sel) const;
 
 signals:
   void sigEditChoice(int);
@@ -213,7 +213,7 @@ protected:
   int               edit_row, edit_col;
   QTabWidget       *tabber;
 
-  vector<Q3TableSelection> selections;
+  QList<Q3TableSelection> selections;
   KMainWindow     *mainwin;
   QSize            oldMainSize;
   QPoint           oldMainPos;

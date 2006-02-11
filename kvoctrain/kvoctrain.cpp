@@ -163,7 +163,7 @@ void kvoctrainApp::slotEditCallBack(int res)
 
     case EntryDlg::EditUndo:
       int row, col;
-      vector<Q3TableSelection> tabsel;
+      QList<Q3TableSelection> tabsel;
       entryDlg->getCell(row, col, tabsel);
       setDataEntryDlg(row, col);
     break;
@@ -190,7 +190,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
    }
 
    int row, col;
-   vector<Q3TableSelection> tabsel;
+   QList<Q3TableSelection> tabsel;
    entryDlg->getCell(row, col, tabsel);
    int hasSel = tabsel.size() > 1;
    if (tabsel.size() == 1)
@@ -427,7 +427,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
    else
      entryDlg->setEnabled(EntryDlg::EnableAll);
 
-   vector<Q3TableSelection> tabsel;
+   QList<Q3TableSelection> tabsel;
    entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
    entryDlg->show();
 }
@@ -574,7 +574,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
    }
    view->getTable()->updateCell(row, col);
    view->getTable()->updateCell(row, KV_COL_LESS);
-   vector<Q3TableSelection> tabsel;
+   QList<Q3TableSelection> tabsel;
    if (hasSel) {
      for (int i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));

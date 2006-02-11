@@ -381,7 +381,7 @@ void EntryDlg::slotDisplayModified()
 }
 
 
-void EntryDlg::setCell(int row, int col, const vector<Q3TableSelection>& sel)
+void EntryDlg::setCell(int row, int col, const QList<Q3TableSelection>& sel)
 {
   edit_row = row;
   edit_col = col;
@@ -389,7 +389,7 @@ void EntryDlg::setCell(int row, int col, const vector<Q3TableSelection>& sel)
 }
 
 
-void EntryDlg::getCell(int &row, int &col, vector<Q3TableSelection>& sel) const
+void EntryDlg::getCell(int &row, int &col, QList<Q3TableSelection>& sel) const
 {
   row = edit_row;
   col = edit_col;
