@@ -28,9 +28,7 @@
 #define LineList_h
 
 #include <QString>
-
-#include <vector>
-using namespace std;
+#include <QStringList>
 
 class LineList {
  public:
@@ -43,7 +41,7 @@ class LineList {
   QString allLines() const;
 
  protected:
-   vector<QString>  multilines;
+  QStringList  multilines;
 };
 
 #endif // LineList_h

@@ -27,62 +27,59 @@
 #ifndef langset_h
 #define langset_h
 
-#include <vector>
-using namespace std;
-
 #include <QString>
+#include <QList>
 
 class LangSet
 {
- public:
+public:
+  LangSet () {}
 
-   LangSet () {}
-
-   void addSet (QString shortId, QString longId, QString PixMapFile,
-		const QString& shortId2 = QString(),
-		const QString& keyboardLayout = QString());
+  void addSet (QString shortId, QString longId, QString PixMapFile,
+  const QString& shortId2 = QString(),
+  const QString& keyboardLayout = QString());
 
 /*    void addSet (QString shortId, QString shortId2, QString longId, */
 /* 		QString PixMapFile,  */
 /* 		const QString& keyboardLayout = QString()); */
 
-   void appendSet(const LangSet &set);
+  void appendSet(const LangSet &set);
 
-   unsigned int size () const { return langs.size(); }
-   void erase (int idx);
-   void clear ();
+  unsigned int size () const { return langs.size(); }
+  void erase (int idx);
+  void clear ();
 
-   QString shortId (int index) const;
-   QString shortId2 (int index) const;
-   QString longId (int index) const;
-   QString PixMapFile (int index) const;
-   QString keyboardLayout (int index) const;
+  QString shortId (int index) const;
+  QString shortId2 (int index) const;
+  QString longId (int index) const;
+  QString PixMapFile (int index) const;
+  QString keyboardLayout (int index) const;
 
-   int indexShortId (QString shortId) const;
-   int indexLongId (QString longId) const;
-   int indexPixMapFile (QString PixMapFile) const;
-   // doesn't make sense for keyboard layouts since there is no 1-to-1 relation to languages
+  int indexShortId (QString shortId) const;
+  int indexLongId (QString longId) const;
+  int indexPixMapFile (QString PixMapFile) const;
+  // doesn't make sense for keyboard layouts since there is no 1-to-1 relation to languages
 
-   void setShortId (const QString & shortId, int index);
-   void setShortId2 (const QString & shortId2, int index);
-   void setLongId (const QString & longId, int index);
-   void setPixMapFile (const QString & PixMapFile, int index);
-   void setKeyboardLayout(const QString & layout, int index);
+  void setShortId (const QString & shortId, int index);
+  void setShortId2 (const QString & shortId2, int index);
+  void setLongId (const QString & longId, int index);
+  void setPixMapFile (const QString & PixMapFile, int index);
+  void setKeyboardLayout(const QString & layout, int index);
 
-   QString findShortId (const QString & longId)  const;
-   QString findLongId  (const QString & shortId) const;
+  QString findShortId (const QString & longId)  const;
+  QString findLongId  (const QString & shortId) const;
 
- private:
+private:
 
-   struct LangDef {
-     QString shortId,
-             shortId2,
-             longId,
-       PixMapFile,
-       keyboardLayout;
-   };
+  struct LangDef {
+    QString shortId,
+            shortId2,
+            longId,
+            PixMapFile,
+            keyboardLayout;
+  };
 
-   vector<LangDef> langs;
+  QList<LangDef> langs;
 };
 
 
