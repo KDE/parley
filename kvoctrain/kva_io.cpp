@@ -192,28 +192,26 @@ void kvoctrainApp::slotFileOpen()
 
 void kvoctrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
 {
-    if (!url.path().isEmpty())
-    {
-      view->setView(0, langset);
-      delete doc;
-      doc = 0;
+  if (!url.path().isEmpty())
+  {
+    view->setView(0, langset);
+    delete doc;
+    doc = 0;
 
-      QString format = i18n("Loading %1");
-      QString msg = format.arg(url.path());
-
-      slotStatusMsg(msg);
-      prepareProgressBar();
-      doc = new KEduVocDocument(this);
-      removeProgressBar();
-      loadDocProps(doc);
-      view->setView(doc, langset);
-      view->getTable()->setFont(Prefs::tableFont());
-      view->adjustContent();
-      if (addRecent)
-        fileOpenRecent->addURL(url) /*addRecentFile (url.path())*/;
-      connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-      doc->setModified(false);
-    }
+    slotStatusMsg(i18n("Loading %1").arg(url.path()));
+    prepareProgressBar();
+    doc = new KEduVocDocument(this);
+    doc->open(url, false);
+    removeProgressBar();
+    loadDocProps(doc);
+    view->setView(doc, langset);
+    view->getTable()->setFont(Prefs::tableFont());
+    view->adjustContent();
+    if (addRecent)
+      fileOpenRecent->addURL(url);
+    connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    doc->setModified(false);
+  }
 }
 
 void kvoctrainApp::slotFileOpenExample()
