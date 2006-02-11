@@ -63,11 +63,12 @@ protected:
 
   int calc_width (struct StatistikPage::stat_counter *gc, int grade, int max_width);
 
-  vector<QPixmap>  from_pix, to_pix;
+  QList<QPixmap>  from_pix;
+  QList<QPixmap> to_pix;
   KEduVocDocument    *doc;
 
-  vector<stat_counter>  fsc;
-  vector<stat_counter>  tsc;
+  QVector<stat_counter>  fsc;
+  QVector<stat_counter>  tsc;
   //GradeCols            *gcol;
 };
 
