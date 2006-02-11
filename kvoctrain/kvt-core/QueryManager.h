@@ -94,10 +94,8 @@ class TypeRelation
 
 
 struct QueryEntryRef {
- QueryEntryRef (KEduVocExpression *_exp,
-                int            _nr)
+ QueryEntryRef (KEduVocExpression *_exp, int _nr)
      : exp(_exp), nr(_nr) {}
-
 
    KEduVocExpression *exp;
    int            nr;
@@ -124,9 +122,6 @@ enum CompType { DontCare,
 
   QueryManager ();
 
-  //void loadConfig (KConfig *);
-  //void saveConfig (KConfig *);
-
   static QList<TypeRelation> getRelation (bool only_maintypes);
   static void setTypeNames (QStringList names);
   static QString getSubType (const QString & type);
@@ -138,37 +133,9 @@ enum CompType { DontCare,
 
   void setLessonItems(QList<int> indices) { lessonitems = indices; }
   void setLessonItemStr(const QString & indices);
-  //void setDateItem (time_t time) { dateitem = time; }
-  //void setQueryItem (int query) { queryitem = query; }
-  //void setBadItem (int bad) { baditem = bad; }
-  //void setTypeItem (const QString & type) { typeitem = type; }
-  //void setGradeItem (grade_t grade) { gradeitem = grade; }
-  //void setBlockItem (int item, int grade);
-  //void setExpireItem (int item, int grade);
 
   QList<int> lessonItems() const { return lessonitems; }
   QString lessonItemStr() const;
-  //time_t dateItem () const { return dateitem; }
-  //int queryItem () const { return queryitem; }
-  //int badItem () const { return baditem; }
-  //QString typeItem () const { return typeitem; }
-  //grade_t gradeItem () const { return gradeitem; }
-  //int blockItem (int grade) const;
-  //int expireItem (int grade) const;
-
-  //void setDateComp (CompType time) { datecomp = time; }
-  //void setLessonComp (CompType less) { lessoncomp = less; }
-  //void setQueryComp (CompType query) { querycomp = query; }
-  //void setBadComp (CompType bad) { badcomp = bad; }
-  //void setTypeComp (CompType type) { typecomp = type; }
-  //void setGradeComp (CompType grade) { gradecomp = grade; }
-
-  //CompType dateComp () const { return datecomp; }
-  //CompType lessonComp () const { return lessoncomp; }
-  //CompType queryComp () const { return querycomp; }
-  //CompType badComp () const { return badcomp; }
-  //CompType typeComp () const { return typecomp; }
-  //CompType gradeComp () const { return gradecomp; }
 
   bool validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex);
 
@@ -192,22 +159,7 @@ protected:
   bool compareType (CompType, const QString &, const QString &);
   bool compareLesson (CompType type, int less, const QList<int> &limit, int current);
 
- /* CompType    typecomp,
-              querycomp,
-              badcomp,
-              gradecomp,
-              lessoncomp,
-              datecomp;*/
-
-  //time_t      dateitem;
-  //int         queryitem,
-  //            baditem;
-  //QString     typeitem;
-  //grade_t     gradeitem;
   QList<int> lessonitems;
-
-  //vector<int> blockItems,
-  //            expireItems;
 
 private:
   static QStringList userTypes;
