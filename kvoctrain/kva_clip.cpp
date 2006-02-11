@@ -24,7 +24,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <algorithm>
+//#include <algorithm>
 
 #include <QClipboard>
 
@@ -33,8 +33,6 @@
 
 #include "prefs.h"
 #include "kvoctrain.h"
-
-using namespace std;
 
 void kvoctrainApp::slotSmartSearchClip()
 {
@@ -92,7 +90,7 @@ QList<int> kvoctrainApp::getCsvOrder(KEduVocDocument *doc)
 */
   // append indices from doc if no order given
   for (int i = 0; i < doc->numIdentifiers(); i++)
-    if (::find (csv_order.begin(), csv_order.end(), i) == csv_order.end())
+    if (qFind (csv_order.begin(), csv_order.end(), i) == csv_order.end())
        csv_order.push_back(i);
 /*
   if (csv_order.size() > doc->numIdentifiers() )
