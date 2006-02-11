@@ -26,10 +26,6 @@
 #include <klocale.h>
 #include <kconfig.h>
 
-#include <iostream>
-#include <vector>
-using namespace std;
-
 #include <keduvocexpression.h>
 
 #include "QueryManager.h"
@@ -396,9 +392,9 @@ QString QueryManager::gradeStr (int i)
 }
 
 
-vector<TypeRelation> QueryManager::getRelation (bool only_maintypes)
+QList<TypeRelation> QueryManager::getRelation (bool only_maintypes)
 {
-  vector<TypeRelation> vec;
+  QList<TypeRelation> vec;
   for (int i = 0; i < (int) userTypes.size(); i++) {
     QString s;
     s.setNum(i+1);

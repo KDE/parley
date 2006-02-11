@@ -550,7 +550,7 @@ void kvoctrainApp::loadDocProps(KEduVocDocument *the_doc)
       {
          int less = entry->lesson();
          for (int l = (int) queryList.size(); l <= less; l++) {
-            vector<QueryEntryRef> ref_vec;
+            QList<QueryEntryRef> ref_vec;
             queryList.push_back(ref_vec);
          }
          QueryEntryRef ref(entry, i);

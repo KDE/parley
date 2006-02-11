@@ -6,7 +6,7 @@
 
     begin                : Tue Apr 5 2005
 
-    copyright            :(C) 2005 Peter Hedlund
+    copyright            :(C) 2005-2006 Peter Hedlund
 
     email                : peter.hedlund@kdemail.net
 
@@ -63,7 +63,7 @@ private:
 
   KComboBox * m_lessons;
   QueryManager * m_queryManager;
-  vector<TypeRelation> all_maintypes;
+  QList<TypeRelation> all_maintypes;
 };
 
 #endif

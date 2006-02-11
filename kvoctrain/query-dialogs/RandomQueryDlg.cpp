@@ -572,7 +572,7 @@ void RandomQueryDlg::setHintFields()
    mw->c_falsefriend->setEnabled(!s.isEmpty() );
 
    s = "";
-   vector<TypeRelation> all_types = QueryManager::getRelation(false);
+   QList<TypeRelation> all_types = QueryManager::getRelation(false);
    for (int i = 0; i < (int) all_types.size(); i++) {
      if ( exp->type(q_ocol) == all_types[i].shortStr()) {
        s = all_types[i].longStr();

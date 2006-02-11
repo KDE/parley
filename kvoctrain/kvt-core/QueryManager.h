@@ -26,8 +26,7 @@
 #ifndef QueryManager_included
 #define QueryManager_included
 
-#include <vector>
-using namespace std;
+#include <QVector>
 
 #include <keduvocdocument.h>
 #include "prefs.h"
@@ -104,7 +103,7 @@ struct QueryEntryRef {
    int            nr;
 };
 
-typedef vector<vector<QueryEntryRef> > QuerySelection;
+typedef QVector<QList<QueryEntryRef> > QuerySelection;
 
 class QueryManager
 {
@@ -128,7 +127,7 @@ enum CompType { DontCare,
   //void loadConfig (KConfig *);
   //void saveConfig (KConfig *);
 
-  static vector<TypeRelation> getRelation (bool only_maintypes);
+  static QList<TypeRelation> getRelation (bool only_maintypes);
   static void setTypeNames (QStringList names);
   static QString getSubType (const QString & type);
   static QString getMainType (const QString & type);

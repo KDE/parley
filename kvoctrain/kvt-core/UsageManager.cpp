@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Fri Mar 31 20:50:53 MET 1999
+    begin          : Fri Mar 31 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
-                           (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -27,11 +27,6 @@
 #include "UsageManager.h"
 
 #include <klocale.h>
-
-
-#include <iostream>
-#include <vector>
-using namespace std;
 
 QStringList UsageManager::userUsages;
 
@@ -108,9 +103,9 @@ UsageManager::UsageManager ()
 }
 
 
-vector<UsageRelation> UsageManager::getRelation ()
+QList<UsageRelation> UsageManager::getRelation ()
 {
-  vector<UsageRelation> vec;
+  QList<UsageRelation> vec;
   for (int i = 0; i < (int) userUsages.size(); i++) {
     QString s;
     s.setNum(i+1);
@@ -125,9 +120,7 @@ vector<UsageRelation> UsageManager::getRelation ()
       s = i18n(usage->shortid);
     else
       s = i18n(usage->context, usage->shortid);
-    vec.push_back(UsageRelation(usage->ident,
-                                s,
-                                i18n(usage->longId)));
+    vec.push_back(UsageRelation(usage->ident, s, i18n(usage->longId)));
     usage++;
   }
 

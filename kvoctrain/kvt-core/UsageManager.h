@@ -26,14 +26,7 @@
 #ifndef UsageManager_included
 #define UsageManager_included
 
-#include <vector>
-using namespace std;
-
 #include <keduvocdocument.h>
-
-class KEduVocDocument;
-class KConfig;
-class KEduVocExpression;
 
 // internal usage labels, never change !
 
@@ -114,7 +107,7 @@ public:
   UsageManager ();
 
   static bool contains (const QString& label, const QString& collection);
-  static vector<UsageRelation> getRelation ();
+  static QList<UsageRelation> getRelation ();
   static void setUsageNames (QStringList names);
 
 private:

@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -284,10 +284,13 @@ private:
 
   friend class kvoctrainView;
 
-  vector<QueryEntryRef> random_expr1, random_expr2;
+  QList<QueryEntryRef> random_expr1;
+  QList<QueryEntryRef> random_expr2;
   // Vectors for use in Leitner style learning. There is no
   // correct_0_times, we simply reuse random_expr1.
-  vector<QueryEntryRef> correct_1_times, correct_2_times, correct_3_times;
+  vector<QueryEntryRef> correct_1_times;
+  vector<QueryEntryRef> correct_2_times;
+  vector<QueryEntryRef> correct_3_times;
   QuerySelection queryList;
   //KNewStuff       *m_GHNS;
   QTimer          *btimer;
