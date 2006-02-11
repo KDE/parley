@@ -26,11 +26,7 @@
 #ifndef StatistikDlg_included
 #define StatistikDlg_included
 
-#include <vector>
-
 #include <kdialogbase.h>
-
-using namespace std;
 
 class KEduVocDocument;
 class LangSet;
