@@ -455,7 +455,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     }
   }
   if (numEntries() == 0)
-    setQueryLang (q_org, q_trans);
+    setQueryIdentifier(q_org, q_trans);
   vocabulary.push_back (expr);
 
   return true;

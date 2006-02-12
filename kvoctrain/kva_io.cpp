@@ -539,7 +539,7 @@ void kvoctrainApp::loadDocProps(KEduVocDocument *the_doc)
   random_expr1.clear();
   random_expr2.clear();
   queryList.clear();
-  the_doc->queryLang(act_query_org, act_query_trans);
+  the_doc->queryIdentifier(act_query_org, act_query_trans);
   if (!act_query_org.isEmpty() && !act_query_trans.isEmpty() ) {
     for (int i = 0; i < the_doc->numEntries(); i++)
     {
@@ -579,7 +579,7 @@ void kvoctrainApp::loadDocProps(KEduVocDocument *the_doc)
 
 void kvoctrainApp::saveDocProps(KEduVocDocument *the_doc)
 {
-  the_doc->setQueryLang (act_query_org, act_query_trans);
+  the_doc->setQueryIdentifier(act_query_org, act_query_trans);
 }
 
 
