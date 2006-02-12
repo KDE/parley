@@ -103,7 +103,7 @@ void kvoctrainApp::saveProperties(KConfig *config )
     QString filename=doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
     saveDocProps(doc);
-    doc->saveAs(this, KURL(tempname), KEduVocDocument::automatic, "KVocTrain");
+    doc->saveAs(this, KUrl(tempname), KEduVocDocument::automatic, "KVocTrain");
   }
 }
 
@@ -123,11 +123,11 @@ void kvoctrainApp::readProperties(KConfig *config)
       pdlg = new ProgressDlg(QString(), QString(), kapp->makeStdCaption(""));
       pdlg->show();
       doc = new KEduVocDocument(this);
-      doc->setURL(KURL(tempname));
+      doc->setURL(KUrl(tempname));
       removeProgressBar();
       doc->setModified();
       doc->setTitle(title);
-      doc->setURL(KURL(filename));
+      doc->setURL(KUrl(filename));
       setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
       QFile::remove(tempname);
     }
@@ -137,7 +137,7 @@ void kvoctrainApp::readProperties(KConfig *config)
                             kapp->makeStdCaption(""));
     pdlg->show();
     doc = new KEduVocDocument(this);
-    doc->setURL(KURL(filename));
+    doc->setURL(KUrl(filename));
     removeProgressBar();
     setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
   }

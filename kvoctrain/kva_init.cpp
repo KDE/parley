@@ -280,7 +280,7 @@ void kvoctrainApp::initDoc()
 {
   if (fileOpenRecent->items().count() > 0){
     doc = new KEduVocDocument(this);
-    doc->setURL(KURL(fileOpenRecent->items()[0]));
+    doc->setURL(KUrl(fileOpenRecent->items()[0]));
   }
   else
     doc = new KEduVocDocument(this);
