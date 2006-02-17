@@ -128,7 +128,7 @@ void kvoctrainApp::readProperties(KConfig *config)
       doc->setModified();
       doc->setTitle(title);
       doc->setURL(KUrl(filename));
-      setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
       QFile::remove(tempname);
     }
   }
@@ -139,7 +139,7 @@ void kvoctrainApp::readProperties(KConfig *config)
     doc = new KEduVocDocument(this);
     doc->setURL(KUrl(filename));
     removeProgressBar();
-    setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+    setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
   }
 
   show();

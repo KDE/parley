@@ -235,7 +235,7 @@ void EntryDlg::setData(
   const QString &title,
   bool           active)
 {
-  setCaption (kapp->makeStdCaption(title));
+  setWindowTitle (kapp->makeStdCaption(title));
 
   QString s;
   if (langset.findLongId(lang).isEmpty() )

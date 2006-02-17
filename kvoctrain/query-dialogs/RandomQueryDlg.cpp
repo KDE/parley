@@ -194,7 +194,7 @@ RandomQueryDlg::RandomQueryDlg(
 
   kv_doc = 0;
   qtimer = 0;
-  //setCaption (kapp->makeStdCaption(i18n("Random Query")));
+  //setWindowTitle (kapp->makeStdCaption(i18n("Random Query")));
   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");

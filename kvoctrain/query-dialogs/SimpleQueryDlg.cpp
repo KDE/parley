@@ -114,7 +114,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      {
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the synonym:"));
-       setCaption (i18n("Synonym Training"));
+       setWindowTitle (i18n("Synonym Training"));
        answerstring = exp->synonym(column);
        mw->queryField->setAlignment(Qt::AlignVCenter);
        mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
@@ -126,7 +126,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      {
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the antonym:"));
-       setCaption (i18n("Antonym Training"));
+       setWindowTitle (i18n("Antonym Training"));
        answerstring = exp->antonym(column);
        mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
        setQueryFieldWordwrap();
@@ -137,7 +137,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      {
        mw->queryLabel->setText(i18n("Paraphrase"));
        mw->instructionLabel->setText(i18n("Enter the word:"));
-       setCaption (i18n("Paraphrase Training"));
+       setWindowTitle (i18n("Paraphrase Training"));
        mw->queryField->setText(exp->paraphrase(column));
        answerstring = column == 0 ? exp->original() : exp->translation(column);
        setQueryFieldWordwrap();
@@ -148,7 +148,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      {
        mw->queryLabel->setText(i18n("Example sentence"));
        mw->instructionLabel->setText(i18n("Fill in the missing word:"));
-       setCaption(i18n("Example Training"));
+       setWindowTitle(i18n("Example Training"));
        s = exp->example(column);
        answerstring = column == 0 ? exp->original().simplified() : exp->translation(column).simplified();
        int pos = -1;

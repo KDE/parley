@@ -658,7 +658,7 @@ void kvoctrainApp::slotDocProps ()
       doc->setModified();
       view->getTable()->updateContents();
 
-      setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
 
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
@@ -679,7 +679,7 @@ void kvoctrainApp::slotDocPropsLang ()
 
       doc->setModified();
       view->getTable()->updateContents();
-      setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
 
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -688,7 +688,7 @@ void kvoctrainApp::slotDocPropsLang ()
 
 void kvoctrainApp::slotModifiedDoc(bool /*mod*/)
 {
-  setCaption(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+  setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
   slotStatusMsg(IDS_DEFAULT);
 }
 

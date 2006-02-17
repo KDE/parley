@@ -38,7 +38,7 @@ ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const
 {
   setupUi(this);
   doc = 0;
-  setCaption(title);
+  setWindowTitle(title);
   l_title->setText(doctitle);
   l_file->setText(filename);
   progress-> setMaximum(100);
