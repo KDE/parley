@@ -1,6 +1,7 @@
 [Desktop Entry]
 Encoding=UTF-8
 Comment=Vocabulary Trainer Document
+Comment[fr]=Document de test de vocabulaire
 Comment[x-test]=xxVocabulary Trainer Documentxx
 MimeType=application/x-kvoctrain
 DefaultApp=kvoctrain
