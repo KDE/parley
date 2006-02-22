@@ -68,7 +68,7 @@ void ProfilesDialog::slotDeleteGroup()
 {
   if (mw->ps_name->count() != 0)
   {
-    int curr = mw->ps_name->currentItem();
+    int curr = mw->ps_name->currentIndex();
     mw->ps_name->removeItem(curr);
     profiles.removeAt(curr);
     if (curr >= mw->ps_name->count()-1)
@@ -91,7 +91,7 @@ void ProfilesDialog::slotNewGroup()
     profiles.append(SettingsProfile(newGroupName, "", "", ""));
     modifyProfile(profiles.count()-1);
     mw->ps_name->setCurrentItem(mw->ps_name->count()-1);
-    selectProfile(mw->ps_name->currentItem());
+    selectProfile(mw->ps_name->currentIndex());
     mw->updateButtons();
   }
 }
@@ -99,14 +99,14 @@ void ProfilesDialog::slotNewGroup()
 void ProfilesDialog::slotRecallGroup()
 {
   if (mw->ps_name->count() != 0)
-    selectProfile(mw->ps_name->currentItem());
+    selectProfile(mw->ps_name->currentIndex());
 }
 
 
 void ProfilesDialog::slotStoreGroup()
 {
   if (mw->ps_name->count() != 0)
-    modifyProfile(mw->ps_name->currentItem());
+    modifyProfile(mw->ps_name->currentIndex());
 }
 
 

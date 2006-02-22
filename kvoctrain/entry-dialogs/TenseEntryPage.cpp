@@ -241,7 +241,7 @@ void TenseEntryPage::slotThirdPCommonToggled(bool common)
 void TenseEntryPage::slotNextConj()
 {
   int j;
-  for (int i = tensebox->currentItem()+1; i < tensebox->count(); i++) {
+  for (int i = tensebox->currentIndex()+1; i < tensebox->count(); i++) {
 
     for (j = 0; j < conjugations.numEntries(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
@@ -252,7 +252,7 @@ void TenseEntryPage::slotNextConj()
     }
   }
 
-  for (int i = 0; i < tensebox->currentItem()-1; i++) {
+  for (int i = 0; i < tensebox->currentIndex()-1; i++) {
     for (j = 0; j < conjugations.numEntries(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
         tensebox->setCurrentItem (i);

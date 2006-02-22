@@ -243,9 +243,9 @@ void BlockOptions::checkValidity()
       /*if(Prefs::blockItem(i-1) != 0  &&
         Prefs::blockItem(i) != 0 &&
         Prefs::blockItem(i-1) >= Prefs::blockItem(i))*/
-      if (date_itemlist[m_blockComboList[i - 1]->currentItem()].num != 0 &&
-          date_itemlist[m_blockComboList[i]->currentItem()].num != 0 &&
-          date_itemlist[m_blockComboList[i - 1]->currentItem()].num >= date_itemlist[m_blockComboList[i]->currentItem()].num)
+      if (date_itemlist[m_blockComboList[i - 1]->currentIndex()].num != 0 &&
+          date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
+          date_itemlist[m_blockComboList[i - 1]->currentIndex()].num >= date_itemlist[m_blockComboList[i]->currentIndex()].num)
       {
         QString format;
         if (!found)
@@ -261,10 +261,10 @@ void BlockOptions::checkValidity()
     found = false;
     if (kcfg_Expire->isChecked())
     {
-      if (date_itemlist[m_expireComboList[i - 1]->currentItem()].num != 0 &&
-          date_itemlist[m_expireComboList[i]->currentItem()].num != 0 &&
-          date_itemlist[m_expireComboList[i - 1]->currentItem()].num >=
-            date_itemlist[m_expireComboList[i]->currentItem()].num)
+      if (date_itemlist[m_expireComboList[i - 1]->currentIndex()].num != 0 &&
+          date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
+          date_itemlist[m_expireComboList[i - 1]->currentIndex()].num >=
+            date_itemlist[m_expireComboList[i]->currentIndex()].num)
       {
         QString format;
         if (!found)
@@ -282,9 +282,9 @@ void BlockOptions::checkValidity()
     {
       if (kcfg_Block->isChecked() &&
           kcfg_Expire->isChecked() &&
-          date_itemlist[m_expireComboList[i]->currentItem()].num != 0 &&
-          date_itemlist[m_blockComboList[i]->currentItem()].num != 0 &&
-          date_itemlist[m_blockComboList[i]->currentItem()].num >= date_itemlist[m_expireComboList[i]->currentItem()].num)
+          date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
+          date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
+          date_itemlist[m_blockComboList[i]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num)
       {
         QString format;
         if (!found)
@@ -302,58 +302,58 @@ void BlockOptions::checkValidity()
 
 bool BlockOptions::isDefault()
 {
-  return date_itemlist[block7->currentItem()].num == 5184000 &&
-         date_itemlist[block6->currentItem()].num == 2592000 &&
-         date_itemlist[block5->currentItem()].num == 1209600 &&
-         date_itemlist[block4->currentItem()].num == 604800 &&
-         date_itemlist[block3->currentItem()].num == 345600 &&
-         date_itemlist[block2->currentItem()].num == 172800 &&
-         date_itemlist[block1->currentItem()].num == 86400 &&
-         date_itemlist[expire7->currentItem()].num == 10368000 &&
-         date_itemlist[expire6->currentItem()].num == 5184000 &&
-         date_itemlist[expire5->currentItem()].num == 2592000 &&
-         date_itemlist[expire4->currentItem()].num == 1209600 &&
-         date_itemlist[expire3->currentItem()].num == 604800 &&
-         date_itemlist[expire2->currentItem()].num == 345600 &&
-         date_itemlist[expire1->currentItem()].num == 172800;
+  return date_itemlist[block7->currentIndex()].num == 5184000 &&
+         date_itemlist[block6->currentIndex()].num == 2592000 &&
+         date_itemlist[block5->currentIndex()].num == 1209600 &&
+         date_itemlist[block4->currentIndex()].num == 604800 &&
+         date_itemlist[block3->currentIndex()].num == 345600 &&
+         date_itemlist[block2->currentIndex()].num == 172800 &&
+         date_itemlist[block1->currentIndex()].num == 86400 &&
+         date_itemlist[expire7->currentIndex()].num == 10368000 &&
+         date_itemlist[expire6->currentIndex()].num == 5184000 &&
+         date_itemlist[expire5->currentIndex()].num == 2592000 &&
+         date_itemlist[expire4->currentIndex()].num == 1209600 &&
+         date_itemlist[expire3->currentIndex()].num == 604800 &&
+         date_itemlist[expire2->currentIndex()].num == 345600 &&
+         date_itemlist[expire1->currentIndex()].num == 172800;
 }
 
 
 void BlockOptions::updateSettings()
 {
-  Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[block7->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[block6->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[block5->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[block4->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[block3->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[block2->currentItem()].num);
-  Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[block1->currentItem()].num);
+  Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[block7->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[block6->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[block5->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[block4->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[block3->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[block2->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[block1->currentIndex()].num);
 
-  Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[expire7->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[expire6->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[expire5->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[expire4->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[expire3->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[expire2->currentItem()].num);
-  Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[expire1->currentItem()].num);
+  Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[expire7->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[expire6->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[expire5->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[expire4->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[expire3->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[expire2->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[expire1->currentIndex()].num);
 }
 
 bool BlockOptions::hasChanged()
 {
-  return date_itemlist[block7->currentItem()].num != Prefs::blockItem(KV_LEV7_GRADE) ||
-         date_itemlist[block6->currentItem()].num != Prefs::blockItem(KV_LEV6_GRADE) ||
-         date_itemlist[block5->currentItem()].num != Prefs::blockItem(KV_LEV5_GRADE) ||
-         date_itemlist[block4->currentItem()].num != Prefs::blockItem(KV_LEV4_GRADE) ||
-         date_itemlist[block3->currentItem()].num != Prefs::blockItem(KV_LEV3_GRADE) ||
-         date_itemlist[block2->currentItem()].num != Prefs::blockItem(KV_LEV2_GRADE) ||
-         date_itemlist[block1->currentItem()].num != Prefs::blockItem(KV_LEV1_GRADE) ||
-         date_itemlist[expire7->currentItem()].num != Prefs::expireItem(KV_LEV7_GRADE) ||
-         date_itemlist[expire6->currentItem()].num != Prefs::expireItem(KV_LEV6_GRADE) ||
-         date_itemlist[expire5->currentItem()].num != Prefs::expireItem(KV_LEV5_GRADE) ||
-         date_itemlist[expire4->currentItem()].num != Prefs::expireItem(KV_LEV4_GRADE) ||
-         date_itemlist[expire3->currentItem()].num != Prefs::expireItem(KV_LEV3_GRADE) ||
-         date_itemlist[expire2->currentItem()].num != Prefs::expireItem(KV_LEV2_GRADE) ||
-         date_itemlist[expire1->currentItem()].num != Prefs::expireItem(KV_LEV1_GRADE);
+  return date_itemlist[block7->currentIndex()].num != Prefs::blockItem(KV_LEV7_GRADE) ||
+         date_itemlist[block6->currentIndex()].num != Prefs::blockItem(KV_LEV6_GRADE) ||
+         date_itemlist[block5->currentIndex()].num != Prefs::blockItem(KV_LEV5_GRADE) ||
+         date_itemlist[block4->currentIndex()].num != Prefs::blockItem(KV_LEV4_GRADE) ||
+         date_itemlist[block3->currentIndex()].num != Prefs::blockItem(KV_LEV3_GRADE) ||
+         date_itemlist[block2->currentIndex()].num != Prefs::blockItem(KV_LEV2_GRADE) ||
+         date_itemlist[block1->currentIndex()].num != Prefs::blockItem(KV_LEV1_GRADE) ||
+         date_itemlist[expire7->currentIndex()].num != Prefs::expireItem(KV_LEV7_GRADE) ||
+         date_itemlist[expire6->currentIndex()].num != Prefs::expireItem(KV_LEV6_GRADE) ||
+         date_itemlist[expire5->currentIndex()].num != Prefs::expireItem(KV_LEV5_GRADE) ||
+         date_itemlist[expire4->currentIndex()].num != Prefs::expireItem(KV_LEV4_GRADE) ||
+         date_itemlist[expire3->currentIndex()].num != Prefs::expireItem(KV_LEV3_GRADE) ||
+         date_itemlist[expire2->currentIndex()].num != Prefs::expireItem(KV_LEV2_GRADE) ||
+         date_itemlist[expire1->currentIndex()].num != Prefs::expireItem(KV_LEV1_GRADE);
 }
 
 #include "blockoptions.moc"

@@ -390,61 +390,61 @@ void ThresholdOptions::slotBlockExpire(bool block, bool expire)
   bool enable = !(block | expire);
 
   gradecomp->setEnabled(enable);
-  gradelist->setEnabled(enable && gradecomp->currentItem() != 0);
+  gradelist->setEnabled(enable && gradecomp->currentIndex() != 0);
   label_grade->setEnabled(enable);
 
   datecomp->setEnabled(enable);
-  datelist->setEnabled(enable && datecomp->currentItem() != 0);
+  datelist->setEnabled(enable && datecomp->currentIndex() != 0);
   label_qdate->setEnabled(enable);
 
   querycomp->setEnabled(enable);
-  querylist->setEnabled(enable && querycomp->currentItem() != 0);
+  querylist->setEnabled(enable && querycomp->currentIndex() != 0);
   label_qcount->setEnabled(enable);
 
   badcomp->setEnabled(enable);
-  badlist->setEnabled(enable && badcomp->currentItem() != 0);
+  badlist->setEnabled(enable && badcomp->currentIndex() != 0);
   label_bcount->setEnabled(enable);
 }
 
 bool ThresholdOptions::isDefault()
 {
-  return less_complist[lessoncomp->currentItem()] == Prefs::EnumCompType::Current &&
-         type_complist[typecomp->currentItem()] == Prefs::EnumCompType::DontCare &&
-         grade_complist[gradecomp->currentItem()] == Prefs::EnumCompType::DontCare &&
-         date_complist[datecomp->currentItem()] == Prefs::EnumCompType::DontCare &&
-         query_complist[querycomp->currentItem()] == Prefs::EnumCompType::DontCare &&
-         bad_complist[badcomp->currentItem()] == Prefs::EnumCompType::DontCare;
+  return less_complist[lessoncomp->currentIndex()] == Prefs::EnumCompType::Current &&
+         type_complist[typecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+         grade_complist[gradecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+         date_complist[datecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+         query_complist[querycomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+         bad_complist[badcomp->currentIndex()] == Prefs::EnumCompType::DontCare;
 }
 
 void ThresholdOptions::updateSettings()
 {
-  Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[lessoncomp->currentItem()]);
+  Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[lessoncomp->currentIndex()]);
   slotSetLessonItems();
-  Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentItem()]);
-  Prefs::setTypeItem(all_maintypes[typelist->currentItem()].shortStr());
-  Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[gradecomp->currentItem()]);
-  Prefs::setGradeItem(gradelist->currentItem() + 1);
-  Prefs::setCompType(Prefs::EnumType::Query, query_complist[querycomp->currentItem()]);
-  Prefs::setQueryItem(querylist->currentItem());
-  Prefs::setCompType(Prefs::EnumType::Bad, bad_complist[badcomp->currentItem()]);
-  Prefs::setBadItem(badlist->currentItem());
-  Prefs::setCompType(Prefs::EnumType::Date, date_complist[datecomp->currentItem()]);
-  Prefs::setDateItem(Threshdate_itemlist[datelist->currentItem()].num);
+  Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentIndex()]);
+  Prefs::setTypeItem(all_maintypes[typelist->currentIndex()].shortStr());
+  Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[gradecomp->currentIndex()]);
+  Prefs::setGradeItem(gradelist->currentIndex() + 1);
+  Prefs::setCompType(Prefs::EnumType::Query, query_complist[querycomp->currentIndex()]);
+  Prefs::setQueryItem(querylist->currentIndex());
+  Prefs::setCompType(Prefs::EnumType::Bad, bad_complist[badcomp->currentIndex()]);
+  Prefs::setBadItem(badlist->currentIndex());
+  Prefs::setCompType(Prefs::EnumType::Date, date_complist[datecomp->currentIndex()]);
+  Prefs::setDateItem(Threshdate_itemlist[datelist->currentIndex()].num);
 }
 
 bool ThresholdOptions::hasChanged()
 {
-  return less_complist[lessoncomp->currentItem()] != Prefs::compType(Prefs::EnumType::Lesson) ||
-         type_complist[typecomp->currentItem()] != Prefs::compType(Prefs::EnumType::WordType) ||
-         grade_complist[gradecomp->currentItem()] != Prefs::compType(Prefs::EnumType::Grade) ||
-         query_complist[querycomp->currentItem()] != Prefs::compType(Prefs::EnumType::Query) ||
-         bad_complist[badcomp->currentItem()] != Prefs::compType(Prefs::EnumType::Bad) ||
-         date_complist[datecomp->currentItem()] != Prefs::compType(Prefs::EnumType::Date) ||
-         all_maintypes[typelist->currentItem()].shortStr() != Prefs::typeItem() ||
-         gradelist->currentItem() + 1 != Prefs::gradeItem() ||
-         querylist->currentItem() != Prefs::queryItem() ||
-         badlist->currentItem() != Prefs::badItem() ||
-         Threshdate_itemlist[datelist->currentItem()].num != Prefs::dateItem();
+  return less_complist[lessoncomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Lesson) ||
+         type_complist[typecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::WordType) ||
+         grade_complist[gradecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Grade) ||
+         query_complist[querycomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Query) ||
+         bad_complist[badcomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Bad) ||
+         date_complist[datecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Date) ||
+         all_maintypes[typelist->currentIndex()].shortStr() != Prefs::typeItem() ||
+         gradelist->currentIndex() + 1 != Prefs::gradeItem() ||
+         querylist->currentIndex() != Prefs::queryItem() ||
+         badlist->currentIndex() != Prefs::badItem() ||
+         Threshdate_itemlist[datelist->currentIndex()].num != Prefs::dateItem();
 }
 
 #include "thresholdoptions.moc"

@@ -112,15 +112,15 @@ void KVocTrainTableItem::setContentFromEditor( QWidget *w )
         KEduVocExpression *expr = m_doc->entry(row());
         bool inq = false;
         bool act = true;
-        if (statebox->currentItem() == 0) {
+        if (statebox->currentIndex() == 0) {
           inq = false;
           act = true;
         }
-        else if (statebox->currentItem() == 1) {
+        else if (statebox->currentIndex() == 1) {
           inq = true;
           act = true;
         }
-        else if (statebox->currentItem() == 2) {
+        else if (statebox->currentIndex() == 2) {
           inq = false;
           act = false;
         }
@@ -132,9 +132,9 @@ void KVocTrainTableItem::setContentFromEditor( QWidget *w )
       }
       else if (col() == KV_COL_LESS) {
         QComboBox *lessonbox = (QComboBox*) w;
-        if (m_doc->entry(row())->lesson() != lessonbox->currentItem())
+        if (m_doc->entry(row())->lesson() != lessonbox->currentIndex())
           m_doc->setModified();
-        m_doc->entry(row())->setLesson(lessonbox->currentItem());
+        m_doc->entry(row())->setLesson(lessonbox->currentIndex());
       }
     }
     else {

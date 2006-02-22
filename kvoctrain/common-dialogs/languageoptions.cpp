@@ -750,19 +750,19 @@ void LanguageOptions::slotDeleteClicked()
 {
   if (d_shortName->count() != 0)
   {
-    m_langSet.erase(d_shortName->currentItem());
+    m_langSet.erase(d_shortName->currentIndex());
     emit widgetModified();
     m_hasChanged = true;
-    d_shortName->removeItem(d_shortName->currentItem());
+    d_shortName->removeItem(d_shortName->currentIndex());
     if (d_shortName->count() != 0)
       d_shortName->setCurrentItem (0);
   }
 
   if (d_shortName->count() != 0)
   {
-    setPixmap(m_langSet.PixMapFile(d_shortName->currentItem()));
-    e_langLong->setText(m_langSet.longId(d_shortName->currentItem()));
-    e_shortName2->setText(m_langSet.shortId2(d_shortName->currentItem()));
+    setPixmap(m_langSet.PixMapFile(d_shortName->currentIndex()));
+    e_langLong->setText(m_langSet.longId(d_shortName->currentIndex()));
+    e_shortName2->setText(m_langSet.shortId2(d_shortName->currentIndex()));
   }
   else {
     b_langPixmap->setText (i18n("No picture selected"));
@@ -777,7 +777,7 @@ void LanguageOptions::slotDeleteClicked()
   {
     for (int i = 0; i < d_kblayout->count(); i++)
     {
-      if (d_kblayout->text(i) == m_langSet.keyboardLayout(d_shortName->currentItem()))
+      if (d_kblayout->text(i) == m_langSet.keyboardLayout(d_shortName->currentIndex()))
       {
         d_kblayout->setCurrentItem(i);
         break;
@@ -789,7 +789,7 @@ void LanguageOptions::slotDeleteClicked()
 
 void LanguageOptions::slotKeyboardLayoutChanged(const QString& layout)
 {
-  m_langSet.setKeyboardLayout(layout, d_shortName->currentItem());
+  m_langSet.setKeyboardLayout(layout, d_shortName->currentIndex());
   emit widgetModified();
   m_hasChanged = true;
 }
@@ -866,14 +866,14 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      for (i = 0; i < d_shortName->count(); i++)
        if (d_shortName->text(i).isNull())
        {
-         d_shortName->removeItem(d_shortName->currentItem());
+         d_shortName->removeItem(d_shortName->currentIndex());
          d_shortName->setCurrentItem(0);
        }
 
      for (i = 0; i < d_shortName->count()-1; i++)  // omit last
        if (id == d_shortName->text(i))
        {
-         d_shortName->removeItem(d_shortName->currentItem());
+         d_shortName->removeItem(d_shortName->currentIndex());
          d_shortName->setCurrentItem(i);
          return;
        }
@@ -889,12 +889,12 @@ void LanguageOptions::slotShortActivated(const QString& _id)
    if (d_shortName->count() != 0)
    {
      b_langPixmap->setEnabled(true);
-     e_langLong->setText(m_langSet.longId(d_shortName->currentItem()));
-     e_shortName2->setText(m_langSet.shortId2(d_shortName->currentItem()));
+     e_langLong->setText(m_langSet.longId(d_shortName->currentIndex()));
+     e_shortName2->setText(m_langSet.shortId2(d_shortName->currentIndex()));
 
-     if (!m_langSet.PixMapFile(d_shortName->currentItem()).isEmpty())
+     if (!m_langSet.PixMapFile(d_shortName->currentIndex()).isEmpty())
      {
-       QPixmap pix(m_langSet.PixMapFile(d_shortName->currentItem()));
+       QPixmap pix(m_langSet.PixMapFile(d_shortName->currentIndex()));
        if (!pix.isNull())
          b_langPixmap->setPixmap(pix);
        else
@@ -903,7 +903,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      else
        b_langPixmap->setText (i18n("No Picture Selected"));
 
-     QString layout = m_langSet.keyboardLayout(d_shortName->currentItem());
+     QString layout = m_langSet.keyboardLayout(d_shortName->currentIndex());
 
      //kDebug() << "layout to select " << layout << endl;
 
@@ -926,9 +926,9 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
 void LanguageOptions::slotLangChanged(const QString& s)
 {
-  if (d_shortName->count() != 0 && d_shortName->currentItem() < (int) m_langSet.size())
+  if (d_shortName->count() != 0 && d_shortName->currentIndex() < (int) m_langSet.size())
   {
-    m_langSet.setLongId(s, d_shortName->currentItem());
+    m_langSet.setLongId(s, d_shortName->currentIndex());
     emit widgetModified();
     m_hasChanged = true;
   }
@@ -937,9 +937,9 @@ void LanguageOptions::slotLangChanged(const QString& s)
 
 void LanguageOptions::slotShort2Changed(const QString& s)
 {
-  if (d_shortName->count() != 0 && d_shortName->currentItem() < (int) m_langSet.size())
+  if (d_shortName->count() != 0 && d_shortName->currentIndex() < (int) m_langSet.size())
   {
-    m_langSet.setShortId2(s, d_shortName->currentItem());
+    m_langSet.setShortId2(s, d_shortName->currentIndex());
     emit widgetModified();
     m_hasChanged = true;
   }
@@ -952,7 +952,7 @@ bool LanguageOptions::setPixmap(QString pm)
   {
     QPixmap pix (pm);
     if (!pix.isNull() ) {
-      m_langSet.setPixMapFile(pm, d_shortName->currentItem());
+      m_langSet.setPixMapFile(pm, d_shortName->currentIndex());
       b_langPixmap->setPixmap (pix);
       emit widgetModified();
       m_hasChanged = true;
@@ -971,9 +971,9 @@ void LanguageOptions::slotPixmapClicked()
     if (m_lastPix.isNull() || QPixmap(m_lastPix).isNull())
     {
       QString s;
-      if (!m_langSet.shortId(d_shortName->currentItem()).isNull())
+      if (!m_langSet.shortId(d_shortName->currentIndex()).isNull())
       {
-        s = m_langSet.shortId(d_shortName->currentItem());
+        s = m_langSet.shortId(d_shortName->currentIndex());
         m_lastPix = locate ("locale", "l10n/"+s+"/flag.png");
         if (m_lastPix.isNull()) {
           m_lastPix = locate ("locale", "l10n/");

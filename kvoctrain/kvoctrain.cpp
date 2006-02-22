@@ -780,23 +780,23 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
   switch( e->key() ) {
     case Qt::Key_Plus:
       if (controlActive) {
-        int less = lessons->currentItem();
+        int less = lessons->currentIndex();
         if (less == lessons->count()-1)
           lessons->setCurrentItem(0);
         else
           lessons->setCurrentItem(less+1);
-        slotChooseLesson(lessons->currentItem());
+        slotChooseLesson(lessons->currentIndex());
       }
     break;
 
     case Qt::Key_Minus:
       if (controlActive) {
-        int less = lessons->currentItem();
+        int less = lessons->currentIndex();
         if (less == 0)
           lessons->setCurrentItem(lessons->count()-1);
         else
           lessons->setCurrentItem(less-1);
-        slotChooseLesson(lessons->currentItem());
+        slotChooseLesson(lessons->currentIndex());
       }
     break;
 
