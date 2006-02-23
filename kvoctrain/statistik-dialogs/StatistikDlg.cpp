@@ -52,7 +52,7 @@ StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *pare
     if (s.isEmpty() )
       s = doc->identifier(i);
     else
-      s = i18n(s.local8Bit());
+      s = i18n(s.toLocal8Bit());
 
     page = addPage(s);
     topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );

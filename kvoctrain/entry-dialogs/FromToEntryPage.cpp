@@ -198,7 +198,7 @@ void FromToEntryPage::slotQCount(const QString& s)
 {
   setModified(true);
   qcount_dirty = true;
-  qcount = atoi (s.local8Bit());
+  qcount = atoi (s.toLocal8Bit());
 }
 
 
@@ -206,7 +206,7 @@ void FromToEntryPage::slotBCount(const QString& s)
 {
   setModified(true);
   bcount_dirty = true;
-  bcount = atoi (s.local8Bit());
+  bcount = atoi (s.toLocal8Bit());
 }
 
 

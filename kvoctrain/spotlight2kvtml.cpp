@@ -161,47 +161,47 @@ void readToMem (QTextStream &is, QString month, QString year)
            spot.de = line.mid(pos+1, line.length()-pos-1);
 
            if ((pos = spot.en.find(" UK") ) >= 0) {
-             spot.en_rem+= i18n("UK ").local8Bit();
+             spot.en_rem+= i18n("UK ").toLocal8Bit();
              spot.en.remove (pos, 3);
            }
            if ((pos = spot.en.find("(UK)") ) >= 0) {
-             spot.en_rem+= i18n("UK ").local8Bit();
+             spot.en_rem+= i18n("UK ").toLocal8Bit();
              spot.en.remove (pos, 4);
            }
 
            if ((pos = spot.en.find(" N. Am.") ) >= 0) {
-             spot.en_rem+= i18n("N. Am. ").local8Bit();
+             spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
            if ((pos = spot.en.find("(N. Am.)") ) >= 0) {
-             spot.en_rem+= i18n("N. Am. ").local8Bit();
+             spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
              spot.en.remove (pos, 8);
            }
 
            if ((pos = spot.en.find(" US") ) >= 0) {
-             spot.en_rem+= i18n("US ").local8Bit();
+             spot.en_rem+= i18n("US ").toLocal8Bit();
              spot.en.remove (pos, 3);
            }
            if ((pos = spot.en.find("(US)") ) >= 0) {
-             spot.en_rem+= i18n("US ").local8Bit();
+             spot.en_rem+= i18n("US ").toLocal8Bit();
              spot.en.remove (pos, 4);
            }
 
            if ((pos = spot.en.find("ifml.") ) >= 0) {
-             spot.en_rem+= i18n("ifml. ").local8Bit();
+             spot.en_rem+= i18n("ifml. ").toLocal8Bit();
              spot.en.remove (pos, 5);
            }
            if ((pos = spot.en.find("(ifml.)") ) >= 0) {
-             spot.en_rem+= i18n("ifml. ").local8Bit();
+             spot.en_rem+= i18n("ifml. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
 
            if ((pos = spot.en.find("vulg.") ) >= 0) {
-             spot.en_rem+= i18n("vulg. ").local8Bit();
+             spot.en_rem+= i18n("vulg. ").toLocal8Bit();
              spot.en.remove (pos, 5);
            }
            if ((pos = spot.en.find("(vulg.)") ) >= 0) {
-             spot.en_rem+= i18n("vulg. ").local8Bit();
+             spot.en_rem+= i18n("vulg. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
 
@@ -268,8 +268,8 @@ void writeToKvtml(QTextStream &os, QString month, QString year)
            "  generator=\"spotlight2kvtml " SPOT_VERSION " kvoctrain" KVD_VERS_PREFIX "0.5.0\"\n"
            "  cols=\"2\"\n"
            "  lines=\""  << spottys.size() << "\"\n" <<
-           "  title=\"" << i18n("Spotlight Online, issue ").local8Bit() << month << " " << "\'" << year << "\"\n"
-           << "  author=" << i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)").local8Bit()
+           "  title=\"" << i18n("Spotlight Online, issue ").toLocal8Bit() << month << " " << "\'" << year << "\"\n"
+           << "  author=" << i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)").toLocal8Bit()
            << "\">\n\n"
            << " <lesson>\n";
 
