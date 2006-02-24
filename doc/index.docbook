@@ -96,7 +96,7 @@ of this application.</para>
 <screeninfo>&kvoctrain; main window</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="quick-1.png" format="PNG" /></imageobject>
-<textobject><phrase>K&kvoctrain; main window</phrase></textobject>
+<textobject><phrase>&kvoctrain; main window</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -496,6 +496,7 @@ every document can contain user defined types.</para>
      <listitem><para>definite article</para></listitem>
      <listitem><para>indefinite article</para></listitem>
   </itemizedlist></para></entry>
+<entry><para></para></entry>
 <entry><para>
   <itemizedlist>
      <listitem><para>a, an</para></listitem>
