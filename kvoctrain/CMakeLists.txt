@@ -9,14 +9,55 @@ add_subdirectory( kvt-core )
 add_subdirectory( examples ) 
 add_subdirectory( pics ) 
 
-include_directories( ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
+kde4_add_dcop_skels(libcommondlg_SKEL_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languagesettings.h
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/presettings.h
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.h
+)
 
-set(kvoctrain_SRCS kva_io.cpp kvoctrain.cpp kvoctrainview.cpp main.cpp 
-       kva_init.cpp kva_config.cpp kva_header.cpp kva_clip.cpp kva_query.cpp
-       kvoctraintable.cpp kvoctraintableitem.cpp kvtnewstuff.cpp
+set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlg.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/kvoctrainprefs.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptions.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptions.cpp
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptions.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/blockoptions.cpp
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/groupoptions.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languageoptions.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/queryoptions.cpp 
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/thresholdoptions.cpp
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/profilesdialog.cpp
+	)
+
+kde4_add_ui_files( libcommondlg_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/blockoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/groupoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languageoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/queryoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/thresholdoptionsbase.ui
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptionsbase.ui
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptionsbase.ui
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptionsbase.ui
+	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlgForm.ui
+)
+
+set(kvoctrain_SRCS ${libcommondlg_SRCS}
+	kva_io.cpp 
+	kvoctrain.cpp 
+	kvoctrainview.cpp 
+	main.cpp 
+	kva_init.cpp 
+	kva_config.cpp 
+	kva_header.cpp 
+	kva_clip.cpp 
+	kva_query.cpp
+	kvoctraintable.cpp 
+	kvoctraintableitem.cpp 
+	kvtnewstuff.cpp
 )
 
 kde4_automoc(${kvoctrain_SRCS})
