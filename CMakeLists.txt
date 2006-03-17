@@ -1,4 +1,5 @@
 kde4_header()
+project(kvoctrain)
 
 add_subdirectory( kvoctrain ) 
 
