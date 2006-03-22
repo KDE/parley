@@ -64,7 +64,7 @@ kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(kvoctrain  ${KDE4_KDECORE_LIBS} )
 
 install_targets(/bin kvoctrain )
 
@@ -77,7 +77,7 @@ kde4_automoc(${spotlight2kvtml_SRCS})
 
 kde4_add_executable(spotlight2kvtml ${spotlight2kvtml_SRCS})
 
-target_link_libraries(spotlight2kvtml  ${QT_AND_KDECORE_LIBS} )
+target_link_libraries(spotlight2kvtml  ${KDE4_KDECORE_LIBS} )
 
 install_targets(/bin spotlight2kvtml )
 
