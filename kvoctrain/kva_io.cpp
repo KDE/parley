@@ -208,7 +208,7 @@ void kvoctrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     view->getTable()->setFont(Prefs::tableFont());
     view->adjustContent();
     if (addRecent)
-      fileOpenRecent->addURL(url);
+      fileOpenRecent->addUrl(url);
     connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     doc->setModified(false);
   }
@@ -476,7 +476,7 @@ void kvoctrainApp::slotFileMerge()
       }
     }
     delete (new_doc);
-    fileOpenRecent->addURL(url); // addRecentFile (url.path());
+    fileOpenRecent->addUrl(url); // addRecentFile (url.path());
   }
 
   view->setView(doc, langset);
@@ -509,7 +509,7 @@ void kvoctrainApp::slotFileSave()
   prepareProgressBar();
   saveDocProps(doc);
   doc->saveAs(this, doc->URL(), KEduVocDocument::automatic, "KVocTrain");
-  fileOpenRecent->addURL(doc->URL());
+  fileOpenRecent->addUrl(doc->URL());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -613,7 +613,7 @@ void kvoctrainApp::slotFileSaveAs()
 
       prepareProgressBar();
       doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
-      fileOpenRecent->addURL(doc->URL());
+      fileOpenRecent->addUrl(doc->URL());
       removeProgressBar();
     }
   }
