@@ -167,7 +167,7 @@ void kvoctrainApp::initActions()
   editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
-  editSaveSelectedArea = new KAction(i18n("Save E&ntries in Query As..."), KGlobal::iconLoader()->loadIcon("filesaveas", KIcon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
+  editSaveSelectedArea = new KAction(i18n("Save E&ntries in Query As..."), KGlobal::iconLoader()->loadIcon("filesaveas", K3Icon::Small), 0, this, SLOT(slotSaveSelection()), actionCollection(),"edit_save_selected_area");
   editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
