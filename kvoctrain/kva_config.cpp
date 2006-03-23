@@ -128,18 +128,30 @@ void kvoctrainApp::readProperties(KConfig *config)
       doc->setModified();
       doc->setTitle(title);
       doc->setURL(KUrl(filename));
-      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+      KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
+        if ( doc->isModified() )
+        {
+            flags |= KInstance::ModifiedCaption;
+        }
+      setWindowTitle(KInstance::makeStdCaption(doc->title(), flags)); 
       QFile::remove(tempname);
     }
   }
   else if(!filename.isEmpty()){
+	KInstance::CaptionFlags flags = KInstance::AppNameCaption;
     pdlg = new ProgressDlg (QString(), QString(),
-                            kapp->makeStdCaption(""));
+                            KInstance::makeStdCaption("",flags));
     pdlg->show();
     doc = new KEduVocDocument(this);
     doc->setURL(KUrl(filename));
     removeProgressBar();
-    setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+    flags = KInstance::NoCaptionFlags;
+    if ( doc->isModified() )
+    {
+    	flags |= KInstance::ModifiedCaption;
+    }
+    setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
+	
   }
 
   show();
