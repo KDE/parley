@@ -25,7 +25,7 @@
 #include <QTimer>
 #include <QPixmap>
 #include <QKeyEvent>
-
+#include <QApplication>
 #include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -657,9 +657,14 @@ void kvoctrainApp::slotDocProps ()
 
       doc->setModified();
       view->getTable()->updateContents();
+      KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
+        if ( doc->isModified() )
+        {
+            flags |= KInstance::ModifiedCaption;
+        }
+      setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
 
-      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
-
+	  
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -679,8 +684,13 @@ void kvoctrainApp::slotDocPropsLang ()
 
       doc->setModified();
       view->getTable()->updateContents();
-      setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
 
+	  KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
+		if ( doc->isModified() )
+    	{
+        	flags |= KInstance::ModifiedCaption;
+    	}
+	  setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
       slotStatusMsg(IDS_DEFAULT);
    }
 }
@@ -688,7 +698,12 @@ void kvoctrainApp::slotDocPropsLang ()
 
 void kvoctrainApp::slotModifiedDoc(bool /*mod*/)
 {
-  setWindowTitle(kapp->makeStdCaption(doc->title(), false, doc->isModified()));
+	KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
+    if ( doc->isModified() )
+    {
+    	flags |= KInstance::ModifiedCaption;
+    }
+	setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -1216,7 +1231,7 @@ void kvoctrainApp::aboutToShowVocabAppendLanguage()
   if (doc != 0)
   {
     vocabAppendLanguage->clear();
-    QMenu * add_m = vocabAppendLanguage->popupMenu();
+    QMenu * add_m = vocabAppendLanguage->menu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1245,7 +1260,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
   if (doc != 0)
   {
     vocabSetLanguage->clear();
-    QMenu * set_m = vocabSetLanguage->popupMenu();
+    QMenu * set_m = vocabSetLanguage->menu();
 
     QStringList names;
     for (int i = 0; i < (int) langset.size(); i++)
@@ -1290,7 +1305,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
   if (doc != 0)
   {
     vocabRemoveLanguage->clear();
-    QMenu * remove_m = vocabRemoveLanguage->popupMenu();
+    QMenu * remove_m = vocabRemoveLanguage->menu();
 
     QStringList names;
     for (int j = 1; j < (int) doc->numIdentifiers(); j++)
