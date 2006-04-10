@@ -62,7 +62,7 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
   if (elem.tag () != KV_DOCTYPE) {
     errorKvtMl (xml.lineNumber(),
                 i18n("Tag <%1> was expected "
-                     "but tag <%2> was read." ).arg(KV_DOCTYPE).arg(elem.tag()));
+                     "but tag <%2> was read." , KV_DOCTYPE, elem.tag()));
     return false;
   }
 
@@ -83,9 +83,9 @@ bool kvoctrainDoc::loadFromKvtMl (QTextStream& is)
       else {
         is.setCodec(QTextCodec::codecForName("ISO 8859-1"));
         is.setEncoding(QTextStream::Latin1);
-        QString format = i18n("Unknown document encoding \"%1\" was encountered.\n\n"
-				"It will be ignored. Encoding is now \"%2\".");
-        QString msg =format.arg((*first).stringValue ().upper()).arg("ISO 8859-1");
+        QString msg = i18n("Unknown document encoding \"%1\" was encountered.\n\n"
+			   "It will be ignored. Encoding is now \"%2\".",
+			   (*first).stringValue ().upper(), QString("ISO 8859-1"));
         warningKvtMl (xml.lineNumber(), msg);
       }
 
@@ -191,13 +191,13 @@ bool kvoctrainDoc::extract_simple_tag (QString tag_name,
       return false;
     }
     else if (elem.tag() != tag_name || !elem.isEndTag() ) {
-      errorKvtMl (xml.lineNumber(), i18n("expected ending tag <%1>").arg(tag_name));
+      errorKvtMl (xml.lineNumber(), i18n("expected ending tag <%1>", tag_name));
       return false;
     }
   }
   else {
     if (elem.tag() != tag_name || !elem.isEndTag() ) {
-      errorKvtMl (xml.lineNumber(), i18n("expected ending tag <%1>").arg(tag_name));
+      errorKvtMl (xml.lineNumber(), i18n("expected ending tag <%1>", tag_name));
       return false;
     }
     data = "";
@@ -269,12 +269,12 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_ARTICLE_GRP) {
       if (inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ARTICLE_GRP));
+                    i18n("disallowed occurrence of tag <%1>", KV_ARTICLE_GRP));
         return false;
       }
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(KV_ARTICLE_GRP));
+                    i18n("expected ending tag <%1>", KV_ARTICLE_GRP));
         return false;
       }
       else
@@ -284,7 +284,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
       if (! elem.isEndTag ()) {
         if (inEntry) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("disallowed occurrence of tag <%1>").arg(KV_ART_ENTRY));
+                      i18n("disallowed occurrence of tag <%1>", KV_ART_ENTRY));
           return false;
         }
         inEntry = true;
@@ -322,7 +322,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_FD && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_FD));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_FD));
         return false;
       }
       if (!extract_simple_tag (KV_ART_FD, xml, elem, fem_def))
@@ -331,7 +331,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_FI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_FI));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_FI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_FI, xml, elem, fem_indef))
@@ -340,7 +340,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_MD && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_MD));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_MD));
         return false;
       }
       if (!extract_simple_tag (KV_ART_MD, xml, elem, mal_def))
@@ -349,7 +349,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_MI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_MI));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_MI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_MI, xml, elem, mal_indef))
@@ -358,7 +358,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_ND && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_ND));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_ND));
         return false;
       }
       if (!extract_simple_tag (KV_ART_ND, xml, elem, nat_def))
@@ -367,7 +367,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ART_NI && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_ART_NI));
+                    i18n("disallowed occurrence of tag <%1>", KV_ART_NI));
         return false;
       }
       if (!extract_simple_tag (KV_ART_NI, xml, elem, nat_indef))
@@ -376,7 +376,7 @@ bool kvoctrainDoc::loadArticleKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -503,12 +503,12 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     if (elem.tag () == KV_CONJUG_GRP) {
       if (inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CONJUG_GRP));
+                    i18n("disallowed occurrence of tag <%1>", KV_CONJUG_GRP));
         return false;
       }
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -518,7 +518,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
       if (! elem.isEndTag ()) {
         if (inEntry) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("disallowed occurrence of tag <%1>").arg(entry_tag));
+                      i18n("disallowed occurrence of tag <%1>", entry_tag));
           return false;
         }
         inEntry = true;
@@ -596,7 +596,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P1S && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P1S));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P1S));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P1S, xml, elem, pers1_sing) )
@@ -605,7 +605,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P2S && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P2S));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P2S));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P2S, xml, elem, pers2_sing))
@@ -614,7 +614,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SF && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3SF));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3SF));
         return false;
       }
 
@@ -628,7 +628,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SM && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3SM));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3SM));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3SM, xml, elem, pers3_m_sing))
@@ -637,7 +637,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3SN && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3SN));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3SN));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3SN, xml, elem, pers3_n_sing))
@@ -646,7 +646,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P1P && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P1P));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P1P));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P1P, xml, elem, pers1_plur) )
@@ -655,7 +655,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P2P && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P2P));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P2P));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P2P, xml, elem, pers2_plur))
@@ -664,7 +664,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PF && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3PF));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3PF));
         return false;
       }
 
@@ -678,7 +678,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PM && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3PM));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3PM));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3PM, xml, elem, pers3_m_plur))
@@ -687,7 +687,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else if (elem.tag () == KV_CON_P3PN && !elem.isEndTag() ) {
       if (!inEntry) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("disallowed occurrence of tag <%1>").arg(KV_CON_P3PN));
+                    i18n("disallowed occurrence of tag <%1>", KV_CON_P3PN));
         return false;
       }
       if (!extract_simple_tag (KV_CON_P3PN, xml, elem, pers3_n_plur))
@@ -696,7 +696,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -749,7 +749,7 @@ bool kvoctrainDoc::loadLessonKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_LESS_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -781,14 +781,14 @@ bool kvoctrainDoc::loadLessonKvtMl (XmlElement elem, XmlReader& xml)
 
         if (elem.tag() != KV_LESS_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_LESS_DESC));
+                      i18n("expected ending tag <%1>", KV_LESS_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_LESS_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_LESS_DESC));
+                      i18n("expected ending tag <%1>", KV_LESS_DESC));
           return false;
         }
         s = "";
@@ -798,7 +798,7 @@ bool kvoctrainDoc::loadLessonKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -824,7 +824,7 @@ bool kvoctrainDoc::loadOptionsKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_OPTION_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -842,7 +842,7 @@ bool kvoctrainDoc::loadOptionsKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {

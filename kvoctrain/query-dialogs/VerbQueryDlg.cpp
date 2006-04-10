@@ -184,8 +184,7 @@ bool VerbQueryDlg::next()
     current++;
 
   type = conjugations.getType(current);
-  QString format = i18n("Current tense is: %1.");
-  QString msg = format.arg(conjugations.getName(type));
+  QString msg = i18n("Current tense is: %1.", conjugations.getName(type));
 
   mw->instructionLabel->setText (msg);
   mw->baseLabel->setText (s);

@@ -251,7 +251,7 @@ void BlockOptions::checkValidity()
         if (!found)
           message.append(i18n("Illogical blocking times.\n"));
         found = true;
-        message.append(i18n("The time for level %1 should be lower than the time for level %2.\n").arg(i).arg(i + 1));
+        message.append(i18n("The time for level %1 should be lower than the time for level %2.\n", i, i + 1));
       }
     }
   }
@@ -270,7 +270,7 @@ void BlockOptions::checkValidity()
         if (!found)
           message.append(i18n("\nIllogical expiration times.\n"));
         found = true;
-        message.append(i18n("The time for level %1 should be lower than the time for level %2.\n").arg(i).arg(i + 1));
+        message.append(i18n("The time for level %1 should be lower than the time for level %2.\n", i, i + 1));
       }
       }
   }
@@ -290,7 +290,7 @@ void BlockOptions::checkValidity()
         if (!found)
           message.append(i18n("\nIllogical blocking vs. expiration times.\n"));
         found = true;
-        message.append(i18n("The blocking time at level %1 should be lower than the expiration time.\n").arg(i + 1));
+        message.append(i18n("The blocking time at level %1 should be lower than the expiration time.\n", i + 1));
       }
     }
   }

@@ -103,7 +103,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KUrl& url)
     QFile f(tmpfile);
     if (!f.open(QIODevice::ReadOnly))
     {
-      KMessageBox::error(0, i18n("<qt>Cannot open file<br><b>%1</b></qt>").arg(url.path()));
+      KMessageBox::error(0, i18n("<qt>Cannot open file<br><b>%1</b></qt>", url.path()));
       return;
     }
 
@@ -163,8 +163,8 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KUrl& url)
           Init();
           return;
         }
-        QString format = i18n("Could not load \"%1\"\nDo you want to try again?");
-        QString msg = format.arg(url.path());
+        QString msg = i18n("Could not load \"%1\"\nDo you want to try again?",
+                           url.path());
         int result = KMessageBox::warningContinueCancel(0, msg,
                                                         kapp->makeStdCaption(i18n("I/O Failure")),
                                                         i18n("&Retry"));
@@ -220,7 +220,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KUrl & url, QString title, Fil
 
     if (!f.open(QIODevice::WriteOnly))
     {
-      KMessageBox::error(0, i18n("<qt>Cannot write to file<br><b>%1</b></qt>").arg(tmp.path()));
+      KMessageBox::error(0, i18n("<qt>Cannot write to file<br><b>%1</b></qt>", tmp.path()));
       return false;
     }
 
@@ -259,8 +259,8 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KUrl & url, QString title, Fil
     QApplication::restoreOverrideCursor();
 
     if (!saved) {
-      QString format = i18n("Could not save \"%1\"\nDo you want to try again?");
-      QString msg = format.arg(tmp.path());
+      QString msg = i18n("Could not save \"%1\"\nDo you want to try again?",
+                         tmp.path());
       int result = KMessageBox::warningContinueCancel(0, msg,
                                                       kapp->makeStdCaption(i18n("I/O Failure")),
                                                       i18n("&Retry"));

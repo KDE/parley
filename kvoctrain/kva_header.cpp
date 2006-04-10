@@ -134,11 +134,11 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       if((j = langset.indexShortId(doc->identifier(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
-        query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(names[i-1]),
+        query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
       }
       else {
-        query_m->insertItem(i18n("From %1").arg(doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
+        query_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
       }
     }
     header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
@@ -150,11 +150,11 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       if((j = langset.indexShortId(doc->identifier(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
-        multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(names[i-1]),
+        multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
       }
       else {
-        multiple_m->insertItem(i18n("From %1").arg(doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
+        multiple_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
       }
     }
     header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
@@ -261,12 +261,10 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
       QString msg;
       if (header1 == 0) {
-        QString format = i18n("Sets %1 as language for original");
-        msg = format.arg(from);
+        msg = i18n("Sets %1 as language for original", from);
       }
       else {
-        QString format = i18n("Sets %1 as language for translation %2");
-        msg = format.arg(from).arg(header1);
+        msg = i18n("Sets %1 as language for translation %2", from, header1);
       }
       slotStatusHelpMsg(msg);
     }
@@ -281,8 +279,7 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
       }
       else if (header1 < (int) langset.size() ) {
         QString from = langset.longId(header1);
-        QString format = i18n("Appends %1 as new language");
-        msg = format.arg(from);
+        msg = i18n("Appends %1 as new language", from);
         slotStatusHelpMsg(msg);
       }
     }
@@ -292,9 +289,7 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
       QString from = header1 ? doc->identifier(header1) : doc->originalIdentifier();
       if (!langset.findLongId(from).isEmpty())
         from = langset.findLongId(from);
-      QString msg;
-      QString format = i18n("Removes %1 irrevocably from dictionary");
-      msg = format.arg(from);
+      QString msg = i18n("Removes %1 irrevocably from dictionary", from);
       slotStatusHelpMsg(msg);
     }
     break;
@@ -314,17 +309,15 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
       if (doc->numIdentifiers() == 1) {
         if (cmd == IDH_START_QUERY)
-          format = i18n("Creates and starts query to %1");
+          msg = i18n("Creates and starts query to %1", to);
         else
-          format = i18n("Creates and starts multiple choice to %1");
-        msg = format.arg(to);
+          msg = i18n("Creates and starts multiple choice to %1", to);
       }
       else {
         if (cmd == IDH_START_QUERY)
-          format = i18n("Creates and starts query from %1 to %2");
+          msg = i18n("Creates and starts query from %1 to %2", from, to);
         else
-          format = i18n("Creates and starts multiple choice from %1 to %2");
-        msg = format.arg(from).arg(to);
+          msg = i18n("Creates and starts multiple choice from %1 to %2", from, to);
       }
 
       slotStatusHelpMsg(msg);
@@ -375,8 +368,7 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
       QString from = header1 ? doc->identifier(header1) : doc->originalIdentifier();
       if (!langset.findLongId(from).isEmpty())
         from = langset.findLongId(from);
-      QString format = i18n("Resets all properties for %1");
-      QString msg = format.arg(from);
+      QString msg = i18n("Resets all properties for %1", from);
       slotStatusHelpMsg(msg);
     }
     break;
@@ -439,9 +431,8 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
           && !langset.longId(i).isEmpty() )
         name = langset.longId(i);
 
-      QString format = i18n("You are about to delete a language completely.\n"
-                            "Do you really want to delete \"%1\"?");
-      msg = format.arg(name);
+      msg = i18n("You are about to delete a language completely.\n"
+                 "Do you really want to delete \"%1\"?", name);
 
       int exit = KMessageBox::warningContinueCancel(this, msg,
                     kapp->makeStdCaption(""),KStdGuiItem::del());
@@ -537,16 +528,15 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
             && !langset.longId(i).isEmpty() )
           name = langset.longId(i);
 
-        format = i18n("You are about to reset the knowledge data of a "
-                      "whole language.\n\nDo you really want to reset \"%1\"?");
+        msg = i18n("You are about to reset the knowledge data of a "
+                   "whole language.\n\nDo you really want to reset \"%1\"?",
+                   name);
       }
       else {
         name = lessons->text(act_lesson);
-        format = i18n("You are about to reset the knowledge data of a "
-                      "lesson.\n\nDo you really want to reset \"%1\"?");
+        msg = i18n("You are about to reset the knowledge data of a "
+                   "lesson.\n\nDo you really want to reset \"%1\"?", name);
       }
-
-      msg = format.arg(name);
 
       int exit = KMessageBox::warningContinueCancel(this, msg,
                     kapp->makeStdCaption(""),i18n("Reset"));

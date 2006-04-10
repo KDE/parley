@@ -72,9 +72,9 @@ QWidget *KVocTrainTableItem::createEditor() const
       case KV_COL_MARK: {
         QComboBox *statebox = new QComboBox(table()->viewport() );
         statebox->setFont(KGlobalSettings::generalFont());
-        statebox->insertItem (i18n("state of a row", "Active, Not in Query"));
-        statebox->insertItem (i18n("state of a row", "In Query"));
-        statebox->insertItem (i18n("state of a row", "Inactive"));
+        statebox->insertItem (i18nc("state of a row", "Active, Not in Query"));
+        statebox->insertItem (i18nc("state of a row", "In Query"));
+        statebox->insertItem (i18nc("state of a row", "Inactive"));
         QSize sz = statebox->sizeHint();
         sz.setHeight(table()->rowHeight(row()));
         statebox->setMinimumSize(sz);

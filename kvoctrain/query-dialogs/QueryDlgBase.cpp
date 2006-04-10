@@ -305,19 +305,19 @@ void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
 
 QString  QueryDlgBase::getOKComment(int percent_done)
 {
-  return i18n("Well done, you knew the correct answer. %1% done.").arg(percent_done);
+  return i18n("Well done, you knew the correct answer. %1% done.", percent_done);
 }
 
 
 QString  QueryDlgBase::getTimeoutComment(int percent_done)
 {
-  return i18n("You waited too long to enter the correct answer. %1% done.").arg(percent_done);
+  return i18n("You waited too long to enter the correct answer. %1% done.", percent_done);
 }
 
 
 QString  QueryDlgBase::getNOKComment(int percent_done)
 {
-  return i18n("Your answer was wrong. %1% done.").arg(percent_done);
+  return i18n("Your answer was wrong. %1% done.", percent_done);
 }
 
 void QueryDlgBase::closeEvent(QCloseEvent * /*e*/)

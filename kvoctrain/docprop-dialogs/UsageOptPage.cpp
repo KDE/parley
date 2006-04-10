@@ -76,7 +76,7 @@ void UsageOptPage::slotNewUsage()
 {
   bool ok;
   QString getUsage = KInputDialog::getText(
-              i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), QString(), &ok, this );
+              i18nc( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), QString(), &ok, this );
   if( !ok )
     return;
   QString str;
@@ -103,7 +103,7 @@ void UsageOptPage::slotModifyUsage()
 
     bool ok;
     QString getUsage = KInputDialog::getText(
-                i18n( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), str, &ok, this );
+                i18nc( "usage (area) of an expression", "Usage Description" ), i18n( "Enter usage description:" ), str, &ok, this );
     if( !ok )
       return;
     QString str2;
@@ -147,10 +147,10 @@ void UsageOptPage::slotDeleteUsage()
         QString ul = exp->usageLabel(lang) + UL_USAGE_DIV;
         if (ul.find(t) >= 0 ) {
           KMessageBox::information(this,
-                    i18n("usage (area) of an expression",
+                    i18nc("usage (area) of an expression",
                         "This user-defined usage label could not be deleted "
                         "because it is in use."),
-                    kapp->makeStdCaption(i18n("usage (area) of an expression",
+                    kapp->makeStdCaption(i18nc("usage (area) of an expression",
                                               "Deleting Usage Label")));
           return;
         }

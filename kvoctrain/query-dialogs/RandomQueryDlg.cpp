@@ -501,8 +501,8 @@ void RandomQueryDlg::slotTransChanged(const QString&)
     resetField (edit);
     suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
     if ( suggestion_hint )
-      mw->status -> setText (QString (i18n("Press F5 for a list of translations starting with '%1'\n"
-        "Press F6 for a list of translations containing '%2'")).arg (edit -> text()).arg (edit -> text()));
+      mw->status -> setText (i18n("Press F5 for a list of translations starting with '%1'\n"
+        "Press F6 for a list of translations containing '%1'", edit -> text()));
     else
       mw->status -> clear();
   }

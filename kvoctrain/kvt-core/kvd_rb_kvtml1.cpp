@@ -83,7 +83,7 @@ bool KEduVocDocument::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_TYPE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(KV_TYPE_GRP));
+                    i18n("expected ending tag <%1>", KV_TYPE_GRP));
         return false;
       }
       else
@@ -109,14 +109,14 @@ bool KEduVocDocument::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_TYPE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TYPE_DESC));
+                      i18n("expected ending tag <%1>", KV_TYPE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_TYPE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TYPE_DESC));
+                      i18n("expected ending tag <%1>", KV_TYPE_DESC));
           return false;
         }
 
@@ -127,7 +127,7 @@ bool KEduVocDocument::loadTypeNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -157,7 +157,7 @@ bool KEduVocDocument::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_TENSE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(KV_TENSE_GRP));
+                    i18n("expected ending tag <%1>", KV_TENSE_GRP));
         return false;
       }
       else
@@ -183,14 +183,14 @@ bool KEduVocDocument::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_TENSE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TENSE_DESC));
+                      i18n("expected ending tag <%1>", KV_TENSE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_TENSE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TENSE_DESC));
+                      i18n("expected ending tag <%1>", KV_TENSE_DESC));
           return false;
         }
 
@@ -201,7 +201,7 @@ bool KEduVocDocument::loadTenseNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -231,7 +231,7 @@ bool KEduVocDocument::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_USAGE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(KV_USAGE_GRP));
+                    i18n("expected ending tag <%1>", KV_USAGE_GRP));
         return false;
       }
       else
@@ -257,14 +257,14 @@ bool KEduVocDocument::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
         }
         else if (elem.tag() != KV_USAGE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_USAGE_DESC));
+                      i18n("expected ending tag <%1>", KV_USAGE_DESC));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_USAGE_DESC || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_USAGE_DESC));
+                      i18n("expected ending tag <%1>", KV_USAGE_DESC));
           return false;
         }
 
@@ -275,7 +275,7 @@ bool KEduVocDocument::loadUsageNameKvtMl (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -553,7 +553,7 @@ bool KEduVocDocument::loadComparison (KEduVocComparison &comp, XmlElement elem,
     if (elem.tag () == KV_COMPARISON_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -582,7 +582,7 @@ bool KEduVocDocument::loadComparison (KEduVocComparison &comp, XmlElement elem,
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>").arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>", elem.tag()));
         return false;
       }
       else {
@@ -620,7 +620,7 @@ bool KEduVocDocument::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement 
     if (elem.tag () == KV_MULTIPLECHOICE_GRP) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -661,7 +661,7 @@ bool KEduVocDocument::loadMultipleChoice (KEduVocMultipleChoice &mc, XmlElement 
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>").arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>", elem.tag()));
         return false;
       }
       else {
@@ -702,7 +702,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     if (elem.tag () == KV_DOCTYPE) {
       if (! elem.isEndTag ()) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("expected ending tag <%1>").arg(elem.tag()));
+                    i18n("expected ending tag <%1>", elem.tag()));
         return false;
       }
       else
@@ -712,7 +712,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_LESS_GRP && !elem.isEndTag() ) {
       if (lessgroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       lessgroup = true;
@@ -723,7 +723,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_ARTICLE_GRP && !elem.isEndTag() ) {
       if (articlegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       articlegroup = true;
@@ -734,7 +734,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_CONJUG_GRP && !elem.isEndTag() ) {
       if (conjuggroup) {
          errorKvtMl (xml.lineNumber(),
-                     i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                     i18n("repeated occurrence of tag <%1>", elem.tag()));
          return false;
       }
       conjuggroup = true;
@@ -745,7 +745,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_OPTION_GRP && !elem.isEndTag() ) {
       if (optgroup)  {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       optgroup = true;
@@ -756,7 +756,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TYPE_GRP && !elem.isEndTag() ) {
       if (attrgroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       attrgroup = true;
@@ -767,7 +767,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_TENSE_GRP && !elem.isEndTag() ) {
       if (tensegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       tensegroup = true;
@@ -779,7 +779,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else if (elem.tag () == KV_USAGE_GRP && !elem.isEndTag() ) {
       if (usagegroup) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       usagegroup = true;
@@ -801,7 +801,7 @@ bool KEduVocDocument::parseBody_kvtml (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {
@@ -824,17 +824,16 @@ bool KEduVocDocument::unknownAttribute (int line, const QString &name,
 
    unknown_attr = true;
 
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n", URL().path(), line);
 
-   QString format = i18n(
+   QString msg = i18n(
       "Your document contains an unknown attribute <%1> "   // keep trailing space
        "in tag <%2>.\n"
       "Maybe your version of KVocTrain is too old, "
       "or the document is damaged.\n"
       "If you proceed and save afterwards you are likely to lose data;\n"
-      "do you want to proceed anyway?\n"
+      "do you want to proceed anyway?\n", attr, name
      );
-   QString msg = format.arg(attr).arg(name);
 
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown attribute"));
@@ -848,16 +847,15 @@ void KEduVocDocument::unknownElement (int line, const QString &elem )
 {
    unknown_elem = true;
 
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n", URL().path(), line);
 
-   QString format = i18n(
+   QString msg = i18n(
       "Your document contains an unknown tag <%1>.  "  // keep trailing space
       "Maybe your version of KVocTrain is too old, "
       "or the document is damaged.\n"
       "Loading is aborted because KVocTrain cannot "
-      "read documents with unknown elements.\n"
+      "read documents with unknown elements.\n", elem
      );
-   QString msg = format.arg(elem);
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Unknown element"));
    KMessageBox::sorry(0, ln+msg, s);
@@ -869,7 +867,7 @@ void KEduVocDocument::errorKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Error"));
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n", URL().path(), line);
 
    QString msg = text;
    KMessageBox::error(0, ln+msg, s);
@@ -881,7 +879,7 @@ void KEduVocDocument::warningKvtMl (int line, const QString &text )
 {
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
    QString s = kapp->makeStdCaption(i18n("Warning"));
-   QString ln = i18n("File:\t%1\nLine:\t%2\n").arg(URL().path()).arg(line);
+   QString ln = i18n("File:\t%1\nLine:\t%2\n", URL().path(), line);
    QString msg = text;
    KMessageBox::information(0, ln+msg, s);
    QApplication::restoreOverrideCursor();

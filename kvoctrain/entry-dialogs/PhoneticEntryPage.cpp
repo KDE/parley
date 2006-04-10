@@ -200,7 +200,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     QString tip = i18n("Unicode name: ");
     tip += QString::fromLatin1(uni_ref->unicodename);
     tip += "\n";
-    tip += i18n("Describing the sound of the character", "Sound: ");
+    tip += i18nc("Describing the sound of the character", "Sound: ");
     tip += i18n(uni_ref->audible);
     phoneticButton->setFont(ipafont);
     phoneticButton->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));

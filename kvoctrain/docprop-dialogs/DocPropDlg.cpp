@@ -65,7 +65,7 @@ DocPropsDlg::DocPropsDlg
   lessOptPage = new LessOptPage (lessons, doc, page);
   topLayout->addWidget( lessOptPage );
 
-  page = addPage( i18n("word types","T&ypes"));
+  page = addPage( i18nc("word types","T&ypes"));
   topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
   typeOptPage = new TypeOptPage (types, doc, page);
   topLayout->addWidget( typeOptPage );
@@ -75,7 +75,7 @@ DocPropsDlg::DocPropsDlg
   tenseOptPage = new TenseOptPage (tenses, doc, page);
   topLayout->addWidget( tenseOptPage );
 
-  page = addPage( i18n("usage (area) of an expression", "&Usage"));
+  page = addPage( i18nc("usage (area) of an expression", "&Usage"));
   topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
   useOptPage = new UsageOptPage (usages, doc, page);
   topLayout->addWidget( useOptPage );

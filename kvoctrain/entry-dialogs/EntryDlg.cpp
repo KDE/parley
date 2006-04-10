@@ -106,7 +106,7 @@ EntryDlg::EntryDlg(
     topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
     comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
-                                      i18n("Original &expression in %1:").arg(s), querymanager, active,
+                                      i18n("Original &expression in %1:", s), querymanager, active,
                                       ipafont, page);
     topLayout->addWidget(comm_page);
 
@@ -136,7 +136,7 @@ EntryDlg::EntryDlg(
     topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
     comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
                                       lang, type, pronunce, usagelabel,
-                                      i18n("Translated &expression in %1:").arg(s), querymanager, active,
+                                      i18n("Translated &expression in %1:", s), querymanager, active,
                                       ipafont, page);
     topLayout->addWidget(comm_page);
 
@@ -245,10 +245,10 @@ void EntryDlg::setData(
 
   if (origin)
     comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronunce, usagelabel,
-      i18n("Original &expression in %1:").arg(s), querymanager, active);
+      i18n("Original &expression in %1:", s), querymanager, active);
   else
     comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronunce, usagelabel,
-      i18n("Translated &expression in %1:").arg(s), querymanager, active);
+      i18n("Translated &expression in %1:", s), querymanager, active);
 
   adj_page->setData(multi_sel, comp);
   aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);

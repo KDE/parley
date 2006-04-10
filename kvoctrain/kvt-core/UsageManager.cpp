@@ -119,7 +119,7 @@ QList<UsageRelation> UsageManager::getRelation ()
     if (usage->context == 0)
       s = i18n(usage->shortid);
     else
-      s = i18n(usage->context, usage->shortid);
+      s = i18nc(usage->context, usage->shortid);
     vec.push_back(UsageRelation(usage->ident, s, i18n(usage->longId)));
     usage++;
   }

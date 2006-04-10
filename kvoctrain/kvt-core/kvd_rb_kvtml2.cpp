@@ -85,7 +85,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
   if (elem.tag() == KV_EXPR && !elem.isEndTag() ) {
     errorKvtMl (xml.lineNumber(),
-                i18n("disallowed occurrence of tag <%1>").arg(elem.tag()));
+                i18n("disallowed occurrence of tag <%1>", elem.tag()));
     return false;
   }
 
@@ -100,7 +100,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     if (elem.tag() == KV_ORG && !elem.isEndTag() ) {
       if (org_found) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("repeated occurrence of tag <%1>").arg(elem.tag()));
+                    i18n("repeated occurrence of tag <%1>", elem.tag()));
         return false;
       }
       org_found = true;
@@ -204,14 +204,14 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
         if (elem.tag() != KV_ORG || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_ORG));
+                      i18n("expected ending tag <%1>", KV_ORG));
           return false;
         }
       }
       else {
         if (elem.tag() != KV_ORG || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_ORG));
+                      i18n("expected ending tag <%1>", KV_ORG));
           return false;
         }
         textstr = "";
@@ -259,7 +259,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     else if (elem.tag() == KV_TRANS && !elem.isEndTag() ) {
       if (!org_found) {   // must be preceded by "original"
         errorKvtMl (xml.lineNumber(),
-                    i18n("starting tag <%1> is missing").arg(KV_ORG));
+                    i18n("starting tag <%1> is missing", KV_ORG));
         return false;
       }
 
@@ -366,7 +366,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
         if (elem.tag() != KV_TRANS || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TRANS));
+                      i18n("expected ending tag <%1>", KV_TRANS));
           return false;
         }
         // expr ...
@@ -374,7 +374,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       else {
         if (elem.tag() != KV_TRANS || !elem.isEndTag() ) {
           errorKvtMl (xml.lineNumber(),
-                      i18n("expected ending tag <%1>").arg(KV_TRANS));
+                      i18n("expected ending tag <%1>", KV_TRANS));
           return false;
         }
         textstr = "";
@@ -384,7 +384,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
 
       if (!org_found) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("starting tag <%1> is missing").arg(KV_ORG));
+                    i18n("starting tag <%1> is missing", KV_ORG));
         return false;
       }
 /*
@@ -440,7 +440,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
     else {
       if (elem.isEndTag() ) {
         errorKvtMl (xml.lineNumber(),
-                    i18n("unexpected ending tag <%1>" ).arg(elem.tag()));
+                    i18n("unexpected ending tag <%1>" , elem.tag()));
         return false;
       }
       else {

@@ -88,7 +88,7 @@ CommonEntryPage::CommonEntryPage
   connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
   connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
-  usage_label->setTitle(i18n("Usage (area) of an Expression", "&Usage Labels"));
+  usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
   pronunce_line->setFont(ipafont);
 
   lesson_box->setValidator (new BlockAllValidator() );
@@ -337,7 +337,7 @@ void CommonEntryPage::invokeUsageDlg()
   int old_usages = (int) doc->usageDescriptions().size();
 
   KDialog *subDialog= new KDialog(b_usageDlg,
-    i18n("usage (area) of an expression", "Edit User-Defined Usage Labels"),
+    i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"),
     KDialog::Ok|KDialog::Cancel);
 
   subDialog->setDefaultButton(KDialog::Ok);

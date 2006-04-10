@@ -98,14 +98,14 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
     expr = doc->entry(row);
 
   if (rem_label != 0)
-    rem_label->setText(i18n("Abbreviation for R)emark","R: %1")
-                       .arg(noData ? QString() : expr->remark(col)));
+    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1",
+                        noData ? QString() : expr->remark(col)));
   if (pron_label != 0)
-    pron_label->setText(i18n("Abbreviation for P)ronouncation","P: %1")
-                        .arg(noData ? QString() : expr->pronounciation(col)));
+    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1",
+                         noData ? QString() : expr->pronounciation(col)));
   if (type_label != 0)
-    type_label->setText(i18n("Abbreviation for T)ype of word", "T: %1")
-                        .arg(noData ? QString() : QueryManager::typeStr(expr->type(col))));
+    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1",
+                         noData ? QString() : QueryManager::typeStr(expr->type(col))));
 
   if (entryDlg != 0) {
     if (noData)
@@ -643,7 +643,7 @@ void kvoctrainApp::slotDocProps ()
       TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
       ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
 
-      slotStatusMsg(i18n("usage (area) of an expression",
+      slotStatusMsg(i18nc("usage (area) of an expression",
                          "Updating usage label indices..."));
       UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
       UsageManager::setUsageNames (new_usageStr);
@@ -914,7 +914,7 @@ void kvoctrainApp::slotCleanVocabulary ()
    if (num != 0) {
      view->setView(doc, langset);
      QString s =
-        i18n("1 entry with the same content has been found and removed.",
+        i18np("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
 
      KMessageBox::information(this,
@@ -1162,11 +1162,11 @@ void kvoctrainApp::aboutToShowLearn()
         if((j = langset.indexShortId(doc->identifier(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(main_names[i]),
+          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
-          query_m->insertItem(i18n("From %1").arg(doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
+          query_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
         }
       }
 
@@ -1180,11 +1180,11 @@ void kvoctrainApp::aboutToShowLearn()
         if((j = langset.indexShortId(doc->identifier(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1").arg(main_names[i]),
+          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
-          multiple_m->insertItem(i18n("From %1").arg(doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
+          multiple_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
@@ -1293,7 +1293,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
         if (doc->numIdentifiers() <= 2)
           set_m->insertItem(i18n("&Translation"), langs_m, (2 << 16) | IDH_NULL);
         else
-          set_m->insertItem(i18n("&%1. Translation").arg(header), langs_m, (2 << 16) | IDH_NULL);
+          set_m->insertItem(i18n("&%1. Translation", header), langs_m, (2 << 16) | IDH_NULL);
       }
     }
   }

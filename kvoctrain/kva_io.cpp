@@ -198,7 +198,7 @@ void kvoctrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     delete doc;
     doc = 0;
 
-    slotStatusMsg(i18n("Loading %1").arg(url.path()));
+    slotStatusMsg(i18n("Loading %1", url.path()));
     prepareProgressBar();
     doc = new KEduVocDocument(this);
     doc->open(url, false);
@@ -247,8 +247,7 @@ void kvoctrainApp::slotFileMerge()
 
   if (!url.isEmpty() ) {
 
-    QString format = i18n("Loading %1");
-    QString msg = format.arg(url.path());
+    QString msg = i18n("Loading %1", url.path());
 
     slotStatusMsg(msg);
     prepareProgressBar();
@@ -272,8 +271,7 @@ void kvoctrainApp::slotFileMerge()
     QStringList old_usages = doc->usageDescriptions();
     QStringList new_usages = new_doc->usageDescriptions();
 
-    format = i18n("Merging %1");
-    msg = format.arg(url.path());
+    msg = i18n("Merging %1", url.path());
     slotStatusMsg(msg);
 
     QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -497,8 +495,7 @@ void kvoctrainApp::slotFileSave()
     return;
   }
 
-  QString format = i18n("Saving %1");
-  QString msg = format.arg(doc->URL().path());
+  QString msg = i18n("Saving %1", doc->URL().path());
   slotStatusMsg(msg);
 
   // remove previous backup
@@ -595,16 +592,15 @@ void kvoctrainApp::slotFileSaveAs()
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
-       .arg(url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
+       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
+        url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
     {
     // do nothing
     }
     else
 
     if (doc) {
-      QString format = i18n("Saving %1");
-      QString msg = format.arg(url.path());
+      QString msg = i18n("Saving %1", url.path());
       slotStatusMsg(msg);
 
       QFile::remove(QFile::encodeName(url.path()+"~"));         // remove previous backup
@@ -648,15 +644,14 @@ void kvoctrainApp::slotSaveSelection ()
   {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>")
-       .arg(url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
+       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
+        url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
     {
     // do nothing
     }
     else
     {
-      QString format = i18n("Saving %1");
-      QString msg = format.arg(url.path());
+      QString msg = i18n("Saving %1", url.path());
       slotStatusMsg(msg);
 
       QFile::remove(url.path()+"~");         // remove previous backup

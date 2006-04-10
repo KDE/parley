@@ -374,7 +374,7 @@ void kvoctrainView::newPage(QPainter & painter, int res, int startCol, int endCo
   QRect w = painter.window();
   painter.resetXForm();
   painter.setFont(KGlobalSettings::generalFont());
-  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1").arg(m_doc->title()));
+  painter.drawText(marg, marg - 20, i18n("KVocTrain - %1", m_doc->title()));
   painter.translate(marg, marg);
   painter.drawLine(-1 , 0, -1, hh - 1);
   for (int i = startCol; i <= endCol && i < m_table->numCols(); ++i)
