@@ -26,7 +26,7 @@
 #ifndef THRESHOLDOPTIONS_H
 #define THRESHOLDOPTIONS_H
 
-#include "thresholdoptionsbase.h"
+#include "ui_thresholdoptionsbase.h"
 #include "QueryManager.h"
 
 class KComboBox;

@@ -30,7 +30,7 @@
 
 #include <kmenu.h>
 
-#include "languageoptionsbase.h"
+#include "ui_languageoptionsbase.h"
 #include "langset.h"
 
 class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase

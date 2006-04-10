@@ -26,7 +26,7 @@
 #ifndef ProgressDlg_included
 #define ProgressDlg_included
 
-#include "ProgressDlgForm.h"
+#include "ui_ProgressDlgForm.h"
 
 class KEduVocDocument;
 

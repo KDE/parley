@@ -26,7 +26,7 @@
 #ifndef QUERYOPTIONS_H
 #define QUERYOPTIONS_H
 
-#include "queryoptionsbase.h"
+#include "ui_queryoptionsbase.h"
 
 class QueryOptions : public QWidget, public Ui::QueryOptionsBase
 {

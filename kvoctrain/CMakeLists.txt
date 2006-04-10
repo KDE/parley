@@ -13,10 +13,10 @@ include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${KDE4_IN
 
 
 ########### next target ###############
-kde4_add_dcop_skels(libcommondlg_SKEL_SRCS
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languagesettings.h
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/presettings.h
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.h
+kde4_add_kcfg_files(libcommondlg_SKEL_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languagesettings.kcfgc
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/presettings.kcfgc
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.kcfgc
 )
 
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}

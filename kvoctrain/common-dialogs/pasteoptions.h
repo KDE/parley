@@ -26,7 +26,7 @@
 #ifndef PASTEOPTIONS_H
 #define PASTEOPTIONS_H
 
-#include "pasteoptionsbase.h"
+#include "ui_pasteoptionsbase.h"
 #include "langset.h"
 
 class KEduVocDocument;

@@ -26,7 +26,7 @@
 #ifndef GENERALOPTIONS_H
 #define GENERALOPTIONS_H
 
-#include "generaloptionsbase.h"
+#include "ui_generaloptionsbase.h"
 
 class GeneralOptions : public QWidget, public Ui::GeneralOptionsBase
 {

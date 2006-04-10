@@ -26,7 +26,7 @@
 #ifndef GROUPOPTIONS_H
 #define GROUPOPTIONS_H
 
-#include "groupoptionsbase.h"
+#include "ui_groupoptionsbase.h"
 
 class GroupOptions : public QWidget, public Ui::GroupOptionsBase
 {

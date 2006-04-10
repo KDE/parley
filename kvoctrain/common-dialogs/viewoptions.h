@@ -26,7 +26,7 @@
 #ifndef VIEWOPTIONS_H
 #define VIEWOPTIONS_H
 
-#include "viewoptionsbase.h"
+#include "ui_viewoptionsbase.h"
 
 class ViewOptions : public QWidget, public Ui::ViewOptionsBase
 {
