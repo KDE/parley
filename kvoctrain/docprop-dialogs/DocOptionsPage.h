@@ -26,7 +26,7 @@
 #ifndef DocOptionsPage_included
 #define DocOptionsPage_included
 
-#include "DocOptionsPageForm.h"
+#include "ui_DocOptionsPageForm.h"
 
 class DocOptionsPage : public QWidget, public Ui::DocOptionsPageForm
 {

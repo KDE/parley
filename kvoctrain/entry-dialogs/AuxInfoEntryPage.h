@@ -26,7 +26,7 @@
 #ifndef AuxInfoEntryPage_included
 #define AuxInfoEntryPage_included
 
-#include "AuxInfoEntryPageForm.h"
+#include "ui_AuxInfoEntryPageForm.h"
 
 class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 {

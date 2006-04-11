@@ -27,7 +27,7 @@
 #ifndef LangPropPage_included
 #define LangPropPage_included
 
-#include "LangPropPageForm.h"
+#include "ui_LangPropPageForm.h"
 #include <keduvocgrammar.h>
 
 class KEduVocDocument;

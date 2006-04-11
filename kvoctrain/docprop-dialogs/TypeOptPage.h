@@ -26,7 +26,7 @@
 #ifndef TypeOptPage_included
 #define TypeOptPage_included
 
-#include "TypeOptPageForm.h"
+#include "ui_TypeOptPageForm.h"
 
 class KEduVocDocument;
 

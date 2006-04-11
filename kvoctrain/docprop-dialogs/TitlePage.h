@@ -26,7 +26,7 @@
 #ifndef TitleDialog_included
 #define TitleDialog_included
 
-#include "TitlePageForm.h"
+#include "ui_TitlePageForm.h"
 
 class TitlePage : public QWidget, public Ui::TitlePageForm
 {

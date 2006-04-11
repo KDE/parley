@@ -26,7 +26,7 @@
 #ifndef UsageOptPage_included
 #define UsageOptPage_included
 
-#include "UsageOptPageForm.h"
+#include "ui_UsageOptPageForm.h"
 #include <UsageManager.h>
 
 class KEduVocDocument;

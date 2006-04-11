@@ -109,7 +109,7 @@ void kvoctrainApp::initActions()
   fileOpen->setWhatsThis(i18n("Open a vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
 
-  fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", "CTRL+Key_G", this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+  fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", Qt::Key_Control+Qt::Key_G, this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
 
@@ -155,15 +155,15 @@ void kvoctrainApp::initActions()
   editSearchFromClipboard->setWhatsThis(i18n("Search for the clipboard contents in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
-  editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", "Insert", this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
+  editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", Qt::Key_Insert, this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
   editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
-  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), "edit_table_row", "Ctrl+Return", this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
+  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), "edit_table_row", Qt::Key_Control+Qt::Key_Return, this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
   editEditSelectedArea->setWhatsThis(i18n("Edit the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
-  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), "delete_table_row", "Delete", this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
+  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), "delete_table_row", Qt::Key_Delete, this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
   editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 

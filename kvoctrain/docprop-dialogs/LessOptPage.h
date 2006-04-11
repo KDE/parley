@@ -26,7 +26,7 @@
 #ifndef LessOptPage_included
 #define LessOptPage_included
 
-#include "LessOptPageForm.h"
+#include "ui_LessOptPageForm.h"
 
 class KEduVocDocument;
 class QComboBox;

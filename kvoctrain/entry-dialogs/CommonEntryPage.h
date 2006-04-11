@@ -26,7 +26,7 @@
 #ifndef CommonEntryPage_included
 #define CommonEntryPage_included
 
-#include "CommonEntryPageForm.h"
+#include "ui_CommonEntryPageForm.h"
 #include <QueryManager.h>
 #include <UsageManager.h>
 

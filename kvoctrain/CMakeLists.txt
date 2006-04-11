@@ -9,7 +9,7 @@ add_subdirectory( kvt-core )
 add_subdirectory( examples ) 
 add_subdirectory( pics ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/  ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/ ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
 
 
 ########### next target ###############
@@ -45,7 +45,81 @@ kde4_add_ui_files( libcommondlg_SRCS
 	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlgForm.ui
 )
 
-set(kvoctrain_SRCS ${libcommondlg_SRCS}
+set(querydialog_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/AdjQueryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/ArtQueryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/MCQueryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/QueryDlgBase.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/RandomQueryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/SimpleQueryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/VerbQueryDlg.cpp
+)
+
+kde4_add_ui_files(querydialog_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/AdjQueryDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/ArtQueryDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/MCQueryDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/RandomQueryDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/SimpleQueryDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/VerbQueryDlgForm.ui
+)
+
+set(docprop_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/DocOptionsPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/DocPropDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/DocPropLangDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LangPropPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LessOptPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TenseOptPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TitlePage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TypeOptPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/UsageOptPage.cpp
+)
+
+kde4_add_ui_files(docprop_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/DocOptionsPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LangPropPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LessOptPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TenseOptPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TitlePageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TypeOptPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/UsageOptPageForm.ui
+)
+
+set(entrydialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AdjEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/blockall.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/CommonEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/EntryDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/FromToEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/MCEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/MySpinBox.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/PhoneticEntryPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/TenseEntryPage.cpp
+)
+
+kde4_add_ui_files(entrydialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AdjEntryPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AuxInfoEntryPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/CommonEntryPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/FromToEntryPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/MCEntryPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/TenseEntryPageForm.ui
+)
+
+set(statistikdialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/GenStatPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikPage.cpp
+)
+
+kde4_add_ui_files(statistikdialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/GenStatPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikPageForm.ui
+)
+
+set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS}
 	kva_io.cpp 
 	kvoctrain.cpp 
 	kvoctrainview.cpp 

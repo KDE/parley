@@ -27,7 +27,7 @@
 #ifndef GenStatPage_included
 #define GenStatPage_included
 
-#include "GenStatPageForm.h"
+#include "ui_GenStatPageForm.h"
 
 class KEduVocDocument;
 

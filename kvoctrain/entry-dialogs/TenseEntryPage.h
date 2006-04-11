@@ -26,7 +26,7 @@
 #ifndef TenseEntryPage_included
 #define TenseEntryPage_included
 
-#include "TenseEntryPageForm.h"
+#include "ui_TenseEntryPageForm.h"
 #include <keduvocgrammar.h>
 
 class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm

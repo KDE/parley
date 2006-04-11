@@ -26,7 +26,7 @@
 #ifndef MCEntryPage_included
 #define MCEntryPage_included
 
-#include "MCEntryPageForm.h"
+#include "ui_MCEntryPageForm.h"
 #include <keduvocmultiplechoice.h>
 
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm

@@ -26,7 +26,7 @@
 #ifndef TenseOptPage_included
 #define TenseOptPage_included
 
-#include "TenseOptPageForm.h"
+#include "ui_TenseOptPageForm.h"
 
 class KEduVocDocument;
 

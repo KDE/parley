@@ -26,7 +26,7 @@
 #ifndef AdjEntryPage_included
 #define AdjEntryPage_included
 
-#include "AdjEntryPageForm.h"
+#include "ui_AdjEntryPageForm.h"
 #include <keduvocgrammar.h>
 
 class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm

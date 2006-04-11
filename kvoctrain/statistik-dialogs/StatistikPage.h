@@ -29,7 +29,7 @@
 #include <Q3ListView>
 #include <QPixmap>
 
-#include "StatistikPageForm.h"
+#include "ui_StatistikPageForm.h"
 #include <keduvocexpression.h>
 
 class KEduVocDocument;
