@@ -28,7 +28,7 @@
 
 #include <QKeyEvent>
 
-#include "ArtQueryDlgForm.h"
+#include "ui_ArtQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class ArtQueryDlg : public QueryDlgBase

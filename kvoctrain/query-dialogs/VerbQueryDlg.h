@@ -28,7 +28,7 @@
 
 #include <QKeyEvent>
 
-#include "VerbQueryDlgForm.h"
+#include "ui_VerbQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class VerbQueryDlg : public QueryDlgBase

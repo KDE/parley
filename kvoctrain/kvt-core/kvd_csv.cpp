@@ -29,7 +29,7 @@
 #include <QTextStream>
 
 #include <klocale.h>
-#include "kvoctrain.h"
+#include "kvoctraindoc.h"
 
 using namespace std;
 

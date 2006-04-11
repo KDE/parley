@@ -32,7 +32,7 @@
 #include <Q3PtrList>
 #include <QList>
 
-#include "RandomQueryDlgForm.h"
+#include "ui_RandomQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class KEduVocDocument;

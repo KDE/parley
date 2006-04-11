@@ -45,7 +45,7 @@ kde4_add_ui_files( libcommondlg_SRCS
 	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlgForm.ui
 )
 
-set(querydialog_SRCS
+set(querydialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/AdjQueryDlg.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/ArtQueryDlg.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/MCQueryDlg.cpp
@@ -55,7 +55,7 @@ set(querydialog_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/VerbQueryDlg.cpp
 )
 
-kde4_add_ui_files(querydialog_SRCS
+kde4_add_ui_files(querydialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/AdjQueryDlgForm.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/ArtQueryDlgForm.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/query-dialogs/MCQueryDlgForm.ui
@@ -119,7 +119,24 @@ kde4_add_ui_files(statistikdialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikPageForm.ui
 )
 
-set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS}
+set(kvtcore_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_csv.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_lex.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_rb_kvtml1.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_rb_kvtml2.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_rh_kvtml.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_vcb.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_voc.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvd_wkvtml.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvoctraindoc.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/kvoctrainexpr.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/langset.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/LineList.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/QueryManager.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/UsageManager.cpp
+)
+
+set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS} ${kvtcore_SRCS}
 	kva_io.cpp 
 	kvoctrain.cpp 
 	kvoctrainview.cpp 
@@ -138,7 +155,7 @@ kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  ${KDE4_KDECORE_LIBS} )
+target_link_libraries(kvoctrain  ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} kdeeducore knewstuff )
 
 install_targets(/bin kvoctrain )
 

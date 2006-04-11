@@ -29,7 +29,7 @@
 
 #include <QKeyEvent>
 
-#include "AdjQueryDlgForm.h"
+#include "ui_AdjQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class AdjQueryDlg : public QueryDlgBase

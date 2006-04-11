@@ -28,7 +28,7 @@
 
 #include <QKeyEvent>
 
-#include "SimpleQueryDlgForm.h"
+#include "ui_SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class SimpleQueryDlg : public QueryDlgBase

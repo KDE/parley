@@ -28,7 +28,7 @@
 
 #include <QKeyEvent>
 
-#include "MCQueryDlgForm.h"
+#include "ui_MCQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
 class MCQueryDlg : public QueryDlgBase
