@@ -84,6 +84,7 @@ class kvoctrainExpr
   /** Constructor for an expression in different languages
    *
    * @param expr             expression
+   * @param lesson	     lesson number
    */
   kvoctrainExpr (QString &expr, int lesson = 0);
 
@@ -184,7 +185,7 @@ class kvoctrainExpr
    *
    * @param index            index of expression
    * @param expr             false friend of this index
-   * @param rev_grade        dito, in opposite direction
+   * @param rev_ami          dito, in opposite direction
    */
   void setFauxAmi (int index, const QString & expr, bool rev_ami = false);
 
@@ -192,7 +193,7 @@ class kvoctrainExpr
   /** returns false friend of this expression
    *
    * @param index            index of expression
-   * @param rev_grade        dito, in opposite direction
+   * @param rev_ami        dito, in opposite direction
    * @result                 false friend or "" if no string available
    */
   QString getFauxAmi (int index, bool rev_ami = false) const;
@@ -303,6 +304,7 @@ class kvoctrainExpr
    *
    * @param index            index of translation
    * @param grade            number of knowlegde: 0=known, x=numbers not knows
+   * @param rev_grade        dito, in opposite direction
    */
   void setGrade (int index, grade_t grade, bool rev_grade = false);
 
@@ -338,6 +340,7 @@ class kvoctrainExpr
   /** set last query date of given translation as int
    *
    * @param index            index of translation
+   * @param date             last query date
    * @param rev_date         dito, in opposite direction
    */
   void setQueryDate (int index, time_t date, bool rev_date = false);
@@ -364,7 +367,7 @@ class kvoctrainExpr
   /** sets comparison
    *
    * @param index            index of translation
-   * @param con              comparison block
+   * @param comp              comparison block
    */
   void setComparison(int index, const KEduVocComparison &comp);
 
@@ -377,7 +380,7 @@ class kvoctrainExpr
   /** sets multiple choice
    *
    * @param index            index of translation
-   * @param con              multiple choice block
+   * @param mc               multiple choice block
    */
   void setMultipleChoice(int index, const KEduVocMultipleChoice &mc);
 
@@ -391,6 +394,7 @@ class kvoctrainExpr
   /** set query count of given translation as int
    *
    * @param index            index of translation
+   * @param count            query count
    * @param rev_count        dito, in opposite direction
    */
   void setQueryCount (int index, count_t count, bool rev_count = false);
@@ -405,6 +409,7 @@ class kvoctrainExpr
   /** set bad query count of given translation as int
    *
    * @param index            index of translation
+   * @param count            bad query count
    * @param rev_count        dito, in opposite direction
    */
   void setBadCount (int index, count_t count, bool rev_count = false);

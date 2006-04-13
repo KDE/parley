@@ -279,7 +279,7 @@ class kvoctrainDoc : public QObject
 
   /** indicates that doc is (not) modified
    *
-   * @param dirty   new state
+   * @param _dirty   new state
    */
   inline void setModified (bool _dirty = true) { emit docModified(dirty = _dirty); }
 
@@ -428,7 +428,10 @@ class kvoctrainDoc : public QObject
 
   /** saves the data under the given name
    *
+   * @param parent calling object
    * @param url     if url is empty (or NULL) actual name is preserved
+   * @param title title of the doc
+   * @param ft the FileType
    * @result         true if successful
    */
   bool saveAs (QObject *parent, const KUrl & url, QString title, FileType ft);
