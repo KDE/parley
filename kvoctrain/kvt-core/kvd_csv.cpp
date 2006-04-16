@@ -27,9 +27,11 @@
 
 #include <QTextCodec>
 #include <QTextStream>
+#include <QApplication>
 
 #include <klocale.h>
 #include "kvoctraindoc.h"
+#include <kmessagebox.h>
 
 using namespace std;
 
@@ -237,7 +239,7 @@ void kvoctrainDoc::errorCsv (int /*line*/, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
-   QString s = kapp->makeStdCaption(i18n("Error in csv file"));
+   QString s = KInstance::makeStdCaption(i18n("Error in csv file"));
    QString msg = text;
    KMessageBox::error( 0, msg, s);
    QApplication::restoreOverrideCursor();
