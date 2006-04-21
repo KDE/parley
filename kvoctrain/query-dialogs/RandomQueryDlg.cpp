@@ -49,7 +49,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
 {
    QRegExp full_stop ("^(.*[^\\. ])\\.* *$");
    //full_stop.setMinimal (true);
-   if ( full_stop.search (trans) >= 0 )
+   if ( full_stop.indexIn (trans) >= 0 )
      trans = full_stop.cap (1);
    int i;
    QStringList translations;
@@ -61,7 +61,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
          regexp += "([^ ][^.]*)\\.[. ]*";
        regexp += "([^. ].*)$";
        QRegExp regex (regexp);
-       if ( regex.search (trans) >= 0 )
+       if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
          translations.remove (translations.at (0));
@@ -78,7 +78,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
          regexp += "([^ ][^:]*):[: ]*";
        regexp += "([^: ].*)$";
        QRegExp regex (regexp);
-       if ( regex.search (trans) >= 0 )
+       if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
          translations.remove (translations.at (0));
@@ -96,7 +96,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
          regexp += "([^ ][^;]*);[; ]*";
        regexp += "([^; ].*)$";
        QRegExp regex (regexp);
-       if ( regex.search (trans) >= 0 )
+       if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
          translations.remove (translations.at (0));
@@ -114,7 +114,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
          regexp += "([^ ][^,]*),[, ]*";
        regexp += "([^, ].*)$";
        QRegExp regex (regexp);
-       if ( regex.search (trans) >= 0 )
+       if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
          translations.remove (translations.at (0));
@@ -162,7 +162,9 @@ RandomQueryDlg::RandomQueryDlg(
   else if ( fields > 10 )
     fields = 10;
 
-  QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame, 0, KDialog::spacingHint());
+  QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame);
+  vb->setMargin(0);
+  vb->setSpacing(KDialog::spacingHint());
 
   bool suggestions = Prefs::suggestions();
   int i;
@@ -657,15 +659,15 @@ void RandomQueryDlg::keyPressEvent( QKeyEvent *e )
           for ( int i = 0; i < vocabulary.count(); i ++ )
           {
             QString trans (vocabulary[i]);
-            if ( (e -> key() == Qt::Key_F5 && trans.startsWith (curText, false)
-                || e -> key() == Qt::Key_F6 && trans.contains (curText, false)) )
-              combo -> insertItem (trans);
+            if ( (e -> key() == Qt::Key_F5 && trans.startsWith (curText, Qt::CaseInsensitive)
+                || e -> key() == Qt::Key_F6 && trans.contains (curText, Qt::CaseInsensitive)) )
+              combo -> addItem (trans);
           }
           combo -> setEditText (curText);
         }
       case Qt::Key_F4:
         if ( combo )
-          combo -> popup();
+          combo -> showPopup();
       break;
     }
   }

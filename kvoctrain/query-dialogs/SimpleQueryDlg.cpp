@@ -152,7 +152,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
        s = exp->example(column);
        answerstring = column == 0 ? exp->original().simplified() : exp->translation(column).simplified();
        int pos = -1;
-       while ((pos = s.find(answerstring)) > 0)
+       while ((pos = s.indexOf(answerstring)) > 0)
        {
          s.remove(pos, answerstring.length());
          s.insert (pos, "..");
@@ -333,10 +333,8 @@ void SimpleQueryDlg::setQueryFieldWordwrap()
   QFontMetrics fm(Prefs::tableFont());
   int w = fm.width(mw->queryField->text());
   int w2 = mainWidget()->width();
-  if (w > w2)
-    mw->queryField->setAlignment(Qt::AlignVCenter | Qt::TextWordWrap);
-  else
-    mw->queryField->setAlignment(Qt::AlignVCenter);
+  mw->queryField->setAlignment(Qt::AlignVCenter);
+  mw->queryField->setWordWrap(w > w2);
 }
 
 

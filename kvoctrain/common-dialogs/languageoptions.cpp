@@ -701,15 +701,15 @@ LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent) : QWidget(p
   loadISO6391Data();
 
   loadCountryData();
-  b_lang_kde->setPopup(langset_popup);
+  b_lang_kde->setMenu(langset_popup);
 
   createISO6391Menus();
-  b_lang_iso1->setPopup(iso6391_popup);
+  b_lang_iso1->setMenu(iso6391_popup);
 
   b_langNew->setEnabled(false); // activate after data is entered
 
   for (int i = 0; i < (int) m_langSet.size() && i < MAX_LANGSET; i++)
-    d_shortName->insertItem (m_langSet.shortId(i));
+    d_shortName->addItem (m_langSet.shortId(i));
 
   enableLangWidgets();
 
@@ -824,7 +824,7 @@ void LanguageOptions::enableLangWidgets()
         stream >> layouts;
         layouts.prepend(QString());
         d_kblayout->clear();
-        d_kblayout->insertStringList(layouts);
+        d_kblayout->addItems(layouts);
       }
     }
   }
@@ -847,7 +847,7 @@ void LanguageOptions::slotNewNameChanged(const QString& _s)
 void LanguageOptions::slotNewClicked()
 {
    QString s = e_newName->text();
-   d_shortName->insertItem(s.simplified());
+   d_shortName->addItem(s.simplified());
    d_shortName->setCurrentItem(d_shortName->count()-1);
    enableLangWidgets();
    slotShortActivated(s);
@@ -987,7 +987,7 @@ void LanguageOptions::slotPixmapClicked()
     else
     {
       QFileInfo fi (m_lastPix);
-      m_lastPix = fi.dirPath()+"/flag.png";
+      m_lastPix = fi.path()+"/flag.png";
     }
 
     QString s = KFileDialog::getOpenFileName (m_lastPix, "*.png *.xpm *.gif *.xbm");
@@ -1031,10 +1031,10 @@ void LanguageOptions::loadCountryData()
     QString tag = *it;
     int index;
 
-    index = tag.findRev('/');
+    index = tag.lastIndexOf('/');
     if (index != -1) tag = tag.mid(index + 1);
 
-    index = tag.findRev('.');
+    index = tag.lastIndexOf('.');
     if (index != -1) tag.truncate(index);
 
     KSimpleConfig entry(*it);
@@ -1056,19 +1056,19 @@ void LanguageOptions::loadCountryData()
     QString submenu = entry.readEntry(QString::fromLatin1("Region"),QString());
 
     QString tag = *sit;
-    int index = tag.findRev('/');
+    int index = tag.lastIndexOf('/');
     tag.truncate(index);
-    index = tag.findRev('/');
+    index = tag.lastIndexOf('/');
     tag = tag.mid(index+1);
 
     if (tag == "C")
       continue;
 
-    QStringList all_langs = QStringList::split(",", entry.readEntry(QString::fromLatin1("Languages"),QString()));
+    QStringList all_langs = entry.readEntry(QString::fromLatin1("Languages"),QString()).split(",", QString::SkipEmptyParts);
     QList<int> langs;
 
     QString pixmap = *sit;
-    index = pixmap.findRev('/');
+    index = pixmap.lastIndexOf('/');
     pixmap.truncate(index);
     pixmap += "/flag.png";
 
@@ -1076,8 +1076,8 @@ void LanguageOptions::loadCountryData()
     {
       // Treat ie "en_GB" and "en_USE" as "en" because the language list
       // only contains the first letters
-      if ((*it).find("_"))
-        *it = (*it).left((*it).find("_"));
+      if ((*it).indexOf("_"))
+        *it = (*it).left((*it).indexOf("_"));
 
       int id = global_langset.indexShortId(*it);
       if (id > 0)

@@ -58,7 +58,7 @@ ProfilesDialog::ProfilesDialog(QueryManager * m, QWidget *parent, const char *na
     preSettings.readConfig();
     profiles.append(SettingsProfile(preSettings.name(), preSettings.query(),
       preSettings.threshold(), preSettings.blocking()));
-    mw->ps_name->insertItem(preSettings.name());
+    mw->ps_name->addItem(preSettings.name());
   }
 
   mw->updateButtons();
@@ -72,7 +72,7 @@ void ProfilesDialog::slotDeleteGroup()
     mw->ps_name->removeItem(curr);
     profiles.removeAt(curr);
     if (curr >= mw->ps_name->count()-1)
-      mw->ps_name->setCurrentItem(mw->ps_name->count()-1);
+      mw->ps_name->setCurrentIndex(mw->ps_name->count()-1);
   }
   saveProfiles();
   mw->updateButtons();
@@ -90,7 +90,7 @@ void ProfilesDialog::slotNewGroup()
     mw->ps_name->insertItem(newGroupName);
     profiles.append(SettingsProfile(newGroupName, "", "", ""));
     modifyProfile(profiles.count()-1);
-    mw->ps_name->setCurrentItem(mw->ps_name->count()-1);
+    mw->ps_name->setCurrentIndex(mw->ps_name->count()-1);
     selectProfile(mw->ps_name->currentIndex());
     mw->updateButtons();
   }
@@ -113,7 +113,7 @@ void ProfilesDialog::slotStoreGroup()
 
 static bool extract (QString &line, QString &ret)
 {
-  int lim = line.find (",");
+  int lim = line.indexOf (",");
   if (lim < 0)
   {
     ret = "";
@@ -187,7 +187,7 @@ void ProfilesDialog::selectProfile(int profile)
     { // new style: multiple lessons
       int pos;
       line.remove(0, 1);
-      if ((pos = line.find(')')) > 0)
+      if ((pos = line.indexOf(')')) > 0)
       {
         s = line.left (pos);
         line.remove (0, pos+1);

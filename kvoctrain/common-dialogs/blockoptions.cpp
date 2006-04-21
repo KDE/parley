@@ -182,7 +182,7 @@ void BlockOptions::fillComboBox(QComboBox * cb)
   cb->clear();
   while (ref->text != 0)
   {
-    cb->insertItem (i18n(ref->text));
+    cb->addItem(i18n(ref->text));
     ref++;
   }
 }
@@ -198,7 +198,7 @@ void BlockOptions::updateComboBox(int value, QComboBox * cb)
       index = ref - date_itemlist;
     ref++;
   }
-  cb->setCurrentItem(index);
+  cb->setCurrentIndex(index);
 }
 
 void BlockOptions::slotBlockToggled(bool state)

@@ -56,32 +56,44 @@ DocPropsDlg::DocPropsDlg
   KDialogBase(Tabbed, i18n("Document Properties"), Ok|Cancel, Ok, parent, name, modal)
 {
   QFrame *page = addPage( i18n("&General") );
-  QVBoxLayout *topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  QVBoxLayout *topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   titleOptPage = new TitlePage (title, author, license, doc_remark, page);
   topLayout->addWidget( titleOptPage );
 
   page = addPage( i18n("L&essons"));
-  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   lessOptPage = new LessOptPage (lessons, doc, page);
   topLayout->addWidget( lessOptPage );
 
   page = addPage( i18nc("word types","T&ypes"));
-  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   typeOptPage = new TypeOptPage (types, doc, page);
   topLayout->addWidget( typeOptPage );
 
   page = addPage( i18n("Te&nses"));
-  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   tenseOptPage = new TenseOptPage (tenses, doc, page);
   topLayout->addWidget( tenseOptPage );
 
   page = addPage( i18nc("usage (area) of an expression", "&Usage"));
-  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   useOptPage = new UsageOptPage (usages, doc, page);
   topLayout->addWidget( useOptPage );
 
   page = addPage( i18n("&Options"));
-  topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( KDialog::marginHint() );
+  topLayout->setSpacing( KDialog::spacingHint() );
   docOptPage = new DocOptionsPage (doc->isSortingEnabled(), page);
   topLayout->addWidget( docOptPage );
 }

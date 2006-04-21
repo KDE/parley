@@ -78,15 +78,15 @@ PasteOptions::PasteOptions(LangSet & langset, KEduVocDocument * doc, QWidget* pa
 
 void PasteOptions::fillWidgets()
 {
-  SeparatorCombo->insertItem(i18n(";"));
-  SeparatorCombo->insertItem(i18n("#"));
-  SeparatorCombo->insertItem(i18n("!"));
-  SeparatorCombo->insertItem(i18n("|"));
-  SeparatorCombo->insertItem(i18n(","));
-  SeparatorCombo->insertItem(i18n("TAB"));
-  SeparatorCombo->insertItem(i18n(">= 2 SPACES"));
-  SeparatorCombo->insertItem(i18n(" : "));
-  SeparatorCombo->insertItem(i18n(" :: "));
+  SeparatorCombo->addItem(i18n(";"));
+  SeparatorCombo->addItem(i18n("#"));
+  SeparatorCombo->addItem(i18n("!"));
+  SeparatorCombo->addItem(i18n("|"));
+  SeparatorCombo->addItem(i18n(","));
+  SeparatorCombo->addItem(i18n("TAB"));
+  SeparatorCombo->addItem(i18n(">= 2 SPACES"));
+  SeparatorCombo->addItem(i18n(" : "));
+  SeparatorCombo->addItem(i18n(" :: "));
 
   QStringList sl = Prefs::pasteOrder();
   OrderList->clear();
@@ -208,7 +208,7 @@ void PasteOptions::slotUseCurrentDocToggled(bool)
 bool PasteOptions::hasChanged()
 {
   bool result;
-  result = ((separator_id[SeparatorCombo->currentItem()] != Prefs::separator()));
+  result = ((separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()));
   if (result)
     return true;
   QStringList ol, pl;
@@ -228,12 +228,12 @@ bool PasteOptions::hasChanged()
 
 bool PasteOptions::isDefault()
 {
-  return !strcmp(separator_id[SeparatorCombo->currentItem()], "\t");
+  return !strcmp(separator_id[SeparatorCombo->currentIndex()], "\t");
 }
 
 void PasteOptions::updateSettings()
 {
-  Prefs::setSeparator((separator_id[SeparatorCombo->currentItem()]));
+  Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
   Prefs::setPasteOrder(preparePasteOrderList());
 }
 

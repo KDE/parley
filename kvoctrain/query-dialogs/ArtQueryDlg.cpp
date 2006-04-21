@@ -119,11 +119,11 @@ void ArtQueryDlg::setQuery(QString,
    articles.female(def, indef);
    mw->rb_fem->setText (i18n("&female:\t")+def+" / "+indef);
    mw->rb_fem->setEnabled (!QString(def+indef).isEmpty() );
-   if (!removed && s.find(def+" ") == 0) {
+   if (!removed && s.indexOf(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
    }
-   if (!removed && s.find(indef+" ") == 0) {
+   if (!removed && s.indexOf(indef+" ") == 0) {
      s.remove (0, indef.length()+1);
      removed = true;
    }
@@ -131,11 +131,11 @@ void ArtQueryDlg::setQuery(QString,
    articles.male(def, indef);
    mw->male->setText (i18n("&male:\t")+def+" / "+indef);
    mw->male->setEnabled (!QString(def+indef).isEmpty() );
-   if (!removed && s.find(def+" ") == 0) {
+   if (!removed && s.indexOf(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
    }
-   if (!removed && s.find(indef+" ") == 0) {
+   if (!removed && s.indexOf(indef+" ") == 0) {
      s.remove (0, indef.length()+1);
      removed = true;
    }
@@ -143,11 +143,11 @@ void ArtQueryDlg::setQuery(QString,
    articles.natural(def, indef);
    mw->natural->setText (i18n("&natural:\t")+def+" / "+indef);
    mw->natural->setEnabled (!QString(def+indef).isEmpty() );
-   if (!removed && s.find(def+" ") == 0) {
+   if (!removed && s.indexOf(def+" ") == 0) {
      s.remove (0, def.length()+1);
      removed = true;
    }
-   if (!removed && s.find(indef+" ") == 0) {
+   if (!removed && s.indexOf(indef+" ") == 0) {
      s.remove (0, indef.length()+1);
      removed = true;
    }

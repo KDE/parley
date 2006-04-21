@@ -136,26 +136,26 @@ void ThresholdOptions::fillWidgets()
   // limits and threshholds (the five comboboxes on the right)
   gradelist->clear();
   for (int i = 1; i <= KV_MAX_GRADE; i++)
-    gradelist->insertItem (m_queryManager->gradeStr(i));
+    gradelist->addItem (m_queryManager->gradeStr(i));
 
   typelist->clear();
   all_maintypes = QueryManager::getRelation(true); // collect main types
   for (int i = 0; i < (int) all_maintypes.size(); i++)
-    typelist->insertItem (all_maintypes[i].longStr());
+    typelist->addItem (all_maintypes[i].longStr());
 
   badlist->clear();
   querylist->clear();
   for (int i = 0; i <= 15; i++)
   {
-    badlist->insertItem(QString::number(i));
-    querylist->insertItem(QString::number(i));
+    badlist->addItem(QString::number(i));
+    querylist->addItem(QString::number(i));
   }
 
   ref = Threshdate_itemlist;
   datelist->clear();
   while (ref->text != 0 )
   {
-    datelist->insertItem (i18n(ref->text));
+    datelist->addItem (i18n(ref->text));
     ref++;
   }
 
@@ -164,7 +164,7 @@ void ThresholdOptions::fillWidgets()
   lessoncomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) )
   {
-    lessoncomp->insertItem (m_queryManager->compStr(*ct));
+    lessoncomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 
@@ -172,7 +172,7 @@ void ThresholdOptions::fillWidgets()
   typecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) )
   {
-    typecomp->insertItem (m_queryManager->compStr(*ct));
+    typecomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 
@@ -180,28 +180,28 @@ void ThresholdOptions::fillWidgets()
   querycomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) )
   {
-    querycomp->insertItem (m_queryManager->compStr(*ct));
+    querycomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = bad_complist;
   badcomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    badcomp->insertItem (m_queryManager->compStr(*ct));
+    badcomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = grade_complist;
   gradecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    gradecomp->insertItem (m_queryManager->compStr(*ct));
+    gradecomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = date_complist;
   datecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    datecomp->insertItem (m_queryManager->compStr(*ct));
+    datecomp->addItem (m_queryManager->compStr(*ct));
     ct++;
   }
 }
@@ -225,17 +225,17 @@ void ThresholdOptions::updateWidgets()
     }
   }
 
-  gradelist->setCurrentItem(Prefs::gradeItem());
+  gradelist->setCurrentIndex(Prefs::gradeItem());
 
   for (int i = 0; i < typelist->count(); i++)
   {
     if (Prefs::typeItem() == all_maintypes[i].shortStr())
       index = i;
   }
-  typelist->setCurrentItem(index);
+  typelist->setCurrentIndex(index);
 
-  badlist->setCurrentItem(Prefs::badItem());
-  querylist->setCurrentItem(Prefs::queryItem());
+  badlist->setCurrentIndex(Prefs::badItem());
+  querylist->setCurrentIndex(Prefs::queryItem());
 
   ref = Threshdate_itemlist;
   while (ref->text != 0 ) {
@@ -243,43 +243,43 @@ void ThresholdOptions::updateWidgets()
       index = ref - Threshdate_itemlist;
     ref++;
   }
-  datelist->setCurrentItem(index);
+  datelist->setCurrentIndex(index);
 
   //compare-functions (the lesson combobox and the five comboboxes on the left)
   ct = less_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Lesson))
     ct++;
-  lessoncomp->setCurrentItem (ct - less_complist);
+  lessoncomp->setCurrentIndex (ct - less_complist);
   slotSetLessonComp(ct - less_complist);
 
   ct = type_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::WordType))
     ct++;
-  typecomp->setCurrentItem(ct - type_complist);
+  typecomp->setCurrentIndex(ct - type_complist);
   typelist->setEnabled(ct - type_complist != 0); // don`t care == 0
 
   ct = query_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Query))
     ct++;
-  querycomp->setCurrentItem (ct - query_complist);
+  querycomp->setCurrentIndex (ct - query_complist);
   querylist->setEnabled(ct - query_complist != 0); // don`t care == 0
 
   ct = bad_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Bad))
     ct++;
-  badcomp->setCurrentItem(ct - bad_complist);
+  badcomp->setCurrentIndex(ct - bad_complist);
   badlist->setEnabled(ct - bad_complist != 0); // don`t care == 0
 
   ct = grade_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Grade))
     ct++;
-  gradecomp->setCurrentItem (ct - grade_complist);
+  gradecomp->setCurrentIndex (ct - grade_complist);
   gradelist->setEnabled(ct - grade_complist != 0); // don`t care == 0
 
   ct = date_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Date))
     ct++;
-  datecomp->setCurrentItem (ct - date_complist);
+  datecomp->setCurrentIndex (ct - date_complist);
   if (date_complist[ct - date_complist] == Prefs::EnumCompType::Before ||
       date_complist[ct - date_complist] == Prefs::EnumCompType::Within)
     datelist->setEnabled(true);
