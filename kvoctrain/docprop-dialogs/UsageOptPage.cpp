@@ -98,7 +98,7 @@ void UsageOptPage::slotModifyUsage()
   if (usageList->count() != 0
       && (int) usageList->count() > act_usage) {
     QString str = usageList->text (act_usage);
-    int pos = str.find (USAGE_TAG);
+    int pos = str.indexOf (USAGE_TAG);
     str.remove (0, pos+strlen (USAGE_TAG));
 
     bool ok;
@@ -121,7 +121,7 @@ void UsageOptPage::updateListBox(int start)
   for (int i = start; i < (int) usageList->count(); i++)
   {
     str = usageList->text (i);
-    int pos = str.find (USAGE_TAG);
+    int pos = str.indexOf (USAGE_TAG);
     str.remove (0, pos+strlen (USAGE_TAG));
     str2.setNum (i+1);
     if (i <= 9)
@@ -145,7 +145,7 @@ void UsageOptPage::slotDeleteUsage()
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < doc->numIdentifiers(); lang++) {
         QString ul = exp->usageLabel(lang) + UL_USAGE_DIV;
-        if (ul.find(t) >= 0 ) {
+        if (ul.indexOf(t) >= 0 ) {
           KMessageBox::information(this,
                     i18nc("usage (area) of an expression",
                         "This user-defined usage label could not be deleted "
@@ -179,7 +179,7 @@ void UsageOptPage::getUsageLabels(QStringList &ret_usage, QList<int> &ret_Index)
   ret_usage.clear();
   for (int i = 0; i < (int) usageList->count(); i++) {
     str = usageList->text(i);
-    int pos = str.find (USAGE_TAG);
+    int pos = str.indexOf (USAGE_TAG);
     str.remove (0, pos+strlen (USAGE_TAG));
     ret_usage.push_back (str);
   }
@@ -201,7 +201,7 @@ void UsageOptPage::slotCleanup()
         t.remove (0, 1);
 
         int next;
-        if ((next = t.find(UL_USAGE_DIV)) >= 0) {
+        if ((next = t.indexOf(UL_USAGE_DIV)) >= 0) {
           n = t.left(next);
           t.remove (0, next+1);
         }
@@ -269,7 +269,7 @@ void UsageOptPage::cleanUnused(KEduVocDocument *doc,
           QString n;
           t.remove (0, 1);
           int next;
-          if ((next = t.find(UL_USAGE_DIV)) >= 0) {
+          if ((next = t.indexOf(UL_USAGE_DIV)) >= 0) {
             n = t.left(next);
             t.remove (0, next+1);
           }

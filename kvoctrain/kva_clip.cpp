@@ -40,9 +40,9 @@ void kvoctrainApp::slotSmartSearchClip()
   QString entries = QApplication::clipboard()->text();
 
   if (!entries.isEmpty()) {
-    int pos = entries.find ('\n'); // search for a line end
+    int pos = entries.indexOf ('\n'); // search for a line end
     if (pos < 0)
-      pos = entries.find ('\r');
+      pos = entries.indexOf ('\r');
 
     if (pos < 0)    // just first "line"
       s = entries;
@@ -174,9 +174,9 @@ void kvoctrainApp::slotEditPaste()
   QString num;
 // view->setView(0, langset, gradecols);
   while (!entries.isEmpty()) {
-    int pos = entries.find ('\n'); // search for a line end
+    int pos = entries.indexOf ('\n'); // search for a line end
     if (pos < 0) {
-      pos = entries.find ('\r');   // mac style ?
+      pos = entries.indexOf ('\r');   // mac style ?
     }
 
     if (pos < 0) {

@@ -132,7 +132,7 @@ bool UsageManager::contains (const QString& label, const QString& collection)
 {
    QString s = collection;
    int pos;
-   while ((pos = s.find(UL_USAGE_DIV)) >= 0) {
+   while ((pos = s.indexOf(UL_USAGE_DIV)) >= 0) {
      if (s.left(pos) == label)
        return true;
      s.remove (0, pos+1);

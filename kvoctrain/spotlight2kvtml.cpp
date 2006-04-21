@@ -90,43 +90,43 @@ void readToMem (QTextStream &is, QString month, QString year)
      line = is.readLine();
 
      int pos;
-     while ((pos = line.find("  ")) >= 0)
+     while ((pos = line.indexOf("  ")) >= 0)
        line.remove (pos, 1);
 
-     bool head_line = (!line.simplified().isEmpty() && line == line.upper() );
+     bool head_line = (!line.simplified().isEmpty() && line == line.toUpper() );
 
      if (first_line && !head_line) {
        line = is.readLine();
-       head_line = (!line.simplified().isEmpty() && line == line.upper() );
+       head_line = (!line.simplified().isEmpty() && line == line.toUpper() );
      }
      first_line = false;
 
-     if (   line.find ("see p.") >= 0
-         || line.find ("see pp.") >= 0
-         || line.find ("see also p") >= 0) {
+     if (   line.indexOf ("see p.") >= 0
+         || line.indexOf ("see pp.") >= 0
+         || line.indexOf ("see also p") >= 0) {
        line = "";
      }
 
      int c = 0x92;
-     while ((pos = line.find (c)) >= 0)
+     while ((pos = line.indexOf (c)) >= 0)
        line[pos] = '\'';
 
      c = 0x94;
-     while ((pos = line.find (c)) >= 0)
+     while ((pos = line.indexOf (c)) >= 0)
        line[pos] = ' ';
 
      pos = 0;
-     while ((pos = line.find ('&', pos)) >= 0) {
+     while ((pos = line.indexOf ('&', pos)) >= 0) {
        line.insert (pos+1, "amp;");
        pos += 5; // skip &amp;
      }
 
-     while ((pos = line.find ('<')) >= 0) {
+     while ((pos = line.indexOf ('<')) >= 0) {
        line.remove(pos, 1);
        line.insert (pos, "&lt;");
      }
 
-     while ((pos = line.find ('>')) >= 0) {
+     while ((pos = line.indexOf ('>')) >= 0) {
        line.remove(pos, 1);
        line.insert (pos, "&gt;");
      }
@@ -138,9 +138,9 @@ void readToMem (QTextStream &is, QString month, QString year)
          lesson_str = line + ", "+month+" "+year;
        }
        else {
-         pos = line.find ('\t');
+         pos = line.indexOf ('\t');
          if (pos < 0)
-           pos = line.find ('|');
+           pos = line.indexOf ('|');
          if (pos >= 0) {
            if (lesson_pending) {
              lesson_pending = false;
@@ -160,47 +160,47 @@ void readToMem (QTextStream &is, QString month, QString year)
            spot.en = line.mid(0, pos);
            spot.de = line.mid(pos+1, line.length()-pos-1);
 
-           if ((pos = spot.en.find(" UK") ) >= 0) {
+           if ((pos = spot.en.indexOf(" UK") ) >= 0) {
              spot.en_rem+= i18n("UK ").toLocal8Bit();
              spot.en.remove (pos, 3);
            }
-           if ((pos = spot.en.find("(UK)") ) >= 0) {
+           if ((pos = spot.en.indexOf("(UK)") ) >= 0) {
              spot.en_rem+= i18n("UK ").toLocal8Bit();
              spot.en.remove (pos, 4);
            }
 
-           if ((pos = spot.en.find(" N. Am.") ) >= 0) {
+           if ((pos = spot.en.indexOf(" N. Am.") ) >= 0) {
              spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
-           if ((pos = spot.en.find("(N. Am.)") ) >= 0) {
+           if ((pos = spot.en.indexOf("(N. Am.)") ) >= 0) {
              spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
              spot.en.remove (pos, 8);
            }
 
-           if ((pos = spot.en.find(" US") ) >= 0) {
+           if ((pos = spot.en.indexOf(" US") ) >= 0) {
              spot.en_rem+= i18n("US ").toLocal8Bit();
              spot.en.remove (pos, 3);
            }
-           if ((pos = spot.en.find("(US)") ) >= 0) {
+           if ((pos = spot.en.indexOf("(US)") ) >= 0) {
              spot.en_rem+= i18n("US ").toLocal8Bit();
              spot.en.remove (pos, 4);
            }
 
-           if ((pos = spot.en.find("ifml.") ) >= 0) {
+           if ((pos = spot.en.indexOf("ifml.") ) >= 0) {
              spot.en_rem+= i18n("ifml. ").toLocal8Bit();
              spot.en.remove (pos, 5);
            }
-           if ((pos = spot.en.find("(ifml.)") ) >= 0) {
+           if ((pos = spot.en.indexOf("(ifml.)") ) >= 0) {
              spot.en_rem+= i18n("ifml. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
 
-           if ((pos = spot.en.find("vulg.") ) >= 0) {
+           if ((pos = spot.en.indexOf("vulg.") ) >= 0) {
              spot.en_rem+= i18n("vulg. ").toLocal8Bit();
              spot.en.remove (pos, 5);
            }
-           if ((pos = spot.en.find("(vulg.)") ) >= 0) {
+           if ((pos = spot.en.indexOf("(vulg.)") ) >= 0) {
              spot.en_rem+= i18n("vulg. ").toLocal8Bit();
              spot.en.remove (pos, 7);
            }
@@ -303,7 +303,7 @@ int main(int argc, char **argv)
   QString spot (argv[1]);
   QString kvtml;
 
-  int dot = spot.findRev('.');
+  int dot = spot.lastIndexOf('.');
   if (dot < 0) {
     kvtml = spot + ".kvtml";
   }

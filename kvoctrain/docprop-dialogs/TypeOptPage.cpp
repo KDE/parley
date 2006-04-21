@@ -97,7 +97,7 @@ void TypeOptPage::slotModifyType()
   if (typeList->count() != 0
       && (int) typeList->count() > act_type) {
     QString str = typeList->text (act_type);
-    int pos = str.find (TYPE_TAG);
+    int pos = str.indexOf (TYPE_TAG);
     str.remove (0, pos+strlen (TYPE_TAG));
     bool ok;
     QString getType = KInputDialog::getText(
@@ -118,7 +118,7 @@ void TypeOptPage::updateListBox(int start)
   QString str, str2;
   for (int i = start; i < (int) typeList->count(); i++) {
     str = typeList->text (i);
-    int pos = str.find (TYPE_TAG);
+    int pos = str.indexOf (TYPE_TAG);
     str.remove (0, pos+strlen (TYPE_TAG));
     str2.setNum (i+1);
     if (i <= 9)
@@ -171,7 +171,7 @@ void TypeOptPage::getTypeNames (QStringList &ret_type, QList<int> &ret_Index)
   QString str;    ret_type.clear();
   for (int i = 0; i < (int) typeList->count(); i++) {
     str = typeList->text(i);
-    int pos = str.find (TYPE_TAG);
+    int pos = str.indexOf (TYPE_TAG);
     str.remove (0, pos+strlen (TYPE_TAG));
     ret_type.push_back (str);
   }

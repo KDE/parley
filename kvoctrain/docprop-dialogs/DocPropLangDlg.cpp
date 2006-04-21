@@ -67,7 +67,9 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget
       tabCaption = (s);
 
     page = addPage(s, s, QPixmap(langset->PixMapFile(idx))); ///@todo The pixmaps don't show up in tabbed dialog
-    topLayout = new QVBoxLayout( page, KDialog::marginHint(), KDialog::spacingHint() );
+    topLayout = new QVBoxLayout( page );
+    topLayout->setMargin( KDialog::marginHint() );
+    topLayout->setSpacing( KDialog::spacingHint() );
     lpp = new LangPropPage (doc, s, doc->conjugation(i), doc->article(i), page);
     topLayout->addWidget( lpp );
 

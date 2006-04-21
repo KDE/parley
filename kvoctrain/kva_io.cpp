@@ -346,7 +346,7 @@ void kvoctrainApp::slotFileMerge()
               QString n;
               t.remove (0, 1);
               int next;
-              if ((next = t.find(UL_USAGE_DIV)) >= 0) {
+              if ((next = t.indexOf(UL_USAGE_DIV)) >= 0) {
                 n = t.left(next);
                 t.remove (0, next+1);
               }

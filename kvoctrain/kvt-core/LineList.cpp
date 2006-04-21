@@ -39,11 +39,11 @@ void LineList::setLines(const QString &the_lines )
   multilines.clear();
   QString lines = the_lines;
   int pos;
-  if ((pos = lines.find ('\n')) >= 0) {
+  if ((pos = lines.indexOf ('\n')) >= 0) {
     while (pos >= 0) {
       multilines.push_back(lines.left(pos));
       lines.remove (0, pos+1);
-      pos = lines.find ('\n');
+      pos = lines.indexOf ('\n');
     }
   }
 

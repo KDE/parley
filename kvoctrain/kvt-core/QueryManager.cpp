@@ -90,7 +90,7 @@ QString QueryManager::getSubType (const QString & type)
 {
   int i;
   QString t = type;
-  if ((i = t.find(QM_TYPE_DIV)) >= 0) {
+  if ((i = t.indexOf(QM_TYPE_DIV)) >= 0) {
     t.remove(0, i+1);
     return t;
   }
@@ -102,7 +102,7 @@ QString QueryManager::getSubType (const QString & type)
 QString QueryManager::getMainType (const QString & type)
 {
   int i;
-  if ((i = type.find(QM_TYPE_DIV)) >= 0)
+  if ((i = type.indexOf(QM_TYPE_DIV)) >= 0)
     return type.left(i);
   else
     return type;
@@ -241,7 +241,7 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int id
 bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
 {
    QString qtype;
-   int pos = query_type.find (QM_TYPE_DIV);
+   int pos = query_type.indexOf (QM_TYPE_DIV);
    if (pos >= 0)
      qtype = query_type.left (pos);
    else
@@ -653,7 +653,7 @@ void QueryManager::setLessonItemStr (const QString & indices)
   int pos;
   QString indices_copy = indices;
   lessonitems.clear();
-  while ((pos = indices_copy.find(' ')) >= 0) {
+  while ((pos = indices_copy.indexOf(' ')) >= 0) {
      QString s = indices_copy.left(pos);
      indices_copy.remove(0, pos+1);
      lessonitems.push_back(s.toInt());

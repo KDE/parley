@@ -99,7 +99,7 @@ void TenseOptPage::slotModifyTense()
   if (tenseList->count() != 0 && (int) tenseList->count() > act_tense)
   {
     QString str = tenseList->text (act_tense);
-    int pos = str.find (TENSE_TAG);
+    int pos = str.indexOf (TENSE_TAG);
     str.remove (0, pos+strlen (TENSE_TAG));
     bool ok;
     QString getTense = KInputDialog::getText(
@@ -121,7 +121,7 @@ void TenseOptPage::updateListBox(int start)
   for (int i = start; i < (int) tenseList->count(); i++)
   {
     str = tenseList->text (i);
-    int pos = str.find (TENSE_TAG);
+    int pos = str.indexOf (TENSE_TAG);
     str.remove (0, pos+strlen (TENSE_TAG));
     str2.setNum (i+1);
     if (i <= 9)
@@ -178,7 +178,7 @@ void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
   for (int i = 0; i < (int) tenseList->count(); i++)
   {
     str = tenseList->text(i);
-    int pos = str.find (TENSE_TAG);
+    int pos = str.indexOf (TENSE_TAG);
     str.remove (0, pos+strlen (TENSE_TAG));
     ret_tense.push_back (str);
   }

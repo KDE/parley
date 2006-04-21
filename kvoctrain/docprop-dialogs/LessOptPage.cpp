@@ -99,7 +99,7 @@ void LessOptPage::slotModifyLesson()
   if (lessonList->count() != 0 && (int) lessonList->count() > act_lesson)
   {
     QString str = lessonList->text (act_lesson);
-    int pos = str.find (LESS_TAG);
+    int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
     bool ok;
     QString getLesson = KInputDialog::getText(
@@ -121,7 +121,7 @@ void LessOptPage::updateListBox(int start)
   for (int i = start; i < (int) lessonList->count(); i++)
   {
     str = lessonList->text (i);
-    int pos = str.find (LESS_TAG);
+    int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
     str2.setNum (i+1);
     if (i <= 9)
@@ -171,9 +171,9 @@ void LessOptPage::getLesson (QComboBox *ret_lesson, QList<int> &ret_Index)
   QString str;
   for (int i = 0; i < (int) lessonList->count(); i++) {
     str = lessonList->text(i);
-    int pos = str.find (LESS_TAG);
+    int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
-    ret_lesson->insertItem (str);
+    ret_lesson->addItem (str);
   }
   ret_Index = lessonIndex;
 }
