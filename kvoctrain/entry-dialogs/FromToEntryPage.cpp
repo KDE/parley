@@ -88,7 +88,7 @@ FromToEntryPage::FromToEntryPage
   QString s;
   for (int i = 0; i <= KV_MAX_GRADE; i++) {
     s.setNum (i);
-    gradebox->insertItem( QueryManager::gradeStr(i) );
+    gradebox->addItem( QueryManager::gradeStr(i) );
   }
   gradebox->setValidator (new BlockAllValidator() );
 
@@ -167,7 +167,7 @@ void FromToEntryPage::setData(
     // FIXME: possibly derive new combobox type
     //        which filters ALL charcters to prevent new input
     //        in edit field
-    gradebox->clearEdit();
+    gradebox->clearEditText();
   }
 
   bcount_dirty = false;

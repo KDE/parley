@@ -282,7 +282,7 @@ void RandomQueryDlg::setQuery(QString org,
    {
      for ( i = 0; i < fields; i ++ )
      {
-       transCombos.at(i) -> clearEdit();
+       transCombos.at(i) -> clearEditText();
        resetField (transCombos.at(i) -> lineEdit());
      }
      for ( k = 0; k < translations.count(); k ++ )
@@ -598,7 +598,7 @@ void RandomQueryDlg::slotUser2()
 
    if ( Prefs::suggestions() )
      for ( int i = 0; i < fields; i ++ )
-       transCombos.at(i) -> clearEdit();
+       transCombos.at(i) -> clearEditText();
    else
      for ( int i = 0; i < fields; i ++ )
        transFields.at(i) -> clear();

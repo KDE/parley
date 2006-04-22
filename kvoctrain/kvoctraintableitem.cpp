@@ -61,9 +61,9 @@ QWidget *KVocTrainTableItem::createEditor() const
       case KV_COL_LESS: {
         QComboBox *lessonbox = new QComboBox(table()->viewport() );
         lessonbox->setFont(KGlobalSettings::generalFont());
-        lessonbox->insertItem (m_doc->lessonDescription(0));
+        lessonbox->addItem (m_doc->lessonDescription(0));
         for (unsigned i = 1; i <= (unsigned) m_doc->numLessons(); ++i)
-          lessonbox->insertItem (m_doc->lessonDescription(i));
+          lessonbox->addItem (m_doc->lessonDescription(i));
         lessonbox->setCurrentIndex(m_doc->entry(row())->lesson());
         return lessonbox;
       }
@@ -72,9 +72,9 @@ QWidget *KVocTrainTableItem::createEditor() const
       case KV_COL_MARK: {
         QComboBox *statebox = new QComboBox(table()->viewport() );
         statebox->setFont(KGlobalSettings::generalFont());
-        statebox->insertItem (i18nc("state of a row", "Active, Not in Query"));
-        statebox->insertItem (i18nc("state of a row", "In Query"));
-        statebox->insertItem (i18nc("state of a row", "Inactive"));
+        statebox->addItem (i18nc("state of a row", "Active, Not in Query"));
+        statebox->addItem (i18nc("state of a row", "In Query"));
+        statebox->addItem (i18nc("state of a row", "Inactive"));
         QSize sz = statebox->sizeHint();
         sz.setHeight(table()->rowHeight(row()));
         statebox->setMinimumSize(sz);

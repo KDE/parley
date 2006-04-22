@@ -130,8 +130,8 @@ void ThresholdOptions::fillWidgets()
   ThreshListRef *ref;
 
   lessonlist->clear();
-  for (int i = 1; i < (int) m_lessons->count(); i++ ) // first in lessons is <no lesson> !
-    lessonlist->insertItem (m_lessons->text(i));
+  for (int i = 1; i < m_lessons->count(); i++ ) // first in lessons is <no lesson> !
+    lessonlist->insertItem (m_lessons->itemText(i));
 
   // limits and threshholds (the five comboboxes on the right)
   gradelist->clear();

@@ -176,9 +176,9 @@ void CommonEntryPage::setTypeBox(const QString &act_type)
   QString s = QueryManager::getMainType(act_type)+QM_TYPE_DIV;
   int curr_type = 0;
   type_box->clear();
-  type_box->insertItem (i18n("<none>"));
+  type_box->addItem (i18n("<none>"));
   for (int i = 0; i < (int) all_maintypes.size(); i++) {
-    type_box->insertItem (all_maintypes[i].longStr());
+    type_box->addItem (all_maintypes[i].longStr());
     if (s == all_maintypes[i].shortStr()+QM_TYPE_DIV)
       curr_type = i+1;
   }
@@ -191,7 +191,7 @@ void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
 {
   lesson_box->clear();
   for (int i = 0; i < lessbox->count(); i++)
-    lesson_box->insertItem (lessbox->text(i));
+    lesson_box->addItem (lessbox->itemText(i));
   if (lesson >= lesson_box->count() )
     lesson = 0;
   lesson_box->setCurrentIndex(lesson);
@@ -295,12 +295,12 @@ void CommonEntryPage::slotTypeSelected(int idx)
       for (sub_idx = 0; sub_idx < (int) all_types.size(); sub_idx++) {
         if (all_types[sub_idx].shortStr().left(main_patt.length()) == main_patt) {
           if (first) {
-            subtype_box->insertItem (i18n("<none>"));
+            subtype_box->addItem (i18n("<none>"));
             current_subtypes.push_back(all_maintypes[idx-1].shortStr());
             first = false;
           }
           QString s = all_types[sub_idx].longStr();
-          subtype_box->insertItem (s.simplified());
+          subtype_box->addItem (s.simplified());
           current_subtypes.push_back(all_types[sub_idx].shortStr());
         }
       }
@@ -381,7 +381,7 @@ void CommonEntryPage::invokeLessDlg()
     lessOptPage->getLesson(lesson_box, lessonIndex);
     LessOptPage::cleanUnused(doc, lesson_box, lessonIndex, old_lessons, lessoninquery);
     for (int i = 1; i < lesson_box->count(); i++)
-      new_lessonStr.push_back(lesson_box->text(i));
+      new_lessonStr.push_back(lesson_box->itemText(i));
     doc->setLessonDescriptions(new_lessonStr);
     doc->setLessonsInQuery(lessoninquery);
     querymanager.setLessonItems(lessoninquery);

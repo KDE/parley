@@ -53,7 +53,7 @@ LessOptPage::LessOptPage(QComboBox *lessons, KEduVocDocument *_doc, QWidget *par
     str.setNum (i);
     if (i <= 9)
       str.insert (0, " ");
-    lessonList->insertItem (str+LESS_TAG+lessons->text(i));
+    lessonList->insertItem (str+LESS_TAG+lessons->itemText(i));
     lessonIndex.push_back(i-1);
   }
 

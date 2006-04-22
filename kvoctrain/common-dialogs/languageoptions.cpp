@@ -777,7 +777,7 @@ void LanguageOptions::slotDeleteClicked()
   {
     for (int i = 0; i < d_kblayout->count(); i++)
     {
-      if (d_kblayout->text(i) == m_langSet.keyboardLayout(d_shortName->currentIndex()))
+      if (d_kblayout->itemText(i) == m_langSet.keyboardLayout(d_shortName->currentIndex()))
       {
         d_kblayout->setCurrentIndex(i);
         break;
@@ -864,14 +864,14 @@ void LanguageOptions::slotShortActivated(const QString& _id)
    {
      // avoid duplicates in language code
      for (i = 0; i < d_shortName->count(); i++)
-       if (d_shortName->text(i).isNull())
+       if (d_shortName->itemText(i).isEmpty())
        {
          d_shortName->removeItem(d_shortName->currentIndex());
          d_shortName->setCurrentItem(0);
        }
 
      for (i = 0; i < d_shortName->count()-1; i++)  // omit last
-       if (id == d_shortName->text(i))
+       if (id == d_shortName->itemText(i))
        {
          d_shortName->removeItem(d_shortName->currentIndex());
          d_shortName->setCurrentItem(i);
@@ -909,7 +909,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
      for (int i = 0; i < d_kblayout->count(); i++)
      {
-      if (d_kblayout->text(i) == layout)
+      if (d_kblayout->itemText(i) == layout)
        {
         d_kblayout->setCurrentIndex(i);
         break;

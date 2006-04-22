@@ -87,7 +87,7 @@ void ProfilesDialog::slotNewGroup()
   if (ok)
   {
     newGroupName = newGroupName.simplified();
-    mw->ps_name->insertItem(newGroupName);
+    mw->ps_name->addItem(newGroupName);
     profiles.append(SettingsProfile(newGroupName, "", "", ""));
     modifyProfile(profiles.count()-1);
     mw->ps_name->setCurrentIndex(mw->ps_name->count()-1);

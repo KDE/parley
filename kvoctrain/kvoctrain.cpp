@@ -91,7 +91,7 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
   bool noData = false;
   KEduVocExpression *expr = 0;
 
-  statusBar()->clear();
+  statusBar()->clearMessage();
   if (doc->numEntries() <= row || doc->numIdentifiers() <= col || row < 0 || col < 0)
     noData = true;
   else
@@ -633,7 +633,7 @@ void kvoctrainApp::slotDocProps ()
       new_lessoninquery = old_lessoninquery;
       LessOptPage::cleanUnused(doc, lessons, lessonIndex, old_lessons, new_lessoninquery);
       for (int i = 1; i < lessons->count(); i++)
-        new_lessonStr.push_back(lessons->text(i));
+        new_lessonStr.push_back(lessons->itemText(i));
 
       slotStatusMsg(i18n("Updating type indices..."));
       TypeOptPage::cleanUnused(doc, typeIndex, old_types);
@@ -797,9 +797,9 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       if (controlActive) {
         int less = lessons->currentIndex();
         if (less == lessons->count()-1)
-          lessons->setCurrentItem(0);
+          lessons->setCurrentIndex(0);
         else
-          lessons->setCurrentItem(less+1);
+          lessons->setCurrentIndex(less+1);
         slotChooseLesson(lessons->currentIndex());
       }
     break;
@@ -808,9 +808,9 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
       if (controlActive) {
         int less = lessons->currentIndex();
         if (less == 0)
-          lessons->setCurrentItem(lessons->count()-1);
+          lessons->setCurrentIndex(lessons->count()-1);
         else
-          lessons->setCurrentItem(less-1);
+          lessons->setCurrentIndex(less-1);
         slotChooseLesson(lessons->currentIndex());
       }
     break;
@@ -966,7 +966,7 @@ void kvoctrainApp::slotCreateRandom()
 
      QStringList new_lessonStr;
      for (int i = 1; i < lessons->count(); i++)
-       new_lessonStr.push_back(lessons->text(i));
+       new_lessonStr.push_back(lessons->itemText(i));
      doc->setLessonDescriptions(new_lessonStr);
      view->getTable()->updateContents();
      doc->setModified ();
@@ -1337,7 +1337,7 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text)
   ///////////////////////////////////////////////////////////////////
   // change status message of whole statusbar temporary (text, msec)
   if (pbar == 0 || !pbar->isVisible() )
-    statusBar()->message(text, 3000);
+    statusBar()->showMessage(text, 3000);
 }
 
 void kvoctrainApp::slotFilePrint()
