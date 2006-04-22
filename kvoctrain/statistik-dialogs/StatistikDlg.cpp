@@ -42,7 +42,9 @@ StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *pare
   StatistikPage *spage;
 
   page = addPage(i18n("General"));
-  topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+  topLayout = new QVBoxLayout( page );
+  topLayout->setMargin( 0 );
+  topLayout->setSpacing( KDialog::spacingHint() );
   GenStatPage *gspage = new GenStatPage (doc, page);
   topLayout->addWidget(gspage);
 
@@ -55,7 +57,9 @@ StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *pare
       s = i18n(s.toLocal8Bit());
 
     page = addPage(s);
-    topLayout = new QVBoxLayout( page, 0, KDialog::spacingHint() );
+    topLayout = new QVBoxLayout( page );
+    topLayout->setMargin( 0 );
+    topLayout->setSpacing( KDialog::spacingHint() );
     spage = new StatistikPage (i, doc, page);
     topLayout->addWidget(spage);
   }

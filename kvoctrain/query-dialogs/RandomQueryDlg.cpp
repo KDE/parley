@@ -64,7 +64,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
        if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
-         translations.remove (translations.at (0));
+         translations.removeFirst();
          break;
        }
      }
@@ -81,7 +81,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
        if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
-         translations.remove (translations.at (0));
+         translations.removeFirst();
          break;
        }
      }
@@ -99,7 +99,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
        if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
-         translations.remove (translations.at (0));
+         translations.removeFirst();
          break;
        }
      }
@@ -117,7 +117,7 @@ QStringList RandomQueryDlg::extractTranslations (QString trans)
        if ( regex.indexIn (trans) >= 0 )
        {
          translations = regex.capturedTexts();
-         translations.remove (translations.at (0));
+         translations.removeFirst();
          break;
        }
      }
@@ -175,7 +175,7 @@ RandomQueryDlg::RandomQueryDlg(
       transCombos.append (new QComboBox (false, mw->TranslationFrame, QByteArray ("transCombo") + QByteArray().setNum (i)));
       transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
       transCombos.at(i) -> setEditable (true);
-      transCombos.at(i) -> setInsertionPolicy (QComboBox::NoInsert);
+      transCombos.at(i) -> setInsertPolicy (QComboBox::NoInsert);
       transCombos.at(i) -> setDuplicatesEnabled (false);
       vb->addWidget(transCombos.at(i));
       connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
@@ -234,7 +234,7 @@ RandomQueryDlg::RandomQueryDlg(
     vocabulary.sort();
     for (int k = 1; k < vocabulary.count(); k ++)
       if ( vocabulary [k - 1] == vocabulary [k] )
-        vocabulary.remove (vocabulary.at (k --));
+        vocabulary.removeAt (k --);
     if ( pdlg )
       delete pdlg;
   }
@@ -371,7 +371,7 @@ void RandomQueryDlg::verifyClicked()
         if ( smartCompare (trans[j], combos.at(i) -> currentText(), 0) )
         {
           verifyField (combos.at(i) -> lineEdit(), trans[j]);
-          trans.remove (trans.at(j));
+          trans.removeAt(j);
           combos.remove (i --);
           break;
         }
@@ -400,7 +400,7 @@ void RandomQueryDlg::verifyClicked()
         if ( smartCompare (trans[j], fields.at(i) -> text(), 0) )
         {
           verifyField (fields.at(i), "a\na"); // always fail
-          trans.remove (trans.at(j));
+          trans.removeAt(j);
           fields.remove (i --);
           break;
         }

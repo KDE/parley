@@ -715,7 +715,7 @@ LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent) : QWidget(p
 
   if (d_shortName->count() )
   {
-    d_shortName->setCurrentItem(0);
+    d_shortName->setCurrentIndex(0);
     e_langLong->setText(m_langSet.longId(0));
     e_shortName2->setText(m_langSet.shortId2(0));
     if (!m_langSet.PixMapFile(0).isEmpty() )
@@ -755,7 +755,7 @@ void LanguageOptions::slotDeleteClicked()
     m_hasChanged = true;
     d_shortName->removeItem(d_shortName->currentIndex());
     if (d_shortName->count() != 0)
-      d_shortName->setCurrentItem (0);
+      d_shortName->setCurrentIndex (0);
   }
 
   if (d_shortName->count() != 0)
@@ -779,7 +779,7 @@ void LanguageOptions::slotDeleteClicked()
     {
       if (d_kblayout->text(i) == m_langSet.keyboardLayout(d_shortName->currentIndex()))
       {
-        d_kblayout->setCurrentItem(i);
+        d_kblayout->setCurrentIndex(i);
         break;
       }
     }
@@ -848,7 +848,7 @@ void LanguageOptions::slotNewClicked()
 {
    QString s = e_newName->text();
    d_shortName->addItem(s.simplified());
-   d_shortName->setCurrentItem(d_shortName->count()-1);
+   d_shortName->setCurrentIndex(d_shortName->count()-1);
    enableLangWidgets();
    slotShortActivated(s);
    e_newName->setText("");
@@ -911,14 +911,14 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      {
       if (d_kblayout->text(i) == layout)
        {
-        d_kblayout->setCurrentItem(i);
+        d_kblayout->setCurrentIndex(i);
         break;
        }
      }
      // not found
      if (d_kblayout->currentText() != layout)
      {
-       d_kblayout->setCurrentItem(0);
+       d_kblayout->setCurrentIndex(0);
      }
    }
 }
@@ -1157,7 +1157,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
 
       if (first)
       {
-        d_shortName->setCurrentItem(d_shortName->count()-1);
+        d_shortName->setCurrentIndex(d_shortName->count()-1);
         slotShortActivated(s);
         enableLangWidgets();
 
@@ -1203,11 +1203,11 @@ void LanguageOptions::createISO6391Menus()
   QString lang = "";
   for (QMap<QString, int>::Iterator it = languages.begin(); it != languages.end(); ++it)
   {
-    if (it.key()[0].upper() != lang[0].upper())
+    if (it.key()[0].toUpper() != lang[0].toUpper())
     {
       pop = new QMenu();
       connect(pop, SIGNAL(activated(int)), this, SLOT(slotLangFromISO6391Activated(int)));
-      iso6391_popup->insertItem(QString(it.key()[0].upper()), pop, 1);
+      iso6391_popup->insertItem(QString(it.key()[0].toUpper()), pop, 1);
     }
 
     lang = it.key();
@@ -1236,7 +1236,7 @@ void LanguageOptions::slotLangFromISO6391Activated(int id)
      }
 
      d_shortName->insertItem(shortid.simplified());
-     d_shortName->setCurrentItem(d_shortName->count()-1);
+     d_shortName->setCurrentIndex(d_shortName->count()-1);
      slotShortActivated(shortid);
      enableLangWidgets();
 

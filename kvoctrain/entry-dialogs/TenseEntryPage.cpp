@@ -245,7 +245,7 @@ void TenseEntryPage::slotNextConj()
 
     for (j = 0; j < conjugations.numEntries(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
-        tensebox->setCurrentItem (i);
+        tensebox->setCurrentIndex (i);
         slotTenseSelected(i);
         return;
       }
@@ -255,7 +255,7 @@ void TenseEntryPage::slotNextConj()
   for (int i = 0; i < tensebox->currentIndex()-1; i++) {
     for (j = 0; j < conjugations.numEntries(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
-        tensebox->setCurrentItem (i);
+        tensebox->setCurrentIndex (i);
         slotTenseSelected(i);
         return;
       }

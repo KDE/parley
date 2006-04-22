@@ -25,7 +25,7 @@
 
 #include "blockall.h"
 
-BlockAllValidator::BlockAllValidator() : QValidator (0, 0)
+BlockAllValidator::BlockAllValidator() : QValidator (0)
 {
 }
 

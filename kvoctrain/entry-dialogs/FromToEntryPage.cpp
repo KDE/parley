@@ -148,7 +148,7 @@ void FromToEntryPage::setData(
 
   direc_label->setTitle (label);
 
-  gradebox->setCurrentItem (grade);
+  gradebox->setCurrentIndex (grade);
 
   QString s;
   s.setNum (qcount);

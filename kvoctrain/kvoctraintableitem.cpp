@@ -64,7 +64,7 @@ QWidget *KVocTrainTableItem::createEditor() const
         lessonbox->insertItem (m_doc->lessonDescription(0));
         for (unsigned i = 1; i <= (unsigned) m_doc->numLessons(); ++i)
           lessonbox->insertItem (m_doc->lessonDescription(i));
-        lessonbox->setCurrentItem(m_doc->entry(row())->lesson());
+        lessonbox->setCurrentIndex(m_doc->entry(row())->lesson());
         return lessonbox;
       }
       break;
@@ -79,11 +79,11 @@ QWidget *KVocTrainTableItem::createEditor() const
         sz.setHeight(table()->rowHeight(row()));
         statebox->setMinimumSize(sz);
         if (!m_doc->entry(row())->isActive() )
-          statebox->setCurrentItem(2);
+          statebox->setCurrentIndex(2);
         else if (m_doc->entry(row())->isInQuery() )
-          statebox->setCurrentItem(1);
+          statebox->setCurrentIndex(1);
         else
-          statebox->setCurrentItem(0);
+          statebox->setCurrentIndex(0);
         return statebox;
       }
       break;

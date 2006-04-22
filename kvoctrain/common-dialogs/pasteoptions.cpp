@@ -116,7 +116,7 @@ void PasteOptions::updateWidgets()
   {
     if (separator_id[i] == Prefs::separator())
     {
-      SeparatorCombo->setCurrentItem(i);
+      SeparatorCombo->setCurrentIndex(i);
       break;
     }
   }

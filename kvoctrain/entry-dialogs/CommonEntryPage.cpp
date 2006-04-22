@@ -146,7 +146,7 @@ void CommonEntryPage::setData(
   }
   if (offset >= 0) {
     slotSubTypeSelected(offset);
-    subtype_box->setCurrentItem(offset);
+    subtype_box->setCurrentIndex(offset);
   }
 
   if (multi_sel) {
@@ -154,9 +154,9 @@ void CommonEntryPage::setData(
     pronunce_line->setEnabled (false);
     expr_line->setText ("");
     pronunce_line->setText ("");
-    lesson_box->clearEdit();
-    type_box->clearEdit();
-    subtype_box->clearEdit();
+    lesson_box->clearEditText();
+    type_box->clearEditText();
+    subtype_box->clearEditText();
   }
 
   lesson_dirty = false;
@@ -182,7 +182,7 @@ void CommonEntryPage::setTypeBox(const QString &act_type)
     if (s == all_maintypes[i].shortStr()+QM_TYPE_DIV)
       curr_type = i+1;
   }
-  type_box->setCurrentItem(curr_type);
+  type_box->setCurrentIndex(curr_type);
   slotTypeSelected(curr_type);
 }
 
@@ -194,7 +194,7 @@ void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
     lesson_box->insertItem (lessbox->text(i));
   if (lesson >= lesson_box->count() )
     lesson = 0;
-  lesson_box->setCurrentItem(lesson);
+  lesson_box->setCurrentIndex(lesson);
 }
 
 
