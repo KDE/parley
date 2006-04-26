@@ -867,14 +867,14 @@ void LanguageOptions::slotShortActivated(const QString& _id)
        if (d_shortName->itemText(i).isEmpty())
        {
          d_shortName->removeItem(d_shortName->currentIndex());
-         d_shortName->setCurrentItem(0);
+         d_shortName->setCurrentIndex(0);
        }
 
      for (i = 0; i < d_shortName->count()-1; i++)  // omit last
        if (id == d_shortName->itemText(i))
        {
          d_shortName->removeItem(d_shortName->currentIndex());
-         d_shortName->setCurrentItem(i);
+         d_shortName->setCurrentIndex(i);
          return;
        }
 
@@ -1102,7 +1102,7 @@ void LanguageOptions::loadCountryData()
   // To have it sorted by name
   QMap<QString, Region> regmap;
   for (QMap<QString, Region>::Iterator it = regions.begin(); it != regions.end(); ++it)
-    regmap.insert(it.data().region, it.data());
+    regmap.insert(it.value().region, it.value());
 
   connect(langset_popup, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
   for (QMap<QString, Region>::Iterator it = regmap.begin(); it != regmap.end(); ++it)
@@ -1110,7 +1110,7 @@ void LanguageOptions::loadCountryData()
     KMenu *regpop = new KMenu();
     connect(regpop, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
     langset_popup->insertItem(it.key(), regpop);
-    Region r = it.data();
+    Region r = it.value();
 
     // To have it sorted by name
     QMap<QString, Country> countrymap;
@@ -1120,7 +1120,7 @@ void LanguageOptions::loadCountryData()
     }
     for (QMap<QString, Country>::Iterator it = countrymap.begin(); it != countrymap.end(); ++it)
     {
-      regpop->insertItem(QPixmap(it.data().pixmap), it.key(), it.data().id);
+      regpop->insertItem(QPixmap(it.value().pixmap), it.key(), it.value().id);
     }
   }
 
@@ -1211,14 +1211,14 @@ void LanguageOptions::createISO6391Menus()
     }
 
     lang = it.key();
-    QString shortid = global_langset.shortId(it.data());
-    QString short2id = global_langset.shortId2(it.data());
+    QString shortid = global_langset.shortId(it.value());
+    QString short2id = global_langset.shortId2(it.value());
     lang += "\t("+shortid+")";
-    QString pixmap = global_langset.PixMapFile(it.data());
+    QString pixmap = global_langset.PixMapFile(it.value());
     if (pixmap.isEmpty())
-      pop->insertItem(lang, it.data());
+      pop->insertItem(lang, it.value());
     else
-      pop->insertItem(QPixmap(pixmap), lang, it.data());
+      pop->insertItem(QPixmap(pixmap), lang, it.value());
   }
 }
 

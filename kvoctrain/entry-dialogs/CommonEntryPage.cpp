@@ -95,13 +95,13 @@ CommonEntryPage::CommonEntryPage
   type_box->setValidator (new BlockAllValidator() );
   subtype_box->setValidator (new BlockAllValidator() );
 
-  QPixmap list_pm = SmallIcon("view_text");
-  b_LessDlg->setPixmap(list_pm);
-  b_TypeDlg->setPixmap(list_pm);
-  b_usageDlg->setPixmap(list_pm);
+  QIcon list_pm = SmallIconSet("view_text");
+  b_LessDlg->setIcon(list_pm);
+  b_TypeDlg->setIcon(list_pm);
+  b_usageDlg->setIcon(list_pm);
 
-  QPixmap pron_pm = SmallIcon("view_icon");
-  b_pronDlg->setPixmap(pron_pm);
+  QIcon pron_pm = SmallIconSet("view_icon");
+  b_pronDlg->setIcon(pron_pm);
 
   setData(multi_sel, expr, less, lessbox, lang, type, pronunce, act_usage, label, querymanager, active);
   subDialog = 0L;

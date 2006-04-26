@@ -671,7 +671,7 @@ void kvoctrainApp::slotSaveSelection ()
 
 void kvoctrainApp::prepareProgressBar ()
 {
-    statusBar()->clear ();
+    statusBar()->clearMessage ();
     pbar = new KProgressBar (statusBar());
     //pbar->setFrameStyle( QFrame::Panel | QFrame::Sunken );
     statusBar()->addWidget(pbar, 150, true);
@@ -681,7 +681,7 @@ void kvoctrainApp::prepareProgressBar ()
 
 void kvoctrainApp::removeProgressBar ()
 {
-    statusBar()->clear ();
+    statusBar()->clearMessage ();
     statusBar()->removeWidget(pbar);
     delete pbar;
     pbar = 0;
