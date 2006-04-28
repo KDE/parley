@@ -188,7 +188,7 @@ void KVocTrainTable::updateContents(int row, int col)
   int ncols, nrows;
   if (m_doc) {
     nrows = m_doc->numEntries();
-    ncols = QMAX(1, m_doc->numIdentifiers())+KV_EXTRA_COLS;
+    ncols = qMax(1, m_doc->numIdentifiers())+KV_EXTRA_COLS;
   }
   else {
     nrows = 0;
@@ -198,8 +198,8 @@ void KVocTrainTable::updateContents(int row, int col)
     setNumRows(nrows);
   if (ncols != numCols())
     setNumCols(ncols);
-  current_row = QMIN(current_row, QMAX(0, numRows()-1));
-  current_col = QMIN(current_col, QMAX(0, numCols()-1));
+  current_row = qMin(current_row, qMax(0, numRows()-1));
+  current_col = qMin(current_col, qMax(0, numCols()-1));
   bool b = signalsBlocked();
   blockSignals(true);
   setCurrentRow(current_row, current_col);
@@ -227,7 +227,7 @@ void KVocTrainTable::setDoc(KEduVocDocument * rows)
   if (rows) {
     m_doc = rows;
     setNumRows(rows->numEntries());
-    setNumCols(QMAX(1+KV_EXTRA_COLS, m_doc->numIdentifiers()+KV_EXTRA_COLS));
+    setNumCols(qMax(1+KV_EXTRA_COLS, m_doc->numIdentifiers()+KV_EXTRA_COLS));
     setCurrentRow(0, 0);
   }
   else {
@@ -462,7 +462,7 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
   {
     case Qt::Key_Right: {
       int topCell = rowAt(0);
-      int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
+      int lastRowVisible = qMin(numRows(), rowAt(contentsHeight()));
       if (numCols() > 2)
         for (int i = topCell; i <= lastRowVisible; i++)
           updateCell(i, KV_COL_ORG);
@@ -477,7 +477,7 @@ void KVocTrainTable::keyPressEvent(QKeyEvent * e)
       case Qt::Key_Left: {
         Q3Table::keyPressEvent(e);
         int topCell = rowAt(0);
-        int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
+        int lastRowVisible = qMin(numRows(), rowAt(contentsHeight()));
         if (numCols() > 2)
           for (int i = topCell; i <= lastRowVisible; i++)
             updateCell(i, KV_COL_ORG);
@@ -534,7 +534,7 @@ void KVocTrainTable::contentsMousePressEvent(QMouseEvent * e)
       update_org = true;
 
     int topCell = rowAt(0);
-    int lastRowVisible = QMIN(numRows(), rowAt(contentsHeight()));
+    int lastRowVisible = qMin(numRows(), rowAt(contentsHeight()));
     if (update_org)
       for (int i = topCell; i <= lastRowVisible; i++)
         updateCell(i, KV_COL_ORG);

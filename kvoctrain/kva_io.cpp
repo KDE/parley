@@ -66,7 +66,7 @@ void kvoctrainApp::slotTimeOutBackup()
     slotFileSave();
   }
   if (Prefs::backupTime() > 0)
-    btimer->start(Prefs::backupTime() * 60 * 1000, TRUE);
+    btimer->start(Prefs::backupTime() * 60 * 1000, true);
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -396,7 +396,7 @@ void kvoctrainApp::slotFileMerge()
       QList<int> move_matrix;
       QList<bool> cs_equal;
 
-      for (int i = 0; i < QMAX (doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
+      for (int i = 0; i < qMax (doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
         cs_equal.push_back (false);
 
       move_matrix.push_back(new_doc->findIdentifier(doc->originalIdentifier()));

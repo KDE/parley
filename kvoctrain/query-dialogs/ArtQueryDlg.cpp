@@ -169,7 +169,7 @@ void ArtQueryDlg::setQuery(QString,
        timercount = mqtime;
        mw->timebar->setMaximum(timercount);
        mw->timebar->setValue(timercount);
-       qtimer->start(1000, TRUE);
+       qtimer->start(1000, true);
      }
      else
        mw->timebar->setEnabled(false);
@@ -257,7 +257,7 @@ void ArtQueryDlg::timeoutReached()
    if (timercount > 0) {
      timercount--;
      mw->timebar->setValue(timercount);
-     qtimer->start(1000, TRUE);
+     qtimer->start(1000, true);
    }
 
    if (timercount <= 0) {

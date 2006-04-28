@@ -131,7 +131,7 @@ void MCQueryDlg::setQuery(QString org,
        timercount = mqtime;
        mw->timebar->setMaximum(timercount);
        mw->timebar->setValue(timercount);
-       qtimer->start(1000, TRUE);
+       qtimer->start(1000, true);
      }
      else
        mw->timebar->setEnabled(false);
@@ -157,7 +157,7 @@ void MCQueryDlg::setQuery(QString org,
    solution = 0;
 
    KEduVocMultipleChoice mc = exp->multipleChoice(q_tcol);
-   for (int i = 0; i < QMIN(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
+   for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
    rs->randomize(strings);
 
@@ -353,7 +353,7 @@ void MCQueryDlg::timeoutReached()
    if (timercount > 0) {
      timercount--;
      mw->timebar->setValue(timercount);
-     qtimer->start(1000, TRUE);
+     qtimer->start(1000, true);
    }
 
    if (timercount <= 0) {

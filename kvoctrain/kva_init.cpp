@@ -91,7 +91,7 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
   btimer = new QTimer( this );
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
   if (Prefs::autoBackup())
-    btimer->start(Prefs::backupTime() * 60 * 1000, TRUE);
+    btimer->start(Prefs::backupTime() * 60 * 1000, true);
 }
 
 

@@ -420,7 +420,7 @@ bool KEduVocDocument::extract_O_T_attr (
       usage = (*first).stringValue();
 
       if (usage.length() != 0 && usage.left(1) == UL_USER_USAGE) {
-        int num = QMIN(usage.mid (1, 40).toInt(), 1000); // paranioa check
+        int num = qMin(usage.mid (1, 40).toInt(), 1000); // paranioa check
         if( num > (int) usage_descr.size() ) { // description missing ?
           QString s;
           for (int i = usage_descr.size(); i < num; i++) {
@@ -450,7 +450,7 @@ bool KEduVocDocument::extract_O_T_attr (
         type = QM_NAME;
 
       if (type.length() != 0 && type.left(1) == QM_USER_TYPE) {
-        int num = QMIN(type.mid (1, 40).toInt(), 1000); // paranoia check
+        int num = qMin(type.mid (1, 40).toInt(), 1000); // paranoia check
         if( num > (int) type_descr.size() ) { // description missing ?
           QString s;
           for (int i = type_descr.size(); i < num; i++) {
@@ -511,7 +511,7 @@ bool KEduVocDocument::extract_KVT_E_attr (
         type = QM_NAME;
 
       if (type.length() != 0 && type.left(1) == QM_USER_TYPE) {
-        int num = QMIN(type.mid (1, 40).toInt(), 1000); // paranoia check
+        int num = qMin(type.mid (1, 40).toInt(), 1000); // paranoia check
         if( num > (int) type_descr.size() ) { // description missing ?
           QString s;
           for (int i = type_descr.size(); i < num; i++) {

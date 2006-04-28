@@ -158,7 +158,7 @@ void VerbQueryDlg::setQuery(QString,
        timercount = mqtime;
        mw->timebar->setMaximum(timercount);
        mw->timebar->setValue(timercount);
-       qtimer->start(1000, TRUE);
+       qtimer->start(1000, true);
      }
      else
        mw->timebar->setEnabled(false);
@@ -349,7 +349,7 @@ void VerbQueryDlg::timeoutReached()
    if (timercount > 0) {
      timercount--;
      mw->timebar->setValue(timercount);
-     qtimer->start(1000, TRUE);
+     qtimer->start(1000, true);
    }
 
    if (timercount <= 0) {
@@ -371,7 +371,7 @@ void VerbQueryDlg::timeoutReached()
        }
        else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
          next();
-         qtimer->start(1000, TRUE);
+         qtimer->start(1000, true);
          timercount = Prefs::maxTimePer();
        }
      }
@@ -399,7 +399,7 @@ void VerbQueryDlg::dontKnowClicked()
    if (current >= (int) conjugations.numEntries()-1 )
      emit sigQueryChoice (Unknown);
    else {
-     qtimer->start(1000, TRUE);
+     qtimer->start(1000, true);
      timercount = Prefs::maxTimePer();
      next();
    }

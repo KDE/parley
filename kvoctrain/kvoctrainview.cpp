@@ -139,20 +139,20 @@ void kvoctrainView::resizeEvent (QResizeEvent *r_ev)
       header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
       m_table->setColumnWidth(KV_COL_MARK, KV_COLWIDTH_MARK);
       int remain = newwidth - KV_COLWIDTH_MARK;
-      int x = QMAX(20, (int)((header->sectionSize(KV_COL_LESS) * grow) + 0.5));
+      int x = qMax(20, (int)((header->sectionSize(KV_COL_LESS) * grow) + 0.5));
       header->resizeSection(KV_COL_LESS, x);
       m_table->setColumnWidth(KV_COL_LESS, x);
       remain -= x;
 
       for (int i = KV_COL_ORG; i < m_table->numCols() - 1; i++)
       {
-        x = QMAX(20, (int)((header->sectionSize(i) * grow) + 0.5));
+        x = qMax(20, (int)((header->sectionSize(i) * grow) + 0.5));
         remain -= x;
         header->resizeSection(i, x);
         m_table->setColumnWidth(i, x);
       }
-      header->resizeSection(m_table->numCols() - 1, QMAX(20, remain));
-      m_table->setColumnWidth(m_table->numCols() - 1, QMAX(20, remain));
+      header->resizeSection(m_table->numCols() - 1, qMax(20, remain));
+      m_table->setColumnWidth(m_table->numCols() - 1, qMax(20, remain));
     }
     break;
 

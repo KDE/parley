@@ -203,7 +203,7 @@ bool kvoctrainDoc::loadFromCsv (QTextStream& is)
       kvoctrainExpr expr;
       // now move columns according to paste-order
       for (int i = 0; i < bucket.numTranslations()+1; i++) {
-        lang_num = QMAX (lang_num, bucket.numTranslations()+1);
+        lang_num = qMax (lang_num, bucket.numTranslations()+1);
         if (i == 0)
           expr.setOriginal(bucket.getOriginal());
         else {

@@ -222,7 +222,7 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each
   // old index
-  for (int i = 0; i <= QMAX (old_types, (int) typeIndex.size()); i++)
+  for (int i = 0; i <= qMax (old_types, (int) typeIndex.size()); i++)
     translate_index.push_back(0);
 
   // now adjust lesson descriptions to new index

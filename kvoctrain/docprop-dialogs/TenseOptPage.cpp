@@ -232,7 +232,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each
   // old index
-  for (int i = 0; i <= QMAX (old_tenses, (int) tenseIndex.size()); i++)
+  for (int i = 0; i <= qMax (old_tenses, (int) tenseIndex.size()); i++)
     translate_index.push_back(0);
 
   // now adjust lesson descriptions to new index

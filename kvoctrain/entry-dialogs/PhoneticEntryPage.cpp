@@ -204,7 +204,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, cons
     tip += i18n(uni_ref->audible);
     phoneticButton->setFont(ipafont);
     phoneticButton->setSizePolicy(QSizePolicy (QSizePolicy::Fixed, QSizePolicy::Fixed));
-    int sz = QMAX(14, int(1.7*ipafont.pointSize()));
+    int sz = qMax(14, int(1.7*ipafont.pointSize()));
     phoneticButton->setMaximumSize(QSize (sz, sz));
     phoneticButton->setToolTip(tip);
     gridLayoutButtons->addWidget( phoneticButton, vert, horiz, 0 /*Qt::AlignCenter*/ );

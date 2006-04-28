@@ -262,7 +262,7 @@ bool kvoctrainDoc::saveConjugHeader(vector<KEduVocConjugation> &curr_conjug,
   xml.closeTag(false, true);
 
   QString def, indef, s;
-  for (int ent = 0; ent < QMIN((int) curr_conjug.size(), numLangs()); ent++) {
+  for (int ent = 0; ent < qMin((int) curr_conjug.size(), numLangs()); ent++) {
     xml.writeText("  ");            // indent entry a bit
     xml.startTag (KV_CON_ENTRY, false);
 
@@ -485,7 +485,7 @@ bool kvoctrainDoc::saveArticleKvtMl (XmlWriter &xml)
   xml.closeTag(false, true);
 
   QString def, indef, s;
-  for (int lfn = 0; lfn < QMIN((int) articles.size(), numLangs()); lfn++) {
+  for (int lfn = 0; lfn < qMin((int) articles.size(), numLangs()); lfn++) {
     xml.writeText("  ");            // indent entry a bit
     xml.startTag (KV_ART_ENTRY, false);
     if (lfn == 0) {

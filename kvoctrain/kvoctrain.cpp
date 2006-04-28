@@ -147,7 +147,7 @@ void kvoctrainApp::slotEditCallBack(int res)
           {
             int lesson = doc->entry(row)->lesson();
             if (lesson >= lessons->count())
-              lesson = QMAX (0, lessons->count()-1);
+              lesson = qMax (0, lessons->count()-1);
             slotChooseLesson(lesson);
 
             QString exp;
@@ -322,7 +322,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 
    int lesson = doc->entry(row)->lesson();
    if (lesson >= lessons->count())
-     lesson = QMAX (0, lessons->count()-1);
+     lesson = qMax (0, lessons->count()-1);
 
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit General Properties");
@@ -481,7 +481,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
 
    int lesson = expr->lesson();
    if (lesson >= lessons->count())
-     lesson = QMAX (0, lessons->count()-1);
+     lesson = qMax (0, lessons->count()-1);
 
    bool hasSel = hasSelection();
 
@@ -926,7 +926,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 
 void kvoctrainApp::slotCreateRandom()
 {
-   bool ok = FALSE;
+   bool ok = false;
    int res = KInputDialog::getInteger(i18n( "Entries in Lesson" ),
                 i18n( "Enter number of entries in lesson:" ), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this );
    if (!ok)

@@ -545,7 +545,7 @@ bool kvoctrainDoc::loadConjugKvtMl (vector<KEduVocConjugation> &curr_conjug,
           if (!extract_T_attr (xml, elem, type))
             return false;
           if (type.length() != 0 && type.left(1) == UL_USER_TENSE) {
-            int num = QMIN(type.mid (1, 40).toInt(), 1000); // paranoia check
+            int num = qMin(type.mid (1, 40).toInt(), 1000); // paranoia check
             if( num > (int) tense_descr.size() ) { // description missing ?
               QString s;
               for (int i = tense_descr.size(); i < num; i++) {

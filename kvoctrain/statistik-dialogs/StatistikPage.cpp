@@ -75,8 +75,8 @@ StatistikPage::StatistikPage(int col, KEduVocDocument  *_doc, QWidget *parent) :
   // accumulate numbers of grades per lesson
   for (int i = 0; i < (int) doc->numEntries(); i++) {
     KEduVocExpression *expr = doc->entry(i);
-    int fg = QMIN(KV_MAX_GRADE, (int)expr->grade(col, false));
-    int tg = QMIN(KV_MAX_GRADE, (int)expr->grade(col, true));
+    int fg = qMin(KV_MAX_GRADE, (int)expr->grade(col, false));
+    int tg = qMin(KV_MAX_GRADE, (int)expr->grade(col, true));
     int l = expr->lesson();
     if (l >= 0 && l <= (int) lesson.size() ) {
       fsc[l].grade[fg]++;
@@ -124,7 +124,7 @@ void StatistikPage::setupPixmaps()
           }
           else {
             --num;
-            widths[j] = QMAX(MIN_COL_WIDTH, fsc[entry].grade[j] * maxw / fsc[entry].num);
+            widths[j] = qMax(MIN_COL_WIDTH, fsc[entry].grade[j] * maxw / fsc[entry].num);
             w -= widths[j];
           }
         }
@@ -182,7 +182,7 @@ void StatistikPage::setupPixmaps()
           }
           else {
             --num;
-            widths[j] = QMAX(MIN_COL_WIDTH, tsc[entry].grade[j] * maxw / tsc[entry].num);
+            widths[j] = qMax(MIN_COL_WIDTH, tsc[entry].grade[j] * maxw / tsc[entry].num);
             w -= widths[j];
           }
         }

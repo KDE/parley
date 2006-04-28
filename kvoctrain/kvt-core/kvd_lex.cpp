@@ -222,8 +222,8 @@ bool kvoctrainDoc::saveToLex (QTextStream& os, QString & /*title*/)
 
     os << "0" // type
        <<  " " << "255 255 255 255 255 255 255"
-       <<  " " << QMIN (2, (int)(*first).getGrade(false))
-       <<  " " << QMIN (2, (int)(*first).getGrade(true))
+       <<  " " << qMin (2, (int)(*first).getGrade(false))
+       <<  " " << qMin (2, (int)(*first).getGrade(true))
        <<  " " << (*first).getLesson()
        <<  " " << (*first).getOriginal()
        <<  " " << "||||"  // synonyms
