@@ -227,7 +227,7 @@ void kvoctrainView::setHeaderProp (int id, const QString &name, const QString &p
     {
       //this is the code used by kxkb when a flag image can't be found
       //see kdebase/kxkb/pixmap.cpp/LayoutIcon::findPixmap()
-      pix.resize(21, 14);
+      pix = QPixmap(21, 14);
       pix.fill(Qt::white);
 
       QPainter p(&pix);
