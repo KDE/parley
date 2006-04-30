@@ -321,7 +321,7 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
   int x2 = w - 1;
   int y2 = h - 1;
 
-  p->fillRect( 0, 0, w, h, selected ? cg.brush( QColorGroup::Highlight ) : cg.brush( QColorGroup::Base ) );
+  p->fillRect( 0, 0, w, h, selected ? cg.brush( QPalette::Highlight ) : cg.brush( QPalette::Base ) );
 
   KEduVocExpression *expr = getRow(row);
   if (expr)
