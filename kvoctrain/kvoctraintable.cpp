@@ -308,7 +308,7 @@ int cellAlignment(const QString & text)
 }
 
 
-void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr, bool selected, const QColorGroup &cg)
+void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr, bool selected, const QPalette &cg)
 {
   if (cr.width() == 0 || cr.height() == 0)
     return;
@@ -377,7 +377,7 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
     }
 
     if (selected)
-      p->setPen (cg.highlightedText());
+        p->setPen (cg.color( QPalette::HighlightedText));
     else
       p->setPen (color);
 
@@ -428,10 +428,10 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
   int gridColor = 0; ///@todo port style().styleHint( QStyle::SH_Table_GridLineColor, this );
   if (gridColor != -1) {
     const QPalette &pal = palette();
-    if (cg != colorGroup()
+    if (cg != palette()
         && cg != pal.disabled()
         && cg != pal.inactive())
-      p->setPen(cg.mid());
+        p->setPen(cg.color( QPalette::Mid));
     else
       p->setPen((QRgb)gridColor);
   } else {

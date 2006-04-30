@@ -84,7 +84,7 @@ public:
     int current;
     QWidget* beginEdit(int row, int col, bool replace);
     void endEdit(int row, int col, bool accept, bool replace);
-    void paintCell(QPainter *p, int row, int col, const QRect &cr, bool selected, const QColorGroup &cg);
+    void paintCell(QPainter *p, int row, int col, const QRect &cr, bool selected, const QPalette &cg);
     void setItem(int row, int col, Q3TableItem * item);
     Q3TableItem* item (int row, int col) const;
     void keyPressEvent(QKeyEvent *e);

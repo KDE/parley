@@ -66,10 +66,10 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
   if (!field->isEnabled() )
     return true;
 
-  QColorGroup u_normal = field->colorGroup();
-  u_normal.setColor(QColorGroup::Text, QColor(0xff, 0x00, 0x00));
-  QColorGroup k_normal = field->colorGroup();
-  k_normal.setColor(QColorGroup::Text, QColor(0x00, 0x80, 0x00));
+  QPalette u_normal = field->palette();
+  u_normal.setColor(QPalette::Text, QColor(0xff, 0x00, 0x00));
+  QPalette k_normal = field->palette();
+  k_normal.setColor(QPalette::Text, QColor(0x00, 0x80, 0x00));
 
   QPalette known_pal( field->palette());
   QPalette unknown_pal( field->palette());
@@ -107,8 +107,8 @@ void QueryDlgBase::resetField(QLineEdit *field)
 {
   if (!field->isEnabled() )
     return;
-  QColorGroup normal = field->colorGroup();
-  normal.setColor(QColorGroup::Text, QColor(0x00, 0x00, 0x00));
+  QPalette normal = field->palette();
+  normal.setColor(QPalette::Text, QColor(0x00, 0x00, 0x00));
 
   QPalette pal( field->palette());
   // replace text colors
@@ -132,10 +132,10 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 {
   if (!field->isEnabled())
     return true;
-  QColorGroup u_normal = field->colorGroup();
-  u_normal.setColor(QColorGroup::Text, QColor(0xff, 0x00, 0x00));
-  QColorGroup k_normal = field->colorGroup();
-  k_normal.setColor(QColorGroup::Text, QColor(0x00, 0x80, 0x00));
+  QPalette u_normal = field->palette();
+  u_normal.setColor(QPalette::Text, QColor(0xff, 0x00, 0x00));
+  QPalette k_normal = field->palette();
+  k_normal.setColor(QPalette::Text, QColor(0x00, 0x80, 0x00));
 
   QPalette known_pal( field->palette());
   QPalette unknown_pal( field->palette());
@@ -195,8 +195,8 @@ void QueryDlgBase::resetField(QTextEdit *field)
 {
   if (!field->isEnabled() )
     return;
-  QColorGroup normal = field->colorGroup();
-  normal.setColor(QColorGroup::Text, QColor(0x00, 0x00, 0x00));
+  QPalette normal = field->palette();
+  normal.setColor(QPalette::Text, QColor(0x00, 0x00, 0x00));
 
   QPalette pal( field->palette());
   // replace text colors
@@ -221,10 +221,10 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
   if (!radio->isEnabled() )
     return;
 
-  QColorGroup u_normal = radio->colorGroup();
-  u_normal.setColor(QColorGroup::Foreground, QColor(0xff, 0x00, 0x00));
-  QColorGroup k_normal = radio->colorGroup();
-  k_normal.setColor(QColorGroup::Foreground, QColor(0x00, 0x80, 0x00));
+  QPalette u_normal = radio->palette();
+  u_normal.setColor(QPalette::Foreground, QColor(0xff, 0x00, 0x00));
+  QPalette k_normal = radio->palette();
+  k_normal.setColor(QPalette::Foreground, QColor(0x00, 0x80, 0x00));
 
   QPalette known_pal( radio->palette());
   QPalette unknown_pal( radio->palette());
@@ -273,8 +273,8 @@ void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
 {
   if (!radio->isEnabled() )
     return;
-  QColorGroup normal = radio->colorGroup();
-  normal.setColor(QColorGroup::Foreground, QColor(0x00, 0x00, 0x00));
+  QPalette normal = radio->palette();
+  normal.setColor(QPalette::Foreground, QColor(0x00, 0x00, 0x00));
 
   QPalette pal(radio->palette());
   // replace text colors, avoid flickering
