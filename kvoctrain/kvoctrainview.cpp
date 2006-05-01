@@ -70,7 +70,7 @@ kvoctrainView::kvoctrainView(KEduVocDocument* doc, const LangSet &ls, kvoctrainA
   connect(m_table, SIGNAL(forwardKeyPressEvent(QKeyEvent*)), parent, SLOT(keyPressEvent(QKeyEvent *)));
   connect(m_table, SIGNAL(forwardKeyReleaseEvent(QKeyEvent*)), parent, SLOT(keyReleaseEvent(QKeyEvent *)));
 
-  list_layout = new QGridLayout( this, 2, 1/*, 4 */);
+  list_layout = new QGridLayout( this );
   list_layout->addWidget(m_table, 1, 0);
   list_layout->setRowStretch(1, 1);
   list_layout->activate();
