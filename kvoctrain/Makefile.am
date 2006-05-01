@@ -39,22 +39,5 @@ spotlight2kvtml_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 CLEANFILES = *.i.c
 
-i18n_files=  query-dialogs/*.cpp \
-             entry-dialogs/*.cpp \
-             common-dialogs/*.cpp \
-             docprop-dialogs/*.cpp \
-             statistik-dialogs/*.cpp \
-             kvt-core/*.cpp \
-             $(spotlight2kvtml_SOURCES) \
-             $(kvoctrain_SOURCES)
-
-messages: rc.cpp
-	$(EXTRACTRC) `find . -name "*.ui"` >> rc.cpp
-	$(XGETTEXT) `ls $(i18n_files)` rc.cpp -kI18N_NOOP2 -o $(podir)/kvoctrain.pot
-	-rm rc.cpp
-
-messages-local:
-	$(MAKE) messages EXTRACTRC=extractrc podir=. XGETTEXT="xgettext -C -kI18N_NOOP -ki18n"
-	iconv -futf-8 -tutf-16 kvoctrain.pot > /dev/null
 
 noinst_HEADERS = kvtnewstuff.h version.h
