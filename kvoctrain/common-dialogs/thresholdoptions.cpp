@@ -353,6 +353,9 @@ void ThresholdOptions::slotSetLessonItems()
 
 void ThresholdOptions::slotSetLessonComp(int i)
 {
+  if (i < 0)
+    return;
+
   if (less_complist[i] == Prefs::EnumCompType::OneOf || less_complist[i] == Prefs::EnumCompType::NotOneOf)
   {
     lessonlist->setEnabled(true);
@@ -369,9 +372,6 @@ void ThresholdOptions::slotSetLessonComp(int i)
     b_none_less->setEnabled(false);
     l_lesson->setEnabled(false);
   }
-
-  if (i < 0)
-    return;
 
   emit widgetModified();
 }
