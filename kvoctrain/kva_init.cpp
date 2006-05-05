@@ -118,7 +118,8 @@ void kvoctrainApp::initActions()
 
   fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
-  fileMerge = new KAction(i18n("&Merge..."), 0, 0, this, SLOT(slotFileMerge()), actionCollection(), "file_merge");
+  fileMerge = new KAction(i18n("&Merge..."), actionCollection(), "file_merge");
+  connect(fileMerge, SIGNAL(triggered(bool)), SLOT(slotFileMerge()));
   fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
   fileMerge->setToolTip(fileOpen->whatsThis());
 
@@ -208,11 +209,13 @@ void kvoctrainApp::initActions()
   connect(vocabRemoveLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(vocabRemoveLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  vocabDocumentProperties = new KAction(i18n("Document &Properties"), 0, 0, this, SLOT(slotDocProps()), actionCollection(), "vocab_document_properties");
+  vocabDocumentProperties = new KAction(i18n("Document &Properties"), actionCollection(), "vocab_document_properties");
+  connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocProps()));
   vocabDocumentProperties->setWhatsThis(i18n("Edit document properties"));
   vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
 
-  vocabLanguageProperties = new KAction(i18n("Lan&guage Properties"), 0, 0, this, SLOT(slotDocPropsLang()), actionCollection(), "vocab_language_properties");
+  vocabLanguageProperties = new KAction(i18n("Lan&guage Properties"), actionCollection(), "vocab_language_properties");
+  connect(vocabLanguageProperties, SIGNAL(triggered(bool)), SLOT(slotDocPropsLang()));
   vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
 
