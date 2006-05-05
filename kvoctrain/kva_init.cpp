@@ -105,11 +105,14 @@ void kvoctrainApp::initActions()
   fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
 
-  fileOpenExample = new KAction(i18n("Open &Example..."), "fileopen", 0, this, SLOT(slotFileOpenExample()), actionCollection(), "file_open_example");
+  fileOpenExample = new KAction(KIcon("fileopen"), i18n("Open &Example..."), actionCollection(), "file_open_example");
+  connect(fileOpenExample, SIGNAL(triggered(bool)), SLOT(slotFileOpenExample()));
   fileOpen->setWhatsThis(i18n("Open a vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
 
-  fileGHNS = new KAction(i18n("&Get New Vocabularies..."), "knewstuff", Qt::Key_Control+Qt::Key_G, this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+  fileGHNS = new KAction(KIcon("knewstuff"), i18n("&Get New Vocabularies..."), actionCollection(), "file_ghns");
+  connect(fileGHNS, SIGNAL(triggered(bool)), SLOT(slotGHNS()));
+  fileGHNS->setShortcut(Qt::Key_Control+Qt::Key_G);
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
 
@@ -155,15 +158,21 @@ void kvoctrainApp::initActions()
   editSearchFromClipboard->setWhatsThis(i18n("Search for the clipboard contents in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
 
-  editAppend = new KAction(i18n("&Append New Entry"), "insert_table_row", Qt::Key_Insert, this, SLOT(slotAppendRow()), actionCollection(),"edit_append");
+  editAppend = new KAction(KIcon("insert_table_row"), i18n("&Append New Entry"), actionCollection(), "edit_append");
+  connect(editAppend, SIGNAL(triggered(bool)), SLOT(slotAppendRow()));
+  editAppend->setShortcut(Qt::Key_Insert);
   editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
-  editEditSelectedArea = new KAction(i18n("&Edit Selected Area..."), "edit_table_row", Qt::Key_Control+Qt::Key_Return, this, SLOT(slotEditRow()), actionCollection(),"edit_edit_selected_area");
+  editEditSelectedArea = new KAction(KIcon("edit_table_row"), i18n("&Edit Selected Area..."), actionCollection(), "edit_edit_selected_area");
+  connect(editEditSelectedArea, SIGNAL(triggered(bool)), SLOT(slotEditRow()));
+  editEditSelectedArea->setShortcut(Qt::Key_Control+Qt::Key_Return);
   editEditSelectedArea->setWhatsThis(i18n("Edit the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
-  editRemoveSelectedArea = new KAction(i18n("&Remove Selected Area"), "delete_table_row", Qt::Key_Delete, this, SLOT(slotRemoveRow()), actionCollection(),"edit_remove_selected_area");
+  editRemoveSelectedArea = new KAction(KIcon("delete_table_row"), i18n("&Remove Selected Area"), actionCollection(), "edit_remove_selected_area");
+  connect(editRemoveSelectedArea, SIGNAL(triggered(bool)), SLOT(slotRemoveRow()));
+  editRemoveSelectedArea->setShortcut(Qt::Key_Delete);
   editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
@@ -171,15 +180,18 @@ void kvoctrainApp::initActions()
   editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
 
-  vocabShowStatistics = new KAction(i18n("Show &Statistics"), "statistics", 0, this, SLOT(slotShowStatist()), actionCollection(),"vocab_show_statistics");
+  vocabShowStatistics = new KAction(KIcon("statistics"), i18n("Show &Statistics"), actionCollection(), "vocab_show_statistics");
+  connect(vocabShowStatistics, SIGNAL(triggered(bool)), SLOT(slotShowStatist()));
   vocabShowStatistics->setWhatsThis(i18n("Show statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
 
-  vocabAssignLessons = new KAction(i18n("Assign L&essons..."), "rand_less", 0, this, SLOT(slotCreateRandom()), actionCollection(),"vocab_assign_lessons");
+  vocabAssignLessons = new KAction(KIcon("rand_less"), i18n("Assign L&essons..."), actionCollection(), "vocab_assign_lessons");
+  connect(vocabAssignLessons, SIGNAL(triggered(bool)), SLOT(slotCreateRandom()));
   vocabAssignLessons->setWhatsThis(i18n("Create random lessons with unassigned entries"));
   vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
 
-  vocabCleanUp = new KAction(i18n("&Clean Up"), "cleanup", 0, this, SLOT(slotCleanVocabulary()), actionCollection(),"vocab_clean_up");
+  vocabCleanUp = new KAction(KIcon("cleanup"), i18n("&Clean Up"), actionCollection(), "vocab_clean_up");
+  connect(vocabCleanUp, SIGNAL(triggered(bool)), SLOT(slotCleanVocabulary()));
   vocabCleanUp->setWhatsThis(i18n("Remove entries with same content from vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
 
