@@ -27,13 +27,18 @@
 #include <QTimer>
 #include <QLabel>
 
+#include <kactioncollection.h>
 #include <klineedit.h>
 #include <kcombobox.h>
+#include <krecentfilesaction.h>
+#include <kselectaction.h>
 #include <kstatusbar.h>
+#include <kstdaction.h>
 #include <kmenu.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <k3widgetaction.h>
 
 #include "kvoctrain.h"
 #include "common-dialogs/ProgressDlg.h"
@@ -224,7 +229,7 @@ void kvoctrainApp::initActions()
   connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   lessons->setFocusPolicy(Qt::NoFocus);
 
-  vocabLessons = new KWidgetAction(lessons, i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
+  vocabLessons = new K3WidgetAction(lessons, i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
 
@@ -233,7 +238,7 @@ void kvoctrainApp::initActions()
   connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
-  vocabSearch = new KWidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+  vocabSearch = new K3WidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
 #warning "kde4: porting vocabSearch->setAutoSized(true);"  
   //vocabSearch->setAutoSized(true);
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));

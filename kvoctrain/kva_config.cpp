@@ -25,6 +25,8 @@
 
 #include <QFile>
 
+#include <krecentfilesaction.h>
+
 #include "kvoctrain.h"
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"

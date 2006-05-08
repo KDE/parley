@@ -31,6 +31,7 @@
 #include <kcombobox.h>
 #include <kprogressbar.h>
 #include <kconfig.h>
+#include <kselectaction.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>
