@@ -9,7 +9,7 @@ add_subdirectory( kvt-core )
 add_subdirectory( examples ) 
 add_subdirectory( pics ) 
 
-include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/  ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/ ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR}  )
+include_directories( ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/  ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/  )
 
 
 ########### next target ###############
