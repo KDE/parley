@@ -1,4 +1,3 @@
-kde4_header()
 
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ )
@@ -29,7 +28,6 @@ install_targets(${LIB_INSTALL_DIR} kvoctraincore )
 ########### install files ###############
 
 
-kde4_footer()
 
 
 

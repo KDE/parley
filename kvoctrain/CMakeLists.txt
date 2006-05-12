@@ -1,4 +1,3 @@
-kde4_header()
 
 add_subdirectory( common-dialogs ) 
 add_subdirectory( query-dialogs ) 
@@ -169,7 +168,6 @@ install_files( ${XDG_APPS_DIR} FILES kvoctrain.desktop )
 install_files( ${CONFIG_INSTALL_DIR} FILES kvoctrainrc )
 install_files( ${DATA_INSTALL_DIR}/kvoctrain FILES kvoctrainui.rc )
 
-kde4_footer()
 
 
 

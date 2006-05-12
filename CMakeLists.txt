@@ -1,4 +1,3 @@
-kde4_header()
 project(kvoctrain)
 
 add_subdirectory( kvoctrain ) 
@@ -9,7 +8,6 @@ add_subdirectory( kvoctrain )
 ########### install files ###############
 
 
-kde4_footer()
 
 
 
