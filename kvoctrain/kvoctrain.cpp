@@ -986,7 +986,7 @@ void kvoctrainApp::slotGeneralOptions()
 void kvoctrainApp::slotGeneralOptionsPage(int index)
 {
   KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, doc, lessons, &querymanager, this, "settings",  Prefs::self() );
-  connect(dialog, SIGNAL(settingsChanged()), this, SLOT(slotApplyPreferences()));
+  connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
   dialog->show();
