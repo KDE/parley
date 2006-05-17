@@ -321,21 +321,21 @@ bool BlockOptions::isDefault()
 
 void BlockOptions::updateSettings()
 {
-  Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[block7->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[block6->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[block5->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[block4->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[block3->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[block2->currentIndex()].num);
-  Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[block1->currentIndex()].num);
+  Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[qMax(block7->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[qMax(block6->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[qMax(block5->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV4_GRADE, date_itemlist[qMax(block4->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV3_GRADE, date_itemlist[qMax(block3->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV2_GRADE, date_itemlist[qMax(block2->currentIndex(),0)].num);
+  Prefs::setBlockItem(KV_LEV1_GRADE, date_itemlist[qMax(block1->currentIndex(),0)].num);
 
-  Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[expire7->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[expire6->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[expire5->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[expire4->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[expire3->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[expire2->currentIndex()].num);
-  Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[expire1->currentIndex()].num);
+  Prefs::setExpireItem(KV_LEV7_GRADE, date_itemlist[qMax(expire7->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV6_GRADE, date_itemlist[qMax(expire6->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV5_GRADE, date_itemlist[qMax(expire5->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV4_GRADE, date_itemlist[qMax(expire4->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV3_GRADE, date_itemlist[qMax(expire3->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV2_GRADE, date_itemlist[qMax(expire2->currentIndex(),0)].num);
+  Prefs::setExpireItem(KV_LEV1_GRADE, date_itemlist[qMax(expire1->currentIndex(),0)].num);
 }
 
 bool BlockOptions::hasChanged()
