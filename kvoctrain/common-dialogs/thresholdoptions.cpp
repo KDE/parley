@@ -408,6 +408,11 @@ void ThresholdOptions::slotBlockExpire(bool block, bool expire)
 
 bool ThresholdOptions::isDefault()
 {
+  if (lessoncomp->currentIndex() < 0 || typecomp->currentIndex() < 0
+      || gradecomp->currentIndex() < 0 || querycomp->currentIndex() < 0
+      || badcomp->currentIndex() < 0 || datecomp->currentIndex() < 0)
+        return false;
+
   return less_complist[lessoncomp->currentIndex()] == Prefs::EnumCompType::Current &&
          type_complist[typecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
          grade_complist[gradecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
