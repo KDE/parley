@@ -425,7 +425,7 @@ void KVocTrainTable::paintCell(QPainter * p, int row, int col, const QRect & cr,
   }
 
   QPen pen( p->pen() );
-  int gridColor = 0; ///@todo port style().styleHint( QStyle::SH_Table_GridLineColor, this );
+  int gridColor = style()->styleHint( QStyle::SH_Table_GridLineColor, 0, this );
   if (gridColor != -1) {
     const QPalette &pal = palette();
     if (cg != palette()
