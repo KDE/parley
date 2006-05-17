@@ -418,22 +418,35 @@ bool ThresholdOptions::isDefault()
 
 void ThresholdOptions::updateSettings()
 {
-  Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[lessoncomp->currentIndex()]);
+  if (lessoncomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[lessoncomp->currentIndex()]);
   slotSetLessonItems();
-  Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentIndex()]);
-  Prefs::setTypeItem(all_maintypes[typelist->currentIndex()].shortStr());
-  Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[gradecomp->currentIndex()]);
+  if (typecomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentIndex()]);
+  if (typelist->currentIndex() >= 0)
+     Prefs::setTypeItem(all_maintypes[typelist->currentIndex()].shortStr());
+  if (gradecomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[gradecomp->currentIndex()]);
   Prefs::setGradeItem(gradelist->currentIndex() + 1);
-  Prefs::setCompType(Prefs::EnumType::Query, query_complist[querycomp->currentIndex()]);
+  if (querycomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::Query, query_complist[querycomp->currentIndex()]);
   Prefs::setQueryItem(querylist->currentIndex());
-  Prefs::setCompType(Prefs::EnumType::Bad, bad_complist[badcomp->currentIndex()]);
+  if (badcomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::Bad, bad_complist[badcomp->currentIndex()]);
   Prefs::setBadItem(badlist->currentIndex());
-  Prefs::setCompType(Prefs::EnumType::Date, date_complist[datecomp->currentIndex()]);
-  Prefs::setDateItem(Threshdate_itemlist[datelist->currentIndex()].num);
+  if (datecomp->currentIndex() >= 0)
+     Prefs::setCompType(Prefs::EnumType::Date, date_complist[datecomp->currentIndex()]);
+  if (datelist->currentIndex() >= 0)
+     Prefs::setDateItem(Threshdate_itemlist[datelist->currentIndex()].num);
 }
 
 bool ThresholdOptions::hasChanged()
 {
+  if (lessoncomp->currentIndex() < 0 || typecomp->currentIndex() < 0 
+      || gradecomp->currentIndex() < 0 || querycomp->currentIndex() < 0
+      || badcomp->currentIndex() < 0 || datecomp->currentIndex() < 0
+      || typelist->currentIndex() < 0 || datelist->currentIndex() < 0)
+	return true;
   return less_complist[lessoncomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Lesson) ||
          type_complist[typecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::WordType) ||
          grade_complist[gradecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Grade) ||
