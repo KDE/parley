@@ -212,10 +212,8 @@ EntryDlg::EntryDlg(
   connect (mc_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
   connect (tense_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
 
-  if (from_page != 0)
-    connect (from_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
-  if (to_page != 0)
-    connect (to_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+  connect (from_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
+  connect (to_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified() ));
 
   enableButtonApply(false);
   enableButton(User1, false);
