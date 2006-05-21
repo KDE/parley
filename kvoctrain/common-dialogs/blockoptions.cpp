@@ -282,6 +282,8 @@ void BlockOptions::checkValidity()
     {
       if (kcfg_Block->isChecked() &&
           kcfg_Expire->isChecked() &&
+	  m_expireComboList[i]->currentIndex() >= 0 &&
+	  m_blockComboList[i]->currentIndex() >= 0 &&
           date_itemlist[m_expireComboList[i]->currentIndex()].num != 0 &&
           date_itemlist[m_blockComboList[i]->currentIndex()].num != 0 &&
           date_itemlist[m_blockComboList[i]->currentIndex()].num >= date_itemlist[m_expireComboList[i]->currentIndex()].num)
@@ -302,6 +304,22 @@ void BlockOptions::checkValidity()
 
 bool BlockOptions::isDefault()
 {
+  if (block7->currentIndex() < 0 ||
+      block6->currentIndex() < 0 ||
+      block5->currentIndex() < 0 ||
+      block4->currentIndex() < 0 ||
+      block3->currentIndex() < 0 ||
+      block2->currentIndex() < 0 ||
+      block1->currentIndex() < 0 ||
+      expire7->currentIndex() < 0 ||
+      expire6->currentIndex() < 0 ||
+      expire5->currentIndex() < 0 ||
+      expire4->currentIndex() < 0 ||
+      expire3->currentIndex() < 0 ||
+      expire2->currentIndex() < 0 ||
+      expire1->currentIndex() < 0)
+	return false;
+
   return date_itemlist[block7->currentIndex()].num == 5184000 &&
          date_itemlist[block6->currentIndex()].num == 2592000 &&
          date_itemlist[block5->currentIndex()].num == 1209600 &&
@@ -321,6 +339,22 @@ bool BlockOptions::isDefault()
 
 void BlockOptions::updateSettings()
 {
+  if (block7->currentIndex() < 0 ||
+      block6->currentIndex() < 0 ||
+      block5->currentIndex() < 0 ||
+      block4->currentIndex() < 0 ||
+      block3->currentIndex() < 0 ||
+      block2->currentIndex() < 0 ||
+      block1->currentIndex() < 0 ||
+      expire7->currentIndex() < 0 ||
+      expire6->currentIndex() < 0 ||
+      expire5->currentIndex() < 0 ||
+      expire4->currentIndex() < 0 ||
+      expire3->currentIndex() < 0 ||
+      expire2->currentIndex() < 0 ||
+      expire1->currentIndex() < 0)
+        return;
+
   Prefs::setBlockItem(KV_LEV7_GRADE, date_itemlist[qMax(block7->currentIndex(),0)].num);
   Prefs::setBlockItem(KV_LEV6_GRADE, date_itemlist[qMax(block6->currentIndex(),0)].num);
   Prefs::setBlockItem(KV_LEV5_GRADE, date_itemlist[qMax(block5->currentIndex(),0)].num);
@@ -340,6 +374,22 @@ void BlockOptions::updateSettings()
 
 bool BlockOptions::hasChanged()
 {
+  if (block7->currentIndex() < 0 ||
+      block6->currentIndex() < 0 ||
+      block5->currentIndex() < 0 ||
+      block4->currentIndex() < 0 ||
+      block3->currentIndex() < 0 ||
+      block2->currentIndex() < 0 ||
+      block1->currentIndex() < 0 ||
+      expire7->currentIndex() < 0 ||
+      expire6->currentIndex() < 0 ||
+      expire5->currentIndex() < 0 ||
+      expire4->currentIndex() < 0 ||
+      expire3->currentIndex() < 0 ||
+      expire2->currentIndex() < 0 ||
+      expire1->currentIndex() < 0)
+        return false;
+
   return date_itemlist[block7->currentIndex()].num != Prefs::blockItem(KV_LEV7_GRADE) ||
          date_itemlist[block6->currentIndex()].num != Prefs::blockItem(KV_LEV6_GRADE) ||
          date_itemlist[block5->currentIndex()].num != Prefs::blockItem(KV_LEV5_GRADE) ||
