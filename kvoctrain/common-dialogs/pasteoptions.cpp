@@ -208,6 +208,8 @@ void PasteOptions::slotUseCurrentDocToggled(bool)
 bool PasteOptions::hasChanged()
 {
   bool result;
+  if (SeparatorCombo->currentIndex() < 0)
+	return false;
   result = ((separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()));
   if (result)
     return true;
@@ -228,11 +230,15 @@ bool PasteOptions::hasChanged()
 
 bool PasteOptions::isDefault()
 {
+  if (SeparatorCombo->currentIndex() < 0)
+        return false;
   return !strcmp(separator_id[SeparatorCombo->currentIndex()], "\t");
 }
 
 void PasteOptions::updateSettings()
 {
+  if (SeparatorCombo->currentIndex() < 0)
+	return;
   Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
   Prefs::setPasteOrder(preparePasteOrderList());
 }
