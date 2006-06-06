@@ -20,7 +20,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-
+#include <dbus/qdbus.h>
 #include <QPainter>
 #include <QStyle>
 #include <QPixmap>
@@ -31,7 +31,6 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
-#include <dcopclient.h>
 #include <klocale.h>
 #include <kglobalsettings.h>
 #include <kstandarddirs.h>
@@ -78,7 +77,6 @@ void KVocTrainTable::setCurrentItem(int row)
 
 QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
 {
-  if (KApplication::dcopClient()->isApplicationRegistered("kxkb")) {
 
     if (m_doc) {
       QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
@@ -87,20 +85,11 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
       if (langs) {
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
         if (!kbLayout.isEmpty()) {
-          QByteArray data, replyData;
-          DCOPCString replyType;
-          QDataStream arg(&data, QIODevice::WriteOnly);
-          arg << kbLayout;
-
-          if (!KApplication::dcopClient()->call("kxkb", "kxkb",
-               "setLayout(QString)",
-               data, replyType, replyData)) {
-                 //kDebug() << "kskb dcop error" << endl;
-               }
+            QDBusInterfacePtr kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
+            kxbk->call( "setLayout", kbLayout );
         }
       }
     }
-  }
   return Q3Table::beginEdit(row, col, replace);
 }
 

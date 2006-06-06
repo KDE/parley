@@ -38,7 +38,6 @@
 #include <kconfig.h>
 #include <klocale.h>
 #include <kdebug.h>
-#include <dcopclient.h>
 #include <kapplication.h>
 #include <kprinter.h>
 

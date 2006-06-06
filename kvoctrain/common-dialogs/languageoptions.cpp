@@ -36,12 +36,11 @@
 #include <kapplication.h>
 #include <klocale.h>
 #include <kcombobox.h>
-#include <dcopclient.h>
 #include <kstandarddirs.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kmenu.h>
-
+#include <dbus/qdbus.h>
 #include "languageoptions.h"
 #include "languagesettings.h"
 #include "prefs.h"
@@ -805,27 +804,20 @@ void LanguageOptions::enableLangWidgets()
 
   //kDebug() << "enabled? " << enabled << endl;
 
-  if (enabled && KApplication::dcopClient()->isApplicationRegistered("kxkb"))
+  if (enabled )
   {
-    QByteArray data;
-    DCOPCString replyType;
-    QByteArray replyData;
-
-    if (!KApplication::dcopClient()->call("kxkb", "kxkb", "getLayoutsList()", data, replyType, replyData))
+    QDBusInterfacePtr kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
+    QDBusReply<QStringList> reply = kxbk->call( "getLayoutsList" );
+    if ( reply.isSuccess() )
     {
-      //kDebug() << "kxkb dcop error" << endl;
-    }
-    else
-    {
-      if (replyType == "QStringList")
-      {
-        QStringList layouts;
-        QDataStream stream(&replyData, QIODevice::ReadOnly);
-        stream >> layouts;
+        QStringList layouts = reply;
         layouts.prepend(QString());
         d_kblayout->clear();
         d_kblayout->addItems(layouts);
-      }
+    }
+    else
+    {
+      //kDebug() << "kxkb dcop error" << endl;
     }
   }
   else
