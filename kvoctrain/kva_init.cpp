@@ -239,7 +239,9 @@ void kvoctrainApp::initActions()
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
   vocabSearch = new K3WidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+#ifdef __GNUC__
 #warning "kde4: porting vocabSearch->setAutoSized(true);"  
+#endif
   //vocabSearch->setAutoSized(true);
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
   vocabSearch->setToolTip(vocabSearch->whatsThis());
@@ -259,7 +261,9 @@ void kvoctrainApp::initActions()
   /*configQueryOptions = new KAction(i18n("Configure &Query..."), "configure_query", 0, this, SLOT(slotQueryOptions()), actionCollection(),"config_query_options");
   configQueryOptions->setWhatsThis(i18n("Show the query configuration dialog"));
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());*/
+#ifdef __GNUC__
 #warning "kde4: porting actionCollection()->setHighlightingEnabled(true);"
+#endif  
   //actionCollection()->setHighlightingEnabled(true);
   connect(actionCollection(), SIGNAL(actionStatusText(const QString &)), this, SLOT(slotStatusHelpMsg(const QString &)));
   //connect(actionCollection(), SIGNAL(actionHighlighted(KAction *, bool)), this, SLOT(slotActionHighlighted(KAction *, bool)));
