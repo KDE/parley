@@ -32,7 +32,7 @@
 #include <QLabel>
 #include <QCloseEvent>
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 #include <QueryManager.h>
 #include <keduvocgrammar.h>
@@ -46,7 +46,7 @@ class QTextEdit;
 class QLabel;
 class QRadioButton;
 
-class QueryDlgBase : public KDialogBase
+class QueryDlgBase : public KDialog
 {
   Q_OBJECT
 public:

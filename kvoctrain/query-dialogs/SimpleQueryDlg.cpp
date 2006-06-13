@@ -50,7 +50,7 @@ SimpleQueryDlg::SimpleQueryDlg(
   : QueryDlgBase("")
 {
   mw = new Ui::SimpleQueryDlgForm();
-  mw->setupUi(makeMainWidget());
+  mw->setupUi(mainWidget());
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );

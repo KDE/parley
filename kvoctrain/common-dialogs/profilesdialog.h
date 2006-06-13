@@ -21,7 +21,7 @@
 #define PROFILESDIALOG_H
 
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 /**
 @author Peter Hedlund
@@ -42,7 +42,7 @@ public:
   QString block_set;
 };
 
-class ProfilesDialog : public KDialogBase
+class ProfilesDialog : public KDialog
 {
   Q_OBJECT
 

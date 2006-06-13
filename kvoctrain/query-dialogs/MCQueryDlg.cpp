@@ -54,7 +54,7 @@ MCQueryDlg::MCQueryDlg(
   : QueryDlgBase(i18n("Multiple Choice"))
 {
   mw = new Ui::MCQueryDlgForm();
-  mw->setupUi(makeMainWidget());
+  mw->setupUi(mainWidget());
 
   //mw->transgroup->insert(mw->rb_trans1);
   //mw->transgroup->insert(mw->rb_trans2);

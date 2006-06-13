@@ -19,7 +19,6 @@
 #include <QComboBox>
 #include <QPushButton>
 
-#include <kdialogbase.h>
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <klocale.h>
@@ -40,8 +39,13 @@ SettingsProfile::SettingsProfile(QString n, QString q, QString t, QString b)
 }
 
 ProfilesDialog::ProfilesDialog(QueryManager * m, QWidget *parent, const char *name, bool modal)
- : KDialogBase(Swallow, i18n("Profiles"), Close, Close, parent, name, modal, false)
+ : KDialog(parent)
 {
+  setCaption(i18n("Profiles"));
+  setButtons(Close);
+  setModal(modal);
+  setObjectName(QLatin1String(name));
+
   m_queryManager = m;
   mw = new GroupOptions(this);
   setMainWidget(mw);

@@ -34,9 +34,19 @@
 #include <LineList.h>
 
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
-  : KDialogBase(parent, name, modal, caption, User1|User2, NoDefault, false,
-    KGuiItem(i18n("&Stop Query")), KGuiItem(i18n("&Edit Expression...")))
+  : KDialog(parent)
 {
+  setCaption(caption);
+  setModal(modal);
+  setObjectName(QLatin1String(name));
+  setButtons(User1|User2);
+  setDefaultButton(NoDefault);
+  setButtonGuiItem(User1, KGuiItem(i18n("&Stop Query")));
+  setButtonGuiItem(User2, KGuiItem(i18n("&Edit Expression...")));
+
+  QWidget *main = new QWidget(this);
+  setMainWidget(main);
+
   kv_doc = 0;
   kv_exp = 0;
   //type_timeout = kvq_notimeout;

@@ -52,7 +52,7 @@ ArtQueryDlg::ArtQueryDlg
   : QueryDlgBase(i18n("Article Training"))
 {
   mw = new Ui::ArtQueryDlgForm();
-  mw->setupUi(makeMainWidget());
+  mw->setupUi(mainWidget());
 
   qtimer = 0;
 

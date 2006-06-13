@@ -141,7 +141,7 @@ RandomQueryDlg::RandomQueryDlg(
   : QueryDlgBase(i18n("Random Query"))
 {
   mw = new Ui::QueryDlgForm();
-  mw->setupUi(makeMainWidget());
+  mw->setupUi(mainWidget());
 
   connect( mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()) );
   connect( mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()) );

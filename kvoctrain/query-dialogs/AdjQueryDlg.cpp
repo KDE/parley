@@ -52,7 +52,7 @@ AdjQueryDlg::AdjQueryDlg
   : QueryDlgBase(i18n("Comparison Training"))
 {
   mw = new Ui::AdjQueryDlgForm();
-  mw->setupUi(makeMainWidget());
+  mw->setupUi(mainWidget());
 
   connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()) );
   connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()) );
