@@ -78,17 +78,16 @@ EntryDlg::EntryDlg(
   const char    *name,
   bool           modal)
   :
-  KDialogBase(Tabbed, title, User1|User2|User3|Apply|Close, Apply, parent, name, modal, false,
-    KGuiItem(i18n("&Reset")),
-    KGuiItem(QString(), "view_left_right"),
-    KGuiItem(QString(), "view_top_bottom"))
-
+  KPageDialog(parent)
 {
   setCaption(title);
   setButtons(User1|User2|User3|Apply|Close);
   setDefaultButton(Apply);
   setFaceType(KPageDialog::Tabbed);
   setModal(modal);
+  setButtonGuiItem(User1,i18n("&Reset"));
+  setButtonGuiItem(User2,KGuiItem(QString(), "view_left_right"));
+  setButtonGuiItem(User3,KGuiItem(QString(), "view_top_bottom"));
 
   mainwin = main;
   docked = false;
@@ -108,7 +107,8 @@ EntryDlg::EntryDlg(
 
   if (origin)
   {
-    page = addPage( i18n("Co&mmon") );
+	page = new QFrame();
+    addPage( page,i18n("Co&mmon") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
@@ -118,28 +118,32 @@ EntryDlg::EntryDlg(
                                       ipafont, page);
     topLayout->addWidget(comm_page);
 
-    page = addPage( i18n("A&dditional") );
+    page = new QFrame();
+	addPage( page,i18n("A&dditional") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     aux_page = new AuxInfoEntryPage (multi_sel, synonym, antonym, example, rem, paraphrase, page);
     topLayout->addWidget(aux_page);
 
-    page = addPage( i18n("&Multiple Choice") );
+    page = new QFrame();
+	addPage( page,i18n("&Multiple Choice") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     mc_page = new MCEntryPage (multi_sel, mc, page);
     topLayout->addWidget(mc_page);
 
-    page = addPage( i18n("Con&jugation") );
+    page = new QFrame();
+	addPage( page,i18n("Con&jugation") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     tense_page = new TenseEntryPage (multi_sel, con_prefix, conjugations, page);
     topLayout->addWidget(tense_page);
 
-    page = addPage( i18n("Compar&ison") );
+    page = new QFrame();
+	addPage( page,i18n("Compar&ison") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
@@ -148,7 +152,8 @@ EntryDlg::EntryDlg(
   }
   else
   {
-    page = addPage( i18n("Co&mmon") );
+    page = new QFrame();
+	addPage( page,i18n("Co&mmon") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
@@ -158,28 +163,32 @@ EntryDlg::EntryDlg(
                                       ipafont, page);
     topLayout->addWidget(comm_page);
 
-    page = addPage( i18n("A&dditional") );
+    page = new QFrame();
+	addPage( page,i18n("A&dditional") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     aux_page = new AuxInfoEntryPage (multi_sel, synonym, antonym, example, rem, paraphrase, page);
     topLayout->addWidget(aux_page);
 
-    page = addPage( i18n("&Multiple Choice") );
+    page = new QFrame();
+	addPage( page,i18n("&Multiple Choice") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     mc_page = new MCEntryPage (multi_sel, mc, page);
     topLayout->addWidget(mc_page);
 
-    page = addPage( i18n("Con&jugation") );
+    page = new QFrame();
+	addPage( page,i18n("Con&jugation") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     tense_page = new TenseEntryPage (multi_sel, con_prefix, conjugations, page);
     topLayout->addWidget(tense_page);
 
-    page = addPage( i18n("Compar&ison") );
+    page = new QFrame();
+	addPage( page,i18n("Compar&ison") );
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
@@ -187,7 +196,8 @@ EntryDlg::EntryDlg(
     topLayout->addWidget(adj_page);
   }
 
-  page = addPage( i18n("&From Original") );
+  page = new QFrame();
+  addPage( page,i18n("&From Original") );
   topLayout = new QVBoxLayout( page );
   topLayout->setMargin( KDialog::marginHint() );
   topLayout->setSpacing( KDialog::spacingHint() );
@@ -195,7 +205,8 @@ EntryDlg::EntryDlg(
                                    i18n("Properties From Original"), page);
   topLayout->addWidget(from_page);
 
-  page = addPage( i18n("&To Original") );
+  page = new QFrame();
+  addPage( page,i18n("&To Original") );
   topLayout = new QVBoxLayout( page );
   topLayout->setMargin( KDialog::marginHint() );
   topLayout->setSpacing( KDialog::spacingHint() );

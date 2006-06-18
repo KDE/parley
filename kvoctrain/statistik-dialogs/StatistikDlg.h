@@ -26,13 +26,13 @@
 #ifndef StatistikDlg_included
 #define StatistikDlg_included
 
-#include <kdialogbase.h>
+#include <kpagedialog.h>
 
 class KEduVocDocument;
 class LangSet;
 class GradeCols;
 
-class StatistikDlg : public KDialogBase
+class StatistikDlg : public KPageDialog
 {
   Q_OBJECT
 public:

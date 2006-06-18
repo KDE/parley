@@ -35,13 +35,19 @@
 #include <keduvocdocument.h>
 
 StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *parent, const char *name, bool modal)
-  : KDialogBase(Tabbed, i18n("Document Statistics"), Close, Close, parent, name, modal)
+  : KPageDialog(parent)
 {
+  setCaption(i18n("Document Statistics"));
+  setButtons(Close);
+  setDefaultButton(Close);
+  setModal(modal);
+  setFaceType(KPageDialog::Tabbed);
   QFrame * page;
   QVBoxLayout * topLayout;
   StatistikPage *spage;
 
-  page = addPage(i18n("General"));
+  page = new QFrame();
+  addPage(page,i18n("General"));
   topLayout = new QVBoxLayout( page );
   topLayout->setMargin( 0 );
   topLayout->setSpacing( KDialog::spacingHint() );
@@ -56,7 +62,8 @@ StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *pare
     else
       s = i18n(s.toLocal8Bit());
 
-    page = addPage(s);
+    page=new QFrame();
+	addPage(page,s);
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( 0 );
     topLayout->setSpacing( KDialog::spacingHint() );
