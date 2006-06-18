@@ -84,6 +84,12 @@ EntryDlg::EntryDlg(
     KGuiItem(QString(), "view_top_bottom"))
 
 {
+  setCaption(title);
+  setButtons(User1|User2|User3|Apply|Close);
+  setDefaultButton(Apply);
+  setFaceType(KPageDialog::Tabbed);
+  setModal(modal);
+
   mainwin = main;
   docked = false;
   edit_row = -1;

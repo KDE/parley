@@ -133,6 +133,6 @@ protected:
 
   QFont                 ipafont;
   bool                  modified;
-  KDialogBase         * subDialog;
+  KDialog         * subDialog;
 };
 #endif // CommonEntryPage_included

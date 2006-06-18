@@ -175,11 +175,15 @@ void PhoneticButton::slotClicked()
 
 
 PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, const char *name, bool modal)
-  : KDialogBase(Plain, i18n("Select Characters From Phonetic Alphabet"), Close, Close, parent, name, modal)
+  : KDialog(parent)
 {
+  setButtons(Close);
+  setDefaultButton(Close);
+  setCaption(i18n("Select Characters From Phonetic Alphabet"));
+  setModal(modal);
   int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
-  QFrame * dialogFrame = plainPage();
-
+  QFrame * dialogFrame = new QFrame(this);
+  setMainWidget(dialogFrame);
   QGridLayout *gridLayoutTop = new QGridLayout(dialogFrame);
   gridLayoutTop->setMargin(0);
   QSpacerItem *spacerItem = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);

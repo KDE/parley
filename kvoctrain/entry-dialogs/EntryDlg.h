@@ -29,7 +29,7 @@
 #include <Q3Table>
 #include <QCloseEvent>
 
-#include <kdialogbase.h>
+#include <kpagedialog.h>
 
 #include "FromToEntryPage.h"
 #include "CommonEntryPage.h"
@@ -43,7 +43,7 @@ class QTabWidget;
 class KMainWindow;
 class KEduVocDocument;
 
-class EntryDlg : public KDialogBase
+class EntryDlg : public KPageDialog
 {
   Q_OBJECT
 

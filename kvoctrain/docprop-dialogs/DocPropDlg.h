@@ -26,7 +26,7 @@
 #ifndef DocPropsDlg_included
 #define DocPropsDlg_included
 
-#include <kdialogbase.h>
+#include <kpagedialog.h>
 
 #include "DocOptionsPage.h"
 #include "LessOptPage.h"
@@ -38,7 +38,7 @@
 class KEduVocDocument;
 class LangPropPage;
 
-class DocPropsDlg : public KDialogBase
+class DocPropsDlg : public KPageDialog
 {
     Q_OBJECT
 

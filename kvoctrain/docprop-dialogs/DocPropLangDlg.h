@@ -28,7 +28,7 @@
 
 #include <QList>
 
-#include <kdialogbase.h>
+#include <kpagedialog.h>
 
 #include <keduvocgrammar.h>
 
@@ -36,7 +36,7 @@ class KEduVocDocument;
 class LangPropPage;
 class LangSet;
 
-class DocPropsLangDlg : public KDialogBase
+class DocPropsLangDlg : public KPageDialog
 {
   Q_OBJECT
 

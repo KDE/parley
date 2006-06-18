@@ -35,7 +35,7 @@
 #include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
-#include <kdialogbase.h>
+#include <kdialog.h>
 
 #include <QueryManager.h>
 #include <langset.h>
@@ -336,9 +336,9 @@ void CommonEntryPage::invokeUsageDlg()
 
   int old_usages = (int) doc->usageDescriptions().size();
 
-  KDialog *subDialog= new KDialog(b_usageDlg,
-    i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"),
-    KDialog::Ok|KDialog::Cancel);
+  KDialog *subDialog= new KDialog(b_usageDlg);
+  subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
+  subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
 
   subDialog->setDefaultButton(KDialog::Ok);
 
@@ -365,8 +365,9 @@ void CommonEntryPage::invokeLessDlg()
   QStringList new_lessonStr;
 
   int old_lessons = (int) lesson_box->count();
-  KDialog *subDialog = new KDialog(b_LessDlg, i18n("Edit Lesson Names"),
-    KDialog::Ok|KDialog::Cancel);
+  KDialog *subDialog = new KDialog(b_LessDlg);
+  subDialog->setCaption(i18n("Edit Lesson Names"));
+  subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
 
   subDialog->setDefaultButton(KDialog::Ok);
 
@@ -396,8 +397,9 @@ void CommonEntryPage::invokeTypeDlg()
   QStringList new_typeStr;
 
   int old_types = (int) doc->typeDescriptions().size();
-  KDialog *subDialog = new KDialog(b_TypeDlg, i18n("Edit User Defined Types"),
-    KDialog::Ok|KDialog::Cancel);
+  KDialog *subDialog = new KDialog(b_TypeDlg);
+  subDialog->setCaption(i18n("Edit User Defined Types"));
+  subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
 
   subDialog->setDefaultButton(KDialog::Ok);
 

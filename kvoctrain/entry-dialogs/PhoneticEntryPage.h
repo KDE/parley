@@ -29,9 +29,9 @@
 #include <QPushButton>
 #include <QKeyEvent>
 
-#include <kdialogbase.h>
+#include <kdialog.h>
 
-class PhoneticEntryPage : public KDialogBase
+class PhoneticEntryPage : public KDialog
 {
   Q_OBJECT
 

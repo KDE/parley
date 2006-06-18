@@ -55,7 +55,7 @@ static const char unapplied[] = I18N_NOOP(
     "Do you wish to continue?");
 
 KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, KEduVocDocument * doc, KComboBox * lessons, QueryManager * m, QWidget *parent,
-  const char *name,  KConfigSkeleton *config, DialogType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
+  const char *name,  KConfigSkeleton *config, FaceType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
   bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)
 {
@@ -88,14 +88,15 @@ KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, KEduVocDocument * doc, KComboBox * 
   connect(m_blockOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
   connect(m_blockOptions, SIGNAL(blockExpireChanged(bool, bool)), m_thresholdOptions, SLOT(slotBlockExpire(bool, bool)));
 
-  setButtonGuiItem(KDialogBase::User1, KGuiItem(i18n("&Profiles...")));
-  setButtonTip(KDialogBase::User1, i18n("Save or load specific Query settings which consist in a profile"));
-  setButtonWhatsThis(KDialogBase::User1, i18n("A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
+  setButtonGuiItem(KDialog::User1, KGuiItem(i18n("&Profiles...")));
+  setButtonToolTip(KDialog::User1, i18n("Save or load specific Query settings which consist in a profile"));
+  setButtonWhatsThis(KDialog::User1, i18n("A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
 }
 
 void KVocTrainPrefs::selectPage(int index)
 {
-  showPage(index);
+#warning "kde4: port it"
+  //showPage(index);
 }
 
 bool KVocTrainPrefs::hasChanged()
