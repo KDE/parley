@@ -337,7 +337,7 @@ happens.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-enter">
-<term><keycap>Enter</keycap></term>
+<term>&Enter;</term>
 <listitem><para>Invoke dialog for modification of this
 entry.</para></listitem>
 </varlistentry>
@@ -496,7 +496,7 @@ every document can contain user defined types.</para>
      <listitem><para>definite article</para></listitem>
      <listitem><para>indefinite article</para></listitem>
   </itemizedlist></para></entry>
-<entry><para></para></entry>
+<entry><para><!-- empty description --></para></entry>
 <entry><para>
   <itemizedlist>
      <listitem><para>a, an</para></listitem>
@@ -2361,7 +2361,7 @@ columns are concatenated before copying all to the clipboard.</para>
 <term>
 <menuchoice>
 <shortcut><keycombo action="simul">&Ctrl;
-<keycap>&Shift;</keycap><keycap>A</keycap></keycombo></shortcut>
+&Shift;<keycap>A</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu>
 <guimenuitem>Deselect</guimenuitem></menuchoice></term>
 <listitem><para><action>Removes all multiple selection
@@ -2391,7 +2391,7 @@ information.</para></listitem>
 
 <varlistentry>
 <term>
-<menuchoice><shortcut><keycap>Enter</keycap></shortcut>
+<menuchoice><shortcut>&Ctrl;&Enter;</shortcut>
 <guimenu>Edit</guimenu>
 <guimenuitem>Edit selected area</guimenuitem></menuchoice></term>
 <listitem><para><action>Edits current expression.</action> See <link
