@@ -47,10 +47,9 @@
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2005-06-06</date>
-<releaseinfo>0.8.2</releaseinfo>
+<releaseinfo>0.8.3</releaseinfo>
 
-<abstract><para>This handbook describes &kvoctrain; version 0.8.2.
-&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
+<abstract><para>&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
 when you are trying to learn a foreign language for example.</para></abstract>
 
 <keywordset>
@@ -91,7 +90,7 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &kvoctrain;</title>
 
-<para>Here is &kvoctrain; the first time you run it, either form the K menu,  Edutaintment, Languages or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
+<para>Here is &kvoctrain; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutaintment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
 <screenshot>
 <screeninfo>&kvoctrain; main window</screeninfo>
 <mediaobject>
@@ -101,11 +100,11 @@ of this application.</para>
 </screenshot>
 
 <para>
-You can study a file in the examples by using the <guimenu>File</guimenu> <guimenuitem>Open examples...</guimenuitem> menu. There are 2 files here for you to learn how to use &kvoctrain;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
+You can study a file in the examples by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &kvoctrain;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
 </para>
 
 <para>
-You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Get Vocabularies...</guimenuitem>. The KNewStuff dialog will open with a list of available documents.
+You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> The <guilabel>Get Hot New Stuff</guilabel> dialog will open with a list of available documents.
 </para>
 
 <screenshot>
@@ -125,7 +124,7 @@ You can also get vocabulary files through the Internet using <guimenu>File</guim
 <textobject><phrase>The Katakana file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the Thresholds tab. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton>.</para>
+<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the <guilabel>Thresholds</guilabel> page. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton> to close the dialog.</para>
 
 <screenshot>
 <screeninfo>Configure your lesson</screeninfo>
@@ -136,7 +135,7 @@ You can also get vocabulary files through the Internet using <guimenu>File</guim
 </screenshot>
 
 <para>
-In the <guimenu>Learning</guimenu> menu, choose what you want to learn. For example I choose <guimenuitem>ri</guimenuitem> as I want to learn the Katakana signs associated with Romaji.  I then choose <guimenuitem>Create multiple choice</guimenuitem> <guimenuitem>from jp</guimenuitem> and the following dialog appears:
+In the <guimenu>Learning</guimenu> menu, choose what you want to learn. For example I choose <guimenuitem>ri</guimenuitem> as I want to learn the Katakana signs associated with Romaji.  I then choose <guimenuitem>Create Multiple Choice</guimenuitem> <guimenuitem>From jp</guimenuitem> and the following dialog appears:
 </para>
 
 <screenshot>
@@ -337,16 +336,17 @@ happens.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-enter">
-<term>&Enter;</term>
-<listitem><para>Invoke dialog for modification of this
+<term><keycombo action="simul">&Ctrl;<keycap>Return</keycap></keycombo></term>
+<listitem><para>Invoke the <guilabel>Edit Properties</guilabel> dialog for modification of this
 entry.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-insert">
 <term><keycap>Ins</keycap></term>
-<listitem><para>Invokes a dialog to enter a new original expression and
-appends a new row with this expression at the end of the vocabulary. The
-cursor is moved to the end of the vocabulary afterwards.</para>
+<listitem><para>Appends a new row at the end of the vocabulary.
+The cursor is moved to the entry in the <guilabel>Original</guilabel> row. Edit the items 
+in place or invoke the <guilabel>Edit Properties</guilabel> dialog for modification of this
+entry. </para>
 <para>If you have selected smart appending you are prompted to enter
 originals and their translations until you stop by pressing the ESC
 key.</para></listitem>
@@ -360,7 +360,7 @@ vocabulary.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>+</keycap> or <keycap>-</keycap></term>
+<term><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo> or <keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></term>
 <listitem><para>By pressing &Ctrl; and one of the two number pad
 keys, <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
 previous or next item in the combo box determining the current
@@ -383,9 +383,9 @@ linkend="header-menu">header menu</link> will pop up.</para>
 <sect1 id="mouse">
 <title>Using the mouse</title>
 
-<para>Double clicking an expression in the table will invoke the
-<link linkend="entry-dlg">dialog</link> to modify this entry.</para>
-    
+<para>Double clicking an expression in the table lets you edit this items 
+in place.</para>
+
 <para><mousebutton>Left</mousebutton> mouse click in of the header
 buttons will sort this column in ascending order. The next click will
 sort in descending order. When the column is sorted you can see a triangle
@@ -399,21 +399,22 @@ for about 1 second in on of the table header buttons will pop up its
 
 <sect1 id="selections">
 <title>Working on selections</title>
-
+<!-- FIXME this seems to be outdates lueck 01.07.2006-->
 <para>It is possible to mark a range of expressions. You can then modify one
 or more properties from the selection or save them as a new
 file.</para>
 
+<para>If you click on an entry, the whole row is marked for further processing.</para>
+
 <para>If you keep the &Ctrl; key pressed while clicking on an entry,
-the whole row is marked for further processing. A click on a marked
-entry will remove this selection.</para>
+the whole row is added to yoor selection. </para>
 
 <para>When you additionally press a &Shift; key when clicking on an
 entry, the selection will be extended from the current entry to the
-point where the cursor was previously.</para>
+previously selected entry.</para>
 
 <para>You invoke the edit dialog to modify the selection by pressing
-<keycap>Return</keycap>. In this case the dialog
+<keycombo action="simul">&Ctrl;<keycap>Return</keycap></keycombo>. In this case the dialog
 appears differently. Some properties are disabled. For example it does
 not make sense to edit the expression itself or the remark of a
 whole range.</para>
@@ -450,7 +451,7 @@ linkend="encodings">encodings and charsets.</link></para>
 <para>There are a lot of files on the internet which use the
 tabular character or one or two colons to separate the different
 languages. To select this separator use the tab for setting the <link
-linkend="options4-dlg">Copy &amp; Paste options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
+linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
 
 </itemizedlist>
 
@@ -745,22 +746,22 @@ green check mark in the <link linkend="overview">main view</link>.</para>
 <title>Dialogs</title>
 
 <sect1 id="docprop-dlg">
-<title>Document properties dialog</title>
+<title><guilabel>Document Properties</guilabel>  dialog</title>
 
-<para>This dialog also consists of several pages the determine
- properties that belong only to the current document. They are stored
- with the
-vocabulary.</para>
+<para>Open this dialog with <menuchoice><guimenu>Vocabulary</guimenu> 
+<guimenuitem>Document Properties</guimenuitem></menuchoice>. This dialog 
+also consists of several pages the determine properties that belong 
+only to the current document. They are stored with the vocabulary.</para>
 
 <sect2 id="docprop1-dlg">
-<title>General properties</title>
+<title><guilabel>General</guilabel> properties</title>
 
 <screenshot>
-<screeninfo>General document properties screenshot</screeninfo>
+<screeninfo><guilabel>General Document Properties</guilabel> screenshot</screeninfo>
 <mediaobject>
 <imageobject>
 <imagedata fileref="docprop1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>General document properties</phrase></textobject>
+<textobject><phrase><guilabel>General Document Properties</guilabel></phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -798,13 +799,13 @@ one of the other categories.</para></listitem>
 </sect2>
 
 <sect2 id="docprop2-dlg">
-<title>Lesson descriptions</title>
+<title><guilabel>Lesson</guilabel> descriptions</title>
 
 <screenshot>
-<screeninfo>Lesson descriptions dialog screenshot</screeninfo>
+<screeninfo><guilabel>Lesson</guilabel> descriptions dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="docprop2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Lesson descriptions</phrase></textobject>
+<textobject><phrase><guilabel>Lesson</guilabel> descriptions</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -812,13 +813,13 @@ one of the other categories.</para></listitem>
  lessons.</para>
 
 <para>The buttons should be pretty selfexplanatory except
- <guibutton>Clean up</guibutton>. This one will remove all lesson
+ <guibutton>Clean Up</guibutton>. This one will remove all lesson
  descriptions that are unused in the current document.</para>
 
 </sect2>
 
 <sect2 id="docprop3-dlg">
-<title>Type descriptions</title>
+<title><guilabel>Types</guilabel> descriptions</title>
 
 <para>Similar to the previous section about lessons, you can edit your
 own expression types on this page.</para>
@@ -829,14 +830,14 @@ no picture.</para>
 </sect2>
 
 <sect2 id="docprop4-dlg">
-<title>Tenses</title>
+<title><guilabel>Tenses</guilabel></title>
 
 <para>On the next page you may add the tenses you need.</para>
 
 </sect2>
 
 <sect2 id="docprop5-dlg">
-<title>Usage labels</title>
+<title><guilabel>Usage</guilabel> labels</title>
 
 <para>The last page provides the possibility to enter your own usage
  labels.</para>
@@ -849,19 +850,19 @@ include them in the application as standard item.</para>
 </sect2>
 
 <sect2 id="docprop6-dlg">
-<title>Document options</title>
+<title><guilabel>Document Options</guilabel></title>
 
 <screenshot>
-<screeninfo>Document options dialog screenshot</screeninfo>
+<screeninfo><guilabel>Document Options</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="docprop6-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Document Options</phrase></textobject>
+<textobject><phrase><guilabel>Document Options</guilabel></phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>allow sorting</guilabel></term>
+<term><guilabel>Allow sorting</guilabel></term>
 <listitem><para>If you have created your vocabulary with a certain
  order, you can use this checkbox to turn sorting off for this document. A click
 in the header button will then no longer sort the row.</para></listitem>
@@ -880,13 +881,16 @@ compatibility to versions below 0.6 any more but I think the benefit is worth it
 </sect1>
 
 <sect1 id="langprop-dlg">
-<title>Language properties dialog</title>
+<title><guilabel>Language Properties</guilabel> dialog</title>
+
+<para>Open this dialog with <menuchoice><guimenu>Vocabulary</guimenu> 
+<guimenuitem>Language Properties</guimenuitem></menuchoice>.</para>
 
 <screenshot>
-<screeninfo>Language Properties dialog screenshot</screeninfo>
+<screeninfo><guilabel>Language Properties</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="lang1-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Language Elements</phrase></textobject>
+<textobject><phrase><guilabel>Language Elements</guilabel></phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -896,7 +900,7 @@ queries.</para>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Article</guilabel></term>
+<term><guilabel>Articles</guilabel></term>
 <listitem><para>For every gender you enter here the definite and the
 indefinite article. If there is none for this language, you leave the
 field empty.</para></listitem>
@@ -929,11 +933,13 @@ to create some conversion tool.
 <sect1 id="options-dlg">
 <title>Settings dialog</title>
 
-<para>The settings of this dialog are global and affect all vocabularies
+<para>Open this dialog with <menuchoice><guimenu>Settings</guimenu> 
+<guimenuitem>Configure &kvoctrain;...</guimenuitem></menuchoice>. 
+The settings in this dialog are global and affect all vocabularies
 equally.</para>
 
 <sect2 id="settings1-dlg">
-<title>General</title>
+<title><guilabel>General</guilabel></title>
 
 <screenshot>
 <screeninfo>General settings dialog screenshot</screeninfo>
@@ -945,7 +951,7 @@ equally.</para>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Save vocabularies automaticaly on close and quit</guilabel></term>
+<term><guilabel>Save vocabularies automatically on close and quit</guilabel></term>
 <listitem><para>If you check this option, &kvoctrain; will automatically save the document if it
 was modified when you use the close button or when you quit &kvoctrain;.</para>
 <para>As a side effect it also does not ask for confirmation to save
@@ -955,7 +961,7 @@ was modified when you use the close button or when you quit &kvoctrain;.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Automatic backup interval</guilabel></term>
+<term><guilabel>Create a backup every 15 minutes</guilabel></term>
 <listitem><para>&kvoctrain; will automatically save the document if it
 was modified after the period you enter here when the option is
 checked.</para>
@@ -971,7 +977,7 @@ checked.</para>
 prompted with the entry dialog. After entering the first original you
 have to enter the corresponding translations. Afterwards you proceed
 with the next original and its translations until you stop by pressing
-the <keycap>ESC</keycap> key.</para>
+the &Esc; key.</para>
 <para>When you are in this mode and modify the lesson in the dialog it
 has the same meaning as selecting the lesson in the toolbar.  This way
 it is preselected when the next entry dialog appears.</para>
@@ -988,7 +994,7 @@ item.</para></listitem>
 
 
 <varlistentry>
-<term><guilabel>Column resizing</guilabel></term>
+<term><guilabel>Column Resizing</guilabel></term>
 <listitem><para>When you resize your main window it is convenient,
 if the columns resize automatically, too.</para>
 <para>This is possible in two manners:
@@ -1002,7 +1008,7 @@ if the columns resize automatically, too.</para>
   </varlistentry>
 
   <varlistentry>
-  <term><guilabel>Percent</guilabel></term>
+  <term><guilabel>Percentage</guilabel></term>
   <listitem><para>
   The widths of the columns are altered with the same
   factor the main window grew or shrunk.
@@ -1010,7 +1016,7 @@ if the columns resize automatically, too.</para>
   </varlistentry>
   </variablelist></para>
 
-<para>If the last button labeled <quote>fixed</quote> is set, no resizing of
+<para>If the last button labeled <guilabel>Fixed</guilabel> is set, no resizing of
 the columns is done.</para></listitem>
 </varlistentry>
 </variablelist>
@@ -1018,13 +1024,13 @@ the columns is done.</para></listitem>
 </sect2>
 
 <sect2 id="settings2-dlg">
-<title>Languages</title>
+<title><guilabel>Languages</guilabel></title>
 
 <screenshot>
-<screeninfo>Language settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>Language Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options2-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Language settings dialog</phrase></textobject>
+<textobject><phrase><guilabel>Language Settings</guilabel> dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1068,13 +1074,19 @@ which is shown in the table header button.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Delete</guilabel></term>
-<listitem><para>Deletes the currently selected language code in the
+<term><guilabel>Keybord Layout</guilabel></term>
+<listitem><para>To be written.</para>
+</listitem>
+</varlistentry>
+
+<varlistentry>
+<term><guibutton>Delete</guibutton></term>
+<listitem><para>Clicking an this button deletes the currently selected language code in the
 list.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Add</guilabel></term>
+<term><guibutton>Add</guibutton></term>
 <listitem><para>After entering a new language code in the field to its left,
 you use this button to append it to your list. After that you need to
 fill in the fields for the long name and the picture for the header
@@ -1082,8 +1094,8 @@ button.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Add language from KDE database</guilabel></term>
-<listitem><para>Pressing this button opens a menu that contains all the countries
+<term><guilabel>Add Language Data From KDE Database</guilabel></term>
+<listitem><para>Clicking on this drop down box opens a list that contains all the countries
 that are known in your &kde; installation. Ordered by country you can add your
 desired language properties to your personal list.</para>
 
@@ -1095,8 +1107,8 @@ This is to achieve compatible document files that can be shared among all users.
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Add language from ISO639-1</guilabel></term>
-<listitem><para>Pressing this button opens a menu that contains all the language codes
+<term><guilabel>Add Language Data From ISO639-1</guilabel></term>
+<listitem><para>Clicking on this drop down box opens a list that contains all the language codes
 that are covered by <quote>ISO639-1</quote>.</para>
 
 </listitem>
@@ -1104,26 +1116,26 @@ that are covered by <quote>ISO639-1</quote>.</para>
 
 </variablelist>
 
-<para>Basically the previous two button provide the same data. The former contains
+<para>Basically the previous two rop down boxes provide the same data. The former contains
 the language codes known in &kde; sorted by country whereas the second contains
 <emphasis>all</emphasis> <quote>ISO639-1</quote> codes sorted alphabetically.</para>
 
 </sect2>
 
 <sect2 id="settings3-dlg">
-<title>View</title>
+<title><guilabel>View</guilabel></title>
 
 <screenshot>
-<screeninfo>View settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>View Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options3-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>View settings dialog</phrase></textobject>
+<textobject><phrase><guilabel>View Settings</guilabel> dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Table Font</guilabel></term>
+<term><guilabel>Table font</guilabel></term>
 <listitem><para>Lets you choose a font to display the vocabulary
 in the
 <link linkend="overview">main view</link>.
@@ -1132,7 +1144,7 @@ in the
 </varlistentry>
 
 <varlistentry id="opt-dlg-ipa">
-<term><guilabel>IPA Font</guilabel></term>
+<term><guilabel>IPA font</guilabel></term>
 <listitem><para>Lets you choose a font to display the characters from the international
 phonetic alphabet. This is used to show the pronunciation of the expression
 on the bottom in the statusbar.</para>
@@ -1159,24 +1171,24 @@ The International Phonetic Association</ulink> where you can find even more info
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Grade colors</guilabel></term>
+<term><guilabel>Grade Colors</guilabel></term>
 <listitem><para>Every grade can be assigned an individual color. For
 example I prefer green for best grade and red for worst.</para>
 <para>If you do not want any colors but just black on white, uncheck the
-according check box.</para></listitem>
+<guilabel>Use Colors</guilabel> check box.</para></listitem>
 </varlistentry>
 </variablelist>
 
 </sect2>
 
 <sect2 id="options4-dlg">
-<title>Copy &amp; Paste</title>
+<title><guilabel>Copy &amp; Paste</guilabel></title>
 
 <screenshot>
-<screeninfo>Copy &amp; Paste settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>Copy &amp; Paste Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options4-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Copy &amp; Paste settings dialog </phrase></textobject>
+<textobject><phrase><guilabel>Copy &amp; Paste Settings</guilabel> dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1213,19 +1225,19 @@ be in the same language order as the current document.</para></listitem>
 
 </sect2>
 <sect2 id="options5-dlg">
-<title>Query</title>
+<title><guilabel>Query</guilabel></title>
 
 <screenshot>
-<screeninfo>Query settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>Query Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options5-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Query settings dialog </phrase></textobject>
+<textobject><phrase><guilabel>Query Settings</guilabel> dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Time per query</guilabel></term>
+<term><guilabel>Time Per Query</guilabel></term>
 <listitem><para>Here you can influence the behavior of &kvoctrain;
 when you do not know the answer in time.
   <itemizedlist>
@@ -1295,7 +1307,7 @@ taken from the front of that row, else the question is taken from the
 front of the bottom row. A card is removed from the game when it would
 otherwise be moved to the fifth row, i.e. it has been answering
 correctly while located in the top row.</para>
-
+<!-- FIXME Random Query Options missing lueck 01.07.2006-->
 </listitem>
 </varlistentry>
 </variablelist>
@@ -1303,13 +1315,13 @@ correctly while located in the top row.</para>
 </sect2>
 
 <sect2 id="options6-dlg">
-<title>Thresholds</title>
+<title><guilabel>Thresholds</guilabel></title>
 
 <screenshot>
-<screeninfo>Thresholds settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>Thresholds Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options6-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Thresholds settings dialog </phrase></textobject>
+<textobject><phrase><guilabel>Thresholds Settings</guilabel> dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1374,13 +1386,13 @@ want a property to be ignored, choose <guilabel>Do not care </guilabel>for it.</
 </sect2>
 
 <sect2 id="options7-dlg">
-<title>Blocking</title>
+<title><guilabel>Blocking</guilabel></title>
 
 <screenshot>
-<screeninfo>Blocking settings dialog screenshot</screeninfo>
+<screeninfo><guilabel>Blocking Settings</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="options7-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Blocking settings dialog </phrase></textobject>
+<textobject><phrase><guilabel>Blocking Settings</guilabel> dialog </phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1407,16 +1419,16 @@ on the previous dialog page are not taken into account.</para>
 </sect2>
 
 <sect2 id="profiles">
-<title>Profiles</title>
+<title><guilabel>Profiles</guilabel></title>
 <para>
 A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This Profiles button at the bottom of the Configure &kvoctrain; dialog allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile.
 </para>
-<para>Clicking on the <guibutton>Profiles</guibutton> button will display the following dialog.</para>
+<para>Clicking on the <guibutton>Profiles...</guibutton> button will display the following dialog.</para>
 <screenshot>
-<screeninfo>Profiles dialog</screeninfo>
+<screeninfo><guilabel>Profiles</guilabel> dialog</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="profiles.png" format="PNG" /></imageobject>
-<textobject><phrase>Profiles dialog</phrase></textobject>
+<textobject><phrase><guilabel>Profiles</guilabel> dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1447,7 +1459,7 @@ settings.</para></listitem>
 
 <varlistentry>
 <term><guilabel>Close</guilabel></term>
-<listitem><para>Closes the Profiles dialog.</para></listitem>
+<listitem><para>Closes the <guilabel>Profiles</guilabel> dialog.</para></listitem>
 </varlistentry>
 
 </variablelist> 
@@ -1460,10 +1472,11 @@ settings.</para></listitem>
 <title>Entry dialog</title>
 
 <sect2 id="entry1-dlg">
-<title>General properties</title>
+<title><guilabel>Common Properties</guilabel></title>
 
 <para>Here you enter a new expression into a table cell or modify
- existing entries and their properties. This dialog is accessed when a cell is chosen and you select the <guimenu>Edit</guimenu> -&gt; <guimenuitem>Edit Selected Area...</guimenuitem> menu or from the Random Query dialog -&gt; <guibutton>Edit Expression...</guibutton> button.</para>
+existing entries and their properties. This dialog is accessed when a cell 
+is chosen and you select <menuchoice><guimenu>Edit</guimenu> <guimenuitem>Edit Selected Area...</guimenuitem></menuchoice> from the menu or the <guibutton>Edit Expression...</guibutton> button in the <guilabel>Random Query</guilabel>.</para>
 
 <screenshot>
 <screeninfo>Entry dialog screenshot</screeninfo>
@@ -1483,8 +1496,7 @@ settings.</para></listitem>
 <term><guilabel>Lesson</guilabel></term>
 <listitem><para>Selects the desired lesson.</para>
 <para>The button on the right also invokes the
-<link linkend="docprop2-dlg">document
-properties page</link> where you can enter a new lesson.</para></listitem>
+<guilabel>Edit Lesson Names</guilabel> dialog where you can enter a new lesson.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1517,20 +1529,16 @@ available this field is disabled.</para>
 <para>Every entry in a row can have a different subtype. This is
 useful for nouns as the gender of a noun may be different in different
 languages.</para>
-<para>The button to the right of this field invokes the according page
-from the
-<link linkend="docprop3-dlg">document
-properties dialog </link> so you can enter a new type
+<para>The button to the right of this field invokes the <guilabel>Edit User Defined Types</guilabel> dialog so you can edit the <guilabel>Type Descriptions</guilabel>
 immediately.</para></listitem>
 </varlistentry>
     
 <varlistentry>
-<term><guilabel>Usage label</guilabel></term>
+<term><guilabel>Usage Labels</guilabel></term>
 <listitem><para>One or more usage labels can be selected to describe
 the usual usage of the expression, &eg; medicine or chemistry.</para>
-<para>The button on the right also invokes the according page from the
-<link linkend="docprop3-dlg">document
-properties dialog</link> to enter a new usage label.</para></listitem>
+<para>The button on the right invokes the the <guilabel>Edit User-Defined Usage 
+Labels</guilabel> dialog to enter a new usage label.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -1552,10 +1560,10 @@ should look like this:</para>
 about the <link linkend="opt-dlg-ipa">view options</link>.</para>
 </sect3>
 
-
+<!-- FIXME Active option missing lueck 01.07.2006-->
 </sect2>
 <sect2 id="entry2-dlg">
-<title>Additional properties</title>
+<title><guilabel>Additional Properties</guilabel></title>
 
 <para>For most of these fields there are special queries, too.</para>
 
@@ -1569,14 +1577,14 @@ about the <link linkend="opt-dlg-ipa">view options</link>.</para>
 
 <variablelist>
 <varlistentry>
-<term><guilabel>Synonym</guilabel></term>
+<term><guilabel>Synonyms</guilabel></term>
 <listitem><para>Here you may enter words that have the same
 meaning as the expression. There is also a query type for this
 expression.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Antonym</guilabel></term>
+<term><guilabel>Antonyms</guilabel></term>
 <listitem><para>This is for words that have the opposite meaning. This
 field can also be queried.</para></listitem>
 </varlistentry>
@@ -1605,7 +1613,7 @@ information.</para></listitem>
 </sect2>
 
 <sect2 id="entry3-dlg">
-<title>Suggestions for a multiple choice query</title>
+<title><guilabel>Suggestions For Multiple Choice Query</guilabel></title>
 
 <screenshot>
 <screeninfo>Multiple choice dialog screenshot</screeninfo>
@@ -1628,7 +1636,7 @@ You can enter up to five expressions for this purpose.</para>
 <sect2 id="entry4-dlg">
 <title>Additional properties for verbs</title>
 
-<para>This page is only accessible when you selected
+<para>The <guilabel>Conjugation</guilabel> page is only accessible when you selected
 <guilabel>verb</guilabel> as word type.</para>
 
 <screenshot>
@@ -1654,7 +1662,7 @@ already entered conjugations.</para>
 <sect2 id="entry5-dlg">
 <title>Additional properties for adjectives</title>
 
-<para>This page is only accessible when you selected
+<para>The <guilabel>Comparison</guilabel> page is only accessible when you selected
 <guilabel>adjective</guilabel> as word type.</para>
 
 <screenshot>
@@ -1703,7 +1711,7 @@ same meaning. But in fact, it is not.</para>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Last query date</guilabel></term>
+<term><guilabel>Last Query Date</guilabel></term>
 <listitem><para>This is the date when this entry was
 last queried. If it was never queried yet you only see
 <computeroutput>&#150;&#150;</computeroutput>.</para>
@@ -1715,12 +1723,12 @@ are no more affected.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>altogether</guilabel></term>
+<term><guilabel>Altogether</guilabel></term>
 <listitem><para>Designates how often this entry was queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>wrong</guilabel></term>
+<term><guilabel>Wrong</guilabel></term>
 <listitem><para>Shows the amount of times you did not know the right
 answer.</para></listitem>
 </varlistentry>
@@ -1757,9 +1765,9 @@ position and size.</para>
 <title>Query dialogs</title>
 
 <sect2 id="norm-query-dlg">
-<title>Normal random query</title>
+<title>Normal <guilabel>Random Query</guilabel></title>
 
-<para>After selecting <guimenuitem>Create random query </guimenuitem>
+<para>After selecting <guimenuitem>Create Random Query</guimenuitem>
 the main window disappears.</para>
 
 <para>Then all entries that match your current <link
@@ -1767,10 +1775,10 @@ linkend="thresholds">thresholds</link> are put into a list and shown
 in random order with the following dialog box.</para>
 
 <screenshot>
-<screeninfo>Random query dialog screenshot</screeninfo>
+<screeninfo><guilabel>Random Query</guilabel> dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Random query dialog</phrase></textobject>
+<textobject><phrase><guilabel>Random Query</guilabel> dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1780,45 +1788,45 @@ according text field.</para>
  
 <variablelist>
 <varlistentry>
-<term><guilabel>Show all</guilabel></term>
-<listitem><para>Shows the complete solution in the <guilabel>Translation</guilabel>
+<term><guilabel>Show All</guilabel></term>
+<listitem><para>Shows the complete solution in the translation
 field.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Show more</guilabel></term>
+<term><guibutton>Show More</guibutton></term>
 <listitem><para>Each click on this button will show one more character
 of the solution to give you a little help.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Verify</guilabel></term>
+<term><guibutton>Verify</guibutton></term>
 <listitem><para>Compares your answer with the correct solution. Currently
 your solution must match exactly to be accepted. If the answer was correct the
 color of the translation changes to green, otherwise to red</para></listitem>
 </varlistentry>
    
 <varlistentry>
-<term><guilabel>Don`t know</guilabel></term>
+<term><guibutton>Do Not Know</guibutton></term>
 <listitem><para>Tells &kvoctrain; that you did not know the answer and
 that the according grade must be lowered.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Know it</guilabel></term>
+<term><guibutton>I Know It</guibutton></term>
 <listitem><para>Click this button to tell &kvoctrain; that you
 knew the answer correctly. This entry is then removed from the current<quote>bad
 list</quote>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Edit</guilabel></term>
+<term><guibutton>Edit Expression...</guibutton></term>
 <listitem><para>If you find a mistake with a query you can invoke the
 edit dialog immediately and correct it.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guilabel>Stop query</guilabel></term>
+<term><guibutton>Stop Query</guibutton></term>
 <listitem><para>Stop query mode and show vocabulary
 again.</para></listitem>
 </varlistentry>
@@ -1840,8 +1848,8 @@ which I found convenient:
 
 <itemizedlist>
 <listitem><para>First pressing <keycap>Return</keycap> shows the
- complete solution (at the beginning the button <guibutton>Show more</guibutton>
-is the default button) and makes <guibutton>Don`t know</guibutton>
+ complete solution (at the beginning the button <guibutton>Show More</guibutton>
+is the default button) and makes <guibutton>Do not know</guibutton>
 the default button.</para></listitem>
 
 <listitem><para>Pressing <keycap>Return</keycap> the second time
@@ -1859,13 +1867,13 @@ step. If you did not know it, the grade is reset to level 1 which is worst.</par
 </sect2>
 
 <sect2 id="mu-query-dlg">
-<title>Random query with multiple choice</title>
+<title>Random query with <guilabel>Multiple Choice</guilabel></title>
 
 <screenshot>
-<screeninfo>Multiple choice query dialog screenshot</screeninfo>
+<screeninfo><guilabel>Multiple Choice</guilabel> query dialog screenshot</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="mu-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Multiple choice query dialog</phrase></textobject>
+<textobject><phrase><guilabel>Multiple Choice</guilabel> query dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
@@ -1884,14 +1892,14 @@ is added if available.</para>
 <title>Query of conjugations</title>
 
 <screenshot>
-<screeninfo>Conjugation query dialog</screeninfo>
+<screeninfo><guilabel>Verb Training</guilabel> dialog</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="verb-query-dlg.png" format="PNG" /></imageobject>
-<textobject><phrase>Conjugation query dialog</phrase></textobject>
+<textobject><phrase><guilabel>Verb Training</guilabel> dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>This dialog appears after starting the query of the verbs.</para>
+<para>This dialog appears after starting the query of the verbs with <menuchoice><guimenu>Learning</guimenu> <guisubmenu><replaceable>Language Names</replaceable></guisubmenu> <guimenuitem>Verbs</guimenuitem></menuchoice>.</para>
 
 <para>All tenses are queried that have definitions for conjugations. Of
 course you must know all of them for a successful result.</para>
@@ -1909,6 +1917,7 @@ course you must know all of them for a successful result.</para>
 </mediaobject>
 </screenshot>
 
+<para>This dialog appears after starting the query of articles with <menuchoice><guimenu>Learning</guimenu> <guisubmenu><replaceable>Language Names</replaceable></guisubmenu> <guimenuitem>Articles</guimenuitem></menuchoice>.</para>
 <para>In this dialog the article of the noun is queried.</para>
 
 <para>It is important to having selected the correct subtype in the
@@ -1957,10 +1966,10 @@ this is mainly useful when your expression is a single word.</para>
 </sect1>
 
 <sect1 id="stat-dlg">
-<title>Document statistics dialog</title>
+<title><guilabel>Document Statistics</guilabel> dialog</title>
 
 <sect2 id="stat1-dlg">
-<title>General</title>
+<title><guilabel>General</guilabel></title>
 
 <screenshot>
 <screeninfo>General document statistics screenshot</screeninfo>
@@ -1974,10 +1983,10 @@ this is mainly useful when your expression is a single word.</para>
 your document:</para>
 
 <itemizedlist>
-<listitem><para>The filename</para></listitem>
-<listitem><para>The title</para></listitem>
-<listitem><para>The name of the author</para></listitem>
-<listitem><para>and the number of entries and lessons.</para></listitem>
+<listitem><para>The <guilabel>Filename</guilabel></para></listitem>
+<listitem><para>The <guilabel>Title</guilabel></para></listitem>
+<listitem><para>The name of the <guilabel>Author</guilabel></para></listitem>
+<listitem><para>and the number of <guilabel>Entries</guilabel> and <guilabel>Lessons</guilabel>.</para></listitem>
 </itemizedlist>
 
 </sect2>
@@ -1998,7 +2007,7 @@ you will have none, one or more additional pages. Each page contains
 two pictures for each lesson describing the amount of entries per grade
 in each lesson.</para>
 
-<para>A click with the <mousebutton>right</mousebutton> mouse button on one of the pixmaps will
+<para>A click with the &RMB; on one of the pixmaps will
 popup a menu which shows the exact numbers.</para>
 
 </sect2>
@@ -2024,7 +2033,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <sect1 id="new-stuff">
 <title>Downloading and installing existing files</title>
 
-<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <guimenu>File</guimenu> -&gt; <guimenuitem>Get New Vocabularies...</guimenuitem> menu, provided you have an internet connection. The following dialog is then displayed:</para>
+<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an internet connection. The following dialog is then displayed:</para>
 
 <screenshot>
 <screeninfo>Get New Vocabularies... dialog</screeninfo>
@@ -2204,7 +2213,7 @@ The International Phonetic Association</ulink></para></listitem>
 <title>Command Reference</title>
 
 <sect1 id="kapp-mainwindow">
-<title>The main &kvoctrain; window</title>
+<title>The Main &kvoctrain; Window</title>
 
 <sect2 id="file-menu">
 <title>The <guimenu>File</guimenu> Menu</title>
@@ -2212,7 +2221,8 @@ The International Phonetic Association</ulink></para></listitem>
 <variablelist>
 <varlistentry>
 <term>
-<menuchoice>
+<menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>N</keycap></keycombo></shortcut>
 <guimenu>File</guimenu>
 <guimenuitem>New</guimenuitem>
 </menuchoice>
@@ -2235,7 +2245,7 @@ The International Phonetic Association</ulink></para></listitem>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Open recent...</guimenuitem></menuchoice></term>
+<guimenuitem>Open Recent...</guimenuitem></menuchoice></term>
 <listitem><para><action>Opens one of the recently opened
  documents.</action></para></listitem>
 </varlistentry>
@@ -2244,7 +2254,7 @@ The International Phonetic Association</ulink></para></listitem>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Open example...</guimenuitem></menuchoice></term>
+<guimenuitem>Open Example...</guimenuitem></menuchoice></term>
 <listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
 </para></listitem>
 </varlistentry>
@@ -2255,7 +2265,7 @@ The International Phonetic Association</ulink></para></listitem>
 <keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
 <guimenu>File</guimenu>
 <guimenuitem>Get New Vocabularies...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens</action> the Get Hot New Stuff dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
+<listitem><para><action>Opens</action> the <guilabel>Get Hot New Stuff</guilabel> dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
 </listitem>
 </varlistentry>
 
@@ -2290,7 +2300,7 @@ according <link linkend="settings2-dlg">options page</link>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Save as</guimenuitem></menuchoice></term>
+<guimenuitem>Save As</guimenuitem></menuchoice></term>
 <listitem><para><action>Saves the document under another
  name.</action></para></listitem>
 </varlistentry>
@@ -2298,8 +2308,18 @@ according <link linkend="settings2-dlg">options page</link>
 <varlistentry>
   <term><menuchoice>
       <guimenu>File</guimenu>
-      <guimenuitem>Save Entries In Query As...</guimenuitem></menuchoice></term>
-  <listitem><para><action>Saves the entries marked In Query as a new vocabulary.</action></para></listitem>
+      <guimenuitem>Save Entries in Query As...</guimenuitem></menuchoice></term>
+  <listitem><para><action>Saves the entries marked in query as a new vocabulary.</action></para></listitem>
+</varlistentry>
+
+<varlistentry>
+<term>
+<menuchoice>
+<shortcut><keycombo
+ action="simul">&Ctrl;<keycap>P</keycap></keycombo></shortcut>
+<guimenu>File</guimenu>
+<guimenuitem>Print...</guimenuitem></menuchoice></term>
+<listitem><para><action>Opens</action> the standard &kde; print dialog</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -2373,16 +2393,16 @@ columns are concatenated before copying all to the clipboard.</para>
 <term><menuchoice><shortcut>
 <keycombo action="simul">&Ctrl;<keycap>F</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Find</guimenuitem></menuchoice></term>
+<guimenuitem>Find...</guimenuitem></menuchoice></term>
 <listitem><para><action>Searches</action> for the clipboard content in the vocabulary file using the search field in the toolbar.
 .</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><menuchoice>
-<shortcut><keycap>Ins</keycap></shortcut>
+<shortcut><keycap>Insert</keycap></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Append new entry</guimenuitem></menuchoice></term>
+<guimenuitem>Append New Entry</guimenuitem></menuchoice></term>
 <listitem><para><action>Appends one or more new expressions.</action>
  See
 <link linkend="key-insert">Insert key</link> section for more
@@ -2390,10 +2410,10 @@ information.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term>
-<menuchoice><shortcut>&Ctrl;&Enter;</shortcut>
+<term><menuchoice><shortcut>
+<keycombo action="simul">&Ctrl;<keycap>Return</keycap></keycombo></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Edit selected area</guimenuitem></menuchoice></term>
+<guimenuitem>Edit Selected Area...</guimenuitem></menuchoice></term>
 <listitem><para><action>Edits current expression.</action> See <link
 linkend="key-enter">Enter key</link> section for more
 information.</para></listitem>
@@ -2401,9 +2421,9 @@ information.</para></listitem>
 
 <varlistentry>
 <term>
-<menuchoice><shortcut><keycap>Del</keycap></shortcut>
+<menuchoice><shortcut><keycap>Delete</keycap></shortcut>
 <guimenu>Edit</guimenu>
-<guimenuitem>Remove selected area</guimenuitem></menuchoice></term>
+<guimenuitem>Remove Selected Area</guimenuitem></menuchoice></term>
 <listitem><para><action>Removes selection.</action> See <link
  linkend="key-delete">Delete
 key</link> for more information.</para></listitem>
@@ -2420,7 +2440,7 @@ key</link> for more information.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Show statistics</guimenuitem></menuchoice></term>
+<guimenuitem>Show Statistics</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="stat-dlg">statistics
 dialog</link> to <action>display the most important facts about your
 vocabulary.</action></para></listitem>
@@ -2429,7 +2449,7 @@ vocabulary.</action></para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Assign lessons</guimenuitem></menuchoice></term>
+<guimenuitem>Assign Lessons...</guimenuitem></menuchoice></term>
 <listitem><para><action>Searches the vocabulary for entries that are
 not yet assigned a lesson.</action> They are randomly assigned new
 lessons.</para></listitem>
@@ -2438,7 +2458,7 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Clean up</guimenuitem></menuchoice></term>
+<guimenuitem>Clean Up</guimenuitem></menuchoice></term>
 <listitem><para><action>Searches for entries which are exactly the
  same</action>
 (original and all translations) and removes all but
@@ -2448,7 +2468,7 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Append language</guimenuitem></menuchoice></term>
+<guimenuitem>Append Language</guimenuitem></menuchoice></term>
 <listitem><para><action>Appends a new column</action> (a new
  language).</para></listitem>
 </varlistentry>
@@ -2456,14 +2476,14 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Set language</guimenuitem></menuchoice></term>
+<guimenuitem>Set Language</guimenuitem></menuchoice></term>
 <listitem><para><action>Sets the language code and name for a column</action>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Remove language</guimenuitem></menuchoice></term>
+<guimenuitem>Remove Language</guimenuitem></menuchoice></term>
 <listitem><para><action>Removes one of the
  translations.</action></para></listitem>
 </varlistentry>
@@ -2471,7 +2491,7 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Document properties</guimenuitem></menuchoice></term>
+<guimenuitem>Document Properties</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="docprop-dlg">document
 properties dialog</link>.</para></listitem>
 </varlistentry>
@@ -2479,7 +2499,7 @@ properties dialog</link>.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Language properties</guimenuitem></menuchoice></term>
+<guimenuitem>Language Properties</guimenuitem></menuchoice></term>
 <listitem><para>Invokes the <link linkend="langprop-dlg">language
 properties dialog</link>.</para></listitem>
 </varlistentry>
@@ -2494,7 +2514,7 @@ properties dialog</link>.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice>
-<guimenu>Learn</guimenu>
+<guimenu>Learning</guimenu>
 <guimenuitem><replaceable>Language Names</replaceable></guimenuitem>
 </menuchoice></term>
 <listitem><para>Provides a submenu for each language with all the
@@ -2505,8 +2525,8 @@ linkend="header-menu">table header button</link>.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice>
-<guimenu>Learn</guimenu>
-<guimenuitem>Resume random query</guimenuitem></menuchoice></term>
+<guimenu>Learning</guimenu>
+<guimenuitem>Resume Query</guimenuitem></menuchoice></term>
 <listitem><para><action>Resumes the previous random query if you
  terminated one
 before.</action> Remaining entries appear with a green check mark.
@@ -2515,8 +2535,8 @@ before.</action> Remaining entries appear with a green check mark.
 
 <varlistentry>
 <term><menuchoice>
-<guimenu>Learn</guimenu><guimenuitem>Resume multiple
- choice</guimenuitem>
+<guimenu>Learning</guimenu><guimenuitem>Resume Multiple
+ Choice</guimenuitem>
 </menuchoice></term>
 <listitem><para><action>Resumes the previous random query with multiple
 choice.</action></para></listitem>
@@ -2584,7 +2604,7 @@ bottom.</action></para></listitem>
 </sect2>
 
 <sect2 id="header-menu">
-<title>Table header menu</title>
+<title>Table Header Menu</title>
 
 <para>The following context menu will appear when you keep the
 third button (your original expressions) in the table header
@@ -2592,14 +2612,14 @@ pressed for about a second.</para>
 
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Create random query</guimenuitem></term>
+<term><guimenuitem>Create Random Query</guimenuitem></term>
 <listitem><para>Creates a <link linkend="query-dlg">random query</link>
 on this column with all unknown expressions according to your <link
 linkend="thresholds">thresholds</link>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Create multiple choice</guimenuitem></term>
+<term><guimenuitem>Create Multiple Choice</guimenuitem></term>
 <listitem><para>Creates a <link linkend="mu-query-dlg">random multiple
 choice query</link> on this column with all unknown expressions
  according to your <link
@@ -2607,50 +2627,50 @@ choice query</link> on this column with all unknown expressions
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query verbs</guimenuitem></term>
+<term><guimenuitem>Train Verbs</guimenuitem></term>
 <listitem><para>All of the verbs with its conjugations are
 queried.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query articles</guimenuitem></term>
+<term><guimenuitem>Article Training</guimenuitem></term>
 <listitem><para>Queries the articles if the gender of the nouns is
 defined.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query comparison</guimenuitem></term>
+<term><guimenuitem>Comparison Training</guimenuitem></term>
 <listitem><para>Queries comparison forms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query synonyms</guimenuitem></term>
+<term><guimenuitem>Synonyms</guimenuitem></term>
 <listitem><para>Queries the synonyms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query antonyms</guimenuitem></term>
+<term><guimenuitem>Antonyms</guimenuitem></term>
 <listitem><para>Queries the antonyms.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query the examples</guimenuitem></term>
+<term><guimenuitem>Examples</guimenuitem></term>
 <listitem><para>Queries the examples.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Query paraphrase</guimenuitem></term>
+<term><guimenuitem>Paraphrase</guimenuitem></term>
 <listitem><para>Queries the paraphrases.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Sort</guimenuitem></term>
+<term><guimenuitem>Sort alphabetically</guimenuitem></term>
 <listitem><para>Sorts this row in ascending resp. descending
 order.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Set language</guimenuitem></term>
+<term><guimenuitem>Set Language</guimenuitem></term>
 <listitem><para>Chooses a language for this column. If your desired
 language does not yet exists in this menu, you have to add it with the
 <link linkend="settings2-dlg">options dialog</link>.</para></listitem>
@@ -2663,7 +2683,7 @@ that belongs to a translation.
 
 <variablelist>
 <varlistentry>
-<term><guimenuitem>Reset properties</guimenuitem></term>
+<term><guimenuitem>Reset Grades</guimenuitem></term>
 <listitem><para>Resets the properties of all the selected entries to
 their initial state as if you just had appended them.</para>
 <para>If you have chosen a lesson in the appropriate box in the toolbar,
@@ -2672,7 +2692,7 @@ affected.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><guimenuitem>Remove language</guimenuitem></term>
+<term><guimenuitem>Remove Column</guimenuitem></term>
 <listitem><para>Removes this column and all its
  entries.</para></listitem>
 </varlistentry>
