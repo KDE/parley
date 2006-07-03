@@ -40,7 +40,7 @@
 #include <kfiledialog.h>
 #include <kmessagebox.h>
 #include <kmenu.h>
-#include <dbus/qdbus.h>
+#include <QtDBus>
 #include "languageoptions.h"
 #include "languagesettings.h"
 #include "prefs.h"

@@ -20,7 +20,7 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include <dbus/qdbus.h>
+#include <QtDBus>
 #include <QPainter>
 #include <QStyle>
 #include <QPixmap>
