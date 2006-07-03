@@ -33,6 +33,8 @@
 #include <kapplication.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
+#include <kpagewidgetmodel.h>
+#include <kicon.h>
 
 #include "DocPropLangDlg.h"
 #include "LangPropPage.h"
@@ -74,7 +76,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget
     page = new QFrame();
 	KPageWidgetItem *pageItem = new KPageWidgetItem( page, s );
 	pageItem->setHeader(s);
-	pageItem->setIcon(QPixmap(langset->PixMapFile(idx)));
+	pageItem->setIcon(KIcon(QPixmap(langset->PixMapFile(idx))));
 	addPage(pageItem); ///@todo The pixmaps don't show up in tabbed dialog
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );
