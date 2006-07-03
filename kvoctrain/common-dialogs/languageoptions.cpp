@@ -806,8 +806,8 @@ void LanguageOptions::enableLangWidgets()
 
   if (enabled )
   {
-    QDBusInterfacePtr kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
-    QDBusReply<QStringList> reply = kxbk->call( "getLayoutsList" );
+    QDBusInterface kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
+    QDBusReply<QStringList> reply = kxbk.call( "getLayoutsList" );
     if ( reply.isSuccess() )
     {
         QStringList layouts = reply;
