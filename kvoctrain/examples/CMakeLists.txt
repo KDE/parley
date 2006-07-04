@@ -4,7 +4,7 @@
 
 ########### install files ###############
 
-install_files( ${DATA_INSTALL_DIR}/kvoctrain/examples FILES sample-de.kvtml sample-en.kvtml )
+install( FILES sample-de.kvtml sample-en.kvtml  DESTINATION  ${DATA_INSTALL_DIR}/kvoctrain/examples )
 
 
 

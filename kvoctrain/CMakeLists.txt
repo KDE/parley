@@ -164,9 +164,9 @@ install_targets(/bin spotlight2kvtml )
 
 ########### install files ###############
 
-install_files( ${XDG_APPS_DIR} FILES kvoctrain.desktop )
-install_files( ${CONFIG_INSTALL_DIR} FILES kvoctrainrc )
-install_files( ${DATA_INSTALL_DIR}/kvoctrain FILES kvoctrainui.rc )
+install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kvoctrainrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES kvoctrainui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kvoctrain )
 
 
 

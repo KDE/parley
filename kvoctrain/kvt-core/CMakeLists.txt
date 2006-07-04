@@ -22,7 +22,7 @@ kde4_add_library(kvoctraincore SHARED ${kvoctraincore_LIB_SRCS})
 target_link_libraries(kvoctraincore  ${KDE4_KDECORE_LIBS} kdeeducore)
 
 set_target_properties(kvoctraincore PROPERTIES VERSION 1.0.0 SOVERSION 1 )
-install_targets(${LIB_INSTALL_DIR} kvoctraincore )
+install(TARGETS kvoctraincore  DESTINATION ${LIB_INSTALL_DIR} )
 
 
 ########### install files ###############

@@ -7,7 +7,7 @@
 
 ########### install files ###############
 
-install_files( ${KCFG_INSTALL_DIR} FILES kvoctrain.kcfg languagesettings.kcfg presettings.kcfg )
+install( FILES kvoctrain.kcfg languagesettings.kcfg presettings.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
 
 
 
