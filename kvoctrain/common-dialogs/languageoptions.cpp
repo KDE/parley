@@ -966,14 +966,14 @@ void LanguageOptions::slotPixmapClicked()
       if (!m_langSet.shortId(d_shortName->currentIndex()).isNull())
       {
         s = m_langSet.shortId(d_shortName->currentIndex());
-        m_lastPix = locate ("locale", "l10n/"+s+"/flag.png");
+        m_lastPix = KStandardDirs::KStandardDirs::locate ("locale", "l10n/"+s+"/flag.png");
         if (m_lastPix.isNull()) {
           m_lastPix = locate ("locale", "l10n/");
         }
       }
       else
       {
-        m_lastPix = locate ("locale", "l10n/");
+        m_lastPix = KStandardDirs::KStandardDirs::locate ("locale", "l10n/");
       }
     }
     else
