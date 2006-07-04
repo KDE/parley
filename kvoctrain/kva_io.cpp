@@ -222,7 +222,7 @@ void kvoctrainApp::slotFileOpenExample()
 
   if (queryExit() ) {
     QString s;
-    s = locate("data",  "kvoctrain/examples/");
+    s = KStandardDirs::locate("data",  "kvoctrain/examples/");
     KUrl url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
     loadfileFromPath(url, false);
     if (doc)
