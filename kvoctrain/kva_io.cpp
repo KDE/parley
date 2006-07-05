@@ -589,7 +589,7 @@ void kvoctrainApp::slotFileSaveAs()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  KUrl url = KFileDialog::getSaveURL(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
@@ -640,7 +640,7 @@ void kvoctrainApp::slotSaveSelection ()
     if (doc->entry(i)->isInQuery() )
       seldoc.appendEntry(doc->entry(i));
 
-  KUrl url = KFileDialog::getSaveURL(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() )
   {
