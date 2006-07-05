@@ -185,7 +185,7 @@ void kvoctrainApp::slotFileOpen()
 
   if (queryExit() ) {
     QString s;
-    KUrl url = KFileDialog::getOpenURL(QString(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
+    KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
     loadfileFromPath(url, true);
   }
   slotStatusMsg(IDS_DEFAULT);
@@ -223,7 +223,7 @@ void kvoctrainApp::slotFileOpenExample()
   if (queryExit() ) {
     QString s;
     s = KStandardDirs::locate("data",  "kvoctrain/examples/");
-    KUrl url = KFileDialog::getOpenURL(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
+    KUrl url = KFileDialog::getOpenUrl(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
     loadfileFromPath(url, false);
     if (doc)
        doc->URL().setFileName(QString());
@@ -245,7 +245,7 @@ void kvoctrainApp::slotFileMerge()
   slotStatusMsg(i18n("Merging file..."));
 
   QString s;
-  KUrl url = KFileDialog::getOpenURL(QString(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+  KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty() ) {
 
