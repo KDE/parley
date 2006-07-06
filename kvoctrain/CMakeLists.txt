@@ -146,7 +146,7 @@ kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
 target_link_libraries(kvoctrain  ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} kdeeducore kdeprint knewstuff )
 
-install_targets(/bin kvoctrain )
+install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### next target ###############
@@ -159,7 +159,7 @@ kde4_add_executable(spotlight2kvtml ${spotlight2kvtml_SRCS})
 
 target_link_libraries(spotlight2kvtml  ${KDE4_KDECORE_LIBS} )
 
-install_targets(/bin spotlight2kvtml )
+install(TARGETS spotlight2kvtml  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### install files ###############
