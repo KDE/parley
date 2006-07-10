@@ -38,7 +38,6 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <k3widgetaction.h>
 
 #include "kvoctrain.h"
 #include "common-dialogs/ProgressDlg.h"
@@ -229,7 +228,8 @@ void kvoctrainApp::initActions()
   connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   lessons->setFocusPolicy(Qt::NoFocus);
 
-  vocabLessons = new K3WidgetAction(lessons, i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
+  vocabLessons = new KAction(i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
+  vocabLessons->setDefaultWidget( lessons );
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
 
@@ -238,9 +238,10 @@ void kvoctrainApp::initActions()
   connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
-  vocabSearch = new K3WidgetAction(searchLine, i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+  vocabSearch = new KAction(i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+  vocabSearch->setDefaultWidget( searchLine );
 #ifdef __GNUC__
-#warning "kde4: porting vocabSearch->setAutoSized(true);"  
+#warning "kde4: porting vocabSearch->setAutoSized(true);"
 #endif
   //vocabSearch->setAutoSized(true);
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
@@ -263,7 +264,7 @@ void kvoctrainApp::initActions()
   configQueryOptions->setToolTip(configQueryOptions->whatsThis());*/
 #ifdef __GNUC__
 #warning "kde4: porting actionCollection()->setHighlightingEnabled(true);"
-#endif  
+#endif
   //actionCollection()->setHighlightingEnabled(true);
   connect(actionCollection(), SIGNAL(actionStatusText(const QString &)), this, SLOT(slotStatusHelpMsg(const QString &)));
   //connect(actionCollection(), SIGNAL(actionHighlighted(KAction *, bool)), this, SLOT(slotActionHighlighted(KAction *, bool)));

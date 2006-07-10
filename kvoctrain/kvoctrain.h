@@ -65,7 +65,6 @@ class KComboBox;
 class KProgressBar;
 class KRecentFilesAction;
 class KSelectAction;
-class K3WidgetAction;
 
 class KVTNewStuff;
 
@@ -260,8 +259,8 @@ private:
   KSelectAction* vocabRemoveLanguage;
   KAction* vocabDocumentProperties;
   KAction* vocabLanguageProperties;
-  K3WidgetAction* vocabLessons;
-  K3WidgetAction* vocabSearch;
+  KAction* vocabLessons;
+  KAction* vocabSearch;
 
   //KAction* learningResumeQuery;
   //KAction* learningResumeMultipleChoice;

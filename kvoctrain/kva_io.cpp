@@ -37,7 +37,6 @@
 #include <krecentfilesaction.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
-#include <k3widgetaction.h>
 #include <knewstuff/downloaddialog.h>
 
 #include "kvoctrain.h"
