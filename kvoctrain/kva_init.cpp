@@ -228,7 +228,7 @@ void kvoctrainApp::initActions()
   connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   lessons->setFocusPolicy(Qt::NoFocus);
 
-  vocabLessons = new KAction(i18n("Lessons"), 0, this, 0, actionCollection(), "vocab_lessons");
+  vocabLessons = new KAction(i18n("Lessons"), actionCollection(), "vocab_lessons");
   vocabLessons->setDefaultWidget( lessons );
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
@@ -238,7 +238,7 @@ void kvoctrainApp::initActions()
   connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
   connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
-  vocabSearch = new KAction(i18n("Smart Search"), 0, this, 0, actionCollection(), "vocab_search");
+  vocabSearch = new KAction(i18n("Smart Search"), actionCollection(), "vocab_search");
   vocabSearch->setDefaultWidget( searchLine );
 #ifdef __GNUC__
 #warning "kde4: porting vocabSearch->setAutoSized(true);"
