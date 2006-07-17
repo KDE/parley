@@ -950,7 +950,7 @@ void kvoctrainApp::slotCreateRandom()
      QString s;
      s.setNum (less_no);
      s.insert (0, "- ");
-     lessons->insertItem (s);
+     lessons->addItem (s);
      int less_cnt = Prefs::entriesPerLesson();
      while (randomList.size () != 0) {
        if (--less_cnt <= 0) {
@@ -958,7 +958,7 @@ void kvoctrainApp::slotCreateRandom()
          less_no++;
          s.setNum (less_no);
          s.insert (0, "- ");
-         lessons->insertItem (s);
+         lessons->addItem (s);
        }
        int nr = random.getLong(randomList.size());
        randomList[nr]->setLesson(less_no);

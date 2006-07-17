@@ -279,7 +279,7 @@ void kvoctrainApp::slotFileMerge()
 
     int lesson_offset = lessons->count()-1;
     for (int i = 0; i < (int) new_names.size(); i++) {
-      lessons->insertItem (new_names[i]);
+      lessons->addItem (new_names[i]);
       old_names.push_back(new_names[i]);
     }
     doc->setLessonDescriptions(old_names);
@@ -517,10 +517,10 @@ void kvoctrainApp::slotFileSave()
 void kvoctrainApp::fillLessonBox(KEduVocDocument *the_doc)
 {
   lessons->clear();
-  lessons->insertItem (the_doc->lessonDescription(0));
+  lessons->addItem (the_doc->lessonDescription(0));
   QStringList names = the_doc->lessonDescriptions();
   for (int i = 0; i < (int) names.size(); i++)
-    lessons->insertItem (names[i]);
+    lessons->addItem (names[i]);
   act_lesson = the_doc->currentLesson();
   if (act_lesson > lessons->count() ) {
     act_lesson = 0;

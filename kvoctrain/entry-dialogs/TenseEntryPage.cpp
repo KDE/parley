@@ -85,7 +85,7 @@ void TenseEntryPage::setData(bool /*multi_sel*/, const KEduVocConjugation &conju
     tensebox->setEnabled(false);
 
   for (int i = 0; i <  KEduVocConjugation::numTenses(); i++)
-    tensebox->insertItem (KEduVocConjugation::getName(i) );
+    tensebox->addItem (KEduVocConjugation::getName(i) );
 
   conjugations = conjug;
   slotTenseSelected(0);
