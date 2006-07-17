@@ -1142,7 +1142,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
         continue;
       }
 
-      d_shortName->insertItem(s.simplified());
+      d_shortName->addItem(s.simplified());
       m_langSet.addSet(s, global_langset.longId(*it), global_langset.PixMapFile(*it), global_langset.shortId2(*it));
       emit widgetModified();
       m_hasChanged = true;
@@ -1227,7 +1227,7 @@ void LanguageOptions::slotLangFromISO6391Activated(int id)
        return;
      }
 
-     d_shortName->insertItem(shortid.simplified());
+     d_shortName->addItem(shortid.simplified());
      d_shortName->setCurrentIndex(d_shortName->count()-1);
      slotShortActivated(shortid);
      enableLangWidgets();
