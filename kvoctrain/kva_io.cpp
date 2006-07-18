@@ -526,7 +526,7 @@ void kvoctrainApp::fillLessonBox(KEduVocDocument *the_doc)
     act_lesson = 0;
     the_doc->setCurrentLesson(act_lesson);
   }
-  lessons->setCurrentItem (act_lesson);
+  lessons->setCurrentIndex (act_lesson);
 }
 
 
