@@ -38,6 +38,7 @@
 #include <kiconloader.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
+#include <kicon.h>
 
 #include "kvoctrain.h"
 #include "common-dialogs/ProgressDlg.h"
