@@ -24,25 +24,3 @@ target_link_libraries(kvoctraincore  ${KDE4_KDECORE_LIBS} kdeeducore)
 set_target_properties(kvoctraincore PROPERTIES VERSION 1.0.0 SOVERSION 1 )
 install(TARGETS kvoctraincore  DESTINATION ${LIB_INSTALL_DIR} )
 
-
-########### install files ###############
-
-
-
-
-
-#original Makefile.am contents follow:
-
-#INCLUDES = -I$(srcdir)/../../../libkdeedu/kdeeducore \
-#	-I$(top_builddir)/libkdeedu/kdeeducore -I$(srcdir)/.. -I../queryoption-dialogs \
-#	-I$(srcdir)/../queryoption-dialogs -I$(top_builddir)/kvoctrain/kvoctrain/common-dialogs $(all_includes)
-#
-#lib_LTLIBRARIES = libkvoctraincore.la
-#
-#METASOURCES = AUTO
-#
-#libkvoctraincore_la_SOURCES = langset.cpp LineList.cpp UsageManager.cpp QueryManager.cpp
-#
-#
-#
-#
