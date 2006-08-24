@@ -139,7 +139,7 @@ void MCQueryDlg::setQuery(QString org,
    else
      mw->timebar->setEnabled(false);
 
-   KRandomSequence * rs = new KRandomSequence();
+   KRandomSequence rs;
    QList<QString> strings;
    button_ref.clear();
    button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
@@ -147,7 +147,7 @@ void MCQueryDlg::setQuery(QString org,
    button_ref.push_back(RB_Label(mw->rb_trans3, mw->trans3));
    button_ref.push_back(RB_Label(mw->rb_trans4, mw->trans4));
    button_ref.push_back(RB_Label(mw->rb_trans5, mw->trans5));
-   rs->randomize(button_ref);
+   rs.randomize(button_ref);
    resetButton(button_ref[0].rb, button_ref[0].label);
    resetButton(button_ref[1].rb, button_ref[1].label);
    resetButton(button_ref[2].rb, button_ref[2].label);
@@ -159,7 +159,7 @@ void MCQueryDlg::setQuery(QString org,
    KEduVocMultipleChoice mc = exp->multipleChoice(q_tcol);
    for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
      strings.push_back(mc.mc(i));
-   rs->randomize(strings);
+   rs.randomize(strings);
 
    // always include false friend
    QString ff;
