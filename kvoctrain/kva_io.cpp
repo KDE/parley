@@ -30,7 +30,7 @@
 
 #include <kfiledialog.h>
 #include <kcombobox.h>
-#include <kprogressbar.h>
+#include <qprogressbar.h>
 #include <krecentdocument.h>
 #include <kstatusbar.h>
 #include <klocale.h>
@@ -673,7 +673,7 @@ void kvoctrainApp::slotSaveSelection ()
 void kvoctrainApp::prepareProgressBar ()
 {
     statusBar()->clearMessage ();
-    pbar = new KProgressBar (statusBar());
+    pbar = new QProgressBar (statusBar());
     //pbar->setFrameStyle( QFrame::Panel | QFrame::Sunken );
     statusBar()->addWidget(pbar, 150, true);
     pbar->show();

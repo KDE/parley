@@ -62,7 +62,7 @@ class EntryDlg;
 
 class KLineEdit;
 class KComboBox;
-class KProgressBar;
+class QProgressBar;
 class KRecentFilesAction;
 class KSelectAction;
 
@@ -315,7 +315,7 @@ private:
   bool             shiftActive;
   bool             altActive;
   ProgressDlg     *pdlg;
-  KProgressBar       *pbar;
+  QProgressBar       *pbar;
   QLabel          *vslide_label;
   QLabel          *pron_label;
   QLabel          *rem_label;

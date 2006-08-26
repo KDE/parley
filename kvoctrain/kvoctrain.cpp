@@ -29,7 +29,7 @@
 #include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
-#include <kprogressbar.h>
+#include <qprogressbar.h>
 #include <kconfig.h>
 #include <kselectaction.h>
 #include <kstandarddirs.h>
