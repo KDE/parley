@@ -335,10 +335,10 @@
          </widget>
         </item>
         <item row="1" column="1" >
-         <widget class="KProgressBar" name="timebar" />
+         <widget class="QProgressBar" name="timebar" />
         </item>
         <item row="0" column="1" >
-         <widget class="KProgressBar" name="countbar" />
+         <widget class="QProgressBar" name="countbar" />
         </item>
         <item row="2" column="1" >
          <widget class="QLabel" name="progCount" >
@@ -371,15 +371,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction></pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>KProgressBar</class>
-   <extends></extends>
-   <header>kprogressbar.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>c_falsefriend</tabstop>
   <tabstop>c_remark</tabstop>
