@@ -85,7 +85,7 @@ EntryDlg::EntryDlg(
   setDefaultButton(Apply);
   setFaceType(KPageDialog::Tabbed);
   setModal(modal);
-  setButtonGuiItem(User1,i18n("&Reset"));
+  setButtonGuiItem(User1,KGuiItem(i18n("&Reset")));
   setButtonGuiItem(User2,KGuiItem(QString(), "view_left_right"));
   setButtonGuiItem(User3,KGuiItem(QString(), "view_top_bottom"));
 

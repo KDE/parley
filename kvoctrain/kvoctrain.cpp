@@ -1029,7 +1029,7 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
                         "Should this dialog be invoked now?");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
-                  kapp->makeStdCaption(""),i18n("Invoke Dialog"), i18n("Do Not Invoke")))
+                  kapp->makeStdCaption(""),KGuiItem(i18n("Invoke Dialog")), KGuiItem(i18n("Do Not Invoke"))))
      {
        slotGeneralOptionsPage(1);
      }

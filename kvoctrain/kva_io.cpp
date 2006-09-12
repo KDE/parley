@@ -594,7 +594,7 @@ void kvoctrainApp::slotFileSaveAs()
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
-        url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
+        url.path()),QString(),KStdGuiItem::overwrite()) == KMessageBox::Cancel)
     {
     // do nothing
     }
@@ -646,7 +646,7 @@ void kvoctrainApp::slotSaveSelection ()
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
-        url.path()),QString(),i18n("Overwrite")) == KMessageBox::Cancel)
+        url.path()),QString(),KStdGuiItem::overwrite()) == KMessageBox::Cancel)
     {
     // do nothing
     }

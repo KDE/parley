@@ -539,7 +539,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       }
 
       int exit = KMessageBox::warningContinueCancel(this, msg,
-                    kapp->makeStdCaption(""),i18n("Reset"));
+                    kapp->makeStdCaption(""),KGuiItem(i18n("Reset")));
       if(exit==KMessageBox::Continue) {
         doc->resetEntry (header1, act_lesson);
         doc->setModified();

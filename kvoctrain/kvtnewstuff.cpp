@@ -76,7 +76,7 @@ QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
     int result = KMessageBox::warningContinueCancel(parentWidget(),
         i18n("The file '%1' already exists. Do you want to overwrite it?",
          file),
-        QString(), i18n("Overwrite") );
+        QString(), KStdGuiItem::overwrite() );
     if (result == KMessageBox::Cancel)
       return QString();
   }
