@@ -33,7 +33,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
-#include <kprogressbar.h>
 
 #include "ArtQueryDlg.h"
 #include <kv_resource.h>

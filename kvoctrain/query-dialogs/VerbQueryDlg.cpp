@@ -32,7 +32,6 @@
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <kprogressbar.h>
 
 #include "VerbQueryDlg.h"
 #include <kv_resource.h>

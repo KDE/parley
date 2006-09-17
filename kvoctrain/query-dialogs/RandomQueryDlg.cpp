@@ -39,7 +39,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kapplication.h>
-#include <kprogressbar.h>
 
 #include "RandomQueryDlg.h"
 #include "common-dialogs/ProgressDlg.h"

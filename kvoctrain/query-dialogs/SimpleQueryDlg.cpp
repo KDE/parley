@@ -33,7 +33,6 @@
 #include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <kprogressbar.h>
 
 #include "SimpleQueryDlg.h"
 #include <kv_resource.h>
