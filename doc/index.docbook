@@ -14,14 +14,14 @@
 <author>
 <firstname>Ewald</firstname>
 <surname>Arnold</surname>
-<affiliation><address><email>ewald@ewald-arnold.de</email>
+<affiliation><address>&Ewald.Arnold.mail;
 </address></affiliation>
 </author>
 
 <othercredit role="reviewer">
 <firstname>Eric</firstname>
 <surname>Bischoff</surname>
-<affiliation><address><email>e.bischoff@noos.fr</email>
+<affiliation><address>&Eric.Bischoff.mail;
 </address></affiliation>
 <contrib>Reviewer</contrib>
 </othercredit>
@@ -29,7 +29,7 @@
 <author>
 <firstname>Anne-Marie</firstname>
 <surname>Mahfouf</surname>
-<affiliation><address><email>annma@kde.org</email>	
+<affiliation><address>&Anne-Marie.Mahfouf.mail;	
 </address></affiliation>
 </author>
 
@@ -38,11 +38,11 @@
 
 <copyright>
 <year>1999</year><year>2000</year><year>2001</year><year>2002</year>
-<holder>Ewald Arnold</holder>
+<holder>&Ewald.Arnold;</holder>
 </copyright>
 <copyright>
 <year>2005</year>
-<holder>Anne-Marie Mahfouf</holder>
+<holder>&Anne-Marie.Mahfouf;</holder>
 </copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
@@ -1295,7 +1295,7 @@ above the bottom one, can only hold a certain number of cards. The top
 row can hold seven cards, the others can hold two cards. (In the
 original game, the bottom row can only hold three card, thus limiting
 the number of cards in the game to 20. This "limitation" is not
-present in KVocTrain.)</para>
+present in &kvoctrain;.)</para>
 
 <para>In the bottom row are the questions that have yet to be asked
 and the questions that have previously been answered incorrectly. When
@@ -2021,7 +2021,7 @@ popup a menu which shows the exact numbers.</para>
 <title>Contributing your files to &kvoctrain;</title>
 
 <para>If you have created a kvtml file, please send an email to
-<email>annma@kde.org</email> with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the KDE-Edu website</ulink> so other people will be able to use it.</para>
+&Anne-Marie.Mahfouf.mail; with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the KDE-Edu website</ulink> so other people will be able to use it.</para>
 
 <para>If you modify existing files or create
 new files based on copyrighted material you must ask the author for
@@ -2043,7 +2043,7 @@ problematic! The files must be licensed under a free license, please indicate it
 </mediaobject>
 </screenshot>
 
-<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the internet, saved on your hard disk and opened in KVocTrain current window.
+<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the internet, saved on your hard disk and opened in &kvoctrain; current window.
 </para>
 
 <note><para>The files you download are saved in your home directory in the <filename>Vocabularies</filename> folder.</para></note>
@@ -2714,7 +2714,7 @@ borrow a lot of code from other applications. The biggest chunks are
 taken from</para>
 <itemizedlist>
 <listitem><para>&klpq; (table functionality in versions up to 0.7)</para></listitem>
-<listitem><para>&kontour; (XML reading/writing).</para></listitem>
+<listitem><para>&kontour; (&XML; reading/writing).</para></listitem>
 <listitem><para>&khexedit; (<quote>about</quote> dialog in versions up to
 0.7).</para></listitem>
 </itemizedlist>
@@ -2741,15 +2741,15 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <sect1 id="copyright">
 <title>Copyright</title>
 
-<para>&kvoctrain; Program copyright 1999-2003 Ewald Arnold
-<email>ewald@ewald-arnold.de</email>
+<para>&kvoctrain; Program copyright 1999-2003 &Ewald.Arnold;
+&Ewald.Arnold.mail;
 2004-2005 Peter Hedlund <email>peter@peterandlinda.com</email>
 </para>
 
-<para>Documentation copyright 1999-2000 Ewald Arnold
-<email>ewald@ewald-arnold.de</email>
-2005 Anne-Marie Mahfouf
-<email>annma@kde.org</email>
+<para>Documentation copyright 1999-2000 &Ewald.Arnold;
+&Ewald.Arnold.mail;
+2005 &Anne-Marie.Mahfouf;
+&Anne-Marie.Mahfouf.mail;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -2776,7 +2776,7 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <para>In order to successfully compile &kvoctrain;,
 you need the &kde; libraries as well as the &Qt; C++
 library. All required libraries can be found on <ulink
-url="ftp://ftp.kde.org/pub/kde/">ftp.kde.org/pub/kde/</ulink>.</para>
+url="&kde-ftp;">ftp.kde.org/pub/kde/</ulink>.</para>
 
 <para>&kvoctrain; is tested with &kde; 3.0 and &Qt; 3.0. It should also
 basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
