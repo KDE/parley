@@ -144,7 +144,7 @@ kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  ${KDE4_KDECORE_LIBS} ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_LIBS} knewstuff )
+target_link_libraries(kvoctrain  ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF_LIBS} )
 
 install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
