@@ -28,9 +28,7 @@
 #ifndef RESSOURCE_H
 #define RESSOURCE_H
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 ///////////////////////////////////////////////////////////////////
 // kv_resource.h  -- contains macros used for commands

@@ -27,9 +27,7 @@
 #ifndef KVOCTRAINVIEW_H
 #define KVOCTRAINVIEW_H
 
-#ifdef HAVE_CONFIG_H
 #include <config.h>
-#endif
 
 #include <keduvocdocument.h>
 //Added by qt3to4:
