@@ -98,7 +98,7 @@ bool kvoctrainApp::queryExit()
        save = true;   // save and exit
      }
      else if (exit == KMessageBox::No) {
-       save = false;  // dont save but exit
+       save = false;  // don't save but exit
      }
      else {
        return false;  // continue work

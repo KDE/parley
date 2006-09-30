@@ -133,7 +133,7 @@ void ThresholdOptions::fillWidgets()
   for (int i = 1; i < m_lessons->count(); i++ ) // first in lessons is <no lesson> !
     lessonlist->insertItem (m_lessons->itemText(i));
 
-  // limits and threshholds (the five comboboxes on the right)
+  // limits and thresholds (the five comboboxes on the right)
   gradelist->clear();
   for (int i = 1; i <= KV_MAX_GRADE; i++)
     gradelist->addItem (m_queryManager->gradeStr(i));
