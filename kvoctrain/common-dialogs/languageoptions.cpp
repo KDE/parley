@@ -1205,7 +1205,7 @@ void LanguageOptions::createISO6391Menus()
     lang = it.key();
     QString shortid = global_langset.shortId(it.value());
     QString short2id = global_langset.shortId2(it.value());
-    lang += "\t("+shortid+")";
+    lang += "\t("+shortid+')';
     QString pixmap = global_langset.PixMapFile(it.value());
     if (pixmap.isEmpty())
       pop->insertItem(lang, it.value());

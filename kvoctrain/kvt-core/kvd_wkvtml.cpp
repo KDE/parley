@@ -317,7 +317,7 @@ bool kvoctrainDoc::saveComparison (const KEduVocComparison &comp,
   xml.writeText(identstr);
   xml.startTag (KV_COMPARISON_GRP, false);
   xml.closeTag(false, true);
-  xml.writeText(identstr+" ");
+  xml.writeText(identstr+' ');
 
   if (!comp.l1().isEmpty() ) {
     xml.startTag (KV_COMP_L1, true, false, false);
@@ -337,7 +337,7 @@ bool kvoctrainDoc::saveComparison (const KEduVocComparison &comp,
     xml.endTag (KV_COMP_L3, false);
   }
 
-  xml.writeText("\n"+identstr);
+  xml.writeText('\n'+identstr);
   xml.endTag (KV_COMPARISON_GRP, true);
   xml.writeText(identstr);   // indent next element
   return true;
@@ -367,7 +367,7 @@ bool kvoctrainDoc::saveMultipleChoice (const KEduVocMultipleChoice &mc, XmlWrite
   xml.writeText(identstr);
   xml.startTag (KV_MULTIPLECHOICE_GRP, false);
   xml.closeTag(false, true);
-  xml.writeText(identstr+" ");
+  xml.writeText(identstr+' ');
 
   if (!mc.mc1().isEmpty() ) {
     xml.startTag (KV_MC_1, true, false, false);
@@ -399,7 +399,7 @@ bool kvoctrainDoc::saveMultipleChoice (const KEduVocMultipleChoice &mc, XmlWrite
     xml.endTag (KV_MC_5, false);
   }
 
-  xml.writeText("\n"+identstr);
+  xml.writeText('\n'+identstr);
   xml.endTag (KV_MULTIPLECHOICE_GRP, true);
   xml.writeText(identstr);   // indent next element
   return true;
@@ -442,7 +442,7 @@ bool kvoctrainDoc::saveConjugEntry (KEduVocConjugation &curr_conjug,
   QString def, indef, s;
   QString type;
   for (int lfn = 0; lfn < (int) curr_conjug.numEntries(); lfn++) {
-    xml.writeText(identstr+" ");            // indent entry a bit
+    xml.writeText(identstr+' ');            // indent entry a bit
     xml.startTag (KV_CON_TYPE, false);
     type = curr_conjug.getType(lfn);
     xml.addAttribute (KV_CON_NAME, type);

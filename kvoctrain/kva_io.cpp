@@ -500,9 +500,9 @@ void kvoctrainApp::slotFileSave()
   slotStatusMsg(msg);
 
   // remove previous backup
-  QFile::remove(QFile::encodeName(doc->URL().path()+"~"));
+  QFile::remove(QFile::encodeName(doc->URL().path()+'~'));
   ::rename (QFile::encodeName(doc->URL().path()),
-            QFile::encodeName(doc->URL().path()+"~"));
+            QFile::encodeName(doc->URL().path()+'~'));
 
   prepareProgressBar();
   saveDocProps(doc);
@@ -604,8 +604,8 @@ void kvoctrainApp::slotFileSaveAs()
       QString msg = i18n("Saving %1", url.path());
       slotStatusMsg(msg);
 
-      QFile::remove(QFile::encodeName(url.path()+"~"));         // remove previous backup
-      ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+"~")));
+      QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
+      ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
       saveDocProps(doc);
 
       prepareProgressBar();
@@ -655,9 +655,9 @@ void kvoctrainApp::slotSaveSelection ()
       QString msg = i18n("Saving %1", url.path());
       slotStatusMsg(msg);
 
-      QFile::remove(url.path()+"~");         // remove previous backup
+      QFile::remove(url.path()+'~'); // remove previous backup
       // FIXME: check error
-      ::rename (QFile::encodeName(url.path()), QFile::encodeName(url.path()+"~"));
+      ::rename (QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
       saveDocProps(&seldoc);
 
       prepareProgressBar();

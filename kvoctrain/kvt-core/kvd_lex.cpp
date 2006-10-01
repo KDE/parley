@@ -169,7 +169,7 @@ bool kvoctrainDoc::loadLessonLex (QTextStream &is)
     s = is.readLine();
     lesson = extract (s);
     if (lesson.simplified().isEmpty()) {
-      lesson = "#" + QString::number(i+1);
+      lesson = '#' + QString::number(i+1);
     }
     lesson_descr.push_back (lesson);
   }

@@ -135,7 +135,7 @@ void readToMem (QTextStream &is, QString month, QString year)
 
        if (head_line) {
          lesson_pending = true;
-         lesson_str = line + ", "+month+" "+year;
+         lesson_str = line + ", "+month+' '+year;
        }
        else {
          pos = line.indexOf ('\t');

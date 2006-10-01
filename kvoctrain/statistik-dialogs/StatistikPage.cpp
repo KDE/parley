@@ -275,14 +275,14 @@ void StatistikPage::slotPopupMenu(int row, int col)
 
   KMenu *header_m = new KMenu(i18n("Number of Entries per Grade"));
 
-  header_m->insertItem (i18n(KV_NORM_TEXT) + "\t" + QString::number(sc->grade[KV_NORM_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV1_TEXT) + "\t" + QString::number(sc->grade[KV_LEV1_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV2_TEXT) + "\t" + QString::number(sc->grade[KV_LEV2_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV3_TEXT) + "\t" + QString::number(sc->grade[KV_LEV3_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV4_TEXT) + "\t" + QString::number(sc->grade[KV_LEV4_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV5_TEXT) + "\t" + QString::number(sc->grade[KV_LEV5_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV6_TEXT) + "\t" + QString::number(sc->grade[KV_LEV6_GRADE]) );
-  header_m->insertItem (i18n(KV_LEV7_TEXT) + "\t" + QString::number(sc->grade[KV_LEV7_GRADE]) );
+  header_m->insertItem (i18n(KV_NORM_TEXT) + '\t' + QString::number(sc->grade[KV_NORM_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV1_TEXT) + '\t' + QString::number(sc->grade[KV_LEV1_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV2_TEXT) + '\t' + QString::number(sc->grade[KV_LEV2_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV3_TEXT) + '\t' + QString::number(sc->grade[KV_LEV3_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV4_TEXT) + '\t' + QString::number(sc->grade[KV_LEV4_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV5_TEXT) + '\t' + QString::number(sc->grade[KV_LEV5_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV6_TEXT) + '\t' + QString::number(sc->grade[KV_LEV6_GRADE]) );
+  header_m->insertItem (i18n(KV_LEV7_TEXT) + '\t' + QString::number(sc->grade[KV_LEV7_GRADE]) );
 
   header_m->exec(QCursor::pos()+QPoint(10, 0));
 }

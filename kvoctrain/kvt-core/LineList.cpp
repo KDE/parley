@@ -88,7 +88,7 @@ QString LineList::allLines() const
 
    if (multilines.size() > 1) {
      for (int i = 1; i < (int) multilines.size(); i++)
-       ret += "\n" + multilines[i];
+       ret += '\n' + multilines[i];
    }
    return ret;
 }
