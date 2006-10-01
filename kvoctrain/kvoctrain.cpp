@@ -103,7 +103,7 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
                         noData ? QString() : expr->remark(col)));
   if (pron_label != 0)
     pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1",
-                         noData ? QString() : expr->pronounciation(col)));
+                         noData ? QString() : expr->pronunciation(col)));
   if (type_label != 0)
     type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1",
                          noData ? QString() : QueryManager::typeStr(expr->type(col))));
@@ -208,7 +208,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
          expr->setTranslation(col, entryDlg->getExpr());
 
        expr->setRemark (col, entryDlg->getRemark());
-       expr->setPronounciation(col, entryDlg->getPronunce());
+       expr->setPronunciation(col, entryDlg->getPronunce());
 
        expr->setSynonym (col, entryDlg->getSynonym());
        expr->setAntonym (col, entryDlg->getAntonym());
@@ -402,7 +402,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
                     langset,
                     doc->entry(row)->remark(col),
                     doc->entry(row)->type(col),
-                    doc->entry(row)->pronounciation(col),
+                    doc->entry(row)->pronunciation(col),
                     doc->entry(row)->synonym(col),
                     doc->entry(row)->antonym(col),
                     doc->entry(row)->example(col),
@@ -558,7 +558,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
                        langset,
                        doc->entry(row)->remark(col),
                        doc->entry(row)->type(col),
-                       doc->entry(row)->pronounciation(col),
+                       doc->entry(row)->pronunciation(col),
                        doc->entry(row)->synonym(col),
                        doc->entry(row)->antonym(col),
                        doc->entry(row)->example(col),
