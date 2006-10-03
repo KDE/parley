@@ -438,6 +438,8 @@ void EntryDlg::getCell(int &row, int &col, QList<Q3TableSelection>& sel) const
 
 void EntryDlg::slotDockVertical()
 {
+// FIXME: should this be handled in KWinModule?
+#ifdef Q_WS_X11
   if (!docked) {
     oldMainPos = mainwin->pos();
     oldMainSize = mainwin->size();
@@ -454,11 +456,13 @@ void EntryDlg::slotDockVertical()
                   rect.height()-diff_y);
   move (0, 0);
   mainwin->move(frameGeometry().width(), 0);
+#endif
 }
 
 
 void EntryDlg::slotDockHorizontal()
 {
+#ifdef Q_WS_X11
   if (!docked) {
     oldMainPos = mainwin->pos();
     oldMainSize = mainwin->size();
@@ -476,6 +480,7 @@ void EntryDlg::slotDockHorizontal()
                   rect.height()-frameGeometry().height()-diff_y);
   move(0, 0);
   mainwin->move (0, frameGeometry().height());
+#endif
 }
 
 
