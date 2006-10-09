@@ -6,9 +6,7 @@
 
     begin                : Mon Dec 27 17:05:53 PST 2004
 
-    copyright            : (C) 2004-2005 Peter Hedlund
-
-    email                : peter.hedlund@kdemail.net
+    copyright            : (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 

@@ -6,9 +6,8 @@
 
     begin                : Thu Sep 30 20:00:00 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
+    copyright            : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                            (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
