@@ -16,7 +16,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <Q3WidgetStack>
 #include <QLayout>
 #include <QRadioButton>
 #include <QCheckBox>
