@@ -59,7 +59,7 @@ EntryDlg::EntryDlg(
   LangSet       &langset,
   QString        rem,
   QString        type,
-  QString        pronunce,
+  QString        pronounce,
   QString        synonym,
   QString        antonym,
   QString        example,
@@ -113,7 +113,7 @@ EntryDlg::EntryDlg(
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
-                                      lang, type, pronunce, usagelabel,
+                                      lang, type, pronounce, usagelabel,
                                       i18n("Original &expression in %1:", s), querymanager, active,
                                       ipafont, page);
     topLayout->addWidget(comm_page);
@@ -158,7 +158,7 @@ EntryDlg::EntryDlg(
     topLayout->setMargin( KDialog::marginHint() );
     topLayout->setSpacing( KDialog::spacingHint() );
     comm_page = new CommonEntryPage (doc, multi_sel, expr, lesson, lessonbox,
-                                      lang, type, pronunce, usagelabel,
+                                      lang, type, pronounce, usagelabel,
                                       i18n("Translated &expression in %1:", s), querymanager, active,
                                       ipafont, page);
     topLayout->addWidget(comm_page);
@@ -259,7 +259,7 @@ void EntryDlg::setData(
   LangSet       &langset,
   QString        rem,
   QString        type,
-  QString        pronunce,
+  QString        pronounce,
   QString        synonym,
   QString        antonym,
   QString        example,
@@ -283,10 +283,10 @@ void EntryDlg::setData(
     s = langset.findLongId(lang);
 
   if (origin)
-    comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronunce, usagelabel,
+    comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronounce, usagelabel,
       i18n("Original &expression in %1:", s), querymanager, active);
   else
-    comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronunce, usagelabel,
+    comm_page->setData(multi_sel, expr, lesson, lessonbox, lang, type, pronounce, usagelabel,
       i18n("Translated &expression in %1:", s), querymanager, active);
 
   adj_page->setData(multi_sel, comp);

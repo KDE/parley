@@ -6,9 +6,8 @@
 
     begin                : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
+    copyright            : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                            (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -789,8 +788,8 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
       xml.addAttribute (KV_ANTONYM, (*first).getAntonym(0));
     }
 
-    if (!(*first).getPronunce(0).isEmpty() ) {
-      xml.addAttribute (KV_PRONUNCE, (*first).getPronunce(0));
+    if (!(*first).getPronounce(0).isEmpty() ) {
+      xml.addAttribute (KV_PRONOUNCE, (*first).getPronounce(0));
     }
 
     if (!(*first).uniqueType() && !(*first).getType(0).isEmpty()) {
@@ -908,8 +907,8 @@ bool kvoctrainDoc::saveToKvtMl (QTextStream& os, QString &title) {
         xml.addAttribute (KV_ANTONYM, (*first).getAntonym(trans));
       }
 
-      if (!(*first).getPronunce(trans).isEmpty() ) {
-        xml.addAttribute (KV_PRONUNCE, (*first).getPronunce(trans));
+      if (!(*first).getPronounce(trans).isEmpty() ) {
+        xml.addAttribute (KV_PRONOUNCE, (*first).getPronounce(trans));
       }
 
       if (!(*first).uniqueType() && !(*first).getType(trans).isEmpty()) {

@@ -355,27 +355,27 @@ KEduVocMultipleChoice kvoctrainExpr::getMultipleChoice (int idx) const
 }
 
 
-QString kvoctrainExpr::getPronunce (int idx) const
+QString kvoctrainExpr::getPronounce (int idx) const
 {
-  if (idx >= (int)pronunces.size() || idx < 0) {
+  if (idx >= (int)pronounces.size() || idx < 0) {
     return "";
   }
   else {
-    return pronunces[idx];
+    return pronounces[idx];
   }
 }
 
 
-void kvoctrainExpr::setPronunce (int idx, const QString & expr)
+void kvoctrainExpr::setPronounce (int idx, const QString & expr)
 {
   if ( idx < 0) return;
 
   // extend with empty strings if necessary
-  if ((int)pronunces.size() <= idx )
-    for (int i = pronunces.size(); i < idx+1; i++)
-      pronunces.push_back ("");
+  if ((int)pronounces.size() <= idx )
+    for (int i = pronounces.size(); i < idx+1; i++)
+      pronounces.push_back ("");
 
-  pronunces[idx] = expr.simplified();
+  pronounces[idx] = expr.simplified();
 }
 
 
@@ -444,8 +444,8 @@ void kvoctrainExpr::removeTranslation (int idx)
    if (idx < (int)exprtypes.size() )
      exprtypes.erase (exprtypes.begin() + idx);
 
-   if (idx < (int)pronunces.size() )
-     pronunces.erase (pronunces.begin() + idx);
+   if (idx < (int)pronounces.size() )
+     pronounces.erase (pronounces.begin() + idx);
 
    if (idx < (int)grades.size() )
      grades.erase (grades.begin() + idx);

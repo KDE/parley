@@ -75,7 +75,7 @@ public:
     LangSet       &langset,
     QString        remark,
     QString        _type,
-    QString        pronunce,
+    QString        pronounce,
     QString        synonym,
     QString        antonym,
     QString        example,
@@ -118,7 +118,7 @@ public:
     LangSet       &langset,
     QString        remark,
     QString        _type,
-    QString        pronunce,
+    QString        pronounce,
     QString        synonym,
     QString        antonym,
     QString        example,
@@ -163,7 +163,7 @@ public:
   int     getLesson   ()  const { return comm_page->getLesson(); }
   QString getType     ()  const { return comm_page->getType(); }
   QString getExpr     ()  const { return comm_page->getExpr(); }
-  QString getPronunce ()  const { return comm_page->getPronunce(); }
+  QString getPronounce ()  const { return comm_page->getPronounce(); }
   QString getUsageLabel() const { return comm_page->getUsageLabel(); }
   bool    getActive()     const { return comm_page->getActive(); }
 

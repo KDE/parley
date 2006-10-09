@@ -6,10 +6,8 @@
 
     begin                : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
+    copyright            : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                            (C) 2001 The KDE-EDU team
-
-    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -80,7 +78,7 @@
 #define KV_FAUX_AMI_T  "tf"        // false friend of this entry to org
 #define KV_SYNONYM     "y"         // synonym (same meaning) of expr
 #define KV_ANTONYM     "a"         // antonym (oppositite) of expr
-#define KV_PRONUNCE    "p"         // how to pronunce this expression
+#define KV_PRONOUNCE    "p"         // how to pronounce this expression
 #define KV_SELECTED    "s"         // entry selected for queries
 #define KV_INACTIVE    "i"         // entry inactive (for queries)
 #define KV_EXPRTYPE    "t"         // type of expression
@@ -629,7 +627,7 @@ protected:
                          QString &remark,
                          int &bcount, int &rev_bcount,
                          QString &query_id,
-                         QString &pronunce,
+                         QString &pronounce,
                          int &width,
                          QString &type,
                          QString &faux_ami_f,

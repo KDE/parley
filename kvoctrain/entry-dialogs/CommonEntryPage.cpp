@@ -64,7 +64,7 @@ CommonEntryPage::CommonEntryPage
 )
   :
   QWidget(parent),
-  pronunce(pron),
+  pronounce(pron),
   expression(expr),
   usageCollection (act_usage),
   lesson(less),
@@ -85,11 +85,11 @@ CommonEntryPage::CommonEntryPage
   connect( type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)) );
   connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
 
-  connect( pronunce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronunceSelected(const QString&)) );
+  connect( pronounce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronounceSelected(const QString&)) );
   connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
 
   usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
-  pronunce_line->setFont(ipafont);
+  pronounce_line->setFont(ipafont);
 
   lesson_box->setValidator (new BlockAllValidator() );
   type_box->setValidator (new BlockAllValidator() );
@@ -103,7 +103,7 @@ CommonEntryPage::CommonEntryPage
   QIcon pron_pm = SmallIconSet("view_icon");
   b_pronDlg->setIcon(pron_pm);
 
-  setData(multi_sel, expr, less, lessbox, lang, type, pronunce, act_usage, label, querymanager, active);
+  setData(multi_sel, expr, less, lessbox, lang, type, pronounce, act_usage, label, querymanager, active);
   subDialog = 0L;
 }
 
@@ -115,7 +115,7 @@ void CommonEntryPage::setData(
   QComboBox    *lessBox,
   QString       /*lang*/,
   QString       type,
-  QString       pronunce,
+  QString       pronounce,
   QString       usage,
   QString       /*label*/,
   QueryManager &/*querymanager*/,
@@ -128,7 +128,7 @@ void CommonEntryPage::setData(
   expr_line->setText(expr);
 
   setTypeBox(type);
-  pronunce_line->setText(pronunce);
+  pronounce_line->setText(pronounce);
   c_active->setChecked(active);
 
   int start = -1;
@@ -151,9 +151,9 @@ void CommonEntryPage::setData(
 
   if (multi_sel) {
     expr_line->setEnabled (false);
-    pronunce_line->setEnabled (false);
+    pronounce_line->setEnabled (false);
     expr_line->setText ("");
-    pronunce_line->setText ("");
+    pronounce_line->setText ("");
     lesson_box->clearEditText();
     type_box->clearEditText();
     subtype_box->clearEditText();
@@ -257,10 +257,10 @@ void CommonEntryPage::slotExprSelected (const QString& s)
 }
 
 
-void CommonEntryPage::slotPronunceSelected (const QString& s)
+void CommonEntryPage::slotPronounceSelected (const QString& s)
 {
   setModified(true);
-  pronunce = s;
+  pronounce = s;
 }
 
 
@@ -316,8 +316,8 @@ void CommonEntryPage::slotTypeSelected(int idx)
 void CommonEntryPage::phoneticSelected(wchar_t wc)
 {
   setModified(true);
-  pronunce += QChar(wc);
-  pronunce_line->setText(pronunce);
+  pronounce += QChar(wc);
+  pronounce_line->setText(pronounce);
 }
 
 
@@ -433,7 +433,7 @@ void CommonEntryPage::setEnabled(int enable)
   usage_box->setEnabled(ena);
   subtype_box->setEnabled(ena);
   type_box->setEnabled(ena);
-  pronunce_line->setEnabled(ena);
+  pronounce_line->setEnabled(ena);
   expr_line->setEnabled(ena);
 
   lesson_box->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);

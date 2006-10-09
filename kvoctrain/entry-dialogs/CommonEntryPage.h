@@ -47,7 +47,7 @@ public:
     QComboBox    *lessBox,
     QString       lang,
     QString       type,
-    QString       pronunce,
+    QString       pronounce,
     QString       usage,
     QString       label,
     QueryManager &querymanager,
@@ -63,7 +63,7 @@ public:
     QComboBox    *lessBox,
     QString       lang,
     QString       type,
-    QString       pronunce,
+    QString       pronounce,
     QString       usage,
     QString       label,
     QueryManager &querymanager,
@@ -78,7 +78,7 @@ public:
   int getLesson        () const { return lesson; }
   QString getType      () const { return type; }
   QString getExpr      () const { return expression; }
-  QString getPronunce  () const { return pronunce; }
+  QString getPronounce  () const { return pronounce; }
   QString getUsageLabel() const { return usageCollection; }
   bool    getActive    () const { return entry_active; }
 
@@ -99,7 +99,7 @@ protected slots:
   void slotExprSelected(const QString&);
   void slotTypeSelected(int);
   void slotSubTypeSelected(int);
-  void slotPronunceSelected (const QString&);
+  void slotPronounceSelected (const QString&);
   void slotUsageChanged();
   void slotActiveChanged(bool state);
   void phoneticSelected(wchar_t);
@@ -113,7 +113,7 @@ signals:
   void sigModified();
 
 protected:
-  QString       pronunce;
+  QString       pronounce;
   QString       expression;
   QString       usageCollection;
   int           lesson;

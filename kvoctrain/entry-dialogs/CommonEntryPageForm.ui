@@ -87,7 +87,7 @@
           </widget>
          </item>
          <item row="2" column="1" >
-          <widget class="QLineEdit" name="pronunce_line" >
+          <widget class="QLineEdit" name="pronounce_line" >
            <property name="sizePolicy" >
             <sizepolicy>
              <hsizetype>3</hsizetype>
@@ -121,12 +121,12 @@
           </widget>
          </item>
          <item row="2" column="0" >
-          <widget class="QLabel" name="pronunce_label" >
+          <widget class="QLabel" name="pronounce_label" >
            <property name="text" >
             <string>&amp;Pronunciation:</string>
            </property>
            <property name="buddy" >
-            <cstring>pronunce_line</cstring>
+            <cstring>pronounce_line</cstring>
            </property>
           </widget>
          </item>
@@ -442,7 +442,7 @@
   <tabstop>expr_line</tabstop>
   <tabstop>lesson_box</tabstop>
   <tabstop>b_LessDlg</tabstop>
-  <tabstop>pronunce_line</tabstop>
+  <tabstop>pronounce_line</tabstop>
   <tabstop>b_pronDlg</tabstop>
   <tabstop>type_box</tabstop>
   <tabstop>subtype_box</tabstop>

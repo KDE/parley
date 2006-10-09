@@ -208,7 +208,7 @@ void kvoctrainApp::commitEntryDlg(bool force)
          expr->setTranslation(col, entryDlg->getExpr());
 
        expr->setRemark (col, entryDlg->getRemark());
-       expr->setPronunciation(col, entryDlg->getPronunce());
+       expr->setPronunciation(col, entryDlg->getPronounce());
 
        expr->setSynonym (col, entryDlg->getSynonym());
        expr->setAntonym (col, entryDlg->getAntonym());

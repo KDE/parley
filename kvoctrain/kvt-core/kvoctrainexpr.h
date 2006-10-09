@@ -157,14 +157,14 @@ class kvoctrainExpr
    * @param index            index of expression
    * @param expr             remark of this index
    */
-  void setPronunce (int index, const QString & expr);
+  void setPronounce (int index, const QString & expr);
 
   /** returns pronunciation of this expression
    *
    * @param index            index of expression
    * @result                 pronunciation or "" if none available
    */
-  QString getPronunce (int index) const;
+  QString getPronounce (int index) const;
 
   /** returns remarks of this expression
    *
@@ -446,7 +446,7 @@ class kvoctrainExpr
   vector<QString>     synonym;
   vector<QString>     example;
   vector<QString>     antonym;
-  vector<QString>     pronunces;
+  vector<QString>     pronounces;
   vector<grade_t>     grades;
   vector<grade_t>     rev_grades;
   vector<count_t>     qcounts;

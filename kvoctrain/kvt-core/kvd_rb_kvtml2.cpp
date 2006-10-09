@@ -6,9 +6,8 @@
 
     begin                : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold
+    copyright            : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                            (C) 2001 The KDE-EDU team
-    email                : kvoctrain@ewald-arnold.de
 
     -----------------------------------------------------------------------
 
@@ -38,7 +37,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
   int           bcount,
                 r_bcount;
   QString       remark;
-  QString       pronunce;
+  QString       pronounce;
   time_t        qdate,
                 r_qdate;
   bool          inquery;
@@ -116,7 +115,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
                         remark,
                         bcount, r_bcount,
                         query_id,
-                        pronunce,
+                        pronounce,
                         width,
                         type,
                         faux_ami_t,
@@ -238,8 +237,8 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
       }
       if (!remark.isEmpty() )
         expr.setRemark (0, remark);
-      if (!pronunce.isEmpty() )
-        expr.setPronunce (0, pronunce);
+      if (!pronounce.isEmpty() )
+        expr.setpronounce (0, pronounce);
       if (!type.isEmpty() )
         expr.setType(0, type);
       if (!synonym.isEmpty() )
@@ -275,7 +274,7 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
                         remark,
                         bcount, r_bcount,
                         query_id,
-                        pronunce,
+                        pronounce,
                         width,
                         type,
                         faux_ami_f,
@@ -420,8 +419,8 @@ bool kvoctrainDoc::parseBody_e (XmlElement elem, XmlReader& xml)
         expr.setType (count, type);
       if (!remark.isEmpty() )
         expr.setRemark (count, remark);
-      if (!pronunce.isEmpty() )
-        expr.setPronunce (count, pronunce);
+      if (!pronounce.isEmpty() )
+        expr.setpronounce (count, pronounce);
       if (!faux_ami_f.isEmpty() )
         expr.setFauxAmi (count, faux_ami_f, false);
       if (!faux_ami_t.isEmpty() )
