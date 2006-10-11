@@ -29,7 +29,7 @@
 #include <QFileInfo>
 #include <QPixmap>
 #include <QByteArray>
-#include <Q3PopupMenu>
+#include <QMenu>
 
 #include <kapplication.h>
 #include <klocale.h>
