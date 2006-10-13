@@ -15,7 +15,7 @@ kde4_add_kcfg_files(kvoctraincore_LIB_SRCS
    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.kcfgc
 )
 
-kde4_automoc(${kvoctraincore_LIB_SRCS})
+kde4_automoc(kvoctraincore ${kvoctraincore_LIB_SRCS})
 
 kde4_add_library(kvoctraincore SHARED ${kvoctraincore_LIB_SRCS})
 

@@ -140,7 +140,7 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
 	kvtnewstuff.cpp
 )
 
-kde4_automoc(${kvoctrain_SRCS})
+kde4_automoc(kvoctrain ${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
@@ -153,7 +153,7 @@ install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
 set(spotlight2kvtml_SRCS spotlight2kvtml.cpp )
 
-kde4_automoc(${spotlight2kvtml_SRCS})
+kde4_automoc(spotlight2kvtml ${spotlight2kvtml_SRCS})
 
 kde4_add_executable(spotlight2kvtml ${spotlight2kvtml_SRCS})
 
