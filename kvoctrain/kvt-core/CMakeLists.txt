@@ -11,7 +11,7 @@ set(kvoctraincore_LIB_SRCS
    UsageManager.cpp 
    QueryManager.cpp )
 
-kde4_add_kcfg_files(kvoctraincore_LIB_SRCS
+kde4_add_kcfg_files(kvoctraincore kvoctraincore_LIB_SRCS
    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.kcfgc
 )
 
