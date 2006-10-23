@@ -12,7 +12,7 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ ${CMAKE_SOURCE_DI
 
 
 ########### next target ###############
-kde4_add_kcfg_files( kvoctrain libcommondlg_SKEL_SRCS
+kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languagesettings.kcfgc
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/presettings.kcfgc
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/prefs.kcfgc
@@ -140,7 +140,7 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
 	kvtnewstuff.cpp
 )
 
-kde4_automoc(kvoctrain ${kvoctrain_SRCS})
+kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
@@ -153,7 +153,7 @@ install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
 set(spotlight2kvtml_SRCS spotlight2kvtml.cpp )
 
-kde4_automoc(spotlight2kvtml ${spotlight2kvtml_SRCS})
+kde4_automoc(${spotlight2kvtml_SRCS})
 
 kde4_add_executable(spotlight2kvtml ${spotlight2kvtml_SRCS})
 
