@@ -94,7 +94,9 @@ KVocTrainPrefs::KVocTrainPrefs(LangSet & ls, KEduVocDocument * doc, KComboBox * 
 
 void KVocTrainPrefs::selectPage(int index)
 {
+#ifdef __GNUC__
 #warning "kde4: port it"
+#endif
   //showPage(index);
 }
 
