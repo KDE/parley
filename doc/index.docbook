@@ -246,7 +246,7 @@ in the cell.</para>
 <keycap>Return</keycap>
 when you have finished.</para>
 
-<note><para>You can't invoke the <link linkend="entry-dlg">entry dialog window</link> in this mode. 
+<note><para>You cannot invoke the <link linkend="entry-dlg">entry dialog window</link> in this mode. 
 </para></note></listitem>
 </varlistentry>
 
@@ -448,7 +448,7 @@ since such files are also available to preserve the correct characters,
 see more about this in the section about <link
 linkend="encodings">encodings and charsets.</link></para>
 
-<para>There are a lot of files on the internet which use the
+<para>There are a lot of files on the Internet which use the
 tabular character or one or two colons to separate the different
 languages. To select this separator use the tab for setting the <link
 linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
@@ -864,7 +864,7 @@ include them in the application as standard item.</para>
 <varlistentry>
 <term><guilabel>Allow sorting</guilabel></term>
 <listitem><para>If you have created your vocabulary with a certain
- order, you can use this checkbox to turn sorting off for this document. A click
+ order, you can use this check box to turn sorting off for this document. A click
 in the header button will then no longer sort the row.</para></listitem>
 </varlistentry>
 
@@ -911,7 +911,7 @@ field empty.</para></listitem>
 <listitem><para>In the similar manner you input the descriptor for the
 first, second and third person each in plural and singular.</para>
 <para>Because many languages do not distinguish in the third person
- plural, there is a checkbox to determine this.</para>
+ plural, there is a check box to determine this.</para>
 <para>Leave the unneccessary fields empty.</para></listitem>
 </varlistentry>
 
@@ -1116,7 +1116,7 @@ that are covered by <quote>ISO639-1</quote>.</para>
 
 </variablelist>
 
-<para>Basically the previous two rop down boxes provide the same data. The former contains
+<para>Basically the previous two drop down boxes provide the same data. The former contains
 the language codes known in &kde; sorted by country whereas the second contains
 <emphasis>all</emphasis> <quote>ISO639-1</quote> codes sorted alphabetically.</para>
 
@@ -1249,28 +1249,17 @@ when you do not know the answer in time.
   question.</para></listitem>
   <listitem><para>Furthermore you can activate a little progress bar to
   show the remaining time for the current answer.</para></listitem>
-  </itemizedlist></para>
+  </itemizedlist>
+</para>
 <para>If you exceed the time limit several times in series in continuous mode
 &kvoctrain; will assume that there is currently no person in front of the screen
 and stop the query.</para></listitem>
 </varlistentry>
 
-<!-- DEFERRED AFTER KDE RELEASE
-
-<varlistentry>
-<term><guilabel>Ask sub properties</guilabel></term>
-<listitem><para>
-
-</para></listitem>
-</varlistentry>
-</variablelist>
--->
-
-
 <varlistentry>
 <term><guilabel>Swap direction randomly</guilabel></term>
 <listitem><para>Usually a query is only in one direction, depending on
- the column you used to start the query. With this checkbox you can
+ the column you used to start the query. With this check box you can
  determine, that the directions are altered randomly.</para></listitem>
 </varlistentry>
 
@@ -1305,7 +1294,7 @@ is moved to the back of the bottom row. If the row a card is placed in
 exceed the maximum number of cards for that row, the next question is
 taken from the front of that row, else the question is taken from the
 front of the bottom row. A card is removed from the game when it would
-otherwise be moved to the fifth row, i.e. it has been answering
+otherwise be moved to the fifth row, &ie; it has been answering
 correctly while located in the top row.</para>
 <!-- FIXME Random Query Options missing lueck 01.07.2006-->
 </listitem>
@@ -1421,7 +1410,9 @@ on the previous dialog page are not taken into account.</para>
 <sect2 id="profiles">
 <title><guilabel>Profiles</guilabel></title>
 <para>
-A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. This Profiles button at the bottom of the Configure &kvoctrain; dialog allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile.
+A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. 
+This <guibutton>Profiles...</guibutton> button at the bottom of the <guilabel>Configure &kvoctrain;</guilabel> 
+dialog allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile.
 </para>
 <para>Clicking on the <guibutton>Profiles...</guibutton> button will display the following dialog.</para>
 <screenshot>
@@ -1496,7 +1487,7 @@ is chosen and you select <menuchoice><guimenu>Edit</guimenu> <guimenuitem>Edit S
 <term><guilabel>Lesson</guilabel></term>
 <listitem><para>Selects the desired lesson.</para>
 <para>The button on the right also invokes the
-<guilabel>Edit Lesson Names</guilabel> dialog where you can enter a new lesson.</para></listitem>
+<guilabel>Edit Lesson Names</guilabel> dialog where you can edit lessons.</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -1636,8 +1627,8 @@ You can enter up to five expressions for this purpose.</para>
 <sect2 id="entry4-dlg">
 <title>Additional properties for verbs</title>
 
-<para>The <guilabel>Conjugation</guilabel> page is only accessible when you selected
-<guilabel>verb</guilabel> as word type.</para>
+<para>You can edit the entries on the <guilabel>Conjugation</guilabel> page only 
+when you selected <guilabel>verb</guilabel> as word type.</para>
 
 <screenshot>
 <screeninfo>Verb entry dialog screenshot</screeninfo>
@@ -1652,7 +1643,7 @@ of the verb for the different persons. The tense can be selected from
  the list. After doing this the entry fields are updated accordingly.</para>
 
 <para>Because some languages do not distinguish in the 3rd person of the
-plural you may use the according checkbox.</para>
+plural you may use the according check box.</para>
 
 <para><guibutton>Next</guibutton> searches for the next tense with
 already entered conjugations.</para>
@@ -1662,8 +1653,8 @@ already entered conjugations.</para>
 <sect2 id="entry5-dlg">
 <title>Additional properties for adjectives</title>
 
-<para>The <guilabel>Comparison</guilabel> page is only accessible when you selected
-<guilabel>adjective</guilabel> as word type.</para>
+<para>You can edit the entries on the <guilabel>Comparison</guilabel> page only 
+when you selected <guilabel>adjective</guilabel> as word type.</para>
 
 <screenshot>
 <screeninfo>Comparison entry dialog screenshot</screeninfo>
@@ -1899,7 +1890,8 @@ is added if available.</para>
 </mediaobject>
 </screenshot>
 
-<para>This dialog appears after starting the query of the verbs with <menuchoice><guimenu>Learning</guimenu> <guisubmenu><replaceable>Language Names</replaceable></guisubmenu> <guimenuitem>Verbs</guimenuitem></menuchoice>.</para>
+<para>This dialog appears after starting the query of the verbs with <menuchoice><guimenu>Learning</guimenu> 
+<guisubmenu><replaceable>Language Names</replaceable></guisubmenu> <guimenuitem>Verbs</guimenuitem></menuchoice>.</para>
 
 <para>All tenses are queried that have definitions for conjugations. Of
 course you must know all of them for a successful result.</para>
@@ -2021,7 +2013,7 @@ popup a menu which shows the exact numbers.</para>
 <title>Contributing your files to &kvoctrain;</title>
 
 <para>If you have created a kvtml file, please send an email to
-&Anne-Marie.Mahfouf.mail; with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the KDE-Edu website</ulink> so other people will be able to use it.</para>
+&Anne-Marie.Mahfouf.mail; with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the &kde;-Edu website</ulink> so other people will be able to use it.</para>
 
 <para>If you modify existing files or create
 new files based on copyrighted material you must ask the author for
@@ -2033,7 +2025,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <sect1 id="new-stuff">
 <title>Downloading and installing existing files</title>
 
-<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an internet connection. The following dialog is then displayed:</para>
+<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
 
 <screenshot>
 <screeninfo>Get New Vocabularies... dialog</screeninfo>
@@ -2043,10 +2035,10 @@ problematic! The files must be licensed under a free license, please indicate it
 </mediaobject>
 </screenshot>
 
-<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the internet, saved on your hard disk and opened in &kvoctrain; current window.
+<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &kvoctrain; current window.
 </para>
 
-<note><para>The files you download are saved in your home directory in the <filename>Vocabularies</filename> folder.</para></note>
+<note><para>The files you download are saved in your home folder in the <filename>Vocabularies</filename> folder.</para></note>
 </sect1>
 
 <sect1 id="other-dict">
@@ -2091,7 +2083,7 @@ with the same name and the extension <literal role="extension">kvtml</literal>.<
 <listitem><para>
   <ulink
  url="http://edu.kde.org/contrib/kvtml.php">
- KDE-Edu Contributed Learning Files</ulink>
+ &kde;-Edu Contributed Learning Files</ulink>
   </para></listitem>
 </itemizedlist>
 </listitem>
@@ -2099,30 +2091,18 @@ with the same name and the extension <literal role="extension">kvtml</literal>.<
 <listitem><para>Dictionaries in ascii-format are for example available
  at:</para>
   <itemizedlist>
-  <!-- obsolete <listitem><para>
-  <ulink
- url="ftp://ftp.uni-ulm.de/pub/misc/dict/english_german.tar.gz">ftp.uni-
-ulm.de/pub/misc/dict/english_german.tar.gz</ulink> (approx. 350 kB)
-  </para></listitem>-->
   <listitem><para>
   <ulink
  url="ftp://ftp.gwdg.de/pub/misc/dictionary/english/words.gz">ftp.gwdg.d
 e/pub/misc/dictionary/english/words.gz</ulink> (approx. 1035 kB)
   </para></listitem>
-  <!-- obsolete <listitem><para>
-  <ulink
- url="ftp://sable.ox.ac.uk/pub/wordlists">
- sable.ox.ac.uk/pub/wordlists</ulink>
-  </para></listitem>-->
   </itemizedlist>
 </listitem>
 
 <listitem><para>Dictionaries from the
 <ulink url="http://www3.futureware.at/kquick.htm">*Quick project</ulink> in
 <quote>CSV</quote> format but encoded in <quote>UTF8</quote> so you should have
-all characters rendered correctly.
-
-The files are available from its
+all characters rendered correctly. The files are available from its
 <ulink url="http://www3.futureware.at/1dim.htm">download section</ulink>.
 They are in compressed &Windows; <literal role="extension">.EXE</literal>
 format so you have
@@ -2178,7 +2158,7 @@ steak/xsteak</ulink> (console/X).
 I have found (sorted by the time when I found them):</para>
 <itemizedlist>
 <listitem><para><ulink
-url="http://edu.kde.org/kwordquiz/">KWordQuiz</ulink> (&kde;)</para></listitem>
+url="http://edu.kde.org/kwordquiz/">&kwordquiz;</ulink> (&kde;)</para></listitem>
 
 <listitem><para><ulink
 url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
@@ -2245,7 +2225,7 @@ The International Phonetic Association</ulink></para></listitem>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Open Recent...</guimenuitem></menuchoice></term>
+<guisubmenu>Open Recent...</guisubmenu></menuchoice></term>
 <listitem><para><action>Opens one of the recently opened
  documents.</action></para></listitem>
 </varlistentry>
@@ -2265,7 +2245,7 @@ The International Phonetic Association</ulink></para></listitem>
 <keycombo action="simul">&Ctrl;<keycap>G</keycap></keycombo></shortcut>
 <guimenu>File</guimenu>
 <guimenuitem>Get New Vocabularies...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens</action> the <guilabel>Get Hot New Stuff</guilabel> dialog to allow you to install new KDE-Edu vocabulary files via the internet.</para>
+<listitem><para><action>Opens</action> the <guilabel>Get Hot New Stuff</guilabel> dialog to allow you to install new &kde;-Edu vocabulary files via the Internet.</para>
 </listitem>
 </varlistentry>
 
@@ -2300,7 +2280,7 @@ according <link linkend="settings2-dlg">options page</link>
 <term>
 <menuchoice>
 <guimenu>File</guimenu>
-<guimenuitem>Save As</guimenuitem></menuchoice></term>
+<guimenuitem>Save As...</guimenuitem></menuchoice></term>
 <listitem><para><action>Saves the document under another
  name.</action></para></listitem>
 </varlistentry>
@@ -2395,7 +2375,7 @@ columns are concatenated before copying all to the clipboard.</para>
 <guimenu>Edit</guimenu>
 <guimenuitem>Find...</guimenuitem></menuchoice></term>
 <listitem><para><action>Searches</action> for the clipboard content in the vocabulary file using the search field in the toolbar.
-.</para></listitem>
+</para></listitem>
 </varlistentry>
 
 <varlistentry>
@@ -2468,7 +2448,7 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Append Language</guimenuitem></menuchoice></term>
+<guisubmenu>Append Language</guisubmenu></menuchoice></term>
 <listitem><para><action>Appends a new column</action> (a new
  language).</para></listitem>
 </varlistentry>
@@ -2476,14 +2456,14 @@ lessons.</para></listitem>
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Set Language</guimenuitem></menuchoice></term>
+<guisubmenu>Set Language</guisubmenu></menuchoice></term>
 <listitem><para><action>Sets the language code and name for a column</action>.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term>
 <menuchoice><guimenu>Vocabulary</guimenu>
-<guimenuitem>Remove Language</guimenuitem></menuchoice></term>
+<guisubmenu>Remove Language</guisubmenu></menuchoice></term>
 <listitem><para><action>Removes one of the
  translations.</action></para></listitem>
 </varlistentry>
@@ -2515,7 +2495,7 @@ properties dialog</link>.</para></listitem>
 <term>
 <menuchoice>
 <guimenu>Learning</guimenu>
-<guimenuitem><replaceable>Language Names</replaceable></guimenuitem>
+<guisubmenu><replaceable>Language Names</replaceable></guisubmenu>
 </menuchoice></term>
 <listitem><para>Provides a submenu for each language with all the
 query dialogs. Exactly the same as the menu appearing in a <link
@@ -2776,11 +2756,11 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <para>In order to successfully compile &kvoctrain;,
 you need the &kde; libraries as well as the &Qt; C++
 library. All required libraries can be found on <ulink
-url="&kde-ftp;">ftp.kde.org/pub/kde/</ulink>.</para>
+url="ftp://ftp.kde.org/pub/kde/">ftp.kde.org/pub/kde/</ulink>.</para>
 
 <para>&kvoctrain; is tested with &kde; 3.0 and &Qt; 3.0. It should also
 basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
-but I can't promise.</para>
+but I cannot promise.</para>
 
 </sect1>
 
