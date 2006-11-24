@@ -117,7 +117,7 @@ void kvoctrainApp::initActions()
 
   fileGHNS = new KAction(KIcon("knewstuff"), i18n("&Get New Vocabularies..."), actionCollection(), "file_ghns");
   connect(fileGHNS, SIGNAL(triggered(bool)), SLOT(slotGHNS()));
-  fileGHNS->setShortcut(Qt::Key_Control+Qt::Key_G);
+  fileGHNS->setShortcut(QKeySequence(Qt::Key_Control+Qt::Key_G));
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
 
@@ -166,19 +166,19 @@ void kvoctrainApp::initActions()
 
   editAppend = new KAction(KIcon("insert_table_row"), i18n("&Append New Entry"), actionCollection(), "edit_append");
   connect(editAppend, SIGNAL(triggered(bool)), SLOT(slotAppendRow()));
-  editAppend->setShortcut(Qt::Key_Insert);
+  editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
   editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
 
   editEditSelectedArea = new KAction(KIcon("edit_table_row"), i18n("&Edit Selected Area..."), actionCollection(), "edit_edit_selected_area");
   connect(editEditSelectedArea, SIGNAL(triggered(bool)), SLOT(slotEditRow()));
-  editEditSelectedArea->setShortcut(Qt::Key_Control+Qt::Key_Return);
+  editEditSelectedArea->setShortcut(QKeySequence(Qt::Key_Control+Qt::Key_Return));
   editEditSelectedArea->setWhatsThis(i18n("Edit the entries in the selected rows"));
   editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
 
   editRemoveSelectedArea = new KAction(KIcon("delete_table_row"), i18n("&Remove Selected Area"), actionCollection(), "edit_remove_selected_area");
   connect(editRemoveSelectedArea, SIGNAL(triggered(bool)), SLOT(slotRemoveRow()));
-  editRemoveSelectedArea->setShortcut(Qt::Key_Delete);
+  editRemoveSelectedArea->setShortcut(QKeySequence(Qt::Key_Delete));
   editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
   editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
 
