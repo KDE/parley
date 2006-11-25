@@ -90,7 +90,7 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &kvoctrain;</title>
 
-<para>Here is &kvoctrain; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutaintment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
+<para>Here is &kvoctrain; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
 <screenshot>
 <screeninfo>&kvoctrain; main window</screeninfo>
 <mediaobject>
