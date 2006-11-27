@@ -202,15 +202,15 @@ void kvoctrainApp::initActions()
   vocabCleanUp->setWhatsThis(i18n("Remove entries with same content from vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
 
-  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), "insert_table_col", 0, actionCollection(), "vocab_append_language");
+  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), "insert_table_col", KShortcut(), actionCollection(), "vocab_append_language");
   connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
   connect (vocabAppendLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
   connect (vocabAppendLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), "set_language", 0, actionCollection(), "vocab_set_language");
+  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), "set_language", KShortcut(), actionCollection(), "vocab_set_language");
   connect(vocabSetLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
-  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), "delete_table_col", 0, actionCollection(), "vocab_remove_language");
+  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), "delete_table_col", KShortcut(), actionCollection(), "vocab_remove_language");
   connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
   connect(vocabRemoveLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(vocabRemoveLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
