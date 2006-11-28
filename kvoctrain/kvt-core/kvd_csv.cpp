@@ -73,7 +73,7 @@ bool kvoctrainDoc::saveToCsv (QTextStream& os, QString &)
   os << i18n("! Title:")  << separator << getTitle() << "\n";
   os << i18n("! Author:") << separator << getAuthor() << "\n";
 
-  vector <int> csv_order = kvoctrainApp::getCsvOrder(this);
+  vector <int> csv_order = KVocTrainApp::getCsvOrder(this);
 
   vector<kvoctrainExpr>::const_iterator first =  vocabulary.begin ();
   QString exp;

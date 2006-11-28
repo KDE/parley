@@ -53,13 +53,13 @@
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
 
-/*void kvoctrainApp::slotSaveOptions()
+/*void KVocTrainApp::slotSaveOptions()
 {
    saveOptions(true);
 }
 */
 
-kvoctrainApp::~kvoctrainApp()
+KVocTrainApp::~KVocTrainApp()
 {
    removeEntryDlg();
    delete header_m;
@@ -69,13 +69,13 @@ kvoctrainApp::~kvoctrainApp()
 }
 
 
-void kvoctrainApp::slotCancelSelection ()
+void KVocTrainApp::slotCancelSelection ()
 {
   view->getTable()->clearSelection();
 }
 
 
-void kvoctrainApp::slotSelectAll ()
+void KVocTrainApp::slotSelectAll ()
 {
   Q3TableSelection ts;
   KVocTrainTable *table = view->getTable();
@@ -86,7 +86,7 @@ void kvoctrainApp::slotSelectAll ()
 }
 
 
-void kvoctrainApp::slotCurrentCellChanged(int row, int col)
+void KVocTrainApp::slotCurrentCellChanged(int row, int col)
 {
   col -= KV_EXTRA_COLS;
   bool noData = false;
@@ -122,13 +122,13 @@ void kvoctrainApp::slotCurrentCellChanged(int row, int col)
 }
 
 
-void kvoctrainApp::slotEditRow()
+void KVocTrainApp::slotEditRow()
 {
   slotEditEntry (view->getTable()->currentRow(), view->getTable()->currentColumn());
 }
 
 
-void kvoctrainApp::slotEditCallBack(int res)
+void KVocTrainApp::slotEditCallBack(int res)
 {
 //  cout << "secb\n";
   switch (res) {
@@ -172,11 +172,11 @@ void kvoctrainApp::slotEditCallBack(int res)
 }
 
 
-void kvoctrainApp::commitEntryDlg(bool force)
+void KVocTrainApp::commitEntryDlg(bool force)
 {
 //  cout << "ced\n";
    if (entryDlg == 0) {
-     kError() << "kvoctrainApp::commitEntryDlg: entryDlg == 0\n";
+     kError() << "KVocTrainApp::commitEntryDlg: entryDlg == 0\n";
      return;
    }
 
@@ -309,10 +309,10 @@ void kvoctrainApp::commitEntryDlg(bool force)
 }
 
 
-void kvoctrainApp::createEntryDlg(int row, int col)
+void KVocTrainApp::createEntryDlg(int row, int col)
 {
    if (entryDlg != 0) {
-     kError() << "kvoctrainApp::createEntryDlg: entryDlg != 0\n";
+     kError() << "KVocTrainApp::createEntryDlg: entryDlg != 0\n";
      return;
    }
 
@@ -434,7 +434,7 @@ void kvoctrainApp::createEntryDlg(int row, int col)
 }
 
 
-void kvoctrainApp::removeEntryDlg()
+void KVocTrainApp::removeEntryDlg()
 {
 //  cout << "red\n";
   if (entryDlg != 0) {
@@ -447,7 +447,7 @@ void kvoctrainApp::removeEntryDlg()
 }
 
 
-void kvoctrainApp::slotEditEntry (int row, int col)
+void KVocTrainApp::slotEditEntry (int row, int col)
 {
    if (entryDlg == 0) {
      createEntryDlg(row, col);
@@ -462,11 +462,11 @@ void kvoctrainApp::slotEditEntry (int row, int col)
 }
 
 
-void kvoctrainApp::setDataEntryDlg (int row, int col)
+void KVocTrainApp::setDataEntryDlg (int row, int col)
 {
 //  cout << "sded\n";
    if (entryDlg == 0) {
-     kError() << "kvoctrainApp::setDataEntryDlg: entryDlg == 0\n";
+     kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
      return;
    }
 
@@ -584,7 +584,7 @@ void kvoctrainApp::setDataEntryDlg (int row, int col)
 }
 
 
-void kvoctrainApp::slotDocProps ()
+void KVocTrainApp::slotDocProps ()
 {
    int old_lessons = (int) lessons->count();
    int old_types = (int) doc->typeDescriptions().size();
@@ -672,7 +672,7 @@ void kvoctrainApp::slotDocProps ()
 }
 
 
-void kvoctrainApp::slotDocPropsLang ()
+void KVocTrainApp::slotDocPropsLang ()
 {
    DocPropsLangDlg ldlg (doc, &langset);
    int res = ldlg.exec();
@@ -697,7 +697,7 @@ void kvoctrainApp::slotDocPropsLang ()
 }
 
 
-void kvoctrainApp::slotModifiedDoc(bool /*mod*/)
+void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 {
 	KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
     if ( doc->isModified() )
@@ -709,7 +709,7 @@ void kvoctrainApp::slotModifiedDoc(bool /*mod*/)
 }
 
 
-bool kvoctrainApp::hasSelection()
+bool KVocTrainApp::hasSelection()
 {
   int num = view->getTable()->numSelections();
   if (num < 1) return false;
@@ -719,7 +719,7 @@ bool kvoctrainApp::hasSelection()
 }
 
 
-void kvoctrainApp::slotRemoveRow()
+void KVocTrainApp::slotRemoveRow()
 {
   if (!hasSelection()) {
     if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
@@ -753,7 +753,7 @@ void kvoctrainApp::slotRemoveRow()
 }
 
 
-void kvoctrainApp::slotAppendRow ()
+void KVocTrainApp::slotAppendRow ()
 {
   KEduVocExpression expr;
   expr.setLesson(act_lesson);
@@ -769,7 +769,7 @@ void kvoctrainApp::slotAppendRow ()
 }
 
 
-void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
+void KVocTrainApp::keyReleaseEvent( QKeyEvent *e )
 {
   switch( e->key() ) {
     case Qt::Key_Shift:  shiftActive = false;
@@ -784,7 +784,7 @@ void kvoctrainApp::keyReleaseEvent( QKeyEvent *e )
 }
 
 
-void kvoctrainApp::keyPressEvent( QKeyEvent *e )
+void KVocTrainApp::keyPressEvent( QKeyEvent *e )
 {
   ///@todo
   ///port
@@ -861,7 +861,7 @@ void kvoctrainApp::keyPressEvent( QKeyEvent *e )
 }
 
 
-void kvoctrainApp::slotChooseLesson(int idx)
+void KVocTrainApp::slotChooseLesson(int idx)
 {
   act_lesson = idx;
   doc->setCurrentLesson(idx);
@@ -869,7 +869,7 @@ void kvoctrainApp::slotChooseLesson(int idx)
 }
 
 
-void kvoctrainApp::slotCreateLesson(int header)
+void KVocTrainApp::slotCreateLesson(int header)
 {
   QList<int> sel;
   doc->setModified();
@@ -895,14 +895,14 @@ void kvoctrainApp::slotCreateLesson(int header)
 }
 
 
-void kvoctrainApp::slotShowStatist()
+void KVocTrainApp::slotShowStatist()
 {
    StatistikDlg sdlg (langset, doc);
    sdlg.exec();
 }
 
 
-void kvoctrainApp::slotCleanVocabulary ()
+void KVocTrainApp::slotCleanVocabulary ()
 {
    prepareProgressBar();
    QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -925,7 +925,7 @@ void kvoctrainApp::slotCleanVocabulary ()
 }
 
 
-void kvoctrainApp::slotCreateRandom()
+void KVocTrainApp::slotCreateRandom()
 {
    bool ok = false;
    int res = KInputDialog::getInteger(i18n( "Entries in Lesson" ),
@@ -977,13 +977,13 @@ void kvoctrainApp::slotCreateRandom()
 }
 
 
-void kvoctrainApp::slotGeneralOptions()
+void KVocTrainApp::slotGeneralOptions()
 {
   slotGeneralOptionsPage(-1);
 }
 
 
-void kvoctrainApp::slotGeneralOptionsPage(int index)
+void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
   KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, doc, lessons, &querymanager, this, "settings",  Prefs::self() );
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
@@ -993,7 +993,7 @@ void kvoctrainApp::slotGeneralOptionsPage(int index)
 }
 
 
-void kvoctrainApp::slotApplyPreferences()
+void KVocTrainApp::slotApplyPreferences()
 {
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
@@ -1018,7 +1018,7 @@ void kvoctrainApp::slotApplyPreferences()
 }
 
 
-void kvoctrainApp::slotAppendLang(int header_and_cmd)
+void KVocTrainApp::slotAppendLang(int header_and_cmd)
 {
    int lang_id = (header_and_cmd >> 16) & 0xFF;
 
@@ -1051,20 +1051,20 @@ void kvoctrainApp::slotAppendLang(int header_and_cmd)
 }
 
 
-void kvoctrainApp::slotInitSearch()
+void KVocTrainApp::slotInitSearch()
 {
   searchpos = 0;
   searchstr = "";
 }
 
 
-void kvoctrainApp::slotSearchNext()
+void KVocTrainApp::slotSearchNext()
 {
   slotResumeSearch(searchstr);
 }
 
 
-void kvoctrainApp::slotResumeSearch(const QString& s)
+void KVocTrainApp::slotResumeSearch(const QString& s)
 {
   if (s.length() == 0) {
     slotInitSearch();
@@ -1104,13 +1104,13 @@ void kvoctrainApp::slotResumeSearch(const QString& s)
 }
 
 
-void kvoctrainApp::slotStatusMsg(const QString &/*text*/)
+void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
 {
 //
 }
 
 
-void kvoctrainApp::aboutToShowLearn()
+void KVocTrainApp::aboutToShowLearn()
 {
   learn_menu->clear();
 
@@ -1227,7 +1227,7 @@ void kvoctrainApp::aboutToShowLearn()
 
 }
 
-void kvoctrainApp::aboutToShowVocabAppendLanguage()
+void KVocTrainApp::aboutToShowVocabAppendLanguage()
 {
   if (doc != 0)
   {
@@ -1256,7 +1256,7 @@ void kvoctrainApp::aboutToShowVocabAppendLanguage()
 }
 
 
-void kvoctrainApp::aboutToShowVocabSetLanguage()
+void KVocTrainApp::aboutToShowVocabSetLanguage()
 {
   if (doc != 0)
   {
@@ -1301,7 +1301,7 @@ void kvoctrainApp::aboutToShowVocabSetLanguage()
 }
 
 
-void kvoctrainApp::aboutToShowVocabRemoveLanguage()
+void KVocTrainApp::aboutToShowVocabRemoveLanguage()
 {
   if (doc != 0)
   {
@@ -1333,7 +1333,7 @@ void kvoctrainApp::aboutToShowVocabRemoveLanguage()
 }
 
 
-void kvoctrainApp::slotStatusHelpMsg(const QString &text)
+void KVocTrainApp::slotStatusHelpMsg(const QString &text)
 {
   ///////////////////////////////////////////////////////////////////
   // change status message of whole statusbar temporary (text, msec)
@@ -1341,7 +1341,7 @@ void kvoctrainApp::slotStatusHelpMsg(const QString &text)
     statusBar()->showMessage(text, 3000);
 }
 
-void kvoctrainApp::slotFilePrint()
+void KVocTrainApp::slotFilePrint()
 {
   slotStatusMsg(i18n("Printing..."));
   KPrinter printer;

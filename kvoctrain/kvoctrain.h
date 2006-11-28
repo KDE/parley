@@ -72,15 +72,15 @@ class KVTNewStuff;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class kvoctrainApp : public KMainWindow
+class KVocTrainApp : public KMainWindow
 {
   Q_OBJECT
 
 public:
   /** construtor */
-  kvoctrainApp(QWidget *parent = NULL, const char *name = NULL);
+  KVocTrainApp(QWidget *parent = NULL, const char *name = NULL);
   /** destructor */
-  ~kvoctrainApp();
+  ~KVocTrainApp();
   void initActions();
 
   /** setup the statusbar */

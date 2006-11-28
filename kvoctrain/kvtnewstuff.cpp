@@ -32,7 +32,7 @@
 
 KVTNewStuff::KVTNewStuff(QWidget *parent, const char * /*name*/) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
 {
-  m_app = (kvoctrainApp*) parent;
+  m_app = (KVocTrainApp*) parent;
 }
 
 

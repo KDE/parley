@@ -41,7 +41,7 @@ class KApplication;
 class KPrinter;
 class KEduVocExpression;
 class KVocTrainTable;
-class kvoctrainApp;
+class KVocTrainApp;
 class KEduVocDocument;
 class GradeCols;
 class LangSet;
@@ -56,7 +56,7 @@ class kvoctrainView : public QWidget
 
  public:
   /** Constructor for the main view */
-  kvoctrainView(KEduVocDocument* doc, const LangSet &ls, kvoctrainApp *parent = 0);
+  kvoctrainView(KEduVocDocument* doc, const LangSet &ls, KVocTrainApp *parent = 0);
 
   /** Destructor for the main view */
   ~kvoctrainView();
@@ -79,7 +79,7 @@ protected:
   bool              autoResize;
   KEduVocDocument    * m_doc;
   QGridLayout     * list_layout;
-  kvoctrainApp    * parent;
+  KVocTrainApp    * parent;
 
   /** resizes table when frame is resized */
   virtual void resizeEvent(QResizeEvent *);

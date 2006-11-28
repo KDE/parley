@@ -43,7 +43,7 @@
 #define SORT_ALPHA  I18N_NOOP("&Sort alphabetically")
 #define SORT_NUM    I18N_NOOP("Sort by &index")
 
-void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
+void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 {
   delete header_m;
   header_m = 0;
@@ -181,7 +181,7 @@ void kvoctrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
+void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
 {
   int header1 = (header_and_id >> 16) & 0xFF;  // org, trans1, trans2, ..
   int id = header_and_id >> (16+8);            // language ident
@@ -226,7 +226,7 @@ void kvoctrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
 }
 
 
-void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
+void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 {
   int header1 = (header_and_cmd >> 16) & 0xFF;
   int header2 = header_and_cmd >> (16+8);
@@ -374,12 +374,12 @@ void kvoctrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-      kError() << "kvoctrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
+      kError() << "KVocTrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
   }
 }
 
 
-void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
+void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 {
   int header1 = (header_and_cmd >> 16) & 0xFF;
   int header2 = header_and_cmd >> (16+8);
@@ -549,7 +549,7 @@ void kvoctrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
 
     default:
-       kError() << "kvoctrainApp::slotHeaderCallBack: got unknown command\n";
+       kError() << "KVocTrainApp::slotHeaderCallBack: got unknown command\n";
 
   }
   slotStatusMsg(IDS_DEFAULT);

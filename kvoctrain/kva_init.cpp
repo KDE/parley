@@ -44,7 +44,7 @@
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 
-kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
+KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
 : KMainWindow(parent, name)
 {
   doc = 0;
@@ -100,7 +100,7 @@ kvoctrainApp::kvoctrainApp(QWidget *parent, const char *name)
 }
 
 
-void kvoctrainApp::initActions()
+void KVocTrainApp::initActions()
 {
   fileNew = KStdAction::openNew(this, SLOT(slotFileNew()), actionCollection());
   fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
@@ -287,7 +287,7 @@ void kvoctrainApp::initActions()
 }
 
 
-void kvoctrainApp::initStatusBar()
+void KVocTrainApp::initStatusBar()
 {
   type_label = new QLabel(statusBar());
   type_label->setFrameStyle(QFrame::NoFrame);
@@ -304,7 +304,7 @@ void kvoctrainApp::initStatusBar()
 }
 
 
-void kvoctrainApp::initDoc()
+void KVocTrainApp::initDoc()
 {
   if (fileOpenRecent->items().count() > 0){
     doc = new KEduVocDocument(this);
@@ -321,7 +321,7 @@ void kvoctrainApp::initDoc()
 }
 
 
-void kvoctrainApp::initView()
+void KVocTrainApp::initView()
 {
   view = new kvoctrainView(doc, langset, this);
   setCentralWidget(view);

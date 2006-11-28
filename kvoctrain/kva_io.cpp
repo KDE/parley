@@ -60,7 +60,7 @@
 #define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
 
 
-void kvoctrainApp::slotTimeOutBackup()
+void KVocTrainApp::slotTimeOutBackup()
 {
   if (Prefs::autoBackup() && doc && doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
@@ -72,7 +72,7 @@ void kvoctrainApp::slotTimeOutBackup()
 }
 
 
-bool kvoctrainApp::queryClose()
+bool KVocTrainApp::queryClose()
 {
    bool erg = queryExit();
    if (erg)
@@ -81,7 +81,7 @@ bool kvoctrainApp::queryClose()
 }
 
 
-bool kvoctrainApp::queryExit()
+bool KVocTrainApp::queryExit()
 {
   saveOptions();
   if (!doc || !doc->isModified() ) return true;
@@ -118,7 +118,7 @@ bool kvoctrainApp::queryExit()
 }
 
 
-void kvoctrainApp::slotFileQuit()
+void KVocTrainApp::slotFileQuit()
 {
   ///////////////////////////////////////////////////////////////////
   // exits the Application
@@ -132,7 +132,7 @@ void kvoctrainApp::slotFileQuit()
 }
 
 
-void kvoctrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
+void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 {
   if (pdlg != 0)
     pdlg->setValue (curr_doc, percent);
@@ -142,7 +142,7 @@ void kvoctrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 }
 
 
-void kvoctrainApp::slotFileOpenRecent(const KUrl& url)
+void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
 {
   slotStatusMsg(i18n("Opening file..."));
   if (queryExit() && fileOpenRecent->items().count() > 0)
@@ -154,7 +154,7 @@ void kvoctrainApp::slotFileOpenRecent(const KUrl& url)
 }
 
 
-void kvoctrainApp::slotFileNew()
+void KVocTrainApp::slotFileNew()
 {
   slotStatusMsg(i18n("Creating new file..."));
 
@@ -178,7 +178,7 @@ void kvoctrainApp::slotFileNew()
 }
 
 
-void kvoctrainApp::slotFileOpen()
+void KVocTrainApp::slotFileOpen()
 {
   slotStatusMsg(i18n("Opening file..."));
 
@@ -191,7 +191,7 @@ void kvoctrainApp::slotFileOpen()
 }
 
 
-void kvoctrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
+void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
 {
   if (!url.path().isEmpty())
   {
@@ -215,7 +215,7 @@ void kvoctrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
   }
 }
 
-void kvoctrainApp::slotFileOpenExample()
+void KVocTrainApp::slotFileOpenExample()
 {
   slotStatusMsg(i18n("Opening example file..."));
 
@@ -231,7 +231,7 @@ void kvoctrainApp::slotFileOpenExample()
 }
 
 
-void kvoctrainApp::slotGHNS()
+void KVocTrainApp::slotGHNS()
 {
   if (!m_newStuff)
     m_newStuff = new KVTNewStuff(this);
@@ -239,7 +239,7 @@ void kvoctrainApp::slotGHNS()
 }
 
 
-void kvoctrainApp::slotFileMerge()
+void KVocTrainApp::slotFileMerge()
 {
   slotStatusMsg(i18n("Merging file..."));
 
@@ -486,7 +486,7 @@ void kvoctrainApp::slotFileMerge()
 }
 
 
-void kvoctrainApp::slotFileSave()
+void KVocTrainApp::slotFileSave()
 {
   if (entryDlg != 0)
     commitEntryDlg(false);
@@ -514,7 +514,7 @@ void kvoctrainApp::slotFileSave()
 }
 
 
-void kvoctrainApp::fillLessonBox(KEduVocDocument *the_doc)
+void KVocTrainApp::fillLessonBox(KEduVocDocument *the_doc)
 {
   lessons->clear();
   lessons->addItem (the_doc->lessonDescription(0));
@@ -530,7 +530,7 @@ void kvoctrainApp::fillLessonBox(KEduVocDocument *the_doc)
 }
 
 
-void kvoctrainApp::loadDocProps(KEduVocDocument *the_doc)
+void KVocTrainApp::loadDocProps(KEduVocDocument *the_doc)
 {
   fillLessonBox(the_doc);
 
@@ -575,13 +575,13 @@ void kvoctrainApp::loadDocProps(KEduVocDocument *the_doc)
 }
 
 
-void kvoctrainApp::saveDocProps(KEduVocDocument *the_doc)
+void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
 {
   the_doc->setQueryIdentifier(act_query_org, act_query_trans);
 }
 
 
-void kvoctrainApp::slotFileSaveAs()
+void KVocTrainApp::slotFileSaveAs()
 {
   slotStatusMsg(i18n("Saving file under new filename..."));
 
@@ -618,7 +618,7 @@ void kvoctrainApp::slotFileSaveAs()
 }
 
 
-void kvoctrainApp::slotSaveSelection ()
+void KVocTrainApp::slotSaveSelection ()
 {
   if (entryDlg != 0)
     commitEntryDlg(false);
@@ -670,7 +670,7 @@ void kvoctrainApp::slotSaveSelection ()
 }
 
 
-void kvoctrainApp::prepareProgressBar ()
+void KVocTrainApp::prepareProgressBar ()
 {
     statusBar()->clearMessage ();
     pbar = new QProgressBar (statusBar());
@@ -680,7 +680,7 @@ void kvoctrainApp::prepareProgressBar ()
 }
 
 
-void kvoctrainApp::removeProgressBar ()
+void KVocTrainApp::removeProgressBar ()
 {
     statusBar()->clearMessage ();
     statusBar()->removeWidget(pbar);

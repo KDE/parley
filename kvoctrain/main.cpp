@@ -91,11 +91,11 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
   KCmdLineArgs::addCmdLineOptions( options );
   KApplication app;
 
-  kvoctrainApp *kva = 0;
+  KVocTrainApp *kva = 0;
   if (app.isSessionRestored()) {
     int n = 1;
     while (KMainWindow::canBeRestored(n)){
-      kva = new kvoctrainApp;
+      kva = new KVocTrainApp;
       kva->restore(n);
       kva->show();
       n++;
@@ -104,7 +104,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
   else
   {
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    kva = new kvoctrainApp;
+    kva = new KVocTrainApp;
 
     if ( args && args->count() == 1 )
       kva->loadfileFromPath(KUrl(args->arg(0)), true);

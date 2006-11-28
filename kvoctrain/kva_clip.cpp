@@ -32,7 +32,7 @@
 #include "prefs.h"
 #include "kvoctrain.h"
 
-void kvoctrainApp::slotSmartSearchClip()
+void KVocTrainApp::slotSmartSearchClip()
 {
   QString s;
   QString entries = QApplication::clipboard()->text();
@@ -57,7 +57,7 @@ void kvoctrainApp::slotSmartSearchClip()
 }
 
 
-QList<int> kvoctrainApp::getCsvOrder(KEduVocDocument *doc)
+QList<int> KVocTrainApp::getCsvOrder(KEduVocDocument *doc)
 {
   QList<int> csv_order;
   QStringList lang_order = Prefs::pasteOrder();
@@ -107,7 +107,7 @@ QList<int> kvoctrainApp::getCsvOrder(KEduVocDocument *doc)
 }
 
 
-void kvoctrainApp::slotEditCopy()
+void KVocTrainApp::slotEditCopy()
 {
   slotStatusMsg(i18n("Copying selection to clipboard..."));
 
@@ -158,7 +158,7 @@ void kvoctrainApp::slotEditCopy()
 }
 
 
-void kvoctrainApp::slotEditPaste()
+void KVocTrainApp::slotEditPaste()
 {
   slotStatusMsg(i18n("Inserting clipboard contents..."));
 

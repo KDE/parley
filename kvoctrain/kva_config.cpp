@@ -33,7 +33,7 @@
 #include "languagesettings.h"
 #include "presettings.h"
 
-void kvoctrainApp::saveOptions()
+void KVocTrainApp::saveOptions()
 {
   fileOpenRecent->saveEntries(KGlobal::config(), "Recent Files");
 
@@ -46,7 +46,7 @@ void kvoctrainApp::saveOptions()
   Prefs::writeConfig();
 }
 
-void kvoctrainApp::saveLanguages()
+void KVocTrainApp::saveLanguages()
 {
   Prefs::setNumLangSet(langset.size());
   for (int i = 0 ; i < (int) langset.size(); i++)
@@ -61,13 +61,13 @@ void kvoctrainApp::saveLanguages()
   }
 }
 
-void kvoctrainApp::readOptions()
+void KVocTrainApp::readOptions()
 {
   fileOpenRecent->loadEntries(KGlobal::config(), "Recent Files");
   readLanguages();
 }
 
-void kvoctrainApp::readLanguages()
+void KVocTrainApp::readLanguages()
 {
   langset.clear();
   int ls = Prefs::numLangSet();
@@ -92,7 +92,7 @@ void kvoctrainApp::readLanguages()
       languageSettings.keyboardLayout());
   }
 }
-void kvoctrainApp::saveProperties(KConfig *config )
+void KVocTrainApp::saveProperties(KConfig *config )
 {
   saveOptions();
   if (doc) {
@@ -110,7 +110,7 @@ void kvoctrainApp::saveProperties(KConfig *config )
 }
 
 
-void kvoctrainApp::readProperties(KConfig *config)
+void KVocTrainApp::readProperties(KConfig *config)
 {
   querymode = config->readEntry("QueryMode", 0);
 

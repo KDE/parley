@@ -52,7 +52,7 @@ static const char not_contain[] = I18N_NOOP(
     "thresholds and blocking values in the query options:\n"
     "should the configuration dialog be invoked now?");
 
-void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
+void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting property query..."));
@@ -123,7 +123,7 @@ void kvoctrainApp::slotStartPropertyQuery(int col, QueryType property)
 }
 
 
-void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
+void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 {
 
   if (simpleQueryDlg == 0) {
@@ -202,7 +202,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
   }
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kError() << "kvoctrainApp::slotTimeProperty: random_expr1.size() == 0\n";
+    kError() << "KVocTrainApp::slotTimeProperty: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -224,7 +224,7 @@ void kvoctrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 }
 
 
-void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
+void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting special query..."));
@@ -327,7 +327,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
     adjQueryDlg->show();
   }
   else {
-    kError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    kError() << "KVocTrainApp::slotTimeOutType: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -335,7 +335,7 @@ void kvoctrainApp::slotStartTypeQuery(int col, const QString & type)
 }
 
 
-void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
+void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
 {
 
   // FIXME: keep track of knowledge ?
@@ -410,7 +410,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
   hide();
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kError() << "kvoctrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
+    kError() << "KVocTrainApp::slotTimeSpecial: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -472,7 +472,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
     adjQueryDlg->initFocus();
   }
   else {
-    kError() << "kvoctrainApp::slotTimeOutType: unknown type\n";
+    kError() << "KVocTrainApp::slotTimeOutType: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -480,7 +480,7 @@ void kvoctrainApp::slotTimeOutType(QueryDlgBase::Result res)
 }
 
 
-void kvoctrainApp::slotRestartQuery()
+void KVocTrainApp::slotRestartQuery()
 {
   if (random_expr1.size() != 0) {
     queryList.insert(queryList.begin(), random_expr1);
@@ -490,7 +490,7 @@ void kvoctrainApp::slotRestartQuery()
 }
 
 
-void kvoctrainApp::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
+void KVocTrainApp::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));
@@ -600,7 +600,7 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
       mcQueryDlg->show();
   }
   else {
-    kError() << "kvoctrainApp::slotStartQuery: unknown type\n";
+    kError() << "KVocTrainApp::slotStartQuery: unknown type\n";
     slotStopQuery(true);
     return;
   }
@@ -608,21 +608,21 @@ void kvoctrainApp::slotStartQuery(const QString & translang, const QString & org
 }
 
 
-void kvoctrainApp::slotTimeOutRandomQuery(QueryDlgBase::Result res)
+void KVocTrainApp::slotTimeOutRandomQuery(QueryDlgBase::Result res)
 {
   queryType = QT_Random;
   slotTimeOutQuery(res);
 }
 
 
-void kvoctrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
+void KVocTrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
 {
   queryType = QT_Multiple;
   slotTimeOutQuery(res);
 }
 
 
-void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
+void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 {
   doc->setModified();
 
@@ -851,7 +851,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
 
   if (random_expr1.size() == 0) { // should not happen !!
-    kError() << "kvoctrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
+    kError() << "KVocTrainApp::slotTimeOutQuery: random_expr1.size() == 0\n";
     slotStopQuery(true);
     return;
   }
@@ -931,7 +931,7 @@ void kvoctrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 }
 
 
-void kvoctrainApp::slotStopQuery(bool )
+void KVocTrainApp::slotStopQuery(bool )
 {
     delete simpleQueryDlg;
     delete mcQueryDlg;

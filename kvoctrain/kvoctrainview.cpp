@@ -49,7 +49,7 @@
 #define HEADER_MINSIZE   24
 #define KV_COLWIDTH_MARK 20
 
-kvoctrainView::kvoctrainView(KEduVocDocument* doc, const LangSet &ls, kvoctrainApp *_parent) : QWidget(_parent)
+kvoctrainView::kvoctrainView(KEduVocDocument* doc, const LangSet &ls, KVocTrainApp *_parent) : QWidget(_parent)
 {
   m_doc = doc;
   parent = _parent;

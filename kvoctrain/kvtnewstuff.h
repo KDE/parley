@@ -24,7 +24,7 @@
 
 #include <knewstuff/knewstuff.h>
 
-class kvoctrainApp;
+class KVocTrainApp;
 
 /**
 @author Peter Hedlund
@@ -64,7 +64,7 @@ public:
 private:
   QString destinationPath(KNS::Entry *entry);
 
-  kvoctrainApp * m_app;
+  KVocTrainApp * m_app;
 };
 
 #endif
