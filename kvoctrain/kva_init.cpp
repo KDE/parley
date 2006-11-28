@@ -266,22 +266,10 @@ void KVocTrainApp::initActions()
 
   vocabSearch = new KAction(i18n("Smart Search"), actionCollection(), "vocab_search");
   vocabSearch->setDefaultWidget( searchLine );
-#ifdef __GNUC__
-#warning "kde4: porting vocabSearch->setAutoSized(true);"
-#endif
-  //vocabSearch->setAutoSized(true);
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   vocabSearch->setStatusTip(vocabSearch->whatsThis());
- /*
-  learningResumeQuery = new KAction(i18n("Resume &Query..."), "run_query", 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_query");
-  //learningResumeQuery->setWhatsThis(i18n(""));
-  learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
 
-  learningResumeMultipleChoice = new KAction(i18n("&Resume Multiple Choice..."), "run_multi", 0, this, SLOT(slotRestartQuery()), actionCollection(),"learning_resume_multiple_choice");
-  //learningResumeMultipleChoice->setWhatsThis(i18n(""));
-  learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
-  */
   configApp = KStdAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
   configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
