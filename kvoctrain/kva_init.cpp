@@ -79,6 +79,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
   readOptions();
 
   initDoc();
+  initModel();
   initView();
 
   int cc = Prefs::currentCol();
@@ -325,10 +326,35 @@ void KVocTrainApp::initDoc()
   m_doc->setModified(false);
 }
 
+void KVocTrainApp::initModel()
+{
+  m_tableModel = new KVTTableModel(this);
+  m_tableModel->setDocument(m_doc);
+  m_tableModel->setHeaderData(0, Qt::Horizontal, QSize(150, 25), Qt::SizeHintRole);
+  m_tableModel->setHeaderData(1, Qt::Horizontal, QSize(25, 25), Qt::SizeHintRole);
+  m_tableModel->setHeaderData(2, Qt::Horizontal, QSize(250, 25), Qt::SizeHintRole);
+}
 
 void KVocTrainApp::initView()
 {
+  QWidget * mainWidget = new QWidget(this);
+  setCentralWidget(mainWidget);
+  m_topLayout = new QVBoxLayout(mainWidget);
+  m_topLayout->setMargin(0);
+  m_topLayout->setSpacing(KDialog::spacingHint());
+  m_tableView = new KVTTableView(centralWidget());
+  m_tableView->setFrameStyle(QFrame::NoFrame);
+  m_topLayout->addWidget(m_tableView);
+
+  m_tableView->setModel(m_tableModel);
+  m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
+  m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
+  m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+  setCaption(m_doc->URL().fileName(), false);
+  connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
+  connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
+  m_doc->setModified(false);
+
+  /// @todo get rid of this old view
   view = new kvoctrainView(m_doc, langset, this);
-  setCentralWidget(view);
-  slotStatusMsg(IDS_DEFAULT);
 }

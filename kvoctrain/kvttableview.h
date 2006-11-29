@@ -15,6 +15,7 @@
 #include <QTableView>
 
 #include <kvttablemodel.h>
+#include <kvttabledelegate.h>
 
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
@@ -27,7 +28,12 @@ public:
 
   void setModel(KVTTableModel * model);
 
+protected slots:
+  void verticalHeaderResized(int, int, int);
+  void horizontalHeaderResized(int, int, int);
 
+private:
+  KVTTableDelegate * m_delegate;
 };
 
 #endif

@@ -89,6 +89,8 @@ public:
   void initStatusBar();
   /** setup the main document*/
   void initDoc();
+  /** setup the main model*/
+  void initModel();
   /** setup the main view*/
   void initView();
   /** save the app-specific options on slotAppExit or by an Options dialog */
@@ -336,6 +338,7 @@ private:
   QueryType        queryType;
   KRandomSequence  random;
   KVTNewStuff     *m_newStuff;
+  QVBoxLayout * m_topLayout;
 };
 
 #endif // KVOCTRAIN_H
