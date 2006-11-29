@@ -30,6 +30,7 @@ void KVTTableModel::setDocument(KEduVocDocument * doc)
 int KVTTableModel::rowCount(const QModelIndex &parent) const
 {
     /// @todo implement me
+    return 0;
 }
 
 
@@ -39,6 +40,7 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
     /// @todo implement me
+    return 0;
 }
 
 
@@ -48,6 +50,7 @@ int KVTTableModel::columnCount(const QModelIndex &parent) const
 QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
     /// @todo implement me
+    return QVariant();
 }
 
 
@@ -57,6 +60,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     /// @todo implement me
+    return QVariant();
 }
 
 
@@ -66,6 +70,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
 Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 {
     /// @todo implement me
+    return 0;
 }
 
 
@@ -75,6 +80,7 @@ Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     /// @todo implement me
+    return false;
 }
 
 
@@ -84,6 +90,7 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
 bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     /// @todo implement me
+    return false;
 }
 
 #include "kvttablemodel.moc"

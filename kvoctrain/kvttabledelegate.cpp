@@ -23,6 +23,7 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
   //editor->installEventFilter(const_cast<KWQTableDelegate*>(this));
   connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
   return editor;*/
+    return 0;
 }
 
 void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
