@@ -62,7 +62,7 @@
 
 void KVocTrainApp::slotTimeOutBackup()
 {
-  if (Prefs::autoBackup() && doc && doc->isModified() ) {
+  if (Prefs::autoBackup() && m_doc && m_doc->isModified() ) {
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
@@ -76,7 +76,7 @@ bool KVocTrainApp::queryClose()
 {
    bool erg = queryExit();
    if (erg)
-     doc->setModified(false);  // avoid double query on exit via system menu
+     m_doc->setModified(false);  // avoid double query on exit via system menu
    return erg;
 }
 
@@ -84,7 +84,7 @@ bool KVocTrainApp::queryClose()
 bool KVocTrainApp::queryExit()
 {
   saveOptions();
-  if (!doc || !doc->isModified() ) return true;
+  if (!m_doc || !m_doc->isModified() ) return true;
 
   bool save = (Prefs::autoSave()); //save without asking
 
@@ -106,9 +106,9 @@ bool KVocTrainApp::queryExit()
   }
 
   if (save) {
-    if (!doc->URL().isEmpty())
+    if (!m_doc->URL().isEmpty())
       slotFileSave();       // save and exit
-    if (doc->isModified())
+    if (m_doc->isModified())
     {
       // Error while saving or no name
       slotFileSaveAs();
@@ -124,7 +124,7 @@ void KVocTrainApp::slotFileQuit()
   // exits the Application
   if(queryExit())
     {
-      doc->setModified(false);  // Make sure not to bother about saving again.
+      m_doc->setModified(false);  // Make sure not to bother about saving again.
       kapp->quit();
     }
   else
@@ -160,19 +160,19 @@ void KVocTrainApp::slotFileNew()
 
   if (queryExit() ) {
     view->setView (0, langset);
-    delete doc;
+    delete m_doc;
     QString name = "";
-    doc = new KEduVocDocument(this);
-    loadDocProps(doc);
-    if (doc->numIdentifiers() == 0) {
+    m_doc = new KEduVocDocument(this);
+    loadDocProps(m_doc);
+    if (m_doc->numIdentifiers() == 0) {
       QString l = "en";
-      doc->appendIdentifier(l);
+      m_doc->appendIdentifier(l);
     }
-    view->setView(doc, langset);
+    view->setView(m_doc, langset);
     view->getTable()->setFont(Prefs::tableFont());
     view->adjustContent();
-    connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    doc->setModified(false);
+    connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    m_doc->setModified(false);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -196,22 +196,22 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
   if (!url.path().isEmpty())
   {
     view->setView(0, langset);
-    delete doc;
-    doc = 0;
+    delete m_doc;
+    m_doc = 0;
 
     slotStatusMsg(i18n("Loading %1", url.path()));
     prepareProgressBar();
-    doc = new KEduVocDocument(this);
-    doc->open(url, false);
+    m_doc = new KEduVocDocument(this);
+    m_doc->open(url, false);
     removeProgressBar();
-    loadDocProps(doc);
-    view->setView(doc, langset);
+    loadDocProps(m_doc);
+    view->setView(m_doc, langset);
     view->getTable()->setFont(Prefs::tableFont());
     view->adjustContent();
     if (addRecent)
       fileOpenRecent->addUrl(url);
-    connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    doc->setModified(false);
+    connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    m_doc->setModified(false);
   }
 }
 
@@ -224,8 +224,8 @@ void KVocTrainApp::slotFileOpenExample()
     s = KStandardDirs::locate("data",  "kvoctrain/examples/");
     KUrl url = KFileDialog::getOpenUrl(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
     loadfileFromPath(url, false);
-    if (doc)
-       doc->URL().setFileName(QString());
+    if (m_doc)
+       m_doc->URL().setFileName(QString());
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -254,22 +254,22 @@ void KVocTrainApp::slotFileMerge()
     prepareProgressBar();
     KEduVocDocument *new_doc = new KEduVocDocument(this);
     connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    doc->setModified(false);
+    m_doc->setModified(false);
     removeProgressBar();
 
-    QStringList old_names = doc->lessonDescriptions();
+    QStringList old_names = m_doc->lessonDescriptions();
     QStringList new_names = new_doc->lessonDescriptions();
 
-    QStringList old_types = doc->typeDescriptions();
+    QStringList old_types = m_doc->typeDescriptions();
     QStringList new_types = new_doc->typeDescriptions();
 
-    QStringList old_tenses = doc->tenseDescriptions();
+    QStringList old_tenses = m_doc->tenseDescriptions();
     QStringList new_tenses = new_doc->tenseDescriptions();
 
-    QList<int> old_in_query = doc->lessonsInQuery();
+    QList<int> old_in_query = m_doc->lessonsInQuery();
     QList<int> new_in_query = new_doc->lessonsInQuery();
 
-    QStringList old_usages = doc->usageDescriptions();
+    QStringList old_usages = m_doc->usageDescriptions();
     QStringList new_usages = new_doc->usageDescriptions();
 
     msg = i18n("Merging %1", url.path());
@@ -282,18 +282,18 @@ void KVocTrainApp::slotFileMerge()
       lessons->addItem (new_names[i]);
       old_names.push_back(new_names[i]);
     }
-    doc->setLessonDescriptions(old_names);
+    m_doc->setLessonDescriptions(old_names);
 
     for (int i = 0; i < (int) new_in_query.size(); i++)
       old_in_query.push_back(new_in_query[i]+lesson_offset);
-    doc->setLessonsInQuery(old_in_query);
+    m_doc->setLessonsInQuery(old_in_query);
     querymanager.setLessonItems(old_in_query);
 
     int types_offset = old_types.size();
     for (int i = 0; i < (int) new_types.size(); i++) {
       old_types.push_back(new_types[i]);
     }
-    doc->setTypeDescriptions(old_types);
+    m_doc->setTypeDescriptions(old_types);
     QueryManager::setTypeNames(old_types);
 
 
@@ -301,7 +301,7 @@ void KVocTrainApp::slotFileMerge()
     for (int i = 0; i < (int) new_tenses.size(); i++) {
       old_tenses.push_back(new_tenses[i]);
     }
-    doc->setTenseDescriptions(old_tenses);
+    m_doc->setTenseDescriptions(old_tenses);
     KEduVocConjugation::setTenseNames(old_tenses);
 
 
@@ -309,15 +309,15 @@ void KVocTrainApp::slotFileMerge()
     for (int i = 0; i < (int) new_usages.size(); i++) {
       old_usages.push_back(new_usages[i]);
     }
-    doc->setUsageDescriptions(old_usages);
+    m_doc->setUsageDescriptions(old_usages);
     UsageManager::setUsageNames(old_usages);
 
 
     bool equal = true;
-    if (doc->originalIdentifier() != new_doc->originalIdentifier())
+    if (m_doc->originalIdentifier() != new_doc->originalIdentifier())
       equal = false;
-    for (int i = 1; i < doc->numIdentifiers(); i++)
-      if (doc->identifier(i) != new_doc->identifier(i))
+    for (int i = 1; i < m_doc->numIdentifiers(); i++)
+      if (m_doc->identifier(i) != new_doc->identifier(i))
         equal = false;
 
     if (equal) {   // easy way: same language codes, just append
@@ -389,20 +389,20 @@ void KVocTrainApp::slotFileMerge()
           }
         }
 
-        doc->appendEntry (expr);
+        m_doc->appendEntry (expr);
       }
-      doc->setModified();
+      m_doc->setModified();
     }
     else { // hard way: move entries around, most attributes get lost
       QList<int> move_matrix;
       QList<bool> cs_equal;
 
-      for (int i = 0; i < qMax (doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
+      for (int i = 0; i < qMax (m_doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
         cs_equal.push_back (false);
 
-      move_matrix.push_back(new_doc->findIdentifier(doc->originalIdentifier()));
-      for (int i = 1; i < doc->numIdentifiers(); i++)
-        move_matrix.push_back(new_doc->findIdentifier(doc->identifier(i)));
+      move_matrix.push_back(new_doc->findIdentifier(m_doc->originalIdentifier()));
+      for (int i = 1; i < m_doc->numIdentifiers(); i++)
+        move_matrix.push_back(new_doc->findIdentifier(m_doc->identifier(i)));
 
       for (int j = 0; j < new_doc->numEntries(); j++) {
         KEduVocExpression new_expr;
@@ -420,7 +420,7 @@ void KVocTrainApp::slotFileMerge()
 
             if (!cs_equal[lpos]) {
               cs_equal[lpos] = true;
-              QString id = lpos == 0 ? doc->originalIdentifier() : doc->identifier(lpos);
+              QString id = lpos == 0 ? m_doc->originalIdentifier() : m_doc->identifier(lpos);
             }
 
             if (i == 0)
@@ -464,13 +464,13 @@ void KVocTrainApp::slotFileMerge()
         }
         // only append if entries are used
         bool used = !new_expr.original().isEmpty();
-        for (int i = 1; i < (int) doc->numIdentifiers(); i++)
+        for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
           if (!new_expr.translation(i).isEmpty())
             used = true;
 
         if (used) {
-          doc->appendEntry(&new_expr);
-          doc->setModified();
+          m_doc->appendEntry(&new_expr);
+          m_doc->setModified();
         }
       }
     }
@@ -478,7 +478,7 @@ void KVocTrainApp::slotFileMerge()
     fileOpenRecent->addUrl(url); // addRecentFile (url.path());
   }
 
-  view->setView(doc, langset);
+  view->setView(m_doc, langset);
   view->getTable()->setFont(Prefs::tableFont());
   view->adjustContent();
   QApplication::restoreOverrideCursor();
@@ -491,23 +491,23 @@ void KVocTrainApp::slotFileSave()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  if (doc->URL().fileName() == i18n("Untitled") ) {
+  if (m_doc->URL().fileName() == i18n("Untitled") ) {
     slotFileSaveAs();
     return;
   }
 
-  QString msg = i18n("Saving %1", doc->URL().path());
+  QString msg = i18n("Saving %1", m_doc->URL().path());
   slotStatusMsg(msg);
 
   // remove previous backup
-  QFile::remove(QFile::encodeName(doc->URL().path()+'~'));
-  ::rename (QFile::encodeName(doc->URL().path()),
-            QFile::encodeName(doc->URL().path()+'~'));
+  QFile::remove(QFile::encodeName(m_doc->URL().path()+'~'));
+  ::rename (QFile::encodeName(m_doc->URL().path()),
+            QFile::encodeName(m_doc->URL().path()+'~'));
 
   prepareProgressBar();
-  saveDocProps(doc);
-  doc->saveAs(this, doc->URL(), KEduVocDocument::automatic, "KVocTrain");
-  fileOpenRecent->addUrl(doc->URL());
+  saveDocProps(m_doc);
+  m_doc->saveAs(this, m_doc->URL(), KEduVocDocument::automatic, "KVocTrain");
+  fileOpenRecent->addUrl(m_doc->URL());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -555,11 +555,11 @@ void KVocTrainApp::loadDocProps(KEduVocDocument *the_doc)
     }
   }
 
-  QueryManager::setTypeNames(doc->typeDescriptions());
-  UsageManager::setUsageNames(doc->usageDescriptions());
-  KEduVocConjugation::setTenseNames(doc->tenseDescriptions());
+  QueryManager::setTypeNames(m_doc->typeDescriptions());
+  UsageManager::setUsageNames(m_doc->usageDescriptions());
+  KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 
-  querymanager.setLessonItems(doc->lessonsInQuery() );
+  querymanager.setLessonItems(m_doc->lessonsInQuery() );
 
   // remove empty elements
   for (int i = (int) queryList.size()-1; i >= 0; i--)
@@ -600,17 +600,17 @@ void KVocTrainApp::slotFileSaveAs()
     }
     else
 
-    if (doc) {
+    if (m_doc) {
       QString msg = i18n("Saving %1", url.path());
       slotStatusMsg(msg);
 
       QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
       ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
-      saveDocProps(doc);
+      saveDocProps(m_doc);
 
       prepareProgressBar();
-      doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
-      fileOpenRecent->addUrl(doc->URL());
+      m_doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
+      fileOpenRecent->addUrl(m_doc->URL());
       removeProgressBar();
     }
   }
@@ -628,16 +628,16 @@ void KVocTrainApp::slotSaveSelection ()
   Prefs::setSeparator("\t");
   KEduVocDocument seldoc(this);
   // transfer most important parts
-  seldoc.appendIdentifier(doc->originalIdentifier());
-  for (int i = 1; i < doc->numIdentifiers(); i++)
-    seldoc.appendIdentifier(doc->identifier(i));
-  seldoc.setAuthor(doc->author());
-  seldoc.setLessonDescriptions(doc->lessonDescriptions());
-  seldoc.setTypeDescriptions(doc->typeDescriptions());
+  seldoc.appendIdentifier(m_doc->originalIdentifier());
+  for (int i = 1; i < m_doc->numIdentifiers(); i++)
+    seldoc.appendIdentifier(m_doc->identifier(i));
+  seldoc.setAuthor(m_doc->author());
+  seldoc.setLessonDescriptions(m_doc->lessonDescriptions());
+  seldoc.setTypeDescriptions(m_doc->typeDescriptions());
 
-  for (int i = doc->numEntries()-1; i >= 0; i--)
-    if (doc->entry(i)->isInQuery() )
-      seldoc.appendEntry(doc->entry(i));
+  for (int i = m_doc->numEntries()-1; i >= 0; i--)
+    if (m_doc->entry(i)->isInQuery() )
+      seldoc.appendEntry(m_doc->entry(i));
 
   KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
 

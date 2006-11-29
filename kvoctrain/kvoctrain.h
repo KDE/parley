@@ -44,6 +44,8 @@
 #include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
+#include "kvttablemodel.h"
+#include "kvttableview.h"
 #include "langset.h"
 
 class QTimer;
@@ -280,7 +282,9 @@ private:
   /** doc represents your actual document and is created only once. It keeps
     * information such as filename and does the serialization of your files.
     */
-  KEduVocDocument *doc;
+  KEduVocDocument *m_doc;
+  KVTTableView *m_tableView;
+  KVTTableModel *m_tableModel;
 
   friend class kvoctrainView;
 

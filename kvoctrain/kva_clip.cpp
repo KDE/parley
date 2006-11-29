@@ -115,7 +115,7 @@ void KVocTrainApp::slotEditCopy()
   QString exp;
   QString s;
 
-  QList<int> csv_order = getCsvOrder(doc);
+  QList<int> csv_order = getCsvOrder(m_doc);
 
   KVocTrainTable *table = view->getTable();
 
@@ -166,7 +166,7 @@ void KVocTrainApp::slotEditPaste()
   QString s;
   QString entries = QApplication::clipboard()->text();
 
-  QList<int> csv_order = getCsvOrder(doc);
+  QList<int> csv_order = getCsvOrder(m_doc);
 
   bool changed = false;
   QString num;
@@ -209,18 +209,18 @@ void KVocTrainApp::slotEditPaste()
           }
         }
         changed = true;
-        doc->appendEntry (&expr);
+        m_doc->appendEntry (&expr);
       }
       else {
         KEduVocExpression expr (s, Prefs::separator(), act_lesson);
         changed = true;
-        doc->appendEntry (&expr);
+        m_doc->appendEntry (&expr);
       }
     }
   }
 
   if (changed) {
-    doc->setModified();
+    m_doc->setModified();
     view->getTable()->updateContents(view->getTable()->numRows()-1, KV_COL_ORG);
   }
 

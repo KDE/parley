@@ -47,7 +47,7 @@
 KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
 : KMainWindow(parent, name)
 {
-  doc = 0;
+  m_doc = 0;
   view = 0;
   header_m = 0;
   btimer = 0;
@@ -312,23 +312,23 @@ void KVocTrainApp::initStatusBar()
 void KVocTrainApp::initDoc()
 {
   if (fileOpenRecent->items().count() > 0){
-    doc = new KEduVocDocument(this);
-    doc->setURL(KUrl(fileOpenRecent->items()[0]));
+    m_doc = new KEduVocDocument(this);
+    m_doc->setURL(KUrl(fileOpenRecent->items()[0]));
   }
   else
-    doc = new KEduVocDocument(this);
+    m_doc = new KEduVocDocument(this);
 
-  loadDocProps(doc);
-  if (doc->numIdentifiers() == 0)
-    doc->appendIdentifier("en");
-  connect (doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-  doc->setModified(false);
+  loadDocProps(m_doc);
+  if (m_doc->numIdentifiers() == 0)
+    m_doc->appendIdentifier("en");
+  connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+  m_doc->setModified(false);
 }
 
 
 void KVocTrainApp::initView()
 {
-  view = new kvoctrainView(doc, langset, this);
+  view = new kvoctrainView(m_doc, langset, this);
   setCentralWidget(view);
   slotStatusMsg(IDS_DEFAULT);
 }

@@ -67,7 +67,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
   prepareProgressBar();
   QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
-  queryList = querymanager.select (doc, act_lesson, act_query_col, property);
+  queryList = querymanager.select (m_doc, act_lesson, act_query_col, property);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -109,7 +109,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
                            query_num,
                            query_startnum,
                            exp,
-                           doc);
+                           m_doc);
 
   connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
            this, SLOT(slotEditEntry(int,int)));
@@ -134,7 +134,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
 
   // FIXME: keep track of knowledge ?
 
-  doc->setModified();
+  m_doc->setModified();
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
@@ -217,7 +217,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
                            query_num,
                            query_startnum,
                            exp,
-                           doc);
+                           m_doc);
 
   simpleQueryDlg->initFocus();
   slotStatusMsg(IDS_DEFAULT);
@@ -239,7 +239,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
   QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
 
-  queryList = querymanager.select (doc, act_lesson, act_query_col, type);
+  queryList = querymanager.select (m_doc, act_lesson, act_query_col, type);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -279,8 +279,8 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                             query_num,
                             query_startnum,
                             exp,
-                            doc,
-                            doc->conjugation(act_query_col),
+                            m_doc,
+                            m_doc->conjugation(act_query_col),
                             exp->conjugation(act_query_col));
 
     verbQueryDlg->initFocus();
@@ -299,8 +299,8 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_num,
                           query_startnum,
                           exp,
-                          doc,
-                          doc->article(act_query_col));
+                          m_doc,
+                          m_doc->article(act_query_col));
     artQueryDlg->initFocus();
     connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
              this, SLOT(slotEditEntry(int,int)));
@@ -316,7 +316,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                           query_num,
                           query_startnum,
                           exp,
-                          doc,
+                          m_doc,
                           exp->comparison(act_query_col));
     adjQueryDlg->initFocus();
     connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
@@ -340,7 +340,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
   // FIXME: keep track of knowledge ?
 
-  doc->setModified();
+  m_doc->setModified();
   switch (res) {
     case QueryDlgBase::Timeout:
       if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
@@ -431,8 +431,8 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
                             query_num,
                             query_startnum,
                             exp,
-                            doc,
-                            doc->conjugation(act_query_col),
+                            m_doc,
+                            m_doc->conjugation(act_query_col),
                             exp->conjugation(act_query_col));
 
     verbQueryDlg->initFocus();
@@ -450,8 +450,8 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_num,
                           query_startnum,
                           exp,
-                          doc,
-                          doc->article(act_query_col));
+                          m_doc,
+                          m_doc->article(act_query_col));
     artQueryDlg->initFocus();
   }
   else if (queryType == QT_Comparison) {
@@ -467,7 +467,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           query_num,
                           query_startnum,
                           exp,
-                          doc,
+                          m_doc,
                           exp->comparison(act_query_col));
     adjQueryDlg->initFocus();
   }
@@ -516,7 +516,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   random_expr2.clear();
 
   if (create_new || queryList.size() == 0)
-    queryList = querymanager.select (doc, act_lesson, oindex, tindex);
+    queryList = querymanager.select (m_doc, act_lesson, oindex, tindex);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -572,7 +572,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_num,
                              query_startnum,
                              exp,
-                             doc);
+                             m_doc);
       randomQueryDlg->initFocus();
       connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -591,7 +591,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
                              query_num,
                              query_startnum,
                              exp,
-                             doc);
+                             m_doc);
       mcQueryDlg->initFocus();
       connect( mcQueryDlg, SIGNAL(sigEditEntry(int,int)),
                this, SLOT(slotEditEntry(int,int)));
@@ -624,7 +624,7 @@ void KVocTrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
 
 void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 {
-  doc->setModified();
+  m_doc->setModified();
 
 
   int tindex = view->getTable()->findIdent(act_query_trans);
@@ -633,7 +633,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   KEduVocExpression *exp = qer.exp;
 
   if (res != QueryDlgBase::StopIt) {
-    doc->setModified();
+    m_doc->setModified();
     time_t now = time(0);
     ///@todo check the time functions here
     QDateTime dt;
@@ -906,7 +906,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              query_num,
                              query_startnum,
                              exp,
-                             doc);
+                             m_doc);
       randomQueryDlg->initFocus();
   }
   else if (queryType == QT_Multiple) {
@@ -924,7 +924,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                          query_num,
                          query_startnum,
                          exp,
-                         doc);
+                         m_doc);
       mcQueryDlg->initFocus();
   }
   slotStatusMsg(IDS_DEFAULT);

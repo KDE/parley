@@ -95,17 +95,17 @@ void KVocTrainApp::readLanguages()
 void KVocTrainApp::saveProperties(KConfig *config )
 {
   saveOptions();
-  if (doc) {
-    config->writeEntry("Filename", doc->URL().path());
-    config->writeEntry("Title", doc->title());
-    config->writeEntry("Modified", doc->isModified());
+  if (m_doc) {
+    config->writeEntry("Filename", m_doc->URL().path());
+    config->writeEntry("Title", m_doc->title());
+    config->writeEntry("Modified", m_doc->isModified());
 
     config->writeEntry("QueryMode", querymode);
 
-    QString filename=doc->URL().path();
+    QString filename=m_doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
-    saveDocProps(doc);
-    doc->saveAs(this, KUrl(tempname), KEduVocDocument::automatic, "KVocTrain");
+    saveDocProps(m_doc);
+    m_doc->saveAs(this, KUrl(tempname), KEduVocDocument::automatic, "KVocTrain");
   }
 }
 
@@ -124,13 +124,13 @@ void KVocTrainApp::readProperties(KConfig *config)
     if(b_canRecover){
       pdlg = new ProgressDlg(QString(), QString(), kapp->makeStdCaption(""));
       pdlg->show();
-      doc = new KEduVocDocument(this);
-      doc->setURL(KUrl(tempname));
+      m_doc = new KEduVocDocument(this);
+      m_doc->setURL(KUrl(tempname));
       removeProgressBar();
-      doc->setModified();
-      doc->setTitle(title);
-      doc->setURL(KUrl(filename));
-      setCaption(doc->title(), doc->isModified());
+      m_doc->setModified();
+      m_doc->setTitle(title);
+      m_doc->setURL(KUrl(filename));
+      setCaption(m_doc->title(), m_doc->isModified());
       QFile::remove(tempname);
     }
   }
@@ -139,10 +139,10 @@ void KVocTrainApp::readProperties(KConfig *config)
     pdlg = new ProgressDlg (QString(), QString(),
                             KInstance::makeStdCaption("",flags));
     pdlg->show();
-    doc = new KEduVocDocument(this);
-    doc->setURL(KUrl(filename));
+    m_doc = new KEduVocDocument(this);
+    m_doc->setURL(KUrl(filename));
     removeProgressBar();
-    setCaption(doc->title(), doc->isModified());
+    setCaption(m_doc->title(), m_doc->isModified());
   }
 
   show();

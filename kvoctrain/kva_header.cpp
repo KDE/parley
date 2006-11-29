@@ -64,7 +64,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
   QList<QString> names;
   QString curr_lang;
-  QString id = header == 0 ? doc->originalIdentifier() : doc->identifier(header);
+  QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
 
   if (langset.indexShortId(id) >= 0)
     curr_lang = langset.longId(langset.indexShortId(id));
@@ -97,8 +97,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
     header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
     header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
-    header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, doc->numIdentifiers() > 1);
-    header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  doc->numIdentifiers() > 1);
+    header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
+    header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
     header_m->insertSeparator();
     header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
     header_m->insertItem(i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
@@ -120,41 +120,41 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     QMenu *multiple_m =  new QMenu();
 
     names.clear();
-    for (int j = 1; j < (int) doc->numIdentifiers(); j++) {
+    for (int j = 1; j < (int) m_doc->numIdentifiers(); j++) {
      int i;
-     if ((i = langset.indexShortId(doc->identifier(j))) >= 0)
+     if ((i = langset.indexShortId(m_doc->identifier(j))) >= 0)
        names.push_back(langset.longId(i));
      else
-       names.push_back(doc->identifier(j));
+       names.push_back(m_doc->identifier(j));
     }
 
-    for (int i = 1; i < (int) doc->numIdentifiers(); i++) {
+    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(doc->identifier(i))) >= 0
+      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
         query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
       }
       else {
-        query_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
+        query_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
       }
     }
     header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
     connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-    for (int i = 1; i < (int) doc->numIdentifiers(); i++) {
+    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(doc->identifier(i))) >= 0
+      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
          && !langset.PixMapFile(j).isEmpty()
          && !langset.longId(j).isEmpty() ) {
         multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
       }
       else {
-        multiple_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
+        multiple_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
       }
     }
     header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
@@ -210,9 +210,9 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
   }
 */
   if (header1 > 0)
-    doc->setIdentifier(header1, langset.shortId(id));
+    m_doc->setIdentifier(header1, langset.shortId(id));
   else
-    doc->setOriginalIdentifier(langset.shortId(id));
+    m_doc->setOriginalIdentifier(langset.shortId(id));
 /*
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
@@ -221,7 +221,7 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
           << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
   }
 */
-  doc->setModified();
+  m_doc->setModified();
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -286,7 +286,7 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     case IDH_REMOVE: {
-      QString from = header1 ? doc->identifier(header1) : doc->originalIdentifier();
+      QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
       if (!langset.findLongId(from).isEmpty())
         from = langset.findLongId(from);
       QString msg = i18n("Removes %1 irrevocably from dictionary", from);
@@ -296,18 +296,18 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
     case IDH_START_QUERY:
     case IDH_START_MULTIPLE: {
-      QString to = header1 ? doc->identifier(header1) : doc->originalIdentifier();
+      QString to = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
       if (!langset.findLongId(to).isEmpty())
         to = langset.findLongId(to);
 
-      QString from = header2 ? doc->identifier(header2) : doc->originalIdentifier();
+      QString from = header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier();
       if (!langset.findLongId(from).isEmpty())
         from = langset.findLongId(from);
 
       QString msg;
       QString format;
 
-      if (doc->numIdentifiers() == 1) {
+      if (m_doc->numIdentifiers() == 1) {
         if (cmd == IDH_START_QUERY)
           msg = i18n("Creates and starts query to %1", to);
         else
@@ -365,7 +365,7 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     case IDH_RESET_GRADE: {
-      QString from = header1 ? doc->identifier(header1) : doc->originalIdentifier();
+      QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
       if (!langset.findLongId(from).isEmpty())
         from = langset.findLongId(from);
       QString msg = i18n("Resets all properties for %1", from);
@@ -397,12 +397,12 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
   }
 
-  if (header1 >= (int) doc->numIdentifiers()) {
+  if (header1 >= (int) m_doc->numIdentifiers()) {
     kError() << "header1 >= (int) doc->numIdentifiers()\n";
     return;
   }
 
-  if (header2 >= (int) doc->numIdentifiers()) {
+  if (header2 >= (int) m_doc->numIdentifiers()) {
     kError() << "header2 >= (int) doc->numIdentifiers()\n";
     return;
   }
@@ -425,7 +425,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       QString msg;
       QString name;
 
-      name = doc->identifier(header1);
+      name = m_doc->identifier(header1);
       int i= langset.indexShortId(name);
       if ( i >= 0
           && !langset.longId(i).isEmpty() )
@@ -437,9 +437,9 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       int exit = KMessageBox::warningContinueCancel(this, msg,
                     kapp->makeStdCaption(""),KStdGuiItem::del());
       if(exit==KMessageBox::Continue) {
-        doc->removeIdentifier(header1);
-        view->setView (doc, langset);
-        doc->setModified();
+        m_doc->removeIdentifier(header1);
+        view->setView (m_doc, langset);
+        m_doc->setModified();
       }
     }
     break;
@@ -448,16 +448,16 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       delete randomQueryDlg;
       randomQueryDlg = 0;
       queryType = QT_Random;
-      slotStartQuery(header1 ? doc->identifier(header1) : doc->originalIdentifier(),
-                     header2 ? doc->identifier(header2) : doc->originalIdentifier(), true);
+      slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
+                     header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
 
     case IDH_START_MULTIPLE:
       delete mcQueryDlg;
       mcQueryDlg = 0;
       queryType = QT_Multiple;
-      slotStartQuery(header1 ? doc->identifier(header1) : doc->originalIdentifier(),
-                     header2 ? doc->identifier(header2) : doc->originalIdentifier(), true);
+      slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
+                     header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
 
     case IDH_START_VERB: {
@@ -522,8 +522,8 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       QString format;
 
       if (act_lesson == 0) {
-        name = doc->identifier(header1);
-        int i = langset.indexShortId(doc->identifier(header1));
+        name = m_doc->identifier(header1);
+        int i = langset.indexShortId(m_doc->identifier(header1));
         if (i >= 0
             && !langset.longId(i).isEmpty() )
           name = langset.longId(i);
@@ -541,8 +541,8 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       int exit = KMessageBox::warningContinueCancel(this, msg,
                     kapp->makeStdCaption(""),KGuiItem(i18n("Reset")));
       if(exit==KMessageBox::Continue) {
-        doc->resetEntry (header1, act_lesson);
-        doc->setModified();
+        m_doc->resetEntry (header1, act_lesson);
+        m_doc->setModified();
         view->getTable()->updateContents();
       }
     }

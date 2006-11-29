@@ -65,7 +65,7 @@ KVocTrainApp::~KVocTrainApp()
    delete header_m;
    delete btimer;
    delete view;
-   delete doc;
+   delete m_doc;
 }
 
 
@@ -93,10 +93,10 @@ void KVocTrainApp::slotCurrentCellChanged(int row, int col)
   KEduVocExpression *expr = 0;
 
   statusBar()->clearMessage();
-  if (doc->numEntries() <= row || doc->numIdentifiers() <= col || row < 0 || col < 0)
+  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= col || row < 0 || col < 0)
     noData = true;
   else
-    expr = doc->entry(row);
+    expr = m_doc->entry(row);
 
   if (rem_label != 0)
     rem_label->setText(i18nc("Abbreviation for R)emark","R: %1",
@@ -146,13 +146,13 @@ void KVocTrainApp::slotEditCallBack(int res)
           int col = view->getTable()->currentColumn();
           if (col < view->getTable()->numCols()-1 && col >= KV_COL_ORG )
           {
-            int lesson = doc->entry(row)->lesson();
+            int lesson = m_doc->entry(row)->lesson();
             if (lesson >= lessons->count())
               lesson = qMax (0, lessons->count()-1);
             slotChooseLesson(lesson);
 
             QString exp;
-            exp = doc->entry(row)->translation(col+1-KV_COL_ORG);
+            exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
             if (exp.isEmpty())
               view->getTable()->setCurrentRow(row, col+1);
           }
@@ -197,9 +197,9 @@ void KVocTrainApp::commitEntryDlg(bool force)
    if (tabsel.size() == 1)
      hasSel = (tabsel[0].bottomRow() - tabsel[0].topRow()) > 0;
 
-   fillLessonBox(doc);
+   fillLessonBox(m_doc);
    if (!hasSel) {
-     KEduVocExpression *expr = doc->entry(row);
+     KEduVocExpression *expr = m_doc->entry(row);
      if (col >= KV_COL_ORG) {
        col -= KV_EXTRA_COLS;
        if (col == 0)
@@ -248,7 +248,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
      expr->setActive(entryDlg->getActive());
 
      entryDlg->setModified(false);
-     doc->setModified(true);
+     m_doc->setModified(true);
      view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
      view->getTable()->updateCell(row, KV_COL_LESS);
    }
@@ -256,7 +256,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
      col -= KV_EXTRA_COLS;
      for (uint ts = 0; ts < tabsel.size(); ++ts) {
        for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
-         KEduVocExpression *expr = doc->entry(er);
+         KEduVocExpression *expr = m_doc->entry(er);
 
          if (col >= 0) {
            // only updated "common" props in multimode
@@ -299,7 +299,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
        }
      }
      entryDlg->setModified(false);
-     doc->setModified(true);
+     m_doc->setModified(true);
      for (uint ts = 0; ts < tabsel.size(); ++ts)
        for (int r = tabsel[ts].topRow(); r <= tabsel[ts].bottomRow(); ++r)
          for (int c = 0; c < view->getTable()->numCols(); ++c)
@@ -321,7 +321,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
 
    QString title, text, lang;
 
-   int lesson = doc->entry(row)->lesson();
+   int lesson = m_doc->entry(row)->lesson();
    if (lesson >= lessons->count())
      lesson = qMax (0, lessons->count()-1);
 
@@ -330,7 +330,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
      col -= KV_EXTRA_COLS;
      entryDlg = new EntryDlg (
                     this,
-                    doc,
+                    m_doc,
                     hasSelection(),
                     true,
                     0,
@@ -346,76 +346,76 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     QString(),
                     lesson,
                     lessons,
-                    doc->originalIdentifier(),
+                    m_doc->originalIdentifier(),
                     langset,
                     QString(),
-                    doc->entry(row)->type(col),
+                    m_doc->entry(row)->type(col),
                     QString(),
                     QString(),
                     QString(),
                     QString(),
                     QString(),
                     QString(),
-                    doc->conjugation(0),
+                    m_doc->conjugation(0),
                     KEduVocConjugation(),
-                    doc->article(0),
+                    m_doc->article(0),
                     KEduVocComparison(),
                     KEduVocMultipleChoice(),
                     querymanager,
                     title,
-                    doc->entry(row)->isActive(),
+                    m_doc->entry(row)->isActive(),
                     Prefs::iPAFont());
    }
    else {
      col -= KV_EXTRA_COLS;
 
      if (col == 0) {
-       lang = doc->originalIdentifier();
-       text = doc->entry(row)->original();
+       lang = m_doc->originalIdentifier();
+       text = m_doc->entry(row)->original();
        title = i18n("Edit Properties for Original");
      }
      else {
-       lang = doc->identifier(col);
-       text = doc->entry(row)->translation(col);
+       lang = m_doc->identifier(col);
+       text = m_doc->entry(row)->translation(col);
        title = i18n("Edit Properties of a Translation");
      }
 
      entryDlg = new EntryDlg (
                     this,
-                    doc,
+                    m_doc,
                     hasSelection(),
                     col==0,
-                    doc->entry(row)->grade(col, false),
-                    doc->entry(row)->grade(col, true),
-                    doc->entry(row)->queryCount(col, false),
-                    doc->entry(row)->queryCount(col, true),
-                    doc->entry(row)->badCount(col, false),
-                    doc->entry(row)->badCount(col, true),
-                    doc->entry(row)->queryDate(col, false),
-                    doc->entry(row)->queryDate(col, true),
-                    doc->entry(row)->fauxAmi(col, false),
-                    doc->entry(row)->fauxAmi(col, true),
+                    m_doc->entry(row)->grade(col, false),
+                    m_doc->entry(row)->grade(col, true),
+                    m_doc->entry(row)->queryCount(col, false),
+                    m_doc->entry(row)->queryCount(col, true),
+                    m_doc->entry(row)->badCount(col, false),
+                    m_doc->entry(row)->badCount(col, true),
+                    m_doc->entry(row)->queryDate(col, false),
+                    m_doc->entry(row)->queryDate(col, true),
+                    m_doc->entry(row)->fauxAmi(col, false),
+                    m_doc->entry(row)->fauxAmi(col, true),
                     text,
                     lesson,
                     lessons,
                     lang,
                     langset,
-                    doc->entry(row)->remark(col),
-                    doc->entry(row)->type(col),
-                    doc->entry(row)->pronunciation(col),
-                    doc->entry(row)->synonym(col),
-                    doc->entry(row)->antonym(col),
-                    doc->entry(row)->example(col),
-                    doc->entry(row)->usageLabel(col),
-                    doc->entry(row)->paraphrase(col),
-                    doc->conjugation(col),
-                    doc->entry(row)->conjugation(col),
-                    doc->article(col),
-                    doc->entry(row)->comparison(col),
-                    doc->entry(row)->multipleChoice(col),
+                    m_doc->entry(row)->remark(col),
+                    m_doc->entry(row)->type(col),
+                    m_doc->entry(row)->pronunciation(col),
+                    m_doc->entry(row)->synonym(col),
+                    m_doc->entry(row)->antonym(col),
+                    m_doc->entry(row)->example(col),
+                    m_doc->entry(row)->usageLabel(col),
+                    m_doc->entry(row)->paraphrase(col),
+                    m_doc->conjugation(col),
+                    m_doc->entry(row)->conjugation(col),
+                    m_doc->article(col),
+                    m_doc->entry(row)->comparison(col),
+                    m_doc->entry(row)->multipleChoice(col),
                     querymanager,
                     title,
-                    doc->entry(row)->isActive(),
+                    m_doc->entry(row)->isActive(),
                     Prefs::iPAFont());
    }
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
@@ -475,7 +475,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
 
    QString text, lang, title;
 
-   KEduVocExpression *expr = doc->entry(row);
+   KEduVocExpression *expr = m_doc->entry(row);
 
    if (expr == 0)
      return; // entry delete in the meantime
@@ -489,7 +489,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit General Properties");
      col -= KV_EXTRA_COLS;
-     entryDlg->setData(doc,
+     entryDlg->setData(m_doc,
                        hasSel,
                        true,
                        0,
@@ -505,73 +505,73 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        QString(),
                        lesson,
                        lessons,
-                       doc->originalIdentifier(),
+                       m_doc->originalIdentifier(),
                        langset,
                        QString(),
-                       doc->entry(row)->type(0),
+                       m_doc->entry(row)->type(0),
                        QString(),
                        QString(),
                        QString(),
                        QString(),
                        QString(),
                        QString(),
-                       doc->conjugation(0),
+                       m_doc->conjugation(0),
                        KEduVocConjugation(),
-                       doc->article(0),
+                       m_doc->article(0),
                        KEduVocComparison(),
                        KEduVocMultipleChoice(),
                        querymanager,
                        title,
-                       doc->entry(row)->isActive());
+                       m_doc->entry(row)->isActive());
    }
    else {
      col -= KV_EXTRA_COLS;
 
      if (col == 0) {
        title = i18n("Edit Properties for Original");
-       lang = doc->originalIdentifier();
-       text = doc->entry(row)->original();
+       lang = m_doc->originalIdentifier();
+       text = m_doc->entry(row)->original();
      }
      else {
-       lang = doc->identifier(col);
-       text = doc->entry(row)->translation(col);
+       lang = m_doc->identifier(col);
+       text = m_doc->entry(row)->translation(col);
        title = i18n("Edit Properties of a Translation");
      }
 
-     entryDlg->setData(doc,
+     entryDlg->setData(m_doc,
                        hasSel,
                        col==0,
-                       doc->entry(row)->grade(col, false),
-                       doc->entry(row)->grade(col, true),
-                       doc->entry(row)->queryCount(col, false),
-                       doc->entry(row)->queryCount(col, true),
-                       doc->entry(row)->badCount(col, false),
-                       doc->entry(row)->badCount(col, true),
-                       doc->entry(row)->queryDate(col, false),
-                       doc->entry(row)->queryDate(col, true),
-                       doc->entry(row)->fauxAmi(col, false),
-                       doc->entry(row)->fauxAmi(col, true),
+                       m_doc->entry(row)->grade(col, false),
+                       m_doc->entry(row)->grade(col, true),
+                       m_doc->entry(row)->queryCount(col, false),
+                       m_doc->entry(row)->queryCount(col, true),
+                       m_doc->entry(row)->badCount(col, false),
+                       m_doc->entry(row)->badCount(col, true),
+                       m_doc->entry(row)->queryDate(col, false),
+                       m_doc->entry(row)->queryDate(col, true),
+                       m_doc->entry(row)->fauxAmi(col, false),
+                       m_doc->entry(row)->fauxAmi(col, true),
                        text,
                        lesson,
                        lessons,
                        lang,
                        langset,
-                       doc->entry(row)->remark(col),
-                       doc->entry(row)->type(col),
-                       doc->entry(row)->pronunciation(col),
-                       doc->entry(row)->synonym(col),
-                       doc->entry(row)->antonym(col),
-                       doc->entry(row)->example(col),
-                       doc->entry(row)->usageLabel(col),
-                       doc->entry(row)->paraphrase(col),
-                       doc->conjugation(col),
-                       doc->entry(row)->conjugation(col),
-                       doc->article(col),
-                       doc->entry(row)->comparison(col),
-                       doc->entry(row)->multipleChoice(col),
+                       m_doc->entry(row)->remark(col),
+                       m_doc->entry(row)->type(col),
+                       m_doc->entry(row)->pronunciation(col),
+                       m_doc->entry(row)->synonym(col),
+                       m_doc->entry(row)->antonym(col),
+                       m_doc->entry(row)->example(col),
+                       m_doc->entry(row)->usageLabel(col),
+                       m_doc->entry(row)->paraphrase(col),
+                       m_doc->conjugation(col),
+                       m_doc->entry(row)->conjugation(col),
+                       m_doc->article(col),
+                       m_doc->entry(row)->comparison(col),
+                       m_doc->entry(row)->multipleChoice(col),
                        querymanager,
                        title,
-                       doc->entry(row)->isActive());
+                       m_doc->entry(row)->isActive());
    }
    view->getTable()->updateCell(row, col);
    view->getTable()->updateCell(row, KV_COL_LESS);
@@ -587,21 +587,21 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
 void KVocTrainApp::slotDocProps ()
 {
    int old_lessons = (int) lessons->count();
-   int old_types = (int) doc->typeDescriptions().size();
-   int old_tenses = (int) doc->tenseDescriptions().size();
-   int old_usages = (int) doc->usageDescriptions().size();
-   QList<int> old_lessoninquery = doc->lessonsInQuery();
+   int old_types = (int) m_doc->typeDescriptions().size();
+   int old_tenses = (int) m_doc->tenseDescriptions().size();
+   int old_usages = (int) m_doc->usageDescriptions().size();
+   QList<int> old_lessoninquery = m_doc->lessonsInQuery();
 
-   DocPropsDlg ddlg (doc,
+   DocPropsDlg ddlg (m_doc,
                      0,
                      lessons,
-                     doc->title(),
-                     doc->author(),
-                     doc->license(),
-                     doc->docRemark(),
-                     doc->typeDescriptions(),
-                     doc->tenseDescriptions(),
-                     doc->usageDescriptions());
+                     m_doc->title(),
+                     m_doc->author(),
+                     m_doc->license(),
+                     m_doc->docRemark(),
+                     m_doc->typeDescriptions(),
+                     m_doc->tenseDescriptions(),
+                     m_doc->usageDescriptions());
 
    int res = ddlg.exec();
 
@@ -616,12 +616,12 @@ void KVocTrainApp::slotDocProps ()
       QStringList new_lessonStr;
       QList<int> new_lessoninquery;
 
-      doc->enableSorting(ddlg.getSorting());
+      m_doc->enableSorting(ddlg.getSorting());
 
-      doc->setTitle(ddlg.getTitle() );
-      doc->setAuthor(ddlg.getAuthor() );
-      doc->setLicense(ddlg.getLicense() );
-      doc->setDocRemark(ddlg.getDocRemark() );
+      m_doc->setTitle(ddlg.getTitle() );
+      m_doc->setAuthor(ddlg.getAuthor() );
+      m_doc->setLicense(ddlg.getLicense() );
+      m_doc->setDocRemark(ddlg.getDocRemark() );
 
       slotStatusMsg(i18n("Updating lesson indices..."));
       QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -632,33 +632,33 @@ void KVocTrainApp::slotDocProps ()
       ddlg.getUsageLabels(new_usageStr, usageIndex);
 
       new_lessoninquery = old_lessoninquery;
-      LessOptPage::cleanUnused(doc, lessons, lessonIndex, old_lessons, new_lessoninquery);
+      LessOptPage::cleanUnused(m_doc, lessons, lessonIndex, old_lessons, new_lessoninquery);
       for (int i = 1; i < lessons->count(); i++)
         new_lessonStr.push_back(lessons->itemText(i));
 
       slotStatusMsg(i18n("Updating type indices..."));
-      TypeOptPage::cleanUnused(doc, typeIndex, old_types);
+      TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
       QueryManager::setTypeNames (new_typeStr);
 
       slotStatusMsg(i18n("Updating tense indices..."));
-      TenseOptPage::cleanUnused(doc, tenseIndex, old_tenses);
+      TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
       ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
 
       slotStatusMsg(i18nc("usage (area) of an expression",
                          "Updating usage label indices..."));
-      UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
+      UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
       UsageManager::setUsageNames (new_usageStr);
 
-      doc->setTypeDescriptions(new_typeStr);
-      doc->setTenseDescriptions(new_tenseStr);
-      doc->setUsageDescriptions(new_usageStr);
-      doc->setLessonDescriptions(new_lessonStr);
-      doc->setLessonsInQuery(new_lessoninquery);
+      m_doc->setTypeDescriptions(new_typeStr);
+      m_doc->setTenseDescriptions(new_tenseStr);
+      m_doc->setUsageDescriptions(new_usageStr);
+      m_doc->setLessonDescriptions(new_lessonStr);
+      m_doc->setLessonsInQuery(new_lessoninquery);
       querymanager.setLessonItems(new_lessoninquery);
 
-      doc->setModified();
+      m_doc->setModified();
       view->getTable()->updateContents();
-      setCaption(doc->title(), doc->isModified());
+      setCaption(m_doc->title(), m_doc->isModified());
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -667,19 +667,19 @@ void KVocTrainApp::slotDocProps ()
 
 void KVocTrainApp::slotDocPropsLang ()
 {
-   DocPropsLangDlg ldlg (doc, &langset);
+   DocPropsLangDlg ldlg (m_doc, &langset);
    int res = ldlg.exec();
 
    if (res == QDialog::Accepted) {
-      for (int i = 0; i < doc->numIdentifiers(); i++) {
-        doc->setArticle(i, ldlg.getArticle(i) );
-        doc->setConjugation(i, ldlg.getConjugation(i) );
+      for (int i = 0; i < m_doc->numIdentifiers(); i++) {
+        m_doc->setArticle(i, ldlg.getArticle(i) );
+        m_doc->setConjugation(i, ldlg.getConjugation(i) );
       }
 
-      doc->setModified();
+      m_doc->setModified();
       view->getTable()->updateContents();
 
-      setCaption(doc->title(), doc->isModified()); 
+      setCaption(m_doc->title(), m_doc->isModified()); 
       slotStatusMsg(IDS_DEFAULT);
    }
 }
@@ -687,7 +687,7 @@ void KVocTrainApp::slotDocPropsLang ()
 
 void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 {
-  setCaption(doc->title(), doc->isModified());
+  setCaption(m_doc->title(), m_doc->isModified());
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -710,8 +710,8 @@ void KVocTrainApp::slotRemoveRow()
                   kapp->makeStdCaption(""),KStdGuiItem::del()))
     {
       KVocTrainTable *table = view->getTable();
-      doc->removeEntry(table->currentRow());
-      doc->setModified();
+      m_doc->removeEntry(table->currentRow());
+      m_doc->setModified();
       table->updateContents();
     }
   }
@@ -727,8 +727,8 @@ void KVocTrainApp::slotRemoveRow()
       // deleting.
       for (int i = numRows-1; i >= 0; i--)
         if (table->isRowSelected(i) )
-          doc->removeEntry(i);
-      doc->setModified();
+          m_doc->removeEntry(i);
+      m_doc->setModified();
       table->updateContents();
     }
   }
@@ -740,9 +740,9 @@ void KVocTrainApp::slotAppendRow ()
 {
   KEduVocExpression expr;
   expr.setLesson(act_lesson);
-  doc->appendEntry(&expr);
-  doc->setModified();
-  int row = doc->numEntries()-1;
+  m_doc->appendEntry(&expr);
+  m_doc->setModified();
+  int row = m_doc->numEntries()-1;
   view->getTable()->setRowHeight(row, view->getTable()->fontMetrics().lineSpacing() );
   view->getTable()->setCurrentRow(row, KV_COL_ORG);
   view->getTable()->updateContents(row, KV_COL_ORG);
@@ -847,15 +847,15 @@ void KVocTrainApp::keyPressEvent( QKeyEvent *e )
 void KVocTrainApp::slotChooseLesson(int idx)
 {
   act_lesson = idx;
-  doc->setCurrentLesson(idx);
-  doc->setModified(true);
+  m_doc->setCurrentLesson(idx);
+  m_doc->setModified(true);
 }
 
 
 void KVocTrainApp::slotCreateLesson(int header)
 {
   QList<int> sel;
-  doc->setModified();
+  m_doc->setModified();
   for (int i = 0; i < view->getTable()->count(); i++) {
     KEduVocExpression *kv = view->getTable()->getRow(i);
     kv->setLesson(0);
@@ -880,7 +880,7 @@ void KVocTrainApp::slotCreateLesson(int header)
 
 void KVocTrainApp::slotShowStatist()
 {
-   StatistikDlg sdlg (langset, doc);
+   StatistikDlg sdlg (langset, m_doc);
    sdlg.exec();
 }
 
@@ -889,14 +889,14 @@ void KVocTrainApp::slotCleanVocabulary ()
 {
    prepareProgressBar();
    QApplication::setOverrideCursor( Qt::WaitCursor );
-   int num = doc->cleanUp();
+   int num = m_doc->cleanUp();
    QApplication::restoreOverrideCursor();
    removeProgressBar();
 
    slotStatusMsg(IDS_DEFAULT);
 
    if (num != 0) {
-     view->setView(doc, langset);
+     view->setView(m_doc, langset);
      QString s =
         i18np("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
@@ -922,8 +922,8 @@ void KVocTrainApp::slotCreateRandom()
    QApplication::setOverrideCursor( Qt::WaitCursor );
 
    QList<KEduVocExpression*> randomList;
-   for (int i = 0; i < doc->numEntries(); i++) {
-     KEduVocExpression *expr = doc->entry(i);
+   for (int i = 0; i < m_doc->numEntries(); i++) {
+     KEduVocExpression *expr = m_doc->entry(i);
      if (expr->lesson() == 0)
        randomList.push_back(expr);
    }
@@ -951,9 +951,9 @@ void KVocTrainApp::slotCreateRandom()
      QStringList new_lessonStr;
      for (int i = 1; i < lessons->count(); i++)
        new_lessonStr.push_back(lessons->itemText(i));
-     doc->setLessonDescriptions(new_lessonStr);
+     m_doc->setLessonDescriptions(new_lessonStr);
      view->getTable()->updateContents();
-     doc->setModified ();
+     m_doc->setModified ();
    }
    QApplication::restoreOverrideCursor();
    slotStatusMsg(IDS_DEFAULT);
@@ -968,7 +968,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-  KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, doc, lessons, &querymanager, this, "settings",  Prefs::self() );
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, m_doc, lessons, &querymanager, this, "settings",  Prefs::self() );
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
@@ -985,9 +985,9 @@ void KVocTrainApp::slotApplyPreferences()
 
   readLanguages();
   // update header buttons
-  for (int i = 0; i < (int) doc->numIdentifiers(); i++)
+  for (int i = 0; i < (int) m_doc->numIdentifiers(); i++)
   {
-    QString sid = i>0 ? doc->identifier(i): doc->originalIdentifier();
+    QString sid = i>0 ? m_doc->identifier(i): m_doc->originalIdentifier();
     int idx = langset.indexShortId(sid);
     QString pm = "";
     QString lid = sid;
@@ -1021,16 +1021,16 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
 
    if (lang_id >= (int) langset.size())
      return;
-   doc->appendIdentifier("");
-   int num = doc->numEntries()-1;
+   m_doc->appendIdentifier("");
+   int num = m_doc->numEntries()-1;
    for (int i = 0; i < (int) num; i++) {
-      KEduVocExpression *expr = doc->entry(i);
+      KEduVocExpression *expr = m_doc->entry(i);
       expr->setType (num, expr->type(0));
    }
 
-   doc->setIdentifier(doc->numIdentifiers()-1, langset.shortId(lang_id));
-   view->setView(doc, langset);
-   doc->setModified();
+   m_doc->setIdentifier(m_doc->numIdentifiers()-1, langset.shortId(lang_id));
+   view->setView(m_doc, langset);
+   m_doc->setModified();
 }
 
 
@@ -1064,14 +1064,14 @@ void KVocTrainApp::slotResumeSearch(const QString& s)
   // search in current col from current row till end
   // SHIFT means start search from beginning of word
   bool word_beg = controlActive;
-  int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg);
+  int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg);
   if (idx >= 0) {
     view->getTable()->clearSelection();
     view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
     searchpos = idx+1;
   }
   else { // try again from beginning up to current pos
-    int idx = doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg);
+    int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg);
     if (idx >= 0) {
       view->getTable()->clearSelection();
       view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
@@ -1106,16 +1106,16 @@ void KVocTrainApp::aboutToShowLearn()
   }
 
   QList<QString> main_names;
-  for (int j = 0; j < (int) doc->numIdentifiers(); j++) {
+  for (int j = 0; j < (int) m_doc->numIdentifiers(); j++) {
    int i;
-   QString did = j == 0 ? doc->originalIdentifier() : doc->identifier(j);
+   QString did = j == 0 ? m_doc->originalIdentifier() : m_doc->identifier(j);
    if ((i = langset.indexShortId(did)) >= 0)
      main_names.push_back(langset.longId(i));
    else
      main_names.push_back(did);
   }
 
-  for (int header = 0; header < (int) doc->numIdentifiers(); header++) {
+  for (int header = 0; header < (int) m_doc->numIdentifiers(); header++) {
     // show pixmap and long name if available
     int j;
     header_m = new QMenu();
@@ -1123,8 +1123,8 @@ void KVocTrainApp::aboutToShowLearn()
       header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
 
-      header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, doc->numIdentifiers() > 1);
-      header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  doc->numIdentifiers() > 1);
+      header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
+      header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
       header_m->insertSeparator();
 
       header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
@@ -1140,17 +1140,17 @@ void KVocTrainApp::aboutToShowLearn()
       QMenu *query_m = new QMenu();
       QMenu *multiple_m = new QMenu();
 
-      for (int i = 1; i < (int) doc->numIdentifiers(); i++) {
+      for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
         // show pixmap and long name if available
         int j;
-        if((j = langset.indexShortId(doc->identifier(i))) >= 0
+        if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
           query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
-          query_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
+          query_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
         }
       }
 
@@ -1158,17 +1158,17 @@ void KVocTrainApp::aboutToShowLearn()
       connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-      for (int i = 1; i < (int) doc->numIdentifiers(); i++) {
+      for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
         // show pixmap and long name if available
         int j;
-        if((j = langset.indexShortId(doc->identifier(i))) >= 0
+        if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
            && !langset.PixMapFile(j).isEmpty()
            && !langset.longId(j).isEmpty() ) {
           multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
-          multiple_m->insertItem(i18n("From %1", doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
+          multiple_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
       header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
@@ -1190,7 +1190,7 @@ void KVocTrainApp::aboutToShowLearn()
     connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-    QString id = header == 0 ? doc->originalIdentifier() : doc->identifier(header);
+    QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
     if((j = langset.indexShortId(id)) >= 0
        && !langset.PixMapFile(j).isEmpty()
        && !langset.longId(j).isEmpty() ) {
@@ -1212,7 +1212,7 @@ void KVocTrainApp::aboutToShowLearn()
 
 void KVocTrainApp::aboutToShowVocabAppendLanguage()
 {
-  if (doc != 0)
+  if (m_doc != 0)
   {
     vocabAppendLanguage->clear();
     QMenu * add_m = vocabAppendLanguage->menu();
@@ -1241,7 +1241,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
 
 void KVocTrainApp::aboutToShowVocabSetLanguage()
 {
-  if (doc != 0)
+  if (m_doc != 0)
   {
     vocabSetLanguage->clear();
     QMenu * set_m = vocabSetLanguage->menu();
@@ -1255,7 +1255,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
         names.append(langset.longId(i));
     }
 
-    for (int header = 0; header < doc->numIdentifiers(); ++header )
+    for (int header = 0; header < m_doc->numIdentifiers(); ++header )
     {
       // select one of the available languages for the column
       QMenu *langs_m = new QMenu();
@@ -1274,7 +1274,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
       if (header == 0)
         set_m->insertItem(i18n("&Original"), langs_m, (2 << 16) | IDH_NULL);
       else {
-        if (doc->numIdentifiers() <= 2)
+        if (m_doc->numIdentifiers() <= 2)
           set_m->insertItem(i18n("&Translation"), langs_m, (2 << 16) | IDH_NULL);
         else
           set_m->insertItem(i18n("&%1. Translation", header), langs_m, (2 << 16) | IDH_NULL);
@@ -1286,31 +1286,31 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
 
 void KVocTrainApp::aboutToShowVocabRemoveLanguage()
 {
-  if (doc != 0)
+  if (m_doc != 0)
   {
     vocabRemoveLanguage->clear();
     QMenu * remove_m = vocabRemoveLanguage->menu();
 
     QStringList names;
-    for (int j = 1; j < (int) doc->numIdentifiers(); j++)
+    for (int j = 1; j < (int) m_doc->numIdentifiers(); j++)
     {
       int i;
-      if ((i = langset.indexShortId(doc->identifier(j))) >= 0)
+      if ((i = langset.indexShortId(m_doc->identifier(j))) >= 0)
         names.append(langset.longId(i));
       else
-        names.append(doc->identifier(j));
+        names.append(m_doc->identifier(j));
     }
 
-    for (int i = 1; i < (int) doc->numIdentifiers(); i++)
+    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
     {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(doc->identifier(i))) >= 0
+      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
           && !langset.PixMapFile(j).isEmpty()
           && !langset.longId(j).isEmpty() )
         remove_m->insertItem(QPixmap(langset.PixMapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
       else
-        remove_m->insertItem(doc->identifier(i), (i << 16) | IDH_REMOVE);
+        remove_m->insertItem(m_doc->identifier(i), (i << 16) | IDH_REMOVE);
     }
   }
 }
