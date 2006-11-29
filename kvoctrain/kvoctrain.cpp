@@ -658,14 +658,7 @@ void KVocTrainApp::slotDocProps ()
 
       doc->setModified();
       view->getTable()->updateContents();
-      KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
-        if ( doc->isModified() )
-        {
-            flags |= KInstance::ModifiedCaption;
-        }
-      setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
-
-	  
+      setCaption(doc->title(), doc->isModified());
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -686,12 +679,7 @@ void KVocTrainApp::slotDocPropsLang ()
       doc->setModified();
       view->getTable()->updateContents();
 
-	  KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
-		if ( doc->isModified() )
-    	{
-        	flags |= KInstance::ModifiedCaption;
-    	}
-	  setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
+      setCaption(doc->title(), doc->isModified()); 
       slotStatusMsg(IDS_DEFAULT);
    }
 }
@@ -699,12 +687,7 @@ void KVocTrainApp::slotDocPropsLang ()
 
 void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 {
-	KInstance::CaptionFlags flags = KInstance::NoCaptionFlags;
-    if ( doc->isModified() )
-    {
-    	flags |= KInstance::ModifiedCaption;
-    }
-	setWindowTitle(KInstance::makeStdCaption(doc->title(), flags));
+  setCaption(doc->title(), doc->isModified());
   slotStatusMsg(IDS_DEFAULT);
 }
 
