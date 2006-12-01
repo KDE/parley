@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<!doctype kvtml system "kvoctrain.dtd">
+<!DOCTYPE kvtml SYSTEM "kvoctrain.dtd">
 <!--
 This is a machine generated file.
 Be careful when editing here.
@@ -59,8 +59,7 @@ Valid xml means:
  - Keep proper hierarchy
  - All attributes are quoted
 
---
->
+-->
 <kvtml
   encoding="UTF-8"
   generator="kvoctrain v0.8.0"
