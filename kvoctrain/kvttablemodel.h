@@ -39,6 +39,8 @@ public:
 
 private:
   KEduVocDocument * m_doc;
+  
+  friend class KVocTrainApp;
 };
 
 #endif

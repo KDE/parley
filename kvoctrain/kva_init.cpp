@@ -312,12 +312,21 @@ void KVocTrainApp::initStatusBar()
 
 void KVocTrainApp::initDoc()
 {
-  if (fileOpenRecent->items().count() > 0){
+  /*if (fileOpenRecent->actions().count() > 0){
     m_doc = new KEduVocDocument(this);
-    m_doc->setURL(KUrl(fileOpenRecent->items()[0]));
+    m_doc->setUrl(KUrl(fileOpenRecent->items()[0]));
   }
   else
     m_doc = new KEduVocDocument(this);
+  */
+  m_doc = new KEduVocDocument(this);
+  m_doc->appendIdentifier(i18n("Unspecified Language 1"));
+  m_doc->appendIdentifier(i18n("Unspecified Language 2"));
+  for (int i=0; i<20; i++)
+  {
+    m_doc->appendEntry(new KEduVocExpression());
+  }
+
 
   loadDocProps(m_doc);
   if (m_doc->numIdentifiers() == 0)
@@ -351,10 +360,11 @@ void KVocTrainApp::initView()
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
   setCaption(m_doc->URL().fileName(), false);
-  connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
+  //connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
   m_doc->setModified(false);
 
   /// @todo get rid of this old view
   view = new kvoctrainView(m_doc, langset, this);
+  view->hide();
 }

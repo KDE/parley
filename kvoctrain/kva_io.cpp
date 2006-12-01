@@ -161,9 +161,12 @@ void KVocTrainApp::slotFileNew()
   if (queryExit() ) {
     view->setView (0, langset);
     delete m_doc;
-    QString name = "";
-    m_doc = new KEduVocDocument(this);
-    loadDocProps(m_doc);
+    //QString name = "";
+    //m_doc = new KEduVocDocument(this);
+    initDoc();
+    m_tableModel->setDocument(m_doc);
+    /// @todo check if any of the below is still needed
+    /*loadDocProps(m_doc);
     if (m_doc->numIdentifiers() == 0) {
       QString l = "en";
       m_doc->appendIdentifier(l);
@@ -172,7 +175,7 @@ void KVocTrainApp::slotFileNew()
     view->getTable()->setFont(Prefs::tableFont());
     view->adjustContent();
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    m_doc->setModified(false);
+    m_doc->setModified(false);*/
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -200,9 +203,11 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     m_doc = 0;
 
     slotStatusMsg(i18n("Loading %1", url.path()));
-    prepareProgressBar();
+    //prepareProgressBar();
     m_doc = new KEduVocDocument(this);
     m_doc->open(url, false);
+    m_tableModel->setDocument(m_doc);
+    m_tableModel->reset();
     removeProgressBar();
     loadDocProps(m_doc);
     view->setView(m_doc, langset);

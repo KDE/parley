@@ -32,6 +32,9 @@ protected slots:
   void verticalHeaderResized(int, int, int);
   void horizontalHeaderResized(int, int, int);
 
+public slots:
+  void slotModelReset();
+
 private:
   KVTTableDelegate * m_delegate;
 };

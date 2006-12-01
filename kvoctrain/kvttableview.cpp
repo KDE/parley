@@ -31,8 +31,8 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
 void KVTTableView::setModel(KVTTableModel * model)
 {
   QTableView::setModel(model);
-  //setCurrentIndex(model->index(0, 0));
-  //scrollTo(currentIndex());
+  setCurrentIndex(model->index(0, 0));
+  scrollTo(currentIndex());
   connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
 }
@@ -46,6 +46,12 @@ void KVTTableView::horizontalHeaderResized(int logicalIndex, int oldSize, int ne
 {
   //kDebug() << "Column resized\n";
   model()->setHeaderData(logicalIndex, Qt::Horizontal, QSize(newSize, 25), Qt::SizeHintRole);
+}
+
+void KVTTableView::slotModelReset()
+{
+  for (int i = 2; i < horizontalHeader()->count(); ++i)
+    setColumnWidth(i, qvariant_cast<QSize>(model()->headerData(i - 2, Qt::Horizontal, Qt::SizeHintRole)).width());
 }
 
 #include "kvttableview.moc"

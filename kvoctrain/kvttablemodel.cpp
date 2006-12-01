@@ -12,6 +12,7 @@
 #include <QSize>
 
 #include <klocale.h>
+#include <kdebug.h>
 
 #include "kvttablemodel.h"
 
@@ -26,6 +27,7 @@ KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 void KVTTableModel::setDocument(KEduVocDocument * doc)
 {
   m_doc = doc;
+  //reset();
 }
 
 
@@ -73,7 +75,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
   if (result.toString().isEmpty())
     result = "@empty@";
-
+  kDebug() << result.toString() << endl;
   return result;
 }
 
