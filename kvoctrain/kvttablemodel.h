@@ -19,6 +19,13 @@
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */
+
+enum KVTItemDataRole {
+    LessonsRole = Qt::UserRole + 1,
+    LessonRole,
+    StateRole
+};
+
 class KVTTableModel : public QAbstractTableModel
 {
 Q_OBJECT
@@ -26,6 +33,7 @@ public:
   KVTTableModel(QObject *parent = 0);
 
   void setDocument(KEduVocDocument * doc);
+  KEduVocDocument * document() {return m_doc;}
 
   int rowCount(const QModelIndex &parent) const;
   int columnCount(const QModelIndex &parent) const;
@@ -39,7 +47,7 @@ public:
 
 private:
   KEduVocDocument * m_doc;
-  
+
   friend class KVocTrainApp;
 };
 

@@ -12,8 +12,11 @@
 #include <QtGui>
 
 #include "kdebug.h"
+#include <kglobalsettings.h>
+#include <klocale.h>
 
 #include "kvttabledelegate.h"
+#include "kvttablemodel.h"
 
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 {
@@ -21,36 +24,126 @@ KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 
 QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-  QLineEdit *editor = new QLineEdit(parent);
-  editor->setFrame(false);
-  editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-  //editor->installEventFilter(const_cast<KWQTableDelegate*>(this));
-  connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
-  return editor;
+  if (!index.isValid())
+    return 0;
+
+  switch (index.column()) {
+    case 0:
+    {
+      QComboBox *lessonbox = new QComboBox(parent);
+      lessonbox->setFrame(false);
+      lessonbox->setFont(KGlobalSettings::generalFont());
+      connect(lessonbox, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+      return lessonbox;
+    }
+    break;
+
+    case 1:
+    {
+      QComboBox *statebox = new QComboBox(parent);
+      statebox->setFrame(false);
+      statebox->setFont(KGlobalSettings::generalFont());
+      connect(statebox, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+      return statebox;
+    }
+    break;
+
+    default:
+    {
+      QLineEdit *editor = new QLineEdit(parent);
+      editor->setFrame(false);
+      editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+      connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
+      return editor;
+    }
+  }
 }
+
 
 void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index) const
 {
-  QString value = index.model()->data(index, Qt::DisplayRole).toString();
+  if (!index.isValid())
+    return;
 
-  if (value == "@empty@")
-    value = "";
+  switch (index.column()) {
+    case 0:
+    {
+      QStringList sl = index.model()->data(index, LessonsRole).toStringList();
+      QComboBox *lessonbox = static_cast<QComboBox*>(editor);
+      lessonbox->addItem(i18n("<no lesson>"));
+      for (unsigned i = 0; i < (unsigned) sl.count(); ++i)
+        lessonbox->addItem (sl[i]);
+      lessonbox->setCurrentIndex(index.model()->data(index, LessonRole).toInt());
+    }
+    break;
 
-  QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-  lineEdit->setText(value);
+    case 1:
+    {
+      QComboBox *statebox = static_cast<QComboBox*>(editor);
+      statebox->addItem (i18nc("state of a row", "Active, Not in Query"));
+      statebox->addItem (i18nc("state of a row", "In Query"));
+      statebox->addItem (i18nc("state of a row", "Inactive"));
+      statebox->setCurrentIndex(index.model()->data(index, StateRole).toInt());
+    }
+    break;
+
+    default:
+    {
+      QString value = index.model()->data(index, Qt::DisplayRole).toString();
+
+      if (value == "@empty@")
+        value = "";
+
+      QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+      lineEdit->setText(value);
+    }
+  }
 }
 
 void KVTTableDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
 {
-  QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
-  QString value = lineEdit->text();
+  if (!index.isValid())
+    return;
 
-  model->setData(index, value);
+  switch (index.column()) {
+    case 0:
+    {
+      QComboBox *lessonbox = static_cast<QComboBox*>(editor);
+      int value = lessonbox->currentIndex();
+      model->setData(index, value);
+    }
+    break;
+
+    case 1:
+    {
+      QComboBox *statebox = static_cast<QComboBox*>(editor);
+      int value = statebox->currentIndex();
+      model->setData(index, value);
+    }
+    break;
+
+    default:
+    {
+      QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+      QString value = lineEdit->text();
+      model->setData(index, value);
+    }
+  }
 }
 
-void KVTTableDelegate::updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & /*index*/) const
+void KVTTableDelegate::updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-  editor->setGeometry(option.rect);
+  if (index.column() == 1)
+  {
+    /// @todo a better way to calculate the width of this combobox?
+    //QSize sz = editor->sizeHint();
+    QRect r = option.rect;
+    //sz.setHeight(option.rect.height());
+    r.setWidth(150);
+    editor->setGeometry(r);
+  }
+  else
+    editor->setGeometry(option.rect);
 }
 
 void KVTTableDelegate::commitAndCloseEditor()

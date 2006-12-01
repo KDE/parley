@@ -320,8 +320,8 @@ void KVocTrainApp::initDoc()
     m_doc = new KEduVocDocument(this);
   */
   m_doc = new KEduVocDocument(this);
-  m_doc->appendIdentifier(i18n("Unspecified Language 1"));
-  m_doc->appendIdentifier(i18n("Unspecified Language 2"));
+  m_doc->appendIdentifier(i18n("Original"));
+  m_doc->appendIdentifier(i18n("Translation"));
   for (int i=0; i<20; i++)
   {
     m_doc->appendEntry(new KEduVocExpression());

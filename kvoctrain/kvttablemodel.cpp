@@ -15,6 +15,8 @@
 #include <kdebug.h>
 
 #include "kvttablemodel.h"
+#include "prefs.h"
+
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
@@ -56,18 +58,35 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
   if (!index.isValid())
     return QVariant();
-  /// @todo else if (role == Qt::FontRole)
-    //return QVariant(Prefs::editorFont());
+  else if (role == LessonsRole)
+    return QVariant(m_doc->lessonDescriptions());
+  else if (role == LessonRole)
+    return QVariant(m_doc->entry(index.row())->lesson());
+  else if (role == StateRole) {
+    if (!m_doc->entry(index.row())->isActive())
+      return 2;
+    else if (m_doc->entry(index.row())->isInQuery())
+      return 1;
+    else
+      return 0;
+  }
+  else if (role == Qt::FontRole)
+    return QVariant(Prefs::tableFont());
   else if (role != Qt::DisplayRole)
     return QVariant();
 
   QVariant result;
   if (index.column() == 0)
-    /// @todo handle lessons
-    result = "";
+    result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
   else if (index.column() == 1)
-    /// @todo handle icon/checkbox?
-    result = "";
+  {
+      if (!m_doc->entry(index.row())->isActive())
+        return QVariant("X");
+      if (m_doc->entry(index.row())->isInQuery())
+        return QVariant("Q");
+      else
+        result = "";
+  }
   else if (index.column() == 2)
     result = m_doc->entry(index.row())->original();
   else
@@ -75,7 +94,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
   if (result.toString().isEmpty())
     result = "@empty@";
-  kDebug() << result.toString() << endl;
+  //kDebug() << result.toString() << endl;
   return result;
 }
 
@@ -124,12 +143,28 @@ Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   if (index.isValid() && role == Qt::EditRole) {
-    /// @todo handle
-    /*if (index.column() == 0)
-      /// @todo handle lessons
-    else if (index.column() == 1
-      /// @todo handle
-    else*/ if (index.column() == 2)
+    if (index.column() == 0)
+      m_doc->entry(index.row())->setLesson(value.toInt());
+    else if (index.column() == 1)
+    {
+      bool inq = false;
+      bool act = true;
+      if (value.toInt() == 0) {
+        inq = false;
+        act = true;
+      }
+      else if (value.toInt() == 1) {
+        inq = true;
+        act = true;
+      }
+      else if (value.toInt() == 2) {
+        inq = false;
+        act = false;
+      }
+      m_doc->entry(index.row())->setInQuery(inq);
+      m_doc->entry(index.row())->setActive(act);
+    }
+    else if (index.column() == 2)
       m_doc->entry(index.row())->setOriginal(value.toString());
     else
       m_doc->entry(index.row())->setTranslation(index.column() - 2, value.toString());
@@ -149,7 +184,7 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
 {
   if (orientation == Qt::Horizontal) {
     if (role == Qt::EditRole) {
-      /// @todo handle
+      /// @todo handle?
       /*if (section == 0)
         /// @todo handle
       else if (section == 1)
