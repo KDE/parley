@@ -267,7 +267,7 @@ private:
   //KAction* learningResumeQuery;
   //KAction* learningResumeMultipleChoice;
 
-  KAction* configToolbar;
+  QAction* configToolbar;
   KAction* configNotifications;
   KAction* configApp;
   //KAction* configQueryOptions;
