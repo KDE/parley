@@ -50,6 +50,9 @@ QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char 
   kv_doc = 0;
   kv_exp = 0;
   //type_timeout = kvq_notimeout;
+  connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
+  //TODO connect to slot (when it will exist)
+  //connect(this,SIGNAL(user2Clicked()),this,SLOT());
 }
 
 
