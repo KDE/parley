@@ -117,7 +117,7 @@ void KVocTrainTable::sortByColumn(int header, bool alpha) {
 
   if (m_doc && !m_doc->isSortingEnabled()) {
     KMessageBox::information(this, i18n("Sorting is currently turned off for this document.\n"
-      "\nUse the document properties dialog to turn sorting on."), kapp->makeStdCaption(""));
+      "\nUse the document properties dialog to turn sorting on."), "");
     return;
   }
 

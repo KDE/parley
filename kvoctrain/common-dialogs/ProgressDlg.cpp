@@ -28,6 +28,7 @@
 #include <QProgressBar>
 #include <QLabel>
 
+#include <kinstance.h>
 #include <kstandarddirs.h>
 
 #include <keduvocdocument.h>
@@ -38,7 +39,7 @@ ProgressDlg::ProgressDlg(const QString &doctitle, const QString &filename, const
 {
   setupUi(this);
   doc = 0;
-  setWindowTitle(title);
+  setWindowTitle(KInstance::makeStandardCaption(title, this));
   l_title->setText(doctitle);
   l_file->setText(filename);
   progress-> setMaximum(100);

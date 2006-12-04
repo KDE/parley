@@ -26,7 +26,6 @@
 #include <QGroupBox>
 #include <QPushButton>
 
-#include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -150,8 +149,8 @@ void UsageOptPage::slotDeleteUsage()
                     i18nc("usage (area) of an expression",
                         "This user-defined usage label could not be deleted "
                         "because it is in use."),
-                    kapp->makeStdCaption(i18nc("usage (area) of an expression",
-                                              "Deleting Usage Label")));
+                    i18nc("usage (area) of an expression",
+                          "Deleting Usage Label"));
           return;
         }
       }

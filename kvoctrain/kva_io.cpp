@@ -92,7 +92,7 @@ bool KVocTrainApp::queryExit()
   {
      int exit = KMessageBox::warningYesNoCancel(this,
                i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-               kapp->makeStdCaption(""),
+               "",
                KStdGuiItem::save(), KStdGuiItem::discard());
      if (exit==KMessageBox::Yes) {
        save = true;   // save and exit

@@ -22,7 +22,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kapplication.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 
@@ -389,7 +388,7 @@ void kvoctrainDoc::errorLex (int /*line*/, const QString &text )
 {
    unknown_elem = true;
    QApplication::setOverrideCursor( Qt::ArrowCursor, true );
-   QString s = kapp->makeStdCaption(i18n("Error in lex file"));
+   QString s = i18n("Error in lex file");
    QString msg = text;
    KMessageBox::error(0, msg, s);
    QApplication::restoreOverrideCursor();

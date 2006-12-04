@@ -205,7 +205,7 @@ RandomQueryDlg::RandomQueryDlg(
     ProgressDlg* pdlg = 0;
     if ( split && kv_doc -> numEntries() >= 500 )
     {
-      pdlg = new ProgressDlg (QString(), QString(), kapp -> makeStdCaption (i18n("Loading Random Query")));
+      pdlg = new ProgressDlg (QString(), QString(), i18n("Loading Random Query"));
       pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
       pdlg -> show();
       kapp -> processEvents();

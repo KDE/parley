@@ -27,7 +27,6 @@
 #include <QPushButton>
 #include <QLayout>
 
-#include <kapplication.h>
 #include <kinputdialog.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -142,7 +141,7 @@ void LessOptPage::slotDeleteLesson()
       if (doc->entry(ent)->lesson() == lessonIndex[act_lesson]+1) {
         KMessageBox::information(this,
                   i18n("This lesson could not be deleted\nbecause it is in use."),
-                  kapp->makeStdCaption(i18n("Deleting Lesson")));
+                  i18n("Deleting Lesson"));
         return;
       }
     }

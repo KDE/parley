@@ -122,7 +122,7 @@ void KVocTrainApp::readProperties(KConfig *config)
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
 
     if(b_canRecover){
-      pdlg = new ProgressDlg(QString(), QString(), kapp->makeStdCaption(""));
+      pdlg = new ProgressDlg(QString(), QString(), QString());
       pdlg->show();
       m_doc = new KEduVocDocument(this);
       m_doc->setURL(KUrl(tempname));
@@ -135,9 +135,7 @@ void KVocTrainApp::readProperties(KConfig *config)
     }
   }
   else if(!filename.isEmpty()){
-    KInstance::CaptionFlags flags = KInstance::AppNameCaption;
-    pdlg = new ProgressDlg (QString(), QString(),
-                            KInstance::makeStdCaption("",flags));
+    pdlg = new ProgressDlg (QString(), QString(), "");
     pdlg->show();
     m_doc = new KEduVocDocument(this);
     m_doc->setURL(KUrl(filename));

@@ -34,7 +34,6 @@ using namespace std;
 #include <QRegExp>
 #include <QTextStream>
 
-#include <kapplication.h>
 #include <klocale.h>
 #include <kdebug.h>
 #include <kmessagebox.h>
@@ -164,7 +163,7 @@ kvoctrainDoc::kvoctrainDoc(QObject *parent, const KUrl& url)
         QString msg = i18n("Could not load \"%1\"\nDo you want to try again?",
                            url.path());
         int result = KMessageBox::warningContinueCancel(0, msg,
-                                                        kapp->makeStdCaption(i18n("I/O Failure")),
+                                                        i18n("I/O Failure"),
                                                         i18n("&Retry"));
         if ( result == KMessageBox::Cancel ) {
           Init();
@@ -260,7 +259,7 @@ bool kvoctrainDoc::saveAs (QObject *parent, const KUrl & url, QString title, Fil
       QString msg = i18n("Could not save \"%1\"\nDo you want to try again?",
                          tmp.path());
       int result = KMessageBox::warningContinueCancel(0, msg,
-                                                      kapp->makeStdCaption(i18n("I/O Failure")),
+                                                      i18n("I/O Failure"),
                                                       i18n("&Retry"));
       if ( result == KMessageBox::Cancel ) return false;
     }

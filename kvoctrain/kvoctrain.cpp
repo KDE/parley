@@ -184,7 +184,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
      if( KMessageBox::No == KMessageBox::warningYesNo(this,
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
-                   kapp->makeStdCaption(i18n("Unsaved Changes")),
+                   i18n("Unsaved Changes"),
                    KStdGuiItem::apply(), KStdGuiItem::discard())) {
         return;
      }
@@ -678,7 +678,6 @@ void KVocTrainApp::slotDocPropsLang ()
 
       m_doc->setModified();
       view->getTable()->updateContents();
-
       setCaption(m_doc->title(), m_doc->isModified()); 
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -707,7 +706,7 @@ void KVocTrainApp::slotRemoveRow()
   if (!hasSelection()) {
     if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected entry?\n"),
-                  kapp->makeStdCaption(""),KStdGuiItem::del()))
+                  "",KStdGuiItem::del()))
     {
       KVocTrainTable *table = view->getTable();
       m_doc->removeEntry(table->currentRow());
@@ -718,7 +717,7 @@ void KVocTrainApp::slotRemoveRow()
   else {
     if(KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected range?\n"),
-                  kapp->makeStdCaption(""),KStdGuiItem::del()))
+                  "",KStdGuiItem::del()))
     {
       KVocTrainTable *table = view->getTable();
 
@@ -903,7 +902,7 @@ void KVocTrainApp::slotCleanVocabulary ()
 
      KMessageBox::information(this,
        s,
-       kapp->makeStdCaption(i18n("Clean Up")));
+       i18n("Clean Up"));
    }
 }
 
@@ -1012,7 +1011,7 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
                         "Should this dialog be invoked now?");
     if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
                   msg,
-                  kapp->makeStdCaption(""),KGuiItem(i18n("Invoke Dialog")), KGuiItem(i18n("Do Not Invoke"))))
+                  "",KGuiItem(i18n("Invoke Dialog")), KGuiItem(i18n("Do Not Invoke"))))
      {
        slotGeneralOptionsPage(1);
      }

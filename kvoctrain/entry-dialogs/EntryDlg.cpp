@@ -30,7 +30,6 @@
 #include <QCloseEvent>
 
 #include <kmainwindow.h>
-#include <kapplication.h>
 #include <kwinmodule.h>
 
 #include "EntryDlg.h"

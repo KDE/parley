@@ -25,7 +25,6 @@
 
 #include <QPushButton>
 
-#include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -144,7 +143,7 @@ void TypeOptPage::slotDeleteType()
         if (exp->type(lang) == t) {
           KMessageBox::information(this,
                     i18n("This user defined type could not be deleted\nbecause it is in use."),
-                    kapp->makeStdCaption(i18n("Deleting Type Description")));
+                    i18n("Deleting Type Description"));
           return;
         }
       }

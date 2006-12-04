@@ -25,7 +25,6 @@
 
 #include <QPushButton>
 
-#include <kapplication.h>
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
@@ -149,7 +148,7 @@ void TenseOptPage::slotDeleteTense()
           if (conj.getType(con) == t) {
             KMessageBox::information(this,
                       i18n("This user defined tense could not be deleted\nbecause it is in use."),
-                      kapp->makeStdCaption(i18n("Deleting Tense Description")));
+                      i18n("Deleting Tense Description"));
             return;
           }
         }
