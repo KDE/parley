@@ -58,17 +58,38 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
   if (!index.isValid())
     return QVariant();
-  else if (role == LessonsRole)
+  else if (role == KVTTableModel::LessonsRole)
     return QVariant(m_doc->lessonDescriptions());
-  else if (role == LessonRole)
+  else if (role == KVTTableModel::LessonRole)
     return QVariant(m_doc->entry(index.row())->lesson());
-  else if (role == StateRole) {
+  else if (role == KVTTableModel::StateRole) {
     if (!m_doc->entry(index.row())->isActive())
       return 2;
     else if (m_doc->entry(index.row())->isInQuery())
       return 1;
     else
       return 0;
+  }
+  else if (role == KVTTableModel::GradeRole) {
+    if (index.column() > KV_EXTRA_COLS)
+    {
+      if (m_doc->entry(index.row())->queryCount(index.column() - KV_EXTRA_COLS, false) != 0)
+        return QVariant(m_doc->entry(index.row())->grade(index.column() - KV_EXTRA_COLS, false));
+      else
+        return QVariant(KV_NORM_GRADE);
+    }
+    else if (index.column() == 2)
+    {
+      QList<QVariant> result;
+      for (int i = 1; i <= m_doc->numIdentifiers(); ++i)
+      {
+        if (m_doc->entry(index.row())->queryCount(i, true) != 0)
+          result.append(QVariant(m_doc->entry(index.row())->grade(i /*+ KV_EXTRA_COLS*/, true)));
+        else
+          result.append(QVariant(KV_NORM_GRADE));
+      }
+      return QVariant(result);
+    }
   }
   else if (role == Qt::FontRole)
     return QVariant(Prefs::tableFont());

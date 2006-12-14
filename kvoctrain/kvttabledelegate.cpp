@@ -17,6 +17,7 @@
 
 #include "kvttabledelegate.h"
 #include "kvttablemodel.h"
+#include "prefs.h"
 
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 {
@@ -68,12 +69,12 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
   switch (index.column()) {
     case 0:
     {
-      QStringList sl = index.model()->data(index, LessonsRole).toStringList();
+      QStringList sl = index.model()->data(index, KVTTableModel::LessonsRole).toStringList();
       QComboBox *lessonbox = static_cast<QComboBox*>(editor);
       lessonbox->addItem(i18n("<no lesson>"));
       for (unsigned i = 0; i < (unsigned) sl.count(); ++i)
         lessonbox->addItem (sl[i]);
-      lessonbox->setCurrentIndex(index.model()->data(index, LessonRole).toInt());
+      lessonbox->setCurrentIndex(index.model()->data(index, KVTTableModel::LessonRole).toInt());
     }
     break;
 
@@ -83,7 +84,7 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
       statebox->addItem (i18nc("state of a row", "Active, Not in Query"));
       statebox->addItem (i18nc("state of a row", "In Query"));
       statebox->addItem (i18nc("state of a row", "Inactive"));
-      statebox->setCurrentIndex(index.model()->data(index, StateRole).toInt());
+      statebox->setCurrentIndex(index.model()->data(index, KVTTableModel::StateRole).toInt());
     }
     break;
 
@@ -159,12 +160,13 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
   QPen pen = painter->pen();
   QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
   if (option.state & QStyle::State_Selected) {
-      painter->fillRect(rect, option.palette.brush(cg, option.state & QStyle::State_HasFocus ?
-        QPalette::Base : QPalette::Highlight));
-      painter->setPen(option.palette.color(cg, option.state & QStyle::State_HasFocus ?
-        QPalette::Text : QPalette::HighlightedText));
+      painter->fillRect(rect, option.palette.brush(cg, option.state & QStyle::State_HasFocus ? QPalette::Base : QPalette::Highlight));
+      if (option.state & QStyle::State_HasFocus)
+        /**/;
+      else
+        painter->setPen(option.palette.color(cg, QPalette::HighlightedText));
   } else {
-      painter->setPen(option.palette.color(cg, QPalette::Text));
+      //painter->setPen(option.palette.color(cg, QPalette::Text));
   }
 
   if (option.state & QStyle::State_Editing) {
@@ -193,9 +195,7 @@ void KVTTableDelegate::drawFocus(QPainter * painter, const QStyleOptionViewItem 
 {
   if (option.state & QStyle::State_HasFocus) {
     painter->save();
-    QPen pen = painter->pen();
-    pen.setColor(Qt::black);
-    pen.setWidth(0);
+    painter->setPen(Qt::black);
     painter->setBrush(Qt::NoBrush);
     painter->drawRect(rect.adjusted(0,0,-1,-1));
     painter->drawRect(rect.adjusted(1,1,-2,-2));
@@ -210,7 +210,56 @@ QSize KVTTableDelegate::sizeHint(const QStyleOptionViewItem & option, const QMod
 
 void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
+  if (Prefs::useGradeCol())
+  {
+    QColor color = KV_NORM_COLOR;
+
+    if (index.column() > KV_COL_ORG)
+    {
+      color = Prefs::gradeCol(0);
+      switch (index.model()->data(index, KVTTableModel::GradeRole).toInt())
+      {
+        case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
+        case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+        case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+        case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+        case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+        case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+        case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+        case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+        default           : color = Prefs::gradeCol(1);
+      }
+    }
+    else if (index.column() == KV_COL_ORG )
+    {
+      color = Prefs::gradeCol(0);
+      QList<QVariant> result = index.model()->data(index, KVTTableModel::GradeRole).toList();
+
+      if (m_currentIndex.column() > 2)
+      {
+        switch (result[m_currentIndex.column() - 3].toInt())
+        {
+          case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
+          case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+          case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+          case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+          case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+          case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+          case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+          case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+          default           : color = Prefs::gradeCol(1);
+        }
+      }
+    }
+
+    painter->setPen(color);
+  }
   QItemDelegate::paint(painter, option, index);
+}
+
+void KVTTableDelegate::setCurrentIndex(const QModelIndex & index)
+{
+  m_currentIndex = index;
 }
 
 #include "kvttabledelegate.moc"
