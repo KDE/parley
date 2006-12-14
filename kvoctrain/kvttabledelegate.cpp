@@ -184,7 +184,7 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
     str = "";
 
   if (painter->fontMetrics().width(text) > textRect.width() && !text.contains(QLatin1Char('\n')))
-      str = elidedText(option.fontMetrics, textRect.width(), option.textElideMode, text);
+      str = elidedText(option.fontMetrics, textRect.width(), option.textElideMode, str);
 
   painter->drawText(textRect, option.displayAlignment, str);
   painter->setFont(font);
@@ -205,7 +205,7 @@ void KVTTableDelegate::drawFocus(QPainter * painter, const QStyleOptionViewItem 
 
 QSize KVTTableDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-  return QSize(300, 25);
+  return QItemDelegate::sizeHint(option, index);
 }
 
 void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const

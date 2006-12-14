@@ -51,8 +51,8 @@ void KVTTableView::horizontalHeaderResized(int logicalIndex, int oldSize, int ne
 
 void KVTTableView::slotModelReset()
 {
-  for (int i = 2; i < horizontalHeader()->count(); ++i)
-    setColumnWidth(i, qvariant_cast<QSize>(model()->headerData(i - 2, Qt::Horizontal, Qt::SizeHintRole)).width());
+  for (int i = 0; i < horizontalHeader()->count(); ++i)
+    setColumnWidth(i, qvariant_cast<QSize>(model()->headerData(i, Qt::Horizontal, Qt::SizeHintRole)).width());
 }
 
 void KVTTableView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)

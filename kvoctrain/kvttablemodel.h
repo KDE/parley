@@ -13,6 +13,7 @@
 #define KVTTABLEMODEL_H
 
 #include <QAbstractTableModel>
+#include <QPixmap>
 
 #include <keduvocdocument.h>
 
@@ -51,6 +52,8 @@ public:
 
 private:
   KEduVocDocument * m_doc;
+  QPixmap m_pixInactive;
+  QPixmap m_pixInQuery;
 
   friend class KVocTrainApp;
 };

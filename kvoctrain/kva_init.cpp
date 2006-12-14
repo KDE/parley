@@ -339,9 +339,9 @@ void KVocTrainApp::initModel()
 {
   m_tableModel = new KVTTableModel(this);
   m_tableModel->setDocument(m_doc);
-  m_tableModel->setHeaderData(0, Qt::Horizontal, QSize(150, 25), Qt::SizeHintRole);
-  m_tableModel->setHeaderData(1, Qt::Horizontal, QSize(25, 25), Qt::SizeHintRole);
-  m_tableModel->setHeaderData(2, Qt::Horizontal, QSize(250, 25), Qt::SizeHintRole);
+  //m_tableModel->setHeaderData(0, Qt::Horizontal, QSize(150, 25), Qt::SizeHintRole);
+ // m_tableModel->setHeaderData(1, Qt::Horizontal, QSize(25, 25), Qt::SizeHintRole);
+ // m_tableModel->setHeaderData(2, Qt::Horizontal, QSize(250, 25), Qt::SizeHintRole);
 }
 
 void KVocTrainApp::initView()
@@ -359,6 +359,7 @@ void KVocTrainApp::initView()
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+  m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
   setCaption(m_doc->URL().fileName(), false);
   //connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
