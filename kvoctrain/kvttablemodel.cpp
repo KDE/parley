@@ -146,8 +146,9 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
     }
 
     default:
-      return QVariant();
+      break;
   }
+  return QVariant();
 }
 
 
