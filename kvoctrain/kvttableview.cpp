@@ -35,6 +35,7 @@ void KVTTableView::setModel(KVTTableModel * model)
   scrollTo(currentIndex());
   connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
+  connect(selectionModel(), SIGNAL(currentColumnChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentColumnChanged(const QModelIndex&, const QModelIndex&)));
 }
 
 void KVTTableView::verticalHeaderResized(int , int , int)
@@ -50,8 +51,14 @@ void KVTTableView::horizontalHeaderResized(int logicalIndex, int oldSize, int ne
 
 void KVTTableView::slotModelReset()
 {
-  for (int i = 2; i < horizontalHeader()->count(); ++i)
-    setColumnWidth(i, qvariant_cast<QSize>(model()->headerData(i - 2, Qt::Horizontal, Qt::SizeHintRole)).width());
+  for (int i = 0; i < horizontalHeader()->count(); ++i)
+    setColumnWidth(i, qvariant_cast<QSize>(model()->headerData(i, Qt::Horizontal, Qt::SizeHintRole)).width());
+}
+
+void KVTTableView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+  m_delegate->setCurrentIndex(current);
+  reset();
 }
 
 #include "kvttableview.moc"

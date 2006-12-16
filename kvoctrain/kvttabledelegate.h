@@ -27,6 +27,7 @@ public:
 
   void setEditorData(QWidget *editor, const QModelIndex &index) const;
   void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+  void setCurrentIndex(const QModelIndex &index);
 
   void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
   QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
@@ -37,6 +38,9 @@ protected:
 
 private slots:
     void commitAndCloseEditor();
+
+private:
+  QModelIndex m_currentIndex;
 };
 
 #endif

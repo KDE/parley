@@ -198,7 +198,7 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
 {
   if (!url.path().isEmpty())
   {
-    view->setView(0, langset);
+    //view->setView(0, langset);
     delete m_doc;
     m_doc = 0;
 
@@ -210,9 +210,9 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     m_tableModel->reset();
     removeProgressBar();
     loadDocProps(m_doc);
-    view->setView(m_doc, langset);
-    view->getTable()->setFont(Prefs::tableFont());
-    view->adjustContent();
+    //view->setView(m_doc, langset);
+    //view->getTable()->setFont(Prefs::tableFont());
+    //view->adjustContent();
     if (addRecent)
       fileOpenRecent->addUrl(url);
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));

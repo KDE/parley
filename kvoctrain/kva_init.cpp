@@ -78,8 +78,8 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
 
   readOptions();
 
-  initDoc();
   initModel();
+  initDoc();
   initView();
 
   int cc = Prefs::currentCol();
@@ -312,36 +312,27 @@ void KVocTrainApp::initStatusBar()
 
 void KVocTrainApp::initDoc()
 {
-  /*if (fileOpenRecent->actions().count() > 0){
-    m_doc = new KEduVocDocument(this);
-    m_doc->setUrl(KUrl(fileOpenRecent->items()[0]));
+  if (fileOpenRecent->actions().count() > 0  && fileOpenRecent->action(0)->isEnabled()){
+    fileOpenRecent->action(0)->trigger();
   }
-  else
+  else {
     m_doc = new KEduVocDocument(this);
-  */
-  m_doc = new KEduVocDocument(this);
-  m_doc->appendIdentifier(i18n("Original"));
-  m_doc->appendIdentifier(i18n("Translation"));
-  for (int i=0; i<20; i++)
-  {
-    m_doc->appendEntry(new KEduVocExpression());
+    m_doc->appendIdentifier(i18n("Original"));
+    m_doc->appendIdentifier(i18n("Translation"));
+    for (int i=0; i<20; i++)
+      m_doc->appendEntry(new KEduVocExpression());
+    connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    m_tableModel->setDocument(m_doc);
+    m_tableModel->reset();
+    loadDocProps(m_doc);
+    m_doc->setModified(false);
   }
-
-
-  loadDocProps(m_doc);
-  if (m_doc->numIdentifiers() == 0)
-    m_doc->appendIdentifier("en");
-  connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-  m_doc->setModified(false);
 }
 
 void KVocTrainApp::initModel()
 {
   m_tableModel = new KVTTableModel(this);
-  m_tableModel->setDocument(m_doc);
-  m_tableModel->setHeaderData(0, Qt::Horizontal, QSize(150, 25), Qt::SizeHintRole);
-  m_tableModel->setHeaderData(1, Qt::Horizontal, QSize(25, 25), Qt::SizeHintRole);
-  m_tableModel->setHeaderData(2, Qt::Horizontal, QSize(250, 25), Qt::SizeHintRole);
+  //m_tableModel->setDocument(m_doc);
 }
 
 void KVocTrainApp::initView()
@@ -359,6 +350,7 @@ void KVocTrainApp::initView()
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+  m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
   setCaption(m_doc->URL().fileName(), false);
   //connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));

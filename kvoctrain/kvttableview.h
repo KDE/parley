@@ -31,6 +31,7 @@ public:
 protected slots:
   void verticalHeaderResized(int, int, int);
   void horizontalHeaderResized(int, int, int);
+  void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
 
 public slots:
   void slotModelReset();

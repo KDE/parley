@@ -13,6 +13,7 @@
 #define KVTTABLEMODEL_H
 
 #include <QAbstractTableModel>
+#include <QPixmap>
 
 #include <keduvocdocument.h>
 
@@ -20,16 +21,20 @@
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */
 
-enum KVTItemDataRole {
-    LessonsRole = Qt::UserRole + 1,
-    LessonRole,
-    StateRole
-};
+
 
 class KVTTableModel : public QAbstractTableModel
 {
 Q_OBJECT
 public:
+
+  enum KVTItemDataRole {
+    LessonsRole = Qt::UserRole + 1,
+    LessonRole,
+    StateRole,
+    GradeRole
+  };
+
   KVTTableModel(QObject *parent = 0);
 
   void setDocument(KEduVocDocument * doc);
@@ -47,6 +52,8 @@ public:
 
 private:
   KEduVocDocument * m_doc;
+  QPixmap m_pixInactive;
+  QPixmap m_pixInQuery;
 
   friend class KVocTrainApp;
 };

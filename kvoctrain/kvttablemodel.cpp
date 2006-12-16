@@ -13,6 +13,8 @@
 
 #include <klocale.h>
 #include <kdebug.h>
+#include <kglobal.h>
+#include <kiconloader.h>
 
 #include "kvttablemodel.h"
 #include "prefs.h"
@@ -21,6 +23,8 @@
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
   m_doc = 0;
+  m_pixInQuery = QPixmap(KGlobal::iconLoader()->loadIcon("ok", K3Icon::Small));
+  m_pixInactive = QPixmap(KGlobal::iconLoader()->loadIcon("no", K3Icon::Small));
 }
 
 /*!
@@ -58,44 +62,93 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
   if (!index.isValid())
     return QVariant();
-  else if (role == LessonsRole)
-    return QVariant(m_doc->lessonDescriptions());
-  else if (role == LessonRole)
-    return QVariant(m_doc->entry(index.row())->lesson());
-  else if (role == StateRole) {
-    if (!m_doc->entry(index.row())->isActive())
-      return 2;
-    else if (m_doc->entry(index.row())->isInQuery())
-      return 1;
-    else
-      return 0;
-  }
-  else if (role == Qt::FontRole)
-    return QVariant(Prefs::tableFont());
-  else if (role != Qt::DisplayRole)
-    return QVariant();
 
-  QVariant result;
-  if (index.column() == 0)
-    result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
-  else if (index.column() == 1)
+  switch (role)
   {
-      if (!m_doc->entry(index.row())->isActive())
-        return QVariant("X");
-      if (m_doc->entry(index.row())->isInQuery())
-        return QVariant("Q");
-      else
-        result = "";
-  }
-  else if (index.column() == 2)
-    result = m_doc->entry(index.row())->original();
-  else
-    result = m_doc->entry(index.row())->translation(index.column() - 2);
+    case KVTTableModel::LessonsRole: {
+      return QVariant(m_doc->lessonDescriptions());
+      break;
+    }
 
-  if (result.toString().isEmpty())
-    result = "@empty@";
-  //kDebug() << result.toString() << endl;
-  return result;
+    case KVTTableModel::LessonRole: {
+      return QVariant(m_doc->entry(index.row())->lesson());
+      break;
+    }
+
+    case KVTTableModel::StateRole: {
+      if (!m_doc->entry(index.row())->isActive())
+        return 2;
+      else if (m_doc->entry(index.row())->isInQuery())
+        return 1;
+      else
+        return 0;
+      break;
+    }
+
+    case KVTTableModel::GradeRole: {
+      if (index.column() > KV_EXTRA_COLS)
+      {
+        if (m_doc->entry(index.row())->queryCount(index.column() - KV_EXTRA_COLS, false) != 0)
+          return QVariant(m_doc->entry(index.row())->grade(index.column() - KV_EXTRA_COLS, false));
+        else
+          return QVariant(KV_NORM_GRADE);
+      }
+      else if (index.column() == 2)
+      {
+        QList<QVariant> result;
+        for (int i = 1; i <= m_doc->numIdentifiers(); ++i)
+        {
+          if (m_doc->entry(index.row())->queryCount(i, true) != 0)
+            result.append(QVariant(m_doc->entry(index.row())->grade(i /*+ KV_EXTRA_COLS*/, true)));
+          else
+            result.append(QVariant(KV_NORM_GRADE));
+        }
+        return QVariant(result);
+      }
+      break;
+    }
+
+    case Qt::FontRole: {
+      return QVariant(Prefs::tableFont());
+      break;
+    }
+
+    case Qt::DisplayRole: {
+      QVariant result;
+      if (index.column() == 0)
+        result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
+      else if (index.column() == 1)
+      {
+
+      }
+      else if (index.column() == 2)
+        result = m_doc->entry(index.row())->original();
+      else
+        result = m_doc->entry(index.row())->translation(index.column() - 2);
+
+      if (result.toString().isEmpty())
+        result = "@empty@";
+      //kDebug() << result.toString() << endl;
+      return result;
+      break;
+    }
+
+    case Qt::DecorationRole: {
+      if (index.column() == 1)
+      {
+        if (!m_doc->entry(index.row())->isActive())
+          return m_pixInactive;
+        if (m_doc->entry(index.row())->isInQuery())
+          return m_pixInQuery;
+      }
+      return QVariant();
+      break;
+    }
+
+    default:
+      break;
+  }
+  return QVariant();
 }
 
 
@@ -117,7 +170,14 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
         return m_doc->identifier(section - 2);
     }
     if (role == Qt::SizeHintRole)
-      return QSize(m_doc->sizeHint(section), 25);
+    {
+      switch (section)
+      {
+        case 0: return QSize(m_doc->sizeHint(-1), 25);
+        case 1: return QSize(25, 25);
+        default: return QSize(m_doc->sizeHint(section - KV_EXTRA_COLS), 25);
+      }
+    }
     return QVariant();
   }
   else
@@ -195,7 +255,14 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
         m_doc->setIdentifier(section - 2, value.toString());
     }
     if (role == Qt::SizeHintRole)
-      m_doc->setSizeHint(section, qvariant_cast<QSize>(value).width());
+    {
+      switch (section)
+      {
+        case 0: m_doc->setSizeHint(-1, qvariant_cast<QSize>(value).width());;
+        case 1: //
+        default: m_doc->setSizeHint(section - KV_EXTRA_COLS, qvariant_cast<QSize>(value).width());
+      }
+    }
 
     emit headerDataChanged(orientation, section, section);
     m_doc->setModified(true);
