@@ -14,6 +14,7 @@
 #include "kdebug.h"
 #include <kglobalsettings.h>
 #include <klocale.h>
+#include <kiconloader.h>
 
 #include "kvttabledelegate.h"
 #include "kvttablemodel.h"
@@ -176,19 +177,29 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
       painter->restore();
   }
 
-  QFont font = painter->font();
-  painter->setFont(option.font);
-  QRect textRect = rect.adjusted(3, 0, -3, 0); // remove width padding
-  QString str = text;
-  if (str == "@empty@")
-    str = "";
+  if (text == "@inactive@")
+  {
+    painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("no"));
+  }
+  else if (text == "@inquery@")
+  {
+    painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("ok"));
+  }
+  else
+  {
+    QFont font = painter->font();
+    painter->setFont(option.font);
+    QRect textRect = rect.adjusted(3, 0, -3, 0); // remove width padding
+    QString str = text;
+    if (str == "@empty@")
+      str = ""; 
+    if (painter->fontMetrics().width(text) > textRect.width() && !text.contains(QLatin1Char('\n')))
+        str = elidedText(option.fontMetrics, textRect.width(), option.textElideMode, str);
 
-  if (painter->fontMetrics().width(text) > textRect.width() && !text.contains(QLatin1Char('\n')))
-      str = elidedText(option.fontMetrics, textRect.width(), option.textElideMode, str);
-
-  painter->drawText(textRect, option.displayAlignment, str);
-  painter->setFont(font);
-  painter->setPen(pen);
+    painter->drawText(textRect, option.displayAlignment, str);
+    painter->setFont(font);
+    painter->setPen(pen);  
+  }
 }
 
 void KVTTableDelegate::drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const

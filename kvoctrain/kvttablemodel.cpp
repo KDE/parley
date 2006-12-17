@@ -23,8 +23,8 @@
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
   m_doc = 0;
-  m_pixInQuery = QPixmap(KGlobal::iconLoader()->loadIcon("ok", K3Icon::Small));
-  m_pixInactive = QPixmap(KGlobal::iconLoader()->loadIcon("no", K3Icon::Small));
+  //m_pixInQuery = SmallIcon("ok"); //QPixmap(KGlobal::iconLoader()->loadIcon("ok", K3Icon::Small));
+  //m_pixInactive = SmallIcon("no"); //QPixmap(KGlobal::iconLoader()->loadIcon("no", K3Icon::Small));
 }
 
 /*!
@@ -119,7 +119,10 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
       else if (index.column() == 1)
       {
-
+        if (!m_doc->entry(index.row())->isActive())
+          return "@inactive@";
+        if (m_doc->entry(index.row())->isInQuery())
+          return "@inquery@";
       }
       else if (index.column() == 2)
         result = m_doc->entry(index.row())->original();
@@ -133,17 +136,17 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
       break;
     }
 
-    case Qt::DecorationRole: {
+     /*case Qt::DecorationRole: {
       if (index.column() == 1)
       {
-        if (!m_doc->entry(index.row())->isActive())
+       if (!m_doc->entry(index.row())->isActive())
           return m_pixInactive;
         if (m_doc->entry(index.row())->isInQuery())
           return m_pixInQuery;
       }
       return QVariant();
       break;
-    }
+    }*/
 
     default:
       break;
