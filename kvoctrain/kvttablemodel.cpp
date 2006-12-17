@@ -119,7 +119,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
       else if (index.column() == 1)
       {
-        kDebug() << m_doc->entry(index.row())->isInQuery() << endl;
         if (m_doc->entry(index.row())->isActive())
         {
           if (m_doc->entry(index.row())->isInQuery())
@@ -137,7 +136,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
       if (result.toString().isEmpty())
         result = "@empty@";
-      //kDebug() << result.toString() << endl;
       return result;
       break;
     }
