@@ -37,10 +37,10 @@ void KVocTrainApp::saveOptions()
 {
   fileOpenRecent->saveEntries(KGlobal::config(), "Recent Files");
 
-  if (view)
+  if (m_tableView)
   {
-    Prefs::setCurrentRow(view->getTable()->currentRow());
-    Prefs::setCurrentCol(view->getTable()->currentColumn());
+    Prefs::setCurrentRow(m_tableView->currentIndex().row());
+    Prefs::setCurrentCol(m_tableView->currentIndex().column());
   }
   saveLanguages();
   Prefs::writeConfig();

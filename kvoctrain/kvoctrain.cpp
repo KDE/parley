@@ -71,18 +71,13 @@ KVocTrainApp::~KVocTrainApp()
 
 void KVocTrainApp::slotCancelSelection ()
 {
-  view->getTable()->clearSelection();
+  m_tableView->clearSelection();
 }
 
 
 void KVocTrainApp::slotSelectAll ()
 {
-  Q3TableSelection ts;
-  KVocTrainTable *table = view->getTable();
-  table->clearSelection();
-  ts.init(0,0);
-  ts.expandTo(table->numRows()-1, table->numCols()-1);
-  table->addSelection(ts);
+  m_tableView->selectAll();
 }
 
 
@@ -808,17 +803,17 @@ void KVocTrainApp::keyPressEvent( QKeyEvent *e )
     break;
 
     case Qt::Key_Tab:
-      if (view->getTable()->hasFocus() )  {
+      if (m_tableView->hasFocus() )  {
         searchLine->setFocus();
         searchLine->selectAll();
       }
       else
-        view->getTable()->setFocus();
+        m_tableView->setFocus();
     break;
 
     case Qt::Key_Backtab:
       if (searchLine->hasFocus() )
-        view->getTable()->setFocus();
+        m_tableView->setFocus();
       else {
         searchLine->setFocus();
         searchLine->selectAll();
@@ -855,8 +850,8 @@ void KVocTrainApp::slotCreateLesson(int header)
 {
   QList<int> sel;
   m_doc->setModified();
-  for (int i = 0; i < view->getTable()->count(); i++) {
-    KEduVocExpression *kv = view->getTable()->getRow(i);
+  for (int i = 0; i < m_tableModel->rowCount(QModelIndex()); i++) {
+    KEduVocExpression *kv = m_doc->entry(i);
     kv->setLesson(0);
     if (kv->grade(header) > THRESH_LESSON && !kv->translation(header).isEmpty() )
       sel.push_back(i);
@@ -865,7 +860,7 @@ void KVocTrainApp::slotCreateLesson(int header)
   int cnt = 0;
   while (cnt < MAX_LESSON && sel.size() != 0) {
     int nr = random.getLong(sel.size());
-    KEduVocExpression *kv = view->getTable()->getRow(sel[nr]);
+    KEduVocExpression *kv = m_doc->entry(sel[nr]);
     // include non-lesson and non-empty string
     if (kv->lesson() == 0) {
       kv->setLesson(1);
@@ -873,7 +868,7 @@ void KVocTrainApp::slotCreateLesson(int header)
       cnt++;
     }
   }
-  view->getTable()->updateContents();
+  m_tableModel->reset();
 }
 
 
@@ -979,8 +974,8 @@ void KVocTrainApp::slotApplyPreferences()
 {
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
-  view->getTable()->setFont(Prefs::tableFont());
-  view->getTable()->updateContents();
+  m_tableView->setFont(Prefs::tableFont());
+  m_tableView->reset();
 
   readLanguages();
   // update header buttons

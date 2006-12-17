@@ -126,7 +126,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
           if (m_doc->entry(index.row())->isInQuery())
             return "@inquery@";
           else
-            return QVariant();
+            return "@empty@";
         }
         else
           return "@inactive@";
