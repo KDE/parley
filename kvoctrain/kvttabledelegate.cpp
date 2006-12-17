@@ -70,11 +70,8 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
   switch (index.column()) {
     case 0:
     {
-      QStringList sl = index.model()->data(index, KVTTableModel::LessonsRole).toStringList();
       QComboBox *lessonbox = static_cast<QComboBox*>(editor);
-      lessonbox->addItem(i18n("<no lesson>"));
-      for (unsigned i = 0; i < (unsigned) sl.count(); ++i)
-        lessonbox->addItem (sl[i]);
+      lessonbox->addItems(index.model()->data(index, KVTTableModel::LessonsRole).toStringList());
       lessonbox->setCurrentIndex(index.model()->data(index, KVTTableModel::LessonRole).toInt());
     }
     break;

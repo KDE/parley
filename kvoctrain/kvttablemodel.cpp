@@ -66,7 +66,9 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
   switch (role)
   {
     case KVTTableModel::LessonsRole: {
-      return QVariant(m_doc->lessonDescriptions());
+      QStringList sl = m_doc->lessonDescriptions();
+      sl.prepend(m_doc->lessonDescription(0));
+      return QVariant(sl);
       break;
     }
 

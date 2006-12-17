@@ -159,23 +159,23 @@ void KVocTrainApp::slotFileNew()
   slotStatusMsg(i18n("Creating new file..."));
 
   if (queryExit() ) {
-    view->setView (0, langset);
+    //view->setView (0, langset);
     delete m_doc;
     //QString name = "";
     //m_doc = new KEduVocDocument(this);
     initDoc();
     m_tableModel->setDocument(m_doc);
+    loadDocProps();
     /// @todo check if any of the below is still needed
-    /*loadDocProps(m_doc);
-    if (m_doc->numIdentifiers() == 0) {
+    /*if (m_doc->numIdentifiers() == 0) {
       QString l = "en";
       m_doc->appendIdentifier(l);
     }
     view->setView(m_doc, langset);
     view->getTable()->setFont(Prefs::tableFont());
-    view->adjustContent();
+    view->adjustContent();*/
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    m_doc->setModified(false);*/
+    m_doc->setModified(false);
   }
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -209,7 +209,7 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     m_tableModel->setDocument(m_doc);
     m_tableModel->reset();
     removeProgressBar();
-    loadDocProps(m_doc);
+    loadDocProps();
     //view->setView(m_doc, langset);
     //view->getTable()->setFont(Prefs::tableFont());
     //view->adjustContent();
@@ -519,34 +519,31 @@ void KVocTrainApp::slotFileSave()
 }
 
 
-void KVocTrainApp::fillLessonBox(KEduVocDocument *the_doc)
+void KVocTrainApp::fillLessonBox()
 {
   lessons->clear();
-  lessons->addItem (the_doc->lessonDescription(0));
-  QStringList names = the_doc->lessonDescriptions();
-  for (int i = 0; i < (int) names.size(); i++)
-    lessons->addItem (names[i]);
-  act_lesson = the_doc->currentLesson();
+  lessons->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
+  act_lesson = m_doc->currentLesson();
   if (act_lesson > lessons->count() ) {
     act_lesson = 0;
-    the_doc->setCurrentLesson(act_lesson);
+    m_doc->setCurrentLesson(act_lesson);
   }
   lessons->setCurrentIndex (act_lesson);
 }
 
 
-void KVocTrainApp::loadDocProps(KEduVocDocument *the_doc)
+void KVocTrainApp::loadDocProps()
 {
-  fillLessonBox(the_doc);
+  fillLessonBox();
 
   random_expr1.clear();
   random_expr2.clear();
   queryList.clear();
-  the_doc->queryIdentifier(act_query_org, act_query_trans);
+  m_doc->queryIdentifier(act_query_org, act_query_trans);
   if (!act_query_org.isEmpty() && !act_query_trans.isEmpty() ) {
-    for (int i = 0; i < the_doc->numEntries(); i++)
+    for (int i = 0; i < m_doc->numEntries(); i++)
     {
-      KEduVocExpression *entry = the_doc->entry(i);
+      KEduVocExpression *entry = m_doc->entry(i);
       if (entry->isInQuery())
       {
          int less = entry->lesson();

@@ -197,7 +197,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
    if (tabsel.size() == 1)
      hasSel = (tabsel[0].bottomRow() - tabsel[0].topRow()) > 0;
 
-   fillLessonBox(m_doc);
+   fillLessonBox();
    if (!hasSel) {
      KEduVocExpression *expr = m_doc->entry(row);
      if (col >= KV_COL_ORG) {
