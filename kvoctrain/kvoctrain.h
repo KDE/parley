@@ -225,8 +225,8 @@ public:
 public:
   void removeProgressBar();
   void prepareProgressBar();
-  void fillLessonBox(KEduVocDocument *);
-  void loadDocProps(KEduVocDocument *);
+  void fillLessonBox();
+  void loadDocProps();
   void saveDocProps(KEduVocDocument *);
   QList<int> getCsvOrder(KEduVocDocument *);
 

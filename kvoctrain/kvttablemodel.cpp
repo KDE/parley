@@ -66,7 +66,9 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
   switch (role)
   {
     case KVTTableModel::LessonsRole: {
-      return QVariant(m_doc->lessonDescriptions());
+      QStringList sl = m_doc->lessonDescriptions();
+      sl.prepend(m_doc->lessonDescription(0));
+      return QVariant(sl);
       break;
     }
 
@@ -119,10 +121,15 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
       else if (index.column() == 1)
       {
-        if (!m_doc->entry(index.row())->isActive())
+        if (m_doc->entry(index.row())->isActive())
+        {
+          if (m_doc->entry(index.row())->isInQuery())
+            return "@inquery@";
+          else
+            return QVariant();
+        }
+        else
           return "@inactive@";
-        if (m_doc->entry(index.row())->isInQuery())
-          return "@inquery@";
       }
       else if (index.column() == 2)
         result = m_doc->entry(index.row())->original();
@@ -131,7 +138,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
       if (result.toString().isEmpty())
         result = "@empty@";
-      //kDebug() << result.toString() << endl;
       return result;
       break;
     }
