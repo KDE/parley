@@ -48,15 +48,15 @@ void KVocTrainApp::saveOptions()
 
 void KVocTrainApp::saveLanguages()
 {
-  Prefs::setNumLangSet(langset.size());
-  for (int i = 0 ; i < (int) langset.size(); i++)
+  Prefs::setNumLangSet(m_languages.size());
+  for (int i = 0 ; i < (int) m_languages.size(); i++)
   {
     LanguageSettings languageSettings(QString::number(i));
-    languageSettings.setShortId(langset.shortId(i));
-    languageSettings.setShort2Id(langset.shortId2(i));
-    languageSettings.setLongId(langset.longId(i));
-    languageSettings.setPixmapFile(langset.PixMapFile(i));
-    languageSettings.setKeyboardLayout(langset.keyboardLayout(i));
+    languageSettings.setShortId(m_languages.shortId(i));
+    languageSettings.setShort2Id(m_languages.shortId2(i));
+    languageSettings.setLongId(m_languages.longId(i));
+    languageSettings.setPixmapFile(m_languages.PixMapFile(i));
+    languageSettings.setKeyboardLayout(m_languages.keyboardLayout(i));
     languageSettings.writeConfig();
   }
 }
@@ -69,7 +69,7 @@ void KVocTrainApp::readOptions()
 
 void KVocTrainApp::readLanguages()
 {
-  langset.clear();
+  m_languages.clear();
   int ls = Prefs::numLangSet();
   for (int i = 0 ; i < ls; i++)
   {
@@ -88,8 +88,7 @@ void KVocTrainApp::readLanguages()
       longId.insert (0, "ident");
     }
 
-    langset.addSet (shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),
-      languageSettings.keyboardLayout());
+    m_languages.addSet(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
   }
 }
 void KVocTrainApp::saveProperties(KConfig *config )

@@ -342,7 +342,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     lesson,
                     lessons,
                     m_doc->originalIdentifier(),
-                    langset,
+                    m_languages,
                     QString(),
                     m_doc->entry(row)->type(col),
                     QString(),
@@ -394,7 +394,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     lesson,
                     lessons,
                     lang,
-                    langset,
+                    m_languages,
                     m_doc->entry(row)->remark(col),
                     m_doc->entry(row)->type(col),
                     m_doc->entry(row)->pronunciation(col),
@@ -501,7 +501,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        lesson,
                        lessons,
                        m_doc->originalIdentifier(),
-                       langset,
+                       m_languages,
                        QString(),
                        m_doc->entry(row)->type(0),
                        QString(),
@@ -550,7 +550,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        lesson,
                        lessons,
                        lang,
-                       langset,
+                       m_languages,
                        m_doc->entry(row)->remark(col),
                        m_doc->entry(row)->type(col),
                        m_doc->entry(row)->pronunciation(col),
@@ -662,7 +662,7 @@ void KVocTrainApp::slotDocProps ()
 
 void KVocTrainApp::slotDocPropsLang ()
 {
-   DocPropsLangDlg ldlg (m_doc, &langset);
+   DocPropsLangDlg ldlg (m_doc, &m_languages);
    int res = ldlg.exec();
 
    if (res == QDialog::Accepted) {
@@ -874,7 +874,7 @@ void KVocTrainApp::slotCreateLesson(int header)
 
 void KVocTrainApp::slotShowStatist()
 {
-   StatistikDlg sdlg (langset, m_doc);
+   StatistikDlg sdlg (m_languages, m_doc);
    sdlg.exec();
 }
 
@@ -890,7 +890,7 @@ void KVocTrainApp::slotCleanVocabulary ()
    slotStatusMsg(IDS_DEFAULT);
 
    if (num != 0) {
-     view->setView(m_doc, langset);
+     view->setView(m_doc, m_languages);
      QString s =
         i18np("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
@@ -962,7 +962,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-  KVocTrainPrefs* dialog = new KVocTrainPrefs(langset, m_doc, lessons, &querymanager, this, "settings",  Prefs::self() );
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_doc, lessons, &querymanager, this, "settings",  Prefs::self() );
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
@@ -982,13 +982,13 @@ void KVocTrainApp::slotApplyPreferences()
   for (int i = 0; i < (int) m_doc->numIdentifiers(); i++)
   {
     QString sid = i>0 ? m_doc->identifier(i): m_doc->originalIdentifier();
-    int idx = langset.indexShortId(sid);
+    int idx = m_languages.indexShortId(sid);
     QString pm = "";
     QString lid = sid;
     if (idx >= 0)
     {
-      lid = langset.longId(idx);
-      pm = langset.PixMapFile(idx);
+      lid = m_languages.longId(idx);
+      pm = m_languages.PixMapFile(idx);
     }
     view->setHeaderProp(i + KV_EXTRA_COLS, lid, pm);
   }
@@ -1013,7 +1013,7 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
      return;
    }
 
-   if (lang_id >= (int) langset.size())
+   if (lang_id >= (int) m_languages.size())
      return;
    m_doc->appendIdentifier("");
    int num = m_doc->numEntries()-1;
@@ -1022,8 +1022,8 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
       expr->setType (num, expr->type(0));
    }
 
-   m_doc->setIdentifier(m_doc->numIdentifiers()-1, langset.shortId(lang_id));
-   view->setView(m_doc, langset);
+   m_doc->setIdentifier(m_doc->numIdentifiers()-1, m_languages.shortId(lang_id));
+   view->setView(m_doc, m_languages);
    m_doc->setModified();
 }
 
@@ -1092,19 +1092,19 @@ void KVocTrainApp::aboutToShowLearn()
   learn_menu->clear();
 
   QList<QString> set_names;
-  for (int i = 0; i < (int) langset.size(); i++) {
-    if(langset.longId(i).isEmpty() )
-      set_names.push_back(langset.shortId(i));
+  for (int i = 0; i < (int) m_languages.size(); i++) {
+    if(m_languages.longId(i).isEmpty() )
+      set_names.push_back(m_languages.shortId(i));
     else
-      set_names.push_back(langset.longId(i));
+      set_names.push_back(m_languages.longId(i));
   }
 
   QList<QString> main_names;
   for (int j = 0; j < (int) m_doc->numIdentifiers(); j++) {
    int i;
    QString did = j == 0 ? m_doc->originalIdentifier() : m_doc->identifier(j);
-   if ((i = langset.indexShortId(did)) >= 0)
-     main_names.push_back(langset.longId(i));
+   if ((i = m_languages.indexShortId(did)) >= 0)
+     main_names.push_back(m_languages.longId(i));
    else
      main_names.push_back(did);
   }
@@ -1137,10 +1137,10 @@ void KVocTrainApp::aboutToShowLearn()
       for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
         // show pixmap and long name if available
         int j;
-        if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
-           && !langset.PixMapFile(j).isEmpty()
-           && !langset.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
+        if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
+           && !m_languages.PixMapFile(j).isEmpty()
+           && !m_languages.longId(j).isEmpty() ) {
+          query_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1155,10 +1155,10 @@ void KVocTrainApp::aboutToShowLearn()
       for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
         // show pixmap and long name if available
         int j;
-        if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
-           && !langset.PixMapFile(j).isEmpty()
-           && !langset.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", main_names[i]),
+        if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
+           && !m_languages.PixMapFile(j).isEmpty()
+           && !m_languages.longId(j).isEmpty() ) {
+          multiple_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1185,10 +1185,10 @@ void KVocTrainApp::aboutToShowLearn()
     connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
-    if((j = langset.indexShortId(id)) >= 0
-       && !langset.PixMapFile(j).isEmpty()
-       && !langset.longId(j).isEmpty() ) {
-      learn_menu->insertItem(QPixmap(langset.PixMapFile(j)), main_names[header], header_m, IDH_NULL);
+    if((j = m_languages.indexShortId(id)) >= 0
+       && !m_languages.PixMapFile(j).isEmpty()
+       && !m_languages.longId(j).isEmpty() ) {
+      learn_menu->insertItem(QPixmap(m_languages.PixMapFile(j)), main_names[header], header_m, IDH_NULL);
     }
     else {
       learn_menu->insertItem(id, header_m, IDH_NULL);
@@ -1212,18 +1212,18 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
     QMenu * add_m = vocabAppendLanguage->menu();
 
     QStringList names;
-    for (int i = 0; i < (int) langset.size(); i++)
+    for (int i = 0; i < (int) m_languages.size(); i++)
     {
-      if(langset.longId(i).isEmpty() )
-        names.append(langset.shortId(i));
+      if(m_languages.longId(i).isEmpty() )
+        names.append(m_languages.shortId(i));
       else
-        names.append(langset.longId(i));
+        names.append(m_languages.longId(i));
     }
 
-    for (int i = 0; i < (int) langset.size(); i++)
+    for (int i = 0; i < (int) m_languages.size(); i++)
     {
-      if(!langset.PixMapFile(i).isEmpty() && !langset.longId(i).isEmpty())
-        add_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i], (i << 16) | IDH_APPEND);
+      if(!m_languages.PixMapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+        add_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i], (i << 16) | IDH_APPEND);
       else
         add_m->insertItem(names[i], (i << 16) | IDH_APPEND);
     }
@@ -1241,12 +1241,12 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
     QMenu * set_m = vocabSetLanguage->menu();
 
     QStringList names;
-    for (int i = 0; i < (int) langset.size(); i++)
+    for (int i = 0; i < (int) m_languages.size(); i++)
     {
-      if(langset.longId(i).isEmpty() )
-        names.append(langset.shortId(i));
+      if(m_languages.longId(i).isEmpty() )
+        names.append(m_languages.shortId(i));
       else
-        names.append(langset.longId(i));
+        names.append(m_languages.longId(i));
     }
 
     for (int header = 0; header < m_doc->numIdentifiers(); ++header )
@@ -1255,9 +1255,9 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
       QMenu *langs_m = new QMenu();
         // hack: ID => header-id + language
 
-      for (int i = 0; i < (int) langset.size(); i++) {
-        if(!langset.PixMapFile(i).isEmpty() && !langset.longId(i).isEmpty())
-          langs_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+      for (int i = 0; i < (int) m_languages.size(); i++) {
+        if(!m_languages.PixMapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+          langs_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
         else
           langs_m->insertItem(names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
       }
@@ -1289,8 +1289,8 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
     for (int j = 1; j < (int) m_doc->numIdentifiers(); j++)
     {
       int i;
-      if ((i = langset.indexShortId(m_doc->identifier(j))) >= 0)
-        names.append(langset.longId(i));
+      if ((i = m_languages.indexShortId(m_doc->identifier(j))) >= 0)
+        names.append(m_languages.longId(i));
       else
         names.append(m_doc->identifier(j));
     }
@@ -1299,10 +1299,10 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
     {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
-          && !langset.PixMapFile(j).isEmpty()
-          && !langset.longId(j).isEmpty() )
-        remove_m->insertItem(QPixmap(langset.PixMapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
+      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
+          && !m_languages.PixMapFile(j).isEmpty()
+          && !m_languages.longId(j).isEmpty() )
+        remove_m->insertItem(QPixmap(m_languages.PixMapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
       else
         remove_m->insertItem(m_doc->identifier(i), (i << 16) | IDH_REMOVE);
     }

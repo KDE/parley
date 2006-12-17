@@ -357,6 +357,6 @@ void KVocTrainApp::initView()
   m_doc->setModified(false);
 
   /// @todo get rid of this old view
-  view = new kvoctrainView(m_doc, langset, this);
+  view = new kvoctrainView(m_doc, m_languages, this);
   view->hide();
 }
