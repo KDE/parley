@@ -174,17 +174,57 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
       else if (section == 1)
         return "";
       else if (section == 2)
-        return m_doc->originalIdentifier();
+      {
+        int id = m_languages.indexShortId(m_doc->originalIdentifier());
+
+        if (id < 0)
+          return m_doc->originalIdentifier();
+        else
+          return m_languages.longId(id);
+      }
       else
-        return m_doc->identifier(section - 2);
+      {
+        int id = m_languages.indexShortId(m_doc->identifier(section - 2));
+
+        if (id < 0)
+          return m_doc->identifier(section - 2);
+        else
+          return m_languages.longId(id);
+      }
+    }
+    if (role == Qt::DecorationRole)
+    {
+      switch (section)
+      {
+        case 0: return QVariant(); break;
+        case 1: return QVariant(); break;
+        case 2: {
+          int id = m_languages.indexShortId(m_doc->originalIdentifier());
+
+          if (id < 0)
+            return QVariant();
+          else
+            return QPixmap(m_languages.PixMapFile(id));
+          break;
+        }
+        default: {
+          int id = m_languages.indexShortId(m_doc->identifier(section - 2));
+
+          if (id < 0)
+            return QVariant();
+          else
+            return QPixmap(m_languages.PixMapFile(id));
+          break;
+        }
+      }
     }
     if (role == Qt::SizeHintRole)
     {
       switch (section)
       {
-        case 0: return QSize(m_doc->sizeHint(-1), 25);
-        case 1: return QSize(25, 25);
-        default: return QSize(m_doc->sizeHint(section - KV_EXTRA_COLS), 25);
+        case 0: return QSize(m_doc->sizeHint(-1), 25); break;
+        case 1: return QSize(25, 25); break;
+        default: return QSize(m_doc->sizeHint(section - KV_EXTRA_COLS), 25); break;
       }
     }
     return QVariant();
@@ -278,6 +318,11 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
     return true;
   }
   return false;
+}
+
+void KVTTableModel::setLanguages(const LangSet & languages)
+{
+  m_languages = languages;
 }
 
 #include "kvttablemodel.moc"

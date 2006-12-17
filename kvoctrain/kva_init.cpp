@@ -82,7 +82,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
   initDoc();
   initView();
 
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
   querying = false;
   btimer = new QTimer( this );
@@ -323,7 +323,7 @@ void KVocTrainApp::initDoc()
 void KVocTrainApp::initModel()
 {
   m_tableModel = new KVTTableModel(this);
-  //m_tableModel->setDocument(m_doc);
+  m_tableModel->setLanguages(m_languages);
 }
 
 void KVocTrainApp::initView()
