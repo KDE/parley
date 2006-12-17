@@ -119,10 +119,16 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
       else if (index.column() == 1)
       {
-        if (!m_doc->entry(index.row())->isActive())
+        kDebug() << m_doc->entry(index.row())->isInQuery() << endl;
+        if (m_doc->entry(index.row())->isActive())
+        {
+          if (m_doc->entry(index.row())->isInQuery())
+            return "@inquery@";
+          else
+            return QVariant();
+        }
+        else
           return "@inactive@";
-        if (m_doc->entry(index.row())->isInQuery())
-          return "@inquery@";
       }
       else if (index.column() == 2)
         result = m_doc->entry(index.row())->original();
