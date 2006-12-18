@@ -66,24 +66,24 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   QString curr_lang;
   QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
 
-  if (langset.indexShortId(id) >= 0)
-    curr_lang = langset.longId(langset.indexShortId(id));
+  if (m_languages.indexShortId(id) >= 0)
+    curr_lang = m_languages.longId(m_languages.indexShortId(id));
 
   // select one of the available languages for the column
   QMenu *langs_m = new QMenu();
   // hack: ID => header-id + language
 
-  for (int i = 0; i < (int) langset.size(); i++) {
-    if(langset.longId(i).isEmpty() )
-      names.push_back(langset.shortId(i));
+  for (int i = 0; i < (int) m_languages.size(); i++) {
+    if(m_languages.longId(i).isEmpty() )
+      names.push_back(m_languages.shortId(i));
     else
-      names.push_back(langset.longId(i));
+      names.push_back(m_languages.longId(i));
   }
 
-  for (int i = 0; i < (int) langset.size(); i++) {
-    if(   !langset.PixMapFile(i).isEmpty()
-       && !langset.longId(i).isEmpty() )
-      langs_m->insertItem(QPixmap(langset.PixMapFile(i)), names[i],
+  for (int i = 0; i < (int) m_languages.size(); i++) {
+    if(   !m_languages.PixMapFile(i).isEmpty()
+       && !m_languages.longId(i).isEmpty() )
+      langs_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i],
         (header << 16) | (i << (16+8)) | IDH_SET_LANG);
     else
       langs_m->insertItem(names[i],
@@ -122,8 +122,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     names.clear();
     for (int j = 1; j < (int) m_doc->numIdentifiers(); j++) {
      int i;
-     if ((i = langset.indexShortId(m_doc->identifier(j))) >= 0)
-       names.push_back(langset.longId(i));
+     if ((i = m_languages.indexShortId(m_doc->identifier(j))) >= 0)
+       names.push_back(m_languages.longId(i));
      else
        names.push_back(m_doc->identifier(j));
     }
@@ -131,10 +131,10 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
-         && !langset.PixMapFile(j).isEmpty()
-         && !langset.longId(j).isEmpty() ) {
-        query_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
+      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
+         && !m_languages.PixMapFile(j).isEmpty()
+         && !m_languages.longId(j).isEmpty() ) {
+        query_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
       }
       else {
@@ -147,10 +147,10 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
       // show pixmap and long name if available
       int j;
-      if((j = langset.indexShortId(m_doc->identifier(i))) >= 0
-         && !langset.PixMapFile(j).isEmpty()
-         && !langset.longId(j).isEmpty() ) {
-        multiple_m->insertItem(QPixmap(langset.PixMapFile(j)), i18n("From %1", names[i-1]),
+      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
+         && !m_languages.PixMapFile(j).isEmpty()
+         && !m_languages.longId(j).isEmpty() ) {
+        multiple_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
       }
       else {
@@ -187,16 +187,16 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
   int id = header_and_id >> (16+8);            // language ident
 //int cmd  = header_and_id & 0xFFFF;           // always SET_LANG
 
-  if (id >= (int) langset.size())
+  if (id >= (int) m_languages.size())
     return; // ???
 
-  QString lid = langset.shortId(id);
-  if  (!langset.longId(id).isEmpty() )
-    lid = langset.longId(id);
+  QString lid = m_languages.shortId(id);
+  if  (!m_languages.longId(id).isEmpty() )
+    lid = m_languages.longId(id);
 
   QString pm = "";
-  if (!langset.PixMapFile(id).isEmpty() )
-    pm = langset.PixMapFile(id);
+  if (!m_languages.PixMapFile(id).isEmpty() )
+    pm = m_languages.PixMapFile(id);
 
   view->setHeaderProp (header1+KV_EXTRA_COLS, lid, pm);
 
@@ -210,9 +210,9 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
   }
 */
   if (header1 > 0)
-    m_doc->setIdentifier(header1, langset.shortId(id));
+    m_doc->setIdentifier(header1, m_languages.shortId(id));
   else
-    m_doc->setOriginalIdentifier(langset.shortId(id));
+    m_doc->setOriginalIdentifier(m_languages.shortId(id));
 /*
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
@@ -255,9 +255,9 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     break;
 
     case IDH_SET_LANG: {
-      QString from = langset.longId(header2);
+      QString from = m_languages.longId(header2);
       if (from.isEmpty())
-        from = langset.shortId(header2);
+        from = m_languages.shortId(header2);
 
       QString msg;
       if (header1 == 0) {
@@ -277,8 +277,8 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
         msg = i18n("Appends a new language");
         slotStatusHelpMsg(msg);
       }
-      else if (header1 < (int) langset.size() ) {
-        QString from = langset.longId(header1);
+      else if (header1 < (int) m_languages.size() ) {
+        QString from = m_languages.longId(header1);
         msg = i18n("Appends %1 as new language", from);
         slotStatusHelpMsg(msg);
       }
@@ -287,8 +287,8 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
     case IDH_REMOVE: {
       QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
-      if (!langset.findLongId(from).isEmpty())
-        from = langset.findLongId(from);
+      if (!m_languages.findLongId(from).isEmpty())
+        from = m_languages.findLongId(from);
       QString msg = i18n("Removes %1 irrevocably from dictionary", from);
       slotStatusHelpMsg(msg);
     }
@@ -297,12 +297,12 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     case IDH_START_QUERY:
     case IDH_START_MULTIPLE: {
       QString to = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
-      if (!langset.findLongId(to).isEmpty())
-        to = langset.findLongId(to);
+      if (!m_languages.findLongId(to).isEmpty())
+        to = m_languages.findLongId(to);
 
       QString from = header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier();
-      if (!langset.findLongId(from).isEmpty())
-        from = langset.findLongId(from);
+      if (!m_languages.findLongId(from).isEmpty())
+        from = m_languages.findLongId(from);
 
       QString msg;
       QString format;
@@ -366,8 +366,8 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
     case IDH_RESET_GRADE: {
       QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
-      if (!langset.findLongId(from).isEmpty())
-        from = langset.findLongId(from);
+      if (!m_languages.findLongId(from).isEmpty())
+        from = m_languages.findLongId(from);
       QString msg = i18n("Resets all properties for %1", from);
       slotStatusHelpMsg(msg);
     }
@@ -426,19 +426,18 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       QString name;
 
       name = m_doc->identifier(header1);
-      int i= langset.indexShortId(name);
+      int i= m_languages.indexShortId(name);
       if ( i >= 0
-          && !langset.longId(i).isEmpty() )
-        name = langset.longId(i);
+          && !m_languages.longId(i).isEmpty() )
+        name = m_languages.longId(i);
 
       msg = i18n("You are about to delete a language completely.\n"
                  "Do you really want to delete \"%1\"?", name);
 
-      int exit = KMessageBox::warningContinueCancel(this, msg,
-                                                    "",KStdGuiItem::del());
+      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStdGuiItem::del());
       if(exit==KMessageBox::Continue) {
         m_doc->removeIdentifier(header1);
-        view->setView (m_doc, langset);
+        view->setView (m_doc, m_languages);
         m_doc->setModified();
       }
     }
@@ -523,10 +522,10 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
       if (act_lesson == 0) {
         name = m_doc->identifier(header1);
-        int i = langset.indexShortId(m_doc->identifier(header1));
+        int i = m_languages.indexShortId(m_doc->identifier(header1));
         if (i >= 0
-            && !langset.longId(i).isEmpty() )
-          name = langset.longId(i);
+            && !m_languages.longId(i).isEmpty() )
+          name = m_languages.longId(i);
 
         msg = i18n("You are about to reset the knowledge data of a "
                    "whole language.\n\nDo you really want to reset \"%1\"?",
@@ -538,8 +537,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
                    "lesson.\n\nDo you really want to reset \"%1\"?", name);
       }
 
-      int exit = KMessageBox::warningContinueCancel(this, msg,
-                                                     "", KGuiItem(i18n("Reset")));
+      int exit = KMessageBox::warningContinueCancel(this, msg, "", KGuiItem(i18n("Reset")));
       if(exit==KMessageBox::Continue) {
         m_doc->resetEntry (header1, act_lesson);
         m_doc->setModified();

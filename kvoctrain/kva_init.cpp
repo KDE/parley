@@ -82,16 +82,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
   initDoc();
   initView();
 
-  int cc = Prefs::currentCol();
-  int cr = Prefs::currentRow();
-  if (cc <= KV_COL_LESS)
-    cc = KV_COL_LESS+1;
-
-  view->getTable()->updateContents(cr, cc);
-  view->getTable()->clearSelection();
-  view->getTable()->selectRow(cr);
-
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
   querying = false;
   btimer = new QTimer( this );
@@ -332,7 +323,7 @@ void KVocTrainApp::initDoc()
 void KVocTrainApp::initModel()
 {
   m_tableModel = new KVTTableModel(this);
-  //m_tableModel->setDocument(m_doc);
+  m_tableModel->setLanguages(m_languages);
 }
 
 void KVocTrainApp::initView()
@@ -346,17 +337,26 @@ void KVocTrainApp::initView()
   m_tableView->setFrameStyle(QFrame::NoFrame);
   m_topLayout->addWidget(m_tableView);
 
+  m_tableView->setTabKeyNavigation(false); /// @todo check if this is really working
   m_tableView->setModel(m_tableModel);
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+
+  int cc = Prefs::currentCol();
+  int cr = Prefs::currentRow();
+  if (cc <= KV_COL_LESS)
+    cc = KV_COL_ORG;
+
+  m_tableView->setCurrentIndex(m_tableModel->index(cr, cc));
+
   setCaption(m_doc->URL().fileName(), false);
   //connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
   m_doc->setModified(false);
 
   /// @todo get rid of this old view
-  view = new kvoctrainView(m_doc, langset, this);
+  view = new kvoctrainView(m_doc, m_languages, this);
   view->hide();
 }

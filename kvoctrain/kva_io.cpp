@@ -483,7 +483,7 @@ void KVocTrainApp::slotFileMerge()
     fileOpenRecent->addUrl(url); // addRecentFile (url.path());
   }
 
-  view->setView(m_doc, langset);
+  view->setView(m_doc, m_languages);
   view->getTable()->setFont(Prefs::tableFont());
   view->adjustContent();
   QApplication::restoreOverrideCursor();

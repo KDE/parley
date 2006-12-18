@@ -16,12 +16,11 @@
 #include <QPixmap>
 
 #include <keduvocdocument.h>
+#include <langset.h>
 
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */
-
-
 
 class KVTTableModel : public QAbstractTableModel
 {
@@ -40,6 +39,8 @@ public:
   void setDocument(KEduVocDocument * doc);
   KEduVocDocument * document() {return m_doc;}
 
+  void setLanguages(const LangSet & languages);
+
   int rowCount(const QModelIndex &parent) const;
   int columnCount(const QModelIndex &parent) const;
 
@@ -54,6 +55,7 @@ private:
   KEduVocDocument * m_doc;
   QPixmap m_pixInactive;
   QPixmap m_pixInQuery;
+  LangSet m_languages;
 
   friend class KVocTrainApp;
 };

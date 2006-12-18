@@ -308,7 +308,7 @@ private:
   int              act_query_col;
   QString          act_query_trans;
   QString          act_query_org;
-  LangSet          langset;
+  LangSet          m_languages;
   int              searchpos;
   QString          searchstr;
   KLineEdit       *searchLine;
