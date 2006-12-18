@@ -33,7 +33,7 @@
 #include <krecentfilesaction.h>
 #include <kselectaction.h>
 #include <kstatusbar.h>
-#include <kstdaction.h>
+#include <kstandardaction.h>
 #include <kmenu.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
@@ -94,12 +94,12 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
 
 void KVocTrainApp::initActions()
 {
-  fileNew = KStdAction::openNew(this, SLOT(slotFileNew()), actionCollection());
+  fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
   fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
   fileNew->setToolTip(fileNew->whatsThis());
   fileNew->setStatusTip(fileNew->whatsThis());
 
-  fileOpen = KStdAction::open(this, SLOT(slotFileOpen()), actionCollection());
+  fileOpen = KStandardAction::open(this, SLOT(slotFileOpen()), actionCollection());
   fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
   fileOpen->setToolTip(fileOpen->whatsThis());
   fileOpen->setStatusTip(fileOpen->whatsThis());
@@ -117,7 +117,7 @@ void KVocTrainApp::initActions()
   fileGHNS->setToolTip(fileGHNS->whatsThis());
   fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
-  fileOpenRecent = KStdAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+  fileOpenRecent = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
   fileMerge = new KAction(i18n("&Merge..."), actionCollection(), "file_merge");
   connect(fileMerge, SIGNAL(triggered(bool)), SLOT(slotFileMerge()));
@@ -125,47 +125,47 @@ void KVocTrainApp::initActions()
   fileMerge->setToolTip(fileOpen->whatsThis());
   fileMerge->setStatusTip(fileOpen->whatsThis());
 
-  fileSave = KStdAction::save(this, SLOT(slotFileSave()), actionCollection());
+  fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
   fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
   fileSave->setToolTip(fileSave->whatsThis());
   fileSave->setStatusTip(fileSave->whatsThis());
 
-  fileSaveAs = KStdAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+  fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
   fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
   fileSaveAs->setToolTip(fileSaveAs->whatsThis());
   fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
-  filePrint = KStdAction::print(this, SLOT(slotFilePrint()), actionCollection());
+  filePrint = KStandardAction::print(this, SLOT(slotFilePrint()), actionCollection());
   filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
   filePrint->setToolTip(filePrint->whatsThis());
   filePrint->setStatusTip(filePrint->whatsThis());
 
-  fileQuit = KStdAction::quit(this, SLOT(slotFileQuit()), actionCollection());
+  fileQuit = KStandardAction::quit(this, SLOT(slotFileQuit()), actionCollection());
   fileQuit->setWhatsThis(i18n("Quit KVocTrain"));
   fileQuit->setToolTip(fileQuit->whatsThis());
   fileQuit->setStatusTip(fileQuit->whatsThis());
 
-  editCopy = KStdAction::copy(this, SLOT(slotEditCopy()), actionCollection());
+  editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
   editCopy->setWhatsThis(i18n("Copy"));
   editCopy->setToolTip(editCopy->whatsThis());
   editCopy->setStatusTip(editCopy->whatsThis());
 
-  editPaste = KStdAction::paste(this, SLOT(slotEditPaste()), actionCollection());
+  editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
   editPaste->setWhatsThis(i18n("Paste"));
   editPaste->setToolTip(editPaste->whatsThis());
   editPaste->setStatusTip(editPaste->whatsThis());
 
-  editSelectAll = KStdAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
+  editSelectAll = KStandardAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
   editSelectAll->setWhatsThis(i18n("Select all rows"));
   editSelectAll->setToolTip(editSelectAll->whatsThis());
   editSelectAll->setStatusTip(editSelectAll->whatsThis());
 
-  editClearSelection = KStdAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
+  editClearSelection = KStandardAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
   editClearSelection->setWhatsThis(i18n("Deselect all rows"));
   editClearSelection->setToolTip(editClearSelection->whatsThis());
   editClearSelection->setStatusTip(editClearSelection->whatsThis());
 
-  editSearchFromClipboard =  KStdAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
+  editSearchFromClipboard =  KStandardAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
   editSearchFromClipboard->setWhatsThis(i18n("Search for the clipboard contents in the vocabulary"));
   editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
   editSearchFromClipboard->setStatusTip(editSearchFromClipboard->whatsThis());
@@ -262,7 +262,7 @@ void KVocTrainApp::initActions()
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   vocabSearch->setStatusTip(vocabSearch->whatsThis());
 
-  configApp = KStdAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
+  configApp = KStandardAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
   configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
   configApp->setStatusTip(configApp->whatsThis());
