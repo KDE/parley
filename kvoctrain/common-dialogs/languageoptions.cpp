@@ -804,7 +804,7 @@ void LanguageOptions::enableLangWidgets()
 
   if (enabled )
   {
-    QDBusInterface kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
+    QDBusInterface kxbk("org.kde.kxkb", "/kxkb", "org.kde.KXKB");
     QDBusReply<QStringList> reply = kxbk.call( "getLayoutsList" );
     if ( reply.isValid() )
     {
@@ -815,7 +815,7 @@ void LanguageOptions::enableLangWidgets()
     }
     else
     {
-      //kDebug() << "kxkb dcop error" << endl;
+      kDebug() << "kxkb dbus error" << endl;
     }
   }
   else
