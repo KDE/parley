@@ -14,6 +14,8 @@
 
 #include <QTableView>
 
+#include <KPrinter>
+
 #include <kvttablemodel.h>
 #include <kvttabledelegate.h>
 
@@ -27,6 +29,7 @@ public:
   KVTTableView(QWidget *parent = 0);
 
   void setModel(KVTTableModel * model);
+  void print(KPrinter *pPrinter);
 
 protected slots:
   void verticalHeaderResized(int, int, int);
@@ -37,6 +40,9 @@ public slots:
   void slotModelReset();
 
 private:
+  void newPage(QPainter &, int, int, int);
+  void endOfPage(QPainter &, int, int);
+
   KVTTableDelegate * m_delegate;
 };
 

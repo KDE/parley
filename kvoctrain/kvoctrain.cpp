@@ -1324,10 +1324,7 @@ void KVocTrainApp::slotFilePrint()
   KPrinter printer;
   printer.setFullPage(true);
   if (printer.setup(this))
-  {
-    view->print(&printer);
-  }
-
+    m_tableView->print(&printer);
   slotStatusMsg(i18n("Ready"));
 }
 

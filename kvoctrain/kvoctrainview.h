@@ -68,11 +68,6 @@ class kvoctrainView : public QWidget
   void setHeaderProp(int id, const QString &name, const QString &pixfile=QString());
 
   void adjustContent();
-  void print(KPrinter *pPrinter);
-
-private:
-  void newPage(QPainter &, int, int, int);
-  void endOfPage(QPainter &, int, int);
 
 protected:
   KVocTrainTable  * m_table;
