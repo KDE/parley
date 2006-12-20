@@ -11,11 +11,15 @@
 //
 #include <QHeaderView>
 #include <QPainter>
+#include <QResizeEvent>
 
 #include <KInstance>
 
 #include "kvttableview.h"
 #include "prefs.h"
+
+#define HEADER_MINSIZE   25
+#define KV_COLWIDTH_MARK 25
 
 KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
 {
@@ -184,6 +188,83 @@ void KVTTableView::endOfPage(QPainter & painter, int pageNum, int res)
   QRect w = painter.window();
   QRect r = painter.boundingRect(0, 0, 0, 0, Qt::AlignLeft, QString::number(pageNum));
   painter.drawText((w.width()/2) - (r.width()/2), w.height() - res + 20, QString::number(pageNum));
+}
+
+void KVTTableView::resizeEvent(QResizeEvent * event)
+{
+  QWidget::resizeEvent(event);
+
+  if (event == 0)
+    return;
+
+  QHeaderView * header = horizontalHeader();
+  int colCount =  model()->columnCount(QModelIndex());
+  int oldWidth = 0;
+
+  for (int i = 0; i < colCount; ++i)
+    oldWidth += header->sectionSize(i);
+
+  int newWidth = viewport()->width();
+  int remainder = newWidth;
+
+
+  switch (Prefs::headerResizeMode())
+  {
+    case Prefs::EnumHeaderResizeMode::Automatic:
+    {
+      // lesson is only half as wide as a original/translation
+      // exclude fixed size of "mark"-column
+      int x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 1) * 2 - 1);
+      header->resizeSection(KV_COL_LESS, x);
+      remainder -= x;
+      header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
+      remainder -= KV_COLWIDTH_MARK;
+      for (int i = KV_COL_ORG; i < colCount - 1; i++)
+      {
+        remainder -= 2 * x;
+        header->resizeSection(i, 2 * x);
+      }
+      header->resizeSection(colCount - 1, remainder);
+    }
+    break;
+
+    case Prefs::EnumHeaderResizeMode::Percent:
+    {
+      float grow = float(newWidth) / float(oldWidth);
+      header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
+
+      int remainder = newWidth - KV_COLWIDTH_MARK;
+      int x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(KV_COL_LESS) * grow) + 0.5));
+      header->resizeSection(KV_COL_LESS, x);
+      remainder -= x;
+
+      for (int i = KV_COL_ORG; i < colCount - 1; i++)
+      {
+        x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(i) * grow) + 0.5));
+        remainder -= x;
+        header->resizeSection(i, x);
+      }
+      header->resizeSection(colCount - 1, qMax(HEADER_MINSIZE, remainder));
+    }
+    break;
+
+    case Prefs::EnumHeaderResizeMode::Fixed:
+      // nix
+    break;
+  }
+}
+
+void KVTTableView::showEvent(QShowEvent * event)
+{
+  QWidget::showEvent(event);
+  QResizeEvent rsEvent(size(), size());
+  resizeEvent(&rsEvent);
+}
+
+void KVTTableView::adjustContent()
+{
+  QResizeEvent rsEvent(size(), size());
+  resizeEvent(&rsEvent);
 }
 
 #include "kvttableview.moc"

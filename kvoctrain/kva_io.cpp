@@ -172,8 +172,8 @@ void KVocTrainApp::slotFileNew()
       m_doc->appendIdentifier(l);
     }
     view->setView(m_doc, langset);
-    view->getTable()->setFont(Prefs::tableFont());
-    view->adjustContent();*/
+    view->getTable()->setFont(Prefs::tableFont());*/
+    m_tableView->adjustContent();
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
   }
@@ -212,7 +212,7 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     loadDocProps();
     //view->setView(m_doc, langset);
     //view->getTable()->setFont(Prefs::tableFont());
-    //view->adjustContent();
+    m_tableView->adjustContent();
     if (addRecent)
       fileOpenRecent->addUrl(url);
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
@@ -484,8 +484,8 @@ void KVocTrainApp::slotFileMerge()
   }
   ///@todo check if needed
   /*view->setView(m_doc, m_languages);
-  view->getTable()->setFont(Prefs::tableFont());
-  view->adjustContent();*/
+  view->getTable()->setFont(Prefs::tableFont());*/
+  m_tableView->adjustContent();
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }
