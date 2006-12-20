@@ -698,6 +698,7 @@ bool KVocTrainApp::hasSelection()
   if (num > 1) return true;
   Q3TableSelection ts = view->getTable()->selection(0);
   return (ts.bottomRow() - ts.topRow()) > 0;*/
+  return false;
 }
 
 
