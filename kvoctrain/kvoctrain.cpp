@@ -119,7 +119,7 @@ void KVocTrainApp::slotCurrentCellChanged(int row, int col)
 
 void KVocTrainApp::slotEditRow()
 {
-  slotEditEntry (view->getTable()->currentRow(), view->getTable()->currentColumn());
+  slotEditEntry(m_tableView->currentIndex().row(), m_tableView->currentIndex().column());
 }
 
 
@@ -135,11 +135,11 @@ void KVocTrainApp::slotEditCallBack(int res)
       commitEntryDlg(true);
       if (Prefs::smartAppend())
       {
-        int row = view->getTable()->currentRow();
-        if (row == view->getTable()->numRows()-1)
+        int row = m_tableView->currentIndex().row();
+        if (row == m_tableModel->rowCount(QModelIndex()) - 1)
         {
-          int col = view->getTable()->currentColumn();
-          if (col < view->getTable()->numCols()-1 && col >= KV_COL_ORG )
+          int col = m_tableView->currentIndex().column();
+          if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG )
           {
             int lesson = m_doc->entry(row)->lesson();
             if (lesson >= lessons->count())
@@ -149,7 +149,7 @@ void KVocTrainApp::slotEditCallBack(int res)
             QString exp;
             exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
             if (exp.isEmpty())
-              view->getTable()->setCurrentRow(row, col+1);
+              m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1)); /// @todo make sure entire row is selected
           }
           else
             slotAppendRow();
@@ -244,8 +244,9 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
      entryDlg->setModified(false);
      m_doc->setModified(true);
-     view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
-     view->getTable()->updateCell(row, KV_COL_LESS);
+     m_tableModel->reset();
+     //view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+     //view->getTable()->updateCell(row, KV_COL_LESS);
    }
    else {
      col -= KV_EXTRA_COLS;
@@ -295,10 +296,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
      }
      entryDlg->setModified(false);
      m_doc->setModified(true);
-     for (uint ts = 0; ts < tabsel.size(); ++ts)
+     m_tableModel->reset();
+     /*for (uint ts = 0; ts < tabsel.size(); ++ts)
        for (int r = tabsel[ts].topRow(); r <= tabsel[ts].bottomRow(); ++r)
          for (int c = 0; c < view->getTable()->numCols(); ++c)
-           view->getTable()->updateCell(r, c);
+           view->getTable()->updateCell(r, c);*/
 
    }
 }
@@ -311,7 +313,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
      return;
    }
 
-   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
+   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
      return;
 
    QString title, text, lang;
@@ -416,7 +418,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
 
-   view->getTable()->setReadOnly(true);
+   ///@todo port? view->getTable()->setReadOnly(true);
 
    if (col == 0)
      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
@@ -438,7 +440,7 @@ void KVocTrainApp::removeEntryDlg()
     entryDlg = 0;
   }
 
-  view->getTable()->setReadOnly(false);
+  ///@todo port? view->getTable()->setReadOnly(false);
 }
 
 
@@ -465,7 +467,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
      return;
    }
 
-   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
+   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
      return;
 
    QString text, lang, title;
@@ -568,14 +570,16 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        title,
                        m_doc->entry(row)->isActive());
    }
-   view->getTable()->updateCell(row, col);
-   view->getTable()->updateCell(row, KV_COL_LESS);
-   QList<Q3TableSelection> tabsel;
+   m_tableModel->reset();
+   //view->getTable()->updateCell(row, col);
+   //view->getTable()->updateCell(row, KV_COL_LESS);
+   ///@todo port commented section below
+   /*QList<Q3TableSelection> tabsel;
    if (hasSel) {
      for (int i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
    }
-   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
+   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);*/
 }
 
 
@@ -652,7 +656,7 @@ void KVocTrainApp::slotDocProps ()
       querymanager.setLessonItems(new_lessoninquery);
 
       m_doc->setModified();
-      view->getTable()->updateContents();
+      m_tableModel->reset();
       setCaption(m_doc->title(), m_doc->isModified());
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
@@ -672,7 +676,7 @@ void KVocTrainApp::slotDocPropsLang ()
       }
 
       m_doc->setModified();
-      view->getTable()->updateContents();
+      m_tableModel->reset();
       setCaption(m_doc->title(), m_doc->isModified()); 
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -688,11 +692,12 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 
 bool KVocTrainApp::hasSelection()
 {
-  int num = view->getTable()->numSelections();
+  ///@todo port this function
+  /*int num = view->getTable()->numSelections();
   if (num < 1) return false;
   if (num > 1) return true;
   Q3TableSelection ts = view->getTable()->selection(0);
-  return (ts.bottomRow() - ts.topRow()) > 0;
+  return (ts.bottomRow() - ts.topRow()) > 0;*/
 }
 
 
