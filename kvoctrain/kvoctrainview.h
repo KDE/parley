@@ -64,7 +64,6 @@ class kvoctrainView : public QWidget
   /** sets view to another vocabulary */
   void setView(KEduVocDocument *doc, const LangSet &ls);
 
-  KVocTrainTable* getTable() { return m_table; }
   void setHeaderProp(int id, const QString &name, const QString &pixfile=QString());
 
   void adjustContent();

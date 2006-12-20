@@ -22,7 +22,8 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
   setSelectionMode(QAbstractItemView::ContiguousSelection);
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
-  setTabKeyNavigation(true);
+  setTabKeyNavigation(false);
+
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
   m_delegate = new KVTTableDelegate(this);
   setItemDelegate(m_delegate);

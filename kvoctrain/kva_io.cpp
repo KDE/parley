@@ -482,10 +482,10 @@ void KVocTrainApp::slotFileMerge()
     delete (new_doc);
     fileOpenRecent->addUrl(url); // addRecentFile (url.path());
   }
-
-  view->setView(m_doc, m_languages);
+  ///@todo check if needed
+  /*view->setView(m_doc, m_languages);
   view->getTable()->setFont(Prefs::tableFont());
-  view->adjustContent();
+  view->adjustContent();*/
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }

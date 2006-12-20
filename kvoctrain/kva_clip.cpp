@@ -114,15 +114,15 @@ void KVocTrainApp::slotEditCopy()
   QApplication::setOverrideCursor( Qt::WaitCursor );
   QString exp;
   QString s;
-
-  QList<int> csv_order = getCsvOrder(m_doc);
+  ///@todo port
+  /*QList<int> csv_order = getCsvOrder(m_doc);
 
   KVocTrainTable *table = view->getTable();
 
   for (int j = table->numRows()-1; j >= 0; j--) {
     if (table->isRowSelected(j))
     {
-      KEduVocExpression *expr = table->getRow(j);
+      KEduVocExpression *expr = m_doc->entry(j);
       if (expr == 0 ) return;
 
       bool sep =  false;
@@ -144,15 +144,10 @@ void KVocTrainApp::slotEditCopy()
       exp += '\n';
   }
   if (!exp.isEmpty()) {
-#if defined(_WS_X11_)
-//    disconnect(QApplication::clipboard(),SIGNAL(dataChanged()),this,0);
-#endif
     QApplication::clipboard()->setText(exp);
-#if defined(_WS_X11_)
-//    connect(QApplication::clipboard(),SIGNAL(dataChanged()), this,SLOT(clipboardChanged()));
-#endif
-  }
 
+  }
+*/
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -221,7 +216,7 @@ void KVocTrainApp::slotEditPaste()
 
   if (changed) {
     m_doc->setModified();
-    view->getTable()->updateContents(view->getTable()->numRows()-1, KV_COL_ORG);
+    m_tableModel->reset();
   }
 
   QApplication::restoreOverrideCursor();

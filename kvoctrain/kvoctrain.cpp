@@ -704,7 +704,8 @@ bool KVocTrainApp::hasSelection()
 
 void KVocTrainApp::slotRemoveRow()
 {
-  if (!hasSelection()) {
+  ///@todo port
+  /*if (!hasSelection()) {
     if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected entry?\n"),
                   "",KStdGuiItem::del()))
@@ -731,14 +732,15 @@ void KVocTrainApp::slotRemoveRow()
       m_doc->setModified();
       table->updateContents();
     }
-  }
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  }*/
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
 void KVocTrainApp::slotAppendRow ()
 {
-  KEduVocExpression expr;
+  ///@todo port
+  /*KEduVocExpression expr;
   expr.setLesson(act_lesson);
   m_doc->appendEntry(&expr);
   m_doc->setModified();
@@ -747,8 +749,8 @@ void KVocTrainApp::slotAppendRow ()
   view->getTable()->setCurrentRow(row, KV_COL_ORG);
   view->getTable()->updateContents(row, KV_COL_ORG);
   view->getTable()->clearSelection();
-  view->getTable()->selectRow(row);
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  view->getTable()->selectRow(row);*/
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -952,7 +954,7 @@ void KVocTrainApp::slotCreateRandom()
      for (int i = 1; i < lessons->count(); i++)
        new_lessonStr.push_back(lessons->itemText(i));
      m_doc->setLessonDescriptions(new_lessonStr);
-     view->getTable()->updateContents();
+     m_tableModel->reset();
      m_doc->setModified ();
    }
    QApplication::restoreOverrideCursor();
@@ -1064,17 +1066,17 @@ void KVocTrainApp::slotResumeSearch(const QString& s)
   // search in current col from current row till end
   // SHIFT means start search from beginning of word
   bool word_beg = controlActive;
-  int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg);
+  int idx = m_doc->search(s, m_tableView->currentIndex().column() - KV_EXTRA_COLS, searchpos, -1, word_beg);
   if (idx >= 0) {
-    view->getTable()->clearSelection();
-    view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
+    m_tableView->clearSelection();
+    m_tableView->setCurrentIndex(m_tableModel->index(idx, m_tableView->currentIndex().column()));  ///@todo make sure row is selected
     searchpos = idx+1;
   }
   else { // try again from beginning up to current pos
-    int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg);
+    int idx = m_doc->search(s, m_tableView->currentIndex().column() - KV_EXTRA_COLS, 0, searchpos, word_beg);
     if (idx >= 0) {
-      view->getTable()->clearSelection();
-      view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
+      m_tableView->clearSelection();
+      m_tableView->setCurrentIndex(m_tableModel->index(idx, m_tableView->currentIndex().column()));  ///@todo make sure row is selected
       searchpos = idx+1;
     }
     else

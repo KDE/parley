@@ -387,12 +387,12 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
   switch (cmd) {
     case IDH_SORT_COL_ALPHA:
-      view->getTable()->sortByColumn_alpha(header1);
+      ///@todo port view->getTable()->sortByColumn_alpha(header1);
       return;
     break;
 
     case IDH_SORT_COL_NUM:
-      view->getTable()->sortByColumn_index(header1);
+      ///@todo port view->getTable()->sortByColumn_index(header1);
       return;
     break;
   }
@@ -541,7 +541,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       if(exit==KMessageBox::Continue) {
         m_doc->resetEntry (header1, act_lesson);
         m_doc->setModified();
-        view->getTable()->updateContents();
+        m_tableModel->reset();
       }
     }
     break;
