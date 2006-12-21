@@ -64,7 +64,6 @@ KVocTrainApp::~KVocTrainApp()
    removeEntryDlg();
    delete header_m;
    delete btimer;
-   delete view;
    delete m_doc;
 }
 
@@ -898,7 +897,7 @@ void KVocTrainApp::slotCleanVocabulary ()
    slotStatusMsg(IDS_DEFAULT);
 
    if (num != 0) {
-     view->setView(m_doc, m_languages);
+     ///@todo port view->setView(m_doc, m_languages);
      QString s =
         i18np("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
@@ -982,24 +981,13 @@ void KVocTrainApp::slotApplyPreferences()
 {
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
+
   m_tableView->setFont(Prefs::tableFont());
   m_tableView->reset();
 
   readLanguages();
-  // update header buttons
-  for (int i = 0; i < (int) m_doc->numIdentifiers(); i++)
-  {
-    QString sid = i>0 ? m_doc->identifier(i): m_doc->originalIdentifier();
-    int idx = m_languages.indexShortId(sid);
-    QString pm = "";
-    QString lid = sid;
-    if (idx >= 0)
-    {
-      lid = m_languages.longId(idx);
-      pm = m_languages.PixMapFile(idx);
-    }
-    view->setHeaderProp(i + KV_EXTRA_COLS, lid, pm);
-  }
+  m_tableModel->setLanguages(m_languages);
+  m_tableModel->reset();
 }
 
 
@@ -1031,7 +1019,7 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
    }
 
    m_doc->setIdentifier(m_doc->numIdentifiers()-1, m_languages.shortId(lang_id));
-   view->setView(m_doc, m_languages);
+   m_tableModel->reset();
    m_doc->setModified();
 }
 

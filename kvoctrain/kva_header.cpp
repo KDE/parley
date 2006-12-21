@@ -198,9 +198,7 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
   if (!m_languages.PixMapFile(id).isEmpty() )
     pm = m_languages.PixMapFile(id);
 
-  view->setHeaderProp (header1+KV_EXTRA_COLS, lid, pm);
-
-/*
+  /*
   cout << "shp 1: " << (void*) doc << endl << flush;
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
@@ -221,6 +219,7 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
           << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
   }
 */
+  m_tableModel->reset();
   m_doc->setModified();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -437,7 +436,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       int exit = KMessageBox::warningContinueCancel(this, msg, "", KStdGuiItem::del());
       if(exit==KMessageBox::Continue) {
         m_doc->removeIdentifier(header1);
-        view->setView (m_doc, m_languages);
+        m_tableModel->reset();
         m_doc->setModified();
       }
     }

@@ -49,7 +49,8 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
 : KMainWindow(parent, name)
 {
   m_doc = 0;
-  view = 0;
+  m_tableView = 0;
+  m_tableModel = 0;
   header_m = 0;
   btimer = 0;
   querymode = false;
@@ -352,11 +353,6 @@ void KVocTrainApp::initView()
   m_tableView->setCurrentIndex(m_tableModel->index(cr, cc));
 
   setCaption(m_doc->URL().fileName(), false);
-  //connect(m_tableView, SIGNAL(undoChange(const QString&, bool )), this, SLOT(slotUndoChange(const QString&, bool)));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
-  m_doc->setModified(false);
-
-  /// @todo get rid of this old view
-  view = new kvoctrainView(m_doc, m_languages, this);
-  view->hide();
+  m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 }

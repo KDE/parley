@@ -128,7 +128,6 @@ set(kvtcore_SRCS
 set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS} ${kvtcore_SRCS}
 	kva_io.cpp 
 	kvoctrain.cpp 
-	kvoctrainview.cpp 
 	main.cpp 
 	kva_init.cpp 
 	kva_config.cpp 

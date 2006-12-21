@@ -32,6 +32,7 @@
 #include <QPainter>
 #include <QLabel>
 #include <QKeyEvent>
+#include <QVBoxLayout>
 
 #include <kapplication.h>
 #include <kmainwindow.h>
@@ -40,7 +41,6 @@
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
-#include "kvoctrainview.h"
 #include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
@@ -276,19 +276,15 @@ private:
 
   QMenu *learn_menu;
 
-  /** view is the main widget which represents your working area. The View
-    * class should handle all events of the view widget.  It is kept empty so
-    * you can create your view according to your application's needs by
-    * changing the view class. */
-  kvoctrainView *view;
-  /** doc represents your actual document and is created only once. It keeps
+  /** m_tableView is the main widget which is the table that represents your working area. */
+  KVTTableView *m_tableView;
+
+  /** m_doc represents your vocabulary document. It keeps
     * information such as filename and does the serialization of your files.
     */
   KEduVocDocument *m_doc;
-  KVTTableView *m_tableView;
-  KVTTableModel *m_tableModel;
 
-  friend class kvoctrainView;
+  KVTTableModel *m_tableModel;
 
   QList<QueryEntryRef> random_expr1;
   QList<QueryEntryRef> random_expr2;
