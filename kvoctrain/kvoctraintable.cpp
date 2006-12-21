@@ -85,7 +85,7 @@ QWidget* KVocTrainTable::beginEdit(int row, int col, bool replace)
       if (langs) {
         QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
         if (!kbLayout.isEmpty()) {
-            QDBusInterface kxbk("org.kde.kxbk", "/kxbk", "org.kde.kxbk.kxbk");
+	    QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
             kxbk.call( "setLayout", kbLayout );
         }
       }
