@@ -125,12 +125,8 @@ void KVocTrainApp::slotEditCopy()
       else
         textToCopy += Prefs::separator();
 
-      if (i >= 0) {
-        if (i == 0)
-          textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), KV_COL_ORG), Qt::DisplayRole).toString();
-        else
-          textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), i + KV_COL_ORG), Qt::DisplayRole).toString();
-      }
+      if (i >= 0)
+        textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), i + KV_COL_ORG), Qt::DisplayRole).toString();
     }
     if (!textToCopy.isEmpty())
       textToCopy += '\n';
