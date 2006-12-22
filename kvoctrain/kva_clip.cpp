@@ -57,22 +57,20 @@ void KVocTrainApp::slotSmartSearchClip()
 }
 
 
-QList<int> KVocTrainApp::getCsvOrder(KEduVocDocument *doc)
+QList<int> KVocTrainApp::csvOrder()
 {
   QList<int> csv_order;
-  QStringList lang_order = Prefs::pasteOrder();
+  QStringList languageList = Prefs::pasteOrder();
 
   if (!Prefs::useCurrent())
   {
-    if (/*lang_order &&*/ lang_order.count() != 0) {
-      for (int i = 0; i < (int) lang_order.count(); i++)
-      {
-        int j = doc->findIdentifier((lang_order)[i]);
-        if (j >= 0)
-          csv_order.push_back (j);
-        else
-          csv_order.push_back (-1);
-      }
+    foreach(QString language, languageList)
+    {
+      int j = m_doc->findIdentifier(language);
+      if (j >= 0)
+        csv_order.append(j);
+      else
+        csv_order.append(-1);
     }
   }
 /*
@@ -87,9 +85,9 @@ QList<int> KVocTrainApp::getCsvOrder(KEduVocDocument *doc)
       csv_order.erase(csv_order.begin() + i);
 */
   // append indices from doc if no order given
-  for (int i = 0; i < doc->numIdentifiers(); i++)
+  for (int i = 0; i < m_doc->numIdentifiers(); i++)
     if (qFind (csv_order.begin(), csv_order.end(), i) == csv_order.end())
-       csv_order.push_back(i);
+       csv_order.append(i);
 /*
   if (csv_order.size() > doc->numIdentifiers() )
     csv_order.erase(csv_order.begin() + doc->numIdentifiers(), csv_order.end());
@@ -111,43 +109,36 @@ void KVocTrainApp::slotEditCopy()
 {
   slotStatusMsg(i18n("Copying selection to clipboard..."));
 
-  QApplication::setOverrideCursor( Qt::WaitCursor );
-  QString exp;
-  QString s;
-  ///@todo port
-  /*QList<int> csv_order = getCsvOrder(m_doc);
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-  KVocTrainTable *table = view->getTable();
+  QString textToCopy;
+  QList<int> csv_order = csvOrder();
+  QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
 
-  for (int j = table->numRows()-1; j >= 0; j--) {
-    if (table->isRowSelected(j))
+  foreach(QModelIndex idx, selectedRows)
+  {
+    bool sep = false;
+    foreach(int i, csv_order)
     {
-      KEduVocExpression *expr = m_doc->entry(j);
-      if (expr == 0 ) return;
+      if (!sep)
+        sep = true;
+      else
+        textToCopy += Prefs::separator();
 
-      bool sep =  false;
-      for (int i = 0; i < (int) csv_order.size(); i++) {
-        if (!sep)
-          sep = true;
+      if (i >= 0) {
+        if (i == 0)
+          textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), KV_COL_ORG), Qt::DisplayRole).toString();
         else
-          exp += Prefs::separator();
-
-        if (csv_order[i] >= 0) {
-          if (csv_order[i] == 0)
-            exp += expr->original();
-          else
-            exp += expr->translation(csv_order[i]);
-        }
+          textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), i + KV_COL_ORG), Qt::DisplayRole).toString();
       }
     }
-    if (!exp.isEmpty())
-      exp += '\n';
+    if (!textToCopy.isEmpty())
+      textToCopy += '\n';
   }
-  if (!exp.isEmpty()) {
-    QApplication::clipboard()->setText(exp);
 
-  }
-*/
+  if (!textToCopy.isEmpty())
+    QApplication::clipboard()->setText(textToCopy);
+
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -161,7 +152,7 @@ void KVocTrainApp::slotEditPaste()
   QString s;
   QString entries = QApplication::clipboard()->text();
 
-  QList<int> csv_order = getCsvOrder(m_doc);
+  QList<int> csv_order = csvOrder();
 
   bool changed = false;
   QString num;

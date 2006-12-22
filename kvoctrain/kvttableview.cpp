@@ -23,7 +23,7 @@
 
 KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
 {
-  setSelectionMode(QAbstractItemView::ContiguousSelection);
+  setSelectionMode(QAbstractItemView::ExtendedSelection);
   setSelectionBehavior(QAbstractItemView::SelectRows);
   setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
   setTabKeyNavigation(false);
