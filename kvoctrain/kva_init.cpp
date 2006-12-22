@@ -308,18 +308,8 @@ void KVocTrainApp::initDoc()
   if (fileOpenRecent->actions().count() > 0  && fileOpenRecent->action(0)->isEnabled()){
     fileOpenRecent->action(0)->trigger();
   }
-  else {
-    m_doc = new KEduVocDocument(this);
-    m_doc->appendIdentifier(i18n("Original"));
-    m_doc->appendIdentifier(i18n("Translation"));
-    for (int i=0; i<20; i++)
-      m_doc->appendEntry(new KEduVocExpression());
-    connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    m_tableModel->setDocument(m_doc);
-    m_tableModel->reset();
-    loadDocProps();
-    m_doc->setModified(false);
-  }
+  else 
+    createNewDocument();
 }
 
 void KVocTrainApp::initModel()

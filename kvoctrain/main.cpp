@@ -107,7 +107,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
     kva = new KVocTrainApp;
 
     if ( args && args->count() == 1 )
-      kva->loadfileFromPath(KUrl(args->arg(0)), true);
+      kva->loadFileFromPath(KUrl(args->arg(0)), true);
 
     kva->show();
   }

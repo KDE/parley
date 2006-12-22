@@ -141,6 +141,27 @@ void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
   kapp->processEvents();
 }
 
+void KVocTrainApp::slotFileNew()
+{
+  slotStatusMsg(i18n("Creating new file..."));
+
+  if (queryExit() )
+    createNewDocument();
+
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+void KVocTrainApp::slotFileOpen()
+{
+  slotStatusMsg(i18n("Opening file..."));
+
+  if (queryExit()) {
+    KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, this, i18n("Open Vocabulary Document"));
+    loadFileFromPath(url, true);
+  }
+
+  slotStatusMsg(IDS_DEFAULT);
+}
 
 void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
 {
@@ -148,57 +169,17 @@ void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
   if (queryExit() && fileOpenRecent->items().count() > 0)
   {
     fileOpenRecent->setCurrentItem(-1);
-    loadfileFromPath(url);
+    loadFileFromPath(url);
   }
+
   slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void KVocTrainApp::slotFileNew()
-{
-  slotStatusMsg(i18n("Creating new file..."));
-
-  if (queryExit() ) {
-    //view->setView (0, langset);
-    delete m_doc;
-    //QString name = "";
-    //m_doc = new KEduVocDocument(this);
-    initDoc();
-    m_tableModel->setDocument(m_doc);
-    loadDocProps();
-    /// @todo check if any of the below is still needed
-    /*if (m_doc->numIdentifiers() == 0) {
-      QString l = "en";
-      m_doc->appendIdentifier(l);
-    }
-    view->setView(m_doc, langset);
-    view->getTable()->setFont(Prefs::tableFont());*/
-    m_tableView->adjustContent();
-    connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    m_doc->setModified(false);
-  }
-  slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void KVocTrainApp::slotFileOpen()
-{
-  slotStatusMsg(i18n("Opening file..."));
-
-  if (queryExit() ) {
-    QString s;
-    KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, parentWidget(), i18n("Open Vocabulary File"));
-    loadfileFromPath(url, true);
-  }
-  slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
+void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 {
   if (!url.path().isEmpty())
   {
-    //view->setView(0, langset);
     delete m_doc;
     m_doc = 0;
 
@@ -207,31 +188,32 @@ void KVocTrainApp::loadfileFromPath(const KUrl & url, bool addRecent)
     m_doc = new KEduVocDocument(this);
     m_doc->open(url, false);
     m_tableModel->setDocument(m_doc);
-    m_tableModel->reset();
+
     removeProgressBar();
     loadDocProps();
-    //view->setView(m_doc, langset);
-    //view->getTable()->setFont(Prefs::tableFont());
-    m_tableView->adjustContent();
     if (addRecent)
       fileOpenRecent->addUrl(url);
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
+    m_tableModel->reset();
+    if (m_tableView)
+      m_tableView->adjustContent();
   }
 }
+
 
 void KVocTrainApp::slotFileOpenExample()
 {
   slotStatusMsg(i18n("Opening example file..."));
 
   if (queryExit() ) {
-    QString s;
-    s = KStandardDirs::locate("data",  "kvoctrain/examples/");
-    KUrl url = KFileDialog::getOpenUrl(s, FILTER_RPATTERN, parentWidget(), i18n("Open Example Vocabulary File"));
-    loadfileFromPath(url, false);
+    QString s = KStandardDirs::locate("data", "kvoctrain/examples/");
+    KUrl url = KFileDialog::getOpenUrl(s, FILTER_RPATTERN, this, i18n("Open Example Vocabulary Document"));
+    loadFileFromPath(url, false);
     if (m_doc)
-       m_doc->URL().setFileName(QString());
+      m_doc->URL().setFileName(QString());
   }
+
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -482,9 +464,7 @@ void KVocTrainApp::slotFileMerge()
     delete (new_doc);
     fileOpenRecent->addUrl(url); // addRecentFile (url.path());
   }
-  ///@todo check if needed
-  /*view->setView(m_doc, m_languages);
-  view->getTable()->setFont(Prefs::tableFont());*/
+  m_tableModel->reset();
   m_tableView->adjustContent();
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
@@ -690,4 +670,23 @@ void KVocTrainApp::removeProgressBar ()
     pbar = 0;
     delete pdlg;
     pdlg = 0;
+}
+
+
+void KVocTrainApp::createNewDocument()
+{
+  if (m_doc)
+    delete m_doc;
+  m_doc = 0;
+  m_doc = new KEduVocDocument(this);
+  m_doc->appendIdentifier(i18n("Original"));
+  m_doc->appendIdentifier(i18n("Translation"));
+  for (int i=0; i<20; i++)
+    m_doc->appendEntry(new KEduVocExpression());
+  connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+  m_tableModel->setDocument(m_doc);
+  loadDocProps();
+  m_tableModel->reset();
+  m_tableView->adjustContent();
+  m_doc->setModified(false);
 }

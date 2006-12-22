@@ -198,7 +198,7 @@ public:
   void slotFileOpenExample();
   /** download new vocabularies */
   void slotGHNS();
-  void loadfileFromPath(const KUrl &, bool addRecent=true);
+  void loadFileFromPath(const KUrl &, bool addRecent = true);
   /** merge a document */
   void slotFileMerge();
   /** save a document */
@@ -231,6 +231,8 @@ public:
   QList<int> getCsvOrder(KEduVocDocument *);
 
 private:
+  void createNewDocument();
+
   // KAction pointers to enable/disable actions
   KAction* fileNew;
   KAction* fileOpen;

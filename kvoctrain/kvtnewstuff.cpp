@@ -39,7 +39,7 @@ KVTNewStuff::KVTNewStuff(QWidget *parent, const char * /*name*/) : QObject(), KN
 bool KVTNewStuff::install(const QString & fileName)
 {
   if (m_app->queryExit())
-    m_app->loadfileFromPath(fileName, true);
+    m_app->loadFileFromPath(fileName, true);
   return true;
 }
 

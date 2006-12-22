@@ -1325,5 +1325,3 @@ void KVocTrainApp::slotFilePrint()
 }
 
 #include "kvoctrain.moc"
-
-
