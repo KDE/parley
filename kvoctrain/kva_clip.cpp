@@ -4,10 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Thu Mar 11 20:50:53 MET 1999
+    begin          : Thu Mar 11 20:50:53 MET 1999
 
-    copyright            : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
- 			   (C) 2001 The KDE-EDU team
+    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                     (C) 2001 The KDE-EDU team
+                     (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net
 
     -----------------------------------------------------------------------
 
@@ -157,23 +158,22 @@ void KVocTrainApp::slotEditPaste()
 
   while (!ts.atEnd()) {
     s = ts.readLine();
-
+    kDebug() << s << endl;
     // similar block in kvd_csv.cpp::loadFromCsv()
 
-    if (!s.simplified().isEmpty()) {
+    if (!s.isEmpty()) {
+      m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
       QStringList sl = s.split(Prefs::separator(), QString::KeepEmptyParts);
-      KEduVocExpression expr;
+      //KEduVocExpression expr;
       if (csv_order.count() > 0) {
-        expr.setLesson(act_lesson);
+        //expr.setLesson(act_lesson);
         // now move columns according to paste-order
         int j = 0;
         foreach(int i, csv_order)
         {
+          kDebug() << "i= " << i << " j= " << j << endl;
           if (j < sl.count())
-          {
-            m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
-            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()), i), sl[j], Qt::EditRole);
-          }
+            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + 2), sl[j], Qt::EditRole);
           j++;
         }
         /*QString s;
@@ -191,10 +191,10 @@ void KVocTrainApp::slotEditPaste()
           }
         }*/
         changed = true;
-        m_doc->appendEntry (&expr);
+        //m_doc->appendEntry (&expr);
       }
       else {
-        expr.setLesson(act_lesson);
+        /*expr.setLesson(act_lesson);
         for (int i = 0; i < sl.count(); ++i)
         {
           if (i == 0)
@@ -203,7 +203,7 @@ void KVocTrainApp::slotEditPaste()
             expr.setTranslation(i, sl[i]);
         }
         changed = true;
-        m_doc->appendEntry (&expr);
+        m_doc->appendEntry (&expr);*/
       }
     }
   }
