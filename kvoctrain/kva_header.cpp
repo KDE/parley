@@ -433,7 +433,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = i18n("You are about to delete a language completely.\n"
                  "Do you really want to delete \"%1\"?", name);
 
-      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStdGuiItem::del());
+      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
       if(exit==KMessageBox::Continue) {
         m_doc->removeIdentifier(header1);
         m_tableModel->reset();

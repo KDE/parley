@@ -93,7 +93,7 @@ bool KVocTrainApp::queryExit()
      int exit = KMessageBox::warningYesNoCancel(this,
                i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
                "",
-               KStdGuiItem::save(), KStdGuiItem::discard());
+               KStandardGuiItem::save(), KStandardGuiItem::discard());
      if (exit==KMessageBox::Yes) {
        save = true;   // save and exit
      }
@@ -576,7 +576,7 @@ void KVocTrainApp::slotFileSaveAs()
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
-        url.path()),QString(),KStdGuiItem::overwrite()) == KMessageBox::Cancel)
+        url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel)
     {
     // do nothing
     }
@@ -628,7 +628,7 @@ void KVocTrainApp::slotSaveSelection ()
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
-        url.path()),QString(),KStdGuiItem::overwrite()) == KMessageBox::Cancel)
+        url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel)
     {
     // do nothing
     }

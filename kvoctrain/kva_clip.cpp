@@ -146,37 +146,37 @@ void KVocTrainApp::slotEditPaste()
 
   QApplication::setOverrideCursor( Qt::WaitCursor );
   QString s;
-  QString entries = QApplication::clipboard()->text();
+  //QString entries = QApplication::clipboard()->text();
 
+  QTextStream ts;
+  ts.setString(&QApplication::clipboard()->text(), QIODevice::Text);
   QList<int> csv_order = csvOrder();
 
   bool changed = false;
   QString num;
-// view->setView(0, langset, gradecols);
-  while (!entries.isEmpty()) {
-    int pos = entries.indexOf ('\n'); // search for a line end
-    if (pos < 0) {
-      pos = entries.indexOf ('\r');   // mac style ?
-    }
 
-    if (pos < 0) {
-      s = entries;
-      entries = "";
-    }
-    else {
-      s = entries.left(pos);
-      entries.remove (0, pos+1);
-    }
+  while (!ts.atEnd()) {
+    s = ts.readLine();
 
     // similar block in kvd_csv.cpp::loadFromCsv()
 
     if (!s.simplified().isEmpty()) {
-      if (Prefs::pasteOrder().count() != 0) {
-        KEduVocExpression bucket (s, Prefs::separator(), act_lesson);
-        KEduVocExpression expr;
+      QStringList sl = s.split(Prefs::separator(), QString::KeepEmptyParts);
+      KEduVocExpression expr;
+      if (csv_order.count() > 0) {
         expr.setLesson(act_lesson);
         // now move columns according to paste-order
-        QString s;
+        int j = 0;
+        foreach(int i, csv_order)
+        {
+          if (j < sl.count())
+          {
+            m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
+            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()), i), sl[j], Qt::EditRole);
+          }
+          j++;
+        }
+        /*QString s;
         for (int i = 0; i < (int) csv_order.size(); i++) {
           if (csv_order[i] >= 0) {
             if (i == 0)
@@ -189,12 +189,19 @@ void KVocTrainApp::slotEditPaste()
             else
               expr.setTranslation(csv_order[i], s);
           }
-        }
+        }*/
         changed = true;
         m_doc->appendEntry (&expr);
       }
       else {
-        KEduVocExpression expr (s, Prefs::separator(), act_lesson);
+        expr.setLesson(act_lesson);
+        for (int i = 0; i < sl.count(); ++i)
+        {
+          if (i == 0)
+            expr.setOriginal(sl[i]);
+          else
+            expr.setTranslation(i, sl[i]);
+        }
         changed = true;
         m_doc->appendEntry (&expr);
       }
