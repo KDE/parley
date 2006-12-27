@@ -198,9 +198,7 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
   if (!m_languages.PixMapFile(id).isEmpty() )
     pm = m_languages.PixMapFile(id);
 
-  view->setHeaderProp (header1+KV_EXTRA_COLS, lid, pm);
-
-/*
+  /*
   cout << "shp 1: " << (void*) doc << endl << flush;
   for (int i = 0; i < (int) langset.size(); i++) {
      cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
@@ -221,6 +219,7 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
           << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
   }
 */
+  m_tableModel->reset();
   m_doc->setModified();
   slotStatusMsg(IDS_DEFAULT);
 }
@@ -387,12 +386,12 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
   switch (cmd) {
     case IDH_SORT_COL_ALPHA:
-      view->getTable()->sortByColumn_alpha(header1);
+      ///@todo port view->getTable()->sortByColumn_alpha(header1);
       return;
     break;
 
     case IDH_SORT_COL_NUM:
-      view->getTable()->sortByColumn_index(header1);
+      ///@todo port view->getTable()->sortByColumn_index(header1);
       return;
     break;
   }
@@ -434,10 +433,10 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       msg = i18n("You are about to delete a language completely.\n"
                  "Do you really want to delete \"%1\"?", name);
 
-      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStdGuiItem::del());
+      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
       if(exit==KMessageBox::Continue) {
         m_doc->removeIdentifier(header1);
-        view->setView (m_doc, m_languages);
+        m_tableModel->reset();
         m_doc->setModified();
       }
     }
@@ -541,7 +540,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       if(exit==KMessageBox::Continue) {
         m_doc->resetEntry (header1, act_lesson);
         m_doc->setModified();
-        view->getTable()->updateContents();
+        m_tableModel->reset();
       }
     }
     break;

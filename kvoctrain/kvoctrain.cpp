@@ -64,7 +64,6 @@ KVocTrainApp::~KVocTrainApp()
    removeEntryDlg();
    delete header_m;
    delete btimer;
-   delete view;
    delete m_doc;
 }
 
@@ -119,7 +118,7 @@ void KVocTrainApp::slotCurrentCellChanged(int row, int col)
 
 void KVocTrainApp::slotEditRow()
 {
-  slotEditEntry (view->getTable()->currentRow(), view->getTable()->currentColumn());
+  slotEditEntry(m_tableView->currentIndex().row(), m_tableView->currentIndex().column());
 }
 
 
@@ -135,11 +134,11 @@ void KVocTrainApp::slotEditCallBack(int res)
       commitEntryDlg(true);
       if (Prefs::smartAppend())
       {
-        int row = view->getTable()->currentRow();
-        if (row == view->getTable()->numRows()-1)
+        int row = m_tableView->currentIndex().row();
+        if (row == m_tableModel->rowCount(QModelIndex()) - 1)
         {
-          int col = view->getTable()->currentColumn();
-          if (col < view->getTable()->numCols()-1 && col >= KV_COL_ORG )
+          int col = m_tableView->currentIndex().column();
+          if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG )
           {
             int lesson = m_doc->entry(row)->lesson();
             if (lesson >= lessons->count())
@@ -149,7 +148,7 @@ void KVocTrainApp::slotEditCallBack(int res)
             QString exp;
             exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
             if (exp.isEmpty())
-              view->getTable()->setCurrentRow(row, col+1);
+              m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1)); /// @todo make sure entire row is selected
           }
           else
             slotAppendRow();
@@ -180,7 +179,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
                    i18n("Unsaved Changes"),
-                   KStdGuiItem::apply(), KStdGuiItem::discard())) {
+                   KStandardGuiItem::apply(), KStandardGuiItem::discard())) {
         return;
      }
    }
@@ -244,8 +243,9 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
      entryDlg->setModified(false);
      m_doc->setModified(true);
-     view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
-     view->getTable()->updateCell(row, KV_COL_LESS);
+     m_tableModel->reset();
+     //view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
+     //view->getTable()->updateCell(row, KV_COL_LESS);
    }
    else {
      col -= KV_EXTRA_COLS;
@@ -295,10 +295,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
      }
      entryDlg->setModified(false);
      m_doc->setModified(true);
-     for (uint ts = 0; ts < tabsel.size(); ++ts)
+     m_tableModel->reset();
+     /*for (uint ts = 0; ts < tabsel.size(); ++ts)
        for (int r = tabsel[ts].topRow(); r <= tabsel[ts].bottomRow(); ++r)
          for (int c = 0; c < view->getTable()->numCols(); ++c)
-           view->getTable()->updateCell(r, c);
+           view->getTable()->updateCell(r, c);*/
 
    }
 }
@@ -311,7 +312,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
      return;
    }
 
-   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
+   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
      return;
 
    QString title, text, lang;
@@ -416,7 +417,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
    connect( entryDlg, SIGNAL(sigEditChoice(int)),
              this, SLOT(slotEditCallBack(int)));
 
-   view->getTable()->setReadOnly(true);
+   ///@todo port? view->getTable()->setReadOnly(true);
 
    if (col == 0)
      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
@@ -438,7 +439,7 @@ void KVocTrainApp::removeEntryDlg()
     entryDlg = 0;
   }
 
-  view->getTable()->setReadOnly(false);
+  ///@todo port? view->getTable()->setReadOnly(false);
 }
 
 
@@ -465,7 +466,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
      return;
    }
 
-   if ((row < 0) || (col < 0) || (view->getTable()->numRows() <= 0))
+   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
      return;
 
    QString text, lang, title;
@@ -568,14 +569,16 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        title,
                        m_doc->entry(row)->isActive());
    }
-   view->getTable()->updateCell(row, col);
-   view->getTable()->updateCell(row, KV_COL_LESS);
-   QList<Q3TableSelection> tabsel;
+   m_tableModel->reset();
+   //view->getTable()->updateCell(row, col);
+   //view->getTable()->updateCell(row, KV_COL_LESS);
+   ///@todo port commented section below
+   /*QList<Q3TableSelection> tabsel;
    if (hasSel) {
      for (int i = 0; i < view->getTable()->numSelections(); ++i)
        tabsel.push_back(view->getTable()->selection(i));
    }
-   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
+   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);*/
 }
 
 
@@ -652,7 +655,7 @@ void KVocTrainApp::slotDocProps ()
       querymanager.setLessonItems(new_lessoninquery);
 
       m_doc->setModified();
-      view->getTable()->updateContents();
+      m_tableModel->reset();
       setCaption(m_doc->title(), m_doc->isModified());
       QApplication::restoreOverrideCursor();
       slotStatusMsg(IDS_DEFAULT);
@@ -672,7 +675,7 @@ void KVocTrainApp::slotDocPropsLang ()
       }
 
       m_doc->setModified();
-      view->getTable()->updateContents();
+      m_tableModel->reset();
       setCaption(m_doc->title(), m_doc->isModified()); 
       slotStatusMsg(IDS_DEFAULT);
    }
@@ -688,17 +691,20 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 
 bool KVocTrainApp::hasSelection()
 {
-  int num = view->getTable()->numSelections();
+  ///@todo port this function
+  /*int num = view->getTable()->numSelections();
   if (num < 1) return false;
   if (num > 1) return true;
   Q3TableSelection ts = view->getTable()->selection(0);
-  return (ts.bottomRow() - ts.topRow()) > 0;
+  return (ts.bottomRow() - ts.topRow()) > 0;*/
+  return false;
 }
 
 
 void KVocTrainApp::slotRemoveRow()
 {
-  if (!hasSelection()) {
+  ///@todo port
+  /*if (!hasSelection()) {
     if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
                   i18n("Do you really want to delete the selected entry?\n"),
                   "",KStdGuiItem::del()))
@@ -725,14 +731,15 @@ void KVocTrainApp::slotRemoveRow()
       m_doc->setModified();
       table->updateContents();
     }
-  }
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  }*/
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
 void KVocTrainApp::slotAppendRow ()
 {
-  KEduVocExpression expr;
+  ///@todo port
+  /*KEduVocExpression expr;
   expr.setLesson(act_lesson);
   m_doc->appendEntry(&expr);
   m_doc->setModified();
@@ -741,8 +748,8 @@ void KVocTrainApp::slotAppendRow ()
   view->getTable()->setCurrentRow(row, KV_COL_ORG);
   view->getTable()->updateContents(row, KV_COL_ORG);
   view->getTable()->clearSelection();
-  view->getTable()->selectRow(row);
-  editRemoveSelectedArea->setEnabled(view->getTable()->numRows() > 0);
+  view->getTable()->selectRow(row);*/
+  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -890,7 +897,7 @@ void KVocTrainApp::slotCleanVocabulary ()
    slotStatusMsg(IDS_DEFAULT);
 
    if (num != 0) {
-     view->setView(m_doc, m_languages);
+     ///@todo port view->setView(m_doc, m_languages);
      QString s =
         i18np("1 entry with the same content has been found and removed.",
              "%n entries with the same content have been found and removed.", num);
@@ -946,7 +953,7 @@ void KVocTrainApp::slotCreateRandom()
      for (int i = 1; i < lessons->count(); i++)
        new_lessonStr.push_back(lessons->itemText(i));
      m_doc->setLessonDescriptions(new_lessonStr);
-     view->getTable()->updateContents();
+     m_tableModel->reset();
      m_doc->setModified ();
    }
    QApplication::restoreOverrideCursor();
@@ -974,24 +981,13 @@ void KVocTrainApp::slotApplyPreferences()
 {
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
+
   m_tableView->setFont(Prefs::tableFont());
   m_tableView->reset();
 
   readLanguages();
-  // update header buttons
-  for (int i = 0; i < (int) m_doc->numIdentifiers(); i++)
-  {
-    QString sid = i>0 ? m_doc->identifier(i): m_doc->originalIdentifier();
-    int idx = m_languages.indexShortId(sid);
-    QString pm = "";
-    QString lid = sid;
-    if (idx >= 0)
-    {
-      lid = m_languages.longId(idx);
-      pm = m_languages.PixMapFile(idx);
-    }
-    view->setHeaderProp(i + KV_EXTRA_COLS, lid, pm);
-  }
+  m_tableModel->setLanguages(m_languages);
+  m_tableModel->reset();
 }
 
 
@@ -1023,7 +1019,7 @@ void KVocTrainApp::slotAppendLang(int header_and_cmd)
    }
 
    m_doc->setIdentifier(m_doc->numIdentifiers()-1, m_languages.shortId(lang_id));
-   view->setView(m_doc, m_languages);
+   m_tableModel->reset();
    m_doc->setModified();
 }
 
@@ -1058,17 +1054,17 @@ void KVocTrainApp::slotResumeSearch(const QString& s)
   // search in current col from current row till end
   // SHIFT means start search from beginning of word
   bool word_beg = controlActive;
-  int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, searchpos, -1, word_beg);
+  int idx = m_doc->search(s, m_tableView->currentIndex().column() - KV_EXTRA_COLS, searchpos, -1, word_beg);
   if (idx >= 0) {
-    view->getTable()->clearSelection();
-    view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
+    m_tableView->clearSelection();
+    m_tableView->setCurrentIndex(m_tableModel->index(idx, m_tableView->currentIndex().column()));  ///@todo make sure row is selected
     searchpos = idx+1;
   }
   else { // try again from beginning up to current pos
-    int idx = m_doc->search(s, view->getTable()->currentColumn()-KV_EXTRA_COLS, 0, searchpos, word_beg);
+    int idx = m_doc->search(s, m_tableView->currentIndex().column() - KV_EXTRA_COLS, 0, searchpos, word_beg);
     if (idx >= 0) {
-      view->getTable()->clearSelection();
-      view->getTable()->setCurrentRow(idx, view->getTable()->currentColumn());
+      m_tableView->clearSelection();
+      m_tableView->setCurrentIndex(m_tableModel->index(idx, m_tableView->currentIndex().column()));  ///@todo make sure row is selected
       searchpos = idx+1;
     }
     else
@@ -1324,13 +1320,8 @@ void KVocTrainApp::slotFilePrint()
   KPrinter printer;
   printer.setFullPage(true);
   if (printer.setup(this))
-  {
-    view->print(&printer);
-  }
-
+    m_tableView->print(&printer);
   slotStatusMsg(i18n("Ready"));
 }
 
 #include "kvoctrain.moc"
-
-

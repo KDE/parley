@@ -63,7 +63,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
   num_queryTimeout = 0;
   act_query_col = col;
 
-  if (view->getTable()->count() < 1)
+  if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
 
   prepareProgressBar();
@@ -234,7 +234,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
   num_queryTimeout = 0;
   act_query_col = col;
 
-  if (view->getTable()->count() < 1)
+  if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
 
   prepareProgressBar();
@@ -499,14 +499,14 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   querymode = false;
   num_queryTimeout = 0;
 
-  if (view->getTable()->count() < 1)
+  if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
 
-  int tindex = view->getTable()->findIdent(translang);
+  int tindex = m_doc->findIdentifier(translang);
   if (tindex < 0)
     return;
 
-  int oindex = view->getTable()->findIdent(orglang);
+  int oindex = m_doc->findIdentifier(orglang);
   if (oindex < 0)
     return;
 
@@ -629,8 +629,8 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   m_doc->setModified();
 
 
-  int tindex = view->getTable()->findIdent(act_query_trans);
-  int oindex = view->getTable()->findIdent(act_query_org);
+  int tindex = m_doc->findIdentifier(act_query_trans);
+  int oindex = m_doc->findIdentifier(act_query_org);
   QueryEntryRef qer = random_expr1[random_query_nr];
   KEduVocExpression *exp = qer.exp;
 
@@ -863,8 +863,8 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   exp = random_expr1[random_query_nr].exp;
 
-  tindex = view->getTable()->findIdent(act_query_trans);
-  oindex = view->getTable()->findIdent(act_query_org);
+  tindex = m_doc->findIdentifier(act_query_trans);
+  oindex = m_doc->findIdentifier(act_query_org);
   QString q_org,
           q_trans;
 

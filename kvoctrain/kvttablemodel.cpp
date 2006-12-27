@@ -325,4 +325,37 @@ void KVTTableModel::setLanguages(const LangSet & languages)
   m_languages = languages;
 }
 
+bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
+{
+  Q_UNUSED(parent);
+  if (count < 1 || row < 0 || row > m_doc->numEntries())
+    return false;
+
+  beginInsertRows(QModelIndex(), row, row + count - 1);
+
+  for (int i = row; i < row + count; i++)
+    m_doc->insertEntry(new KEduVocExpression, i);
+
+  endInsertRows();
+  m_doc->setModified(true);
+  return true;
+}
+
+bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
+{
+  Q_UNUSED(parent);
+  if (count < 1 || row < 0 || row + count > m_doc->numEntries() || count >= m_doc->numEntries())
+    return false;
+
+  int bottomRow = row + count -1;
+  beginRemoveRows(QModelIndex(), row, row + count - 1);
+
+  for (int i = bottomRow; i >= row; i--)
+    m_doc->removeEntry(i);
+
+  endRemoveRows();
+  m_doc->setModified(true);
+  return true;
+}
+
 #include "kvttablemodel.moc"

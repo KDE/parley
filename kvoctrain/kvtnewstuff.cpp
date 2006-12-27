@@ -39,7 +39,7 @@ KVTNewStuff::KVTNewStuff(QWidget *parent, const char * /*name*/) : QObject(), KN
 bool KVTNewStuff::install(const QString & fileName)
 {
   if (m_app->queryExit())
-    m_app->loadfileFromPath(fileName, true);
+    m_app->loadFileFromPath(fileName, true);
   return true;
 }
 
@@ -84,7 +84,7 @@ QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
     int result = KMessageBox::warningContinueCancel(parentWidget(),
         i18n("The file '%1' already exists. Do you want to overwrite it?",
          file),
-        QString(), KStdGuiItem::overwrite() );
+        QString(), KStandardGuiItem::overwrite() );
     if (result == KMessageBox::Cancel)
       return QString();
   }
