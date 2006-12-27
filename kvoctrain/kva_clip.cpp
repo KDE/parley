@@ -23,8 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-//#include <algorithm>
-
 #include <QClipboard>
 
 #include <klineedit.h>
@@ -35,23 +33,15 @@
 
 void KVocTrainApp::slotSmartSearchClip()
 {
-  QString s;
-  QString entries = QApplication::clipboard()->text();
+  QString textToPaste = QApplication::clipboard()->text();
 
-  if (!entries.isEmpty()) {
-    int pos = entries.indexOf ('\n'); // search for a line end
-    if (pos < 0)
-      pos = entries.indexOf ('\r');
+  QTextStream ts;
+  ts.setString(&textToPaste, QIODevice::Text);
 
-    if (pos < 0)    // just first "line"
-      s = entries;
-    else
-      s = entries.left(pos);
-
+  if (!ts.atEnd()) {
     searchpos = 0;                      // search from beginning
-    searchstr = s.simplified();    // in case RETURN is pressed
     searchLine->setFocus();
-    searchLine->setText (searchstr);
+    searchLine->setText (ts.readLine());
   }
   else
     searchLine->setFocus();
@@ -147,10 +137,10 @@ void KVocTrainApp::slotEditPaste()
 
   QApplication::setOverrideCursor( Qt::WaitCursor );
   QString s;
-  //QString entries = QApplication::clipboard()->text();
+  QString textToPaste = QApplication::clipboard()->text();
 
   QTextStream ts;
-  ts.setString(&QApplication::clipboard()->text(), QIODevice::Text);
+  ts.setString(&textToPaste, QIODevice::Text);
   QList<int> csv_order = csvOrder();
 
   bool changed = false;
@@ -164,7 +154,7 @@ void KVocTrainApp::slotEditPaste()
     if (!s.isEmpty()) {
       m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
       QStringList sl = s.split(Prefs::separator(), QString::KeepEmptyParts);
-      //KEduVocExpression expr;
+      ///@todo check this function, port applying the current lesson
       if (csv_order.count() > 0) {
         //expr.setLesson(act_lesson);
         // now move columns according to paste-order
@@ -173,44 +163,18 @@ void KVocTrainApp::slotEditPaste()
         {
           kDebug() << "i= " << i << " j= " << j << endl;
           if (j < sl.count())
-            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + 2), sl[j], Qt::EditRole);
+            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[j], Qt::EditRole);
           j++;
         }
-        /*QString s;
-        for (int i = 0; i < (int) csv_order.size(); i++) {
-          if (csv_order[i] >= 0) {
-            if (i == 0)
-              s = bucket.original();
-            else
-              s = bucket.translation(i);
-
-            if (csv_order[i] == 0)
-              expr.setOriginal(s);
-            else
-              expr.setTranslation(csv_order[i], s);
-          }
-        }*/
-        changed = true;
-        //m_doc->appendEntry (&expr);
       }
       else {
-        /*expr.setLesson(act_lesson);
+        /*expr.setLesson(act_lesson);*/
         for (int i = 0; i < sl.count(); ++i)
         {
-          if (i == 0)
-            expr.setOriginal(sl[i]);
-          else
-            expr.setTranslation(i, sl[i]);
+          m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
         }
-        changed = true;
-        m_doc->appendEntry (&expr);*/
       }
     }
-  }
-
-  if (changed) {
-    m_doc->setModified();
-    m_tableModel->reset();
   }
 
   QApplication::restoreOverrideCursor();
