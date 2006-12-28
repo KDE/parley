@@ -282,6 +282,9 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
     m_doc->setModified(true);
     return true;
   }
+  else if (index.isValid() && role == KVTTableModel::LessonRole) {
+    m_doc->entry(index.row())->setLesson(value.toInt());
+  }
   return false;
 }
 

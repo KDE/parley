@@ -293,7 +293,6 @@ private:
   QList<QueryEntryRef> correct_2_times;
   QList<QueryEntryRef> correct_3_times;
   QuerySelection queryList;
-  //KNewStuff       *m_GHNS;
   QTimer          *btimer;
   int              random_query_nr;
   bool             querymode;
@@ -308,13 +307,13 @@ private:
   QString          m_textToFind;
   KLineEdit       *searchLine;
   KComboBox       *lessons;
-  int              act_lesson;
+  int              m_currentLesson;
   QueryManager     querymanager;
   bool             controlActive;
   bool             shiftActive;
   bool             altActive;
   ProgressDlg     *pdlg;
-  QProgressBar       *pbar;
+  QProgressBar    *pbar;
   QLabel          *vslide_label;
   QLabel          *pron_label;
   QLabel          *rem_label;
@@ -333,7 +332,7 @@ private:
   QueryType        queryType;
   KRandomSequence  random;
   KVTNewStuff     *m_newStuff;
-  QVBoxLayout * m_topLayout;
+  QVBoxLayout     *m_topLayout;
 };
 
 #endif // KVOCTRAIN_H

@@ -519,7 +519,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
       QString name;
       QString format;
 
-      if (act_lesson == 0) {
+      if (m_currentLesson == 0) {
         name = m_doc->identifier(header1);
         int i = m_languages.indexShortId(m_doc->identifier(header1));
         if (i >= 0
@@ -531,14 +531,14 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
                    name);
       }
       else {
-        name = lessons->text(act_lesson);
+        name = lessons->text(m_currentLesson);
         msg = i18n("You are about to reset the knowledge data of a "
                    "lesson.\n\nDo you really want to reset \"%1\"?", name);
       }
 
       int exit = KMessageBox::warningContinueCancel(this, msg, "", KGuiItem(i18n("Reset")));
       if(exit==KMessageBox::Continue) {
-        m_doc->resetEntry (header1, act_lesson);
+        m_doc->resetEntry (header1, m_currentLesson);
         m_doc->setModified();
         m_tableModel->reset();
       }

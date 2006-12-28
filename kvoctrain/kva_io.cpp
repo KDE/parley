@@ -503,12 +503,12 @@ void KVocTrainApp::fillLessonBox()
 {
   lessons->clear();
   lessons->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
-  act_lesson = m_doc->currentLesson();
-  if (act_lesson > lessons->count() ) {
-    act_lesson = 0;
-    m_doc->setCurrentLesson(act_lesson);
+  m_currentLesson = m_doc->currentLesson();
+  if (m_currentLesson > lessons->count() ) {
+    m_currentLesson = 0;
+    m_doc->setCurrentLesson(m_currentLesson);
   }
-  lessons->setCurrentIndex (act_lesson);
+  lessons->setCurrentIndex (m_currentLesson);
 }
 
 

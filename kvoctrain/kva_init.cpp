@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2004-2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -45,8 +45,7 @@
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 
-KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
-: KMainWindow(parent, name)
+KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name) : KMainWindow(parent, name)
 {
   m_doc = 0;
   m_tableView = 0;
@@ -57,7 +56,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name)
   shiftActive = false;
   altActive = false;
   controlActive = false;
-  act_lesson = 0;
+  m_currentLesson = 0;
   searchpos = 0;
   vslide_label = 0;
   pron_label = 0;

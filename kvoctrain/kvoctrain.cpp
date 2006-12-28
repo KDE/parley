@@ -27,11 +27,11 @@
 #include <QKeyEvent>
 #include <QApplication>
 #include <QClipboard>
+#include <QProgressBar>
 
 #include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
-#include <qprogressbar.h>
 #include <kconfig.h>
 #include <kselectaction.h>
 #include <kstandarddirs.h>
@@ -726,7 +726,7 @@ void KVocTrainApp::slotAppendRow ()
 {
   m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
   m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-  ///@todo port expr.setLesson(act_lesson);
+  m_tableModel->setData(m_tableView->currentIndex(), m_currentLesson, KVTTableModel::LessonRole);
   editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
@@ -816,7 +816,7 @@ void KVocTrainApp::keyPressEvent( QKeyEvent *e )
 
 void KVocTrainApp::slotChooseLesson(int idx)
 {
-  act_lesson = idx;
+  m_currentLesson = idx;
   m_doc->setCurrentLesson(idx);
   m_doc->setModified(true);
 }
@@ -1415,24 +1415,25 @@ void KVocTrainApp::slotEditPaste()
     if (!s.isEmpty()) {
       m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
       QStringList sl = s.split(Prefs::separator(), QString::KeepEmptyParts);
-      ///@todo check this function, port applying the current lesson
+      ///@todo check this function
       if (csv_order.count() > 0) {
-        //expr.setLesson(act_lesson);
         // now move columns according to paste-order
         int j = 0;
         foreach(int i, csv_order)
         {
           kDebug() << "i= " << i << " j= " << j << endl;
-          if (j < sl.count())
+          if (j < sl.count()) {
             m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[j], Qt::EditRole);
+            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
+          }
           j++;
         }
       }
       else {
-        /*expr.setLesson(act_lesson);*/
         for (int i = 0; i < sl.count(); ++i)
         {
           m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
+          m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
         }
       }
     }

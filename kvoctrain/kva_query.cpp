@@ -69,7 +69,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
   prepareProgressBar();
   QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
-  queryList = querymanager.select (m_doc, act_lesson, act_query_col, property);
+  queryList = querymanager.select (m_doc, m_currentLesson, act_query_col, property);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -241,7 +241,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
   QApplication::setOverrideCursor( Qt::WaitCursor );
   random_expr2.clear();
 
-  queryList = querymanager.select (m_doc, act_lesson, act_query_col, type);
+  queryList = querymanager.select (m_doc, m_currentLesson, act_query_col, type);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -518,7 +518,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   random_expr2.clear();
 
   if (create_new || queryList.size() == 0)
-    queryList = querymanager.select (m_doc, act_lesson, oindex, tindex);
+    queryList = querymanager.select (m_doc, m_currentLesson, oindex, tindex);
 
   query_startnum = 0;
   if (queryList.size() > 0) {
@@ -877,7 +877,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       tindex = tmp;
     }
 
-    if (!querymanager.validate (exp, act_lesson, oindex, tindex)) {
+    if (!querymanager.validate (exp, m_currentLesson, oindex, tindex)) {
       int tmp = oindex;  // must use other direction which is the only valid
       oindex = tindex;
       tindex = tmp;
