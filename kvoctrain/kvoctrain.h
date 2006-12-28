@@ -308,7 +308,7 @@ private:
   QString          act_query_org;
   LangSet          m_languages;
   int              searchpos;
-  QString          searchstr;
+  QString          m_textToFind;
   KLineEdit       *searchLine;
   KComboBox       *lessons;
   int              act_lesson;

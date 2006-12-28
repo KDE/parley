@@ -126,20 +126,19 @@ set(kvtcore_SRCS
 )
 
 set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS} ${kvtcore_SRCS}
-	kva_io.cpp 
-	kvoctrain.cpp 
-	main.cpp 
-	kva_init.cpp 
-	kva_config.cpp 
-	kva_header.cpp 
-	kva_clip.cpp 
-	kva_query.cpp
-	kvoctraintable.cpp 
-	kvoctraintableitem.cpp 
-	kvtnewstuff.cpp
-  kvttabledelegate.cpp
-  kvttablemodel.cpp
-  kvttableview.cpp
+    kva_io.cpp
+    kvoctrain.cpp
+    main.cpp
+    kva_init.cpp
+    kva_config.cpp
+    kva_header.cpp
+    kva_query.cpp
+    kvoctraintable.cpp
+    kvoctraintableitem.cpp
+    kvtnewstuff.cpp
+    kvttabledelegate.cpp
+    kvttablemodel.cpp
+    kvttableview.cpp
 )
 
 kde4_automoc(${kvoctrain_SRCS})
