@@ -112,9 +112,6 @@ public:
   */
   virtual void readProperties(KConfig* );
 
-  /** Whether the user has selected a range of items. **/
-  bool hasSelection();
-
  signals:
   void progressChanged (KEduVocDocument *, int curr_percent);
 

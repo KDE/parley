@@ -323,13 +323,14 @@ void KVocTrainApp::createEntryDlg(int row, int col)
    if (lesson >= lessons->count())
      lesson = qMax (0, lessons->count()-1);
 
+  bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit General Properties");
      col -= KV_EXTRA_COLS;
      entryDlg = new EntryDlg (
                     this,
                     m_doc,
-                    hasSelection(),
+                    hasSelection,
                     true,
                     0,
                     0,
@@ -378,10 +379,11 @@ void KVocTrainApp::createEntryDlg(int row, int col)
        title = i18n("Edit Properties of a Translation");
      }
 
+     bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
      entryDlg = new EntryDlg (
                     this,
                     m_doc,
-                    hasSelection(),
+                    hasSelection,
                     col==0,
                     m_doc->entry(row)->grade(col, false),
                     m_doc->entry(row)->grade(col, true),
@@ -482,13 +484,13 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
    if (lesson >= lessons->count())
      lesson = qMax (0, lessons->count()-1);
 
-   bool hasSel = hasSelection();
+   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
 
    if (col < KV_EXTRA_COLS) {
      title = i18n("Edit General Properties");
      col -= KV_EXTRA_COLS;
      entryDlg->setData(m_doc,
-                       hasSel,
+                       hasSelection,
                        true,
                        0,
                        0,
@@ -537,7 +539,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
      }
 
      entryDlg->setData(m_doc,
-                       hasSel,
+                       hasSelection,
                        col==0,
                        m_doc->entry(row)->grade(col, false),
                        m_doc->entry(row)->grade(col, true),
@@ -691,66 +693,40 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 }
 
 
-bool KVocTrainApp::hasSelection()
-{
-  ///@todo port this function
-  /*int num = view->getTable()->numSelections();
-  if (num < 1) return false;
-  if (num > 1) return true;
-  Q3TableSelection ts = view->getTable()->selection(0);
-  return (ts.bottomRow() - ts.topRow()) > 0;*/
-  return false;
-}
-
-
 void KVocTrainApp::slotRemoveRow()
 {
-  ///@todo port
-  /*if (!hasSelection()) {
-    if( KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
-                  i18n("Do you really want to delete the selected entry?\n"),
-                  "",KStdGuiItem::del()))
+  if (m_tableView->selectionModel()->selectedRows().count() == 1) {
+    if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del()))
     {
-      KVocTrainTable *table = view->getTable();
-      m_doc->removeEntry(table->currentRow());
-      m_doc->setModified();
-      table->updateContents();
+      int currentRow = m_tableView->currentIndex().row();
+      int currentColumn = m_tableView->currentIndex().column();
+      m_tableModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
+      m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
   }
   else {
-    if(KMessageBox::Continue == KMessageBox::warningContinueCancel(this,
-                  i18n("Do you really want to delete the selected range?\n"),
-                  "",KStdGuiItem::del()))
+    if(KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del()))
     {
-      KVocTrainTable *table = view->getTable();
-
-      int numRows = table->numRows();
+      int currentRow = m_tableView->currentIndex().row();
+      int currentColumn = m_tableView->currentIndex().column();
+      int rowCount = m_tableModel->rowCount(QModelIndex());
       // Must count backwards otherwise entry-numbering goes wrong when
       // deleting.
-      for (int i = numRows-1; i >= 0; i--)
-        if (table->isRowSelected(i) )
-          m_doc->removeEntry(i);
-      m_doc->setModified();
-      table->updateContents();
+      for (int i = rowCount - 1; i >= 0; i--)
+        if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
+          m_tableModel->removeRows(i, 1, QModelIndex());
+      m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
-  }*/
+  }
   editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
 void KVocTrainApp::slotAppendRow ()
 {
-  ///@todo port
-  /*KEduVocExpression expr;
-  expr.setLesson(act_lesson);
-  m_doc->appendEntry(&expr);
-  m_doc->setModified();
-  int row = m_doc->numEntries()-1;
-  view->getTable()->setRowHeight(row, view->getTable()->fontMetrics().lineSpacing() );
-  view->getTable()->setCurrentRow(row, KV_COL_ORG);
-  view->getTable()->updateContents(row, KV_COL_ORG);
-  view->getTable()->clearSelection();
-  view->getTable()->selectRow(row);*/
+  m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
+  m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+  ///@todo port expr.setLesson(act_lesson);
   editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
@@ -827,15 +803,6 @@ void KVocTrainApp::keyPressEvent( QKeyEvent *e )
         searchLine->setFocus();
         searchLine->selectAll();
       }
-    break;
-
-    case Qt::Key_Delete:
-      slotRemoveRow();
-    break;
-
-    case Qt::Key_Insert: {
-      slotAppendRow();
-    }
     break;
 
     default:
