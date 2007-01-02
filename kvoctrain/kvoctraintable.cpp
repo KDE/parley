@@ -58,8 +58,8 @@ KVocTrainTable::KVocTrainTable(KEduVocDocument *doc, const LangSet *ls, QWidget 
 
   triggerSect = -1;
 
-  m_pixInQuery = QPixmap(KGlobal::iconLoader()->loadIcon("ok", K3Icon::Small));
-  m_pixInactive = QPixmap(KGlobal::iconLoader()->loadIcon("no", K3Icon::Small));
+  m_pixInQuery = QPixmap(kapp->iconLoader()->loadIcon("ok", K3Icon::Small));
+  m_pixInactive = QPixmap(kapp->iconLoader()->loadIcon("no", K3Icon::Small));
 
   delayTimer = new QTimer(this);
   connect(delayTimer, SIGNAL(timeout()), this, SLOT(menuTriggerTimeout()));
