@@ -14,6 +14,7 @@
 #include <QResizeEvent>
 
 #include <KInstance>
+#include <KGlobalSettings>
 
 #include "kvttableview.h"
 #include "prefs.h"
