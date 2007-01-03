@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+// Author:  (C) 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -266,6 +266,17 @@ void KVTTableView::adjustContent()
 {
   QResizeEvent rsEvent(size(), size());
   resizeEvent(&rsEvent);
+}
+
+void KVTTableView::keyPressEvent(QKeyEvent * e)
+{
+  if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter)
+  {
+    e->accept();
+    setCurrentIndex(QTableView::moveCursor(QAbstractItemView::MoveNext, 0));
+    return;
+  }
+  QTableView::keyPressEvent(e);
 }
 
 #include "kvttableview.moc"
