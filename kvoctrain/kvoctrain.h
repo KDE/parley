@@ -41,7 +41,6 @@
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
-#include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
 #include "kvttablemodel.h"

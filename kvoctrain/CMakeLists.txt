@@ -133,8 +133,6 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kva_config.cpp
     kva_header.cpp
     kva_query.cpp
-    kvoctraintable.cpp
-    kvoctraintableitem.cpp
     kvtnewstuff.cpp
     kvttabledelegate.cpp
     kvttablemodel.cpp
