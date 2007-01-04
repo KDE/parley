@@ -122,7 +122,8 @@ public:
 //  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */
-  void slotEditEntry(int row, int col);
+  void slotEditEntry(int row, int col); ///@todo get rid of
+  void slotEditEntry2(const QModelIndex &);
   void slotEditCallBack(int res);
 
   void commitEntryDlg(bool force);
@@ -247,8 +248,8 @@ private:
   KAction* editClearSelection;
   KAction* editSearchFromClipboard;
   KAction* editAppend;
-  KAction* editEditSelectedArea;
-  KAction* editRemoveSelectedArea;
+  KAction* editEditEntry;
+  KAction* editDelete;
   KAction* editSaveSelectedArea;
 
   KAction* vocabShowStatistics;

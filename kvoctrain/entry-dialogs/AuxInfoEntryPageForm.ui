@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>AuxInfoEntryPageForm</class>
  <widget class="QWidget" name="AuxInfoEntryPageForm" >
   <property name="geometry" >
@@ -72,6 +69,9 @@
           <height>80</height>
          </size>
         </property>
+        <property name="acceptRichText" >
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="3" column="1" >
@@ -90,6 +90,9 @@
           <height>80</height>
          </size>
         </property>
+        <property name="acceptRichText" >
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="4" column="1" >
@@ -107,6 +110,9 @@
           <width>32767</width>
           <height>80</height>
          </size>
+        </property>
+        <property name="acceptRichText" >
+         <bool>false</bool>
         </property>
        </widget>
       </item>
@@ -179,6 +185,9 @@
         <property name="cursor" >
          <cursor>0</cursor>
         </property>
+        <property name="acceptRichText" >
+         <bool>false</bool>
+        </property>
        </widget>
       </item>
       <item row="1" column="1" >
@@ -196,6 +205,9 @@
           <width>32767</width>
           <height>80</height>
          </size>
+        </property>
+        <property name="acceptRichText" >
+         <bool>false</bool>
         </property>
        </widget>
       </item>

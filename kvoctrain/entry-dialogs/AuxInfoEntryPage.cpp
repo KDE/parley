@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Nov 25 17:29:44 1999
+    begin         : Thu Nov 25 17:29:44 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,18 +30,7 @@
 #include <kvtlanguages.h>
 #include <LineList.h>
 
-AuxInfoEntryPage::AuxInfoEntryPage
-(
-  bool        multi_sel,
-  QString     syno,
-  QString     anto,
-  QString     exam,
-  QString     rem,
-  QString     para,
-  QWidget    *parent
-)
- : QWidget(parent)
-
+AuxInfoEntryPage::AuxInfoEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   QFontMetrics fm (synonym_line->font());
@@ -53,13 +42,11 @@ AuxInfoEntryPage::AuxInfoEntryPage
   remark_line->setMaximumHeight(sz*3);
   examp_line->setMaximumHeight(sz*3);
 
-  connect( para_line, SIGNAL(textChanged()), SLOT(slotParaSelected()) );
-  connect( remark_line, SIGNAL(textChanged()), SLOT(slotRemarkSelected()) );
-  connect( examp_line, SIGNAL(textChanged()), SLOT(slotExampSelected()) );
-  connect( antonym_line, SIGNAL(textChanged()), SLOT(slotAntonymSelected()) );
-  connect( synonym_line, SIGNAL(textChanged()), SLOT(slotSynonymSelected()) );
-
-  setData(multi_sel, syno, anto, exam, rem, para);
+  connect(para_line, SIGNAL(textChanged()), SLOT(slotParaSelected()));
+  connect(remark_line, SIGNAL(textChanged()), SLOT(slotRemarkSelected()));
+  connect(examp_line, SIGNAL(textChanged()), SLOT(slotExampSelected()));
+  connect(antonym_line, SIGNAL(textChanged()), SLOT(slotAntonymSelected()));
+  connect(synonym_line, SIGNAL(textChanged()), SLOT(slotSynonymSelected()));
 }
 
 
@@ -86,35 +73,35 @@ void AuxInfoEntryPage::setData(bool multi_sel, QString syno, QString anto, QStri
 void AuxInfoEntryPage::slotSynonymSelected()
 {
   setModified(true);
-  synonym = synonym_line->text();
+  synonym = synonym_line->toPlainText();
 }
 
 
 void AuxInfoEntryPage::slotAntonymSelected()
 {
   setModified(true);
-  antonym = antonym_line->text();
+  antonym = antonym_line->toPlainText();
 }
 
 
 void AuxInfoEntryPage::slotRemarkSelected ()
 {
   setModified(true);
-  remark = remark_line->text();
+  remark = remark_line->toPlainText();
 }
 
 
 void AuxInfoEntryPage::slotExampSelected ()
 {
   setModified(true);
-  example = examp_line->text();
+  example = examp_line->toPlainText();
 }
 
 
 void AuxInfoEntryPage::slotParaSelected ()
 {
   setModified(true);
-  paraphrase = para_line->text();
+  paraphrase = para_line->toPlainText();
 }
 
 
@@ -155,6 +142,7 @@ QString AuxInfoEntryPage::getParaphrase  ()
 
 void AuxInfoEntryPage::normalize (QString &str)
 {
+  ///@todo this is basically a way of cleaning whitespace, better way?
   LineList ll (str);
   ll.normalizeWS();
   str = ll.allLines();

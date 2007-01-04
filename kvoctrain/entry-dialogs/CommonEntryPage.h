@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,38 +36,10 @@ class KDialogBase;
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
   Q_OBJECT
-
 public:
-  CommonEntryPage
-  (
-    KEduVocDocument *doc,
-    bool          multi_sel,
-    QString       expr,
-    int           less,
-    QComboBox    *lessBox,
-    QString       lang,
-    QString       type,
-    QString       pronounce,
-    QString       usage,
-    QString       label,
-    QueryManager &querymanager,
-    bool          active,
-    const QFont&  ipafont,
-    QWidget* parent = 0
-  );
+  CommonEntryPage(KEduVocDocument *doc, QueryManager &querymanager, QWidget* parent = 0 );
 
-  void setData(
-    bool          multi_sel,
-    QString       expr,
-    int           less,
-    QComboBox    *lessBox,
-    QString       lang,
-    QString       type,
-    QString       pronounce,
-    QString       usage,
-    QString       label,
-    QueryManager &querymanager,
-    bool          active);
+  void setData(bool multi_sel, QString expr, int less, QComboBox *lessBox, QString type, QString pronounce, QString  usage,  bool active);
 
   bool isDirty() const;
   bool lessonDirty     () const { return lesson_dirty; }
@@ -75,10 +47,10 @@ public:
   bool typeDirty       () const { return type_dirty; }
   bool usageDirty      () const { return usage_dirty; }
 
-  int getLesson        () const { return lesson; }
-  QString getType      () const { return type; }
+  int     getLesson    () const { return lesson; }
+  QString getType      () const { return m_type; }
   QString getExpr      () const { return expression; }
-  QString getPronounce  () const { return pronounce; }
+  QString getPronounce () const { return m_pronounce; }
   QString getUsageLabel() const { return usageCollection; }
   bool    getActive    () const { return entry_active; }
 
@@ -113,11 +85,11 @@ signals:
   void sigModified();
 
 protected:
-  QString       pronounce;
+  QString       m_pronounce;
   QString       expression;
   QString       usageCollection;
   int           lesson;
-  QString       type;
+  QString       m_type;
   bool          lesson_dirty;
   bool          type_dirty;
   KEduVocDocument *doc;
@@ -131,8 +103,7 @@ protected:
   QList<UsageRelation> usages;
   QList<QString>       current_subtypes;
 
-  QFont                 ipafont;
-  bool                  modified;
-  KDialog         * subDialog;
+  bool                 modified;
+  KDialog             *subDialog;
 };
 #endif // CommonEntryPage_included

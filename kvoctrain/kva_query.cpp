@@ -113,8 +113,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
                            exp,
                            m_doc);
 
-  connect( simpleQueryDlg, SIGNAL(sigEditEntry(int,int)),
-           this, SLOT(slotEditEntry(int,int)));
+  connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
 
   connect( simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
            this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
@@ -286,8 +285,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                             exp->conjugation(act_query_col));
 
     verbQueryDlg->initFocus();
-    connect( verbQueryDlg, SIGNAL(sigEditEntry(int,int)),
-             this, SLOT(slotEditEntry(int,int)));
+    connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
 
     connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                    this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -304,8 +302,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                           m_doc,
                           m_doc->article(act_query_col));
     artQueryDlg->initFocus();
-    connect( artQueryDlg, SIGNAL(sigEditEntry(int,int)),
-             this, SLOT(slotEditEntry(int,int)));
+    connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                       this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
     artQueryDlg->show();
@@ -321,8 +318,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                           m_doc,
                           exp->comparison(act_query_col));
     adjQueryDlg->initFocus();
-    connect( adjQueryDlg, SIGNAL(sigEditEntry(int,int)),
-              this, SLOT(slotEditEntry(int,int)));
+    connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
 
     connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                     this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -576,8 +572,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
                              exp,
                              m_doc);
       randomQueryDlg->initFocus();
-      connect( randomQueryDlg, SIGNAL(sigEditEntry(int,int)),
-               this, SLOT(slotEditEntry(int,int)));
+      connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
       connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)),
                this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
       randomQueryDlg->show();

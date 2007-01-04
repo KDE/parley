@@ -84,7 +84,7 @@ void KVocTrainApp::slotSelectAll ()
 
 void KVocTrainApp::slotEditRow()
 {
-  slotEditEntry(m_tableView->currentIndex().row(), m_tableView->currentIndex().column());
+  slotEditEntry2(m_tableView->currentIndex());
 }
 
 
@@ -273,19 +273,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
 void KVocTrainApp::createEntryDlg(int row, int col)
 {
-   if (entryDlg != 0) {
-     kError() << "KVocTrainApp::createEntryDlg: entryDlg != 0\n";
-     return;
-   }
+  QString title, text, lang;
 
-   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
-     return;
-
-   QString title, text, lang;
-
-   int lesson = m_doc->entry(row)->lesson();
-   if (lesson >= lessons->count())
-     lesson = qMax (0, lessons->count()-1);
+  int lesson = m_doc->entry(row)->lesson();
+  if (lesson >= lessons->count())
+    lesson = qMax (0, lessons->count()-1);
 
   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
    if (col < KV_EXTRA_COLS) {
@@ -326,8 +318,7 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     KEduVocMultipleChoice(),
                     querymanager,
                     title,
-                    m_doc->entry(row)->isActive(),
-                    Prefs::iPAFont());
+                    m_doc->entry(row)->isActive());
    }
    else {
      col -= KV_EXTRA_COLS;
@@ -379,13 +370,11 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     m_doc->entry(row)->multipleChoice(col),
                     querymanager,
                     title,
-                    m_doc->entry(row)->isActive(),
-                    Prefs::iPAFont());
+                    m_doc->entry(row)->isActive());
    }
-   connect( entryDlg, SIGNAL(sigEditChoice(int)),
-             this, SLOT(slotEditCallBack(int)));
+   connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
 
-   ///@todo port? view->getTable()->setReadOnly(true);
+   m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
    if (col == 0)
      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
@@ -400,18 +389,17 @@ void KVocTrainApp::createEntryDlg(int row, int col)
 
 void KVocTrainApp::removeEntryDlg()
 {
-//  cout << "red\n";
   if (entryDlg != 0) {
     commitEntryDlg(false);
     delete entryDlg;
     entryDlg = 0;
   }
 
-  ///@todo port? view->getTable()->setReadOnly(false);
+  m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 }
 
 
-void KVocTrainApp::slotEditEntry (int row, int col)
+void KVocTrainApp::slotEditEntry(int row, int col)
 {
    if (entryDlg == 0) {
      createEntryDlg(row, col);
@@ -423,6 +411,13 @@ void KVocTrainApp::slotEditEntry (int row, int col)
    }
 
    setDataEntryDlg(row, col);
+}
+
+
+void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
+{
+  if (index.isValid())
+    slotEditEntry(index.row(), index.column());
 }
 
 
@@ -682,7 +677,7 @@ void KVocTrainApp::slotRemoveRow()
       m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
   }
-  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -691,7 +686,7 @@ void KVocTrainApp::slotAppendRow ()
   m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
   m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
   m_tableModel->setData(m_tableView->currentIndex(), m_currentLesson, KVTTableModel::LessonRole);
-  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -1438,7 +1433,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
       else
         entryDlg->setEnabled(EntryDlg::EnableAll);
     }
-    slotEditEntry(row, column + KV_EXTRA_COLS);
+    slotEditEntry2(current);
   }
 }
 
