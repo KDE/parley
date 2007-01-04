@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -119,7 +119,7 @@ public:
   void keyPressEvent( QKeyEvent *e );
   void keyReleaseEvent( QKeyEvent *e );
   void slotModifiedDoc(bool mod);
-  void slotCurrentCellChanged(int row, int col);
+  void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
 //  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */

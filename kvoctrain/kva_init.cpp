@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -343,5 +343,7 @@ void KVocTrainApp::initView()
 
   setCaption(m_doc->URL().fileName(), false);
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
+  connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+  slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 }

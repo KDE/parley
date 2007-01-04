@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -79,42 +79,6 @@ void KVocTrainApp::slotCancelSelection ()
 void KVocTrainApp::slotSelectAll ()
 {
   m_tableView->selectAll();
-}
-
-
-void KVocTrainApp::slotCurrentCellChanged(int row, int col)
-{
-  col -= KV_EXTRA_COLS;
-  bool noData = false;
-  KEduVocExpression *expr = 0;
-
-  statusBar()->clearMessage();
-  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= col || row < 0 || col < 0)
-    noData = true;
-  else
-    expr = m_doc->entry(row);
-
-  if (rem_label != 0)
-    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1",
-                        noData ? QString() : expr->remark(col)));
-  if (pron_label != 0)
-    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1",
-                         noData ? QString() : expr->pronunciation(col)));
-  if (type_label != 0)
-    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1",
-                         noData ? QString() : QueryManager::typeStr(expr->type(col))));
-
-  if (entryDlg != 0) {
-    if (noData)
-      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
-    else {
-      if (col == 0)
-        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-      else
-        entryDlg->setEnabled(EntryDlg::EnableAll);
-    }
-    slotEditEntry(row, col + KV_EXTRA_COLS);
-  }
 }
 
 
@@ -1441,6 +1405,41 @@ void KVocTrainApp::slotEditPaste()
 
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
+}
+
+void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+  if (!current.isValid())
+    return;
+
+  int column = current.column() - KV_EXTRA_COLS;
+  int row = current.row();
+  bool noData = false;
+  KEduVocExpression *expr = 0;
+
+  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= column || row < 0 || column < 0)
+    noData = true;
+  else
+    expr = m_doc->entry(row);
+
+  if (rem_label != 0)
+    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1", noData ? QString() : expr->remark(column)));
+  if (pron_label != 0)
+    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
+  if (type_label != 0)
+    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : QueryManager::typeStr(expr->type(column))));
+
+  if (entryDlg != 0) {
+    if (noData)
+      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+    else {
+      if (column == 0)
+        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+      else
+        entryDlg->setEnabled(EntryDlg::EnableAll);
+    }
+    slotEditEntry(row, column + KV_EXTRA_COLS);
+  }
 }
 
 #include "kvoctrain.moc"
