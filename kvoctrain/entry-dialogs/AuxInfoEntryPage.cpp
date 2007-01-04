@@ -27,7 +27,7 @@
 
 #include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"
-#include <langset.h>
+#include <kvtlanguages.h>
 #include <LineList.h>
 
 AuxInfoEntryPage::AuxInfoEntryPage

@@ -679,7 +679,7 @@ KV_ISO639_Code kv_iso639_2[] = {
 };
 */
 
-LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent) : QWidget(parent), m_langSet(langset)
+LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
   setupUi(this);
   langset_popup = 0;
@@ -715,12 +715,12 @@ LanguageOptions::LanguageOptions(LangSet & langset, QWidget* parent) : QWidget(p
     d_shortName->setCurrentIndex(0);
     e_langLong->setText(m_langSet.longId(0));
     e_shortName2->setText(m_langSet.shortId2(0));
-    if (!m_langSet.PixMapFile(0).isEmpty() )
+    if (!m_langSet.pixmapFile(0).isEmpty() )
     {
-      QPixmap pix(m_langSet.PixMapFile(0));
+      QPixmap pix(m_langSet.pixmapFile(0));
       if (!pix.isNull() )
       {
-        m_lastPix = m_langSet.PixMapFile(0);
+        m_lastPix = m_langSet.pixmapFile(0);
         b_langPixmap->setPixmap (pix);
       }
       else
@@ -757,7 +757,7 @@ void LanguageOptions::slotDeleteClicked()
 
   if (d_shortName->count() != 0)
   {
-    setPixmap(m_langSet.PixMapFile(d_shortName->currentIndex()));
+    setPixmap(m_langSet.pixmapFile(d_shortName->currentIndex()));
     e_langLong->setText(m_langSet.longId(d_shortName->currentIndex()));
     e_shortName2->setText(m_langSet.shortId2(d_shortName->currentIndex()));
   }
@@ -870,7 +870,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
      if (d_shortName->count() > (int) m_langSet.size() && m_langSet.size() < MAX_LANGSET )
      {
-       m_langSet.addSet(id, "", "");
+       m_langSet.addLanguage(id, "", "");
        emit widgetModified();
        m_hasChanged = true;
      }
@@ -882,9 +882,9 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      e_langLong->setText(m_langSet.longId(d_shortName->currentIndex()));
      e_shortName2->setText(m_langSet.shortId2(d_shortName->currentIndex()));
 
-     if (!m_langSet.PixMapFile(d_shortName->currentIndex()).isEmpty())
+     if (!m_langSet.pixmapFile(d_shortName->currentIndex()).isEmpty())
      {
-       QPixmap pix(m_langSet.PixMapFile(d_shortName->currentIndex()));
+       QPixmap pix(m_langSet.pixmapFile(d_shortName->currentIndex()));
        if (!pix.isNull())
          b_langPixmap->setPixmap(pix);
        else
@@ -942,7 +942,7 @@ bool LanguageOptions::setPixmap(QString pm)
   {
     QPixmap pix (pm);
     if (!pix.isNull() ) {
-      m_langSet.setPixMapFile(pm, d_shortName->currentIndex());
+      m_langSet.setPixmapFile(pm, d_shortName->currentIndex());
       b_langPixmap->setPixmap (pix);
       emit widgetModified();
       m_hasChanged = true;
@@ -993,7 +993,7 @@ void LanguageOptions::slotPixmapClicked()
   }
 }
 
-LangSet LanguageOptions::getLangSet () const
+KVTLanguages LanguageOptions::getLangSet () const
 {
   return m_langSet;
 }
@@ -1075,8 +1075,8 @@ void LanguageOptions::loadCountryData()
         langs.append(id);
         // Set the pixmap of the language to the flag of the first contry that
         // has the language as official language
-        if (global_langset.PixMapFile(id).isEmpty())
-          global_langset.setPixMapFile(pixmap, id);
+        if (global_langset.pixmapFile(id).isEmpty())
+          global_langset.setPixmapFile(pixmap, id);
       }
       //else
         //kDebug() << "Couldn't find the language for: " << *it << endl;
@@ -1141,7 +1141,7 @@ void LanguageOptions::slotLangFromGlobalActivated(int i)
       }
 
       d_shortName->addItem(s.simplified());
-      m_langSet.addSet(s, global_langset.longId(*it), global_langset.PixMapFile(*it), global_langset.shortId2(*it));
+      m_langSet.addLanguage(s, global_langset.longId(*it), global_langset.pixmapFile(*it), global_langset.shortId2(*it));
       emit widgetModified();
       m_hasChanged = true;
 
@@ -1173,7 +1173,7 @@ void LanguageOptions::loadISO6391Data()
   for (unsigned id = 0; id < (int)(sizeof(kv_iso639_1) / sizeof(kv_iso639_1[0])) && kv_iso639_1[id].iso1code != 0; ++id)
   {
     QString s = i18n(kv_iso639_1[id].langname);
-    global_langset.addSet(kv_iso639_1[id].iso1code, s, QString(), kv_iso639_1[id].iso2code);
+    global_langset.addLanguage(kv_iso639_1[id].iso1code, s, QString(), kv_iso639_1[id].iso2code);
   }
 }
 
@@ -1204,7 +1204,7 @@ void LanguageOptions::createISO6391Menus()
     QString shortid = global_langset.shortId(it.value());
     QString short2id = global_langset.shortId2(it.value());
     lang += "\t("+shortid+')';
-    QString pixmap = global_langset.PixMapFile(it.value());
+    QString pixmap = global_langset.pixmapFile(it.value());
     if (pixmap.isEmpty())
       pop->insertItem(lang, it.value());
     else
@@ -1236,7 +1236,7 @@ void LanguageOptions::slotLangFromISO6391Activated(int id)
      e_langLong->setText(global_langset.longId(id));
      slotLangChanged(e_langLong->text());
 
-     setPixmap(global_langset.PixMapFile(id));
+     setPixmap(global_langset.pixmapFile(id));
      e_newName->setText("");
      e_langLong->setFocus();
      e_langLong->selectAll();
@@ -1268,7 +1268,7 @@ void LanguageOptions::updateSettings()
     languageSettings.setShortId(m_langSet.shortId(i));
     languageSettings.setShort2Id(m_langSet.shortId2(i));
     languageSettings.setLongId(m_langSet.longId(i));
-    languageSettings.setPixmapFile(m_langSet.PixMapFile(i));
+    languageSettings.setPixmapFile(m_langSet.pixmapFile(i));
     languageSettings.setKeyboardLayout(m_langSet.keyboardLayout(i));
     languageSettings.writeConfig();
   }

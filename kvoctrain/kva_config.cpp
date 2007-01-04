@@ -56,7 +56,7 @@ void KVocTrainApp::saveLanguages()
     languageSettings.setShortId(m_languages.shortId(i));
     languageSettings.setShort2Id(m_languages.shortId2(i));
     languageSettings.setLongId(m_languages.longId(i));
-    languageSettings.setPixmapFile(m_languages.PixMapFile(i));
+    languageSettings.setPixmapFile(m_languages.pixmapFile(i));
     languageSettings.setKeyboardLayout(m_languages.keyboardLayout(i));
     languageSettings.writeConfig();
   }
@@ -89,7 +89,7 @@ void KVocTrainApp::readLanguages()
       longId.insert (0, "ident");
     }
 
-    m_languages.addSet(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
+    m_languages.addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
   }
 }
 void KVocTrainApp::saveProperties(KConfig *config )

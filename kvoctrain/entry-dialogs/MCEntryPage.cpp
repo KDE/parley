@@ -27,7 +27,7 @@
 
 #include "MCEntryPage.h"
 #include "EntryDlg.h"
-#include <langset.h>
+#include <kvtlanguages.h>
 
 MCEntryPage::MCEntryPage(bool multi_sel, const KEduVocMultipleChoice &mc, QWidget *parent) : QWidget(parent)
 {

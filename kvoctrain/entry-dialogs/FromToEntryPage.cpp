@@ -31,7 +31,7 @@
 #include <klocale.h>
 
 #include <QueryManager.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "FromToEntryPage.h"
 #include "EntryDlg.h"
 #include "blockall.h"

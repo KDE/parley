@@ -29,12 +29,12 @@
 #include <QFrame>
 #include <QCloseEvent>
 
+#include <klocale.h>
 #include <kmainwindow.h>
 #include <kwinmodule.h>
 
 #include "EntryDlg.h"
-#include <langset.h>
-#include <klocale.h>
+#include <kvtlanguages.h>
 
 EntryDlg::EntryDlg(
   KMainWindow   *main,
@@ -55,7 +55,7 @@ EntryDlg::EntryDlg(
   int            lesson,
   QComboBox     *lessonbox,
   QString        lang,
-  LangSet       &langset,
+  KVTLanguages       &langset,
   QString        rem,
   QString        type,
   QString        pronounce,
@@ -255,7 +255,7 @@ void EntryDlg::setData(
   int            lesson,
   QComboBox     *lessonbox,
   QString        lang,
-  LangSet       &langset,
+  KVTLanguages       &langset,
   QString        rem,
   QString        type,
   QString        pronounce,

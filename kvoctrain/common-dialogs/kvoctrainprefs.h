@@ -33,7 +33,7 @@ class QueryOptions;
 class ThresholdOptions;
 class BlockOptions;
 
-class LangSet;
+class KVTLanguages;
 class KEduVocDocument;
 class QueryManager;
 class KComboBox;
@@ -46,7 +46,7 @@ public:
   /**
    * Creates a configuration dialog.
    */
-  KVocTrainPrefs(LangSet & ls, KEduVocDocument * doc, KComboBox * lessons, QueryManager * m, QWidget *parent=0,
+  KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboBox * lessons, QueryManager * m, QWidget *parent=0,
     const char *name=0, KConfigSkeleton *config=0, FaceType dialogType=List,
     int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
 
@@ -95,7 +95,7 @@ private:
   BlockOptions * m_blockOptions;
 
   KConfigSkeleton * m_config;
-  LangSet & m_langSet;
+  KVTLanguages & m_langSet;
   KEduVocDocument * m_doc;
   KComboBox m_lessons;
   QueryManager * m_queryManager;

@@ -34,7 +34,7 @@
 
 class KEduVocDocument;
 class LangPropPage;
-class LangSet;
+class KVTLanguages;
 
 class DocPropsLangDlg : public KPageDialog
 {
@@ -42,7 +42,7 @@ class DocPropsLangDlg : public KPageDialog
 
 public:
 
-  DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  DocPropsLangDlg(KEduVocDocument *doc, KVTLanguages *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
   KEduVocConjugation getConjugation(int idx) const;
   KEduVocArticle     getArticle(int idx) const;

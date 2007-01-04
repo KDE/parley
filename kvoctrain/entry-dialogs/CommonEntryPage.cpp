@@ -38,7 +38,7 @@
 #include <kdialog.h>
 
 #include <QueryManager.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "blockall.h"
 #include "PhoneticEntryPage.h"

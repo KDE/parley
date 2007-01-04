@@ -32,7 +32,7 @@
 #include <kapplication.h>
 
 #include "DocPropDlg.h"
-#include <langset.h>
+#include <kvtlanguages.h>
 
 class kvoctraindoc;
 

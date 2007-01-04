@@ -204,7 +204,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
           if (id < 0)
             return QVariant();
           else
-            return QPixmap(m_languages.PixMapFile(id));
+            return QPixmap(m_languages.pixmapFile(id));
           break;
         }
         default: {
@@ -213,7 +213,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
           if (id < 0)
             return QVariant();
           else
-            return QPixmap(m_languages.PixMapFile(id));
+            return QPixmap(m_languages.pixmapFile(id));
           break;
         }
       }
@@ -323,7 +323,7 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
   return false;
 }
 
-void KVTTableModel::setLanguages(const LangSet & languages)
+void KVTTableModel::setLanguages(const KVTLanguages & languages)
 {
   m_languages = languages;
 }

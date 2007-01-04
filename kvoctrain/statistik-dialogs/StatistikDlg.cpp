@@ -31,10 +31,10 @@
 #include "StatistikDlg.h"
 #include "StatistikPage.h"
 #include "GenStatPage.h"
-#include <langset.h>
+#include <kvtlanguages.h>
 #include <keduvocdocument.h>
 
-StatistikDlg::StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *parent, const char *name, bool modal)
+StatistikDlg::StatistikDlg(KVTLanguages &langset, KEduVocDocument *doc, QWidget *parent, const char *name, bool modal)
   : KPageDialog(parent)
 {
   setCaption(i18n("Document Statistics"));

@@ -38,7 +38,7 @@
 #include "AdjEntryPage.h"
 #include "MCEntryPage.h"
 
-class LangSet;
+class KVTLanguages;
 class QTabWidget;
 class KMainWindow;
 class KEduVocDocument;
@@ -72,7 +72,7 @@ public:
     int            _lesson,
     QComboBox     *_lessonBox,
     QString        lang,
-    LangSet       &langset,
+    KVTLanguages       &langset,
     QString        remark,
     QString        _type,
     QString        pronounce,
@@ -115,7 +115,7 @@ public:
     int            _lesson,
     QComboBox     *_lessonBox,
     QString        lang,
-    LangSet       &langset,
+    KVTLanguages       &langset,
     QString        remark,
     QString        _type,
     QString        pronounce,

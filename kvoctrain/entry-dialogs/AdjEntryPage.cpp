@@ -25,7 +25,7 @@
 
 #include <QLineEdit>
 
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "AdjEntryPage.h"
 #include "EntryDlg.h"
 

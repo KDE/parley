@@ -81,9 +81,9 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   }
 
   for (int i = 0; i < (int) m_languages.size(); i++) {
-    if(   !m_languages.PixMapFile(i).isEmpty()
+    if(   !m_languages.pixmapFile(i).isEmpty()
        && !m_languages.longId(i).isEmpty() )
-      langs_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i],
+      langs_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i],
         (header << 16) | (i << (16+8)) | IDH_SET_LANG);
     else
       langs_m->insertItem(names[i],
@@ -132,9 +132,9 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       // show pixmap and long name if available
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-         && !m_languages.PixMapFile(j).isEmpty()
+         && !m_languages.pixmapFile(j).isEmpty()
          && !m_languages.longId(j).isEmpty() ) {
-        query_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", names[i-1]),
+        query_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
       }
       else {
@@ -148,9 +148,9 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       // show pixmap and long name if available
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-         && !m_languages.PixMapFile(j).isEmpty()
+         && !m_languages.pixmapFile(j).isEmpty()
          && !m_languages.longId(j).isEmpty() ) {
-        multiple_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", names[i-1]),
+        multiple_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", names[i-1]),
             (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
       }
       else {
@@ -195,8 +195,8 @@ void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
     lid = m_languages.longId(id);
 
   QString pm = "";
-  if (!m_languages.PixMapFile(id).isEmpty() )
-    pm = m_languages.PixMapFile(id);
+  if (!m_languages.pixmapFile(id).isEmpty() )
+    pm = m_languages.pixmapFile(id);
 
   /*
   cout << "shp 1: " << (void*) doc << endl << flush;

@@ -16,7 +16,7 @@
 #include <QPixmap>
 
 #include <keduvocdocument.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
@@ -39,7 +39,7 @@ public:
   void setDocument(KEduVocDocument * doc);
   KEduVocDocument * document() {return m_doc;}
 
-  void setLanguages(const LangSet & languages);
+  void setLanguages(const KVTLanguages & languages);
 
   bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
   bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
@@ -58,7 +58,7 @@ private:
   KEduVocDocument * m_doc;
   QPixmap m_pixInactive;
   QPixmap m_pixInQuery;
-  LangSet m_languages;
+  KVTLanguages m_languages;
 
   friend class KVocTrainApp;
 };

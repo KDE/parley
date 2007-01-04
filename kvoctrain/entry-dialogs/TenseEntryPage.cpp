@@ -28,7 +28,7 @@
 #include <QPushButton>
 #include <QLineEdit>
 
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "TenseEntryPage.h"
 #include "EntryDlg.h"
 
