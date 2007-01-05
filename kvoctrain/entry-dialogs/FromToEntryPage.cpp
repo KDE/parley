@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Mon Jun 28 21:02:16 1999
+    begin         : Mon Jun 28 21:02:16 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -37,78 +37,57 @@
 #include "blockall.h"
 #include "MySpinBox.h"
 
-static QStringList  monthnames;
-
-FromToEntryPage::FromToEntryPage
-(
-  bool        multi_sel,
-  grade_t     _grade,
-  QDateTime   _time,
-  count_t     _qcount,
-  count_t     _bcount,
-  QString     faux,
-  QString     label,
-  QWidget    *parent
-)
-  :
-  QWidget(parent), fauxami(faux)
+FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  monthnames.clear();
-  monthnames.append ("");
-  monthnames.append (i18n("January"));
-  monthnames.append (i18n("February"));
-  monthnames.append (i18n("March"));
-  monthnames.append (i18n("April"));
-  monthnames.append (i18n("May"));
-  monthnames.append (i18n("June"));
-  monthnames.append (i18n("July"));
-  monthnames.append (i18n("August"));
-  monthnames.append (i18n("September"));
-  monthnames.append (i18n("October"));
-  monthnames.append (i18n("November"));
-  monthnames.append (i18n("December"));
 
-  connect( bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)) );
-  connect( qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)) );
-  connect( fauxami_line, SIGNAL(textChanged(const QString&)), SLOT(slotFauxAmiSelected(const QString&)) );
+  QStringList monthnames;
+  monthnames.append("");
+  monthnames.append(i18n("January"));
+  monthnames.append(i18n("February"));
+  monthnames.append(i18n("March"));
+  monthnames.append(i18n("April"));
+  monthnames.append(i18n("May"));
+  monthnames.append(i18n("June"));
+  monthnames.append(i18n("July"));
+  monthnames.append(i18n("August"));
+  monthnames.append(i18n("September"));
+  monthnames.append(i18n("October"));
+  monthnames.append(i18n("November"));
+  monthnames.append(i18n("December"));
 
-  connect( never, SIGNAL(clicked()), SLOT(slotNever()) );
-  connect( today, SIGNAL(clicked()), SLOT(slotToday()) );
-  connect( gradebox, SIGNAL(activated(int)), SLOT(slotGradeSelected(int)) );
+  connect(bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)));
+  connect(qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)));
+  connect(fauxami_line, SIGNAL(textChanged(const QString&)), SLOT(slotFauxAmiSelected(const QString&)));
 
-  connect( year_spin,  SIGNAL(valueChanged(int)), SLOT(slotYearChanged(int)) );
-  connect( month_spin, SIGNAL(valueChanged(int)), SLOT(slotMonthChanged(int)) );
-  connect( day_spin,   SIGNAL(valueChanged(int)), SLOT(slotDayChanged(int)) );
+  connect(never, SIGNAL(clicked()), SLOT(slotNever()));
+  connect(today, SIGNAL(clicked()), SLOT(slotToday()));
+  connect(gradebox, SIGNAL(activated(int)), SLOT(slotGradeSelected(int)));
 
-  year_spin->setData ((QStringList *) 0, 1980, 2100);
-  month_spin->setData (&monthnames, 1, 12);
-  day_spin->setData ((QStringList *) 0, 1, 31);
+  connect(year_spin,  SIGNAL(valueChanged(int)), SLOT(slotYearChanged(int)));
+  connect(month_spin, SIGNAL(valueChanged(int)), SLOT(slotMonthChanged(int)));
+  connect(day_spin,   SIGNAL(valueChanged(int)), SLOT(slotDayChanged(int)));
+
+  ///@todo I wonder if the custom spinbox is still needed
+  year_spin->setData(QStringList(), 1980, 2100);
+  month_spin->setData(monthnames, 1, 12);
+  day_spin->setData(QStringList(), 1, 31);
 
   QString s;
   for (int i = 0; i <= KV_MAX_GRADE; i++) {
     s.setNum (i);
-    gradebox->addItem( QueryManager::gradeStr(i) );
+    gradebox->addItem(QueryManager::gradeStr(i));
   }
-  gradebox->setValidator (new BlockAllValidator() );
+  gradebox->setValidator(new BlockAllValidator());
 
   setTabOrder(fauxami_line, year_spin);
   setTabOrder(year_spin, month_spin);
   setTabOrder(month_spin, day_spin);
   setTabOrder(day_spin, today);
-
-  setData(multi_sel, _grade, _time, _qcount, _bcount, faux, label);
 }
 
 
-void FromToEntryPage::setData(
-  bool        multi_sel,
-  grade_t     _grade,
-  QDateTime   _time,
-  count_t     _qcount,
-  count_t     _bcount,
-  QString     faux,
-  QString     label)
+void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, count_t _qcount, count_t _bcount, QString faux, QString label)
 {
   grade = _grade;
   qcount = _qcount;

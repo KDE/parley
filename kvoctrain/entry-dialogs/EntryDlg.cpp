@@ -34,13 +34,11 @@
 #include <kwinmodule.h>
 
 #include "EntryDlg.h"
-#include <kvtlanguages.h>
 
 EntryDlg::EntryDlg(
   KMainWindow   *main,
   KEduVocDocument  *doc,
   bool           multi_sel,
-  bool           origin,
   grade_t        f_grd,
   grade_t        t_grd,
   count_t        f_qcount,
@@ -54,8 +52,6 @@ EntryDlg::EntryDlg(
   QString        expr,
   int            lesson,
   QComboBox     *lessonbox,
-  QString        lang,
-  KVTLanguages       &langset,
   QString        rem,
   QString        type,
   QString        pronounce,
@@ -66,7 +62,6 @@ EntryDlg::EntryDlg(
   QString        paraphrase,
   const          KEduVocConjugation &con_prefix,
   const          KEduVocConjugation &conjugations,
-  const          KEduVocArticle &/*article*/,
   const          KEduVocComparison &comp,
   const          KEduVocMultipleChoice &mc,
   QueryManager  &querymanager,
@@ -91,118 +86,72 @@ EntryDlg::EntryDlg(
   from_page = 0;
   to_page = 0;
 
-  QString s;
-  if (langset.findLongId(lang).isEmpty())
-    s = lang;
-  else
-    s = langset.findLongId(lang);
-
   QFrame *page;
   QVBoxLayout *topLayout;
 
-  if (origin)
-  {
-    page = new QFrame();
-    addPage(page, i18n("Co&mmon"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    comm_page = new CommonEntryPage(doc, querymanager, page);
-    topLayout->addWidget(comm_page);
+  page = new QFrame();
+  addPage(page, i18n("Co&mmon"));
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  comm_page = new CommonEntryPage(doc, querymanager, page);
+  topLayout->addWidget(comm_page);
 
-    page = new QFrame();
-    addPage(page, i18n("A&dditional"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    aux_page = new AuxInfoEntryPage(page);
-    topLayout->addWidget(aux_page);
+  page = new QFrame();
+  addPage(page, i18n("A&dditional"));
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  aux_page = new AuxInfoEntryPage(page);
+  topLayout->addWidget(aux_page);
 
-    page = new QFrame();
-    addPage(page, i18n("&Multiple Choice"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    mc_page = new MCEntryPage (multi_sel, mc, page);
-    topLayout->addWidget(mc_page);
+  page = new QFrame();
+  addPage(page, i18n("&Multiple Choice"));
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  mc_page = new MCEntryPage(page);
+  topLayout->addWidget(mc_page);
 
-    page = new QFrame();
-    addPage(page, i18n("Con&jugation"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    tense_page = new TenseEntryPage(multi_sel, con_prefix, conjugations, page);
-    topLayout->addWidget(tense_page);
+  page = new QFrame();
+  addPage(page, i18n("Con&jugation"));
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  tense_page = new TenseEntryPage(page);
+  topLayout->addWidget(tense_page);
 
-    page = new QFrame();
-    addPage(page, i18n("Compar&ison"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    adj_page = new AdjEntryPage(multi_sel, comp, page);
-    topLayout->addWidget(adj_page);
-  }
-  else
-  {
-    page = new QFrame();
-    addPage(page, i18n("Co&mmon"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    comm_page = new CommonEntryPage(doc, querymanager, page);
-    topLayout->addWidget(comm_page);
-
-    page = new QFrame();
-    addPage(page, i18n("A&dditional"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    aux_page = new AuxInfoEntryPage(page);
-    topLayout->addWidget(aux_page);
-
-    page = new QFrame();
-    addPage(page, i18n("&Multiple Choice"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    mc_page = new MCEntryPage(multi_sel, mc, page);
-    topLayout->addWidget(mc_page);
-
-    page = new QFrame();
-    addPage(page, i18n("Con&jugation"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    tense_page = new TenseEntryPage (multi_sel, con_prefix, conjugations, page);
-    topLayout->addWidget(tense_page);
-
-    page = new QFrame();
-    addPage(page, i18n("Compar&ison"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(KDialog::marginHint());
-    topLayout->setSpacing(KDialog::spacingHint());
-    adj_page = new AdjEntryPage (multi_sel, comp, page);
-    topLayout->addWidget(adj_page);
-  }
+  page = new QFrame();
+  addPage(page, i18n("Compar&ison"));
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  adj_page = new AdjEntryPage(page);
+  topLayout->addWidget(adj_page);
 
   page = new QFrame();
   addPage(page, i18n("&From Original"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  from_page = new FromToEntryPage(multi_sel, f_grd, f_qdate, f_qcount, f_bcount, f_faux_ami, i18n("Properties From Original"), page);
+  from_page = new FromToEntryPage(page);
   topLayout->addWidget(from_page);
 
   page = new QFrame();
   addPage(page, i18n("&To Original"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  to_page   = new FromToEntryPage (multi_sel, t_grd, t_qdate, t_qcount, t_bcount, t_faux_ami, i18n("Properties to Original"), page);
+  to_page   = new FromToEntryPage (page);
   topLayout->addWidget(to_page);
 
   comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
   aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
+  mc_page->setData(multi_sel, mc);
+  tense_page->setData(multi_sel, con_prefix, conjugations);
+  adj_page->setData(multi_sel, comp);
+  from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount, f_faux_ami, i18n("Properties From Original"));
+  to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount, t_faux_ami, i18n("Properties to Original"));
 
   updatePages(type);
 
@@ -231,7 +180,6 @@ EntryDlg::EntryDlg(
 void EntryDlg::setData(
   KEduVocDocument  */*doc*/,
   bool           multi_sel,
-  bool           origin,
   grade_t        f_grd,
   grade_t        t_grd,
   count_t        f_qcount,
@@ -245,8 +193,6 @@ void EntryDlg::setData(
   QString        expr,
   int            lesson,
   QComboBox     *lessonbox,
-  QString        lang,
-  KVTLanguages       &langset,
   QString        rem,
   QString        type,
   QString        pronounce,
@@ -255,9 +201,8 @@ void EntryDlg::setData(
   QString        example,
   QString        usagelabel,
   QString        paraphrase,
-  const          KEduVocConjugation &/*con_prefix*/,
+  const          KEduVocConjugation &con_prefix,
   const          KEduVocConjugation &conjugations,
-  const          KEduVocArticle &/*article*/,
   const          KEduVocComparison &comp,
   const          KEduVocMultipleChoice &mc,
   QueryManager  &querymanager,
@@ -266,21 +211,11 @@ void EntryDlg::setData(
 {
   setCaption(title);
 
-  QString s;
-  if (langset.findLongId(lang).isEmpty())
-    s = lang;
-  else
-    s = langset.findLongId(lang);
-
-  if (origin)
-    comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
-  else
-    comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
-
+  comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
   adj_page->setData(multi_sel, comp);
   aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
   mc_page->setData(multi_sel, mc);
-  tense_page->setData(multi_sel, conjugations);
+  tense_page->setData(multi_sel, con_prefix, conjugations);
   if (from_page != 0)
     from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount, f_faux_ami, i18n("Properties From Original"));
   if (to_page != 0)

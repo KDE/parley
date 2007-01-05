@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Nov 27 20:20:34 1999
+    begin         : Sat Nov 27 20:20:34 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -34,10 +34,9 @@ class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
   Q_OBJECT
 
 public:
-  TenseEntryPage(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations,
-    QWidget *parent = 0);
+  TenseEntryPage(QWidget *parent = 0);
 
-  void setData(bool multi_sel, const KEduVocConjugation &conjugations);
+  void setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations);
 
   KEduVocConjugation getConjugation();
 

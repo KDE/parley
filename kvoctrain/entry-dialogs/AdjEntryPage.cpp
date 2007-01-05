@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Dec 4 18:09:29 1999
+    begin         : Sat Dec 4 18:09:29 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,21 +29,20 @@
 #include "AdjEntryPage.h"
 #include "EntryDlg.h"
 
-AdjEntryPage::AdjEntryPage(bool multi_sel, const KEduVocComparison &comp, QWidget *parent) : QWidget(parent)
+AdjEntryPage::AdjEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  comparisons = comp;
 
-  connect( lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)) );
-  connect( lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)) );
-  connect( lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)) );
-
-  setData(multi_sel, comp);
+  connect(lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));
+  connect(lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
+  connect(lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
 }
 
 
 void AdjEntryPage::setData(bool multi_sel, const KEduVocComparison  &comp)
 {
+  comparisons = comp;
+
   if (multi_sel) {
     lev1Field->setEnabled(false);
     lev2Field->setEnabled(false);

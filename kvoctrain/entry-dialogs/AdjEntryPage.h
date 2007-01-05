@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Dec 4 18:09:29 1999
+    begin         : Sat Dec 4 18:09:29 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
   Q_OBJECT
 
 public:
-  AdjEntryPage(bool multi_sel, const KEduVocComparison &comp, QWidget *parent = 0);
+  AdjEntryPage(QWidget *parent = 0);
 
   void setData (bool multi_sel, const KEduVocComparison  &comp);
 

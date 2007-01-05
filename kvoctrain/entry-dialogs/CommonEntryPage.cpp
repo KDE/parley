@@ -33,7 +33,7 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kiconloader.h>
+#include <kicon.h>
 #include <kdialog.h>
 
 #include <QueryManager.h>
@@ -67,12 +67,12 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QueryManager &_querymana
   type_box->setValidator(new BlockAllValidator());
   subtype_box->setValidator(new BlockAllValidator());
 
-  QIcon list_pm = SmallIconSet("view_text");
+  QIcon list_pm = KIcon("view_text");
   b_LessDlg->setIcon(list_pm);
   b_TypeDlg->setIcon(list_pm);
   b_usageDlg->setIcon(list_pm);
 
-  QIcon pron_pm = SmallIconSet("view_icon");
+  QIcon pron_pm = KIcon("view_icon");
   b_pronDlg->setIcon(pron_pm);
 
   subDialog = 0L;

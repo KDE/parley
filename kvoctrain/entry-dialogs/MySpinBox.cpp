@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Oct 21 18:02:16 1999
+    begin         : Sat Oct 21 18:02:16 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -25,26 +25,27 @@
 
 #include "MySpinBox.h"
 
-MySpinBox::MySpinBox (QWidget* parent): QSpinBox(parent), spin_names (0)
+MySpinBox::MySpinBox(QWidget* parent): QSpinBox(parent)
 {
+  spin_names.clear();
   setWrapping(true);
 }
 
 
-void MySpinBox::setData (QStringList *names, int minValue, int maxValue)
+void MySpinBox::setData(const QStringList & names, int minValue, int maxValue)
 {
   spin_names = names;
-  setRange (minValue, maxValue);
+  setRange(minValue, maxValue);
 }
 
 
-QString MySpinBox::mapValueToText( int value )
+QString MySpinBox::mapValueToText(int value)
 {
-  if (special_str.length() != 0 )
+  if (special_str.length() != 0)
     return special_str;
 
-  if (spin_names != 0)
-    return (*spin_names)[value];
+  if (spin_names.count() > 0)
+    return (spin_names)[value];
   else
     return QString("%1").arg(value);
 }

@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Oct 21 18:02:16 1999
+    begin         : Sat Oct 21 18:02:16 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,12 +36,12 @@ public:
   MySpinBox (QWidget* parent = 0);
 
   void setSpecial(const QString &str);
-  void setData (QStringList *names, int minValue, int maxValue);
-  virtual QString mapValueToText( int value );
-  virtual int mapTextToValue( bool* ok );
+  void setData (const QStringList & names, int minValue, int maxValue);
+  virtual QString mapValueToText(int value);
+  virtual int mapTextToValue(bool* ok);
 
 protected:
-  QStringList *spin_names;
+  QStringList spin_names;
   QString special_str;
 };
 
