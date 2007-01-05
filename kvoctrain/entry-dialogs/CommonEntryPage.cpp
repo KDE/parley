@@ -83,14 +83,13 @@ void CommonEntryPage::setData(
   bool          multi_sel,
   QString       expr,
   int           less,
-  QComboBox    *lessBox,
   QString       type,
   QString       pronounce,
   QString       usage,
   bool          active)
 {
   lesson = less;
-  setLessonBox(lessBox, less);
+  setLessonBox(lesson);
 
   usageCollection = usage;
   setUsageBox(usage);
@@ -161,11 +160,12 @@ void CommonEntryPage::setTypeBox(const QString &act_type)
 }
 
 
-void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
+void CommonEntryPage::setLessonBox(int lesson)
 {
   lesson_box->clear();
-  for (int i = 0; i < lessbox->count(); i++)
-    lesson_box->addItem (lessbox->itemText(i));
+  lesson_box->addItem(doc->lessonDescription(0));
+  lesson_box->addItems(doc->lessonDescriptions());
+
   if (lesson >= lesson_box->count())
     lesson = 0;
   lesson_box->setCurrentIndex(lesson);

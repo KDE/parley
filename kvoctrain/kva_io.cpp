@@ -67,7 +67,7 @@ void KVocTrainApp::slotTimeOutBackup()
     slotFileSave();
   }
   if (Prefs::backupTime() > 0)
-    btimer->start(Prefs::backupTime() * 60 * 1000, true);
+    btimer->start(Prefs::backupTime() * 60 * 1000);
   slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -264,9 +264,9 @@ void KVocTrainApp::slotFileMerge()
 
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
-    int lesson_offset = lessons->count()-1;
+    int lesson_offset = m_lessonsComboBox->count()-1;
     for (int i = 0; i < (int) new_names.size(); i++) {
-      lessons->addItem (new_names[i]);
+      m_lessonsComboBox->addItem (new_names[i]);
       old_names.push_back(new_names[i]);
     }
     m_doc->setLessonDescriptions(old_names);
@@ -501,14 +501,14 @@ void KVocTrainApp::slotFileSave()
 
 void KVocTrainApp::fillLessonBox()
 {
-  lessons->clear();
-  lessons->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
+  m_lessonsComboBox->clear();
+  m_lessonsComboBox->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
   m_currentLesson = m_doc->currentLesson();
-  if (m_currentLesson > lessons->count() ) {
+  if (m_currentLesson > m_lessonsComboBox->count() ) {
     m_currentLesson = 0;
     m_doc->setCurrentLesson(m_currentLesson);
   }
-  lessons->setCurrentIndex (m_currentLesson);
+  m_lessonsComboBox->setCurrentIndex(m_currentLesson);
 }
 
 

@@ -107,8 +107,8 @@ void KVocTrainApp::slotEditCallBack(int res)
           if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG )
           {
             int lesson = m_doc->entry(row)->lesson();
-            if (lesson >= lessons->count())
-              lesson = qMax (0, lessons->count()-1);
+            if (lesson >= m_lessonsComboBox->count())
+              lesson = qMax (0, m_lessonsComboBox->count()-1);
             slotChooseLesson(lesson);
 
             QString exp;
@@ -215,7 +215,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
    }
    else {
      col -= KV_EXTRA_COLS;
-     for (uint ts = 0; ts < tabsel.size(); ++ts) {
+     for (int ts = 0; ts < tabsel.size(); ++ts) {
        for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
          KEduVocExpression *expr = m_doc->entry(er);
 
@@ -276,8 +276,8 @@ void KVocTrainApp::createEntryDlg(int row, int col)
   QString title, text, lang;
 
   int lesson = m_doc->entry(row)->lesson();
-  if (lesson >= lessons->count())
-    lesson = qMax (0, lessons->count()-1);
+  if (lesson >= m_lessonsComboBox->count())
+    lesson = qMax (0, m_lessonsComboBox->count()-1);
 
   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
    if (col < KV_EXTRA_COLS) {
@@ -299,7 +299,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     QString(),
                     QString(),
                     lesson,
-                    lessons,
                     QString(),
                     m_doc->entry(row)->type(col),
                     QString(),
@@ -347,7 +346,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     m_doc->entry(row)->fauxAmi(col, true),
                     text,
                     lesson,
-                    lessons,
                     m_doc->entry(row)->remark(col),
                     m_doc->entry(row)->type(col),
                     m_doc->entry(row)->pronunciation(col),
@@ -432,8 +430,8 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
      return; // entry delete in the meantime
 
    int lesson = expr->lesson();
-   if (lesson >= lessons->count())
-     lesson = qMax (0, lessons->count()-1);
+   if (lesson >= m_lessonsComboBox->count())
+     lesson = qMax (0, m_lessonsComboBox->count() - 1);
 
    bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
 
@@ -454,7 +452,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        QString(),
                        QString(),
                        lesson,
-                       lessons,
                        QString(),
                        m_doc->entry(row)->type(0),
                        QString(),
@@ -499,7 +496,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        m_doc->entry(row)->fauxAmi(col, true),
                        text,
                        lesson,
-                       lessons,
                        m_doc->entry(row)->remark(col),
                        m_doc->entry(row)->type(col),
                        m_doc->entry(row)->pronunciation(col),
@@ -531,7 +527,7 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
 
 void KVocTrainApp::slotDocProps ()
 {
-   int old_lessons = (int) lessons->count();
+   int old_lessons = (int) m_lessonsComboBox->count();
    int old_types = (int) m_doc->typeDescriptions().size();
    int old_tenses = (int) m_doc->tenseDescriptions().size();
    int old_usages = (int) m_doc->usageDescriptions().size();
@@ -539,7 +535,7 @@ void KVocTrainApp::slotDocProps ()
 
    DocPropsDlg ddlg (m_doc,
                      0,
-                     lessons,
+                     m_lessonsComboBox,
                      m_doc->title(),
                      m_doc->author(),
                      m_doc->license(),
@@ -571,15 +567,15 @@ void KVocTrainApp::slotDocProps ()
       slotStatusMsg(i18n("Updating lesson indices..."));
       QApplication::setOverrideCursor( Qt::WaitCursor );
 
-      ddlg.getLesson(lessons, lessonIndex);
+      ddlg.getLesson(m_lessonsComboBox, lessonIndex);
       ddlg.getTypeNames(new_typeStr, typeIndex);
       ddlg.getTenseNames(new_tenseStr, tenseIndex);
       ddlg.getUsageLabels(new_usageStr, usageIndex);
 
       new_lessoninquery = old_lessoninquery;
-      LessOptPage::cleanUnused(m_doc, lessons, lessonIndex, old_lessons, new_lessoninquery);
-      for (int i = 1; i < lessons->count(); i++)
-        new_lessonStr.push_back(lessons->itemText(i));
+      LessOptPage::cleanUnused(m_doc, m_lessonsComboBox, lessonIndex, old_lessons, new_lessoninquery);
+      for (int i = 1; i < m_lessonsComboBox->count(); i++)
+        new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
 
       slotStatusMsg(i18n("Updating type indices..."));
       TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
@@ -674,61 +670,46 @@ void KVocTrainApp::slotAppendRow ()
 }
 
 
-void KVocTrainApp::keyReleaseEvent( QKeyEvent *e )
+void KVocTrainApp::keyReleaseEvent(QKeyEvent *e)
 {
-  switch( e->key() ) {
-    case Qt::Key_Shift:  shiftActive = false;
-    break;
-
-    case Qt::Key_Alt:  altActive = false;
-    break;
-
-    case Qt::Key_Control:  controlActive = false;
-    break;
+  switch(e->key()) {
+    case Qt::Key_Control:  
+      controlActive = false;
+      break;
   }
 }
 
 
-void KVocTrainApp::keyPressEvent( QKeyEvent *e )
+void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 {
-  ///@todo
-  ///port
-  /*
-  controlActive = (e->state() & ControlButton) != 0;
-  shiftActive = (e->state() & ShiftButton) != 0;
-  altActive = (e->state() & AltButton) != 0;
-  */
+  controlActive = (e->modifiers() & Qt::ControlModifier) !=0;
+
   switch( e->key() ) {
     case Qt::Key_Plus:
       if (controlActive) {
-        int less = lessons->currentIndex();
-        if (less == lessons->count()-1)
-          lessons->setCurrentIndex(0);
+        int less = m_lessonsComboBox->currentIndex();
+        if (less == m_lessonsComboBox->count() - 1)
+          m_lessonsComboBox->setCurrentIndex(0);
         else
-          lessons->setCurrentIndex(less+1);
-        slotChooseLesson(lessons->currentIndex());
+          m_lessonsComboBox->setCurrentIndex(less+1);
+        slotChooseLesson(m_lessonsComboBox->currentIndex());
       }
     break;
 
     case Qt::Key_Minus:
       if (controlActive) {
-        int less = lessons->currentIndex();
+        int less = m_lessonsComboBox->currentIndex();
         if (less == 0)
-          lessons->setCurrentIndex(lessons->count()-1);
+          m_lessonsComboBox->setCurrentIndex(m_lessonsComboBox->count() - 1);
         else
-          lessons->setCurrentIndex(less-1);
-        slotChooseLesson(lessons->currentIndex());
+          m_lessonsComboBox->setCurrentIndex(less - 1);
+        slotChooseLesson(m_lessonsComboBox->currentIndex());
       }
     break;
 
-    case Qt::Key_Shift:  shiftActive = true;
-    break;
-
-    case Qt::Key_Alt:  altActive = true;
-    break;
-
-    case Qt::Key_Control:  controlActive = true;
-    break;
+    case Qt::Key_Control:
+      controlActive = true;
+      break;
 
     case Qt::Key_Tab:
       if (m_tableView->hasFocus() )  {
@@ -842,11 +823,11 @@ void KVocTrainApp::slotCreateRandom()
    }
 
    if (randomList.size () != 0) {
-     int less_no = lessons->count() /* +1 anyway */ ;
+     int less_no = m_lessonsComboBox->count() /* +1 anyway */ ;
      QString s;
      s.setNum (less_no);
      s.insert (0, "- ");
-     lessons->addItem (s);
+     m_lessonsComboBox->addItem (s);
      int less_cnt = Prefs::entriesPerLesson();
      while (randomList.size () != 0) {
        if (--less_cnt <= 0) {
@@ -854,7 +835,7 @@ void KVocTrainApp::slotCreateRandom()
          less_no++;
          s.setNum (less_no);
          s.insert (0, "- ");
-         lessons->addItem (s);
+         m_lessonsComboBox->addItem (s);
        }
        int nr = random.getLong(randomList.size());
        randomList[nr]->setLesson(less_no);
@@ -862,8 +843,8 @@ void KVocTrainApp::slotCreateRandom()
      }
 
      QStringList new_lessonStr;
-     for (int i = 1; i < lessons->count(); i++)
-       new_lessonStr.push_back(lessons->itemText(i));
+     for (int i = 1; i < m_lessonsComboBox->count(); i++)
+       new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
      m_doc->setLessonDescriptions(new_lessonStr);
      m_tableModel->reset();
      m_doc->setModified ();
@@ -881,7 +862,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_doc, lessons, &querymanager, this, "settings",  Prefs::self() );
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_doc, m_lessonsComboBox, &querymanager, this, "settings",  Prefs::self() );
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
@@ -1347,7 +1328,6 @@ void KVocTrainApp::slotEditPaste()
   ts.setString(&textToPaste, QIODevice::Text);
   QList<int> csv_order = csvOrder();
 
-  bool changed = false;
   QString num;
 
   while (!ts.atEnd()) {
@@ -1388,6 +1368,7 @@ void KVocTrainApp::slotEditPaste()
 
 void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
+  Q_UNUSED(previous);
   if (!current.isValid())
     return;
 

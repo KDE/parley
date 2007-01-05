@@ -45,7 +45,7 @@
 #include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 
-KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name) : KMainWindow(parent, name)
+KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
 {
   m_doc = 0;
   m_tableView = 0;
@@ -53,8 +53,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name) : KMainWindow(pare
   header_m = 0;
   btimer = 0;
   querymode = false;
-  shiftActive = false;
-  altActive = false;
   controlActive = false;
   m_currentLesson = 0;
   searchpos = 0;
@@ -86,10 +84,11 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name) : KMainWindow(pare
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
   querying = false;
-  btimer = new QTimer( this );
+  btimer = new QTimer(this);
+  btimer->setSingleShot(true);
   connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
   if (Prefs::autoBackup())
-    btimer->start(Prefs::backupTime() * 60 * 1000, true);
+    btimer->start(Prefs::backupTime() * 60 * 1000);
 }
 
 
@@ -216,15 +215,15 @@ void KVocTrainApp::initActions()
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
   vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
-  vocabAppendLanguage = new KSelectAction(i18n("&Append Language"), "insert_table_col", KShortcut(), actionCollection(), "vocab_append_language");
+  vocabAppendLanguage = new KSelectAction(KIcon("insert_table_col"), i18n("&Append Language"),actionCollection(), "vocab_append_language");
   connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
   connect (vocabAppendLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
   connect (vocabAppendLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-  vocabSetLanguage = new KSelectAction(i18n("Set &Language"), "set_language", KShortcut(), actionCollection(), "vocab_set_language");
+  vocabSetLanguage = new KSelectAction(KIcon("set_language"), i18n("Set &Language"), actionCollection(), "vocab_set_language");
   connect(vocabSetLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
-  vocabRemoveLanguage = new KSelectAction(i18n("&Remove Language"), "delete_table_col", KShortcut(), actionCollection(), "vocab_remove_language");
+  vocabRemoveLanguage = new KSelectAction(KIcon("delete_table_col"), i18n("&Remove Language"), actionCollection(), "vocab_remove_language");
   connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
   connect(vocabRemoveLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
   connect(vocabRemoveLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -241,21 +240,21 @@ void KVocTrainApp::initActions()
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
   vocabLanguageProperties->setStatusTip(vocabSetLanguage->whatsThis());
 
-  lessons = new KComboBox(this);
-  lessons->setMinimumWidth(160);
-  connect(lessons, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
-  lessons->setFocusPolicy(Qt::NoFocus);
+  m_lessonsComboBox = new KComboBox(this);
+  m_lessonsComboBox->setMinimumWidth(160);
+  connect(m_lessonsComboBox, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
+  m_lessonsComboBox->setFocusPolicy(Qt::NoFocus);
 
   vocabLessons = new KAction(i18n("Lessons"), actionCollection(), "vocab_lessons");
-  vocabLessons->setDefaultWidget( lessons );
+  vocabLessons->setDefaultWidget(m_lessonsComboBox);
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
   vocabLessons->setStatusTip(vocabLessons->whatsThis());
 
   searchLine = new KLineEdit(this);
   searchLine->setFocusPolicy(Qt::ClickFocus);
-  connect (searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
-  connect (searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
+  connect(searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
+  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
 
   vocabSearch = new KAction(i18n("Smart Search"), actionCollection(), "vocab_search");
   vocabSearch->setDefaultWidget( searchLine );

@@ -79,7 +79,7 @@ class KVocTrainApp : public KMainWindow
 
 public:
   /** construtor */
-  KVocTrainApp(QWidget *parent = NULL, const char *name = NULL);
+  KVocTrainApp(QWidget *parent = 0);
   /** destructor */
   ~KVocTrainApp();
   void initActions();
@@ -306,12 +306,10 @@ private:
   int              searchpos;
   QString          m_textToFind;
   KLineEdit       *searchLine;
-  KComboBox       *lessons;
+  KComboBox       *m_lessonsComboBox;
   int              m_currentLesson;
   QueryManager     querymanager;
   bool             controlActive;
-  bool             shiftActive;
-  bool             altActive;
   ProgressDlg     *pdlg;
   QProgressBar    *pbar;
   QLabel          *vslide_label;
