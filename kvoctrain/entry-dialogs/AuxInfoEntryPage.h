@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Nov 25 17:29:44 1999
+    begin         : Thu Nov 25 17:29:44 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -33,10 +33,9 @@ class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
   Q_OBJECT
 
 public:
-  AuxInfoEntryPage(bool multi_sel, QString syno, QString anto, QString example,
-    QString remark, QString para, QWidget *parent = 0);
+  AuxInfoEntryPage(QWidget *parent = 0);
 
-  void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString  para);
+  void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString para);
 
   QString getSynonym ();
   QString getAntonym ();

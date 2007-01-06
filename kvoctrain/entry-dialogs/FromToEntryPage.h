@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -39,26 +39,9 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 
 public:
 
-  FromToEntryPage
-  (
-      bool        multi_sel,
-      grade_t     _grade,
-      QDateTime   _date,
-      count_t     _qcount,
-      count_t     _bcount,
-      QString     faux,
-      QString     label,
-      QWidget    *parent = 0
-  );
+  FromToEntryPage(QWidget *parent = 0);
 
-  void setData(
-      bool        multi_sel,
-      grade_t     _grade,
-      QDateTime   _date,
-      count_t     _qcount,
-      count_t     _bcount,
-      QString     faux,
-      QString     label);
+  void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
 
   time_t  dateDirty   () const { return date_dirty; }
   grade_t gradeDirty  () const { return grade_dirty; }
@@ -77,43 +60,43 @@ public:
   void setEnabled(int enable_type);
 
 signals:
-    void sigModified();
+  void sigModified();
 
 protected slots:
-    void slotGradeSelected(int);
-    void slotQCount(const QString&);
-    void slotBCount(const QString&);
+  void slotGradeSelected(int);
+  void slotQCount(const QString&);
+  void slotBCount(const QString&);
 
-    void slotIncYear();
-    void slotIncMonth();
-    void slotIncDay();
-    void slotDecYear();
-    void slotDecMonth();
-    void slotDecDay();
-    void slotToday();
-    void slotNever();
-    void slotFauxAmiSelected(const QString&);
+  void slotIncYear();
+  void slotIncMonth();
+  void slotIncDay();
+  void slotDecYear();
+  void slotDecMonth();
+  void slotDecDay();
+  void slotToday();
+  void slotNever();
+  void slotFauxAmiSelected(const QString&);
 
-    void slotDayChanged(int);
-    void slotMonthChanged(int);
-    void slotYearChanged(int);
+  void slotDayChanged(int);
+  void slotMonthChanged(int);
+  void slotYearChanged(int);
 
 protected:
-    void validate();
+  void validate();
 
-    QString    fauxami;
-    bool       valid_date;
-    bool       date_dirty,
-               qcount_dirty,
-               bcount_dirty,
-               grade_dirty;
-    grade_t    grade;
-    count_t    qcount;
-    count_t    bcount;
-    int        year,
-               month,
-               day;
-    bool       modified;
+  QString    fauxami;
+  bool       valid_date;
+  bool       date_dirty;
+  bool       qcount_dirty;
+  bool       bcount_dirty;
+  bool       grade_dirty;
+  grade_t    grade;
+  count_t    qcount;
+  count_t    bcount;
+  int        year;
+  int        month;
+  int        day;
+  bool       modified;
 };
 
 #endif // FromToEntryPage_included

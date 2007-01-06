@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -27,25 +27,24 @@
 
 #include "MCEntryPage.h"
 #include "EntryDlg.h"
-#include <langset.h>
+#include <kvtlanguages.h>
 
-MCEntryPage::MCEntryPage(bool multi_sel, const KEduVocMultipleChoice &mc, QWidget *parent) : QWidget(parent)
+MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  multiplechoice = mc;
 
-  connect( mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)) );
-  connect( mc2Field, SIGNAL(textChanged(const QString&)), SLOT(mc2Changed(const QString&)) );
-  connect( mc3Field, SIGNAL(textChanged(const QString&)), SLOT(mc3Changed(const QString&)) );
-  connect( mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)) );
-  connect( mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)) );
-
-  setData(multi_sel, mc);
+  connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)));
+  connect(mc2Field, SIGNAL(textChanged(const QString&)), SLOT(mc2Changed(const QString&)));
+  connect(mc3Field, SIGNAL(textChanged(const QString&)), SLOT(mc3Changed(const QString&)));
+  connect(mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)));
+  connect(mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)));
 }
 
 
 void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
 {
+  multiplechoice = mc;
+
   mc1Field->setText (mc.mc1());
   mc2Field->setText (mc.mc2());
   mc3Field->setText (mc.mc3());

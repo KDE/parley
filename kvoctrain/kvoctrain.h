@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -41,12 +41,11 @@
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
-#include "kvoctraintable.h"
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
 #include "kvttablemodel.h"
 #include "kvttableview.h"
-#include "langset.h"
+#include "kvtlanguages.h"
 
 class QTimer;
 class KLined;
@@ -119,11 +118,12 @@ public:
   void keyPressEvent( QKeyEvent *e );
   void keyReleaseEvent( QKeyEvent *e );
   void slotModifiedDoc(bool mod);
-  void slotCurrentCellChanged(int row, int col);
+  void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
 //  void slotSelectEntry (int row, int col, int key_state);
 
   /** edit an entry */
-  void slotEditEntry(int row, int col);
+  void slotEditEntry(int row, int col); ///@todo get rid of
+  void slotEditEntry2(const QModelIndex &);
   void slotEditCallBack(int res);
 
   void commitEntryDlg(bool force);
@@ -248,8 +248,8 @@ private:
   KAction* editClearSelection;
   KAction* editSearchFromClipboard;
   KAction* editAppend;
-  KAction* editEditSelectedArea;
-  KAction* editRemoveSelectedArea;
+  KAction* editEditEntry;
+  KAction* editDelete;
   KAction* editSaveSelectedArea;
 
   KAction* vocabShowStatistics;
@@ -302,7 +302,7 @@ private:
   int              act_query_col;
   QString          act_query_trans;
   QString          act_query_org;
-  LangSet          m_languages;
+  KVTLanguages     m_languages;
   int              searchpos;
   QString          m_textToFind;
   KLineEdit       *searchLine;

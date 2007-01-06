@@ -29,14 +29,14 @@
 #include <kpagedialog.h>
 
 class KEduVocDocument;
-class LangSet;
+class KVTLanguages;
 class GradeCols;
 
 class StatistikDlg : public KPageDialog
 {
   Q_OBJECT
 public:
-  StatistikDlg(LangSet &langset, KEduVocDocument *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  StatistikDlg(KVTLanguages &langset, KEduVocDocument *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
 
 };
 

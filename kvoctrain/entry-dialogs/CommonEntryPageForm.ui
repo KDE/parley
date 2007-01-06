@@ -1,14 +1,11 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>CommonEntryPageForm</class>
  <widget class="QWidget" name="CommonEntryPageForm" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>316</width>
+    <width>400</width>
     <height>394</height>
    </rect>
   </property>
@@ -32,14 +29,14 @@
   <property name="toolTip" >
    <string>Invokes lesson input dialog</string>
   </property>
-  <layout class="QVBoxLayout" >
+  <layout class="QGridLayout" >
    <property name="margin" >
     <number>0</number>
    </property>
    <property name="spacing" >
     <number>6</number>
    </property>
-   <item>
+   <item row="0" column="0" >
     <widget class="QGroupBox" name="asdf" >
      <property name="sizePolicy" >
       <sizepolicy>
@@ -52,253 +49,14 @@
      <property name="title" >
       <string>Common Properties</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QGridLayout" >
       <property name="margin" >
-       <number>11</number>
+       <number>9</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item>
-       <widget class="QFrame" name="Frame4" >
-        <property name="frameShape" >
-         <enum>QFrame::NoFrame</enum>
-        </property>
-        <property name="frameShadow" >
-         <enum>QFrame::Plain</enum>
-        </property>
-        <layout class="QGridLayout" >
-         <property name="margin" >
-          <number>11</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item row="0" column="1" >
-          <widget class="QLineEdit" name="expr_line" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>3</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="1" >
-          <widget class="QLineEdit" name="pronounce_line" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>3</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="1" >
-          <widget class="QComboBox" name="lesson_box" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>3</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" >
-          <widget class="QLabel" name="expr_label" >
-           <property name="text" >
-            <string>&amp;Expression:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>expr_line</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" >
-          <widget class="QLabel" name="pronounce_label" >
-           <property name="text" >
-            <string>&amp;Pronunciation:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>pronounce_line</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="0" >
-          <widget class="QLabel" name="lesson_label" >
-           <property name="text" >
-            <string>&amp;Lesson:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>lesson_box</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="1" column="2" >
-          <widget class="QPushButton" name="b_LessDlg" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize" >
-            <size>
-             <width>30</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Invokes input dialog for lessons</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="2" >
-          <widget class="QPushButton" name="b_pronDlg" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize" >
-            <size>
-             <width>30</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Invokes dialog page with characters from phonetic alphabet</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
-       <widget class="QGroupBox" name="type_label" >
-        <property name="title" >
-         <string>T&amp;ype</string>
-        </property>
-        <layout class="QHBoxLayout" >
-         <property name="margin" >
-          <number>11</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item>
-          <widget class="QComboBox" name="type_box" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>3</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer>
-           <property name="orientation" >
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Minimum</enum>
-           </property>
-           <property name="sizeHint" >
-            <size>
-             <width>20</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QLabel" name="subtype_label" >
-           <property name="text" >
-            <string>&amp;Subtype:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>subtype_box</cstring>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QComboBox" name="subtype_box" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>3</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="b_TypeDlg" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>0</hsizetype>
-             <vsizetype>0</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize" >
-            <size>
-             <width>30</width>
-             <height>0</height>
-            </size>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>30</width>
-             <height>30</height>
-            </size>
-           </property>
-           <property name="toolTip" >
-            <string>Invokes input dialog for word types</string>
-           </property>
-           <property name="text" >
-            <string/>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item>
+      <item row="2" column="0" >
        <widget class="QGroupBox" name="usage_label" >
         <property name="sizePolicy" >
          <sizepolicy>
@@ -313,12 +71,61 @@
         </property>
         <layout class="QGridLayout" >
          <property name="margin" >
-          <number>11</number>
+          <number>9</number>
          </property>
          <property name="spacing" >
           <number>6</number>
          </property>
-         <item row="0" column="2" >
+         <item rowspan="2" row="0" column="0" >
+          <layout class="QHBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QListWidget" name="usage_box" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>0</hsizetype>
+               <vsizetype>7</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="usage_line" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>5</hsizetype>
+               <vsizetype>5</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize" >
+              <size>
+               <width>0</width>
+               <height>80</height>
+              </size>
+             </property>
+             <property name="frameShape" >
+              <enum>QFrame::StyledPanel</enum>
+             </property>
+             <property name="frameShadow" >
+              <enum>QFrame::Plain</enum>
+             </property>
+             <property name="alignment" >
+              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+         <item row="0" column="1" >
           <widget class="QPushButton" name="b_usageDlg" >
            <property name="sizePolicy" >
             <sizepolicy>
@@ -348,78 +155,249 @@
            </property>
           </widget>
          </item>
-         <item row="1" column="2" >
+         <item row="1" column="1" >
           <spacer>
            <property name="orientation" >
             <enum>Qt::Vertical</enum>
            </property>
-           <property name="sizeType" >
-            <enum>QSizePolicy::Preferred</enum>
-           </property>
            <property name="sizeHint" >
             <size>
              <width>20</width>
-             <height>20</height>
+             <height>51</height>
             </size>
            </property>
           </spacer>
          </item>
-         <item rowspan="2" row="0" column="0" >
-          <widget class="Q3ListBox" name="usage_box" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>5</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="maximumSize" >
-            <size>
-             <width>32767</width>
-             <height>90</height>
-            </size>
-           </property>
-           <property name="selectionMode" >
-            <enum>Q3ListBox::Multi</enum>
-           </property>
-          </widget>
-         </item>
-         <item rowspan="2" row="0" column="1" >
-          <widget class="QLabel" name="usage_line" >
-           <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>5</hsizetype>
-             <vsizetype>5</vsizetype>
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="minimumSize" >
-            <size>
-             <width>0</width>
-             <height>80</height>
-            </size>
-           </property>
-           <property name="frameShape" >
-            <enum>QFrame::StyledPanel</enum>
-           </property>
-           <property name="frameShadow" >
-            <enum>QFrame::Plain</enum>
-           </property>
-           <property name="alignment" >
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-           </property>
-          </widget>
-         </item>
         </layout>
        </widget>
       </item>
-      <item>
+      <item row="3" column="0" >
        <widget class="QCheckBox" name="c_active" >
         <property name="text" >
          <string>Acti&amp;ve</string>
         </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>9</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="expr_line" />
+        </item>
+        <item row="2" column="1" >
+         <widget class="QLineEdit" name="pronounce_line" />
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="pronounce_label" >
+          <property name="text" >
+           <string>&amp;Pronunciation:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>pronounce_line</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2" >
+         <widget class="QPushButton" name="b_LessDlg" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="toolTip" >
+           <string>Invokes input dialog for lessons</string>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="lesson_label" >
+          <property name="text" >
+           <string>&amp;Lesson:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>lesson_box</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="2" >
+         <widget class="QPushButton" name="b_pronDlg" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>0</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize" >
+           <size>
+            <width>30</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize" >
+           <size>
+            <width>30</width>
+            <height>30</height>
+           </size>
+          </property>
+          <property name="toolTip" >
+           <string>Invokes dialog page with characters from phonetic alphabet</string>
+          </property>
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QComboBox" name="lesson_box" />
+        </item>
+        <item row="0" column="0" >
+         <widget class="QLabel" name="expr_label" >
+          <property name="text" >
+           <string>&amp;Expression:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>expr_line</cstring>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QGroupBox" name="type_label" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>1</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="title" >
+         <string>T&amp;ype</string>
+        </property>
+        <layout class="QGridLayout" >
+         <property name="margin" >
+          <number>9</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item row="0" column="0" >
+          <layout class="QHBoxLayout" >
+           <property name="margin" >
+            <number>0</number>
+           </property>
+           <property name="spacing" >
+            <number>6</number>
+           </property>
+           <item>
+            <widget class="QComboBox" name="type_box" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>3</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeType" >
+              <enum>QSizePolicy::Minimum</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>20</width>
+               <height>16</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="subtype_label" >
+             <property name="text" >
+              <string>&amp;Subtype:</string>
+             </property>
+             <property name="buddy" >
+              <cstring>subtype_box</cstring>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="subtype_box" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>3</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="b_TypeDlg" >
+             <property name="sizePolicy" >
+              <sizepolicy>
+               <hsizetype>0</hsizetype>
+               <vsizetype>0</vsizetype>
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="minimumSize" >
+              <size>
+               <width>30</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize" >
+              <size>
+               <width>30</width>
+               <height>30</height>
+              </size>
+             </property>
+             <property name="toolTip" >
+              <string>Invokes input dialog for word types</string>
+             </property>
+             <property name="text" >
+              <string/>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
+        </layout>
        </widget>
       </item>
      </layout>
@@ -429,25 +407,10 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3ListBox</class>
-   <extends></extends>
-   <header>q3listbox.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
- </customwidgets>
  <tabstops>
-  <tabstop>expr_line</tabstop>
-  <tabstop>lesson_box</tabstop>
-  <tabstop>b_LessDlg</tabstop>
-  <tabstop>pronounce_line</tabstop>
-  <tabstop>b_pronDlg</tabstop>
   <tabstop>type_box</tabstop>
   <tabstop>subtype_box</tabstop>
   <tabstop>b_TypeDlg</tabstop>
-  <tabstop>usage_box</tabstop>
   <tabstop>b_usageDlg</tabstop>
   <tabstop>c_active</tabstop>
  </tabstops>

@@ -34,7 +34,7 @@ class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
   Q_OBJECT
 
 public:
-  MCEntryPage(bool multi_sel, const KEduVocMultipleChoice &mc, QWidget *parent = 0);
+  MCEntryPage(QWidget *parent = 0);
 
   void setData(bool multi_sel, const KEduVocMultipleChoice &mc);
 

@@ -32,7 +32,7 @@
 #include "pasteoptions.h"
 #include "prefs.h"
 #include <keduvocdocument.h>
-#include "langset.h"
+#include "kvtlanguages.h"
 
 static const char *separator_id[] =
 {
@@ -48,7 +48,7 @@ static const char *separator_id[] =
   0
 };
 
-PasteOptions::PasteOptions(LangSet & langset, KEduVocDocument * doc, QWidget* parent) : QWidget(parent), m_langSet(langset)
+PasteOptions::PasteOptions(KVTLanguages & langset, KEduVocDocument * doc, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
   setupUi(this);
   connect(kcfg_UseCurrent, SIGNAL(toggled(bool)), OrderList, SLOT(setDisabled(bool)));

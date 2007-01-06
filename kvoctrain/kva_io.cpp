@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -687,6 +687,7 @@ void KVocTrainApp::createNewDocument()
   m_tableModel->setDocument(m_doc);
   loadDocProps();
   m_tableModel->reset();
-  m_tableView->adjustContent();
+  if (m_tableView)
+    m_tableView->adjustContent();
   m_doc->setModified(false);
 }

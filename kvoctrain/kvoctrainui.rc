@@ -12,8 +12,9 @@
   <Menu name="edit" >
    <Separator/>
    <Action name="edit_append" />
-   <Action name="edit_edit_selected_area" />
    <Action name="edit_remove_selected_area" />
+   <Separator/>
+   <Action name="edit_edit_selected_area" />
   </Menu>
   <Menu name="vocabulary" >
    <text>Vo&amp;cabulary</text>

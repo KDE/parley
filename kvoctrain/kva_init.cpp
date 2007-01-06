@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -83,7 +83,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent, const char *name) : KMainWindow(pare
   initDoc();
   initView();
 
-  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
   querying = false;
   btimer = new QTimer( this );
@@ -113,7 +113,7 @@ void KVocTrainApp::initActions()
 
   fileGHNS = new KAction(KIcon("knewstuff"), i18n("&Get New Vocabularies..."), actionCollection(), "file_ghns");
   connect(fileGHNS, SIGNAL(triggered(bool)), SLOT(slotGHNS()));
-  fileGHNS->setShortcut(QKeySequence(Qt::Key_Control+Qt::Key_G));
+  fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
   fileGHNS->setStatusTip(fileGHNS->whatsThis());
@@ -178,19 +178,19 @@ void KVocTrainApp::initActions()
   editAppend->setToolTip(editAppend->whatsThis());
   editAppend->setStatusTip(editAppend->whatsThis());
 
-  editEditSelectedArea = new KAction(KIcon("edit_table_row"), i18n("&Edit Selected Area..."), actionCollection(), "edit_edit_selected_area");
-  connect(editEditSelectedArea, SIGNAL(triggered(bool)), SLOT(slotEditRow()));
-  editEditSelectedArea->setShortcut(QKeySequence(Qt::Key_Control+Qt::Key_Return));
-  editEditSelectedArea->setWhatsThis(i18n("Edit the entries in the selected rows"));
-  editEditSelectedArea->setToolTip(editEditSelectedArea->whatsThis());
-  editEditSelectedArea->setStatusTip(editEditSelectedArea->whatsThis());
+  editDelete = new KAction(KIcon("delete_table_row"), i18n("&Delete Entry"), actionCollection(), "edit_remove_selected_area");
+  connect(editDelete, SIGNAL(triggered(bool)), SLOT(slotRemoveRow()));
+  editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
+  editDelete->setWhatsThis(i18n("Delete the selected rows"));
+  editDelete->setToolTip(editDelete->whatsThis());
+  editDelete->setStatusTip(editDelete->whatsThis());
 
-  editRemoveSelectedArea = new KAction(KIcon("delete_table_row"), i18n("&Remove Selected Area"), actionCollection(), "edit_remove_selected_area");
-  connect(editRemoveSelectedArea, SIGNAL(triggered(bool)), SLOT(slotRemoveRow()));
-  editRemoveSelectedArea->setShortcut(QKeySequence(Qt::Key_Delete));
-  editRemoveSelectedArea->setWhatsThis(i18n("Delete the selected rows"));
-  editRemoveSelectedArea->setToolTip(editRemoveSelectedArea->whatsThis());
-  editRemoveSelectedArea->setStatusTip(editRemoveSelectedArea->whatsThis());
+  editEditEntry = new KAction(KIcon("edit_table_row"), i18n("&Edit Entry..."), actionCollection(), "edit_edit_selected_area");
+  connect(editEditEntry, SIGNAL(triggered(bool)), SLOT(slotEditRow()));
+  editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
+  editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));
+  editEditEntry->setToolTip(editEditEntry->whatsThis());
+  editEditEntry->setStatusTip(editEditEntry->whatsThis());
 
   editSaveSelectedArea = new KAction(KIcon("filesaveas"), i18n("Save E&ntries in Query As..."), actionCollection(),"edit_save_selected_area");
   connect(editSaveSelectedArea, SIGNAL(triggered(bool)), SLOT(slotSaveSelection()));
@@ -343,5 +343,7 @@ void KVocTrainApp::initView()
 
   setCaption(m_doc->URL().fileName(), false);
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
+  connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+  slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 }

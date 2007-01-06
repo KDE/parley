@@ -6,7 +6,6 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ )
 ########### next target ###############
 
 set(kvoctraincore_LIB_SRCS 
-   langset.cpp 
    LineList.cpp 
    UsageManager.cpp 
    QueryManager.cpp )

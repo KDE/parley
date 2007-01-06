@@ -25,7 +25,7 @@
 #define PASTEOPTIONS_H
 
 #include "ui_pasteoptionsbase.h"
-#include "langset.h"
+#include "kvtlanguages.h"
 
 class KEduVocDocument;
 
@@ -33,7 +33,7 @@ class PasteOptions : public QWidget, public Ui::PasteOptionsBase
 {
   Q_OBJECT
 public:
-  PasteOptions(LangSet & langset, KEduVocDocument * doc, QWidget* parent = 0);
+  PasteOptions(KVTLanguages & langset, KEduVocDocument * doc, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -57,7 +57,7 @@ private:
   void slotSyncPasteOrderList();
   QStringList preparePasteOrderList();
   KEduVocDocument * m_doc;
-  LangSet m_langSet;
+  KVTLanguages m_langSet;
 };
 
 #endif

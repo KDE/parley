@@ -29,16 +29,16 @@
 #include <kmenu.h>
 
 #include "ui_languageoptionsbase.h"
-#include "langset.h"
+#include "kvtlanguages.h"
 
 class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
 {
   Q_OBJECT
 public:
-  LanguageOptions(LangSet & langset, QWidget* parent = 0);
+  LanguageOptions(KVTLanguages & langset, QWidget* parent = 0);
   virtual ~LanguageOptions();
 
-  LangSet getLangSet () const;
+  KVTLanguages getLangSet () const;
 
   struct Country
   {
@@ -87,11 +87,11 @@ private:
   void loadISO6391Data();
   void createISO6391Menus();
 
-  LangSet global_langset;
+  KVTLanguages global_langset;
   QMap<int, Country> countryIdMap;
   KMenu * langset_popup;
   KMenu * iso6391_popup;
-  LangSet m_langSet;
+  KVTLanguages m_langSet;
   QString m_lastPix;
   bool m_hasChanged;
 };

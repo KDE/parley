@@ -35,7 +35,7 @@
 
 #include "AdjQueryDlg.h"
 #include <kv_resource.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 
 AdjQueryDlg::AdjQueryDlg
 (

@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+// Author:  (C) 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -44,6 +44,7 @@ protected:
   /** resizes table when frame is resized */
   void resizeEvent(QResizeEvent *);
   void showEvent(QShowEvent *);
+  void keyPressEvent(QKeyEvent*);
 
 private:
   void newPage(QPainter &, int, int, int);

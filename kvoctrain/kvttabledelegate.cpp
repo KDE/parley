@@ -4,7 +4,7 @@
 // Description: 
 //
 //
-// Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+// Author:  (C) 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 //
 // Copyright: See COPYING file that comes with this distribution
 //
@@ -55,6 +55,21 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
       QLineEdit *editor = new QLineEdit(parent);
       editor->setFrame(false);
       editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+      ///@todo activate the keyboard layout switching code
+      /*if (m_doc) {
+        QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
+          : m_doc->identifier(col - KV_EXTRA_COLS);
+
+        if (langs) {
+          QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));
+          if (!kbLayout.isEmpty()) {
+              // TODO use generated interface instead
+              QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+              if (kxkb.isValid())
+                  kxkb.call( "setLayout", kbLayout );
+          }
+        }
+      }*/
       connect(editor, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
       return editor;
     }

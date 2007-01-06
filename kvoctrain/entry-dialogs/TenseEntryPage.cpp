@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Nov 27 20:20:34 1999
+    begin         : Sat Nov 27 20:20:34 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -28,37 +28,30 @@
 #include <QPushButton>
 #include <QLineEdit>
 
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "TenseEntryPage.h"
 #include "EntryDlg.h"
 
-TenseEntryPage::TenseEntryPage
-(
-  bool               multi_sel,
-  const KEduVocConjugation &con_prefix,
-  const KEduVocConjugation &conjug,
-  QWidget           *parent
-)
-  : QWidget(parent), multi_mode(multi_sel)
+TenseEntryPage::TenseEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  connect( third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
-  connect( third_s_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
-  connect( b_next, SIGNAL(clicked()), SLOT(slotNextConj()) );
-  connect( tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)) );
 
-  connect( thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)) );
-  connect( thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)) );
-  connect( thirdM_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdMPluralChanged(const QString&)) );
-  connect( thirdM_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdMSingularChanged(const QString&)) );
-  connect( thirdF_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdFPluralChanged(const QString&)) );
-  connect( thirdF_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdFSingularChanged(const QString&)) );
-  connect( second_plural, SIGNAL(textChanged(const QString&)), SLOT(secondPluralChanged(const QString&)) );
-  connect( second_singular, SIGNAL(textChanged(const QString&)), SLOT(secondSingularChanged(const QString&)) );
-  connect( first_plural, SIGNAL(textChanged(const QString&)), SLOT(firstPluralChanged(const QString&)) );
-  connect( first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)) );
+  connect(third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)));
+  connect(third_s_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)));
+  connect(b_next, SIGNAL(clicked()), SLOT(slotNextConj()));
+  connect(tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
 
-  prefix = con_prefix;
+  connect(thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)));
+  connect(thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)));
+  connect(thirdM_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdMPluralChanged(const QString&)) );
+  connect(thirdM_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdMSingularChanged(const QString&)));
+  connect(thirdF_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdFPluralChanged(const QString&)) );
+  connect(thirdF_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdFSingularChanged(const QString&)));
+  connect(second_plural, SIGNAL(textChanged(const QString&)), SLOT(secondPluralChanged(const QString&)) );
+  connect(second_singular, SIGNAL(textChanged(const QString&)), SLOT(secondSingularChanged(const QString&)));
+  connect(first_plural, SIGNAL(textChanged(const QString&)), SLOT(firstPluralChanged(const QString&)));
+  connect(first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)));
+
   selection = "";
 /*
   // FIXME: fill labels with prefixes ?
@@ -74,13 +67,14 @@ TenseEntryPage::TenseEntryPage
   label_thirdN_plural->setText (con_prefix.pers3NaturalPlural (CONJ_PREFIX));
   label_thirdM_plural->setText (con_prefix.pers3MalePlural (CONJ_PREFIX));
 */
-
-  setData(multi_sel, conjug);
 }
 
 
-void TenseEntryPage::setData(bool /*multi_sel*/, const KEduVocConjugation &conjug)
+void TenseEntryPage::setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjug)
 {
+  multi_mode = multi_sel;
+  prefix = con_prefix;
+
   if (multi_mode)
     tensebox->setEnabled(false);
 

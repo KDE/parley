@@ -29,7 +29,7 @@
 
 #include <klocale.h>
 
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "LangPropPage.h"
 
 LangPropPage::LangPropPage

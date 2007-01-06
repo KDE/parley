@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -38,7 +38,7 @@
 #include "AdjEntryPage.h"
 #include "MCEntryPage.h"
 
-class LangSet;
+class KVTLanguages;
 class QTabWidget;
 class KMainWindow;
 class KEduVocDocument;
@@ -57,7 +57,6 @@ public:
   ( KMainWindow   *main,
     KEduVocDocument  *doc,
     bool           multi_sel,
-    bool           origin,
     grade_t        f_grd,
     grade_t        t_grd,
     count_t        f_qcount,
@@ -71,8 +70,6 @@ public:
     QString        _expr,
     int            _lesson,
     QComboBox     *_lessonBox,
-    QString        lang,
-    LangSet       &langset,
     QString        remark,
     QString        _type,
     QString        pronounce,
@@ -83,16 +80,11 @@ public:
     QString        paraphrase,
     const          KEduVocConjugation &con_prefix,
     const          KEduVocConjugation &conjugations,
-    const          KEduVocArticle &article,
     const          KEduVocComparison &comp,
     const          KEduVocMultipleChoice &mc,
     QueryManager  &querymanager,
     const QString &title,
-    bool           active,
-    const QFont&   ipafont,
-    QWidget       *parent = 0,
-    const char    *name = 0,
-    bool           modal = false
+    bool           active
   );
 
   ~EntryDlg ();
@@ -100,7 +92,6 @@ public:
   void setData
     (KEduVocDocument  *doc,
     bool           multi_sel,
-    bool           origin,
     grade_t        f_grd,
     grade_t        t_grd,
     count_t        f_qcount,
@@ -114,8 +105,6 @@ public:
     QString        _expr,
     int            _lesson,
     QComboBox     *_lessonBox,
-    QString        lang,
-    LangSet       &langset,
     QString        remark,
     QString        _type,
     QString        pronounce,
@@ -126,7 +115,6 @@ public:
     QString        paraphrase,
     const          KEduVocConjugation &con_prefix,
     const          KEduVocConjugation &conjugations,
-    const          KEduVocArticle &article,
     const          KEduVocComparison &comp,
     const          KEduVocMultipleChoice &mc,
     QueryManager  &querymanager,

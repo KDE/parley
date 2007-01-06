@@ -39,11 +39,11 @@
 #include "DocPropLangDlg.h"
 #include "LangPropPage.h"
 #include <keduvocdocument.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 
 class KEduVocDocument;
 
-DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget *parent, const char *name, bool modal)
+DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, KVTLanguages *langset, QWidget *parent, const char *name, bool modal)
   :
   KPageDialog(parent)
 {
@@ -76,7 +76,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, LangSet *langset, QWidget
     page = new QFrame();
 	KPageWidgetItem *pageItem = new KPageWidgetItem( page, s );
 	pageItem->setHeader(s);
-	pageItem->setIcon(KIcon(QPixmap(langset->PixMapFile(idx))));
+	pageItem->setIcon(KIcon(QPixmap(langset->pixmapFile(idx))));
 	addPage(pageItem); ///@todo The pixmaps don't show up in tabbed dialog
     topLayout = new QVBoxLayout( page );
     topLayout->setMargin( KDialog::marginHint() );

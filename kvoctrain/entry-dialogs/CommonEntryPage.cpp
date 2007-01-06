@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -25,7 +25,6 @@
 
 #include <QLineEdit>
 #include <QLabel>
-#include <Q3ListBox>
 #include <QComboBox>
 #include <QCheckBox>
 #include <QGroupBox>
@@ -34,76 +33,48 @@
 #include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
-#include <kiconloader.h>
+#include <kicon.h>
 #include <kdialog.h>
 
 #include <QueryManager.h>
-#include <langset.h>
+#include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "blockall.h"
 #include "PhoneticEntryPage.h"
 #include "CommonEntryPage.h"
 #include "EntryDlg.h"
 
-CommonEntryPage::CommonEntryPage
-(
-  KEduVocDocument *_doc,
-  bool          multi_sel,
-  QString       expr,
-  int           less,
-  QComboBox    *lessbox,
-  QString       lang,
-  QString       act_type,
-  QString       pron,
-  QString       act_usage,
-  QString       label,
-  QueryManager &_querymanager,
-  bool          active,
-  const QFont&  _ipafont,
-  QWidget      *parent
-)
-  :
-  QWidget(parent),
-  pronounce(pron),
-  expression(expr),
-  usageCollection (act_usage),
-  lesson(less),
-  type (act_type),
-  doc(_doc),
-  querymanager(_querymanager),
-  entry_active(active),
-  ipafont(_ipafont)
+CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QueryManager &_querymanager, QWidget *parent) : QWidget(parent), doc(_doc), querymanager(_querymanager)
 {
   setupUi(this);
-  connect( b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()) );
-  connect( b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()) );
-  connect( b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()) );
-  connect( b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()) );
-  connect( usage_box, SIGNAL(selectionChanged()), SLOT(slotUsageChanged()) );
-  connect( lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)) );
-  connect( subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)) );
-  connect( type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)) );
-  connect( c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)) );
 
-  connect( pronounce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronounceSelected(const QString&)) );
-  connect( expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)) );
+  connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
+  connect(b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()));
+  connect(b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()));
+  connect(b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()));
+  connect(usage_box, SIGNAL(itemSelectionChanged()), SLOT(slotUsageChanged()));
+  connect(lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)));
+  connect(subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)));
+  connect(type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)));
+  connect(c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)));
+  connect(pronounce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronounceSelected(const QString&)));
+  connect(expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)));
 
   usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
-  pronounce_line->setFont(ipafont);
+  pronounce_line->setFont(Prefs::iPAFont());
 
-  lesson_box->setValidator (new BlockAllValidator() );
-  type_box->setValidator (new BlockAllValidator() );
-  subtype_box->setValidator (new BlockAllValidator() );
+  lesson_box->setValidator(new BlockAllValidator());
+  type_box->setValidator(new BlockAllValidator());
+  subtype_box->setValidator(new BlockAllValidator());
 
-  QIcon list_pm = SmallIconSet("view_text");
+  QIcon list_pm = KIcon("view_text");
   b_LessDlg->setIcon(list_pm);
   b_TypeDlg->setIcon(list_pm);
   b_usageDlg->setIcon(list_pm);
 
-  QIcon pron_pm = SmallIconSet("view_icon");
+  QIcon pron_pm = KIcon("view_icon");
   b_pronDlg->setIcon(pron_pm);
 
-  setData(multi_sel, expr, less, lessbox, lang, type, pronounce, act_usage, label, querymanager, active);
   subDialog = 0L;
 }
 
@@ -113,22 +84,25 @@ void CommonEntryPage::setData(
   QString       expr,
   int           less,
   QComboBox    *lessBox,
-  QString       /*lang*/,
   QString       type,
   QString       pronounce,
   QString       usage,
-  QString       /*label*/,
-  QueryManager &/*querymanager*/,
   bool          active)
 {
-  setLessonBox (lessBox, less);
-  setUsageBox (usage);
+  lesson = less;
+  setLessonBox(lessBox, less);
 
-  //expr_label->setText( label );
+  usageCollection = usage;
+  setUsageBox(usage);
+
   expr_line->setText(expr);
 
+  m_type = type;
   setTypeBox(type);
+  m_pronounce = pronounce;
   pronounce_line->setText(pronounce);
+
+  entry_active = active;
   c_active->setChecked(active);
 
   int start = -1;
@@ -192,7 +166,7 @@ void CommonEntryPage::setLessonBox(QComboBox *lessbox, int lesson)
   lesson_box->clear();
   for (int i = 0; i < lessbox->count(); i++)
     lesson_box->addItem (lessbox->itemText(i));
-  if (lesson >= lesson_box->count() )
+  if (lesson >= lesson_box->count())
     lesson = 0;
   lesson_box->setCurrentIndex(lesson);
 }
@@ -203,9 +177,9 @@ void CommonEntryPage::setUsageBox(const QString & act_usage)
   usages = UsageManager::getRelation();
   usage_box->clear();
   for (int i = 0; i < (int) usages.size(); i++) {
-    usage_box->insertItem (usages[i].longStr());
+    usage_box->addItem(usages[i].longStr());
     if (UsageManager::contains(QString(usages[i].identStr()), act_usage)) {
-      usage_box->setSelected (i, true);
+      usage_box->setCurrentRow(i);
     }
   }
   slotUsageChanged();
@@ -219,16 +193,17 @@ void CommonEntryPage::slotUsageChanged()
   usage_dirty = true;
   QString s;
   for (int i = 0; i < (int) usage_box->count(); i++) {
-    if (usage_box->isSelected(i)) {
+    ///@todo port
+    /*if (usage_box->isSelected(i)) {
 
-      if (!usageCollection.isEmpty() )
+      if (!usageCollection.isEmpty())
         usageCollection += UL_USAGE_DIV;
       usageCollection += usages[i].identStr();
 
-      if (!s.isEmpty() )
+      if (!s.isEmpty())
         s += ", ";
       s += usages[i].shortStr();
-    }
+    }*/
   }
   usage_line->setText (s);
 }
@@ -260,7 +235,7 @@ void CommonEntryPage::slotExprSelected (const QString& s)
 void CommonEntryPage::slotPronounceSelected (const QString& s)
 {
   setModified(true);
-  pronounce = s;
+  m_pronounce = s;
 }
 
 
@@ -268,8 +243,8 @@ void CommonEntryPage::slotSubTypeSelected(int i)
 {
   setModified(true);
   if (i < (int) current_subtypes.size()) {
-    type = current_subtypes[i];
-    emit typeSelected(type);
+    m_type = current_subtypes[i];
+    emit typeSelected(m_type);
     type_dirty = true;
   }
 }
@@ -283,15 +258,15 @@ void CommonEntryPage::slotTypeSelected(int idx)
   bool first = true;
 
   if (idx == 0) { // 0 == none !
-    type = "";
-    emit typeSelected(type);
+    m_type = "";
+    emit typeSelected(m_type);
   }
   else {
-    type = all_maintypes[idx-1].shortStr();
-    emit typeSelected(type);
+    m_type = all_maintypes[idx-1].shortStr();
+    emit typeSelected(m_type);
     QString main_patt = all_maintypes[idx-1].shortStr()+QM_TYPE_DIV;
     int sub_idx;
-    if ( idx-1 < (int) all_types.size() ){
+    if (idx-1 < (int) all_types.size()){
       for (sub_idx = 0; sub_idx < (int) all_types.size(); sub_idx++) {
         if (all_types[sub_idx].shortStr().left(main_patt.length()) == main_patt) {
           if (first) {
@@ -316,15 +291,15 @@ void CommonEntryPage::slotTypeSelected(int idx)
 void CommonEntryPage::phoneticSelected(wchar_t wc)
 {
   setModified(true);
-  pronounce += QChar(wc);
-  pronounce_line->setText(pronounce);
+  m_pronounce += QChar(wc);
+  pronounce_line->setText(m_pronounce);
 }
 
 
 void CommonEntryPage::invokePronDlg()
 {
-  PhoneticEntryPage * phoneticDlg = new PhoneticEntryPage (ipafont, this);
-  connect (phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)) );
+  PhoneticEntryPage * phoneticDlg = new PhoneticEntryPage (Prefs::iPAFont(), this);
+  connect (phoneticDlg, SIGNAL(charSelected(wchar_t)), SLOT(phoneticSelected(wchar_t)));
   phoneticDlg->show();
 }
 
@@ -413,7 +388,7 @@ void CommonEntryPage::invokeTypeDlg()
     typeOptPage->getTypeNames(new_typeStr, typeIndex);
     TypeOptPage::cleanUnused(doc, typeIndex, old_types);
     QueryManager::setTypeNames (new_typeStr);
-    setTypeBox(type);
+    setTypeBox(m_type);
     doc->setTypeDescriptions(new_typeStr);
     doc->setModified();
   }
@@ -448,7 +423,7 @@ void CommonEntryPage::setModified(bool mod)
     emit sigModified();
 }
 
-void CommonEntryPage::slotSubDialogClosed( )
+void CommonEntryPage::slotSubDialogClosed()
 {
   if (subDialog)
   {

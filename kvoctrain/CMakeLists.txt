@@ -119,7 +119,6 @@ kde4_add_ui_files(statistikdialogs_SRCS
 )
 
 set(kvtcore_SRCS
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/langset.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/LineList.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/QueryManager.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/UsageManager.cpp
@@ -133,8 +132,7 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kva_config.cpp
     kva_header.cpp
     kva_query.cpp
-    kvoctraintable.cpp
-    kvoctraintableitem.cpp
+    kvtlanguages.cpp
     kvtnewstuff.cpp
     kvttabledelegate.cpp
     kvttablemodel.cpp

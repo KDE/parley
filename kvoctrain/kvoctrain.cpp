@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -82,45 +82,9 @@ void KVocTrainApp::slotSelectAll ()
 }
 
 
-void KVocTrainApp::slotCurrentCellChanged(int row, int col)
-{
-  col -= KV_EXTRA_COLS;
-  bool noData = false;
-  KEduVocExpression *expr = 0;
-
-  statusBar()->clearMessage();
-  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= col || row < 0 || col < 0)
-    noData = true;
-  else
-    expr = m_doc->entry(row);
-
-  if (rem_label != 0)
-    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1",
-                        noData ? QString() : expr->remark(col)));
-  if (pron_label != 0)
-    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1",
-                         noData ? QString() : expr->pronunciation(col)));
-  if (type_label != 0)
-    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1",
-                         noData ? QString() : QueryManager::typeStr(expr->type(col))));
-
-  if (entryDlg != 0) {
-    if (noData)
-      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
-    else {
-      if (col == 0)
-        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-      else
-        entryDlg->setEnabled(EntryDlg::EnableAll);
-    }
-    slotEditEntry(row, col + KV_EXTRA_COLS);
-  }
-}
-
-
 void KVocTrainApp::slotEditRow()
 {
-  slotEditEntry(m_tableView->currentIndex().row(), m_tableView->currentIndex().column());
+  slotEditEntry2(m_tableView->currentIndex());
 }
 
 
@@ -309,19 +273,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
 void KVocTrainApp::createEntryDlg(int row, int col)
 {
-   if (entryDlg != 0) {
-     kError() << "KVocTrainApp::createEntryDlg: entryDlg != 0\n";
-     return;
-   }
+  QString title, text, lang;
 
-   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
-     return;
-
-   QString title, text, lang;
-
-   int lesson = m_doc->entry(row)->lesson();
-   if (lesson >= lessons->count())
-     lesson = qMax (0, lessons->count()-1);
+  int lesson = m_doc->entry(row)->lesson();
+  if (lesson >= lessons->count())
+    lesson = qMax (0, lessons->count()-1);
 
   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
    if (col < KV_EXTRA_COLS) {
@@ -331,7 +287,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     this,
                     m_doc,
                     hasSelection,
-                    true,
                     0,
                     0,
                     0,
@@ -345,8 +300,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     QString(),
                     lesson,
                     lessons,
-                    m_doc->originalIdentifier(),
-                    m_languages,
                     QString(),
                     m_doc->entry(row)->type(col),
                     QString(),
@@ -357,13 +310,11 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     QString(),
                     m_doc->conjugation(0),
                     KEduVocConjugation(),
-                    m_doc->article(0),
                     KEduVocComparison(),
                     KEduVocMultipleChoice(),
                     querymanager,
                     title,
-                    m_doc->entry(row)->isActive(),
-                    Prefs::iPAFont());
+                    m_doc->entry(row)->isActive());
    }
    else {
      col -= KV_EXTRA_COLS;
@@ -384,7 +335,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     this,
                     m_doc,
                     hasSelection,
-                    col==0,
                     m_doc->entry(row)->grade(col, false),
                     m_doc->entry(row)->grade(col, true),
                     m_doc->entry(row)->queryCount(col, false),
@@ -398,8 +348,6 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     text,
                     lesson,
                     lessons,
-                    lang,
-                    m_languages,
                     m_doc->entry(row)->remark(col),
                     m_doc->entry(row)->type(col),
                     m_doc->entry(row)->pronunciation(col),
@@ -410,18 +358,15 @@ void KVocTrainApp::createEntryDlg(int row, int col)
                     m_doc->entry(row)->paraphrase(col),
                     m_doc->conjugation(col),
                     m_doc->entry(row)->conjugation(col),
-                    m_doc->article(col),
                     m_doc->entry(row)->comparison(col),
                     m_doc->entry(row)->multipleChoice(col),
                     querymanager,
                     title,
-                    m_doc->entry(row)->isActive(),
-                    Prefs::iPAFont());
+                    m_doc->entry(row)->isActive());
    }
-   connect( entryDlg, SIGNAL(sigEditChoice(int)),
-             this, SLOT(slotEditCallBack(int)));
+   connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
 
-   ///@todo port? view->getTable()->setReadOnly(true);
+   m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
    if (col == 0)
      entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
@@ -436,18 +381,17 @@ void KVocTrainApp::createEntryDlg(int row, int col)
 
 void KVocTrainApp::removeEntryDlg()
 {
-//  cout << "red\n";
   if (entryDlg != 0) {
     commitEntryDlg(false);
     delete entryDlg;
     entryDlg = 0;
   }
 
-  ///@todo port? view->getTable()->setReadOnly(false);
+  m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 }
 
 
-void KVocTrainApp::slotEditEntry (int row, int col)
+void KVocTrainApp::slotEditEntry(int row, int col)
 {
    if (entryDlg == 0) {
      createEntryDlg(row, col);
@@ -459,6 +403,13 @@ void KVocTrainApp::slotEditEntry (int row, int col)
    }
 
    setDataEntryDlg(row, col);
+}
+
+
+void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
+{
+  if (index.isValid())
+    slotEditEntry(index.row(), index.column());
 }
 
 
@@ -491,7 +442,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
      col -= KV_EXTRA_COLS;
      entryDlg->setData(m_doc,
                        hasSelection,
-                       true,
                        0,
                        0,
                        0,
@@ -505,8 +455,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        QString(),
                        lesson,
                        lessons,
-                       m_doc->originalIdentifier(),
-                       m_languages,
                        QString(),
                        m_doc->entry(row)->type(0),
                        QString(),
@@ -517,7 +465,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        QString(),
                        m_doc->conjugation(0),
                        KEduVocConjugation(),
-                       m_doc->article(0),
                        KEduVocComparison(),
                        KEduVocMultipleChoice(),
                        querymanager,
@@ -540,7 +487,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
 
      entryDlg->setData(m_doc,
                        hasSelection,
-                       col==0,
                        m_doc->entry(row)->grade(col, false),
                        m_doc->entry(row)->grade(col, true),
                        m_doc->entry(row)->queryCount(col, false),
@@ -554,8 +500,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        text,
                        lesson,
                        lessons,
-                       lang,
-                       m_languages,
                        m_doc->entry(row)->remark(col),
                        m_doc->entry(row)->type(col),
                        m_doc->entry(row)->pronunciation(col),
@@ -566,7 +510,6 @@ void KVocTrainApp::setDataEntryDlg (int row, int col)
                        m_doc->entry(row)->paraphrase(col),
                        m_doc->conjugation(col),
                        m_doc->entry(row)->conjugation(col),
-                       m_doc->article(col),
                        m_doc->entry(row)->comparison(col),
                        m_doc->entry(row)->multipleChoice(col),
                        querymanager,
@@ -718,7 +661,7 @@ void KVocTrainApp::slotRemoveRow()
       m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
   }
-  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -727,7 +670,7 @@ void KVocTrainApp::slotAppendRow ()
   m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
   m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
   m_tableModel->setData(m_tableView->currentIndex(), m_currentLesson, KVTTableModel::LessonRole);
-  editRemoveSelectedArea->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -1102,9 +1045,9 @@ void KVocTrainApp::aboutToShowLearn()
         // show pixmap and long name if available
         int j;
         if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-           && !m_languages.PixMapFile(j).isEmpty()
+           && !m_languages.pixmapFile(j).isEmpty()
            && !m_languages.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", main_names[i]),
+          query_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1120,9 +1063,9 @@ void KVocTrainApp::aboutToShowLearn()
         // show pixmap and long name if available
         int j;
         if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-           && !m_languages.PixMapFile(j).isEmpty()
+           && !m_languages.pixmapFile(j).isEmpty()
            && !m_languages.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(m_languages.PixMapFile(j)), i18n("From %1", main_names[i]),
+          multiple_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", main_names[i]),
               (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
         }
         else {
@@ -1150,9 +1093,9 @@ void KVocTrainApp::aboutToShowLearn()
 
     QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
     if((j = m_languages.indexShortId(id)) >= 0
-       && !m_languages.PixMapFile(j).isEmpty()
+       && !m_languages.pixmapFile(j).isEmpty()
        && !m_languages.longId(j).isEmpty() ) {
-      learn_menu->insertItem(QPixmap(m_languages.PixMapFile(j)), main_names[header], header_m, IDH_NULL);
+      learn_menu->insertItem(QPixmap(m_languages.pixmapFile(j)), main_names[header], header_m, IDH_NULL);
     }
     else {
       learn_menu->insertItem(id, header_m, IDH_NULL);
@@ -1186,8 +1129,8 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
 
     for (int i = 0; i < (int) m_languages.size(); i++)
     {
-      if(!m_languages.PixMapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
-        add_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i], (i << 16) | IDH_APPEND);
+      if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+        add_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i], (i << 16) | IDH_APPEND);
       else
         add_m->insertItem(names[i], (i << 16) | IDH_APPEND);
     }
@@ -1220,8 +1163,8 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
         // hack: ID => header-id + language
 
       for (int i = 0; i < (int) m_languages.size(); i++) {
-        if(!m_languages.PixMapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
-          langs_m->insertItem(QPixmap(m_languages.PixMapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
+        if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+          langs_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
         else
           langs_m->insertItem(names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
       }
@@ -1264,9 +1207,9 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
       // show pixmap and long name if available
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-          && !m_languages.PixMapFile(j).isEmpty()
+          && !m_languages.pixmapFile(j).isEmpty()
           && !m_languages.longId(j).isEmpty() )
-        remove_m->insertItem(QPixmap(m_languages.PixMapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
+        remove_m->insertItem(QPixmap(m_languages.pixmapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
       else
         remove_m->insertItem(m_doc->identifier(i), (i << 16) | IDH_REMOVE);
     }
@@ -1441,6 +1384,41 @@ void KVocTrainApp::slotEditPaste()
 
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
+}
+
+void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+  if (!current.isValid())
+    return;
+
+  int column = current.column() - KV_EXTRA_COLS;
+  int row = current.row();
+  bool noData = false;
+  KEduVocExpression *expr = 0;
+
+  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= column || row < 0 || column < 0)
+    noData = true;
+  else
+    expr = m_doc->entry(row);
+
+  if (rem_label != 0)
+    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1", noData ? QString() : expr->remark(column)));
+  if (pron_label != 0)
+    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
+  if (type_label != 0)
+    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : QueryManager::typeStr(expr->type(column))));
+
+  if (entryDlg != 0) {
+    if (noData)
+      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+    else {
+      if (column == 0)
+        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+      else
+        entryDlg->setEnabled(EntryDlg::EnableAll);
+    }
+    slotEditEntry2(current);
+  }
 }
 
 #include "kvoctrain.moc"
