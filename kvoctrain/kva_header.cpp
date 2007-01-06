@@ -531,7 +531,7 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
                    name);
       }
       else {
-        name = lessons->text(m_currentLesson);
+        name = m_lessonsComboBox->text(m_currentLesson);
         msg = i18n("You are about to reset the knowledge data of a "
                    "lesson.\n\nDo you really want to reset \"%1\"?", name);
       }

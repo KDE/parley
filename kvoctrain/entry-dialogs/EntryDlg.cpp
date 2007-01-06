@@ -51,7 +51,6 @@ EntryDlg::EntryDlg(
   QString        t_faux_ami,
   QString        expr,
   int            lesson,
-  QComboBox     *lessonbox,
   QString        rem,
   QString        type,
   QString        pronounce,
@@ -145,7 +144,7 @@ EntryDlg::EntryDlg(
   to_page   = new FromToEntryPage (page);
   topLayout->addWidget(to_page);
 
-  comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
+  comm_page->setData(multi_sel, expr, lesson, type, pronounce, usagelabel, active);
   aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
   mc_page->setData(multi_sel, mc);
   tense_page->setData(multi_sel, con_prefix, conjugations);
@@ -192,7 +191,6 @@ void EntryDlg::setData(
   QString        t_faux_ami,
   QString        expr,
   int            lesson,
-  QComboBox     *lessonbox,
   QString        rem,
   QString        type,
   QString        pronounce,
@@ -211,7 +209,7 @@ void EntryDlg::setData(
 {
   setCaption(title);
 
-  comm_page->setData(multi_sel, expr, lesson, lessonbox, type, pronounce, usagelabel, active);
+  comm_page->setData(multi_sel, expr, lesson, type, pronounce, usagelabel, active);
   adj_page->setData(multi_sel, comp);
   aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
   mc_page->setData(multi_sel, mc);

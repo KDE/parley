@@ -39,7 +39,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
   CommonEntryPage(KEduVocDocument *doc, QueryManager &querymanager, QWidget* parent = 0 );
 
-  void setData(bool multi_sel, QString expr, int less, QComboBox *lessBox, QString type, QString pronounce, QString  usage,  bool active);
+  void setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString  usage,  bool active);
 
   bool isDirty() const;
   bool lessonDirty     () const { return lesson_dirty; }
@@ -63,7 +63,7 @@ signals:
 
 protected:
   void setTypeBox(const QString &act_type);
-  void setLessonBox(QComboBox *lessbox, int lesson);
+  void setLessonBox(int lesson);
   void setUsageBox(const QString & act_type);
 
 protected slots:
