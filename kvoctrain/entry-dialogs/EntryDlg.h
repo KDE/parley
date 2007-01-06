@@ -26,7 +26,7 @@
 #ifndef EntryDlg_included
 #define EntryDlg_included
 
-#include <Q3Table>
+#include <QItemSelection>
 #include <QCloseEvent>
 
 #include <kpagedialog.h>
@@ -53,44 +53,12 @@ public:
 
   enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
 
-  EntryDlg
-  ( KMainWindow   *main,
-    KEduVocDocument  *doc,
-    bool           multi_sel,
-    grade_t        f_grd,
-    grade_t        t_grd,
-    count_t        f_qcount,
-    count_t        t_qcount,
-    count_t        f_bcount,
-    count_t        t_bcount,
-    QDateTime      f_qdate,
-    QDateTime      t_qdate,
-    QString        f_faux_ami,
-    QString        t_faux_ami,
-    QString        _expr,
-    int            _lesson,
-    QString        remark,
-    QString        _type,
-    QString        pronounce,
-    QString        synonym,
-    QString        antonym,
-    QString        example,
-    QString        usagelabel,
-    QString        paraphrase,
-    const          KEduVocConjugation &con_prefix,
-    const          KEduVocConjugation &conjugations,
-    const          KEduVocComparison &comp,
-    const          KEduVocMultipleChoice &mc,
-    QueryManager  &querymanager,
-    const QString &title,
-    bool           active
-  );
+  EntryDlg(KMainWindow *main, KEduVocDocument *doc, QueryManager &querymanager);
 
   ~EntryDlg ();
 
   void setData
-    (KEduVocDocument  *doc,
-    bool           multi_sel,
+   (bool           multi_sel,
     grade_t        f_grd,
     grade_t        t_grd,
     count_t        f_qcount,
@@ -115,7 +83,6 @@ public:
     const          KEduVocConjugation &conjugations,
     const          KEduVocComparison &comp,
     const          KEduVocMultipleChoice &mc,
-    QueryManager  &querymanager,
     const QString &title,
     bool           active);
 
@@ -169,8 +136,8 @@ public:
   void setModified(bool mod);
   void setEnabled(int);
 
-  void setCell(int row, int col, const QList<Q3TableSelection>& sel);
-  void getCell(int &row, int &col, QList<Q3TableSelection>& sel) const;
+  void setCell(int row, int col, const QItemSelection & sel);
+  void getCell(int &row, int &col, QItemSelection & sel) const;
 
 signals:
   void sigEditChoice(int);
@@ -184,26 +151,26 @@ public slots:
 
 protected slots:
   void updatePages(const QString &type);
-  virtual void reject ();
+  virtual void reject();
 
 protected:
-  virtual void closeEvent (QCloseEvent*e);
+  virtual void closeEvent(QCloseEvent*e);
 
-  FromToEntryPage  *from_page,
-                    *to_page;
+  FromToEntryPage  *from_page;
+  FromToEntryPage  *to_page;
   CommonEntryPage  *comm_page;
   AuxInfoEntryPage *aux_page;
   TenseEntryPage   *tense_page;
   AdjEntryPage     *adj_page;
   MCEntryPage      *mc_page;
-  int               edit_row, edit_col;
+  int               edit_row;
+  int               edit_col;
   QTabWidget       *tabber;
-
-  QList<Q3TableSelection> selections;
-  KMainWindow     *mainwin;
-  QSize            oldMainSize;
-  QPoint           oldMainPos;
-  bool             docked;
+  QItemSelection    m_selection;
+  KMainWindow      *mainwin;
+  QSize             oldMainSize;
+  QPoint            oldMainPos;
+  bool              docked;
 };
 
 #endif // EntryDlg_included

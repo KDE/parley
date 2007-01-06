@@ -35,41 +35,8 @@
 
 #include "EntryDlg.h"
 
-EntryDlg::EntryDlg(
-  KMainWindow   *main,
-  KEduVocDocument  *doc,
-  bool           multi_sel,
-  grade_t        f_grd,
-  grade_t        t_grd,
-  count_t        f_qcount,
-  count_t        t_qcount,
-  count_t        f_bcount,
-  count_t        t_bcount,
-  QDateTime      f_qdate,
-  QDateTime      t_qdate,
-  QString        f_faux_ami,
-  QString        t_faux_ami,
-  QString        expr,
-  int            lesson,
-  QString        rem,
-  QString        type,
-  QString        pronounce,
-  QString        synonym,
-  QString        antonym,
-  QString        example,
-  QString        usagelabel,
-  QString        paraphrase,
-  const          KEduVocConjugation &con_prefix,
-  const          KEduVocConjugation &conjugations,
-  const          KEduVocComparison &comp,
-  const          KEduVocMultipleChoice &mc,
-  QueryManager  &querymanager,
-  const QString &title,
-  bool           active)
-  :
-  KPageDialog()
+EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, QueryManager &querymanager) : KPageDialog()
 {
-  setCaption(title);
   setButtons(User1|User2|User3|Apply|Close);
   setDefaultButton(Apply);
   setFaceType(KPageDialog::Tabbed);
@@ -141,18 +108,8 @@ EntryDlg::EntryDlg(
   topLayout = new QVBoxLayout(page);
   topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  to_page   = new FromToEntryPage (page);
+  to_page = new FromToEntryPage (page);
   topLayout->addWidget(to_page);
-
-  comm_page->setData(multi_sel, expr, lesson, type, pronounce, usagelabel, active);
-  aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
-  mc_page->setData(multi_sel, mc);
-  tense_page->setData(multi_sel, con_prefix, conjugations);
-  adj_page->setData(multi_sel, comp);
-  from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount, f_faux_ami, i18n("Properties From Original"));
-  to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount, t_faux_ami, i18n("Properties to Original"));
-
-  updatePages(type);
 
   connect(comm_page, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
 
@@ -172,12 +129,12 @@ EntryDlg::EntryDlg(
 
   enableButtonApply(false);
   enableButton(User1, false);
+  setModified(false);
   comm_page->expr_line->setFocus();
 }
 
 
 void EntryDlg::setData(
-  KEduVocDocument  */*doc*/,
   bool           multi_sel,
   grade_t        f_grd,
   grade_t        t_grd,
@@ -203,7 +160,6 @@ void EntryDlg::setData(
   const          KEduVocConjugation &conjugations,
   const          KEduVocComparison &comp,
   const          KEduVocMultipleChoice &mc,
-  QueryManager  &querymanager,
   const QString &title,
   bool           active)
 {
@@ -341,19 +297,19 @@ void EntryDlg::slotDisplayModified()
 }
 
 
-void EntryDlg::setCell(int row, int col, const QList<Q3TableSelection>& sel)
+void EntryDlg::setCell(int row, int col, const QItemSelection & sel)
 {
   edit_row = row;
   edit_col = col;
-  selections = sel;
+  m_selection = sel;
 }
 
 
-void EntryDlg::getCell(int &row, int &col, QList<Q3TableSelection>& sel) const
+void EntryDlg::getCell(int &row, int &col, QItemSelection & sel) const
 {
   row = edit_row;
   col = edit_col;
-  sel = selections;
+  sel = m_selection;
 }
 
 
@@ -415,14 +371,15 @@ EntryDlg::~EntryDlg()
 }
 
 
-void EntryDlg::reject ()
+void EntryDlg::reject()
 {
   emit sigEditChoice(EditCancel);
 }
 
 
-void EntryDlg::closeEvent (QCloseEvent * /*e*/)
+void EntryDlg::closeEvent(QCloseEvent * e)
 {
+  Q_UNUSED(e);
   emit sigEditChoice(EditCancel);
 }
 
