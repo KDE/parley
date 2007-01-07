@@ -127,7 +127,6 @@ public:
   void slotEditCallBack(int res);
 
   void commitEntryDlg(bool force);
-  void createEntryDlg(int row, int col);
   void setDataEntryDlg (int row, int col);
   void removeEntryDlg();
 

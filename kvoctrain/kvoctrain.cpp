@@ -90,7 +90,6 @@ void KVocTrainApp::slotEditRow()
 
 void KVocTrainApp::slotEditCallBack(int res)
 {
-//  cout << "secb\n";
   switch (res) {
     case EntryDlg::EditCancel:
       removeEntryDlg();
@@ -114,7 +113,7 @@ void KVocTrainApp::slotEditCallBack(int res)
             QString exp;
             exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
             if (exp.isEmpty())
-              m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1)); /// @todo make sure entire row is selected
+              m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
           }
           else
             slotAppendRow();
@@ -124,7 +123,7 @@ void KVocTrainApp::slotEditCallBack(int res)
 
     case EntryDlg::EditUndo:
       int row, col;
-      QList<Q3TableSelection> tabsel;
+      QItemSelection tabsel;
       entryDlg->getCell(row, col, tabsel);
       setDataEntryDlg(row, col);
     break;
@@ -134,7 +133,6 @@ void KVocTrainApp::slotEditCallBack(int res)
 
 void KVocTrainApp::commitEntryDlg(bool force)
 {
-//  cout << "ced\n";
    if (entryDlg == 0) {
      kError() << "KVocTrainApp::commitEntryDlg: entryDlg == 0\n";
      return;
@@ -151,12 +149,13 @@ void KVocTrainApp::commitEntryDlg(bool force)
    }
 
    int row, col;
-   QList<Q3TableSelection> tabsel;
+   QItemSelection tabsel;
    entryDlg->getCell(row, col, tabsel);
    int hasSel = tabsel.size() > 1;
-   if (tabsel.size() == 1)
+   ///@todo fix the selection stuff
+   /*if (tabsel.size() == 1)
      hasSel = (tabsel[0].bottomRow() - tabsel[0].topRow()) > 0;
-
+   */
    fillLessonBox();
    if (!hasSel) {
      KEduVocExpression *expr = m_doc->entry(row);
@@ -210,13 +209,12 @@ void KVocTrainApp::commitEntryDlg(bool force)
      entryDlg->setModified(false);
      m_doc->setModified(true);
      m_tableModel->reset();
-     //view->getTable()->updateCell(row, col+KV_EXTRA_COLS);
-     //view->getTable()->updateCell(row, KV_COL_LESS);
    }
    else {
      col -= KV_EXTRA_COLS;
      for (int ts = 0; ts < tabsel.size(); ++ts) {
-       for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
+       ///@todo fix the selection stuff
+       /*for (int er = tabsel[ts].topRow(); er <= tabsel[ts].bottomRow(); ++er) {
          KEduVocExpression *expr = m_doc->entry(er);
 
          if (col >= 0) {
@@ -242,7 +240,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
            if (entryDlg->toDateDirty() )
              expr->setQueryDate(col, entryDlg->getToDate(), true);
             */
-           if (entryDlg->usageDirty() ) {
+           /*if (entryDlg->usageDirty() ) {
              for (int j = 0; j <= expr->numTranslations(); j++)
                expr->setUsageLabel (j, entryDlg->getUsageLabel());
            }
@@ -257,7 +255,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
          if (entryDlg->lessonDirty() )
            expr->setLesson (entryDlg->getLesson());
-       }
+       }*/
      }
      entryDlg->setModified(false);
      m_doc->setModified(true);
@@ -268,112 +266,6 @@ void KVocTrainApp::commitEntryDlg(bool force)
            view->getTable()->updateCell(r, c);*/
 
    }
-}
-
-
-void KVocTrainApp::createEntryDlg(int row, int col)
-{
-  QString title, text, lang;
-
-  int lesson = m_doc->entry(row)->lesson();
-  if (lesson >= m_lessonsComboBox->count())
-    lesson = qMax (0, m_lessonsComboBox->count()-1);
-
-  bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
-   if (col < KV_EXTRA_COLS) {
-     title = i18n("Edit General Properties");
-     col -= KV_EXTRA_COLS;
-     entryDlg = new EntryDlg (
-                    this,
-                    m_doc,
-                    hasSelection,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    0,
-                    QDateTime(),
-                    QDateTime(),
-                    QString(),
-                    QString(),
-                    QString(),
-                    lesson,
-                    QString(),
-                    m_doc->entry(row)->type(col),
-                    QString(),
-                    QString(),
-                    QString(),
-                    QString(),
-                    QString(),
-                    QString(),
-                    m_doc->conjugation(0),
-                    KEduVocConjugation(),
-                    KEduVocComparison(),
-                    KEduVocMultipleChoice(),
-                    querymanager,
-                    title,
-                    m_doc->entry(row)->isActive());
-   }
-   else {
-     col -= KV_EXTRA_COLS;
-
-     if (col == 0) {
-       lang = m_doc->originalIdentifier();
-       text = m_doc->entry(row)->original();
-       title = i18n("Edit Properties for Original");
-     }
-     else {
-       lang = m_doc->identifier(col);
-       text = m_doc->entry(row)->translation(col);
-       title = i18n("Edit Properties of a Translation");
-     }
-
-     bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
-     entryDlg = new EntryDlg (
-                    this,
-                    m_doc,
-                    hasSelection,
-                    m_doc->entry(row)->grade(col, false),
-                    m_doc->entry(row)->grade(col, true),
-                    m_doc->entry(row)->queryCount(col, false),
-                    m_doc->entry(row)->queryCount(col, true),
-                    m_doc->entry(row)->badCount(col, false),
-                    m_doc->entry(row)->badCount(col, true),
-                    m_doc->entry(row)->queryDate(col, false),
-                    m_doc->entry(row)->queryDate(col, true),
-                    m_doc->entry(row)->fauxAmi(col, false),
-                    m_doc->entry(row)->fauxAmi(col, true),
-                    text,
-                    lesson,
-                    m_doc->entry(row)->remark(col),
-                    m_doc->entry(row)->type(col),
-                    m_doc->entry(row)->pronunciation(col),
-                    m_doc->entry(row)->synonym(col),
-                    m_doc->entry(row)->antonym(col),
-                    m_doc->entry(row)->example(col),
-                    m_doc->entry(row)->usageLabel(col),
-                    m_doc->entry(row)->paraphrase(col),
-                    m_doc->conjugation(col),
-                    m_doc->entry(row)->conjugation(col),
-                    m_doc->entry(row)->comparison(col),
-                    m_doc->entry(row)->multipleChoice(col),
-                    querymanager,
-                    title,
-                    m_doc->entry(row)->isActive());
-   }
-   connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
-
-   m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-   if (col == 0)
-     entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-   else
-     entryDlg->setEnabled(EntryDlg::EnableAll);
-
-   QList<Q3TableSelection> tabsel;
-   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);
-   entryDlg->show();
 }
 
 
@@ -391,16 +283,17 @@ void KVocTrainApp::removeEntryDlg()
 
 void KVocTrainApp::slotEditEntry(int row, int col)
 {
-   if (entryDlg == 0) {
-     createEntryDlg(row, col);
-     return;
-   }
+  if (entryDlg == 0) {
+    entryDlg = new EntryDlg(this, m_doc, querymanager);
+    connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
+    entryDlg->show();
+  }
 
-   if (entryDlg->isModified()) {
-     commitEntryDlg(false);
-   }
+  if (entryDlg->isModified()) {
+    commitEntryDlg(false);
+  }
 
-   setDataEntryDlg(row, col);
+  setDataEntryDlg(row, col);
 }
 
 
@@ -411,117 +304,111 @@ void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 }
 
 
-void KVocTrainApp::setDataEntryDlg (int row, int col)
+void KVocTrainApp::setDataEntryDlg(int row, int col)
 {
-//  cout << "sded\n";
-   if (entryDlg == 0) {
-     kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
-     return;
-   }
+  if (entryDlg == 0) {
+    kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
+    return;
+  }
 
-   if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
-     return;
+  if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0))
+    return;
 
-   QString text, lang, title;
+  QString text, title;
 
-   KEduVocExpression *expr = m_doc->entry(row);
+  KEduVocExpression *expr = m_doc->entry(row);
 
-   if (expr == 0)
-     return; // entry delete in the meantime
+  if (expr == 0)
+    return; // entry delete in the meantime
 
-   int lesson = expr->lesson();
-   if (lesson >= m_lessonsComboBox->count())
-     lesson = qMax (0, m_lessonsComboBox->count() - 1);
+  int lesson = expr->lesson();
+  if (lesson >= m_lessonsComboBox->count())
+    lesson = qMax (0, m_lessonsComboBox->count() - 1);
 
-   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
+  bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
 
-   if (col < KV_EXTRA_COLS) {
-     title = i18n("Edit General Properties");
-     col -= KV_EXTRA_COLS;
-     entryDlg->setData(m_doc,
-                       hasSelection,
-                       0,
-                       0,
-                       0,
-                       0,
-                       0,
-                       0,
-                       QDateTime(),
-                       QDateTime(),
-                       QString(),
-                       QString(),
-                       QString(),
-                       lesson,
-                       QString(),
-                       m_doc->entry(row)->type(0),
-                       QString(),
-                       QString(),
-                       QString(),
-                       QString(),
-                       QString(),
-                       QString(),
-                       m_doc->conjugation(0),
-                       KEduVocConjugation(),
-                       KEduVocComparison(),
-                       KEduVocMultipleChoice(),
-                       querymanager,
-                       title,
-                       m_doc->entry(row)->isActive());
-   }
-   else {
-     col -= KV_EXTRA_COLS;
+  if (col < KV_EXTRA_COLS) {
+    title = i18n("Edit General Properties");
+    col -= KV_EXTRA_COLS;
+    entryDlg->setData(hasSelection,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      0,
+                      QDateTime(),
+                      QDateTime(),
+                      QString(),
+                      QString(),
+                      QString(),
+                      lesson,
+                      QString(),
+                      m_doc->entry(row)->type(0),
+                      QString(),
+                      QString(),
+                      QString(),
+                      QString(),
+                      QString(),
+                      QString(),
+                      m_doc->conjugation(0),
+                      KEduVocConjugation(),
+                      KEduVocComparison(),
+                      KEduVocMultipleChoice(),
+                      title,
+                      m_doc->entry(row)->isActive());
+  }
+  else {
+    col -= KV_EXTRA_COLS;
 
-     if (col == 0) {
-       title = i18n("Edit Properties for Original");
-       lang = m_doc->originalIdentifier();
-       text = m_doc->entry(row)->original();
-     }
-     else {
-       lang = m_doc->identifier(col);
-       text = m_doc->entry(row)->translation(col);
-       title = i18n("Edit Properties of a Translation");
-     }
+    if (col == 0) {
+      title = i18n("Edit Properties for Original");
+      text = m_doc->entry(row)->original();
+    }
+    else {
+      text = m_doc->entry(row)->translation(col);
+      title = i18n("Edit Properties of a Translation");
+    }
 
-     entryDlg->setData(m_doc,
-                       hasSelection,
-                       m_doc->entry(row)->grade(col, false),
-                       m_doc->entry(row)->grade(col, true),
-                       m_doc->entry(row)->queryCount(col, false),
-                       m_doc->entry(row)->queryCount(col, true),
-                       m_doc->entry(row)->badCount(col, false),
-                       m_doc->entry(row)->badCount(col, true),
-                       m_doc->entry(row)->queryDate(col, false),
-                       m_doc->entry(row)->queryDate(col, true),
-                       m_doc->entry(row)->fauxAmi(col, false),
-                       m_doc->entry(row)->fauxAmi(col, true),
-                       text,
-                       lesson,
-                       m_doc->entry(row)->remark(col),
-                       m_doc->entry(row)->type(col),
-                       m_doc->entry(row)->pronunciation(col),
-                       m_doc->entry(row)->synonym(col),
-                       m_doc->entry(row)->antonym(col),
-                       m_doc->entry(row)->example(col),
-                       m_doc->entry(row)->usageLabel(col),
-                       m_doc->entry(row)->paraphrase(col),
-                       m_doc->conjugation(col),
-                       m_doc->entry(row)->conjugation(col),
-                       m_doc->entry(row)->comparison(col),
-                       m_doc->entry(row)->multipleChoice(col),
-                       querymanager,
-                       title,
-                       m_doc->entry(row)->isActive());
-   }
-   m_tableModel->reset();
-   //view->getTable()->updateCell(row, col);
-   //view->getTable()->updateCell(row, KV_COL_LESS);
-   ///@todo port commented section below
-   /*QList<Q3TableSelection> tabsel;
-   if (hasSel) {
-     for (int i = 0; i < view->getTable()->numSelections(); ++i)
-       tabsel.push_back(view->getTable()->selection(i));
-   }
-   entryDlg->setCell(row, col+KV_EXTRA_COLS, tabsel);*/
+    entryDlg->setData(hasSelection,
+                      m_doc->entry(row)->grade(col, false),
+                      m_doc->entry(row)->grade(col, true),
+                      m_doc->entry(row)->queryCount(col, false),
+                      m_doc->entry(row)->queryCount(col, true),
+                      m_doc->entry(row)->badCount(col, false),
+                      m_doc->entry(row)->badCount(col, true),
+                      m_doc->entry(row)->queryDate(col, false),
+                      m_doc->entry(row)->queryDate(col, true),
+                      m_doc->entry(row)->fauxAmi(col, false),
+                      m_doc->entry(row)->fauxAmi(col, true),
+                      text,
+                      lesson,
+                      m_doc->entry(row)->remark(col),
+                      m_doc->entry(row)->type(col),
+                      m_doc->entry(row)->pronunciation(col),
+                      m_doc->entry(row)->synonym(col),
+                      m_doc->entry(row)->antonym(col),
+                      m_doc->entry(row)->example(col),
+                      m_doc->entry(row)->usageLabel(col),
+                      m_doc->entry(row)->paraphrase(col),
+                      m_doc->conjugation(col),
+                      m_doc->entry(row)->conjugation(col),
+                      m_doc->entry(row)->comparison(col),
+                      m_doc->entry(row)->multipleChoice(col),
+                      title,
+                      m_doc->entry(row)->isActive());
+  }
+  m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+  if (col <  0)
+    entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
+  else if (col == 0)
+    entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
+  else
+    entryDlg->setEnabled(EntryDlg::EnableAll);
+
+  m_tableModel->reset();
+  entryDlg->setCell(row, col + KV_EXTRA_COLS, m_tableView->selectionModel()->selection());
 }
 
 
@@ -1390,14 +1277,6 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : QueryManager::typeStr(expr->type(column))));
 
   if (entryDlg != 0) {
-    if (noData)
-      entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
-    else {
-      if (column == 0)
-        entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-      else
-        entryDlg->setEnabled(EntryDlg::EnableAll);
-    }
     slotEditEntry2(current);
   }
 }
