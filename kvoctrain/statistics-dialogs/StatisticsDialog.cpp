@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -28,48 +28,45 @@
 
 #include <klocale.h>
 
-#include "StatistikDlg.h"
-#include "StatistikPage.h"
+#include "StatisticsDialog.h"
+#include "StatisticsPage.h"
 #include "GenStatPage.h"
 #include <kvtlanguages.h>
 #include <keduvocdocument.h>
 
-StatistikDlg::StatistikDlg(KVTLanguages &langset, KEduVocDocument *doc, QWidget *parent, const char *name, bool modal)
-  : KPageDialog(parent)
+KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Statistics"));
   setButtons(Close);
   setDefaultButton(Close);
-  setModal(modal);
+  setModal(true);
   setFaceType(KPageDialog::Tabbed);
   QFrame * page;
   QVBoxLayout * topLayout;
-  StatistikPage *spage;
+  StatisticsPage *spage;
 
   page = new QFrame();
   addPage(page,i18n("General"));
-  topLayout = new QVBoxLayout( page );
-  topLayout->setMargin( 0 );
-  topLayout->setSpacing( KDialog::spacingHint() );
-  GenStatPage *gspage = new GenStatPage (doc, page);
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(0);
+  topLayout->setSpacing(KDialog::spacingHint());
+  GenStatPage *gspage = new GenStatPage(doc, page);
   topLayout->addWidget(gspage);
 
   for (int i = 1; i < (int) doc->numIdentifiers(); i++)
   {
-    QString s = langset.findLongId(doc->identifier(i));
+    QString s = languages.findLongId(doc->identifier(i));
     if (s.isEmpty() )
       s = doc->identifier(i);
-    else
-      s = i18n(s.toLocal8Bit());
 
-    page=new QFrame();
-	addPage(page,s);
-    topLayout = new QVBoxLayout( page );
-    topLayout->setMargin( 0 );
-    topLayout->setSpacing( KDialog::spacingHint() );
-    spage = new StatistikPage (i, doc, page);
+    page = new QFrame();
+    addPage(page,s);
+    topLayout = new QVBoxLayout(page);
+    topLayout->setMargin(0);
+    topLayout->setSpacing(KDialog::spacingHint());
+    spage = new StatisticsPage(i, doc, page);
     topLayout->addWidget(spage);
   }
 }
 
-#include "StatistikDlg.moc"
+#include "StatisticsDialog.moc"

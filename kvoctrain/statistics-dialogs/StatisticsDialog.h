@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sun Sep 19 20:50:53 MET 1999
+    begin         : Sun Sep 19 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef StatistikDlg_included
-#define StatistikDlg_included
+#ifndef StatisticsDialog_included
+#define StatisticsDialog_included
 
 #include <kpagedialog.h>
 
@@ -32,13 +32,11 @@ class KEduVocDocument;
 class KVTLanguages;
 class GradeCols;
 
-class StatistikDlg : public KPageDialog
+class KVTStatisticsDialog : public KPageDialog
 {
   Q_OBJECT
 public:
-  StatistikDlg(KVTLanguages &langset, KEduVocDocument *doc, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
-
+  KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent = NULL);
 };
 
-#endif // StatistikDlg_included
-
+#endif // StatisticsDialog_included

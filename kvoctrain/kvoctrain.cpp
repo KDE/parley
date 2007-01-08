@@ -48,7 +48,7 @@
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
-#include "statistics-dialogs/StatistikDlg.h"
+#include "statistics-dialogs/StatisticsDialog.h"
 #include "common-dialogs/kvoctrainprefs.h"
 #include "prefs.h"
 
@@ -661,7 +661,7 @@ void KVocTrainApp::slotCreateLesson(int header)
 
 void KVocTrainApp::slotShowStatistics()
 {
-  StatistikDlg sdlg(m_languages, m_doc);
+  KVTStatisticsDialog sdlg(m_languages, m_doc, this);
   sdlg.exec();
 }
 

@@ -1,15 +1,13 @@
 <ui version="4.0" >
  <author>Peter Hedlund &lt;peter.hedlund@kdemail.net></author>
- <comment></comment>
- <exportmacro></exportmacro>
- <class>StatistikPageForm</class>
- <widget class="QWidget" name="StatistikPageForm" >
+ <class>StatisticsPageForm</class>
+ <widget class="QWidget" name="StatisticsPageForm" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
     <width>562</width>
-    <height>203</height>
+    <height>210</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -17,21 +15,27 @@
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="spacing" >
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <widget class="Q3ListView" name="StatListView" >
-     <property name="minimumSize" >
-      <size>
-       <width>500</width>
-       <height>0</height>
-      </size>
-     </property>
+    <widget class="QTreeWidget" name="StatListView" >
      <property name="selectionMode" >
-      <enum>Q3ListView::NoSelection</enum>
+      <enum>QAbstractItemView::NoSelection</enum>
+     </property>
+     <property name="rootIsDecorated" >
+      <bool>false</bool>
+     </property>
+     <property name="uniformRowHeights" >
+      <bool>true</bool>
+     </property>
+     <property name="itemsExpandable" >
+      <bool>false</bool>
+     </property>
+     <property name="columnCount" >
+      <number>4</number>
      </property>
      <column>
       <property name="text" >
@@ -58,16 +62,6 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>Q3ListView</class>
-   <extends></extends>
-   <header>q3listview.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

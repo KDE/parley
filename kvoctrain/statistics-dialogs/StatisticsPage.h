@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Sep 21 20:50:53 MET 1999
+    begin         : Thu Sep 21 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,28 +23,28 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef StatistikPage_included
-#define StatistikPage_included
+#ifndef StatisticsPage_included
+#define StatisticsPage_included
 
-#include <Q3ListView>
+#include <QTreeWidget>
 #include <QPixmap>
 
-#include "ui_StatistikPageForm.h"
+#include "ui_StatisticsPageForm.h"
 #include <keduvocexpression.h>
 
 class KEduVocDocument;
 class GradeCols;
 
-class StatistikPage : public QWidget, public Ui::StatistikPageForm
+class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 {
   Q_OBJECT
 
 public:
-  StatistikPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
+  StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
 public slots:
   void slotPopupMenu(int row, int col);
-  void slotRMB(Q3ListViewItem* Item, const QPoint & point, int);
+  void slotRMB(QTreeWidgetItem * Item, const QPoint & point, int);
 
 protected:
   void setupPixmaps();
@@ -61,7 +61,7 @@ protected:
     int num;
   };
 
-  int calc_width (struct StatistikPage::stat_counter *gc, int grade, int max_width);
+  int calc_width (struct StatisticsPage::stat_counter *gc, int grade, int max_width);
 
   QList<QPixmap>  from_pix;
   QList<QPixmap> to_pix;
@@ -72,4 +72,4 @@ protected:
   //GradeCols            *gcol;
 };
 
-#endif // StatistikPage_included
+#endif // StatisticsPage_included

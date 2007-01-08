@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -33,7 +33,7 @@
 
 #include <keduvocdocument.h>
 #include <prefs.h>
-#include "StatistikPage.h"
+#include "StatisticsPage.h"
 
 
 #define MIN_COL_WIDTH      2
@@ -48,10 +48,10 @@
 #define TB_LESSON          3
 
 
-class GradeListItem : public Q3ListViewItem
+class GradeListItem : public QTreeWidgetItem
 {
 public:
-  inline GradeListItem (Q3ListView* parent, int _lesson): Q3ListViewItem(parent), lesson(_lesson) {}
+  inline GradeListItem (QTreeWidget * parent, int _lesson): QTreeWidgetItem(parent), lesson(_lesson) {}
   inline int getLesson() const { return lesson; }
 
 private:
@@ -59,7 +59,7 @@ private:
 };
 
 
-StatistikPage::StatistikPage(int col, KEduVocDocument  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
+StatisticsPage::StatisticsPage(int col, KEduVocDocument  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
 {
   setupUi(this);
   StatListView->setColumnWidth(0, SIZE_GRADE + 10);
@@ -86,17 +86,17 @@ StatistikPage::StatistikPage(int col, KEduVocDocument  *_doc, QWidget *parent) :
     }
   }
   setupPixmaps();
-  connect(StatListView, SIGNAL( rightButtonPressed( Q3ListViewItem *, const QPoint& , int ) ),
-          this, SLOT( slotRMB( Q3ListViewItem *, const QPoint &, int ) ) );
+  connect(StatListView, SIGNAL(rightButtonPressed(QTreeWidgetItem *, const QPoint& , int)), this, SLOT(slotRMB(QTreeWidgetItem *, const QPoint &, int)));
 }
 
 
-void StatistikPage::setupPixmaps()
+void StatisticsPage::setupPixmaps()
 {
+  ///@todo port 
   // create pixmaps with bar charts of numbers of grades
   int height;
-  GradeListItem lvi (StatListView, 0);
-  height = lvi.height();
+  GradeListItem lvi(StatListView, 0);
+  height = lvi.sizeHint(0).height();
   for (int entry = 0; entry < (int) fsc.size(); entry++) {
     QPainter p;
     QColor color;
@@ -224,33 +224,34 @@ void StatistikPage::setupPixmaps()
   QString s;
 
   GradeListItem *plvi = new GradeListItem(StatListView, 0);
-  plvi->setPixmap (TB_FGRADE, from_pix[0]);
-  plvi->setPixmap (TB_TGRADE, to_pix[0]);
+  plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[0]));
+  plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[0]));
   s.setNum (tsc[0].num);
   plvi->setText (TB_COUNT, s);
   plvi->setText (TB_LESSON, i18n("<no lesson>"));
-  StatListView->insertItem (plvi);
+  StatListView->addTopLevelItem (plvi);
 
   for (int i = 0; i < (int) lesson.size(); i++) {
     plvi = new GradeListItem(StatListView, i+1);
-    plvi->setPixmap (TB_FGRADE, from_pix[i+1]);
-    plvi->setPixmap (TB_TGRADE, to_pix[i+1]);
+    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i+1]));
+    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i+1]));
     s.setNum (tsc[i+1].num);
-    plvi->setText (TB_COUNT, s);
-    plvi->setText (TB_LESSON, lesson[i]);
-    StatListView->insertItem (plvi);
+    plvi->setText(TB_COUNT, s);
+    plvi->setText(TB_LESSON, lesson[i]);
+    StatListView->addTopLevelItem(plvi);
   }
 }
 
 
-void StatistikPage::slotRMB( Q3ListViewItem* Item, const QPoint & /*point*/, int col)
+void StatisticsPage::slotRMB(QTreeWidgetItem* Item, const QPoint & point, int col)
 {
+  Q_UNUSED(point);
   if( Item != 0)
-    slotPopupMenu(((GradeListItem*)Item)->getLesson(), col);
+    slotPopupMenu(((GradeListItem *)Item)->getLesson(), col);
 }
 
 
-void StatistikPage::slotPopupMenu(int row, int col)
+void StatisticsPage::slotPopupMenu(int row, int col)
 {
   struct stat_counter *sc;
 
@@ -287,4 +288,4 @@ void StatistikPage::slotPopupMenu(int row, int col)
   header_m->exec(QCursor::pos()+QPoint(10, 0));
 }
 
-#include "StatistikPage.moc"
+#include "StatisticsPage.moc"

@@ -109,13 +109,13 @@ kde4_add_ui_files(entrydialogs_SRCS
 
 set(statisticsdialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/GenStatPage.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikDlg.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatisticsDialog.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatisticsPage.cpp
 )
 
 kde4_add_ui_files(statisticsdialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/GenStatPageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatisticsPageForm.ui
 )
 
 set(kvtcore_SRCS
