@@ -668,24 +668,21 @@ void KVocTrainApp::slotShowStatistics()
 
 void KVocTrainApp::slotCleanVocabulary ()
 {
-   prepareProgressBar();
-   QApplication::setOverrideCursor( Qt::WaitCursor );
-   int num = m_doc->cleanUp();
-   QApplication::restoreOverrideCursor();
-   removeProgressBar();
+  prepareProgressBar();
+  QApplication::setOverrideCursor( Qt::WaitCursor );
+  int num = m_doc->cleanUp();
+  QApplication::restoreOverrideCursor();
+  removeProgressBar();
 
-   slotStatusMsg(IDS_DEFAULT);
+  slotStatusMsg(IDS_DEFAULT);
 
-   if (num != 0) {
-     ///@todo port view->setView(m_doc, m_languages);
-     QString s =
-        i18np("1 entry with the same content has been found and removed.",
-             "%n entries with the same content have been found and removed.", num);
+  if (num != 0) {
+    m_tableModel->reset();
+    QString s = i18np("1 entry with the same content was found and removed.",
+                      "%n entries with the same content were found and removed.", num);
 
-     KMessageBox::information(this,
-       s,
-       i18n("Clean Up"));
-   }
+    KMessageBox::information(this, s, i18n("Clean Up"));
+  }
 }
 
 
