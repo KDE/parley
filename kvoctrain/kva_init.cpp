@@ -198,7 +198,7 @@ void KVocTrainApp::initActions()
   editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
 
   vocabShowStatistics = new KAction(KIcon("statistics"), i18n("Show &Statistics"), actionCollection(), "vocab_show_statistics");
-  connect(vocabShowStatistics, SIGNAL(triggered(bool)), SLOT(slotShowStatist()));
+  connect(vocabShowStatistics, SIGNAL(triggered(bool)), SLOT(slotShowStatistics()));
   vocabShowStatistics->setWhatsThis(i18n("Show statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
   vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());

@@ -1,12 +1,12 @@
 
-add_subdirectory( common-dialogs ) 
-add_subdirectory( query-dialogs ) 
-add_subdirectory( docprop-dialogs ) 
-add_subdirectory( entry-dialogs ) 
-add_subdirectory( statistik-dialogs ) 
-add_subdirectory( kvt-core ) 
-add_subdirectory( examples ) 
-add_subdirectory( pics ) 
+add_subdirectory( common-dialogs )
+add_subdirectory( query-dialogs )
+add_subdirectory( docprop-dialogs )
+add_subdirectory( entry-dialogs )
+add_subdirectory( statistics-dialogs )
+add_subdirectory( kvt-core )
+add_subdirectory( examples )
+add_subdirectory( pics )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/ )
 
@@ -107,15 +107,15 @@ kde4_add_ui_files(entrydialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/TenseEntryPageForm.ui
 )
 
-set(statistikdialogs_SRCS
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/GenStatPage.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikDlg.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikPage.cpp
+set(statisticsdialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/GenStatPage.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikPage.cpp
 )
 
-kde4_add_ui_files(statistikdialogs_SRCS
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/GenStatPageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistik-dialogs/StatistikPageForm.ui
+kde4_add_ui_files(statisticsdialogs_SRCS
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/GenStatPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatistikPageForm.ui
 )
 
 set(kvtcore_SRCS
@@ -124,7 +124,7 @@ set(kvtcore_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/UsageManager.cpp
 )
 
-set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statistikdialogs_SRCS} ${kvtcore_SRCS}
+set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${kvtcore_SRCS}
     kva_io.cpp
     kvoctrain.cpp
     main.cpp
