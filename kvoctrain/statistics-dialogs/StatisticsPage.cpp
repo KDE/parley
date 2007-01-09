@@ -69,14 +69,14 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument  *_doc, QWidget *parent)
 
   QStringList lesson = doc->lessonDescriptions();
 
-  fsc.resize(lesson.size()+1);
-  tsc.resize(lesson.size()+1);
+  fsc.resize(lesson.size() + 1);
+  tsc.resize(lesson.size() + 1);
 
   // accumulate numbers of grades per lesson
   for (int i = 0; i < (int) doc->numEntries(); i++) {
     KEduVocExpression *expr = doc->entry(i);
-    int fg = qMin(KV_MAX_GRADE, (int)expr->grade(col, false));
-    int tg = qMin(KV_MAX_GRADE, (int)expr->grade(col, true));
+    int fg = qMin(KV_MAX_GRADE, (int) expr->grade(col, false));
+    int tg = qMin(KV_MAX_GRADE, (int) expr->grade(col, true));
     int l = expr->lesson();
     if (l >= 0 && l <= (int) lesson.size() ) {
       fsc[l].grade[fg]++;
@@ -92,18 +92,17 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument  *_doc, QWidget *parent)
 
 void StatisticsPage::setupPixmaps()
 {
-  ///@todo port 
   // create pixmaps with bar charts of numbers of grades
   int height;
   GradeListItem lvi(StatListView, 0);
-  height = lvi.sizeHint(0).height();
+  height = 22; //lvi.sizeHint(0).height();
   for (int entry = 0; entry < (int) fsc.size(); entry++) {
     QPainter p;
     QColor color;
     QPixmap fpix (SIZE_GRADE, height);
-    p.begin( &fpix);
-    p.eraseRect (0, 0, fpix.width(), fpix.height());
-    p.setPen( Qt::black );
+    p.begin(&fpix);
+    p.eraseRect(0, 0, fpix.width(), fpix.height());
+    p.setPen(Qt::black);
     if (fsc[entry].num != 0) {
 
       int num = 0;
@@ -111,9 +110,9 @@ void StatisticsPage::setupPixmaps()
         if (fsc[entry].grade[j] != 0)
           num++;
 
-      int maxw = fpix.width() -PIX_SHIFT -PIX_SHIFT -1;
+      int maxw = fpix.width() - PIX_SHIFT - PIX_SHIFT - 1;
       int w = maxw;
-      int widths [KV_MAX_GRADE+1];
+      int widths[KV_MAX_GRADE + 1];
       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
         if (fsc[entry].grade[j] == 0)
           widths[j] = 0;
@@ -131,47 +130,47 @@ void StatisticsPage::setupPixmaps()
       }
 
       int x = 0;
-      int x2 = 1+PIX_SHIFT;
+      int x2 = 1 + PIX_SHIFT;
       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
         switch (j) {
-          case KV_NORM_GRADE: color = Prefs::gradeCol(0);    break;
-          case KV_LEV1_GRADE: color = Prefs::gradeCol(1);    break;
-          case KV_LEV2_GRADE: color = Prefs::gradeCol(2);    break;
-          case KV_LEV3_GRADE: color = Prefs::gradeCol(3);    break;
-          case KV_LEV4_GRADE: color = Prefs::gradeCol(4);    break;
-          case KV_LEV5_GRADE: color = Prefs::gradeCol(5);    break;
-          case KV_LEV6_GRADE: color = Prefs::gradeCol(6);    break;
-          case KV_LEV7_GRADE: color = Prefs::gradeCol(7);    break;
-          default           : color = Prefs::gradeCol(1);
+          case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
+          case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+          case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+          case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+          case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+          case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+          case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+          case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+          default           : color = Prefs::gradeCol(1); break;
         }
         if (widths[j] != 0) {
           x2 += widths[j];
-          p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
-          p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
-          x = x2-1;
+          p.fillRect(x + PIX_SHIFT, 1, x2 - x, height - 1, color);
+          p.drawRect(x + PIX_SHIFT, 1, x2 - x, height - 1);
+          x = x2 - 1;
         }
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1, Prefs::gradeCol(0));
-      p.drawRect(PIX_SHIFT, 1, fpix.width()-PIX_SHIFT, height-1);
+      p.fillRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, height - 1, Prefs::gradeCol(0));
+      p.drawRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, height - 1);
     }
     p.end();
-    from_pix.push_back(fpix);
+    from_pix.append(fpix);
 
-    QPixmap tpix (SIZE_GRADE, height);
-    p.begin( &tpix );
-    p.eraseRect (0, 0, tpix.width(), tpix.height());
-    p.setPen( Qt::black );
+    QPixmap tpix(SIZE_GRADE, height);
+    p.begin(&tpix);
+    p.eraseRect(0, 0, tpix.width(), tpix.height());
+    p.setPen(Qt::black);
     if (tsc[entry].num != 0) {
       int num = 0;
       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++)
         if (tsc[entry].grade[j] != 0)
           num++;
 
-      int maxw = tpix.width() -PIX_SHIFT -PIX_SHIFT -1;
+      int maxw = tpix.width() - PIX_SHIFT - PIX_SHIFT - 1;
       int w = maxw;
-      int widths [KV_MAX_GRADE+1];
+      int widths[KV_MAX_GRADE+1];
       for (int j = KV_NORM_GRADE; j <= KV_MAX_GRADE; j++) {
         if (tsc[entry].grade[j] == 0)
           widths[j] = 0;
@@ -192,27 +191,27 @@ void StatisticsPage::setupPixmaps()
       int x2 = 1+PIX_SHIFT;
       for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
         switch (j) {
-          case KV_NORM_GRADE: color = Prefs::gradeCol(0);    break;
-          case KV_LEV1_GRADE: color = Prefs::gradeCol(1);    break;
-          case KV_LEV2_GRADE: color = Prefs::gradeCol(2);    break;
-          case KV_LEV3_GRADE: color = Prefs::gradeCol(3);    break;
-          case KV_LEV4_GRADE: color = Prefs::gradeCol(4);    break;
-          case KV_LEV5_GRADE: color = Prefs::gradeCol(5);    break;
-          case KV_LEV6_GRADE: color = Prefs::gradeCol(6);    break;
-          case KV_LEV7_GRADE: color = Prefs::gradeCol(7);    break;
-          default           : color = Prefs::gradeCol(1);
+          case KV_NORM_GRADE: color = Prefs::gradeCol(0); break;
+          case KV_LEV1_GRADE: color = Prefs::gradeCol(1); break;
+          case KV_LEV2_GRADE: color = Prefs::gradeCol(2); break;
+          case KV_LEV3_GRADE: color = Prefs::gradeCol(3); break;
+          case KV_LEV4_GRADE: color = Prefs::gradeCol(4); break;
+          case KV_LEV5_GRADE: color = Prefs::gradeCol(5); break;
+          case KV_LEV6_GRADE: color = Prefs::gradeCol(6); break;
+          case KV_LEV7_GRADE: color = Prefs::gradeCol(7); break;
+          default           : color = Prefs::gradeCol(1); break;
         }
         if (widths[j] != 0) {
           x2 += widths[j];
-          p.fillRect(x+PIX_SHIFT, 1, x2-x, height-1, color);
-          p.drawRect(x+PIX_SHIFT, 1, x2-x, height-1);
+          p.fillRect(x + PIX_SHIFT, 1, x2 - x, height - 1, color);
+          p.drawRect(x + PIX_SHIFT, 1, x2 - x, height - 1);
           x = x2-1;
         }
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1, Prefs::gradeCol(0));
-      p.drawRect(PIX_SHIFT, 1, tpix.width()-PIX_SHIFT, height-1);
+      p.fillRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, height - 1, Prefs::gradeCol(0));
+      p.drawRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, height - 1);
     }
     p.end();
     to_pix.push_back(tpix);
@@ -226,16 +225,22 @@ void StatisticsPage::setupPixmaps()
   GradeListItem *plvi = new GradeListItem(StatListView, 0);
   plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[0]));
   plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[0]));
-  s.setNum (tsc[0].num);
-  plvi->setText (TB_COUNT, s);
-  plvi->setText (TB_LESSON, i18n("<no lesson>"));
+  s.setNum(tsc[0].num);
+  plvi->setText(TB_COUNT, s);
+  plvi->setText(TB_LESSON, doc->lessonDescription(0));
   StatListView->addTopLevelItem (plvi);
 
   for (int i = 0; i < (int) lesson.size(); i++) {
-    plvi = new GradeListItem(StatListView, i+1);
-    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i+1]));
-    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i+1]));
-    s.setNum (tsc[i+1].num);
+    plvi = new GradeListItem(StatListView, i + 1);
+    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i + 1]));
+    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i + 1]));
+
+    s = "<qt><b>Number of Entries per Grade</b></qt>";
+    s = s + '\n';
+    s = s + i18n(KV_NORM_TEXT) + '\t' + QString::number(tsc[i].grade[KV_NORM_GRADE]);
+    plvi->setData(TB_FGRADE, Qt::ToolTipRole, QVariant(s));
+
+    s.setNum (tsc[i + 1].num);
     plvi->setText(TB_COUNT, s);
     plvi->setText(TB_LESSON, lesson[i]);
     StatListView->addTopLevelItem(plvi);

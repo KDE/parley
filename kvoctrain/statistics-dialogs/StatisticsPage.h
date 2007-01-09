@@ -57,18 +57,18 @@ protected:
       num = 0;
     }
 
-    int grade [KV_MAX_GRADE+1];
+    int grade [KV_MAX_GRADE + 1];
     int num;
   };
 
   int calc_width (struct StatisticsPage::stat_counter *gc, int grade, int max_width);
 
-  QList<QPixmap>  from_pix;
+  QList<QPixmap> from_pix;
   QList<QPixmap> to_pix;
-  KEduVocDocument    *doc;
+  KEduVocDocument *doc;
 
-  QVector<stat_counter>  fsc;
-  QVector<stat_counter>  tsc;
+  QVector<stat_counter> fsc;
+  QVector<stat_counter> tsc;
   //GradeCols            *gcol;
 };
 

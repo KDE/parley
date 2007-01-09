@@ -30,7 +30,6 @@
 
 class KEduVocDocument;
 class KVTLanguages;
-class GradeCols;
 
 class KVTStatisticsDialog : public KPageDialog
 {
