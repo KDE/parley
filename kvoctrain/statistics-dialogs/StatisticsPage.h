@@ -42,10 +42,6 @@ class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 public:
   StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
-public slots:
-  void slotPopupMenu(int row, int col);
-  void slotRMB(QTreeWidgetItem * Item, const QPoint & point, int);
-
 protected:
   void setupPixmaps();
 

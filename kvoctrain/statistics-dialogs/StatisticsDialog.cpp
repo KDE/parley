@@ -27,6 +27,8 @@
 #include <QVBoxLayout>
 
 #include <klocale.h>
+#include <kconfig.h>
+#include <kglobal.h>
 
 #include "StatisticsDialog.h"
 #include "StatisticsPage.h"
@@ -67,6 +69,17 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocumen
     spage = new StatisticsPage(i, doc, page);
     topLayout->addWidget(spage);
   }
+
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("StatisticsDialog");
+  restoreDialogSize(cfg);
+}
+
+KVTStatisticsDialog::~KVTStatisticsDialog()
+{
+  KConfig *cfg = KGlobal::config();
+  cfg->setGroup("StatisticsDialog");
+  KDialog::saveDialogSize(cfg);
 }
 
 #include "StatisticsDialog.moc"

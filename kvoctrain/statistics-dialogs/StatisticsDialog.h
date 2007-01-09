@@ -36,6 +36,7 @@ class KVTStatisticsDialog : public KPageDialog
   Q_OBJECT
 public:
   KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent = NULL);
+  ~KVTStatisticsDialog();
 };
 
 #endif // StatisticsDialog_included
