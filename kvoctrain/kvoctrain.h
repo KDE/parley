@@ -230,45 +230,45 @@ private:
   void createNewDocument();
 
   // KAction pointers to enable/disable actions
-  KAction* fileNew;
-  KAction* fileOpen;
-  KAction* fileOpenExample;
-  KAction* fileGHNS;
+  QAction* fileNew;
+  QAction* fileOpen;
+  QAction* fileOpenExample;
+  QAction* fileGHNS;
   KRecentFilesAction* fileOpenRecent;
-  KAction* fileMerge;
-  KAction* fileSave;
-  KAction* fileSaveAs;
-  KAction* filePrint;
-  KAction* fileQuit;
+  QAction* fileMerge;
+  QAction* fileSave;
+  QAction* fileSaveAs;
+  QAction* filePrint;
+  QAction* fileQuit;
 
-  KAction* editCopy;
-  KAction* editPaste;
-  KAction* editSelectAll;
-  KAction* editClearSelection;
-  KAction* editSearchFromClipboard;
-  KAction* editAppend;
-  KAction* editEditEntry;
-  KAction* editDelete;
-  KAction* editSaveSelectedArea;
+  QAction* editCopy;
+  QAction* editPaste;
+  QAction* editSelectAll;
+  QAction* editClearSelection;
+  QAction* editSearchFromClipboard;
+  QAction* editAppend;
+  QAction* editEditEntry;
+  QAction* editDelete;
+  QAction* editSaveSelectedArea;
 
-  KAction* vocabShowStatistics;
-  KAction* vocabAssignLessons;
-  KAction* vocabCleanUp;
+  QAction* vocabShowStatistics;
+  QAction* vocabAssignLessons;
+  QAction* vocabCleanUp;
   KSelectAction* vocabAppendLanguage;
   KSelectAction* vocabSetLanguage;
   KSelectAction* vocabRemoveLanguage;
-  KAction* vocabDocumentProperties;
-  KAction* vocabLanguageProperties;
-  KAction* vocabLessons;
-  KAction* vocabSearch;
+  QAction* vocabDocumentProperties;
+  QAction* vocabLanguageProperties;
+  QAction* vocabLessons;
+  QAction* vocabSearch;
 
-  //KAction* learningResumeQuery;
-  //KAction* learningResumeMultipleChoice;
+  //QAction* learningResumeQuery;
+  //QAction* learningResumeMultipleChoice;
 
   QAction* configToolbar;
-  KAction* configNotifications;
-  KAction* configApp;
-  //KAction* configQueryOptions;
+  QAction* configNotifications;
+  QAction* configApp;
+  //QAction* configQueryOptions;
 
   QString lastPixName;
 
