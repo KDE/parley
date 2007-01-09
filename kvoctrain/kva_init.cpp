@@ -222,7 +222,7 @@ void KVocTrainApp::initActions()
   vocabAssignLessons->setIcon(KIcon("rand_less"));
   vocabAssignLessons->setText(i18n("Assign L&essons..."));
   connect(vocabAssignLessons, SIGNAL(triggered(bool)), SLOT(slotCreateRandom()));
-  vocabAssignLessons->setWhatsThis(i18n("Create random lessons with unassigned entries"));
+  vocabAssignLessons->setWhatsThis(i18n("Create random lessons for unassigned entries"));
   vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
   vocabAssignLessons->setStatusTip(vocabAssignLessons->whatsThis());
 

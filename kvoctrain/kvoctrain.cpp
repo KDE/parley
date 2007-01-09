@@ -688,53 +688,52 @@ void KVocTrainApp::slotCleanVocabulary ()
 
 void KVocTrainApp::slotCreateRandom()
 {
-   bool ok = false;
-   int res = KInputDialog::getInteger(i18n( "Entries in Lesson" ),
-                i18n( "Enter number of entries in lesson:" ), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this );
-   if (!ok)
-     return;
+  bool ok = false;
+  int res = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("Enter number of entries per lesson:"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
+  if (!ok)
+    return;
 
-   Prefs::setEntriesPerLesson(res);
+  Prefs::setEntriesPerLesson(res);
 
-   slotStatusMsg(i18n("Creating random lessons..."));
-   QApplication::setOverrideCursor( Qt::WaitCursor );
+  slotStatusMsg(i18n("Creating random lessons..."));
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
-   QList<KEduVocExpression*> randomList;
-   for (int i = 0; i < m_doc->numEntries(); i++) {
-     KEduVocExpression *expr = m_doc->entry(i);
-     if (expr->lesson() == 0)
-       randomList.push_back(expr);
-   }
+  QList<KEduVocExpression*> randomList;
+  for (int i = 0; i < m_doc->numEntries(); i++) {
+    KEduVocExpression *expr = m_doc->entry(i);
+    if (expr->lesson() == 0)
+      randomList.append(expr);
+  }
 
-   if (randomList.size () != 0) {
-     int less_no = m_lessonsComboBox->count() /* +1 anyway */ ;
-     QString s;
-     s.setNum (less_no);
-     s.insert (0, "- ");
-     m_lessonsComboBox->addItem (s);
-     int less_cnt = Prefs::entriesPerLesson();
-     while (randomList.size () != 0) {
-       if (--less_cnt <= 0) {
-         less_cnt = Prefs::entriesPerLesson();
-         less_no++;
-         s.setNum (less_no);
-         s.insert (0, "- ");
-         m_lessonsComboBox->addItem (s);
-       }
-       int nr = random.getLong(randomList.size());
-       randomList[nr]->setLesson(less_no);
-       randomList.erase(randomList.begin() + nr);
-     }
+  if (randomList.size() != 0) {
+    int less_no = m_lessonsComboBox->count();
+    QString s;
+    s.setNum(less_no);
+    s.insert(0, "- ");
+    m_lessonsComboBox->addItem(s);
+    int less_cnt = Prefs::entriesPerLesson();
+    while (randomList.size() != 0) {
+      if (--less_cnt <= 0) {
+        less_cnt = Prefs::entriesPerLesson();
+        less_no++;
+        s.setNum(less_no);
+        s.insert(0, "- ");
+        m_lessonsComboBox->addItem(s);
+      }
+      int nr = random.getLong(randomList.size());
+      randomList[nr]->setLesson(less_no);
+      randomList.erase(randomList.begin() + nr);
+    }
 
-     QStringList new_lessonStr;
-     for (int i = 1; i < m_lessonsComboBox->count(); i++)
-       new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
-     m_doc->setLessonDescriptions(new_lessonStr);
-     m_tableModel->reset();
-     m_doc->setModified ();
-   }
-   QApplication::restoreOverrideCursor();
-   slotStatusMsg(IDS_DEFAULT);
+    QStringList new_lessonStr;
+    for (int i = 1; i < m_lessonsComboBox->count(); i++)
+      new_lessonStr.append(m_lessonsComboBox->itemText(i));
+    m_doc->setLessonDescriptions(new_lessonStr);
+    m_tableModel->reset();
+    m_doc->setModified ();
+  }
+  QApplication::restoreOverrideCursor();
+  slotStatusMsg(IDS_DEFAULT);
 }
 
 
