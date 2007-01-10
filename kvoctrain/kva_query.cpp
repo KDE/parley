@@ -100,7 +100,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, QueryType property)
   hide();
   querymode = true;
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg = new SimpleQueryDlg (
@@ -208,7 +208,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     return;
   }
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg->setQuery(queryType,
@@ -267,7 +267,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
      return;
   }
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   hide();
@@ -413,7 +413,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
     return;
   }
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   if (queryType == QT_Conjugation) {
@@ -544,7 +544,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   hide();
   querymode = true;
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   QString q_org,
@@ -823,7 +823,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       }
       query_cycle = 1;
 
-      random_query_nr = random.getLong(random_expr1.size());
+      random_query_nr = m_randomSequence.getLong(random_expr1.size());
     }
 
   }
@@ -853,7 +853,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     return;
   }
 
-  random_query_nr = random.getLong(random_expr1.size());
+  random_query_nr = m_randomSequence.getLong(random_expr1.size());
   }
 
   exp = random_expr1[random_query_nr].exp;
@@ -864,7 +864,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
           q_trans;
 
   if (Prefs::swapDirection()) {
-    bool rand_swap = random.getBool();
+    bool rand_swap = m_randomSequence.getBool();
 
     if (rand_swap) {        // random direction
       int tmp = oindex;

@@ -646,7 +646,7 @@ void KVocTrainApp::slotCreateLesson(int header)
 
   int cnt = 0;
   while (cnt < MAX_LESSON && sel.size() != 0) {
-    int nr = random.getLong(sel.size());
+    int nr = m_randomSequence.getLong(sel.size());
     KEduVocExpression *kv = m_doc->entry(sel[nr]);
     // include non-lesson and non-empty string
     if (kv->lesson() == 0) {
@@ -709,7 +709,7 @@ void KVocTrainApp::slotCreateRandom()
     int less_no = m_lessonsComboBox->count();
     QString s;
     s.setNum(less_no);
-    s.insert(0, "- ");
+    s.prepend("- ");
     m_lessonsComboBox->addItem(s);
     int less_cnt = Prefs::entriesPerLesson();
     while (randomList.size() != 0) {
@@ -717,12 +717,11 @@ void KVocTrainApp::slotCreateRandom()
         less_cnt = Prefs::entriesPerLesson();
         less_no++;
         s.setNum(less_no);
-        s.insert(0, "- ");
+        s.prepend("- ");
         m_lessonsComboBox->addItem(s);
       }
-      int nr = random.getLong(randomList.size());
-      randomList[nr]->setLesson(less_no);
-      randomList.erase(randomList.begin() + nr);
+      int nr = m_randomSequence.getLong(randomList.size());
+      randomList.takeAt(nr)->setLesson(less_no);
     }
 
     QStringList new_lessonStr;

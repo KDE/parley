@@ -327,7 +327,7 @@ private:
   int              query_num;
   int              query_startnum;
   QueryType        queryType;
-  KRandomSequence  random;
+  KRandomSequence  m_randomSequence;
   KVTNewStuff     *m_newStuff;
   QVBoxLayout     *m_topLayout;
 };
