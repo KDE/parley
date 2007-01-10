@@ -102,7 +102,7 @@ void StatisticsPage::setupPixmaps()
 {
   // create pixmaps with bar charts of numbers of grades
   int height;
-  GradeListItem lvi(StatListView, 0);
+  //GradeListItem lvi(StatListView, 0);
   height = 22; //lvi.sizeHint(0).height();
   for (int entry = 0; entry < (int) fsc.size(); entry++) {
     QPainter p;
@@ -226,67 +226,38 @@ void StatisticsPage::setupPixmaps()
   }
 
   // setup rows with pixmaps and strings
-  QStringList lesson = doc->lessonDescriptions();
-
   QString s;
+  GradeListItem *plvi = 0;
 
-  GradeListItem *plvi = new GradeListItem(StatListView, 0);
-  plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[0]));
-  plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[0]));
+  for (int i = 0; i <= (int) doc->lessonDescriptions().count(); i++) {
+    plvi = new GradeListItem(StatListView, i);
+    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
+    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
 
-  s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(fsc[0].grade[KV_NORM_GRADE]))
-                     .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV1_GRADE]))
-                     .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV2_GRADE]))
-                     .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV3_GRADE]))
-                     .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV4_GRADE]))
-                     .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV5_GRADE]))
-                     .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV6_GRADE]))
-                     .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(fsc[0].grade[KV_LEV7_GRADE]));
-  plvi->setToolTip(TB_FGRADE, s);
-
-  s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(tsc[0].grade[KV_NORM_GRADE]))
-                     .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV1_GRADE]))
-                     .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV2_GRADE]))
-                     .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV3_GRADE]))
-                     .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV4_GRADE]))
-                     .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV5_GRADE]))
-                     .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV6_GRADE]))
-                     .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(tsc[0].grade[KV_LEV7_GRADE]));
-  plvi->setToolTip(TB_TGRADE, s);
-
-  s.setNum(tsc[0].num);
-  plvi->setText(TB_COUNT, s);
-  plvi->setText(TB_LESSON, doc->lessonDescription(0));
-  StatListView->addTopLevelItem (plvi);
-
-  for (int i = 0; i < (int) lesson.size(); i++) {
-    plvi = new GradeListItem(StatListView, i + 1);
-    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i + 1]));
-    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i + 1]));
-
-    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_NORM_GRADE]))
-                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV1_GRADE]))
-                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV2_GRADE]))
-                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV3_GRADE]))
-                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV4_GRADE]))
-                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV5_GRADE]))
-                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV6_GRADE]))
-                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(fsc[i + 1].grade[KV_LEV7_GRADE]));
+    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(fsc[i].grade[KV_NORM_GRADE]))
+                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV1_GRADE]))
+                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV2_GRADE]))
+                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV3_GRADE]))
+                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV4_GRADE]))
+                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV5_GRADE]))
+                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV6_GRADE]))
+                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV7_GRADE]));
     plvi->setToolTip(TB_FGRADE, s);
 
-    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_NORM_GRADE]))
-                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV1_GRADE]))
-                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV2_GRADE]))
-                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV3_GRADE]))
-                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV4_GRADE]))
-                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV5_GRADE]))
-                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV6_GRADE]))
-                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(tsc[i + 1].grade[KV_LEV7_GRADE]));
+    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(tsc[i].grade[KV_NORM_GRADE]))
+                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV1_GRADE]))
+                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV2_GRADE]))
+                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV3_GRADE]))
+                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV4_GRADE]))
+                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV5_GRADE]))
+                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV6_GRADE]))
+                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV7_GRADE]));
     plvi->setToolTip(TB_TGRADE, s);
 
-    s.setNum (tsc[i + 1].num);
+    s.setNum (tsc[i].num);
     plvi->setText(TB_COUNT, s);
-    plvi->setText(TB_LESSON, lesson[i]);
+    plvi->setText(TB_LESSON, doc->lessonDescription(i));
+
     StatListView->addTopLevelItem(plvi);
   }
 }
