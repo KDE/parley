@@ -652,24 +652,23 @@ void KVocTrainApp::slotSaveSelection ()
 }
 
 
-void KVocTrainApp::prepareProgressBar ()
+void KVocTrainApp::prepareProgressBar()
 {
-    statusBar()->clearMessage ();
-    pbar = new QProgressBar (statusBar());
-    //pbar->setFrameStyle( QFrame::Panel | QFrame::Sunken );
-    statusBar()->addWidget(pbar, 150, true);
-    pbar->show();
+  statusBar()->clearMessage();
+  pbar = new QProgressBar(statusBar());
+  statusBar()->addWidget(pbar, 150, true);
+  pbar->show();
 }
 
 
-void KVocTrainApp::removeProgressBar ()
+void KVocTrainApp::removeProgressBar()
 {
-    statusBar()->clearMessage ();
-    statusBar()->removeWidget(pbar);
-    delete pbar;
-    pbar = 0;
-    delete pdlg;
-    pdlg = 0;
+  statusBar()->clearMessage();
+  statusBar()->removeWidget(pbar);
+  delete pbar;
+  pbar = 0;
+  delete pdlg;
+  pdlg = 0;
 }
 
 

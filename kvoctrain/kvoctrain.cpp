@@ -666,7 +666,7 @@ void KVocTrainApp::slotShowStatistics()
 }
 
 
-void KVocTrainApp::slotCleanVocabulary ()
+void KVocTrainApp::slotCleanVocabulary()
 {
   prepareProgressBar();
   QApplication::setOverrideCursor( Qt::WaitCursor );
@@ -681,7 +681,7 @@ void KVocTrainApp::slotCleanVocabulary ()
     QString s = i18np("1 entry with the same content was found and removed.",
                       "%n entries with the same content were found and removed.", num);
 
-    KMessageBox::information(this, s, i18n("Clean Up"));
+    KMessageBox::information(this, s, i18n("Remove Duplicates"));
   }
 }
 

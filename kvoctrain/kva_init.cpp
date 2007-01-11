@@ -228,9 +228,9 @@ void KVocTrainApp::initActions()
 
   vocabCleanUp = actionCollection()->addAction("vocab_clean_up");
   vocabCleanUp->setIcon(KIcon("cleanup"));
-  vocabCleanUp->setText(i18n("&Clean Up"));
+  vocabCleanUp->setText(i18n("Remove &Duplicates"));
   connect(vocabCleanUp, SIGNAL(triggered(bool)), SLOT(slotCleanVocabulary()));
-  vocabCleanUp->setWhatsThis(i18n("Remove entries with same content from vocabulary"));
+  vocabCleanUp->setWhatsThis(i18n("Remove duplicate entries from the vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
   vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
