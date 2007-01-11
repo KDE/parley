@@ -38,12 +38,12 @@ class GradeCols;
 class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 {
   Q_OBJECT
-
 public:
   StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
-protected:
+private:
   void setupPixmaps();
+  QString gradesToolTip(int level, bool reverse);
 
   struct stat_counter
   {
@@ -65,7 +65,6 @@ protected:
 
   QVector<stat_counter> fsc;
   QVector<stat_counter> tsc;
-  //GradeCols            *gcol;
 };
 
 #endif // StatisticsPage_included

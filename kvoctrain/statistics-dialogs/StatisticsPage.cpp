@@ -23,7 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <QCursor>
 #include <QPainter>
 #include <QPixmap>
 
@@ -36,6 +35,7 @@
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2
+#define SIZE_HEIGHT        22
 #define SIZE_GRADE         100+PIX_SHIFT
 #define SIZE_COUNT         70
 #define SIZE_LESSON        300
@@ -45,30 +45,7 @@
 #define TB_COUNT           2
 #define TB_LESSON          3
 
-///@todo get this beast properly localized
-const QString toolTipTemplate = "<html><p style='white-space:pre'><b>Number of Entries per Grade</b></p>"
-                                "<table><tr><td>%1</td><td>%2</td></tr>"
-                                       "<tr><td>%3</td><td>%4</td></tr>"
-                                       "<tr><td>%5</td><td>%6</td></tr>"
-                                       "<tr><td>%7</td><td>%8</td></tr>"
-                                       "<tr><td>%9</td><td>%10</td></tr>"
-                                       "<tr><td>%11</td><td>%12</td></tr>"
-                                       "<tr><td>%13</td><td>%14</td></tr>"
-                                       "<tr><td>%15</td><td>%16</td></tr>"
-                                "</table></html>";
-
-class GradeListItem : public QTreeWidgetItem
-{
-public:
-  inline GradeListItem (QTreeWidget * parent, int _lesson): QTreeWidgetItem(parent), lesson(_lesson) {}
-  inline int getLesson() const { return lesson; }
-
-private:
-  int lesson;
-};
-
-
-StatisticsPage::StatisticsPage(int col, KEduVocDocument  *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
+StatisticsPage::StatisticsPage(int col, KEduVocDocument *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
 {
   setupUi(this);
   StatListView->setColumnWidth(0, SIZE_GRADE + 10);
@@ -101,13 +78,10 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument  *_doc, QWidget *parent)
 void StatisticsPage::setupPixmaps()
 {
   // create pixmaps with bar charts of numbers of grades
-  int height;
-  //GradeListItem lvi(StatListView, 0);
-  height = 22; //lvi.sizeHint(0).height();
   for (int entry = 0; entry < (int) fsc.size(); entry++) {
     QPainter p;
     QColor color;
-    QPixmap fpix (SIZE_GRADE, height);
+    QPixmap fpix (SIZE_GRADE, SIZE_HEIGHT);
     p.begin(&fpix);
     p.eraseRect(0, 0, fpix.width(), fpix.height());
     p.setPen(Qt::black);
@@ -153,20 +127,20 @@ void StatisticsPage::setupPixmaps()
         }
         if (widths[j] != 0) {
           x2 += widths[j];
-          p.fillRect(x + PIX_SHIFT, 1, x2 - x, height - 1, color);
-          p.drawRect(x + PIX_SHIFT, 1, x2 - x, height - 1);
+          p.fillRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1, color);
+          p.drawRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1);
           x = x2 - 1;
         }
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, height - 1, Prefs::gradeCol(0));
-      p.drawRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, height - 1);
+      p.fillRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeCol(0));
+      p.drawRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1);
     }
     p.end();
     from_pix.append(fpix);
 
-    QPixmap tpix(SIZE_GRADE, height);
+    QPixmap tpix(SIZE_GRADE, SIZE_HEIGHT);
     p.begin(&tpix);
     p.eraseRect(0, 0, tpix.width(), tpix.height());
     p.setPen(Qt::black);
@@ -211,55 +185,68 @@ void StatisticsPage::setupPixmaps()
         }
         if (widths[j] != 0) {
           x2 += widths[j];
-          p.fillRect(x + PIX_SHIFT, 1, x2 - x, height - 1, color);
-          p.drawRect(x + PIX_SHIFT, 1, x2 - x, height - 1);
+          p.fillRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1, color);
+          p.drawRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1);
           x = x2-1;
         }
       }
     }
     else {
-      p.fillRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, height - 1, Prefs::gradeCol(0));
-      p.drawRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, height - 1);
+      p.fillRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeCol(0));
+      p.drawRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1);
     }
     p.end();
     to_pix.push_back(tpix);
   }
 
   // setup rows with pixmaps and strings
-  QString s;
-  GradeListItem *plvi = 0;
+  QTreeWidgetItem *listItem = 0;
 
   for (int i = 0; i <= (int) doc->lessonDescriptions().count(); i++) {
-    plvi = new GradeListItem(StatListView, i);
-    plvi->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
-    plvi->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
+    listItem = new QTreeWidgetItem(StatListView);
+    listItem->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
+    listItem->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
+    listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
+    listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
+    listItem->setText(TB_COUNT, QString::number(tsc[i].num));
+    listItem->setText(TB_LESSON, doc->lessonDescription(i));
 
-    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(fsc[i].grade[KV_NORM_GRADE]))
-                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV1_GRADE]))
-                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV2_GRADE]))
-                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV3_GRADE]))
-                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV4_GRADE]))
-                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV5_GRADE]))
-                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV6_GRADE]))
-                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(fsc[i].grade[KV_LEV7_GRADE]));
-    plvi->setToolTip(TB_FGRADE, s);
-
-    s = toolTipTemplate.arg(i18n(KV_NORM_TEXT)).arg(QString::number(tsc[i].grade[KV_NORM_GRADE]))
-                       .arg(i18n(KV_LEV1_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV1_GRADE]))
-                       .arg(i18n(KV_LEV2_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV2_GRADE]))
-                       .arg(i18n(KV_LEV3_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV3_GRADE]))
-                       .arg(i18n(KV_LEV4_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV4_GRADE]))
-                       .arg(i18n(KV_LEV5_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV5_GRADE]))
-                       .arg(i18n(KV_LEV6_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV6_GRADE]))
-                       .arg(i18n(KV_LEV7_TEXT)).arg(QString::number(tsc[i].grade[KV_LEV7_GRADE]));
-    plvi->setToolTip(TB_TGRADE, s);
-
-    s.setNum (tsc[i].num);
-    plvi->setText(TB_COUNT, s);
-    plvi->setText(TB_LESSON, doc->lessonDescription(i));
-
-    StatListView->addTopLevelItem(plvi);
+    StatListView->addTopLevelItem(listItem);
   }
+}
+
+
+QString StatisticsPage::gradesToolTip(int level, bool reverse)
+{
+  QVector<stat_counter> sc;
+  if (reverse)
+    sc = tsc;
+  else
+    sc = fsc;
+
+  QString result = ki18n("<html><p style='white-space:pre'><b>Number of Entries per Grade</b></p>"
+                         "<table><tr><td>%1</td><td>%2</td></tr>"
+                                "<tr><td>%3</td><td>%4</td></tr>"
+                                "<tr><td>%5</td><td>%6</td></tr>"
+                                "<tr><td>%7</td><td>%8</td></tr>")
+                         .subs(i18n(KV_NORM_TEXT)).subs(QString::number(sc[level].grade[KV_NORM_GRADE]))
+                         .subs(i18n(KV_LEV1_TEXT)).subs(QString::number(sc[level].grade[KV_LEV1_GRADE]))
+                         .subs(i18n(KV_LEV2_TEXT)).subs(QString::number(sc[level].grade[KV_LEV2_GRADE]))
+                         .subs(i18n(KV_LEV3_TEXT)).subs(QString::number(sc[level].grade[KV_LEV3_GRADE]))
+                         .toString();
+
+  result.append(   ki18n(       "<tr><td>%9</td><td>%10</td></tr>"
+                                "<tr><td>%11</td><td>%12</td></tr>"
+                                "<tr><td>%13</td><td>%14</td></tr>"
+                                "<tr><td>%15</td><td>%16</td></tr>"
+                                "</table></html>")
+                         .subs(i18n(KV_LEV4_TEXT)).subs(QString::number(sc[level].grade[KV_LEV4_GRADE]))
+                         .subs(i18n(KV_LEV5_TEXT)).subs(QString::number(sc[level].grade[KV_LEV5_GRADE]))
+                         .subs(i18n(KV_LEV6_TEXT)).subs(QString::number(sc[level].grade[KV_LEV6_GRADE]))
+                         .subs(i18n(KV_LEV7_TEXT)).subs(QString::number(sc[level].grade[KV_LEV7_GRADE]))
+                         .toString());
+
+  return result;
 }
 
 #include "StatisticsPage.moc"
