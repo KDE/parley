@@ -412,84 +412,80 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
 }
 
 
-void KVocTrainApp::slotDocProps ()
+void KVocTrainApp::slotDocumentProperties()
 {
-   int old_lessons = (int) m_lessonsComboBox->count();
-   int old_types = (int) m_doc->typeDescriptions().size();
-   int old_tenses = (int) m_doc->tenseDescriptions().size();
-   int old_usages = (int) m_doc->usageDescriptions().size();
-   QList<int> old_lessoninquery = m_doc->lessonsInQuery();
+  int old_lessons = (int) m_lessonsComboBox->count();
+  int old_types = (int) m_doc->typeDescriptions().count();
+  int old_tenses = (int) m_doc->tenseDescriptions().count();
+  int old_usages = (int) m_doc->usageDescriptions().count();
+  QList<int> old_lessoninquery = m_doc->lessonsInQuery();
 
-   DocPropsDlg ddlg (m_doc,
-                     0,
-                     m_lessonsComboBox,
-                     m_doc->title(),
-                     m_doc->author(),
-                     m_doc->license(),
-                     m_doc->docRemark(),
-                     m_doc->typeDescriptions(),
-                     m_doc->tenseDescriptions(),
-                     m_doc->usageDescriptions());
+  DocPropsDlg ddlg (m_doc,
+                    m_lessonsComboBox,
+                    m_doc->typeDescriptions(),
+                    m_doc->tenseDescriptions(),
+                    m_doc->usageDescriptions(),
+                    this);
 
-   int res = ddlg.exec();
+  int res = ddlg.exec();
 
-   if (res == QDialog::Accepted) {
-      QList<int> typeIndex;
-      QList<int> tenseIndex;
-      QList<int> usageIndex;
-      QList<int> lessonIndex;
-      QStringList new_typeStr;
-      QStringList new_tenseStr;
-      QStringList new_usageStr;
-      QStringList new_lessonStr;
-      QList<int> new_lessoninquery;
+  if (res == QDialog::Accepted) {
+    QList<int> typeIndex;
+    QList<int> tenseIndex;
+    QList<int> usageIndex;
+    QList<int> lessonIndex;
+    QStringList new_typeStr;
+    QStringList new_tenseStr;
+    QStringList new_usageStr;
+    QStringList new_lessonStr;
+    QList<int> new_lessoninquery;
 
-      m_doc->enableSorting(ddlg.getSorting());
+    m_doc->enableSorting(ddlg.getSorting());
 
-      m_doc->setTitle(ddlg.getTitle() );
-      m_doc->setAuthor(ddlg.getAuthor() );
-      m_doc->setLicense(ddlg.getLicense() );
-      m_doc->setDocRemark(ddlg.getDocRemark() );
+    m_doc->setTitle(ddlg.getTitle() );
+    m_doc->setAuthor(ddlg.getAuthor() );
+    m_doc->setLicense(ddlg.getLicense() );
+    m_doc->setDocRemark(ddlg.getDocRemark() );
 
-      slotStatusMsg(i18n("Updating lesson indices..."));
-      QApplication::setOverrideCursor( Qt::WaitCursor );
+    slotStatusMsg(i18n("Updating lesson indices..."));
+    QApplication::setOverrideCursor( Qt::WaitCursor );
 
-      ddlg.getLesson(m_lessonsComboBox, lessonIndex);
-      ddlg.getTypeNames(new_typeStr, typeIndex);
-      ddlg.getTenseNames(new_tenseStr, tenseIndex);
-      ddlg.getUsageLabels(new_usageStr, usageIndex);
+    ddlg.getLesson(m_lessonsComboBox, lessonIndex);
+    ddlg.getTypeNames(new_typeStr, typeIndex);
+    ddlg.getTenseNames(new_tenseStr, tenseIndex);
+    ddlg.getUsageLabels(new_usageStr, usageIndex);
 
-      new_lessoninquery = old_lessoninquery;
-      LessOptPage::cleanUnused(m_doc, m_lessonsComboBox, lessonIndex, old_lessons, new_lessoninquery);
-      for (int i = 1; i < m_lessonsComboBox->count(); i++)
-        new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
+    new_lessoninquery = old_lessoninquery;
+    LessOptPage::cleanUnused(m_doc, m_lessonsComboBox, lessonIndex, old_lessons, new_lessoninquery);
+    for (int i = 1; i < m_lessonsComboBox->count(); i++)
+      new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
 
-      slotStatusMsg(i18n("Updating type indices..."));
-      TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
-      QueryManager::setTypeNames (new_typeStr);
+    slotStatusMsg(i18n("Updating type indices..."));
+    TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
+    QueryManager::setTypeNames(new_typeStr);
 
-      slotStatusMsg(i18n("Updating tense indices..."));
-      TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
-      ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
+    slotStatusMsg(i18n("Updating tense indices..."));
+    TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
+    ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
 
-      slotStatusMsg(i18nc("usage (area) of an expression",
-                         "Updating usage label indices..."));
-      UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
-      UsageManager::setUsageNames (new_usageStr);
+    slotStatusMsg(i18nc("usage (area) of an expression",
+                        "Updating usage label indices..."));
+    UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
+    UsageManager::setUsageNames(new_usageStr);
 
-      m_doc->setTypeDescriptions(new_typeStr);
-      m_doc->setTenseDescriptions(new_tenseStr);
-      m_doc->setUsageDescriptions(new_usageStr);
-      m_doc->setLessonDescriptions(new_lessonStr);
-      m_doc->setLessonsInQuery(new_lessoninquery);
-      querymanager.setLessonItems(new_lessoninquery);
+    m_doc->setTypeDescriptions(new_typeStr);
+    m_doc->setTenseDescriptions(new_tenseStr);
+    m_doc->setUsageDescriptions(new_usageStr);
+    m_doc->setLessonDescriptions(new_lessonStr);
+    m_doc->setLessonsInQuery(new_lessoninquery);
+    querymanager.setLessonItems(new_lessoninquery);
 
-      m_doc->setModified();
-      m_tableModel->reset();
-      setCaption(m_doc->title(), m_doc->isModified());
-      QApplication::restoreOverrideCursor();
-      slotStatusMsg(IDS_DEFAULT);
-   }
+    m_doc->setModified();
+    m_tableModel->reset();
+    setCaption(m_doc->title(), m_doc->isModified());
+    QApplication::restoreOverrideCursor();
+    slotStatusMsg(IDS_DEFAULT);
+  }
 }
 
 

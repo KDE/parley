@@ -348,7 +348,7 @@ void CommonEntryPage::invokeLessDlg()
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
-  LessOptPage *lessOptPage = new LessOptPage (lesson_box, doc, this);
+  LessOptPage *lessOptPage = new LessOptPage(doc, this);
   subDialog->setMainWidget(lessOptPage);
 
   QList<int> lessoninquery = doc->lessonsInQuery();

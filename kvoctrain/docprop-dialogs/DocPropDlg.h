@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -40,25 +40,16 @@ class LangPropPage;
 
 class DocPropsDlg : public KPageDialog
 {
-    Q_OBJECT
-
+  Q_OBJECT
 public:
-
   DocPropsDlg
   (
     KEduVocDocument    *doc,
-    const char      *start_page,
     QComboBox       *lessons,
-    QString          title,
-    QString          author,
-    QString          license,
-    QString          doc_remark,
     QStringList      types,
     QStringList      tenses,
     QStringList      usages,
-    QWidget         *parent = NULL,
-    const char      *name = NULL,
-    bool             modal = true
+    QWidget         *parent = NULL
   );
 
   inline bool getSorting()  const { return docOptPage->getSorting(); }
@@ -82,7 +73,6 @@ public:
 
 
 protected:
-
   UsageOptPage   *useOptPage;
   TypeOptPage    *typeOptPage;
   TenseOptPage   *tenseOptPage;

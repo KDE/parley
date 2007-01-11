@@ -27,38 +27,31 @@
 #include <QTextEdit>
 #include <QLabel>
 
-#include <kapplication.h>
-#include <klocale.h>
+#include <keduvocdocument.h>
 
 #include "TitlePage.h"
 
-TitlePage::TitlePage(QString  _title, QString  _author, QString  _license, QString  _doc_remark, QWidget* parent)
-  : QWidget(parent)
+TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
 {
   setupUi(this);
-  title = _title;
-  author = _author;
-  license = _license;
-  doc_remark = _doc_remark;
 
-  e_author->setText (author);
-  label_author->setBuddy(e_author);
+  title = doc->title();
+  author = doc->author();
+  license = doc->license();
+  doc_remark = doc->docRemark();
 
-  e_title->setText (title);
+  e_title->setText(title);
   e_title->setFocus();
   e_title->selectAll();
-  label_title->setBuddy(e_title);
 
-  e_license->setText (license);
-  label_license->setBuddy(e_license);
+  e_author->setText(author);
+  e_license->setText(license);
+  e_remark->setText(doc_remark);
 
-  e_remark->setText (doc_remark);
-  label_remark->setBuddy(e_remark);
-
-  connect( e_author, SIGNAL(textChanged()),  SLOT(slotAuthorChanged()) );
-  connect( e_title, SIGNAL(textChanged(const QString&)),   SLOT(slotTitleChanged(const QString&)) );
-  connect( e_license, SIGNAL(textChanged(const QString&)), SLOT(slotLicenseChanged(const QString&)) );
-  connect( e_remark, SIGNAL(textChanged()),  SLOT(slotDocRemarkChanged()) );
+  connect(e_title,   SIGNAL(textChanged(const QString&)), this, SLOT(slotTitleChanged(const QString&)));
+  connect(e_author,  SIGNAL(textChanged()),               this, SLOT(slotAuthorChanged()));
+  connect(e_license, SIGNAL(textChanged(const QString&)), this, SLOT(slotLicenseChanged(const QString&)));
+  connect(e_remark,  SIGNAL(textChanged()),               this, SLOT(slotDocRemarkChanged()));
 }
 
 
@@ -70,7 +63,7 @@ void TitlePage::slotTitleChanged(const QString& s)
 
 void TitlePage::slotAuthorChanged()
 {
-  author = e_author->text();
+  author = e_author->toPlainText();
 }
 
 
@@ -82,7 +75,7 @@ void TitlePage::slotLicenseChanged(const QString& s)
 
 void TitlePage::slotDocRemarkChanged()
 {
-  doc_remark = e_remark->text();
+  doc_remark = e_remark->toPlainText();
 }
 
 #include "TitlePage.moc"

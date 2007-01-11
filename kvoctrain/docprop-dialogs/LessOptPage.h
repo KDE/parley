@@ -36,7 +36,7 @@ class LessOptPage : public QWidget, public Ui::LessOptPageForm
   Q_OBJECT
 
 public:
-  LessOptPage(QComboBox *lessons, KEduVocDocument *doc, QWidget *parent = 0);
+  LessOptPage(KEduVocDocument *doc, QWidget *parent = 0);
 
   void getLesson (QComboBox *ret_lesson, QList<int>& ret_Index);
 
@@ -59,9 +59,9 @@ protected slots:
 
 private:
   KEduVocDocument  *doc;
-  int            act_lesson;
-  QList<int>    lessonIndex; // contains indices of lesson on exec()
-                              // negative values are new lessons
+  int               m_currentLesson;
+  QList<int>        lessonIndex; // contains indices of lesson on exec()
+                                 // negative values are new lessons
 };
 
 #endif // LessOptPage_included

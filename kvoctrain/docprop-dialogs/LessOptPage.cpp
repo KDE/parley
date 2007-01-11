@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,6 +26,7 @@
 #include <QComboBox>
 #include <QPushButton>
 #include <QLayout>
+#include <QListWidgetItem>
 
 #include <kinputdialog.h>
 #include <klocale.h>
@@ -36,58 +37,53 @@
 
 #define LESS_TAG ". "
 
-LessOptPage::LessOptPage(QComboBox *lessons, KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)
+LessOptPage::LessOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  connect( lessonList, SIGNAL(highlighted(int)), SLOT(slotLessonChosen(int)) );
-  connect( b_new, SIGNAL(clicked()), SLOT(slotNewLesson()) );
-  connect( b_modify, SIGNAL(clicked()), SLOT(slotModifyLesson()) );
-  connect( b_delete, SIGNAL(clicked()), SLOT(slotDeleteLesson()) );
-  connect( b_cleanup, SIGNAL(clicked()), SLOT(slotCleanup()) );
+
+  connect(lessonList, SIGNAL(currentRowChanged(int)), this, SLOT(slotLessonChosen(int)));
+  connect(b_new,      SIGNAL(clicked()),              this, SLOT(slotNewLesson()));
+  connect(b_modify,   SIGNAL(clicked()),              this, SLOT(slotModifyLesson()));
+  connect(b_delete,   SIGNAL(clicked()),              this, SLOT(slotDeleteLesson()));
+  connect(b_cleanup,  SIGNAL(clicked()),              this, SLOT(slotCleanup()));
 
   doc = _doc;
 
-  QString str;
-  for (int i = 1; i < lessons->count(); i++) {
-    str.setNum (i);
-    if (i <= 9)
-      str.insert (0, " ");
-    lessonList->insertItem (str+LESS_TAG+lessons->itemText(i));
-    lessonIndex.push_back(i-1);
+  int i = 1;
+  foreach(QString lessonName, doc->lessonDescriptions()){
+    lessonList->addItem(QString("%1. ").arg(i++, 2) + lessonName);
+    lessonIndex.append(i - 1);
   }
 
-  act_lesson = 0;
-  if (lessonList->count() != 0)
-    lessonList->setCurrentItem (act_lesson);
+  m_currentLesson = 0;
+  if (lessonList->count() > 0)
+    lessonList->setCurrentRow(m_currentLesson);
   lessonList->setFocus();
 
-  b_modify->setEnabled(lessonList->count() != 0);
-  b_delete->setEnabled(lessonList->count() != 0);
+  b_modify->setEnabled(lessonList->count() > 0);
+  b_delete->setEnabled(lessonList->count() > 0);
 }
 
 
 void LessOptPage::slotLessonChosen(int index)
 {
-  act_lesson = index;
+  m_currentLesson = index;
 }
 
 
 void LessOptPage::slotNewLesson()
 {
   bool ok;
-  QString getLesson = KInputDialog::getText(
-    i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), QString(), &ok, this );
-  if( !ok )
+  QString getLesson = KInputDialog::getText(i18n("Lesson Description"), i18n("Enter lesson description:"), QString(), &ok, this);
+  if (!ok)
     return;
-  QString str;
-  int i = lessonList->count()+1;
-  str.setNum (i);
-  if (i <= 9)
-    str.insert (0, " ");
-  lessonList->insertItem (str+LESS_TAG+getLesson.simplified());
-  lessonIndex.push_back(-(i-1));
-  act_lesson = lessonList->count();
-  lessonList->setCurrentItem (i-1);
+
+  int i = lessonList->count() + 1;
+  lessonList->addItem(QString("%1. ").arg(i, 2) + getLesson.simplified());
+  lessonIndex.append(-(i - 1));
+
+  m_currentLesson = lessonList->count();
+  lessonList->setCurrentRow(i - 1);
   b_modify->setEnabled(true);
   b_delete->setEnabled(true);
 }
@@ -95,21 +91,20 @@ void LessOptPage::slotNewLesson()
 
 void LessOptPage::slotModifyLesson()
 {
-  if (lessonList->count() != 0 && (int) lessonList->count() > act_lesson)
+  if (lessonList->count() != 0 && (int) lessonList->count() > m_currentLesson)
   {
-    QString str = lessonList->text (act_lesson);
+    QString str = lessonList->item(m_currentLesson)->text();
     int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
     bool ok;
-    QString getLesson = KInputDialog::getText(
-                i18n( "Lesson Description" ), i18n( "Enter lesson description:" ), str, &ok, this );
+    QString getLesson = KInputDialog::getText(i18n("Lesson Description"), i18n("Enter lesson description:"), str, &ok, this);
     if( !ok )
       return;
     QString str2;
-    str2.setNum (act_lesson+1);
-    if (act_lesson <= 9)
+    str2.setNum (m_currentLesson + 1);
+    if (m_currentLesson <= 9)
       str2.insert (0, " ");
-    lessonList->changeItem (str2+LESS_TAG+getLesson.simplified(), act_lesson);
+    lessonList->item(m_currentLesson)->setText(str2+LESS_TAG+getLesson.simplified());
   }
 }
 
@@ -119,26 +114,26 @@ void LessOptPage::updateListBox(int start)
   QString str, str2;
   for (int i = start; i < (int) lessonList->count(); i++)
   {
-    str = lessonList->text (i);
+    str = lessonList->item(i)->text();
     int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
     str2.setNum (i+1);
     if (i <= 9)
       str2.insert (0, " ");
-    lessonList->changeItem (str2+LESS_TAG+str, i);
+    lessonList->item(i)->setText(str2+LESS_TAG+str);
   }
 }
 
 
 void LessOptPage::slotDeleteLesson()
 {
-  int act = act_lesson;
+  int act = m_currentLesson;
   if (lessonList->count() != 0
       && (int) lessonList->count() > act) {
 
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       // FIXME: ProgressDlg here?
-      if (doc->entry(ent)->lesson() == lessonIndex[act_lesson]+1) {
+      if (doc->entry(ent)->lesson() == lessonIndex[m_currentLesson]+1) {
         KMessageBox::information(this,
                   i18n("This lesson could not be deleted\nbecause it is in use."),
                   i18n("Deleting Lesson"));
@@ -146,7 +141,7 @@ void LessOptPage::slotDeleteLesson()
       }
     }
 
-    lessonList->removeItem (act);
+    lessonList->takeItem(act);
     lessonIndex.erase (lessonIndex.begin() + act);
 
     if ((int) lessonList->count() <= act)
@@ -155,7 +150,7 @@ void LessOptPage::slotDeleteLesson()
       updateListBox(act); // update items after current
 
     if (act >= 0)
-      lessonList->setCurrentItem (act);
+      lessonList->setCurrentItem(lessonList->item(act));
   }
   b_modify->setEnabled(lessonList->count() != 0);
   b_delete->setEnabled(lessonList->count() != 0);
@@ -169,7 +164,7 @@ void LessOptPage::getLesson (QComboBox *ret_lesson, QList<int> &ret_Index)
 
   QString str;
   for (int i = 0; i < (int) lessonList->count(); i++) {
-    str = lessonList->text(i);
+    str = lessonList->item(i)->text();
     int pos = str.indexOf (LESS_TAG);
     str.remove (0, pos+strlen (LESS_TAG));
     ret_lesson->addItem (str);
@@ -196,15 +191,15 @@ void LessOptPage::slotCleanup()
     if (!used_lesson[i]) {
       for (int u = 0; u < (int) lessonIndex.size() ; u++) {
         if (lessonIndex[u] == i || lessonIndex[u] < 0) {
-          act_lesson = i;
+          m_currentLesson = i;
           slotDeleteLesson();
           break;
         }
       }
     }
 
-  act_lesson = 0;
-  lessonList->setCurrentItem (act_lesson);
+  m_currentLesson = 0;
+  lessonList->setCurrentItem(lessonList->item(m_currentLesson));
 }
 
 

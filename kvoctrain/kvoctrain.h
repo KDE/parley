@@ -159,7 +159,7 @@ public:
   //void slotQueryOptions();
   //void slotQueryOptions(int pageindex);
   void slotApplyPreferences();
-  void slotDocProps();
+  void slotDocumentProperties();
   void slotDocPropsLang();
   void slotShowStatistics();
   void slotCreateRandom();

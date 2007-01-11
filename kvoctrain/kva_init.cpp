@@ -254,14 +254,14 @@ void KVocTrainApp::initActions()
   connect(vocabRemoveLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
   vocabDocumentProperties = actionCollection()->addAction("vocab_document_properties");
-  vocabDocumentProperties->setText(i18n("Document &Properties"));
-  connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocProps()));
-  vocabDocumentProperties->setWhatsThis(i18n("Edit document properties"));
+  vocabDocumentProperties->setText(i18n("&Properties..."));
+  connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
+  vocabDocumentProperties->setWhatsThis(i18n("Edit vocabulary properties"));
   vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
   vocabDocumentProperties->setStatusTip(vocabAppendLanguage->whatsThis());
 
   vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
-  vocabLanguageProperties->setText(i18n("Lan&guage Properties"));
+  vocabLanguageProperties->setText(i18n("Lan&guage Properties..."));
   connect(vocabLanguageProperties, SIGNAL(triggered(bool)), SLOT(slotDocPropsLang()));
   vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());

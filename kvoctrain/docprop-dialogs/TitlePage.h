@@ -28,12 +28,14 @@
 
 #include "ui_TitlePageForm.h"
 
+class KEduVocDocument;
+
 class TitlePage : public QWidget, public Ui::TitlePageForm
 {
   Q_OBJECT
 
 public:
-  TitlePage(QString title, QString author, QString license, QString doc_remark, QWidget *parent = 0);
+  TitlePage(KEduVocDocument * doc, QWidget *parent = 0);
 
   QString getTitle() { return title; }
   QString getAuthor() { return author; }
@@ -41,14 +43,12 @@ public:
   QString getDocRemark() { return doc_remark; }
 
 protected slots:
-
   void slotTitleChanged(const QString&);
   void slotAuthorChanged();
   void slotLicenseChanged(const QString&);
   void slotDocRemarkChanged();
 
 private:
-
   QString title;
   QString author;
   QString license;
