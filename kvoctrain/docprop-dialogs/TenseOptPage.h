@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,11 +26,11 @@
 #ifndef TenseOptPage_included
 #define TenseOptPage_included
 
-#include "ui_TenseOptPageForm.h"
+#include "ui_optionlistform.h"
 
 class KEduVocDocument;
 
-class TenseOptPage : public QWidget, public Ui::TenseOptPageForm
+class TenseOptPage : public QWidget, public Ui::OptionListForm
 {
   Q_OBJECT
 

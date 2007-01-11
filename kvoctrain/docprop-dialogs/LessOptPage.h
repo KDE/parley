@@ -26,25 +26,21 @@
 #ifndef LessOptPage_included
 #define LessOptPage_included
 
-#include "ui_LessOptPageForm.h"
+#include "ui_optionlistform.h"
 
 class KEduVocDocument;
 class QComboBox;
 
-class LessOptPage : public QWidget, public Ui::LessOptPageForm
+class LessOptPage : public QWidget, public Ui::OptionListForm
 {
   Q_OBJECT
 
 public:
   LessOptPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getLesson (QComboBox *ret_lesson, QList<int>& ret_Index);
+  void getLesson (QStringList & ret_lesson, QList<int>& ret_Index);
 
-  static void cleanUnused(KEduVocDocument *doc,
-                          const QComboBox *lessons,
-                          const QList<int> &lessonIndex,
-                          int old_lessons,
-                          QList<int> &lessons_in_use);
+  static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons, QList<int> &lessons_in_use);
 
 protected:
   void updateListBox(int start);

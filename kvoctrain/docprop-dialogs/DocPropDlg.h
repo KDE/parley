@@ -42,15 +42,7 @@ class DocPropsDlg : public KPageDialog
 {
   Q_OBJECT
 public:
-  DocPropsDlg
-  (
-    KEduVocDocument    *doc,
-    QComboBox       *lessons,
-    QStringList      types,
-    QStringList      tenses,
-    QStringList      usages,
-    QWidget         *parent = NULL
-  );
+  DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList tenses, QStringList usages, QWidget *parent = NULL);
 
   inline bool getSorting()  const { return docOptPage->getSorting(); }
 
@@ -59,17 +51,17 @@ public:
   inline QString getLicense()    { return titleOptPage->getLicense(); }
   inline QString getDocRemark()  { return titleOptPage->getDocRemark(); }
 
-  inline void getLesson (QComboBox *lessons, QList<int>& ret_index) const
-    { lessOptPage->getLesson (lessons, ret_index); }
+  inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
+    { lessOptPage->getLesson(lessons, ret_index); }
 
-  inline void getTypeNames (QStringList &types, QList<int>& ret_index) const
-    { typeOptPage->getTypeNames (types, ret_index); }
+  inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
+    { typeOptPage->getTypeNames(types, ret_index); }
 
-  inline void getTenseNames (QStringList &tenses, QList<int>& ret_index) const
-    { tenseOptPage->getTenseNames (tenses, ret_index); }
+  inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
+    { tenseOptPage->getTenseNames(tenses, ret_index); }
 
-  inline void getUsageLabels (QStringList &usages, QList<int>& ret_index) const
-    { useOptPage->getUsageLabels (usages, ret_index); }
+  inline void getUsageLabels(QStringList &usages, QList<int>& ret_index) const
+    { useOptPage->getUsageLabels(usages, ret_index); }
 
 
 protected:

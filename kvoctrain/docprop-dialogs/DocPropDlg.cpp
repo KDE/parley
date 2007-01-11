@@ -34,18 +34,7 @@
 #include "DocPropDlg.h"
 #include <kvtlanguages.h>
 
-class kvoctraindoc;
-
-DocPropsDlg::DocPropsDlg
-(
-  KEduVocDocument *doc,
-  QComboBox       *lessons,
-  QStringList      types,
-  QStringList      tenses,
-  QStringList      usages,
-  QWidget         *parent
-)
-  : KPageDialog(parent)
+DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList tenses, QStringList usages, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Properties"));
   setButtons(Ok|Cancel);
@@ -71,10 +60,10 @@ DocPropsDlg::DocPropsDlg
 
   page = new QFrame();
   addPage(page, i18nc("word types","T&ypes"));
-  topLayout = new QVBoxLayout( page );
-  topLayout->setMargin( KDialog::marginHint() );
-  topLayout->setSpacing( KDialog::spacingHint() );
-  typeOptPage = new TypeOptPage (types, doc, page);
+  topLayout = new QVBoxLayout(page);
+  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setSpacing(KDialog::spacingHint());
+  typeOptPage = new TypeOptPage(types, doc, page);
   topLayout->addWidget(typeOptPage);
 
   page = new QFrame();

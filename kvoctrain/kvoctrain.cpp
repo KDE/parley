@@ -418,14 +418,9 @@ void KVocTrainApp::slotDocumentProperties()
   int old_types = (int) m_doc->typeDescriptions().count();
   int old_tenses = (int) m_doc->tenseDescriptions().count();
   int old_usages = (int) m_doc->usageDescriptions().count();
-  QList<int> old_lessoninquery = m_doc->lessonsInQuery();
+  QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
 
-  DocPropsDlg ddlg (m_doc,
-                    m_lessonsComboBox,
-                    m_doc->typeDescriptions(),
-                    m_doc->tenseDescriptions(),
-                    m_doc->usageDescriptions(),
-                    this);
+  DocPropsDlg ddlg (m_doc, m_doc->typeDescriptions(),  m_doc->tenseDescriptions(), m_doc->usageDescriptions(), this);
 
   int res = ddlg.exec();
 
@@ -438,7 +433,7 @@ void KVocTrainApp::slotDocumentProperties()
     QStringList new_tenseStr;
     QStringList new_usageStr;
     QStringList new_lessonStr;
-    QList<int> new_lessoninquery;
+    QList<int> new_lessonsinquery;
 
     m_doc->enableSorting(ddlg.getSorting());
 
@@ -450,15 +445,13 @@ void KVocTrainApp::slotDocumentProperties()
     slotStatusMsg(i18n("Updating lesson indices..."));
     QApplication::setOverrideCursor( Qt::WaitCursor );
 
-    ddlg.getLesson(m_lessonsComboBox, lessonIndex);
+    ddlg.getLesson(new_lessonStr, lessonIndex);
     ddlg.getTypeNames(new_typeStr, typeIndex);
     ddlg.getTenseNames(new_tenseStr, tenseIndex);
     ddlg.getUsageLabels(new_usageStr, usageIndex);
 
-    new_lessoninquery = old_lessoninquery;
-    LessOptPage::cleanUnused(m_doc, m_lessonsComboBox, lessonIndex, old_lessons, new_lessoninquery);
-    for (int i = 1; i < m_lessonsComboBox->count(); i++)
-      new_lessonStr.push_back(m_lessonsComboBox->itemText(i));
+    new_lessonsinquery = old_lessonsinquery;
+    LessOptPage::cleanUnused(m_doc, lessonIndex, old_lessons, new_lessonsinquery);
 
     slotStatusMsg(i18n("Updating type indices..."));
     TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
@@ -477,9 +470,9 @@ void KVocTrainApp::slotDocumentProperties()
     m_doc->setTenseDescriptions(new_tenseStr);
     m_doc->setUsageDescriptions(new_usageStr);
     m_doc->setLessonDescriptions(new_lessonStr);
-    m_doc->setLessonsInQuery(new_lessoninquery);
-    querymanager.setLessonItems(new_lessoninquery);
-
+    m_doc->setLessonsInQuery(new_lessonsinquery);
+    querymanager.setLessonItems(new_lessonsinquery);
+    fillLessonBox();
     m_doc->setModified();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());

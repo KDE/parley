@@ -354,10 +354,8 @@ void CommonEntryPage::invokeLessDlg()
   QList<int> lessoninquery = doc->lessonsInQuery();
   if (subDialog->exec() == QDialog::Accepted)
   {
-    lessOptPage->getLesson(lesson_box, lessonIndex);
-    LessOptPage::cleanUnused(doc, lesson_box, lessonIndex, old_lessons, lessoninquery);
-    for (int i = 1; i < lesson_box->count(); i++)
-      new_lessonStr.push_back(lesson_box->itemText(i));
+    lessOptPage->getLesson(new_lessonStr, lessonIndex);
+    LessOptPage::cleanUnused(doc, lessonIndex, old_lessons, lessoninquery);
     doc->setLessonDescriptions(new_lessonStr);
     doc->setLessonsInQuery(lessoninquery);
     querymanager.setLessonItems(lessoninquery);

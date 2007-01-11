@@ -19,18 +19,18 @@ kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
 )
 
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlg.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/kvoctrainprefs.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptions.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptions.cpp
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptions.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/blockoptions.cpp
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/groupoptions.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languageoptions.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/queryoptions.cpp 
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/thresholdoptions.cpp
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/profilesdialog.cpp
-	)
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlg.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/kvoctrainprefs.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/blockoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/groupoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languageoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/queryoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/thresholdoptions.cpp
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/profilesdialog.cpp
+)
 
 kde4_add_ui_files( libcommondlg_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/blockoptionsbase.ui
@@ -38,10 +38,10 @@ kde4_add_ui_files( libcommondlg_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/languageoptionsbase.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/queryoptionsbase.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/thresholdoptionsbase.ui
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptionsbase.ui
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptionsbase.ui
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptionsbase.ui
-	${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlgForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/pasteoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/viewoptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/generaloptionsbase.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/common-dialogs/ProgressDlgForm.ui
 )
 
 set(querydialogs_SRCS
@@ -78,11 +78,9 @@ set(docprop_SRCS
 kde4_add_ui_files(docprop_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/DocOptionsPageForm.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LangPropPageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/LessOptPageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TenseOptPageForm.ui
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TitlePageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/TypeOptPageForm.ui
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/UsageOptPageForm.ui
+    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/optionlistform.ui
+
 )
 
 set(entrydialogs_SRCS

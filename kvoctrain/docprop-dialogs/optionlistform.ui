@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>LessOptPageForm</class>
- <widget class="QWidget" name="LessOptPageForm" >
+ <class>OptionListForm</class>
+ <widget class="QWidget" name="OptionListForm" >
   <property name="geometry" >
    <rect>
     <x>0</x>
@@ -26,10 +26,7 @@
     <number>6</number>
    </property>
    <item row="0" column="0" >
-    <widget class="QGroupBox" name="lesson_group" >
-     <property name="title" >
-      <string>Lesson Descriptions</string>
-     </property>
+    <widget class="QGroupBox" name="titleGroupBox" >
      <layout class="QGridLayout" >
       <property name="margin" >
        <number>9</number>
@@ -38,7 +35,7 @@
        <number>6</number>
       </property>
       <item row="0" column="0" >
-       <widget class="QListWidget" name="lessonList" >
+       <widget class="QListWidget" name="optionsList" >
         <property name="selectionBehavior" >
          <enum>QAbstractItemView::SelectRows</enum>
         </property>
@@ -53,7 +50,7 @@
          <number>6</number>
         </property>
         <item>
-         <widget class="QPushButton" name="b_new" >
+         <widget class="QPushButton" name="newButton" >
           <property name="sizePolicy" >
            <sizepolicy>
             <hsizetype>1</hsizetype>
@@ -68,7 +65,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="b_modify" >
+         <widget class="QPushButton" name="modifyButton" >
           <property name="sizePolicy" >
            <sizepolicy>
             <hsizetype>1</hsizetype>
@@ -83,7 +80,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="b_delete" >
+         <widget class="QPushButton" name="deleteButton" >
           <property name="sizePolicy" >
            <sizepolicy>
             <hsizetype>1</hsizetype>
@@ -114,7 +111,7 @@
          </spacer>
         </item>
         <item>
-         <widget class="QPushButton" name="b_cleanup" >
+         <widget class="QPushButton" name="cleanUpButton" >
           <property name="sizePolicy" >
            <sizepolicy>
             <hsizetype>1</hsizetype>
@@ -138,10 +135,10 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
-  <tabstop>b_new</tabstop>
-  <tabstop>b_modify</tabstop>
-  <tabstop>b_delete</tabstop>
-  <tabstop>b_cleanup</tabstop>
+  <tabstop>newButton</tabstop>
+  <tabstop>modifyButton</tabstop>
+  <tabstop>deleteButton</tabstop>
+  <tabstop>cleanUpButton</tabstop>
  </tabstops>
  <resources/>
  <connections/>

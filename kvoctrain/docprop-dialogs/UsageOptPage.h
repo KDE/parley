@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,12 +26,12 @@
 #ifndef UsageOptPage_included
 #define UsageOptPage_included
 
-#include "ui_UsageOptPageForm.h"
+#include "ui_optionlistform.h"
 #include <UsageManager.h>
 
 class KEduVocDocument;
 
-class UsageOptPage : public QWidget, public Ui::UsageOptPageForm
+class UsageOptPage : public QWidget, public Ui::OptionListForm
 {
   Q_OBJECT
 

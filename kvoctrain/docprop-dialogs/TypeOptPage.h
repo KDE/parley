@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,11 +26,11 @@
 #ifndef TypeOptPage_included
 #define TypeOptPage_included
 
-#include "ui_TypeOptPageForm.h"
+#include "ui_optionlistform.h"
 
 class KEduVocDocument;
 
-class TypeOptPage : public QWidget, public Ui::TypeOptPageForm
+class TypeOptPage : public QWidget, public Ui::OptionListForm
 {
   Q_OBJECT
 
