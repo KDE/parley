@@ -35,7 +35,7 @@ class TypeOptPage : public QWidget, public Ui::OptionListForm
   Q_OBJECT
 
 public:
-  TypeOptPage(const QStringList &types, KEduVocDocument *doc, QWidget *parent = 0);
+  TypeOptPage(KEduVocDocument *doc, QWidget *parent = 0);
 
   void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
 
@@ -53,8 +53,8 @@ protected slots:
 
 private:
   KEduVocDocument  *doc;
-  int               act_type;
-  QList<int>       typeIndex; // contains indices of types on exec()
+  int               m_currentType;
+  QList<int>        typeIndex; // contains indices of types on exec()
                                // negative values are new lessons
 };
 

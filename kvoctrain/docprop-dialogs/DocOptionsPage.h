@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Nov 25 12:00:53 MET 1999
+    begin         : Thu Nov 25 12:00:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,18 +30,17 @@
 
 class DocOptionsPage : public QWidget, public Ui::DocOptionsPageForm
 {
-    Q_OBJECT
-
+  Q_OBJECT
 public:
   DocOptionsPage(bool sort, QWidget *parent = 0);
 
-  bool getSorting () const { return sorter; }
+  bool getSorting () const { return m_allowSorting; }
 
 protected slots:
   void docSortToggled(bool);
 
 private:
-  bool sorter;
+  bool m_allowSorting;
 };
 
 #endif // DocOptionsPage_included

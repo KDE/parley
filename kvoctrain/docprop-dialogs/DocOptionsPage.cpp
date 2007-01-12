@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Nov 25 12:00:53 MET 1999
+    begin         : Thu Nov 25 12:00:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,15 +30,16 @@
 DocOptionsPage::DocOptionsPage(bool sort, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  sorter = sort;
-  docsort->setChecked(sort);
 
-  connect( docsort, SIGNAL(toggled(bool)), SLOT(docSortToggled(bool)) );
+  m_allowSorting = sort;
+  docsort->setChecked(m_allowSorting);
+
+  connect(docsort, SIGNAL(toggled(bool)), this, SLOT(docSortToggled(bool)));
 }
 
 void DocOptionsPage::docSortToggled(bool state)
 {
-  sorter = state;
+  m_allowSorting = state;
 }
 
 #include "DocOptionsPage.moc"

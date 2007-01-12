@@ -378,7 +378,7 @@ void CommonEntryPage::invokeTypeDlg()
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
-  TypeOptPage *typeOptPage = new TypeOptPage (doc->typeDescriptions(), doc, this);
+  TypeOptPage *typeOptPage = new TypeOptPage(doc, this);
   subDialog->setMainWidget(typeOptPage);
 
   if (subDialog->exec() == QDialog::Accepted)

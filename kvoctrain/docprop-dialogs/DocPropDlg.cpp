@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -34,7 +34,7 @@
 #include "DocPropDlg.h"
 #include <kvtlanguages.h>
 
-DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList tenses, QStringList usages, QWidget *parent) : KPageDialog(parent)
+DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList tenses, QStringList usages, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Properties"));
   setButtons(Ok|Cancel);
@@ -45,7 +45,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList te
   QFrame *page = new QFrame();
   addPage(page, i18n("&General"));
   QVBoxLayout *topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
   titleOptPage = new TitlePage(doc, page);
   topLayout->addWidget(titleOptPage);
@@ -53,7 +53,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList te
   page = new QFrame();
   addPage(page, i18n("L&essons"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
   lessOptPage = new LessOptPage(doc, page);
   topLayout->addWidget(lessOptPage);
@@ -61,15 +61,15 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList te
   page = new QFrame();
   addPage(page, i18nc("word types","T&ypes"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  typeOptPage = new TypeOptPage(types, doc, page);
+  typeOptPage = new TypeOptPage(doc, page);
   topLayout->addWidget(typeOptPage);
 
   page = new QFrame();
   addPage(page, i18n("Te&nses"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
   tenseOptPage = new TenseOptPage(tenses, doc, page);
   topLayout->addWidget(tenseOptPage);
@@ -77,7 +77,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList te
   page = new QFrame();
   addPage(page,i18nc("usage (area) of an expression", "&Usage"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
   useOptPage = new UsageOptPage(usages, doc, page);
   topLayout->addWidget(useOptPage);
@@ -85,7 +85,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList te
   page = new QFrame();
   addPage(page, i18n("&Options"));
   topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
   docOptPage = new DocOptionsPage(doc->isSortingEnabled(), page);
   topLayout->addWidget(docOptPage);

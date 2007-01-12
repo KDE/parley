@@ -420,7 +420,7 @@ void KVocTrainApp::slotDocumentProperties()
   int old_usages = (int) m_doc->usageDescriptions().count();
   QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
 
-  DocPropsDlg ddlg (m_doc, m_doc->typeDescriptions(),  m_doc->tenseDescriptions(), m_doc->usageDescriptions(), this);
+  DocPropsDlg ddlg (m_doc, m_doc->tenseDescriptions(), m_doc->usageDescriptions(), this);
 
   int res = ddlg.exec();
 

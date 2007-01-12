@@ -52,7 +52,7 @@ LessOptPage::LessOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(paren
 
   int i = 1;
   foreach(QString lessonName, doc->lessonDescriptions()){
-    optionsList->addItem(QString("%1. ").arg(i++, 2).append(lessonName));
+    optionsList->addItem(QString("%1").arg(i++, 2).append(LESS_TAG).append(lessonName));
     lessonIndex.append(i - 1);
   }
 
@@ -80,7 +80,7 @@ void LessOptPage::slotNewLesson()
     return;
 
   int i = optionsList->count() + 1;
-  optionsList->addItem(QString("%1. ").arg(i, 2).append(getLesson.simplified()));
+  optionsList->addItem(QString("%1").arg(i, 2).append(LESS_TAG).append(getLesson.simplified()));
   lessonIndex.append(-(i - 1));
 
   m_currentLesson = optionsList->count();
@@ -103,7 +103,7 @@ void LessOptPage::slotModifyLesson()
       return;
 
     int i = m_currentLesson + 1;
-    optionsList->item(m_currentLesson)->setText(QString("%1. ").arg(i, 2).append(getLesson.simplified()));
+    optionsList->item(m_currentLesson)->setText(QString("%1").arg(i, 2).append(LESS_TAG).append(getLesson.simplified()));
   }
 }
 
@@ -115,7 +115,7 @@ void LessOptPage::updateListBox(int start)
   {
     str = optionsList->item(i)->text();
     str = str.mid(str.indexOf(LESS_TAG) + QString(LESS_TAG).length());
-    optionsList->item(i)->setText(QString("%1. ").arg(i + 1, 2).append(str));
+    optionsList->item(i)->setText(QString("%1").arg(i + 1, 2).append(LESS_TAG).append(str));
   }
 }
 

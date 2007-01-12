@@ -42,7 +42,7 @@ class DocPropsDlg : public KPageDialog
 {
   Q_OBJECT
 public:
-  DocPropsDlg(KEduVocDocument *doc, QStringList types, QStringList tenses, QStringList usages, QWidget *parent = NULL);
+  DocPropsDlg(KEduVocDocument *doc, QStringList tenses, QStringList usages, QWidget *parent = NULL);
 
   inline bool getSorting()  const { return docOptPage->getSorting(); }
 
@@ -62,7 +62,6 @@ public:
 
   inline void getUsageLabels(QStringList &usages, QList<int>& ret_index) const
     { useOptPage->getUsageLabels(usages, ret_index); }
-
 
 protected:
   UsageOptPage   *useOptPage;
