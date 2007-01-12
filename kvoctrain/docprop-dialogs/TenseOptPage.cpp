@@ -40,11 +40,11 @@ TenseOptPage::TenseOptPage(const QStringList &tenses, KEduVocDocument *_doc, QWi
   setupUi(this);
   titleGroupBox->setTitle(i18n("Tense Descriptions"));
 
-  connect( optionsList, SIGNAL(currentRowChanged(int)), SLOT(slotTenseChosen(int)) );
-  connect( cleanUpButton, SIGNAL(clicked()), SLOT(slotCleanup()) );
-  connect( deleteButton, SIGNAL(clicked()), SLOT(slotDeleteTense()) );
-  connect( modifyButton, SIGNAL(clicked()), SLOT(slotModifyTense()) );
-  connect( newButton, SIGNAL(clicked()), SLOT(slotNewTense()) );
+  connect(optionsList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotTenseChosen(int)));
+  connect(cleanUpButton, SIGNAL(clicked()),              this, SLOT(slotCleanup()));
+  connect(deleteButton,  SIGNAL(clicked()),              this, SLOT(slotDeleteTense()));
+  connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
+  connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
 
   QString str;
   for (int i = 0; i < (int) tenses.size(); i++) {

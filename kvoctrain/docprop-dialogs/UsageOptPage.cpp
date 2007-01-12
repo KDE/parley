@@ -41,11 +41,11 @@ UsageOptPage::UsageOptPage(const QStringList &usages, KEduVocDocument *_doc, QWi
   setupUi(this);
   titleGroupBox->setTitle(i18n("Usage Labels"));
 
-  connect( cleanUpButton, SIGNAL(clicked()), SLOT(slotCleanup()) );
-  connect( deleteButton, SIGNAL(clicked()), SLOT(slotDeleteUsage()) );
-  connect( modifyButton, SIGNAL(clicked()), SLOT(slotModifyUsage()) );
-  connect( newButton, SIGNAL(clicked()), SLOT(slotNewUsage()) );
-  connect( optionsList, SIGNAL(highlighted(int)), SLOT(slotUsageChosen(int)) );
+  connect(optionsList,   SIGNAL(currentRowChanged(int)), this, SLOT(slotUsageChosen(int)));  
+  connect(cleanUpButton, SIGNAL(clicked()),              this, SLOT(slotCleanup()));
+  connect(deleteButton,  SIGNAL(clicked()),              this, SLOT(slotDeleteUsage()));
+  connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyUsage()));
+  connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewUsage()));
 
   QString str;
   for (int i = 0; i < (int) usages.size(); i++) {
