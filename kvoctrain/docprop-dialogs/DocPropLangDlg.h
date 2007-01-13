@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Jun 2 20:50:53 MET 1999
+    begin         : Sat Jun 2 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -39,18 +39,15 @@ class KVTLanguages;
 class DocPropsLangDlg : public KPageDialog
 {
   Q_OBJECT
-
 public:
-
-  DocPropsLangDlg(KEduVocDocument *doc, KVTLanguages *langset, QWidget *parent = NULL, const char *name = NULL, bool modal = true);
+  DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langset, QWidget *parent = NULL);
 
   KEduVocConjugation getConjugation(int idx) const;
   KEduVocArticle     getArticle(int idx) const;
 
 protected:
-  typedef QList<LangPropPage*> LangPagesList;
+  typedef QList<LangPropPage *> LangPagesList;
   LangPagesList langPages;
 };
 
 #endif // DocPropsLangDlg_included
-

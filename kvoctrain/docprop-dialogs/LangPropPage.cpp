@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Wed Oct 13 18:37:13 1999
+    begin         : Wed Oct 13 18:37:13 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,54 +29,50 @@
 
 #include <klocale.h>
 
+#include <keduvocdocument.h>
+#include <keduvocgrammar.h>
+
 #include <kvtlanguages.h>
 #include "LangPropPage.h"
 
-LangPropPage::LangPropPage
-  (
-  KEduVocDocument      *_doc,
-  QString            curr_lang,
-  const KEduVocConjugation &conjug,
-  const KEduVocArticle     &art,
-  QWidget           *parent
-  )
-  : QWidget( parent), doc(_doc), conjugations(conjug), articles(art)
+LangPropPage::LangPropPage(KEduVocDocument *_doc, QString curr_lang, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget( parent)
 {
   setupUi(this);
-  l_langcode->setText(curr_lang);
 
-  connect( indef_female, SIGNAL(textChanged(const QString&)), SLOT(indefFemaleChanged(const QString&)) );
-  connect( def_female, SIGNAL(textChanged(const QString&)), SLOT(defFemaleChanged(const QString&)) );
-  connect( def_male, SIGNAL(textChanged(const QString&)), SLOT(defMaleChanged(const QString&)) );
-  connect( indef_male, SIGNAL(textChanged(const QString&)), SLOT(indefMaleChanged(const QString&)) );
-  connect( def_natural, SIGNAL(textChanged(const QString&)), SLOT(defNaturalChanged(const QString&)) );
-  connect( indef_natural, SIGNAL(textChanged(const QString&)), SLOT(indefNaturalChanged(const QString&)) );
-  connect( first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)) );
-  connect( first_plural, SIGNAL(textChanged(const QString&)), SLOT(firstPluralChanged(const QString&)) );
-  connect( second_singular, SIGNAL(textChanged(const QString&)), SLOT(secondSingularChanged(const QString&)) );
-  connect( second_plural, SIGNAL(textChanged(const QString&)), SLOT(secondPluralChanged(const QString&)) );
-  connect( thirdF_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdFSingularChanged(const QString&)) );
-  connect( thirdF_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdFPluralChanged(const QString&)) );
-  connect( thirdM_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdMSingularChanged(const QString&)) );
-  connect( thirdM_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdMPluralChanged(const QString&)) );
-  connect( thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)) );
-  connect( thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)) );
+  connect(indef_female,    SIGNAL(textChanged(const QString&)), this, SLOT(indefFemaleChanged(const QString&)));
+  connect(def_female,      SIGNAL(textChanged(const QString&)), this, SLOT(defFemaleChanged(const QString&)));
+  connect(def_male,        SIGNAL(textChanged(const QString&)), this, SLOT(defMaleChanged(const QString&)));
+  connect(indef_male,      SIGNAL(textChanged(const QString&)), this, SLOT(indefMaleChanged(const QString&)));
+  connect(def_natural,     SIGNAL(textChanged(const QString&)), this, SLOT(defNaturalChanged(const QString&)));
+  connect(indef_natural,   SIGNAL(textChanged(const QString&)), this, SLOT(indefNaturalChanged(const QString&)));
+  connect(first_singular,  SIGNAL(textChanged(const QString&)), this, SLOT(firstSingularChanged(const QString&)));
+  connect(first_plural,    SIGNAL(textChanged(const QString&)), this, SLOT(firstPluralChanged(const QString&)));
+  connect(second_singular, SIGNAL(textChanged(const QString&)), this, SLOT(secondSingularChanged(const QString&)));
+  connect(second_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(secondPluralChanged(const QString&)));
+  connect(thirdF_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdFSingularChanged(const QString&)));
+  connect(thirdF_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdFPluralChanged(const QString&)));
+  connect(thirdM_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdMSingularChanged(const QString&)));
+  connect(thirdM_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdMPluralChanged(const QString&)));
+  connect(thirdN_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdNSingularChanged(const QString&)));
+  connect(thirdN_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdNPluralChanged(const QString&)));
+  connect(thirdS_common,   SIGNAL(toggled(bool)),               this, SLOT(slotThirdSCommonToggled(bool)));
+  connect(thirdP_common,   SIGNAL(toggled(bool)),               this, SLOT(slotThirdPCommonToggled(bool)));
 
-  connect( thirdS_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)) );
-  connect( thirdP_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)) );
-
+  doc = _doc;
   conjugations = conjug;
+  articles = art;
 
-  first_plural->setText (conjugations.pers1Plural (CONJ_PREFIX));
-  first_singular->setText (conjugations.pers1Singular (CONJ_PREFIX));
-  second_singular->setText (conjugations.pers2Singular (CONJ_PREFIX));
-  second_plural->setText (conjugations.pers2Plural (CONJ_PREFIX));
-  thirdF_plural->setText (conjugations.pers3FemalePlural (CONJ_PREFIX));
-  thirdF_singular->setText (conjugations.pers3FemaleSingular (CONJ_PREFIX));
-  thirdN_plural->setText (conjugations.pers3NaturalPlural (CONJ_PREFIX));
-  thirdN_singular->setText (conjugations.pers3NaturalSingular (CONJ_PREFIX));
-  thirdM_plural->setText (conjugations.pers3MalePlural (CONJ_PREFIX));
-  thirdM_singular->setText (conjugations.pers3MaleSingular (CONJ_PREFIX));
+  l_langcode->setText(curr_lang);
+  first_plural->setText(conjugations.pers1Plural(CONJ_PREFIX));
+  first_singular->setText(conjugations.pers1Singular(CONJ_PREFIX));
+  second_singular->setText(conjugations.pers2Singular(CONJ_PREFIX));
+  second_plural->setText(conjugations.pers2Plural(CONJ_PREFIX));
+  thirdF_plural->setText(conjugations.pers3FemalePlural(CONJ_PREFIX));
+  thirdF_singular->setText(conjugations.pers3FemaleSingular(CONJ_PREFIX));
+  thirdN_plural->setText(conjugations.pers3NaturalPlural(CONJ_PREFIX));
+  thirdN_singular->setText(conjugations.pers3NaturalSingular(CONJ_PREFIX));
+  thirdM_plural->setText(conjugations.pers3MalePlural(CONJ_PREFIX));
+  thirdM_singular->setText(conjugations.pers3MaleSingular(CONJ_PREFIX));
 
   bool common = conjugations.pers3SingularCommon(CONJ_PREFIX);
   thirdS_common->setChecked(common);
@@ -100,7 +96,6 @@ LangPropPage::LangPropPage
   articles.natural(def, indef);
   def_natural->setText (def);
   indef_natural->setText (indef);
-
 }
 
 
@@ -113,43 +108,43 @@ KEduVocConjugation LangPropPage::getConjugation()
 
 void LangPropPage::firstPluralChanged(const QString& s)
 {
-  conjugations.setPers1Plural (CONJ_PREFIX, s);
+  conjugations.setPers1Plural(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::firstSingularChanged(const QString& s)
 {
-  conjugations.setPers1Singular (CONJ_PREFIX, s);
+  conjugations.setPers1Singular(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::secondSingularChanged(const QString& s)
 {
-  conjugations.setPers2Singular (CONJ_PREFIX, s);
+  conjugations.setPers2Singular(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::secondPluralChanged(const QString& s)
 {
-  conjugations.setPers2Plural (CONJ_PREFIX, s);
+  conjugations.setPers2Plural(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::thirdFPluralChanged(const QString& s)
 {
-  conjugations.setPers3FemalePlural (CONJ_PREFIX, s);
+  conjugations.setPers3FemalePlural(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::thirdFSingularChanged(const QString& s)
 {
-  conjugations.setPers3FemaleSingular (CONJ_PREFIX, s);
+  conjugations.setPers3FemaleSingular(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::thirdMSingularChanged(const QString& s)
 {
-  conjugations.setPers3MaleSingular (CONJ_PREFIX, s);
+  conjugations.setPers3MaleSingular(CONJ_PREFIX, s);
 }
 
 
@@ -161,13 +156,13 @@ void LangPropPage::thirdNSingularChanged(const QString& s)
 
 void LangPropPage::thirdNPluralChanged(const QString& s)
 {
-  conjugations.setPers3NaturalPlural (CONJ_PREFIX, s);
+  conjugations.setPers3NaturalPlural(CONJ_PREFIX, s);
 }
 
 
 void LangPropPage::thirdMPluralChanged(const QString& s)
 {
-  conjugations.setPers3MalePlural (CONJ_PREFIX, s);
+  conjugations.setPers3MalePlural(CONJ_PREFIX, s);
 }
 
 

@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Sat Jun 2 20:50:53 MET 1999
+    begin         : Sat Jun 2 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,9 +30,7 @@
 #include <QVBoxLayout>
 #include <QFrame>
 
-#include <kapplication.h>
 #include <klocale.h>
-#include <kstandarddirs.h>
 #include <kpagewidgetmodel.h>
 #include <kicon.h>
 
@@ -41,20 +39,16 @@
 #include <keduvocdocument.h>
 #include <kvtlanguages.h>
 
-class KEduVocDocument;
-
-DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, KVTLanguages *langset, QWidget *parent, const char *name, bool modal)
-  :
-  KPageDialog(parent)
+DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langset, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Language Properties"));
   setButtons(Ok|Cancel);
   setDefaultButton(Ok);
-  setModal(modal);
+  setModal(true);
   setFaceType(KPageDialog::Tabbed);
-  QFrame * page;
-  QVBoxLayout * topLayout;
-  LangPropPage* lpp;
+  QFrame *page;
+  QVBoxLayout *topLayout;
+  LangPropPage *lpp;
 
   for (int i = 0; i < (int) doc->numIdentifiers(); i++)
   {
@@ -64,34 +58,33 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, KVTLanguages *langset, QW
     else
       s = doc->identifier(i);
 
-    int idx = langset->indexShortId(s);
+    int idx = langset.indexShortId(s);
 
     QString tabCaption;
-
     if (idx >= 0)
-      tabCaption = (langset->longId(idx));
+      tabCaption = (langset.longId(idx));
     else
       tabCaption = (s);
 
     page = new QFrame();
-	KPageWidgetItem *pageItem = new KPageWidgetItem( page, s );
-	pageItem->setHeader(s);
-	pageItem->setIcon(KIcon(QPixmap(langset->pixmapFile(idx))));
-	addPage(pageItem); ///@todo The pixmaps don't show up in tabbed dialog
-    topLayout = new QVBoxLayout( page );
-    topLayout->setMargin( KDialog::marginHint() );
-    topLayout->setSpacing( KDialog::spacingHint() );
-    lpp = new LangPropPage (doc, s, doc->conjugation(i), doc->article(i), page);
-    topLayout->addWidget( lpp );
+    KPageWidgetItem *pageItem = new KPageWidgetItem(page, tabCaption);
+    pageItem->setHeader(tabCaption);
+    pageItem->setIcon(KIcon(QPixmap(langset.pixmapFile(idx))));
+    addPage(pageItem);
+    topLayout = new QVBoxLayout(page);
+    topLayout->setMargin(0);
+    topLayout->setSpacing(KDialog::spacingHint());
+    lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->article(i), page);
+    topLayout->addWidget(lpp);
 
-    langPages.append (lpp);
+    langPages.append(lpp);
   }
 }
 
 
 KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
 {
-  if (idx < (int) langPages.size())
+  if (idx < (int) langPages.count())
     return langPages[idx]->getConjugation();
   else
     return KEduVocConjugation();
@@ -100,7 +93,7 @@ KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
 
 KEduVocArticle DocPropsLangDlg::getArticle(int idx) const
 {
-  if (idx < (int) langPages.size() )
+  if (idx < (int) langPages.count() )
     return langPages[idx]->getArticle();
   else
     return KEduVocArticle();

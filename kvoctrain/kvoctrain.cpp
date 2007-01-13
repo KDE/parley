@@ -479,22 +479,21 @@ void KVocTrainApp::slotDocumentProperties()
 }
 
 
-void KVocTrainApp::slotDocPropsLang ()
+void KVocTrainApp::slotDocPropsLang()
 {
-   DocPropsLangDlg ldlg (m_doc, &m_languages);
-   int res = ldlg.exec();
+  DocPropsLangDlg ldlg(m_doc, m_languages);
 
-   if (res == QDialog::Accepted) {
-      for (int i = 0; i < m_doc->numIdentifiers(); i++) {
-        m_doc->setArticle(i, ldlg.getArticle(i) );
-        m_doc->setConjugation(i, ldlg.getConjugation(i) );
-      }
+  if (ldlg.exec() == QDialog::Accepted) {
+    for (int i = 0; i < m_doc->numIdentifiers(); i++) {
+      m_doc->setArticle(i, ldlg.getArticle(i));
+      m_doc->setConjugation(i, ldlg.getConjugation(i));
+    }
 
-      m_doc->setModified();
-      m_tableModel->reset();
-      setCaption(m_doc->title(), m_doc->isModified()); 
-      slotStatusMsg(IDS_DEFAULT);
-   }
+    m_doc->setModified();
+    m_tableModel->reset();
+    setCaption(m_doc->title(), m_doc->isModified()); 
+    slotStatusMsg(IDS_DEFAULT);
+  }
 }
 
 
