@@ -269,21 +269,6 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     }
     break;
 
-    case IDH_APPEND: {
-
-      QString msg;
-      if (header1 == 0xFF) {
-        msg = i18n("Appends a new language");
-        slotStatusHelpMsg(msg);
-      }
-      else if (header1 < (int) m_languages.size() ) {
-        QString from = m_languages.longId(header1);
-        msg = i18n("Appends %1 as new language", from);
-        slotStatusHelpMsg(msg);
-      }
-    }
-    break;
-
     case IDH_REMOVE: {
       QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
       if (!m_languages.findLongId(from).isEmpty())

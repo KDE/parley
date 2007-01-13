@@ -751,36 +751,29 @@ void KVocTrainApp::slotApplyPreferences()
 }
 
 
-void KVocTrainApp::slotAppendLang(int header_and_cmd)
+void KVocTrainApp::slotAppendLang(int index)
 {
-   int lang_id = (header_and_cmd >> 16) & 0xFF;
+  if (index >= m_languages.size()){
 
-   if (lang_id == 0xFF) {
-     QString msg = i18n("To append a new language which is not listed in "
-                        "the submenu, you must first add its data in the "
-                        "general options dialog.\n"
-                        "Should this dialog be invoked now?");
-    if( KMessageBox::Yes == KMessageBox::questionYesNo(this,
-                  msg,
-                  "",KGuiItem(i18n("Invoke Dialog")), KGuiItem(i18n("Do Not Invoke"))))
-     {
-       slotGeneralOptionsPage(1);
-     }
-     return;
-   }
+    QString msg = i18n("To add a language which is not listed in the menu, you must first define its properties in the "
+                       "general options dialog.\n\nWould you like to add a new language?");
+    if (KMessageBox::Yes == KMessageBox::questionYesNo(this, msg))
+    {
+      slotGeneralOptionsPage(1);
+    }
+    return;
+  }
 
-   if (lang_id >= (int) m_languages.size())
-     return;
-   m_doc->appendIdentifier("");
-   int num = m_doc->numEntries()-1;
-   for (int i = 0; i < (int) num; i++) {
-      KEduVocExpression *expr = m_doc->entry(i);
-      expr->setType (num, expr->type(0));
-   }
+  m_doc->appendIdentifier("");
+  int num = m_doc->numEntries() - 1;
+  for (int i = 0; i < (int) num; i++) {
+    KEduVocExpression *expr = m_doc->entry(i);
+    expr->setType (num, expr->type(0));
+  }
 
-   m_doc->setIdentifier(m_doc->numIdentifiers()-1, m_languages.shortId(lang_id));
-   m_tableModel->reset();
-   m_doc->setModified();
+  m_doc->setIdentifier(m_doc->numIdentifiers() - 1, m_languages.shortId(index));
+  m_tableModel->reset();
+  m_doc->setModified();
 }
 
 
@@ -964,7 +957,6 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
   if (m_doc != 0)
   {
     vocabAppendLanguage->clear();
-    QMenu * add_m = vocabAppendLanguage->menu();
 
     QStringList names;
     for (int i = 0; i < (int) m_languages.size(); i++)
@@ -975,15 +967,29 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
         names.append(m_languages.longId(i));
     }
 
+    QAction* action = 0;
+
     for (int i = 0; i < (int) m_languages.size(); i++)
     {
       if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
-        add_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i], (i << 16) | IDH_APPEND);
+        action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], vocabAppendLanguage->selectableActionGroup());
       else
-        add_m->insertItem(names[i], (i << 16) | IDH_APPEND);
+        action = new QAction(names[i], vocabAppendLanguage->selectableActionGroup());
+      action->setWhatsThis(i18n("Add the language '%1' to the vocabulary", names[i]));
+      action->setToolTip(action->whatsThis());
+      action->setStatusTip(action->whatsThis());
+      vocabAppendLanguage->addAction(action);
     }
 
-    add_m->insertItem(i18n("Another Language..."), (0xFF << 16) | IDH_APPEND);
+    action = new QAction("", vocabAppendLanguage->selectableActionGroup());
+    action->setSeparator(true);
+    vocabAppendLanguage->addAction(action);
+
+    action = new QAction(i18n("&New Language..."), vocabAppendLanguage->selectableActionGroup());
+    action->setWhatsThis(i18n("Add a new language to the vocabulary"));
+    action->setToolTip(action->whatsThis());
+    action->setStatusTip(action->whatsThis());
+    vocabAppendLanguage->addAction(action); 
   }
 }
 

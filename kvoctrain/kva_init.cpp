@@ -237,9 +237,8 @@ void KVocTrainApp::initActions()
   vocabAppendLanguage = actionCollection()->add<KSelectAction>("vocab_append_language");
   vocabAppendLanguage->setIcon(KIcon("insert_table_col"));
   vocabAppendLanguage->setText(i18n("&Append Language"));
-  connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabAppendLanguage()));
-  connect (vocabAppendLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotAppendLang(int)));
-  connect (vocabAppendLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+  connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()),    this, SLOT(aboutToShowVocabAppendLanguage()));
+  connect(vocabAppendLanguage,         SIGNAL(triggered(int)),   this, SLOT(slotAppendLang(int)));
 
   vocabSetLanguage = actionCollection()->add<KSelectAction>("vocab_set_language");
   vocabSetLanguage->setIcon(KIcon("set_language"));
