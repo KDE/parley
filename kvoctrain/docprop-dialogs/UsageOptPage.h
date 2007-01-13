@@ -34,11 +34,10 @@ class KEduVocDocument;
 class UsageOptPage : public QWidget, public Ui::OptionListForm
 {
   Q_OBJECT
-
 public:
-  UsageOptPage(const QStringList &usages, KEduVocDocument *doc, QWidget *parent = 0);
+  UsageOptPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getUsageLabels (QStringList &ret_usages, QList<int> &ret_Index);
+  void getUsageLabels(QStringList &ret_usages, QList<int> &ret_Index);
 
   static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
@@ -54,9 +53,9 @@ protected slots:
 
 private:
   KEduVocDocument  *doc;
-  int            act_usage;
-  QList<int>    usageIndex; // contains indices of usages on exec()
-                            // negative values are new lessons
+  int              m_currentUsage;
+  QList<int>       usageIndex; // contains indices of usages on exec()
+                               // negative values are new lessons
 };
 
 #endif // UsageOptPage_included

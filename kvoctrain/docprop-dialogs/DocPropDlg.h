@@ -42,7 +42,7 @@ class DocPropsDlg : public KPageDialog
 {
   Q_OBJECT
 public:
-  DocPropsDlg(KEduVocDocument *doc, QStringList tenses, QStringList usages, QWidget *parent = NULL);
+  DocPropsDlg(KEduVocDocument *doc, QWidget *parent = NULL);
 
   inline bool getSorting()  const { return docOptPage->getSorting(); }
 

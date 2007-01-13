@@ -34,8 +34,7 @@
 
 #define TENSE_TAG ". "
 
-TenseOptPage::TenseOptPage(const QStringList &tenses, KEduVocDocument *_doc, QWidget *parent) :
-  QWidget(parent)
+TenseOptPage::TenseOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
   titleGroupBox->setTitle(i18n("Tense Descriptions"));
@@ -46,50 +45,45 @@ TenseOptPage::TenseOptPage(const QStringList &tenses, KEduVocDocument *_doc, QWi
   connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
   connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
 
-  QString str;
-  for (int i = 0; i < (int) tenses.size(); i++) {
-    str.setNum (i+1);
-    if (i <= 9)
-      str.insert (0, " ");
-    optionsList->addItem(str+TENSE_TAG+tenses[i]);
-    tenseIndex.push_back(i);
+  doc = _doc;
+
+  int i = 1;
+  foreach(QString tenseName, doc->tenseDescriptions()) {
+    optionsList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
+    tenseIndex.append(i);
   }
 
-  act_tense = 0;
-  if (tenses.size() != 0)
-    optionsList->setCurrentRow (act_tense);
+  m_currentTense = 0;
+  if (optionsList->count() > 0)
+    optionsList->setCurrentRow(m_currentTense);
 
-  modifyButton->setEnabled(optionsList->count() != 0);
-  deleteButton->setEnabled(optionsList->count() != 0);
+  modifyButton->setEnabled(optionsList->count() > 0);
+  deleteButton->setEnabled(optionsList->count() > 0);
 
   optionsList->setFocus();
-  doc = _doc;
 }
 
 
 void TenseOptPage::slotTenseChosen(int index)
 {
-  act_tense = index;
+  m_currentTense = index;
 }
 
 
 void TenseOptPage::slotNewTense()
 {
   bool ok;
-  QString getTense = KInputDialog::getText(
-              i18n( "Tense Description" ), i18n( "Enter tense description:" ), QString(), &ok, this );
-  if( !ok )
+  QString getTense = KInputDialog::getText(i18n("Tense Description"), i18n("Enter tense description:"), QString(), &ok, this);
+  if (!ok)
     return;
 
   QString str;
-  int i = optionsList->count()+1;
-  str.setNum (i);
-  if (i <= 9)
-    str.insert (0, " ");
-  optionsList->addItem(str+TENSE_TAG+getTense.simplified());
-  tenseIndex.push_back(-(i-1));
-  act_tense = optionsList->count();
-  optionsList->setCurrentRow (i-1);
+  int i = optionsList->count() + 1;
+  optionsList->addItem(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
+  tenseIndex.append(-(i - 1));
+
+  m_currentTense = optionsList->count();
+  optionsList->setCurrentRow(i - 1);
   modifyButton->setEnabled(true);
   deleteButton->setEnabled(true);
 }
@@ -97,60 +91,49 @@ void TenseOptPage::slotNewTense()
 
 void TenseOptPage::slotModifyTense()
 {
-  if (optionsList->count() != 0 && (int) optionsList->count() > act_tense)
+  if (optionsList->count() != 0 && (int) optionsList->count() > m_currentTense)
   {
-    QString str = optionsList->item(act_tense)->text();
-    int pos = str.indexOf (TENSE_TAG);
-    str.remove (0, pos+strlen (TENSE_TAG));
+    QString str = optionsList->item(m_currentTense)->text();
+    str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
+
     bool ok;
-    QString getTense = KInputDialog::getText(
-              i18n( "Tense Description" ), i18n( "Enter tense description:" ), str, &ok, this );
-    if( !ok )
+    QString getTense = KInputDialog::getText(i18n("Tense Description"), i18n("Enter tense description:"), str, &ok, this);
+    if (!ok)
       return;
-    QString str2;
-    str2.setNum (act_tense+1);
-    if (act_tense <= 9)
-      str2.insert (0, " ");
-    optionsList->item(act_tense)->setText(str2+TENSE_TAG+getTense.simplified());
+
+    int i = m_currentTense + 1;
+    optionsList->item(m_currentTense)->setText(QString("%1").arg(i, 2).append(TENSE_TAG).append(getTense.simplified()));
   }
 }
 
 
 void TenseOptPage::updateListBox(int start)
 {
-  QString str, str2;
+  QString str;
   for (int i = start; i < (int) optionsList->count(); i++)
   {
     str = optionsList->item(i)->text();
-    int pos = str.indexOf (TENSE_TAG);
-    str.remove (0, pos+strlen (TENSE_TAG));
-    str2.setNum (i+1);
-    if (i <= 9)
-      str2.insert (0, " ");
-    optionsList->item(i)->setText(str2+TENSE_TAG+str);
+    str = str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length());
+    optionsList->item(i)->setText(QString("%1").arg(i + 1, 2).append(TENSE_TAG).append(str));
   }
 }
 
 
 void TenseOptPage::slotDeleteTense()
 {
-  int act = act_tense;
-  if (optionsList->count() != 0
-      && (int) optionsList->count() > act) {
+  int act = m_currentTense;
+  if (optionsList->count() > 0 && (int) optionsList->count() > act) {
 
     QString t;
-    t.setNum(tenseIndex[act_tense]+1);
-    t.insert (0, QM_USER_TYPE);
+    t.setNum(tenseIndex[m_currentTense] - 1).prepend(QM_USER_TYPE);
+
     for (int ent = 0; ent < doc->numEntries(); ent++) {
-      // FIXME: ProgressDlg here?
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < doc->numIdentifiers(); lang++) {
         KEduVocConjugation conj = exp->conjugation(lang);
         for (int con = 0; con < conj.numEntries(); con++ ) {
           if (conj.getType(con) == t) {
-            KMessageBox::information(this,
-                      i18n("This user defined tense could not be deleted\nbecause it is in use."),
-                      i18n("Deleting Tense Description"));
+            KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
             return;
           }
         }
@@ -158,32 +141,18 @@ void TenseOptPage::slotDeleteTense()
     }
 
     delete optionsList->takeItem(act);
-    tenseIndex.erase (tenseIndex.begin() + act);
+    tenseIndex.erase(tenseIndex.begin() + act);
 
     if ((int) optionsList->count() <= act)
-      act = optionsList->count()-1;
+      act = optionsList->count() - 1;
     else
       updateListBox(act); // update items after current
 
     if (act >= 0)
-      optionsList->setCurrentRow (act);
+      optionsList->setCurrentRow(act);
   }
-  modifyButton->setEnabled(optionsList->count() != 0);
-  deleteButton->setEnabled(optionsList->count() != 0);
-}
-
-
-void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
-{
-  QString str;    ret_tense.clear();
-  for (int i = 0; i < (int) optionsList->count(); i++)
-  {
-    str = optionsList->item(i)->text();
-    int pos = str.indexOf (TENSE_TAG);
-    str.remove (0, pos+strlen (TENSE_TAG));
-    ret_tense.push_back (str);
-  }
-  ret_Index = tenseIndex;
+  modifyButton->setEnabled(optionsList->count() > 0);
+  deleteButton->setEnabled(optionsList->count() > 0);
 }
 
 
@@ -191,37 +160,51 @@ void TenseOptPage::slotCleanup()
 {
   QVector<bool> used_tense;
   for (int i = 0; i <= (int) optionsList->count(); i++)
-    used_tense.push_back(false);
+    used_tense.append(false);
 
   for (int col = 0; col < doc->numIdentifiers(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
       KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString t = conj.getType(ci);
-        if (t.left(strlen(UL_USER_TENSE)) == UL_USER_TENSE) {
-          t.remove (0, strlen(UL_USER_TENSE));
+        if (t.left(QString(UL_USER_TENSE).length()) == UL_USER_TENSE) {
+          t.remove(0, QString(UL_USER_TENSE).length());
           int idx = t.toInt();
-          if ((int) used_tense.size() < idx)
+          if ((int) used_tense.count() < idx)
             used_tense.resize(idx);
-          if (idx != 0)
-            used_tense[idx-1] = true;
+          if (idx > 0)
+            used_tense[idx - 1] = true;
         }
       }
     }
 
-  for (int i = used_tense.size()-1; i >= 0; i--)
+  for (int i = used_tense.count() - 1; i >= 0; i--)
     if (!used_tense[i]) {
-      for (int u = 0; u < (int) tenseIndex.size() ; u++) {
+      for (int u = 0; u < (int) tenseIndex.count() ; u++) {
         if (tenseIndex[u] == i || tenseIndex[u] < 0) {
-          act_tense = i;
+          m_currentTense = i;
           slotDeleteTense();
           break;
         }
       }
     }
 
-  act_tense = 0;
-  optionsList->setCurrentRow (act_tense);
+  m_currentTense = 0;
+  optionsList->setCurrentRow(m_currentTense);
+}
+
+
+void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
+{
+  ret_tense.clear();
+
+  QString str;
+  for (int i = 0; i < (int) optionsList->count(); i++)
+  {
+    str = optionsList->item(i)->text();
+    ret_tense.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
+  }
+  ret_Index = tenseIndex;
 }
 
 
@@ -233,36 +216,33 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each
   // old index
-  for (int i = 0; i <= qMax (old_tenses, (int) tenseIndex.size()); i++)
-    translate_index.push_back(0);
+  for (int i = 0; i <= qMax(old_tenses, (int) tenseIndex.count()); i++)
+    translate_index.append(0);
 
-  // now adjust lesson descriptions to new index
-
-  for (int i = 0; i < (int) tenseIndex.size(); i++) {
+  // now adjust tense descriptions to new index
+  for (int i = 0; i < (int) tenseIndex.count(); i++) {
     if (tenseIndex[i] >= 0)
-      translate_index[tenseIndex[i]+1] = i+1;
+      translate_index[tenseIndex[i] + 1] = i + 1;
   }
 
   // only keep remaining tense indices
 
   // set tense index to 0 when not needed any more
   // and translate to new index
-
   for (int col = 0; col < doc->numIdentifiers(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
-      KEduVocConjugation conj = doc->entry(i)->conjugation (col);
+      KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       bool dirty = false;
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString old = conj.getType(ci);
-        if (!old.isEmpty() && old.left(strlen(QM_USER_TYPE)) == QM_USER_TYPE) {
-          old.remove (0, 1);
+        if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
+          old.remove(0, QString(QM_USER_TYPE).length());
           int o = old.toInt();
 
           dirty = true;
           QString newtense;
-          if (translate_index[o] != 0) {
-            newtense.setNum (translate_index[o]);
-            newtense.insert (0, QM_USER_TYPE);
+          if (translate_index[o] > 0) {
+            newtense.setNum(translate_index[o]).prepend(QM_USER_TYPE);
             conj.setType(ci, newtense);
           }
           else
@@ -270,7 +250,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
         }
       }
       if (dirty)
-        doc->entry(i)->setConjugation (col, conj);
+        doc->entry(i)->setConjugation(col, conj);
     }
   }
 }

@@ -420,11 +420,9 @@ void KVocTrainApp::slotDocumentProperties()
   int old_usages = (int) m_doc->usageDescriptions().count();
   QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
 
-  DocPropsDlg ddlg (m_doc, m_doc->tenseDescriptions(), m_doc->usageDescriptions(), this);
+  DocPropsDlg ddlg(m_doc, this);
 
-  int res = ddlg.exec();
-
-  if (res == QDialog::Accepted) {
+  if (ddlg.exec() == QDialog::Accepted) {
     QList<int> typeIndex;
     QList<int> tenseIndex;
     QList<int> usageIndex;
@@ -435,15 +433,13 @@ void KVocTrainApp::slotDocumentProperties()
     QStringList new_lessonStr;
     QList<int> new_lessonsinquery;
 
-    m_doc->enableSorting(ddlg.getSorting());
-
-    m_doc->setTitle(ddlg.getTitle() );
-    m_doc->setAuthor(ddlg.getAuthor() );
-    m_doc->setLicense(ddlg.getLicense() );
-    m_doc->setDocRemark(ddlg.getDocRemark() );
+    m_doc->setTitle(ddlg.getTitle());
+    m_doc->setAuthor(ddlg.getAuthor());
+    m_doc->setLicense(ddlg.getLicense());
+    m_doc->setDocRemark(ddlg.getDocRemark());
 
     slotStatusMsg(i18n("Updating lesson indices..."));
-    QApplication::setOverrideCursor( Qt::WaitCursor );
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
     ddlg.getLesson(new_lessonStr, lessonIndex);
     ddlg.getTypeNames(new_typeStr, typeIndex);
@@ -459,21 +455,22 @@ void KVocTrainApp::slotDocumentProperties()
 
     slotStatusMsg(i18n("Updating tense indices..."));
     TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
-    ///@todo port KEduVocConjugation::setTenseNames (new_tenseStr);
+    KEduVocConjugation::setTenseNames(new_tenseStr);
 
-    slotStatusMsg(i18nc("usage (area) of an expression",
-                        "Updating usage label indices..."));
+    slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
     UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
     UsageManager::setUsageNames(new_usageStr);
 
+    m_doc->enableSorting(ddlg.getSorting());
     m_doc->setTypeDescriptions(new_typeStr);
     m_doc->setTenseDescriptions(new_tenseStr);
     m_doc->setUsageDescriptions(new_usageStr);
     m_doc->setLessonDescriptions(new_lessonStr);
     m_doc->setLessonsInQuery(new_lessonsinquery);
+    m_doc->setModified();
+
     querymanager.setLessonItems(new_lessonsinquery);
     fillLessonBox();
-    m_doc->setModified();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());
     QApplication::restoreOverrideCursor();

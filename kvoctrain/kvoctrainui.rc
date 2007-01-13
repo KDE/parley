@@ -17,7 +17,7 @@
    <Action name="edit_edit_selected_area" />
   </Menu>
   <Menu name="vocabulary" >
-   <text>Vo&amp;cabulary</text>
+   <text>&amp;Vocabulary</text>
    <Action name="vocab_show_statistics" />
    <Action name="vocab_assign_lessons" />
    <Action name="vocab_clean_up" />

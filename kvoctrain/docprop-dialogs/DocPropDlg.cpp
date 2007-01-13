@@ -27,14 +27,11 @@
 #include <QVBoxLayout>
 #include <QFrame>
 
-#include <klocale.h>
-#include <kstandarddirs.h>
-#include <kapplication.h>
+#include <KLocale>
 
 #include "DocPropDlg.h"
-#include <kvtlanguages.h>
 
-DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList tenses, QStringList usages, QWidget *parent) : KPageDialog(parent)
+DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Properties"));
   setButtons(Ok|Cancel);
@@ -71,15 +68,15 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QStringList tenses, QStringList u
   topLayout = new QVBoxLayout(page);
   topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  tenseOptPage = new TenseOptPage(tenses, doc, page);
+  tenseOptPage = new TenseOptPage(doc, page);
   topLayout->addWidget(tenseOptPage);
 
   page = new QFrame();
-  addPage(page,i18nc("usage (area) of an expression", "&Usage"));
+  addPage(page, i18nc("usage (area) of an expression", "&Usage"));
   topLayout = new QVBoxLayout(page);
   topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  useOptPage = new UsageOptPage(usages, doc, page);
+  useOptPage = new UsageOptPage(doc, page);
   topLayout->addWidget(useOptPage);
 
   page = new QFrame();

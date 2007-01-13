@@ -50,15 +50,15 @@ TypeOptPage::TypeOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(paren
   int i = 1;
   foreach(QString typeName, doc->typeDescriptions()) {
     optionsList->addItem(QString("%1").arg(i++, 2).append(TYPE_TAG).append(typeName));
-    typeIndex.append(i);
+    typeIndex.append(i - 1);
   }
 
   m_currentType = 0;
   if (optionsList->count() > 0)
     optionsList->setCurrentRow(m_currentType);
 
-  modifyButton->setEnabled(optionsList->count() != 0);
-  deleteButton->setEnabled(optionsList->count() != 0);
+  modifyButton->setEnabled(optionsList->count() > 0);
+  deleteButton->setEnabled(optionsList->count() > 0);
 
   optionsList->setFocus();
 }
@@ -161,8 +161,8 @@ void TypeOptPage::slotCleanup()
   for (int col = 0; col < doc->numIdentifiers(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
       QString t = doc->entry(i)->type(col);
-      if (t.left(strlen(QM_USER_TYPE)) == QM_USER_TYPE) {
-        t.remove (0, 1);
+      if (t.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
+        t.remove(0, QString(QM_USER_TYPE).length());
         int idx = t.toInt();
         if ((int) used_type.count() < idx)
           used_type.resize(idx);
@@ -208,13 +208,13 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
   /////////////////////////////////////////////////////
   // translate_index contains new index number for each
   // old index
-  for (int i = 0; i <= qMax(old_types, (int) typeIndex.size()); i++)
+  for (int i = 0; i <= qMax(old_types, (int) typeIndex.count()); i++)
     translate_index.append(0);
 
   // now adjust type descriptions to new index
-  for (int i = 0; i < (int) typeIndex.size(); i++) {
+  for (int i = 0; i < (int) typeIndex.count(); i++) {
     if (typeIndex[i] >= 0)
-      translate_index[typeIndex[i] + 1] = i + 1;
+      translate_index[typeIndex[i] /*+ 1*/] = i + 1;
   }
 
   // only keep remaining type indices

@@ -319,7 +319,7 @@ void CommonEntryPage::invokeUsageDlg()
 
   connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
-  UsageOptPage *usageOptPage = new UsageOptPage (doc->usageDescriptions(), doc, this);
+  UsageOptPage *usageOptPage = new UsageOptPage(doc, this);
   subDialog->setMainWidget(usageOptPage);
 
   if (subDialog->exec() == QDialog::Accepted)
