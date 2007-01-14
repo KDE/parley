@@ -751,7 +751,7 @@ void KVocTrainApp::slotApplyPreferences()
 }
 
 
-void KVocTrainApp::slotAppendLang(int index)
+void KVocTrainApp::slotAppendLanguage(int index)
 {
   if (index >= m_languages.size()){
 
@@ -774,6 +774,35 @@ void KVocTrainApp::slotAppendLang(int index)
   m_doc->setIdentifier(m_doc->numIdentifiers() - 1, m_languages.shortId(index));
   m_tableModel->reset();
   m_doc->setModified();
+}
+
+
+void KVocTrainApp::slotAssignLanguage(QAction * action)
+{
+  int column = qvariant_cast<QPoint>(action->data()).x() + KV_EXTRA_COLS;
+  int index  = qvariant_cast<QPoint>(action->data()).y();
+
+  if (index >= (int) m_languages.size())
+    return;
+
+  m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
+
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+
+void KVocTrainApp::slotRemoveLanguage(int index)
+{
+  QString name = m_tableModel->headerData(index + KV_EXTRA_COLS + 1, Qt::Horizontal, Qt::DisplayRole).toString();
+
+  QString msg = i18n("You are about to delete a language permanently.\nDo you really want to delete '%1'?", name);
+
+  int result = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
+  if (result == KMessageBox::Continue) {
+    m_doc->removeIdentifier(index + 1);
+    m_tableModel->reset();
+    m_doc->setModified();
+  }
 }
 
 
@@ -956,7 +985,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
 {
   if (m_doc != 0)
   {
-    vocabAppendLanguage->clear();
+    vocabAppendLanguage->removeAllActions();
 
     QStringList names;
     for (int i = 0; i < (int) m_languages.size(); i++)
@@ -967,7 +996,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
         names.append(m_languages.longId(i));
     }
 
-    QAction* action = 0;
+    QAction *action = 0;
 
     for (int i = 0; i < (int) m_languages.size(); i++)
     {
@@ -998,8 +1027,8 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
 {
   if (m_doc != 0)
   {
-    vocabSetLanguage->clear();
-    QMenu * set_m = vocabSetLanguage->menu();
+    vocabSetLanguage->removeAllActions();
+    //QMenu * set_m = vocabSetLanguage->menu();
 
     QStringList names;
     for (int i = 0; i < (int) m_languages.size(); i++)
@@ -1010,29 +1039,33 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
         names.append(m_languages.longId(i));
     }
 
-    for (int header = 0; header < m_doc->numIdentifiers(); ++header )
+    QAction *action = 0;
+    KSelectAction *selAction = 0;
+
+    for (int column = 0; column < m_doc->numIdentifiers(); ++column)
     {
-      // select one of the available languages for the column
-      QMenu *langs_m = new QMenu();
-        // hack: ID => header-id + language
-
-      for (int i = 0; i < (int) m_languages.size(); i++) {
-        if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
-          langs_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
-        else
-          langs_m->insertItem(names[i], (header << 16) | (i << (16+8)) | IDH_SET_LANG);
-      }
-
-      connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
-      connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-
-      if (header == 0)
-        set_m->insertItem(i18n("&Original"), langs_m, (2 << 16) | IDH_NULL);
+      if (column == 0)
+        selAction = new KSelectAction(i18n("&Original"), vocabSetLanguage->selectableActionGroup());
       else {
         if (m_doc->numIdentifiers() <= 2)
-          set_m->insertItem(i18n("&Translation"), langs_m, (2 << 16) | IDH_NULL);
+          selAction = new KSelectAction(i18n("&Translation"), vocabSetLanguage->selectableActionGroup());
         else
-          set_m->insertItem(i18n("&%1. Translation", header), langs_m, (2 << 16) | IDH_NULL);
+          selAction = new KSelectAction(i18n("&%1. Translation", column), vocabSetLanguage->selectableActionGroup());
+      }
+      connect(selAction, SIGNAL(triggered(QAction *)), this, SLOT(slotAssignLanguage(QAction *)));
+      vocabSetLanguage->addAction(selAction);
+
+      for (int i = 0; i < (int) m_languages.size(); i++)
+      {
+        if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+          action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], selAction->selectableActionGroup());
+        else
+          action = new QAction(names[i], selAction->selectableActionGroup());
+        action->setData(QVariant(QPoint(column, i))); //QPair doesn't work with QVariant
+        action->setWhatsThis(i18n("Assign the language '%1' to the selected column", names[i]));
+        action->setToolTip(action->whatsThis());
+        action->setStatusTip(action->whatsThis());
+        selAction->addAction(action);
       }
     }
   }
@@ -1043,8 +1076,7 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
 {
   if (m_doc != 0)
   {
-    vocabRemoveLanguage->clear();
-    QMenu * remove_m = vocabRemoveLanguage->menu();
+    vocabRemoveLanguage->removeAllActions();
 
     QStringList names;
     for (int j = 1; j < (int) m_doc->numIdentifiers(); j++)
@@ -1056,16 +1088,19 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
         names.append(m_doc->identifier(j));
     }
 
+    QAction *action = 0;
+
     for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
     {
-      // show pixmap and long name if available
       int j;
-      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-          && !m_languages.pixmapFile(j).isEmpty()
-          && !m_languages.longId(j).isEmpty() )
-        remove_m->insertItem(QPixmap(m_languages.pixmapFile(j)), names[i-1], (i << 16) |  IDH_REMOVE);  // hack: IDs => header-ids + cmd
+      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0 && !m_languages.pixmapFile(j).isEmpty() && !m_languages.longId(j).isEmpty())
+        action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(j))), names[i - 1], vocabRemoveLanguage->selectableActionGroup());
       else
-        remove_m->insertItem(m_doc->identifier(i), (i << 16) | IDH_REMOVE);
+        action = new QAction(names[i - 1], vocabRemoveLanguage->selectableActionGroup());
+      action->setWhatsThis(i18n("Permanently remove the language '%1' from the vocabulary", names[i - 1]));
+      action->setToolTip(action->whatsThis());
+      action->setStatusTip(action->whatsThis());
+      vocabRemoveLanguage->addAction(action);
     }
   }
 }

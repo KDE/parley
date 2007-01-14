@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Mar 11 20:50:53 MET 1999
+    begin         : Thu Mar 11 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2006-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       langs_m->insertItem(names[i],
         (header << 16) | (i << (16+8)) | IDH_SET_LANG);
   }
-  connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotSetHeaderProp(int)));
+  ///@todo port connect (langs_m, SIGNAL(activated(int)), this, SLOT(slotAssignLanguage(QAction *)));
   connect (langs_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
   header_m = new QMenu();
@@ -180,51 +180,6 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   header_m->exec(QPoint(x, y));
 }
 
-
-void KVocTrainApp::slotSetHeaderProp (int header_and_id) /*FOLD00*/
-{
-  int header1 = (header_and_id >> 16) & 0xFF;  // org, trans1, trans2, ..
-  int id = header_and_id >> (16+8);            // language ident
-//int cmd  = header_and_id & 0xFFFF;           // always SET_LANG
-
-  if (id >= (int) m_languages.size())
-    return; // ???
-
-  QString lid = m_languages.shortId(id);
-  if  (!m_languages.longId(id).isEmpty() )
-    lid = m_languages.longId(id);
-
-  QString pm = "";
-  if (!m_languages.pixmapFile(id).isEmpty() )
-    pm = m_languages.pixmapFile(id);
-
-  /*
-  cout << "shp 1: " << (void*) doc << endl << flush;
-  for (int i = 0; i < (int) langset.size(); i++) {
-     cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
-          << EA_LOCAL(langset.longId(i))  << "  "
-          << EA_LOCAL(langset.PixMapFile(i)) << "  "
-          << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
-  }
-*/
-  if (header1 > 0)
-    m_doc->setIdentifier(header1, m_languages.shortId(id));
-  else
-    m_doc->setOriginalIdentifier(m_languages.shortId(id));
-/*
-  for (int i = 0; i < (int) langset.size(); i++) {
-     cout << " " <<  EA_LOCAL(langset.shortId(i)) << "  "
-          << EA_LOCAL(langset.longId(i))  << "  "
-          << EA_LOCAL(langset.PixMapFile(i)) << "  "
-          << hex << (const void*) EA_LOCAL(langset.PixMapFile(i)) << endl;
-  }
-*/
-  m_tableModel->reset();
-  m_doc->setModified();
-  slotStatusMsg(IDS_DEFAULT);
-}
-
-
 void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 {
   int header1 = (header_and_cmd >> 16) & 0xFF;
@@ -251,31 +206,6 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
 
     case IDH_SORT_COL_NUM:
         slotStatusHelpMsg(i18n("Sorts column by lesson index up/down"));
-    break;
-
-    case IDH_SET_LANG: {
-      QString from = m_languages.longId(header2);
-      if (from.isEmpty())
-        from = m_languages.shortId(header2);
-
-      QString msg;
-      if (header1 == 0) {
-        msg = i18n("Sets %1 as language for original", from);
-      }
-      else {
-        msg = i18n("Sets %1 as language for translation %2", from, header1);
-      }
-      slotStatusHelpMsg(msg);
-    }
-    break;
-
-    case IDH_REMOVE: {
-      QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
-      if (!m_languages.findLongId(from).isEmpty())
-        from = m_languages.findLongId(from);
-      QString msg = i18n("Removes %1 irrevocably from dictionary", from);
-      slotStatusHelpMsg(msg);
-    }
     break;
 
     case IDH_START_QUERY:
@@ -403,28 +333,6 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     case ID_RESUME_MULTIPLE:
       queryType = QT_Multiple;
       slotRestartQuery();
-    break;
-
-    case IDH_REMOVE: {
-      QString msg;
-      QString name;
-
-      name = m_doc->identifier(header1);
-      int i= m_languages.indexShortId(name);
-      if ( i >= 0
-          && !m_languages.longId(i).isEmpty() )
-        name = m_languages.longId(i);
-
-      msg = i18n("You are about to delete a language completely.\n"
-                 "Do you really want to delete \"%1\"?", name);
-
-      int exit = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
-      if(exit==KMessageBox::Continue) {
-        m_doc->removeIdentifier(header1);
-        m_tableModel->reset();
-        m_doc->setModified();
-      }
-    }
     break;
 
     case IDH_START_QUERY:

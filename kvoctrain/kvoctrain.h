@@ -142,12 +142,16 @@ public:
   void slotCleanVocabulary ();
   void slotChooseLesson(int id);
 //  void slotSearchClip();
-  void slotSetHeaderProp (int header_and_id);
+
   void slotHeaderCallBack (int cmd_and_id);
   void slotHeaderStatus (int cmd_and_id);
   void slotHeaderMenu(int header, int x, int y);
-  /** append language to table */
-  void slotAppendLang(int header);
+  /** append language to vocabulary */
+  void slotAppendLanguage(int index);
+  /** assign language to vocabulary column */
+  void slotAssignLanguage(QAction *);
+  /** remove language from vocabulary */
+  void slotRemoveLanguage(int index);
   /** exit query mode */
   void slotStopQuery(bool show_view);
   bool queryClose();

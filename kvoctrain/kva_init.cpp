@@ -107,7 +107,7 @@ void KVocTrainApp::initActions()
   fileOpenExample = actionCollection()->addAction("file_open_example");
   fileOpenExample->setIcon(KIcon("fileopen"));
   fileOpenExample->setText(i18n("Open &Example..."));
-  connect(fileOpenExample, SIGNAL(triggered(bool)), SLOT(slotFileOpenExample()));
+  connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
   fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
   fileOpenExample->setToolTip(fileOpen->whatsThis());
   fileOpenExample->setStatusTip(fileOpen->whatsThis());
@@ -115,7 +115,7 @@ void KVocTrainApp::initActions()
   fileGHNS = actionCollection()->addAction("file_ghns");
   fileGHNS->setIcon(KIcon("knewstuff"));
   fileGHNS->setText(i18n("&Get New Vocabularies..."));
-  connect(fileGHNS, SIGNAL(triggered(bool)), SLOT(slotGHNS()));
+  connect(fileGHNS, SIGNAL(triggered(bool)), this, SLOT(slotGHNS()));
   fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
@@ -125,7 +125,7 @@ void KVocTrainApp::initActions()
 
   fileMerge = actionCollection()->addAction("file_merge");
   fileMerge->setText(i18n("&Merge..."));
-  connect(fileMerge, SIGNAL(triggered(bool)), SLOT(slotFileMerge()));
+  connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
   fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
   fileMerge->setToolTip(fileOpen->whatsThis());
   fileMerge->setStatusTip(fileOpen->whatsThis());
@@ -178,7 +178,7 @@ void KVocTrainApp::initActions()
   editAppend = actionCollection()->addAction("edit_append");
   editAppend->setIcon(KIcon("insert_table_row"));
   editAppend->setText(i18n("&Append New Entry"));
-  connect(editAppend, SIGNAL(triggered(bool)), SLOT(slotAppendRow()));
+  connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotAppendRow()));
   editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
   editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
   editAppend->setToolTip(editAppend->whatsThis());
@@ -187,7 +187,7 @@ void KVocTrainApp::initActions()
   editDelete = actionCollection()->addAction("edit_remove_selected_area");
   editDelete->setIcon(KIcon("delete_table_row"));
   editDelete->setText(i18n("&Delete Entry"));
-  connect(editDelete, SIGNAL(triggered(bool)), SLOT(slotRemoveRow()));
+  connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotRemoveRow()));
   editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
   editDelete->setWhatsThis(i18n("Delete the selected rows"));
   editDelete->setToolTip(editDelete->whatsThis());
@@ -196,7 +196,7 @@ void KVocTrainApp::initActions()
   editEditEntry = actionCollection()->addAction("edit_edit_selected_area");
   editEditEntry->setIcon(KIcon("edit_table_row"));
   editEditEntry->setText(i18n("&Edit Entry..."));
-  connect(editEditEntry, SIGNAL(triggered(bool)), SLOT(slotEditRow()));
+  connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditRow()));
   editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
   editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));
   editEditEntry->setToolTip(editEditEntry->whatsThis());
@@ -205,7 +205,7 @@ void KVocTrainApp::initActions()
   editSaveSelectedArea = actionCollection()->addAction("edit_save_selected_area");
   editSaveSelectedArea->setIcon(KIcon("filesaveas"));
   editSaveSelectedArea->setText(i18n("Save E&ntries in Query As..."));
-  connect(editSaveSelectedArea, SIGNAL(triggered(bool)), SLOT(slotSaveSelection()));
+  connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
   editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
   editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
   editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
@@ -213,7 +213,7 @@ void KVocTrainApp::initActions()
   vocabShowStatistics = actionCollection()->addAction("vocab_show_statistics");
   vocabShowStatistics->setIcon(KIcon("statistics"));
   vocabShowStatistics->setText(i18n("Show &Statistics..."));
-  connect(vocabShowStatistics, SIGNAL(triggered(bool)), SLOT(slotShowStatistics()));
+  connect(vocabShowStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
   vocabShowStatistics->setWhatsThis(i18n("Show statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
   vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());
@@ -221,7 +221,7 @@ void KVocTrainApp::initActions()
   vocabAssignLessons = actionCollection()->addAction("vocab_assign_lessons");
   vocabAssignLessons->setIcon(KIcon("rand_less"));
   vocabAssignLessons->setText(i18n("Assign L&essons..."));
-  connect(vocabAssignLessons, SIGNAL(triggered(bool)), SLOT(slotCreateRandom()));
+  connect(vocabAssignLessons, SIGNAL(triggered(bool)), this, SLOT(slotCreateRandom()));
   vocabAssignLessons->setWhatsThis(i18n("Create random lessons for unassigned entries"));
   vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
   vocabAssignLessons->setStatusTip(vocabAssignLessons->whatsThis());
@@ -229,7 +229,7 @@ void KVocTrainApp::initActions()
   vocabCleanUp = actionCollection()->addAction("vocab_clean_up");
   vocabCleanUp->setIcon(KIcon("cleanup"));
   vocabCleanUp->setText(i18n("Remove &Duplicates"));
-  connect(vocabCleanUp, SIGNAL(triggered(bool)), SLOT(slotCleanVocabulary()));
+  connect(vocabCleanUp, SIGNAL(triggered(bool)), this, SLOT(slotCleanVocabulary()));
   vocabCleanUp->setWhatsThis(i18n("Remove duplicate entries from the vocabulary"));
   vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
   vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
@@ -237,20 +237,19 @@ void KVocTrainApp::initActions()
   vocabAppendLanguage = actionCollection()->add<KSelectAction>("vocab_append_language");
   vocabAppendLanguage->setIcon(KIcon("insert_table_col"));
   vocabAppendLanguage->setText(i18n("&Append Language"));
-  connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()),    this, SLOT(aboutToShowVocabAppendLanguage()));
-  connect(vocabAppendLanguage,         SIGNAL(triggered(int)),   this, SLOT(slotAppendLang(int)));
+  connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()),  this, SLOT(aboutToShowVocabAppendLanguage()));
+  connect(vocabAppendLanguage,         SIGNAL(triggered(int)), this, SLOT(slotAppendLanguage(int)));
 
   vocabSetLanguage = actionCollection()->add<KSelectAction>("vocab_set_language");
   vocabSetLanguage->setIcon(KIcon("set_language"));
-  vocabSetLanguage->setText(i18n("Set &Language"));
-  connect(vocabSetLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
+  vocabSetLanguage->setText(i18n("Assign &Language"));
+  connect(vocabSetLanguage->menu(),    SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
 
   vocabRemoveLanguage = actionCollection()->add<KSelectAction>("vocab_remove_language");
   vocabRemoveLanguage->setIcon(KIcon("delete_table_col"));
   vocabRemoveLanguage->setText(i18n("&Remove Language"));
-  connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabRemoveLanguage()));
-  connect(vocabRemoveLanguage->menu(), SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-  connect(vocabRemoveLanguage->menu(), SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+  connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()),  this, SLOT(aboutToShowVocabRemoveLanguage()));
+  connect(vocabRemoveLanguage,         SIGNAL(triggered(int)), this, SLOT(slotRemoveLanguage(int)));
 
   vocabDocumentProperties = actionCollection()->addAction("vocab_document_properties");
   vocabDocumentProperties->setText(i18n("&Properties..."));
@@ -261,7 +260,7 @@ void KVocTrainApp::initActions()
 
   vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
   vocabLanguageProperties->setText(i18n("Lan&guage Properties..."));
-  connect(vocabLanguageProperties, SIGNAL(triggered(bool)), SLOT(slotDocPropsLang()));
+  connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
   vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
   vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
   vocabLanguageProperties->setStatusTip(vocabSetLanguage->whatsThis());
