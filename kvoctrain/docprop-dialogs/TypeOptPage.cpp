@@ -48,7 +48,7 @@ TypeOptPage::TypeOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(paren
   doc = _doc;
 
   int i = 1;
-  foreach(QString typeName, doc->typeDescriptions()) {
+  foreach(const QString &typeName, doc->typeDescriptions()) {
     optionsList->addItem(QString("%1").arg(i++, 2).append(TYPE_TAG).append(typeName));
     typeIndex.append(i - 1);
   }

@@ -51,7 +51,7 @@ LessOptPage::LessOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(paren
   doc = _doc;
 
   int i = 1;
-  foreach(QString lessonName, doc->lessonDescriptions()){
+  foreach(const QString &lessonName, doc->lessonDescriptions()){
     optionsList->addItem(QString("%1").arg(i++, 2).append(LESS_TAG).append(lessonName));
     lessonIndex.append(i - 1);
   }

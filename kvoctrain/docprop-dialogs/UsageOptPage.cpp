@@ -49,7 +49,7 @@ UsageOptPage::UsageOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(par
   doc = _doc;
 
   int i = 1;
-  foreach(QString usageName, doc->usageDescriptions()) {
+  foreach(const QString &usageName, doc->usageDescriptions()) {
     optionsList->addItem(QString("%1").arg(i++, 2).append(USAGE_TAG).append(usageName));
     usageIndex.append(i);
   }

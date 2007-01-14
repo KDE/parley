@@ -48,7 +48,7 @@ TenseOptPage::TenseOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(par
   doc = _doc;
 
   int i = 1;
-  foreach(QString tenseName, doc->tenseDescriptions()) {
+  foreach(const QString &tenseName, doc->tenseDescriptions()) {
     optionsList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
     tenseIndex.append(i);
   }

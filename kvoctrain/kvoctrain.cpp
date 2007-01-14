@@ -1148,7 +1148,7 @@ QList<int> KVocTrainApp::csvOrder()
 
   if (!Prefs::useCurrent())
   {
-    foreach(QString language, languageList)
+    foreach(const QString &language, languageList)
     {
       int j = m_doc->findIdentifier(language);
       if (j >= 0)
@@ -1199,7 +1199,7 @@ void KVocTrainApp::slotEditCopy()
   QList<int> csv_order = csvOrder();
   QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
 
-  foreach(QModelIndex idx, selectedRows)
+  foreach(const QModelIndex &idx, selectedRows)
   {
     bool sep = false;
     foreach(int i, csv_order)
