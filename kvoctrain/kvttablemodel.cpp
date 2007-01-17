@@ -133,9 +133,10 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
       }
       else if (index.column() == 2)
         result = m_doc->entry(index.row())->original();
-      else
-        result = m_doc->entry(index.row())->translation(index.column() - 2);
-
+      else {
+        result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS);
+        kDebug() << "Displaying: " << m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS) << endl;
+      }
       if (result.toString().isEmpty())
         result = "@empty@";
       return result;
@@ -360,5 +361,38 @@ bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
   m_doc->setModified(true);
   return true;
 }
+
+
+bool KVTTableModel::insertColumns(int column, int count, const QModelIndex & parent)
+{
+  Q_UNUSED(parent);
+  beginInsertColumns(QModelIndex(), column, column + count - 1);
+
+  m_doc->appendIdentifier("");
+  int num = m_doc->numEntries() - 1;
+  for (int i = 0; i < (int) num; i++) {
+    KEduVocExpression *expr = m_doc->entry(i);
+    expr->setType (num, expr->type(0));
+  }
+
+  endInsertColumns();
+  m_doc->setModified(true);
+  return true;
+}
+
+
+bool KVTTableModel::removeColumns(int column, int count, const QModelIndex & parent)
+{
+  Q_UNUSED(parent);
+  beginRemoveColumns(QModelIndex(), column, column + count - 1);
+
+  m_doc->removeIdentifier(column - KV_EXTRA_COLS);
+
+  endRemoveColumns();
+
+  m_doc->setModified(true);
+  return true;
+}
+
 
 #include "kvttablemodel.moc"

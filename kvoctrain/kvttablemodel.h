@@ -43,6 +43,8 @@ public:
 
   bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
   bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
+  bool insertColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
+  bool removeColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
 
   int rowCount(const QModelIndex &parent) const;
   int columnCount(const QModelIndex &parent) const;

@@ -764,16 +764,8 @@ void KVocTrainApp::slotAppendLanguage(int index)
     return;
   }
 
-  m_doc->appendIdentifier("");
-  int num = m_doc->numEntries() - 1;
-  for (int i = 0; i < (int) num; i++) {
-    KEduVocExpression *expr = m_doc->entry(i);
-    expr->setType (num, expr->type(0));
-  }
-
-  m_doc->setIdentifier(m_doc->numIdentifiers() - 1, m_languages.shortId(index));
-  m_tableModel->reset();
-  m_doc->setModified();
+  m_tableModel->insertColumns(m_tableModel->columnCount(QModelIndex()), 1, QModelIndex());
+  m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
 }
 
 
@@ -786,23 +778,19 @@ void KVocTrainApp::slotAssignLanguage(QAction * action)
     return;
 
   m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
-
-  slotStatusMsg(IDS_DEFAULT);
 }
 
 
 void KVocTrainApp::slotRemoveLanguage(int index)
 {
-  QString name = m_tableModel->headerData(index + KV_EXTRA_COLS + 1, Qt::Horizontal, Qt::DisplayRole).toString();
+  int column = index + KV_EXTRA_COLS + 1;
+  QString name = m_tableModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
 
   QString msg = i18n("You are about to delete a language permanently.\nDo you really want to delete '%1'?", name);
 
   int result = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
-  if (result == KMessageBox::Continue) {
-    m_doc->removeIdentifier(index + 1);
-    m_tableModel->reset();
-    m_doc->setModified();
-  }
+  if (result == KMessageBox::Continue)
+    m_tableModel->removeColumns(column, 1, QModelIndex());
 }
 
 
