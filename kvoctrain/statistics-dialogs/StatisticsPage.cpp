@@ -38,31 +38,46 @@
 #define SIZE_HEIGHT        22
 #define SIZE_GRADE         100+PIX_SHIFT
 #define SIZE_COUNT         70
-#define SIZE_LESSON        300
+#define SIZE_LESSON        200
 
 #define TB_FGRADE          0
 #define TB_TGRADE          1
 #define TB_COUNT           2
 #define TB_LESSON          3
+#define TB_RESET           4
 
-StatisticsPage::StatisticsPage(int col, KEduVocDocument *_doc, QWidget *parent) : QWidget(parent), doc(_doc)
+StatisticsPage::StatisticsPage(int col, KEduVocDocument * doc, QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
-  StatListView->setColumnWidth(0, SIZE_GRADE + 10);
-  StatListView->setColumnWidth(1, SIZE_GRADE + 10);
-  StatListView->setColumnWidth(2, SIZE_COUNT);
-  StatListView->setColumnWidth(3, SIZE_LESSON);
 
-  QStringList lesson = doc->lessonDescriptions();
+  m_doc = doc;
+  m_translation = col;
+
+  StatListView->setColumnWidth(TB_FGRADE, SIZE_GRADE + 10);
+  StatListView->setColumnWidth(TB_TGRADE, SIZE_GRADE + 10);
+  StatListView->setColumnWidth(TB_COUNT, SIZE_COUNT);
+  StatListView->setColumnWidth(TB_LESSON, SIZE_LESSON);
+  StatListView->setColumnWidth(TB_RESET, SIZE_COUNT);
+
+  setupData();
+
+  StatListView->sortItems(TB_LESSON, Qt::Ascending);
+  connect(StatListView, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
+}
+
+
+void StatisticsPage::setupData()
+{
+  QStringList lesson = m_doc->lessonDescriptions();
 
   fsc.resize(lesson.size() + 1);
   tsc.resize(lesson.size() + 1);
 
   // accumulate numbers of grades per lesson
-  for (int i = 0; i < (int) doc->numEntries(); i++) {
-    KEduVocExpression *expr = doc->entry(i);
-    int fg = qMin(KV_MAX_GRADE, (int) expr->grade(col, false));
-    int tg = qMin(KV_MAX_GRADE, (int) expr->grade(col, true));
+  for (int i = 0; i < (int) m_doc->numEntries(); i++) {
+    KEduVocExpression *expr = m_doc->entry(i);
+    int fg = qMin(KV_MAX_GRADE, (int) expr->grade(m_translation, false));
+    int tg = qMin(KV_MAX_GRADE, (int) expr->grade(m_translation, true));
     int l = expr->lesson();
     if (l >= 0 && l <= (int) lesson.size() ) {
       fsc[l].grade[fg]++;
@@ -71,13 +86,8 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument *_doc, QWidget *parent) 
       tsc[l].num++;
     }
   }
-  setupPixmaps();
-}
 
-
-void StatisticsPage::setupPixmaps()
-{
-  // create pixmaps with bar charts of numbers of grades
+   // create pixmaps with bar charts of numbers of grades
   for (int entry = 0; entry < (int) fsc.size(); entry++) {
     QPainter p;
     QColor color;
@@ -187,7 +197,7 @@ void StatisticsPage::setupPixmaps()
           x2 += widths[j];
           p.fillRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1, color);
           p.drawRect(x + PIX_SHIFT, 1, x2 - x, SIZE_HEIGHT - 1);
-          x = x2-1;
+          x = x2 - 1;
         }
       }
     }
@@ -196,21 +206,24 @@ void StatisticsPage::setupPixmaps()
       p.drawRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1);
     }
     p.end();
-    to_pix.push_back(tpix);
+    to_pix.append(tpix);
   }
 
+  StatListView->clear();
   // setup rows with pixmaps and strings
   QTreeWidgetItem *listItem = 0;
 
-  for (int i = 0; i <= (int) doc->lessonDescriptions().count(); i++) {
+  for (int i = 0; i <= (int) m_doc->lessonDescriptions().count(); i++) {
     listItem = new QTreeWidgetItem(StatListView);
+    listItem->setFlags(listItem->flags() | Qt::ItemIsUserCheckable);
+    listItem->setCheckState(TB_RESET, Qt::Unchecked);
     listItem->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
     listItem->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
     listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
     listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
     listItem->setText(TB_COUNT, QString::number(tsc[i].num));
-    listItem->setText(TB_LESSON, doc->lessonDescription(i));
-
+    listItem->setText(TB_LESSON, m_doc->lessonDescription(i));
+    listItem->setData(TB_LESSON, Qt::UserRole, QVariant(i));
     StatListView->addTopLevelItem(listItem);
   }
 }
@@ -247,6 +260,19 @@ QString StatisticsPage::gradesToolTip(int level, bool reverse)
                          .toString());
 
   return result;
+}
+
+
+void StatisticsPage::slotCurrentItemChanged(QTreeWidgetItem * current, QTreeWidgetItem * previous)
+{
+  Q_UNUSED(previous);
+  StatListView->setCurrentItem(current, TB_RESET);
+}
+
+
+void StatisticsPage::resetStatistics()
+{
+  ///@todo implement me
 }
 
 #include "StatisticsPage.moc"

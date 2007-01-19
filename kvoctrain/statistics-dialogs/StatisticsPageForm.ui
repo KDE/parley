@@ -22,8 +22,14 @@
    </property>
    <item row="0" column="0" >
     <widget class="QTreeWidget" name="StatListView" >
+     <property name="tabKeyNavigation" >
+      <bool>false</bool>
+     </property>
      <property name="selectionMode" >
-      <enum>QAbstractItemView::NoSelection</enum>
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior" >
+      <enum>QAbstractItemView::SelectRows</enum>
      </property>
      <property name="rootIsDecorated" >
       <bool>false</bool>
@@ -34,8 +40,17 @@
      <property name="itemsExpandable" >
       <bool>false</bool>
      </property>
+     <property name="sortingEnabled" >
+      <bool>true</bool>
+     </property>
+     <property name="animated" >
+      <bool>false</bool>
+     </property>
+     <property name="allColumnsShowFocus" >
+      <bool>false</bool>
+     </property>
      <property name="columnCount" >
-      <number>4</number>
+      <number>5</number>
      </property>
      <column>
       <property name="text" >
@@ -55,6 +70,11 @@
      <column>
       <property name="text" >
        <string>Lesson</string>
+      </property>
+     </column>
+     <column>
+      <property name="text" >
+       <string>Reset</string>
       </property>
      </column>
     </widget>

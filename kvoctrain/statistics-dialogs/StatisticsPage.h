@@ -41,8 +41,13 @@ class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 public:
   StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
+  void resetStatistics();
+
+private slots:
+  void slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
+
 private:
-  void setupPixmaps();
+  void setupData();
   QString gradesToolTip(int level, bool reverse);
 
   struct stat_counter
@@ -61,7 +66,9 @@ private:
 
   QList<QPixmap> from_pix;
   QList<QPixmap> to_pix;
-  KEduVocDocument *doc;
+
+  KEduVocDocument * m_doc;
+  int m_translation;
 
   QVector<stat_counter> fsc;
   QVector<stat_counter> tsc;
