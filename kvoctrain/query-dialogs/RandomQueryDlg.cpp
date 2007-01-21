@@ -171,25 +171,30 @@ RandomQueryDlg::RandomQueryDlg(
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transCombos.append (new QComboBox (false, mw->TranslationFrame, QByteArray ("transCombo") + QByteArray().setNum (i)));
-      transCombos.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transCombos.at(i) -> sizePolicy().hasHeightForWidth()));
-      transCombos.at(i) -> setEditable (true);
-      transCombos.at(i) -> setInsertPolicy (QComboBox::NoInsert);
-      transCombos.at(i) -> setDuplicatesEnabled (false);
-      vb->addWidget(transCombos.at(i));
-      connect (transCombos.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
-      connect (transCombos.at(i) -> lineEdit(), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+      QComboBox * combo = new QComboBox (mw->TranslationFrame);
+      transCombos.append ( combo );
+      combo -> setObjectName (QString ("transCombo%1").arg(i));
+      combo -> setEditable(false);
+      combo -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, combo -> sizePolicy().hasHeightForWidth()));
+      combo -> setEditable (true);
+      combo -> setInsertPolicy (QComboBox::NoInsert);
+      combo -> setDuplicatesEnabled (false);
+      vb->addWidget(combo);
+      connect (combo, SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+      connect (combo -> lineEdit(), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
     }
   }
   else
   {
     for ( i = 0; i < fields; i ++ )
     {
-      transFields.append (new QLineEdit (mw->TranslationFrame, QByteArray ("transField") + QByteArray().setNum (i)));
-      transFields.at(i) -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, transFields.at(i) -> sizePolicy().hasHeightForWidth()));
-      vb->addWidget(transFields.at(i));
-      connect (transFields.at(i), SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
-      connect (transFields.at(i), SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
+      QLineEdit * line = new QLineEdit (mw->TranslationFrame);
+      transFields.append (line);
+      line -> setObjectName (QString ("transField%1").arg(i));
+      line -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, line -> sizePolicy().hasHeightForWidth()));
+      vb->addWidget(line);
+      connect (line, SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
+      connect (line, SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
     }
   }
 
@@ -325,6 +330,7 @@ void RandomQueryDlg::setQuery(QString org,
    if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
+       qtimer->setSingleShot(true);
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
@@ -332,7 +338,7 @@ void RandomQueryDlg::setQuery(QString org,
        timercount = mqtime;
        mw->timebar->setMaximum(timercount);
        mw->timebar->setValue(timercount);
-       qtimer->start(1000, true);
+       qtimer->start(1000);
      }
      else
        mw->timebar->setEnabled(false);
@@ -532,7 +538,7 @@ void RandomQueryDlg::timeoutReached()
    if (timercount > 0) {
      timercount--;
      mw->timebar->setValue(timercount);
-     qtimer->start(1000, true);
+     qtimer->start(1000);
    }
 
    if (timercount <= 0) {

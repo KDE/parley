@@ -50,8 +50,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
 
   if (header == KV_COL_LESS) {
     header_m = new QMenu();
-    header_m->insertItem(SmallIconSet("sort_incr"), i18n(SORT_ALPHA), (header << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(SmallIconSet("sort_num"), i18n(SORT_NUM), (header << 16) | IDH_SORT_COL_NUM);
+    header_m->insertItem(KIcon("sort_incr"), i18n(SORT_ALPHA), (header << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(KIcon("sort_num"), i18n(SORT_NUM), (header << 16) | IDH_SORT_COL_NUM);
 
     connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
@@ -95,8 +95,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   header_m = new QMenu();
 
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
-    header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
-    header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
+    header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
+    header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
     header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
     header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
     header_m->insertSeparator();
@@ -109,11 +109,11 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
     header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
     header_m->insertSeparator();
-    header_m->insertItem(SmallIconSet("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(SmallIconSet("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
+    header_m->insertItem(KIcon("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(KIcon("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
     header_m->insertSeparator();
     header_m->insertItem(i18n("Reset &Grades"), (header << 16) | IDH_RESET_GRADE);
-    header_m->insertItem(SmallIconSet("delete_table_col"), i18n("&Remove Column"), (header << 16) | IDH_REMOVE );
+    header_m->insertItem(KIcon("delete_table_col"), i18n("&Remove Column"), (header << 16) | IDH_REMOVE );
   }
   else {
     QMenu *query_m =  new QMenu();
@@ -141,7 +141,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
         query_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
       }
     }
-    header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
+    header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
     connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
     for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
@@ -157,7 +157,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
         multiple_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
       }
     }
-    header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
+    header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
     header_m->insertSeparator();
     header_m->insertItem(i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
     header_m->insertItem(i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
@@ -171,8 +171,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
     header_m->insertSeparator();
-    header_m->insertItem(SmallIconSet("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
-    header_m->insertItem(SmallIconSet("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
+    header_m->insertItem(KIcon("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
+    header_m->insertItem(KIcon("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
   }
 
   connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));

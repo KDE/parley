@@ -879,8 +879,8 @@ void KVocTrainApp::aboutToShowLearn()
     int j;
     header_m = new QMenu();
     if (header != 0 ) {
-      header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
-      header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
+      header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
+      header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
 
       header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
       header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
@@ -913,7 +913,7 @@ void KVocTrainApp::aboutToShowLearn()
         }
       }
 
-      header_m->insertItem(SmallIconSet("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
+      header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
       connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
@@ -930,7 +930,7 @@ void KVocTrainApp::aboutToShowLearn()
           multiple_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
         }
       }
-      header_m->insertItem(SmallIconSet("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
+      header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
       header_m->insertSeparator();
 
       header_m->insertItem(i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
@@ -961,8 +961,8 @@ void KVocTrainApp::aboutToShowLearn()
   }
 
   learn_menu->insertSeparator();
-  learn_menu->insertItem(SmallIconSet("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
-  learn_menu->insertItem(SmallIconSet("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
+  learn_menu->insertItem(KIcon("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
+  learn_menu->insertItem(KIcon("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
 
   learn_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
   learn_menu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);

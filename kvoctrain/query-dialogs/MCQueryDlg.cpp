@@ -123,6 +123,7 @@ void MCQueryDlg::setQuery(QString org,
    if (mqtime > 0) {
      if (qtimer == 0) {
        qtimer = new QTimer( this );
+       qtimer->setSingleShot(true);
        connect( qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()) );
      }
 
@@ -130,7 +131,7 @@ void MCQueryDlg::setQuery(QString org,
        timercount = mqtime;
        mw->timebar->setMaximum(timercount);
        mw->timebar->setValue(timercount);
-       qtimer->start(1000, true);
+       qtimer->start(1000);
      }
      else
        mw->timebar->setEnabled(false);
@@ -352,7 +353,7 @@ void MCQueryDlg::timeoutReached()
    if (timercount > 0) {
      timercount--;
      mw->timebar->setValue(timercount);
-     qtimer->start(1000, true);
+     qtimer->start(1000);
    }
 
    if (timercount <= 0) {
