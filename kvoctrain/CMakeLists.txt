@@ -8,6 +8,8 @@ add_subdirectory( kvt-core )
 add_subdirectory( examples )
 add_subdirectory( pics )
 
+add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
+
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/ )
 
 
