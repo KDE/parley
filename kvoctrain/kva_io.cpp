@@ -656,7 +656,7 @@ void KVocTrainApp::prepareProgressBar()
 {
   statusBar()->clearMessage();
   pbar = new QProgressBar(statusBar());
-  statusBar()->addWidget(pbar, 150, true);
+  statusBar()->addPermanentWidget(pbar, 150);
   pbar->show();
 }
 

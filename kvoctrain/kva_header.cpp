@@ -99,19 +99,19 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
     header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
     header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
     header_m->insertItem(i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
     header_m->insertItem(i18n("&Comparison Forms"), (header << 16) | IDH_START_ADJECTIVE);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
     header_m->insertItem(i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
     header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
     header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(KIcon("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(KIcon("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(i18n("Reset &Grades"), (header << 16) | IDH_RESET_GRADE);
     header_m->insertItem(KIcon("delete_table_col"), i18n("&Remove Column"), (header << 16) | IDH_REMOVE );
   }
@@ -158,11 +158,11 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
       }
     }
     header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
     header_m->insertItem(i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
     header_m->insertItem(i18n("&Comparison Training"), (header << 16) | IDH_START_ADJECTIVE);
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
     header_m->insertItem(i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
     header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
@@ -170,7 +170,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     connect (multiple_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-    header_m->insertSeparator();
+    header_m->addSeparator();
     header_m->insertItem(KIcon("sort_incr"), i18n(SORT_ALPHA), (header+KV_EXTRA_COLS << 16) | IDH_SORT_COL_ALPHA);
     header_m->insertItem(KIcon("set_language"), i18n("Set &Language"), langs_m, (2 << 16) | IDH_NULL);
   }

@@ -118,7 +118,7 @@ void KVTTableView::print(KPrinter * pPrinter)
     {
       int rh = rowHeight(rc);
 
-      painter.resetXForm();
+      painter.resetMatrix();
       painter.setFont(Prefs::tableFont());
       painter.translate(marg, tPos);
 
@@ -165,7 +165,7 @@ void KVTTableView::newPage(QPainter & painter, int res, int startCol, int endCol
   int cw;
   QRect cr;
   QRect w = painter.window();
-  painter.resetXForm();
+  painter.resetMatrix();
   painter.setFont(KGlobalSettings::generalFont());
   /// @todo improve i18n("KVocTrain - %1", m_doc->title())
   painter.drawText(marg, marg - 20, KInstance::caption() );
@@ -184,7 +184,7 @@ void KVTTableView::newPage(QPainter & painter, int res, int startCol, int endCol
 
 void KVTTableView::endOfPage(QPainter & painter, int pageNum, int res)
 {
-  painter.resetXForm();
+  painter.resetMatrix();
   painter.setFont(KGlobalSettings::generalFont());
   QRect w = painter.window();
   QRect r = painter.boundingRect(0, 0, 0, 0, Qt::AlignLeft, QString::number(pageNum));
