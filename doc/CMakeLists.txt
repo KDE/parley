@@ -1,5 +1,5 @@
 ########### install files ###############
-#KDE_MANS = AUTO
+
 #
 #check-local:
 #	$(MEINPROC) --check index.docbook
