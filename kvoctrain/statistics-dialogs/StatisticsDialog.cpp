@@ -72,14 +72,14 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocumen
 
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 KVTStatisticsDialog::~KVTStatisticsDialog()
 {
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 #include "StatisticsDialog.moc"

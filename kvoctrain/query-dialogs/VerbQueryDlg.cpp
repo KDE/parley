@@ -88,7 +88,7 @@ VerbQueryDlg::VerbQueryDlg
 
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("VerbQueryDlg");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 
@@ -96,7 +96,7 @@ VerbQueryDlg::~ VerbQueryDlg( )
 {
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("VerbQueryDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 

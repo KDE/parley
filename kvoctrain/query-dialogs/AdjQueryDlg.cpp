@@ -78,7 +78,7 @@ AdjQueryDlg::AdjQueryDlg
 
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("AdjQueryDlg");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 
@@ -86,7 +86,7 @@ AdjQueryDlg::~AdjQueryDlg()
 {
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("AdjQueryDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 

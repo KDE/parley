@@ -79,7 +79,7 @@ MCQueryDlg::MCQueryDlg(
 
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("MCQueryDlg");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 
@@ -87,7 +87,7 @@ MCQueryDlg::~MCQueryDlg()
 {
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("MCQueryDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 

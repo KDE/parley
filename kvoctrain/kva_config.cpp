@@ -36,7 +36,7 @@
 
 void KVocTrainApp::saveOptions()
 {
-  fileOpenRecent->saveEntries(KGlobal::config(), "Recent Files");
+  fileOpenRecent->saveEntries(KGlobal::config().data(), "Recent Files");
 
   if (m_tableView)
   {
@@ -64,7 +64,7 @@ void KVocTrainApp::saveLanguages()
 
 void KVocTrainApp::readOptions()
 {
-  fileOpenRecent->loadEntries(KGlobal::config(), "Recent Files");
+  fileOpenRecent->loadEntries(KGlobal::config().data(), "Recent Files");
   readLanguages();
 }
 
