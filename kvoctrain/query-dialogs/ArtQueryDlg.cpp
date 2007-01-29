@@ -72,17 +72,17 @@ ArtQueryDlg::ArtQueryDlg
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("ArtQueryDlg");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 
 ArtQueryDlg::~ArtQueryDlg()
 {
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("ArtQueryDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 

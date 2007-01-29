@@ -70,16 +70,16 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocumen
     topLayout->addWidget(spage);
   }
 
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 }
 
 KVTStatisticsDialog::~KVTStatisticsDialog()
 {
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 #include "StatisticsDialog.moc"

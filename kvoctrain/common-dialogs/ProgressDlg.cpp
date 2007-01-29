@@ -28,7 +28,7 @@
 #include <QProgressBar>
 #include <QLabel>
 
-#include <kinstance.h>
+#include <kcomponentdata.h>
 #include <KDialog>
 #include <kstandarddirs.h>
 

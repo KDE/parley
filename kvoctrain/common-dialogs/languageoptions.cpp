@@ -1002,13 +1002,13 @@ KVTLanguages LanguageOptions::getLangSet () const
 void LanguageOptions::loadCountryData()
 {
   // temperary use of our locale as the global locale
-  KLocale *lsave = KGlobal::_locale;
+  KLocale *lsave = KGlobal::locale();
   QString curr_lang = lsave->language();
 
 //  KLocale locale("kvoctrain");
   KLocale locale(QString::null);
   locale.setLanguage(curr_lang);
-  KGlobal::_locale = &locale;
+  KGlobal::setLocale(&locale);
 
   QString sub = QString::fromLatin1("l10n/");
   QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop"));
@@ -1115,7 +1115,7 @@ void LanguageOptions::loadCountryData()
   }
 
   // restore the old global locale
-  KGlobal::_locale = lsave;
+  KGlobal::setLocale(lsave);
 }
 
 

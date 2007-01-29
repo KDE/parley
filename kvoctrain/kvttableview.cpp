@@ -13,7 +13,7 @@
 #include <QPainter>
 #include <QResizeEvent>
 
-#include <KInstance>
+#include <KComponentData>
 #include <KGlobalSettings>
 
 #include "kvttableview.h"
@@ -168,7 +168,7 @@ void KVTTableView::newPage(QPainter & painter, int res, int startCol, int endCol
   painter.resetMatrix();
   painter.setFont(KGlobalSettings::generalFont());
   /// @todo improve i18n("KVocTrain - %1", m_doc->title())
-  painter.drawText(marg, marg - 20, KInstance::caption() );
+  painter.drawText(marg, marg - 20, KGlobal::caption() );
   painter.translate(marg, marg);
   painter.drawLine(0 , 0, 0, hh);
   for (int i = startCol; i <= endCol && i < model()->columnCount(QModelIndex()); ++i)

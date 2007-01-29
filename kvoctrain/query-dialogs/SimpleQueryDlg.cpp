@@ -61,9 +61,9 @@ SimpleQueryDlg::SimpleQueryDlg(
   kv_doc = 0;
   qtimer = 0;
 
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("SimpleQueryDlg");
-  restoreDialogSize(cfg);
+  restoreDialogSize(cfg.data());
 
   setQuery (querytype, entry, column, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
@@ -74,9 +74,9 @@ SimpleQueryDlg::SimpleQueryDlg(
 
 SimpleQueryDlg::~ SimpleQueryDlg()
 {
-  KConfig *cfg = KGlobal::config();
+  KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("SimpleQueryDialog");
-  KDialog::saveDialogSize(cfg);
+  KDialog::saveDialogSize(cfg.data());
 }
 
 
