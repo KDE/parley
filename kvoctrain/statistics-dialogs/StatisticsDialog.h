@@ -37,6 +37,10 @@ class KVTStatisticsDialog : public KPageDialog
 public:
   KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent = NULL);
   ~KVTStatisticsDialog();
+
+protected slots:
+  void slotApply();
+  void accept();
 };
 
 #endif // StatisticsDialog_included

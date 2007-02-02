@@ -39,8 +39,8 @@
 KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Statistics"));
-  setButtons(Close);
-  setDefaultButton(Close);
+  setButtons(Ok | Apply | Cancel);
+  setDefaultButton(Ok);
   setModal(true);
   setFaceType(KPageDialog::Tabbed);
   QFrame * page;
@@ -70,6 +70,8 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocumen
     topLayout->addWidget(spage);
   }
 
+  connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
   restoreDialogSize(cfg.data());
@@ -80,6 +82,18 @@ KVTStatisticsDialog::~KVTStatisticsDialog()
   KSharedConfig::Ptr cfg = KGlobal::config();
   cfg->setGroup("StatisticsDialog");
   KDialog::saveDialogSize(cfg.data());
+}
+
+void KVTStatisticsDialog::slotApply()
+{
+  ///@todo implement me
+}
+
+
+void KVTStatisticsDialog::accept()
+{
+  slotApply();
+  KPageDialog::accept();
 }
 
 #include "StatisticsDialog.moc"
