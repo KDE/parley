@@ -273,7 +273,8 @@ void StatisticsPage::slotCurrentItemChanged(QTreeWidgetItem * current, QTreeWidg
 void StatisticsPage::resetStatistics()
 {
   for (int i = 0; i < StatListView->topLevelItemCount(); i++)
-    m_doc->resetEntry(m_translation, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
+    if (StatListView->topLevelItem(i)->checkState(TB_RESET) == Qt::Checked)
+      m_doc->resetEntry(m_translation, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
 }
 
 #include "StatisticsPage.moc"

@@ -37,7 +37,7 @@ public:
   KVTTableModel(QObject *parent = 0);
 
   void setDocument(KEduVocDocument * doc);
-  KEduVocDocument * document() {return m_doc;}
+  KEduVocDocument * document() const {return m_doc;}
 
   void setLanguages(const KVTLanguages & languages);
 
@@ -63,6 +63,7 @@ private:
   KVTLanguages m_languages;
 
   friend class KVocTrainApp;
+  friend class KVTStatisticsDialog;
 };
 
 #endif

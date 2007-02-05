@@ -278,15 +278,6 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
     }
     break;
 
-    case IDH_RESET_GRADE: {
-      QString from = header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier();
-      if (!m_languages.findLongId(from).isEmpty())
-        from = m_languages.findLongId(from);
-      QString msg = i18n("Resets all properties for %1", from);
-      slotStatusHelpMsg(msg);
-    }
-    break;
-
     default:
       kError() << "KVocTrainApp::slotHeaderStatus: got unknown command :" << cmd << endl;
   }
@@ -405,37 +396,6 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
 
     case IDH_CREATE_LESSON:
       slotCreateLesson(header1);
-    break;
-
-    case IDH_RESET_GRADE: {
-      QString msg;
-      QString name;
-      QString format;
-
-      if (m_currentLesson == 0) {
-        name = m_doc->identifier(header1);
-        int i = m_languages.indexShortId(m_doc->identifier(header1));
-        if (i >= 0
-            && !m_languages.longId(i).isEmpty() )
-          name = m_languages.longId(i);
-
-        msg = i18n("You are about to reset the knowledge data of a "
-                   "whole language.\n\nDo you really want to reset \"%1\"?",
-                   name);
-      }
-      else {
-        name = m_lessonsComboBox->text(m_currentLesson);
-        msg = i18n("You are about to reset the knowledge data of a "
-                   "lesson.\n\nDo you really want to reset \"%1\"?", name);
-      }
-
-      int exit = KMessageBox::warningContinueCancel(this, msg, "", KGuiItem(i18n("Reset")));
-      if(exit==KMessageBox::Continue) {
-        m_doc->resetEntry (header1, m_currentLesson);
-        m_doc->setModified();
-        m_tableModel->reset();
-      }
-    }
     break;
 
     default:

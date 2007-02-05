@@ -34,15 +34,18 @@
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
 #include <kvtlanguages.h>
-#include <keduvocdocument.h>
+#include <kvttablemodel.h>
 
-KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
+KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
 {
   setCaption(i18n("Document Statistics"));
   setButtons(Ok | Apply | Cancel);
   setDefaultButton(Ok);
   setModal(true);
   setFaceType(KPageDialog::Tabbed);
+
+  m_model = model;
+
   QFrame * page;
   QVBoxLayout * topLayout;
   StatisticsPage *spage;
@@ -52,22 +55,23 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocumen
   topLayout = new QVBoxLayout(page);
   topLayout->setMargin(0);
   topLayout->setSpacing(KDialog::spacingHint());
-  GenStatPage *gspage = new GenStatPage(doc, page);
+  GenStatPage *gspage = new GenStatPage(m_model->document(), page);
   topLayout->addWidget(gspage);
 
-  for (int i = 1; i < (int) doc->numIdentifiers(); i++)
+  for (int i = 1; i < (int) m_model->document()->numIdentifiers(); i++)
   {
-    QString s = languages.findLongId(doc->identifier(i));
-    if (s.isEmpty() )
-      s = doc->identifier(i);
+    QString s = languages.findLongId(m_model->document()->identifier(i));
+    if (s.isEmpty())
+      s = m_model->document()->identifier(i);
 
     page = new QFrame();
     addPage(page,s);
     topLayout = new QVBoxLayout(page);
     topLayout->setMargin(0);
     topLayout->setSpacing(KDialog::spacingHint());
-    spage = new StatisticsPage(i, doc, page);
+    spage = new StatisticsPage(i, m_model->document(), page);
     topLayout->addWidget(spage);
+    pageList.append(spage);
   }
 
   connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
@@ -86,7 +90,9 @@ KVTStatisticsDialog::~KVTStatisticsDialog()
 
 void KVTStatisticsDialog::slotApply()
 {
-  ///@todo implement me
+  foreach(StatisticsPage * page, pageList)
+    page->resetStatistics();
+  m_model->reset();
 }
 
 

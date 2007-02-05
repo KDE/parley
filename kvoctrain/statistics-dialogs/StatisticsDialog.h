@@ -28,19 +28,24 @@
 
 #include <kpagedialog.h>
 
-class KEduVocDocument;
+class KVTTableModel;
 class KVTLanguages;
+class StatisticsPage;
 
 class KVTStatisticsDialog : public KPageDialog
 {
   Q_OBJECT
 public:
-  KVTStatisticsDialog(KVTLanguages &languages, KEduVocDocument *doc, QWidget *parent = NULL);
+  KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent = NULL);
   ~KVTStatisticsDialog();
 
 protected slots:
   void slotApply();
   void accept();
+
+private:
+  KVTTableModel * m_model;
+  QList<StatisticsPage *> pageList;
 };
 
 #endif // StatisticsDialog_included

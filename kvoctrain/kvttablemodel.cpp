@@ -135,7 +135,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         result = m_doc->entry(index.row())->original();
       else {
         result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS);
-        kDebug() << "Displaying: " << m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS) << endl;
       }
       if (result.toString().isEmpty())
         result = "@empty@";

@@ -212,9 +212,9 @@ void KVocTrainApp::initActions()
 
   vocabShowStatistics = actionCollection()->addAction("vocab_show_statistics");
   vocabShowStatistics->setIcon(KIcon("statistics"));
-  vocabShowStatistics->setText(i18n("Show &Statistics..."));
+  vocabShowStatistics->setText(i18n("&Statistics..."));
   connect(vocabShowStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
-  vocabShowStatistics->setWhatsThis(i18n("Show statistics for the current vocabulary"));
+  vocabShowStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
   vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());
 

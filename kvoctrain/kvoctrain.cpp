@@ -646,7 +646,7 @@ void KVocTrainApp::slotCreateLesson(int header)
 
 void KVocTrainApp::slotShowStatistics()
 {
-  KVTStatisticsDialog sdlg(m_languages, m_doc, this);
+  KVTStatisticsDialog sdlg(m_languages, m_tableModel, this);
   sdlg.exec();
 }
 
