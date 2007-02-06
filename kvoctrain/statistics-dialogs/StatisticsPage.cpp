@@ -68,6 +68,13 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument * doc, QWidget *parent) 
 
 void StatisticsPage::setupData()
 {
+  //clear any old data
+  fsc.clear();
+  tsc.clear();
+  from_pix.clear();
+  to_pix.clear();
+  StatListView->clear();
+
   QStringList lesson = m_doc->lessonDescriptions();
 
   fsc.resize(lesson.size() + 1);
@@ -209,7 +216,6 @@ void StatisticsPage::setupData()
     to_pix.append(tpix);
   }
 
-  StatListView->clear();
   // setup rows with pixmaps and strings
   QTreeWidgetItem *listItem = 0;
 
@@ -275,6 +281,8 @@ void StatisticsPage::resetStatistics()
   for (int i = 0; i < StatListView->topLevelItemCount(); i++)
     if (StatListView->topLevelItem(i)->checkState(TB_RESET) == Qt::Checked)
       m_doc->resetEntry(m_translation, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
+
+  setupData();
 }
 
 #include "StatisticsPage.moc"
