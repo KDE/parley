@@ -514,6 +514,8 @@ void KVocTrainApp::fillLessonBox()
 
 void KVocTrainApp::loadDocProps()
 {
+  if (m_tableView)
+    m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
   fillLessonBox();
 
   random_expr1.clear();

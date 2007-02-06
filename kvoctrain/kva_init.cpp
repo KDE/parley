@@ -366,6 +366,7 @@ void KVocTrainApp::initView()
     cc = KV_COL_ORG;
 
   m_tableView->setCurrentIndex(m_tableModel->index(cr, cc));
+  m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
   setCaption(m_doc->URL().fileName(), false);
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
