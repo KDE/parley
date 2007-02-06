@@ -461,7 +461,8 @@ void KVocTrainApp::slotDocumentProperties()
     UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
     UsageManager::setUsageNames(new_usageStr);
 
-    m_doc->enableSorting(ddlg.getSorting());
+    m_doc->setSortingEnabled(ddlg.getSorting());
+    m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
     m_doc->setTypeDescriptions(new_typeStr);
     m_doc->setTenseDescriptions(new_tenseStr);
     m_doc->setUsageDescriptions(new_usageStr);
