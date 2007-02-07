@@ -25,8 +25,6 @@
 #ifndef KVOCTRAINDOC_H
 #define KVOCTRAINDOC_H
 
-#include <config.h>
-
 #include <QObject>
 #include <QTextStream>
 

@@ -27,8 +27,6 @@
 #ifndef KVOCTRAIN_H
 #define KVOCTRAIN_H
 
-#include <config.h>
-
 #include <QPainter>
 #include <QLabel>
 #include <QKeyEvent>

@@ -26,8 +26,6 @@
 #ifndef RESSOURCE_H
 #define RESSOURCE_H
 
-#include <config.h>
-
 ///////////////////////////////////////////////////////////////////
 // kv_resource.h  -- contains macros used for commands
 #define KV_EXTRA_COLS    2   // add col for lesson number
