@@ -49,8 +49,8 @@ void KVocTrainApp::saveOptions()
 
 void KVocTrainApp::saveLanguages()
 {
-  Prefs::setNumLangSet(m_languages.size());
-  for (int i = 0 ; i < (int) m_languages.size(); i++)
+  Prefs::setNumLangSet(m_languages.count());
+  for (int i = 0 ; i < m_languages.count(); i++)
   {
     LanguageSettings languageSettings(QString::number(i));
     languageSettings.setShortId(m_languages.shortId(i));

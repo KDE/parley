@@ -47,7 +47,7 @@ public:
 
   void addLanguage(QString shortId, QString longId, QString pixmapFile, const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
 
-  unsigned int size() const { return m_languages.size(); }
+  int count() const { return m_languages.count(); }
   void erase(int idx);
   void clear();
 

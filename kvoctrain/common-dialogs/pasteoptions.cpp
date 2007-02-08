@@ -96,7 +96,7 @@ void PasteOptions::fillWidgets()
     OrderList->insertItem(codename);
   }
   // any new languages to add to the listbox?
-  for (int i = 0; i < (int) m_langSet.size(); i++)
+  for (int i = 0; i < (int) m_langSet.count(); i++)
   {
     bool found = false;
     for (int j = 0; j < (int) OrderList->count(); j++)
@@ -189,7 +189,7 @@ void PasteOptions::slotUseCurrentDocToggled(bool)
     OrderList->insertItem (m_langSet.findLongId(m_doc->identifier(i)));
 
   // any other languages to append besides those from doc?
-  for (int i = 0; i < (int) m_langSet.size(); i++)
+  for (int i = 0; i < (int) m_langSet.count(); i++)
   {
     bool found = false;
     for (int j = 0; j < (int) OrderList->count(); j++)
@@ -270,7 +270,7 @@ void PasteOptions::slotSyncPasteOrderList()
   }
 
   // language set contains new elements? append them
-  for (int i = 0; i < (int) m_langSet.size(); i++)
+  for (int i = 0; i < (int) m_langSet.count(); i++)
   {
     bool found = false;
     for (int j = 0; j < (int) OrderList->count(); j++)

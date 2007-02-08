@@ -752,7 +752,7 @@ void KVocTrainApp::slotApplyPreferences()
 
 void KVocTrainApp::slotAppendLanguage(int index)
 {
-  if (index >= m_languages.size()){
+  if (index >= m_languages.count()){
 
     QString msg = i18n("To add a language which is not listed in the menu, you must first define its properties in the "
                        "general options dialog.\n\nWould you like to add a new language?");
@@ -773,7 +773,7 @@ void KVocTrainApp::slotAssignLanguage(QAction * action)
   int column = qvariant_cast<QPoint>(action->data()).x() + KV_EXTRA_COLS;
   int index  = qvariant_cast<QPoint>(action->data()).y();
 
-  if (index >= (int) m_languages.size())
+  if (index >= (int) m_languages.count())
     return;
 
   m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
@@ -856,7 +856,7 @@ void KVocTrainApp::aboutToShowLearn()
   learn_menu->clear();
 
   QList<QString> set_names;
-  for (int i = 0; i < (int) m_languages.size(); i++) {
+  for (int i = 0; i < (int) m_languages.count(); i++) {
     if(m_languages.longId(i).isEmpty() )
       set_names.push_back(m_languages.shortId(i));
     else
@@ -975,7 +975,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
     vocabAppendLanguage->removeAllActions();
 
     QStringList names;
-    for (int i = 0; i < (int) m_languages.size(); i++)
+    for (int i = 0; i < m_languages.count(); i++)
     {
       if(m_languages.longId(i).isEmpty() )
         names.append(m_languages.shortId(i));
@@ -985,7 +985,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
 
     QAction *action = 0;
 
-    for (int i = 0; i < (int) m_languages.size(); i++)
+    for (int i = 0; i < m_languages.count(); i++)
     {
       if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
         action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], vocabAppendLanguage->selectableActionGroup());
@@ -1018,7 +1018,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
     //QMenu * set_m = vocabSetLanguage->menu();
 
     QStringList names;
-    for (int i = 0; i < (int) m_languages.size(); i++)
+    for (int i = 0; i < m_languages.count(); i++)
     {
       if(m_languages.longId(i).isEmpty() )
         names.append(m_languages.shortId(i));
@@ -1042,7 +1042,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
       connect(selAction, SIGNAL(triggered(QAction *)), this, SLOT(slotAssignLanguage(QAction *)));
       vocabSetLanguage->addAction(selAction);
 
-      for (int i = 0; i < (int) m_languages.size(); i++)
+      for (int i = 0; i < m_languages.count(); i++)
       {
         if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
           action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], selAction->selectableActionGroup());

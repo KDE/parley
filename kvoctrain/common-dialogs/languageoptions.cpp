@@ -705,7 +705,7 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
 
   b_langNew->setEnabled(false); // activate after data is entered
 
-  for (int i = 0; i < (int) m_langSet.size() && i < MAX_LANGSET; i++)
+  for (int i = 0; i < (int) m_langSet.count() && i < MAX_LANGSET; i++)
     d_shortName->addItem (m_langSet.shortId(i));
 
   enableLangWidgets();
@@ -850,7 +850,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 {
    int i = 0;
    QString id = _id.simplified();
-   if (d_shortName->count() > (int) m_langSet.size() )
+   if (d_shortName->count() > (int) m_langSet.count() )
    {
      // avoid duplicates in language code
      for (i = 0; i < d_shortName->count(); i++)
@@ -868,7 +868,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
          return;
        }
 
-     if (d_shortName->count() > (int) m_langSet.size() && m_langSet.size() < MAX_LANGSET )
+     if (d_shortName->count() > (int) m_langSet.count() && m_langSet.count() < MAX_LANGSET )
      {
        m_langSet.addLanguage(id, "", "");
        emit widgetModified();
@@ -916,7 +916,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
 void LanguageOptions::slotLangChanged(const QString& s)
 {
-  if (d_shortName->count() != 0 && d_shortName->currentIndex() < (int) m_langSet.size())
+  if (d_shortName->count() != 0 && d_shortName->currentIndex() < m_langSet.count())
   {
     m_langSet.setLongId(s, d_shortName->currentIndex());
     emit widgetModified();
@@ -927,7 +927,7 @@ void LanguageOptions::slotLangChanged(const QString& s)
 
 void LanguageOptions::slotShort2Changed(const QString& s)
 {
-  if (d_shortName->count() != 0 && d_shortName->currentIndex() < (int) m_langSet.size())
+  if (d_shortName->count() != 0 && d_shortName->currentIndex() < m_langSet.count())
   {
     m_langSet.setShortId2(s, d_shortName->currentIndex());
     emit widgetModified();
@@ -956,7 +956,7 @@ bool LanguageOptions::setPixmap(QString pm)
 
 void LanguageOptions::slotPixmapClicked()
 {
-  if (m_langSet.size() > 0 )
+  if (m_langSet.count() > 0 )
   {
     if (m_lastPix.isNull() || QPixmap(m_lastPix).isNull())
     {
@@ -1181,7 +1181,7 @@ void LanguageOptions::createISO6391Menus()
 {
   // To have it sorted by name
   QMap<QString, int> languages;
-  for (unsigned id = 0; id < global_langset.size(); ++id)
+  for (int id = 0; id < global_langset.count(); ++id)
   {
     QString s = global_langset.longId(id);
     languages.insert(s, id);
@@ -1214,7 +1214,7 @@ void LanguageOptions::createISO6391Menus()
 
 void LanguageOptions::slotLangFromISO6391Activated(int id)
 {
-   if (id < (int)global_langset.size())
+   if (id < global_langset.count())
    {
      QString shortid = global_langset.shortId(id);
 
@@ -1260,9 +1260,9 @@ bool LanguageOptions::isDefault()
 
 void LanguageOptions::updateSettings()
 {
-  Prefs::setNumLangSet(m_langSet.size());
+  Prefs::setNumLangSet(m_langSet.count());
 
-  for (int i = 0 ; i < (int) m_langSet.size(); i++)
+  for (int i = 0 ; i < (int) m_langSet.count(); i++)
   {
     LanguageSettings languageSettings(QString::number(i));
     languageSettings.setShortId(m_langSet.shortId(i));

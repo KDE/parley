@@ -73,14 +73,14 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   QMenu *langs_m = new QMenu();
   // hack: ID => header-id + language
 
-  for (int i = 0; i < (int) m_languages.size(); i++) {
+  for (int i = 0; i < m_languages.count(); i++) {
     if(m_languages.longId(i).isEmpty() )
       names.push_back(m_languages.shortId(i));
     else
       names.push_back(m_languages.longId(i));
   }
 
-  for (int i = 0; i < (int) m_languages.size(); i++) {
+  for (int i = 0; i < m_languages.count(); i++) {
     if(   !m_languages.pixmapFile(i).isEmpty()
        && !m_languages.longId(i).isEmpty() )
       langs_m->insertItem(QPixmap(m_languages.pixmapFile(i)), names[i],
