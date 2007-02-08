@@ -234,13 +234,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
            if (entryDlg->toBCountDirty() )
              expr->setBadCount(col, entryDlg->getToBCount(), true);
            ///@todo port
-           /*
            if (entryDlg->fromDateDirty() )
              expr->setQueryDate(col, entryDlg->getFromDate(), false);
            if (entryDlg->toDateDirty() )
              expr->setQueryDate(col, entryDlg->getToDate(), true);
-            */
-           /*if (entryDlg->usageDirty() ) {
+           if (entryDlg->usageDirty() ) {
              for (int j = 0; j <= expr->numTranslations(); j++)
                expr->setUsageLabel (j, entryDlg->getUsageLabel());
            }
