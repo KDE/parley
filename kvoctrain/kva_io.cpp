@@ -188,6 +188,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     m_doc = new KEduVocDocument(this);
     m_doc->open(url, false);
     m_tableModel->setDocument(m_doc);
+    m_lessonModel->setDocument(m_doc);
 
     removeProgressBar();
     loadDocProps();
@@ -196,6 +197,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
     m_tableModel->reset();
+
     if (m_tableView)
       m_tableView->adjustContent();
   }

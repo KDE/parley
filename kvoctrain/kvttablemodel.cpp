@@ -16,6 +16,8 @@
 #include <kglobal.h>
 #include <kiconloader.h>
 
+#include <kdialog.h>
+
 #include "kvttablemodel.h"
 #include "prefs.h"
 
@@ -405,5 +407,19 @@ void KVTTableModel::sort(int column, Qt::SortOrder order)
   reset();
 }
 
+void KVTTableModel::slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &)
+{
+  // Do we need this?
+}
 
+
+/**
+ * A lesson was changed. We are not interested in which one because we update everything.
+ * @param  
+ * @param  
+ */
+void KVTTableModel::slotLessonDataChanged(const QModelIndex &, const QModelIndex &)
+{
+  reset();
+}
 #include "kvttablemodel.moc"

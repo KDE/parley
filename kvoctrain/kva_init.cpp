@@ -27,6 +27,10 @@
 #include <QTimer>
 #include <QLabel>
 #include <QHeaderView>
+#include <QSplitter>
+#include <QListView>
+#include <QAbstractItemModel>
+#include <QVBoxLayout>
 
 #include <kactioncollection.h>
 #include <klineedit.h>
@@ -50,6 +54,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_doc = 0;
   m_tableView = 0;
   m_tableModel = 0;
+  m_lessonModel = 0;
   header_m = 0;
   btimer = 0;
   querymode = false;
@@ -340,19 +345,51 @@ void KVocTrainApp::initDoc()
 void KVocTrainApp::initModel()
 {
   m_tableModel = new KVTTableModel(this);
+  m_lessonModel = new KVTLessonModel(this);
   m_tableModel->setLanguages(m_languages);
 }
 
+
+/**
+ * This initializes the main widgets.
+ * The lesson selection on the left and the big table.
+ * 
+ */
 void KVocTrainApp::initView()
 {
+  // Parent of all
   QWidget * mainWidget = new QWidget(this);
   setCentralWidget(mainWidget);
   m_topLayout = new QVBoxLayout(mainWidget);
-  m_topLayout->setMargin(0);
+  m_topLayout->setMargin(KDialog::marginHint());
   m_topLayout->setSpacing(KDialog::spacingHint());
+
+  // box layout for the left side
+  QVBoxLayout *boxLayout = new QVBoxLayout(centralWidget());
+  boxLayout->setMargin(0);
+  boxLayout->setSpacing(KDialog::spacingHint());
+  // Widget to get boxLayout into the splitter
+  QWidget *left = new QWidget(centralWidget());
+  left->setLayout(boxLayout);
+  // This contains the lessons for now
+  m_lessonView = new QListView(left);
+  m_lessonView->setResizeMode(QListView::Adjust);
+  boxLayout->addWidget(m_lessonView);
+
+  m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
+  boxLayout->addWidget(m_buttonNewLesson);
+
+  // Splitter to have the lessons at the left.
+  QSplitter *splitter = new QSplitter(centralWidget());
+  m_topLayout->addWidget(splitter);
+  // list of lessons
+  splitter->addWidget(left);
+
+  // Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
-  m_topLayout->addWidget(m_tableView);
+
+  splitter->addWidget(m_tableView);
 
   m_tableView->setModel(m_tableModel);
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
@@ -373,4 +410,26 @@ void KVocTrainApp::initView()
   connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
+
+  // Get the lessons form vocab document
+  m_lessonModel->setDocument(m_doc);
+  // I need to initialize the lessons with the model as well...
+  m_lessonView->setModel(m_lessonModel);
+
+  // At the moment I prefer ExtendedSelection - feels more natural. But MultiSelection could be a possibility as well.
+  // Anyway, I want to be able to select more than one thing. Not any more. If I get checkboxes in there it will be better. If more than one selection were possible, what lesson would new vocab be added to?
+  // m_lessonView->setSelectionMode(QAbstractItemView::MultiSelection);
+
+  /** This is the way to get informed of changes in the lesson selection: */
+  //connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), m_tableModel, SLOT(slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &)));
+
+  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_tableModel, SLOT(slotLessonDataChanged(const QModelIndex &, const QModelIndex &)));
+
+  slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
+
+  /// @todo Make the size relation between left and table sensible. Save the size maybe???
+  // Well I have no clue how this works !?!? But it is better than the default.
+  QList <int> sizes;
+  sizes << 10 << 400;
+  splitter->setSizes(sizes);
 }

@@ -31,6 +31,8 @@
 #include <QLabel>
 #include <QKeyEvent>
 #include <QVBoxLayout>
+#include <QListView>
+#include <QPushButton>
 
 #include <kapplication.h>
 #include <kmainwindow.h>
@@ -44,6 +46,8 @@
 #include "kvttablemodel.h"
 #include "kvttableview.h"
 #include "kvtlanguages.h"
+
+#include "kvtlessonmodel.h"
 
 class QTimer;
 class KLined;
@@ -276,15 +280,22 @@ private:
 
   QMenu *learn_menu;
 
+  QPushButton *m_buttonNewLesson;
+
   /** m_tableView is the main widget which is the table that represents your working area. */
   KVTTableView *m_tableView;
+
+  /** I want to try a different lesson selection style. Very basic at the moment. */
+  QListView *m_lessonView;
 
   /** m_doc represents your vocabulary document. It keeps
     * information such as filename and does the serialization of your files.
     */
   KEduVocDocument *m_doc;
 
+  /** The models to represent the data of m_doc */
   KVTTableModel *m_tableModel;
+  KVTLessonModel *m_lessonModel;
 
   QList<QueryEntryRef> random_expr1;
   QList<QueryEntryRef> random_expr2;
