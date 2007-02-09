@@ -631,7 +631,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   if (res != QueryDlgBase::StopIt) {
     m_doc->setModified();
-    time_t now = time(0);
+
     ///@todo check the time functions here
     QDateTime dt;
     if (oindex == 0) {

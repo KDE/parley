@@ -36,7 +36,7 @@ class PhoneticEntryPage : public KDialog
   Q_OBJECT
 
 public:
-  PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0, const char *name = 0, bool modal = false);
+  PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0);
 
 signals:
   void charSelected(wchar_t);

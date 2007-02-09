@@ -174,13 +174,12 @@ void PhoneticButton::slotClicked()
 }
 
 
-PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent, const char *name, bool modal)
-  : KDialog(parent)
+PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent) : KDialog(parent)
 {
   setButtons(Close);
   setDefaultButton(Close);
   setCaption(i18n("Select Characters From Phonetic Alphabet"));
-  setModal(modal);
+  setModal(false);
   int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
   QFrame * dialogFrame = new QFrame(this);
   setMainWidget(dialogFrame);
