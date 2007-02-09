@@ -1289,13 +1289,14 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   }
 }
 
-void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex & current, const QModelIndex &previous)
+void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QModelIndex &previous)
 {
   Q_UNUSED(previous);
   if (current.row() == 0)
     m_sortFilterModel->setFilterFixedString("");
   else
     m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
+  m_tableModel->reset();
 }
 
 #include "kvoctrain.moc"

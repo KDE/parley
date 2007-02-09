@@ -29,15 +29,5 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
 {
   return m_sourceModel;
 }
-/*
-bool KVTSortFilterModel::filterAcceptsColumn(int source_column, const QModelIndex & source_parent) const
-{
-  return true;
-}
 
-bool KVTSortFilterModel::filterAcceptsRow(int source_row, const QModelIndex & source_parent) const
-{
-  return true;
-}
-*/
 #include "kvtsortfiltermodel.moc"

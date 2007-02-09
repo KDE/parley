@@ -66,12 +66,6 @@ private:
 
   friend class KVocTrainApp;
   friend class KVTStatisticsDialog;
-
-public slots:
-  // this one is rather useless
-  void slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &);
-  // here we get info that a lesson name has changed
-  void slotLessonDataChanged(const QModelIndex &, const QModelIndex &);
 };
 
 #endif

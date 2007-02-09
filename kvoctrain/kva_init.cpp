@@ -427,7 +427,7 @@ void KVocTrainApp::initView()
   /** This is the way to get informed of changes in the lesson selection: */
   connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
 
-  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_tableModel, SLOT(slotLessonDataChanged(const QModelIndex &, const QModelIndex &)));
+  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
 
   slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
 

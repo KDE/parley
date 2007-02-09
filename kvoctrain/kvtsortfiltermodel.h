@@ -31,10 +31,6 @@ public:
   void setSourceModel(KVTTableModel * sourceModel);
   KVTTableModel * sourceModel () const;
 
-protected:
-  //bool filterAcceptsColumn(int source_column, const QModelIndex & source_parent) const;
-  //bool filterAcceptsRow(int source_row, const QModelIndex & source_parent) const;
-
 private:
   KVTTableModel * m_sourceModel;
 };

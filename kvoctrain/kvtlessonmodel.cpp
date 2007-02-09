@@ -65,7 +65,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
   if (index.row() >= m_lessonList.count())
     return QVariant();
 
-  if (role == Qt::DisplayRole)
+  if (role == Qt::DisplayRole  || role == Qt::EditRole)
     return m_lessonList.at(index.row());
   else
     return QVariant();
@@ -110,7 +110,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   if (index.isValid() && role == Qt::EditRole) {
     QStringList list = m_doc->lessonDescriptions();
     list.replace(index.row() -1 , value.toString()); // Very ugly! -1 because we added All as 0. But using the m_doc entries is more sensible.
-    //kDebug() << list << endl;
+    kDebug() << list << endl;
     m_doc->setLessonDescriptions(list);
 
     // not only in m_doc, but here as well:
