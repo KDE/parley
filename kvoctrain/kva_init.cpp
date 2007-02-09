@@ -55,6 +55,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_tableView = 0;
   m_tableModel = 0;
   m_lessonModel = 0;
+  m_sortFilterModel = 0;
   header_m = 0;
   btimer = 0;
   querymode = false;
@@ -347,6 +348,7 @@ void KVocTrainApp::initModel()
   m_tableModel = new KVTTableModel(this);
   m_lessonModel = new KVTLessonModel(this);
   m_tableModel->setLanguages(m_languages);
+
 }
 
 
@@ -391,7 +393,9 @@ void KVocTrainApp::initView()
 
   splitter->addWidget(m_tableView);
 
-  m_tableView->setModel(m_tableModel);
+  m_sortFilterModel= new KVTSortFilterModel(this);
+  m_sortFilterModel->setSourceModel(m_tableModel);
+  m_tableView->setModel(m_sortFilterModel);
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
@@ -421,7 +425,7 @@ void KVocTrainApp::initView()
   // m_lessonView->setSelectionMode(QAbstractItemView::MultiSelection);
 
   /** This is the way to get informed of changes in the lesson selection: */
-  //connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), m_tableModel, SLOT(slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &)));
+  connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
 
   connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_tableModel, SLOT(slotLessonDataChanged(const QModelIndex &, const QModelIndex &)));
 

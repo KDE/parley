@@ -138,6 +138,7 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kvttablemodel.cpp
     kvttableview.cpp
     kvtlessonmodel.cpp
+    kvtsortfiltermodel.cpp
 )
 
 kde4_automoc(${kvoctrain_SRCS})

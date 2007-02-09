@@ -16,7 +16,7 @@
 
 #include <KPrinter>
 
-#include <kvttablemodel.h>
+#include <kvtsortfiltermodel.h>
 #include <kvttabledelegate.h>
 
 /**
@@ -28,7 +28,7 @@ Q_OBJECT
 public:
   KVTTableView(QWidget *parent = 0);
 
-  void setModel(KVTTableModel * model);
+  void setModel(KVTSortFilterModel * model);
   void print(KPrinter *pPrinter);
   void adjustContent();
 

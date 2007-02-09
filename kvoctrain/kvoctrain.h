@@ -44,6 +44,7 @@
 #include "query-dialogs/QueryDlgBase.h"
 #include "kvtnewstuff.h"
 #include "kvttablemodel.h"
+#include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "kvtlanguages.h"
 
@@ -143,6 +144,7 @@ public:
   void slotCreateLesson(int header);
   void slotCleanVocabulary ();
   void slotChooseLesson(int id);
+  void slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &);
 //  void slotSearchClip();
 
   void slotHeaderCallBack (int cmd_and_id);
@@ -296,6 +298,7 @@ private:
   /** The models to represent the data of m_doc */
   KVTTableModel *m_tableModel;
   KVTLessonModel *m_lessonModel;
+  KVTSortFilterModel *m_sortFilterModel;
 
   QList<QueryEntryRef> random_expr1;
   QList<QueryEntryRef> random_expr2;

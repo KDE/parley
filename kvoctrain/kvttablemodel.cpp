@@ -394,19 +394,19 @@ bool KVTTableModel::removeColumns(int column, int count, const QModelIndex & par
   m_doc->setModified(true);
   return true;
 }
-
+/*
 void KVTTableModel::sort(int column, Qt::SortOrder order)
 {
   kDebug() << "Sorting" << endl;
   switch (column) {
-    case KV_COL_LESS: /*sort lesson*/ ; break;
-    case KV_COL_MARK: /*do nothing*/  ; break;
+    case KV_COL_LESS: sort lesson ; break;
+    case KV_COL_MARK: do nothing  ; break;
     default:          m_doc->sort(column - KV_EXTRA_COLS, order); break;
   }
   m_doc->setModified(true);
   reset();
 }
-
+*/
 void KVTTableModel::slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &)
 {
   // Do we need this?

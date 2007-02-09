@@ -41,7 +41,7 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
 /*!
     \fn KVTTableView::setModel(KVTTableModel * model)
  */
-void KVTTableView::setModel(KVTTableModel * model)
+void KVTTableView::setModel(KVTSortFilterModel * model)
 {
   QTableView::setModel(model);
   setCurrentIndex(model->index(0, 0));
