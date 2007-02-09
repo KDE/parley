@@ -55,7 +55,7 @@ private:
   /** The data file */
   KEduVocDocument *m_doc;
   /** A copy of the lesson data - sadly... This is because we want our ALL and NO LESSON lessons, but not in there */
-  QStringList *lessonList;
+  QStringList m_lessonList;
 };
 
 #endif

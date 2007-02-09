@@ -29,10 +29,11 @@
 void KVTLessonModel::setDocument(KEduVocDocument * doc)
 {
   m_doc = doc;
-  lessonList = new QStringList(doc->lessonDescriptions());
-  lessonList->insert(0, i18n("All lessons"));
-  lessonList->append(i18n("<no lesson>"));
-  kDebug() << lessonList << endl;
+  m_lessonList.clear();
+  foreach(QString lesson, m_doc->lessonDescriptions())
+    m_lessonList.append(lesson);
+  m_lessonList.prepend(i18n("All Lessons"));
+  m_lessonList.append(i18n("<no lesson>"));
   reset();
   /** Create the additional entries: */
 }
@@ -45,7 +46,7 @@ void KVTLessonModel::setDocument(KEduVocDocument * doc)
  */
 int KVTLessonModel::rowCount(const QModelIndex &parent) const
 {
-  return lessonList->count();
+  return m_lessonList.count();
 }
 
 
@@ -61,11 +62,11 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
   if (!index.isValid())
     return QVariant();
 
-  if (index.row() >= lessonList->size())
+  if (index.row() >= m_lessonList.count())
     return QVariant();
 
   if (role == Qt::DisplayRole)
-    return lessonList->at(index.row());
+    return m_lessonList.at(index.row());
   else
     return QVariant();
 }
@@ -103,7 +104,7 @@ Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   /** The first is All, the last none */
-  if(index.row() == 0 || index.row() == lessonList->count() -1)
+  if(index.row() == 0 || index.row() == m_lessonList.count() -1)
     return false; // cannot change all/none
 
   if (index.isValid() && role == Qt::EditRole) {
@@ -113,7 +114,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     m_doc->setLessonDescriptions(list);
 
     // not only in m_doc, but here as well:
-    lessonList->replace(index.row() , value.toString());
+    m_lessonList.replace(index.row() , value.toString());
 
     emit dataChanged(index, index);
     return true;

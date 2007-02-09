@@ -688,6 +688,7 @@ void KVocTrainApp::createNewDocument()
     m_doc->appendEntry(new KEduVocExpression());
   connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   m_tableModel->setDocument(m_doc);
+  m_lessonModel->setDocument(m_doc);
   loadDocProps();
   m_tableModel->reset();
   if (m_tableView)
