@@ -345,7 +345,6 @@ private:
   QueryType        queryType;
   KRandomSequence  m_randomSequence;
   KVTNewStuff     *m_newStuff;
-  QVBoxLayout     *m_topLayout;
 };
 
 #endif // KVOCTRAIN_H

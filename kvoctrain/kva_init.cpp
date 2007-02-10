@@ -362,17 +362,17 @@ void KVocTrainApp::initView()
   // Parent of all
   QWidget * mainWidget = new QWidget(this);
   setCentralWidget(mainWidget);
-  m_topLayout = new QVBoxLayout(mainWidget);
-  m_topLayout->setMargin(KDialog::marginHint());
-  m_topLayout->setSpacing(KDialog::spacingHint());
+  QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
+  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setSpacing(KDialog::spacingHint());
 
-  // box layout for the left side
-  QVBoxLayout *boxLayout = new QVBoxLayout(centralWidget());
-  boxLayout->setMargin(0);
-  boxLayout->setSpacing(KDialog::spacingHint());
   // Widget to get boxLayout into the splitter
   QWidget *left = new QWidget(centralWidget());
-  left->setLayout(boxLayout);
+  // box layout for the left side
+  QVBoxLayout *boxLayout = new QVBoxLayout(left);
+  boxLayout->setMargin(0);
+  boxLayout->setSpacing(KDialog::spacingHint());
+
   // This contains the lessons for now
   m_lessonView = new QListView(left);
   m_lessonView->setResizeMode(QListView::Adjust);
@@ -383,7 +383,7 @@ void KVocTrainApp::initView()
 
   // Splitter to have the lessons at the left.
   QSplitter *splitter = new QSplitter(centralWidget());
-  m_topLayout->addWidget(splitter);
+  topLayout->addWidget(splitter);
   // list of lessons
   splitter->addWidget(left);
 
