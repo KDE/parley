@@ -247,23 +247,21 @@ QString StatisticsPage::gradesToolTip(int level, bool reverse)
                          "<table><tr><td>%1</td><td>%2</td></tr>"
                                 "<tr><td>%3</td><td>%4</td></tr>"
                                 "<tr><td>%5</td><td>%6</td></tr>"
-                                "<tr><td>%7</td><td>%8</td></tr>")
-                         .subs(i18n(KV_NORM_TEXT)).subs(QString::number(sc[level].grade[KV_NORM_GRADE]))
-                         .subs(i18n(KV_LEV1_TEXT)).subs(QString::number(sc[level].grade[KV_LEV1_GRADE]))
-                         .subs(i18n(KV_LEV2_TEXT)).subs(QString::number(sc[level].grade[KV_LEV2_GRADE]))
-                         .subs(i18n(KV_LEV3_TEXT)).subs(QString::number(sc[level].grade[KV_LEV3_GRADE]))
-                         .toString();
-
-  result.append(   ki18n(       "<tr><td>%9</td><td>%10</td></tr>"
+                                "<tr><td>%7</td><td>%8</td></tr>"
+                                "<tr><td>%9</td><td>%10</td></tr>"
                                 "<tr><td>%11</td><td>%12</td></tr>"
                                 "<tr><td>%13</td><td>%14</td></tr>"
                                 "<tr><td>%15</td><td>%16</td></tr>"
                                 "</table></html>")
-                         .subs(i18n(KV_LEV4_TEXT)).subs(QString::number(sc[level].grade[KV_LEV4_GRADE]))
-                         .subs(i18n(KV_LEV5_TEXT)).subs(QString::number(sc[level].grade[KV_LEV5_GRADE]))
-                         .subs(i18n(KV_LEV6_TEXT)).subs(QString::number(sc[level].grade[KV_LEV6_GRADE]))
-                         .subs(i18n(KV_LEV7_TEXT)).subs(QString::number(sc[level].grade[KV_LEV7_GRADE]))
-                         .toString());
+                         .subs(i18n(KV_NORM_TEXT)).subs(sc[level].grade[KV_NORM_GRADE])
+                         .subs(i18n(KV_LEV1_TEXT)).subs(sc[level].grade[KV_LEV1_GRADE])
+                         .subs(i18n(KV_LEV2_TEXT)).subs(sc[level].grade[KV_LEV2_GRADE])
+                         .subs(i18n(KV_LEV3_TEXT)).subs(sc[level].grade[KV_LEV3_GRADE])
+                         .subs(i18n(KV_LEV4_TEXT)).subs(sc[level].grade[KV_LEV4_GRADE])
+                         .subs(i18n(KV_LEV5_TEXT)).subs(sc[level].grade[KV_LEV5_GRADE])
+                         .subs(i18n(KV_LEV6_TEXT)).subs(sc[level].grade[KV_LEV6_GRADE])
+                         .subs(i18n(KV_LEV7_TEXT)).subs(sc[level].grade[KV_LEV7_GRADE])
+                         .toString();
 
   return result;
 }
