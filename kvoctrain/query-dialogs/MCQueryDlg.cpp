@@ -77,17 +77,15 @@ MCQueryDlg::MCQueryDlg(
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("MCQueryDlg");
-  restoreDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "MCQueryDlg");
+  restoreDialogSize( cg );
 }
 
 
 MCQueryDlg::~MCQueryDlg()
 {
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("MCQueryDialog");
-  KDialog::saveDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "MCQueryDlg");
+  KDialog::saveDialogSize( cg );
 }
 
 

@@ -76,16 +76,14 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel 
 
   connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
 
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("StatisticsDialog");
-  restoreDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "StatisticsDialog");
+  restoreDialogSize( cg );
 }
 
 KVTStatisticsDialog::~KVTStatisticsDialog()
 {
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("StatisticsDialog");
-  KDialog::saveDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "StatisticsDialog");
+  KDialog::saveDialogSize( cg );
 }
 
 void KVTStatisticsDialog::slotApply()

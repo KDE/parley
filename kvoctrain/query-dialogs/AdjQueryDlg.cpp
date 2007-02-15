@@ -76,17 +76,15 @@ AdjQueryDlg::AdjQueryDlg
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("AdjQueryDlg");
-  restoreDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "AdjQueryDlg");
+  restoreDialogSize( cg );
 }
 
 
 AdjQueryDlg::~AdjQueryDlg()
 {
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("AdjQueryDialog");
-  KDialog::saveDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "AdjQueryDlg");
+  KDialog::saveDialogSize( cg );
 }
 
 
