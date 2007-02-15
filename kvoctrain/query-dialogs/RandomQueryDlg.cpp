@@ -243,17 +243,13 @@ RandomQueryDlg::RandomQueryDlg(
       delete pdlg;
   }
 
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("RandomQueryDlg");
-  restoreDialogSize(cfg.data());
+  restoreDialogSize(KGlobal::config()->group( "RandomQueryDialog") );
 }
 
 
 RandomQueryDlg::~RandomQueryDlg()
 {
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("RandomQueryDialog");
-  KDialog::saveDialogSize(cfg.data());
+  KDialog::saveDialogSize(KGlobal::config()->group( "RandomQueryDialog") );
 }
 
 
