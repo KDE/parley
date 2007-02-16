@@ -107,12 +107,12 @@ public:
   * opened file by a temporary filename provided by KApplication.
   * @see KMainWindow#saveProperties
   */
-  virtual void saveProperties(KConfig* );
+  virtual void saveProperties(KConfigGroup & );
   /** reads the session config file and restores the application's state including the last opened files and documents by reading the
   * temporary files saved by saveProperties()
   * @see KMainWindow#readProperties
   */
-  virtual void readProperties(KConfig* );
+  virtual void readProperties(const KConfigGroup & );
 
  signals:
   void progressChanged (KEduVocDocument *, int curr_percent);
