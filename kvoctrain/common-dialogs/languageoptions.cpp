@@ -1027,7 +1027,7 @@ void LanguageOptions::loadCountryData()
     index = tag.lastIndexOf('.');
     if (index != -1) tag.truncate(index);
 
-    KSimpleConfig entry(*it);
+    KConfig entry(*it, KConfig::OnlyLocal);
     entry.setGroup(QString::fromLatin1("KCM Locale"));
     QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
 
@@ -1040,7 +1040,7 @@ void LanguageOptions::loadCountryData()
   int idx = 0;
   for (QStringList::ConstIterator sit = countrylist.begin(); sit != countrylist.end(); ++sit)
   {
-    KSimpleConfig entry(*sit);
+    KConfig entry(*sit, KConfig::OnlyLocal);
     entry.setGroup(QString::fromLatin1("KCM Locale"));
     QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
     QString submenu = entry.readEntry(QString::fromLatin1("Region"),QString());
