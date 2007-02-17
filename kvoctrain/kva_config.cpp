@@ -92,15 +92,15 @@ void KVocTrainApp::readLanguages()
     m_languages.addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
   }
 }
-void KVocTrainApp::saveProperties(KConfig *config )
+void KVocTrainApp::saveProperties(KConfigGroup &config )
 {
   saveOptions();
   if (m_doc) {
-    config->writeEntry("Filename", m_doc->URL().path());
-    config->writeEntry("Title", m_doc->title());
-    config->writeEntry("Modified", m_doc->isModified());
+    config.writeEntry("Filename", m_doc->URL().path());
+    config.writeEntry("Title", m_doc->title());
+    config.writeEntry("Modified", m_doc->isModified());
 
-    config->writeEntry("QueryMode", querymode);
+    config.writeEntry("QueryMode", querymode);
 
     QString filename=m_doc->URL().path();
     QString tempname = kapp->tempSaveName(filename);
@@ -110,13 +110,13 @@ void KVocTrainApp::saveProperties(KConfig *config )
 }
 
 
-void KVocTrainApp::readProperties(KConfig *config)
+void KVocTrainApp::readProperties(const KConfigGroup &config)
 {
-  querymode = config->readEntry("QueryMode", 0);
+  querymode = config.readEntry("QueryMode", 0);
 
-  QString filename = config->readEntry("Filename");
-  QString title = config->readEntry("Title");
-  bool modified = config->readEntry("Modified", false);
+  QString filename = config.readEntry("Filename");
+  QString title = config.readEntry("Title");
+  bool modified = config.readEntry("Modified", false);
   if( modified ){
     bool b_canRecover;
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
