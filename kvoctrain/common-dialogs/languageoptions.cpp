@@ -1028,8 +1028,8 @@ void LanguageOptions::loadCountryData()
     if (index != -1) tag.truncate(index);
 
     KConfig entry(*it, KConfig::OnlyLocal);
-    entry.setGroup(QString::fromLatin1("KCM Locale"));
-    QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
+    KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
+    QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
 
     regions.insert(tag, Region(name));
   }
@@ -1041,9 +1041,9 @@ void LanguageOptions::loadCountryData()
   for (QStringList::ConstIterator sit = countrylist.begin(); sit != countrylist.end(); ++sit)
   {
     KConfig entry(*sit, KConfig::OnlyLocal);
-    entry.setGroup(QString::fromLatin1("KCM Locale"));
-    QString name = entry.readEntry(QString::fromLatin1("Name"), i18n("without name"));
-    QString submenu = entry.readEntry(QString::fromLatin1("Region"),QString());
+    KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
+    QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
+    QString submenu = group.readEntry(QString::fromLatin1("Region"),QString());
 
     QString tag = *sit;
     int index = tag.lastIndexOf('/');
@@ -1054,7 +1054,7 @@ void LanguageOptions::loadCountryData()
     if (tag == "C")
       continue;
 
-    QStringList all_langs = entry.readEntry(QString::fromLatin1("Languages"),QString()).split(",", QString::SkipEmptyParts);
+    QStringList all_langs = group.readEntry(QString::fromLatin1("Languages"),QString()).split(",", QString::SkipEmptyParts);
     QList<int> langs;
 
     QString pixmap = *sit;
