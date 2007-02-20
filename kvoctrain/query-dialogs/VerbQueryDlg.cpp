@@ -86,17 +86,15 @@ VerbQueryDlg::VerbQueryDlg
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("VerbQueryDlg");
-  restoreDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "VerbQueryDialog");
+  restoreDialogSize( cg );
 }
 
 
 VerbQueryDlg::~ VerbQueryDlg( )
 {
-  KSharedConfig::Ptr cfg = KGlobal::config();
-  cfg->setGroup("VerbQueryDialog");
-  KDialog::saveDialogSize(cfg.data());
+  KConfigGroup cg( KGlobal::config(), "VerbQueryDialog");
+  KDialog::saveDialogSize( cg );
 }
 
 
