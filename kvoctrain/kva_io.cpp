@@ -44,22 +44,18 @@
 #include "common-dialogs/ProgressDlg.h"
 #include <prefs.h>
 
-#define PATTERN_ALL  I18N_NOOP("*|All Files (*)\n")
 #define PATTERN_ML   I18N_NOOP("*.kvtml|KDE Vocabulary Document (*.kvtml)\n")
 #define PATTERN_WQL  I18N_NOOP("*.wql|KWordQuiz Document (*.wql)\n")
 #define PATTERN_PAU  I18N_NOOP("*.xml.qz *.pau.gz|Pauker Lesson (*.xml.gz *.pau.gz)\n")
-#define PATTERN_LEX  I18N_NOOP("*.lex|Vocabulary Trainer 5.0 (*.lex)\n")
-#define PATTERN_VL   I18N_NOOP("*.vl|KVoclearn (*.vl)\n")
-#define PATTERN_QVO  I18N_NOOP("*.qvo|QVocab (*.qvo)\n")
 #define PATTERN_VOC  I18N_NOOP("*.voc|Vokabeltrainer (*.voc)\n")
 #define PATTERN_CSV  I18N_NOOP("*.csv|Text (*.csv)\n")
-#define PATTERN_VCB  I18N_NOOP("*.vocab|Vocabbox (*.vocab)\n")
+#define PATTERN_ALL  I18N_NOOP("*|All Files (*)")
 
 // we can read these
-#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_WQL)+i18n(PATTERN_PAU)+i18n(PATTERN_VCB)+i18n(PATTERN_VOC)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
+#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_WQL)+i18n(PATTERN_PAU)+i18n(PATTERN_VOC)+i18n(PATTERN_CSV)+i18n(PATTERN_ALL)
 
 // we can write these
-#define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_VCB)+i18n(PATTERN_CSV)+i18n(PATTERN_LEX)+i18n(PATTERN_ALL)
+#define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_CSV)+i18n(PATTERN_ALL)
 
 
 void KVocTrainApp::slotTimeOutBackup()
