@@ -9,4 +9,3 @@ DefaultApp=kvoctrain
 Icon=kvoctrain.xpm
 Type=MimeType
 Patterns=*.kvtml;
-MimeType=text/xml
