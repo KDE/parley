@@ -22,6 +22,8 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+#include <time.h>
+using namespace std;
 
 #include <klocale.h>
 #include <kconfig.h>

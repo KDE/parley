@@ -142,7 +142,7 @@
     </entry>
     <entry name="CurrentCol" type="Int">
       <label>Currently selected column</label>
-      <default code="true">KV_COL_ORG</default>
+      <default code="true">2</default>
     </entry>
     <entry name="CurrentRow" type="Int">
       <label>Currently selected row</label>

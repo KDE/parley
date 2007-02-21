@@ -18,6 +18,7 @@
 
 #include "kvttabledelegate.h"
 #include "kvttablemodel.h"
+#include "kv_resource.h"
 #include "prefs.h"
 
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)

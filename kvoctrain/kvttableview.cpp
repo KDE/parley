@@ -17,6 +17,7 @@
 #include <KGlobalSettings>
 
 #include "kvttableview.h"
+#include "kv_resource.h"
 #include "prefs.h"
 
 #define HEADER_MINSIZE   25

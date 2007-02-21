@@ -47,6 +47,7 @@
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "kvtlanguages.h"
+#include "kv_resource.h"
 
 #include "kvtlessonmodel.h"
 
