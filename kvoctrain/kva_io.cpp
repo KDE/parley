@@ -499,6 +499,43 @@ void KVocTrainApp::slotFileSave()
 }
 
 
+void KVocTrainApp::slotFileSaveAs()
+{
+  slotStatusMsg(i18n("Saving file under new filename..."));
+
+  if (entryDlg != 0)
+    commitEntryDlg(false);
+
+  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+
+  if (!url.isEmpty() ) {
+    QFileInfo fileinfo(url.path());
+    if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
+       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
+        url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel)
+    {
+    // do nothing
+    }
+    else
+
+    if (m_doc) {
+      QString msg = i18n("Saving %1", url.path());
+      slotStatusMsg(msg);
+
+      QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
+      ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
+      saveDocProps(m_doc);
+
+      prepareProgressBar();
+      m_doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
+      fileOpenRecent->addUrl(m_doc->URL());
+      removeProgressBar();
+    }
+  }
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+
 void KVocTrainApp::fillLessonBox()
 {
   m_lessonsComboBox->clear();
@@ -562,43 +599,6 @@ void KVocTrainApp::loadDocProps()
 void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
 {
   the_doc->setQueryIdentifier(act_query_org, act_query_trans);
-}
-
-
-void KVocTrainApp::slotFileSaveAs()
-{
-  slotStatusMsg(i18n("Saving file under new filename..."));
-
-  if (entryDlg != 0)
-    commitEntryDlg(false);
-
-  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
-
-  if (!url.isEmpty() ) {
-    QFileInfo fileinfo(url.path());
-    if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-       i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
-        url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel)
-    {
-    // do nothing
-    }
-    else
-
-    if (m_doc) {
-      QString msg = i18n("Saving %1", url.path());
-      slotStatusMsg(msg);
-
-      QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
-      ::rename (QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
-      saveDocProps(m_doc);
-
-      prepareProgressBar();
-      m_doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
-      fileOpenRecent->addUrl(m_doc->URL());
-      removeProgressBar();
-    }
-  }
-  slotStatusMsg(IDS_DEFAULT);
 }
 
 
