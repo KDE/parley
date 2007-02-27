@@ -97,8 +97,8 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
   if (header != KV_COL_ORG - KV_EXTRA_COLS ) {
     header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
     header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
-    header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
-    header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
+    header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->identifierCount() > 1);
+    header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->identifierCount() > 1);
     header_m->addSeparator();
     header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
     header_m->insertItem(i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
@@ -120,7 +120,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     QMenu *multiple_m =  new QMenu();
 
     names.clear();
-    for (int j = 1; j < (int) m_doc->numIdentifiers(); j++) {
+    for (int j = 1; j < (int) m_doc->identifierCount(); j++) {
      int i;
      if ((i = m_languages.indexShortId(m_doc->identifier(j))) >= 0)
        names.push_back(m_languages.longId(i));
@@ -128,7 +128,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
        names.push_back(m_doc->identifier(j));
     }
 
-    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
+    for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
       // show pixmap and long name if available
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
@@ -144,7 +144,7 @@ void KVocTrainApp::slotHeaderMenu(int header, int x, int y) /*FOLD00*/
     header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
     connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
     connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
+    for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
       // show pixmap and long name if available
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
@@ -221,7 +221,7 @@ void KVocTrainApp::slotHeaderStatus (int header_and_cmd) /*FOLD00*/
       QString msg;
       QString format;
 
-      if (m_doc->numIdentifiers() == 1) {
+      if (m_doc->identifierCount() == 1) {
         if (cmd == IDH_START_QUERY)
           msg = i18n("Creates and starts query to %1", to);
         else
@@ -302,12 +302,12 @@ void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
     break;
   }
 
-  if (header1 >= (int) m_doc->numIdentifiers()) {
+  if (header1 >= (int) m_doc->identifierCount()) {
     kError() << "header1 >= (int) doc->numIdentifiers()\n";
     return;
   }
 
-  if (header2 >= (int) m_doc->numIdentifiers()) {
+  if (header2 >= (int) m_doc->identifierCount()) {
     kError() << "header2 >= (int) doc->numIdentifiers()\n";
     return;
   }

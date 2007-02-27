@@ -50,7 +50,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langs
   QVBoxLayout *topLayout;
   LangPropPage *lpp;
 
-  for (int i = 0; i < (int) doc->numIdentifiers(); i++)
+  for (int i = 0; i < (int) doc->identifierCount(); i++)
   {
     QString s;
     if (i == 0)

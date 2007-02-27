@@ -483,7 +483,7 @@ void KVocTrainApp::slotDocPropsLang()
   DocPropsLangDlg ldlg(m_doc, m_languages);
 
   if (ldlg.exec() == QDialog::Accepted) {
-    for (int i = 0; i < m_doc->numIdentifiers(); i++) {
+    for (int i = 0; i < m_doc->identifierCount(); i++) {
       m_doc->setArticle(i, ldlg.getArticle(i));
       m_doc->setConjugation(i, ldlg.getConjugation(i));
     }
@@ -864,7 +864,7 @@ void KVocTrainApp::aboutToShowLearn()
   }
 
   QList<QString> main_names;
-  for (int j = 0; j < (int) m_doc->numIdentifiers(); j++) {
+  for (int j = 0; j < (int) m_doc->identifierCount(); j++) {
    int i;
    QString did = j == 0 ? m_doc->originalIdentifier() : m_doc->identifier(j);
    if ((i = m_languages.indexShortId(did)) >= 0)
@@ -873,7 +873,7 @@ void KVocTrainApp::aboutToShowLearn()
      main_names.push_back(did);
   }
 
-  for (int header = 0; header < (int) m_doc->numIdentifiers(); header++) {
+  for (int header = 0; header < (int) m_doc->identifierCount(); header++) {
     // show pixmap and long name if available
     int j;
     header_m = new QMenu();
@@ -881,8 +881,8 @@ void KVocTrainApp::aboutToShowLearn()
       header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
       header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
 
-      header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->numIdentifiers() > 1);
-      header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->numIdentifiers() > 1);
+      header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->identifierCount() > 1);
+      header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->identifierCount() > 1);
       header_m->addSeparator();
 
       header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
@@ -898,7 +898,7 @@ void KVocTrainApp::aboutToShowLearn()
       QMenu *query_m = new QMenu();
       QMenu *multiple_m = new QMenu();
 
-      for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
+      for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
         // show pixmap and long name if available
         int j;
         if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
@@ -916,7 +916,7 @@ void KVocTrainApp::aboutToShowLearn()
       connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
       connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
 
-      for (int i = 1; i < (int) m_doc->numIdentifiers(); i++) {
+      for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
         // show pixmap and long name if available
         int j;
         if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
@@ -1029,12 +1029,12 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
     QAction *action = 0;
     KSelectAction *selAction = 0;
 
-    for (int column = 0; column < m_doc->numIdentifiers(); ++column)
+    for (int column = 0; column < m_doc->identifierCount(); ++column)
     {
       if (column == 0)
         selAction = new KSelectAction(i18n("&Original"), vocabSetLanguage->selectableActionGroup());
       else {
-        if (m_doc->numIdentifiers() <= 2)
+        if (m_doc->identifierCount() <= 2)
           selAction = new KSelectAction(i18n("&Translation"), vocabSetLanguage->selectableActionGroup());
         else
           selAction = new KSelectAction(i18n("&%1. Translation", column), vocabSetLanguage->selectableActionGroup());
@@ -1066,7 +1066,7 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
     vocabRemoveLanguage->removeAllActions();
 
     QStringList names;
-    for (int j = 1; j < (int) m_doc->numIdentifiers(); j++)
+    for (int j = 1; j < (int) m_doc->identifierCount(); j++)
     {
       int i;
       if ((i = m_languages.indexShortId(m_doc->identifier(j))) >= 0)
@@ -1077,7 +1077,7 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
 
     QAction *action = 0;
 
-    for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
+    for (int i = 1; i < (int) m_doc->identifierCount(); i++)
     {
       int j;
       if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0 && !m_languages.pixmapFile(j).isEmpty() && !m_languages.longId(j).isEmpty())
@@ -1156,7 +1156,7 @@ QList<int> KVocTrainApp::csvOrder()
       csv_order.erase(csv_order.begin() + i);
 */
   // append indices from doc if no order given
-  for (int i = 0; i < m_doc->numIdentifiers(); i++)
+  for (int i = 0; i < m_doc->identifierCount(); i++)
     if (qFind (csv_order.begin(), csv_order.end(), i) == csv_order.end())
        csv_order.append(i);
 /*
@@ -1272,7 +1272,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   bool noData = false;
   KEduVocExpression *expr = 0;
 
-  if (m_doc->numEntries() <= row || m_doc->numIdentifiers() <= column || row < 0 || column < 0)
+  if (m_doc->numEntries() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0)
     noData = true;
   else
     expr = m_doc->entry(row);

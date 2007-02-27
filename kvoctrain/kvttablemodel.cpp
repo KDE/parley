@@ -54,7 +54,7 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
  */
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
-  return 2 + m_doc->numIdentifiers();
+  return 2 + m_doc->identifierCount();
 }
 
 
@@ -101,7 +101,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
       else if (index.column() == 2)
       {
         QList<QVariant> result;
-        for (int i = 1; i <= m_doc->numIdentifiers(); ++i)
+        for (int i = 1; i <= m_doc->identifierCount(); ++i)
         {
           if (m_doc->entry(index.row())->queryCount(i, true) != 0)
             result.append(QVariant(m_doc->entry(index.row())->grade(i /*+ KV_EXTRA_COLS*/, true)));

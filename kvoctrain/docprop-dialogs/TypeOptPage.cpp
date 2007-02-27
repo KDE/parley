@@ -128,7 +128,7 @@ void TypeOptPage::slotDeleteType()
 
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       KEduVocExpression *exp = doc->entry(ent);
-      for (int lang = 0; lang < (int) doc->numIdentifiers(); lang++) {
+      for (int lang = 0; lang < (int) doc->identifierCount(); lang++) {
         if (exp->type(lang) == t) {
           KMessageBox::information(this, i18n("The selected user defined type could not be deleted\nbecause it is in use."), i18n("Deleting Type Description"));
           return;
@@ -158,7 +158,7 @@ void TypeOptPage::slotCleanup()
   for (int i = 0; i <= (int) optionsList->count(); i++)
     used_type.append(false);
 
-  for (int col = 0; col < doc->numIdentifiers(); col++)
+  for (int col = 0; col < doc->identifierCount(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
       QString t = doc->entry(i)->type(col);
       if (t.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
@@ -221,7 +221,7 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
 
   // set type index to 0 when not needed any more
   // and translate to new index
-  for (int col = 0; col < doc->numIdentifiers(); col++) {
+  for (int col = 0; col < doc->identifierCount(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
       QString old = doc->entry(i)->type(col);
       if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {

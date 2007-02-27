@@ -185,7 +185,7 @@ void PasteOptions::slotUseCurrentDocToggled(bool)
 {
   OrderList->clear();
   OrderList->insertItem (m_langSet.findLongId(m_doc->originalIdentifier()));
-  for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
+  for (int i = 1; i < (int) m_doc->identifierCount(); i++)
     OrderList->insertItem (m_langSet.findLongId(m_doc->identifier(i)));
 
   // any other languages to append besides those from doc?

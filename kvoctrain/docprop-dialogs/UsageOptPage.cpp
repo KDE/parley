@@ -128,7 +128,7 @@ void UsageOptPage::slotDeleteUsage()
     t.setNum(usageIndex[m_currentUsage] - 1).prepend(UL_USER_USAGE).append(UL_USAGE_DIV);
     for (int ent = 0; ent < doc->numEntries(); ent++) {
       KEduVocExpression *exp = doc->entry(ent);
-      for (int lang = 0; lang < doc->numIdentifiers(); lang++) {
+      for (int lang = 0; lang < doc->identifierCount(); lang++) {
         QString ul = exp->usageLabel(lang).append(UL_USAGE_DIV);
         if (ul.indexOf(t) >= 0 ) {
           KMessageBox::information(this, i18nc("usage (area) of an expression", "This user-defined usage label could not be deleted\n"
@@ -160,7 +160,7 @@ void UsageOptPage::slotCleanup()
   for (int i = 0; i <= (int) optionsList->count(); i++)
     used_usage.append(false);
 
-  for (int col = 0; col < doc->numIdentifiers(); col++)
+  for (int col = 0; col < doc->identifierCount(); col++)
     for (int i = 0; i < (int) doc->numEntries(); i++) {
       QString t = doc->entry(i)->usageLabel(col);
       QString n;
@@ -235,7 +235,7 @@ void UsageOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &usageInde
 
   // set usage index to 0 when not needed any more
   // and translate to new index
-  for (int col = 0; col < doc->numIdentifiers(); col++) {
+  for (int col = 0; col < doc->identifierCount(); col++) {
     for (int i = 0; i < doc->numEntries(); i++) {
       QString t = doc->entry(i)->usageLabel(col);
       if (!t.isEmpty() && t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {

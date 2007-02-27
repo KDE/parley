@@ -303,7 +303,7 @@ void KVocTrainApp::slotFileMerge()
     bool equal = true;
     if (m_doc->originalIdentifier() != new_doc->originalIdentifier())
       equal = false;
-    for (int i = 1; i < m_doc->numIdentifiers(); i++)
+    for (int i = 1; i < m_doc->identifierCount(); i++)
       if (m_doc->identifier(i) != new_doc->identifier(i))
         equal = false;
 
@@ -384,11 +384,11 @@ void KVocTrainApp::slotFileMerge()
       QList<int> move_matrix;
       QList<bool> cs_equal;
 
-      for (int i = 0; i < qMax (m_doc->numIdentifiers(), new_doc->numIdentifiers()); i++)
+      for (int i = 0; i < qMax (m_doc->identifierCount(), new_doc->identifierCount()); i++)
         cs_equal.push_back (false);
 
       move_matrix.push_back(new_doc->findIdentifier(m_doc->originalIdentifier()));
-      for (int i = 1; i < m_doc->numIdentifiers(); i++)
+      for (int i = 1; i < m_doc->identifierCount(); i++)
         move_matrix.push_back(new_doc->findIdentifier(m_doc->identifier(i)));
 
       for (int j = 0; j < new_doc->numEntries(); j++) {
@@ -451,7 +451,7 @@ void KVocTrainApp::slotFileMerge()
         }
         // only append if entries are used
         bool used = !new_expr.original().isEmpty();
-        for (int i = 1; i < (int) m_doc->numIdentifiers(); i++)
+        for (int i = 1; i < (int) m_doc->identifierCount(); i++)
           if (!new_expr.translation(i).isEmpty())
             used = true;
 
@@ -613,7 +613,7 @@ void KVocTrainApp::slotSaveSelection ()
   KEduVocDocument seldoc(this);
   // transfer most important parts
   seldoc.appendIdentifier(m_doc->originalIdentifier());
-  for (int i = 1; i < m_doc->numIdentifiers(); i++)
+  for (int i = 1; i < m_doc->identifierCount(); i++)
     seldoc.appendIdentifier(m_doc->identifier(i));
   seldoc.setAuthor(m_doc->author());
   seldoc.setLessonDescriptions(m_doc->lessonDescriptions());

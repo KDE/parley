@@ -58,7 +58,7 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel 
   GenStatPage *gspage = new GenStatPage(m_model->document(), page);
   topLayout->addWidget(gspage);
 
-  for (int i = 1; i < (int) m_model->document()->numIdentifiers(); i++)
+  for (int i = 1; i < (int) m_model->document()->identifierCount(); i++)
   {
     QString s = languages.findLongId(m_model->document()->identifier(i));
     if (s.isEmpty())
