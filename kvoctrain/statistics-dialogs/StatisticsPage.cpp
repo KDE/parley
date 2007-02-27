@@ -81,7 +81,7 @@ void StatisticsPage::setupData()
   tsc.resize(lesson.size() + 1);
 
   // accumulate numbers of grades per lesson
-  for (int i = 0; i < (int) m_doc->numEntries(); i++) {
+  for (int i = 0; i < (int) m_doc->entryCount(); i++) {
     KEduVocExpression *expr = m_doc->entry(i);
     int fg = qMin(KV_MAX_GRADE, (int) expr->grade(m_translation, false));
     int tg = qMin(KV_MAX_GRADE, (int) expr->grade(m_translation, true));

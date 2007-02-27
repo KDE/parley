@@ -127,7 +127,7 @@ void TenseOptPage::slotDeleteTense()
     QString t;
     t.setNum(tenseIndex[m_currentTense] - 1).prepend(QM_USER_TYPE);
 
-    for (int ent = 0; ent < doc->numEntries(); ent++) {
+    for (int ent = 0; ent < doc->entryCount(); ent++) {
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < doc->identifierCount(); lang++) {
         KEduVocConjugation conj = exp->conjugation(lang);
@@ -163,7 +163,7 @@ void TenseOptPage::slotCleanup()
     used_tense.append(false);
 
   for (int col = 0; col < doc->identifierCount(); col++)
-    for (int i = 0; i < (int) doc->numEntries(); i++) {
+    for (int i = 0; i < (int) doc->entryCount(); i++) {
       KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       for (int ci = 0; ci < conj.numEntries(); ci++) {
         QString t = conj.getType(ci);
@@ -230,7 +230,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
   // set tense index to 0 when not needed any more
   // and translate to new index
   for (int col = 0; col < doc->identifierCount(); col++) {
-    for (int i = 0; i < doc->numEntries(); i++) {
+    for (int i = 0; i < doc->entryCount(); i++) {
       KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       bool dirty = false;
       for (int ci = 0; ci < conj.numEntries(); ci++) {

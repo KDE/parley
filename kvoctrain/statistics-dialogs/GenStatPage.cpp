@@ -35,7 +35,7 @@ GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
   l_title->setText(doc->title());
   l_author->setText(doc->author());
   QString s;
-  s.setNum(doc->numEntries());
+  s.setNum(doc->entryCount());
   kcfg_entriesPerLesson->setText(s);
   QStringList lesson = doc->lessonDescriptions();
   s.setNum(lesson.size());

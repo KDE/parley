@@ -45,7 +45,7 @@ void KVTTableModel::setDocument(KEduVocDocument * doc)
  */
 int KVTTableModel::rowCount(const QModelIndex &parent) const
 {
-  return m_doc->numEntries();
+  return m_doc->entryCount();
 }
 
 
@@ -334,7 +334,7 @@ void KVTTableModel::setLanguages(const KVTLanguages & languages)
 bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
 {
   Q_UNUSED(parent);
-  if (count < 1 || row < 0 || row > m_doc->numEntries())
+  if (count < 1 || row < 0 || row > m_doc->entryCount())
     return false;
 
   beginInsertRows(QModelIndex(), row, row + count - 1);
@@ -350,7 +350,7 @@ bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
 bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
 {
   Q_UNUSED(parent);
-  if (count < 1 || row < 0 || row + count > m_doc->numEntries() || count >= m_doc->numEntries())
+  if (count < 1 || row < 0 || row + count > m_doc->entryCount() || count >= m_doc->entryCount())
     return false;
 
   int bottomRow = row + count -1;
@@ -371,7 +371,7 @@ bool KVTTableModel::insertColumns(int column, int count, const QModelIndex & par
   beginInsertColumns(QModelIndex(), column, column + count - 1);
 
   m_doc->appendIdentifier("");
-  int num = m_doc->numEntries() - 1;
+  int num = m_doc->entryCount() - 1;
   for (int i = 0; i < (int) num; i++) {
     KEduVocExpression *expr = m_doc->entry(i);
     expr->setType (num, expr->type(0));

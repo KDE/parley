@@ -125,7 +125,7 @@ void LessOptPage::slotDeleteLesson()
   int act = m_currentLesson;
   if (optionsList->count() > 0 && (int) optionsList->count() > act) {
 
-    for (int ent = 0; ent < doc->numEntries(); ent++) {
+    for (int ent = 0; ent < doc->entryCount(); ent++) {
       if (doc->entry(ent)->lesson() == lessonIndex[act]) {
         KMessageBox::information(this, i18n("The selected lesson could not be deleted\nbecause it is in use."), i18n("Deleting Lesson"));
         return;
@@ -154,7 +154,7 @@ void LessOptPage::slotCleanup()
   for (int i = 0; i < (int) optionsList->count(); i++)
     used_lesson.append(false);
 
-  for (int i = 0; i < (int) doc->numEntries(); i++) {
+  for (int i = 0; i < (int) doc->entryCount(); i++) {
     int idx = doc->entry(i)->lesson();
     if ((int) used_lesson.count() < idx)
       used_lesson.resize(idx);
@@ -219,7 +219,7 @@ void LessOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &lessonInde
 
   // set lesson index to 0 when not needed any more
   // and translate to new index
-  for (int i = 0; i < doc->numEntries(); i++) {
+  for (int i = 0; i < doc->entryCount(); i++) {
     if (doc->entry(i)->lesson() != 0)
       doc->entry(i)->setLesson(translate_index[doc->entry(i)->lesson()]);
   }

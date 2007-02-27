@@ -121,18 +121,18 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int oi
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->numEntries(); i++)
+   for (int i = 0; i < doc->entryCount(); i++)
      doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
-   int ent_percent = doc->numEntries() / 100;
-   float f_ent_percent = doc->numEntries() / 100.0;
+   int ent_percent = doc->entryCount() / 100;
+   float f_ent_percent = doc->entryCount() / 100.0;
    ///@todo port emit doc->progressChanged(doc, 0);
 
    //Note that Leitner style learning (altlearn) normally only uses 20
    //entries, we just ignore that here
-   for (int i = 0; i < doc->numEntries(); i++) {
+   for (int i = 0; i < doc->entryCount(); i++) {
      ent_no++;
      ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
        ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
@@ -210,16 +210,16 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int id
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->numEntries(); i++)
+   for (int i = 0; i < doc->entryCount(); i++)
      doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
-   int ent_percent = doc->numEntries() / 100;
-   float f_ent_percent = doc->numEntries() / 100.0;
+   int ent_percent = doc->entryCount() / 100;
+   float f_ent_percent = doc->entryCount() / 100.0;
    ///@todo port emit doc->progressChanged(doc, 0);
 
-   for (int i = 0; i < doc->numEntries(); i++) {
+   for (int i = 0; i < doc->entryCount(); i++) {
      ent_no++;
      ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
        ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
@@ -287,16 +287,16 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int id
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->numEntries(); i++)
+   for (int i = 0; i < doc->entryCount(); i++)
      doc->entry(i)->setInQuery(false);
 
    // selecting might take rather long
    int ent_no = 0;
-   int ent_percent = doc->numEntries() / 100;
-   float f_ent_percent = doc->numEntries() / 100.0;
+   int ent_percent = doc->entryCount() / 100;
+   float f_ent_percent = doc->entryCount() / 100.0;
    ///@todo port emit doc->progressChanged(doc, 0);
 
-   for (int i = 0; i < doc->numEntries(); i++) {
+   for (int i = 0; i < doc->entryCount(); i++) {
      ent_no++;
      ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
        ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));

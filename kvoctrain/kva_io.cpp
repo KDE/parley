@@ -309,7 +309,7 @@ void KVocTrainApp::slotFileMerge()
 
     if (equal) {   // easy way: same language codes, just append
 
-      for (int i = 0; i < new_doc->numEntries(); i++) {
+      for (int i = 0; i < new_doc->entryCount(); i++) {
         KEduVocExpression *expr = new_doc->entry(i);
 
         expr->setLesson(expr->lesson()+lesson_offset);
@@ -391,7 +391,7 @@ void KVocTrainApp::slotFileMerge()
       for (int i = 1; i < m_doc->identifierCount(); i++)
         move_matrix.push_back(new_doc->findIdentifier(m_doc->identifier(i)));
 
-      for (int j = 0; j < new_doc->numEntries(); j++) {
+      for (int j = 0; j < new_doc->entryCount(); j++) {
         KEduVocExpression new_expr;
         KEduVocExpression *expr = new_doc->entry(j);
         new_expr.setLesson(expr->lesson()+lesson_offset);
@@ -560,7 +560,7 @@ void KVocTrainApp::loadDocProps()
   queryList.clear();
   m_doc->queryIdentifier(act_query_org, act_query_trans);
   if (!act_query_org.isEmpty() && !act_query_trans.isEmpty() ) {
-    for (int i = 0; i < m_doc->numEntries(); i++)
+    for (int i = 0; i < m_doc->entryCount(); i++)
     {
       KEduVocExpression *entry = m_doc->entry(i);
       if (entry->isInQuery())
@@ -619,7 +619,7 @@ void KVocTrainApp::slotSaveSelection ()
   seldoc.setLessonDescriptions(m_doc->lessonDescriptions());
   seldoc.setTypeDescriptions(m_doc->typeDescriptions());
 
-  for (int i = m_doc->numEntries()-1; i >= 0; i--)
+  for (int i = m_doc->entryCount()-1; i >= 0; i--)
     if (m_doc->entry(i)->isInQuery() )
       seldoc.appendEntry(m_doc->entry(i));
 

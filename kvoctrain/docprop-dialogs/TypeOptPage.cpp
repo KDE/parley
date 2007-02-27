@@ -126,7 +126,7 @@ void TypeOptPage::slotDeleteType()
     QString t;
     t.setNum(typeIndex[m_currentType] - 1).prepend(QM_USER_TYPE);
 
-    for (int ent = 0; ent < doc->numEntries(); ent++) {
+    for (int ent = 0; ent < doc->entryCount(); ent++) {
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < (int) doc->identifierCount(); lang++) {
         if (exp->type(lang) == t) {
@@ -159,7 +159,7 @@ void TypeOptPage::slotCleanup()
     used_type.append(false);
 
   for (int col = 0; col < doc->identifierCount(); col++)
-    for (int i = 0; i < (int) doc->numEntries(); i++) {
+    for (int i = 0; i < (int) doc->entryCount(); i++) {
       QString t = doc->entry(i)->type(col);
       if (t.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
         t.remove(0, QString(QM_USER_TYPE).length());
@@ -222,7 +222,7 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
   // set type index to 0 when not needed any more
   // and translate to new index
   for (int col = 0; col < doc->identifierCount(); col++) {
-    for (int i = 0; i < doc->numEntries(); i++) {
+    for (int i = 0; i < doc->entryCount(); i++) {
       QString old = doc->entry(i)->type(col);
       if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
         old.remove (0, 1);

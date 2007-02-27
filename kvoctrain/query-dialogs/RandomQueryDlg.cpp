@@ -208,14 +208,14 @@ RandomQueryDlg::RandomQueryDlg(
   if ( suggestions )
   {
     ProgressDlg* pdlg = 0;
-    if ( split && kv_doc -> numEntries() >= 500 )
+    if ( split && kv_doc -> entryCount() >= 500 )
     {
       pdlg = new ProgressDlg (QString(), QString(), i18n("Loading Random Query"));
       pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
       pdlg -> show();
       kapp -> processEvents();
     }
-    for ( i = 0; i < kv_doc -> numEntries(); i ++ )
+    for ( i = 0; i < kv_doc -> entryCount(); i ++ )
     {
       KEduVocExpression* expr = kv_doc -> entry (i);
       if ( split )
@@ -231,7 +231,7 @@ RandomQueryDlg::RandomQueryDlg(
       }
       if ( pdlg )
       {
-        pdlg -> setValue (doc, i * 100 / kv_doc -> numEntries());
+        pdlg -> setValue (doc, i * 100 / kv_doc -> entryCount());
         kapp -> processEvents();
       }
     }

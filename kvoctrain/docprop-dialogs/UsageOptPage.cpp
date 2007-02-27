@@ -126,7 +126,7 @@ void UsageOptPage::slotDeleteUsage()
   {
     QString t;
     t.setNum(usageIndex[m_currentUsage] - 1).prepend(UL_USER_USAGE).append(UL_USAGE_DIV);
-    for (int ent = 0; ent < doc->numEntries(); ent++) {
+    for (int ent = 0; ent < doc->entryCount(); ent++) {
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < doc->identifierCount(); lang++) {
         QString ul = exp->usageLabel(lang).append(UL_USAGE_DIV);
@@ -161,7 +161,7 @@ void UsageOptPage::slotCleanup()
     used_usage.append(false);
 
   for (int col = 0; col < doc->identifierCount(); col++)
-    for (int i = 0; i < (int) doc->numEntries(); i++) {
+    for (int i = 0; i < (int) doc->entryCount(); i++) {
       QString t = doc->entry(i)->usageLabel(col);
       QString n;
       while (t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {
@@ -236,7 +236,7 @@ void UsageOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &usageInde
   // set usage index to 0 when not needed any more
   // and translate to new index
   for (int col = 0; col < doc->identifierCount(); col++) {
-    for (int i = 0; i < doc->numEntries(); i++) {
+    for (int i = 0; i < doc->entryCount(); i++) {
       QString t = doc->entry(i)->usageLabel(col);
       if (!t.isEmpty() && t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {
         QString tg;

@@ -169,8 +169,8 @@ void MCQueryDlg::setQuery(QString org,
    if (ff.length())
      strings.insert(strings.begin(), ff);
 
-   if (doc->numEntries() <= MAX_MULTIPLE_CHOICE) {
-     for (int i = strings.size(); i < doc->numEntries(); ++i ) {
+   if (doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
+     for (int i = strings.size(); i < doc->entryCount(); ++i ) {
        KEduVocExpression *act = doc->entry(i);
 
        if (act != exp) {
@@ -189,7 +189,7 @@ void MCQueryDlg::setQuery(QString org,
      int count = MAX_MULTIPLE_CHOICE;
      // gather random expressions for the choice
      while (count > 0) {
-       int nr = (int) (doc->numEntries() * ((1.0*rand())/RAND_MAX));
+       int nr = (int) (doc->entryCount() * ((1.0*rand())/RAND_MAX));
        // append if new expr found
        bool newex = true;
        for (int i = 0; newex && i < (int) exprlist.size(); i++) {

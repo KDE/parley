@@ -683,7 +683,7 @@ void KVocTrainApp::slotCreateRandom()
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QList<KEduVocExpression*> randomList;
-  for (int i = 0; i < m_doc->numEntries(); i++) {
+  for (int i = 0; i < m_doc->entryCount(); i++) {
     KEduVocExpression *expr = m_doc->entry(i);
     if (expr->lesson() == 0)
       randomList.append(expr);
@@ -1272,7 +1272,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   bool noData = false;
   KEduVocExpression *expr = 0;
 
-  if (m_doc->numEntries() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0)
+  if (m_doc->entryCount() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0)
     noData = true;
   else
     expr = m_doc->entry(row);
