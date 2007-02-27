@@ -366,16 +366,16 @@ void RandomQueryDlg::verifyClicked()
   int j;
   if ( Prefs::suggestions() )
   {
-    Q3PtrList<QComboBox> combos (transCombos);
+    QList<QComboBox*> combos (transCombos);
     for ( i = combos.count() - 1; i >= translations.count(); i -- )
-      combos.remove (i);
+      combos.removeAt (i);
     for ( i = 0; i < combos.count(); i ++ )
       for ( j = 0; j < trans.count(); j ++ )
         if ( smartCompare (trans[j], combos.at(i) -> currentText(), 0) )
         {
           verifyField (combos.at(i) -> lineEdit(), trans[j]);
           trans.removeAt(j);
-          combos.remove (i --);
+          combos.removeAt (i --);
           break;
         }
     if ( trans.count() == 0 )
@@ -395,16 +395,16 @@ void RandomQueryDlg::verifyClicked()
   }
   else
   {
-    Q3PtrList<QLineEdit> fields (transFields);
+    QList<QLineEdit*> fields (transFields);
     for ( i = fields.count() - 1; i >= translations.count(); i -- )
-      fields.remove (i);
+      fields.removeAt (i);
     for ( i = 0; i < fields.count(); i ++ )
       for ( j = 0; j < trans.count(); j ++ )
         if ( smartCompare (trans[j], fields.at(i) -> text(), 0) )
         {
           verifyField (fields.at(i), "a\na"); // always fail
           trans.removeAt(j);
-          fields.remove (i --);
+          fields.removeAt (i --);
           break;
         }
     if ( trans.count() == 0 )

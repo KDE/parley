@@ -29,7 +29,6 @@
 #include <QComboBox>
 #include <QLineEdit>
 #include <QKeyEvent>
-#include <Q3PtrList>
 #include <QList>
 
 #include "ui_RandomQueryDlgForm.h"
@@ -92,8 +91,8 @@ protected:
 
   KEduVocDocument * kv_doc;
 
-  Q3PtrList<QComboBox> transCombos;
-  Q3PtrList<QLineEdit> transFields;
+  QList<QComboBox*> transCombos;
+  QList<QLineEdit*> transFields;
 
   QStringList translations;
   QStringList vocabulary;
