@@ -19,7 +19,6 @@
 #include <QLayout>
 #include <QRadioButton>
 #include <QCheckBox>
-#include <Q3ListView>
 #include <QLabel>
 
 #include <klocale.h>
