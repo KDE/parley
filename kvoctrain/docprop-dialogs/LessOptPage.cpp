@@ -34,6 +34,7 @@
 
 #include "LessOptPage.h"
 #include <keduvocdocument.h>
+#include <keduvocexpression.h>
 
 #define LESS_TAG ". "
 

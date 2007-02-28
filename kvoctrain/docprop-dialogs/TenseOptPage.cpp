@@ -32,6 +32,8 @@
 #include "TenseOptPage.h"
 #include <kvtquery.h>
 
+#include <keduvocdocument.h>
+
 #define TENSE_TAG ". "
 
 TenseOptPage::TenseOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)

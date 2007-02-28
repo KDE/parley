@@ -28,7 +28,7 @@ using namespace std;
 #include <klocale.h>
 #include <kconfig.h>
 
-#include <keduvocexpression.h>
+#include <keduvocdocument.h>
 
 #include "kvtquery.h"
 #include <prefs.h>

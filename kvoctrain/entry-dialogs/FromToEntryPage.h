@@ -31,7 +31,7 @@
 #include <QDateTime>
 
 #include "ui_FromToEntryPageForm.h"
-#include <keduvocdocument.h>
+#include <keduvocexpression.h>
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {

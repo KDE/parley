@@ -39,6 +39,8 @@
 #include "MCQueryDlg.h"
 #include <kv_resource.h>
 
+#include <keduvocdocument.h>
+
 MCQueryDlg::MCQueryDlg(
                    QString org,
                    QString trans,

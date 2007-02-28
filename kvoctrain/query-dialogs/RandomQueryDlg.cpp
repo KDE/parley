@@ -44,6 +44,8 @@
 #include "common-dialogs/ProgressDlg.h"
 #include <kv_resource.h>
 
+#include <keduvocdocument.h>
+
 QStringList RandomQueryDlg::extractTranslations (QString trans)
 {
    QRegExp full_stop ("^(.*[^\\. ])\\.* *$");

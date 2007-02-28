@@ -37,6 +37,8 @@
 #include "SimpleQueryDlg.h"
 #include <kv_resource.h>
 
+#include <keduvocdocument.h>
+
 SimpleQueryDlg::SimpleQueryDlg(
         QueryType querytype,
         int entry,

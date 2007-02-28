@@ -28,7 +28,7 @@
 
 #include <QVector>
 
-#include <keduvocdocument.h>
+#include <keduvocexpression.h>
 #include "prefs.h"
 
 class KEduVocDocument;

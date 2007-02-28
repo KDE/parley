@@ -32,6 +32,8 @@
 #include "TypeOptPage.h"
 #include <kvtquery.h>
 
+#include <keduvocdocument.h>
+
 #define TYPE_TAG ". "
 
 TypeOptPage::TypeOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)

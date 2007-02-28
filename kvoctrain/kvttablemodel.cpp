@@ -22,6 +22,7 @@
 #include "kv_resource.h"
 #include "prefs.h"
 
+#include <keduvocexpression.h>
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {

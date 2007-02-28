@@ -21,6 +21,8 @@
 #include "kv_resource.h"
 #include "prefs.h"
 
+#include <keduvocexpression.h>
+
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 {
 }
