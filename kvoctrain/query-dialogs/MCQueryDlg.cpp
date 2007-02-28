@@ -30,7 +30,6 @@
 #include <QPushButton>
 #include <QKeyEvent>
 
-#include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kdebug.h>

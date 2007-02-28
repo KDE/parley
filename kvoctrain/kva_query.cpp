@@ -23,8 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <QApplication>
-
+#include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
 

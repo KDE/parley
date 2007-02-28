@@ -29,7 +29,6 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 
-#include <kapplication.h>
 #include <kstandarddirs.h>
 #include <klocale.h>
 

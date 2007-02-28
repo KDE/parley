@@ -23,6 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
+#include <QApplication>
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QLabel>
@@ -38,7 +39,6 @@
 
 #include <kstandarddirs.h>
 #include <klocale.h>
-#include <kapplication.h>
 
 #include "RandomQueryDlg.h"
 #include "common-dialogs/ProgressDlg.h"
@@ -215,7 +215,7 @@ RandomQueryDlg::RandomQueryDlg(
       pdlg = new ProgressDlg (QString(), QString(), i18n("Loading Random Query"));
       pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
       pdlg -> show();
-      kapp -> processEvents();
+      qApp -> processEvents();
     }
     for ( i = 0; i < kv_doc -> entryCount(); i ++ )
     {
@@ -234,7 +234,7 @@ RandomQueryDlg::RandomQueryDlg(
       if ( pdlg )
       {
         pdlg -> setValue (doc, i * 100 / kv_doc -> entryCount());
-        kapp -> processEvents();
+        qApp -> processEvents();
       }
     }
     vocabulary.sort();

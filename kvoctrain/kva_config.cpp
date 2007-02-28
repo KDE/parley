@@ -25,6 +25,7 @@
 
 #include <QFile>
 
+#include <kapplication.h>
 #include <krecentfilesaction.h>
 #include <kglobal.h>
 

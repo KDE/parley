@@ -31,7 +31,6 @@
 #include <QByteArray>
 #include <QMenu>
 
-#include <kapplication.h>
 #include <klocale.h>
 #include <kcombobox.h>
 #include <kstandarddirs.h>
