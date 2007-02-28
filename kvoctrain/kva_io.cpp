@@ -314,7 +314,7 @@ void KVocTrainApp::slotFileMerge()
 
         expr->setLesson(expr->lesson()+lesson_offset);
 
-        for (int lang = 0; lang <= (int) expr->numTranslations(); lang++) {
+        for (int lang = 0; lang <= (int) expr->translationCount(); lang++) {
           QString t = expr->type (lang);
           // adjust type offset
           if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {

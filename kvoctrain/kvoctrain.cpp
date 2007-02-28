@@ -193,11 +193,11 @@ void KVocTrainApp::commitEntryDlg(bool force)
        expr->setQueryDate(col, dt, true);
        expr->setType (col, entryDlg->getType());
 
-       for (int j = 0; j <= expr->numTranslations(); j++)
+       for (int j = 0; j <= expr->translationCount(); j++)
          if (expr->type(j).isEmpty() )
            expr->setType(j, entryDlg->getType());
 
-       for (int j = 0; j <= expr->numTranslations(); j++)
+       for (int j = 0; j <= expr->translationCount(); j++)
          if (QueryManager::getMainType(expr->type(j))
                !=
              QueryManager::getMainType(entryDlg->getType()) )
