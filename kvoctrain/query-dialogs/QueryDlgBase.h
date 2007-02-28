@@ -34,7 +34,7 @@
 
 #include <kdialog.h>
 
-#include <QueryManager.h>
+#include <kvtquery.h>
 #include <keduvocgrammar.h>
 #include "prefs.h"
 

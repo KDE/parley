@@ -30,7 +30,7 @@
 #include <klocale.h>
 
 #include "TenseOptPage.h"
-#include <QueryManager.h>
+#include <kvtquery.h>
 
 #define TENSE_TAG ". "
 

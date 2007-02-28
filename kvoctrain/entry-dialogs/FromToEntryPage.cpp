@@ -30,7 +30,7 @@
 
 #include <klocale.h>
 
-#include <QueryManager.h>
+#include <kvtquery.h>
 #include <kvtlanguages.h>
 #include "FromToEntryPage.h"
 #include "EntryDlg.h"
@@ -76,7 +76,7 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
   QString s;
   for (int i = 0; i <= KV_MAX_GRADE; i++) {
     s.setNum (i);
-    gradebox->addItem(QueryManager::gradeStr(i));
+    gradebox->addItem(KVTQuery::gradeStr(i));
   }
   gradebox->setValidator(new BlockAllValidator());
 

@@ -40,7 +40,7 @@
 #include <knewstuff/downloaddialog.h>
 
 #include "kvoctrain.h"
-#include "UsageManager.h"
+#include "kvtusage.h"
 #include "common-dialogs/ProgressDlg.h"
 #include <prefs.h>
 
@@ -281,7 +281,7 @@ void KVocTrainApp::slotFileMerge()
       old_types.push_back(new_types[i]);
     }
     m_doc->setTypeDescriptions(old_types);
-    QueryManager::setTypeNames(old_types);
+    KVTQuery::setTypeNames(old_types);
 
 
     int tenses_offset = old_tenses.size();
@@ -297,7 +297,7 @@ void KVocTrainApp::slotFileMerge()
       old_usages.push_back(new_usages[i]);
     }
     m_doc->setUsageDescriptions(old_usages);
-    UsageManager::setUsageNames(old_usages);
+    KVTUsage::setUsageNames(old_usages);
 
 
     bool equal = true;
@@ -576,8 +576,8 @@ void KVocTrainApp::loadDocProps()
     }
   }
 
-  QueryManager::setTypeNames(m_doc->typeDescriptions());
-  UsageManager::setUsageNames(m_doc->usageDescriptions());
+  KVTQuery::setTypeNames(m_doc->typeDescriptions());
+  KVTUsage::setUsageNames(m_doc->usageDescriptions());
   KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 
   querymanager.setLessonItems(m_doc->lessonsInQuery() );

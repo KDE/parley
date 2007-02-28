@@ -25,7 +25,7 @@
 #define THRESHOLDOPTIONS_H
 
 #include "ui_thresholdoptionsbase.h"
-#include "QueryManager.h"
+#include "kvtquery.h"
 
 class KComboBox;
 
@@ -33,7 +33,7 @@ class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
   Q_OBJECT
 public:
-  ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent = 0);
+  ThresholdOptions(KComboBox * lessons, KVTQuery * m, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -60,7 +60,7 @@ private:
   void fillWidgets();
 
   KComboBox * m_lessons;
-  QueryManager * m_queryManager;
+  KVTQuery * m_queryManager;
   QList<TypeRelation> all_maintypes;
 };
 

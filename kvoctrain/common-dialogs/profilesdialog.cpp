@@ -27,7 +27,7 @@
 #include "groupoptions.h"
 #include "presettings.h"
 #include "prefs.h"
-#include "QueryManager.h"
+#include "kvtquery.h"
 
 SettingsProfile::SettingsProfile( )
 {
@@ -38,7 +38,7 @@ SettingsProfile::SettingsProfile(QString n, QString q, QString t, QString b)
 {
 }
 
-ProfilesDialog::ProfilesDialog(QueryManager * m, QWidget *parent, const char *name, bool modal)
+ProfilesDialog::ProfilesDialog(KVTQuery * m, QWidget *parent, const char *name, bool modal)
  : KDialog(parent)
 {
   setCaption(i18n("Profiles"));

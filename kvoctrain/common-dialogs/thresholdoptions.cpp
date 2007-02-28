@@ -30,7 +30,7 @@
 #include <klocale.h>
 
 #include "thresholdoptions.h"
-#include "QueryManager.h"
+#include "kvtquery.h"
 #include "prefs.h"
 
 
@@ -99,7 +99,7 @@ static ThreshListRef Threshdate_itemlist [] =
       };
 
 
-ThresholdOptions::ThresholdOptions(KComboBox * lessons, QueryManager * m, QWidget* parent) : QWidget(parent), m_lessons(lessons)
+ThresholdOptions::ThresholdOptions(KComboBox * lessons, KVTQuery * m, QWidget* parent) : QWidget(parent), m_lessons(lessons)
 {
   setupUi(this);
   connect(lessoncomp,  SIGNAL(activated(int)), SLOT(slotSetLessonComp(int)));
@@ -137,7 +137,7 @@ void ThresholdOptions::fillWidgets()
     gradelist->addItem (m_queryManager->gradeStr(i));
 
   typelist->clear();
-  all_maintypes = QueryManager::getRelation(true); // collect main types
+  all_maintypes = KVTQuery::getRelation(true); // collect main types
   for (int i = 0; i < (int) all_maintypes.size(); i++)
     typelist->addItem (all_maintypes[i].longStr());
 

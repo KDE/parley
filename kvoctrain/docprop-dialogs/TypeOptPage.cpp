@@ -30,7 +30,7 @@
 #include <klocale.h>
 
 #include "TypeOptPage.h"
-#include <QueryManager.h>
+#include <kvtquery.h>
 
 #define TYPE_TAG ". "
 

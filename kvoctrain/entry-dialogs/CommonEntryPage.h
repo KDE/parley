@@ -27,8 +27,8 @@
 #define CommonEntryPage_included
 
 #include "ui_CommonEntryPageForm.h"
-#include <QueryManager.h>
-#include <UsageManager.h>
+#include <kvtquery.h>
+#include <kvtusage.h>
 
 class PhoneticEntryPage;
 class KDialogBase;
@@ -37,7 +37,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
   Q_OBJECT
 public:
-  CommonEntryPage(KEduVocDocument *doc, QueryManager &querymanager, QWidget* parent = 0 );
+  CommonEntryPage(KEduVocDocument *doc, KVTQuery &querymanager, QWidget* parent = 0 );
 
   void setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString  usage,  bool active);
 
@@ -93,7 +93,7 @@ protected:
   bool          lesson_dirty;
   bool          type_dirty;
   KEduVocDocument *doc;
-  QueryManager &querymanager;
+  KVTQuery     &querymanager;
   bool          entry_active;
   bool          active_dirty;
   bool          usage_dirty;

@@ -27,7 +27,7 @@
 @author Peter Hedlund
 */
 
-class QueryManager;
+class KVTQuery;
 class GroupOptions;
 
 class SettingsProfile
@@ -47,7 +47,7 @@ class ProfilesDialog : public KDialog
   Q_OBJECT
 
 public:
-  ProfilesDialog(QueryManager * m, QWidget *parent = 0, const char *name = 0, bool modal = true);
+  ProfilesDialog(KVTQuery * m, QWidget *parent = 0, const char *name = 0, bool modal = true);
 
 signals:
   void profileActivated();
@@ -65,7 +65,7 @@ private:
 
   typedef QList<SettingsProfile> Profiles;
   Profiles profiles;
-  QueryManager * m_queryManager;
+  KVTQuery * m_queryManager;
   GroupOptions * mw;
 };
 

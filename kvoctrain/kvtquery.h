@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef QueryManager_included
-#define QueryManager_included
+#ifndef kvtquery_included
+#define kvtquery_included
 
 #include <QVector>
 
@@ -79,31 +79,30 @@ enum QueryType  { QT_Random, QT_Multiple,
 
 class TypeRelation
 {
- public:
-
-  TypeRelation (const QString & _short, const QString & _long)
-    : shortId (_short), longId(_long) {}
+public:
+  TypeRelation (const QString & _short, const QString & _long) : shortId (_short), longId(_long) {}
 
   QString shortStr() const { return shortId; }
   QString longStr()  const { return longId;  }
 
- protected:
-
-  QString  shortId, longId;
+protected:
+  QString  shortId;
+  QString longId;
 };
 
 
 struct QueryEntryRef {
- QueryEntryRef (KEduVocExpression *_exp, int _nr)
-     : exp(_exp), nr(_nr) {}
+  QueryEntryRef (KEduVocExpression *_exp, int _nr) : exp(_exp), nr(_nr) {}
 
-   KEduVocExpression *exp;
-   int            nr;
+  KEduVocExpression *exp;
+  int nr;
 };
+
 
 typedef QVector<QList<QueryEntryRef> > QuerySelection;
 
-class QueryManager
+
+class KVTQuery
 {
 public:
                 // don't change the order/remove one of these,
@@ -120,12 +119,12 @@ enum CompType { DontCare,
                 OneOf, NotOneOf
                };
 
-  QueryManager ();
+  KVTQuery();
 
-  static QList<TypeRelation> getRelation (bool only_maintypes);
-  static void setTypeNames (QStringList names);
-  static QString getSubType (const QString & type);
-  static QString getMainType (const QString & type);
+  static QList<TypeRelation> getRelation(bool only_maintypes);
+  static void setTypeNames(QStringList names);
+  static QString getSubType(const QString & type);
+  static QString getMainType(const QString & type);
 
   static QString compStr(Prefs::EnumCompType::type type);
   static QString gradeStr(int i);
@@ -150,14 +149,14 @@ enum CompType { DontCare,
   QuerySelection select(KEduVocDocument*, int act_lesson, int index, QueryType type);
 
 protected:
-  bool compareBlocking (int grade, QDateTime limit, bool use_it);
-  bool compareExpiring (int grade, QDateTime limit, bool use_it);
-  bool compareDate (CompType, QDateTime, long int);
-  bool compareQuery (CompType, int, int);
-  bool compareBad (CompType, int, int);
-  bool compareGrade (CompType, grade_t, grade_t);
-  bool compareType (CompType, const QString &, const QString &);
-  bool compareLesson (CompType type, int less, const QList<int> &limit, int current);
+  bool compareBlocking(int grade, QDateTime limit, bool use_it);
+  bool compareExpiring(int grade, QDateTime limit, bool use_it);
+  bool compareDate(CompType, QDateTime, long int);
+  bool compareQuery(CompType, int, int);
+  bool compareBad(CompType, int, int);
+  bool compareGrade(CompType, grade_t, grade_t);
+  bool compareType(CompType, const QString &, const QString &);
+  bool compareLesson(CompType type, int less, const QList<int> &limit, int current);
 
   QList<int> lessonitems;
 
@@ -165,4 +164,4 @@ private:
   static QStringList userTypes;
 };
 
-#endif // QueryManager_included
+#endif // kvtquery_included

@@ -53,7 +53,7 @@ public:
 
   enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
 
-  EntryDlg(KMainWindow *main, KEduVocDocument *doc, QueryManager &querymanager);
+  EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager);
 
   ~EntryDlg ();
 

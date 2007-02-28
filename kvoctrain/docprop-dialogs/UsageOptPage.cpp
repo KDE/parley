@@ -31,7 +31,7 @@
 #include <klocale.h>
 
 #include "UsageOptPage.h"
-#include <QueryManager.h>
+#include <kvtquery.h>
 
 #define USAGE_TAG ". "
 

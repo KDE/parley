@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Fri Mar 31 20:50:53 MET 1999
+    begin         : Fri Mar 31 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2006-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -24,11 +24,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "UsageManager.h"
+#include "kvtusage.h"
 
 #include <klocale.h>
 
-QStringList UsageManager::userUsages;
+QStringList KVTUsage::userUsages;
 
 // user usages are strings like this: #1
 
@@ -98,19 +98,19 @@ static internalRelation_t InternalUsageRelations [] =
 };
 
 
-UsageManager::UsageManager ()
+KVTUsage::KVTUsage()
 {
 }
 
 
-QList<UsageRelation> UsageManager::getRelation ()
+QList<UsageRelation> KVTUsage::getRelation()
 {
   QList<UsageRelation> vec;
-  for (int i = 0; i < (int) userUsages.size(); i++) {
+  for (int i = 0; i < userUsages.count(); i++) {
     QString s;
-    s.setNum(i+1);
-    s.insert(0, UL_USER_USAGE);
-    vec.push_back(UsageRelation(s, userUsages[i], userUsages[i]));
+    s.setNum(i + 1);
+    s.prepend(UL_USER_USAGE);
+    vec.append(UsageRelation(s, userUsages[i], userUsages[i]));
   }
 
   internalRelation_t *usage = InternalUsageRelations;
@@ -120,7 +120,7 @@ QList<UsageRelation> UsageManager::getRelation ()
       s = i18n(usage->shortid);
     else
       s = i18nc(usage->context, usage->shortid);
-    vec.push_back(UsageRelation(usage->ident, s, i18n(usage->longId)));
+    vec.append(UsageRelation(usage->ident, s, i18n(usage->longId)));
     usage++;
   }
 
@@ -128,21 +128,21 @@ QList<UsageRelation> UsageManager::getRelation ()
 }
 
 
-bool UsageManager::contains (const QString& label, const QString& collection)
+bool KVTUsage::contains(const QString& label, const QString& collection)
 {
    QString s = collection;
    int pos;
    while ((pos = s.indexOf(UL_USAGE_DIV)) >= 0) {
      if (s.left(pos) == label)
        return true;
-     s.remove (0, pos+1);
+     s.remove(0, pos + 1);
    }
 
    return s == label;
 }
 
 
-void UsageManager::setUsageNames(QStringList names)
+void KVTUsage::setUsageNames(QStringList names)
 {
   userUsages = names;
 }

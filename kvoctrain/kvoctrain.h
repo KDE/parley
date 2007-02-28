@@ -324,7 +324,7 @@ private:
   KLineEdit       *searchLine;
   KComboBox       *m_lessonsComboBox;
   int              m_currentLesson;
-  QueryManager     querymanager;
+  KVTQuery         querymanager;
   bool             controlActive;
   ProgressDlg     *pdlg;
   QProgressBar    *pbar;

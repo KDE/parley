@@ -35,7 +35,7 @@
 
 #include "EntryDlg.h"
 
-EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, QueryManager &querymanager) : KPageDialog()
+EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
 {
   setButtons(User1|User2|User3|Apply|Close);
   setDefaultButton(Apply);

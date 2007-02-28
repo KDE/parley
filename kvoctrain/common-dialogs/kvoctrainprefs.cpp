@@ -44,7 +44,7 @@
 #include "thresholdoptions.h"
 #include "blockoptions.h"
 #include "kvtlanguages.h"
-#include "QueryManager.h"
+#include "kvtquery.h"
 #include "profilesdialog.h"
 
 static const char unapplied[] = I18N_NOOP(
@@ -52,7 +52,7 @@ static const char unapplied[] = I18N_NOOP(
     "If you save a profile, those changes will not be included.\n"
     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboBox * lessons, QueryManager * m, QWidget *parent,
+KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboBox * lessons, KVTQuery * m, QWidget *parent,
   const char *name,  KConfigSkeleton *config, FaceType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
   bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)

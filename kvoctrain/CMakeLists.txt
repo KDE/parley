@@ -4,13 +4,15 @@ add_subdirectory( query-dialogs )
 add_subdirectory( docprop-dialogs )
 add_subdirectory( entry-dialogs )
 add_subdirectory( statistics-dialogs )
-add_subdirectory( kvt-core )
 add_subdirectory( examples )
 add_subdirectory( pics )
 
 add_definitions (-DQT3_SUPPORT -DQT3_SUPPORT_WARNINGS)
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/ ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/ )
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/kdeeducore/
+                     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/
+                     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/
+)
 
 
 ########### next target ###############
@@ -118,13 +120,7 @@ kde4_add_ui_files(statisticsdialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/statistics-dialogs/StatisticsPageForm.ui
 )
 
-set(kvtcore_SRCS
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/LineList.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/QueryManager.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/kvt-core/UsageManager.cpp
-)
-
-set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${kvtcore_SRCS}
+set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     kva_io.cpp
     kvoctrain.cpp
     main.cpp
@@ -139,6 +135,9 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kvttableview.cpp
     kvtlessonmodel.cpp
     kvtsortfiltermodel.cpp
+    kvtquery.cpp
+    kvtusage.cpp
+    LineList.cpp
 )
 
 kde4_automoc(${kvoctrain_SRCS})

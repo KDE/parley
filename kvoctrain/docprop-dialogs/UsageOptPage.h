@@ -27,7 +27,7 @@
 #define UsageOptPage_included
 
 #include "ui_optionlistform.h"
-#include <UsageManager.h>
+#include <kvtusage.h>
 
 class KEduVocDocument;
 

@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef UsageManager_included
-#define UsageManager_included
+#ifndef kvtusage_included
+#define kvtusage_included
 
 #include <keduvocdocument.h>
 
@@ -85,9 +85,7 @@
 struct UsageRelation
 {
 public:
-
-  UsageRelation (const QString & id, const QString & shorty, const QString & longy)
-    :ident(id), shortId(shorty), longId(longy) {}
+  UsageRelation (const QString & id, const QString & shorty, const QString & longy) : ident(id), shortId(shorty), longId(longy) {}
 
   QString identStr() const { return ident; }
   QString shortStr() const { return shortId; }
@@ -100,18 +98,17 @@ protected:
 };
 
 
-class UsageManager
+class KVTUsage
 {
 public:
+  KVTUsage();
 
-  UsageManager ();
-
-  static bool contains (const QString& label, const QString& collection);
-  static QList<UsageRelation> getRelation ();
-  static void setUsageNames (QStringList names);
+  static bool contains(const QString& label, const QString& collection);
+  static QList<UsageRelation> getRelation();
+  static void setUsageNames(QStringList names);
 
 private:
   static QStringList userUsages;
 };
 
-#endif // UsageManager_included
+#endif // kvtusage_included

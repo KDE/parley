@@ -36,7 +36,7 @@
 #include <kicon.h>
 #include <kdialog.h>
 
-#include <QueryManager.h>
+#include <kvtquery.h>
 #include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "blockall.h"
@@ -44,7 +44,7 @@
 #include "CommonEntryPage.h"
 #include "EntryDlg.h"
 
-CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QueryManager &_querymanager, QWidget *parent) : QWidget(parent), doc(_doc), querymanager(_querymanager)
+CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager, QWidget *parent) : QWidget(parent), doc(_doc), querymanager(_querymanager)
 {
   setupUi(this);
 
@@ -107,7 +107,7 @@ void CommonEntryPage::setData(
   int start = -1;
   int i = 0;
   while (start < 0 && i < (int) all_types.size()) {
-    if (all_types [i].shortStr() == QueryManager::getMainType(type))
+    if (all_types [i].shortStr() == KVTQuery::getMainType(type))
       start = i;
     i++;
   }
@@ -143,10 +143,10 @@ void CommonEntryPage::setData(
 
 void CommonEntryPage::setTypeBox(const QString &act_type)
 {
-  all_types = QueryManager::getRelation(false);
-  all_maintypes = QueryManager::getRelation(true);
+  all_types = KVTQuery::getRelation(false);
+  all_maintypes = KVTQuery::getRelation(true);
 
-  QString s = QueryManager::getMainType(act_type)+QM_TYPE_DIV;
+  QString s = KVTQuery::getMainType(act_type)+QM_TYPE_DIV;
   int curr_type = 0;
   type_box->clear();
   type_box->addItem (i18n("<none>"));
@@ -174,11 +174,11 @@ void CommonEntryPage::setLessonBox(int lesson)
 
 void CommonEntryPage::setUsageBox(const QString & act_usage)
 {
-  usages = UsageManager::getRelation();
+  usages = KVTUsage::getRelation();
   usage_box->clear();
   for (int i = 0; i < (int) usages.size(); i++) {
     usage_box->addItem(usages[i].longStr());
-    if (UsageManager::contains(QString(usages[i].identStr()), act_usage)) {
+    if (KVTUsage::contains(QString(usages[i].identStr()), act_usage)) {
       usage_box->setCurrentRow(i);
     }
   }
@@ -326,7 +326,7 @@ void CommonEntryPage::invokeUsageDlg()
   {
     usageOptPage->getUsageLabels(new_usageStr, usageIndex);
     UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
-    UsageManager::setUsageNames (new_usageStr);
+    KVTUsage::setUsageNames (new_usageStr);
     setUsageBox(usageCollection);
     doc->setUsageDescriptions(new_usageStr);
     doc->setModified();
@@ -385,7 +385,7 @@ void CommonEntryPage::invokeTypeDlg()
   {
     typeOptPage->getTypeNames(new_typeStr, typeIndex);
     TypeOptPage::cleanUnused(doc, typeIndex, old_types);
-    QueryManager::setTypeNames (new_typeStr);
+    KVTQuery::setTypeNames (new_typeStr);
     setTypeBox(m_type);
     doc->setTypeDescriptions(new_typeStr);
     doc->setModified();

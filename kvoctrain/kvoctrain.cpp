@@ -198,9 +198,9 @@ void KVocTrainApp::commitEntryDlg(bool force)
            expr->setType(j, entryDlg->getType());
 
        for (int j = 0; j <= expr->translationCount(); j++)
-         if (QueryManager::getMainType(expr->type(j))
+         if (KVTQuery::getMainType(expr->type(j))
                !=
-             QueryManager::getMainType(entryDlg->getType()) )
+             KVTQuery::getMainType(entryDlg->getType()) )
            expr->setType(j, entryDlg->getType());
      }
      expr->setLesson(entryDlg->getLesson());
@@ -449,7 +449,7 @@ void KVocTrainApp::slotDocumentProperties()
 
     slotStatusMsg(i18n("Updating type indices..."));
     TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
-    QueryManager::setTypeNames(new_typeStr);
+    KVTQuery::setTypeNames(new_typeStr);
 
     slotStatusMsg(i18n("Updating tense indices..."));
     TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
@@ -457,7 +457,7 @@ void KVocTrainApp::slotDocumentProperties()
 
     slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
     UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
-    UsageManager::setUsageNames(new_usageStr);
+    KVTUsage::setUsageNames(new_usageStr);
 
     m_doc->setSortingEnabled(ddlg.getSorting());
     m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
@@ -1282,7 +1282,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   if (pron_label != 0)
     pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
   if (type_label != 0)
-    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : QueryManager::typeStr(expr->type(column))));
+    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
 
   if (entryDlg != 0) {
     slotEditEntry2(current);

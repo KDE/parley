@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -30,10 +30,10 @@ using namespace std;
 
 #include <keduvocexpression.h>
 
-#include "QueryManager.h"
+#include "kvtquery.h"
 #include <prefs.h>
 
-QStringList QueryManager::userTypes;
+QStringList KVTQuery::userTypes;
 
 struct t_type_rel
 {
@@ -88,7 +88,7 @@ static t_type_rel InternalTypeRelations [] =
 };
 
 
-QString QueryManager::getSubType (const QString & type)
+QString KVTQuery::getSubType(const QString & type)
 {
   int i;
   QString t = type;
@@ -101,7 +101,7 @@ QString QueryManager::getSubType (const QString & type)
 }
 
 
-QString QueryManager::getMainType (const QString & type)
+QString KVTQuery::getMainType(const QString & type)
 {
   int i;
   if ((i = type.indexOf(QM_TYPE_DIV)) >= 0)
@@ -111,13 +111,13 @@ QString QueryManager::getMainType (const QString & type)
 }
 
 
-QueryManager::QueryManager()
+KVTQuery::KVTQuery()
 {
   lessonitems.clear();
 }
 
 
-QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -169,7 +169,7 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int oi
 }
 
 
-bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
+bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
 {
    int index = tindex ? tindex : oindex;
    if ((compareExpiring(expr->grade(index, oindex != 0),
@@ -206,7 +206,7 @@ bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int oindex,
 }
 
 
-QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -240,7 +240,7 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int id
 }
 
 
-bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
+bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
 {
    QString qtype;
    int pos = query_type.indexOf (QM_TYPE_DIV);
@@ -283,7 +283,7 @@ bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QS
 }
 
 
-QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
 {
    QuerySelection random;
    random.resize(doc->numLessons()+1);
@@ -317,7 +317,7 @@ QuerySelection QueryManager::select(KEduVocDocument *doc, int act_lesson, int id
 }
 
 
-bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
+bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
 {
    bool type_ok = false;
    if (query_type == QT_Synonym) {
@@ -344,7 +344,7 @@ bool QueryManager::validate(KEduVocExpression *expr, int act_lesson, int idx, Qu
 }
 
 
-QString QueryManager::compStr(Prefs::EnumCompType::type type)
+QString KVTQuery::compStr(Prefs::EnumCompType::type type)
 {
    QString str = "???";
    switch (type)
@@ -378,7 +378,7 @@ QString QueryManager::compStr(Prefs::EnumCompType::type type)
 }
 
 
-QString QueryManager::gradeStr (int i)
+QString KVTQuery::gradeStr(int i)
 {
   switch (i) {
     case KV_NORM_GRADE:    return i18n(KV_NORM_TEXT); break;
@@ -394,7 +394,7 @@ QString QueryManager::gradeStr (int i)
 }
 
 
-QList<TypeRelation> QueryManager::getRelation (bool only_maintypes)
+QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
 {
   QList<TypeRelation> vec;
   for (int i = 0; i < (int) userTypes.size(); i++) {
@@ -416,7 +416,7 @@ QList<TypeRelation> QueryManager::getRelation (bool only_maintypes)
 }
 
 
-QString QueryManager::typeStr (const QString id)
+QString KVTQuery::typeStr(const QString id)
 {
   if (id.left(1) == QM_USER_TYPE) {
     QString num = id;
@@ -439,7 +439,7 @@ QString QueryManager::typeStr (const QString id)
 }
 
 
-bool QueryManager::compareBlocking (int grade, QDateTime date, bool use_it)
+bool KVTQuery::compareBlocking(int grade, QDateTime date, bool use_it)
 {
    time_t cmp = Prefs::blockItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
@@ -451,7 +451,7 @@ bool QueryManager::compareBlocking (int grade, QDateTime date, bool use_it)
 }
 
 
-bool QueryManager::compareExpiring (int grade, QDateTime date, bool use_it)
+bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
 {
    time_t cmp = Prefs::expireItem(grade);
    if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
@@ -463,7 +463,7 @@ bool QueryManager::compareExpiring (int grade, QDateTime date, bool use_it)
 }
 
 
-bool QueryManager::compareDate (CompType type, QDateTime qd, time_t limit)
+bool KVTQuery::compareDate(CompType type, QDateTime qd, time_t limit)
 {
    time_t now = time(0);
    bool erg = true;
@@ -487,7 +487,7 @@ bool QueryManager::compareDate (CompType type, QDateTime qd, time_t limit)
 }
 
 
-bool QueryManager::compareQuery (CompType type, int qgrade, int limit)
+bool KVTQuery::compareQuery(CompType type, int qgrade, int limit)
 {
    bool erg = true;
    switch (type) {
@@ -519,7 +519,7 @@ bool QueryManager::compareQuery (CompType type, int qgrade, int limit)
 }
 
 
-bool QueryManager::compareBad (CompType type, int bcount, int limit)
+bool KVTQuery::compareBad(CompType type, int bcount, int limit)
 {
    bool erg = true;
    switch (type) {
@@ -551,7 +551,7 @@ bool QueryManager::compareBad (CompType type, int bcount, int limit)
 }
 
 
-bool QueryManager::compareGrade (CompType type, grade_t qgrade, grade_t limit)
+bool KVTQuery::compareGrade(CompType type, grade_t qgrade, grade_t limit)
 {
    bool erg = true;
    switch (type) {
@@ -583,7 +583,7 @@ bool QueryManager::compareGrade (CompType type, grade_t qgrade, grade_t limit)
 }
 
 
-bool QueryManager::compareType (CompType type, const QString & exprtype, const QString & limit)
+bool KVTQuery::compareType(CompType type, const QString & exprtype, const QString & limit)
 {
    bool erg = true;
    switch (type) {
@@ -603,7 +603,7 @@ bool QueryManager::compareType (CompType type, const QString & exprtype, const Q
 }
 
 
-bool QueryManager::compareLesson (CompType type, int less, const QList<int> &limit, int current)
+bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, int current)
 {
    bool erg = true;
    switch (type) {
@@ -644,13 +644,13 @@ bool QueryManager::compareLesson (CompType type, int less, const QList<int> &lim
 }
 
 
-void QueryManager::setTypeNames (QStringList names)
+void KVTQuery::setTypeNames(QStringList names)
 {
   userTypes = names;
 }
 
 
-void QueryManager::setLessonItemStr (const QString & indices)
+void KVTQuery::setLessonItemStr(const QString & indices)
 {
   int pos;
   QString indices_copy = indices;
@@ -666,7 +666,7 @@ void QueryManager::setLessonItemStr (const QString & indices)
 }
 
 
-QString QueryManager::lessonItemStr() const
+QString KVTQuery::lessonItemStr() const
 {
    QString s, ret;
    for (int i = 0; i < (int) lessonitems.size(); i++) {
