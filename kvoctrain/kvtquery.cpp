@@ -118,7 +118,7 @@ KVTQuery::KVTQuery()
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
   QuerySelection random;
-  random.resize(doc->numLessons()+1);
+  random.resize(doc->lessonCount() + 1);
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
@@ -196,7 +196,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
 {
   QuerySelection random;
-  random.resize(doc->numLessons()+1);
+  random.resize(doc->lessonCount() + 1);
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
@@ -271,7 +271,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QStrin
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
 {
   QuerySelection random;
-  random.resize(doc->numLessons()+1);
+  random.resize(doc->lessonCount() + 1);
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
