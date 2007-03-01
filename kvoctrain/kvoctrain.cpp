@@ -853,24 +853,16 @@ void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
 
 void KVocTrainApp::aboutToShowLearn()
 {
-  learn_menu->clear();
-
-  QList<QString> set_names;
-  for (int i = 0; i < (int) m_languages.count(); i++) {
-    if(m_languages.longId(i).isEmpty() )
-      set_names.push_back(m_languages.shortId(i));
-    else
-      set_names.push_back(m_languages.longId(i));
-  }
+  learningMenu->clear();
 
   QList<QString> main_names;
-  for (int j = 0; j < (int) m_doc->identifierCount(); j++) {
+  for (int j = 0; j < m_doc->identifierCount(); j++) {
    int i;
    QString did = j == 0 ? m_doc->originalIdentifier() : m_doc->identifier(j);
    if ((i = m_languages.indexShortId(did)) >= 0)
-     main_names.push_back(m_languages.longId(i));
+     main_names.append(m_languages.longId(i));
    else
-     main_names.push_back(did);
+     main_names.append(did);
   }
 
   for (int header = 0; header < (int) m_doc->identifierCount(); header++) {
@@ -952,19 +944,19 @@ void KVocTrainApp::aboutToShowLearn()
     if((j = m_languages.indexShortId(id)) >= 0
        && !m_languages.pixmapFile(j).isEmpty()
        && !m_languages.longId(j).isEmpty() ) {
-      learn_menu->insertItem(QPixmap(m_languages.pixmapFile(j)), main_names[header], header_m, IDH_NULL);
+      learningMenu->insertItem(QPixmap(m_languages.pixmapFile(j)), main_names[header], header_m, IDH_NULL);
     }
     else {
-      learn_menu->insertItem(id, header_m, IDH_NULL);
+      learningMenu->insertItem(id, header_m, IDH_NULL);
     }
   }
 
-  learn_menu->addSeparator();
-  learn_menu->insertItem(KIcon("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
-  learn_menu->insertItem(KIcon("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
+  learningMenu->addSeparator();
+  learningMenu->insertItem(KIcon("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
+  learningMenu->insertItem(KIcon("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
 
-  learn_menu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
-  learn_menu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);
+  learningMenu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
+  learningMenu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);
 
 }
 

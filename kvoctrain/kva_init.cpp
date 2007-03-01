@@ -310,10 +310,10 @@ void KVocTrainApp::initActions()
   configToolbar->setToolTip(configToolbar->whatsThis());
   configToolbar->setStatusTip(configToolbar->whatsThis());
 
-  learn_menu = (QMenu *) child( "learning", "KMenu" );
-  connect(learn_menu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-  connect(learn_menu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-  connect(learn_menu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
+  learningMenu = (QMenu *) child("learning", "KMenu");
+  connect(learningMenu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
+  connect(learningMenu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+  connect(learningMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
 }
 
 

@@ -280,7 +280,7 @@ private:
 
   QString lastPixName;
 
-  QMenu *learn_menu;
+  QMenu *learningMenu;
 
   QPushButton *m_buttonNewLesson;
 
