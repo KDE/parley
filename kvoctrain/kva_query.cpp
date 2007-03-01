@@ -476,6 +476,19 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
   slotStatusMsg(IDS_DEFAULT);
 }
 
+void KVocTrainApp::slotResumeQuery()
+{
+  queryType = QT_Random;
+  slotRestartQuery();
+}
+
+
+void KVocTrainApp::slotResumeQueryMC()
+{
+  queryType = QT_Multiple;
+  slotRestartQuery();
+}
+
 
 void KVocTrainApp::slotRestartQuery()
 {

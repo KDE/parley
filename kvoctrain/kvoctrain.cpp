@@ -45,6 +45,12 @@
 #include <ctype.h>
 
 #include "kvoctrain.h"
+#include "query-dialogs/RandomQueryDlg.h"
+#include "query-dialogs/MCQueryDlg.h"
+#include "query-dialogs/AdjQueryDlg.h"
+#include "query-dialogs/VerbQueryDlg.h"
+#include "query-dialogs/ArtQueryDlg.h"
+#include "query-dialogs/SimpleQueryDlg.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
@@ -853,112 +859,123 @@ void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
 
 void KVocTrainApp::aboutToShowLearn()
 {
+  QMenu *identifierSubMenu;
+  QMenu *identifierSubSubMenu;
+  QAction *typeAction;
+
+  QString mapString;
+
   learningMenu->clear();
 
-  QList<QString> main_names;
-  for (int j = 0; j < m_doc->identifierCount(); j++) {
-   int i;
-   QString did = j == 0 ? m_doc->originalIdentifier() : m_doc->identifier(j);
-   if ((i = m_languages.indexShortId(did)) >= 0)
-     main_names.append(m_languages.longId(i));
-   else
-     main_names.append(did);
+  if (learningMapper != 0)
+    delete learningMapper;
+  learningMapper = 0;
+  learningMapper = new QSignalMapper(this);
+  connect(learningMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotLearningMapperTriggered(const QString &)));
+
+  int columns = m_tableModel->columnCount(QModelIndex()) - KV_EXTRA_COLS;
+
+  //collect needed data
+  QStringList titles;
+  QList<QPixmap> icons;
+  for (int i = 0; i < columns; i++) {
+    titles.append(m_tableModel->headerData(i + KV_EXTRA_COLS, Qt::Horizontal, Qt::DisplayRole).toString());
+    icons.append(m_tableModel->headerData(i + KV_EXTRA_COLS, Qt::Horizontal, Qt::DecorationRole).value<QPixmap>());
   }
 
-  for (int header = 0; header < (int) m_doc->identifierCount(); header++) {
-    // show pixmap and long name if available
-    int j;
-    header_m = new QMenu();
-    if (header != 0 ) {
-      header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), (header << 16) | IDH_START_QUERY);
-      header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), (header << 16) | IDH_START_MULTIPLE);
+  for (int j = 0; j < columns; j++) {
 
-      header_m->setItemEnabled((header << 16) | IDH_START_MULTIPLE, m_doc->identifierCount() > 1);
-      header_m->setItemEnabled((header << 16) | IDH_START_QUERY,  m_doc->identifierCount() > 1);
-      header_m->addSeparator();
+    //top level item for each identifier
+    identifierSubMenu = learningMenu->addMenu(icons[j], titles[j]);
 
-      header_m->insertItem(i18n("&Verbs"), (header << 16) | IDH_START_VERB);
-      header_m->insertItem(i18n("&Articles"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(i18n("&Comparison Forms"), (header << 16) | IDH_START_ADJECTIVE);
-      header_m->addSeparator();
-      header_m->insertItem(i18n("S&ynonyms"), (header << 16) | IDH_START_SYNONYM);
-      header_m->insertItem(i18n("A&ntonyms"), (header << 16) | IDH_START_ANTONYM);
-      header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-      header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
-    }
-    else {
-      QMenu *query_m = new QMenu();
-      QMenu *multiple_m = new QMenu();
-
-      for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
-        // show pixmap and long name if available
-        int j;
-        if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-           && !m_languages.pixmapFile(j).isEmpty()
-           && !m_languages.longId(j).isEmpty() ) {
-          query_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", main_names[i]),
-              (i << (16+8)) |  IDH_START_QUERY);  // hack: IDs => header-ids + cmd
-        }
-        else {
-          query_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_QUERY);
-        }
+    //Random and multiple choice items
+    if (j == 0) {
+      identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_query"), i18n("Create Random &Query"));
+      for (int k = 1; k < columns; k++) {
+        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), learningMapper, SLOT(map()));
+        typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[k], titles[0]));
+        typeAction->setToolTip(typeAction->whatsThis());
+        typeAction->setStatusTip(typeAction->whatsThis());
+        learningMapper->setMapping(typeAction, QString("%1%2%3").arg("RQ").arg(j, 3, 10, QLatin1Char('0')).arg(k, 3, 10, QLatin1Char('0')));
       }
 
-      header_m->insertItem(KIcon("run_query"), i18n("Create Random &Query"), query_m, (3 << 16) | IDH_NULL);
-      connect (query_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-      connect (query_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
-
-      for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
-        // show pixmap and long name if available
-        int j;
-        if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0
-           && !m_languages.pixmapFile(j).isEmpty()
-           && !m_languages.longId(j).isEmpty() ) {
-          multiple_m->insertItem(QPixmap(m_languages.pixmapFile(j)), i18n("From %1", main_names[i]),
-              (i << (16+8)) |  IDH_START_MULTIPLE);  // hack: IDs => header-ids + cmd
-        }
-        else {
-          multiple_m->insertItem(i18n("From %1", m_doc->identifier(i)), (i << (16+8)) |  IDH_START_MULTIPLE);
-        }
+      identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice"));
+      for (int k = 1; k < columns; k++) {
+        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), learningMapper, SLOT(map()));
+        typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[k], titles[0]));
+        typeAction->setToolTip(typeAction->whatsThis());
+        typeAction->setStatusTip(typeAction->whatsThis());
+        learningMapper->setMapping(typeAction, QString("%1%2%3").arg("MC").arg(j, 3, 10, QLatin1Char('0')).arg(k, 3, 10, QLatin1Char('0')));
       }
-      header_m->insertItem(KIcon("run_multi"), i18n("Create &Multiple Choice"), multiple_m, (4 << 16) | IDH_NULL);
-      header_m->addSeparator();
+    }
+    else
+    {
+      typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Random &Query"), learningMapper, SLOT(map()));
+      typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[0], titles[j]));
+      typeAction->setToolTip(typeAction->whatsThis());
+      typeAction->setStatusTip(typeAction->whatsThis());
+      learningMapper->setMapping(typeAction, QString("%1%2%3").arg("RQ").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
 
-      header_m->insertItem(i18n("Train &Verbs"), (header << 16) | IDH_START_VERB);
-      header_m->insertItem(i18n("&Article Training"), (header << 16) | IDH_START_ARTICLE);
-      header_m->insertItem(i18n("&Comparison Training"), (header << 16) | IDH_START_ADJECTIVE);
-      header_m->addSeparator();
-      header_m->insertItem(i18n("&Synonyms"), (header << 16) | IDH_START_SYNONYM);
-      header_m->insertItem(i18n("&Antonyms"), (header << 16) | IDH_START_ANTONYM);
-      header_m->insertItem(i18n("E&xamples"), (header << 16) | IDH_START_EXAMPLE);
-      header_m->insertItem(i18n("&Paraphrase"), (header << 16) | IDH_START_PARAPHRASE);
-
-      connect (multiple_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-      connect (multiple_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+      typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice"), learningMapper, SLOT(map()));
+      typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[0], titles[j]));
+      typeAction->setToolTip(typeAction->whatsThis());
+      typeAction->setStatusTip(typeAction->whatsThis());
+      learningMapper->setMapping(typeAction, QString("%1%2%3").arg("MC").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
     }
 
-    connect (header_m, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-    connect (header_m, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
+    identifierSubMenu->addSeparator();
 
-    QString id = header == 0 ? m_doc->originalIdentifier() : m_doc->identifier(header);
-    if((j = m_languages.indexShortId(id)) >= 0
-       && !m_languages.pixmapFile(j).isEmpty()
-       && !m_languages.longId(j).isEmpty() ) {
-      learningMenu->insertItem(QPixmap(m_languages.pixmapFile(j)), main_names[header], header_m, IDH_NULL);
-    }
-    else {
-      learningMenu->insertItem(id, header_m, IDH_NULL);
-    }
+    //Special queries items for each identifier
+    typeAction = identifierSubMenu->addAction(i18n("&Verbs"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with verbs"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("VB").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    typeAction = identifierSubMenu->addAction(i18n("&Articles"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with articles"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("AR").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    typeAction = identifierSubMenu->addAction(i18n("&Comparisons"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with adjectives"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("CO").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    identifierSubMenu->addSeparator();
+
+    typeAction = identifierSubMenu->addAction(i18n("S&ynonyms"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with synonyms"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("SY").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    typeAction = identifierSubMenu->addAction(i18n("A&ntonyms"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with antonyms"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("AN").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    typeAction = identifierSubMenu->addAction(i18n("E&xamples"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with examples"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("EX").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+
+    typeAction = identifierSubMenu->addAction(i18n("&Paraphrase"), learningMapper, SLOT(map()));
+    typeAction->setWhatsThis(i18n("Starts training with paraphrases"));
+    typeAction->setToolTip(typeAction->whatsThis());
+    typeAction->setStatusTip(typeAction->whatsThis());
+    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("PA").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
   }
 
   learningMenu->addSeparator();
-  learningMenu->insertItem(KIcon("run_query"), i18n("Resume &Query"), ID_RESUME_QUERY );
-  learningMenu->insertItem(KIcon("run_multi"), i18n("Resume &Multiple Choice"), ID_RESUME_MULTIPLE );
-
-  learningMenu->setItemEnabled(ID_RESUME_QUERY,  query_num != 0);
-  learningMenu->setItemEnabled(ID_RESUME_MULTIPLE,  query_num != 0);
-
+  learningMenu->addAction(learningResumeQuery);
+  learningMenu->addAction(learningResumeMultipleChoice);
 }
+
 
 void KVocTrainApp::aboutToShowVocabAppendLanguage()
 {
@@ -1289,6 +1306,121 @@ void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QM
   else
     m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
   m_tableModel->reset();
+}
+
+
+void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
+{
+  int header1 = (header_and_cmd >> 16) & 0xFF;
+  int header2 = header_and_cmd >> (16+8);
+  int cmd     = header_and_cmd & 0xFFFF;
+
+  switch (cmd) {
+    case IDH_SORT_COL_ALPHA:
+      ///@todo port view->getTable()->sortByColumn_alpha(header1);
+      return;
+    break;
+
+    case IDH_SORT_COL_NUM:
+      ///@todo port view->getTable()->sortByColumn_index(header1);
+      return;
+    break;
+  }
+
+  if (header1 >= (int) m_doc->identifierCount()) {
+    kError() << "header1 >= (int) doc->numIdentifiers()\n";
+    return;
+  }
+
+  if (header2 >= (int) m_doc->identifierCount()) {
+    kError() << "header2 >= (int) doc->numIdentifiers()\n";
+    return;
+  }
+
+  switch (cmd) {
+
+    case IDH_START_QUERY:
+      delete randomQueryDlg;
+      randomQueryDlg = 0;
+      queryType = QT_Random;
+      slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
+                     header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
+    break;
+
+    case IDH_START_MULTIPLE:
+      delete mcQueryDlg;
+      mcQueryDlg = 0;
+      queryType = QT_Multiple;
+      slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
+                     header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
+    break;
+
+    case IDH_START_VERB: {
+      delete verbQueryDlg;
+      verbQueryDlg = 0;
+      queryType = QT_Conjugation;
+      slotStartTypeQuery (header1, QM_VERB);
+    }
+    break;
+
+    case IDH_START_ARTICLE: {
+      delete artQueryDlg;
+      artQueryDlg = 0;
+      queryType = QT_Articles;
+      slotStartTypeQuery (header1, QM_NOUN);
+    }
+    break;
+
+    case IDH_START_ADJECTIVE: {
+      delete adjQueryDlg;
+      adjQueryDlg = 0;
+      queryType = QT_Comparison;
+      slotStartTypeQuery (header1, QM_ADJ);
+    }
+    break;
+
+    case IDH_START_SYNONYM: {
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
+      slotStartPropertyQuery (header1, QT_Synonym);
+    }
+    break;
+
+    case IDH_START_ANTONYM: {
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
+      slotStartPropertyQuery (header1, QT_Antonym);
+    }
+    break;
+
+    case IDH_START_EXAMPLE: {
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
+      slotStartPropertyQuery (header1, QT_Example);
+    }
+    break;
+
+    case IDH_START_PARAPHRASE: {
+      delete simpleQueryDlg;
+      simpleQueryDlg = 0;
+      slotStartPropertyQuery (header1, QT_Paraphrase);
+    }
+    break;
+
+    case IDH_CREATE_LESSON:
+      slotCreateLesson(header1);
+    break;
+
+    default:
+       kError() << "KVocTrainApp::slotHeaderCallBack: got unknown command\n";
+
+  }
+  slotStatusMsg(IDS_DEFAULT);
+}
+
+void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
+{
+  kDebug() << mapString << endl;
 }
 
 #include "kvoctrain.moc"

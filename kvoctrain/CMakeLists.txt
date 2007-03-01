@@ -126,7 +126,6 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     main.cpp
     kva_init.cpp
     kva_config.cpp
-    kva_header.cpp
     kva_query.cpp
     kvtlanguages.cpp
     kvtnewstuff.cpp

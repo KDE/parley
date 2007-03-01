@@ -77,6 +77,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   adjQueryDlg = 0;
   artQueryDlg = 0;
   entryDlg = 0;
+  learningMapper = 0;
 
   initStatusBar();
   initActions();
@@ -268,8 +269,8 @@ void KVocTrainApp::initActions()
   vocabLanguageProperties->setText(i18n("Lan&guage Properties..."));
   connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
   vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
-  vocabLanguageProperties->setToolTip(vocabSetLanguage->whatsThis());
-  vocabLanguageProperties->setStatusTip(vocabSetLanguage->whatsThis());
+  vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
+  vocabLanguageProperties->setStatusTip(vocabLanguageProperties->whatsThis());
 
   m_lessonsComboBox = new KComboBox(this);
   m_lessonsComboBox->setMinimumWidth(160);
@@ -295,6 +296,22 @@ void KVocTrainApp::initActions()
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   vocabSearch->setStatusTip(vocabSearch->whatsThis());
 
+  learningResumeQuery = actionCollection()->addAction("learning_resume");
+  learningResumeQuery->setText(i18n("Resume &Query"));
+  learningResumeQuery->setIcon(KIcon("run_query"));
+  connect(learningResumeQuery, SIGNAL(triggered(bool)), this, SLOT(slotResumeQuery()));
+  learningResumeQuery->setWhatsThis(i18n("Resumes random query with existing selection"));
+  learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
+  learningResumeQuery->setStatusTip(learningResumeQuery->whatsThis());
+
+  learningResumeMultipleChoice = actionCollection()->addAction("learning_resume_mc");
+  learningResumeMultipleChoice->setText(i18n("Resume &Multiple Choice"));
+  learningResumeMultipleChoice->setIcon(KIcon("run_multi"));
+  connect(learningResumeMultipleChoice, SIGNAL(triggered(bool)), this, SLOT(slotResumeQueryMC()));
+  learningResumeMultipleChoice->setWhatsThis(i18n("Resumes multiple choice with existing selection"));
+  learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
+  learningResumeMultipleChoice->setStatusTip(learningResumeMultipleChoice->whatsThis());
+
   configApp = KStandardAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
   configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
@@ -311,8 +328,6 @@ void KVocTrainApp::initActions()
   configToolbar->setStatusTip(configToolbar->whatsThis());
 
   learningMenu = (QMenu *) child("learning", "KMenu");
-  connect(learningMenu, SIGNAL(activated(int)), this, SLOT(slotHeaderCallBack(int)));
-  connect(learningMenu, SIGNAL(highlighted(int)), this, SLOT(slotHeaderStatus(int)));
   connect(learningMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
 }
 

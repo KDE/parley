@@ -33,6 +33,7 @@
 #include <QVBoxLayout>
 #include <QListView>
 #include <QPushButton>
+#include <QSignalMapper>
 
 #include <kmainwindow.h>
 #include <kaction.h>
@@ -148,8 +149,6 @@ public:
 //  void slotSearchClip();
 
   void slotHeaderCallBack (int cmd_and_id);
-  void slotHeaderStatus (int cmd_and_id);
-  void slotHeaderMenu(int header, int x, int y);
   /** append language to vocabulary */
   void slotAppendLanguage(int index);
   /** assign language to vocabulary column */
@@ -178,6 +177,9 @@ public:
   void aboutToShowLearn();
 
   /** starts random query mode */
+  void slotLearningMapperTriggered(const QString &);
+  void slotResumeQuery();
+  void slotResumeQueryMC();
   void slotRestartQuery();
   void slotStartTypeQuery(int col, const QString & type);
   void slotStartPropertyQuery(int col, QueryType property);
@@ -270,17 +272,17 @@ private:
   QAction* vocabLessons;
   QAction* vocabSearch;
 
-  //QAction* learningResumeQuery;
-  //QAction* learningResumeMultipleChoice;
+  QAction* learningResumeQuery;
+  QAction* learningResumeMultipleChoice;
 
   QAction* configToolbar;
   QAction* configNotifications;
   QAction* configApp;
-  //QAction* configQueryOptions;
 
   QString lastPixName;
 
   QMenu *learningMenu;
+  QSignalMapper * learningMapper;
 
   QPushButton *m_buttonNewLesson;
 
