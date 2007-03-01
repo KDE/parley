@@ -9,7 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include <QtGui>
+#include <QComboBox>
+#include <QLineEdit>
+#include <QPainter>
 
 #include "kdebug.h"
 #include <kglobalsettings.h>
