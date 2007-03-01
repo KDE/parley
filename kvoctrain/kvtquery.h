@@ -151,7 +151,7 @@ enum CompType { DontCare,
 protected:
   bool compareBlocking(int grade, QDateTime limit, bool use_it);
   bool compareExpiring(int grade, QDateTime limit, bool use_it);
-  bool compareDate(CompType, QDateTime, long int);
+  bool compareDate(CompType, QDateTime, QDateTime);
   bool compareQuery(CompType, int, int);
   bool compareBad(CompType, int, int);
   bool compareGrade(CompType, grade_t, grade_t);

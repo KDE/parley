@@ -22,8 +22,6 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include <time.h>
-using namespace std;
 
 #include <klocale.h>
 #include <kconfig.h>
@@ -177,9 +175,9 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 
         (
             compareGrade((CompType) Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
-        && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
-        && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
-        && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0), Prefs::dateItem())
+        && compareQuery((CompType) Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
+        && compareBad((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
+        && compareDate((CompType) Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0), QDateTime::fromTime_t(Prefs::dateItem()))
         && compareBlocking(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::block())
         )
       )
@@ -420,37 +418,35 @@ QString KVTQuery::typeStr(const QString id)
 
 bool KVTQuery::compareBlocking(int grade, QDateTime date, bool use_it)
 {
-  time_t cmp = Prefs::blockItem(grade);
-  if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
+  QDateTime cmp = QDateTime::fromTime_t(Prefs::blockItem(grade));
+  if (grade == KV_NORM_GRADE || cmp.toTime_t() == 0 || !use_it) // don't care || all off
     return true;
   else {
-    time_t now = time(0);
-    return date.toTime_t() + cmp < now;
+    return date.toTime_t() + cmp.toTime_t() < QDateTime::currentDateTime().toTime_t();
   }
 }
 
 
 bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
 {
-  time_t cmp = Prefs::expireItem(grade);
-  if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
+  QDateTime cmp = QDateTime::fromTime_t(Prefs::expireItem(grade));
+  if (grade == KV_NORM_GRADE || cmp.toTime_t() == 0 || !use_it) // don't care || all off
     return false;
   else {
-    time_t now = time(0);
-    return date.toTime_t() + cmp < now;
+    return date.toTime_t() + cmp.toTime_t() < QDateTime::currentDateTime().toTime_t();
   }
 }
 
 
-bool KVTQuery::compareDate(CompType type, QDateTime qd, time_t limit)
+bool KVTQuery::compareDate(CompType type, QDateTime qd, QDateTime limit)
 {
-  time_t now = time(0);
+  QDateTime now = QDateTime::currentDateTime();
   bool erg = true;
   switch (type) {
-    case DontCare:   erg = true;                                              break;
-    case Before:     erg = qd.toTime_t() == 0 || qd.toTime_t() < now - limit; break; // never queried or older date
-    case Within:     erg = qd.toTime_t() >= now - limit;                      break; // newer date
-    case NotQueried: erg = qd.toTime_t() == 0;                                break;
+    case DontCare:   erg = true;                                                                    break;
+    case Before:     erg = qd.toTime_t() == 0 || qd.toTime_t() < now.toTime_t() - limit.toTime_t(); break; // never queried or older date
+    case Within:     erg = qd.toTime_t() >= now.toTime_t() - limit.toTime_t();                      break; // newer date
+    case NotQueried: erg = qd.toTime_t() == 0;                                                      break;
     default:         ;
   }
   return erg;
