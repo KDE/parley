@@ -30,7 +30,6 @@
 #include <QGroupBox>
 #include <QPixmap>
 
-#include <kapplication.h>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kicon.h>

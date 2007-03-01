@@ -28,7 +28,6 @@
 #include <QList>
 
 #include <klocale.h>
-#include <kapplication.h>
 
 #define KVD_VERS_PREFIX " v"     //#include "kvoctraindoc.h"
 #define QM_VERB         "v"      //#include "QueryManager.h"
