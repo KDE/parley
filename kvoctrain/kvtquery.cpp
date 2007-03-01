@@ -119,262 +119,242 @@ KVTQuery::KVTQuery()
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
-   QuerySelection random;
-   random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->entryCount(); i++)
-     doc->entry(i)->setInQuery(false);
+  QuerySelection random;
+  random.resize(doc->numLessons()+1);
+  for (int i = 0; i < doc->entryCount(); i++)
+    doc->entry(i)->setInQuery(false);
 
-   // selecting might take rather long
-   int ent_no = 0;
-   int ent_percent = doc->entryCount() / 100;
-   float f_ent_percent = doc->entryCount() / 100.0;
-   ///@todo port emit doc->progressChanged(doc, 0);
+  // selecting might take rather long
+  int ent_no = 0;
+  int ent_percent = doc->entryCount() / 100;
+  float f_ent_percent = doc->entryCount() / 100.0;
+  ///@todo port emit doc->progressChanged(doc, 0);
 
-   //Note that Leitner style learning (altlearn) normally only uses 20
-   //entries, we just ignore that here
-   for (int i = 0; i < doc->entryCount(); i++) {
-     ent_no++;
-     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+  //Note that Leitner style learning (altlearn) normally only uses 20
+  //entries, we just ignore that here
+  for (int i = 0; i < doc->entryCount(); i++) {
+    ent_no++;
+    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     KEduVocExpression *expr = doc->entry(i);
-     unsigned int lessonno;
-     if (Prefs::altLearn())
-       lessonno = 0; //We only use a single array in Leitner style
-     else
-       lessonno = expr->lesson();
+    KEduVocExpression *expr = doc->entry(i);
+    unsigned int lessonno;
+    if (Prefs::altLearn())
+      lessonno = 0; //We only use a single array in Leitner style
+    else
+      lessonno = expr->lesson();
 
-     if (expr->isActive() ){
-       if (Prefs::swapDirection()) {
-         if (  validate (expr, act_lesson, oindex, tindex)
-             || validate (expr, act_lesson, tindex, oindex)) {
-           random[lessonno].push_back (QueryEntryRef(expr, i));
-           expr->setInQuery(true);
-         }
-       }
-       else {
-         if (validate (expr, act_lesson, oindex, tindex)) {
-           random[lessonno].push_back (QueryEntryRef(expr, i));
-           expr->setInQuery(true);
-         }
-       }
-     }
-   }
+    if (expr->isActive() ){
+      if (Prefs::swapDirection()) {
+        if (  validate (expr, act_lesson, oindex, tindex)
+            || validate (expr, act_lesson, tindex, oindex)) {
+          random[lessonno].push_back (QueryEntryRef(expr, i));
+          expr->setInQuery(true);
+        }
+      }
+      else {
+        if (validate (expr, act_lesson, oindex, tindex)) {
+          random[lessonno].push_back (QueryEntryRef(expr, i));
+          expr->setInQuery(true);
+        }
+      }
+    }
+  }
 
-   // remove empty lesson elements
-   for (int i = (int) random.size()-1; i >= 0; i--)
-     if (random[i].size() == 0)
-       random.erase(random.begin() + i);
-   return random;
+  // remove empty lesson elements
+  for (int i = (int) random.size()-1; i >= 0; i--)
+    if (random[i].size() == 0)
+      random.erase(random.begin() + i);
+  return random;
 }
 
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
 {
-   int index = tindex ? tindex : oindex;
-   if ((compareExpiring(expr->grade(index, oindex != 0),
-                        expr->queryDate(index, oindex != 0), Prefs::expire())
+  int index = tindex ? tindex : oindex;
+  if ((compareExpiring(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::expire())
         ||
 
         (
-            compareGrade ((CompType) Prefs::compType(Prefs::EnumType::Grade),
-              expr->grade(index, oindex != 0), Prefs::gradeItem())
-         && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query),
-              expr->queryCount(index, oindex != 0), Prefs::queryItem())
-         && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad),
-              expr->badCount(index, oindex != 0), Prefs::badItem())
-         && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date),
-              expr->queryDate(index, oindex != 0), Prefs::dateItem())
-
-         && compareBlocking(expr->grade(index, oindex != 0),
-              expr->queryDate(index, oindex != 0), Prefs::block())
+            compareGrade((CompType) Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
+        && compareQuery ((CompType) Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
+        && compareBad ((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
+        && compareDate ((CompType) Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0), Prefs::dateItem())
+        && compareBlocking(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::block())
         )
-       )
-//     lesson + word type must ALWAYS match
-//     (and there must be a word on both sides)
-       && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson),
-            expr->lesson(), lessonitems, act_lesson)
-       && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType),
-            expr->type(index), Prefs::typeItem())
-       && !expr->original().simplified().isEmpty()
-       && !expr->translation(index).simplified().isEmpty()
       )
-     return true;
-   else
-     return false;
-
+      // lesson + word type must ALWAYS match (and there must be a word on both sides)
+      && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
+      && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
+      && !expr->original().simplified().isEmpty()
+      && !expr->translation(index).simplified().isEmpty()
+      )
+    return true;
+  else
+    return false;
 }
 
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
 {
-   QuerySelection random;
-   random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->entryCount(); i++)
-     doc->entry(i)->setInQuery(false);
+  QuerySelection random;
+  random.resize(doc->numLessons()+1);
+  for (int i = 0; i < doc->entryCount(); i++)
+    doc->entry(i)->setInQuery(false);
 
-   // selecting might take rather long
-   int ent_no = 0;
-   int ent_percent = doc->entryCount() / 100;
-   float f_ent_percent = doc->entryCount() / 100.0;
-   ///@todo port emit doc->progressChanged(doc, 0);
+  // selecting might take rather long
+  int ent_no = 0;
+  int ent_percent = doc->entryCount() / 100;
+  float f_ent_percent = doc->entryCount() / 100.0;
+  ///@todo port emit doc->progressChanged(doc, 0);
 
-   for (int i = 0; i < doc->entryCount(); i++) {
-     ent_no++;
-     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+  for (int i = 0; i < doc->entryCount(); i++) {
+    ent_no++;
+    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     KEduVocExpression *expr = doc->entry(i);
-     if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
-       random[expr->lesson()].push_back (QueryEntryRef(expr, i));
-       expr->setInQuery(true);
-     }
-   }
+    KEduVocExpression *expr = doc->entry(i);
+    if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
+      random[expr->lesson()].append(QueryEntryRef(expr, i));
+      expr->setInQuery(true);
+    }
+  }
 
-   // remove empty lesson elements
-   for (int i = (int) random.size()-1; i >= 0; i--)
-     if (random[i].size() == 0)
-       random.erase(random.begin() + i);
+  // remove empty lesson elements
+  for (int i = (int) random.size()-1; i >= 0; i--)
+    if (random[i].size() == 0)
+      random.erase(random.begin() + i);
 
-   return random;
+  return random;
 }
 
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
 {
-   QString qtype;
-   int pos = query_type.indexOf (QM_TYPE_DIV);
-   if (pos >= 0)
-     qtype = query_type.left (pos);
-   else
-     qtype = query_type;
+  QString qtype;
+  int pos = query_type.indexOf(QM_TYPE_DIV);
+  if (pos >= 0)
+    qtype = query_type.left(pos);
+  else
+    qtype = query_type;
 
-   QString expr_type = expr->type(idx);
-   bool type_ok = false;
-   if (qtype == QM_NOUN) {
-     type_ok =    expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
-               || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
-               || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
+  QString expr_type = expr->type(idx);
+  bool type_ok = false;
+  if (qtype == QM_NOUN) {
+    type_ok =    expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
+              || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
+              || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
 
-   }
-   else if (qtype == QM_VERB) {
-     type_ok = (   expr_type == QM_VERB
-                || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
-                || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
-               )
-               && expr->conjugation(idx).numEntries() > 0;
+  }
+  else if (qtype == QM_VERB) {
+    type_ok = (   expr_type == QM_VERB
+              || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
+              || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
+              )
+              && expr->conjugation(idx).numEntries() > 0;
 
-   }
-   else if (qtype == QM_ADJ) {
-     type_ok =    expr_type == QM_ADJ
-               && !expr->comparison(idx).isEmpty();
-   }
-   else
-     return false;
+  }
+  else if (qtype == QM_ADJ) {
+    type_ok =    expr_type == QM_ADJ
+              && !expr->comparison(idx).isEmpty();
+  }
+  else
+    return false;
 
-   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(),
-                      lessonitems, act_lesson)
-       && type_ok) {
-     return true;
-     }
-   else {
-     return false;
-   }
+  if (compareLesson((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+    return true;
+    }
+  else {
+    return false;
+  }
 }
 
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
 {
-   QuerySelection random;
-   random.resize(doc->numLessons()+1);
-   for (int i = 0; i < doc->entryCount(); i++)
-     doc->entry(i)->setInQuery(false);
+  QuerySelection random;
+  random.resize(doc->numLessons()+1);
+  for (int i = 0; i < doc->entryCount(); i++)
+    doc->entry(i)->setInQuery(false);
 
-   // selecting might take rather long
-   int ent_no = 0;
-   int ent_percent = doc->entryCount() / 100;
-   float f_ent_percent = doc->entryCount() / 100.0;
-   ///@todo port emit doc->progressChanged(doc, 0);
+  // selecting might take rather long
+  int ent_no = 0;
+  int ent_percent = doc->entryCount() / 100;
+  float f_ent_percent = doc->entryCount() / 100.0;
+  ///@todo port emit doc->progressChanged(doc, 0);
 
-   for (int i = 0; i < doc->entryCount(); i++) {
-     ent_no++;
-     ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-       ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
+  for (int i = 0; i < doc->entryCount(); i++) {
+    ent_no++;
+    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
+      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
 
-     KEduVocExpression *expr = doc->entry(i);
-     if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
-       random[expr->lesson()].push_back (QueryEntryRef(expr, i));
-       expr->setInQuery(true);
-     }
-   }
+    KEduVocExpression *expr = doc->entry(i);
+    if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
+      random[expr->lesson()].append(QueryEntryRef(expr, i));
+      expr->setInQuery(true);
+    }
+  }
 
-   // remove empty lesson elements
-   for (int i = (int) random.size()-1; i >= 0; i--)
-     if (random[i].size() == 0)
-       random.erase(random.begin() + i);
+  // remove empty lesson elements
+  for (int i = (int) random.size()-1; i >= 0; i--)
+    if (random[i].size() == 0)
+      random.erase(random.begin() + i);
 
-   return random;
+  return random;
 }
 
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
 {
-   bool type_ok = false;
-   if (query_type == QT_Synonym) {
-     type_ok = !expr->synonym(idx).simplified().isEmpty();
-   }
-   else if (query_type == QT_Antonym) {
-     type_ok = !expr->antonym(idx).simplified().isEmpty();
-   }
-   else if (query_type == QT_Paraphrase) {
-     type_ok = !expr->paraphrase(idx).simplified().isEmpty();
-   }
-   else if (query_type == QT_Example) {
-     type_ok = !expr->example(idx).simplified().isEmpty();
-   }
+  bool type_ok = false;
+  if (query_type == QT_Synonym) {
+    type_ok = !expr->synonym(idx).simplified().isEmpty();
+  }
+  else if (query_type == QT_Antonym) {
+    type_ok = !expr->antonym(idx).simplified().isEmpty();
+  }
+  else if (query_type == QT_Paraphrase) {
+    type_ok = !expr->paraphrase(idx).simplified().isEmpty();
+  }
+  else if (query_type == QT_Example) {
+    type_ok = !expr->example(idx).simplified().isEmpty();
+  }
 
-   if (compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(),
-                      lessonitems, act_lesson)
-       && type_ok) {
-     return true;
-     }
-   else {
-     return false;
-   }
+  if (compareLesson((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+    return true;
+    }
+  else {
+    return false;
+  }
 }
 
 
 QString KVTQuery::compStr(Prefs::EnumCompType::type type)
 {
-   QString str = "???";
-   switch (type)
-   {
-    case DontCare: str = i18n("Do not Care"); break;
-    case WorseThan: str = i18n("Worse Than"); break;
-    case WorseEqThan: str = i18n("Equal/Worse Than"); break;
-    case MoreThan: str = i18n(">"); break;
-    case MoreEqThan: str = i18n(">="); break;
+  QString str = "???";
+  switch (type)
+  {
+    case DontCare:     str = i18n("Do not Care");       break;
+    case WorseThan:    str = i18n("Worse Than");        break;
+    case WorseEqThan:  str = i18n("Equal/Worse Than");  break;
+    case MoreThan:     str = i18n(">");                 break;
+    case MoreEqThan:   str = i18n(">=");                break;
     case BetterEqThan: str = i18n("Equal/Better Than"); break;
-    case BetterThan: str = i18n("Better Than"); break;
-    case LessEqThan: str = i18n("<="); break;
-    case LessThan: str = i18n("<"); break;
-
-    case EqualTo : str = i18n("Equal To"); break;
-    case NotEqual: str = i18n("Not Equal"); break;
-
-    case OneOf   : str = i18n("Contained In"); break;
-    case NotOneOf: str = i18n("Not Contained In"); break;
-
-    case Within    : str = i18n("Within Last"); break;
-    case Before    : str = i18n("Before"); break;
-    case NotQueried: str = i18n("Not Queried"); break;
-
-    case Current    : return i18n("Current Lesson"); break;
-    case NotAssigned: return i18n("Not Assigned"); break;
-    default:
-      ;
-   }
-   return str;
+    case BetterThan:   str = i18n("Better Than");       break;
+    case LessEqThan:   str = i18n("<=");                break;
+    case LessThan:     str = i18n("<");                 break;
+    case EqualTo:      str = i18n("Equal To");          break;
+    case NotEqual:     str = i18n("Not Equal");         break;
+    case OneOf:        str = i18n("Contained In");      break;
+    case NotOneOf:     str = i18n("Not Contained In");  break;
+    case Within:       str = i18n("Within Last");       break;
+    case Before:       str = i18n("Before");            break;
+    case NotQueried:   str = i18n("Not Queried");       break;
+    case Current:      return i18n("Current Lesson");   break;
+    case NotAssigned:  return i18n("Not Assigned");     break;
+    default:           ;
+  }
+  return str;
 }
 
 
@@ -397,18 +377,17 @@ QString KVTQuery::gradeStr(int i)
 QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
 {
   QList<TypeRelation> vec;
-  for (int i = 0; i < (int) userTypes.size(); i++) {
+  for (int i = 0; i < userTypes.count(); i++) {
     QString s;
-    s.setNum(i+1);
-    s.insert(0, QM_USER_TYPE);
-    vec.push_back(TypeRelation(s, userTypes[i]));
+    s.setNum(i + 1);
+    s.prepend(QM_USER_TYPE);
+    vec.append(TypeRelation(s, userTypes[i]));
   }
-
 
   t_type_rel *type = InternalTypeRelations;
   while (type->short_ref != 0) {
-    if (!only_maintypes || strstr (type->short_ref, QM_TYPE_DIV) == 0)
-      vec.push_back(TypeRelation(type->short_ref, i18n(type->long_ref)));
+    if (!only_maintypes || strstr(type->short_ref, QM_TYPE_DIV) == 0)
+      vec.append(TypeRelation(type->short_ref, i18n(type->long_ref)));
     type++;
   }
 
@@ -420,9 +399,9 @@ QString KVTQuery::typeStr(const QString id)
 {
   if (id.left(1) == QM_USER_TYPE) {
     QString num = id;
-    num.remove (0, 1);
+    num.remove(0, 1);
     int i = num.toInt()-1;
-    if (i >= 0 && i < (int) userTypes.size() )
+    if (i >= 0 && i < userTypes.count())
       return userTypes[i];
     else
       return QString();
@@ -441,175 +420,112 @@ QString KVTQuery::typeStr(const QString id)
 
 bool KVTQuery::compareBlocking(int grade, QDateTime date, bool use_it)
 {
-   time_t cmp = Prefs::blockItem(grade);
-   if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
-     return true;
-   else {
-     time_t now = time(0);
-     return date.toTime_t() + cmp < now;
-   }
+  time_t cmp = Prefs::blockItem(grade);
+  if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
+    return true;
+  else {
+    time_t now = time(0);
+    return date.toTime_t() + cmp < now;
+  }
 }
 
 
 bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
 {
-   time_t cmp = Prefs::expireItem(grade);
-   if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
-     return false;
-   else {
-     time_t now = time(0);
-     return date.toTime_t() + cmp < now;
-   }
+  time_t cmp = Prefs::expireItem(grade);
+  if (grade == KV_NORM_GRADE || cmp == 0 || !use_it) // don't care || all off
+    return false;
+  else {
+    time_t now = time(0);
+    return date.toTime_t() + cmp < now;
+  }
 }
 
 
 bool KVTQuery::compareDate(CompType type, QDateTime qd, time_t limit)
 {
-   time_t now = time(0);
-   bool erg = true;
-   switch (type) {
-    case DontCare: erg = true;
-    break;
-
-    case Before: erg = qd.toTime_t() == 0 || qd.toTime_t() < now - limit; // never queried or older date
-    break;
-
-    case Within: erg = qd.toTime_t() >= now - limit;           // newer date
-    break;
-
-    case NotQueried: erg = qd.toTime_t() == 0;
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+  time_t now = time(0);
+  bool erg = true;
+  switch (type) {
+    case DontCare:   erg = true;                                              break;
+    case Before:     erg = qd.toTime_t() == 0 || qd.toTime_t() < now - limit; break; // never queried or older date
+    case Within:     erg = qd.toTime_t() >= now - limit;                      break; // newer date
+    case NotQueried: erg = qd.toTime_t() == 0;                                break;
+    default:         ;
+  }
+  return erg;
 }
 
 
 bool KVTQuery::compareQuery(CompType type, int qgrade, int limit)
 {
-   bool erg = true;
-   switch (type) {
-    case DontCare: erg = true;
-    break;
-
-    case MoreThan: erg = qgrade > limit;    // sel has higher query count
-    break;
-
-    case MoreEqThan: erg = qgrade >= limit;
-    break;
-
-    case EqualTo: erg = qgrade == limit;
-    break;
-
-    case NotEqual: erg = qgrade != limit;
-    break;
-
-    case LessEqThan: erg = qgrade <= limit;   // sel has less count
-    break;
-
-    case LessThan: erg = qgrade < limit;
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+  bool erg = true;
+  switch (type) {
+    case DontCare:   erg = true;            break;
+    case MoreThan:   erg = qgrade > limit;  break; // sel has higher query count
+    case MoreEqThan: erg = qgrade >= limit; break;
+    case EqualTo:    erg = qgrade == limit; break;
+    case NotEqual:   erg = qgrade != limit; break;
+    case LessEqThan: erg = qgrade <= limit; break; // sel has less count
+    case LessThan:   erg = qgrade < limit;  break;
+    default:         ;
+  }
+  return erg;
 }
 
 
 bool KVTQuery::compareBad(CompType type, int bcount, int limit)
 {
-   bool erg = true;
-   switch (type) {
-    case DontCare: erg = true;
-    break;
-
-    case MoreThan: erg = bcount > limit;    // sel has higher bad count
-    break;
-
-    case MoreEqThan: erg = bcount >= limit;
-    break;
-
-    case EqualTo: erg = bcount == limit;
-    break;
-
-    case NotEqual: erg = bcount != limit;
-    break;
-
-    case LessEqThan: erg = bcount <= limit;   // sel has less count
-    break;
-
-    case LessThan: erg = bcount < limit;
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+  bool erg = true;
+  switch (type) {
+    case DontCare:   erg = true;            break;
+    case MoreThan:   erg = bcount > limit;  break;   // sel has higher bad count
+    case MoreEqThan: erg = bcount >= limit; break;
+    case EqualTo:    erg = bcount == limit; break;
+    case NotEqual:   erg = bcount != limit; break;
+    case LessEqThan: erg = bcount <= limit; break;  // sel has less count
+    case LessThan:   erg = bcount < limit;  break;
+    default:         ;
+  }
+  return erg;
 }
 
 
 bool KVTQuery::compareGrade(CompType type, grade_t qgrade, grade_t limit)
 {
-   bool erg = true;
-   switch (type) {
-    case DontCare: erg = true;
-    break;
-
-    case WorseThan: erg = qgrade < limit;    // sel has worse grade
-    break;
-
-    case WorseEqThan: erg = qgrade <= limit;
-    break;
-
-    case EqualTo: erg = qgrade == limit;
-    break;
-
-    case NotEqual: erg = qgrade != limit;
-    break;
-
-    case BetterEqThan: erg = qgrade >= limit;   // sel has better grade
-    break;
-
-    case BetterThan: erg = qgrade > limit;
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+  bool erg = true;
+  switch (type) {
+    case DontCare:     erg = true;            break;
+    case WorseThan:    erg = qgrade < limit;  break; // sel has worse grade
+    case WorseEqThan:  erg = qgrade <= limit; break;
+    case EqualTo:      erg = qgrade == limit; break;
+    case NotEqual:     erg = qgrade != limit; break;
+    case BetterEqThan: erg = qgrade >= limit; break; // sel has better grade
+    case BetterThan:   erg = qgrade > limit;  break;
+    default:           ;
+  }
+  return erg;
 }
 
 
 bool KVTQuery::compareType(CompType type, const QString & exprtype, const QString & limit)
 {
-   bool erg = true;
-   switch (type) {
-    case DontCare: erg = true;
-    break;
-
-    case EqualTo: erg = getMainType(exprtype) == getMainType(limit);       // type is same
-    break;
-
-    case NotEqual: erg = getMainType(exprtype) != getMainType(limit);      // other type
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+  bool erg = true;
+  switch (type) {
+    case DontCare: erg = true;                                        break;
+    case EqualTo:  erg = getMainType(exprtype) == getMainType(limit); break;     // type is same
+    case NotEqual: erg = getMainType(exprtype) != getMainType(limit); break;     // other type
+    default:       ;
+  }
+  return erg;
 }
 
 
 bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, int current)
 {
-   bool erg = true;
-   switch (type) {
-    case DontCare:
-      erg = true;
-    break;
+  bool erg = true;
+  switch (type) {
+    case DontCare:    erg = true;            break;
 
     case OneOf:
     {
@@ -629,18 +545,11 @@ bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, i
     }
     break;
 
-    case Current:
-      erg = less == current;
-    break;
-
-    case NotAssigned:
-      erg = less == 0;
-    break;
-
-    default:
-      ;
-   }
-   return erg;
+    case Current:     erg = less == current; break;
+    case NotAssigned: erg = less == 0;       break;
+    default:          ;
+  }
+  return erg;
 }
 
 
@@ -657,11 +566,11 @@ void KVTQuery::setLessonItemStr(const QString & indices)
   lessonitems.clear();
   while ((pos = indices_copy.indexOf(' ')) >= 0) {
      QString s = indices_copy.left(pos);
-     indices_copy.remove(0, pos+1);
-     lessonitems.push_back(s.toInt());
+     indices_copy.remove(0, pos + 1);
+     lessonitems.append(s.toInt());
   }
   if (indices_copy.length() != 0) {
-    lessonitems.push_back(indices_copy.toInt());
+    lessonitems.append(indices_copy.toInt());
   }
 }
 
@@ -669,7 +578,7 @@ void KVTQuery::setLessonItemStr(const QString & indices)
 QString KVTQuery::lessonItemStr() const
 {
    QString s, ret;
-   for (int i = 0; i < (int) lessonitems.size(); i++) {
+   for (int i = 0; i < lessonitems.count(); i++) {
      s.setNum (lessonitems[i]);
      if (i != 0)
        ret += ' ';
