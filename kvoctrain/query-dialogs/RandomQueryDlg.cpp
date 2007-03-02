@@ -177,7 +177,9 @@ RandomQueryDlg::RandomQueryDlg(
       transCombos.append ( combo );
       combo -> setObjectName (QString ("transCombo%1").arg(i));
       combo -> setEditable(false);
-      combo -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, combo -> sizePolicy().hasHeightForWidth()));
+      QSizePolicy pol (QSizePolicy::Expanding, QSizePolicy::Minimum);
+      pol.setHeightForWidth (combo -> sizePolicy().hasHeightForWidth());
+      combo -> setSizePolicy (pol);
       combo -> setEditable (true);
       combo -> setInsertPolicy (QComboBox::NoInsert);
       combo -> setDuplicatesEnabled (false);
@@ -193,7 +195,9 @@ RandomQueryDlg::RandomQueryDlg(
       QLineEdit * line = new QLineEdit (mw->TranslationFrame);
       transFields.append (line);
       line -> setObjectName (QString ("transField%1").arg(i));
-      line -> setSizePolicy (QSizePolicy ((QSizePolicy::SizeType)7, (QSizePolicy::SizeType)1, 0, 0, line -> sizePolicy().hasHeightForWidth()));
+      QSizePolicy pol (QSizePolicy::Expanding, QSizePolicy::Minimum);
+      pol.setHeightForWidth (line -> sizePolicy().hasHeightForWidth());
+      line -> setSizePolicy (pol);
       vb->addWidget(line);
       connect (line, SIGNAL (textChanged (const QString&)), SLOT (slotTransChanged (const QString&)));
       connect (line, SIGNAL (lostFocus()), SLOT (slotTransLostFocus()));
@@ -502,9 +506,11 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 {
   mw->verify->setDefault(true);
   bool suggestions = Prefs::suggestions();
-  if ( suggestions && sender() && sender() -> isA ("QComboBox") )
+  QComboBox* combo = sender() ? qobject_cast<QComboBox*>(sender()) : 0;
+  QLineEdit* senderedit = sender() ? qobject_cast<QLineEdit*>(sender()) : 0;
+  if ( suggestions && combo )
   {
-    QLineEdit* edit = ((QComboBox*) sender()) -> lineEdit();
+    QLineEdit* edit = combo -> lineEdit();
     resetField (edit);
     suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
     if ( suggestion_hint )
@@ -513,8 +519,8 @@ void RandomQueryDlg::slotTransChanged(const QString&)
     else
       mw->status -> clear();
   }
-  else if ( ! suggestions && sender() && sender() -> isA ("QLineEdit") )
-    resetField ((QLineEdit*) sender());
+  else if ( ! suggestions && senderedit )
+    resetField (senderedit);
 }
 
 void RandomQueryDlg::slotTransLostFocus()
