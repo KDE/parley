@@ -92,7 +92,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   querying = false;
   btimer = new QTimer(this);
   btimer->setSingleShot(true);
-  connect( btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()) );
+  connect(btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()));
   if (Prefs::autoBackup())
     btimer->start(Prefs::backupTime() * 60 * 1000);
 }
@@ -278,7 +278,7 @@ void KVocTrainApp::initActions()
 
   vocabLessons = actionCollection()->addAction("vocab_lessons");
   vocabLessons->setText(i18n("Lessons"));
-  qobject_cast<KAction*>( vocabLessons )->setDefaultWidget(m_lessonsComboBox);
+  qobject_cast<KAction*>(vocabLessons)->setDefaultWidget(m_lessonsComboBox);
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
   vocabLessons->setStatusTip(vocabLessons->whatsThis());
@@ -290,7 +290,7 @@ void KVocTrainApp::initActions()
 
   vocabSearch = actionCollection()->addAction("vocab_search");
   vocabSearch->setText(i18n("Smart Search"));
-  qobject_cast<KAction*>( vocabSearch )->setDefaultWidget( searchLine );
+  qobject_cast<KAction*>(vocabSearch)->setDefaultWidget(searchLine);
   vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   vocabSearch->setStatusTip(vocabSearch->whatsThis());
@@ -311,13 +311,13 @@ void KVocTrainApp::initActions()
   learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
   learningResumeMultipleChoice->setStatusTip(learningResumeMultipleChoice->whatsThis());
 
-  configApp = KStandardAction::preferences(this, SLOT( slotGeneralOptions()), actionCollection());
+  configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
   configApp->setWhatsThis(i18n("Show the configuration dialog"));
   configApp->setToolTip(configApp->whatsThis());
   configApp->setStatusTip(configApp->whatsThis());
 
   if (!initialGeometrySet())
-    resize( QSize(550, 400).expandedTo(minimumSizeHint()));
+    resize(QSize(550, 400).expandedTo(minimumSizeHint()));
   setupGUI(ToolBar | Keys | StatusBar | Create);
   setAutoSaveSettings();
 
@@ -326,7 +326,7 @@ void KVocTrainApp::initActions()
   configToolbar->setToolTip(configToolbar->whatsThis());
   configToolbar->setStatusTip(configToolbar->whatsThis());
 
-  learningMenu = (QMenu *) child("learning", "KMenu");
+  learningMenu = findChild<KMenu *>("learning");
   connect(learningMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
 }
 

@@ -238,7 +238,7 @@ void BlockOptions::checkValidity()
   {
     if (kcfg_Block->isChecked())
     {
-      /*if(Prefs::blockItem(i-1) != 0  &&
+      /*if (Prefs::blockItem(i-1) != 0  &&
         Prefs::blockItem(i) != 0 &&
         Prefs::blockItem(i-1) >= Prefs::blockItem(i))*/
       if (date_itemlist[m_blockComboList[i - 1]->currentIndex()].num != 0 &&

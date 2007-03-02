@@ -91,7 +91,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
     /** @todo handle the all/none stuff */
-    if(m_doc->lessonsInQuery().contains(index.row()))
+    if (m_doc->lessonsInQuery().contains(index.row()))
       return Qt::Checked;
     else
       return Qt::Unchecked;
@@ -116,7 +116,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     return false;
 
   /** The first is All, the last none */
-  if(index.row() == 0 || index.row() == m_lessonList.count() -1)
+  if (index.row() == 0 || index.row() == m_lessonList.count() -1)
     return false; // cannot change all/none
 
   if (role == Qt::EditRole) {
@@ -140,7 +140,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     foreach(int lesson, m_doc->lessonsInQuery())
       intLessons.append(lesson);
-    if(intLessons.contains(index.row())){
+    if (intLessons.contains(index.row())){
       intLessons.removeAt(intLessons.indexOf(index.row()));
     } else {
         if (value.toInt() == Qt::Checked)
@@ -208,7 +208,7 @@ void KVTLessonModel::slotLessonSelectionChanged(const QModelIndex &start, const 
   /** for now we only have one lesson selectable at the time - start is enough */
 
   int index = start.row() -1; /** no use making all current */
-  if( index >= 0 ){
+  if (index >= 0){
     m_doc->setCurrentLesson(index);
     //kDebug() << "Current lesson set to: " << index << " " << m_lessonList.at(index+1) << endl;
   }

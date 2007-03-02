@@ -66,7 +66,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     return;
 
   prepareProgressBar();
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   random_expr2.clear();
   queryList = querymanager.select(m_doc, m_currentLesson, act_query_col, property);
 
@@ -144,7 +144,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       query_num--;
 
       random_expr1.erase(random_expr1.begin() + random_query_nr);
-      if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0 ) {
+      if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
         //
       }
       else {
@@ -165,7 +165,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
       return;
   }
 
-  if (random_expr1.count() == 0 ) {
+  if (random_expr1.count() == 0) {
     if (random_expr2.count() == 0 && queryList.count() == 0) {
       slotStopQuery(true);
       return;
@@ -305,7 +305,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
       query_num--;
 
       random_expr1.erase(random_expr1.begin() + random_query_nr);
-      if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0 ) {
+      if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
         //
       }
       else {
@@ -327,7 +327,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
   }
 
 
-  if (random_expr1.count() == 0 ) {
+  if (random_expr1.count() == 0) {
     if (random_expr2.count() == 0 && queryList.count() == 0) {
       slotStopQuery(true);
       return;
@@ -440,7 +440,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   act_query_org = orglang;
 
   prepareProgressBar();
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   random_expr2.clear();
 
   if (create_new || queryList.count() == 0)
@@ -657,7 +657,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
       exp->setInQuery(false);
       random_expr1.erase(random_expr1.begin() + random_query_nr);
-      if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0 )) {
+      if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
         slotStopQuery (true);
         return;
       }
@@ -701,7 +701,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     }
     else {
       //else we just pick from random_expr1 then
-      if (random_expr1.count() == 0 ) {
+      if (random_expr1.count() == 0) {
         slotStopQuery(true);
         return;
       }
@@ -793,7 +793,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 }
 
 
-void KVocTrainApp::slotStopQuery(bool )
+void KVocTrainApp::slotStopQuery(bool)
 {
   delete simpleQueryDlg;
   delete mcQueryDlg;

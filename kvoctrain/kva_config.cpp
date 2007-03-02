@@ -118,11 +118,11 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
   QString filename = config.readEntry("Filename");
   QString title = config.readEntry("Title");
   bool modified = config.readEntry("Modified", false);
-  if( modified ){
+  if (modified){
     bool b_canRecover;
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
 
-    if(b_canRecover){
+    if (b_canRecover){
       pdlg = new ProgressDlg(QString(), QString(), QString());
       pdlg->show();
       m_doc = new KEduVocDocument(this);
@@ -135,7 +135,7 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
       QFile::remove(tempname);
     }
   }
-  else if(!filename.isEmpty()){
+  else if (!filename.isEmpty()){
     pdlg = new ProgressDlg (QString(), QString(), "");
     pdlg->show();
     m_doc = new KEduVocDocument(this);

@@ -118,7 +118,7 @@ void KVocTrainApp::slotEditCallBack(int res)
         if (row == m_tableModel->rowCount(QModelIndex()) - 1)
         {
           int col = m_tableView->currentIndex().column();
-          if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG )
+          if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG)
           {
             int lesson = m_doc->entry(row)->lesson();
             if (lesson >= m_lessonsComboBox->count())
@@ -154,7 +154,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
    }
 
    if (!force && entryDlg->isModified() && !Prefs::autoEntryApply()) {
-     if( KMessageBox::No == KMessageBox::warningYesNo(this,
+     if (KMessageBox::No == KMessageBox::warningYesNo(this,
                    i18n("The entry dialog contains unsaved changes.\n"
                         "Do you want to apply or discard your changes?"),
                    i18n("Unsaved Changes"),
@@ -190,8 +190,8 @@ void KVocTrainApp::commitEntryDlg(bool force)
        expr->setUsageLabel (col, entryDlg->getUsageLabel());
        expr->setParaphrase (col, entryDlg->getParaphrase());
        expr->setConjugation (col, entryDlg->getConjugation());
-       expr->setComparison(col, entryDlg->getComparison() );
-       expr->setMultipleChoice(col, entryDlg->getMultipleChoice() );
+       expr->setComparison(col, entryDlg->getComparison());
+       expr->setMultipleChoice(col, entryDlg->getMultipleChoice());
 
        expr->setFauxAmi (col, entryDlg->getFromFauxAmi(), false);
        expr->setFauxAmi (col, entryDlg->getToFauxAmi(), true);
@@ -209,13 +209,13 @@ void KVocTrainApp::commitEntryDlg(bool force)
        expr->setType (col, entryDlg->getType());
 
        for (int j = 0; j <= expr->translationCount(); j++)
-         if (expr->type(j).isEmpty() )
+         if (expr->type(j).isEmpty())
            expr->setType(j, entryDlg->getType());
 
        for (int j = 0; j <= expr->translationCount(); j++)
          if (KVTQuery::getMainType(expr->type(j))
                !=
-             KVTQuery::getMainType(entryDlg->getType()) )
+             KVTQuery::getMainType(entryDlg->getType()))
            expr->setType(j, entryDlg->getType());
      }
      expr->setLesson(entryDlg->getLesson());
@@ -234,39 +234,39 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
          if (col >= 0) {
            // only updated "common" props in multimode
-           if (entryDlg->fromGradeDirty() )
+           if (entryDlg->fromGradeDirty())
              expr->setGrade(col, entryDlg->getFromGrade(), false);
-           if (entryDlg->toGradeDirty() )
+           if (entryDlg->toGradeDirty())
              expr->setGrade(col, entryDlg->getToGrade(), true);
 
-           if (entryDlg->fromQCountDirty() )
+           if (entryDlg->fromQCountDirty())
              expr->setQueryCount(col, entryDlg->getFromQCount(), false);
-           if (entryDlg->toQCountDirty() )
+           if (entryDlg->toQCountDirty())
               expr->setQueryCount(col, entryDlg->getToQCount(), true);
 
-           if (entryDlg->fromBCountDirty() )
+           if (entryDlg->fromBCountDirty())
              expr->setBadCount(col, entryDlg->getFromBCount(), false);
-           if (entryDlg->toBCountDirty() )
+           if (entryDlg->toBCountDirty())
              expr->setBadCount(col, entryDlg->getToBCount(), true);
            ///@todo port
-           if (entryDlg->fromDateDirty() )
+           if (entryDlg->fromDateDirty())
              expr->setQueryDate(col, entryDlg->getFromDate(), false);
-           if (entryDlg->toDateDirty() )
+           if (entryDlg->toDateDirty())
              expr->setQueryDate(col, entryDlg->getToDate(), true);
-           if (entryDlg->usageDirty() ) {
+           if (entryDlg->usageDirty()) {
              for (int j = 0; j <= expr->numTranslations(); j++)
                expr->setUsageLabel (j, entryDlg->getUsageLabel());
            }
 
-           if (entryDlg->typeDirty() )
+           if (entryDlg->typeDirty())
              for (int j = 0; j <= expr->numTranslations(); j++)
                expr->setType(j, entryDlg->getType());
          }
 
-         if (entryDlg->activeDirty() )
+         if (entryDlg->activeDirty())
            expr->setActive(entryDlg->getActive());
 
-         if (entryDlg->lessonDirty() )
+         if (entryDlg->lessonDirty())
            expr->setLesson (entryDlg->getLesson());
        }*/
      }
@@ -530,7 +530,7 @@ void KVocTrainApp::slotRemoveRow()
     }
   }
   else {
-    if(KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del()))
+    if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del()))
     {
       int currentRow = m_tableView->currentIndex().row();
       int currentColumn = m_tableView->currentIndex().column();
@@ -570,7 +570,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 {
   controlActive = (e->modifiers() & Qt::ControlModifier) !=0;
 
-  switch( e->key() ) {
+  switch(e->key()) {
     case Qt::Key_Plus:
       if (controlActive) {
         int less = m_lessonsComboBox->currentIndex();
@@ -598,7 +598,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
       break;
 
     case Qt::Key_Tab:
-      if (m_tableView->hasFocus() )  {
+      if (m_tableView->hasFocus())  {
         searchLine->setFocus();
         searchLine->selectAll();
       }
@@ -607,7 +607,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
     break;
 
     case Qt::Key_Backtab:
-      if (searchLine->hasFocus() )
+      if (searchLine->hasFocus())
         m_tableView->setFocus();
       else {
         searchLine->setFocus();
@@ -639,7 +639,7 @@ void KVocTrainApp::slotCreateLesson(int header)
   for (int i = 0; i < m_tableModel->rowCount(QModelIndex()); i++) {
     KEduVocExpression *kv = m_doc->entry(i);
     kv->setLesson(0);
-    if (kv->grade(header) > THRESH_LESSON && !kv->translation(header).isEmpty() )
+    if (kv->grade(header) > THRESH_LESSON && !kv->translation(header).isEmpty())
       sel.push_back(i);
   }
 
@@ -668,7 +668,7 @@ void KVocTrainApp::slotShowStatistics()
 void KVocTrainApp::slotCleanVocabulary()
 {
   prepareProgressBar();
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   int num = m_doc->cleanUp();
   QApplication::restoreOverrideCursor();
   removeProgressBar();
@@ -743,7 +743,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_doc, m_lessonsComboBox, &querymanager, this, "settings",  Prefs::self() );
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_doc, m_lessonsComboBox, &querymanager, this, "settings",  Prefs::self());
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectPage(index);
@@ -829,10 +829,10 @@ void KVocTrainApp::slotResumeSearch(const QString& s)
   }
 
   slotStatusMsg(i18n("Searching expression..."));
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  QApplication::setOverrideCursor(Qt::WaitCursor);
 
   // new word or shortend word
-  if (s.length() < m_textToFind.length() )
+  if (s.length() < m_textToFind.length())
     searchpos = 0;
 
   // search in current col from current row till end
@@ -996,7 +996,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
     QStringList names;
     for (int i = 0; i < m_languages.count(); i++)
     {
-      if(m_languages.longId(i).isEmpty() )
+      if (m_languages.longId(i).isEmpty())
         names.append(m_languages.shortId(i));
       else
         names.append(m_languages.longId(i));
@@ -1006,7 +1006,7 @@ void KVocTrainApp::aboutToShowVocabAppendLanguage()
 
     for (int i = 0; i < m_languages.count(); i++)
     {
-      if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+      if (!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
         action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], vocabAppendLanguage->selectableActionGroup());
       else
         action = new QAction(names[i], vocabAppendLanguage->selectableActionGroup());
@@ -1039,7 +1039,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
     QStringList names;
     for (int i = 0; i < m_languages.count(); i++)
     {
-      if(m_languages.longId(i).isEmpty() )
+      if (m_languages.longId(i).isEmpty())
         names.append(m_languages.shortId(i));
       else
         names.append(m_languages.longId(i));
@@ -1063,7 +1063,7 @@ void KVocTrainApp::aboutToShowVocabSetLanguage()
 
       for (int i = 0; i < m_languages.count(); i++)
       {
-        if(!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
+        if (!m_languages.pixmapFile(i).isEmpty() && !m_languages.longId(i).isEmpty())
           action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(i))), names[i], selAction->selectableActionGroup());
         else
           action = new QAction(names[i], selAction->selectableActionGroup());
@@ -1099,7 +1099,7 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
     for (int i = 1; i < (int) m_doc->identifierCount(); i++)
     {
       int j;
-      if((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0 && !m_languages.pixmapFile(j).isEmpty() && !m_languages.longId(j).isEmpty())
+      if ((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0 && !m_languages.pixmapFile(j).isEmpty() && !m_languages.longId(j).isEmpty())
         action = new QAction(QIcon(QPixmap(m_languages.pixmapFile(j))), names[i - 1], vocabRemoveLanguage->selectableActionGroup());
       else
         action = new QAction(names[i - 1], vocabRemoveLanguage->selectableActionGroup());
@@ -1116,7 +1116,7 @@ void KVocTrainApp::slotStatusHelpMsg(const QString &text)
 {
   ///////////////////////////////////////////////////////////////////
   // change status message of whole statusbar temporary (text, msec)
-  if (pbar == 0 || !pbar->isVisible() )
+  if (pbar == 0 || !pbar->isVisible())
     statusBar()->showMessage(text, 3000);
 }
 
@@ -1179,7 +1179,7 @@ QList<int> KVocTrainApp::csvOrder()
     if (qFind (csv_order.begin(), csv_order.end(), i) == csv_order.end())
        csv_order.append(i);
 /*
-  if (csv_order.size() > doc->numIdentifiers() )
+  if (csv_order.size() > doc->numIdentifiers())
     csv_order.erase(csv_order.begin() + doc->numIdentifiers(), csv_order.end());
 */
 
@@ -1234,7 +1234,7 @@ void KVocTrainApp::slotEditPaste()
 {
   slotStatusMsg(i18n("Inserting clipboard contents..."));
 
-  QApplication::setOverrideCursor( Qt::WaitCursor );
+  QApplication::setOverrideCursor(Qt::WaitCursor);
   QString s;
   QString textToPaste = QApplication::clipboard()->text();
 

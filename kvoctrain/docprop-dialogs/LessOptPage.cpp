@@ -100,7 +100,7 @@ void LessOptPage::slotModifyLesson()
 
     bool ok;
     QString getLesson = KInputDialog::getText(i18n("Lesson Description"), i18n("Enter lesson description:"), str, &ok, this);
-    if( !ok )
+    if (!ok)
       return;
 
     int i = m_currentLesson + 1;

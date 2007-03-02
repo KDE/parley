@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <unistd.h>
+//#include <unistd.h>
 
 #include <QTimer>
 #include <QFrame>
@@ -45,11 +45,9 @@
 #include "common-dialogs/ProgressDlg.h"
 #include <prefs.h>
 
-
-
 void KVocTrainApp::slotTimeOutBackup()
 {
-  if (Prefs::autoBackup() && m_doc && m_doc->isModified() ) {
+  if (Prefs::autoBackup() && m_doc && m_doc->isModified()) {
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
@@ -71,7 +69,7 @@ bool KVocTrainApp::queryClose()
 bool KVocTrainApp::queryExit()
 {
   saveOptions();
-  if (!m_doc || !m_doc->isModified() ) return true;
+  if (!m_doc || !m_doc->isModified()) return true;
 
   bool save = (Prefs::autoSave()); //save without asking
 
@@ -107,13 +105,10 @@ bool KVocTrainApp::queryExit()
 
 void KVocTrainApp::slotFileQuit()
 {
-  ///////////////////////////////////////////////////////////////////
-  // exits the Application
-  if(queryExit())
-    {
-      m_doc->setModified(false);  // Make sure not to bother about saving again.
-      kapp->quit();
-    }
+  if (queryExit())  {
+    m_doc->setModified(false);  // Make sure not to bother about saving again.
+    kapp->quit();
+  }
   else
     slotStatusMsg(IDS_DEFAULT);
 }
@@ -132,7 +127,7 @@ void KVocTrainApp::slotFileNew()
 {
   slotStatusMsg(i18n("Creating new file..."));
 
-  if (queryExit() )
+  if (queryExit())
     createNewDocument();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -195,7 +190,7 @@ void KVocTrainApp::slotFileOpenExample()
 {
   slotStatusMsg(i18n("Opening example file..."));
 
-  if (queryExit() ) {
+  if (queryExit()) {
     QString s = KStandardDirs::locate("data", "kvoctrain/examples/");
     KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
     loadFileFromPath(url, false);
@@ -222,7 +217,7 @@ void KVocTrainApp::slotFileMerge()
   QString s;
   KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
 
-  if (!url.isEmpty() ) {
+  if (!url.isEmpty()) {
 
     QString msg = i18n("Loading %1", url.path());
 
@@ -251,7 +246,7 @@ void KVocTrainApp::slotFileMerge()
     msg = i18n("Merging %1", url.path());
     slotStatusMsg(msg);
 
-    QApplication::setOverrideCursor( Qt::WaitCursor );
+    QApplication::setOverrideCursor(Qt::WaitCursor);
 
     int lesson_offset = m_lessonsComboBox->count()-1;
     for (int i = 0; i < (int) new_names.size(); i++) {
@@ -317,7 +312,7 @@ void KVocTrainApp::slotFileMerge()
           t = expr->usageLabel (lang);
           // adjust usage offset
           QString tg;
-          if (!t.isEmpty() ) {
+          if (!t.isEmpty()) {
             QString t2;
             while (t.left(strlen(UL_USER_USAGE)) == UL_USER_USAGE) {
               QString n;
@@ -465,7 +460,7 @@ void KVocTrainApp::slotFileSave()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  if (m_doc->URL().fileName() == i18n("Untitled") ) {
+  if (m_doc->URL().fileName() == i18n("Untitled")) {
     slotFileSaveAs();
     return;
   }
@@ -497,7 +492,7 @@ void KVocTrainApp::slotFileSaveAs()
 
   KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
-  if (!url.isEmpty() ) {
+  if (!url.isEmpty()) {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
        i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
@@ -530,7 +525,7 @@ void KVocTrainApp::fillLessonBox()
   m_lessonsComboBox->clear();
   m_lessonsComboBox->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
   m_currentLesson = m_doc->currentLesson();
-  if (m_currentLesson > m_lessonsComboBox->count() ) {
+  if (m_currentLesson > m_lessonsComboBox->count()) {
     m_currentLesson = 0;
     m_doc->setCurrentLesson(m_currentLesson);
   }
@@ -548,7 +543,7 @@ void KVocTrainApp::loadDocProps()
   random_expr2.clear();
   queryList.clear();
   m_doc->queryIdentifier(act_query_org, act_query_trans);
-  if (!act_query_org.isEmpty() && !act_query_trans.isEmpty() ) {
+  if (!act_query_org.isEmpty() && !act_query_trans.isEmpty()) {
     for (int i = 0; i < m_doc->entryCount(); i++)
     {
       KEduVocExpression *entry = m_doc->entry(i);
@@ -569,7 +564,7 @@ void KVocTrainApp::loadDocProps()
   KVTUsage::setUsageNames(m_doc->usageDescriptions());
   KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 
-  querymanager.setLessonItems(m_doc->lessonsInQuery() );
+  querymanager.setLessonItems(m_doc->lessonsInQuery());
 
   // remove empty elements
   for (int i = (int) queryList.size()-1; i >= 0; i--)
@@ -609,12 +604,12 @@ void KVocTrainApp::slotSaveSelection ()
   seldoc.setTypeDescriptions(m_doc->typeDescriptions());
 
   for (int i = m_doc->entryCount()-1; i >= 0; i--)
-    if (m_doc->entry(i)->isInQuery() )
+    if (m_doc->entry(i)->isInQuery())
       seldoc.appendEntry(m_doc->entry(i));
 
   KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
-  if (!url.isEmpty() )
+  if (!url.isEmpty())
   {
     QFileInfo fileinfo(url.path());
     if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
@@ -673,7 +668,7 @@ void KVocTrainApp::createNewDocument()
   m_doc->appendIdentifier(i18n("Translation"));
   for (int i=0; i<20; i++)
     m_doc->appendEntry(new KEduVocExpression());
-  connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+  connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   m_tableModel->setDocument(m_doc);
   m_lessonModel->setDocument(m_doc);
   loadDocProps();
