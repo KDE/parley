@@ -45,18 +45,6 @@
 #include "common-dialogs/ProgressDlg.h"
 #include <prefs.h>
 
-#define PATTERN_ML   I18N_NOOP("*.kvtml|KDE Vocabulary Document (*.kvtml)\n")
-#define PATTERN_WQL  I18N_NOOP("*.wql|KWordQuiz Document (*.wql)\n")
-#define PATTERN_PAU  I18N_NOOP("*.xml.qz *.pau.gz|Pauker Lesson (*.xml.gz *.pau.gz)\n")
-#define PATTERN_VOC  I18N_NOOP("*.voc|Vokabeltrainer (*.voc)\n")
-#define PATTERN_CSV  I18N_NOOP("*.csv|Text (*.csv)\n")
-#define PATTERN_ALL  I18N_NOOP("*|All Files (*)")
-
-// we can read these
-#define FILTER_RPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_WQL)+i18n(PATTERN_PAU)+i18n(PATTERN_VOC)+i18n(PATTERN_CSV)+i18n(PATTERN_ALL)
-
-// we can write these
-#define FILTER_WPATTERN  i18n(PATTERN_ML)+i18n(PATTERN_CSV)+i18n(PATTERN_ALL)
 
 
 void KVocTrainApp::slotTimeOutBackup()
@@ -155,7 +143,7 @@ void KVocTrainApp::slotFileOpen()
   slotStatusMsg(i18n("Opening file..."));
 
   if (queryExit()) {
-    KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, this, i18n("Open Vocabulary Document"));
+    KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
     loadFileFromPath(url, true);
   }
 
@@ -209,7 +197,7 @@ void KVocTrainApp::slotFileOpenExample()
 
   if (queryExit() ) {
     QString s = KStandardDirs::locate("data", "kvoctrain/examples/");
-    KUrl url = KFileDialog::getOpenUrl(s, FILTER_RPATTERN, this, i18n("Open Example Vocabulary Document"));
+    KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
     loadFileFromPath(url, false);
     if (m_doc)
       m_doc->URL().setFileName(QString());
@@ -232,7 +220,7 @@ void KVocTrainApp::slotFileMerge()
   slotStatusMsg(i18n("Merging file..."));
 
   QString s;
-  KUrl url = KFileDialog::getOpenUrl(QString(), FILTER_RPATTERN, parentWidget(), i18n("Merge Vocabulary File"));
+  KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty() ) {
 
@@ -507,7 +495,7 @@ void KVocTrainApp::slotFileSaveAs()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() ) {
     QFileInfo fileinfo(url.path());
@@ -624,7 +612,7 @@ void KVocTrainApp::slotSaveSelection ()
     if (m_doc->entry(i)->isInQuery() )
       seldoc.appendEntry(m_doc->entry(i));
 
-  KUrl url = KFileDialog::getSaveUrl(QString(), FILTER_WPATTERN, parentWidget(), i18n("Save Vocabulary As"));
+  KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
   if (!url.isEmpty() )
   {
