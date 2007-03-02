@@ -34,7 +34,7 @@
 #include <klocale.h>
 
 #include "ArtQueryDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 
 ArtQueryDlg::ArtQueryDlg
 (

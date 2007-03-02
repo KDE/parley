@@ -42,7 +42,7 @@
 
 #include "RandomQueryDlg.h"
 #include "common-dialogs/ProgressDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 
 #include <keduvocdocument.h>
 

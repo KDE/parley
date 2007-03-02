@@ -19,7 +19,6 @@
 #include <kdialog.h>
 
 #include "kvttablemodel.h"
-#include "kv_resource.h"
 #include "prefs.h"
 
 #include <keduvocexpression.h>

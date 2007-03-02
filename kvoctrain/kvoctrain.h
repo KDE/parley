@@ -47,12 +47,18 @@
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "kvtlanguages.h"
-#include "kv_resource.h"
-
 #include "kvtlessonmodel.h"
 
+#define IDS_DEFAULT I18N_NOOP("Ready.")
+
 class QTimer;
-class KLined;
+class QProgressBar;
+
+class KLineEdit;
+class KComboBox;
+class KRecentFilesAction;
+class KSelectAction;
+
 class ProgressDlg;
 class KEduVocDocument;
 class SimpleQueryDlg;
@@ -62,13 +68,6 @@ class RandomQueryDlg;
 class AdjQueryDlg;
 class ArtQueryDlg;
 class EntryDlg;
-
-class KLineEdit;
-class KComboBox;
-class QProgressBar;
-class KRecentFilesAction;
-class KSelectAction;
-
 class KVTNewStuff;
 
 /**
@@ -146,9 +145,7 @@ public:
   void slotCleanVocabulary ();
   void slotChooseLesson(int id);
   void slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &);
-//  void slotSearchClip();
 
-  void slotHeaderCallBack (int cmd_and_id);
   /** append language to vocabulary */
   void slotAppendLanguage(int index);
   /** assign language to vocabulary column */
@@ -163,8 +160,6 @@ public:
   /** set up options */
   void slotGeneralOptionsPage(int index);
   void slotGeneralOptions();
-  //void slotQueryOptions();
-  //void slotQueryOptions(int pageindex);
   void slotApplyPreferences();
   void slotDocumentProperties();
   void slotDocPropsLang();
@@ -182,7 +177,7 @@ public:
   void slotResumeQueryMC();
   void slotRestartQuery();
   void slotStartTypeQuery(int col, const QString & type);
-  void slotStartPropertyQuery(int col, QueryType property);
+  void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
   void slotStartQuery(const QString & trans, const QString & org, bool create_new);
 
   void slotTimeOutRandomQuery(QueryDlgBase::Result res);
@@ -190,8 +185,6 @@ public:
   void slotTimeOutQuery(QueryDlgBase::Result res);
   void slotTimeOutType(QueryDlgBase::Result res);
   void slotTimeOutProperty(QueryDlgBase::Result res);
-
-
   void slotTimeOutBackup();
 
   /** open a new application window */
@@ -344,7 +337,7 @@ private:
   int              query_cycle;
   int              query_num;
   int              query_startnum;
-  QueryType        queryType;
+  KVTQuery::QueryType        queryType;
   KRandomSequence  m_randomSequence;
   KVTNewStuff     *m_newStuff;
 };

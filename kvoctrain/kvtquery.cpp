@@ -305,16 +305,16 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
 {
   bool type_ok = false;
-  if (query_type == QT_Synonym) {
+  if (query_type == KVTQuery::SynonymQuery) {
     type_ok = !expr->synonym(idx).simplified().isEmpty();
   }
-  else if (query_type == QT_Antonym) {
+  else if (query_type == KVTQuery::AntonymQuery) {
     type_ok = !expr->antonym(idx).simplified().isEmpty();
   }
-  else if (query_type == QT_Paraphrase) {
+  else if (query_type == KVTQuery::ParaphraseQuery) {
     type_ok = !expr->paraphrase(idx).simplified().isEmpty();
   }
-  else if (query_type == QT_Example) {
+  else if (query_type == KVTQuery::ExampleQuery) {
     type_ok = !expr->example(idx).simplified().isEmpty();
   }
 

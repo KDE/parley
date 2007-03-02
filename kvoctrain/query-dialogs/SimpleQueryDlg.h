@@ -36,7 +36,7 @@ class SimpleQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-  SimpleQueryDlg (QueryType querytpe,
+  SimpleQueryDlg (KVTQuery::QueryType querytpe,
                   int entry,
                   int column,
                   int q_cycle,
@@ -47,7 +47,7 @@ public:
 
   ~SimpleQueryDlg();
 
-  void setQuery(QueryType querytpe,
+  void setQuery(KVTQuery::QueryType querytpe,
                 int entry,
                 int column,
                 int q_cycle,
@@ -74,7 +74,7 @@ public slots:
 
 protected:
   QString answerstring;
-  QueryType querytype;
+  KVTQuery::QueryType querytype;
 
 private:
   Ui::SimpleQueryDlgForm * mw;

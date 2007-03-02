@@ -36,7 +36,7 @@
 #include <krandomsequence.h>
 
 #include "MCQueryDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 
 #include <keduvocdocument.h>
 

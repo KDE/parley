@@ -33,7 +33,7 @@
 #include <klocale.h>
 
 #include "AdjQueryDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 #include <kvtlanguages.h>
 
 AdjQueryDlg::AdjQueryDlg

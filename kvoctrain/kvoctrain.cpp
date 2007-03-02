@@ -61,6 +61,16 @@
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
 
+#define START_QUERY                 1
+#define START_MULTIPLE              2
+#define START_ARTICLE               3
+#define START_VERB                  4
+#define START_ADJECTIVE             5
+#define START_SYNONYM               6
+#define START_ANTONYM               7
+#define START_EXAMPLE               8
+#define START_PARAPHRASE            9
+
 /*void KVocTrainApp::slotSaveOptions()
 {
    saveOptions(true);
@@ -863,7 +873,8 @@ void KVocTrainApp::aboutToShowLearn()
   QMenu *identifierSubSubMenu;
   QAction *typeAction;
 
-  QString mapString;
+  QString mapString = QString("%1%2%3");
+  QChar fillChar = QLatin1Char('0');
 
   learningMenu->clear();
 
@@ -896,7 +907,7 @@ void KVocTrainApp::aboutToShowLearn()
         typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[k], titles[0]));
         typeAction->setToolTip(typeAction->whatsThis());
         typeAction->setStatusTip(typeAction->whatsThis());
-        learningMapper->setMapping(typeAction, QString("%1%2%3").arg("RQ").arg(j, 3, 10, QLatin1Char('0')).arg(k, 3, 10, QLatin1Char('0')));
+        learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
       }
 
       identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice"));
@@ -905,7 +916,7 @@ void KVocTrainApp::aboutToShowLearn()
         typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[k], titles[0]));
         typeAction->setToolTip(typeAction->whatsThis());
         typeAction->setStatusTip(typeAction->whatsThis());
-        learningMapper->setMapping(typeAction, QString("%1%2%3").arg("MC").arg(j, 3, 10, QLatin1Char('0')).arg(k, 3, 10, QLatin1Char('0')));
+        learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
       }
     }
     else
@@ -914,13 +925,13 @@ void KVocTrainApp::aboutToShowLearn()
       typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[0], titles[j]));
       typeAction->setToolTip(typeAction->whatsThis());
       typeAction->setStatusTip(typeAction->whatsThis());
-      learningMapper->setMapping(typeAction, QString("%1%2%3").arg("RQ").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+      learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
       typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice"), learningMapper, SLOT(map()));
       typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[0], titles[j]));
       typeAction->setToolTip(typeAction->whatsThis());
       typeAction->setStatusTip(typeAction->whatsThis());
-      learningMapper->setMapping(typeAction, QString("%1%2%3").arg("MC").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+      learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
     }
 
     identifierSubMenu->addSeparator();
@@ -930,19 +941,19 @@ void KVocTrainApp::aboutToShowLearn()
     typeAction->setWhatsThis(i18n("Starts training with verbs"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("VB").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_VERB, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     typeAction = identifierSubMenu->addAction(i18n("&Articles"), learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with articles"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("AR").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_ARTICLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     typeAction = identifierSubMenu->addAction(i18n("&Comparisons"), learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with adjectives"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("CO").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_ADJECTIVE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     identifierSubMenu->addSeparator();
 
@@ -950,25 +961,25 @@ void KVocTrainApp::aboutToShowLearn()
     typeAction->setWhatsThis(i18n("Starts training with synonyms"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("SY").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_SYNONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     typeAction = identifierSubMenu->addAction(i18n("A&ntonyms"), learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with antonyms"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("AN").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_ANTONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     typeAction = identifierSubMenu->addAction(i18n("E&xamples"), learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with examples"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("EX").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_EXAMPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     typeAction = identifierSubMenu->addAction(i18n("&Paraphrase"), learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with paraphrases"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, QString("%1%2%3").arg("PA").arg(j, 3, 10, QLatin1Char('0')).arg(0, 3, 10, QLatin1Char('0')));
+    learningMapper->setMapping(typeAction, mapString.arg(START_PARAPHRASE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
   }
 
   learningMenu->addSeparator();
@@ -1309,118 +1320,88 @@ void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QM
 }
 
 
-void KVocTrainApp::slotHeaderCallBack (int header_and_cmd) /*FOLD00*/
+void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 {
-  int header1 = (header_and_cmd >> 16) & 0xFF;
-  int header2 = header_and_cmd >> (16+8);
-  int cmd     = header_and_cmd & 0xFFFF;
-
-  switch (cmd) {
-    case IDH_SORT_COL_ALPHA:
-      ///@todo port view->getTable()->sortByColumn_alpha(header1);
-      return;
-    break;
-
-    case IDH_SORT_COL_NUM:
-      ///@todo port view->getTable()->sortByColumn_index(header1);
-      return;
-    break;
-  }
-
-  if (header1 >= (int) m_doc->identifierCount()) {
-    kError() << "header1 >= (int) doc->numIdentifiers()\n";
-    return;
-  }
-
-  if (header2 >= (int) m_doc->identifierCount()) {
-    kError() << "header2 >= (int) doc->numIdentifiers()\n";
-    return;
-  }
+  int cmd     = mapString.mid(0, 3).toInt();
+  int header1 = mapString.mid(3, 3).toInt();
+  int header2 = mapString.mid(6, 3).toInt();
+  kDebug() << mapString << " " << cmd << " " << header1 << " " << header2 << endl;
 
   switch (cmd) {
 
-    case IDH_START_QUERY:
+    case START_QUERY:
       delete randomQueryDlg;
       randomQueryDlg = 0;
-      queryType = QT_Random;
+      queryType = KVTQuery::RandomQuery;
       slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
                      header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
 
-    case IDH_START_MULTIPLE:
+    case START_MULTIPLE:
       delete mcQueryDlg;
       mcQueryDlg = 0;
-      queryType = QT_Multiple;
+      queryType = KVTQuery::MultipleChoiceQuery;
       slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
                      header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
 
-    case IDH_START_VERB: {
+    case START_VERB: {
       delete verbQueryDlg;
       verbQueryDlg = 0;
-      queryType = QT_Conjugation;
+      queryType = KVTQuery::ConjugationQuery;
       slotStartTypeQuery (header1, QM_VERB);
     }
     break;
 
-    case IDH_START_ARTICLE: {
+    case START_ARTICLE: {
       delete artQueryDlg;
       artQueryDlg = 0;
-      queryType = QT_Articles;
+      queryType = KVTQuery::ArticlesQuery;
       slotStartTypeQuery (header1, QM_NOUN);
     }
     break;
 
-    case IDH_START_ADJECTIVE: {
+    case START_ADJECTIVE: {
       delete adjQueryDlg;
       adjQueryDlg = 0;
-      queryType = QT_Comparison;
+      queryType = KVTQuery::ComparisonQuery;
       slotStartTypeQuery (header1, QM_ADJ);
     }
     break;
 
-    case IDH_START_SYNONYM: {
+    case START_SYNONYM: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, QT_Synonym);
+      slotStartPropertyQuery (header1, KVTQuery::SynonymQuery);
     }
     break;
 
-    case IDH_START_ANTONYM: {
+    case START_ANTONYM: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, QT_Antonym);
+      slotStartPropertyQuery (header1, KVTQuery::AntonymQuery);
     }
     break;
 
-    case IDH_START_EXAMPLE: {
+    case START_EXAMPLE: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, QT_Example);
+      slotStartPropertyQuery (header1, KVTQuery::ExampleQuery);
     }
     break;
 
-    case IDH_START_PARAPHRASE: {
+    case START_PARAPHRASE: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, QT_Paraphrase);
+      slotStartPropertyQuery (header1, KVTQuery::ParaphraseQuery);
     }
-    break;
-
-    case IDH_CREATE_LESSON:
-      slotCreateLesson(header1);
     break;
 
     default:
-       kError() << "KVocTrainApp::slotHeaderCallBack: got unknown command\n";
+       kError() << "Unknown command" << endl;
 
   }
   slotStatusMsg(IDS_DEFAULT);
-}
-
-void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
-{
-  kDebug() << mapString << endl;
 }
 
 #include "kvoctrain.moc"

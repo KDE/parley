@@ -33,7 +33,7 @@
 #include <klocale.h>
 
 #include "VerbQueryDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 
 VerbQueryDlg::VerbQueryDlg
 (

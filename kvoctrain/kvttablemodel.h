@@ -18,6 +18,13 @@
 #include <keduvocdocument.h>
 #include <kvtlanguages.h>
 
+#define KV_EXTRA_COLS    2   // add col for lesson number
+
+#define KV_COL_LESS      0   // col: lesson number
+#define KV_COL_MARK      1   // col: mark
+#define KV_COL_ORG       2   // col: original
+#define KV_COL_TRANS     3   // col: first translation
+
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */

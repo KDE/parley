@@ -70,13 +70,6 @@ class EnumCompType;
 #define QM_USER_TYPE  "#"   // designates number of user type
 #define QM_TYPE_DIV   ":"   // divide main from subtype
 
-//enum kvq_timeout_t { kvq_notimeout, kvq_show, kvq_cont };
-
-enum QueryType  { QT_Random, QT_Multiple,
-                  QT_Articles, QT_Conjugation, QT_Comparison,
-                  QT_Synonym, QT_Antonym, QT_Example, QT_Paraphrase };
-
-
 class TypeRelation
 {
 public:
@@ -105,6 +98,18 @@ typedef QVector<QList<QueryEntryRef> > QuerySelection;
 class KVTQuery
 {
 public:
+
+enum QueryType { RandomQuery,
+                 MultipleChoiceQuery,
+                 ArticlesQuery,
+                 ConjugationQuery,
+                 ComparisonQuery,
+                 SynonymQuery,
+                 AntonymQuery,
+                 ExampleQuery,
+                 ParaphraseQuery
+               };
+
                 // don't change the order/remove one of these,
                 // just APPEND new types
 enum CompType { DontCare,

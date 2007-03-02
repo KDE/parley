@@ -34,12 +34,12 @@
 #include <klocale.h>
 
 #include "SimpleQueryDlg.h"
-#include <kv_resource.h>
+#include <kvttablemodel.h>
 
 #include <keduvocdocument.h>
 
 SimpleQueryDlg::SimpleQueryDlg(
-        QueryType querytype,
+        KVTQuery::QueryType querytype,
         int entry,
         int column,
         int q_cycle,
@@ -85,7 +85,7 @@ void SimpleQueryDlg::initFocus() const
 }
 
 
-void SimpleQueryDlg::setQuery(QueryType _querytype,
+void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
                          int entry,
                          int column,
                          int q_cycle,
@@ -108,7 +108,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
    QString s;
    switch (querytype)
    {
-     case QT_Synonym:
+     case KVTQuery::SynonymQuery:
      {
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the synonym:"));
@@ -120,7 +120,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      }
      break;
 
-     case QT_Antonym:
+     case KVTQuery::AntonymQuery:
      {
        mw->queryLabel->setText(i18n("Expression"));
        mw->instructionLabel->setText(i18n("Enter the antonym:"));
@@ -131,7 +131,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      }
      break;
 
-     case QT_Paraphrase:
+     case KVTQuery::ParaphraseQuery:
      {
        mw->queryLabel->setText(i18n("Paraphrase"));
        mw->instructionLabel->setText(i18n("Enter the word:"));
@@ -142,7 +142,7 @@ void SimpleQueryDlg::setQuery(QueryType _querytype,
      }
      break;
 
-     case QT_Example:
+     case KVTQuery::ExampleQuery:
      {
        mw->queryLabel->setText(i18n("Example sentence"));
        mw->instructionLabel->setText(i18n("Fill in the missing word:"));
@@ -234,14 +234,14 @@ void SimpleQueryDlg::showMoreClicked()
 void SimpleQueryDlg::showAllClicked()
 {
   mw->answerField->setText (answerstring);
-  verifyField (mw->answerField, answerstring, querytype == QT_Synonym || querytype == QT_Antonym);
+  verifyField (mw->answerField, answerstring, querytype == KVTQuery::SynonymQuery || querytype == KVTQuery::AntonymQuery);
   mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-  if (verifyField (mw->answerField, answerstring, querytype == QT_Synonym || querytype == QT_Antonym))
+  if (verifyField (mw->answerField, answerstring, querytype == KVTQuery::SynonymQuery || querytype == KVTQuery::AntonymQuery))
     knowItClicked();
   else
     mw->dont_know->setDefault(true);
@@ -271,25 +271,25 @@ void SimpleQueryDlg::slotUser2()
 //   queryField->setText (exp->getTranslation(q_ocol));
 
    switch (querytype) {
-     case QT_Synonym: {
+     case KVTQuery::SynonymQuery: {
        answerstring = exp->synonym(q_ocol);
        mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
      }
      break;
 
-     case QT_Antonym: {
+     case KVTQuery::AntonymQuery: {
        answerstring = exp->antonym(q_ocol);
        mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
      }
      break;
 
-     case QT_Paraphrase: {
+     case KVTQuery::ParaphraseQuery: {
        mw->queryField->setText(exp->paraphrase(q_ocol));
        answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
      }
      break;
 
-     case QT_Example: {
+     case KVTQuery::ExampleQuery: {
        mw->queryField->setText(exp->example(q_ocol));
        answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
      }
