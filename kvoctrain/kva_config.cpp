@@ -145,7 +145,5 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
   }
 
   show();
-  kapp->setTopWidget(this);
-  kapp->setMainWidget( this );
 }
 

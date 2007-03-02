@@ -812,6 +812,4 @@ void KVocTrainApp::slotStopQuery(bool)
   querying = false;
   querymode = false;
   show();
-  kapp->setTopWidget(this);
-  kapp->setMainWidget(this);
 }
