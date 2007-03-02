@@ -1157,7 +1157,7 @@ QList<int> KVocTrainApp::csvOrder()
   {
     foreach(const QString &language, languageList)
     {
-      int j = m_doc->findIdentifier(language);
+      int j = m_doc->indexOfIdentifier(language);
       if (j >= 0)
         csv_order.append(j);
       else
@@ -1332,7 +1332,7 @@ void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
     case START_QUERY:
       delete randomQueryDlg;
       randomQueryDlg = 0;
-      queryType = KVTQuery::RandomQuery;
+      m_queryType = KVTQuery::RandomQuery;
       slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
                      header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
@@ -1340,7 +1340,7 @@ void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
     case START_MULTIPLE:
       delete mcQueryDlg;
       mcQueryDlg = 0;
-      queryType = KVTQuery::MultipleChoiceQuery;
+      m_queryType = KVTQuery::MultipleChoiceQuery;
       slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
                      header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
     break;
@@ -1348,52 +1348,52 @@ void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
     case START_VERB: {
       delete verbQueryDlg;
       verbQueryDlg = 0;
-      queryType = KVTQuery::ConjugationQuery;
-      slotStartTypeQuery (header1, QM_VERB);
+      m_queryType = KVTQuery::ConjugationQuery;
+      slotStartTypeQuery(header1, QM_VERB);
     }
     break;
 
     case START_ARTICLE: {
       delete artQueryDlg;
       artQueryDlg = 0;
-      queryType = KVTQuery::ArticlesQuery;
-      slotStartTypeQuery (header1, QM_NOUN);
+      m_queryType = KVTQuery::ArticlesQuery;
+      slotStartTypeQuery(header1, QM_NOUN);
     }
     break;
 
     case START_ADJECTIVE: {
       delete adjQueryDlg;
       adjQueryDlg = 0;
-      queryType = KVTQuery::ComparisonQuery;
-      slotStartTypeQuery (header1, QM_ADJ);
+      m_queryType = KVTQuery::ComparisonQuery;
+      slotStartTypeQuery(header1, QM_ADJ);
     }
     break;
 
     case START_SYNONYM: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, KVTQuery::SynonymQuery);
+      slotStartPropertyQuery(header1, KVTQuery::SynonymQuery);
     }
     break;
 
     case START_ANTONYM: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, KVTQuery::AntonymQuery);
+      slotStartPropertyQuery(header1, KVTQuery::AntonymQuery);
     }
     break;
 
     case START_EXAMPLE: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, KVTQuery::ExampleQuery);
+      slotStartPropertyQuery(header1, KVTQuery::ExampleQuery);
     }
     break;
 
     case START_PARAPHRASE: {
       delete simpleQueryDlg;
       simpleQueryDlg = 0;
-      slotStartPropertyQuery (header1, KVTQuery::ParaphraseQuery);
+      slotStartPropertyQuery(header1, KVTQuery::ParaphraseQuery);
     }
     break;
 

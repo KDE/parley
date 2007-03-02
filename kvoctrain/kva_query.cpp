@@ -57,7 +57,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting property query..."));
-  queryType = property;
+  m_queryType = property;
   querymode = false;
   num_queryTimeout = 0;
   act_query_col = col;
@@ -103,7 +103,7 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   simpleQueryDlg = new SimpleQueryDlg (
-                           queryType,
+                           m_queryType,
                            random_expr1[random_query_nr].nr,
                            act_query_col,
                            query_cycle,
@@ -210,7 +210,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
   random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
-  simpleQueryDlg->setQuery(queryType,
+  simpleQueryDlg->setQuery(m_queryType,
                            random_expr1[random_query_nr].nr,
                            act_query_col,
                            query_cycle,
@@ -271,7 +271,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
 
   hide();
   querymode = true;
-  if (queryType == KVTQuery::ConjugationQuery) {
+  if (m_queryType == KVTQuery::ConjugationQuery) {
     verbQueryDlg = new VerbQueryDlg (exp->type(act_query_col),
                             random_expr1[random_query_nr].nr,
                             act_query_col,
@@ -290,7 +290,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                    this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
     verbQueryDlg->show();
   }
-  else if (queryType == KVTQuery::ArticlesQuery) {
+  else if (m_queryType == KVTQuery::ArticlesQuery) {
     artQueryDlg = new ArtQueryDlg(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
@@ -306,7 +306,7 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
                       this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
     artQueryDlg->show();
   }
-  else if (queryType == KVTQuery::ComparisonQuery) {
+  else if (m_queryType == KVTQuery::ComparisonQuery) {
     adjQueryDlg = new AdjQueryDlg(exp->type(act_query_col),
                           random_expr1[random_query_nr].nr,
                           act_query_col,
@@ -415,7 +415,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
   random_query_nr = m_randomSequence.getLong(random_expr1.size());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
-  if (queryType == KVTQuery::ConjugationQuery) {
+  if (m_queryType == KVTQuery::ConjugationQuery) {
     if (verbQueryDlg == 0) {
       kError() << "verbQueryDlg == 0\n";
       slotStopQuery(true);
@@ -434,7 +434,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
     verbQueryDlg->initFocus();
   }
-  else if (queryType == KVTQuery::ArticlesQuery) {
+  else if (m_queryType == KVTQuery::ArticlesQuery) {
     if (artQueryDlg == 0) {
       kError() << "artQueryDlg == 0\n";
       slotStopQuery(true);
@@ -451,7 +451,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
                           m_doc->article(act_query_col));
     artQueryDlg->initFocus();
   }
-  else if (queryType == KVTQuery::ComparisonQuery) {
+  else if (m_queryType == KVTQuery::ComparisonQuery) {
     if (adjQueryDlg == 0) {
       kError() << "adjQueryDlg == 0\n";
       slotStopQuery(true);
@@ -478,14 +478,14 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
 
 void KVocTrainApp::slotResumeQuery()
 {
-  queryType = KVTQuery::RandomQuery;
+  m_queryType = KVTQuery::RandomQuery;
   slotRestartQuery();
 }
 
 
 void KVocTrainApp::slotResumeQueryMC()
 {
-  queryType = KVTQuery::MultipleChoiceQuery;
+  m_queryType = KVTQuery::MultipleChoiceQuery;
   slotRestartQuery();
 }
 
@@ -510,11 +510,11 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
 
-  int tindex = m_doc->findIdentifier(translang);
+  int tindex = m_doc->indexOfIdentifier(translang);
   if (tindex < 0)
     return;
 
-  int oindex = m_doc->findIdentifier(orglang);
+  int oindex = m_doc->indexOfIdentifier(orglang);
   if (oindex < 0)
     return;
 
@@ -571,7 +571,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
     q_trans = exp->original();
   }
 
-  if (queryType == KVTQuery::RandomQuery) {
+  if (m_queryType == KVTQuery::RandomQuery) {
     randomQueryDlg = new RandomQueryDlg (
                              q_org,
                              q_trans,
@@ -589,7 +589,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
                this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
       randomQueryDlg->show();
   }
-  else if (queryType == KVTQuery::MultipleChoiceQuery) {
+  else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
     mcQueryDlg = new MCQueryDlg(
                              q_org,
                              q_trans,
@@ -619,14 +619,14 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
 
 void KVocTrainApp::slotTimeOutRandomQuery(QueryDlgBase::Result res)
 {
-  queryType = KVTQuery::RandomQuery;
+  m_queryType = KVTQuery::RandomQuery;
   slotTimeOutQuery(res);
 }
 
 
 void KVocTrainApp::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
 {
-  queryType = KVTQuery::MultipleChoiceQuery;
+  m_queryType = KVTQuery::MultipleChoiceQuery;
   slotTimeOutQuery(res);
 }
 
@@ -636,8 +636,8 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   m_doc->setModified();
 
 
-  int tindex = m_doc->findIdentifier(act_query_trans);
-  int oindex = m_doc->findIdentifier(act_query_org);
+  int tindex = m_doc->indexOfIdentifier(act_query_trans);
+  int oindex = m_doc->indexOfIdentifier(act_query_org);
   QueryEntryRef qer = random_expr1[random_query_nr];
   KEduVocExpression *exp = qer.exp;
 
@@ -870,8 +870,8 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   exp = random_expr1[random_query_nr].exp;
 
-  tindex = m_doc->findIdentifier(act_query_trans);
-  oindex = m_doc->findIdentifier(act_query_org);
+  tindex = m_doc->indexOfIdentifier(act_query_trans);
+  oindex = m_doc->indexOfIdentifier(act_query_org);
   QString q_org,
           q_trans;
 
@@ -900,7 +900,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
     q_trans = exp->original();
   }
 
-  if (queryType == KVTQuery::RandomQuery) {
+  if (m_queryType == KVTQuery::RandomQuery) {
     if (randomQueryDlg == 0) {
       kError() << "randomQueryDlg == 0\n";
       slotStopQuery(true);
@@ -918,7 +918,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
                              m_doc);
       randomQueryDlg->initFocus();
   }
-  else if (queryType == KVTQuery::MultipleChoiceQuery) {
+  else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
     if (mcQueryDlg == 0) {
       kError() << "mcQueryDlg == 0\n";
       slotStopQuery(true);

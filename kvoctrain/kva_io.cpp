@@ -376,9 +376,9 @@ void KVocTrainApp::slotFileMerge()
       for (int i = 0; i < qMax (m_doc->identifierCount(), new_doc->identifierCount()); i++)
         cs_equal.push_back (false);
 
-      move_matrix.push_back(new_doc->findIdentifier(m_doc->originalIdentifier()));
+      move_matrix.push_back(new_doc->indexOfIdentifier(m_doc->originalIdentifier()));
       for (int i = 1; i < m_doc->identifierCount(); i++)
-        move_matrix.push_back(new_doc->findIdentifier(m_doc->identifier(i)));
+        move_matrix.push_back(new_doc->indexOfIdentifier(m_doc->identifier(i)));
 
       for (int j = 0; j < new_doc->entryCount(); j++) {
         KEduVocExpression new_expr;
