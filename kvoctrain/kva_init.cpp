@@ -56,7 +56,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_tableModel = 0;
   m_lessonModel = 0;
   m_sortFilterModel = 0;
-  header_m = 0;
   btimer = 0;
   querymode = false;
   controlActive = false;

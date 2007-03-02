@@ -80,7 +80,6 @@
 KVocTrainApp::~KVocTrainApp()
 {
    removeEntryDlg();
-   delete header_m;
    delete btimer;
    delete m_doc;
 }

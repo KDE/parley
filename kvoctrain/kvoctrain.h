@@ -308,7 +308,6 @@ private:
   bool                 querymode;
   bool                 querying;
   QString              def_lang;
-  QMenu            *header_m;
   int                  act_query_col;
   QString              act_query_trans;
   QString              act_query_org;
