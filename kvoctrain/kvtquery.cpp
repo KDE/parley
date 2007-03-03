@@ -174,16 +174,16 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
         ||
 
         (
-           compareGrade((CompType) Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
-        && compareQuery((CompType) Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
-        && compareBad((CompType) Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
-        && compareDate((CompType) Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0))
+           compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
+        && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
+        && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
+        && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0))
         && compareBlocking(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::block())
         )
       )
       // lesson + word type must ALWAYS match (and there must be a word on both sides)
-      && compareLesson ((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
-      && compareType ((CompType) Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
+      && compareLesson (Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
+      && compareType (Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
       && !expr->original().simplified().isEmpty()
       && !expr->translation(index).simplified().isEmpty()
       )
@@ -259,7 +259,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QStrin
   else
     return false;
 
-  if (compareLesson((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+  if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
     return true;
     }
   else {
@@ -318,7 +318,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryT
     type_ok = !expr->example(idx).simplified().isEmpty();
   }
 
-  if (compareLesson((CompType) Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+  if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
     return true;
     }
   else {
@@ -332,25 +332,25 @@ QString KVTQuery::compStr(Prefs::EnumCompType::type type)
   QString str = "???";
   switch (type)
   {
-    case DontCare:     str = i18n("Do not Care");       break;
-    case WorseThan:    str = i18n("Worse Than");        break;
-    case WorseEqThan:  str = i18n("Equal/Worse Than");  break;
-    case MoreThan:     str = i18n(">");                 break;
-    case MoreEqThan:   str = i18n(">=");                break;
-    case BetterEqThan: str = i18n("Equal/Better Than"); break;
-    case BetterThan:   str = i18n("Better Than");       break;
-    case LessEqThan:   str = i18n("<=");                break;
-    case LessThan:     str = i18n("<");                 break;
-    case EqualTo:      str = i18n("Equal To");          break;
-    case NotEqual:     str = i18n("Not Equal");         break;
-    case OneOf:        str = i18n("Contained In");      break;
-    case NotOneOf:     str = i18n("Not Contained In");  break;
-    case Within:       str = i18n("Within Last");       break;
-    case Before:       str = i18n("Before");            break;
-    case NotQueried:   str = i18n("Not Queried");       break;
-    case Current:      return i18n("Current Lesson");   break;
-    case NotAssigned:  return i18n("Not Assigned");     break;
-    default:           ;
+    case Prefs::EnumCompType::DontCare:     str = i18n("Do not Care");       break;
+    case Prefs::EnumCompType::WorseThan:    str = i18n("Worse Than");        break;
+    case Prefs::EnumCompType::WorseEqThan:  str = i18n("Equal/Worse Than");  break;
+    case Prefs::EnumCompType::MoreThan:     str = i18n(">");                 break;
+    case Prefs::EnumCompType::MoreEqThan:   str = i18n(">=");                break;
+    case Prefs::EnumCompType::BetterEqThan: str = i18n("Equal/Better Than"); break;
+    case Prefs::EnumCompType::BetterThan:   str = i18n("Better Than");       break;
+    case Prefs::EnumCompType::LessEqThan:   str = i18n("<=");                break;
+    case Prefs::EnumCompType::LessThan:     str = i18n("<");                 break;
+    case Prefs::EnumCompType::EqualTo:      str = i18n("Equal To");          break;
+    case Prefs::EnumCompType::NotEqual:     str = i18n("Not Equal");         break;
+    case Prefs::EnumCompType::OneOf:        str = i18n("Contained In");      break;
+    case Prefs::EnumCompType::NotOneOf:     str = i18n("Not Contained In");  break;
+    case Prefs::EnumCompType::Within:       str = i18n("Within Last");       break;
+    case Prefs::EnumCompType::Before:       str = i18n("Before");            break;
+    case Prefs::EnumCompType::NotQueried:   str = i18n("Not Queried");       break;
+    case Prefs::EnumCompType::Current:      return i18n("Current Lesson");   break;
+    case Prefs::EnumCompType::NotAssigned:  return i18n("Not Assigned");     break;
+    default:                                ;
   }
   return str;
 }
@@ -434,92 +434,92 @@ bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
 }
 
 
-bool KVTQuery::compareDate(CompType type, QDateTime qd)
+bool KVTQuery::compareDate(int type, QDateTime qd)
 {
   QDateTime now = QDateTime::currentDateTime();
   bool erg = true;
   switch (type) {
-    case DontCare:   erg = true;                                                       break;
-    case Before:     erg = qd.toTime_t() == 0 || qd < now.addSecs(-Prefs::dateItem()); break; // never queried or older date
-    case Within:     erg = qd >= now.addSecs(-Prefs::dateItem());                      break; // newer date
-    case NotQueried: erg = qd.toTime_t() == 0;                                         break;
-    default:         ;
+    case Prefs::EnumCompType::DontCare:   erg = true;                                                       break;
+    case Prefs::EnumCompType::Before:     erg = qd.toTime_t() == 0 || qd < now.addSecs(-Prefs::dateItem()); break; // never queried or older date
+    case Prefs::EnumCompType::Within:     erg = qd >= now.addSecs(-Prefs::dateItem());                      break; // newer date
+    case Prefs::EnumCompType::NotQueried: erg = qd.toTime_t() == 0;                                         break;
+    default:                              ;
   }
   return erg;
 }
 
 
-bool KVTQuery::compareQuery(CompType type, int qgrade, int limit)
+bool KVTQuery::compareQuery(int type, int qgrade, int limit)
 {
   bool erg = true;
   switch (type) {
-    case DontCare:   erg = true;            break;
-    case MoreThan:   erg = qgrade > limit;  break; // sel has higher query count
-    case MoreEqThan: erg = qgrade >= limit; break;
-    case EqualTo:    erg = qgrade == limit; break;
-    case NotEqual:   erg = qgrade != limit; break;
-    case LessEqThan: erg = qgrade <= limit; break; // sel has less count
-    case LessThan:   erg = qgrade < limit;  break;
-    default:         ;
+    case Prefs::EnumCompType::DontCare:   erg = true;            break;
+    case Prefs::EnumCompType::MoreThan:   erg = qgrade > limit;  break; // sel has higher query count
+    case Prefs::EnumCompType::MoreEqThan: erg = qgrade >= limit; break;
+    case Prefs::EnumCompType::EqualTo:    erg = qgrade == limit; break;
+    case Prefs::EnumCompType::NotEqual:   erg = qgrade != limit; break;
+    case Prefs::EnumCompType::LessEqThan: erg = qgrade <= limit; break; // sel has less count
+    case Prefs::EnumCompType::LessThan:   erg = qgrade < limit;  break;
+    default:                              ;
   }
   return erg;
 }
 
 
-bool KVTQuery::compareBad(CompType type, int bcount, int limit)
+bool KVTQuery::compareBad(int type, int bcount, int limit)
 {
   bool erg = true;
   switch (type) {
-    case DontCare:   erg = true;            break;
-    case MoreThan:   erg = bcount > limit;  break;   // sel has higher bad count
-    case MoreEqThan: erg = bcount >= limit; break;
-    case EqualTo:    erg = bcount == limit; break;
-    case NotEqual:   erg = bcount != limit; break;
-    case LessEqThan: erg = bcount <= limit; break;  // sel has less count
-    case LessThan:   erg = bcount < limit;  break;
-    default:         ;
+    case Prefs::EnumCompType::DontCare:   erg = true;            break;
+    case Prefs::EnumCompType::MoreThan:   erg = bcount > limit;  break;   // sel has higher bad count
+    case Prefs::EnumCompType::MoreEqThan: erg = bcount >= limit; break;
+    case Prefs::EnumCompType::EqualTo:    erg = bcount == limit; break;
+    case Prefs::EnumCompType::NotEqual:   erg = bcount != limit; break;
+    case Prefs::EnumCompType::LessEqThan: erg = bcount <= limit; break;  // sel has less count
+    case Prefs::EnumCompType::LessThan:   erg = bcount < limit;  break;
+    default:                              ;
   }
   return erg;
 }
 
 
-bool KVTQuery::compareGrade(CompType type, grade_t qgrade, grade_t limit)
+bool KVTQuery::compareGrade(int type, grade_t qgrade, grade_t limit)
 {
   bool erg = true;
   switch (type) {
-    case DontCare:     erg = true;            break;
-    case WorseThan:    erg = qgrade < limit;  break; // sel has worse grade
-    case WorseEqThan:  erg = qgrade <= limit; break;
-    case EqualTo:      erg = qgrade == limit; break;
-    case NotEqual:     erg = qgrade != limit; break;
-    case BetterEqThan: erg = qgrade >= limit; break; // sel has better grade
-    case BetterThan:   erg = qgrade > limit;  break;
-    default:           ;
+    case Prefs::EnumCompType::DontCare:     erg = true;            break;
+    case Prefs::EnumCompType::WorseThan:    erg = qgrade < limit;  break; // sel has worse grade
+    case Prefs::EnumCompType::WorseEqThan:  erg = qgrade <= limit; break;
+    case Prefs::EnumCompType::EqualTo:      erg = qgrade == limit; break;
+    case Prefs::EnumCompType::NotEqual:     erg = qgrade != limit; break;
+    case Prefs::EnumCompType::BetterEqThan: erg = qgrade >= limit; break; // sel has better grade
+    case Prefs::EnumCompType::BetterThan:   erg = qgrade > limit;  break;
+    default:                                ;
   }
   return erg;
 }
 
 
-bool KVTQuery::compareType(CompType type, const QString & exprtype, const QString & limit)
+bool KVTQuery::compareType(int type, const QString & exprtype, const QString & limit)
 {
   bool erg = true;
   switch (type) {
-    case DontCare: erg = true;                                        break;
-    case EqualTo:  erg = getMainType(exprtype) == getMainType(limit); break;     // type is same
-    case NotEqual: erg = getMainType(exprtype) != getMainType(limit); break;     // other type
+    case Prefs::EnumCompType::DontCare: erg = true;                                        break;
+    case Prefs::EnumCompType::EqualTo:  erg = getMainType(exprtype) == getMainType(limit); break;     // type is same
+    case Prefs::EnumCompType::NotEqual: erg = getMainType(exprtype) != getMainType(limit); break;     // other type
     default:       ;
   }
   return erg;
 }
 
 
-bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, int current)
+bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int current)
 {
   bool erg = true;
   switch (type) {
-    case DontCare:    erg = true;            break;
+    case Prefs::EnumCompType::DontCare:    erg = true;            break;
 
-    case OneOf:
+    case Prefs::EnumCompType::OneOf:
     {
       erg = false;
       for (int i = 0; !erg && i < (int) limit.size(); i++)
@@ -528,7 +528,7 @@ bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, i
     }
     break;
 
-    case NotOneOf:
+    case Prefs::EnumCompType::NotOneOf:
     {
       erg = true;
       for (int i = 0; erg && i < (int) limit.size(); i++)
@@ -537,9 +537,9 @@ bool KVTQuery::compareLesson(CompType type, int less, const QList<int> &limit, i
     }
     break;
 
-    case Current:     erg = less == current; break;
-    case NotAssigned: erg = less == 0;       break;
-    default:          ;
+    case Prefs::EnumCompType::Current:     erg = less == current; break;
+    case Prefs::EnumCompType::NotAssigned: erg = less == 0;       break;
+    default:                               ;
   }
   return erg;
 }

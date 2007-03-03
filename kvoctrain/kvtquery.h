@@ -110,20 +110,6 @@ enum QueryType { RandomQuery,
                  ParaphraseQuery
                };
 
-                // don't change the order/remove one of these,
-                // just APPEND new types
-enum CompType { DontCare,
-                MoreEqThan, MoreThan,
-                Before, Within,
-                WorseThan, WorseEqThan,
-                EqualTo, NotEqual,
-                LessEqThan, LessThan,
-                BetterThan, BetterEqThan,
-                Current, NotAssigned, NotQueried,
-                Auto_Time, Auto_Count,
-                OneOf, NotOneOf
-               };
-
   KVTQuery();
 
   static QList<TypeRelation> getRelation(bool only_maintypes);
@@ -156,12 +142,12 @@ enum CompType { DontCare,
 protected:
   bool compareBlocking(int grade, QDateTime limit, bool use_it);
   bool compareExpiring(int grade, QDateTime limit, bool use_it);
-  bool compareDate(CompType, QDateTime);
-  bool compareQuery(CompType, int, int);
-  bool compareBad(CompType, int, int);
-  bool compareGrade(CompType, grade_t, grade_t);
-  bool compareType(CompType, const QString &, const QString &);
-  bool compareLesson(CompType type, int less, const QList<int> &limit, int current);
+  bool compareDate(int, QDateTime);
+  bool compareQuery(int, int, int);
+  bool compareBad(int, int, int);
+  bool compareGrade(int, grade_t, grade_t);
+  bool compareType(int, const QString &, const QString &);
+  bool compareLesson(int, int, const QList<int> &, int);
 
   QList<int> lessonitems;
 
