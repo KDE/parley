@@ -449,7 +449,7 @@ void KVocTrainApp::slotDocumentProperties()
     m_doc->setTitle(ddlg.getTitle());
     m_doc->setAuthor(ddlg.getAuthor());
     m_doc->setLicense(ddlg.getLicense());
-    m_doc->setDocRemark(ddlg.getDocRemark());
+    m_doc->setDocumentRemark(ddlg.getDocRemark());
 
     slotStatusMsg(i18n("Updating lesson indices..."));
     QApplication::setOverrideCursor(Qt::WaitCursor);

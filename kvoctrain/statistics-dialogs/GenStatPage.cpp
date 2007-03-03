@@ -31,7 +31,7 @@
 GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
 {
   setupUi(this);
-  l_filename->setText(doc->URL().path());
+  l_filename->setText(doc->url().path());
   l_title->setText(doc->title());
   l_author->setText(doc->author());
   QString s;

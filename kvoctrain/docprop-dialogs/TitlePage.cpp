@@ -38,7 +38,7 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
   title = doc->title();
   author = doc->author();
   license = doc->license();
-  doc_remark = doc->docRemark();
+  doc_remark = doc->documentRemark();
 
   e_title->setText(title);
   e_title->setFocus();

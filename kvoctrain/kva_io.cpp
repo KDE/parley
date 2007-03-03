@@ -91,7 +91,7 @@ bool KVocTrainApp::queryExit()
   }
 
   if (save) {
-    if (!m_doc->URL().isEmpty())
+    if (!m_doc->url().isEmpty())
       slotFileSave();       // save and exit
     if (m_doc->isModified())
     {
@@ -195,7 +195,7 @@ void KVocTrainApp::slotFileOpenExample()
     KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
     loadFileFromPath(url, false);
     if (m_doc)
-      m_doc->URL().setFileName(QString());
+      m_doc->url().setFileName(QString());
   }
 
   slotStatusMsg(IDS_DEFAULT);
@@ -460,23 +460,23 @@ void KVocTrainApp::slotFileSave()
   if (entryDlg != 0)
     commitEntryDlg(false);
 
-  if (m_doc->URL().fileName() == i18n("Untitled")) {
+  if (m_doc->url().fileName() == i18n("Untitled")) {
     slotFileSaveAs();
     return;
   }
 
-  QString msg = i18n("Saving %1", m_doc->URL().path());
+  QString msg = i18n("Saving %1", m_doc->url().path());
   slotStatusMsg(msg);
 
   // remove previous backup
-  QFile::remove(QFile::encodeName(m_doc->URL().path()+'~'));
-  ::rename (QFile::encodeName(m_doc->URL().path()),
-            QFile::encodeName(m_doc->URL().path()+'~'));
+  QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
+  ::rename (QFile::encodeName(m_doc->url().path()),
+            QFile::encodeName(m_doc->url().path()+'~'));
 
   prepareProgressBar();
   saveDocProps(m_doc);
-  m_doc->saveAs(this, m_doc->URL(), KEduVocDocument::automatic, "KVocTrain");
-  fileOpenRecent->addUrl(m_doc->URL());
+  m_doc->saveAs(this, m_doc->url(), KEduVocDocument::automatic, "KVocTrain");
+  fileOpenRecent->addUrl(m_doc->url());
   removeProgressBar();
 
   slotStatusMsg(IDS_DEFAULT);
@@ -512,7 +512,7 @@ void KVocTrainApp::slotFileSaveAs()
 
       prepareProgressBar();
       m_doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
-      fileOpenRecent->addUrl(m_doc->URL());
+      fileOpenRecent->addUrl(m_doc->url());
       removeProgressBar();
     }
   }

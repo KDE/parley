@@ -54,7 +54,7 @@ void ProgressDlg::setValue(KEduVocDocument *new_doc, int val)
   {
     doc = new_doc;
     l_title->setText(doc->title());
-    l_file->setText(doc->URL().fileName());
+    l_file->setText(doc->url().fileName());
   }
 }
 
