@@ -122,37 +122,26 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
-  // selecting might take rather long
-  int ent_no = 0;
-  int ent_percent = doc->entryCount() / 100;
-  float f_ent_percent = doc->entryCount() / 100.0;
-  ///@todo port emit doc->progressChanged(doc, 0);
-
   //Note that Leitner style learning (altlearn) normally only uses 20
   //entries, we just ignore that here
   for (int i = 0; i < doc->entryCount(); i++) {
-    ent_no++;
-    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
-
     KEduVocExpression *expr = doc->entry(i);
-    unsigned int lessonno;
+    int lessonno;
     if (Prefs::altLearn())
       lessonno = 0; //We only use a single array in Leitner style
     else
       lessonno = expr->lesson();
 
-    if (expr->isActive() ){
+    if (expr->isActive()) {
       if (Prefs::swapDirection()) {
-        if (  validate (expr, act_lesson, oindex, tindex)
-            || validate (expr, act_lesson, tindex, oindex)) {
-          random[lessonno].push_back (QueryEntryRef(expr, i));
+        if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
+          random[lessonno].append(QueryEntryRef(expr, i));
           expr->setInQuery(true);
         }
       }
       else {
-        if (validate (expr, act_lesson, oindex, tindex)) {
-          random[lessonno].push_back (QueryEntryRef(expr, i));
+        if (validate(expr, act_lesson, oindex, tindex)) {
+          random[lessonno].append(QueryEntryRef(expr, i));
           expr->setInQuery(true);
         }
       }
@@ -160,8 +149,8 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
   }
 
   // remove empty lesson elements
-  for (int i = (int) random.size()-1; i >= 0; i--)
-    if (random[i].size() == 0)
+  for (int i = random.count() - 1; i >= 0; i--)
+    if (random[i].count() == 0)
       random.erase(random.begin() + i);
   return random;
 }
@@ -182,8 +171,8 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
         )
       )
       // lesson + word type must ALWAYS match (and there must be a word on both sides)
-      && compareLesson (Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
-      && compareType (Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
+      && compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
+      && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
       && !expr->original().simplified().isEmpty()
       && !expr->translation(index).simplified().isEmpty()
       )
@@ -200,17 +189,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
-  // selecting might take rather long
-  int ent_no = 0;
-  int ent_percent = doc->entryCount() / 100;
-  float f_ent_percent = doc->entryCount() / 100.0;
-  ///@todo port emit doc->progressChanged(doc, 0);
-
   for (int i = 0; i < doc->entryCount(); i++) {
-    ent_no++;
-    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
-
     KEduVocExpression *expr = doc->entry(i);
     if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
       random[expr->lesson()].append(QueryEntryRef(expr, i));
@@ -253,8 +232,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QStrin
 
   }
   else if (qtype == QM_ADJ) {
-    type_ok =    expr_type == QM_ADJ
-              && !expr->comparison(idx).isEmpty();
+    type_ok = expr_type == QM_ADJ && !expr->comparison(idx).isEmpty();
   }
   else
     return false;
@@ -275,19 +253,9 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
-  // selecting might take rather long
-  int ent_no = 0;
-  int ent_percent = doc->entryCount() / 100;
-  float f_ent_percent = doc->entryCount() / 100.0;
-  ///@todo port emit doc->progressChanged(doc, 0);
-
   for (int i = 0; i < doc->entryCount(); i++) {
-    ent_no++;
-    ///@todo port if (ent_percent != 0 && (ent_no % ent_percent) == 0 )
-      ///@todo port emit doc->progressChanged(doc, int (ent_no / f_ent_percent));
-
     KEduVocExpression *expr = doc->entry(i);
-    if (expr->isActive() && validate (expr, act_lesson, idx, type)) {
+    if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
       random[expr->lesson()].append(QueryEntryRef(expr, i));
       expr->setInQuery(true);
     }
