@@ -135,13 +135,13 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
     if (expr->isActive()) {
       if (Prefs::swapDirection()) {
         if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
-          random[lessonno].append(QueryEntryRef(expr, i));
+          random[lessonno].append(QueryEntry(expr, i));
           expr->setInQuery(true);
         }
       }
       else {
         if (validate(expr, act_lesson, oindex, tindex)) {
-          random[lessonno].append(QueryEntryRef(expr, i));
+          random[lessonno].append(QueryEntry(expr, i));
           expr->setInQuery(true);
         }
       }
@@ -192,7 +192,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
   for (int i = 0; i < doc->entryCount(); i++) {
     KEduVocExpression *expr = doc->entry(i);
     if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
-      random[expr->lesson()].append(QueryEntryRef(expr, i));
+      random[expr->lesson()].append(QueryEntry(expr, i));
       expr->setInQuery(true);
     }
   }
@@ -256,7 +256,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
   for (int i = 0; i < doc->entryCount(); i++) {
     KEduVocExpression *expr = doc->entry(i);
     if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
-      random[expr->lesson()].append(QueryEntryRef(expr, i));
+      random[expr->lesson()].append(QueryEntry(expr, i));
       expr->setInQuery(true);
     }
   }

@@ -84,15 +84,15 @@ protected:
 };
 
 
-struct QueryEntryRef {
-  QueryEntryRef (KEduVocExpression *_exp, int _nr) : exp(_exp), nr(_nr) {}
+struct QueryEntry {
+  QueryEntry(KEduVocExpression *_exp, int _nr) : exp(_exp), nr(_nr) {}
 
   KEduVocExpression *exp;
   int nr;
 };
 
-
-typedef QVector<QList<QueryEntryRef> > QuerySelection;
+typedef QList<QueryEntry> QueryEntryList;
+typedef QVector<QList<QueryEntry> > QuerySelection;
 
 
 class KVTQuery

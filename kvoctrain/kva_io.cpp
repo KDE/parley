@@ -551,10 +551,10 @@ void KVocTrainApp::loadDocProps()
       {
          int less = entry->lesson();
          for (int l = (int) queryList.size(); l <= less; l++) {
-            QList<QueryEntryRef> ref_vec;
+            QueryEntryList ref_vec;
             queryList.push_back(ref_vec);
          }
-         QueryEntryRef ref(entry, i);
+         QueryEntry ref(entry, i);
          queryList[less].push_back(ref);
       }
     }

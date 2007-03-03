@@ -530,7 +530,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
   int tindex = m_doc->indexOfIdentifier(act_query_trans);
   int oindex = m_doc->indexOfIdentifier(act_query_org);
-  QueryEntryRef qer = random_expr1[random_query_nr];
+  QueryEntry qer = random_expr1[random_query_nr];
   KEduVocExpression *exp = qer.exp;
 
   if (res != QueryDlgBase::StopIt) {
@@ -679,21 +679,21 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   if (Prefs::altLearn()) {
 
     if (correct_3_times.count() > 7 || (correct_3_times.count() > 0 && correct_2_times.count() == 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
-      QueryEntryRef t_qer = correct_3_times[0];
+      QueryEntry t_qer = correct_3_times[0];
       correct_3_times.erase(correct_3_times.begin());
       random_query_nr = random_expr1.count();
       random_expr1.append(t_qer);
       query_cycle = 4;
     }
     else if (correct_2_times.count() > 5 || (correct_2_times.count() > 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
-      QueryEntryRef t_qer = correct_2_times[0];
+      QueryEntry t_qer = correct_2_times[0];
       correct_2_times.erase(correct_2_times.begin());
       random_query_nr = random_expr1.count();
       random_expr1.append(t_qer);
       query_cycle = 3;
     }
     else if (correct_1_times.count() > 5 || (correct_1_times.count() > 0  && random_expr1.count() == 0)) {
-      QueryEntryRef t_qer = correct_1_times[0];
+      QueryEntry t_qer = correct_1_times[0];
       correct_1_times.erase(correct_1_times.begin());
       random_query_nr = random_expr1.count();
       random_expr1.append(t_qer);

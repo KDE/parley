@@ -295,13 +295,13 @@ private:
   KVTLessonModel      *m_lessonModel;
   KVTSortFilterModel  *m_sortFilterModel;
 
-  QList<QueryEntryRef> random_expr1;
-  QList<QueryEntryRef> random_expr2;
+  QueryEntryList       random_expr1;
+  QueryEntryList       random_expr2;
   // Vectors for use in Leitner style learning. There is no
   // correct_0_times, we simply reuse random_expr1.
-  QList<QueryEntryRef> correct_1_times;
-  QList<QueryEntryRef> correct_2_times;
-  QList<QueryEntryRef> correct_3_times;
+  QueryEntryList       correct_1_times;
+  QueryEntryList       correct_2_times;
+  QueryEntryList       correct_3_times;
   QuerySelection       queryList;
   QTimer              *btimer;
   int                  random_query_nr;
