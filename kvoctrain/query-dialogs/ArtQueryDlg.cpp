@@ -112,7 +112,7 @@ void ArtQueryDlg::setQuery(QString,
    QString def, indef;
    bool removed = false;
 
-   articles.female(def, indef);
+   articles.getFemale(&def, &indef);
    mw->rb_fem->setText (i18n("&female:\t")+def+" / "+indef);
    mw->rb_fem->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.indexOf(def+' ') == 0) {
@@ -124,7 +124,7 @@ void ArtQueryDlg::setQuery(QString,
      removed = true;
    }
 
-   articles.male(def, indef);
+   articles.getMale(&def, &indef);
    mw->male->setText (i18n("&male:\t")+def+" / "+indef);
    mw->male->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.indexOf(def+' ') == 0) {
@@ -136,7 +136,7 @@ void ArtQueryDlg::setQuery(QString,
      removed = true;
    }
 
-   articles.natural(def, indef);
+   articles.getNatural(&def, &indef);
    mw->natural->setText (i18n("&natural:\t")+def+" / "+indef);
    mw->natural->setEnabled (!QString(def+indef).isEmpty() );
    if (!removed && s.indexOf(def+' ') == 0) {

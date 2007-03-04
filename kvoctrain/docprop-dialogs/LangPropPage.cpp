@@ -85,15 +85,15 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, QString curr_lang, const KEduV
   thirdM_plural->setEnabled(!common);
 
   QString def, indef;
-  articles.female(def, indef);
+  articles.getFemale(&def, &indef);
   def_female->setText (def);
   indef_female->setText (indef);
 
-  articles.male(def, indef);
+  articles.getMale(&def, &indef);
   def_male->setText (def);
   indef_male->setText (indef);
 
-  articles.natural(def, indef);
+  articles.getNatural(&def, &indef);
   def_natural->setText (def);
   indef_natural->setText (indef);
 }
@@ -185,7 +185,7 @@ void LangPropPage::slotThirdPCommonToggled(bool common)
 void LangPropPage::defFemaleChanged(const QString& s)
 {
   QString def, indef;
-  articles.female(def, indef);
+  articles.getFemale(&def, &indef);
   articles.setFemale(s, indef);
 }
 
@@ -193,7 +193,7 @@ void LangPropPage::defFemaleChanged(const QString& s)
 void LangPropPage::indefFemaleChanged(const QString& s)
 {
   QString def, indef;
-  articles.female(def, indef);
+  articles.getFemale(&def, &indef);
   articles.setFemale(def, s);
 }
 
@@ -201,7 +201,7 @@ void LangPropPage::indefFemaleChanged(const QString& s)
 void LangPropPage::defMaleChanged(const QString& s)
 {
   QString def, indef;
-  articles.male(def, indef);
+  articles.getMale(&def, &indef);
   articles.setMale(s, indef);
 }
 
@@ -209,7 +209,7 @@ void LangPropPage::defMaleChanged(const QString& s)
 void LangPropPage::indefMaleChanged(const QString& s)
 {
   QString def, indef;
-  articles.male(def, indef);
+  articles.getMale(&def, &indef);
   articles.setMale(def, s);
 }
 
@@ -217,7 +217,7 @@ void LangPropPage::indefMaleChanged(const QString& s)
 void LangPropPage::defNaturalChanged(const QString& s)
 {
   QString def, indef;
-  articles.natural(def, indef);
+  articles.getNatural(&def, &indef);
   articles.setNatural(s, indef);
 }
 
@@ -225,7 +225,7 @@ void LangPropPage::defNaturalChanged(const QString& s)
 void LangPropPage::indefNaturalChanged(const QString& s)
 {
   QString def, indef;
-  articles.natural(def, indef);
+  articles.getNatural(&def, &indef);
   articles.setNatural(def, s);
 }
 
