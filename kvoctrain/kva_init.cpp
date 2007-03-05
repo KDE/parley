@@ -28,7 +28,7 @@
 #include <QLabel>
 #include <QHeaderView>
 #include <QSplitter>
-#include <QListView>
+#include <QTreeView>
 #include <QAbstractItemModel>
 #include <QVBoxLayout>
 
@@ -359,8 +359,8 @@ void KVocTrainApp::initDoc()
 
 void KVocTrainApp::initModel()
 {
-  m_tableModel = new KVTTableModel(this);
   m_lessonModel = new KVTLessonModel(this);
+  m_tableModel = new KVTTableModel(this);
   m_tableModel->setLanguages(m_languages);
 
 }
@@ -388,9 +388,22 @@ void KVocTrainApp::initView()
   boxLayout->setSpacing(KDialog::spacingHint());
 
   // This contains the lessons for now
-  m_lessonView = new QListView(left);
-  m_lessonView->setResizeMode(QListView::Adjust);
+  m_lessonView = new KVTLessonView(left);
+  // To make the treeview appear like a listview
+  m_lessonView->setRootIsDecorated(false);
   boxLayout->addWidget(m_lessonView);
+
+  // Get the lessons form vocab document
+  m_lessonModel->setDocument(m_doc);
+  // I need to initialize the lessons with the model as well...
+  m_lessonView->setModel(m_lessonModel);
+
+  // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
+  m_lessonSelectionCombo = new KComboBox();
+  boxLayout->addWidget(m_lessonSelectionCombo);
+  m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
+  m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
+  m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
 
   m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
   boxLayout->addWidget(m_buttonNewLesson);
@@ -404,7 +417,6 @@ void KVocTrainApp::initView()
   // Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
-
   splitter->addWidget(m_tableView);
 
   m_sortFilterModel= new KVTSortFilterModel(this);
@@ -429,19 +441,12 @@ void KVocTrainApp::initView()
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
-  // Get the lessons form vocab document
-  m_lessonModel->setDocument(m_doc);
-  // I need to initialize the lessons with the model as well...
-  m_lessonView->setModel(m_lessonModel);
-
-  // At the moment I prefer ExtendedSelection - feels more natural. But MultiSelection could be a possibility as well.
-  // Anyway, I want to be able to select more than one thing. Not any more. If I get checkboxes in there it will be better. If more than one selection were possible, what lesson would new vocab be added to?
-  // m_lessonView->setSelectionMode(QAbstractItemView::MultiSelection);
-
   /** This is the way to get informed of changes in the lesson selection: */
   connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
 
   connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
+
+  connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
 
   slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
 

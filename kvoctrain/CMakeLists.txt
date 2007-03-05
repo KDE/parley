@@ -133,6 +133,7 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kvttablemodel.cpp
     kvttableview.cpp
     kvtlessonmodel.cpp
+    kvtlessonview.cpp
     kvtsortfiltermodel.cpp
     kvtquery.cpp
     kvtusage.cpp

@@ -1308,14 +1308,59 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   }
 }
 
+
+void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
+{
+  //QRegExp myReg("(Lektion 09)|(Lektion 04)");
+  QString lessonStrings;
+  QStringList description;
+
+  switch (comboState) {
+    case 0:
+      m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
+      break;
+    case 1:
+      description = m_doc->lessonDescriptions();
+      //kDebug << lessonStrings << endl;
+      lessonStrings.append("(");
+      foreach(int lesson, m_doc->lessonsInQuery()){
+        lessonStrings.append(m_doc->lessonDescriptions().at(lesson));
+        lessonStrings.append(")|(");
+      }
+      lessonStrings.remove(lessonStrings.length()-2, 2);
+      m_sortFilterModel->setFilterRegExp(lessonStrings);
+      break;
+    case 2:
+      m_sortFilterModel->setFilterFixedString("");
+      break;
+  }
+  m_tableModel->reset();
+}
+
+void KVocTrainApp::slotLessonSelectionComboChanged(int index)
+{
+  QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
+  QModelIndex current = indexes.at(0);
+  updateTableFilter(index, current);
+}
+
 void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QModelIndex &previous)
 {
   Q_UNUSED(previous);
+  
+  int comboState = m_lessonSelectionCombo->currentIndex();
+  updateTableFilter(comboState, current);
+  
+  /** @todo FREDERIK: consider the combo box here! */
+  // combo==ALL
+  /*
   if (current.row() == 0)
     m_sortFilterModel->setFilterFixedString("");
+  // else if ( combo==query )
+  // elso if ( combo==userspecified string)
   else
     m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
-  m_tableModel->reset();
+  m_tableModel->reset();*/
 }
 
 

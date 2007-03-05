@@ -10,6 +10,8 @@
 //
 //
 
+#include <QItemSelection>
+
 #include <kdebug.h>
 #include <klocale.h>
 
@@ -32,7 +34,6 @@ void KVTLessonModel::setDocument(KEduVocDocument * doc)
   m_lessonList.clear();
   foreach(QString lesson, m_doc->lessonDescriptions())
     m_lessonList.append(lesson);
-  m_lessonList.prepend(i18n("All Lessons"));
   m_lessonList.append(i18n("<no lesson>"));
   reset();
 }
@@ -44,14 +45,19 @@ void KVTLessonModel::setDocument(KEduVocDocument * doc)
  */
 int KVTLessonModel::rowCount(const QModelIndex &parent) const
 {
+  Q_UNUSED(parent);
   return m_lessonList.count();
 }
 
 // at this moment not used
+/** @todo I found out, qlistview does NOT support a header. They recomend using treeview instead. Eventually I will thus change to treeview. */
 QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (role != Qt::DisplayRole)
     return QVariant();
+
+  if (orientation == Qt::Horizontal && section == 0)
+    return QString(i18n("Lesson"));
 
   if (orientation == Qt::Horizontal)
     return QString("Column %1").arg(section);
@@ -90,7 +96,10 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    /** @todo handle the all/none stuff */
+    if (index.row() == m_lessonList.count()-1) { // NOT IN LESSON stuff = last entry
+      // ???
+    }
+
     if (m_doc->lessonsInQuery().contains(index.row()))
       return Qt::Checked;
     else
@@ -115,14 +124,15 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   if (index.row() >= m_lessonList.count())
     return false;
 
-  /** The first is All, the last none */
-  if (index.row() == 0 || index.row() == m_lessonList.count() -1)
-    return false; // cannot change all/none
-
   if (role == Qt::EditRole) {
+    /** the last one - not in lesson, for now it cannot be changed. There will be a change in how the not assigned vocabs are handled in the future. */
+    if(index.row() == m_lessonList.count() -1)
+      return false; // cannot change all/none
+
     QStringList list = m_doc->lessonDescriptions();
-    list.replace(index.row() -1 , value.toString()); // Very ugly! -1 because we added All as 0. But using the m_doc entries is more sensible.
-    kDebug() << list << endl;
+    list.replace(index.row(), value.toString());
+
+    //    kDebug() << list << endl;
     m_doc->setLessonDescriptions(list);
 
     // not only in m_doc, but here as well:
@@ -134,8 +144,6 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    kDebug() << value << endl;
-    /** @todo handle the all/none stuff */
     QList<int> intLessons;
 
     foreach(int lesson, m_doc->lessonsInQuery())
@@ -151,7 +159,6 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     m_doc->setModified();
     return true;
   }
-
   return false;
 }
 
@@ -165,6 +172,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
  */
 bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &parent)
 {
+  Q_UNUSED(parent);
   beginInsertRows(QModelIndex(), position, position + rows - 1);
 
   for (int row = 0; row < rows; ++row) {
@@ -186,6 +194,7 @@ bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &paren
  */
 bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
+  Q_UNUSED(parent);
   beginRemoveRows(QModelIndex(), position, position+rows-1);
 
   for (int row = 0; row < rows; ++row) {
@@ -204,10 +213,10 @@ bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &paren
  * @param end
  */
 void KVTLessonModel::slotLessonSelectionChanged(const QModelIndex &start, const QModelIndex &end){
-
+  Q_UNUSED(end);
   /** for now we only have one lesson selectable at the time - start is enough */
 
-  int index = start.row() -1; /** no use making all current */
+  int index = start.row(); /** no use making all current */
   if (index >= 0){
     m_doc->setCurrentLesson(index);
     //kDebug() << "Current lesson set to: " << index << " " << m_lessonList.at(index+1) << endl;

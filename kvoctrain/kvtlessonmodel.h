@@ -59,6 +59,8 @@ private:
 
 public slots:
   void slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &);
+  
+  friend class KVTLessonView;
 };
 
 #endif

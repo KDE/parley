@@ -31,7 +31,7 @@
 #include <QLabel>
 #include <QKeyEvent>
 #include <QVBoxLayout>
-#include <QListView>
+#include <QTreeView>
 #include <QPushButton>
 #include <QSignalMapper>
 
@@ -48,6 +48,7 @@
 #include "kvttableview.h"
 #include "kvtlanguages.h"
 #include "kvtlessonmodel.h"
+#include "kvtlessonview.h"
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
@@ -103,6 +104,9 @@ public:
   void saveLanguages();
   void readLanguages();
 
+
+  void updateTableFilter(int comboState, QModelIndex current);
+
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
   * opened file by a temporary filename provided by KApplication.
   * @see KMainWindow#saveProperties
@@ -144,7 +148,11 @@ public:
   void slotCreateLesson(int header);
   void slotCleanVocabulary ();
   void slotChooseLesson(int id);
+  /** selection of a lesson from the lesson list on the left */
   void slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &);
+  /** selection of which lessons should be in the table to edit */
+  void slotLessonSelectionComboChanged(int index);
+
 
   /** append language to vocabulary */
   void slotAppendLanguage(int index);
@@ -279,11 +287,15 @@ private:
 
   QPushButton *m_buttonNewLesson;
 
+  /** m_editCombo selects which lessons to display in m_tableView (the main table) */
+  KComboBox *m_lessonSelectionCombo;
+
   /** m_tableView is the main widget which is the table that represents your working area. */
   KVTTableView *m_tableView;
 
-  /** I want to try a different lesson selection style. Very basic at the moment. */
-  QListView *m_lessonView;
+  /** m_lessonView is the lesson list at the left side. */
+  //KVTLessonView *m_lessonView;
+  KVTLessonView *m_lessonView;
 
   /** m_doc represents your vocabulary document. It keeps
     * information such as filename and does the serialization of your files.
