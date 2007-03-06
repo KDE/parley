@@ -38,6 +38,11 @@
 class KEduVocDocument;
 class LangPropPage;
 
+/**
+  * This is the KPageDialog for all the document option pages. You get it by clicking Vocabulary->Properties.
+  * It contains the pages for General, Lesson, Types, Tenses, Usage and Options.
+  * I hope that at least Lesson can be removed here soon.
+  */
 class DocPropsDlg : public KPageDialog
 {
   Q_OBJECT

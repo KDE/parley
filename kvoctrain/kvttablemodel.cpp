@@ -66,6 +66,8 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
   if (!index.isValid())
     return QVariant();
 
+  int defaultLessonIndex;
+
   switch (role)
   {
     case KVTTableModel::LessonsRole: {
@@ -121,7 +123,26 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
     case Qt::DisplayRole: {
       QVariant result;
       if (index.column() == 0)
-        result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
+      {
+        // Lesson is set to zero if none is set, but we don't allow this any more. Entries are rather moved into a default lesson.
+        if(m_doc->entry(index.row())->lesson() == 0) {
+          // find entry for default lesson
+          defaultLessonIndex = m_doc->lessonIndex(i18n("Default lesson"));
+          if (defaultLessonIndex <= 0){ // create it if it does not exist
+            QStringList list = m_doc->lessonDescriptions();
+            list.append(i18n("Default lesson"));
+            m_doc->setLessonDescriptions(list);
+            defaultLessonIndex = m_doc->lessonIndex(i18n("Default lesson"));
+            /** @todo Maybe better to ask the user whether he is ok with moving his no lesson stuff to default?
+                but this should be still downwards compatible so I see no real need.*/
+          }
+          m_doc->entry(index.row())->setLesson(defaultLessonIndex);
+          result = i18n("Default lesson");
+          m_doc->setModified();
+        }
+        else
+          result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());
+      }
       else if (index.column() == 1)
       {
         if (m_doc->entry(index.row())->isActive())

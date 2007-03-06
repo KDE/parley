@@ -23,7 +23,9 @@ public:
   KVTLessonView(QWidget *parent = 0);
   void setModel(KVTLessonModel *model);
 public slots:
-
+  void slotCreateNewLesson();
+private:
+  KVTLessonModel *m_model;
 };
 
 #endif

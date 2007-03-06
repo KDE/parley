@@ -31,10 +31,11 @@
 void KVTLessonModel::setDocument(KEduVocDocument * doc)
 {
   m_doc = doc;
+  /*
   m_lessonList.clear();
   foreach(QString lesson, m_doc->lessonDescriptions())
     m_lessonList.append(lesson);
-  m_lessonList.append(i18n("<no lesson>"));
+  //m_lessonList.append(i18n("<no lesson>")); */
   reset();
 }
 
@@ -46,7 +47,7 @@ void KVTLessonModel::setDocument(KEduVocDocument * doc)
 int KVTLessonModel::rowCount(const QModelIndex &parent) const
 {
   Q_UNUSED(parent);
-  return m_lessonList.count();
+  return m_doc->lessonCount();
 }
 
 // at this moment not used
@@ -88,18 +89,14 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
   if (!index.isValid())
     return QVariant();
 
-  if (index.row() >= m_lessonList.count())
+  if (index.row() >= m_doc->lessonCount())
     return QVariant();
 
   if (role == Qt::DisplayRole || role == Qt::EditRole)
-    return m_lessonList.at(index.row());
+    return m_doc->lessonDescriptions().at(index.row());
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    if (index.row() == m_lessonList.count()-1) { // NOT IN LESSON stuff = last entry
-      // ???
-    }
-
     if (m_doc->lessonsInQuery().contains(index.row()))
       return Qt::Checked;
     else
@@ -121,14 +118,10 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   if (!index.isValid())
     return false;
 
-  if (index.row() >= m_lessonList.count())
+  if (index.row() >= m_doc->lessonCount())
     return false;
 
   if (role == Qt::EditRole) {
-    /** the last one - not in lesson, for now it cannot be changed. There will be a change in how the not assigned vocabs are handled in the future. */
-    if(index.row() == m_lessonList.count() -1)
-      return false; // cannot change all/none
-
     QStringList list = m_doc->lessonDescriptions();
     list.replace(index.row(), value.toString());
 
@@ -136,7 +129,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     m_doc->setLessonDescriptions(list);
 
     // not only in m_doc, but here as well:
-    m_lessonList.replace(index.row() , value.toString());
+    //m_lessonList.replace(index.row() , value.toString());
 
     emit dataChanged(index, index);
     return true;

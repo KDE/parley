@@ -407,6 +407,8 @@ void KVocTrainApp::initView()
 
   m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
   boxLayout->addWidget(m_buttonNewLesson);
+  /// @todo FREDERIK this does not exist - it is currently part of LessOptPage!!!
+  connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
 
   // Splitter to have the lessons at the left.
   QSplitter *splitter = new QSplitter(centralWidget());
@@ -449,6 +451,10 @@ void KVocTrainApp::initView()
   connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
 
   slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
+
+  /// @todo does something like this make sense here?
+  //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
+
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
   // Well I have no clue how this works !?!? But it is better than the default.

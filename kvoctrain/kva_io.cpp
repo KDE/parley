@@ -169,8 +169,8 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     //prepareProgressBar();
     m_doc = new KEduVocDocument(this);
     m_doc->open(url, false);
-    m_tableModel->setDocument(m_doc);
     m_lessonModel->setDocument(m_doc);
+    m_tableModel->setDocument(m_doc);
 
     removeProgressBar();
     loadDocProps();
