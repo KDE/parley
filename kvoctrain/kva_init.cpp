@@ -424,6 +424,7 @@ void KVocTrainApp::initView()
 
   m_sortFilterModel= new KVTSortFilterModel(this);
   m_sortFilterModel->setSourceModel(m_tableModel);
+
   m_tableView->setModel(m_sortFilterModel);
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
   m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
@@ -458,6 +459,9 @@ connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()
 
   /// @todo does something like this make sense here?
   //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
+
+  m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
+
 
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
