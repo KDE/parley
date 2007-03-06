@@ -397,6 +397,7 @@ void KVocTrainApp::initView()
   m_lessonModel->setDocument(m_doc);
   // I need to initialize the lessons with the model as well...
   m_lessonView->setModel(m_lessonModel);
+  m_lessonView->setToolTip(i18n("Double click to rename a lesson. With the checkboxes you can select which lessons you want to be tested. Only checked lessons [x] will be asked!"));
 
   // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
   m_lessonSelectionCombo = new KComboBox();
@@ -404,10 +405,11 @@ void KVocTrainApp::initView()
   m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
   m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
   m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
+  m_lessonSelectionCombo->setToolTip(i18n("Here you select which lessons you want to edit on the right."));
 
   m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
+  m_buttonNewLesson->setToolTip(i18n("Click here to create a new lesson. You can then type its name directly in the list."));
   boxLayout->addWidget(m_buttonNewLesson);
-  /// @todo FREDERIK this does not exist - it is currently part of LessOptPage!!!
   connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
 
   // Splitter to have the lessons at the left.
