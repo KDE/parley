@@ -22,6 +22,7 @@ Q_OBJECT
 public:
   KVTLessonView(QWidget *parent = 0);
   void setModel(KVTLessonModel *model);
+  void initializeSelection();
 public slots:
   void slotCreateNewLesson();
 private:

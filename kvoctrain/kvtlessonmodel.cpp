@@ -31,18 +31,13 @@
 void KVTLessonModel::setDocument(KEduVocDocument * doc)
 {
   m_doc = doc;
-  /*
-  m_lessonList.clear();
-  foreach(QString lesson, m_doc->lessonDescriptions())
-    m_lessonList.append(lesson);
-  //m_lessonList.append(i18n("<no lesson>")); */
   reset();
 }
 
 /**
- * The number of Lessons +2 because we have those "All lessons" and "Not in lesson" entries.
- * @param parent will always be QModelIndex() as long as we only have a list here.
- * @return number lessons +2.
+ * The number of Lessons.
+ * @param parent will always be QModelIndex() as long as we only have a list here
+ * @return number of lessons
  */
 int KVTLessonModel::rowCount(const QModelIndex &parent) const
 {
@@ -50,8 +45,9 @@ int KVTLessonModel::rowCount(const QModelIndex &parent) const
   return m_doc->lessonCount();
 }
 
-// at this moment not used
-/** @todo I found out, qlistview does NOT support a header. They recomend using treeview instead. Eventually I will thus change to treeview. */
+/**
+  * Header of the treeview
+  */
 QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (role != Qt::DisplayRole)
@@ -79,7 +75,7 @@ Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 }
 
 /**
- * data of an entry.
+ * data of an entry
  * @param index index of an entry
  * @param role Qt::DisplayRole = lesson name, Qt::CheckStateRole = checkbox state
  * @return data
@@ -107,7 +103,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
 
 /**
- * Change the name of a lesson. This is called automatically when the user changes an entry in the list.
+ * Change the name or checkbox of a lesson.
  * @param index which lesson
  * @param value new name
  * @param role
@@ -121,16 +117,12 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   if (index.row() >= m_doc->lessonCount())
     return false;
 
+  /** rename a lesson */
   if (role == Qt::EditRole) {
     QStringList list = m_doc->lessonDescriptions();
     list.replace(index.row(), value.toString());
 
-    //    kDebug() << list << endl;
     m_doc->setLessonDescriptions(list);
-
-    // not only in m_doc, but here as well:
-    //m_lessonList.replace(index.row() , value.toString());
-
     emit dataChanged(index, index);
     return true;
   }
@@ -207,11 +199,10 @@ bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &paren
  */
 void KVTLessonModel::slotLessonSelectionChanged(const QModelIndex &start, const QModelIndex &end){
   Q_UNUSED(end);
-  /** for now we only have one lesson selectable at the time - start is enough */
-
-  int index = start.row(); /** no use making all current */
+  /** we only have one lesson selectable at the time - start is enough */
+  int index = start.row(); 
   if (index >= 0){
-    m_doc->setCurrentLesson(index);
+    m_doc->setCurrentLesson(index +1);
     //kDebug() << "Current lesson set to: " << index << " " << m_lessonList.at(index+1) << endl;
   }
 }

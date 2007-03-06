@@ -1327,19 +1327,25 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
         lessonStrings.append(m_doc->lessonDescriptions().at(lesson));
         lessonStrings.append(")|(");
       }
-      lessonStrings.remove(lessonStrings.length()-2, 2);
+      lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("
       m_sortFilterModel->setFilterRegExp(lessonStrings);
       break;
     case 2:
       m_sortFilterModel->setFilterFixedString("");
       break;
   }
+  m_doc->setModified();
   m_tableModel->reset();
 }
 
 void KVocTrainApp::slotLessonSelectionComboChanged(int index)
 {
   QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
+  // oops - this crashes if there is no selection - there should always be a current lesson!!!
+  if (indexes.empty()) {
+    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+    return;
+  }
   QModelIndex current = indexes.at(0);
   updateTableFilter(index, current);
 }
@@ -1347,20 +1353,9 @@ void KVocTrainApp::slotLessonSelectionComboChanged(int index)
 void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QModelIndex &previous)
 {
   Q_UNUSED(previous);
-  
+  m_doc->setCurrentLesson(current.row()+1);
   int comboState = m_lessonSelectionCombo->currentIndex();
   updateTableFilter(comboState, current);
-  
-  /** @todo FREDERIK: consider the combo box here! */
-  // combo==ALL
-  /*
-  if (current.row() == 0)
-    m_sortFilterModel->setFilterFixedString("");
-  // else if ( combo==query )
-  // elso if ( combo==userspecified string)
-  else
-    m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
-  m_tableModel->reset();*/
 }
 
 

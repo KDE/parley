@@ -169,8 +169,15 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     //prepareProgressBar();
     m_doc = new KEduVocDocument(this);
     m_doc->open(url, false);
-    m_lessonModel->setDocument(m_doc);
+    
+    //m_lessonModel->setDocument(m_doc);
+    //m_lessonView->initializeSelection();
+    
     m_tableModel->setDocument(m_doc);
+    m_lessonModel->setDocument(m_doc);
+
+    /// @todo this crashes as soon as it accesses m_lessonModel
+    //m_lessonView->initializeSelection();
 
     removeProgressBar();
     loadDocProps();
@@ -182,6 +189,11 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
     if (m_tableView)
       m_tableView->adjustContent();
+
+    if(m_doc==0) kDebug() << "m_doc == 0 !!!!!!!!!!!!!" << endl;
+    kDebug() << "m_doc -> cur: " << m_doc->currentLesson() << endl;
+
+
   }
 }
 
@@ -669,8 +681,9 @@ void KVocTrainApp::createNewDocument()
   for (int i=0; i<20; i++)
     m_doc->appendEntry(new KEduVocExpression());
   connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-  m_tableModel->setDocument(m_doc);
   m_lessonModel->setDocument(m_doc);
+  m_lessonView->setModel(m_lessonModel);
+  m_tableModel->setDocument(m_doc);
   loadDocProps();
   m_tableModel->reset();
   if (m_tableView)

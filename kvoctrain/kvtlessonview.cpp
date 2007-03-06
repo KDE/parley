@@ -24,14 +24,20 @@ void KVTLessonView::setModel(KVTLessonModel *model)
 {
   QTreeView::setModel(model);
   m_model = model;
-  
+  initializeSelection();
+}
+
+void KVTLessonView::initializeSelection()
+{
   /** m_doc starts counting lessons at 1 */
-  int currentLesson = model->m_doc->currentLesson() -1; 
+  int currentLesson = m_model->document()->currentLesson() -1;
+  if (currentLesson <= 0)
+    currentLesson = 1;
 
   QModelIndex indexOfCurrent;
   QItemSelection mySelection;
 
-  indexOfCurrent = model->index(currentLesson, 0, QModelIndex());
+  indexOfCurrent = m_model->index(currentLesson, 0, QModelIndex());
 
   mySelection.select(indexOfCurrent, indexOfCurrent);
 
@@ -52,27 +58,20 @@ void KVTLessonView::slotCreateNewLesson(){
 
   m_model->m_doc->setLessonDescriptions(list);
   m_model->m_doc->setModified();
-  reset();
+  reset(); // maybe better just begin insert rows?
 
   int newLessonIndex = m_model->m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
 
-  // select it and set the user to enter the real name!!!
-
-  QModelIndex indexOfCurrent;
+  // select the new lesson
   QItemSelection mySelection;
-
   // -1 because of counting from 1 of m_doc
-  indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
-
+  QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
   mySelection.select(indexOfCurrent, indexOfCurrent);
-
   QItemSelectionModel *selectionModel = this->selectionModel();
   selectionModel->select(mySelection, QItemSelectionModel::ClearAndSelect);
 
   emit currentChanged(indexOfCurrent, indexOfCurrent);
-  
-  
-  edit ( indexOfCurrent );
+  edit ( indexOfCurrent ); // let the user type a new name for the lesson
 }
 
 #include "kvtlessonview.moc"

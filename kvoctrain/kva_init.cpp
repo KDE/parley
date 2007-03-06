@@ -392,7 +392,6 @@ void KVocTrainApp::initView()
   // To make the treeview appear like a listview
   m_lessonView->setRootIsDecorated(false);
   boxLayout->addWidget(m_lessonView);
-
   // Get the lessons form vocab document
   m_lessonModel->setDocument(m_doc);
   // I need to initialize the lessons with the model as well...
@@ -452,7 +451,10 @@ void KVocTrainApp::initView()
 
   connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
 
-  slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
+
+connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
+  
+  //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
 
   /// @todo does something like this make sense here?
   //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
