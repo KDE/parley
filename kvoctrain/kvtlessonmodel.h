@@ -54,15 +54,9 @@ public:
 private:
   /** The data file */
   KEduVocDocument *m_doc;
-  
-  /** @todo FREDERIK I hope this is no longer needed. Will have to test. */
-  /** A copy of the lesson data - sadly... This is because we want our ALL and NO LESSON lessons, but not in there */
-  //QStringList m_lessonList;
 
 public slots:
   void slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &);
-  
-  friend class KVTLessonView;
 };
 
 #endif

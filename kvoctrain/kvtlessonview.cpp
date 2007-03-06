@@ -50,17 +50,17 @@ void KVTLessonView::initializeSelection()
 void KVTLessonView::slotCreateNewLesson(){
   int i = 1;
 
-  while ( m_model->m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0 )
+  while ( m_model->document()->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0 )
     i++;
 
-  QStringList list = m_model->m_doc->lessonDescriptions();
+  QStringList list = m_model->document()->lessonDescriptions();
   list.append(i18n("New lesson") + QString(" %1").arg(i));
 
-  m_model->m_doc->setLessonDescriptions(list);
-  m_model->m_doc->setModified();
+  m_model->document()->setLessonDescriptions(list);
+  m_model->document()->setModified();
   reset(); // maybe better just begin insert rows?
 
-  int newLessonIndex = m_model->m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
+  int newLessonIndex = m_model->document()->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
 
   // select the new lesson
   QItemSelection mySelection;

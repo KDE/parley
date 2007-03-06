@@ -192,8 +192,6 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
     if(m_doc==0) kDebug() << "m_doc == 0 !!!!!!!!!!!!!" << endl;
     kDebug() << "m_doc -> cur: " << m_doc->currentLesson() << endl;
-
-
   }
 }
 
