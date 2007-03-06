@@ -80,6 +80,7 @@ protected slots:
   void slotDayChanged(int);
   void slotMonthChanged(int);
   void slotYearChanged(int);
+  void slotDateTimeChanged(const QDateTime &);
 
 protected:
   void validate();

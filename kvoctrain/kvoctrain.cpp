@@ -285,6 +285,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
 void KVocTrainApp::removeEntryDlg()
 {
   if (entryDlg != 0) {
+    kDebug() << "Removing entry dialog" << endl;
     commitEntryDlg(false);
     delete entryDlg;
     entryDlg = 0;
@@ -312,8 +313,10 @@ void KVocTrainApp::slotEditEntry(int row, int col)
 
 void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 {
-  if (index.isValid())
-    slotEditEntry(index.row(), index.column());
+  if (index.isValid()) {
+    QModelIndex docIndex = m_sortFilterModel->mapToSource(index);
+    slotEditEntry(docIndex.row(), docIndex.column());
+  }
 }
 
 

@@ -151,7 +151,7 @@ public slots:
 
 protected slots:
   void updatePages(const QString &type);
-  virtual void reject();
+  void slotClose();
 
 protected:
   virtual void closeEvent(QCloseEvent*e);

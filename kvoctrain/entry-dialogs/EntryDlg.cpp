@@ -371,11 +371,11 @@ EntryDlg::~EntryDlg()
 }
 
 
-void EntryDlg::reject()
+void EntryDlg::slotClose()
 {
-  emit sigEditChoice(EditCancel);
+  //emit sigEditChoice(EditCancel);
+  //KPageDialog::reject();
 }
-
 
 void EntryDlg::closeEvent(QCloseEvent * e)
 {

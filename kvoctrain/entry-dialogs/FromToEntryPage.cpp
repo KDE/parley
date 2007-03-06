@@ -41,21 +41,6 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
 
-  QStringList monthnames;
-  monthnames.append("");
-  monthnames.append(i18n("January"));
-  monthnames.append(i18n("February"));
-  monthnames.append(i18n("March"));
-  monthnames.append(i18n("April"));
-  monthnames.append(i18n("May"));
-  monthnames.append(i18n("June"));
-  monthnames.append(i18n("July"));
-  monthnames.append(i18n("August"));
-  monthnames.append(i18n("September"));
-  monthnames.append(i18n("October"));
-  monthnames.append(i18n("November"));
-  monthnames.append(i18n("December"));
-
   connect(bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)));
   connect(qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)));
   connect(fauxami_line, SIGNAL(textChanged(const QString&)), SLOT(slotFauxAmiSelected(const QString&)));
@@ -64,14 +49,7 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
   connect(today, SIGNAL(clicked()), SLOT(slotToday()));
   connect(gradebox, SIGNAL(activated(int)), SLOT(slotGradeSelected(int)));
 
-  connect(year_spin,  SIGNAL(valueChanged(int)), SLOT(slotYearChanged(int)));
-  connect(month_spin, SIGNAL(valueChanged(int)), SLOT(slotMonthChanged(int)));
-  connect(day_spin,   SIGNAL(valueChanged(int)), SLOT(slotDayChanged(int)));
-
-  ///@todo I wonder if the custom spinbox is still needed
-  year_spin->setData(QStringList(), 1980, 2100);
-  month_spin->setData(monthnames, 1, 12);
-  day_spin->setData(QStringList(), 1, 31);
+  connect(queryDateEdit, SIGNAL(dateTimeChanged(const QDateTime &)), this, SLOT(slotDateTimeChanged(const QDateTime &)));
 
   QString s;
   for (int i = 0; i <= KV_MAX_GRADE; i++) {
@@ -79,11 +57,6 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
     gradebox->addItem(KVTQuery::gradeStr(i));
   }
   gradebox->setValidator(new BlockAllValidator());
-
-  setTabOrder(fauxami_line, year_spin);
-  setTabOrder(year_spin, month_spin);
-  setTabOrder(month_spin, day_spin);
-  setTabOrder(day_spin, today);
 }
 
 
@@ -101,28 +74,29 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
   if (_time.toTime_t() != 0 && !multi_sel) {
     //dt.setTime_t (_time);
     valid_date = true;
-
+    queryDateEdit->setDateTime(_time);
     date = dt.date();
     year = date.year();
     month = date.month();
     day = date.day();
 
-    day_spin->setValue(day);
-    month_spin->setValue(month);
-    year_spin->setValue(year);
-    year_spin->setSpecial(QString());
-    month_spin->setSpecial(QString());
-    day_spin->setSpecial(QString());
+    //day_spin->setValue(day);
+    //month_spin->setValue(month);
+    //year_spin->setValue(year);
+    //year_spin->setSpecial(QString());
+    //month_spin->setSpecial(QString());
+    //day_spin->setSpecial(QString());
   }
   else {
-    dt.setTime_t (time(0L));
+    //dt.setTime_t (time(0L));
+    queryDateEdit->setDateTime(QDateTime());
     date = dt.date();
     year = date.year();
     month = date.month();
     day = date.day();
-    year_spin->setSpecial("----");
-    month_spin->setSpecial("----");
-    day_spin->setSpecial("--");
+    //year_spin->setSpecial("----");
+    //month_spin->setSpecial("----");
+    //day_spin->setSpecial("--");
   }
 
   direc_label->setTitle (label);
@@ -141,8 +115,8 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
     valid_date = false;
     bcount_line->setText ("");
     qcount_line->setText ("");
-    month_spin->setSpecial(" ");
-    day_spin->setSpecial(" ");
+    //month_spin->setSpecial(" ");
+    //day_spin->setSpecial(" ");
     // FIXME: possibly derive new combobox type
     //        which filters ALL charcters to prevent new input
     //        in edit field
@@ -206,9 +180,9 @@ void FromToEntryPage::validate()
 {
   if (!valid_date) {
     valid_date = true;
-    day_spin->setValue(day);
-    month_spin->setValue(month);
-    year_spin->setValue(year);
+    //day_spin->setValue(day);
+    //month_spin->setValue(month);
+    //year_spin->setValue(year);
   }
 }
 
@@ -222,7 +196,7 @@ void FromToEntryPage::slotYearChanged(int new_year)
     new_year = year;
   }
 
-  year_spin->setSpecial(QString());
+  //year_spin->setSpecial(QString());
 
   year = new_year;
   validate();
@@ -251,7 +225,7 @@ void FromToEntryPage::slotMonthChanged(int new_month)
     new_month = month;
   }
 
-  month_spin->setSpecial(QString());
+  //month_spin->setSpecial(QString());
 
   month = new_month;
   validate();
@@ -279,7 +253,7 @@ void FromToEntryPage::slotDayChanged(int new_day)
     new_day = day;
   }
 
-  day_spin->setSpecial(QString());
+  //day_spin->setSpecial(QString());
 
   day = new_day;
   validate();
@@ -302,6 +276,7 @@ void FromToEntryPage::slotToday()
 {
   setModified(true);
   date_dirty = true;
+  queryDateEdit->setDateTime(QDateTime::currentDateTime());
   QDateTime dt;
   dt.setTime_t (time(0L));
 
@@ -309,12 +284,12 @@ void FromToEntryPage::slotToday()
   month = dt.date().month();
   day = dt.date().day();
 
-  day_spin->setValue(day);
-  month_spin->setValue(month);
-  year_spin->setValue(year);
-  year_spin->setSpecial(QString());
-  month_spin->setSpecial(QString());
-  day_spin->setSpecial(QString());
+  //day_spin->setValue(day);
+  //month_spin->setValue(month);
+  //year_spin->setValue(year);
+  //year_spin->setSpecial(QString());
+  //month_spin->setSpecial(QString());
+  //day_spin->setSpecial(QString());
   validate();
 }
 
@@ -323,12 +298,14 @@ void FromToEntryPage::slotNever()
 {
   setModified(true);
   date_dirty = true;
+  queryDateEdit->setDate(queryDateEdit->minimumDate());
+  queryDateEdit->setTime(queryDateEdit->minimumTime());
   year = 0;
   month = 0;
   day = 0;
-  year_spin->setSpecial("----");
-  month_spin->setSpecial("----");
-  day_spin->setSpecial("--");
+  //year_spin->setSpecial("----");
+  //month_spin->setSpecial("----");
+  //day_spin->setSpecial("--");
   valid_date = false;
 }
 
@@ -351,9 +328,7 @@ void FromToEntryPage::setEnabled(int enable)
   today->setEnabled(ena);
   gradebox->setEnabled(ena);
 
-  year_spin->setEnabled(ena);
-  month_spin->setEnabled(ena);
-  day_spin->setEnabled(ena);
+  queryDateEdit->setEnabled(ena);
 }
 
 
@@ -362,6 +337,11 @@ void FromToEntryPage::setModified(bool mod)
   modified = mod;
   if (mod)
     emit sigModified();
+}
+
+void FromToEntryPage::slotDateTimeChanged(const QDateTime &)
+{
+  //
 }
 
 #include "FromToEntryPage.moc"
