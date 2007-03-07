@@ -1,4 +1,5 @@
 <ui version="4.0" >
+ <author>Peter Hedlund</author>
  <class>CommonEntryPageForm</class>
  <widget class="QWidget" name="CommonEntryPageForm" >
   <property name="geometry" >
@@ -94,6 +95,9 @@
                <verstretch>0</verstretch>
               </sizepolicy>
              </property>
+             <property name="selectionMode" >
+              <enum>QAbstractItemView::MultiSelection</enum>
+             </property>
             </widget>
            </item>
            <item>
@@ -120,6 +124,9 @@
              </property>
              <property name="alignment" >
               <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+             </property>
+             <property name="wordWrap" >
+              <bool>true</bool>
              </property>
             </widget>
            </item>
@@ -414,6 +421,7 @@
   <tabstop>b_usageDlg</tabstop>
   <tabstop>c_active</tabstop>
  </tabstops>
+ <includes/>
  <resources/>
  <connections/>
 </ui>

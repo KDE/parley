@@ -180,9 +180,9 @@ void CommonEntryPage::slotUsageChanged()
   setModified(true);
   usageCollection = "";
   QString s;
-  for (int i = 0; i < (int) usage_box->count(); i++) {
-    ///@todo port
-    /*if (usage_box->isSelected(i)) {
+
+  for (int i = 0; i < usage_box->count(); i++) {
+    if (usage_box->item(i)->isSelected()) {
 
       if (!usageCollection.isEmpty())
         usageCollection += UL_USAGE_DIV;
@@ -191,9 +191,9 @@ void CommonEntryPage::slotUsageChanged()
       if (!s.isEmpty())
         s += ", ";
       s += usages[i].shortStr();
-    }*/
+    }
   }
-  usage_line->setText (s);
+  usage_line->setText(s);
 }
 
 
