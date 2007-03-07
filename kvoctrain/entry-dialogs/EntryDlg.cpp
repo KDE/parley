@@ -297,7 +297,7 @@ void EntryDlg::slotDisplayModified()
 }
 
 
-void EntryDlg::setCell(int row, int col, const QItemSelection & sel)
+void EntryDlg::setCell(int row, int col, const QModelIndexList & sel)
 {
   edit_row = row;
   edit_col = col;
@@ -305,7 +305,7 @@ void EntryDlg::setCell(int row, int col, const QItemSelection & sel)
 }
 
 
-void EntryDlg::getCell(int &row, int &col, QItemSelection & sel) const
+void EntryDlg::getCell(int &row, int &col, QModelIndexList & sel) const
 {
   row = edit_row;
   col = edit_col;

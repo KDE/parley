@@ -117,13 +117,13 @@ void CommonEntryPage::setData(
   }
 
   if (multi_sel) {
-    expr_line->setEnabled (false);
-    pronounce_line->setEnabled (false);
-    expr_line->setText ("");
-    pronounce_line->setText ("");
-    lesson_box->clearEditText();
-    type_box->clearEditText();
-    subtype_box->clearEditText();
+    expr_line->setEnabled(false);
+    pronounce_line->setEnabled(false);
+    expr_line->setText("");
+    pronounce_line->setText("");
+    lesson_box->setCurrentIndex(-1);
+    type_box->setCurrentIndex(-1);
+    subtype_box->setCurrentIndex(-1);
   }
 
   setModified(false);

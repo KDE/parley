@@ -59,11 +59,11 @@ void AuxInfoEntryPage::setData(bool multi_sel, QString syno, QString anto, QStri
   para_line->setText(para);
 
   if (multi_sel) {
-    synonym_line ->setEnabled(false);
-    antonym_line ->setEnabled(false);
-    remark_line ->setEnabled(false);
-    examp_line ->setEnabled(false);
-    para_line ->setEnabled(false);
+    synonym_line->setEnabled(false);
+    antonym_line->setEnabled(false);
+    remark_line->setEnabled(false);
+    examp_line->setEnabled(false);
+    para_line->setEnabled(false);
   }
 
   setModified(false);

@@ -121,8 +121,8 @@ public:
   void setModified(bool mod);
   void setEnabled(int);
 
-  void setCell(int row, int col, const QItemSelection & sel);
-  void getCell(int &row, int &col, QItemSelection & sel) const;
+  void setCell(int row, int col, const QModelIndexList & sel);
+  void getCell(int &row, int &col, QModelIndexList & sel) const;
 
 signals:
   void sigEditChoice(int);
@@ -151,7 +151,7 @@ protected:
   int               edit_row;
   int               edit_col;
   QTabWidget       *tabber;
-  QItemSelection    m_selection;
+  QModelIndexList   m_selection;
   KMainWindow      *mainwin;
   QSize             oldMainSize;
   QPoint            oldMainPos;
