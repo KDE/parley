@@ -1316,10 +1316,10 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
   QStringList description;
 
   switch (comboState) {
-    case 0:
+    case KVocTrainApp::currentLesson:
       m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
       break;
-    case 1:
+    case KVocTrainApp::queryLessons:
       description = m_doc->lessonDescriptions();
       //kDebug << lessonStrings << endl;
       lessonStrings.append("(");
@@ -1330,7 +1330,7 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
       lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("
       m_sortFilterModel->setFilterRegExp(lessonStrings);
       break;
-    case 2:
+    case KVocTrainApp::allLessons:
       m_sortFilterModel->setFilterFixedString("");
       break;
   }

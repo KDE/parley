@@ -82,6 +82,16 @@ class KVocTrainApp : public KMainWindow
   Q_OBJECT
 
 public:
+
+  /// The combo box states for lesson selection
+  enum KVTLessonSelectionComboStates {
+    currentLesson,  // highlighted lesson
+    queryLessons,   // all checked lessons
+    allLessons,     // all
+    userSearchLessons // when set to editable
+  };
+
+
   /** construtor */
   KVocTrainApp(QWidget *parent = 0);
   /** destructor */
