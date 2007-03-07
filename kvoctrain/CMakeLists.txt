@@ -90,7 +90,6 @@ kde4_add_ui_files(docprop_SRCS
 set(entrydialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AdjEntryPage.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/AuxInfoEntryPage.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/blockall.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/CommonEntryPage.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/EntryDlg.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/FromToEntryPage.cpp

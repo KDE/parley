@@ -38,7 +38,6 @@
 #include <kvtquery.h>
 #include <kvtlanguages.h>
 #include "DocPropDlg.h"
-#include "blockall.h"
 #include "PhoneticEntryPage.h"
 #include "CommonEntryPage.h"
 #include "EntryDlg.h"
@@ -61,10 +60,6 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
 
   usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
   pronounce_line->setFont(Prefs::iPAFont());
-
-  lesson_box->setValidator(new BlockAllValidator());
-  type_box->setValidator(new BlockAllValidator());
-  subtype_box->setValidator(new BlockAllValidator());
 
   QIcon list_pm = KIcon("view_text");
   b_LessDlg->setIcon(list_pm);

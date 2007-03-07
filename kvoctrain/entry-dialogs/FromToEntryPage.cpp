@@ -34,7 +34,6 @@
 #include <kvtlanguages.h>
 #include "FromToEntryPage.h"
 #include "EntryDlg.h"
-#include "blockall.h"
 
 FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 {
@@ -53,7 +52,6 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
   for (int i = 0; i <= KV_MAX_GRADE; i++)
     gradebox->addItem(KVTQuery::gradeStr(i));
 
-  gradebox->setValidator(new BlockAllValidator());
 }
 
 
@@ -84,7 +82,6 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
   if (multi_sel) {
     fauxami_line->setEnabled(false);
     valid_date = false;
-    gradebox->clearEditText();
   }
 
   bcount_dirty = false;
