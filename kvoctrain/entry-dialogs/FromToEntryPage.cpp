@@ -84,11 +84,6 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
     valid_date = false;
   }
 
-  bcount_dirty = false;
-  qcount_dirty = false;
-  date_dirty = false;
-  grade_dirty = false;
-
   setModified(false);
 }
 
@@ -103,7 +98,6 @@ void FromToEntryPage::slotFauxAmiChanged(const QString& s)
 void FromToEntryPage::slotGradeSelected(int g)
 {
   setModified(true);
-  grade_dirty = true;
   grade = g;
 }
 
@@ -127,7 +121,6 @@ void FromToEntryPage::validate()
 void FromToEntryPage::slotToday()
 {
   setModified(true);
-  date_dirty = true;
   queryDateEdit->setDateTime(QDateTime::currentDateTime());
   validate();
 }
@@ -136,7 +129,6 @@ void FromToEntryPage::slotToday()
 void FromToEntryPage::slotNever()
 {
   setModified(true);
-  date_dirty = true;
   queryDateEdit->setDate(queryDateEdit->minimumDate());
   queryDateEdit->setTime(queryDateEdit->minimumTime());
   valid_date = false;
@@ -176,7 +168,6 @@ void FromToEntryPage::slotDateChanged(const QDate & d)
 {
   Q_UNUSED(d);
   setModified(true);
-  date_dirty = true;
   if (!valid_date)
     slotToday();
 
@@ -186,14 +177,12 @@ void FromToEntryPage::slotDateChanged(const QDate & d)
 void FromToEntryPage::totalCountChanged(int count)
 {
   setModified(true);
-  qcount_dirty = true;
   qcount = count;
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
   setModified(true);
-  bcount_dirty = true;
   bcount = count;
 }
 

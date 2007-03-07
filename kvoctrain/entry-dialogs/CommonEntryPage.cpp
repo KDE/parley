@@ -126,11 +126,6 @@ void CommonEntryPage::setData(
     subtype_box->clearEditText();
   }
 
-  lesson_dirty = false;
-  type_dirty = false;
-  usage_dirty = false;
-  active_dirty = false;
-
   setModified(false);
 }
 
@@ -184,7 +179,6 @@ void CommonEntryPage::slotUsageChanged()
 {
   setModified(true);
   usageCollection = "";
-  usage_dirty = true;
   QString s;
   for (int i = 0; i < (int) usage_box->count(); i++) {
     ///@todo port
@@ -207,7 +201,6 @@ void CommonEntryPage::slotLessonSelected (int l)
 {
   setModified(true);
   lesson = l;
-  lesson_dirty = true;
 }
 
 
@@ -215,7 +208,6 @@ void CommonEntryPage::slotActiveChanged(bool state)
 {
   setModified(true);
   entry_active = state;
-  active_dirty = true;
 }
 
 
@@ -239,7 +231,6 @@ void CommonEntryPage::slotSubTypeSelected(int i)
   if (i < (int) current_subtypes.size()) {
     m_type = current_subtypes[i];
     emit typeSelected(m_type);
-    type_dirty = true;
   }
 }
 
@@ -275,7 +266,6 @@ void CommonEntryPage::slotTypeSelected(int idx)
       }
     }
   }
-  type_dirty = true;
 
   subtype_box->setEnabled(!first);
   subtype_label->setEnabled(!first);

@@ -41,12 +41,6 @@ public:
 
   void setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString  usage,  bool active);
 
-  bool isDirty() const;
-  bool lessonDirty     () const { return lesson_dirty; }
-  bool activeDirty     () const { return active_dirty; }
-  bool typeDirty       () const { return type_dirty; }
-  bool usageDirty      () const { return usage_dirty; }
-
   int     getLesson    () const { return lesson; }
   QString getType      () const { return m_type; }
   QString getExpr      () const { return expression; }
@@ -90,13 +84,9 @@ protected:
   QString       usageCollection;
   int           lesson;
   QString       m_type;
-  bool          lesson_dirty;
-  bool          type_dirty;
   KEduVocDocument *doc;
   KVTQuery     &querymanager;
   bool          entry_active;
-  bool          active_dirty;
-  bool          usage_dirty;
 
   QList<TypeRelation>  all_maintypes;
   QList<TypeRelation>  all_types;

@@ -40,11 +40,6 @@ public:
 
   void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
 
-  bool dateDirty   () const { return date_dirty; }
-  bool gradeDirty  () const { return grade_dirty; }
-  bool qCountDirty () const { return qcount_dirty; }
-  bool bCountDirty () const { return bcount_dirty; }
-
   QDateTime  getDate() const;
   grade_t getGrade  () const { return grade; }
   count_t getQCount () const { return qcount; }
@@ -75,10 +70,6 @@ protected:
 
   QString    fauxami;
   bool       valid_date;
-  bool       date_dirty;
-  bool       qcount_dirty;
-  bool       bcount_dirty;
-  bool       grade_dirty;
   grade_t    grade;
   count_t    qcount;
   count_t    bcount;
