@@ -680,7 +680,10 @@ void KVocTrainApp::createNewDocument()
     m_doc->appendEntry(new KEduVocExpression());
   connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   m_lessonModel->setDocument(m_doc);
-  m_lessonView->setModel(m_lessonModel);
+  /** @todo When starting kvoctrain with no document in the history it should open a new doc.
+    * currently setModel makes it crash !?!? Need to investigate. Try deleting your .kde stuff of the kde4 user to test :)
+    */
+  //m_lessonView->setModel(m_lessonModel);
   m_tableModel->setDocument(m_doc);
   loadDocProps();
   m_tableModel->reset();
