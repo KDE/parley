@@ -26,8 +26,6 @@
 #ifndef FromToEntryPage_included
 #define FromToEntryPage_included
 
-#include <time.h>
-
 #include <QDateTime>
 
 #include "ui_FromToEntryPageForm.h"
@@ -38,17 +36,16 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
   Q_OBJECT
 
 public:
-
   FromToEntryPage(QWidget *parent = 0);
 
   void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
 
-  time_t  dateDirty   () const { return date_dirty; }
-  grade_t gradeDirty  () const { return grade_dirty; }
-  count_t qCountDirty () const { return qcount_dirty; }
-  count_t bCountDirty () const { return bcount_dirty; }
+  bool dateDirty   () const { return date_dirty; }
+  bool gradeDirty  () const { return grade_dirty; }
+  bool qCountDirty () const { return qcount_dirty; }
+  bool bCountDirty () const { return bcount_dirty; }
 
-  time_t  getDate   () const;
+  QDateTime  getDate() const;
   grade_t getGrade  () const { return grade; }
   count_t getQCount () const { return qcount; }
   count_t getBCount () const { return bcount; }
@@ -64,23 +61,14 @@ signals:
 
 protected slots:
   void slotGradeSelected(int);
-  void slotQCount(const QString&);
-  void slotBCount(const QString&);
 
-  void slotIncYear();
-  void slotIncMonth();
-  void slotIncDay();
-  void slotDecYear();
-  void slotDecMonth();
-  void slotDecDay();
   void slotToday();
   void slotNever();
-  void slotFauxAmiSelected(const QString&);
+  void slotFauxAmiChanged(const QString &);
 
-  void slotDayChanged(int);
-  void slotMonthChanged(int);
-  void slotYearChanged(int);
-  void slotDateTimeChanged(const QDateTime &);
+  void slotDateChanged(const QDate &);
+  void totalCountChanged(int);
+  void badCountChanged(int);
 
 protected:
   void validate();
@@ -94,9 +82,6 @@ protected:
   grade_t    grade;
   count_t    qcount;
   count_t    bcount;
-  int        year;
-  int        month;
-  int        day;
   bool       modified;
 };
 

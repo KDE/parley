@@ -35,27 +35,24 @@
 #include "FromToEntryPage.h"
 #include "EntryDlg.h"
 #include "blockall.h"
-#include "MySpinBox.h"
 
 FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 {
   setupUi(this);
 
-  connect(bcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotBCount(const QString&)));
-  connect(qcount_line, SIGNAL(textChanged(const QString&)),  SLOT(slotQCount(const QString&)));
-  connect(fauxami_line, SIGNAL(textChanged(const QString&)), SLOT(slotFauxAmiSelected(const QString&)));
+  connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFauxAmiChanged(const QString &)));
 
-  connect(never, SIGNAL(clicked()), SLOT(slotNever()));
-  connect(today, SIGNAL(clicked()), SLOT(slotToday()));
-  connect(gradebox, SIGNAL(activated(int)), SLOT(slotGradeSelected(int)));
+  connect(never, SIGNAL(clicked()), this, SLOT(slotNever()));
+  connect(today, SIGNAL(clicked()), this, SLOT(slotToday()));
+  connect(gradebox, SIGNAL(activated(int)), this, SLOT(slotGradeSelected(int)));
 
-  connect(queryDateEdit, SIGNAL(dateTimeChanged(const QDateTime &)), this, SLOT(slotDateTimeChanged(const QDateTime &)));
+  connect(queryDateEdit, SIGNAL(dateChanged(const QDate &)), this, SLOT(slotDateChanged(const QDate &)));
+  connect(totalCountEdit, SIGNAL(valueChanged(int)), this, SLOT(totalCountChanged(int)));
+  connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
 
-  QString s;
-  for (int i = 0; i <= KV_MAX_GRADE; i++) {
-    s.setNum (i);
+  for (int i = 0; i <= KV_MAX_GRADE; i++)
     gradebox->addItem(KVTQuery::gradeStr(i));
-  }
+
   gradebox->setValidator(new BlockAllValidator());
 }
 
@@ -69,57 +66,24 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
   fauxami_line->setText(fauxami);
 
   valid_date = false;
-  QDateTime dt = _time;
-  QDate date;
+
   if (_time.toTime_t() != 0 && !multi_sel) {
-    //dt.setTime_t (_time);
     valid_date = true;
     queryDateEdit->setDateTime(_time);
-    date = dt.date();
-    year = date.year();
-    month = date.month();
-    day = date.day();
-
-    //day_spin->setValue(day);
-    //month_spin->setValue(month);
-    //year_spin->setValue(year);
-    //year_spin->setSpecial(QString());
-    //month_spin->setSpecial(QString());
-    //day_spin->setSpecial(QString());
   }
-  else {
-    //dt.setTime_t (time(0L));
+  else
     queryDateEdit->setDateTime(QDateTime());
-    date = dt.date();
-    year = date.year();
-    month = date.month();
-    day = date.day();
-    //year_spin->setSpecial("----");
-    //month_spin->setSpecial("----");
-    //day_spin->setSpecial("--");
-  }
 
-  direc_label->setTitle (label);
+  direc_label->setTitle(label);
 
-  gradebox->setCurrentIndex (grade);
+  gradebox->setCurrentIndex(grade);
 
-  QString s;
-  s.setNum (qcount);
-  qcount_line->setText (s);
-
-  s.setNum (bcount);
-  bcount_line->setText (s);
+  totalCountEdit->setValue(qcount);
+  badCountEdit->setValue(bcount);
 
   if (multi_sel) {
     fauxami_line->setEnabled(false);
     valid_date = false;
-    bcount_line->setText ("");
-    qcount_line->setText ("");
-    //month_spin->setSpecial(" ");
-    //day_spin->setSpecial(" ");
-    // FIXME: possibly derive new combobox type
-    //        which filters ALL charcters to prevent new input
-    //        in edit field
     gradebox->clearEditText();
   }
 
@@ -132,14 +96,14 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
 }
 
 
-void FromToEntryPage::slotFauxAmiSelected(const QString& s)
+void FromToEntryPage::slotFauxAmiChanged(const QString& s)
 {
   setModified(true);
   fauxami = s;
 }
 
 
-void FromToEntryPage::slotGradeSelected (int g)
+void FromToEntryPage::slotGradeSelected(int g)
 {
   setModified(true);
   grade_dirty = true;
@@ -147,128 +111,19 @@ void FromToEntryPage::slotGradeSelected (int g)
 }
 
 
-void FromToEntryPage::slotQCount(const QString& s)
+QDateTime FromToEntryPage::getDate() const
 {
-  setModified(true);
-  qcount_dirty = true;
-  qcount = atoi (s.toLocal8Bit());
-}
-
-
-void FromToEntryPage::slotBCount(const QString& s)
-{
-  setModified(true);
-  bcount_dirty = true;
-  bcount = atoi (s.toLocal8Bit());
-}
-
-
-time_t FromToEntryPage::getDate   () const
-{
-  // FIXME: warning dialog/don`t quit dialog when date invalid
-  if (valid_date) {
-    QDate act_date (year, month, day);
-    QDateTime time_null (QDate (1970, 1, 1), QTime (0,0,0));
-    return -QDateTime(act_date).secsTo (time_null);
-  }
+  if (valid_date)
+    return queryDateEdit->dateTime();
   else
-    return 0;
+    return QDateTime();
 }
 
 
 void FromToEntryPage::validate()
 {
-  if (!valid_date) {
+  if (!valid_date)
     valid_date = true;
-    //day_spin->setValue(day);
-    //month_spin->setValue(month);
-    //year_spin->setValue(year);
-  }
-}
-
-
-void FromToEntryPage::slotYearChanged(int new_year)
-{
-  setModified(true);
-  date_dirty = true;
-  if (!valid_date) {
-    slotToday();
-    new_year = year;
-  }
-
-  //year_spin->setSpecial(QString());
-
-  year = new_year;
-  validate();
-}
-
-
-void FromToEntryPage::slotDecYear()
-{
-  setModified(true);
-}
-
-
-// FIXME: dec month when day decrease below 1
-void FromToEntryPage::slotIncYear()
-{
-  setModified(true);
-}
-
-
-void FromToEntryPage::slotMonthChanged(int new_month)
-{
-  setModified(true);
-  date_dirty = true;
-  if (!valid_date) {
-    slotToday();
-    new_month = month;
-  }
-
-  //month_spin->setSpecial(QString());
-
-  month = new_month;
-  validate();
-}
-
-
-void FromToEntryPage::slotDecMonth()
-{
-  setModified(true);
-}
-
-
-void FromToEntryPage::slotIncMonth()
-{
-  setModified(true);
-}
-
-
-void FromToEntryPage::slotDayChanged(int new_day)
-{
-  setModified(true);
-  date_dirty = true;
-  if (!valid_date) {
-    slotToday();
-    new_day = day;
-  }
-
-  //day_spin->setSpecial(QString());
-
-  day = new_day;
-  validate();
-}
-
-
-void FromToEntryPage::slotDecDay()
-{
-  setModified(true);
-}
-
-
-void FromToEntryPage::slotIncDay()
-{
-  setModified(true);
 }
 
 
@@ -277,19 +132,6 @@ void FromToEntryPage::slotToday()
   setModified(true);
   date_dirty = true;
   queryDateEdit->setDateTime(QDateTime::currentDateTime());
-  QDateTime dt;
-  dt.setTime_t (time(0L));
-
-  year = dt.date().year();
-  month = dt.date().month();
-  day = dt.date().day();
-
-  //day_spin->setValue(day);
-  //month_spin->setValue(month);
-  //year_spin->setValue(year);
-  //year_spin->setSpecial(QString());
-  //month_spin->setSpecial(QString());
-  //day_spin->setSpecial(QString());
   validate();
 }
 
@@ -300,12 +142,6 @@ void FromToEntryPage::slotNever()
   date_dirty = true;
   queryDateEdit->setDate(queryDateEdit->minimumDate());
   queryDateEdit->setTime(queryDateEdit->minimumTime());
-  year = 0;
-  month = 0;
-  day = 0;
-  //year_spin->setSpecial("----");
-  //month_spin->setSpecial("----");
-  //day_spin->setSpecial("--");
   valid_date = false;
 }
 
@@ -320,8 +156,8 @@ void FromToEntryPage::setEnabled(int enable)
 {
   bool ena = enable == EntryDlg::EnableAll;
 
-  bcount_line->setEnabled(ena);
-  qcount_line->setEnabled(ena);
+  totalCountEdit->setEnabled(ena);
+  badCountEdit->setEnabled(ena);
   fauxami_line->setEnabled(ena);
 
   never->setEnabled(ena);
@@ -339,10 +175,29 @@ void FromToEntryPage::setModified(bool mod)
     emit sigModified();
 }
 
-void FromToEntryPage::slotDateTimeChanged(const QDateTime &)
+void FromToEntryPage::slotDateChanged(const QDate & d)
 {
-  //
+  Q_UNUSED(d);
+  setModified(true);
+  date_dirty = true;
+  if (!valid_date)
+    slotToday();
+
+  validate();
+}
+
+void FromToEntryPage::totalCountChanged(int count)
+{
+  setModified(true);
+  qcount_dirty = true;
+  qcount = count;
+}
+
+void FromToEntryPage::badCountChanged(int count)
+{
+  setModified(true);
+  bcount_dirty = true;
+  bcount = count;
 }
 
 #include "FromToEntryPage.moc"
-

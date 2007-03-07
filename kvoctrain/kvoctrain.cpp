@@ -201,11 +201,8 @@ void KVocTrainApp::commitEntryDlg(bool force)
        expr->setQueryCount(col, entryDlg->getToQCount(), true);
        expr->setBadCount(col, entryDlg->getFromBCount(), false);
        expr->setBadCount(col, entryDlg->getToBCount(), true);
-       QDateTime dt;
-       dt.setTime_t(entryDlg->getFromDate());
-       expr->setQueryDate(col, dt, false);
-       dt.setTime_t(entryDlg->getToDate());
-       expr->setQueryDate(col, dt, true);
+       expr->setQueryDate(col, entryDlg->getFromDate(), false);
+       expr->setQueryDate(col, entryDlg->getToDate(), true);
        expr->setType (col, entryDlg->getType());
 
        for (int j = 0; j <= expr->translationCount(); j++)

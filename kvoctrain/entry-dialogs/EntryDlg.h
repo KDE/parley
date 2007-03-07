@@ -92,7 +92,7 @@ public:
   bool  fromQCountDirty () const { return from_page ? from_page->qCountDirty() : false; }
   QString getFromFauxAmi  () const { return from_page ? from_page->getFauxAmi() : QString(""); }
 
-  time_t  getFromDate   () const { return from_page ? from_page->getDate() : 0; }
+  QDateTime  getFromDate   () const { return from_page ? from_page->getDate() : QDateTime(); }
   grade_t getFromGrade  () const { return from_page ? from_page->getGrade() : KV_NORM_GRADE; }
   count_t getFromBCount () const { return from_page ? from_page->getBCount() : 0; }
   count_t getFromQCount () const { return from_page ? from_page->getQCount() : 0; }
@@ -103,7 +103,7 @@ public:
   bool  toQCountDirty   () const { return to_page ? to_page->qCountDirty() : false; }
   QString getToFauxAmi  () const { return to_page ? to_page->getFauxAmi() : QString(""); }
 
-  time_t  getToDate     () const { return to_page ? to_page->getDate() : 0; }
+  QDateTime  getToDate     () const { return to_page ? to_page->getDate() : QDateTime(); }
   grade_t getToGrade    () const { return to_page ? to_page->getGrade() : KV_NORM_GRADE; }
   count_t getToBCount   () const { return to_page ? to_page->getBCount() : 0; }
   count_t getToQCount   () const { return to_page ? to_page->getQCount() : 0; }

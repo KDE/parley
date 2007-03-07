@@ -95,7 +95,6 @@ set(entrydialogs_SRCS
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/EntryDlg.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/FromToEntryPage.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/MCEntryPage.cpp
-    ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/MySpinBox.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/PhoneticEntryPage.cpp
     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/TenseEntryPage.cpp
 )
