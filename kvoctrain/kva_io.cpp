@@ -173,6 +173,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     //m_lessonModel->setDocument(m_doc);
     //m_lessonView->initializeSelection();
     
+    
     m_tableModel->setDocument(m_doc);
     m_lessonModel->setDocument(m_doc);
 
@@ -186,7 +187,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
     m_tableModel->reset();
-
+    m_sortFilterModel->clear();
     if (m_tableView)
       m_tableView->adjustContent();
 
@@ -670,23 +671,26 @@ void KVocTrainApp::removeProgressBar()
 
 void KVocTrainApp::createNewDocument()
 {
-  if (m_doc)
+  if (m_doc) {
     delete m_doc;
-  m_doc = 0;
+    m_doc = 0;
+  }
   m_doc = new KEduVocDocument(this);
   m_doc->appendIdentifier(i18n("Original"));
   m_doc->appendIdentifier(i18n("Translation"));
-  for (int i=0; i<20; i++)
-    m_doc->appendEntry(new KEduVocExpression());
+  m_tableModel->setDocument(m_doc);
+  m_tableModel->insertRows(0, 20, QModelIndex());
+
   connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
   m_lessonModel->setDocument(m_doc);
   /** @todo When starting kvoctrain with no document in the history it should open a new doc.
     * currently setModel makes it crash !?!? Need to investigate. Try deleting your .kde stuff of the kde4 user to test :)
     */
   //m_lessonView->setModel(m_lessonModel);
-  m_tableModel->setDocument(m_doc);
+
   loadDocProps();
   m_tableModel->reset();
+
   if (m_tableView)
     m_tableView->adjustContent();
   m_doc->setModified(false);

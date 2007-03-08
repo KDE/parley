@@ -30,9 +30,6 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
   setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
   setTabKeyNavigation(false);
 
-  horizontalHeader()->setSortIndicatorShown(true);
-  horizontalHeader()->setSortIndicator(1000, Qt::Ascending);
-
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
   m_delegate = new KVTTableDelegate(this);
   setItemDelegate(m_delegate);
@@ -62,6 +59,7 @@ void KVTTableView::horizontalHeaderResized(int logicalIndex, int oldSize, int ne
   //kDebug() << "Column resized\n";
   model()->setHeaderData(logicalIndex, Qt::Horizontal, QSize(newSize, 25), Qt::SizeHintRole);
 }
+
 
 void KVTTableView::slotModelReset()
 {

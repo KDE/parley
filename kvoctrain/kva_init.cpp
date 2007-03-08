@@ -362,6 +362,8 @@ void KVocTrainApp::initModel()
   m_lessonModel = new KVTLessonModel(this);
   m_tableModel = new KVTTableModel(this);
   m_tableModel->setLanguages(m_languages);
+  m_sortFilterModel= new KVTSortFilterModel(this);
+  m_sortFilterModel->setSourceModel(m_tableModel);
 }
 
 /**
@@ -440,8 +442,6 @@ void KVocTrainApp::initView()
   m_tableView->setFrameStyle(QFrame::NoFrame);
   splitter->addWidget(m_tableView);
   /// Filter proxy
-  m_sortFilterModel= new KVTSortFilterModel(this);
-  m_sortFilterModel->setSourceModel(m_tableModel);
 
   m_tableView->setModel(m_sortFilterModel);
   m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
@@ -458,13 +458,15 @@ void KVocTrainApp::initView()
   m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
   setCaption(m_doc->url().fileName(), false);
+  connect(m_tableModel, SIGNAL(modelAboutToBeReset()), m_tableView, SLOT(slotModelAboutToBeReset()));
   connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
-  connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+  connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
+          this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
   /// set filter order to get usefull default sorting (ascending within lesson)
-  m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
+  //m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
 
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
