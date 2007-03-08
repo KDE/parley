@@ -111,7 +111,7 @@ void KVocTrainApp::initActions()
   fileOpen->setStatusTip(fileOpen->whatsThis());
 
   fileOpenExample = actionCollection()->addAction("file_open_example");
-  fileOpenExample->setIcon(KIcon("fileopen"));
+  fileOpenExample->setIcon(KIcon("document-open"));
   fileOpenExample->setText(i18n("Open &Example..."));
   connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
   fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
@@ -119,7 +119,7 @@ void KVocTrainApp::initActions()
   fileOpenExample->setStatusTip(fileOpen->whatsThis());
 
   fileGHNS = actionCollection()->addAction("file_ghns");
-  fileGHNS->setIcon(KIcon("knewstuff"));
+  fileGHNS->setIcon(KIcon("get-hot-new-stuff"));
   fileGHNS->setText(i18n("&Get New Vocabularies..."));
   connect(fileGHNS, SIGNAL(triggered(bool)), this, SLOT(slotGHNS()));
   fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
@@ -209,7 +209,7 @@ void KVocTrainApp::initActions()
   editEditEntry->setStatusTip(editEditEntry->whatsThis());
 
   editSaveSelectedArea = actionCollection()->addAction("edit_save_selected_area");
-  editSaveSelectedArea->setIcon(KIcon("filesaveas"));
+  editSaveSelectedArea->setIcon(KIcon("document-save-as"));
   editSaveSelectedArea->setText(i18n("Save E&ntries in Query As..."));
   connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
   editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));

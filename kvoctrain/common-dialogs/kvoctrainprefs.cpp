@@ -71,7 +71,7 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
   addPage(m_viewOptions, i18n("View"), "view_choose", i18n("View Settings"), true);
 
   m_pasteOptions = new PasteOptions(m_langSet, doc, 0);
-  addPage(m_pasteOptions, i18n("Copy & Paste"), "editpaste", i18n("Copy & Paste Settings"), true);
+  addPage(m_pasteOptions, i18n("Copy & Paste"), "edit-paste", i18n("Copy & Paste Settings"), true);
   connect(m_pasteOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
   m_queryOptions = new QueryOptions(0);

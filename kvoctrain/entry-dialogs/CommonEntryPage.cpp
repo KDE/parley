@@ -61,7 +61,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
   usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
   pronounce_line->setFont(Prefs::iPAFont());
 
-  QIcon list_pm = KIcon("view_text");
+  QIcon list_pm = KIcon("fileview-text");
   b_LessDlg->setIcon(list_pm);
   b_TypeDlg->setIcon(list_pm);
   b_usageDlg->setIcon(list_pm);
