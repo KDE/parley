@@ -399,6 +399,21 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_buttonNewLesson->setToolTip(i18n("Click here to create a new lesson. You can then type its name directly in the list."));
   boxLayout->addWidget(m_buttonNewLesson);
   connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
+
+  /// New lesson selected
+  connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
+  /// Rename lesson (?)
+  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
+  /// Combo box - what will be displayed at the left
+  connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
+  // is this necessary?
+  connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
+
+  //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
+
+  /// @todo does something like this make sense here?
+  //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
+
   return left;
 
 }
@@ -406,28 +421,25 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 
 /**
  * This initializes the main widgets, splitter and table.
- * 
  */
 void KVocTrainApp::initView()
 {
-  // Parent of all
+  /// Parent of all
   QWidget * mainWidget = new QWidget(this);
   setCentralWidget(mainWidget);
   QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
   topLayout->setMargin(KDialog::marginHint());
   topLayout->setSpacing(KDialog::spacingHint());
-
-  // Splitter to divide lessons and table.
+  /// Splitter to divide lessons and table.
   QSplitter *splitter = new QSplitter(centralWidget());
   topLayout->addWidget(splitter);
-  // list of lessons
+  /// List of lessons
   splitter->addWidget(initLessonList(centralWidget()));
-
-  // Table view
+  /// Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
   splitter->addWidget(m_tableView);
-
+  /// Filter proxy
   m_sortFilterModel= new KVTSortFilterModel(this);
   m_sortFilterModel->setSourceModel(m_tableModel);
 
@@ -451,23 +463,8 @@ void KVocTrainApp::initView()
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
-  /** This is the way to get informed of changes in the lesson selection: */
-  connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
-
-  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
-
-  connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
-
-
-connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
-  
-  //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
-
-  /// @todo does something like this make sense here?
-  //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
-
+  /// set filter order to get usefull default sorting (ascending within lesson)
   m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
-
 
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
