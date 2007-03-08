@@ -362,26 +362,15 @@ void KVocTrainApp::initModel()
   m_lessonModel = new KVTLessonModel(this);
   m_tableModel = new KVTTableModel(this);
   m_tableModel->setLanguages(m_languages);
-
 }
 
-
 /**
- * This initializes the main widgets.
- * The lesson selection on the left and the big table.
- * 
- */
-void KVocTrainApp::initView()
+  * Initialize the lesson list.
+  */
+QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 {
-  // Parent of all
-  QWidget * mainWidget = new QWidget(this);
-  setCentralWidget(mainWidget);
-  QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
-  topLayout->setMargin(KDialog::marginHint());
-  topLayout->setSpacing(KDialog::spacingHint());
-
-  // Widget to get boxLayout into the splitter
-  QWidget *left = new QWidget(centralWidget());
+  // Widget to get a boxLayout
+  QWidget *left = new QWidget(parent);
   // box layout for the left side
   QVBoxLayout *boxLayout = new QVBoxLayout(left);
   boxLayout->setMargin(0);
@@ -410,12 +399,29 @@ void KVocTrainApp::initView()
   m_buttonNewLesson->setToolTip(i18n("Click here to create a new lesson. You can then type its name directly in the list."));
   boxLayout->addWidget(m_buttonNewLesson);
   connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
+  return left;
 
-  // Splitter to have the lessons at the left.
+}
+
+
+/**
+ * This initializes the main widgets, splitter and table.
+ * 
+ */
+void KVocTrainApp::initView()
+{
+  // Parent of all
+  QWidget * mainWidget = new QWidget(this);
+  setCentralWidget(mainWidget);
+  QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
+  topLayout->setMargin(KDialog::marginHint());
+  topLayout->setSpacing(KDialog::spacingHint());
+
+  // Splitter to divide lessons and table.
   QSplitter *splitter = new QSplitter(centralWidget());
   topLayout->addWidget(splitter);
   // list of lessons
-  splitter->addWidget(left);
+  splitter->addWidget(initLessonList(centralWidget()));
 
   // Table view
   m_tableView = new KVTTableView(centralWidget());
