@@ -30,6 +30,8 @@ KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 
 QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
+  Q_UNUSED(option); /// as long as it's unused
+
   if (!index.isValid())
     return 0;
 

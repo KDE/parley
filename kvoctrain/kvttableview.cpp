@@ -56,6 +56,7 @@ void KVTTableView::verticalHeaderResized(int , int , int)
 
 void KVTTableView::horizontalHeaderResized(int logicalIndex, int oldSize, int newSize)
 {
+  Q_UNUSED(oldSize);
   //kDebug() << "Column resized\n";
   model()->setHeaderData(logicalIndex, Qt::Horizontal, QSize(newSize, 25), Qt::SizeHintRole);
 }
@@ -69,6 +70,7 @@ void KVTTableView::slotModelReset()
 
 void KVTTableView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)
 {
+  Q_UNUSED(previous);
   m_delegate->setCurrentIndex(current);
   reset();
 }

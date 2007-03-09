@@ -55,6 +55,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_tableView = 0;
   m_tableModel = 0;
   m_lessonModel = 0;
+  m_lessonView = 0;
   m_sortFilterModel = 0;
   btimer = 0;
   querymode = false;
@@ -408,16 +409,16 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
   /// Combo box - what will be displayed at the left
   connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
-  // is this necessary?
+
   connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
 
   //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
 
-  /// @todo does something like this make sense here?
   //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
 
-  return left;
+  m_lessonView->initializeSelection();
 
+  return left;
 }
 
 
@@ -467,7 +468,6 @@ void KVocTrainApp::initView()
 
   /// set filter order to get usefull default sorting (ascending within lesson)
   //m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
-
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
   // Well I have no clue how this works !?!? But it is better than the default.

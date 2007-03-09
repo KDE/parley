@@ -45,6 +45,7 @@ void KVTTableModel::setDocument(KEduVocDocument * doc)
  */
 int KVTTableModel::rowCount(const QModelIndex &parent) const
 {
+  Q_UNUSED(parent);
   return m_doc->entryCount();
 }
 
@@ -54,6 +55,7 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
  */
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
+  Q_UNUSED(parent);
   return 2 + m_doc->identifierCount();
 }
 
@@ -138,7 +140,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
           }
           m_doc->entry(index.row())->setLesson(defaultLessonIndex);
           result = i18n("Default lesson");
-          m_doc->setModified();
         }
         else
           result = m_doc->lessonDescription(m_doc->entry(index.row())->lesson());

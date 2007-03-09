@@ -24,6 +24,7 @@ public:
   void setModel(KVTLessonModel *model);
   void initializeSelection();
 public slots:
+  void slotModelReset();
   void slotCreateNewLesson();
 private:
   KVTLessonModel *m_model;
