@@ -69,17 +69,16 @@ bool KVocTrainApp::queryClose()
 bool KVocTrainApp::queryExit()
 {
   saveOptions();
-  if (!m_doc || !m_doc->isModified()) return true;
+  if (!m_doc || !m_doc->isModified()) 
+    return true;
 
-  bool save = (Prefs::autoSave()); //save without asking
+  bool save = Prefs::autoSave(); //save without asking
 
   if (!save)
   {
-     int exit = KMessageBox::warningYesNoCancel(this,
-               i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
-               "",
-               KStandardGuiItem::save(), KStandardGuiItem::discard());
-     if (exit==KMessageBox::Yes) {
+     int exit = KMessageBox::warningYesNoCancel(this, i18n("Vocabulary is modified.\n\nSave file before exit?\n"),
+                "", KStandardGuiItem::save(), KStandardGuiItem::discard());
+     if (exit == KMessageBox::Yes) {
        save = true;   // save and exit
      }
      else if (exit == KMessageBox::No) {
@@ -105,12 +104,7 @@ bool KVocTrainApp::queryExit()
 
 void KVocTrainApp::slotFileQuit()
 {
-  if (queryExit())  {
-    m_doc->setModified(false);  // Make sure not to bother about saving again.
-    kapp->quit();
-  }
-  else
-    slotStatusMsg(IDS_DEFAULT);
+  close();
 }
 
 
@@ -471,8 +465,7 @@ void KVocTrainApp::slotFileSave()
 
   // remove previous backup
   QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
-  ::rename (QFile::encodeName(m_doc->url().path()),
-            QFile::encodeName(m_doc->url().path()+'~'));
+  ::rename (QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
 
   prepareProgressBar();
   saveDocProps(m_doc);
@@ -626,7 +619,7 @@ void KVocTrainApp::slotSaveSelection ()
 
       QFile::remove(url.path()+'~'); // remove previous backup
       // FIXME: check error
-      ::rename (QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
+      ::rename(QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
       saveDocProps(&seldoc);
 
       prepareProgressBar();
