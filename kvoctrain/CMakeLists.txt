@@ -135,7 +135,6 @@ set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${e
     kvtsortfiltermodel.cpp
     kvtquery.cpp
     kvtusage.cpp
-    LineList.cpp
 )
 
 kde4_automoc(${kvoctrain_SRCS})

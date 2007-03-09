@@ -31,7 +31,6 @@
 #include <klocale.h>
 
 #include "QueryDlgBase.h"
-#include <LineList.h>
 
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
   : KDialog(parent)
@@ -161,16 +160,16 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 
   bool ret = false;
   bool equal = false;
-  LineList answerlist (really);
-  LineList inputlist (field->text());
+  QStringList answerlist = really.split('\n');
+  QStringList inputlist = field->text().split('\n');
   if (!mixed) // no tolerance
-    equal = smartCompare(answerlist.allLines(), inputlist.allLines(), 0);
+    equal = smartCompare(really.simplified(), field->text().simplified(), 0);
   else {
      bool all = true;
-     for (int ai = 0; ai < (int) answerlist.count(); ai++) {
+     for (int ai = 0; ai < answerlist.count(); ai++) {
        bool found = false;
-       for (int ii = 0; ii < (int) inputlist.count(); ii++) {
-         if (answerlist.getLine (ai) == inputlist.getLine(ii) ) {
+       for (int ii = 0; ii < inputlist.count(); ii++) {
+         if (answerlist[ai].simplified() == inputlist[ii].simplified()) {
            found = true;
            break;
          }
