@@ -403,11 +403,11 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   boxLayout->addWidget(m_buttonNewLesson);
   connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
   m_buttonRenameLesson = new QPushButton(i18n("Rename lesson"), left);
-  m_buttonNewLesson->setToolTip(i18n("Click here to rename the currently selected lesson. You can then type its name directly in the list."));
+  m_buttonRenameLesson->setToolTip(i18n("Click here to rename the currently selected lesson. You can then type its name directly in the list."));
   boxLayout->addWidget(m_buttonRenameLesson);
   connect(m_buttonRenameLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotRenameLesson()));
   m_buttonDeleteLesson = new QPushButton(i18n("Delete lesson"), left);
-  m_buttonNewLesson->setToolTip(i18n("Click here to delete the current lesson."));
+  m_buttonDeleteLesson->setToolTip(i18n("Click here to delete the current lesson."));
   boxLayout->addWidget(m_buttonDeleteLesson);
   connect(m_buttonDeleteLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotDeleteLesson()));
 

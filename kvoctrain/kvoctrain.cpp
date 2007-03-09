@@ -1277,6 +1277,9 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 
 void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
 {
+
+// do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results...
+
   //QRegExp myReg("(Lektion 09)|(Lektion 04)");
   QString lessonStrings;
   QStringList description;
