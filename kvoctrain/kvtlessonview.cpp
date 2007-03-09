@@ -72,11 +72,21 @@ void KVTLessonView::slotCreateNewLesson(){
   // -1 because of counting from 1 of m_doc
   QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
   mySelection.select(indexOfCurrent, indexOfCurrent);
-  QItemSelectionModel *selectionModel = this->selectionModel();
-  selectionModel->select(mySelection, QItemSelectionModel::ClearAndSelect);
+  //QItemSelectionModel *selectionModel = this->selectionModel();
+  selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
 
   emit currentChanged(indexOfCurrent, indexOfCurrent);
   edit ( indexOfCurrent ); // let the user type a new name for the lesson
 }
 
+
+void KVTLessonView::slotRenameLesson(){
+  QModelIndexList indexes = selectionModel()->selectedIndexes();
+  // oops - this crashes if there is no selection - there should always be a current lesson!!!
+  if (indexes.empty()) {
+    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+    return;
+  }
+  edit ( indexes.at(0) ); // let the user type a new name for the lesson
+}
 #include "kvtlessonview.moc"

@@ -26,6 +26,7 @@ public:
 public slots:
   void slotModelReset();
   void slotCreateNewLesson();
+  void slotRenameLesson();
 private:
   KVTLessonModel *m_model;
 };

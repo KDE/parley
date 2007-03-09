@@ -298,6 +298,8 @@ private:
   QSignalMapper * learningMapper;
 
   QPushButton *m_buttonNewLesson;
+  QPushButton *m_buttonRenameLesson;
+  QPushButton *m_buttonDeleteLesson;
 
   /** m_editCombo selects which lessons to display in m_tableView (the main table) */
   KComboBox *m_lessonSelectionCombo;
