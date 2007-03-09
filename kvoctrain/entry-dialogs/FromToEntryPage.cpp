@@ -79,7 +79,8 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, c
   totalCountEdit->setValue(qcount);
   badCountEdit->setValue(bcount);
 
-  if (multi_sel) {
+  m_largeSelection = multi_sel;
+  if (m_largeSelection) {
     fauxami_line->setEnabled(false);
     valid_date = false;
   }
@@ -147,7 +148,7 @@ void FromToEntryPage::setEnabled(int enable)
 
   totalCountEdit->setEnabled(ena);
   badCountEdit->setEnabled(ena);
-  fauxami_line->setEnabled(ena);
+  fauxami_line->setEnabled(ena && !m_largeSelection);
 
   never->setEnabled(ena);
   today->setEnabled(ena);

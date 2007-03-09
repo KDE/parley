@@ -58,7 +58,8 @@ void AuxInfoEntryPage::setData(bool multi_sel, QString syno, QString anto, QStri
   remark_line->setText(remark);
   para_line->setText(para);
 
-  if (multi_sel) {
+  m_largeSelection = multi_sel;
+  if (m_largeSelection) {
     synonym_line->setEnabled(false);
     antonym_line->setEnabled(false);
     remark_line->setEnabled(false);
@@ -158,12 +159,13 @@ bool AuxInfoEntryPage::isModified()
 void AuxInfoEntryPage::setEnabled(int enable)
 {
   bool ena = enable == EntryDlg::EnableAll;
-
-  synonym_line->setEnabled (ena);
-  antonym_line->setEnabled (ena);
-  para_line->setEnabled (ena);
-  remark_line->setEnabled (ena);
-  examp_line->setEnabled (ena);
+  if (m_largeSelection)
+    ena = false;
+  synonym_line->setEnabled(ena);
+  antonym_line->setEnabled(ena);
+  para_line->setEnabled(ena);
+  remark_line->setEnabled(ena);
+  examp_line->setEnabled(ena);
 }
 
 

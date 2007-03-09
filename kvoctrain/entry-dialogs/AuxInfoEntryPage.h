@@ -61,12 +61,13 @@ protected slots:
   void slotParaSelected();
 
 protected:
-  QString       synonym;
-  QString       antonym;
-  QString       example;
-  QString       remark;
-  QString       paraphrase;
-  bool          modified;
+  QString synonym;
+  QString antonym;
+  QString example;
+  QString remark;
+  QString paraphrase;
+  bool    modified;
+  bool    m_largeSelection;
 };
 
 #endif // AuxInfoEntryPage_included

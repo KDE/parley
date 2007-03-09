@@ -42,8 +42,8 @@ AdjEntryPage::AdjEntryPage(QWidget *parent) : QWidget(parent)
 void AdjEntryPage::setData(bool multi_sel, const KEduVocComparison  &comp)
 {
   comparisons = comp;
-
-  if (multi_sel) {
+  m_largeSelection = multi_sel;
+  if (m_largeSelection) {
     lev1Field->setEnabled(false);
     lev2Field->setEnabled(false);
     lev3Field->setEnabled(false);
@@ -87,10 +87,12 @@ bool AdjEntryPage::isModified()
 void AdjEntryPage::setEnabled(int enable)
 {
   bool ena = enable == EntryDlg::EnableAll;
+  if (m_largeSelection)
+    ena = false;
 
-  lev1Field->setEnabled (ena);
-  lev2Field->setEnabled (ena);
-  lev3Field->setEnabled (ena);
+  lev1Field->setEnabled(ena);
+  lev2Field->setEnabled(ena);
+  lev3Field->setEnabled(ena);
 }
 
 

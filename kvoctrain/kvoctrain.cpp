@@ -310,10 +310,22 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
   kDebug() << hasSelection << endl;
 
-  if (col < KV_EXTRA_COLS) {
+  col -= KV_EXTRA_COLS;
+  ///@todo this enable stuff messes things up on several pages of the dialog
+  EntryDlg::EnableType et;
+
+  if (col < 0)
+    et = EntryDlg::EnableOnlyCommon;
+  else if (col == 0)
+    et = EntryDlg::EnableOnlyOriginal;
+  else
+    et = EntryDlg::EnableAll;
+
+  if (col < 0 /*KV_EXTRA_COLS*/) {
     title = i18n("Edit General Properties");
-    col -= KV_EXTRA_COLS;
-    entryDlg->setData(hasSelection,
+
+    entryDlg->setData(et,
+                      hasSelection,
                       0,
                       0,
                       0,
@@ -342,15 +354,16 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
                       m_doc->entry(row)->isActive());
   }
   else {
-    text = m_tableModel->data(m_tableModel->index(row, col), Qt::DisplayRole).toString();
-    col -= KV_EXTRA_COLS;
+    text = m_tableModel->data(m_tableModel->index(row, col + KV_EXTRA_COLS), Qt::DisplayRole).toString();
+    //col -= KV_EXTRA_COLS;
 
     if (col == 0)
       title = i18n("Edit Properties for Original");
     else
       title = i18n("Edit Properties of a Translation");
 
-    entryDlg->setData(hasSelection,
+    entryDlg->setData(et,
+                      hasSelection,
                       m_doc->entry(row)->grade(col, false),
                       m_doc->entry(row)->grade(col, true),
                       m_doc->entry(row)->queryCount(col, false),
@@ -378,16 +391,9 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
                       title,
                       m_doc->entry(row)->isActive());
   }
-  m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
-  ///@todo this enable stuff messes things up on several pages of the dialog
-  if (col <  0)
-    entryDlg->setEnabled(EntryDlg::EnableOnlyCommon);
-  else if (col == 0)
-    entryDlg->setEnabled(EntryDlg::EnableOnlyOriginal);
-  else
-    entryDlg->setEnabled(EntryDlg::EnableAll);
 
   entryDlg->setCell(row, col + KV_EXTRA_COLS, m_tableView->selectionModel()->selectedRows());
+  m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 

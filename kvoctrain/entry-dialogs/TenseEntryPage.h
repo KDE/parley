@@ -67,11 +67,11 @@ protected slots:
   void slotNextConj();
 
 protected:
-  KEduVocConjugation   prefix,
-                conjugations;
-  QString       selection;
-  bool          multi_mode;
-  bool          modified;
+  KEduVocConjugation prefix;
+  KEduVocConjugation conjugations;
+  QString            selection;
+  bool               modified;
+  bool               m_largeSelection;
 };
 
 #endif // TenseEntryPage_included

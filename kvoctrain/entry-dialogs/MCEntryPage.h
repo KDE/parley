@@ -56,7 +56,8 @@ protected slots:
 
 protected:
   KEduVocMultipleChoice  multiplechoice;
-  bool            modified;
+  bool                   modified;
+  bool                   m_largeSelection;
 };
 
 #endif // MCEntryPage_included

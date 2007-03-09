@@ -61,26 +61,19 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
   usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
   pronounce_line->setFont(Prefs::iPAFont());
 
-  QIcon list_pm = KIcon("fileview-text");
+  QIcon list_pm = KIcon("list");
   b_LessDlg->setIcon(list_pm);
   b_TypeDlg->setIcon(list_pm);
   b_usageDlg->setIcon(list_pm);
 
-  QIcon pron_pm = KIcon("view_icon");
+  QIcon pron_pm = KIcon("character-set");
   b_pronDlg->setIcon(pron_pm);
 
-  subDialog = 0L;
+  subDialog = 0;
 }
 
 
-void CommonEntryPage::setData(
-  bool          multi_sel,
-  QString       expr,
-  int           less,
-  QString       type,
-  QString       pronounce,
-  QString       usage,
-  bool          active)
+void CommonEntryPage::setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString usage, bool active)
 {
   lesson = less;
   setLessonBox(lesson);
@@ -116,9 +109,11 @@ void CommonEntryPage::setData(
     subtype_box->setCurrentIndex(offset);
   }
 
-  if (multi_sel) {
+  m_largeSelection = multi_sel;
+  if (m_largeSelection) {
     expr_line->setEnabled(false);
     pronounce_line->setEnabled(false);
+    b_pronDlg->setEnabled(false);
     expr_line->setText("");
     pronounce_line->setText("");
     lesson_box->setCurrentIndex(-1);
@@ -127,6 +122,21 @@ void CommonEntryPage::setData(
   }
 
   setModified(false);
+}
+
+
+void CommonEntryPage::setEnabled(int enable)
+{
+  bool ena = enable == EntryDlg::EnableAll;
+
+  usage_box->setEnabled(ena);
+  subtype_box->setEnabled(ena);
+  type_box->setEnabled(ena);
+  pronounce_line->setEnabled(ena && !m_largeSelection);
+  expr_line->setEnabled(ena && !m_largeSelection);
+  b_pronDlg->setEnabled(pronounce_line->isEnabled());
+  lesson_box->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
+  c_active->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
 }
 
 
@@ -380,21 +390,6 @@ void CommonEntryPage::invokeTypeDlg()
 bool CommonEntryPage::isModified()
 {
   return modified;
-}
-
-
-void CommonEntryPage::setEnabled(int enable)
-{
-  bool ena = enable == EntryDlg::EnableAll;
-
-  usage_box->setEnabled(ena);
-  subtype_box->setEnabled(ena);
-  type_box->setEnabled(ena);
-  pronounce_line->setEnabled(ena);
-  expr_line->setEnabled(ena);
-
-  lesson_box->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
-  c_active->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
 }
 
 

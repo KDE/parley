@@ -53,8 +53,9 @@ protected slots:
   void lev3Changed(const QString&);
 
 protected:
-  KEduVocComparison    comparisons;
-  bool          modified;
+  KEduVocComparison comparisons;
+  bool              modified;
+  bool              m_largeSelection;
 };
 
 #endif // AdjEntryPage_included

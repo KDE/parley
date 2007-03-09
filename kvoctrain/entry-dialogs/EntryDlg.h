@@ -58,7 +58,8 @@ public:
   ~EntryDlg ();
 
   void setData
-   (bool           multi_sel,
+   (EnableType     _et,
+    bool           multi_sel,
     grade_t        f_grd,
     grade_t        t_grd,
     count_t        f_qcount,

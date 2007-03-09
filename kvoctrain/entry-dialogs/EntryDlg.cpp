@@ -42,8 +42,8 @@ EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanag
   setFaceType(KPageDialog::Tabbed);
   setModal(false);
   setButtonGuiItem(User1, KGuiItem(i18n("&Reset")));
-  setButtonGuiItem(User2, KGuiItem(QString(), "view_left_right"));
-  setButtonGuiItem(User3, KGuiItem(QString(), "view_top_bottom"));
+  setButtonGuiItem(User2, KGuiItem(QString(), "view-left-right"));
+  setButtonGuiItem(User3, KGuiItem(QString(), "view-top-bottom"));
 
   mainwin = main;
   docked = false;
@@ -135,6 +135,7 @@ EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanag
 
 
 void EntryDlg::setData(
+  EnableType     et,
   bool           multi_sel,
   grade_t        f_grd,
   grade_t        t_grd,
@@ -176,7 +177,8 @@ void EntryDlg::setData(
     to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount, t_faux_ami, i18n("Properties to Original"));
 
   setModified(false);
-  updatePages (type);
+  updatePages(type);
+  setEnabled(et);
 }
 
 

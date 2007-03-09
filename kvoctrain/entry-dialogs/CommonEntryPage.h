@@ -79,14 +79,14 @@ signals:
   void sigModified();
 
 protected:
-  QString       m_pronounce;
-  QString       expression;
-  QString       usageCollection;
-  int           lesson;
-  QString       m_type;
-  KEduVocDocument *doc;
-  KVTQuery     &querymanager;
-  bool          entry_active;
+  QString              m_pronounce;
+  QString              expression;
+  QString              usageCollection;
+  int                  lesson;
+  QString              m_type;
+  KEduVocDocument     *doc;
+  KVTQuery            &querymanager;
+  bool                 entry_active;
 
   QList<TypeRelation>  all_maintypes;
   QList<TypeRelation>  all_types;
@@ -95,5 +95,6 @@ protected:
 
   bool                 modified;
   KDialog             *subDialog;
+  bool                 m_largeSelection;
 };
 #endif // CommonEntryPage_included

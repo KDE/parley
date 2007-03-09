@@ -68,12 +68,13 @@ protected slots:
 protected:
   void validate();
 
-  QString    fauxami;
-  bool       valid_date;
-  grade_t    grade;
-  count_t    qcount;
-  count_t    bcount;
-  bool       modified;
+  QString fauxami;
+  bool    valid_date;
+  grade_t grade;
+  count_t qcount;
+  count_t bcount;
+  bool    modified;
+  bool    m_largeSelection;
 };
 
 #endif // FromToEntryPage_included
