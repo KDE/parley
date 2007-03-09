@@ -311,7 +311,7 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
   kDebug() << hasSelection << endl;
 
   col -= KV_EXTRA_COLS;
-  ///@todo this enable stuff messes things up on several pages of the dialog
+
   EntryDlg::EnableType et;
 
   if (col < 0)
@@ -321,7 +321,7 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
   else
     et = EntryDlg::EnableAll;
 
-  if (col < 0 /*KV_EXTRA_COLS*/) {
+  if (col < 0) {
     title = i18n("Edit General Properties");
 
     entryDlg->setData(et,
