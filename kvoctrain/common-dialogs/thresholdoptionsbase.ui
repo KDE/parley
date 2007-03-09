@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>ThresholdOptionsBase</class>
  <widget class="QWidget" name="ThresholdOptionsBase" >
   <property name="geometry" >
@@ -263,12 +260,26 @@
  <customwidgets>
   <customwidget>
    <class>Q3ListBox</class>
-   <extends></extends>
+   <extends>Q3Frame</extends>
    <header>q3listbox.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
   </customwidget>
  </customwidgets>
+ <tabstops>
+  <tabstop>lessoncomp</tabstop>
+  <tabstop>b_all_less</tabstop>
+  <tabstop>b_none_less</tabstop>
+  <tabstop>lessonlist</tabstop>
+  <tabstop>typecomp</tabstop>
+  <tabstop>typelist</tabstop>
+  <tabstop>gradecomp</tabstop>
+  <tabstop>gradelist</tabstop>
+  <tabstop>querycomp</tabstop>
+  <tabstop>querylist</tabstop>
+  <tabstop>badcomp</tabstop>
+  <tabstop>badlist</tabstop>
+  <tabstop>datecomp</tabstop>
+  <tabstop>datelist</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>

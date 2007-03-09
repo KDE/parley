@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>QueryOptionsBase</class>
  <widget class="QWidget" name="QueryOptionsBase" >
   <property name="geometry" >
@@ -452,14 +449,14 @@
  <customwidgets>
   <customwidget>
    <class>KIntNumInput</class>
-   <extends></extends>
+   <extends>QWidget</extends>
    <header>knuminput.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>kcfg_MaxTimePer</tabstop>
+  <tabstop>r_no_limit</tabstop>
+  <tabstop>r_show_to</tabstop>
+  <tabstop>r_cont_to</tabstop>
   <tabstop>kcfg_ShowCounter</tabstop>
   <tabstop>kcfg_SwapDirection</tabstop>
   <tabstop>kcfg_AltLearn</tabstop>
@@ -469,7 +466,6 @@
   <tabstop>kcfg_Colons</tabstop>
   <tabstop>kcfg_Semicolons</tabstop>
   <tabstop>kcfg_Commas</tabstop>
-  <tabstop>kcfg_Fields</tabstop>
   <tabstop>kcfg_ShowMore</tabstop>
   <tabstop>kcfg_IKnow</tabstop>
  </tabstops>

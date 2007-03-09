@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>ViewOptionsBase</class>
  <widget class="QWidget" name="ViewOptionsBase" >
   <property name="geometry" >
@@ -430,22 +427,18 @@
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
-   <class>KFontRequester</class>
-   <extends></extends>
-   <header>kfontrequester.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
+   <class>KColorButton</class>
+   <extends>QPushButton</extends>
+   <header>kcolorbutton.h</header>
   </customwidget>
   <customwidget>
-   <class>KColorButton</class>
-   <extends></extends>
-   <header>kcolorbutton.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
+   <class>KFontRequester</class>
+   <extends>QWidget</extends>
+   <header>kfontrequester.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>kcfg_GradeCol0</tabstop>
+  <tabstop>kcfg_UseGradeCol</tabstop>
   <tabstop>kcfg_GradeCol7</tabstop>
   <tabstop>kcfg_GradeCol6</tabstop>
   <tabstop>kcfg_GradeCol5</tabstop>
@@ -453,6 +446,7 @@
   <tabstop>kcfg_GradeCol3</tabstop>
   <tabstop>kcfg_GradeCol2</tabstop>
   <tabstop>kcfg_GradeCol1</tabstop>
+  <tabstop>kcfg_GradeCol0</tabstop>
  </tabstops>
  <includes>
   <include location="global" >kcolorbutton.h</include>

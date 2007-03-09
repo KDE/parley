@@ -1,7 +1,5 @@
 <ui version="4.0" >
  <author>Peter Hedlund &lt;peter.hedlund@kdemail.net></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>ArtQueryDlgForm</class>
  <widget class="QWidget" name="ArtQueryDlgForm" >
   <property name="geometry" >
@@ -92,10 +90,18 @@
          <number>6</number>
         </property>
         <item row="0" column="1" >
-         <widget class="QProgressBar" name="countbar" />
+         <widget class="QProgressBar" name="countbar" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1" >
-         <widget class="QProgressBar" name="timebar" />
+         <widget class="QProgressBar" name="timebar" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0" >
          <widget class="QLabel" name="countlabel" >
@@ -295,8 +301,10 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
  <tabstops>
+  <tabstop>male</tabstop>
+  <tabstop>rb_fem</tabstop>
+  <tabstop>natural</tabstop>
   <tabstop>show_all</tabstop>
   <tabstop>verify</tabstop>
   <tabstop>know_it</tabstop>

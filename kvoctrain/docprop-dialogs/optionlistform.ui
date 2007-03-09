@@ -135,6 +135,7 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
+  <tabstop>optionsList</tabstop>
   <tabstop>newButton</tabstop>
   <tabstop>modifyButton</tabstop>
   <tabstop>deleteButton</tabstop>

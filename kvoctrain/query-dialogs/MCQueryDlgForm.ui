@@ -1,7 +1,5 @@
 <ui version="4.0" >
  <author>Peter Hedlund &lt;peter.hedlund@kdemail.net></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>MCQueryDlgForm</class>
  <widget class="QWidget" name="MCQueryDlgForm" >
   <property name="geometry" >
@@ -249,10 +247,18 @@
          <number>6</number>
         </property>
         <item row="0" column="1" >
-         <widget class="QProgressBar" name="countbar" />
+         <widget class="QProgressBar" name="countbar" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item row="1" column="1" >
-         <widget class="QProgressBar" name="timebar" />
+         <widget class="QProgressBar" name="timebar" >
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+         </widget>
         </item>
         <item row="0" column="0" >
          <widget class="QLabel" name="countlabel" >
@@ -371,11 +377,15 @@
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
  <tabstops>
+  <tabstop>rb_trans1</tabstop>
+  <tabstop>rb_trans2</tabstop>
+  <tabstop>rb_trans3</tabstop>
+  <tabstop>rb_trans4</tabstop>
   <tabstop>show_all</tabstop>
   <tabstop>know_it</tabstop>
   <tabstop>dont_know</tabstop>
+  <tabstop>rb_trans5</tabstop>
  </tabstops>
  <resources/>
  <connections/>

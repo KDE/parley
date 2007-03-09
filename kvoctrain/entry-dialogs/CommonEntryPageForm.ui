@@ -415,13 +415,18 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
+  <tabstop>expr_line</tabstop>
+  <tabstop>lesson_box</tabstop>
+  <tabstop>b_LessDlg</tabstop>
+  <tabstop>pronounce_line</tabstop>
+  <tabstop>b_pronDlg</tabstop>
   <tabstop>type_box</tabstop>
   <tabstop>subtype_box</tabstop>
   <tabstop>b_TypeDlg</tabstop>
+  <tabstop>usage_box</tabstop>
   <tabstop>b_usageDlg</tabstop>
   <tabstop>c_active</tabstop>
  </tabstops>
- <includes/>
  <resources/>
  <connections/>
 </ui>

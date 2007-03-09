@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>AdjEntryPageForm</class>
  <widget class="QWidget" name="AdjEntryPageForm" >
   <property name="geometry" >
@@ -150,6 +147,11 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <tabstops>
+  <tabstop>lev1Field</tabstop>
+  <tabstop>lev2Field</tabstop>
+  <tabstop>lev3Field</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
