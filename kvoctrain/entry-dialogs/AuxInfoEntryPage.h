@@ -50,9 +50,6 @@ public:
 signals:
   void sigModified();
 
-protected:
-  void normalize(QString &str);
-
 protected slots:
   void slotAntonymSelected();
   void slotSynonymSelected();

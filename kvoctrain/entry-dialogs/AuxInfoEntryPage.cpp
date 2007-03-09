@@ -28,7 +28,6 @@
 #include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"
 #include <kvtlanguages.h>
-#include <LineList.h>
 
 AuxInfoEntryPage::AuxInfoEntryPage(QWidget *parent) : QWidget(parent)
 {
@@ -85,68 +84,54 @@ void AuxInfoEntryPage::slotAntonymSelected()
 }
 
 
-void AuxInfoEntryPage::slotRemarkSelected ()
+void AuxInfoEntryPage::slotRemarkSelected()
 {
   setModified(true);
   remark = remark_line->toPlainText();
 }
 
 
-void AuxInfoEntryPage::slotExampSelected ()
+void AuxInfoEntryPage::slotExampSelected()
 {
   setModified(true);
   example = examp_line->toPlainText();
 }
 
 
-void AuxInfoEntryPage::slotParaSelected ()
+void AuxInfoEntryPage::slotParaSelected()
 {
   setModified(true);
   paraphrase = para_line->toPlainText();
 }
 
 
-QString AuxInfoEntryPage::getSynonym ()
+QString AuxInfoEntryPage::getSynonym()
 {
-  normalize(synonym);
-  return synonym;
+  return synonym.simplified();
 }
 
 
-QString AuxInfoEntryPage::getAntonym ()
+QString AuxInfoEntryPage::getAntonym()
 {
-  normalize(antonym);
-  return antonym;
+  return antonym.simplified();
 }
 
 
-QString AuxInfoEntryPage::getExample ()
+QString AuxInfoEntryPage::getExample()
 {
-  normalize(example);
-  return example;
+  return example.simplified();
 }
 
 
-QString AuxInfoEntryPage::getRemark  ()
+QString AuxInfoEntryPage::getRemark()
 {
-  normalize(remark);
-  return remark;
+  return remark.simplified();
 }
 
 
-QString AuxInfoEntryPage::getParaphrase  ()
+QString AuxInfoEntryPage::getParaphrase()
 {
-  normalize(paraphrase);
-  return paraphrase;
-}
-
-
-void AuxInfoEntryPage::normalize (QString &str)
-{
-  ///@todo this is basically a way of cleaning whitespace, better way?
-  LineList ll (str);
-  ll.normalizeWS();
-  str = ll.allLines();
+  return paraphrase.simplified();
 }
 
 
