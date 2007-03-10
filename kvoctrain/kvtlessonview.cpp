@@ -13,8 +13,11 @@
 #include <QTreeView>
 #include <QMenu>
 #include <QContextMenuEvent>
+#include <KAction>
 #include <kdebug.h>
 #include <klocale.h>
+#include <kiconloader.h>
+#include <kicon.h>
 
 #include <keduvocdocument.h>
 
@@ -24,14 +27,19 @@
 KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
 {
   m_lessonPopupMenu = new QMenu(this);
-  QAction *actionNewLesson = new QAction(i18n("New lesson"), this);
-  QAction *actionRenameLesson = new QAction(i18n("Rename lesson"), this);
-  QAction *actionDeleteLesson = new QAction(i18n("Delete lesson"), this);
+  KAction *actionNewLesson = new KAction(i18n("New lesson"), this);
   m_lessonPopupMenu->addAction(actionNewLesson);
-  m_lessonPopupMenu->addAction(actionRenameLesson);
-  m_lessonPopupMenu->addAction(actionDeleteLesson);
+  actionNewLesson->setIcon(KIcon("edit-add"));
   connect(actionNewLesson, SIGNAL(triggered()), this, SLOT(slotCreateNewLesson()));
+  
+  KAction *actionRenameLesson = new KAction(i18n("Rename lesson"), this);
+  m_lessonPopupMenu->addAction(actionRenameLesson);
+  actionRenameLesson->setIcon(KIcon("edit"));
   connect(actionRenameLesson, SIGNAL(triggered()), this, SLOT(slotRenameLesson()));
+  
+  KAction *actionDeleteLesson = new KAction(i18n("Delete lesson"), this);
+  m_lessonPopupMenu->addAction(actionDeleteLesson);
+  actionDeleteLesson->setIcon(KIcon("edit-delete"));
   connect(actionDeleteLesson, SIGNAL(triggered()), this, SLOT(slotDeleteLesson()));
 }
 
