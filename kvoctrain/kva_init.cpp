@@ -397,6 +397,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_lessonSelectionCombo->insertItem(KVocTrainApp::queryLessons, i18n("Edit lessons in test"));
   m_lessonSelectionCombo->insertItem(KVocTrainApp::allLessons, i18n("Edit all lessons"));
   m_lessonSelectionCombo->setToolTip(i18n("Here you select which lessons you want to edit on the right."));
+  /*
   /// The buttons (new/rename/delete)
   m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
   m_buttonNewLesson->setToolTip(i18n("Click here to create a new lesson. You can then type its name directly in the list."));
@@ -410,7 +411,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_buttonDeleteLesson->setToolTip(i18n("Click here to delete the current lesson."));
   boxLayout->addWidget(m_buttonDeleteLesson);
   connect(m_buttonDeleteLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotDeleteLesson()));
-
+  */
 
   /// New lesson selected
   connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));

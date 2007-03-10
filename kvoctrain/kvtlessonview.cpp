@@ -9,6 +9,10 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include <QTreeView>
+#include <QMenu>
+#include <QContextMenuEvent>
 #include <kdebug.h>
 #include <klocale.h>
 
@@ -18,7 +22,18 @@
 #include "kvtlessonview.h"
 
 KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
-{}
+{
+  m_lessonPopupMenu = new QMenu(this);
+  QAction *actionNewLesson = new QAction(i18n("New lesson"), this);
+  QAction *actionRenameLesson = new QAction(i18n("Rename lesson"), this);
+  QAction *actionDeleteLesson = new QAction(i18n("Delete lesson"), this);
+  m_lessonPopupMenu->addAction(actionNewLesson);
+  m_lessonPopupMenu->addAction(actionRenameLesson);
+  m_lessonPopupMenu->addAction(actionDeleteLesson);
+  connect(actionNewLesson, SIGNAL(triggered()), this, SLOT(slotCreateNewLesson()));
+  connect(actionRenameLesson, SIGNAL(triggered()), this, SLOT(slotRenameLesson()));
+  connect(actionDeleteLesson, SIGNAL(triggered()), this, SLOT(slotDeleteLesson()));
+}
 
 void KVTLessonView::setModel(KVTLessonModel *model)
 {
@@ -89,4 +104,13 @@ void KVTLessonView::slotRenameLesson(){
   }
   edit ( indexes.at(0) ); // let the user type a new name for the lesson
 }
+/*7
+void KVTLessonView::slotRenameLesson(const QModelIndex & index ){
+}
+*/
+
+void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {
+  m_lessonPopupMenu->exec(mapToGlobal(ev->pos()));
+}
+
 #include "kvtlessonview.moc"

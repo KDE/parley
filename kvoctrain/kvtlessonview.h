@@ -13,9 +13,6 @@
 #ifndef KVTLESSONVIEW_H
 #define KVTLESSONVIEW_H
 
-
-#include <QTreeView>
-
 class KVTLessonView : public QTreeView
 {
 Q_OBJECT
@@ -27,8 +24,12 @@ public slots:
   void slotModelReset();
   void slotCreateNewLesson();
   void slotRenameLesson();
+
+void contextMenuEvent(QContextMenuEvent * ev);
+
 private:
   KVTLessonModel *m_model;
+  QMenu *m_lessonPopupMenu;
 };
 
 #endif
