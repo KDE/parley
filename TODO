@@ -17,6 +17,24 @@ What happens if current lesson is not in query, but I want to add to it?
 
 Just noticed: we have what's this - need to add hints!!
 
+Table sorting when opening a document(?)
+
+Get rid of Qt/kde 3 stuff:
+[21:44:58] <fregl> pinotree great - tell me what's the best way of getting rid of the kde3 stuff ?? :) any tips where to begin? looking at warnings??
+[21:45:16] <pinotree> that one for depreciated method
+[21:45:42] <pinotree> and grep Q3 * for a rough find of the Q3 classes
+[21:45:53] <pinotree> iirc, in kvoctrain there are just two of them
+[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" >
+[21:46:47] <milliams> fregl: there are scripts in kdesdk i believe
+[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >
+[21:47:06] <fregl> sounds like lots of fun
+[21:47:08] <pinotree> basically, these are the only two
+[21:47:15] <fregl> ok
+[21:47:38] <fregl> I'll vote for just kicking out the first one :)
+[21:47:46] <fregl> well thanks
+[21:47:57] <pinotree> np
+
+
 --------------------
  NOT SO FAR FUTURE:
 --------------------
@@ -44,12 +62,10 @@ Allow sorting: is it still necessary? If we have a undo sort function? Otherwise
 
 Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
 
-rename query to test, practice whatever
+rename query to test, practice whatever ???
 
 Welcome screen with options: New file (wizzard?), manage old and query/test
 AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
-
-Synonyms how??????
 
 More test possibilities? Like plugins?
 -Letter mixup like on ponsline
@@ -57,3 +73,9 @@ More test possibilities? Like plugins?
 Make the query/test look better!?! Colorfull? Nice?
 
 Statistics/after test screen? Number of words with status xyz? "Hey, you got 33,33 % right the first time, cool!"?
+Also maybe (if desired) a list of words that are especially bad... As to say, hey - these are your problems.
+
+maybe some article handling? I find that I often have the word right but with wrong article. Then it says false and sometimes I change my word, which was right. So a hint like, "great, but wrong article" would sometimes be cool.
+
+Synonyms how??????
+
