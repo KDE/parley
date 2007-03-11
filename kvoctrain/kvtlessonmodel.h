@@ -48,8 +48,8 @@ public:
   // completely replace the old stuff
   bool newData(const QStringList &strings);
 
-  bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
-  bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
+//  bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
+//  bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
 
 private:
   /** The data file */

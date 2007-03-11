@@ -93,7 +93,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    if (m_doc->lessonsInQuery().contains(index.row()))
+    if (m_doc->lessonsInQuery().contains(index.row()+1))
       return Qt::Checked;
     else
       return Qt::Unchecked;
@@ -130,14 +130,16 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
     QList<int> intLessons;
-
     foreach(int lesson, m_doc->lessonsInQuery())
       intLessons.append(lesson);
-    if (intLessons.contains(index.row())){
-      intLessons.removeAt(intLessons.indexOf(index.row()));
+      
+    kDebug() << "hi - checkboxes: " << intLessons << " -- curind: " << index.row()+1 << endl;
+
+    if (intLessons.contains(index.row()+1)){
+      intLessons.removeAt(intLessons.indexOf(index.row()+1));
     } else {
         if (value.toInt() == Qt::Checked)
-          intLessons.append(index.row());
+          intLessons.append(index.row()+1);
     }
 
     m_doc->setLessonsInQuery(intLessons);
@@ -149,12 +151,13 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
 
 /**
- * NOT IMPLEMENTED - add a new lesson.
+ * Eventually adding new lessons could go here. For now it's in kvtlessonview.
  * @param position
  * @param rows
  * @param parent
  * @return
  */
+ /*
 bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &parent)
 {
   Q_UNUSED(parent);
@@ -168,15 +171,16 @@ bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &paren
   endInsertRows();
   return true;
 }
-
+*/
 
 /**
- * NOT IMPLEMENTED - Delete a lesson
+ * 
  * @param position
  * @param rows
  * @param parent
  * @return
  */
+ /*
 bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
   Q_UNUSED(parent);
@@ -190,7 +194,7 @@ bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &paren
   endRemoveRows();
   return true;
 }
-
+*/
 
 /**
  * propagete the change of current lesson
