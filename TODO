@@ -1,13 +1,10 @@
 -------------------
  DO IT:
 -------------------
-Need to correctly preselect the lesson in main table as well!
 
-Right click stuff? Rename, new, delete? for lessons
+Right click stuff: delete for lessons
 
 Save splitter position, maybe set a more sensible default for it????
-
-focus via qwidget->setFocus() ???
 
 Crash when close -> cancel
 
@@ -16,8 +13,6 @@ If I add a new entry it is not displayed in the table!!!!!!!!!
 What happens if current lesson is not in query, but I want to add to it?
 
 Just noticed: we have what's this - need to add hints!!
-
-Table sorting when opening a document(?)
 
 Get rid of Qt/kde 3 stuff:
 [21:44:58] <fregl> pinotree great - tell me what's the best way of getting rid of the kde3 stuff ?? :) any tips where to begin? looking at warnings??
@@ -39,7 +34,9 @@ Get rid of Qt/kde 3 stuff:
  NOT SO FAR FUTURE:
 --------------------
 
-I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
+Lesson list:
+-focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection.
+-I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
 
 Library: Add functions: addLesson, removeLesson, reorderLesson (?)
 
