@@ -48,6 +48,10 @@ public:
   QString getUsageLabel() const { return usageCollection; }
   bool    getActive    () const { return entry_active; }
 
+  bool usageIsModified()        { return m_usageIsModified; }
+  bool typeIsModified()         { return m_typeIsModified; }
+  bool lessonIsModified()       { return m_lessonIsModified; }
+  bool activeIsModified()       { return m_activeIsModified; }
   bool isModified();
   void setModified(bool mod = true);
   void setEnabled(int enable_type);
@@ -96,5 +100,9 @@ protected:
   bool                 modified;
   KDialog             *subDialog;
   bool                 m_largeSelection;
+  bool                 m_usageIsModified;
+  bool                 m_typeIsModified;
+  bool                 m_lessonIsModified;
+  bool                 m_activeIsModified;
 };
 #endif // CommonEntryPage_included

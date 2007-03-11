@@ -121,6 +121,10 @@ void CommonEntryPage::setData(bool multi_sel, QString expr, int less, QString ty
     subtype_box->setCurrentIndex(-1);
   }
 
+  m_usageIsModified = false;
+  m_typeIsModified = false;
+  m_lessonIsModified = false;
+  m_activeIsModified = false;
   setModified(false);
 }
 
@@ -188,6 +192,7 @@ void CommonEntryPage::setUsageBox(const QString & act_usage)
 void CommonEntryPage::slotUsageChanged()
 {
   setModified(true);
+  m_usageIsModified = true;
   usageCollection = "";
   QString s;
 
@@ -210,6 +215,7 @@ void CommonEntryPage::slotUsageChanged()
 void CommonEntryPage::slotLessonSelected (int l)
 {
   setModified(true);
+  m_lessonIsModified = true;
   lesson = l;
 }
 
@@ -217,6 +223,7 @@ void CommonEntryPage::slotLessonSelected (int l)
 void CommonEntryPage::slotActiveChanged(bool state)
 {
   setModified(true);
+  m_activeIsModified = true;
   entry_active = state;
 }
 
@@ -238,6 +245,7 @@ void CommonEntryPage::slotPronounceSelected (const QString& s)
 void CommonEntryPage::slotSubTypeSelected(int i)
 {
   setModified(true);
+  m_typeIsModified = true;
   if (i < (int) current_subtypes.size()) {
     m_type = current_subtypes[i];
     emit typeSelected(m_type);
@@ -248,6 +256,7 @@ void CommonEntryPage::slotSubTypeSelected(int i)
 void CommonEntryPage::slotTypeSelected(int idx)
 {
   setModified(true);
+  m_typeIsModified = true;
   subtype_box->clear();
   current_subtypes.clear();
   bool first = true;

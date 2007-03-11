@@ -118,6 +118,21 @@ public:
 
   KEduVocMultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
 
+  bool fromDateIsModified()       { return from_page->dateIsModified(); }
+  bool fromGradeIsModified()      { return from_page->gradeIsModified(); }
+  bool fromQueryCountIsModified() { return from_page->queryCountIsModified(); }
+  bool fromBadCountIsModified()   { return from_page->badCountIsModified(); }
+
+  bool toDateIsModified()         { return to_page->dateIsModified(); }
+  bool toGradeIsModified()        { return to_page->gradeIsModified(); }
+  bool toQueryCountIsModified()   { return to_page->queryCountIsModified(); }
+  bool toBadCountIsModified()     { return to_page->badCountIsModified(); }
+
+  bool usageIsModified()          { return comm_page->usageIsModified(); }
+  bool typeIsModified()           { return comm_page->typeIsModified(); }
+  bool lessonIsModified()         { return comm_page->lessonIsModified(); }
+  bool activeIsModified()         { return comm_page->activeIsModified(); }
+
   bool isModified();
   void setModified(bool mod);
   void setEnabled(int);

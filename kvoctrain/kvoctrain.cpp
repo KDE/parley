@@ -224,23 +224,34 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
       if (col >= 0) {
         // only updated "common" props in multimode
-        expr->setGrade(col, entryDlg->getFromGrade(), false);
-        expr->setGrade(col, entryDlg->getToGrade(), true);
-        expr->setQueryCount(col, entryDlg->getFromQCount(), false);
-        expr->setQueryCount(col, entryDlg->getToQCount(), true);
-        expr->setBadCount(col, entryDlg->getFromBCount(), false);
-        expr->setBadCount(col, entryDlg->getToBCount(), true);
-        expr->setQueryDate(col, entryDlg->getFromDate(), false);
-        expr->setQueryDate(col, entryDlg->getToDate(), true);
-        for (int j = 0; j <= expr->translationCount(); j++)
-          expr->setUsageLabel (j, entryDlg->getUsageLabel());
-
-        for (int j = 0; j <= expr->translationCount(); j++)
-          expr->setType(j, entryDlg->getType());
+        if (entryDlg->fromGradeIsModified())
+          expr->setGrade(col, entryDlg->getFromGrade(), false);
+        if (entryDlg->toGradeIsModified())
+          expr->setGrade(col, entryDlg->getToGrade(), true);
+        if (entryDlg->fromQueryCountIsModified())
+          expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+        if (entryDlg->toQueryCountIsModified())
+          expr->setQueryCount(col, entryDlg->getToQCount(), true);
+        if (entryDlg->fromBadCountIsModified())
+          expr->setBadCount(col, entryDlg->getFromBCount(), false);
+        if (entryDlg->toBadCountIsModified())
+          expr->setBadCount(col, entryDlg->getToBCount(), true);
+        if (entryDlg->fromDateIsModified())
+          expr->setQueryDate(col, entryDlg->getFromDate(), false);
+        if (entryDlg->toDateIsModified())
+          expr->setQueryDate(col, entryDlg->getToDate(), true);
+        if (entryDlg->usageIsModified())
+          for (int j = 0; j <= expr->translationCount(); j++)
+            expr->setUsageLabel (j, entryDlg->getUsageLabel());
+        if (entryDlg->typeIsModified())
+          for (int j = 0; j <= expr->translationCount(); j++)
+            expr->setType(j, entryDlg->getType());
       }
 
-      expr->setActive(entryDlg->getActive());
-      m_tableModel->setData(m_tableModel->index(index.row(), 0), entryDlg->getLesson(), Qt::EditRole);
+      if (entryDlg->activeIsModified())
+        expr->setActive(entryDlg->getActive());
+      if (entryDlg->lessonIsModified())
+        m_tableModel->setData(m_tableModel->index(index.row(), 0), entryDlg->getLesson(), Qt::EditRole);
     }
     entryDlg->setModified(false);
     m_doc->setModified(true);
