@@ -1,0 +1,59 @@
+-------------------
+ DO IT:
+-------------------
+Need to correctly preselect the lesson in main table as well!
+
+Right click stuff? Rename, new, delete? for lessons
+
+Save splitter position, maybe set a more sensible default for it????
+
+focus via qwidget->setFocus() ???
+
+Crash when close -> cancel
+
+If I add a new entry it is not displayed in the table!!!!!!!!!
+->reload !?!
+What happens if current lesson is not in query, but I want to add to it?
+
+Just noticed: we have what's this - need to add hints!!
+
+--------------------
+ NOT SO FAR FUTURE:
+--------------------
+
+I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
+
+Library: Add functions: addLesson, removeLesson, reorderLesson (?)
+
+m_tableView and friends: make columns visible/hide as user wishes. Additional columns for word type and all that seems sensible(?).
+
+Combobox: make it editable with regexp or better space as seperator to search-select lessons
+kvttablemodel: make columns hideable, add support for more columns like word type. By default only show original + translations. Are the numbers of the entries significant to the user? maybe better hide them?
+
+Enable drag and drop for lessons and vocab (drag into lesson, change order of lessons).
+
+What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson?
+
+Icons and artwork seems rather old... maybe ask those oxygen guys?
+
+Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it.
+
+------------------
+ LONG TERM STUFF:
+------------------
+
+Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
+
+rename query to test, practice whatever
+
+Welcome screen with options: New file (wizzard?), manage old and query/test
+AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
+
+Synonyms how??????
+
+More test possibilities? Like plugins?
+-Letter mixup like on ponsline
+
+Make the query/test look better!?! Colorfull? Nice?
+
+Statistics/after test screen? Number of words with status xyz? "Hey, you got 33,33 % right the first time, cool!"?
