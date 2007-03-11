@@ -32,6 +32,8 @@
 #include <QAbstractItemModel>
 #include <QVBoxLayout>
 
+#include <KTabWidget>
+
 #include <kactioncollection.h>
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -388,7 +390,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_lessonModel->setDocument(m_doc);
   // I need to initialize the lessons with the model as well...
   m_lessonView->setModel(m_lessonModel);
-  m_lessonView->setToolTip(i18n("Double click to rename a lesson. With the checkboxes you can select which lessons you want to be tested. Only checked lessons [x] will be asked!"));
+  m_lessonView->setToolTip(i18n("Double click to rename. Right click to add/delete lessons. With the checkboxes you can select which lessons you want to be tested. Only checked lessons [x] will be asked in the query!"));
 
   // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
   m_lessonSelectionCombo = new KComboBox();
@@ -478,6 +480,19 @@ void KVocTrainApp::initView()
 
   /// set filter order to get usefull default sorting (ascending within lesson)
   //m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
+
+  /** Begin tabs... */
+  KTabWidget *tabWidget = new KTabWidget(centralWidget());
+  tabWidget->addTab(m_tableView, "Edit vocabulary");
+
+  QPushButton *button = new QPushButton("Resume query");
+  connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
+  tabWidget->addTab(button, "Query");
+
+  splitter->addWidget(tabWidget);
+  /** End tabs - comment out these lines to get the nomal behavior. */
+
+  updateTableFilter();
 
   /// @todo Make the size relation between left and table sensible. Save the size maybe???
   // Well I have no clue how this works !?!? But it is better than the default.
