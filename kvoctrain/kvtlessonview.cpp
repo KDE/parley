@@ -98,8 +98,16 @@ void KVTLessonView::slotCreateNewLesson(){
   //QItemSelectionModel *selectionModel = this->selectionModel();
   selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
 
+  QList<int> intLessons;
+  foreach(int lesson, m_model->document()->lessonsInQuery())
+    intLessons.append(lesson);
+  intLessons.append(newLessonIndex);
+  m_model->document()->setLessonsInQuery(intLessons);
+
   emit currentChanged(indexOfCurrent, indexOfCurrent);
   edit ( indexOfCurrent ); // let the user type a new name for the lesson
+
+  m_model->document()->setModified();
 }
 
 
