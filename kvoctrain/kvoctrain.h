@@ -117,7 +117,7 @@ public:
   void readLanguages();
 
 
-  void updateTableFilter(int comboState, QModelIndex current);
+  void updateTableFilter();
 
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
   * opened file by a temporary filename provided by KApplication.

@@ -1292,10 +1292,20 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 }
 
 
-void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
+void KVocTrainApp::updateTableFilter()
 {
+  QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
+  // oops - this crashes if there is no selection - there should always be a current lesson!!!
+  if (indexes.empty()) {
+    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+    return;
+  }
+  QModelIndex current = indexes.at(0); // should be one item selected anyway...
 
-// do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results...
+  m_doc->setCurrentLesson(current.row()+1);
+  int comboState = m_lessonSelectionCombo->currentIndex();
+
+  // do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results... so this should only apply for the lesson column. How do I do something with the search at the same time?
 
   //QRegExp myReg("(Lektion 09)|(Lektion 04)");
   QString lessonStrings;
@@ -1330,22 +1340,15 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
 
 void KVocTrainApp::slotLessonSelectionComboChanged(int index)
 {
-  QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
-  // oops - this crashes if there is no selection - there should always be a current lesson!!!
-  if (indexes.empty()) {
-    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
-    return;
-  }
-  QModelIndex current = indexes.at(0);
-  updateTableFilter(index, current);
+  Q_UNUSED(index);
+  updateTableFilter();
 }
 
 void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QModelIndex &previous)
 {
   Q_UNUSED(previous);
-  m_doc->setCurrentLesson(current.row()+1);
-  int comboState = m_lessonSelectionCombo->currentIndex();
-  updateTableFilter(comboState, current);
+  Q_UNUSED(current);
+  updateTableFilter();
 }
 
 
