@@ -1303,6 +1303,10 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
         lessonStrings.append(")|(");
       }
       lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("
+      if(lessonStrings.compare("")==0) // in this case select none to be consistent!
+      {
+        lessonStrings = "$^"; // hoping no-one hase a lesson called "" for now. It's your own fault, if you call them like this ;) this is generally unfortunate... maybe I should forbid it and default back to "New lesson 1".
+      }
       m_sortFilterModel->setFilterRegExp(lessonStrings);
       break;
     case KVocTrainApp::allLessons:
