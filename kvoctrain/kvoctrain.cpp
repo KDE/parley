@@ -1299,7 +1299,7 @@ void KVocTrainApp::updateTableFilter(int comboState, QModelIndex current)
       //kDebug << lessonStrings << endl;
       lessonStrings.append("(");
       foreach(int lesson, m_doc->lessonsInQuery()){
-        lessonStrings.append(m_doc->lessonDescriptions().at(lesson));
+        lessonStrings.append(m_doc->lessonDescriptions().at(lesson-1));
         lessonStrings.append(")|(");
       }
       lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("
