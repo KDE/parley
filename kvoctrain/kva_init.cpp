@@ -444,14 +444,14 @@ void KVocTrainApp::initView()
   topLayout->setMargin(KDialog::marginHint());
   topLayout->setSpacing(KDialog::spacingHint());
   /// Splitter to divide lessons and table.
-  QSplitter *splitter = new QSplitter(centralWidget());
-  topLayout->addWidget(splitter);
+  m_mainSplitter = new QSplitter(centralWidget());
+  topLayout->addWidget(m_mainSplitter);
   /// List of lessons
-  splitter->addWidget(initLessonList(centralWidget()));
+  m_mainSplitter->addWidget(initLessonList(centralWidget()));
   /// Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
-  splitter->addWidget(m_tableView);
+  m_mainSplitter->addWidget(m_tableView);
   /// Filter proxy
 
   m_tableView->setModel(m_sortFilterModel);
@@ -476,9 +476,6 @@ void KVocTrainApp::initView()
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
-  /// set filter order to get usefull default sorting (ascending within lesson)
-  //m_sortFilterModel->sort(KV_COL_LESS, Qt::AscendingOrder);
-
   /** Begin tabs... */
   KTabWidget *tabWidget = new KTabWidget(centralWidget());
   tabWidget->addTab(m_tableView, "Edit vocabulary");
@@ -487,14 +484,10 @@ void KVocTrainApp::initView()
   connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
   tabWidget->addTab(button, "Query");
 
-  splitter->addWidget(tabWidget);
+  m_mainSplitter->addWidget(tabWidget);
   /** End tabs - comment out these lines to get the nomal behavior. */
 
   updateTableFilter();
 
-  /// @todo Make the size relation between left and table sensible. Save the size maybe???
-  // Well I have no clue how this works !?!? But it is better than the default.
-  QList <int> sizes;
-  sizes << 10 << 400;
-  splitter->setSizes(sizes);
+  m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
 }

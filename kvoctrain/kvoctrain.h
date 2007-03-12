@@ -54,6 +54,7 @@
 
 class QTimer;
 class QProgressBar;
+class QSplitter;
 
 class KLineEdit;
 class KComboBox;
@@ -312,6 +313,8 @@ private:
   /** m_lessonView is the lesson list at the left side. */
   //KVTLessonView *m_lessonView;
   KVTLessonView *m_lessonView;
+
+  QSplitter *m_mainSplitter;
 
   /** m_doc represents your vocabulary document. It keeps
     * information such as filename and does the serialization of your files.

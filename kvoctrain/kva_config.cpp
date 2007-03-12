@@ -24,6 +24,7 @@
  ***************************************************************************/
 
 #include <QFile>
+#include <QSplitter>
 
 #include <kapplication.h>
 #include <krecentfilesaction.h>
@@ -37,13 +38,16 @@
 
 void KVocTrainApp::saveOptions()
 {
-  fileOpenRecent->saveEntries(KGlobal::config()->group( "Recent Files") );
+  fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
 
   if (m_tableView)
   {
     Prefs::setCurrentRow(m_tableView->currentIndex().row());
     Prefs::setCurrentCol(m_tableView->currentIndex().column());
   }
+  if (m_mainSplitter)
+    Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
+
   saveLanguages();
   Prefs::writeConfig();
 }
