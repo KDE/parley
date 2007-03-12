@@ -806,6 +806,17 @@ void KVocTrainApp::slotSearchNext()
 
 void KVocTrainApp::slotResumeSearch(const QString& s)
 {
+/*
+  if (s.length() == 0) {
+    m_sortFilterModel->delSearchFilter();
+    return;
+  }
+*/
+  m_sortFilterModel->setSearchRegExp(new QRegExp(".*" + s + ".*"));
+  m_tableModel->reset();
+  
+  
+  /*
   if (s.length() == 0) {
     slotInitSearch();
     return;
@@ -840,6 +851,7 @@ void KVocTrainApp::slotResumeSearch(const QString& s)
   m_textToFind = s;
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
+  */
 }
 
 

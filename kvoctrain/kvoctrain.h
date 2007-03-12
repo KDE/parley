@@ -88,7 +88,7 @@ public:
     currentLesson,  // highlighted lesson
     queryLessons,   // all checked lessons
     allLessons,     // all
-    userSearchLessons // when set to editable
+    userSearchLessons // when set to editable the user can search here as well, filtering space seperated, I hope.
   };
 
 
