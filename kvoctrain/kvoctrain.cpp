@@ -582,19 +582,19 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 
     case Qt::Key_Tab:
       if (m_tableView->hasFocus())  {
-        searchLine->setFocus();
-        searchLine->selectAll();
+        m_searchLine->setFocus();
+        m_searchLine->selectAll();
       }
       else
         m_tableView->setFocus();
     break;
 
     case Qt::Key_Backtab:
-      if (searchLine->hasFocus())
+      if (m_searchLine->hasFocus())
         m_tableView->setFocus();
       else {
-        searchLine->setFocus();
-        searchLine->selectAll();
+        m_searchLine->setFocus();
+        m_searchLine->selectAll();
       }
     break;
 

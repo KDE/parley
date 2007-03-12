@@ -447,14 +447,15 @@ void KVocTrainApp::initView()
   /// List of lessons
   m_mainSplitter->addWidget(initLessonList(centralWidget()));
 
-  searchLine = new KLineEdit(this);
-  searchLine->show();
-  searchLine->setFocusPolicy(Qt::ClickFocus);
-  searchLine->setClearButtonShown(true);
-  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
+  m_searchLine = new KLineEdit(this);
+  m_searchLine->show();
+  m_searchLine->setFocusPolicy(Qt::ClickFocus);
+  m_searchLine->setClearButtonShown(true);
+  m_searchLine->setClickMessage(i18n("Enter search terms here"));
+  connect(m_searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
 
   QLabel *label = new QLabel( i18n("S&earch:"), this );
-  label->setBuddy(searchLine);
+  label->setBuddy(m_searchLine);
   label->show();
 
   m_searchWidget = new QWidget(this);
@@ -462,7 +463,7 @@ void KVocTrainApp::initView()
   layout->setSpacing(KDialog::spacingHint());
   layout->setMargin(0);
   layout->addWidget(label);
-  layout->addWidget(searchLine);
+  layout->addWidget(m_searchLine);
 
   QWidget * rightWidget = new QWidget(this);
   QVBoxLayout * rightLayout = new QVBoxLayout(rightWidget);

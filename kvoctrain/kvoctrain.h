@@ -340,7 +340,7 @@ private:
   //int                  searchpos;
   QString              m_textToFind;
   /// @todo Move above table...
-  KLineEdit           *searchLine;
+  KLineEdit           *m_searchLine;
   KComboBox           *m_lessonsComboBox;
   int                  m_currentLesson;
   KVTQuery             querymanager;
