@@ -18,11 +18,11 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
 {
   m_sourceModel = 0;
   setSortCaseSensitivity(Qt::CaseInsensitive);
-  m_lessonFilter = 0;
-  m_searchFilter = 0;
-  
+  m_searchFilter = QRegExp();
+  m_lessonFilter = QRegExp();
+
   // only show things starting with a:
-  //m_searchFilter = new QRegExp("a.*");
+  //m_searchFilter = QRegExp("a.*");
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
@@ -36,12 +36,12 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
   return m_sourceModel;
 }
 
-void KVTSortFilterModel::setLessonRegExp(QRegExp *filter)
+void KVTSortFilterModel::setLessonRegExp(QRegExp filter)
 {
   m_lessonFilter = filter;
 }
 
-void KVTSortFilterModel::setSearchRegExp(QRegExp *filter)
+void KVTSortFilterModel::setSearchRegExp(QRegExp filter)
 {
   m_searchFilter = filter;
 }
@@ -69,7 +69,7 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
 bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
 {
   QModelIndex lessons = sourceModel()->index(sourceRow, 0, sourceParent);
-  if(m_lessonFilter->exactMatch(sourceModel()->data(lessons, Qt::DisplayRole).toString() ) )
+  if(m_lessonFilter.exactMatch(sourceModel()->data(lessons, Qt::DisplayRole).toString() ) )
     return true;
   return false;
 }
@@ -84,7 +84,7 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
   for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++)
   {
     QModelIndex lang = sourceModel()->index(sourceRow, i+2, sourceParent);
-    if( m_searchFilter->exactMatch(sourceModel()->data(lang, Qt::DisplayRole).toString()) )
+    if( m_searchFilter.exactMatch(sourceModel()->data(lang, Qt::DisplayRole).toString()) )
       return true;
   }
   return false;
@@ -99,35 +99,24 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-  if(m_lessonFilter && m_searchFilter)
-  {
-  //  kDebug() << " Num identifiers: " << m_sourceModel->document()->identifierCount() << endl;
-    if(! checkLesson(sourceRow, sourceParent) )
+  if(!m_lessonFilter.isEmpty())
+    if (!checkLesson(sourceRow, sourceParent))
       return false;
-    return checkSearch(sourceRow, sourceParent);
-  }
-  if(m_lessonFilter)
-  {
-    return checkLesson(sourceRow, sourceParent);
-  }
-  if(m_searchFilter)
-  {
-    return checkSearch(sourceRow, sourceParent);
-  }
-  /// no filter set? then show all.
+
+  if(!m_searchFilter.isEmpty())
+    if (!checkSearch(sourceRow, sourceParent))
+      return false;
+
   return true;
 }
 
-
 void KVTSortFilterModel::delLessonFilter()
 {
-  delete m_lessonFilter;
-  m_lessonFilter = 0;
+  m_lessonFilter = QRegExp();
 }
 void KVTSortFilterModel::delSearchFilter()
 {
-  delete m_searchFilter;
-  m_searchFilter = 0;
+  m_searchFilter = QRegExp();
 }
 
 #include "kvtsortfiltermodel.moc"

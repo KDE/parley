@@ -33,8 +33,8 @@ public:
 
   /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
   bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-  void setLessonRegExp(QRegExp *filter);
-  void setSearchRegExp(QRegExp *filter);
+  void setLessonRegExp(QRegExp filter);
+  void setSearchRegExp(QRegExp filter);
   void delLessonFilter();
   void delSearchFilter();
 
@@ -44,8 +44,8 @@ private:
   bool checkSearch(int sourceRow, const QModelIndex &sourceParent) const;
 
   KVTTableModel * m_sourceModel;
-  QRegExp * m_lessonFilter;
-  QRegExp * m_searchFilter;
+  QRegExp m_lessonFilter;
+  QRegExp m_searchFilter;
 };
 
 #endif

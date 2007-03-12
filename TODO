@@ -12,7 +12,13 @@ If I add a new entry it is not displayed in the table!!!!!!!!!
 ->reload !?!
 What happens if current lesson is not in query, but I want to add to it?
 
+When renaming a lesson, the main table is not updated.
+
 Just noticed: we have what's this - need to add hints!!
+
+Search:
+-the sorting reverses again. change it to ascending or so...
+-maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment.
 
 Get rid of Qt/kde 3 stuff:
 [21:44:58] <fregl> pinotree great - tell me what's the best way of getting rid of the kde3 stuff ?? :) any tips where to begin? looking at warnings??
@@ -48,7 +54,7 @@ Lesson list:
 -focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection.
 -I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
 
-Library: Add functions: addLesson, removeLesson, reorderLesson (?)
+Library: Add functions: addLesson, removeLesson. Eventually also something to change the order of lessons.
 
 m_tableView and friends: make columns visible/hide as user wishes. Additional columns for word type and all that seems sensible(?).
 
@@ -57,9 +63,7 @@ kvttablemodel: make columns hideable, add support for more columns like word typ
 
 Enable drag and drop for lessons and vocab (drag into lesson, change order of lessons).
 
-What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson?
-
-Icons and artwork seems rather old... maybe ask those oxygen guys?
+Icons and artwork seems rather old... maybe ask those oxygen guys? annma said she'll ask for a new icon.
 
 Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it.
 
@@ -86,3 +90,9 @@ maybe some article handling? I find that I often have the word right but with wr
 
 Synonyms how??????
 
+
+------------
+ SOLVED:
+------------
+
+What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson? Ha, cannot happen - the last vocabulary cannot be deleted. Great!

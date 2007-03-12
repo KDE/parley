@@ -796,8 +796,10 @@ void KVocTrainApp::slotSearch(const QString& s)
     m_tableModel->reset();
     return;
   }
-  QRegExp *searchRegExp = new QRegExp(".*" + s + ".*");
-  searchRegExp->setCaseSensitivity(Qt::CaseInsensitive);
+  QString searchterm = QString(s);
+  searchterm.replace(QString(" "), QString("|"));
+  QRegExp searchRegExp = QRegExp(".*(" + searchterm + ").*");
+  searchRegExp.setCaseSensitivity(Qt::CaseInsensitive);
   m_sortFilterModel->setSearchRegExp(searchRegExp);
   m_tableModel->reset();
 }
@@ -1257,7 +1259,7 @@ void KVocTrainApp::updateTableFilter()
 
   switch (comboState) {
     case KVocTrainApp::currentLesson:
-      m_sortFilterModel->setLessonRegExp( new QRegExp(m_lessonModel->data(current, Qt::DisplayRole).toString(), Qt::CaseInsensitive, QRegExp::FixedString) );
+      m_sortFilterModel->setLessonRegExp( QRegExp(m_lessonModel->data(current, Qt::DisplayRole).toString(), Qt::CaseInsensitive, QRegExp::FixedString) );
       break;
     case KVocTrainApp::queryLessons:
       description = m_doc->lessonDescriptions();
@@ -1274,10 +1276,10 @@ void KVocTrainApp::updateTableFilter()
       }
       //m_sortFilterModel->setFilterRegExp(lessonStrings);
       
-      m_sortFilterModel->setLessonRegExp(new QRegExp(lessonStrings));
+      m_sortFilterModel->setLessonRegExp(QRegExp(lessonStrings));
       break;
     case KVocTrainApp::allLessons:
-      m_sortFilterModel->setLessonRegExp(new QRegExp(".*"));
+      m_sortFilterModel->setLessonRegExp(QRegExp());
       break;
   }
   m_doc->setModified();
