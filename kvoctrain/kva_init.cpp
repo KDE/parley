@@ -63,7 +63,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   querymode = false;
   controlActive = false;
   m_currentLesson = 0;
-  searchpos = 0;
+  //searchpos = 0;
   vslide_label = 0;
   pron_label = 0;
   rem_label = 0;
@@ -179,11 +179,6 @@ void KVocTrainApp::initActions()
   editClearSelection->setToolTip(editClearSelection->whatsThis());
   editClearSelection->setStatusTip(editClearSelection->whatsThis());
 
-  editSearchFromClipboard =  KStandardAction::find(this, SLOT(slotSmartSearchClip()), actionCollection());
-  editSearchFromClipboard->setWhatsThis(i18n("Search for the clipboard contents in the vocabulary"));
-  editSearchFromClipboard->setToolTip(editSearchFromClipboard->whatsThis());
-  editSearchFromClipboard->setStatusTip(editSearchFromClipboard->whatsThis());
-
   editAppend = actionCollection()->addAction("edit_append");
   editAppend->setIcon(KIcon("insert_table_row"));
   editAppend->setText(i18n("&Append New Entry"));
@@ -286,10 +281,13 @@ void KVocTrainApp::initActions()
   vocabLessons->setToolTip(vocabLessons->whatsThis());
   vocabLessons->setStatusTip(vocabLessons->whatsThis());
 
+
+  /// @todo Replace this by a search line above the table. More kde standard. But since it works I'll leave it here for now.
   searchLine = new KLineEdit(this);
   searchLine->setFocusPolicy(Qt::ClickFocus);
-  connect(searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
-  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotResumeSearch(const QString&)));
+  //connect(searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
+  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
+
 
   vocabSearch = actionCollection()->addAction("vocab_search");
   vocabSearch->setText(i18n("Smart Search"));

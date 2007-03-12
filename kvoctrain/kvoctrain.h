@@ -154,9 +154,10 @@ public:
   void slotCancelSelection ();
   void slotSelectAll();
   void slotProgress(KEduVocDocument*,int);
-  void slotResumeSearch(const QString&);
-  void slotSearchNext();
-  void slotInitSearch();
+  /** Use this to filter out stuff - access from search line. */
+  void slotSearch(const QString&);
+  //void slotSearchNext();
+  //void slotInitSearch();
   void slotCreateLesson(int header);
   void slotCleanVocabulary ();
   void slotChooseLesson(int id);
@@ -229,7 +230,7 @@ public:
 
   /** put the marked text/object into the clipboard*/
   void slotEditCopy();
-  void slotSmartSearchClip();
+//  void slotSmartSearchClip();
   void slotAppendRow();
   void slotRemoveRow();
   void slotEditRow();
@@ -268,7 +269,7 @@ private:
   QAction* editPaste;
   QAction* editSelectAll;
   QAction* editClearSelection;
-  QAction* editSearchFromClipboard;
+
   QAction* editAppend;
   QAction* editEditEntry;
   QAction* editDelete;
@@ -339,8 +340,9 @@ private:
   QString              act_query_trans;
   QString              act_query_org;
   KVTLanguages         m_languages;
-  int                  searchpos;
+  //int                  searchpos;
   QString              m_textToFind;
+  /// @todo Move above table...
   KLineEdit           *searchLine;
   KComboBox           *m_lessonsComboBox;
   int                  m_currentLesson;

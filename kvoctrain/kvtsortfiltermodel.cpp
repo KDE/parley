@@ -118,4 +118,16 @@ bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
   return true;
 }
 
+
+void KVTSortFilterModel::delLessonFilter()
+{
+  delete m_lessonFilter;
+  m_lessonFilter = 0;
+}
+void KVTSortFilterModel::delSearchFilter()
+{
+  delete m_searchFilter;
+  m_searchFilter = 0;
+}
+
 #include "kvtsortfiltermodel.moc"

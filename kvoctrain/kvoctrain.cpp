@@ -777,7 +777,6 @@ void KVocTrainApp::slotAssignLanguage(QAction * action)
   m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
 }
 
-
 void KVocTrainApp::slotRemoveLanguage(int index)
 {
   int column = index + KV_EXTRA_COLS + 1;
@@ -790,68 +789,17 @@ void KVocTrainApp::slotRemoveLanguage(int index)
     m_tableModel->removeColumns(column, 1, QModelIndex());
 }
 
-
-void KVocTrainApp::slotInitSearch()
+void KVocTrainApp::slotSearch(const QString& s)
 {
-  searchpos = 0;
-  m_textToFind = "";
-}
-
-
-void KVocTrainApp::slotSearchNext()
-{
-  slotResumeSearch(m_textToFind);
-}
-
-
-void KVocTrainApp::slotResumeSearch(const QString& s)
-{
-/*
   if (s.length() == 0) {
     m_sortFilterModel->delSearchFilter();
+    m_tableModel->reset();
     return;
   }
-*/
-  m_sortFilterModel->setSearchRegExp(new QRegExp(".*" + s + ".*"));
+  QRegExp *searchRegExp = new QRegExp(".*" + s + ".*");
+  searchRegExp->setCaseSensitivity(Qt::CaseInsensitive);
+  m_sortFilterModel->setSearchRegExp(searchRegExp);
   m_tableModel->reset();
-  
-  
-  /*
-  if (s.length() == 0) {
-    slotInitSearch();
-    return;
-  }
-
-  slotStatusMsg(i18n("Searching expression..."));
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  // new word or shortend word
-  if (s.length() < m_textToFind.length())
-    searchpos = 0;
-
-  // search in current col from current row till end
-  // CTRL means start search from beginning of word
-  bool word_beg = controlActive;
-  int currentColumn = m_tableView->currentIndex().column();
-  int idx = m_doc->search(s, currentColumn - KV_EXTRA_COLS, searchpos, -1, word_beg);
-  if (idx >= 0) {
-    m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(idx, currentColumn), QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-    searchpos = idx + 1;
-  }
-  else { // try again from beginning up to current pos
-    int idx = m_doc->search(s, currentColumn - KV_EXTRA_COLS, 0, searchpos, word_beg);
-    if (idx >= 0) {
-      m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(idx, currentColumn), QItemSelectionModel::SelectCurrent | QItemSelectionModel::Rows);
-      searchpos = idx+1;
-    }
-    else
-      searchpos = 0;
-  }
-
-  m_textToFind = s;
-  QApplication::restoreOverrideCursor();
-  slotStatusMsg(IDS_DEFAULT);
-  */
 }
 
 
@@ -1123,22 +1071,6 @@ void KVocTrainApp::slotFilePrint()
   if (printer.setup(this))
     m_tableView->print(&printer);
   slotStatusMsg(i18n("Ready"));
-}
-
-void KVocTrainApp::slotSmartSearchClip()
-{
-  QString textToPaste = QApplication::clipboard()->text();
-
-  QTextStream ts;
-  ts.setString(&textToPaste, QIODevice::Text);
-
-  if (!ts.atEnd()) {
-    searchpos = 0; // search from beginning
-    searchLine->setFocus();
-    searchLine->setText(ts.readLine());
-  }
-  else
-    searchLine->setFocus();
 }
 
 
