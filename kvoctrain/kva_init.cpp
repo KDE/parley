@@ -389,7 +389,9 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_lessonModel->setDocument(m_doc);
   // I need to initialize the lessons with the model as well...
   m_lessonView->setModel(m_lessonModel);
-  m_lessonView->setToolTip(i18n("Double click to rename. Right click to add/delete lessons. With the checkboxes you can select which lessons you want to be tested. Only checked lessons [x] will be asked in the query!"));
+  m_lessonView->setToolTip(i18n("Double click to rename. Right click to add, delete, or rename lessons. \n"
+                                "With the checkboxes you can select which lessons you want to be queried. \n"
+                                "Only checked lessons [x] will be asked in the query!"));
 
   // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
   m_lessonSelectionCombo = new KComboBox();
@@ -397,7 +399,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
   m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
   m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
-  m_lessonSelectionCombo->setToolTip(i18n("Here you select which lessons you want to edit on the right."));
+  m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
   m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
   /*
   /// The buttons (new/rename/delete)
@@ -476,7 +478,6 @@ void KVocTrainApp::initView()
   connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
           this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
   slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
-  m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
   /** Begin tabs... */
   /*KTabWidget *tabWidget = new KTabWidget(centralWidget());
@@ -492,4 +493,5 @@ void KVocTrainApp::initView()
   updateTableFilter();
 
   m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
+  m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 }
