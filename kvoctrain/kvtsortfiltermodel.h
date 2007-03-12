@@ -37,6 +37,10 @@ public:
   void setSearchRegExp(QRegExp *filter);
 
 private:
+  /// used by filterAcceptsRow()
+  bool checkLesson(int sourceRow, const QModelIndex &sourceParent) const;
+  bool checkSearch(int sourceRow, const QModelIndex &sourceParent) const;
+
   KVTTableModel * m_sourceModel;
   QRegExp * m_lessonFilter;
   QRegExp * m_searchFilter;

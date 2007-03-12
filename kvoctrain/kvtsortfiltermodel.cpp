@@ -21,8 +21,8 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
   m_lessonFilter = 0;
   m_searchFilter = 0;
   
-  
-  m_lessonFilter = new QRegExp("Lektion eins");
+  // only show things starting with a:
+  //m_searchFilter = new QRegExp("a.*");
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
@@ -63,50 +63,59 @@ This on the other hand needs to work on the vocab columns.
 Also space as seperator would be great.
 So searching for "walk go" would find "to go" and "to walk" maybe. This is easy by doing regexp stuff and translating spaces into OR.
 */
+/** 
+ * Check if the lesson is selected
+ */
+bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
+{
+  QModelIndex lessons = sourceModel()->index(sourceRow, 0, sourceParent);
+  if(m_lessonFilter->exactMatch(sourceModel()->data(lessons, Qt::DisplayRole).toString() ) )
+    return true;
+  return false;
+}
 
+/**
+ * Check the search terms
+ */
+bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourceParent) const
+{
+  /// Check if the vocabs contain the expression:
+  QModelIndex lang;
+  for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++)
+  {
+    QModelIndex lang = sourceModel()->index(sourceRow, i+2, sourceParent);
+    if( m_searchFilter->exactMatch(sourceModel()->data(lang, Qt::DisplayRole).toString()) )
+      return true;
+  }
+  return false;
+}
 
 
 /**
- * 
+ * Determines if the row is displayed
  * @param sourceRow 
  * @param sourceParent 
  * @return 
- 
- 
- * @todo Do this for all languages, not only two!!
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-  /*
   if(m_lessonFilter && m_searchFilter)
   {
-  }*/
+  //  kDebug() << " Num identifiers: " << m_sourceModel->document()->identifierCount() << endl;
+    if(! checkLesson(sourceRow, sourceParent) )
+      return false;
+    return checkSearch(sourceRow, sourceParent);
+  }
   if(m_lessonFilter)
   {
-    QModelIndex lessons = sourceModel()->index(sourceRow, 0, sourceParent);
-    if(m_lessonFilter->exactMatch(sourceModel()->data(lessons, Qt::DisplayRole).toString() ) )
-      return true;
-    return false;
-     
-  }/*
+    return checkLesson(sourceRow, sourceParent);
+  }
   if(m_searchFilter)
   {
-     QModelIndex language1 = sourceModel()->index(sourceRow, 2, sourceParent);
-     QModelIndex language2 = sourceModel()->index(sourceRow, 3, sourceParent);
-     return ( sourceModel()->data(language1).toString().contains(m_searchFilter)
-             || (sourceModel()->data(language2).toString().contains(m_searchFilter) ) );
-  }*/
+    return checkSearch(sourceRow, sourceParent);
+  }
   /// no filter set? then show all.
   return true;
-/* original qt example:
-     QModelIndex index0 = sourceModel()->index(sourceRow, 0, sourceParent);
-     QModelIndex index1 = sourceModel()->index(sourceRow, 1, sourceParent);
-     QModelIndex index2 = sourceModel()->index(sourceRow, 2, sourceParent);
-
-     return (sourceModel()->data(index0).toString().contains(filterRegExp())
-             || sourceModel()->data(index1).toString().contains(filterRegExp()))
-            && dateInRange(sourceModel()->data(index2).toDate());
- */
- }
+}
 
 #include "kvtsortfiltermodel.moc"
