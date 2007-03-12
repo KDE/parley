@@ -477,14 +477,14 @@ void KVocTrainApp::initView()
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
 
   /** Begin tabs... */
-  KTabWidget *tabWidget = new KTabWidget(centralWidget());
+  /*KTabWidget *tabWidget = new KTabWidget(centralWidget());
   tabWidget->addTab(m_tableView, "Edit vocabulary");
 
   QPushButton *button = new QPushButton("Resume query");
   connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
   tabWidget->addTab(button, "Query");
 
-  m_mainSplitter->addWidget(tabWidget);
+  m_mainSplitter->addWidget(tabWidget);*/
   /** End tabs - comment out these lines to get the nomal behavior. */
 
   updateTableFilter();

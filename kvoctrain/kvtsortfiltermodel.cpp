@@ -36,12 +36,12 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
   return m_sourceModel;
 }
 
-void KVTSortFilterModel::setLessonRegExp(QRegExp filter)
+void KVTSortFilterModel::setLessonRegExp(const QRegExp& filter)
 {
   m_lessonFilter = filter;
 }
 
-void KVTSortFilterModel::setSearchRegExp(QRegExp filter)
+void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
 {
   m_searchFilter = filter;
 }

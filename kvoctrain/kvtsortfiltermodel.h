@@ -33,8 +33,8 @@ public:
 
   /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
   bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-  void setLessonRegExp(QRegExp filter);
-  void setSearchRegExp(QRegExp filter);
+  void setLessonRegExp(const QRegExp& filter);
+  void setSearchRegExp(const QRegExp& filter);
   void delLessonFilter();
   void delSearchFilter();
 
