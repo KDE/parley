@@ -29,6 +29,16 @@ Get rid of Qt/kde 3 stuff:
 [21:47:46] <fregl> well thanks
 [21:47:57] <pinotree> np
 
+<peter> both of those will go away in the near future.
+
+Move Merge to the library so both KVT and KWQ can use it.
+
+Check all query dialogs so that they work properly.
+
+Get rid of copy/paste order stuff.
+
+Review the configuration dialog
+
 
 --------------------
  NOT SO FAR FUTURE:
