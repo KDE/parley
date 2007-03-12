@@ -126,7 +126,7 @@ void KVTLessonView::slotRenameLesson(const QModelIndex & index ){
 */
 
 void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {
-  m_lessonPopupMenu->exec(mapToGlobal(ev->pos()));
+  m_lessonPopupMenu->exec(ev->globalPos());
 }
 
 #include "kvtlessonview.moc"
