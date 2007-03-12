@@ -116,7 +116,7 @@ public:
   void saveLanguages();
   void readLanguages();
 
-
+  /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
   void updateTableFilter();
 
   /** saves the window properties for each open window during session end to the session config file, including saving the currently

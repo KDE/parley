@@ -1313,7 +1313,7 @@ void KVocTrainApp::updateTableFilter()
 
   switch (comboState) {
     case KVocTrainApp::currentLesson:
-      m_sortFilterModel->setFilterFixedString(m_lessonModel->data(current, Qt::DisplayRole).toString());
+      m_sortFilterModel->setLessonRegExp( new QRegExp(m_lessonModel->data(current, Qt::DisplayRole).toString(), Qt::CaseInsensitive, QRegExp::FixedString) );
       break;
     case KVocTrainApp::queryLessons:
       description = m_doc->lessonDescriptions();
@@ -1328,10 +1328,12 @@ void KVocTrainApp::updateTableFilter()
       {
         lessonStrings = "$^"; // hoping no-one hase a lesson called "" for now. It's your own fault, if you call them like this ;) this is generally unfortunate... maybe I should forbid it and default back to "New lesson 1".
       }
-      m_sortFilterModel->setFilterRegExp(lessonStrings);
+      //m_sortFilterModel->setFilterRegExp(lessonStrings);
+      
+      m_sortFilterModel->setLessonRegExp(new QRegExp(lessonStrings));
       break;
     case KVocTrainApp::allLessons:
-      m_sortFilterModel->setFilterFixedString("");
+      m_sortFilterModel->setLessonRegExp(new QRegExp(".*"));
       break;
   }
   m_doc->setModified();

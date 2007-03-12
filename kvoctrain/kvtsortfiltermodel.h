@@ -31,8 +31,15 @@ public:
   void setSourceModel(KVTTableModel * sourceModel);
   KVTTableModel * sourceModel () const;
 
+  /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
+  bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
+  void setLessonRegExp(QRegExp *filter);
+  void setSearchRegExp(QRegExp *filter);
+
 private:
   KVTTableModel * m_sourceModel;
+  QRegExp * m_lessonFilter;
+  QRegExp * m_searchFilter;
 };
 
 #endif
