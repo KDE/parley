@@ -59,6 +59,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_lessonModel = 0;
   m_lessonView = 0;
   m_sortFilterModel = 0;
+  m_lessonSelectionCombo = 0;
   btimer = 0;
   querymode = false;
   controlActive = false;
@@ -393,10 +394,11 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
   m_lessonSelectionCombo = new KComboBox();
   boxLayout->addWidget(m_lessonSelectionCombo);
-  m_lessonSelectionCombo->insertItem(KVocTrainApp::currentLesson, i18n("Edit current lesson"));
-  m_lessonSelectionCombo->insertItem(KVocTrainApp::queryLessons, i18n("Edit lessons in test"));
-  m_lessonSelectionCombo->insertItem(KVocTrainApp::allLessons, i18n("Edit all lessons"));
+  m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
+  m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
+  m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
   m_lessonSelectionCombo->setToolTip(i18n("Here you select which lessons you want to edit on the right."));
+  m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
   /*
   /// The buttons (new/rename/delete)
   m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);

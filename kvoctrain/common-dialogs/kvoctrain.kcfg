@@ -132,6 +132,16 @@
     </entry>
   </group>
   <group name="Appearance">
+    <entry name="LessonEditingSelection" type="Enum">
+      <label>Select which lessons are displayed for editing</label>
+      <choices>
+        <choice name="CurrentLesson"/>
+        <choice name="LessonsInQuery"/>
+        <choice name="AllLessons"/>
+        <choice name="UserFiltered"/>
+      </choices>
+      <default>CurrentLesson</default>
+    </entry>
     <entry name="MainWindowSplitter" type="IntList">
       <label>How the main window is divided.</label>
       <default>150, 400</default>

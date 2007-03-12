@@ -29,6 +29,7 @@
 #include <kapplication.h>
 #include <krecentfilesaction.h>
 #include <kglobal.h>
+#include <kcombobox.h>
 
 #include "kvoctrain.h"
 #include "common-dialogs/ProgressDlg.h"
@@ -45,6 +46,10 @@ void KVocTrainApp::saveOptions()
     Prefs::setCurrentRow(m_tableView->currentIndex().row());
     Prefs::setCurrentCol(m_tableView->currentIndex().column());
   }
+
+  if (m_lessonSelectionCombo)
+    Prefs::setLessonEditingSelection(m_lessonSelectionCombo->currentIndex());
+
   if (m_mainSplitter)
     Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
 
