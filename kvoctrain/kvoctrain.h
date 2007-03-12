@@ -233,6 +233,8 @@ public:
   /** change the status message of the whole statusbar temporary */
   void slotStatusHelpMsg(const QString &text);
 
+  void slotConfigShowSearch();
+
 public:
   void removeProgressBar();
   void prepareProgressBar();
@@ -305,6 +307,8 @@ private:
   KVTLessonView *m_lessonView;
 
   QSplitter *m_mainSplitter;
+
+  QWidget *m_searchWidget;
 
   /** m_doc represents your vocabulary document. It keeps
     * information such as filename and does the serialization of your files.

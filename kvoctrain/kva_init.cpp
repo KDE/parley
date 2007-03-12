@@ -41,6 +41,7 @@
 #include <kselectaction.h>
 #include <kstatusbar.h>
 #include <kstandardaction.h>
+#include <ktoggleaction.h>
 #include <kmenu.h>
 #include <kiconloader.h>
 #include <kstandarddirs.h>
@@ -275,25 +276,18 @@ void KVocTrainApp::initActions()
   connect(m_lessonsComboBox, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   m_lessonsComboBox->setFocusPolicy(Qt::NoFocus);
 
+/*
   vocabLessons = actionCollection()->addAction("vocab_lessons");
   vocabLessons->setText(i18n("Lessons"));
   qobject_cast<KAction*>(vocabLessons)->setDefaultWidget(m_lessonsComboBox);
   vocabLessons->setWhatsThis(i18n("Choose current lesson"));
   vocabLessons->setToolTip(vocabLessons->whatsThis());
   vocabLessons->setStatusTip(vocabLessons->whatsThis());
-
-
-  /// @todo Replace this by a search line above the table. More kde standard. But since it works I'll leave it here for now.
-  searchLine = new KLineEdit(this);
-  searchLine->setFocusPolicy(Qt::ClickFocus);
-  //connect(searchLine, SIGNAL(returnPressed()), this, SLOT(slotSearchNext()));
-  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
-
-
-  vocabSearch = actionCollection()->addAction("vocab_search");
-  vocabSearch->setText(i18n("Smart Search"));
-  qobject_cast<KAction*>(vocabSearch)->setDefaultWidget(searchLine);
-  vocabSearch->setWhatsThis(i18n("Search vocabulary for specified text "));
+*/
+  vocabSearch = actionCollection()->add<KToggleAction>("config_show_search");
+  vocabSearch->setText(i18n("Show Se&arch"));
+  connect(vocabSearch, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
+  vocabSearch->setWhatsThis(i18n("Toggle display of the search bar"));
   vocabSearch->setToolTip(vocabSearch->whatsThis());
   vocabSearch->setStatusTip(vocabSearch->whatsThis());
 
@@ -452,10 +446,36 @@ void KVocTrainApp::initView()
   topLayout->addWidget(m_mainSplitter);
   /// List of lessons
   m_mainSplitter->addWidget(initLessonList(centralWidget()));
+
+  searchLine = new KLineEdit(this);
+  searchLine->show();
+  searchLine->setFocusPolicy(Qt::ClickFocus);
+  searchLine->setClearButtonShown(true);
+  connect(searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
+
+  QLabel *label = new QLabel( i18n("S&earch:"), this );
+  label->setBuddy(searchLine);
+  label->show();
+
+  m_searchWidget = new QWidget(this);
+  QHBoxLayout* layout = new QHBoxLayout(m_searchWidget);
+  layout->setSpacing(KDialog::spacingHint());
+  layout->setMargin(0);
+  layout->addWidget(label);
+  layout->addWidget(searchLine);
+
+  QWidget * rightWidget = new QWidget(this);
+  QVBoxLayout * rightLayout = new QVBoxLayout(rightWidget);
+  rightLayout->setSpacing(KDialog::spacingHint());
+  rightLayout->setMargin(0);
+  rightLayout->addWidget(m_searchWidget);
+
   /// Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
-  m_mainSplitter->addWidget(m_tableView);
+  rightLayout->addWidget(m_tableView, 1, 0);
+
+  m_mainSplitter->addWidget(rightWidget);
   /// Filter proxy
 
   m_tableView->setModel(m_sortFilterModel);

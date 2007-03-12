@@ -36,9 +36,9 @@
    <Action name="learning_resume_query" />
    <Action name="learning_resume_multiple_choice" /> -->
   </Menu>
-<!--  <Menu name="settings" >
-   <Action append="configure_merge" name="config_query_options" />
-  </Menu>-->
+  <Menu name="settings" >
+    <Action name="config_show_search" />
+  </Menu>
  </MenuBar>
  <ToolBar noMerge="1" name="mainToolBar" >
   <text>Main Toolbar</text>
