@@ -330,7 +330,6 @@ private:
   QuerySelection       queryList;
 
   int                  random_query_nr;
-  bool                 querying;
   QString              def_lang;
   int                  act_query_col;
   QString              act_query_trans;
@@ -346,7 +345,6 @@ private:
   bool                 controlActive;
   ProgressDlg         *pdlg;
   QProgressBar        *pbar;
-  QLabel              *vslide_label;
   QLabel              *pron_label;
   QLabel              *rem_label;
   QLabel              *type_label;

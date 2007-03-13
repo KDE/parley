@@ -803,6 +803,5 @@ void KVocTrainApp::slotStopQuery(bool)
   adjQueryDlg = 0;
   artQueryDlg = 0;
 
-  querying = false;
   show();
 }

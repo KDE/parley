@@ -64,17 +64,17 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_searchLine = 0;
   m_mainSplitter = 0;
   m_searchWidget = 0;
+  m_newStuff = 0;
+  learningMapper = 0;
 
-  controlActive = false;
+  controlActive = false; ///@todo delete this variable when deleting the old lesson combo
   m_currentLesson = 0;
-  //searchpos = 0;
-  vslide_label = 0;
+
   pron_label = 0;
   rem_label = 0;
   type_label = 0;
   pdlg = 0;
   pbar = 0;
-  m_newStuff = 0;
 
   simpleQueryDlg = 0;
   mcQueryDlg = 0;
@@ -83,7 +83,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   adjQueryDlg = 0;
   artQueryDlg = 0;
   entryDlg = 0;
-  learningMapper = 0;
 
   initStatusBar();
   initActions();
@@ -95,8 +94,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   initView();
 
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
-
-  querying = false;
 
   if (Prefs::autoBackup())
     QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
