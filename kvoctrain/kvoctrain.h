@@ -330,7 +330,6 @@ private:
   QuerySelection       queryList;
 
   int                  random_query_nr;
-  bool                 querymode;
   bool                 querying;
   QString              def_lang;
   int                  act_query_col;

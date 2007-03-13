@@ -65,7 +65,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_mainSplitter = 0;
   m_searchWidget = 0;
 
-  querymode = false;
   controlActive = false;
   m_currentLesson = 0;
   //searchpos = 0;

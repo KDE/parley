@@ -58,7 +58,6 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
   removeEntryDlg();
   slotStatusMsg(i18n("Starting property query..."));
   m_queryType = property;
-  querymode = false;
   num_queryTimeout = 0;
   act_query_col = col;
 
@@ -95,7 +94,6 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
   }
 
   hide();
-  querymode = true;
 
   random_query_nr = m_randomSequence.getLong(random_expr1.count());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
@@ -202,7 +200,6 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting special query..."));
-  querymode = false;
   num_queryTimeout = 0;
   act_query_col = col;
 
@@ -242,7 +239,6 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
   hide();
-  querymode = true;
   if (m_queryType == KVTQuery::ConjugationQuery) {
     verbQueryDlg = new VerbQueryDlg(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
                                     m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
@@ -422,7 +418,6 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
 {
   removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));
-  querymode = false;
   num_queryTimeout = 0;
 
   if (m_tableModel->rowCount(QModelIndex()) < 1)
@@ -470,7 +465,6 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   }
 
   hide();
-  querymode = true;
 
   random_query_nr = m_randomSequence.getLong(random_expr1.count());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
@@ -810,6 +804,5 @@ void KVocTrainApp::slotStopQuery(bool)
   artQueryDlg = 0;
 
   querying = false;
-  querymode = false;
   show();
 }

@@ -110,8 +110,6 @@ void KVocTrainApp::saveProperties(KConfigGroup &config )
     config.writeEntry("Title", m_doc->title());
     config.writeEntry("Modified", m_doc->isModified());
 
-    config.writeEntry("QueryMode", querymode);
-
     QString filename=m_doc->url().path();
     QString tempname = kapp->tempSaveName(filename);
     saveDocProps(m_doc);
@@ -122,8 +120,6 @@ void KVocTrainApp::saveProperties(KConfigGroup &config )
 
 void KVocTrainApp::readProperties(const KConfigGroup &config)
 {
-  querymode = config.readEntry("QueryMode", 0);
-
   QString filename = config.readEntry("Filename");
   QString title = config.readEntry("Title");
   bool modified = config.readEntry("Modified", false);
