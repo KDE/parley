@@ -110,6 +110,7 @@ void KVocTrainApp::slotFileQuit()
 
 void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 {
+  Q_UNUSED(curr_doc);
   if (pbar != 0)
     pbar->setValue (percent);
   kapp->processEvents();
@@ -207,244 +208,30 @@ void KVocTrainApp::slotFileMerge()
 {
   slotStatusMsg(i18n("Merging file..."));
 
-  QString s;
   KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
 
   if (!url.isEmpty()) {
 
     QString msg = i18n("Loading %1", url.path());
-
     slotStatusMsg(msg);
-    prepareProgressBar();
+
     KEduVocDocument *new_doc = new KEduVocDocument(this);
     new_doc->open(url);
-    //connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-    m_doc->setModified(false);
-    removeProgressBar();
 
-    QStringList old_names = m_doc->lessonDescriptions();
-    QStringList new_names = new_doc->lessonDescriptions();
+    m_doc->merge(new_doc, true);
 
-    QStringList old_types = m_doc->typeDescriptions();
-    QStringList new_types = new_doc->typeDescriptions();
+    querymanager.setLessonItems(m_doc->lessonsInQuery());
+    KVTQuery::setTypeNames(m_doc->typeDescriptions());
+    KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
+    KVTUsage::setUsageNames(m_doc->usageDescriptions());
 
-    QStringList old_tenses = m_doc->tenseDescriptions();
-    QStringList new_tenses = new_doc->tenseDescriptions();
-
-    QList<int> old_in_query = m_doc->lessonsInQuery();
-    QList<int> new_in_query = new_doc->lessonsInQuery();
-
-    QStringList old_usages = m_doc->usageDescriptions();
-    QStringList new_usages = new_doc->usageDescriptions();
-
-    msg = i18n("Merging %1", url.path());
-    slotStatusMsg(msg);
-
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    int lesson_offset = m_lessonsComboBox->count() - 1;
-    for (int i = 0; i < new_names.count(); i++) {
-      m_lessonsComboBox->addItem(new_names[i]);
-      old_names.append(new_names[i]);
-    }
-    m_doc->setLessonDescriptions(old_names);
-
-    for (int i = 0; i < new_in_query.count(); i++)
-      old_in_query.push_back(new_in_query[i] + lesson_offset);
-    m_doc->setLessonsInQuery(old_in_query);
-    querymanager.setLessonItems(old_in_query);
-
-    int types_offset = old_types.count();
-    for (int i = 0; i < new_types.count(); i++) {
-      old_types.append(new_types[i]);
-    }
-    m_doc->setTypeDescriptions(old_types);
-    KVTQuery::setTypeNames(old_types);
-
-
-    int tenses_offset = old_tenses.count();
-    for (int i = 0; i < new_tenses.count(); i++) {
-      old_tenses.append(new_tenses[i]);
-    }
-    m_doc->setTenseDescriptions(old_tenses);
-    KEduVocConjugation::setTenseNames(old_tenses);
-
-
-    int usages_offset = old_usages.count();
-    for (int i = 0; i < new_usages.count(); i++) {
-      old_usages.append(new_usages[i]);
-    }
-    m_doc->setUsageDescriptions(old_usages);
-    KVTUsage::setUsageNames(old_usages);
-
-
-    bool equal = true;
-    if (m_doc->originalIdentifier() != new_doc->originalIdentifier())
-      equal = false;
-    for (int i = 1; i < m_doc->identifierCount(); i++)
-      if (m_doc->identifier(i) != new_doc->identifier(i))
-        equal = false;
-
-    if (equal) {   // easy way: same language codes, just append
-
-      for (int i = 0; i < new_doc->entryCount(); i++) {
-        KEduVocExpression *expr = new_doc->entry(i);
-
-        expr->setLesson(expr->lesson() + lesson_offset);
-
-        for (int lang = 0; lang <= expr->translationCount(); lang++) {
-          QString t = expr->type(lang);
-          // adjust type offset
-          if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
-            QString t2;
-            t.remove(0, 1);
-            t2.setNum(t.toInt() + types_offset);
-            t2.prepend(QM_USER_TYPE);
-            expr->setType (lang, t2);
-          }
-
-          t = expr->usageLabel(lang);
-          // adjust usage offset
-          QString tg;
-          if (!t.isEmpty()) {
-            QString t2;
-            while (t.left(strlen(UL_USER_USAGE)) == UL_USER_USAGE) {
-              QString n;
-              t.remove(0, 1);
-              int next;
-              if ((next = t.indexOf(UL_USAGE_DIV)) >= 0) {
-                n = t.left(next);
-                t.remove(0, next + 1);
-              }
-              else {
-                n = t;
-                t = "";
-              }
-
-              t2.setNum(n.toInt() + usages_offset);
-              t2.prepend(UL_USER_USAGE);
-              if (tg.length() == 0)
-                tg = t2;
-              else
-                tg += UL_USAGE_DIV + t2;
-            }
-
-            if (tg.length() == 0)
-              tg = t;
-            else if (t.length() != 0)
-              tg += UL_USAGE_DIV + t;
-
-            expr->setUsageLabel (lang, tg);
-          }
-
-          KEduVocConjugation conj = expr->conjugation(lang);
-          bool condirty = false;
-          for (int ci = 0; ci < conj.entryCount(); ci++) {
-            t = conj.getType(ci);
-            if (!t.isEmpty() && t.left(1) == UL_USER_TENSE) {
-              t.remove(0, strlen(UL_USER_TENSE));
-              QString t2;
-              t2.setNum(t.toInt() + tenses_offset);
-              t2.prepend(UL_USER_TENSE);
-              conj.setType(ci, t2);
-              condirty = true;
-            }
-            if (condirty)
-              expr->setConjugation(lang, conj);
-          }
-        }
-
-        m_doc->appendEntry(expr);
-      }
-      m_doc->setModified();
-    }
-    else { // hard way: move entries around, most attributes get lost
-      QList<int> move_matrix;
-      QList<bool> cs_equal;
-
-      for (int i = 0; i < qMax (m_doc->identifierCount(), new_doc->identifierCount()); i++)
-        cs_equal.append(false);
-
-      move_matrix.append(new_doc->indexOfIdentifier(m_doc->originalIdentifier()));
-      for (int i = 1; i < m_doc->identifierCount(); i++)
-        move_matrix.append(new_doc->indexOfIdentifier(m_doc->identifier(i)));
-
-      for (int j = 0; j < new_doc->entryCount(); j++) {
-        KEduVocExpression new_expr;
-        KEduVocExpression *expr = new_doc->entry(j);
-        new_expr.setLesson(expr->lesson()+lesson_offset);
-
-        for (int i = 0; i < move_matrix.count(); i++) {
-          int lpos = move_matrix[i];
-          if (lpos >= 0) {
-
-            if (lpos == 0)
-              s = expr->original();
-            else
-              s = expr->translation(lpos);
-
-            if (!cs_equal[lpos]) {
-              cs_equal[lpos] = true;
-              QString id = lpos == 0 ? m_doc->originalIdentifier() : m_doc->identifier(lpos);
-            }
-
-            if (i == 0)
-              new_expr.setOriginal(s);
-            else
-              new_expr.setTranslation(i, s);
-            QString r = expr->remark(lpos);
-            new_expr.setRemark (i, r);
-
-            QString t = expr->type(lpos);
-            if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
-              QString t2;
-              t.remove(0, 1);
-              t2.setNum(t.toInt() + types_offset);
-              t2.prepend(QM_USER_TYPE);
-              new_expr.setType(i, t2);
-            }
-
-            t = expr->usageLabel(lpos);
-            if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
-              QString t2;
-              t.remove(0, 1);
-              t2.setNum(t.toInt() + usages_offset);
-              t2.prepend(QM_USER_TYPE);
-              new_expr.setUsageLabel(i, t2);
-            }
-
-            KEduVocConjugation conj = expr->conjugation(lpos);
-            for (int ci = 0; ci < conj.entryCount(); ci++) {
-              t = conj.getType(ci);
-              if (!t.isEmpty() && t.left(1) == QM_USER_TYPE) {
-                t.remove (0, strlen(QM_USER_TYPE));
-                QString t2;
-                t2.setNum(t.toInt() + tenses_offset);
-                t2.prepend(QM_USER_TYPE);
-                conj.setType(ci, t2);
-              }
-            }
-
-          }
-        }
-        // only append if entries are used
-        bool used = !new_expr.original().isEmpty();
-        for (int i = 1; i < m_doc->identifierCount(); i++)
-          if (!new_expr.translation(i).isEmpty())
-            used = true;
-
-        if (used) {
-          m_doc->appendEntry(&new_expr);
-          m_doc->setModified();
-        }
-      }
-    }
     delete (new_doc);
-    fileOpenRecent->addUrl(url); // addRecentFile (url.path());
+    fileOpenRecent->addUrl(url);
+    m_tableModel->reset();
+    m_lessonModel->setDocument(m_doc);
+    m_tableView->adjustContent();
   }
-  m_tableModel->reset();
-  m_tableView->adjustContent();
-  QApplication::restoreOverrideCursor();
+
   slotStatusMsg(IDS_DEFAULT);
 }
 

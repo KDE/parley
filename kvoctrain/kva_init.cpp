@@ -115,8 +115,8 @@ void KVocTrainApp::initActions()
   fileOpenExample->setText(i18n("Open &Example..."));
   connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
   fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
-  fileOpenExample->setToolTip(fileOpen->whatsThis());
-  fileOpenExample->setStatusTip(fileOpen->whatsThis());
+  fileOpenExample->setToolTip(fileOpenExample->whatsThis());
+  fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
   fileGHNS = actionCollection()->addAction("file_ghns");
   fileGHNS->setIcon(KIcon("get-hot-new-stuff"));
@@ -133,8 +133,8 @@ void KVocTrainApp::initActions()
   fileMerge->setText(i18n("&Merge..."));
   connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
   fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
-  fileMerge->setToolTip(fileOpen->whatsThis());
-  fileMerge->setStatusTip(fileOpen->whatsThis());
+  fileMerge->setToolTip(fileMerge->whatsThis());
+  fileMerge->setStatusTip(fileMerge->whatsThis());
 
   fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
   fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
