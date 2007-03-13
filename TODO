@@ -37,7 +37,7 @@ Get rid of Qt/kde 3 stuff:
 
 <peter> both of those will go away in the near future.
 
-Move Merge to the library so both KVT and KWQ can use it.
+Move Merge to the library so both KVT and KWQ can use it. -- DONE
 
 Check all query dialogs so that they work properly.
 
