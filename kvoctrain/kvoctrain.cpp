@@ -22,13 +22,17 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
+
+#include <QFile>
 #include <QTimer>
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QApplication>
 #include <QClipboard>
 #include <QProgressBar>
+#include <QSplitter>
 
+#include <kapplication.h>
 #include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -39,6 +43,7 @@
 #include <kdebug.h>
 #include <kiconloader.h>
 #include <kprinter.h>
+#include <krecentfilesaction.h>
 #include <kinputdialog.h>
 
 #include <time.h>
@@ -57,6 +62,7 @@
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "common-dialogs/kvoctrainprefs.h"
 #include "prefs.h"
+#include "languagesettings.h"
 
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
@@ -70,6 +76,118 @@
 #define START_ANTONYM               7
 #define START_EXAMPLE               8
 #define START_PARAPHRASE            9
+
+
+void KVocTrainApp::saveOptions()
+{
+  fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
+
+  if (m_tableView)
+  {
+    Prefs::setCurrentRow(m_tableView->currentIndex().row());
+    Prefs::setCurrentCol(m_tableView->currentIndex().column());
+  }
+
+  if (m_lessonSelectionCombo)
+    Prefs::setLessonEditingSelection(m_lessonSelectionCombo->currentIndex());
+
+  if (m_mainSplitter)
+    Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
+
+  saveLanguages();
+  Prefs::writeConfig();
+}
+
+void KVocTrainApp::saveLanguages()
+{
+  Prefs::setNumLangSet(m_languages.count());
+  for (int i = 0 ; i < m_languages.count(); i++)
+  {
+    LanguageSettings languageSettings(QString::number(i));
+    languageSettings.setShortId(m_languages.shortId(i));
+    languageSettings.setShort2Id(m_languages.shortId2(i));
+    languageSettings.setLongId(m_languages.longId(i));
+    languageSettings.setPixmapFile(m_languages.pixmapFile(i));
+    languageSettings.setKeyboardLayout(m_languages.keyboardLayout(i));
+    languageSettings.writeConfig();
+  }
+}
+
+void KVocTrainApp::readOptions()
+{
+  fileOpenRecent->loadEntries(KGlobal::config()->group( "Recent Files") );
+  readLanguages();
+}
+
+void KVocTrainApp::readLanguages()
+{
+  m_languages.clear();
+  int ls = Prefs::numLangSet();
+  for (int i = 0 ; i < ls; i++)
+  {
+    LanguageSettings languageSettings(QString::number(i));
+    languageSettings.readConfig();
+
+    QString shortId = languageSettings.shortId();
+    if (shortId.simplified().length() == 0) {
+      shortId.setNum (i);
+      shortId.insert (0, "id");
+    }
+
+    QString longId = languageSettings.longId();
+    if (longId.simplified().length() == 0) {
+      longId.setNum (i);
+      longId.insert (0, "ident");
+    }
+
+    m_languages.addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
+  }
+}
+void KVocTrainApp::saveProperties(KConfigGroup &config )
+{
+  saveOptions();
+  if (m_doc) {
+    config.writeEntry("Filename", m_doc->url().path());
+    config.writeEntry("Title", m_doc->title());
+    config.writeEntry("Modified", m_doc->isModified());
+
+    QString filename=m_doc->url().path();
+    QString tempname = kapp->tempSaveName(filename);
+    saveDocProps(m_doc);
+    m_doc->saveAs(this, KUrl(tempname), KEduVocDocument::automatic, "KVocTrain");
+  }
+}
+
+
+void KVocTrainApp::readProperties(const KConfigGroup &config)
+{
+  QString filename = config.readEntry("Filename");
+  QString title = config.readEntry("Title");
+  bool modified = config.readEntry("Modified", false);
+  if (modified){
+    bool b_canRecover;
+    QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
+
+    if (b_canRecover){
+      m_doc = new KEduVocDocument(this);
+      m_doc->setUrl(KUrl(tempname));
+      removeProgressBar();
+      m_doc->setModified();
+      m_doc->setTitle(title);
+      m_doc->setUrl(KUrl(filename));
+      setCaption(m_doc->title(), m_doc->isModified());
+      QFile::remove(tempname);
+    }
+  }
+  else if (!filename.isEmpty()){
+    m_doc = new KEduVocDocument(this);
+    m_doc->setUrl(KUrl(filename));
+    removeProgressBar();
+    setCaption(m_doc->title(), m_doc->isModified());
+  }
+
+  show();
+}
 
 /*void KVocTrainApp::slotSaveOptions()
 {
