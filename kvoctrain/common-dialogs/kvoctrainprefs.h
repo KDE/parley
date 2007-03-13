@@ -46,7 +46,7 @@ public:
   /**
    * Creates a configuration dialog.
    */
-  KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboBox * lessons, KVTQuery * m, QWidget *parent=0,
+  KVocTrainPrefs(KVTLanguages & ls, KComboBox * lessons, KVTQuery * m, QWidget *parent=0,
     const char *name=0, KConfigSkeleton *config=0, FaceType dialogType=List,
     int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
 

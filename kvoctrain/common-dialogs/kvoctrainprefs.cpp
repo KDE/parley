@@ -38,7 +38,6 @@
 #include "generaloptions.h"
 #include "languageoptions.h"
 #include "viewoptions.h"
-#include "pasteoptions.h"
 #include "groupoptions.h"
 #include "queryoptions.h"
 #include "thresholdoptions.h"
@@ -52,7 +51,7 @@ static const char unapplied[] = I18N_NOOP(
     "If you save a profile, those changes will not be included.\n"
     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboBox * lessons, KVTQuery * m, QWidget *parent,
+KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KComboBox * lessons, KVTQuery * m, QWidget *parent,
   const char *name,  KConfigSkeleton *config, FaceType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
   bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)
@@ -63,6 +62,7 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
 
   m_generalOptions = new GeneralOptions(0);
   addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
+  connect(m_generalOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
   m_languageOptions = new LanguageOptions(m_langSet, 0);
   m_languagePage = addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
@@ -70,10 +70,6 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
 
   m_viewOptions = new ViewOptions(0);
   addPage(m_viewOptions, i18n("View"), "view_choose", i18n("View Settings"), true);
-
-  m_pasteOptions = new PasteOptions(m_langSet, doc, 0);
-  addPage(m_pasteOptions, i18n("Copy & Paste"), "edit-paste", i18n("Copy & Paste Settings"), true);
-  connect(m_pasteOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
   m_queryOptions = new QueryOptions(0);
   addPage(m_queryOptions, i18n("Query"), "run_query", i18n("Query Settings"), true);
@@ -101,7 +97,7 @@ void KVocTrainPrefs::selectLanguagePage()
 
 bool KVocTrainPrefs::hasChanged()
 {
-  return m_pasteOptions->hasChanged() |
+  return m_generalOptions->hasChanged() |
          m_languageOptions->hasChanged() |
          m_thresholdOptions->hasChanged() |
          m_blockOptions->hasChanged();
@@ -109,7 +105,7 @@ bool KVocTrainPrefs::hasChanged()
 
 bool KVocTrainPrefs::isDefault()
 {
-  return m_pasteOptions->isDefault() &&
+  return m_generalOptions->isDefault() &&
          m_languageOptions->isDefault() &&
          m_thresholdOptions->isDefault() &&
          m_blockOptions->isDefault();
@@ -117,7 +113,7 @@ bool KVocTrainPrefs::isDefault()
 
 void KVocTrainPrefs::updateSettings()
 {
-  m_pasteOptions->updateSettings();
+  m_generalOptions->updateSettings();
   m_languageOptions->updateSettings();
   m_thresholdOptions->updateSettings();
   m_blockOptions->updateSettings();
@@ -127,7 +123,7 @@ void KVocTrainPrefs::updateSettings()
 void KVocTrainPrefs::updateWidgetsDefault()
 {
   bool bUseDefaults = m_config->useDefaults(true);
-  m_pasteOptions->updateWidgets();
+  m_generalOptions->updateWidgets();
   m_languageOptions->updateWidgets();
   m_thresholdOptions->updateWidgets();
   m_blockOptions->updateWidgets();

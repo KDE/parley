@@ -1,15 +1,13 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
+ <author>Peter Hedlund</author>
  <class>GeneralOptionsBase</class>
  <widget class="QWidget" name="GeneralOptionsBase" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>292</width>
-    <height>359</height>
+    <width>467</width>
+    <height>421</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -19,84 +17,185 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <item row="0" column="0" colspan="3" >
-    <widget class="QCheckBox" name="kcfg_AutoSave" >
-     <property name="toolTip" >
-      <string>Allow automatic saving of your work</string>
-     </property>
-     <property name="whatsThis" >
-      <string>Your work will be automatically saved if you check this option</string>
-     </property>
-     <property name="text" >
-      <string>&amp;Save vocabularies automatically on close and quit</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
-    <widget class="QCheckBox" name="kcfg_AutoBackup" >
-     <property name="toolTip" >
-      <string>Allow automatic saving of your work</string>
-     </property>
-     <property name="whatsThis" >
-      <string>Your work will be automatically saved if you check this option</string>
-     </property>
-     <property name="text" >
-      <string>&amp;Create a backup every</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1" >
-    <widget class="KIntSpinBox" name="kcfg_BackupTime" />
-   </item>
-   <item row="1" column="2" >
-    <widget class="QLabel" name="lblBackupInterva" >
-     <property name="text" >
-      <string>minutes</string>
-     </property>
-     <property name="buddy" >
-      <cstring>kIntSpinBox1</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="3" >
-    <widget class="QCheckBox" name="kcfg_SmartAppend" >
-     <property name="toolTip" >
-      <string>If checked, the entry dialog will popup repeatedly</string>
-     </property>
-     <property name="whatsThis" >
-      <string>If this feature is activated, you will repeatedly be prompted with the entry dialog. After entering the first original you have to enter the corresponding translations. Afterwards you proceed with the next original and its translations until you stop by pressing the ESC key.</string>
-     </property>
-     <property name="text" >
-      <string>Smart a&amp;ppending</string>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="0" colspan="3" >
-    <widget class="QCheckBox" name="kcfg_AutoEntryApply" >
-     <property name="toolTip" >
-      <string>Your changes will be applied automatically.</string>
-     </property>
-     <property name="whatsThis" >
-      <string>If checked, you will not be asked if you really want this change; it will be applied automatically.</string>
-     </property>
-     <property name="text" >
-      <string>Appl&amp;y changes without asking</string>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" colspan="3" >
-    <widget class="QGroupBox" name="kcfg_HeaderResizeMode" >
+   <item row="0" column="0" >
+    <widget class="KButtonGroup" name="kbuttongroup" >
      <property name="title" >
-      <string>Column Resizing</string>
+      <string>Open/Save</string>
      </property>
-     <layout class="QVBoxLayout" >
+     <layout class="QGridLayout" >
       <property name="margin" >
-       <number>10</number>
+       <number>9</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item>
+      <item row="0" column="0" colspan="5" >
+       <widget class="QCheckBox" name="kcfg_AutoSave" >
+        <property name="toolTip" >
+         <string>Allow automatic saving of your work</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Your work will be automatically saved if you check this option</string>
+        </property>
+        <property name="text" >
+         <string>&amp;Save vocabularies automatically on close and quit</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="3" colspan="2" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>121</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="4" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>61</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="1" column="0" colspan="2" >
+       <widget class="QCheckBox" name="kcfg_AutoBackup" >
+        <property name="toolTip" >
+         <string>Allow automatic saving of your work</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Your work will be automatically saved if you check this option</string>
+        </property>
+        <property name="text" >
+         <string>&amp;Create a backup every</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QLabel" name="label_sep" >
+        <property name="text" >
+         <string>Sep&amp;arator:</string>
+        </property>
+        <property name="buddy" >
+         <cstring>SeparatorCombo</cstring>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" colspan="2" >
+       <widget class="KComboBox" name="SeparatorCombo" >
+        <property name="minimumSize" >
+         <size>
+          <width>140</width>
+          <height>0</height>
+         </size>
+        </property>
+        <property name="toolTip" >
+         <string>Choose which separator you want to use to separate your data when importing and exporting text.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Choose the separator to use to divide the parts of an expression when importing or exporting data as text.</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="2" >
+       <widget class="KIntSpinBox" name="kcfg_BackupTime" />
+      </item>
+      <item row="1" column="3" >
+       <widget class="QLabel" name="lblBackupInterva" >
+        <property name="text" >
+         <string>minutes</string>
+        </property>
+        <property name="buddy" >
+         <cstring>kIntSpinBox1</cstring>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>51</width>
+       <height>51</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" >
+    <widget class="KButtonGroup" name="editingGroup" >
+     <property name="title" >
+      <string>Editing</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="1" column="0" >
+       <widget class="QCheckBox" name="kcfg_AutoEntryApply" >
+        <property name="toolTip" >
+         <string>Your changes will be applied automatically.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>If checked, you will not be asked if you really want this change; it will be applied automatically.</string>
+        </property>
+        <property name="text" >
+         <string>Appl&amp;y changes without asking</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QCheckBox" name="kcfg_SmartAppend" >
+        <property name="toolTip" >
+         <string>If checked, the entry dialog will popup repeatedly</string>
+        </property>
+        <property name="whatsThis" >
+         <string>If this feature is activated, you will repeatedly be prompted with the entry dialog. After entering the first original you have to enter the corresponding translations. Afterwards you proceed with the next original and its translations until you stop by pressing the ESC key.</string>
+        </property>
+        <property name="text" >
+         <string>Smart a&amp;ppending</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="2" column="0" >
+    <widget class="KButtonGroup" name="kcfg_HeaderResizeMode" >
+     <property name="title" >
+      <string>Column Resizing</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="0" >
        <widget class="QRadioButton" name="hb_auto" >
         <property name="toolTip" >
          <string>KVocTrain determines the resizing of the columns</string>
@@ -109,20 +208,7 @@
         </property>
        </widget>
       </item>
-      <item>
-       <widget class="QRadioButton" name="hb_percent" >
-        <property name="toolTip" >
-         <string>The columns resize using the same factor that the window is resized to.</string>
-        </property>
-        <property name="whatsThis" >
-         <string>If this is checked, the columns resize by the same amount as the window</string>
-        </property>
-        <property name="text" >
-         <string>P&amp;ercentage</string>
-        </property>
-       </widget>
-      </item>
-      <item>
+      <item row="2" column="0" >
        <widget class="QRadioButton" name="hb_fixed" >
         <property name="toolTip" >
          <string>There is no resizing of the columns</string>
@@ -135,24 +221,21 @@
         </property>
        </widget>
       </item>
+      <item row="1" column="0" >
+       <widget class="QRadioButton" name="hb_percent" >
+        <property name="toolTip" >
+         <string>The columns resize using the same factor that the window is resized to.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>If this is checked, the columns resize by the same amount as the window</string>
+        </property>
+        <property name="text" >
+         <string>P&amp;ercentage</string>
+        </property>
+       </widget>
+      </item>
      </layout>
     </widget>
-   </item>
-   <item row="5" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>51</width>
-       <height>123</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
@@ -160,13 +243,23 @@
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
   <customwidget>
+   <class>KButtonGroup</class>
+   <extends>QGroupBox</extends>
+   <header>kbuttongroup.h</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
    <class>KIntSpinBox</class>
-   <extends></extends>
+   <extends>QSpinBox</extends>
    <header>knuminput.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
+  </customwidget>
+  <customwidget>
+   <class>KComboBox</class>
+   <extends>QComboBox</extends>
+   <header>kcombobox.h</header>
   </customwidget>
  </customwidgets>
+ <includes/>
  <resources/>
  <connections/>
 </ui>

@@ -27,7 +27,7 @@ Get rid of Qt/kde 3 stuff:
 [21:45:53] <pinotree> iirc, in kvoctrain there are just two of them
 [21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" >
 [21:46:47] <milliams> fregl: there are scripts in kdesdk i believe
-[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >
+[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
 [21:47:06] <fregl> sounds like lots of fun
 [21:47:08] <pinotree> basically, these are the only two
 [21:47:15] <fregl> ok
@@ -41,9 +41,11 @@ Move Merge to the library so both KVT and KWQ can use it. -- DONE
 
 Check all query dialogs so that they work properly.
 
-Get rid of copy/paste order stuff.
+Get rid of copy/paste order stuff.  -- IN PROGRESS
 
-Review the configuration dialog
+Review the configuration dialog -- IN PROGRESS
+
+Be able to configure directory for New Stuff downloads
 
 
 --------------------
