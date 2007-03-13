@@ -66,13 +66,13 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_searchWidget = 0;
   m_newStuff = 0;
   m_learningMapper = 0;
+  m_pronunciationStatusBarLabel = 0;
+  m_remarkStatusBarLabel = 0;
+  m_typeStatusBarLabel = 0;
 
   controlActive = false; ///@todo delete this variable when deleting the old lesson combo
   m_currentLesson = 0;
 
-  pron_label = 0;
-  rem_label = 0;
-  type_label = 0;
   pdlg = 0;
   pbar = 0;
 
@@ -326,18 +326,18 @@ void KVocTrainApp::initActions()
 
 void KVocTrainApp::initStatusBar()
 {
-  type_label = new QLabel(statusBar());
-  type_label->setFrameStyle(QFrame::NoFrame);
-  statusBar()->addWidget(type_label, 150);
+  m_typeStatusBarLabel = new QLabel(statusBar());
+  m_typeStatusBarLabel->setFrameStyle(QFrame::NoFrame);
+  statusBar()->addWidget(m_typeStatusBarLabel, 150);
 
-  pron_label = new QLabel(statusBar());
-  pron_label->setFrameStyle(QFrame::NoFrame);
-  pron_label->setFont(Prefs::iPAFont());
-  statusBar()->addWidget(pron_label, 200);
+  m_pronunciationStatusBarLabel = new QLabel(statusBar());
+  m_pronunciationStatusBarLabel->setFrameStyle(QFrame::NoFrame);
+  m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
+  statusBar()->addWidget(m_pronunciationStatusBarLabel, 200);
 
-  rem_label = new QLabel(statusBar());
-  rem_label->setFrameStyle(QFrame::NoFrame);
-  statusBar()->addWidget(rem_label, 150);
+  m_remarkStatusBarLabel = new QLabel(statusBar());
+  m_remarkStatusBarLabel->setFrameStyle(QFrame::NoFrame);
+  statusBar()->addWidget(m_remarkStatusBarLabel, 150);
 }
 
 

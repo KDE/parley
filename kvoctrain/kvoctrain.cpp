@@ -738,8 +738,8 @@ void KVocTrainApp::slotApplyPreferences()
   if (Prefs::autoBackup())
     QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
 
-  if (pron_label)
-    pron_label->setFont(Prefs::iPAFont());
+  if (m_pronunciationStatusBarLabel)
+    m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
 
   m_tableView->setFont(Prefs::tableFont());
   m_tableView->reset();
@@ -1227,12 +1227,12 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
   else
     expr = m_doc->entry(row);
 
-  if (rem_label != 0)
-    rem_label->setText(i18nc("Abbreviation for R)emark","R: %1", noData ? QString() : expr->remark(column)));
-  if (pron_label != 0)
-    pron_label->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
-  if (type_label != 0)
-    type_label->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
+  if (m_remarkStatusBarLabel != 0)
+    m_remarkStatusBarLabel->setText(i18nc("Abbreviation for R)emark","R: %1", noData ? QString() : expr->remark(column)));
+  if (m_pronunciationStatusBarLabel != 0)
+    m_pronunciationStatusBarLabel->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
+  if (m_typeStatusBarLabel != 0)
+    m_typeStatusBarLabel->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
 
   if (entryDlg != 0) {
     slotEditEntry2(current);

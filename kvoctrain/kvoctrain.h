@@ -345,9 +345,9 @@ private:
   bool                 controlActive;
   ProgressDlg         *pdlg;
   QProgressBar        *pbar;
-  QLabel              *pron_label;
-  QLabel              *rem_label;
-  QLabel              *type_label;
+  QLabel              *m_pronunciationStatusBarLabel;
+  QLabel              *m_remarkStatusBarLabel;
+  QLabel              *m_typeStatusBarLabel;
   SimpleQueryDlg      *simpleQueryDlg;
   EntryDlg            *entryDlg;
   MCQueryDlg          *mcQueryDlg;
