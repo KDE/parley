@@ -824,11 +824,11 @@ void KVocTrainApp::aboutToShowLearn()
 
   learningMenu->clear();
 
-  if (learningMapper != 0)
-    delete learningMapper;
-  learningMapper = 0;
-  learningMapper = new QSignalMapper(this);
-  connect(learningMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotLearningMapperTriggered(const QString &)));
+  if (m_learningMapper != 0)
+    delete m_learningMapper;
+  m_learningMapper = 0;
+  m_learningMapper = new QSignalMapper(this);
+  connect(m_learningMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotLearningMapperTriggered(const QString &)));
 
   int columns = m_tableModel->columnCount(QModelIndex()) - KV_EXTRA_COLS;
 
@@ -849,83 +849,83 @@ void KVocTrainApp::aboutToShowLearn()
     if (j == 0) {
       identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_query"), i18n("Create Random &Query"));
       for (int k = 1; k < columns; k++) {
-        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), learningMapper, SLOT(map()));
+        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
         typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[k], titles[0]));
         typeAction->setToolTip(typeAction->whatsThis());
         typeAction->setStatusTip(typeAction->whatsThis());
-        learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
+        m_learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
       }
 
       identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice"));
       for (int k = 1; k < columns; k++) {
-        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), learningMapper, SLOT(map()));
+        typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
         typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[k], titles[0]));
         typeAction->setToolTip(typeAction->whatsThis());
         typeAction->setStatusTip(typeAction->whatsThis());
-        learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
+        m_learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
       }
     }
     else
     {
-      typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Random &Query"), learningMapper, SLOT(map()));
+      typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Random &Query"), m_learningMapper, SLOT(map()));
       typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[0], titles[j]));
       typeAction->setToolTip(typeAction->whatsThis());
       typeAction->setStatusTip(typeAction->whatsThis());
-      learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+      m_learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-      typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice"), learningMapper, SLOT(map()));
+      typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice"), m_learningMapper, SLOT(map()));
       typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[0], titles[j]));
       typeAction->setToolTip(typeAction->whatsThis());
       typeAction->setStatusTip(typeAction->whatsThis());
-      learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+      m_learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
     }
 
     identifierSubMenu->addSeparator();
 
     //Special queries items for each identifier
-    typeAction = identifierSubMenu->addAction(i18n("&Verbs"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("&Verbs"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with verbs"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_VERB, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_VERB, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-    typeAction = identifierSubMenu->addAction(i18n("&Articles"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("&Articles"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with articles"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_ARTICLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_ARTICLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-    typeAction = identifierSubMenu->addAction(i18n("&Comparisons"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("&Comparisons"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with adjectives"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_ADJECTIVE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_ADJECTIVE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
     identifierSubMenu->addSeparator();
 
-    typeAction = identifierSubMenu->addAction(i18n("S&ynonyms"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("S&ynonyms"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with synonyms"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_SYNONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_SYNONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-    typeAction = identifierSubMenu->addAction(i18n("A&ntonyms"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("A&ntonyms"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with antonyms"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_ANTONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_ANTONYM, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-    typeAction = identifierSubMenu->addAction(i18n("E&xamples"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("E&xamples"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with examples"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_EXAMPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_EXAMPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-    typeAction = identifierSubMenu->addAction(i18n("&Paraphrase"), learningMapper, SLOT(map()));
+    typeAction = identifierSubMenu->addAction(i18n("&Paraphrase"), m_learningMapper, SLOT(map()));
     typeAction->setWhatsThis(i18n("Starts training with paraphrases"));
     typeAction->setToolTip(typeAction->whatsThis());
     typeAction->setStatusTip(typeAction->whatsThis());
-    learningMapper->setMapping(typeAction, mapString.arg(START_PARAPHRASE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
+    m_learningMapper->setMapping(typeAction, mapString.arg(START_PARAPHRASE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
   }
 
   learningMenu->addSeparator();

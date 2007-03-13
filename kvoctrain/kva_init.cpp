@@ -65,7 +65,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_mainSplitter = 0;
   m_searchWidget = 0;
   m_newStuff = 0;
-  learningMapper = 0;
+  m_learningMapper = 0;
 
   controlActive = false; ///@todo delete this variable when deleting the old lesson combo
   m_currentLesson = 0;

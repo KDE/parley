@@ -289,7 +289,7 @@ private:
   QString lastPixName;
 
   QMenu *learningMenu;
-  QSignalMapper * learningMapper;
+  QSignalMapper *m_learningMapper;
 
 
 //   QPushButton *m_buttonNewLesson;
