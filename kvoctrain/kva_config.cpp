@@ -32,7 +32,6 @@
 #include <kcombobox.h>
 
 #include "kvoctrain.h"
-#include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 #include "languagesettings.h"
 #include "presettings.h"
@@ -128,8 +127,6 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
     QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
 
     if (b_canRecover){
-      pdlg = new ProgressDlg(QString(), QString(), QString());
-      pdlg->show();
       m_doc = new KEduVocDocument(this);
       m_doc->setUrl(KUrl(tempname));
       removeProgressBar();
@@ -141,8 +138,6 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
     }
   }
   else if (!filename.isEmpty()){
-    pdlg = new ProgressDlg (QString(), QString(), "");
-    pdlg->show();
     m_doc = new KEduVocDocument(this);
     m_doc->setUrl(KUrl(filename));
     removeProgressBar();

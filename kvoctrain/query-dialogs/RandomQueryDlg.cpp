@@ -41,7 +41,6 @@
 #include <klocale.h>
 
 #include "RandomQueryDlg.h"
-#include "common-dialogs/ProgressDlg.h"
 #include <kvttablemodel.h>
 
 #include <keduvocdocument.h>
@@ -206,21 +205,12 @@ RandomQueryDlg::RandomQueryDlg(
 
   kv_doc = 0;
   qtimer = 0;
-  //setWindowTitle (kapp->makeStdCaption(i18n("Random Query")));
   setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
   if ( suggestions )
   {
-    ProgressDlg* pdlg = 0;
-    if ( split && kv_doc -> entryCount() >= 500 )
-    {
-      pdlg = new ProgressDlg (QString(), QString(), i18n("Loading Random Query"));
-      pdlg -> resize (pdlg -> width(), pdlg -> minimumSize().height());
-      pdlg -> show();
-      qApp -> processEvents();
-    }
     for ( i = 0; i < kv_doc -> entryCount(); i ++ )
     {
       KEduVocExpression* expr = kv_doc -> entry (i);
@@ -235,18 +225,11 @@ RandomQueryDlg::RandomQueryDlg(
         else
           vocabulary += q_ocol ? expr ->translation (q_ocol) : expr ->original();
       }
-      if ( pdlg )
-      {
-        pdlg -> setValue (doc, i * 100 / kv_doc -> entryCount());
-        qApp -> processEvents();
-      }
     }
     vocabulary.sort();
     for (int k = 1; k < vocabulary.count(); k ++)
       if ( vocabulary [k - 1] == vocabulary [k] )
         vocabulary.removeAt (k --);
-    if ( pdlg )
-      delete pdlg;
   }
 
   KConfigGroup cg( KGlobal::config(), "RandomQueryDialog");

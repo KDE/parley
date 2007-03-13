@@ -49,7 +49,6 @@
 #include <kicon.h>
 
 #include "kvoctrain.h"
-#include "common-dialogs/ProgressDlg.h"
 #include "prefs.h"
 
 KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
@@ -73,7 +72,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   controlActive = false; ///@todo delete this variable when deleting the old lesson combo
   m_currentLesson = 0;
 
-  pdlg = 0;
   pbar = 0;
 
   simpleQueryDlg = 0;

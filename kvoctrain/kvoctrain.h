@@ -335,15 +335,15 @@ private:
   QString              act_query_trans;
   QString              act_query_org;
   KVTLanguages         m_languages;
-  //int                  searchpos;
+
   QString              m_textToFind;
-  /// @todo Move above table...
+
   KLineEdit           *m_searchLine;
   KComboBox           *m_lessonsComboBox;
   int                  m_currentLesson;
   KVTQuery             querymanager;
   bool                 controlActive;
-  ProgressDlg         *pdlg;
+
   QProgressBar        *pbar;
   QLabel              *m_pronunciationStatusBarLabel;
   QLabel              *m_remarkStatusBarLabel;

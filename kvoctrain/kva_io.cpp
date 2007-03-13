@@ -42,7 +42,6 @@
 
 #include "kvoctrain.h"
 #include "kvtusage.h"
-#include "common-dialogs/ProgressDlg.h"
 #include <prefs.h>
 
 void KVocTrainApp::slotTimeOutBackup()
@@ -111,9 +110,7 @@ void KVocTrainApp::slotFileQuit()
 
 void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 {
-  if (pdlg != 0)
-    pdlg->setValue (curr_doc, percent);
-  else if (pbar != 0)
+  if (pbar != 0)
     pbar->setValue (percent);
   kapp->processEvents();
 }
@@ -648,8 +645,6 @@ void KVocTrainApp::removeProgressBar()
   statusBar()->removeWidget(pbar);
   delete pbar;
   pbar = 0;
-  delete pdlg;
-  pdlg = 0;
 }
 
 
