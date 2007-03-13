@@ -132,6 +132,10 @@
     </entry>
   </group>
   <group name="Appearance">
+    <entry name="ShowSearch" type="Bool">
+      <label>Toggle display of the search bar.</label>
+      <default>true</default>
+    </entry>
     <entry name="LessonEditingSelection" type="Enum">
       <label>Select which lessons are displayed for editing</label>
       <choices>

@@ -1386,8 +1386,10 @@ void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 
 void KVocTrainApp::slotConfigShowSearch()
 {
-  if (m_searchWidget)
+  if (m_searchWidget) {
     m_searchWidget->setVisible(m_searchWidget->isHidden());
+    Prefs::setShowSearch(m_searchWidget->isVisible());
+  }
 }
 
 #include "kvoctrain.moc"

@@ -61,6 +61,9 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_lessonView = 0;
   m_sortFilterModel = 0;
   m_lessonSelectionCombo = 0;
+  m_searchLine = 0;
+  m_mainSplitter = 0;
+  m_searchWidget = 0;
   btimer = 0;
   querymode = false;
   controlActive = false;
@@ -470,6 +473,8 @@ void KVocTrainApp::initView()
   rightLayout->setSpacing(KDialog::spacingHint());
   rightLayout->setMargin(0);
   rightLayout->addWidget(m_searchWidget);
+  m_searchWidget->setVisible(Prefs::showSearch());
+  vocabSearch->setChecked(Prefs::showSearch());
 
   /// Table view
   m_tableView = new KVTTableView(centralWidget());
