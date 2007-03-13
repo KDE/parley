@@ -80,7 +80,6 @@
 KVocTrainApp::~KVocTrainApp()
 {
    removeEntryDlg();
-   delete btimer;
    delete m_doc;
 }
 
@@ -736,6 +735,9 @@ void KVocTrainApp::slotGeneralOptionsPage(int index)
 
 void KVocTrainApp::slotApplyPreferences()
 {
+  if (Prefs::autoBackup())
+    QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
+
   if (pron_label)
     pron_label->setFont(Prefs::iPAFont());
 

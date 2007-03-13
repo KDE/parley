@@ -64,7 +64,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_searchLine = 0;
   m_mainSplitter = 0;
   m_searchWidget = 0;
-  btimer = 0;
+
   querymode = false;
   controlActive = false;
   m_currentLesson = 0;
@@ -98,11 +98,9 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
   querying = false;
-  btimer = new QTimer(this);
-  btimer->setSingleShot(true);
-  connect(btimer, SIGNAL(timeout()), this, SLOT(slotTimeOutBackup()));
+
   if (Prefs::autoBackup())
-    btimer->start(Prefs::backupTime() * 60 * 1000);
+    QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
 }
 
 

@@ -328,7 +328,7 @@ private:
   QueryEntryList       correct_2_times;
   QueryEntryList       correct_3_times;
   QuerySelection       queryList;
-  QTimer              *btimer;
+
   int                  random_query_nr;
   bool                 querymode;
   bool                 querying;

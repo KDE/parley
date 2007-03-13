@@ -51,8 +51,9 @@ void KVocTrainApp::slotTimeOutBackup()
     slotStatusMsg(i18n("Autobackup in progress"));
     slotFileSave();
   }
-  if (Prefs::backupTime() > 0)
-    btimer->start(Prefs::backupTime() * 60 * 1000);
+
+  if (Prefs::autoBackup())
+    QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
   slotStatusMsg(IDS_DEFAULT);
 }
 
