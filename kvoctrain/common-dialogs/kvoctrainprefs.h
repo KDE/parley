@@ -51,10 +51,9 @@ public:
     int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
 
   /**
-   * calls showPage() to display a particular page in the dialog.
-   * @param  page The page to display
+   * Displays the dialog with the language page selected.
    */
-  void selectPage(int page);
+  void selectLanguagePage();
 
 protected slots:
   /**
@@ -99,6 +98,7 @@ private:
   KEduVocDocument * m_doc;
   KComboBox m_lessons;
   KVTQuery * m_queryManager;
+  KPageWidgetItem *m_languagePage;
 };
 
 #endif

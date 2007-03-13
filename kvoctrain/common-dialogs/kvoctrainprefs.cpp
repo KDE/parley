@@ -57,6 +57,7 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
   bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)
 {
+  m_languagePage = 0;
   m_config = config;
   m_queryManager = m;
 
@@ -64,7 +65,7 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
   addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
 
   m_languageOptions = new LanguageOptions(m_langSet, 0);
-  addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
+  m_languagePage = addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
   connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
   m_viewOptions = new ViewOptions(0);
@@ -92,12 +93,10 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KEduVocDocument * doc, KComboB
   connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
 }
 
-void KVocTrainPrefs::selectPage(int index)
+void KVocTrainPrefs::selectLanguagePage()
 {
-#ifdef __GNUC__
-#warning "kde4: port it"
-#endif
-  //showPage(index);
+  if (m_languagePage)
+    setCurrentPage(m_languagePage);
 }
 
 bool KVocTrainPrefs::hasChanged()
