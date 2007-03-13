@@ -160,7 +160,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     slotStatusMsg(i18n("Loading %1", url.path()));
     //prepareProgressBar();
     m_doc = new KEduVocDocument(this);
-    m_doc->open(url, false);
+    m_doc->open(url);
 
     m_tableModel->setDocument(m_doc);
     m_lessonModel->setDocument(m_doc);
@@ -217,7 +217,7 @@ void KVocTrainApp::slotFileMerge()
     slotStatusMsg(msg);
     prepareProgressBar();
     KEduVocDocument *new_doc = new KEduVocDocument(this);
-    new_doc->open(url, false);
+    new_doc->open(url);
     //connect (new_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
     removeProgressBar();
