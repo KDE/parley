@@ -228,7 +228,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QStrin
               || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
               || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
               )
-              && expr->conjugation(idx).numEntries() > 0;
+              && expr->conjugation(idx).entryCount() > 0;
 
   }
   else if (qtype == QM_ADJ) {

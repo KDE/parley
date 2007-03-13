@@ -133,7 +133,7 @@ void TenseOptPage::slotDeleteTense()
       KEduVocExpression *exp = doc->entry(ent);
       for (int lang = 0; lang < doc->identifierCount(); lang++) {
         KEduVocConjugation conj = exp->conjugation(lang);
-        for (int con = 0; con < conj.numEntries(); con++ ) {
+        for (int con = 0; con < conj.entryCount(); con++ ) {
           if (conj.getType(con) == t) {
             KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
             return;
@@ -167,7 +167,7 @@ void TenseOptPage::slotCleanup()
   for (int col = 0; col < doc->identifierCount(); col++)
     for (int i = 0; i < (int) doc->entryCount(); i++) {
       KEduVocConjugation conj = doc->entry(i)->conjugation(col);
-      for (int ci = 0; ci < conj.numEntries(); ci++) {
+      for (int ci = 0; ci < conj.entryCount(); ci++) {
         QString t = conj.getType(ci);
         if (t.left(QString(UL_USER_TENSE).length()) == UL_USER_TENSE) {
           t.remove(0, QString(UL_USER_TENSE).length());
@@ -235,7 +235,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
     for (int i = 0; i < doc->entryCount(); i++) {
       KEduVocConjugation conj = doc->entry(i)->conjugation(col);
       bool dirty = false;
-      for (int ci = 0; ci < conj.numEntries(); ci++) {
+      for (int ci = 0; ci < conj.entryCount(); ci++) {
         QString old = conj.getType(ci);
         if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
           old.remove(0, QString(QM_USER_TYPE).length());

@@ -177,7 +177,7 @@ bool VerbQueryDlg::next()
   else
     s = kv_exp->translation(q_ocol);
 
-  if (current < (int) conjugations.numEntries()-1 )
+  if (current < conjugations.entryCount() - 1)
     current++;
 
   type = conjugations.getType(current);
@@ -351,7 +351,7 @@ void VerbQueryDlg::timeoutReached()
 
    if (timercount <= 0) {
      mw->timebar->setValue(0);
-     if (current >= (int) conjugations.numEntries()-1 ) {
+     if (current >= conjugations.entryCount() - 1) {
        qtimer->stop();
        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
          showAllClicked();
@@ -379,7 +379,7 @@ void VerbQueryDlg::timeoutReached()
 void VerbQueryDlg::knowItClicked()
 {
    resetAllFields();
-   if (current >= (int) conjugations.numEntries()-1 ) {
+   if (current >= conjugations.entryCount() - 1) {
      if (all_known)
        emit sigQueryChoice (Known);
      else
@@ -393,7 +393,7 @@ void VerbQueryDlg::knowItClicked()
 void VerbQueryDlg::dontKnowClicked()
 {
    all_known = false;
-   if (current >= (int) conjugations.numEntries()-1 )
+   if (current >= conjugations.entryCount() - 1)
      emit sigQueryChoice (Unknown);
    else {
      qtimer->start(1000);

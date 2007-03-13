@@ -78,7 +78,7 @@ void TenseEntryPage::setData(bool multi_sel, const KEduVocConjugation &con_prefi
   if (m_largeSelection)
     tensebox->setEnabled(false);
 
-  for (int i = 0; i <  KEduVocConjugation::numTenses(); i++)
+  for (int i = 0; i <  KEduVocConjugation::tenseCount(); i++)
     tensebox->addItem(KEduVocConjugation::getName(i) );
 
   conjugations = conjug;
@@ -237,7 +237,7 @@ void TenseEntryPage::slotNextConj()
   int j;
   for (int i = tensebox->currentIndex()+1; i < tensebox->count(); i++) {
 
-    for (j = 0; j < conjugations.numEntries(); j++ ) {
+    for (j = 0; j < conjugations.entryCount(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
         tensebox->setCurrentIndex (i);
         slotTenseSelected(i);
@@ -247,7 +247,7 @@ void TenseEntryPage::slotNextConj()
   }
 
   for (int i = 0; i < tensebox->currentIndex()-1; i++) {
-    for (j = 0; j < conjugations.numEntries(); j++ ) {
+    for (j = 0; j < conjugations.entryCount(); j++ ) {
       if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
         tensebox->setCurrentIndex (i);
         slotTenseSelected(i);
@@ -267,7 +267,7 @@ KEduVocConjugation TenseEntryPage::getConjugation()
 
 void TenseEntryPage::updateFields()
 {
-  b_next->setEnabled(conjugations.numEntries() > 1); // next button
+  b_next->setEnabled(conjugations.entryCount() > 1); // next button
 }
 
 
