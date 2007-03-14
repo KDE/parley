@@ -161,6 +161,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     slotStatusMsg(i18n("Loading %1", url.path()));
     //prepareProgressBar();
     m_doc = new KEduVocDocument(this);
+    m_doc->setCsvDelimiter(Prefs::separator());
     m_doc->open(url);
 
     m_tableModel->setDocument(m_doc);
@@ -216,6 +217,7 @@ void KVocTrainApp::slotFileMerge()
     slotStatusMsg(msg);
 
     KEduVocDocument *new_doc = new KEduVocDocument(this);
+    new_doc->setCsvDelimiter(Prefs::separator());
     new_doc->open(url);
 
     m_doc->merge(new_doc, true);
@@ -255,6 +257,7 @@ void KVocTrainApp::slotFileSave()
 
   prepareProgressBar();
   saveDocProps(m_doc);
+  m_doc->setCsvDelimiter(Prefs::separator());
   m_doc->saveAs(this, m_doc->url(), KEduVocDocument::automatic, "KVocTrain");
   fileOpenRecent->addUrl(m_doc->url());
   removeProgressBar();
@@ -291,6 +294,7 @@ void KVocTrainApp::slotFileSaveAs()
       saveDocProps(m_doc);
 
       prepareProgressBar();
+      m_doc->setCsvDelimiter(Prefs::separator());
       m_doc->saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
       fileOpenRecent->addUrl(m_doc->url());
       removeProgressBar();
@@ -409,6 +413,7 @@ void KVocTrainApp::slotSaveSelection ()
       saveDocProps(&seldoc);
 
       prepareProgressBar();
+      seldoc.setCsvDelimiter(Prefs::separator());
       seldoc.saveAs(this, url, KEduVocDocument::automatic, "KVocTrain");
       removeProgressBar();
     }
