@@ -118,10 +118,7 @@ void KVocTrainApp::initActions()
   fileOpenExample->setToolTip(fileOpenExample->whatsThis());
   fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-  fileGHNS = actionCollection()->addAction("file_ghns");
-  fileGHNS->setIcon(KIcon("get-hot-new-stuff"));
-  fileGHNS->setText(i18n("&Get New Vocabularies..."));
-  connect(fileGHNS, SIGNAL(triggered(bool)), this, SLOT(slotGHNS()));
+  fileGHNS = KNS::standardAction(i18n("Vocabularies..."), this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
   fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
   fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
   fileGHNS->setToolTip(fileGHNS->whatsThis());
