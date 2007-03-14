@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>450</width>
-    <height>406</height>
+    <width>391</width>
+    <height>444</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -16,33 +16,59 @@
    <property name="spacing" >
     <number>6</number>
    </property>
-   <item row="0" column="1" >
-    <widget class="KFontRequester" name="kcfg_TableFont" />
+   <item row="2" column="0" colspan="2" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>291</width>
+       <height>16</height>
+      </size>
+     </property>
+    </spacer>
    </item>
-   <item row="0" column="0" >
-    <widget class="QLabel" name="TableFontLabel" >
-     <property name="text" >
-      <string>&amp;Table font:</string>
+   <item row="0" column="0" colspan="2" >
+    <layout class="QGridLayout" >
+     <property name="margin" >
+      <number>0</number>
      </property>
-     <property name="buddy" >
-      <cstring>kcfg_TableFont</cstring>
+     <property name="spacing" >
+      <number>6</number>
      </property>
-    </widget>
+     <item row="1" column="1" >
+      <widget class="KFontRequester" name="kcfg_IPAFont" />
+     </item>
+     <item row="1" column="0" >
+      <widget class="QLabel" name="IPAFontLabel" >
+       <property name="text" >
+        <string>&amp;IPA font:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>kcfg_IPAFont</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0" >
+      <widget class="QLabel" name="TableFontLabel" >
+       <property name="text" >
+        <string>&amp;Table font:</string>
+       </property>
+       <property name="buddy" >
+        <cstring>kcfg_TableFont</cstring>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1" >
+      <widget class="KFontRequester" name="kcfg_TableFont" />
+     </item>
+    </layout>
    </item>
    <item row="1" column="1" >
-    <widget class="KFontRequester" name="kcfg_IPAFont" />
-   </item>
-   <item row="1" column="0" >
-    <widget class="QLabel" name="IPAFontLabel" >
-     <property name="text" >
-      <string>&amp;IPA font:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>kcfg_IPAFont</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0" colspan="2" >
     <widget class="QGroupBox" name="gradegroup" >
      <property name="sizePolicy" >
       <sizepolicy>
@@ -57,44 +83,191 @@
      </property>
      <layout class="QGridLayout" >
       <property name="margin" >
-       <number>11</number>
+       <number>9</number>
       </property>
       <property name="spacing" >
        <number>6</number>
       </property>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="l_lev4" >
+      <item row="8" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol0" >
         <property name="sizePolicy" >
          <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>Level &amp;4:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>kcfg_GradeCol4</cstring>
+         <string>&amp;N</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" >
-       <widget class="QLabel" name="l_lev5" >
+      <item row="7" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol1" >
         <property name="sizePolicy" >
          <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="text" >
-         <string>Level &amp;5:</string>
+        <property name="toolTip" >
+         <string>Color for the grade 1</string>
         </property>
-        <property name="buddy" >
-         <cstring>kcfg_GradeCol5</cstring>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 1.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;1</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+1</string>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol2" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 2</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 2.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;2</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+2</string>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol3" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 3</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 3.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;3</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+3</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol4" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 4</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 4.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;4</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+4</string>
+        </property>
+       </widget>
+      </item>
+      <item row="3" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol5" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 5</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 5.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;5</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+5</string>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol6" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 6</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 6.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;6</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+6</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" >
+       <widget class="KColorButton" name="kcfg_GradeCol7" >
+        <property name="sizePolicy" >
+         <sizepolicy>
+          <hsizetype>5</hsizetype>
+          <vsizetype>0</vsizetype>
+          <horstretch>0</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Color for the grade 7</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Click here to change the color for grade 7.</string>
+        </property>
+        <property name="text" >
+         <string>&amp;7</string>
+        </property>
+        <property name="shortcut" >
+         <string>Alt+7</string>
         </property>
        </widget>
       </item>
@@ -134,23 +307,8 @@
         </property>
        </widget>
       </item>
-      <item row="8" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol0" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text" >
-         <string>&amp;N</string>
-        </property>
-       </widget>
-      </item>
-      <item row="8" column="0" >
-       <widget class="QLabel" name="l_lev0" >
+      <item row="3" column="0" >
+       <widget class="QLabel" name="l_lev5" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>1</hsizetype>
@@ -160,39 +318,15 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>Not &amp;queried:</string>
+         <string>Level &amp;5:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol0</cstring>
+         <cstring>kcfg_GradeCol5</cstring>
         </property>
        </widget>
       </item>
-      <item row="7" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol1" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Color for the grade 1</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 1.</string>
-        </property>
-        <property name="text" >
-         <string>&amp;1</string>
-        </property>
-        <property name="shortcut" >
-         <string>Alt+1</string>
-        </property>
-       </widget>
-      </item>
-      <item row="7" column="0" >
-       <widget class="QLabel" name="l_lev1" >
+      <item row="4" column="0" >
+       <widget class="QLabel" name="l_lev4" >
         <property name="sizePolicy" >
          <sizepolicy>
           <hsizetype>1</hsizetype>
@@ -202,52 +336,10 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>Level &amp;1:</string>
+         <string>Level &amp;4:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol1</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="0" >
-       <widget class="QLabel" name="l_lev2" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text" >
-         <string>Level &amp;2:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>kcfg_GradeCol2</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="6" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol2" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Color for the grade 2</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 2.</string>
-        </property>
-        <property name="text" >
-         <string>&amp;2</string>
-        </property>
-        <property name="shortcut" >
-         <string>Alt+2</string>
+         <cstring>kcfg_GradeCol4</cstring>
         </property>
        </widget>
       </item>
@@ -269,123 +361,57 @@
         </property>
        </widget>
       </item>
-      <item row="5" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol3" >
+      <item row="6" column="0" >
+       <widget class="QLabel" name="l_lev2" >
         <property name="sizePolicy" >
          <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+          <hsizetype>1</hsizetype>
+          <vsizetype>5</vsizetype>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
-         <string>Color for the grade 3</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 3.</string>
-        </property>
         <property name="text" >
-         <string>&amp;3</string>
+         <string>Level &amp;2:</string>
         </property>
-        <property name="shortcut" >
-         <string>Alt+3</string>
+        <property name="buddy" >
+         <cstring>kcfg_GradeCol2</cstring>
         </property>
        </widget>
       </item>
-      <item row="4" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol4" >
+      <item row="7" column="0" >
+       <widget class="QLabel" name="l_lev1" >
         <property name="sizePolicy" >
          <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+          <hsizetype>1</hsizetype>
+          <vsizetype>5</vsizetype>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
-         <string>Color for the grade 4</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 4.</string>
-        </property>
         <property name="text" >
-         <string>&amp;4</string>
+         <string>Level &amp;1:</string>
         </property>
-        <property name="shortcut" >
-         <string>Alt+4</string>
+        <property name="buddy" >
+         <cstring>kcfg_GradeCol1</cstring>
         </property>
        </widget>
       </item>
-      <item row="3" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol5" >
+      <item row="8" column="0" >
+       <widget class="QLabel" name="l_lev0" >
         <property name="sizePolicy" >
          <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+          <hsizetype>1</hsizetype>
+          <vsizetype>5</vsizetype>
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
-        <property name="toolTip" >
-         <string>Color for the grade 5</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 5.</string>
-        </property>
         <property name="text" >
-         <string>&amp;5</string>
+         <string>Not &amp;queried:</string>
         </property>
-        <property name="shortcut" >
-         <string>Alt+5</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol6" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Color for the grade 6</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 6.</string>
-        </property>
-        <property name="text" >
-         <string>&amp;6</string>
-        </property>
-        <property name="shortcut" >
-         <string>Alt+6</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol7" >
-        <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Color for the grade 7</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Click here to change the color for grade 7.</string>
-        </property>
-        <property name="text" >
-         <string>&amp;7</string>
-        </property>
-        <property name="shortcut" >
-         <string>Alt+7</string>
+        <property name="buddy" >
+         <cstring>kcfg_GradeCol0</cstring>
         </property>
        </widget>
       </item>
@@ -405,27 +431,84 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0" colspan="2" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
+   <item row="1" column="0" >
+    <widget class="KButtonGroup" name="kcfg_HeaderResizeMode" >
+     <property name="title" >
+      <string>Column Resizing</string>
      </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>61</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="3" column="0" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item row="2" column="0" >
+       <widget class="QRadioButton" name="hb_fixed" >
+        <property name="toolTip" >
+         <string>There is no resizing of the columns</string>
+        </property>
+        <property name="whatsThis" >
+         <string>When checked, the columns are not resized</string>
+        </property>
+        <property name="text" >
+         <string>&amp;Fixed</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0" >
+       <widget class="QRadioButton" name="hb_percent" >
+        <property name="toolTip" >
+         <string>The columns resize using the same factor that the window is resized to.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>If this is checked, the columns resize by the same amount as the window</string>
+        </property>
+        <property name="text" >
+         <string>P&amp;ercentage</string>
+        </property>
+       </widget>
+      </item>
+      <item row="0" column="0" >
+       <widget class="QRadioButton" name="hb_auto" >
+        <property name="toolTip" >
+         <string>KVocTrain determines the resizing of the columns</string>
+        </property>
+        <property name="whatsThis" >
+         <string>KVocTrain makes each column the same width except the leftmost with the lesson names, which is half the size of the others. The second column, which contains the picture that describes the state of the row, has a fixed width.</string>
+        </property>
+        <property name="text" >
+         <string>A&amp;utomatic</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <customwidgets>
+  <customwidget>
+   <class>KButtonGroup</class>
+   <extends>QGroupBox</extends>
+   <header>kbuttongroup.h</header>
+   <container>1</container>
+  </customwidget>
   <customwidget>
    <class>KColorButton</class>
    <extends>QPushButton</extends>
@@ -438,6 +521,9 @@
   </customwidget>
  </customwidgets>
  <tabstops>
+  <tabstop>hb_auto</tabstop>
+  <tabstop>hb_percent</tabstop>
+  <tabstop>hb_fixed</tabstop>
   <tabstop>kcfg_UseGradeCol</tabstop>
   <tabstop>kcfg_GradeCol7</tabstop>
   <tabstop>kcfg_GradeCol6</tabstop>

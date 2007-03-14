@@ -1,6 +1,6 @@
 /***************************************************************************
- *   Copyright (C) 2005 by Peter Hedlund                              *
- *   <peter.hedlund@kdemail.net>                                            *
+ *   Copyright (C) 2005, 2007 by Peter Hedlund                             *
+ *   <peter.hedlund@kdemail.net>                                           *
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -15,7 +15,7 @@
  *   You should have received a copy of the GNU General Public License     *
  *   along with this program; if not, write to the                         *
  *   Free Software Foundation, Inc.,                                       *
- *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.             *
+ *   51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.         *
  ***************************************************************************/
 
 #include <QDir>
@@ -30,7 +30,7 @@
 #include "kvtnewstuff.h"
 #include "prefs.h"
 
-KVTNewStuff::KVTNewStuff(QWidget *parent, const char * /*name*/) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
+KVTNewStuff::KVTNewStuff(QWidget *parent) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
 {
   m_app = (KVocTrainApp*) parent;
 }
@@ -44,8 +44,9 @@ bool KVTNewStuff::install(const QString & fileName)
 }
 
 
-bool KVTNewStuff::createUploadFile(const QString & /*fileName*/)
+bool KVTNewStuff::createUploadFile(const QString & fileName)
 {
+  Q_UNUSED(fileName);
   return true;
 }
 
@@ -57,16 +58,15 @@ QString KVTNewStuff::destinationPath(KNS::Entry * entry)
     KUrl url = entry->payload();
     QString fileName = url.fileName();
 
-    QString path = Prefs::installPath(); //default is Vocabularies which will be created in the user's home directory
+    QString path = Prefs::installPath(); //default is $HOME/Vocabularies
     QString file;
 
     if (path.isEmpty())
       file = KNewStuff::downloadDestination(entry); //fall back on a temp file, should never happen
     else
     {
-      file = QDir::home().path() + '/' + path + '/';
-      KStandardDirs::makeDir(file); //ensure the directory exists
-      file += fileName;
+      KStandardDirs::makeDir(path); //ensure the directory exists
+      file = KStandardDirs::realFilePath(path + '/' + fileName);
     }
     return file;
   }

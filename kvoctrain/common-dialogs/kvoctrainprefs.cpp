@@ -2,9 +2,9 @@
              kvoctrainprefs.cpp  -  KVocTrain configuration dialog
 
                              -------------------
-    begin                : Fri Mar 25 2005
+    begin         : Fri Mar 25 2005
 
-    copyright            : (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -64,12 +64,12 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KComboBox * lessons, KVTQuery 
   addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
   connect(m_generalOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
+  m_viewOptions = new ViewOptions(0);
+  addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
+
   m_languageOptions = new LanguageOptions(m_langSet, 0);
   m_languagePage = addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
   connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
-
-  m_viewOptions = new ViewOptions(0);
-  addPage(m_viewOptions, i18n("View"), "view_choose", i18n("View Settings"), true);
 
   m_queryOptions = new QueryOptions(0);
   addPage(m_queryOptions, i18n("Query"), "run_query", i18n("Query Settings"), true);
@@ -147,6 +147,7 @@ void KVocTrainPrefs::slotUser1()
 
 void KVocTrainPrefs::updateWidgets()
 {
+  m_generalOptions->updateWidgets();
   m_queryOptions->updateWidgets();
   m_thresholdOptions->updateWidgets();
   m_blockOptions->updateWidgets();

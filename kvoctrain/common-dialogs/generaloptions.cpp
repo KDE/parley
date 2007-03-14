@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Mar 29 2005
+    begin        : Tue Mar 29 2005
 
-    Copyright 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright    : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -24,6 +24,7 @@
 #include <qcheckbox.h>
 
 #include <knuminput.h>
+#include <kfile.h>
 
 #include "generaloptions.h"
 #include "prefs.h"
@@ -50,7 +51,7 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 
   fillWidgets();
   updateWidgets();
-
+  InstallPathRequester->setMode(KFile::Directory);
   kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
 
@@ -70,6 +71,8 @@ void GeneralOptions::fillWidgets()
 
 void GeneralOptions::updateWidgets()
 {
+  InstallPathRequester->setPath(Prefs::installPath());
+
   for (int i = 0; i < 9; ++i)
   {
     if (separator_id[i] == Prefs::separator())
@@ -78,6 +81,7 @@ void GeneralOptions::updateWidgets()
       break;
     }
   }
+
 }
 
 
@@ -106,6 +110,7 @@ bool GeneralOptions::isDefault()
 
 void GeneralOptions::updateSettings()
 {
+  Prefs::setInstallPath(InstallPathRequester->url().path());
   if (SeparatorCombo->currentIndex() < 0)
     return;
   Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));

@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Mar 29 2005
+    begin         : Tue Mar 29 2005
 
-    copyright            :(C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     :(C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 

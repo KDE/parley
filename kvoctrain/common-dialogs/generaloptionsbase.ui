@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>467</width>
-    <height>421</height>
+    <width>477</width>
+    <height>383</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -17,6 +17,47 @@
    <property name="spacing" >
     <number>6</number>
    </property>
+   <item row="3" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>51</width>
+       <height>51</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="2" column="0" >
+    <widget class="KButtonGroup" name="kbuttongroup_2" >
+     <property name="title" >
+      <string>Download Directory</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>9</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item row="0" column="0" >
+       <widget class="KUrlRequester" name="InstallPathRequester" >
+        <property name="toolTip" >
+         <string>The directory where downloaded vocabularies will be saved.</string>
+        </property>
+        <property name="whatsThis" >
+         <string>Vocabularies downloaded using "Get New Vocabularies..." will be saved in this directory.</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
    <item row="0" column="0" >
     <widget class="KButtonGroup" name="kbuttongroup" >
      <property name="title" >
@@ -126,22 +167,6 @@
      </layout>
     </widget>
    </item>
-   <item row="3" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>51</width>
-       <height>51</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
    <item row="1" column="0" >
     <widget class="KButtonGroup" name="editingGroup" >
      <property name="title" >
@@ -183,60 +208,6 @@
      </layout>
     </widget>
    </item>
-   <item row="2" column="0" >
-    <widget class="KButtonGroup" name="kcfg_HeaderResizeMode" >
-     <property name="title" >
-      <string>Column Resizing</string>
-     </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>9</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item row="0" column="0" >
-       <widget class="QRadioButton" name="hb_auto" >
-        <property name="toolTip" >
-         <string>KVocTrain determines the resizing of the columns</string>
-        </property>
-        <property name="whatsThis" >
-         <string>KVocTrain makes each column the same width except the leftmost with the lesson names, which is half the size of the others. The second column, which contains the picture that describes the state of the row, has a fixed width.</string>
-        </property>
-        <property name="text" >
-         <string>A&amp;utomatic</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="0" >
-       <widget class="QRadioButton" name="hb_fixed" >
-        <property name="toolTip" >
-         <string>There is no resizing of the columns</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When checked, the columns are not resized</string>
-        </property>
-        <property name="text" >
-         <string>&amp;Fixed</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="0" >
-       <widget class="QRadioButton" name="hb_percent" >
-        <property name="toolTip" >
-         <string>The columns resize using the same factor that the window is resized to.</string>
-        </property>
-        <property name="whatsThis" >
-         <string>If this is checked, the columns resize by the same amount as the window</string>
-        </property>
-        <property name="text" >
-         <string>P&amp;ercentage</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
@@ -258,8 +229,21 @@
    <extends>QComboBox</extends>
    <header>kcombobox.h</header>
   </customwidget>
+  <customwidget>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
+   <header>kurlrequester.h</header>
+  </customwidget>
  </customwidgets>
- <includes/>
+ <tabstops>
+  <tabstop>kcfg_AutoSave</tabstop>
+  <tabstop>kcfg_AutoBackup</tabstop>
+  <tabstop>kcfg_BackupTime</tabstop>
+  <tabstop>SeparatorCombo</tabstop>
+  <tabstop>kcfg_SmartAppend</tabstop>
+  <tabstop>kcfg_AutoEntryApply</tabstop>
+  <tabstop>InstallPathRequester</tabstop>
+ </tabstops>
  <resources/>
  <connections/>
 </ui>
