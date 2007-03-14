@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Apr 5 2005
+    begin          : Tue Apr 5 2005
 
-    copyright            :(C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright      :(C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,7 +36,6 @@
 #include <kstandarddirs.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
-#include <kmenu.h>
 #include <QtDBus>
 #include "languageoptions.h"
 #include "languagesettings.h"
@@ -44,7 +43,7 @@
 
 #define MAX_LANGSET      100
 
-// automatically extracted from http://www.loc.gov/standards/iso639-2/englangn.html
+// automatically extracted from http://www.loc.gov/standards/iso639-2/php/English_list.php
 // with .../tools/extractlang
 
 struct KV_ISO639_Code {
@@ -681,7 +680,8 @@ KV_ISO639_Code kv_iso639_2[] = {
 LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
   setupUi(this);
-  langset_popup = 0;
+  m_kdeLanguagesMenu = 0;
+  m_isoLanguagesMenu = 0;
 
   connect(b_langDel, SIGNAL(clicked()), this, SLOT(slotDeleteClicked()));
   connect(b_langNew, SIGNAL(clicked()), this, SLOT(slotNewClicked()));
@@ -695,52 +695,47 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
   // Load the languages first, then the countries and create the
   // menus for the languages last, so they will have flags
   loadISO6391Data();
-
   loadCountryData();
-  b_lang_kde->setMenu(langset_popup);
+
+  b_lang_kde->setMenu(m_kdeLanguagesMenu);
 
   createISO6391Menus();
-  b_lang_iso1->setMenu(iso6391_popup);
+  b_lang_iso1->setMenu(m_isoLanguagesMenu);
 
   b_langNew->setEnabled(false); // activate after data is entered
 
   for (int i = 0; i < (int) m_langSet.count() && i < MAX_LANGSET; i++)
-    d_shortName->addItem (m_langSet.shortId(i));
+    d_shortName->addItem(m_langSet.shortId(i));
 
   enableLangWidgets();
 
-  if (d_shortName->count() )
+  if (d_shortName->count())
   {
     d_shortName->setCurrentIndex(0);
     e_langLong->setText(m_langSet.longId(0));
     e_shortName2->setText(m_langSet.shortId2(0));
-    if (!m_langSet.pixmapFile(0).isEmpty() )
+    if (!m_langSet.pixmapFile(0).isEmpty())
     {
       QPixmap pix(m_langSet.pixmapFile(0));
       if (!pix.isNull() )
       {
         m_lastPix = m_langSet.pixmapFile(0);
-        b_langPixmap->setPixmap (pix);
+        b_langPixmap->setIcon(QIcon(pix));
       }
       else
-        b_langPixmap->setText (i18n("Picture is Invalid"));
+        b_langPixmap->setText(i18n("Picture is Invalid"));
     }
     else
-      b_langPixmap->setText  (i18n("No Picture Selected"));
+      b_langPixmap->setText(i18n("No Picture Selected"));
   }
   else
   {
-    b_langPixmap->setText  (i18n("No Picture Selected..."));
+    b_langPixmap->setText(i18n("No Picture Selected..."));
     b_langPixmap->setEnabled(false);
   }
   m_hasChanged = false;
 }
 
-
-LanguageOptions::~LanguageOptions ()
-{
- delete langset_popup;
-}
 
 void LanguageOptions::slotDeleteClicked()
 {
@@ -751,7 +746,7 @@ void LanguageOptions::slotDeleteClicked()
     m_hasChanged = true;
     d_shortName->removeItem(d_shortName->currentIndex());
     if (d_shortName->count() != 0)
-      d_shortName->setCurrentIndex (0);
+      d_shortName->setCurrentIndex(0);
   }
 
   if (d_shortName->count() != 0)
@@ -799,13 +794,11 @@ void LanguageOptions::enableLangWidgets()
   e_langLong->setEnabled(enabled);
   e_shortName2->setEnabled(enabled);
 
-  //kDebug() << "enabled? " << enabled << endl;
-
   if (enabled )
   {
     QDBusInterface kxbk("org.kde.kxkb", "/kxkb", "org.kde.KXKB");
-    QDBusReply<QStringList> reply = kxbk.call( "getLayoutsList" );
-    if ( reply.isValid() )
+    QDBusReply<QStringList> reply = kxbk.call("getLayoutsList");
+    if (reply.isValid())
     {
         QStringList layouts = reply;
         layouts.prepend(QString());
@@ -867,7 +860,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
          return;
        }
 
-     if (d_shortName->count() > (int) m_langSet.count() && m_langSet.count() < MAX_LANGSET )
+     if (d_shortName->count() > m_langSet.count() && m_langSet.count() < MAX_LANGSET )
      {
        m_langSet.addLanguage(id, "", "");
        emit widgetModified();
@@ -885,7 +878,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      {
        QPixmap pix(m_langSet.pixmapFile(d_shortName->currentIndex()));
        if (!pix.isNull())
-         b_langPixmap->setPixmap(pix);
+         b_langPixmap->setIcon(QIcon(pix));
        else
          b_langPixmap->setText(i18n("Picture is Invalid"));
      }
@@ -942,7 +935,7 @@ bool LanguageOptions::setPixmap(QString pm)
     QPixmap pix (pm);
     if (!pix.isNull() ) {
       m_langSet.setPixmapFile(pm, d_shortName->currentIndex());
-      b_langPixmap->setPixmap (pix);
+      b_langPixmap->setIcon(QIcon(pix));
       emit widgetModified();
       m_hasChanged = true;
       return true;
@@ -1000,7 +993,7 @@ KVTLanguages LanguageOptions::getLangSet () const
 
 void LanguageOptions::loadCountryData()
 {
-  // temperary use of our locale as the global locale
+  // temporary use of our locale as the global locale
   KLocale *lsave = KGlobal::locale();
   QString curr_lang = lsave->language();
 
@@ -1013,20 +1006,22 @@ void LanguageOptions::loadCountryData()
   QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop"));
   regionlist.sort();
 
-  QMap<QString, Region>  regions;
+  QMap<QString, Region> regions;
 
-  for (QStringList::ConstIterator it = regionlist.begin(); it != regionlist.end(); ++it)
+  foreach(QString region, regionlist)
   {
-    QString tag = *it;
+    QString tag = region;
     int index;
 
     index = tag.lastIndexOf('/');
-    if (index != -1) tag = tag.mid(index + 1);
+    if (index != -1)
+      tag = tag.mid(index + 1);
 
     index = tag.lastIndexOf('.');
-    if (index != -1) tag.truncate(index);
+    if (index != -1)
+      tag.truncate(index);
 
-    KConfig entry(*it, KConfig::OnlyLocal);
+    KConfig entry(region, KConfig::OnlyLocal);
     KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
     QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
 
@@ -1037,14 +1032,14 @@ void LanguageOptions::loadCountryData()
   QStringList countrylist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*/entry.desktop"));
 
   int idx = 0;
-  for (QStringList::ConstIterator sit = countrylist.begin(); sit != countrylist.end(); ++sit)
+  foreach(QString country, countrylist)
   {
-    KConfig entry(*sit, KConfig::OnlyLocal);
+    KConfig entry(country, KConfig::OnlyLocal);
     KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
     QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
-    QString submenu = group.readEntry(QString::fromLatin1("Region"),QString());
+    QString submenu = group.readEntry(QString::fromLatin1("Region"), QString());
 
-    QString tag = *sit;
+    QString tag = country;
     int index = tag.lastIndexOf('/');
     tag.truncate(index);
     index = tag.lastIndexOf('/');
@@ -1053,22 +1048,23 @@ void LanguageOptions::loadCountryData()
     if (tag == "C")
       continue;
 
-    QStringList all_langs = group.readEntry(QString::fromLatin1("Languages"),QString()).split(",", QString::SkipEmptyParts);
+    QStringList all_langs = group.readEntry(QString::fromLatin1("Languages"), QString()).split(",", QString::SkipEmptyParts);
     QList<int> langs;
 
-    QString pixmap = *sit;
+    QString pixmap = country;
     index = pixmap.lastIndexOf('/');
     pixmap.truncate(index);
     pixmap += "/flag.png";
 
-    for (QStringList::Iterator it = all_langs.begin(); it != all_langs.end(); ++it)
+    foreach(QString lang, all_langs)
     {
       // Treat ie "en_GB" and "en_USE" as "en" because the language list
       // only contains the first letters
-      if ((*it).indexOf("_"))
-        *it = (*it).left((*it).indexOf("_"));
+      QString it = lang;
+      if (it.indexOf("_"))
+        it = it.left(it.indexOf("_"));
 
-      int id = global_langset.indexShortId(*it);
+      int id = global_langset.indexShortId(it);
       if (id > 0)
       {
         langs.append(id);
@@ -1086,19 +1082,19 @@ void LanguageOptions::loadCountryData()
     regions[submenu].countries.append(countryIdMap[id]);
   }
 
-  langset_popup = new KMenu();
+  m_kdeLanguagesMenu = new QMenu();
 
   // To have it sorted by name
   QMap<QString, Region> regmap;
-  for (QMap<QString, Region>::Iterator it = regions.begin(); it != regions.end(); ++it)
-    regmap.insert(it.value().region, it.value());
+  foreach(Region reg, regions)
+    regmap.insert(reg.region, reg);
 
-  connect(langset_popup, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
+  QAction *a;
+
   for (QMap<QString, Region>::Iterator it = regmap.begin(); it != regmap.end(); ++it)
   {
-    KMenu *regpop = new KMenu();
-    connect(regpop, SIGNAL(activated(int)), this, SLOT(slotLangFromGlobalActivated(int)));
-    langset_popup->insertItem(it.key(), regpop);
+    QMenu *regpop = m_kdeLanguagesMenu->addMenu(it.key());
+    connect(regpop, SIGNAL(triggered(QAction *)), this, SLOT(slotLangFromGlobalActivated(QAction *)));
     Region r = it.value();
 
     // To have it sorted by name
@@ -1109,7 +1105,8 @@ void LanguageOptions::loadCountryData()
     }
     for (QMap<QString, Country>::Iterator it = countrymap.begin(); it != countrymap.end(); ++it)
     {
-      regpop->insertItem(QPixmap(it.value().pixmap), it.key(), it.value().id);
+      a = regpop->addAction(QPixmap(it.value().pixmap), it.key()/*, it.value().id*/);
+      a->setData(it.value().id);
     }
   }
 
@@ -1118,8 +1115,10 @@ void LanguageOptions::loadCountryData()
 }
 
 
-void LanguageOptions::slotLangFromGlobalActivated(int i)
+void LanguageOptions::slotLangFromGlobalActivated(QAction *act)
 {
+  int i = act->data().toInt();
+  kDebug() << i << endl;
   if (countryIdMap.contains(i))
   {
     Country c = countryIdMap[i];
@@ -1186,33 +1185,38 @@ void LanguageOptions::createISO6391Menus()
     languages.insert(s, id);
   }
 
-  iso6391_popup = new KMenu();
+  m_isoLanguagesMenu = new QMenu();
 
   QMenu *pop = 0;
+  QAction *a = 0;
+
   QString lang = "";
   for (QMap<QString, int>::Iterator it = languages.begin(); it != languages.end(); ++it)
   {
     if (it.key()[0].toUpper() != lang[0].toUpper())
-    {
-      pop = new QMenu();
-      connect(pop, SIGNAL(activated(int)), this, SLOT(slotLangFromISO6391Activated(int)));
-      iso6391_popup->insertItem(QString(it.key()[0].toUpper()), pop, 1);
-    }
+      pop = m_isoLanguagesMenu->addMenu(QString(it.key()[0].toUpper()));
 
     lang = it.key();
     QString shortid = global_langset.shortId(it.value());
     QString short2id = global_langset.shortId2(it.value());
-    lang += "\t("+shortid+')';
+    lang += "\t(" + shortid + ')';
     QString pixmap = global_langset.pixmapFile(it.value());
-    if (pixmap.isEmpty())
-      pop->insertItem(lang, it.value());
-    else
-      pop->insertItem(QPixmap(pixmap), lang, it.value());
+    if (pixmap.isEmpty()) {
+      a = pop->addAction(lang);
+      a->setData(it.value());
+    }
+    else {
+      a = pop->addAction(QPixmap(pixmap), lang);
+      a->setData(it.value());
+    }
+    connect(pop, SIGNAL(triggered(QAction *)), this, SLOT(slotLangFromISO6391Activated(QAction *)));
   }
 }
 
-void LanguageOptions::slotLangFromISO6391Activated(int id)
+void LanguageOptions::slotLangFromISO6391Activated(QAction *act)
 {
+   int id = act->data().toInt();
+
    if (id < global_langset.count())
    {
      QString shortid = global_langset.shortId(id);
@@ -1274,6 +1278,4 @@ void LanguageOptions::updateSettings()
   m_hasChanged = false;
 }
 
-
 #include "languageoptions.moc"
-

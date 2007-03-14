@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Apr 5 2005
+    begin        : Tue Apr 5 2005
 
-    Copyright (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright    : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -25,8 +25,7 @@
 #define LANGUAGEOPTIONS_H
 
 #include <QList>
-
-#include <kmenu.h>
+#include <QMenu>
 
 #include "ui_languageoptionsbase.h"
 #include "kvtlanguages.h"
@@ -36,14 +35,13 @@ class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
   Q_OBJECT
 public:
   LanguageOptions(KVTLanguages & langset, QWidget* parent = 0);
-  virtual ~LanguageOptions();
 
   KVTLanguages getLangSet () const;
 
   struct Country
   {
-    Country(const QString& c, const QList<int> l, const QString& p, int i)
-      : country(c), langs(l), pixmap(p), id(i) { }
+    Country(const QString &c, const QList<int> l, const QString &p, int i)
+      : country(c), langs(l), pixmap(p), id(i) {}
     Country() { }
     QString country;
     QList<int> langs;
@@ -53,8 +51,7 @@ public:
 
   struct Region
   {
-    Region (const QString& reg)
-      : region(reg) {}
+    Region(const QString &reg) : region(reg) {}
     Region() {}
     QString region;
     QList<Country> countries;
@@ -76,8 +73,8 @@ protected slots:
   void slotShort2Changed(const QString&);
   void slotShortActivated(const QString&);
   void slotNewNameChanged(const QString&);
-  void slotLangFromGlobalActivated(int);
-  void slotLangFromISO6391Activated(int);
+  void slotLangFromGlobalActivated(QAction *);
+  void slotLangFromISO6391Activated(QAction *);
   void slotKeyboardLayoutChanged(const QString&);
 
 private:
@@ -89,12 +86,11 @@ private:
 
   KVTLanguages global_langset;
   QMap<int, Country> countryIdMap;
-  KMenu * langset_popup;
-  KMenu * iso6391_popup;
+  QMenu * m_kdeLanguagesMenu;
+  QMenu * m_isoLanguagesMenu;
   KVTLanguages m_langSet;
   QString m_lastPix;
   bool m_hasChanged;
 };
 
 #endif
-
