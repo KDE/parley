@@ -125,17 +125,19 @@ void LessOptPage::slotDeleteLesson()
 {
   int act = m_currentLesson;
   if (optionsList->count() > 0 && (int) optionsList->count() > act) {
-
+    // look if it's empty
     for (int ent = 0; ent < doc->entryCount(); ent++) {
       if (doc->entry(ent)->lesson() == lessonIndex[act]) {
         KMessageBox::information(this, i18n("The selected lesson could not be deleted\nbecause it is in use."), i18n("Deleting Lesson"));
-        return;
+        return; //no, still entries left here
       }
     }
 
     delete optionsList->takeItem(act);
-    lessonIndex.erase(lessonIndex.begin() + act);
+    lessonIndex.erase(lessonIndex.begin() + act); // in the end only disable the lesson number, it seems (?)
 
+
+  //only update the "view" from here on
     if ((int) optionsList->count() <= act)
       act = optionsList->count() - 1;
     else

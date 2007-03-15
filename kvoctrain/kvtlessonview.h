@@ -24,8 +24,8 @@ public slots:
   void slotModelReset();
   void slotCreateNewLesson();
   void slotRenameLesson();
-
-void contextMenuEvent(QContextMenuEvent * ev);
+  void slotDeleteLesson();
+  void contextMenuEvent(QContextMenuEvent * ev);
 
 private:
   KVTLessonModel *m_model;

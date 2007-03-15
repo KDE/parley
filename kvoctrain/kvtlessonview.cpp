@@ -14,6 +14,7 @@
 #include <QMenu>
 #include <QContextMenuEvent>
 #include <KAction>
+#include <KMessageBox>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
@@ -95,7 +96,6 @@ void KVTLessonView::slotCreateNewLesson(){
   // -1 because of counting from 1 of m_doc
   QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
   mySelection.select(indexOfCurrent, indexOfCurrent);
-  //QItemSelectionModel *selectionModel = this->selectionModel();
   selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
 
   QList<int> intLessons;
@@ -119,11 +119,30 @@ void KVTLessonView::slotRenameLesson(){
     return;
   }
   edit ( indexes.at(0) ); // let the user type a new name for the lesson
+  // can I update the main table here?
+  //emit SOME SIGNAL HERE(indexes.at(0), indexes.at(0));
 }
-/*7
-void KVTLessonView::slotRenameLesson(const QModelIndex & index ){
+
+void KVTLessonView::slotDeleteLesson(){
+  //(note to self) see also LessOptPage.cpp, same name - original implementation
+  
+  QModelIndexList indexes = selectionModel()->selectedIndexes();
+  if (indexes.empty()) {
+    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+    return;
+  }
+  // Delete right away, if the lesson is empty, otherwise ask
+  
+  kDebug() << " Del: " << indexes.at(0).row() << " of " << m_model->document()->lessonDescriptions() << endl;
+  
+  if( m_model->document()->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEmptyLesson ))
+    return; // lesson was empty - done.
+  int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!"));
+  if(exit == KMessageBox::Yes){
+     m_model->document()->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEntriesAndLesson );
+  }
+    /// do I have to make a new selection?
 }
-*/
 
 void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {
   m_lessonPopupMenu->exec(ev->globalPos());
