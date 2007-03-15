@@ -71,7 +71,11 @@ There is some interesting stuff on config dialogs on
 http://wiki.openusability.org/guidelines/index.php/Practical_Examples:Configuration_Dialogs
 Maybe it would be cool to have the colors like they do there - in a list view.
 
+<peter>Possibly, but they don't show what happens behaind the Edit button, and since collor is the only property we change I think we are OK.
+
 Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
+
+<peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronounciation. I have added some tooltips/whatsthis
 
 In query: make an option to show current lesson, when questioning.
 
@@ -106,7 +110,13 @@ Can we redefine the xml? Maybe write a little conversion tool, to make the old s
 Makes me wonder if it would be ok to return -1 as index, if no lesson is set and simply use the 0 to make everything more consistent???
 Also attributes are a little abused. Maybe we could reduce them a little? What do other apps find crappy about the format? Does anyone use it this intensive?
 I want kvtml version 2 !?!
+
+<peter>So do I, but maybe for slightly different reasons.
+
 I also don't think the original-trans1-trans2 thing is great. Original should not need a special treatment. (Why should it). So either to make it politically correct call them identifier 1..n or language 1..n, because language is easier to remember.
+
+<peter>See https://bugs.kde.org/show_bug.cgi?id=93446 for why this might not be such a good idea.
+
 <lesson "My test">
 	<entry>
 		<lang "en">to go</lang>
