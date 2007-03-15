@@ -20,6 +20,13 @@ Check all query dialogs so that they work properly.
 
 All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface.
 
+When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml.
+
+Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating.
+
+Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
+
+Default lesson comes into existence sometimes... why? (When deleting a lesson).
 
 --------------------
  NOT SO FAR FUTURE:
@@ -53,6 +60,8 @@ Configure->View Settings: IPA font could be changed into something meaningfull. 
 <peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronunciation. I have added some tooltips/whatsthis
 
 In query: make an option to show current lesson, when questioning.
+
+Creating a new document is still hell. Maybe for now we could just ask for two languages which covers probably about 99% of the cases, the others will then find their way to add another...
 
 ------------------
  LONG TERM STUFF:
@@ -91,6 +100,7 @@ I want kvtml version 2 !?!
 I also don't think the original-trans1-trans2 thing is great. Original should not need a special treatment. (Why should it). So either to make it politically correct call them identifier 1..n or language 1..n, because language is easier to remember.
 
 <peter>See https://bugs.kde.org/show_bug.cgi?id=93446 for why this might not be such a good idea.
+Frederik: I see. Well, when thinking about a new xml structure, this could be taken into account. I'd still like to do it somehow. This has to be done careful anyway.
 
 <lesson "My test">
 	<entry>
@@ -130,8 +140,11 @@ Move Merge to the library so both KVT and KWQ can use it. -- DONE
 
 Be able to configure directory for New Stuff downloads -- DONE
 
+Crash when close -> cancel (I think it does not happen any more(?)) -- DONE
+
 Get rid of copy/paste order stuff.  -- DONE
 
 Review the configuration dialog -- DONE
 
 DONE ? Crash when close -> cancel (I think it does not happen any more(?)) -- DONE
+
