@@ -39,11 +39,13 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
 void KVTSortFilterModel::setLessonRegExp(const QRegExp& filter)
 {
   m_lessonFilter = filter;
+  filterChanged();
 }
 
 void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
 {
   m_searchFilter = filter;
+  filterChanged();
 }
 
 /**
@@ -108,15 +110,6 @@ bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
       return false;
 
   return true;
-}
-
-void KVTSortFilterModel::delLessonFilter()
-{
-  m_lessonFilter = QRegExp();
-}
-void KVTSortFilterModel::delSearchFilter()
-{
-  m_searchFilter = QRegExp();
 }
 
 #include "kvtsortfiltermodel.moc"

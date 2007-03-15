@@ -912,16 +912,15 @@ void KVocTrainApp::slotRemoveLanguage(int index)
 void KVocTrainApp::slotSearch(const QString& s)
 {
   if (s.length() == 0) {
-    m_sortFilterModel->delSearchFilter();
-    m_tableModel->reset();
+    m_sortFilterModel->setSearchRegExp(QRegExp());
     return;
   }
-  QString searchterm = QString(s);
+  QString searchterm = s;
   searchterm.replace(QString(" "), QString("|"));
   QRegExp searchRegExp = QRegExp(".*(" + searchterm + ").*");
   searchRegExp.setCaseSensitivity(Qt::CaseInsensitive);
   m_sortFilterModel->setSearchRegExp(searchRegExp);
-  m_tableModel->reset();
+
 }
 
 
@@ -1335,7 +1334,6 @@ void KVocTrainApp::updateTableFilter()
       break;
   }
   m_doc->setModified();
-  m_tableModel->reset();
 }
 
 void KVocTrainApp::slotLessonSelectionComboChanged(int index)

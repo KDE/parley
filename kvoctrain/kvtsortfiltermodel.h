@@ -35,8 +35,6 @@ public:
   bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
   void setLessonRegExp(const QRegExp& filter);
   void setSearchRegExp(const QRegExp& filter);
-  void delLessonFilter();
-  void delSearchFilter();
 
 private:
   /// used by filterAcceptsRow()

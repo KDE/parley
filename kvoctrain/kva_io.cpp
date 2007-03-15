@@ -174,7 +174,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
     connect (m_doc, SIGNAL (docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     m_doc->setModified(false);
     m_tableModel->reset();
-    m_sortFilterModel->clear();
+
     if (m_tableView)
       m_tableView->adjustContent();
   }
