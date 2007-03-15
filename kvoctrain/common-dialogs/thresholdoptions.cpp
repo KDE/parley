@@ -445,6 +445,7 @@ void ThresholdOptions::updateSettings()
 
 bool ThresholdOptions::hasChanged()
 {
+  ///@todo always returns true
   if (lessoncomp->currentIndex() < 0 || typecomp->currentIndex() < 0 
       || gradecomp->currentIndex() < 0 || querycomp->currentIndex() < 0
       || badcomp->currentIndex() < 0 || datecomp->currentIndex() < 0

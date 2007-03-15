@@ -266,18 +266,26 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
       if (!pix.isNull() )
       {
         m_lastPix = m_langSet.pixmapFile(0);
+        b_langPixmap->setText(QString());
         b_langPixmap->setIcon(QIcon(pix));
       }
       else
+      {
         b_langPixmap->setText(i18n("Picture is Invalid"));
+        b_langPixmap->setIcon(QIcon());
+      }
     }
     else
+    {
       b_langPixmap->setText(i18n("No Picture Selected"));
+      b_langPixmap->setIcon(QIcon());
+    }
   }
   else
   {
     b_langPixmap->setText(i18n("No Picture Selected..."));
     b_langPixmap->setEnabled(false);
+    b_langPixmap->setIcon(QIcon());
   }
   m_hasChanged = false;
 }
@@ -303,6 +311,7 @@ void LanguageOptions::slotDeleteClicked()
   }
   else {
     b_langPixmap->setText (i18n("No picture selected"));
+    b_langPixmap->setIcon(QIcon());
     e_langLong->setText("");
     e_shortName2->setText("");
     b_langPixmap->setEnabled(false);
@@ -423,13 +432,21 @@ void LanguageOptions::slotShortActivated(const QString& _id)
      if (!m_langSet.pixmapFile(d_shortName->currentIndex()).isEmpty())
      {
        QPixmap pix(m_langSet.pixmapFile(d_shortName->currentIndex()));
-       if (!pix.isNull())
+       if (!pix.isNull()) {
+         b_langPixmap->setText(QString());
          b_langPixmap->setIcon(QIcon(pix));
+       }
        else
+       {
          b_langPixmap->setText(i18n("Picture is Invalid"));
+         b_langPixmap->setIcon(QIcon());
+       }
      }
      else
+     {
        b_langPixmap->setText (i18n("No Picture Selected"));
+       b_langPixmap->setIcon(QIcon());
+     }
 
      QString layout = m_langSet.keyboardLayout(d_shortName->currentIndex());
 
@@ -481,6 +498,7 @@ bool LanguageOptions::setPixmap(QString pm)
     QPixmap pix (pm);
     if (!pix.isNull() ) {
       m_langSet.setPixmapFile(pm, d_shortName->currentIndex());
+      b_langPixmap->setText(QString());
       b_langPixmap->setIcon(QIcon(pix));
       emit widgetModified();
       m_hasChanged = true;
@@ -514,7 +532,7 @@ void LanguageOptions::slotPixmapClicked()
     }
     else
     {
-      QFileInfo fi (m_lastPix);
+      QFileInfo fi(m_lastPix);
       m_lastPix = fi.path()+"/flag.png";
     }
 
@@ -524,7 +542,8 @@ void LanguageOptions::slotPixmapClicked()
       if (setPixmap (s))
         m_lastPix = s;
       else {
-        b_langPixmap->setText (i18n("Picture is invalid"));
+        b_langPixmap->setText(i18n("Picture is invalid"));
+        b_langPixmap->setIcon(QIcon());
         KMessageBox::sorry(this, i18n("File does not contain a valid graphics format\n"));
       }
     }
@@ -616,8 +635,9 @@ void LanguageOptions::loadCountryData()
         langs.append(id);
         // Set the pixmap of the language to the flag of the first contry that
         // has the language as official language
-        if (global_langset.pixmapFile(id).isEmpty())
-          global_langset.setPixmapFile(pixmap, id);
+        ///@todo I have turned off icons for the ISO menu as the result was frequently wrong.
+        //if (global_langset.pixmapFile(id).isEmpty())
+          //global_langset.setPixmapFile(pixmap, id);
       }
       //else
         //kDebug() << "Couldn't find the language for: " << *it << endl;

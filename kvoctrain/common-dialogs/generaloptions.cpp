@@ -96,7 +96,8 @@ bool GeneralOptions::hasChanged()
   if (SeparatorCombo->currentIndex() < 0)
     return false;
 
-  return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator());
+  return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()) ||
+          InstallPathRequester->url().path() != Prefs::installPath();
 }
 
 
