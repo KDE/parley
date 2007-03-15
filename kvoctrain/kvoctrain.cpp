@@ -843,7 +843,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, m_lessonsComboBox, &querymanager, this, "settings",  Prefs::self());
+  KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, &querymanager, this, "settings",  Prefs::self());
   connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
   if (index >= 0)
     dialog->selectLanguagePage();

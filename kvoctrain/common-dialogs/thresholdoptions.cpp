@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Apr 5 2005
+    begin         : Tue Apr 5 2005
 
-    copyright            :(C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -57,10 +57,6 @@ static Prefs::EnumCompType::type date_complist[] =
   {Prefs::EnumCompType::DontCare, Prefs::EnumCompType::Before, Prefs::EnumCompType::Within,
    Prefs::EnumCompType::NotQueried, Prefs::EnumCompType::type(-1)};
 
-static Prefs::EnumCompType::type less_complist[] =
-  {Prefs::EnumCompType::DontCare, Prefs::EnumCompType::OneOf, Prefs::EnumCompType::NotOneOf,
-   Prefs::EnumCompType::Current, Prefs::EnumCompType::NotAssigned, Prefs::EnumCompType::type(-1)};
-
 struct ThreshListRef
 {
   const char *text;
@@ -99,13 +95,10 @@ static ThreshListRef Threshdate_itemlist [] =
       };
 
 
-ThresholdOptions::ThresholdOptions(KComboBox * lessons, KVTQuery * m, QWidget* parent) : QWidget(parent), m_lessons(lessons)
+ThresholdOptions::ThresholdOptions(KVTQuery * m, QWidget* parent) : QWidget(parent)
 {
   setupUi(this);
-  connect(lessoncomp,  SIGNAL(activated(int)), SLOT(slotSetLessonComp(int)));
-  connect(lessonlist,  SIGNAL(selectionChanged()), SIGNAL(widgetModified()));
-  connect(b_all_less,  SIGNAL(clicked()), SLOT(slotSelectAll()));
-  connect(b_none_less, SIGNAL(clicked()), SLOT(slotSelectNone()));
+
   connect(typecomp,    SIGNAL(activated(int)), SLOT(slotSetTypeComp(int)));
   connect(typelist,    SIGNAL(activated(int)), SLOT(slotComboActivated(int)));
   connect(gradecomp,   SIGNAL(activated(int)), SLOT(slotSetGradeComp(int)));
@@ -127,19 +120,15 @@ void ThresholdOptions::fillWidgets()
   Prefs::EnumCompType::type *ct;
   ThreshListRef *ref;
 
-  lessonlist->clear();
-  for (int i = 1; i < m_lessons->count(); i++ ) // first in lessons is <no lesson> !
-    lessonlist->insertItem (m_lessons->itemText(i));
-
   // limits and thresholds (the five comboboxes on the right)
   gradelist->clear();
   for (int i = 1; i <= KV_MAX_GRADE; i++)
-    gradelist->addItem (m_queryManager->gradeStr(i));
+    gradelist->addItem(m_queryManager->gradeStr(i));
 
   typelist->clear();
   all_maintypes = KVTQuery::getRelation(true); // collect main types
-  for (int i = 0; i < (int) all_maintypes.size(); i++)
-    typelist->addItem (all_maintypes[i].longStr());
+  for (int i = 0; i < all_maintypes.count(); i++)
+    typelist->addItem(all_maintypes[i].longStr());
 
   badlist->clear();
   querylist->clear();
@@ -153,24 +142,16 @@ void ThresholdOptions::fillWidgets()
   datelist->clear();
   while (ref->text != 0 )
   {
-    datelist->addItem (i18n(ref->text));
+    datelist->addItem(i18n(ref->text));
     ref++;
   }
 
-  //compare-functions (the lesson combobox and the five comboboxes on the left)
-  ct = less_complist;
-  lessoncomp->clear();
-  while (*ct != Prefs::EnumCompType::type(-1) )
-  {
-    lessoncomp->addItem (m_queryManager->compStr(*ct));
-    ct++;
-  }
-
+  //compare-functions (the five comboboxes on the left)
   ct = type_complist;
   typecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) )
   {
-    typecomp->addItem (m_queryManager->compStr(*ct));
+    typecomp->addItem(m_queryManager->compStr(*ct));
     ct++;
   }
 
@@ -178,28 +159,28 @@ void ThresholdOptions::fillWidgets()
   querycomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) )
   {
-    querycomp->addItem (m_queryManager->compStr(*ct));
+    querycomp->addItem(m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = bad_complist;
   badcomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    badcomp->addItem (m_queryManager->compStr(*ct));
+    badcomp->addItem(m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = grade_complist;
   gradecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    gradecomp->addItem (m_queryManager->compStr(*ct));
+    gradecomp->addItem(m_queryManager->compStr(*ct));
     ct++;
   }
 
   ct = date_complist;
   datecomp->clear();
   while (*ct != Prefs::EnumCompType::type(-1) ) {
-    datecomp->addItem (m_queryManager->compStr(*ct));
+    datecomp->addItem(m_queryManager->compStr(*ct));
     ct++;
   }
 }
@@ -210,20 +191,7 @@ void ThresholdOptions::updateWidgets()
   Prefs::EnumCompType::type *ct;
   ThreshListRef *ref;
 
-  QList<int> sel = m_queryManager->lessonItems();
-  if (sel.size() != 0)
-  {
-    for (int i = 0; i < (int) sel.size(); i++)
-    {
-      if (sel[i] > 0 && sel[i]-1 < (int) lessonlist->count()) // 0 = not assigned lesson
-      {
-        lessonlist->setCurrentItem(sel[i]-1);  // important with qt1.x!
-        lessonlist->setSelected(sel[i]-1, true);
-      }
-    }
-  }
-
-  gradelist->setCurrentIndex(Prefs::gradeItem());
+  gradelist->setCurrentIndex(Prefs::gradeItem() - 1);
 
   for (int i = 0; i < typelist->count(); i++)
   {
@@ -243,13 +211,7 @@ void ThresholdOptions::updateWidgets()
   }
   datelist->setCurrentIndex(index);
 
-  //compare-functions (the lesson combobox and the five comboboxes on the left)
-  ct = less_complist;
-  while (*ct != Prefs::compType(Prefs::EnumType::Lesson))
-    ct++;
-  lessoncomp->setCurrentIndex (ct - less_complist);
-  slotSetLessonComp(ct - less_complist);
-
+  //compare-functions (the five comboboxes on the left)
   ct = type_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::WordType))
     ct++;
@@ -271,30 +233,18 @@ void ThresholdOptions::updateWidgets()
   ct = grade_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Grade))
     ct++;
-  gradecomp->setCurrentIndex (ct - grade_complist);
+  gradecomp->setCurrentIndex(ct - grade_complist);
   gradelist->setEnabled(ct - grade_complist != 0); // don`t care == 0
 
   ct = date_complist;
   while (*ct != Prefs::compType(Prefs::EnumType::Date))
     ct++;
-  datecomp->setCurrentIndex (ct - date_complist);
+  datecomp->setCurrentIndex(ct - date_complist);
   if (date_complist[ct - date_complist] == Prefs::EnumCompType::Before ||
       date_complist[ct - date_complist] == Prefs::EnumCompType::Within)
     datelist->setEnabled(true);
   else
     datelist->setEnabled(false);
-}
-
-void ThresholdOptions::slotSelectAll()
-{
-  lessonlist->selectAll(true);
-  emit widgetModified();
-}
-
-void ThresholdOptions::slotSelectNone()
-{
-  lessonlist->selectAll(false);
-  emit widgetModified();
 }
 
 
@@ -328,51 +278,6 @@ void ThresholdOptions::slotSetTypeComp(int i)
   emit widgetModified();
 }
 
-void ThresholdOptions::slotSetLessonItems()
-{
-  QList<int> sel;
-  int cnt = 0;
-
-  for (int i = 0; i < (int) lessonlist->count(); i++)
-  {
-    if (lessonlist->isSelected(i))
-    {
-      sel.push_back(i+1);   // 0 = not assigned lesson
-      cnt++;
-    }
-  }
-
-  QString s;
-  s.setNum(cnt);
-  l_count->setText (s);
-
-  m_queryManager->setLessonItems(sel);
-}
-
-void ThresholdOptions::slotSetLessonComp(int i)
-{
-  if (i < 0)
-    return;
-
-  if (less_complist[i] == Prefs::EnumCompType::OneOf || less_complist[i] == Prefs::EnumCompType::NotOneOf)
-  {
-    lessonlist->setEnabled(true);
-    b_all_less->setEnabled(true);
-    b_none_less->setEnabled(true);
-    l_count->setEnabled(true);
-    l_lesson->setEnabled(true);
-  }
-  else
-  {
-    l_count->setEnabled(false);
-    lessonlist->setEnabled(false);
-    b_all_less->setEnabled(false);
-    b_none_less->setEnabled(false);
-    l_lesson->setEnabled(false);
-  }
-
-  emit widgetModified();
-}
 
 void ThresholdOptions::slotSetDateComp(int i)
 {
@@ -406,24 +311,20 @@ void ThresholdOptions::slotBlockExpire(bool block, bool expire)
 
 bool ThresholdOptions::isDefault()
 {
-  if (lessoncomp->currentIndex() < 0 || typecomp->currentIndex() < 0
+  if (   typecomp->currentIndex() < 0
       || gradecomp->currentIndex() < 0 || querycomp->currentIndex() < 0
       || badcomp->currentIndex() < 0 || datecomp->currentIndex() < 0)
         return false;
 
-  return less_complist[lessoncomp->currentIndex()] == Prefs::EnumCompType::Current &&
-         type_complist[typecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+  return type_complist[typecomp->currentIndex()]   == Prefs::EnumCompType::DontCare &&
          grade_complist[gradecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
-         date_complist[datecomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
+         date_complist[datecomp->currentIndex()]   == Prefs::EnumCompType::DontCare &&
          query_complist[querycomp->currentIndex()] == Prefs::EnumCompType::DontCare &&
-         bad_complist[badcomp->currentIndex()] == Prefs::EnumCompType::DontCare;
+         bad_complist[badcomp->currentIndex()]     == Prefs::EnumCompType::DontCare;
 }
 
 void ThresholdOptions::updateSettings()
 {
-  if (lessoncomp->currentIndex() >= 0)
-     Prefs::setCompType(Prefs::EnumType::Lesson, less_complist[lessoncomp->currentIndex()]);
-  slotSetLessonItems();
   if (typecomp->currentIndex() >= 0)
      Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentIndex()]);
   if (typelist->currentIndex() >= 0)
@@ -445,23 +346,24 @@ void ThresholdOptions::updateSettings()
 
 bool ThresholdOptions::hasChanged()
 {
-  ///@todo always returns true
-  if (lessoncomp->currentIndex() < 0 || typecomp->currentIndex() < 0 
-      || gradecomp->currentIndex() < 0 || querycomp->currentIndex() < 0
-      || badcomp->currentIndex() < 0 || datecomp->currentIndex() < 0
-      || typelist->currentIndex() < 0 || datelist->currentIndex() < 0)
-	return true;
-  return less_complist[lessoncomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Lesson) ||
-         type_complist[typecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::WordType) ||
-         grade_complist[gradecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Grade) ||
-         query_complist[querycomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Query) ||
-         bad_complist[badcomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Bad) ||
-         date_complist[datecomp->currentIndex()] != Prefs::compType(Prefs::EnumType::Date) ||
-         all_maintypes[typelist->currentIndex()].shortStr() != Prefs::typeItem() ||
-         gradelist->currentIndex() + 1 != Prefs::gradeItem() ||
-         querylist->currentIndex() != Prefs::queryItem() ||
-         badlist->currentIndex() != Prefs::badItem() ||
-         Threshdate_itemlist[datelist->currentIndex()].num != Prefs::dateItem();
+  if (gradecomp->currentIndex() < 0 ||
+      querycomp->currentIndex() < 0 ||
+      badcomp->currentIndex()   < 0 ||
+      datecomp->currentIndex()  < 0 ||
+      typelist->currentIndex()  < 0 ||
+      datelist->currentIndex()  < 0)
+    return true;
+
+  return type_complist[typecomp->currentIndex()]            != Prefs::compType(Prefs::EnumType::WordType) ||
+         grade_complist[gradecomp->currentIndex()]          != Prefs::compType(Prefs::EnumType::Grade)    ||
+         query_complist[querycomp->currentIndex()]          != Prefs::compType(Prefs::EnumType::Query)    ||
+         bad_complist[badcomp->currentIndex()]              != Prefs::compType(Prefs::EnumType::Bad)      ||
+         date_complist[datecomp->currentIndex()]            != Prefs::compType(Prefs::EnumType::Date)     ||
+         all_maintypes[typelist->currentIndex()].shortStr() != Prefs::typeItem()                          ||
+         gradelist->currentIndex() + 1                      != Prefs::gradeItem()                         ||
+         querylist->currentIndex()                          != Prefs::queryItem()                         ||
+         badlist->currentIndex()                            != Prefs::badItem()                           ||
+         Threshdate_itemlist[datelist->currentIndex()].num  != Prefs::dateItem();
 }
 
 #include "thresholdoptions.moc"

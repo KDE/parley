@@ -18,32 +18,13 @@ Search:
 -the sorting reverses again. change it to ascending or so...
 -maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment.
 
-Get rid of Qt/kde 3 stuff:
-[21:44:58] <fregl> pinotree great - tell me what's the best way of getting rid of the kde3 stuff ?? :) any tips where to begin? looking at warnings??
-[21:45:16] <pinotree> that one for depreciated method
-[21:45:42] <pinotree> and grep Q3 * for a rough find of the Q3 classes
-[21:45:53] <pinotree> iirc, in kvoctrain there are just two of them
-[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" >
-[21:46:47] <milliams> fregl: there are scripts in kdesdk i believe
-[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
-[21:47:06] <fregl> sounds like lots of fun
-[21:47:08] <pinotree> basically, these are the only two
-[21:47:15] <fregl> ok
-[21:47:38] <fregl> I'll vote for just kicking out the first one :)
-[21:47:46] <fregl> well thanks
-[21:47:57] <pinotree> np
-
-<peter> both of those will go away in the near future.
-
-Move Merge to the library so both KVT and KWQ can use it. -- DONE
-
 Check all query dialogs so that they work properly.
 
 Get rid of copy/paste order stuff.  -- IN PROGRESS
 
 Review the configuration dialog -- IN PROGRESS
 
-Be able to configure directory for New Stuff downloads
+All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface.
 
 
 --------------------
@@ -71,11 +52,11 @@ There is some interesting stuff on config dialogs on
 http://wiki.openusability.org/guidelines/index.php/Practical_Examples:Configuration_Dialogs
 Maybe it would be cool to have the colors like they do there - in a list view.
 
-<peter>Possibly, but they don't show what happens behaind the Edit button, and since collor is the only property we change I think we are OK.
+<peter>Possibly, but they don't show what happens behind the Edit button, and since color is the only property we change I think we are OK.
 
 Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
 
-<peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronounciation. I have added some tooltips/whatsthis
+<peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronunciation. I have added some tooltips/whatsthis
 
 In query: make an option to show current lesson, when questioning.
 
@@ -145,3 +126,12 @@ What happens in the unlikely (and stupid) but possible event, that the user dele
 
 Save splitter position, maybe set a more sensible default for it???? -- DONE Thanks a lot Peter! I never did anything with KConfigXT so that's great.
 
+Get rid of Qt/kde 3 stuff:
+[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" > -- DELETED
+[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
+
+<peter> both of those will go away in the near future.  -- DONE
+
+Move Merge to the library so both KVT and KWQ can use it. -- DONE
+
+Be able to configure directory for New Stuff downloads -- DONE

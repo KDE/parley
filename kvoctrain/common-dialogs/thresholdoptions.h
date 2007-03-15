@@ -4,9 +4,9 @@
 
     -----------------------------------------------------------------------
 
-    begin                : Tue Apr 5 2005
+    begin         : Tue Apr 5 2005
 
-    copyright            :(C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
   Q_OBJECT
 public:
-  ThresholdOptions(KComboBox * lessons, KVTQuery * m, QWidget* parent = 0);
+  ThresholdOptions(KVTQuery * m, QWidget* parent = 0);
 
   void updateWidgets();
   bool hasChanged();
@@ -44,22 +44,17 @@ signals:
   void widgetModified();
 
 protected slots:
-  void slotSelectAll();
-  void slotSelectNone();
   void slotComboActivated(int);
   void slotSetGradeComp(int);
   void slotSetBadComp(int);
   void slotSetQueryComp(int);
   void slotSetTypeComp(int);
-  void slotSetLessonItems();
-  void slotSetLessonComp(int);
   void slotSetDateComp(int);
   void slotBlockExpire(bool block, bool expire);
 
 private:
   void fillWidgets();
 
-  KComboBox * m_lessons;
   KVTQuery * m_queryManager;
   QList<TypeRelation> all_maintypes;
 };

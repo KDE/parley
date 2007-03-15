@@ -51,9 +51,8 @@ static const char unapplied[] = I18N_NOOP(
     "If you save a profile, those changes will not be included.\n"
     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KComboBox * lessons, KVTQuery * m, QWidget *parent,
-  const char *name,  KConfigSkeleton *config, FaceType dialogType, int /*dialogButtons*/, ButtonCode /*defaultButton*/,
-  bool /*modal*/)
+KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KVTQuery * m, QWidget *parent, const char *name, KConfigSkeleton *config, FaceType dialogType,
+                               int /*dialogButtons*/, ButtonCode /*defaultButton*/, bool /*modal*/)
   : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)
 {
   m_languagePage = 0;
@@ -74,7 +73,7 @@ KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KComboBox * lessons, KVTQuery 
   m_queryOptions = new QueryOptions(0);
   addPage(m_queryOptions, i18n("Query"), "run_query", i18n("Query Settings"), true);
 
-  m_thresholdOptions = new ThresholdOptions(lessons, m_queryManager, 0);
+  m_thresholdOptions = new ThresholdOptions(m_queryManager, 0);
   addPage(m_thresholdOptions, i18n("Thresholds"), "configure", i18n("Threshold Settings"), true);
   connect(m_thresholdOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
