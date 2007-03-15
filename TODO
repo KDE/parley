@@ -2,11 +2,9 @@
  DO IT:
 -------------------
 
-Right click stuff: delete for lessons
+Right click stuff: delete for lessons (working on it - Frederik)
 
-Save splitter position, maybe set a more sensible default for it???? -- DONE
-
-Crash when close -> cancel
+DONE ? Crash when close -> cancel (I think it does not happen any more(?))
 
 If I add a new entry it is not displayed in the table!!!!!!!!!
 ->reload !?!
@@ -69,6 +67,14 @@ Icons and artwork seems rather old... maybe ask those oxygen guys? annma said sh
 
 Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it.
 
+There is some interesting stuff on config dialogs on
+http://wiki.openusability.org/guidelines/index.php/Practical_Examples:Configuration_Dialogs
+Maybe it would be cool to have the colors like they do there - in a list view.
+
+Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
+
+In query: make an option to show current lesson, when questioning.
+
 ------------------
  LONG TERM STUFF:
 ------------------
@@ -81,7 +87,7 @@ Welcome screen with options: New file (wizzard?), manage old and query/test
 AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
 
 More test possibilities? Like plugins?
--Letter mixup like on ponsline
+-Letter mixup like on www.ponsline.de ->vocab trainer
 
 Make the query/test look better!?! Colorfull? Nice?
 
@@ -92,9 +98,40 @@ maybe some article handling? I find that I often have the word right but with wr
 
 Synonyms how??????
 
+Ok, we have the lessons - that's sort of a natural hierachy. Why not use it? In the end, much stuff might be easier, if lessons actually had a list of their entries. Also parsing the xml should almost do this... But because of the way it's defined it doesn't. Would be better do have something like 
+<lesson "My lesson">
+	<"entries here">
+</lesson>
+Can we redefine the xml? Maybe write a little conversion tool, to make the old stuff work? This way maybe lessons don't need a number any more... I have too many +1 in there because everything starts counting at 0, but I need to start lesson names at 1 because 0 is reserved for no lesson, which does not exist any more.
+Makes me wonder if it would be ok to return -1 as index, if no lesson is set and simply use the 0 to make everything more consistent???
+Also attributes are a little abused. Maybe we could reduce them a little? What do other apps find crappy about the format? Does anyone use it this intensive?
+I want kvtml version 2 !?!
+I also don't think the original-trans1-trans2 thing is great. Original should not need a special treatment. (Why should it). So either to make it politically correct call them identifier 1..n or language 1..n, because language is easier to remember.
+<lesson "My test">
+	<entry>
+		<lang "en">to go</lang>
+		<lang "de">gehen</lang>
+		<lang "es">ir</lang>
+		<type>verb</type>
+	</entry>
+	<entry>
+		<lang "en">entry</lang>
+		<lang "es">la entrada</lang>
+		<type>noun</type>
+	</entry>
+
+
+</lesson>
+
+
+
+Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries> </lesson></lesson>
 
 ------------
  SOLVED:
 ------------
 
 What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson? Ha, cannot happen - the last vocabulary cannot be deleted. Great!
+
+Save splitter position, maybe set a more sensible default for it???? -- DONE Thanks a lot Peter! I never did anything with KConfigXT so that's great.
+
