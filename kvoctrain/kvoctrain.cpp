@@ -379,9 +379,9 @@ void KVocTrainApp::commitEntryDlg(bool force)
 void KVocTrainApp::removeEntryDlg()
 {
   if (entryDlg != 0) {
-    kDebug() << "Removing entry dialog" << endl;
     commitEntryDlg(false);
-    delete entryDlg;
+    disconnect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
+    entryDlg->deleteLater();
     entryDlg = 0;
   }
 
@@ -394,13 +394,13 @@ void KVocTrainApp::slotEditEntry(int row, int col)
   if (entryDlg == 0) {
     entryDlg = new EntryDlg(this, m_doc, querymanager);
     connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
-    entryDlg->show();
+
   }
 
   if (entryDlg->isModified()) {
     commitEntryDlg(false);
   }
-
+  entryDlg->show();
   setDataEntryDlg(row, col);
 }
 

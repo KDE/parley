@@ -52,64 +52,26 @@ EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanag
   from_page = 0;
   to_page = 0;
 
-  QFrame *page;
-  QVBoxLayout *topLayout;
+  comm_page = new CommonEntryPage(doc, querymanager, this);
+  addPage(comm_page, i18n("Co&mmon"));
 
-  page = new QFrame();
-  addPage(page, i18n("Co&mmon"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  comm_page = new CommonEntryPage(doc, querymanager, page);
-  topLayout->addWidget(comm_page);
+  aux_page = new AuxInfoEntryPage(this);
+  addPage(aux_page, i18n("A&dditional"));
 
-  page = new QFrame();
-  addPage(page, i18n("A&dditional"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  aux_page = new AuxInfoEntryPage(page);
-  topLayout->addWidget(aux_page);
+  mc_page = new MCEntryPage(this);
+  addPage(mc_page, i18n("&Multiple Choice"));
 
-  page = new QFrame();
-  addPage(page, i18n("&Multiple Choice"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  mc_page = new MCEntryPage(page);
-  topLayout->addWidget(mc_page);
+  tense_page = new TenseEntryPage(this);
+  addPage(tense_page, i18n("Con&jugation"));
 
-  page = new QFrame();
-  addPage(page, i18n("Con&jugation"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  tense_page = new TenseEntryPage(page);
-  topLayout->addWidget(tense_page);
+  adj_page = new AdjEntryPage(this);
+  addPage(adj_page, i18n("Compar&ison"));
 
-  page = new QFrame();
-  addPage(page, i18n("Compar&ison"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  adj_page = new AdjEntryPage(page);
-  topLayout->addWidget(adj_page);
+  from_page = new FromToEntryPage(this);
+  addPage(from_page, i18n("&From Original"));
 
-  page = new QFrame();
-  addPage(page, i18n("&From Original"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  from_page = new FromToEntryPage(page);
-  topLayout->addWidget(from_page);
-
-  page = new QFrame();
-  addPage(page, i18n("&To Original"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  to_page = new FromToEntryPage (page);
-  topLayout->addWidget(to_page);
+  to_page = new FromToEntryPage(this);
+  addPage(to_page, i18n("&To Original"));
 
   connect(comm_page, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
 
@@ -373,18 +335,10 @@ EntryDlg::~EntryDlg()
 }
 
 
-void EntryDlg::slotClose()
-{
-  //emit sigEditChoice(EditCancel);
-  //KPageDialog::reject();
-}
-
 void EntryDlg::closeEvent(QCloseEvent * e)
 {
   Q_UNUSED(e);
   emit sigEditChoice(EditCancel);
 }
 
-
 #include "EntryDlg.moc"
-

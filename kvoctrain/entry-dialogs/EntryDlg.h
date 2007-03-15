@@ -152,7 +152,6 @@ public slots:
 
 protected slots:
   void updatePages(const QString &type);
-  void slotClose();
 
 protected:
   virtual void closeEvent(QCloseEvent*e);
@@ -166,7 +165,7 @@ protected:
   MCEntryPage      *mc_page;
   int               edit_row;
   int               edit_col;
-  QTabWidget       *tabber;
+  //QTabWidget       *tabber;
   QModelIndexList   m_selection;
   KMainWindow      *mainwin;
   QSize             oldMainSize;
