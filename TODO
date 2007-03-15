@@ -20,10 +20,6 @@ Search:
 
 Check all query dialogs so that they work properly.
 
-Get rid of copy/paste order stuff.  -- IN PROGRESS
-
-Review the configuration dialog -- IN PROGRESS
-
 All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface.
 
 
@@ -135,3 +131,7 @@ Get rid of Qt/kde 3 stuff:
 Move Merge to the library so both KVT and KWQ can use it. -- DONE
 
 Be able to configure directory for New Stuff downloads -- DONE
+
+Get rid of copy/paste order stuff.  -- DONE
+
+Review the configuration dialog -- DONE

@@ -22,17 +22,9 @@
       <label>If true, when using the entry dialog, new rows will be appended as needed</label>
       <default>false</default>
     </entry>
-     <entry name="UseCurrent" type="Bool">
-      <label>If true, it uses the same language order as the current document for the clipboard</label>
-      <default>true</default>
-    </entry>
     <entry name="Separator" type="String">
       <label>This sets the separator used when copying/pasting text, default is Tab</label>
       <default code="true">QChar('\t')</default>
-    </entry>
-    <entry name="PasteOrder" type="StringList">
-      <label>The order in which languages get pasted</label>
-      <default></default>
     </entry>
     <entry name="EntriesPerLesson" type="Int">
       <label>The number of entries per lesson</label>

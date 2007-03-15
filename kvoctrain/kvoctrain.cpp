@@ -1196,54 +1196,6 @@ void KVocTrainApp::slotFilePrint()
 }
 
 
-QList<int> KVocTrainApp::csvOrder()
-{
-  QList<int> csv_order;
-  QStringList languageList = Prefs::pasteOrder();
-
-  if (!Prefs::useCurrent())
-  {
-    foreach(const QString &language, languageList)
-    {
-      int j = m_doc->indexOfIdentifier(language);
-      if (j >= 0)
-        csv_order.append(j);
-      else
-        csv_order.append(-1);
-    }
-  }
-/*
-  for (int i = 0; i < csv_order.size(); i++)
-    cout << csv_order[i] << " ";
-  cout << endl;
-*/
-
-/*  perhaps skip missing ??
-  for (int i = csv_order.size()-1; i >= 0; i--)
-    if (csv_order[i] == -1)
-      csv_order.erase(csv_order.begin() + i);
-*/
-  // append indices from doc if no order given
-  for (int i = 0; i < m_doc->identifierCount(); i++)
-    if (qFind (csv_order.begin(), csv_order.end(), i) == csv_order.end())
-       csv_order.append(i);
-/*
-  if (csv_order.size() > doc->numIdentifiers())
-    csv_order.erase(csv_order.begin() + doc->numIdentifiers(), csv_order.end());
-*/
-
-  // remove trailing garbage
-  for (int i = csv_order.size()-1; i >= 0; i--) {
-    if (csv_order[i] != -1)
-      break;
-    else
-      csv_order.erase(csv_order.begin() + i);
-  }
-
-  return csv_order;
-}
-
-
 void KVocTrainApp::slotEditCopy()
 {
   slotStatusMsg(i18n("Copying selection to clipboard..."));
@@ -1251,21 +1203,20 @@ void KVocTrainApp::slotEditCopy()
   QApplication::setOverrideCursor(Qt::WaitCursor);
 
   QString textToCopy;
-  QList<int> csv_order = csvOrder();
   QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows(0);
 
   foreach(const QModelIndex &idx, selectedRows)
   {
     bool sep = false;
-    foreach(int i, csv_order)
+    for (int i = KV_EXTRA_COLS; i < m_tableModel->columnCount(QModelIndex()); i++)
     {
       if (!sep)
         sep = true;
       else
-        textToCopy += Prefs::separator();
+        textToCopy += '\t';
 
-      if (i >= 0)
-        textToCopy += m_tableModel->data(m_tableModel->index(idx.row(), i + KV_COL_ORG), Qt::DisplayRole).toString();
+      QModelIndex mappedIndex = m_sortFilterModel->mapToSource(m_sortFilterModel->index(idx.row(), i));
+      textToCopy += m_tableModel->data(mappedIndex, Qt::DisplayRole).toString();
     }
     if (!textToCopy.isEmpty())
       textToCopy += '\n';
@@ -1289,38 +1240,19 @@ void KVocTrainApp::slotEditPaste()
 
   QTextStream ts;
   ts.setString(&textToPaste, QIODevice::Text);
-  QList<int> csv_order = csvOrder();
 
   QString num;
 
   while (!ts.atEnd()) {
     s = ts.readLine();
-    kDebug() << s << endl;
-    // similar block in kvd_csv.cpp::loadFromCsv()
-
     if (!s.isEmpty()) {
       m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
-      QStringList sl = s.split(Prefs::separator(), QString::KeepEmptyParts);
-      ///@todo check this function
-      if (csv_order.count() > 0) {
-        // now move columns according to paste-order
-        int j = 0;
-        foreach(int i, csv_order)
-        {
-          kDebug() << "i= " << i << " j= " << j << endl;
-          if (j < sl.count()) {
-            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[j], Qt::EditRole);
-            m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
-          }
-          j++;
-        }
-      }
-      else {
-        for (int i = 0; i < sl.count(); ++i)
-        {
-          m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
-          m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
-        }
+      QStringList sl = s.split('\t', QString::KeepEmptyParts);
+
+      for (int i = 0; i < sl.count(); ++i)
+      {
+        m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
+        m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
       }
     }
   }

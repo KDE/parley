@@ -241,7 +241,6 @@ public:
   void fillLessonBox();
   void loadDocProps();
   void saveDocProps(KEduVocDocument *);
-  QList<int> csvOrder();
 
 private:
   void createNewDocument();
