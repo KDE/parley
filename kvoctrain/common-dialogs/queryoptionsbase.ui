@@ -16,6 +16,171 @@
    <property name="spacing" >
     <number>6</number>
    </property>
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="QueryTimeout" >
+     <property name="title" >
+      <string>Time Per Query</string>
+     </property>
+     <layout class="QGridLayout" >
+      <property name="margin" >
+       <number>10</number>
+      </property>
+      <property name="spacing" >
+       <number>6</number>
+      </property>
+      <item rowspan="2" row="0" column="0" >
+       <widget class="QGroupBox" name="kcfg_QueryTimeout" >
+        <property name="styleSheet" >
+         <string>QGroupBox { border-width: 0; }</string>
+        </property>
+        <property name="title" >
+         <string/>
+        </property>
+        <layout class="QGridLayout" >
+         <property name="margin" >
+          <number>0</number>
+         </property>
+         <property name="spacing" >
+          <number>6</number>
+         </property>
+         <item row="1" column="0" >
+          <widget class="QRadioButton" name="r_show_to" >
+           <property name="text" >
+            <string>&amp;Show solution</string>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="0" >
+          <widget class="QRadioButton" name="r_no_limit" >
+           <property name="toolTip" >
+            <string>Check this if you do not want any time limitation per query.</string>
+           </property>
+           <property name="whatsThis" >
+            <string>When this is checked, there is no time limitation for each query</string>
+           </property>
+           <property name="text" >
+            <string>&amp;No time limitation</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="0" >
+          <widget class="QRadioButton" name="r_cont_to" >
+           <property name="text" >
+            <string>&amp;Continue after timeout</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item row="0" column="1" >
+       <layout class="QGridLayout" >
+        <property name="margin" >
+         <number>0</number>
+        </property>
+        <property name="spacing" >
+         <number>6</number>
+        </property>
+        <item row="0" column="0" >
+         <widget class="QLabel" name="label_mqtime" >
+          <property name="text" >
+           <string>Ma&amp;x. time (s):</string>
+          </property>
+          <property name="buddy" >
+           <cstring>kcfg_MaxTimePer</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QCheckBox" name="kcfg_ShowCounter" >
+          <property name="sizePolicy" >
+           <sizepolicy>
+            <hsizetype>3</hsizetype>
+            <vsizetype>0</vsizetype>
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="toolTip" >
+           <string>If checked, activate a progress bar to show the remaining time.</string>
+          </property>
+          <property name="whatsThis" >
+           <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
+          </property>
+          <property name="text" >
+           <string>S&amp;how remaining time</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>83</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item row="0" column="1" >
+         <widget class="KIntNumInput" name="kcfg_MaxTimePer" >
+          <property name="toolTip" >
+           <string>Set the maximum time allowed per query.</string>
+          </property>
+          <property name="whatsThis" >
+           <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
+          </property>
+          <property name="minimum" >
+           <number>0</number>
+          </property>
+          <property name="maximum" >
+           <number>604800</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item row="1" column="1" >
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Expanding</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>200</width>
+          <height>16</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="5" column="0" >
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>290</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item row="2" column="0" >
     <widget class="QCheckBox" name="kcfg_AltLearn" >
      <property name="toolTip" >
@@ -26,13 +191,6 @@
      </property>
      <property name="text" >
       <string>&amp;Use alternative learning method</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
-    <widget class="QCheckBox" name="kcfg_SwapDirection" >
-     <property name="text" >
-      <string>S&amp;wap direction randomly</string>
      </property>
     </widget>
    </item>
@@ -280,166 +438,11 @@
      </layout>
     </widget>
    </item>
-   <item row="4" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
+   <item row="1" column="0" >
+    <widget class="QCheckBox" name="kcfg_SwapDirection" >
+     <property name="text" >
+      <string>S&amp;wap direction randomly</string>
      </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>290</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="0" column="0" >
-    <widget class="QGroupBox" name="QueryTimeout" >
-     <property name="title" >
-      <string>Time Per Query</string>
-     </property>
-     <layout class="QGridLayout" >
-      <property name="margin" >
-       <number>10</number>
-      </property>
-      <property name="spacing" >
-       <number>6</number>
-      </property>
-      <item rowspan="2" row="0" column="0" >
-       <widget class="QGroupBox" name="kcfg_QueryTimeout" >
-        <property name="title" >
-         <string/>
-        </property>
-        <layout class="QGridLayout" >
-         <property name="margin" >
-          <number>0</number>
-         </property>
-         <property name="spacing" >
-          <number>6</number>
-         </property>
-         <item row="1" column="0" >
-          <widget class="QRadioButton" name="r_show_to" >
-           <property name="text" >
-            <string>&amp;Show solution</string>
-           </property>
-          </widget>
-         </item>
-         <item row="0" column="0" >
-          <widget class="QRadioButton" name="r_no_limit" >
-           <property name="toolTip" >
-            <string>Check this if you do not want any time limitation per query.</string>
-           </property>
-           <property name="whatsThis" >
-            <string>When this is checked, there is no time limitation for each query</string>
-           </property>
-           <property name="text" >
-            <string>&amp;No time limitation</string>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" >
-          <widget class="QRadioButton" name="r_cont_to" >
-           <property name="text" >
-            <string>&amp;Continue after timeout</string>
-           </property>
-          </widget>
-         </item>
-        </layout>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <layout class="QGridLayout" >
-        <property name="margin" >
-         <number>0</number>
-        </property>
-        <property name="spacing" >
-         <number>6</number>
-        </property>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label_mqtime" >
-          <property name="text" >
-           <string>Ma&amp;x. time (s):</string>
-          </property>
-          <property name="buddy" >
-           <cstring>kcfg_MaxTimePer</cstring>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QCheckBox" name="kcfg_ShowCounter" >
-          <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>3</hsizetype>
-            <vsizetype>0</vsizetype>
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip" >
-           <string>If checked, activate a progress bar to show the remaining time.</string>
-          </property>
-          <property name="whatsThis" >
-           <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
-          </property>
-          <property name="text" >
-           <string>S&amp;how remaining time</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <spacer>
-          <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
-          </property>
-          <property name="sizeType" >
-           <enum>QSizePolicy::Minimum</enum>
-          </property>
-          <property name="sizeHint" >
-           <size>
-            <width>83</width>
-            <height>20</height>
-           </size>
-          </property>
-         </spacer>
-        </item>
-        <item row="0" column="1" >
-         <widget class="KIntNumInput" name="kcfg_MaxTimePer" >
-          <property name="toolTip" >
-           <string>Set the maximum time allowed per query.</string>
-          </property>
-          <property name="whatsThis" >
-           <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
-          </property>
-          <property name="minimum" >
-           <number>0</number>
-          </property>
-          <property name="maximum" >
-           <number>604800</number>
-          </property>
-         </widget>
-        </item>
-       </layout>
-      </item>
-      <item row="1" column="1" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType" >
-         <enum>QSizePolicy::Expanding</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>200</width>
-          <height>16</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-     </layout>
     </widget>
    </item>
   </layout>
