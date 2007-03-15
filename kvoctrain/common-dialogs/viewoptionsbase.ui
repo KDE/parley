@@ -42,9 +42,6 @@
      </property>
      <item row="1" column="1" >
       <widget class="KFontRequester" name="kcfg_IPAFont" >
-       <property name="toolTip" >
-        <string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
-       </property>
        <property name="whatsThis" >
         <string>Specify which font to use for displaying pronunciations using phonetic symbols.</string>
        </property>
@@ -72,9 +69,6 @@
      </item>
      <item row="0" column="1" >
       <widget class="KFontRequester" name="kcfg_TableFont" >
-       <property name="toolTip" >
-        <string>Specify which font to use for editing of the main table.</string>
-       </property>
        <property name="whatsThis" >
         <string>Specify which font to use for editing of the main table.</string>
        </property>
