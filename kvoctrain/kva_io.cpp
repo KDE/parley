@@ -303,7 +303,7 @@ void KVocTrainApp::slotFileSaveAs()
   slotStatusMsg(IDS_DEFAULT);
 }
 
-
+/*
 void KVocTrainApp::fillLessonBox()
 {
   m_lessonsComboBox->clear();
@@ -315,13 +315,13 @@ void KVocTrainApp::fillLessonBox()
   }
   m_lessonsComboBox->setCurrentIndex(m_currentLesson);
 }
-
+*/
 
 void KVocTrainApp::loadDocProps()
 {
   if (m_tableView)
     m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
-  fillLessonBox();
+//  fillLessonBox();
 
   random_expr1.clear();
   random_expr2.clear();

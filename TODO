@@ -2,8 +2,6 @@
  DO IT:
 -------------------
 
-Right click stuff: delete for lessons (working on it - Frederik)
-
 If I add a new entry it is not displayed in the table!!!!!!!!!
 ->reload !?!
 What happens if current lesson is not in query, but I want to add to it?
@@ -147,4 +145,8 @@ Get rid of copy/paste order stuff.  -- DONE
 Review the configuration dialog -- DONE
 
 DONE ? Crash when close -> cancel (I think it does not happen any more(?)) -- DONE
+
+Right click stuff: delete for lessons -Frederik -- DONE 
+
+Throw out m_currentLesson - this will be handled only in m_doc->currentLesson(). -Frederik -- DONE
 

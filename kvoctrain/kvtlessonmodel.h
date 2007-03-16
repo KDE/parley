@@ -24,8 +24,6 @@ class KEduVocDocument;
 /** 
   * Model for the list of lessons. This is a list model for now. It obtains its data from the kvtml document.
   * QStringListModel is a bit simpler, but I want to handle the m_doc interface here to keep it simple from the outside.
-  * @todo Also it automatically creates the "No lesson" virtual lesson.
-  * @todo Upon select it should set the current lesson.
   */
 class KVTLessonModel : public QAbstractListModel
 {
@@ -55,8 +53,8 @@ private:
   /** The data file */
   KEduVocDocument *m_doc;
 
-public slots:
-  void slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &);
+//public slots:
+  //void slotLessonSelectionChanged(const QModelIndex &, const QModelIndex &);
 };
 
 #endif

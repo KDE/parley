@@ -69,8 +69,8 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
   m_remarkStatusBarLabel = 0;
   m_typeStatusBarLabel = 0;
 
-  controlActive = false; ///@todo delete this variable when deleting the old lesson combo
-  m_currentLesson = 0;
+//  controlActive = false; ///@todo delete this variable when deleting the old lesson combo
+//  m_currentLesson = 0;
 
   pbar = 0;
 
@@ -263,11 +263,12 @@ void KVocTrainApp::initActions()
   vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
   vocabLanguageProperties->setStatusTip(vocabLanguageProperties->whatsThis());
 
+/* I hope we can now do without this...
   m_lessonsComboBox = new KComboBox(this);
   m_lessonsComboBox->setMinimumWidth(160);
   connect(m_lessonsComboBox, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
   m_lessonsComboBox->setFocusPolicy(Qt::NoFocus);
-
+*/
 /*
   vocabLessons = actionCollection()->addAction("vocab_lessons");
   vocabLessons->setText(i18n("Lessons"));
@@ -404,12 +405,10 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
   */
 
   /// New lesson selected
-  connect(m_lessonView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
+  connect(m_lessonView, SIGNAL( signalCurrentLessonChanged(int) ), this, SLOT(slotCurrentLessonChanged(int)));
   /// Rename lesson (?)
   //connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
-  /// Combo box - what will be displayed at the left
   connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
-
   connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
 
   //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());

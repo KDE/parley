@@ -238,9 +238,9 @@ void KVocTrainApp::slotEditCallBack(int res)
           if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG)
           {
             int lesson = m_doc->entry(row)->lesson();
-            if (lesson >= m_lessonsComboBox->count())
-              lesson = qMax (0, m_lessonsComboBox->count()-1);
-            slotChooseLesson(lesson);
+            //if (lesson >= m_lessonsComboBox->count())
+              //lesson = qMax (0, m_lessonsComboBox->count()-1);
+            m_lessonView->slotSetCurrentLesson(lesson);
 
             QString exp;
             exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
@@ -286,7 +286,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
   entryDlg->getCell(row, col, tabsel);
   int hasSel = tabsel.count() > 1;
 
-  fillLessonBox();
+//  fillLessonBox();
 
   if (!hasSel) {
     KEduVocExpression *expr = m_doc->entry(row);
@@ -584,7 +584,7 @@ void KVocTrainApp::slotDocumentProperties()
     m_doc->setModified();
 
     querymanager.setLessonItems(new_lessonsinquery);
-    fillLessonBox();
+//    fillLessonBox();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());
     QApplication::restoreOverrideCursor();
@@ -651,11 +651,11 @@ void KVocTrainApp::slotAppendRow ()
 {
   m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
   m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-  m_tableModel->setData(m_tableView->currentIndex(), m_currentLesson, KVTTableModel::LessonRole);
+  m_tableModel->setData(m_tableView->currentIndex(), m_doc->currentLesson(), KVTTableModel::LessonRole);
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 }
 
-
+/*
 void KVocTrainApp::keyReleaseEvent(QKeyEvent *e)
 {
   switch(e->key()) {
@@ -664,6 +664,7 @@ void KVocTrainApp::keyReleaseEvent(QKeyEvent *e)
       break;
   }
 }
+*/
 
 
 void KVocTrainApp::keyPressEvent(QKeyEvent *e)
@@ -671,6 +672,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
   controlActive = (e->modifiers() & Qt::ControlModifier) !=0;
 
   switch(e->key()) {
+    /*
     case Qt::Key_Plus:
       if (controlActive) {
         int less = m_lessonsComboBox->currentIndex();
@@ -692,7 +694,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
         slotChooseLesson(m_lessonsComboBox->currentIndex());
       }
     break;
-
+    */
     case Qt::Key_Control:
       controlActive = true;
       break;
@@ -723,15 +725,16 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
   slotStatusMsg(IDS_DEFAULT);
 }
 
-
+/*
 void KVocTrainApp::slotChooseLesson(int idx)
 {
   m_currentLesson = idx;
   m_doc->setCurrentLesson(idx);
   m_doc->setModified(true);
 }
+*/
 
-
+/*
 void KVocTrainApp::slotCreateLesson(int header)
 {
   QList<int> sel;
@@ -756,7 +759,7 @@ void KVocTrainApp::slotCreateLesson(int header)
   }
   m_tableModel->reset();
 }
-
+*/
 
 void KVocTrainApp::slotShowStatistics()
 {
@@ -1251,7 +1254,7 @@ void KVocTrainApp::slotEditPaste()
       for (int i = 0; i < sl.count(); ++i)
       {
         m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
-        m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_currentLesson, KVTTableModel::LessonRole);
+        m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_doc->currentLesson(), KVTTableModel::LessonRole);
       }
     }
   }
@@ -1342,13 +1345,11 @@ void KVocTrainApp::slotLessonSelectionComboChanged(int index)
   updateTableFilter();
 }
 
-void KVocTrainApp::slotCurrentLessonChanged(const QModelIndex &current, const QModelIndex &previous)
+void KVocTrainApp::slotCurrentLessonChanged(int currentLesson)
 {
-  Q_UNUSED(previous);
-  Q_UNUSED(current);
+  Q_UNUSED(currentLesson);
   updateTableFilter();
 }
-
 
 void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 {

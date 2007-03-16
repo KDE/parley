@@ -126,7 +126,7 @@ public:
 
  public slots:
   void keyPressEvent( QKeyEvent *e );
-  void keyReleaseEvent( QKeyEvent *e );
+//  void keyReleaseEvent( QKeyEvent *e );
   void slotModifiedDoc(bool mod);
   void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
 //  void slotSelectEntry (int row, int col, int key_state);
@@ -147,13 +147,12 @@ public:
   void slotProgress(KEduVocDocument*,int);
   /** Use this to filter out stuff - access from search line. */
   void slotSearch(const QString&);
-  //void slotSearchNext();
-  //void slotInitSearch();
-  void slotCreateLesson(int header);
+  
+  // was never used: void slotCreateLesson(int header);
   void slotCleanVocabulary ();
-  void slotChooseLesson(int id);
+  // not used: void slotChooseLesson(int id);
   /** selection of a lesson from the lesson list on the left */
-  void slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &);
+  void slotCurrentLessonChanged(int currentLesson);
   /** selection of which lessons should be in the table to edit */
   void slotLessonSelectionComboChanged(int index);
 
@@ -339,7 +338,7 @@ private:
 
   KLineEdit           *m_searchLine;
   KComboBox           *m_lessonsComboBox;
-  int                  m_currentLesson;
+  //int                  m_currentLesson; // m_doc->currentLesson()
   KVTQuery             querymanager;
   bool                 controlActive;
 

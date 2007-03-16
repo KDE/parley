@@ -157,14 +157,13 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
  * @param parent
  * @return
  */
- /*
+ /* creating lessons is in the view...
 bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &parent)
 {
   Q_UNUSED(parent);
   beginInsertRows(QModelIndex(), position, position + rows - 1);
 
   for (int row = 0; row < rows; ++row) {
-      //TODO how do I set up a new lesson?
       //m_doc->lessonDescriptions().insert(position, "");
   }
 
@@ -180,7 +179,7 @@ bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &paren
  * @param parent
  * @return
  */
- /*
+ /* view? maybe should be reworked
 bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &parent)
 {
   Q_UNUSED(parent);
@@ -188,7 +187,6 @@ bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &paren
 
   for (int row = 0; row < rows; ++row) {
       //stringList.removeAt(position);
-      //TODO delete lesson? Only if empty?
   }
 
   endRemoveRows();
@@ -201,15 +199,16 @@ bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &paren
  * @param start
  * @param end
  */
+/*
 void KVTLessonModel::slotLessonSelectionChanged(const QModelIndex &start, const QModelIndex &end){
   Q_UNUSED(end);
-  /** we only have one lesson selectable at the time - start is enough */
-  int index = start.row(); 
+  *//** we only have one lesson selectable at the time - start is enough */
+/*  int index = start.row(); 
   if (index >= 0){
     m_doc->setCurrentLesson(index +1);
     //kDebug() << "Current lesson set to: " << index << " " << m_lessonList.at(index+1) << endl;
   }
 }
-
+*/
 
 #include "kvtlessonmodel.moc"

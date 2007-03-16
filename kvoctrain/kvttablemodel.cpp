@@ -135,8 +135,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             list.append(i18n("Default lesson"));
             m_doc->setLessonDescriptions(list);
             defaultLessonIndex = m_doc->lessonIndex(i18n("Default lesson"));
-            /** @todo Maybe better to ask the user whether he is ok with moving his no lesson stuff to default?
-                but this should be still downwards compatible so I see no real need.*/
           }
           m_doc->entry(index.row())->setLesson(defaultLessonIndex);
           result = i18n("Default lesson");
