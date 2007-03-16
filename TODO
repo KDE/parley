@@ -18,7 +18,7 @@ Check all query dialogs so that they work properly.
 
 All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface.
 
-When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml.
+When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
 Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating.
 

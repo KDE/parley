@@ -33,7 +33,7 @@ int main(int argc, char* argv[]) {
 
 static KCmdLineOptions options[] =
 {
-  { I18N_NOOP("+[file]"),   I18N_NOOP("Document file to open"), 0 },
+  { I18N_NOOP("+[file]"), I18N_NOOP("Document file to open"), 0 },
   KCmdLineLastOption
 };
 
@@ -47,7 +47,7 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
                        KAboutData::License_GPL,
                        I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
                        "(c) 2001-2002\tThe KDE team\n"
-                       "(c) 2004-2005\tPeter Hedlund\n"),
+                       "(c) 2004-2007\tPeter Hedlund\n"),
                        I18N_NOOP("Helps you train your vocabulary"),
                        "http://edu.kde.org/kvoctrain",
                        "submit@bugs.kde.org");
@@ -107,9 +107,10 @@ static const char version[]     = KVOCTRAIN_VERSION_STRING;
     KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
     kva = new KVocTrainApp;
 
-    if ( args && args->count() == 1 )
-      kva->loadFileFromPath(KUrl(args->arg(0)), true);
-
+    if ( args && args->count() == 1 ) {
+      KUrl url = KUrl::fromPath(args->arg(0));
+      kva->loadFileFromPath(url, true);
+    }
     kva->show();
   }
   return app.exec();
