@@ -93,7 +93,6 @@ void KVTTableView::print(KPrinter * pPrinter)
   int hh = horizontalHeader()->height();
   int tPos = marg + hh;
 
-  QColorGroup cg;
   QStyleOptionViewItem option;
   option.initFrom(this);
 

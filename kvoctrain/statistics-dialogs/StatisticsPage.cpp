@@ -61,7 +61,7 @@ StatisticsPage::StatisticsPage(int col, KEduVocDocument * doc, QWidget *parent) 
 
   setupData();
 
-  StatListView->sortItems(TB_LESSON, Qt::Ascending);
+  StatListView->sortItems(TB_LESSON, Qt::AscendingOrder);
   connect(StatListView, SIGNAL(currentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)), this, SLOT(slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *)));
 }
 
