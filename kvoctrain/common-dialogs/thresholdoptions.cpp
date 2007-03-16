@@ -21,7 +21,6 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <Q3ListBox>
 #include <QPushButton>
 #include <QLabel>
 #include <QComboBox>
