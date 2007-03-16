@@ -109,6 +109,11 @@ public:
 
   /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
   void updateTableFilter();
+  /** Make sure, the lesson is visible - if combo is set to 
+    1. all, no problem 
+    2. in query -> if current not in query change combo?
+    3. current -> make the lesson current */
+  void makeLessonVisibleInTable(int lessonIndex);
 
   /** saves the window properties for each open window during session end to the session config file, including saving the currently
   * opened file by a temporary filename provided by KApplication.

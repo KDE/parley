@@ -653,6 +653,34 @@ void KVocTrainApp::slotAppendRow ()
   m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
   m_tableModel->setData(m_tableView->currentIndex(), m_doc->currentLesson(), KVTTableModel::LessonRole);
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+  makeLessonVisibleInTable(m_doc->currentLesson());
+  /// @todo make the new entry actually visible (reset?)
+}
+
+void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
+{
+  /// @todo implement
+  kDebug() << " Implement me - make sure, the inserted stuff is visible! (Combobox!)" << endl;
+  switch (m_lessonSelectionCombo->currentIndex() )
+  {
+    case Prefs::EnumLessonEditingSelection::CurrentLesson:
+      kDebug() << " Make xy current" << endl;
+      m_doc->setCurrentLesson(lessonIndex);
+      m_lessonView->reset();
+      break;
+    case Prefs::EnumLessonEditingSelection::LessonsInQuery:
+      kDebug() << " Make xy query... " << endl;
+      m_doc->setCurrentLesson(lessonIndex);
+      if( !m_doc->lessonsInQuery().contains(lessonIndex))
+      {
+        m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
+      }
+      m_lessonView->reset();
+      break;
+    case Prefs::EnumLessonEditingSelection::AllLessons:
+      break;
+  }
+  updateTableFilter();
 }
 
 /*
@@ -1234,6 +1262,7 @@ void KVocTrainApp::slotEditCopy()
 
 void KVocTrainApp::slotEditPaste()
 {
+  /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
   slotStatusMsg(i18n("Inserting clipboard contents..."));
 
   QApplication::setOverrideCursor(Qt::WaitCursor);

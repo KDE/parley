@@ -2,10 +2,6 @@
  DO IT:
 -------------------
 
-If I add a new entry it is not displayed in the table!!!!!!!!!
-->reload !?!
-What happens if current lesson is not in query, but I want to add to it?
-
 When renaming a lesson, the main table is not updated.
 
 Just noticed: we have what's this - need to add hints!!
@@ -16,7 +12,6 @@ Search:
 
 Check all query dialogs so that they work properly.
 
-All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -24,7 +19,7 @@ Inserting new vocab does not insert it into the currently selected lesson. Maybe
 
 Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
-Default lesson comes into existence sometimes... why? (When deleting a lesson).
+Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
 --------------------
  NOT SO FAR FUTURE:
@@ -150,3 +145,7 @@ Right click stuff: delete for lessons -Frederik -- DONE
 
 Throw out m_currentLesson - this will be handled only in m_doc->currentLesson(). -Frederik -- DONE
 
+If I add a new entry it is not displayed in the table!!!!!!!!!
+What happens if current lesson is not in query, but I want to add to it? Switch combo state for now. -Frederik -- DONE
+
+All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface. -- DONE
