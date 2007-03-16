@@ -42,6 +42,18 @@ KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
   m_lessonPopupMenu->addAction(actionDeleteLesson);
   actionDeleteLesson->setIcon(KIcon("edit-delete"));
   connect(actionDeleteLesson, SIGNAL(triggered()), this, SLOT(slotDeleteLesson()));
+
+  m_lessonPopupMenu->addSeparator();
+
+  KAction *actionCheckAllLessons = new KAction(i18n("Check all lessons"), this);
+  m_lessonPopupMenu->addAction(actionCheckAllLessons);
+  actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
+  connect(actionCheckAllLessons, SIGNAL(triggered()), this, SLOT(slotCheckAllLessons()));
+
+  KAction *actionCheckNoLessons = new KAction(i18n("Deselect all lessons"), this);
+  m_lessonPopupMenu->addAction(actionCheckNoLessons);
+  actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
+  connect(actionCheckNoLessons, SIGNAL(triggered()), this, SLOT(slotCheckNoLessons()));
 }
 
 void KVTLessonView::setModel(KVTLessonModel *model)
@@ -75,6 +87,21 @@ void KVTLessonView::initializeSelection()
   /// @todo the tablemodel also needs to update !
   emit currentChanged(indexOfCurrent, indexOfCurrent);
   */
+}
+
+void KVTLessonView::slotCheckAllLessons (){
+  QList<int> intLessons;
+  for(int lesson =1; lesson <= m_model->document()->lessonCount(); lesson++){
+    intLessons.append(lesson);
+  }
+  m_model->document()->setLessonsInQuery(intLessons);
+  reset();
+}
+
+void KVTLessonView::slotCheckNoLessons (){
+  QList<int> intLessons;
+  m_model->document()->setLessonsInQuery(intLessons);
+  reset();
 }
 
 void KVTLessonView::slotCreateNewLesson(){

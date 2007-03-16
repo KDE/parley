@@ -28,6 +28,8 @@ public slots:
   void slotSetCurrentLesson(int currentIndex);
   void contextMenuEvent(QContextMenuEvent * ev);
   void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
+  void slotCheckAllLessons ();
+  void slotCheckNoLessons ();
 signals:
   void signalCurrentLessonChanged(int currentIndex);
 
