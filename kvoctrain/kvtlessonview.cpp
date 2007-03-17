@@ -205,6 +205,9 @@ void KVTLessonView::selectionChanged( const QItemSelection & selected, const QIt
   }
   slotSetCurrentLesson(index);
   reset();
+
+  /// @todo emit to update combobox (query selected)
+  emit lessonsInQueryChanged();
 }
 
 void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {

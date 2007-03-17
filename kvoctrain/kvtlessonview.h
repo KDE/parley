@@ -32,7 +32,7 @@ public slots:
   void slotCheckNoLessons ();
 signals:
   void signalCurrentLessonChanged(int currentIndex);
-
+  void lessonsInQueryChanged();
 private:
   KVTLessonModel *m_model;
   QMenu *m_lessonPopupMenu;

@@ -20,9 +20,6 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
   setSortCaseSensitivity(Qt::CaseInsensitive);
   m_searchFilter = QRegExp();
   m_lessonFilter = QRegExp();
-
-  // only show things starting with a:
-  //m_searchFilter = QRegExp("a.*");
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
@@ -70,8 +67,8 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
  */
 bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
 {
-  QModelIndex lessons = sourceModel()->index(sourceRow, 0, sourceParent);
-  if(m_lessonFilter.exactMatch(sourceModel()->data(lessons, Qt::DisplayRole).toString() ) )
+  QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
+  if(sourceModel()->data(lesson, Qt::DisplayRole).toString().contains(m_lessonFilter))
     return true;
   return false;
 }
@@ -81,12 +78,14 @@ bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourcePar
  */
 bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourceParent) const
 {
+//sourceModel()->data(index0).toString().contains(filterRegExp()
+
   /// Check if the vocabs contain the expression:
   QModelIndex lang;
   for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++)
   {
-    QModelIndex lang = sourceModel()->index(sourceRow, i+2, sourceParent);
-    if( m_searchFilter.exactMatch(sourceModel()->data(lang, Qt::DisplayRole).toString()) )
+    lang = sourceModel()->index(sourceRow, i+2, sourceParent);
+    if( sourceModel()->data(lang, Qt::DisplayRole).toString().contains(m_searchFilter) )
       return true;
   }
   return false;
