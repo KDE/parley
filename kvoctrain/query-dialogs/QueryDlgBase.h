@@ -89,6 +89,8 @@ signals:
   void sigEditEntry(int row, int col);
 
 protected:
+  void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, int QFontWeight);
+
   virtual void closeEvent(QCloseEvent*e);
   virtual void slotUser1();
 

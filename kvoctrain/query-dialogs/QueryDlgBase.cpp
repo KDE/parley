@@ -85,31 +85,13 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
   if (!field->isEnabled() )
     return true;
 
-  // Make the font bold
-  QFont ft = field->font();
-  if (ft.weight() != QFont::Bold) {
-    ft.setWeight(QFont::Bold);
-    field->setFont(ft);
+  if (smartCompare(really, field->text(), 0) ) { // answer was right - green text
+    setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x80, 0x00), QFont::Bold);
+    return true;
   }
-
-  bool ret = false;
-  if (smartCompare(really, field->text(), 0) ) { // answer was right
-    ret = true;
-    // green text
-    QPalette qp = QPalette(field->palette());
-    qp.setColor(QPalette::Active, QPalette::Text, QColor(0x00, 0x80, 0x00));
-    qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0x00, 0x80, 0x00));
-    field->setPalette(qp);
-  }
-  else
-  { // wrong
-    // red text
-    QPalette qp = QPalette(field->palette());
-    qp.setColor(QPalette::Active, QPalette::Text, QColor(0xff, 0x00, 0x00));
-    qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0xff, 0x00, 0x00));
-    field->setPalette(qp);
-  }
-  return ret;  // right/wrong
+  // wrong - red text
+  setWidgetTextColorAndFontWeight(field, QColor(0xff, 0x00, 0x00), QFont::Bold);
+  return false;  // right/wrong
 }
 
 
@@ -121,18 +103,8 @@ void QueryDlgBase::resetField(QLineEdit *field)
 {
   if (!field->isEnabled() )
     return;
-
   // set black text
-  QPalette qp = QPalette(field->palette());
-  qp.setColor(QPalette::Active, QPalette::Text, QColor(0x00, 0x00, 0x00));
-  qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0x00, 0x00, 0x00));
-  field->setPalette(qp);
-
-  QFont ft = field->font();
-  if (ft.weight() != QFont::Normal) {
-    ft.setWeight(QFont::Normal);
-    field->setFont(ft);
-  }
+  setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x00, 0x00), QFont::Normal);
 }
 
 
@@ -140,26 +112,13 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 {
   if (!field->isEnabled())
     return true;
-  QPalette u_normal = field->palette();
-  u_normal.setColor(QPalette::Text, QColor(0xff, 0x00, 0x00));
-  QPalette k_normal = field->palette();
-  k_normal.setColor(QPalette::Text, QColor(0x00, 0x80, 0x00));
-
-  QPalette known_pal( field->palette());
-  QPalette unknown_pal( field->palette());
-
-  QFont ft = field->font();
-  if (ft.weight() != QFont::Bold) {
-    ft.setWeight(QFont::Bold);
-    field->setFont(ft);
-  }
 
   bool ret = false;
   bool equal = false;
   QStringList answerlist = really.split('\n');
-  QStringList inputlist = field->text().split('\n');
+  QStringList inputlist = field->toPlainText().split('\n');
   if (!mixed) // no tolerance
-    equal = smartCompare(really.simplified(), field->text().simplified(), 0);
+    equal = smartCompare(really.simplified(), field->toPlainText().simplified(), 0);
   else {
      bool all = true;
      for (int ai = 0; ai < answerlist.count(); ai++) {
@@ -179,22 +138,12 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 
   if (equal) {
     ret = true;
-    if (known_pal.inactive() != k_normal
-        || known_pal.active() != k_normal) {
-      // replace text colors
-      known_pal.setActive(k_normal);
-      known_pal.setInactive(k_normal);
-      field->setPalette( known_pal );
-    }
+    setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x80, 0x00), QFont::Bold);
   }
   else
-    if ( unknown_pal.inactive() != u_normal
-        || unknown_pal.active() != u_normal) {
-      // replace text colors
-      unknown_pal.setActive(u_normal);
-      unknown_pal.setInactive(u_normal);
-      field->setPalette( unknown_pal );
-    }
+  {
+    setWidgetTextColorAndFontWeight(field, QColor(0xff, 0x00, 0x00), QFont::Bold);
+  }
   return ret;
 }
 
@@ -203,24 +152,8 @@ void QueryDlgBase::resetField(QTextEdit *field)
 {
   if (!field->isEnabled() )
     return;
-  QPalette normal = field->palette();
-  normal.setColor(QPalette::Text, QColor(0x00, 0x00, 0x00));
 
-  QPalette pal( field->palette());
-  // replace text colors
-
-  if ( pal.inactive() != normal
-      || pal.active() != normal) {
-    pal.setActive(normal);
-    pal.setInactive(normal);
-    field->setPalette( pal );
-  }
-
-  QFont ft = field->font();
-  if (ft.weight() != QFont::Normal) {
-    ft.setWeight(QFont::Normal);
-    field->setFont(ft);
-  }
+  setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x00, 0x00), QFont::Normal);
 }
 
 
@@ -229,84 +162,28 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
   if (!radio->isEnabled() )
     return;
 
-  QPalette u_normal = radio->palette();
-  u_normal.setColor(QPalette::Foreground, QColor(0xff, 0x00, 0x00));
-  QPalette k_normal = radio->palette();
-  k_normal.setColor(QPalette::Foreground, QColor(0x00, 0x80, 0x00));
-
-  QPalette known_pal( radio->palette());
-  QPalette unknown_pal( radio->palette());
-
-  // replace text colors
-
-  QFont ft = radio->font();
-  if (ft.weight() != QFont::Bold) {
-    ft.setWeight(QFont::Bold);
-    radio->setFont(ft);
-  }
-
-  if (widget2 != 0) {
-    ft = widget2->font();
-    if (ft.weight() != QFont::Bold) {
-      ft.setWeight(QFont::Bold);
-      widget2->setFont(ft);
-    }
-  }
-
   if (is_ok) {
-    if ( known_pal.inactive() != k_normal
-        || known_pal.active() != k_normal) {
-      known_pal.setActive(k_normal);
-      known_pal.setInactive(k_normal);
-      radio->setPalette( known_pal );
-      if (widget2 != 0)
-        widget2->setPalette( known_pal );
+    setWidgetTextColorAndFontWeight(radio, QColor(0x00, 0x80, 0x00), QFont::Bold);
+    if (widget2 != 0){
+      setWidgetTextColorAndFontWeight(widget2, QColor(0x00, 0x80, 0x00), QFont::Bold);
     }
   }
   else {
-    if ( unknown_pal.inactive() != u_normal
-        || unknown_pal.active() != u_normal) {
-      unknown_pal.setActive(u_normal);
-      unknown_pal.setInactive(u_normal);
-      radio->setPalette( unknown_pal );
-      if (widget2 != 0)
-        widget2->setPalette( unknown_pal );
+    setWidgetTextColorAndFontWeight(radio, QColor(0xff, 0x00, 0x00), QFont::Bold);
+    if (widget2 != 0){
+      setWidgetTextColorAndFontWeight(widget2, QColor(0xff, 0x00, 0x00), QFont::Bold);
     }
   }
 }
-
-
 
 void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
 {
   if (!radio->isEnabled() )
     return;
-  QPalette normal = radio->palette();
-  normal.setColor(QPalette::Foreground, QColor(0x00, 0x00, 0x00));
 
-  QPalette pal(radio->palette());
-  // replace text colors, avoid flickering
-  if ( pal.inactive() != normal
-      || pal.active() != normal) {
-    pal.setActive(normal);
-    pal.setInactive(normal);
-    radio->setPalette( pal );
-    if (widget2 != 0)
-      widget2->setPalette( pal );
-  }
-
-  QFont ft = radio->font();
-  if (ft.weight() != QFont::Normal) {
-    ft.setWeight(QFont::Normal);
-    radio->setFont(ft);
-  }
-
-  if (widget2 != 0) {
-    ft = widget2->font();
-    if (ft.weight() != QFont::Normal) {
-      ft.setWeight(QFont::Normal);
-      widget2->setFont(ft);
-    }
+  setWidgetTextColorAndFontWeight(radio, QColor(0x00, 0x00, 0x00), QFont::Normal);
+  if (widget2 != 0){
+    setWidgetTextColorAndFontWeight(widget2, QColor(0x00, 0x00, 0x00), QFont::Normal);
   }
 }
 
@@ -338,5 +215,16 @@ void QueryDlgBase::slotUser1()
   emit sigQueryChoice(StopIt);
 }
 
+void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, int QFontWeight)
+{
+  QPalette qp = QPalette(widget->palette());
+  qp.setColor(QPalette::Active, QPalette::Text, color);
+  qp.setColor(QPalette::Inactive, QPalette::Text, color);
+  widget->setPalette(qp);
+
+  QFont ft = widget->font();
+  ft.setWeight(QFontWeight);
+  widget->setFont(ft);
+}
 
 #include "QueryDlgBase.moc"

@@ -420,13 +420,14 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   slotStatusMsg(i18n("Starting random query..."));
   num_queryTimeout = 0;
 
+  // are there any vocabs?
   if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
-
+  // is translang ok?
   int tindex = m_doc->indexOfIdentifier(translang);
   if (tindex < 0)
     return;
-
+  // the original language?
   int oindex = m_doc->indexOfIdentifier(orglang);
   if (oindex < 0)
     return;

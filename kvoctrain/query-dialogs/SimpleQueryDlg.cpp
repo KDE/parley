@@ -223,8 +223,8 @@ void SimpleQueryDlg::timeoutReached()
 
 void SimpleQueryDlg::showMoreClicked()
 {
-  if (mw->answerField->text().length() < answerstring.length()) {
-    mw->answerField->setText (answerstring.left(mw->answerField->text().length()+1));
+  if (mw->answerField->toPlainText().length() < answerstring.length()) {
+    mw->answerField->setText (answerstring.left(mw->answerField->toPlainText().length()+1));
     mw->dont_know->setDefault(true);
   }
   resetField (mw->answerField);
