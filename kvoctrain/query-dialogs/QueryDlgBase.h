@@ -56,9 +56,12 @@ public:
 
   virtual ~QueryDlgBase ();
 
+  /** compare two strings with simplified applied first */
   bool smartCompare (const QString&, const QString&, int level) const;
 
+  /** compare lineEdit and string, set lineEdit style */
   bool verifyField(QLineEdit *field, const QString &really);
+  /** set the lineEdit to default (enter mode, black font) */
   void resetField (QLineEdit *field);
 
   bool verifyField(QTextEdit *field, const QString &really, bool mixed);

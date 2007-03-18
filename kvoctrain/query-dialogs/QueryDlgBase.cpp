@@ -73,19 +73,19 @@ bool QueryDlgBase::smartCompare (const QString& s1, const QString &s2,
 }
 
 
+/**
+ * Compare the text of a lineedit with a string, do something with the lineedits colors.
+ * @param field the lineEdit
+ * @param really the solution
+ * @return solution is right
+ */
 bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
 {
+/** @todo the colors should not be hard coded here. */
   if (!field->isEnabled() )
     return true;
 
-  QPalette u_normal = field->palette();
-  u_normal.setColor(QPalette::Text, QColor(0xff, 0x00, 0x00));
-  QPalette k_normal = field->palette();
-  k_normal.setColor(QPalette::Text, QColor(0x00, 0x80, 0x00));
-
-  QPalette known_pal( field->palette());
-  QPalette unknown_pal( field->palette());
-
+  // Make the font bold
   QFont ft = field->font();
   if (ft.weight() != QFont::Bold) {
     ft.setWeight(QFont::Bold);
@@ -93,44 +93,40 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
   }
 
   bool ret = false;
-  if (smartCompare(really, field->text(), 0) ) {
+  if (smartCompare(really, field->text(), 0) ) { // answer was right
     ret = true;
-    if ( known_pal.inactive() != k_normal
-        || known_pal.active() != k_normal) {
-      // replace text colors
-      known_pal.setActive(k_normal);
-      known_pal.setInactive(k_normal);
-      field->setPalette( known_pal );
-    }
+    // green text
+    QPalette qp = QPalette(field->palette());
+    qp.setColor(QPalette::Active, QPalette::Text, QColor(0x00, 0x80, 0x00));
+    qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0x00, 0x80, 0x00));
+    field->setPalette(qp);
   }
   else
-    if ( unknown_pal.inactive() != u_normal
-        || unknown_pal.active() != u_normal) {
-      // replace text colors
-      unknown_pal.setActive(u_normal);
-      unknown_pal.setInactive(u_normal);
-      field->setPalette( unknown_pal );
-    }
-  return ret;
+  { // wrong
+    // red text
+    QPalette qp = QPalette(field->palette());
+    qp.setColor(QPalette::Active, QPalette::Text, QColor(0xff, 0x00, 0x00));
+    qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0xff, 0x00, 0x00));
+    field->setPalette(qp);
+  }
+  return ret;  // right/wrong
 }
 
 
+/**
+ * Set text to black, font not bold.
+ * @param field 
+ */
 void QueryDlgBase::resetField(QLineEdit *field)
 {
   if (!field->isEnabled() )
     return;
-  QPalette normal = field->palette();
-  normal.setColor(QPalette::Text, QColor(0x00, 0x00, 0x00));
 
-  QPalette pal( field->palette());
-  // replace text colors
-
-  if ( pal.inactive() != normal
-      || pal.active() != normal) {
-    pal.setActive(normal);
-    pal.setInactive(normal);
-    field->setPalette( pal );
-  }
+  // set black text
+  QPalette qp = QPalette(field->palette());
+  qp.setColor(QPalette::Active, QPalette::Text, QColor(0x00, 0x00, 0x00));
+  qp.setColor(QPalette::Inactive, QPalette::Text, QColor(0x00, 0x00, 0x00));
+  field->setPalette(qp);
 
   QFont ft = field->font();
   if (ft.weight() != QFont::Normal) {
