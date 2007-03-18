@@ -73,7 +73,7 @@ protected slots:
   void slotUsageChanged();
   void slotActiveChanged(bool state);
   void phoneticSelected(wchar_t);
-  void invokeLessDlg();
+  //void invokeLessDlg();
   void invokeTypeDlg();
   void invokePronDlg();
   void invokeUsageDlg();

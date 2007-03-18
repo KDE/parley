@@ -2,6 +2,8 @@
  DO IT:
 -------------------
 
+Readd lesson combo box to common-entry page!
+
 When renaming a lesson, the main table is not updated.
 
 Just noticed: we have what's this - need to add hints!!
@@ -10,8 +12,7 @@ Search:
 -the sorting reverses again. change it to ascending or so...
 -maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment.
 
-Check all query dialogs so that they work properly.
-
+Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -23,6 +24,9 @@ Default lesson comes into existence sometimes... why? (When deleting a lesson). 
 
 Right click -> all/none select does not update table (when combo = query).
 
+kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", ...
+
+
 --------------------
  NOT SO FAR FUTURE:
 --------------------
@@ -30,6 +34,7 @@ Right click -> all/none select does not update table (when combo = query).
 Lesson list:
 -focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection.
 -I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
+-count of entries in the lesson could be nice
 
 Library: Add functions: addLesson, removeLesson. Eventually also something to change the order of lessons.
 
@@ -80,6 +85,9 @@ Also maybe (if desired) a list of words that are especially bad... As to say, he
 maybe some article handling? I find that I often have the word right but with wrong article. Then it says false and sometimes I change my word, which was right. So a hint like, "great, but wrong article" would sometimes be cool.
 
 Synonyms how??????
+
+One thing, I always wondered about, is how the rating is done/changed. Maybe this could be documented? Even configured? Is it different if I get a word right in multiple choice or type it?
+In query there is this percentage bar...?
 
 Ok, we have the lessons - that's sort of a natural hierachy. Why not use it? In the end, much stuff might be easier, if lessons actually had a list of their entries. Also parsing the xml should almost do this... But because of the way it's defined it doesn't. Would be better do have something like 
 <lesson "My lesson">

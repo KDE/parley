@@ -468,6 +468,8 @@ void KVocTrainApp::initView()
   /// Table view
   m_tableView = new KVTTableView(centralWidget());
   m_tableView->setFrameStyle(QFrame::NoFrame);
+  /// @todo Looks nice, makes reading a little easier. Maybe add an option to enable this? Enable by default?
+  m_tableView->setAlternatingRowColors(true);
   rightLayout->addWidget(m_tableView, 1, 0);
 
   m_mainSplitter->addWidget(rightWidget);

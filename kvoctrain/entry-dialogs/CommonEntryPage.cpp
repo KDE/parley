@@ -47,7 +47,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
   setupUi(this);
 
   connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
-  connect(b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()));
+  //connect(b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()));
   connect(b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()));
   connect(b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()));
   connect(usage_box, SIGNAL(itemSelectionChanged()), SLOT(slotUsageChanged()));
@@ -63,6 +63,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
 
   QIcon list_pm = KIcon("list");
   b_LessDlg->setIcon(list_pm);
+  b_LessDlg->setEnabled(false);
   b_TypeDlg->setIcon(list_pm);
   b_usageDlg->setIcon(list_pm);
 
@@ -166,12 +167,12 @@ void CommonEntryPage::setTypeBox(const QString &act_type)
 void CommonEntryPage::setLessonBox(int lesson)
 {
   lesson_box->clear();
-  lesson_box->addItem(doc->lessonDescription(0));
+  //lesson_box->addItem(doc->lessonDescription(0));
   lesson_box->addItems(doc->lessonDescriptions());
 
-  if (lesson >= lesson_box->count())
-    lesson = 0;
-  lesson_box->setCurrentIndex(lesson);
+  //if (lesson >= lesson_box->count())
+  //  lesson = 0;
+  lesson_box->setCurrentIndex(lesson-1);
 }
 
 
@@ -216,7 +217,7 @@ void CommonEntryPage::slotLessonSelected (int l)
 {
   setModified(true);
   m_lessonIsModified = true;
-  lesson = l;
+  lesson = l+1;
 }
 
 
@@ -336,7 +337,7 @@ void CommonEntryPage::invokeUsageDlg()
   }
 }
 
-
+/*
 void CommonEntryPage::invokeLessDlg()
 {
   QList<int> lessonIndex;
@@ -365,7 +366,7 @@ void CommonEntryPage::invokeLessDlg()
     doc->setModified();
   }
 }
-
+*/
 
 void CommonEntryPage::invokeTypeDlg()
 {

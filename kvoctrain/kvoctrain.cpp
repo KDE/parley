@@ -432,8 +432,8 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
     return; // entry delete in the meantime
 
   int lesson = expr->lesson();
-  if (lesson >= m_lessonsComboBox->count())
-    lesson = qMax (0, m_lessonsComboBox->count() - 1);
+  if (lesson > m_lessonModel->rowCount())
+    lesson = qMax (0, m_lessonModel->rowCount());
 
   bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
   kDebug() << hasSelection << endl;
@@ -527,11 +527,11 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
 
 void KVocTrainApp::slotDocumentProperties()
 {
-  int old_lessons = (int) m_lessonsComboBox->count();
+  //int old_lessons = (int) m_lessonsComboBox->count();
   int old_types = (int) m_doc->typeDescriptions().count();
   int old_tenses = (int) m_doc->tenseDescriptions().count();
   int old_usages = (int) m_doc->usageDescriptions().count();
-  QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
+  //QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
 
   DocPropsDlg ddlg(m_doc, this);
 
@@ -543,7 +543,7 @@ void KVocTrainApp::slotDocumentProperties()
     QStringList new_typeStr;
     QStringList new_tenseStr;
     QStringList new_usageStr;
-    QStringList new_lessonStr;
+    //QStringList new_lessonStr;
     QList<int> new_lessonsinquery;
 
     m_doc->setTitle(ddlg.getTitle());
@@ -554,13 +554,13 @@ void KVocTrainApp::slotDocumentProperties()
     slotStatusMsg(i18n("Updating lesson indices..."));
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    ddlg.getLesson(new_lessonStr, lessonIndex);
+    //ddlg.getLesson(new_lessonStr, lessonIndex);
     ddlg.getTypeNames(new_typeStr, typeIndex);
     ddlg.getTenseNames(new_tenseStr, tenseIndex);
     ddlg.getUsageLabels(new_usageStr, usageIndex);
 
-    new_lessonsinquery = old_lessonsinquery;
-    LessOptPage::cleanUnused(m_doc, lessonIndex, old_lessons, new_lessonsinquery);
+    //new_lessonsinquery = old_lessonsinquery;
+    //LessOptPage::cleanUnused(m_doc, lessonIndex, old_lessons, new_lessonsinquery);
 
     slotStatusMsg(i18n("Updating type indices..."));
     TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
@@ -579,11 +579,11 @@ void KVocTrainApp::slotDocumentProperties()
     m_doc->setTypeDescriptions(new_typeStr);
     m_doc->setTenseDescriptions(new_tenseStr);
     m_doc->setUsageDescriptions(new_usageStr);
-    m_doc->setLessonDescriptions(new_lessonStr);
-    m_doc->setLessonsInQuery(new_lessonsinquery);
+    //m_doc->setLessonDescriptions(new_lessonStr);
+    //m_doc->setLessonsInQuery(new_lessonsinquery);
     m_doc->setModified();
 
-    querymanager.setLessonItems(new_lessonsinquery);
+    //querymanager.setLessonItems(new_lessonsinquery);
 //    fillLessonBox();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());
@@ -815,9 +815,12 @@ void KVocTrainApp::slotCleanVocabulary()
   }
 }
 
-
+/** @todo rework this - assign lessons
+ */
 void KVocTrainApp::slotCreateRandom()
 {
+kDebug() << "KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that." << endl;
+/*
   bool ok = false;
   int res = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("Enter number of entries per lesson:"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
   if (!ok)
@@ -863,6 +866,8 @@ void KVocTrainApp::slotCreateRandom()
   }
   QApplication::restoreOverrideCursor();
   slotStatusMsg(IDS_DEFAULT);
+
+*/
 }
 
 
@@ -959,7 +964,9 @@ void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
 //
 }
 
-
+/** create the learning action menu 
+ * use a qsignalmapper to connect all subitems to one slot.
+ */
 void KVocTrainApp::aboutToShowLearn()
 {
   QMenu *identifierSubMenu;
@@ -980,6 +987,8 @@ void KVocTrainApp::aboutToShowLearn()
   int columns = m_tableModel->columnCount(QModelIndex()) - KV_EXTRA_COLS;
 
   //collect needed data
+  
+  /// @todo this should come from m_doc
   QStringList titles;
   QList<QPixmap> icons;
   for (int i = 0; i < columns; i++) {
@@ -1388,10 +1397,10 @@ void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModel
 
 void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 {
-  int cmd     = mapString.mid(0, 3).toInt();
-  int header1 = mapString.mid(3, 3).toInt();
-  int header2 = mapString.mid(6, 3).toInt();
-  kDebug() << mapString << " " << cmd << " " << header1 << " " << header2 << endl;
+  int cmd     = mapString.mid(0, 3).toInt(); // type of query
+  int header1 = mapString.mid(3, 3).toInt(); // from language
+  int header2 = mapString.mid(6, 3).toInt(); // to language
+  kDebug() << "slotLearningMapperTriggered() - mapString: " << mapString << " cmd: " << cmd << " header1: " << header1 << " hearder2: " << header2 << endl;
 
   switch (cmd) {
 

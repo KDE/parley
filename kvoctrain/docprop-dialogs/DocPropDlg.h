@@ -29,7 +29,7 @@
 #include <kpagedialog.h>
 
 #include "DocOptionsPage.h"
-#include "LessOptPage.h"
+//#include "LessOptPage.h"
 #include "TypeOptPage.h"
 #include "TenseOptPage.h"
 #include "UsageOptPage.h"
@@ -56,8 +56,8 @@ public:
   inline QString getLicense()    { return titleOptPage->getLicense(); }
   inline QString getDocRemark()  { return titleOptPage->getDocRemark(); }
 
-  inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
-    { lessOptPage->getLesson(lessons, ret_index); }
+  //inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
+  //  { lessOptPage->getLesson(lessons, ret_index); }
 
   inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
     { typeOptPage->getTypeNames(types, ret_index); }
@@ -72,7 +72,7 @@ protected:
   UsageOptPage   *useOptPage;
   TypeOptPage    *typeOptPage;
   TenseOptPage   *tenseOptPage;
-  LessOptPage    *lessOptPage;
+//  LessOptPage    *lessOptPage;
   TitlePage      *titleOptPage;
   DocOptionsPage *docOptPage;
 };

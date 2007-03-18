@@ -46,7 +46,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
   topLayout->setSpacing(KDialog::spacingHint());
   titleOptPage = new TitlePage(doc, page);
   topLayout->addWidget(titleOptPage);
-
+/*
   page = new QFrame();
   addPage(page, i18n("L&essons"));
   topLayout = new QVBoxLayout(page);
@@ -54,7 +54,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
   topLayout->setSpacing(KDialog::spacingHint());
   lessOptPage = new LessOptPage(doc, page);
   topLayout->addWidget(lessOptPage);
-
+*/
   page = new QFrame();
   addPage(page, i18nc("word types","T&ypes"));
   topLayout = new QVBoxLayout(page);

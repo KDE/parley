@@ -64,7 +64,6 @@ set(docprop_SRCS
     docprop-dialogs/DocPropDlg.cpp
     docprop-dialogs/DocPropLangDlg.cpp
     docprop-dialogs/LangPropPage.cpp
-    docprop-dialogs/LessOptPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
     docprop-dialogs/TypeOptPage.cpp

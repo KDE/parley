@@ -24,6 +24,77 @@
   */
 
 
+
+/** @todo the old clean up code is homeless right now: */
+// void LessOptPage::slotCleanup()
+// {
+//   QVector<bool> used_lesson;
+//   for (int i = 0; i < (int) optionsList->count(); i++)
+//     used_lesson.append(false);
+// 
+//   for (int i = 0; i < (int) doc->entryCount(); i++) {
+//     int idx = doc->entry(i)->lesson();
+//     if ((int) used_lesson.count() < idx)
+//       used_lesson.resize(idx);
+//     if (idx != 0)
+//       used_lesson[idx - 1] = true ;
+//   }
+// 
+//   for (int i = used_lesson.count() - 1; i >= 0; i--)
+//     if (!used_lesson[i]) {
+//       for (int u = 0; u < (int) lessonIndex.count() ; u++) {
+//         if (lessonIndex[u] == i || lessonIndex[u] < 0) {
+//           m_currentLesson = i;
+//           slotDeleteLesson();
+//           break;
+//         }
+//       }
+//     }
+// 
+//   m_currentLesson = 0;
+//   optionsList->setCurrentItem(optionsList->item(m_currentLesson));
+// }
+
+
+
+
+// void LessOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons, QList<int> &lessons_in_query)
+// {
+//   QList<int> translate_index;
+// 
+//   /////////////////////////////////////////////////////
+//   // translate_index contains new index number for each
+//   // old index
+//   for (int i = 0; i <= qMax (old_lessons, (int) lessonIndex.count()); i++)
+//     translate_index.append(0);
+// 
+//   // now adjust lesson descriptions to new index
+//   for (int i = 0; i < (int) lessonIndex.size(); i++) {
+//     if (lessonIndex[i] >= 0)
+//       translate_index[lessonIndex[i] /*+ 1*/] = i + 1;
+//   }
+// 
+//   // now adjust for query selected lessons to new index
+//   for (int i = (int) lessons_in_query.count() - 1; i >= 0; i--) {
+//     if (translate_index[lessons_in_query[i]] > 0)
+//       lessons_in_query[i] = translate_index[lessons_in_query[i]];
+//     else
+//       lessons_in_query.erase(lessons_in_query.begin() + i);
+//   }
+// 
+//   // only keep remaining lesson member indices
+// 
+//   // set lesson index to 0 when not needed any more
+//   // and translate to new index
+//   for (int i = 0; i < doc->entryCount(); i++) {
+//     if (doc->entry(i)->lesson() != 0)
+//       doc->entry(i)->setLesson(translate_index[doc->entry(i)->lesson()]);
+//   }
+// }
+
+
+
+
 /**
  * Set the new source kvtml file
  * @param doc the new file

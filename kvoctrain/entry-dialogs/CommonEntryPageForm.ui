@@ -28,7 +28,7 @@
    <string>-</string>
   </property>
   <property name="toolTip" >
-   <string>Invokes lesson input dialog</string>
+   <string/>
   </property>
   <layout class="QGridLayout" >
    <property name="margin" >

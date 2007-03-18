@@ -343,7 +343,7 @@ private:
   QString              m_textToFind;
 
   KLineEdit           *m_searchLine;
-  KComboBox           *m_lessonsComboBox;
+  //KComboBox           *m_lessonsComboBox;
   //int                  m_currentLesson; // m_doc->currentLesson()
   KVTQuery             querymanager;
   bool                 controlActive;
