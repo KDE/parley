@@ -25,7 +25,7 @@ public slots:
   void slotCreateNewLesson();
   void slotRenameLesson();
   void slotDeleteLesson();
-  void slotSetCurrentLesson(int currentIndex);
+  void slotSelectLesson(int currentIndex);
   void contextMenuEvent(QContextMenuEvent * ev);
   void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
   void slotCheckAllLessons ();

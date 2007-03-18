@@ -41,14 +41,23 @@ public:
   QVariant headerData(int section, Qt::Orientation orientation, int role = Qt::DisplayRole) const;
 
   Qt::ItemFlags flags(const QModelIndex &index) const;
-  // change on string
   bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-  // completely replace the old stuff
-  bool newData(const QStringList &strings);
+//  bool newData(const QStringList &strings);
 
-//  bool insertRows(int position, int rows, const QModelIndex &index = QModelIndex());
-//  bool removeRows(int position, int rows, const QModelIndex &index = QModelIndex());
+  int currentLesson() const { return m_doc->currentLesson(); }
+  void setCurrentLesson(int index) { m_doc->setCurrentLesson(index); setModified(true); } //move this into cpp?
+  void setModified(bool modified) { m_doc->setModified(modified); }
 
+  void setAllLessonsInQuery();
+  void setNoLessonsInQuery();
+
+  // add a lesson - returns lesson index
+  int addLesson(const QString &lessonName = QString());
+  // returns whether it was possible to delete
+  bool deleteLesson(int lessonIndex, int mode);
+
+//signals:
+  //void signalLessonsInQueryChanged(QList<int> intLessons);
 private:
   /** The data file */
   KEduVocDocument *m_doc;

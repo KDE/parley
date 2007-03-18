@@ -240,7 +240,7 @@ void KVocTrainApp::slotEditCallBack(int res)
             int lesson = m_doc->entry(row)->lesson();
             //if (lesson >= m_lessonsComboBox->count())
               //lesson = qMax (0, m_lessonsComboBox->count()-1);
-            m_lessonView->slotSetCurrentLesson(lesson);
+            m_lessonView->slotSelectLesson(lesson);
 
             QString exp;
             exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
@@ -1378,6 +1378,13 @@ void KVocTrainApp::slotCurrentLessonChanged(int currentLesson)
   Q_UNUSED(currentLesson);
   updateTableFilter();
 }
+
+void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &)
+{
+  //Q_UNUSED(currentLesson);
+  updateTableFilter();
+}
+
 
 void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 {

@@ -160,7 +160,8 @@ public:
   void slotCurrentLessonChanged(int currentLesson);
   /** selection of which lessons should be in the table to edit */
   void slotLessonSelectionComboChanged(int index);
-
+  /** the lessons in query were changed */
+  void slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &);
 
   /** append language to vocabulary */
   void slotAppendLanguage(int index);

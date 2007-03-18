@@ -19,14 +19,12 @@
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kicon.h>
-
 #include <keduvocdocument.h>
 
 #include "kvtlessonmodel.h"
 #include "kvtlessonview.h"
 
-KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
-{
+KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent){
   m_lessonPopupMenu = new QMenu(this);
   KAction *actionNewLesson = new KAction(i18n("New lesson"), this);
   m_lessonPopupMenu->addAction(actionNewLesson);
@@ -56,92 +54,38 @@ KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
   connect(actionCheckNoLessons, SIGNAL(triggered()), this, SLOT(slotCheckNoLessons()));
 }
 
-void KVTLessonView::setModel(KVTLessonModel *model)
-{
+void KVTLessonView::setModel(KVTLessonModel *model){
   QTreeView::setModel(model);
   m_model = model;
-  //initializeSelection();
 }
 
-void KVTLessonView::slotModelReset()
-{
+void KVTLessonView::slotModelReset(){
   initializeSelection();
 }
 
 void KVTLessonView::initializeSelection()
 {
-  //reset(); // is this neccessary?
-
-  /** m_doc starts counting lessons at 1 */
-  int currentLesson = m_model->document()->currentLesson() ;
-  slotSetCurrentLesson(currentLesson);
-/*
-  // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
-  if (currentLesson <= 0)
-    currentLesson = 1;
-
-  QModelIndex indexOfCurrent = m_model->index(currentLesson-1, 0, QModelIndex());
-  selectionModel()->select(indexOfCurrent, QItemSelectionModel::Select);
-
-  /// @todo also set focus if possible - feels a little odd otherwise (dotted frame around other element)
-  /// @todo the tablemodel also needs to update !
-  emit currentChanged(indexOfCurrent, indexOfCurrent);
-  */
+  slotSelectLesson(m_model->currentLesson());
 }
 
 void KVTLessonView::slotCheckAllLessons (){
-  QList<int> intLessons;
-  for(int lesson =1; lesson <= m_model->document()->lessonCount(); lesson++){
-    intLessons.append(lesson);
-  }
-  m_model->document()->setLessonsInQuery(intLessons);
-  reset();
+  m_model->setAllLessonsInQuery();
 }
 
 void KVTLessonView::slotCheckNoLessons (){
-  QList<int> intLessons;
-  m_model->document()->setLessonsInQuery(intLessons);
-  reset();
+  m_model->setNoLessonsInQuery();
 }
 
 void KVTLessonView::slotCreateNewLesson(){
-// this should move - hardly part of the view to create a new lesson?!?!
-  int i = 1;
 
-  while ( m_model->document()->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0 )
-    i++;
-
-  QStringList list = m_model->document()->lessonDescriptions();
-  list.append(i18n("New lesson") + QString(" %1").arg(i));
-
-  m_model->document()->setLessonDescriptions(list);
-  m_model->document()->setModified();
-  reset(); // maybe better just begin insert rows?
-
-  int newLessonIndex = m_model->document()->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
+  int newLessonIndex = m_model->addLesson();
 
   // select the new lesson
-  slotSetCurrentLesson(newLessonIndex -1);
-/*  QItemSelection mySelection;
-  // -1 because of counting from 1 of m_doc
-  QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
-  mySelection.select(indexOfCurrent, indexOfCurrent);
-  selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
-*/
-  QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
+  slotSelectLesson(newLessonIndex);
 
-  QList<int> intLessons;
-  foreach(int lesson, m_model->document()->lessonsInQuery())
-    intLessons.append(lesson);
-  intLessons.append(newLessonIndex);
-  m_model->document()->setLessonsInQuery(intLessons);
-
-  //emit currentChanged(indexOfCurrent, indexOfCurrent);
+  QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
   edit ( indexOfCurrent ); // let the user type a new name for the lesson
-
-  m_model->document()->setModified();
 }
-
 
 void KVTLessonView::slotRenameLesson(){
   QModelIndexList indexes = selectionModel()->selectedIndexes();
@@ -151,63 +95,47 @@ void KVTLessonView::slotRenameLesson(){
     return;
   }
   edit ( indexes.at(0) ); // let the user type a new name for the lesson
-  // can I update the main table here?
-  //emit SOME SIGNAL HERE(indexes.at(0), indexes.at(0));
+  // can I update the main table here? no should be handled by connecting the right signal!
 }
 
 void KVTLessonView::slotDeleteLesson(){
-  //(note to self) see also LessOptPage.cpp, same name - original implementation
-  
   QModelIndexList indexes = selectionModel()->selectedIndexes();
   if (indexes.empty()) {
     kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
     return;
   }
   // Delete right away, if the lesson is empty, otherwise ask
-  
-  kDebug() << " Del: " << indexes.at(0).row() << " of " << m_model->document()->lessonDescriptions() << endl;
-  
-  if( m_model->document()->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEmptyLesson ))
+  if( m_model->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEmptyLesson ))
     return; // lesson was empty - done.
   int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!"));
   if(exit == KMessageBox::Yes){
-     m_model->document()->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEntriesAndLesson );
+     m_model->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEntriesAndLesson );
   }
-    /// do I have to make a new selection?
-}
-
-void KVTLessonView::slotSetCurrentLesson(int currentIndex)
-{
-  // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
-  if (currentIndex <= 0)
-    currentIndex = 1;
-
-  // select the lesson
-  QItemSelection mySelection;
-  // -1 because of counting from 1 of m_doc
-  QModelIndex indexOfCurrent = m_model->index(currentIndex -1, 0, QModelIndex());
-  mySelection.select(indexOfCurrent, indexOfCurrent);
-  selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
-
-  //emit selectionChanged(indexOfCurrent, indexOfCurrent);
-  emit signalCurrentLessonChanged(currentIndex);
-  //kDebug() << " emit signalCurrentLessonChanged: " << currentIndex << endl;
 }
 
 void KVTLessonView::selectionChanged( const QItemSelection & selected, const QItemSelection & deselected )
 {
   Q_UNUSED(deselected);
-  /** we only have one lesson selectable at the time - start is enough */
-  int index = selected.indexes().at(0).row() +1; // start counting from 1
-  if (index > 0){
-    m_model->document()->setCurrentLesson(index);
-    m_model->document()->setModified(true);
-  }
-  slotSetCurrentLesson(index);
-  reset();
+  slotSelectLesson(selected.indexes().at(0).row() +1);
+}
 
-  /// @todo emit to update combobox (query selected)
-  emit lessonsInQueryChanged();
+/**
+ * Set the current selection
+ * @param currentIndex 
+ */
+void KVTLessonView::slotSelectLesson(int lesson)
+{
+  // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
+  if (lesson <= 0 || lesson > m_model->rowCount())
+    lesson = 1;
+
+  // select the lesson
+  QItemSelection mySelection;
+  // -1 because of counting from 1 of m_doc
+  QModelIndex indexOfCurrent = m_model->index(lesson -1, 0, QModelIndex());
+  mySelection.select(indexOfCurrent, indexOfCurrent);
+  selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
+  emit signalCurrentLessonChanged(lesson);
 }
 
 void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {

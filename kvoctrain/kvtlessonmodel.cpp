@@ -101,7 +101,6 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
       return QVariant();
 }
 
-
 /**
  * Change the name or checkbox of a lesson.
  * @param index which lesson
@@ -132,83 +131,92 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     QList<int> intLessons;
     foreach(int lesson, m_doc->lessonsInQuery())
       intLessons.append(lesson);
-      
-    kDebug() << "hi - checkboxes: " << intLessons << " -- curind: " << index.row()+1 << endl;
+    //kDebug() << "hi - checkboxes: " << intLessons << " -- curind: " << index.row()+1 << endl;
 
-    if (intLessons.contains(index.row()+1)){
+    if (intLessons.contains(index.row()+1))
+    {
       intLessons.removeAt(intLessons.indexOf(index.row()+1));
     } else {
         if (value.toInt() == Qt::Checked)
           intLessons.append(index.row()+1);
     }
-
     m_doc->setLessonsInQuery(intLessons);
     m_doc->setModified();
+    emit dataChanged(index, index);
     return true;
   }
   return false;
 }
 
+/**
+ * Make all lessons checked for query
+ */
+void KVTLessonModel::setAllLessonsInQuery()
+{
+  QList<int> intLessons;
+  for(int lesson =1; lesson <= m_doc->lessonCount(); lesson++)
+  {
+    intLessons.append(lesson);
+  }
+  m_doc->setLessonsInQuery(intLessons);
+  // this is not too great - say all data has changed
+  emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
+  //emit signalLessonsInQueryChanged(intLessons);
+}
 
 /**
- * Eventually adding new lessons could go here. For now it's in kvtlessonview.
- * @param position
- * @param rows
- * @param parent
- * @return
+ * Make all lessons UNchecked for query
  */
- /* creating lessons is in the view...
-bool KVTLessonModel::insertRows(int position, int rows, const QModelIndex &parent)
+void KVTLessonModel::setNoLessonsInQuery()
 {
-  Q_UNUSED(parent);
-  beginInsertRows(QModelIndex(), position, position + rows - 1);
+  QList<int> intLessons;
+  m_doc->setLessonsInQuery(intLessons);
+  // this is not too great - say all data has changed
+  emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
+  //emit signalLessonsInQueryChanged(intLessons);
+}
 
-  for (int row = 0; row < rows; ++row) {
-      //m_doc->lessonDescriptions().insert(position, "");
+int KVTLessonModel::addLesson(const QString &lessonName)
+{
+  beginInsertRows(QModelIndex(), m_doc->lessonCount(), m_doc->lessonCount());
+  QStringList list = m_doc->lessonDescriptions();
+  int newLessonIndex;
+  if(lessonName.isNull())
+  {
+    int i = 1;
+    while ( m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0 )
+      i++;
+    list.append(QString(i18n("New lesson") + QString(" %1").arg(i)));
+    m_doc->setLessonDescriptions(list);
+    newLessonIndex = m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
   }
+  else
+  {
+    list.append(lessonName);
+    m_doc->setLessonDescriptions(list);
+    newLessonIndex = m_doc->lessonIndex(lessonName);
+  }
+  /// Now add the new lesson to the query. Not necessary, but nice.
+  QModelIndex indexOfCurrent = index(newLessonIndex -1, 0, QModelIndex());
+  QList<int> intLessons;
+  foreach(int lesson, m_doc->lessonsInQuery())
+    intLessons.append(lesson);
+  intLessons.append(newLessonIndex);
+  m_doc->setLessonsInQuery(intLessons);
 
   endInsertRows();
-  return true;
+  return newLessonIndex;
 }
-*/
 
-/**
- * 
- * @param position
- * @param rows
- * @param parent
- * @return
- */
- /* view? maybe should be reworked
-bool KVTLessonModel::removeRows(int position, int rows, const QModelIndex &parent)
+bool KVTLessonModel::deleteLesson(int lessonIndex, int mode)
 {
-  Q_UNUSED(parent);
-  beginRemoveRows(QModelIndex(), position, position+rows-1);
-
-  for (int row = 0; row < rows; ++row) {
-      //stringList.removeAt(position);
+  bool couldDelete = m_doc->deleteLesson(lessonIndex, mode);
+  if(couldDelete)
+  {
+    beginRemoveRows(QModelIndex(), lessonIndex-1, lessonIndex-1);
+    endRemoveRows();
   }
-
-  endRemoveRows();
-  return true;
+  return couldDelete;
 }
-*/
-
-/**
- * propagete the change of current lesson
- * @param start
- * @param end
- */
-/*
-void KVTLessonModel::slotLessonSelectionChanged(const QModelIndex &start, const QModelIndex &end){
-  Q_UNUSED(end);
-  *//** we only have one lesson selectable at the time - start is enough */
-/*  int index = start.row(); 
-  if (index >= 0){
-    m_doc->setCurrentLesson(index +1);
-    //kDebug() << "Current lesson set to: " << index << " " << m_lessonList.at(index+1) << endl;
-  }
-}
-*/
 
 #include "kvtlessonmodel.moc"

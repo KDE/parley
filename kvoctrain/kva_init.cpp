@@ -406,7 +406,8 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 
   /// New lesson selected
   connect(m_lessonView, SIGNAL( signalCurrentLessonChanged(int) ), this, SLOT(slotCurrentLessonChanged(int)));
-  /// Rename lesson (?)
+  /** this is a little general, but at least we get notified of the changes */
+  connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &)));
   //connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
   connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
   connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));

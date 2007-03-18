@@ -21,6 +21,8 @@ Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
 Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
+Right click -> all/none select does not update table (when combo = query).
+
 --------------------
  NOT SO FAR FUTURE:
 --------------------
@@ -114,6 +116,8 @@ Frederik: I see. Well, when thinking about a new xml structure, this could be ta
 
 
 Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries> </lesson></lesson>
+
+get new vocabulary online skripts? for example from leo.org? (I enter abc, a list of translations appears?)
 
 ------------
  SOLVED:
