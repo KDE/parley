@@ -74,7 +74,7 @@ bool QueryDlgBase::smartCompare (const QString& s1, const QString &s2,
 
 
 /**
- * Compare the text of a lineedit with a string, do something with the lineedits colors.
+ * Compare the text of a lineedit with a string, set the lineedits colors to red/green if wrong/right.
  * @param field the lineEdit
  * @param really the solution
  * @return solution is right
@@ -215,7 +215,7 @@ void QueryDlgBase::slotUser1()
   emit sigQueryChoice(StopIt);
 }
 
-void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, int QFontWeight)
+void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight QFontWeight)
 {
   QPalette qp = QPalette(widget->palette());
   qp.setColor(QPalette::Active, QPalette::Text, color);

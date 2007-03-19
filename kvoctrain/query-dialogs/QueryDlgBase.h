@@ -64,13 +64,14 @@ public:
   /** set the lineEdit to default (enter mode, black font) */
   void resetField (QLineEdit *field);
 
+  /** the same for QTextEdit and QRadioButton */
   bool verifyField(QTextEdit *field, const QString &really, bool mixed);
   void resetField (QTextEdit *field);
 
   void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
   void resetButton (QRadioButton *radio, QWidget *widget2 = 0);
 
-  // Show string after selceting known/unknown
+  // Show string after selecting known/unknown
   // depending on progress and randomness
   QString  getOKComment(int percent);
   QString  getNOKComment(int percent);
@@ -89,7 +90,7 @@ signals:
   void sigEditEntry(int row, int col);
 
 protected:
-  void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, int QFontWeight);
+  void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
   virtual void closeEvent(QCloseEvent*e);
   virtual void slotUser1();
