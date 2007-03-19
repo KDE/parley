@@ -20,6 +20,7 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
   setSortCaseSensitivity(Qt::CaseInsensitive);
   m_searchFilter = QRegExp();
   m_lessonFilter = QRegExp();
+  m_restoreNativeOrder = false;
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
@@ -94,8 +95,8 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
 
 /**
  * Determines if the row is displayed
- * @param sourceRow 
- * @param sourceParent 
+ * @param sourceRow
+ * @param sourceParent
  * @return 
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
@@ -109,6 +110,24 @@ bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
       return false;
 
   return true;
+}
+
+bool KVTSortFilterModel::lessThan(const QModelIndex & left, const QModelIndex & right) const
+{
+  if (m_restoreNativeOrder)
+    return sourceModel()->index(right.row(),  right.column(),  QModelIndex()).row() <
+           sourceModel()->index(left.row(), left.column(), QModelIndex()).row();
+  else
+    return QSortFilterProxyModel::lessThan(left, right);
+}
+
+void KVTSortFilterModel::restoreNativeOrder()
+{
+  kDebug() << "Restoring native order" << endl;
+  m_restoreNativeOrder = true;
+  sort(-1, Qt::AscendingOrder);
+  clear();
+  m_restoreNativeOrder = false;
 }
 
 #include "kvtsortfiltermodel.moc"

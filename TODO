@@ -11,7 +11,10 @@ Just noticed: we have what's this - need to add hints!!
 
 Search:
 -the sorting reverses again. change it to ascending or so...
+<peter> I have now implemented a slot that restores the native order. Please review.
+
 -maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
+<peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 

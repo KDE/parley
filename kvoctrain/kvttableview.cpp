@@ -15,6 +15,8 @@
 
 #include <KComponentData>
 #include <KGlobalSettings>
+#include <KAction>
+#include <KLocale>
 
 #include "kvttableview.h"
 #include "kvttablemodel.h"
@@ -33,6 +35,11 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
   m_delegate = new KVTTableDelegate(this);
   setItemDelegate(m_delegate);
+
+  KAction *actionRestoreNativeOrder = new KAction(i18n("Restore Native Order"), this);
+  actionRestoreNativeOrder->setObjectName("restore_native_order");
+  horizontalHeader()->addAction(actionRestoreNativeOrder);
+  horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
 
@@ -47,6 +54,9 @@ void KVTTableView::setModel(KVTSortFilterModel * model)
   connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
   connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
   connect(selectionModel(), SIGNAL(currentColumnChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentColumnChanged(const QModelIndex&, const QModelIndex&)));
+
+  KAction *actionRestoreNativeOrder = findChild<KAction *>("restore_native_order");
+  connect(actionRestoreNativeOrder, SIGNAL(triggered()), model, SLOT(restoreNativeOrder()));
 }
 
 void KVTTableView::verticalHeaderResized(int , int , int)

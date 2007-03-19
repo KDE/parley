@@ -36,6 +36,12 @@ public:
   void setLessonRegExp(const QRegExp& filter);
   void setSearchRegExp(const QRegExp& filter);
 
+public slots:
+  void restoreNativeOrder();
+
+protected:
+  bool lessThan(const QModelIndex & left, const QModelIndex & right) const;
+
 private:
   /// used by filterAcceptsRow()
   bool checkLesson(int sourceRow, const QModelIndex &sourceParent) const;
@@ -44,6 +50,8 @@ private:
   KVTTableModel * m_sourceModel;
   QRegExp m_lessonFilter;
   QRegExp m_searchFilter;
+
+  bool m_restoreNativeOrder;
 };
 
 #endif

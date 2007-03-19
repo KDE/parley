@@ -511,4 +511,5 @@ void KVocTrainApp::initView()
 
   m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
   m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
+  m_sortFilterModel->restoreNativeOrder();
 }
