@@ -2,7 +2,8 @@
  DO IT:
 -------------------
 
-Readd lesson combo box to common-entry page!
+QUERY:
+Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now. Could it be, that only the current lesson is querried?
 
 When renaming a lesson, the main table is not updated.
 
@@ -10,22 +11,15 @@ Just noticed: we have what's this - need to add hints!!
 
 Search:
 -the sorting reverses again. change it to ascending or so...
--maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment.
-
-Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now.
+-maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
-
-Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating.
 
 Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
 Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
-Right click -> all/none select does not update table (when combo = query).
-
 kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", ...
-
 
 --------------------
  NOT SO FAR FUTURE:
@@ -161,3 +155,9 @@ If I add a new entry it is not displayed in the table!!!!!!!!!
 What happens if current lesson is not in query, but I want to add to it? Switch combo state for now. -Frederik -- DONE
 
 All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface. -- DONE
+
+Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating. -- DONE
+
+Right click -> all/none select does not update table (when combo = query). -- DONE
+
+
