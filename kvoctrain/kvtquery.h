@@ -92,6 +92,7 @@ struct QueryEntry {
 };
 
 typedef QList<QueryEntry> QueryEntryList;
+// Why the hey do use QVector here?
 typedef QVector<QList<QueryEntry> > QuerySelection;
 
 
@@ -129,6 +130,7 @@ enum QueryType { RandomQuery,
 
   bool validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex);
 
+  /// vector of list of entries
   QuerySelection select(KEduVocDocument*, int act_lesson, int oindex, int tindex);
 
   bool validate(KEduVocExpression *expr, int act_lesson, int index, QString type);

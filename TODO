@@ -3,7 +3,8 @@
 -------------------
 
 QUERY:
-Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now. Could it be, that only the current lesson is querried?
+Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now. 
+Make it respect the checked lessons. That's easy: the checkboxes always update m_doc->lessonsInQuery(). So make it use that. Default to current lesson, if no checkbox is set?
 
 When renaming a lesson, the main table is not updated.
 
@@ -57,6 +58,7 @@ Configure->View Settings: IPA font could be changed into something meaningfull. 
 <peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronunciation. I have added some tooltips/whatsthis
 
 In query: make an option to show current lesson, when questioning.
+A limit to first n vocab would be cool. Create query, but only with 30 words...
 
 Creating a new document is still hell. Maybe for now we could just ask for two languages which covers probably about 99% of the cases, the others will then find their way to add another...
 
@@ -67,6 +69,8 @@ Creating a new document is still hell. Maybe for now we could just ask for two l
 Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
 
 rename query to test, practice whatever ???
+according to some Australians and Canadians I talked to, query is basically kind of ok. But it's rather formal, teacher like. And it is used more to look someting up, like "to google" or to search in a database. It has a relation to inquire though :)
+
 
 Welcome screen with options: New file (wizzard?), manage old and query/test
 AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
@@ -101,6 +105,8 @@ I also don't think the original-trans1-trans2 thing is great. Original should no
 
 <peter>See https://bugs.kde.org/show_bug.cgi?id=93446 for why this might not be such a good idea.
 Frederik: I see. Well, when thinking about a new xml structure, this could be taken into account. I'd still like to do it somehow. This has to be done careful anyway.
+Maybe it is sufficient to not allow twice the same "language identifier". So twice en/English would be ok, but each language also gets a unique title. So you cannot have "English" as description twice. So have "English"/en and "English - pronouciation"/en and "English - Synonyms"/en. So still it is not permissible to do same column with itself queries. That's useless anyway. You'd always see the answer as question. So just have unique id's/description for each lang/identyfier. Did I overlook something? Just looking at kvtquery.cpp makes me want to do that immediately. There is 4x the same code with little substitutions for original and lang-id...
+Statistics: well, that's not much data anyway. Maybe we could offer some "Delete statistics from doc" button. I'd keep them in there, that makes taking the vocab to another computer simpler. Well, create the statistics also with from-to ids. No matter. And so if my vocab file actually grows to one MB? I have that much space, I guess.
 
 <lesson "My test">
 	<entry>

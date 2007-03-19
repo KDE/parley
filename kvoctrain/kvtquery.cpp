@@ -117,6 +117,8 @@ KVTQuery::KVTQuery()
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
+kDebug() << "select()" << endl;
+
   QuerySelection random;
   random.resize(doc->lessonCount() + 1);
   for (int i = 0; i < doc->entryCount(); i++)
@@ -137,12 +139,15 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
         if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
           random[lessonno].append(QueryEntry(expr, i));
           expr->setInQuery(true);
+kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->original() << endl;
+
         }
       }
       else {
         if (validate(expr, act_lesson, oindex, tindex)) {
           random[lessonno].append(QueryEntry(expr, i));
           expr->setInQuery(true);
+kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->original() << endl;
         }
       }
     }
@@ -158,11 +163,13 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
 {
+// USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
+
   int index = tindex ? tindex : oindex;
   if ((compareExpiring(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::expire())
         ||
 
-        (
+        ( 
            compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
         && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
         && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
@@ -184,11 +191,15 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
 {
-  QuerySelection random;
-  random.resize(doc->lessonCount() + 1);
+kDebug() << "select(KEduVocDocument *doc, int act_lesson, int idx, QString type)" << endl;
+  // initialize vector with (doc->lessonCount() + 1) elements
+  QuerySelection random(doc->lessonCount() + 1);
+
+  // disable every single entry
   for (int i = 0; i < doc->entryCount(); i++)
     doc->entry(i)->setInQuery(false);
 
+  // reenable those that we like by using isActive and validate
   for (int i = 0; i < doc->entryCount(); i++) {
     KEduVocExpression *expr = doc->entry(i);
     if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
@@ -197,17 +208,19 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
     }
   }
 
-  // remove empty lesson elements
+  // remove empty lesson elements - backwards to not interfere with smaller indexes...
   for (int i = (int) random.size()-1; i >= 0; i--)
     if (random[i].size() == 0)
       random.erase(random.begin() + i);
 
+  // vector of list (lessons) of entries
   return random;
 }
 
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
 {
+kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)" << endl;
   QString qtype;
   int pos = query_type.indexOf(QM_TYPE_DIV);
   if (pos >= 0)
@@ -248,6 +261,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QStrin
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
 {
+kDebug() << "select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)" << endl;
   QuerySelection random;
   random.resize(doc->lessonCount() + 1);
   for (int i = 0; i < doc->entryCount(); i++)
@@ -272,6 +286,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
 {
+kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)" << endl;
   bool type_ok = false;
   if (query_type == KVTQuery::SynonymQuery) {
     type_ok = !expr->synonym(idx).simplified().isEmpty();
@@ -481,35 +496,20 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
 }
 
 
+/**
+ * Check if the lesson of an expression is in the query lessonitems.
+ * @param type 
+ * @param less 
+ * @param limit 
+ * @param current 
+ * @return 
+ */
 bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int current)
 {
-  bool erg = true;
-  switch (type) {
-    case Prefs::EnumCompType::DontCare:    erg = true;            break;
-
-    case Prefs::EnumCompType::OneOf:
-    {
-      erg = false;
-      for (int i = 0; !erg && i < (int) limit.size(); i++)
-        if (limit[i] == less)
-          erg = true;
-    }
-    break;
-
-    case Prefs::EnumCompType::NotOneOf:
-    {
-      erg = true;
-      for (int i = 0; erg && i < (int) limit.size(); i++)
-        if (limit[i] == less)
-          erg = false;
-    }
-    break;
-
-    case Prefs::EnumCompType::Current:     erg = less == current; break;
-    case Prefs::EnumCompType::NotAssigned: erg = less == 0;       break;
-    default:                               ;
-  }
-  return erg;
+  // maybe a bit minimalistic? but should work... the user has only to set the right checkmarks. that should be ok.
+  if ( lessonitems.contains(less) )
+    return true;
+  return false;
 }
 
 

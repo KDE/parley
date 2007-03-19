@@ -413,14 +413,21 @@ void KVocTrainApp::slotRestartQuery()
   slotStartQuery(act_query_trans, act_query_org, false);
 }
 
-
+/**
+ * Start regular type query
+ * @param translang that is asked
+ * @param orglang shown
+ * @param create_new create query=true, resume=false
+ */
 void KVocTrainApp::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
 {
+
+kDebug() << "slotStartQuery() new: " << create_new << endl;
   removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));
   num_queryTimeout = 0;
 
-  // are there any vocabs?
+  // are there any vocabs at all ??? why do we check this here?
   if (m_tableModel->rowCount(QModelIndex()) < 1)
     return;
   // is translang ok?
@@ -438,6 +445,8 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   prepareProgressBar();
   QApplication::setOverrideCursor(Qt::WaitCursor);
   random_expr2.clear();
+
+kDebug() << "queryList: " << queryList.count() << endl;
 
   if (create_new || queryList.count() == 0)
     queryList = querymanager.select(m_doc, m_doc->currentLesson(), oindex, tindex);

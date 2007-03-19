@@ -583,7 +583,7 @@ void KVocTrainApp::slotDocumentProperties()
     //m_doc->setLessonsInQuery(new_lessonsinquery);
     m_doc->setModified();
 
-    //querymanager.setLessonItems(new_lessonsinquery);
+//    querymanager.setLessonItems(new_lessonsinquery);
 //    fillLessonBox();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());
@@ -1392,6 +1392,10 @@ void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModel
 {
   //Q_UNUSED(currentLesson);
   updateTableFilter();
+  // I'd rather have this acces m_doc->lessonsInQuery() when a query is started.
+  // this could make resume query act weird. 
+  /// @todo look into this
+  querymanager.setLessonItems(m_doc->lessonsInQuery());
 }
 
 
