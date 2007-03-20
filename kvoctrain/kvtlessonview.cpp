@@ -130,11 +130,14 @@ void KVTLessonView::slotSelectLesson(int lesson)
     lesson = 1;
 
   // select the lesson
-  QItemSelection mySelection;
+  //QItemSelection mySelection;
   // -1 because of counting from 1 of m_doc
   QModelIndex indexOfCurrent = m_model->index(lesson -1, 0, QModelIndex());
-  mySelection.select(indexOfCurrent, indexOfCurrent);
-  selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
+  //mySelection.select(indexOfCurrent, indexOfCurrent);
+  
+  setCurrentIndex(indexOfCurrent);
+  
+  //selectionModel()->select(mySelection, QItemSelectionModel::ClearAndSelect);
   emit signalCurrentLessonChanged(lesson);
 }
 
