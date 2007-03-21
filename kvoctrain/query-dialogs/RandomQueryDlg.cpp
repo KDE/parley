@@ -264,7 +264,10 @@ void RandomQueryDlg::setQuery(QString org,
    if ( Prefs::split() )
      translations = extractTranslations (trans);
    else
-     translations << trans;
+   {
+     //translations << trans;
+     translations = QStringList( trans );
+   }
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    int i;
@@ -289,8 +292,11 @@ void RandomQueryDlg::setQuery(QString org,
        transFields.at(i) -> setFont (Prefs::tableFont());
        resetField (transFields.at(i));
      }
+
      for ( k = 0; k < translations.count(); k ++ )
-       transFields.at(k) -> show();
+     {
+       transFields.at(k)->show();
+     }
      for ( i = k; i < fields; i ++ )
        transFields.at(i) -> hide();
    }
@@ -388,7 +394,9 @@ void RandomQueryDlg::verifyClicked()
     for ( i = fields.count() - 1; i >= translations.count(); i -- )
       fields.removeAt (i);
     for ( i = 0; i < fields.count(); i ++ )
+    {
       for ( j = 0; j < trans.count(); j ++ )
+      {
         if ( smartCompare (trans[j], fields.at(i) -> text(), 0) )
         {
           verifyField (fields.at(i), "a\na"); // always fail
@@ -396,6 +404,9 @@ void RandomQueryDlg::verifyClicked()
           fields.removeAt (i --);
           break;
         }
+      }
+    }
+
     if ( trans.count() == 0 )
     {
       mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
@@ -404,7 +415,9 @@ void RandomQueryDlg::verifyClicked()
     else
     {
       for ( i = 0; i < fields.count(); i ++ )
+      {
         verifyField (fields.at(i), trans[i]);
+      }
       mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
       mw->dont_know->setDefault(true);
     }

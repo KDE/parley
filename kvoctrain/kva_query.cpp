@@ -422,7 +422,6 @@ void KVocTrainApp::slotRestartQuery()
 void KVocTrainApp::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
 {
 
-kDebug() << "slotStartQuery() new: " << create_new << endl;
   removeEntryDlg();
   slotStatusMsg(i18n("Starting random query..."));
   num_queryTimeout = 0;
@@ -445,8 +444,6 @@ kDebug() << "slotStartQuery() new: " << create_new << endl;
   prepareProgressBar();
   QApplication::setOverrideCursor(Qt::WaitCursor);
   random_expr2.clear();
-
-kDebug() << "queryList: " << queryList.count() << endl;
 
   if (create_new || queryList.count() == 0)
     queryList = querymanager.select(m_doc, m_doc->currentLesson(), oindex, tindex);
@@ -658,14 +655,13 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
           exp->setGrade(oindex, KV_LEV1_GRADE, true);
         }
       }
-
       exp->setInQuery(false);
       random_expr1.erase(random_expr1.begin() + random_query_nr);
       if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
         slotStopQuery (true);
         return;
       }
-      }
+    }
     break;
 
     case QueryDlgBase::StopIt :
@@ -776,12 +772,15 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
   }
 
   if (m_queryType == KVTQuery::RandomQuery) {
+
     if (randomQueryDlg == 0) {
       kError() << "randomQueryDlg == 0\n";
       slotStopQuery(true);
       return;
-    }
+    } endl;
+
     randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc);
+
     randomQueryDlg->initFocus();
   }
   else if (m_queryType == KVTQuery::MultipleChoiceQuery) {

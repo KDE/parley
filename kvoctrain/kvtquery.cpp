@@ -499,7 +499,7 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
 /**
  * Check if the lesson of an expression is in the query lessonitems.
  * @param type 
- * @param less 
+ * @param less the lesson to check
  * @param limit 
  * @param current 
  * @return 
@@ -518,7 +518,7 @@ void KVTQuery::setTypeNames(QStringList names)
   userTypes = names;
 }
 
-
+// the next two functions would not be necessary using our great lib ;)
 void KVTQuery::setLessonItemStr(const QString & indices)
 {
   int pos;
@@ -534,7 +534,7 @@ void KVTQuery::setLessonItemStr(const QString & indices)
   }
 }
 
-
+// this is used in profilesdialog.cpp to save the lesson numbers - so it's "1 2 4 66" - ???
 QString KVTQuery::lessonItemStr() const
 {
    QString s, ret;
