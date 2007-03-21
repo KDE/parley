@@ -777,7 +777,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
       kError() << "randomQueryDlg == 0\n";
       slotStopQuery(true);
       return;
-    } endl;
+    }
 
     randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc);
 
