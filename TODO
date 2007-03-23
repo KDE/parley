@@ -3,19 +3,17 @@
 -------------------
 
 QUERY:
-Check all query dialogs so that they work properly. Yes - for me normal type in query crashes right now. 
-Make it respect the checked lessons. That's easy: the checkboxes always update m_doc->lessonsInQuery(). So make it use that. Default to current lesson, if no checkbox is set?
+Check all query dialogs so that they work properly. Multiple choice seems to crash right away.
 
-When renaming a lesson, the main table is not updated.
-
-Just noticed: we have what's this - need to add hints!!
+checked lessons are not saved.
 
 Search:
 -the sorting reverses again. change it to ascending or so...
-<peter> I have now implemented a slot that restores the native order. Please review.
+<peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
 
 -maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
 <peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
+<Frederik> Yes. Also for the lesson view/model most of the time using the right signals works - like beginInsertRows(...); ...  endInsertRows();.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -30,9 +28,9 @@ kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said h
 --------------------
 
 Lesson list:
--focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection.
 -I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
 -count of entries in the lesson could be nice
+-When renaming a lesson, the main table is not updated. It should emit a dataChanged though. Strange. Even changing the focus updates the table.
 
 Library: Add functions: addLesson, removeLesson. Eventually also something to change the order of lessons.
 
@@ -45,22 +43,21 @@ Enable drag and drop for lessons and vocab (drag into lesson, change order of le
 
 Icons and artwork seems rather old... maybe ask those oxygen guys? annma said she'll ask for a new icon.
 
-Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it.
+Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it. (Vocab->Prop->Options)
 
-There is some interesting stuff on config dialogs on
-http://wiki.openusability.org/guidelines/index.php/Practical_Examples:Configuration_Dialogs
-Maybe it would be cool to have the colors like they do there - in a list view.
-
-<peter>Possibly, but they don't show what happens behind the Edit button, and since color is the only property we change I think we are OK.
+Just noticed: we have what's this - need to add hints!!
 
 Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
-
 <peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronunciation. I have added some tooltips/whatsthis
+Why does this use if ((e->state() & (Qt::ControlModifier | Qt::AltModifier)) == 0) ? Why do we need the keyPressEvent at all?
+Is there no standard way to get strange characters?
 
 In query: make an option to show current lesson, when questioning.
 A limit to first n vocab would be cool. Create query, but only with 30 words...
 
 Creating a new document is still hell. Maybe for now we could just ask for two languages which covers probably about 99% of the cases, the others will then find their way to add another...
+
+Unclutter kvoctrain.h - move for example much of the query stuff away from there.
 
 ------------------
  LONG TERM STUFF:
@@ -70,7 +67,6 @@ Tabs or buttons to switch from normal view to query option page (all on one page
 
 rename query to test, practice whatever ???
 according to some Australians and Canadians I talked to, query is basically kind of ok. But it's rather formal, teacher like. And it is used more to look someting up, like "to google" or to search in a database. It has a relation to inquire though :)
-
 
 Welcome screen with options: New file (wizzard?), manage old and query/test
 AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
@@ -125,7 +121,6 @@ Statistics: well, that's not much data anyway. Maybe we could offer some "Delete
 </lesson>
 
 
-
 Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries> </lesson></lesson>
 
 get new vocabulary online skripts? for example from leo.org? (I enter abc, a list of translations appears?)
@@ -137,12 +132,6 @@ get new vocabulary online skripts? for example from leo.org? (I enter abc, a lis
 What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson? Ha, cannot happen - the last vocabulary cannot be deleted. Great!
 
 Save splitter position, maybe set a more sensible default for it???? -- DONE Thanks a lot Peter! I never did anything with KConfigXT so that's great.
-
-Get rid of Qt/kde 3 stuff:
-[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" > -- DELETED
-[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
-
-<peter> both of those will go away in the near future.  -- DONE
 
 Move Merge to the library so both KVT and KWQ can use it. -- DONE
 
@@ -168,5 +157,16 @@ All Lessons related stuff now gone from the Configuration dialog. Lessons in que
 Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating. -- DONE
 
 Right click -> all/none select does not update table (when combo = query). -- DONE
+
+Make it respect the checked lessons. That's easy: the checkboxes always update m_doc->lessonsInQuery(). So make it use that. -- DONE 
+
+If no checkbox is set? Hint? -- DONE
+
+Lessons: focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection. setCurrent() does the trick. -- DONE
+
+Get rid of Qt/kde 3 stuff:
+[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" > -- DELETED
+[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
+<peter> both of those will go away in the near future.  -- DONE
 
 
