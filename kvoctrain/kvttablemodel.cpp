@@ -201,6 +201,9 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
         int id = m_languages.indexShortId(m_doc->originalIdentifier());
 
         if (id < 0)
+          id = m_languages.indexLongId(m_doc->originalIdentifier());
+
+        if (id < 0)
           return m_doc->originalIdentifier();
         else
           return m_languages.longId(id);
@@ -208,6 +211,9 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
       else
       {
         int id = m_languages.indexShortId(m_doc->identifier(section - 2));
+
+        if (id < 0)
+          int id = m_languages.indexLongId(m_doc->identifier(section - 2));
 
         if (id < 0)
           return m_doc->identifier(section - 2);
