@@ -248,6 +248,8 @@ public:
   void saveDocProps(KEduVocDocument *);
 
 private:
+  /// used for the query slotStartXYZ - to check if query is not empty
+  bool queryIsEmpty();
   void createNewDocument();
 
   // KAction pointers to enable/disable actions

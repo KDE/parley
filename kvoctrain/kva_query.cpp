@@ -53,6 +53,23 @@ static const char not_contain[] = I18N_NOOP(
     "thresholds and blocking values in the query options:\n"
     "should the configuration dialog be invoked now?");
 
+bool KVocTrainApp::queryIsEmpty()
+{
+  if ( m_doc->lessonsInQuery().empty() )
+  {
+    KMessageBox::information(this, i18n("You have selected no lessons to be queried. Please select at least one on the left."), i18n("Starting Query"));
+    return true;
+  }
+
+  // something left to query ?
+  if (query_startnum == 0) {
+    if (KMessageBox::Yes == KMessageBox::questionYesNo(this, i18n(not_contain), i18n("Starting Query")))
+      slotGeneralOptionsPage(5);
+    return true;
+  }
+  return false;
+}
+
 void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
 {
   removeEntryDlg();
@@ -86,12 +103,8 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
   removeProgressBar();
   query_cycle = 1;
 
-  // something left to query ?
-  if (query_startnum == 0) {
-    if (KMessageBox::Yes == KMessageBox::questionYesNo(this, i18n(not_contain), i18n("Starting Query")))
-      slotGeneralOptionsPage(5);
+  if(queryIsEmpty())
     return;
-  }
 
   hide();
 
@@ -228,12 +241,8 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
   removeProgressBar();
   query_cycle = 1;
 
-  // something left to query ?
-  if (query_startnum == 0) {
-    if (KMessageBox::Yes == KMessageBox::questionYesNo(this, i18n(not_contain), i18n("Starting Query")))
-      slotGeneralOptionsPage(5);
+  if(queryIsEmpty())
     return;
-  }
 
   random_query_nr = m_randomSequence.getLong(random_expr1.count());
   KEduVocExpression *exp = random_expr1[random_query_nr].exp;
@@ -464,12 +473,8 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
   removeProgressBar();
   query_cycle = 1;
 
-  // something left to query ?
-  if (query_startnum == 0) {
-    if (KMessageBox::Yes == KMessageBox::questionYesNo(this, i18n(not_contain), i18n("Starting Query")))
-       slotGeneralOptionsPage(5);
-     return;
-  }
+  if(queryIsEmpty())
+    return;
 
   hide();
 
