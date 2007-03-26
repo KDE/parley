@@ -4,15 +4,7 @@
 
 QUERY:
 Check all query dialogs so that they work properly. Multiple choice seems to crash right away.
-
-Search:
--the sorting reverses again. change it to ascending or so...
-<peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
-<peter>Right-click on the horizontal header.
-
--maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
-<peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
-<Frederik> Yes. Also for the lesson view/model most of the time using the right signals works - like beginInsertRows(...); ...  endInsertRows();.
+Edit expression and Stop query don't work for me.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -27,11 +19,10 @@ kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said h
 --------------------
 
 Lesson list:
--I'd like to show the current lesson but someone scrolls it away (maybe the focus?)
 -count of entries in the lesson could be nice
 -When renaming a lesson, the main table is not updated. It should emit a dataChanged though. Strange. Even changing the focus updates the table.
 
-Library: Add functions: addLesson, removeLesson. Eventually also something to change the order of lessons.
+Library: Add functions: addLesson, removeLesson.
 
 m_tableView and friends: make columns visible/hide as user wishes. Additional columns for word type and all that seems sensible(?).
 
@@ -57,6 +48,10 @@ A limit to first n vocab would be cool. Create query, but only with 30 words...
 Creating a new document is still hell. Maybe for now we could just ask for two languages which covers probably about 99% of the cases, the others will then find their way to add another...
 
 Unclutter kvoctrain.h - move for example much of the query stuff away from there.
+
+-maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
+<peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
+<Frederik> Yes. Also for the lesson view/model most of the time using the right signals works - like beginInsertRows(...); ...  endInsertRows();.
 
 ------------------
  LONG TERM STUFF:
@@ -169,6 +164,11 @@ Get rid of Qt/kde 3 stuff:
 <peter> both of those will go away in the near future.  -- DONE
 
 checked lessons are not saved. -- DONE - Also make the lib use a QList<int> for m_lessonsInQuery instad of the bool list which was difficult and strange to handle.
+
+Search:
+-the sorting reverses again. change it to ascending or so...
+<peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
+<peter>Right-click on the horizontal header. -- DONE
 
 
 

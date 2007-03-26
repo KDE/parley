@@ -94,8 +94,6 @@
 // }
 
 
-
-
 /**
  * Set the new source kvtml file
  * @param doc the new file
@@ -141,9 +139,10 @@ QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, in
 Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 {
   if (index.isValid())
-    return QAbstractListModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
-  else
-    return QAbstractListModel::flags(index) | Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
+  {
+    return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled); // | Qt::ItemIsDropEnabled);
+  }
+  return  Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
 }
 
 Qt::DropActions KVTLessonModel::supportedDropActions() const
@@ -167,7 +166,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
     return QVariant();
 
   if (role == Qt::DisplayRole || role == Qt::EditRole)
-    return m_doc->lessonDescriptions().at(index.row());
+    return m_doc->lessonDescription(index.row()+1);
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
@@ -196,11 +195,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
   /** rename a lesson */
   if (role == Qt::EditRole) {
-    QStringList list = m_doc->lessonDescriptions();
-    list.replace(index.row(), value.toString());
-
-    m_doc->setLessonDescriptions(list);
-    kDebug() << " dataChanged - lesson renamed" << endl;
+    m_doc->renameLesson(index.row()+1, value.toString());
     emit dataChanged(index, index);
     return true;
   }
@@ -249,30 +244,20 @@ void KVTLessonModel::setNoLessonsInQuery()
 int KVTLessonModel::addLesson(const QString &lessonName)
 {
   beginInsertRows(QModelIndex(), m_doc->lessonCount(), m_doc->lessonCount());
-  QStringList list = m_doc->lessonDescriptions();
   int newLessonIndex;
   if(lessonName.isNull())
   {
     int i = 1;
     while ( m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0 )
       i++;
-    list.append(QString(i18n("New lesson") + QString(" %1").arg(i)));
-    m_doc->setLessonDescriptions(list);
-    newLessonIndex = m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i));
+    newLessonIndex = m_doc->appendLesson(QString(i18n("New lesson") + QString(" %1").arg(i)));
   }
   else
   {
-    list.append(lessonName);
-    m_doc->setLessonDescriptions(list);
-    newLessonIndex = m_doc->lessonIndex(lessonName);
+    newLessonIndex = m_doc->appendLesson(lessonName);
   }
   /// Now add the new lesson to the query. Not necessary, but nice.
-  QModelIndex indexOfCurrent = index(newLessonIndex -1, 0, QModelIndex());
-  QList<int> intLessons;
-  foreach(int lesson, m_doc->lessonsInQuery())
-    intLessons.append(lesson);
-  intLessons.append(newLessonIndex);
-  m_doc->setLessonsInQuery(intLessons);
+  m_doc->addLessonToQuery(newLessonIndex);
 
   endInsertRows();
   return newLessonIndex;
@@ -298,6 +283,7 @@ bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
   kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count << endl;
   return true;
 }
+
 
 bool KVTLessonModel::dropMimeData ( const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent )
 {

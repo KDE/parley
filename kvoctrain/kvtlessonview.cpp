@@ -27,6 +27,7 @@
 KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent){
   // drag and drop
   setDragEnabled(true);
+  //setMovement(QListView::Snap);
   setAcceptDrops(true);
   setDropIndicatorShown(true);
   // only allow internal moves - so far no interaction with the outside world.
