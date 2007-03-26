@@ -257,7 +257,10 @@ void KVocTrainApp::slotFileSave()
   prepareProgressBar();
   saveDocProps(m_doc);
   m_doc->setCsvDelimiter(Prefs::separator());
-  m_doc->saveAs(this, m_doc->url(), KEduVocDocument::automatic, "KVocTrain");
+  if (!m_doc->saveAs(this, m_doc->url(), KEduVocDocument::automatic, "KVocTrain")) {
+    slotFileSaveAs();
+    return;
+  }
   fileOpenRecent->addUrl(m_doc->url());
   removeProgressBar();
 
