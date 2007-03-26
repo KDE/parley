@@ -225,6 +225,7 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent) : KD
 
 void PhoneticEntryPage::keyPressEvent( QKeyEvent *e )
 {
+  ///@todo Why check the modifiers? Why use keyPressEvent at all?
   if ((e->state() & (Qt::ControlModifier | Qt::AltModifier)) == 0) {
     QString s = e->text();
     for (int i = 0; i < s.length(); ++i) {

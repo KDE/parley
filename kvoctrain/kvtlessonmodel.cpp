@@ -11,6 +11,7 @@
 //
 
 #include <QItemSelection>
+#include <QMimeData>
 
 #include <kdebug.h>
 #include <klocale.h>
@@ -19,8 +20,8 @@
 #include "kvtlessonmodel.h"
 
 /** @file
-  * implementation of KVTLessonModel
-  * basic functions to create the model from the stringlist from m_doc.
+  * Implementation of KVTLessonModel.
+  * Functions to create the model from the stringlist of the vocabulary document.
   */
 
 
@@ -139,11 +140,17 @@ QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, in
  */
 Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 {
-  if (!index.isValid())
-    return Qt::ItemIsEnabled;
-
-  return QAbstractItemModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsUserCheckable;
+  if (index.isValid())
+    return QAbstractListModel::flags(index) | Qt::ItemIsEditable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled;
+  else
+    return QAbstractListModel::flags(index) | Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
 }
+
+Qt::DropActions KVTLessonModel::supportedDropActions() const
+ {
+     //return Qt::CopyAction | Qt::MoveAction;
+     return Qt::MoveAction;
+ }
 
 /**
  * data of an entry
@@ -164,7 +171,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    if (m_doc->lessonsInQuery().contains(index.row()+1))
+    if (m_doc->lessonInQuery(index.row()+1))
       return Qt::Checked;
     else
       return Qt::Unchecked;
@@ -193,25 +200,17 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
     list.replace(index.row(), value.toString());
 
     m_doc->setLessonDescriptions(list);
+    kDebug() << " dataChanged - lesson renamed" << endl;
     emit dataChanged(index, index);
     return true;
   }
 
   /** checkboxes */
   if (role == Qt::CheckStateRole) {
-    QList<int> intLessons;
-    foreach(int lesson, m_doc->lessonsInQuery())
-      intLessons.append(lesson);
-    //kDebug() << "hi - checkboxes: " << intLessons << " -- curind: " << index.row()+1 << endl;
-
-    if (intLessons.contains(index.row()+1))
-    {
-      intLessons.removeAt(intLessons.indexOf(index.row()+1));
-    } else {
-        if (value.toInt() == Qt::Checked)
-          intLessons.append(index.row()+1);
-    }
-    m_doc->setLessonsInQuery(intLessons);
+    if( !m_doc->lessonInQuery(index.row()+1) )
+      m_doc->addLessonToQuery(index.row()+1);
+    else
+      m_doc->removeLessonFromQuery(index.row()+1);
     m_doc->setModified();
     emit dataChanged(index, index);
     return true;
@@ -288,6 +287,35 @@ bool KVTLessonModel::deleteLesson(int lessonIndex, int mode)
     endRemoveRows();
   }
   return couldDelete;
+}
+
+bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
+{
+    beginRemoveRows(QModelIndex(), row, row);
+    endRemoveRows();
+  
+  // to support drag and drop
+  kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count << endl;
+  return true;
+}
+
+bool KVTLessonModel::dropMimeData ( const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent )
+{
+
+     QByteArray encodedData = data->data("application/vnd.text.list");
+     QDataStream stream(&encodedData, QIODevice::ReadOnly);
+     QStringList newItems;
+     int rows = 0;
+
+     while (!stream.atEnd()) {
+         QString text;
+         stream >> text;
+         newItems << text;
+         ++rows;
+     }
+
+ kDebug() << "dropMimeData() " << newItems << " row: " << row << " Qt::DropAction: " << action << endl;
+  return false;
 }
 
 #include "kvtlessonmodel.moc"

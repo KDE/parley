@@ -25,34 +25,49 @@
 #include "kvtlessonview.h"
 
 KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent){
-  m_lessonPopupMenu = new QMenu(this);
+  // drag and drop
+  setDragEnabled(true);
+  setAcceptDrops(true);
+  setDropIndicatorShown(true);
+  // only allow internal moves - so far no interaction with the outside world.
+  setDragDropMode(QAbstractItemView::InternalMove);
+
+  // right click menu
+  m_lessonMenu = new QMenu(this);
   KAction *actionNewLesson = new KAction(i18n("New lesson"), this);
-  m_lessonPopupMenu->addAction(actionNewLesson);
+  m_lessonMenu->addAction(actionNewLesson);
   actionNewLesson->setIcon(KIcon("edit-add"));
   connect(actionNewLesson, SIGNAL(triggered()), this, SLOT(slotCreateNewLesson()));
 
   KAction *actionRenameLesson = new KAction(i18n("Rename lesson"), this);
-  m_lessonPopupMenu->addAction(actionRenameLesson);
+  m_lessonMenu->addAction(actionRenameLesson);
   actionRenameLesson->setIcon(KIcon("edit"));
   connect(actionRenameLesson, SIGNAL(triggered()), this, SLOT(slotRenameLesson()));
 
   KAction *actionDeleteLesson = new KAction(i18n("Delete lesson"), this);
-  m_lessonPopupMenu->addAction(actionDeleteLesson);
+  m_lessonMenu->addAction(actionDeleteLesson);
   actionDeleteLesson->setIcon(KIcon("edit-delete"));
   connect(actionDeleteLesson, SIGNAL(triggered()), this, SLOT(slotDeleteLesson()));
 
-  m_lessonPopupMenu->addSeparator();
+  m_lessonMenu->addSeparator();
 
   KAction *actionCheckAllLessons = new KAction(i18n("Check all lessons"), this);
-  m_lessonPopupMenu->addAction(actionCheckAllLessons);
+  m_lessonMenu->addAction(actionCheckAllLessons);
   actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
   connect(actionCheckAllLessons, SIGNAL(triggered()), this, SLOT(slotCheckAllLessons()));
 
   KAction *actionCheckNoLessons = new KAction(i18n("Deselect all lessons"), this);
-  m_lessonPopupMenu->addAction(actionCheckNoLessons);
+  m_lessonMenu->addAction(actionCheckNoLessons);
   actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
   connect(actionCheckNoLessons, SIGNAL(triggered()), this, SLOT(slotCheckNoLessons()));
 }
+
+
+QMenu *KVTLessonView::lessonMenu()
+{
+  return m_lessonMenu;
+}
+
 
 void KVTLessonView::setModel(KVTLessonModel *model){
   QTreeView::setModel(model);
@@ -96,6 +111,7 @@ void KVTLessonView::slotRenameLesson(){
   }
   edit ( indexes.at(0) ); // let the user type a new name for the lesson
   // can I update the main table here? no should be handled by connecting the right signal!
+   // emit dataChanged(indexes.at(0), indexes.at(0)); 
 }
 
 void KVTLessonView::slotDeleteLesson(){
@@ -135,8 +151,12 @@ void KVTLessonView::slotSelectLesson(int lesson)
   emit signalCurrentLessonChanged(lesson);
 }
 
-void KVTLessonView::contextMenuEvent(QContextMenuEvent * ev) {
-  m_lessonPopupMenu->exec(ev->globalPos());
+void KVTLessonView::contextMenuEvent(QContextMenuEvent * event) {
+  m_lessonMenu->exec(event->globalPos());
+}
+
+void KVTLessonView::dropEvent ( QDropEvent * event) {
+  kDebug() << "dropEvent()" << endl;
 }
 
 #include "kvtlessonview.moc"

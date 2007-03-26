@@ -527,11 +527,9 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
 
 void KVocTrainApp::slotDocumentProperties()
 {
-  //int old_lessons = (int) m_lessonsComboBox->count();
   int old_types = (int) m_doc->typeDescriptions().count();
   int old_tenses = (int) m_doc->tenseDescriptions().count();
   int old_usages = (int) m_doc->usageDescriptions().count();
-  //QList<int> old_lessonsinquery = m_doc->lessonsInQuery();
 
   DocPropsDlg ddlg(m_doc, this);
 
@@ -543,8 +541,6 @@ void KVocTrainApp::slotDocumentProperties()
     QStringList new_typeStr;
     QStringList new_tenseStr;
     QStringList new_usageStr;
-    //QStringList new_lessonStr;
-    QList<int> new_lessonsinquery;
 
     m_doc->setTitle(ddlg.getTitle());
     m_doc->setAuthor(ddlg.getAuthor());
@@ -554,13 +550,9 @@ void KVocTrainApp::slotDocumentProperties()
     slotStatusMsg(i18n("Updating lesson indices..."));
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    //ddlg.getLesson(new_lessonStr, lessonIndex);
     ddlg.getTypeNames(new_typeStr, typeIndex);
     ddlg.getTenseNames(new_tenseStr, tenseIndex);
     ddlg.getUsageLabels(new_usageStr, usageIndex);
-
-    //new_lessonsinquery = old_lessonsinquery;
-    //LessOptPage::cleanUnused(m_doc, lessonIndex, old_lessons, new_lessonsinquery);
 
     slotStatusMsg(i18n("Updating type indices..."));
     TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
@@ -579,12 +571,8 @@ void KVocTrainApp::slotDocumentProperties()
     m_doc->setTypeDescriptions(new_typeStr);
     m_doc->setTenseDescriptions(new_tenseStr);
     m_doc->setUsageDescriptions(new_usageStr);
-    //m_doc->setLessonDescriptions(new_lessonStr);
-    //m_doc->setLessonsInQuery(new_lessonsinquery);
     m_doc->setModified();
 
-//    querymanager.setLessonItems(new_lessonsinquery);
-//    fillLessonBox();
     m_tableModel->reset();
     setCaption(m_doc->title(), m_doc->isModified());
     QApplication::restoreOverrideCursor();
@@ -654,46 +642,29 @@ void KVocTrainApp::slotAppendRow ()
   m_tableModel->setData(m_tableView->currentIndex(), m_doc->currentLesson(), KVTTableModel::LessonRole);
   editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
   makeLessonVisibleInTable(m_doc->currentLesson());
-  /// @todo make the new entry actually visible (reset?)
 }
 
 void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
 {
-  /// @todo implement
-  kDebug() << " Implement me - make sure, the inserted stuff is visible! (Combobox!)" << endl;
   switch (m_lessonSelectionCombo->currentIndex() )
   {
     case Prefs::EnumLessonEditingSelection::CurrentLesson:
-      kDebug() << " Make xy current" << endl;
       m_doc->setCurrentLesson(lessonIndex);
-      m_lessonView->reset();
+      m_sortFilterModel->clear();
       break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-      kDebug() << " Make xy query... " << endl;
       m_doc->setCurrentLesson(lessonIndex);
-      if( !m_doc->lessonsInQuery().contains(lessonIndex))
+      if( !m_doc->lessonInQuery(lessonIndex))
       {
         m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
       }
-      m_lessonView->reset();
+      m_sortFilterModel->clear();
       break;
     case Prefs::EnumLessonEditingSelection::AllLessons:
       break;
   }
   updateTableFilter();
 }
-
-/*
-void KVocTrainApp::keyReleaseEvent(QKeyEvent *e)
-{
-  switch(e->key()) {
-    case Qt::Key_Control:  
-      controlActive = false;
-      break;
-  }
-}
-*/
-
 
 void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 {
@@ -753,41 +724,6 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
   slotStatusMsg(IDS_DEFAULT);
 }
 
-/*
-void KVocTrainApp::slotChooseLesson(int idx)
-{
-  m_currentLesson = idx;
-  m_doc->setCurrentLesson(idx);
-  m_doc->setModified(true);
-}
-*/
-
-/*
-void KVocTrainApp::slotCreateLesson(int header)
-{
-  QList<int> sel;
-  m_doc->setModified();
-  for (int i = 0; i < m_tableModel->rowCount(QModelIndex()); i++) {
-    KEduVocExpression *kv = m_doc->entry(i);
-    kv->setLesson(0);
-    if (kv->grade(header) > THRESH_LESSON && !kv->translation(header).isEmpty())
-      sel.push_back(i);
-  }
-
-  int cnt = 0;
-  while (cnt < MAX_LESSON && sel.size() != 0) {
-    int nr = m_randomSequence.getLong(sel.size());
-    KEduVocExpression *kv = m_doc->entry(sel[nr]);
-    // include non-lesson and non-empty string
-    if (kv->lesson() == 0) {
-      kv->setLesson(1);
-      sel.erase (sel.begin() + nr);
-      cnt++;
-    }
-  }
-  m_tableModel->reset();
-}
-*/
 
 void KVocTrainApp::slotShowStatistics()
 {

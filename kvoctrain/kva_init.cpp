@@ -263,12 +263,6 @@ void KVocTrainApp::initActions()
   vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
   vocabLanguageProperties->setStatusTip(vocabLanguageProperties->whatsThis());
 
-/* I hope we can now do without this...
-  m_lessonsComboBox = new KComboBox(this);
-  m_lessonsComboBox->setMinimumWidth(160);
-  connect(m_lessonsComboBox, SIGNAL(highlighted(int)), this, SLOT(slotChooseLesson(int)));
-  m_lessonsComboBox->setFocusPolicy(Qt::NoFocus);
-*/
 /*
   vocabLessons = actionCollection()->addAction("vocab_lessons");
   vocabLessons->setText(i18n("Lessons"));

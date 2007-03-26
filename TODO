@@ -5,8 +5,6 @@
 QUERY:
 Check all query dialogs so that they work properly. Multiple choice seems to crash right away.
 
-checked lessons are not saved.
-
 Search:
 -the sorting reverses again. change it to ascending or so...
 <peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
@@ -169,5 +167,8 @@ Get rid of Qt/kde 3 stuff:
 [21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" > -- DELETED
 [21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
 <peter> both of those will go away in the near future.  -- DONE
+
+checked lessons are not saved. -- DONE - Also make the lib use a QList<int> for m_lessonsInQuery instad of the bool list which was difficult and strange to handle.
+
 
 

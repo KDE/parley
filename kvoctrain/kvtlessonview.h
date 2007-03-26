@@ -30,12 +30,15 @@ public slots:
   void selectionChanged ( const QItemSelection & selected, const QItemSelection & deselected );
   void slotCheckAllLessons ();
   void slotCheckNoLessons ();
+  QMenu *lessonMenu();
 signals:
   void signalCurrentLessonChanged(int currentIndex);
   void lessonsInQueryChanged();
+  
 private:
+  void dropEvent ( QDropEvent * event);
   KVTLessonModel *m_model;
-  QMenu *m_lessonPopupMenu;
+  QMenu *m_lessonMenu;
 };
 
 #endif

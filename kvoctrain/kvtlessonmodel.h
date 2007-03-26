@@ -56,6 +56,10 @@ public:
   // returns whether it was possible to delete
   bool deleteLesson(int lessonIndex, int mode);
 
+  Qt::DropActions supportedDropActions() const;
+  
+  bool removeRows(int row, int count, const QModelIndex &parent);
+  bool dropMimeData ( const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent );
 //signals:
   //void signalLessonsInQueryChanged(QList<int> intLessons);
 private:

@@ -61,7 +61,6 @@ bool KVocTrainApp::queryIsEmpty()
     return true;
   }
 
-  // something left to query ?
   if (query_startnum == 0) {
     if (KMessageBox::Yes == KMessageBox::questionYesNo(this, i18n(not_contain), i18n("Starting Query")))
       slotGeneralOptionsPage(5);

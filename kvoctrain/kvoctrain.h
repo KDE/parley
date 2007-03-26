@@ -226,7 +226,6 @@ public:
 
   /** put the marked text/object into the clipboard*/
   void slotEditCopy();
-//  void slotSmartSearchClip();
   void slotAppendRow();
   void slotRemoveRow();
   void slotEditRow();
@@ -248,7 +247,7 @@ public:
   void saveDocProps(KEduVocDocument *);
 
 private:
-  /// used for the query slotStartXYZ - to check if query is not empty
+  /** used for the query slotStartXYZ - to check if query is not empty */
   bool queryIsEmpty();
   void createNewDocument();
 
