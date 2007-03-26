@@ -20,7 +20,7 @@
 
 #include <QDir>
 
-#include <kprocess.h>
+#include <k3process.h>
 #include <klocale.h>
 #include <kstandarddirs.h>
 #include <kmessagebox.h>
