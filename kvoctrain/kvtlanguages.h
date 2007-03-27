@@ -32,7 +32,7 @@
 class KVTLanguage
 {
 public:
-  KVTLanguage () {};
+  KVTLanguage () {}
   QString shortId;
   QString shortId2;
   QString longId;
