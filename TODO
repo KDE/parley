@@ -3,8 +3,7 @@
 -------------------
 
 QUERY:
-Check all query dialogs so that they work properly. Multiple choice seems to crash right away.
-Edit expression and Stop query don't work for me.
+Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -172,3 +171,6 @@ Search:
 When deleting a lesson the in query x are not respected - bad! -- DONE
 
 kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", -- DONE
+
+Multiple choice seems to crash right away. -- DONE - KRandomSequence does not work with a list of 0 entries.
+

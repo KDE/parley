@@ -97,7 +97,7 @@ void ArtQueryDlg::setQuery(QString,
    kv_exp = exp;
    kv_doc = doc;
    q_row = entry;
-   q_ocol = col;
+   queryOriginalColumn = col;
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    mw->show_all->setDefault(true);
@@ -107,7 +107,7 @@ void ArtQueryDlg::setQuery(QString,
    if (col == 0)
      s = exp->original().simplified();
    else
-     s = exp->translation(q_ocol).simplified();
+     s = exp->translation(queryOriginalColumn).simplified();
 
    QString def, indef;
    bool removed = false;
@@ -188,15 +188,15 @@ void ArtQueryDlg::showAllClicked()
   resetButton(mw->male);
   resetButton(mw->natural);
 
-  if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
+  if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
     mw->rb_fem->setChecked (true);
     verifyButton(mw->rb_fem, true);
   }
-  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+  else if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
     mw->male->setChecked (true);
     verifyButton(mw->male, true);
   }
-  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+  else if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
     mw->natural->setChecked (true);
     verifyButton(mw->natural, true);
   }
@@ -212,11 +212,11 @@ void ArtQueryDlg::showMoreClicked()
 void ArtQueryDlg::verifyClicked()
 {
   bool known = false;
-  if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+  if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
     known = mw->rb_fem->isChecked ();
-  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+  else if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
     known = mw->male->isChecked ();
-  else if (kv_exp->type (q_ocol) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+  else if (kv_exp->type (queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
     known = mw->natural->isChecked ();
 
   if (mw->rb_fem->isChecked() ) {
@@ -281,7 +281,7 @@ void ArtQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry (q_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 

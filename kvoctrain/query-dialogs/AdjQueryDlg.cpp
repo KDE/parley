@@ -101,7 +101,7 @@ void AdjQueryDlg::setQuery(QString,
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
-   q_ocol = col;
+   queryOriginalColumn = col;
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    comp = _comp;
@@ -244,7 +244,7 @@ void AdjQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry (q_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 

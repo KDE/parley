@@ -118,7 +118,7 @@ void VerbQueryDlg::setQuery(QString,
    kv_doc = doc;
    kv_exp = exp;
    q_row = entry;
-   q_ocol = col;
+   queryOriginalColumn = col;
    int mqtime = Prefs::maxTimePer();
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
@@ -172,10 +172,10 @@ bool VerbQueryDlg::next()
 {
   resetAllFields();
   QString s, type;
-  if (q_ocol == 0)
+  if (queryOriginalColumn == 0)
     s = kv_exp->original();
   else
-    s = kv_exp->translation(q_ocol);
+    s = kv_exp->translation(queryOriginalColumn);
 
   if (current < conjugations.entryCount() - 1)
     current++;
@@ -409,7 +409,7 @@ void VerbQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry (q_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 

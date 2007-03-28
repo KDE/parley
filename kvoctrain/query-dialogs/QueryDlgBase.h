@@ -104,8 +104,8 @@ protected:
   };
 
   int            q_row,
-                 q_ocol,
-                 q_tcol;
+                 queryOriginalColumn,
+                 queryTranslationColumn;
   KEduVocDocument  *kv_doc;
   KEduVocExpression *kv_exp;
   QString        translation;

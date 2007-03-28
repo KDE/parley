@@ -98,7 +98,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
    querytype = _querytype;
    kv_doc = doc;
    q_row = entry;
-   q_ocol = column;
+   queryOriginalColumn = column;
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    mw->queryField->setFont(Prefs::tableFont());
@@ -265,33 +265,33 @@ void SimpleQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry(q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
 
    KEduVocExpression *exp = kv_doc->entry(q_row);
-//   queryField->setText (exp->getTranslation(q_ocol));
+//   queryField->setText (exp->getTranslation(queryOriginalColumn));
 
    switch (querytype) {
      case KVTQuery::SynonymQuery: {
-       answerstring = exp->synonym(q_ocol);
-       mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
+       answerstring = exp->synonym(queryOriginalColumn);
+       mw->queryField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
      }
      break;
 
      case KVTQuery::AntonymQuery: {
-       answerstring = exp->antonym(q_ocol);
-       mw->queryField->setText(q_ocol == 0 ? exp->original() : exp->translation(q_ocol));
+       answerstring = exp->antonym(queryOriginalColumn);
+       mw->queryField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
      }
      break;
 
      case KVTQuery::ParaphraseQuery: {
-       mw->queryField->setText(exp->paraphrase(q_ocol));
-       answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
+       mw->queryField->setText(exp->paraphrase(queryOriginalColumn));
+       answerstring = queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn);
      }
      break;
 
      case KVTQuery::ExampleQuery: {
-       mw->queryField->setText(exp->example(q_ocol));
-       answerstring = q_ocol == 0 ? exp->original() : exp->translation(q_ocol);
+       mw->queryField->setText(exp->example(queryOriginalColumn));
+       answerstring = queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn);
      }
      break;
 

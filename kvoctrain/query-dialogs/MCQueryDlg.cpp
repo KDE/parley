@@ -46,10 +46,10 @@ MCQueryDlg::MCQueryDlg(
                    int entry,
                    int orgcol,
                    int transcol,
-                   int q_cycle,
+                   int queryCycle,
                    int q_num,
                    int q_start,
-                   KEduVocExpression *exp,
+                   KEduVocExpression *vocExpression,
                    KEduVocDocument  *doc)
   : QueryDlgBase(i18n("Multiple Choice"))
 {
@@ -74,7 +74,7 @@ MCQueryDlg::MCQueryDlg(
 
   qtimer = 0;
 
-  setQuery (org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
+  setQuery (org, trans, entry, orgcol, transcol, queryCycle, q_num, q_start, vocExpression, doc);
   mw->countbar->setFormat("%v/%m");
   mw->timebar->setFormat("%v");
 
@@ -95,29 +95,33 @@ void MCQueryDlg::setQuery(QString org,
                          int entry,
                          int orgcol,
                          int transcol,
-                         int q_cycle,
+                         int queryCycle,
                          int q_num,
                          int q_start,
-                         KEduVocExpression *exp,
+                         KEduVocExpression *vocExpression,
                          KEduVocDocument  *doc)
 {
    //type_timeout = type_to;
    kv_doc = doc;
    q_row = entry;
-   q_ocol = orgcol;
-   q_tcol = transcol;
+   queryOriginalColumn = orgcol;
+   queryTranslationColumn = transcol;
    translation = trans;
    mw->timebar->setEnabled(Prefs::showCounter());
    mw->timelabel->setEnabled(Prefs::showCounter());
    mw->orgField->setFont(Prefs::tableFont());
    mw->orgField->setText (org);
    mw->show_all->setDefault(true);
-   QString s;
-   s.setNum (q_cycle);
-   mw->progCount->setText (s);
 
+  // Query cycle - how often did this show up (?)
+   QString s;
+   s.setNum(queryCycle);
+   mw->progCount->setText (s);
+  //Counter - how many right out of...
    mw->countbar->setMaximum(q_start);
    mw->countbar->setValue(q_start - q_num + 1);
+   
+  //Time
    int mqtime = Prefs::maxTimePer();
    if (mqtime > 0) {
      if (qtimer == 0) {
@@ -138,15 +142,14 @@ void MCQueryDlg::setQuery(QString org,
    else
      mw->timebar->setEnabled(false);
 
-   KRandomSequence rs;
-   QList<QString> strings;
+   QList<QString> strings; // great descriptive name
    button_ref.clear();
    button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
    button_ref.push_back(RB_Label(mw->rb_trans2, mw->trans2));
    button_ref.push_back(RB_Label(mw->rb_trans3, mw->trans3));
    button_ref.push_back(RB_Label(mw->rb_trans4, mw->trans4));
    button_ref.push_back(RB_Label(mw->rb_trans5, mw->trans5));
-   rs.randomize(button_ref);
+   randomSequence.randomize(button_ref);
    resetButton(button_ref[0].rb, button_ref[0].label);
    resetButton(button_ref[1].rb, button_ref[1].label);
    resetButton(button_ref[2].rb, button_ref[2].label);
@@ -155,17 +158,21 @@ void MCQueryDlg::setQuery(QString org,
 
    solution = 0;
 
-   KEduVocMultipleChoice mc = exp->multipleChoice(q_tcol);
-   for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)mc.size()); ++i)
-     strings.push_back(mc.mc(i));
-   rs.randomize(strings);
+   KEduVocMultipleChoice multipleChoice = vocExpression->multipleChoice(queryTranslationColumn);
+   for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)multipleChoice.size()); ++i) {
+     strings.push_back(multipleChoice.mc(i));
+   }
+
+   KRandomSequence randomSequence;
+   if (strings.count() > 1)
+    randomSequence.randomize(strings);
 
    // always include false friend
    QString ff;
-   if (q_tcol != 0)
-     ff = exp->fauxAmi (q_tcol, false).simplified();
+   if (queryTranslationColumn != 0)
+     ff = vocExpression->fauxAmi (queryTranslationColumn, false).simplified();
    else
-     ff = exp->fauxAmi (q_ocol, true).simplified();
+     ff = vocExpression->fauxAmi (queryOriginalColumn, true).simplified();
 
    if (ff.length())
      strings.insert(strings.begin(), ff);
@@ -174,11 +181,11 @@ void MCQueryDlg::setQuery(QString org,
      for (int i = strings.size(); i < doc->entryCount(); ++i ) {
        KEduVocExpression *act = doc->entry(i);
 
-       if (act != exp) {
-         if (q_tcol == 0)
+       if (act != vocExpression) {
+         if (queryTranslationColumn == 0)
            strings.push_back(act->original());
          else
-           strings.push_back(act->translation(q_tcol));
+           strings.push_back(act->translation(queryTranslationColumn));
        }
      }
    }
@@ -197,26 +204,26 @@ void MCQueryDlg::setQuery(QString org,
          if (exprlist[i] == doc->entry(nr))
            newex = false;
        }
-       if (newex && exp != doc->entry(nr)) {
+       if (newex && vocExpression != doc->entry(nr)) {
          count--;
          exprlist.push_back(doc->entry(nr));
        }
      }
 
      for (int i = 0; i < (int) exprlist.size(); i++) {
-       if (q_tcol == 0)
+       if (queryTranslationColumn == 0)
          strings.push_back(exprlist[i]->original());
        else
-         strings.push_back(exprlist[i]->translation(q_tcol));
+         strings.push_back(exprlist[i]->translation(queryTranslationColumn));
      }
 
    }
 
-   // solution is always the first
-   if (q_tcol == 0)
-     strings.insert(strings.begin(), exp->original());
+   // solution is always the firandomSequencet
+   if (queryTranslationColumn == 0)
+     strings.insert(strings.begin(), vocExpression->original());
    else
-     strings.insert(strings.begin(), exp->translation(q_tcol));
+     strings.insert(strings.begin(), vocExpression->translation(queryTranslationColumn));
 
    for (int i = strings.size(); i < MAX_MULTIPLE_CHOICE; i++ )
      strings.push_back("");
@@ -384,12 +391,12 @@ void MCQueryDlg::slotUser2()
    if (qtimer != 0)
      qtimer->stop();
 
-   emit sigEditEntry (q_row, KV_COL_ORG+q_ocol);
+   emit sigEditEntry (q_row, KV_COL_ORG+queryOriginalColumn);
 
-   KEduVocExpression *exp = kv_doc->entry(q_row);
-   mw->orgField->setText (q_ocol == 0
-                        ? exp->original()
-                        : exp->translation(q_ocol));
+   KEduVocExpression *vocExpression = kv_doc->entry(q_row);
+   mw->orgField->setText (queryOriginalColumn == 0
+                        ? vocExpression->original()
+                        : vocExpression->translation(queryOriginalColumn));
 }
 
 
