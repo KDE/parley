@@ -12,7 +12,6 @@ Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
 Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
-kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", ...
 
 --------------------
  NOT SO FAR FUTURE:
@@ -170,5 +169,6 @@ Search:
 <peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
 <peter>Right-click on the horizontal header. -- DONE
 
+When deleting a lesson the in query x are not respected - bad! -- DONE
 
-
+kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", -- DONE

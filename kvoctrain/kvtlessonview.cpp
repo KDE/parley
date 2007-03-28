@@ -15,12 +15,15 @@
 #include <QContextMenuEvent>
 #include <KAction>
 #include <KMessageBox>
+#include <KInputDialog>
 #include <kdebug.h>
 #include <klocale.h>
 #include <kiconloader.h>
 #include <kicon.h>
+#include <kconfig.h>
 #include <keduvocdocument.h>
 
+#include "prefs.h"
 #include "kvtlessonmodel.h"
 #include "kvtlessonview.h"
 
@@ -61,6 +64,13 @@ KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent){
   m_lessonMenu->addAction(actionCheckNoLessons);
   actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
   connect(actionCheckNoLessons, SIGNAL(triggered()), this, SLOT(slotCheckNoLessons()));
+
+  m_lessonMenu->addSeparator();
+
+  KAction *actionSplitLesson = new KAction(i18n("Split lesson into smaller lessons"), this);
+  m_lessonMenu->addAction(actionSplitLesson);
+  actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
+  connect(actionSplitLesson, SIGNAL(triggered()), this, SLOT(slotSplitLesson()));
 }
 
 
@@ -88,45 +98,33 @@ void KVTLessonView::slotCheckAllLessons (){
   m_model->setAllLessonsInQuery();
 }
 
-void KVTLessonView::slotCheckNoLessons (){
+void KVTLessonView::slotCheckNoLessons ()
+{
   m_model->setNoLessonsInQuery();
 }
 
-void KVTLessonView::slotCreateNewLesson(){
-
+void KVTLessonView::slotCreateNewLesson()
+{
   int newLessonIndex = m_model->addLesson();
-
-  // select the new lesson
   slotSelectLesson(newLessonIndex);
 
-  QModelIndex indexOfCurrent = m_model->index(newLessonIndex -1, 0, QModelIndex());
-  edit ( indexOfCurrent ); // let the user type a new name for the lesson
+  QModelIndex modelIndex = m_model->index(newLessonIndex -1, 0, QModelIndex());
+  edit ( modelIndex ); // let the user type a new name for the lesson
 }
 
 void KVTLessonView::slotRenameLesson(){
   QModelIndexList indexes = selectionModel()->selectedIndexes();
-  // oops - this crashes if there is no selection - there should always be a current lesson!!!
-  if (indexes.empty()) {
-    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
-    return;
-  }
-  edit ( indexes.at(0) ); // let the user type a new name for the lesson
-  // can I update the main table here? no should be handled by connecting the right signal!
-   // emit dataChanged(indexes.at(0), indexes.at(0)); 
+  edit ( indexes.at(0) );
 }
 
 void KVTLessonView::slotDeleteLesson(){
-  QModelIndexList indexes = selectionModel()->selectedIndexes();
-  if (indexes.empty()) {
-    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
-    return;
-  }
+  int currentIndex = indexOfCurrentLesson();
   // Delete right away, if the lesson is empty, otherwise ask
-  if( m_model->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEmptyLesson ))
+  if( m_model->deleteLesson ( currentIndex, KEduVocDocument::DeleteEmptyLesson ))
     return; // lesson was empty - done.
-  int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!"));
+  int exit = KMessageBox::warningYesNo(this, i18n("There are vocabularies left in this lesson. Do you want to delete them? You will loose your entries! You have been warned!")); ///@todo maybe a better message here...
   if(exit == KMessageBox::Yes){
-     m_model->deleteLesson ( indexes.at(0).row(), KEduVocDocument::DeleteEntriesAndLesson );
+     m_model->deleteLesson ( currentIndex, KEduVocDocument::DeleteEntriesAndLesson );
   }
 }
 
@@ -136,10 +134,7 @@ void KVTLessonView::selectionChanged( const QItemSelection & selected, const QIt
   slotSelectLesson(selected.indexes().at(0).row() +1);
 }
 
-/**
- * Set the current selection
- * @param currentIndex 
- */
+
 void KVTLessonView::slotSelectLesson(int lesson)
 {
   // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
@@ -152,12 +147,37 @@ void KVTLessonView::slotSelectLesson(int lesson)
   emit signalCurrentLessonChanged(lesson);
 }
 
-void KVTLessonView::contextMenuEvent(QContextMenuEvent * event) {
+void KVTLessonView::slotSplitLesson()
+{
+  /** @todo A nicer dialog would be great. Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
+  bool ok = false;
+  int numEntries = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("The lesson will be split into smaller lessons.\nHow many entries in each lesson do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
+  if (!ok)
+    return;
+  Prefs::setEntriesPerLesson(numEntries);
+  m_model->splitLesson(indexOfCurrentLesson() +1, numEntries, KVTLessonModel::random);
+}
+
+
+void KVTLessonView::contextMenuEvent(QContextMenuEvent * event)
+{
   m_lessonMenu->exec(event->globalPos());
 }
 
-void KVTLessonView::dropEvent ( QDropEvent * event) {
+
+void KVTLessonView::dropEvent ( QDropEvent * event)
+{
   kDebug() << "dropEvent()" << endl;
+}
+
+int KVTLessonView::indexOfCurrentLesson()
+{
+  QModelIndexList indexes = selectionModel()->selectedIndexes();
+  if (indexes.empty()) {
+    kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+    return 0;
+  }
+  return indexes.at(0).row();
 }
 
 #include "kvtlessonview.moc"

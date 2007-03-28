@@ -17,6 +17,9 @@
 #include <klocale.h>
 
 #include <keduvocdocument.h>
+#include <keduvocexpression.h>
+#include <krandom.h>
+
 #include "kvtlessonmodel.h"
 
 /** @file
@@ -93,31 +96,18 @@
 //   }
 // }
 
-
-/**
- * Set the new source kvtml file
- * @param doc the new file
- */
 void KVTLessonModel::setDocument(KEduVocDocument * doc)
 {
   m_doc = doc;
   reset();
 }
 
-/**
- * The number of Lessons.
- * @param parent will always be QModelIndex() as long as we only have a list here
- * @return number of lessons
- */
 int KVTLessonModel::rowCount(const QModelIndex &parent) const
 {
   Q_UNUSED(parent);
   return m_doc->lessonCount();
 }
 
-/**
-  * Header of the treeview
-  */
 QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
   if (role != Qt::DisplayRole)
@@ -132,10 +122,6 @@ QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, in
     return QString("Row %1").arg(section);
 }
 
-/** flags of the items - the drag and drop flag goes here one day... 
- * @param index item
- * @return flags
- */
 Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 {
   if (index.isValid())
@@ -151,12 +137,6 @@ Qt::DropActions KVTLessonModel::supportedDropActions() const
      return Qt::MoveAction;
  }
 
-/**
- * data of an entry
- * @param index index of an entry
- * @param role Qt::DisplayRole = lesson name, Qt::CheckStateRole = checkbox state
- * @return data
- */
 QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 {
   if (!index.isValid())
@@ -178,13 +158,6 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
       return QVariant();
 }
 
-/**
- * Change the name or checkbox of a lesson.
- * @param index which lesson
- * @param value new name
- * @param role
- * @return bool: worked
- */
 bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
   if (!index.isValid())
@@ -213,9 +186,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
   return false;
 }
 
-/**
- * Make all lessons checked for query
- */
+
 void KVTLessonModel::setAllLessonsInQuery()
 {
   QList<int> intLessons;
@@ -229,9 +200,7 @@ void KVTLessonModel::setAllLessonsInQuery()
   //emit signalLessonsInQueryChanged(intLessons);
 }
 
-/**
- * Make all lessons UNchecked for query
- */
+
 void KVTLessonModel::setNoLessonsInQuery()
 {
   QList<int> intLessons;
@@ -263,7 +232,7 @@ int KVTLessonModel::addLesson(const QString &lessonName)
   return newLessonIndex;
 }
 
-bool KVTLessonModel::deleteLesson(int lessonIndex, int mode)
+bool KVTLessonModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode)
 {
   bool couldDelete = m_doc->deleteLesson(lessonIndex, mode);
   if(couldDelete)
@@ -276,13 +245,65 @@ bool KVTLessonModel::deleteLesson(int lessonIndex, int mode)
 
 bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
 {
-    beginRemoveRows(QModelIndex(), row, row);
-    endRemoveRows();
-  
+  /// @todo either really use this or remove it
+  beginRemoveRows(QModelIndex(), row, row);
+  endRemoveRows();
+
   // to support drag and drop
   kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count << endl;
   return true;
 }
+
+
+void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order)
+{
+  // list of entries in the lesson
+  QList<KEduVocExpression*> entryList;
+  for (int i = 0; i < m_doc->entryCount(); i++) {
+    KEduVocExpression *expr = m_doc->entry(i);
+    if (expr->lesson() == lessonIndex)
+      entryList.append(expr);
+  }
+
+  QString originalLessonName = m_doc->lessonDescription(lessonIndex);
+  int numNewLessons = entryList.count()/entriesPerLesson;
+  if(entryList.count()%entriesPerLesson) // modulo - fraction lesson if not 0 we need one more
+    numNewLessons++;
+
+  // create the empty lessons
+  int first = addLesson(originalLessonName + QString(" %1").arg(1));
+  int last;
+  for (int i=1; i<numNewLessons; i++)
+  {
+    last = addLesson(originalLessonName + QString(" %1").arg(i+1));
+  }
+
+  int lessonToFill=first; /// lesson which receives the entries until full
+  int entries = 0; /// number entries in the lesson that is being filled
+  int nextEntry=0; /// next entry to be assigned to one of the new lessons
+  while(!entryList.empty())
+  {
+    if(entries == entriesPerLesson)
+    {
+      lessonToFill++;
+      entries=0;
+    }
+
+    if(order == random)
+      nextEntry = KRandom::random() % entryList.count(); /// @todo random from 0 to entryList.count() -1;
+    entryList.at(nextEntry)->setLesson(lessonToFill);
+    entryList.removeAt(nextEntry);
+    entries++;
+  }
+
+  if( !deleteLesson ( lessonIndex -1, KEduVocDocument::DeleteEmptyLesson ) )
+    kDebug() << "Warning - could not delete old lesson!" << endl;
+
+  m_doc->setModified(true);
+
+  ///@todo select a sensible lesson - like the first new one.
+}
+
 
 
 bool KVTLessonModel::dropMimeData ( const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent )

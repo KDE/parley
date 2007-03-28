@@ -751,61 +751,6 @@ void KVocTrainApp::slotCleanVocabulary()
   }
 }
 
-/** @todo rework this - assign lessons
- */
-void KVocTrainApp::slotCreateRandom()
-{
-kDebug() << "KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that." << endl;
-/*
-  bool ok = false;
-  int res = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("Enter number of entries per lesson:"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
-  if (!ok)
-    return;
-
-  Prefs::setEntriesPerLesson(res);
-
-  slotStatusMsg(i18n("Creating random lessons..."));
-  QApplication::setOverrideCursor(Qt::WaitCursor);
-
-  QList<KEduVocExpression*> randomList;
-  for (int i = 0; i < m_doc->entryCount(); i++) {
-    KEduVocExpression *expr = m_doc->entry(i);
-    if (expr->lesson() == 0)
-      randomList.append(expr);
-  }
-
-  if (randomList.size() != 0) {
-    int less_no = m_lessonsComboBox->count();
-    QString s;
-    s.setNum(less_no);
-    s.prepend("- ");
-    m_lessonsComboBox->addItem(s);
-    int less_cnt = Prefs::entriesPerLesson();
-    while (randomList.size() != 0) {
-      if (--less_cnt <= 0) {
-        less_cnt = Prefs::entriesPerLesson();
-        less_no++;
-        s.setNum(less_no);
-        s.prepend("- ");
-        m_lessonsComboBox->addItem(s);
-      }
-      int nr = m_randomSequence.getLong(randomList.size());
-      randomList.takeAt(nr)->setLesson(less_no);
-    }
-
-    QStringList new_lessonStr;
-    for (int i = 1; i < m_lessonsComboBox->count(); i++)
-      new_lessonStr.append(m_lessonsComboBox->itemText(i));
-    m_doc->setLessonDescriptions(new_lessonStr);
-    m_tableModel->reset();
-    m_doc->setModified ();
-  }
-  QApplication::restoreOverrideCursor();
-  slotStatusMsg(IDS_DEFAULT);
-
-*/
-}
-
 
 void KVocTrainApp::slotGeneralOptions()
 {

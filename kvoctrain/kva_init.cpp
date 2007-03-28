@@ -216,14 +216,6 @@ void KVocTrainApp::initActions()
   vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
   vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());
 
-  vocabAssignLessons = actionCollection()->addAction("vocab_assign_lessons");
-  vocabAssignLessons->setIcon(KIcon("rand_less"));
-  vocabAssignLessons->setText(i18n("Assign L&essons..."));
-  connect(vocabAssignLessons, SIGNAL(triggered(bool)), this, SLOT(slotCreateRandom()));
-  vocabAssignLessons->setWhatsThis(i18n("Create random lessons for unassigned entries"));
-  vocabAssignLessons->setToolTip(vocabAssignLessons->whatsThis());
-  vocabAssignLessons->setStatusTip(vocabAssignLessons->whatsThis());
-
   vocabCleanUp = actionCollection()->addAction("vocab_clean_up");
   vocabCleanUp->setIcon(KIcon("cleanup"));
   vocabCleanUp->setText(i18n("Remove &Duplicates"));

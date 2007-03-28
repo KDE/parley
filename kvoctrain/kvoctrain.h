@@ -181,7 +181,6 @@ public:
   void slotDocumentProperties();
   void slotDocPropsLang();
   void slotShowStatistics();
-  void slotCreateRandom();
   /** set up vocabulary and learning submenus */
   void aboutToShowVocabAppendLanguage();
   void aboutToShowVocabSetLanguage();
