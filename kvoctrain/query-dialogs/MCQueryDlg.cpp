@@ -142,6 +142,7 @@ void MCQueryDlg::setQuery(QString org,
    else
      mw->timebar->setEnabled(false);
 
+   KRandomSequence randomSequence;
    QList<QString> strings; // great descriptive name
    button_ref.clear();
    button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
@@ -163,7 +164,6 @@ void MCQueryDlg::setQuery(QString org,
      strings.push_back(multipleChoice.mc(i));
    }
 
-   KRandomSequence randomSequence;
    if (strings.count() > 1)
     randomSequence.randomize(strings);
 
