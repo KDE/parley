@@ -1239,7 +1239,7 @@ void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModel
 {
     //Q_UNUSED(currentLesson);
     updateTableFilter();
-    // I'd rather have this acces m_doc->lessonsInQuery() when a query is started.
+    // I'd rather have this access m_doc->lessonsInQuery() when a query is started.
     // this could make resume query act weird.
     /// @todo look into this
     querymanager.setLessonItems(m_doc->lessonsInQuery());

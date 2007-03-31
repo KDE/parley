@@ -60,7 +60,7 @@ This should of course only work on the Lesson Column.
 
 Also when doing a search I want to filter out all that does not contain the search string.
 This on the other hand needs to work on the vocab columns.
-Also space as seperator would be great.
+Also space as separator would be great.
 So searching for "walk go" would find "to go" and "to walk" maybe. This is easy by doing regexp stuff and translating spaces into OR.
 */
 /**
