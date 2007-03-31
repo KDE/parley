@@ -80,292 +80,291 @@ class KVTNewStuff;
   */
 class KVocTrainApp : public KMainWindow
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  /** construtor */
-  KVocTrainApp(QWidget *parent = 0);
-  /** destructor */
-  ~KVocTrainApp();
-  void initActions();
+    /** construtor */
+    KVocTrainApp(QWidget *parent = 0);
+    /** destructor */
+    ~KVocTrainApp();
+    void initActions();
 
-  /** setup the statusbar */
-  void initStatusBar();
-  /** setup the main document*/
-  void initDoc();
-  /** setup the main model*/
-  void initModel();
-  /** setup the lesson list and its buttons */
-  QWidget* initLessonList(QWidget *parent);
-  /** setup the main view*/
-  void initView();
-  /** save the app-specific options on slotAppExit or by an Options dialog */
-  void saveOptions();
-  /** read the app-specific options on init() or by an Options dialog */
-  void readOptions();
+    /** setup the statusbar */
+    void initStatusBar();
+    /** setup the main document*/
+    void initDoc();
+    /** setup the main model*/
+    void initModel();
+    /** setup the lesson list and its buttons */
+    QWidget* initLessonList(QWidget *parent);
+    /** setup the main view*/
+    void initView();
+    /** save the app-specific options on slotAppExit or by an Options dialog */
+    void saveOptions();
+    /** read the app-specific options on init() or by an Options dialog */
+    void readOptions();
 
-  void saveLanguages();
-  void readLanguages();
+    void saveLanguages();
+    void readLanguages();
 
-  /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
-  void updateTableFilter();
-  /** Make sure, the lesson is visible - if combo is set to 
-    1. all, no problem 
-    2. in query -> if current not in query change combo?
-    3. current -> make the lesson current */
-  void makeLessonVisibleInTable(int lessonIndex);
+    /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
+    void updateTableFilter();
+    /** Make sure, the lesson is visible - if combo is set to
+      1. all, no problem 
+      2. in query -> if current not in query change combo?
+      3. current -> make the lesson current */
+    void makeLessonVisibleInTable(int lessonIndex);
 
-  /** saves the window properties for each open window during session end to the session config file, including saving the currently
-  * opened file by a temporary filename provided by KApplication.
-  * @see KMainWindow#saveProperties
-  */
-  virtual void saveProperties(KConfigGroup & );
-  /** reads the session config file and restores the application's state including the last opened files and documents by reading the
-  * temporary files saved by saveProperties()
-  * @see KMainWindow#readProperties
-  */
-  virtual void readProperties(const KConfigGroup & );
+    /** saves the window properties for each open window during session end to the session config file, including saving the currently
+    * opened file by a temporary filename provided by KApplication.
+    * @see KMainWindow#saveProperties
+    */
+    virtual void saveProperties(KConfigGroup &);
+    /** reads the session config file and restores the application's state including the last opened files and documents by reading the
+    * temporary files saved by saveProperties()
+    * @see KMainWindow#readProperties
+    */
+    virtual void readProperties(const KConfigGroup &);
 
- signals:
-  void progressChanged (KEduVocDocument *, int curr_percent);
+signals:
+    void progressChanged(KEduVocDocument *, int curr_percent);
 
- public slots:
-  void keyPressEvent( QKeyEvent *e );
+public slots:
+    void keyPressEvent(QKeyEvent *e);
 //  void keyReleaseEvent( QKeyEvent *e );
-  void slotModifiedDoc(bool mod);
-  void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
+    void slotModifiedDoc(bool mod);
+    void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
 //  void slotSelectEntry (int row, int col, int key_state);
 
-  /** edit an entry */
-  void slotEditEntry(int row, int col); ///@todo get rid of
-  void slotEditEntry2(const QModelIndex &);
-  void slotEditCallBack(int res);
+    /** edit an entry */
+    void slotEditEntry(int row, int col); ///@todo get rid of
+    void slotEditEntry2(const QModelIndex &);
+    void slotEditCallBack(int res);
 
-  void commitEntryDlg(bool force);
-  void setDataEntryDlg (int row, int col);
-  void removeEntryDlg();
+    void commitEntryDlg(bool force);
+    void setDataEntryDlg(int row, int col);
+    void removeEntryDlg();
 
-  /** select an entry */
-  void slotSaveSelection ();
-  void slotCancelSelection ();
-  void slotSelectAll();
-  void slotProgress(KEduVocDocument*,int);
-  /** Use this to filter out stuff - access from search line. */
-  void slotSearch(const QString&);
-  
-  // was never used: void slotCreateLesson(int header);
-  void slotCleanVocabulary ();
-  // not used: void slotChooseLesson(int id);
-  /** selection of a lesson from the lesson list on the left */
-  void slotCurrentLessonChanged(int currentLesson);
-  /** selection of which lessons should be in the table to edit */
-  void slotLessonSelectionComboChanged(int index);
-  /** the lessons in query were changed */
-  void slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &);
+    /** select an entry */
+    void slotSaveSelection();
+    void slotCancelSelection();
+    void slotSelectAll();
+    void slotProgress(KEduVocDocument*,int);
+    /** Use this to filter out stuff - access from search line. */
+    void slotSearch(const QString&);
 
-  /** append language to vocabulary */
-  void slotAppendLanguage(int index);
-  /** assign language to vocabulary column */
-  void slotAssignLanguage(QAction *);
-  /** remove language from vocabulary */
-  void slotRemoveLanguage(int index);
-  /** exit query mode */
-  void slotStopQuery(bool show_view);
-  bool queryClose();
-  /** overloaded for Message box on last window exit */
-  bool queryExit();
-  /** set up options */
-  void slotGeneralOptionsPage(int index);
-  void slotGeneralOptions();
-  void slotApplyPreferences();
-  void slotDocumentProperties();
-  void slotDocPropsLang();
-  void slotShowStatistics();
-  /** set up vocabulary and learning submenus */
-  void aboutToShowVocabAppendLanguage();
-  void aboutToShowVocabSetLanguage();
-  void aboutToShowVocabRemoveLanguage();
-  void aboutToShowLearn();
+    // was never used: void slotCreateLesson(int header);
+    void slotCleanVocabulary();
+    // not used: void slotChooseLesson(int id);
+    /** selection of a lesson from the lesson list on the left */
+    void slotCurrentLessonChanged(int currentLesson);
+    /** selection of which lessons should be in the table to edit */
+    void slotLessonSelectionComboChanged(int index);
+    /** the lessons in query were changed */
+    void slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &);
 
-  /** starts random query mode */
-  void slotLearningMapperTriggered(const QString &);
-  void slotResumeQuery();
-  void slotResumeQueryMC();
-  void slotRestartQuery();
-  void slotStartTypeQuery(int col, const QString & type);
-  void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
-  void slotStartQuery(const QString & trans, const QString & org, bool create_new);
+    /** append language to vocabulary */
+    void slotAppendLanguage(int index);
+    /** assign language to vocabulary column */
+    void slotAssignLanguage(QAction *);
+    /** remove language from vocabulary */
+    void slotRemoveLanguage(int index);
+    /** exit query mode */
+    void slotStopQuery(bool show_view);
+    bool queryClose();
+    /** overloaded for Message box on last window exit */
+    bool queryExit();
+    /** set up options */
+    void slotGeneralOptionsPage(int index);
+    void slotGeneralOptions();
+    void slotApplyPreferences();
+    void slotDocumentProperties();
+    void slotDocPropsLang();
+    void slotShowStatistics();
+    /** set up vocabulary and learning submenus */
+    void aboutToShowVocabAppendLanguage();
+    void aboutToShowVocabSetLanguage();
+    void aboutToShowVocabRemoveLanguage();
+    void aboutToShowLearn();
 
-  void slotTimeOutRandomQuery(QueryDlgBase::Result res);
-  void slotTimeOutMultipleChoice(QueryDlgBase::Result res);
-  void slotTimeOutQuery(QueryDlgBase::Result res);
-  void slotTimeOutType(QueryDlgBase::Result res);
-  void slotTimeOutProperty(QueryDlgBase::Result res);
-  void slotTimeOutBackup();
+    /** starts random query mode */
+    void slotLearningMapperTriggered(const QString &);
+    void slotResumeQuery();
+    void slotResumeQueryMC();
+    void slotRestartQuery();
+    void slotStartTypeQuery(int col, const QString & type);
+    void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
+    void slotStartQuery(const QString & trans, const QString & org, bool create_new);
 
-  /** open a new application window */
-  void slotFileNew();
-  /** open a document */
-  void slotFileOpen();
-  /** opens a file from the recent files menu */
-  void slotFileOpenRecent(const KUrl& url);
-  /** open a sample document */
-  void slotFileOpenExample();
-  /** download new vocabularies */
-  void slotGHNS();
-  void loadFileFromPath(const KUrl &, bool addRecent = true);
-  /** merge a document */
-  void slotFileMerge();
-  /** save a document */
-  void slotFileSave();
-  /** save a document under a different filename*/
-  void slotFileSaveAs();
-  void slotFilePrint();
-  void slotFileQuit();
+    void slotTimeOutRandomQuery(QueryDlgBase::Result res);
+    void slotTimeOutMultipleChoice(QueryDlgBase::Result res);
+    void slotTimeOutQuery(QueryDlgBase::Result res);
+    void slotTimeOutType(QueryDlgBase::Result res);
+    void slotTimeOutProperty(QueryDlgBase::Result res);
+    void slotTimeOutBackup();
 
-  /** put the marked text/object into the clipboard*/
-  void slotEditCopy();
-  void slotAppendRow();
-  void slotRemoveRow();
-  void slotEditRow();
-  /** paste the clipboard into the document*/
-  void slotEditPaste();
+    /** open a new application window */
+    void slotFileNew();
+    /** open a document */
+    void slotFileOpen();
+    /** opens a file from the recent files menu */
+    void slotFileOpenRecent(const KUrl& url);
+    /** open a sample document */
+    void slotFileOpenExample();
+    /** download new vocabularies */
+    void slotGHNS();
+    void loadFileFromPath(const KUrl &, bool addRecent = true);
+    /** merge a document */
+    void slotFileMerge();
+    /** save a document */
+    void slotFileSave();
+    /** save a document under a different filename*/
+    void slotFileSaveAs();
+    void slotFilePrint();
+    void slotFileQuit();
 
-  /** change the status message to text */
-  void slotStatusMsg(const QString &text);
-  /** change the status message of the whole statusbar temporary */
-  void slotStatusHelpMsg(const QString &text);
+    /** put the marked text/object into the clipboard*/
+    void slotEditCopy();
+    void slotAppendRow();
+    void slotRemoveRow();
+    void slotEditRow();
+    /** paste the clipboard into the document*/
+    void slotEditPaste();
 
-  void slotConfigShowSearch();
+    /** change the status message to text */
+    void slotStatusMsg(const QString &text);
+    /** change the status message of the whole statusbar temporary */
+    void slotStatusHelpMsg(const QString &text);
+
+    void slotConfigShowSearch();
 
 public:
-  void removeProgressBar();
-  void prepareProgressBar();
-  void fillLessonBox();
-  void loadDocProps();
-  void saveDocProps(KEduVocDocument *);
+    void removeProgressBar();
+    void prepareProgressBar();
+    void fillLessonBox();
+    void loadDocProps();
+    void saveDocProps(KEduVocDocument *);
 
 private:
-  /** used for the query slotStartXYZ - to check if query is not empty */
-  bool queryIsEmpty();
-  void createNewDocument();
+    /** used for the query slotStartXYZ - to check if query is not empty */
+    bool queryIsEmpty();
+    void createNewDocument();
 
-  // KAction pointers to enable/disable actions
-  QAction* fileNew;
-  QAction* fileOpen;
-  QAction* fileOpenExample;
-  QAction* fileGHNS;
-  KRecentFilesAction* fileOpenRecent;
-  QAction* fileMerge;
-  QAction* fileSave;
-  QAction* fileSaveAs;
-  QAction* filePrint;
-  QAction* fileQuit;
+    // KAction pointers to enable/disable actions
+    QAction* fileNew;
+    QAction* fileOpen;
+    QAction* fileOpenExample;
+    QAction* fileGHNS;
+    KRecentFilesAction* fileOpenRecent;
+    QAction* fileMerge;
+    QAction* fileSave;
+    QAction* fileSaveAs;
+    QAction* filePrint;
+    QAction* fileQuit;
 
-  QAction* editCopy;
-  QAction* editPaste;
-  QAction* editSelectAll;
-  QAction* editClearSelection;
+    QAction* editCopy;
+    QAction* editPaste;
+    QAction* editSelectAll;
+    QAction* editClearSelection;
 
-  QAction* editAppend;
-  QAction* editEditEntry;
-  QAction* editDelete;
-  QAction* editSaveSelectedArea;
+    QAction* editAppend;
+    QAction* editEditEntry;
+    QAction* editDelete;
+    QAction* editSaveSelectedArea;
 
-  QAction* vocabShowStatistics;
-  QAction* vocabAssignLessons;
-  QAction* vocabCleanUp;
-  KSelectAction* vocabAppendLanguage;
-  KSelectAction* vocabSetLanguage;
-  KSelectAction* vocabRemoveLanguage;
-  QAction* vocabDocumentProperties;
-  QAction* vocabLanguageProperties;
-  QAction* vocabLessons;
-  QAction* vocabSearch;
+    QAction* vocabShowStatistics;
+    QAction* vocabAssignLessons;
+    QAction* vocabCleanUp;
+    KSelectAction* vocabAppendLanguage;
+    KSelectAction* vocabSetLanguage;
+    KSelectAction* vocabRemoveLanguage;
+    QAction* vocabDocumentProperties;
+    QAction* vocabLanguageProperties;
+    QAction* vocabLessons;
+    QAction* vocabSearch;
 
-  QAction* learningResumeQuery;
-  QAction* learningResumeMultipleChoice;
+    QAction* learningResumeQuery;
+    QAction* learningResumeMultipleChoice;
 
-  QAction* configToolbar;
-  QAction* configNotifications;
-  QAction* configApp;
+    QAction* configToolbar;
+    QAction* configNotifications;
+    QAction* configApp;
 
-  QString lastPixName;
+    QString lastPixName;
 
-  QMenu *learningMenu;
-  QSignalMapper *m_learningMapper;
+    QMenu *learningMenu;
+    QSignalMapper *m_learningMapper;
 
 
 //   QPushButton *m_buttonNewLesson;
 //   QPushButton *m_buttonRenameLesson;
 //   QPushButton *m_buttonDeleteLesson;
 
-  /** m_editCombo selects which lessons to display in m_tableView (the main table) */
-  KComboBox *m_lessonSelectionCombo;
+    /** m_editCombo selects which lessons to display in m_tableView (the main table) */
+    KComboBox *m_lessonSelectionCombo;
 
-  /** m_tableView is the main widget which is the table that represents your working area. */
-  KVTTableView *m_tableView;
+    /** m_tableView is the main widget which is the table that represents your working area. */
+    KVTTableView *m_tableView;
 
-  /** m_lessonView is the lesson list at the left side. */
-  //KVTLessonView *m_lessonView;
-  KVTLessonView *m_lessonView;
+    /** m_lessonView is the lesson list at the left side. */
+    KVTLessonView *m_lessonView;
 
-  QSplitter *m_mainSplitter;
+    /** Divides the main window to have the lessons and the table. */
+    QSplitter *m_mainSplitter;
 
-  QWidget *m_searchWidget;
+    QWidget *m_searchWidget;
 
-  /** m_doc represents your vocabulary document. It keeps
-    * information such as filename and does the serialization of your files.
-    */
-  KEduVocDocument *m_doc;
+    /** m_doc represents your vocabulary document. It keeps
+      * information such as filename and does the serialization of your files.
+      */
+    KEduVocDocument *m_doc;
 
-  /** The models to represent the data of m_doc */
-  KVTTableModel       *m_tableModel;
-  KVTLessonModel      *m_lessonModel;
-  KVTSortFilterModel  *m_sortFilterModel;
+    /** The models to represent the data of m_doc */
+    KVTTableModel       *m_tableModel;
+    KVTLessonModel      *m_lessonModel;
+    KVTSortFilterModel  *m_sortFilterModel;
 
-  QueryEntryList       random_expr1;
-  QueryEntryList       random_expr2;
-  // Vectors for use in Leitner style learning. There is no
-  // correct_0_times, we simply reuse random_expr1.
-  QueryEntryList       correct_1_times;
-  QueryEntryList       correct_2_times;
-  QueryEntryList       correct_3_times;
-  QuerySelection       queryList;
+    QueryEntryList       random_expr1;
+    QueryEntryList       random_expr2;
+    // Vectors for use in Leitner style learning. There is no
+    // correct_0_times, we simply reuse random_expr1.
+    QueryEntryList       correct_1_times;
+    QueryEntryList       correct_2_times;
+    QueryEntryList       correct_3_times;
+    QuerySelection       queryList;
 
-  int                  random_query_nr;
-  QString              def_lang;
-  int                  act_query_col;
-  QString              act_query_trans;
-  QString              act_query_org;
-  KVTLanguages         m_languages;
+    int                  random_query_nr;
+    QString              def_lang;
+    int                  act_query_col;
+    QString              act_query_trans;
+    QString              act_query_org;
+    KVTLanguages         m_languages;
 
-  QString              m_textToFind;
+    QString              m_textToFind;
 
-  KLineEdit           *m_searchLine;
-  //KComboBox           *m_lessonsComboBox;
-  //int                  m_currentLesson; // m_doc->currentLesson()
-  KVTQuery             querymanager;
-  bool                 controlActive;
+    KLineEdit           *m_searchLine;
 
-  QProgressBar        *pbar;
-  QLabel              *m_pronunciationStatusBarLabel;
-  QLabel              *m_remarkStatusBarLabel;
-  QLabel              *m_typeStatusBarLabel;
-  SimpleQueryDlg      *simpleQueryDlg;
-  EntryDlg            *entryDlg;
-  MCQueryDlg          *mcQueryDlg;
-  VerbQueryDlg        *verbQueryDlg;
-  RandomQueryDlg      *randomQueryDlg;
-  AdjQueryDlg         *adjQueryDlg;
-  ArtQueryDlg         *artQueryDlg;
-  int                  num_queryTimeout;
-  int                  query_cycle;
-  int                  query_num;
-  int                  query_startnum;
-  KVTQuery::QueryType  m_queryType;
-  KRandomSequence      m_randomSequence;
-  KVTNewStuff         *m_newStuff;
+    KVTQuery             querymanager;
+    bool                 controlActive;
+
+    QProgressBar        *pbar;
+    QLabel              *m_pronunciationStatusBarLabel;
+    QLabel              *m_remarkStatusBarLabel;
+    QLabel              *m_typeStatusBarLabel;
+    SimpleQueryDlg      *simpleQueryDlg;
+    EntryDlg            *entryDlg;
+    MCQueryDlg          *mcQueryDlg;
+    VerbQueryDlg        *verbQueryDlg;
+    RandomQueryDlg      *randomQueryDlg;
+    AdjQueryDlg         *adjQueryDlg;
+    ArtQueryDlg         *artQueryDlg;
+    int                  num_queryTimeout;
+    int                  query_cycle;
+    int                  query_num;
+    int                  query_startnum;
+    KVTQuery::QueryType  m_queryType;
+    KRandomSequence      m_randomSequence;
+    KVTNewStuff         *m_newStuff;
 };
 
 #endif // KVOCTRAIN_H

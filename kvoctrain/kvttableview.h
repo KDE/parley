@@ -1,7 +1,7 @@
 //
 // C++ Interface: kvttableview
 //
-// Description: 
+// Description:
 //
 //
 // Author:  (C) 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
@@ -24,33 +24,37 @@
 */
 class KVTTableView : public QTableView
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-  KVTTableView(QWidget *parent = 0);
+    KVTTableView(QWidget *parent = 0);
 
-  void setModel(KVTSortFilterModel * model);
-  void print(KPrinter *pPrinter);
-  void adjustContent();
+    void setModel(KVTSortFilterModel * model);
+    void print(KPrinter *pPrinter);
+    void adjustContent();
 
 protected slots:
-  void verticalHeaderResized(int, int, int);
-  void horizontalHeaderResized(int, int, int);
-  void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
+    void verticalHeaderResized(int, int, int);
+    void horizontalHeaderResized(int, int, int);
+    void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
+    /** Show the lesson column of the table.
+     * @param show if @c true the lesson column is shown
+     */
+    void slotShowLessonColumn(bool show);
 
 public slots:
-  void slotModelReset();
+    void slotModelReset();
 
 protected:
-  /** resizes table when frame is resized */
-  void resizeEvent(QResizeEvent *);
-  void showEvent(QShowEvent *);
-  void keyPressEvent(QKeyEvent*);
+    /** resizes table when frame is resized */
+    void resizeEvent(QResizeEvent *);
+    void showEvent(QShowEvent *);
+    void keyPressEvent(QKeyEvent*);
 
 private:
-  void newPage(QPainter &, int, int, int);
-  void endOfPage(QPainter &, int, int);
+    void newPage(QPainter &, int, int, int);
+    void endOfPage(QPainter &, int, int);
 
-  KVTTableDelegate * m_delegate;
+    KVTTableDelegate * m_delegate;
 };
 
 #endif

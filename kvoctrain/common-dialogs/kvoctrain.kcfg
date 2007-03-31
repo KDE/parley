@@ -5,6 +5,7 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <include>kglobalsettings.h</include>
   <kcfgfile name="kvoctrainrc"/>
+
   <group name="General">
     <entry name="NumPreSetting" type="Int">
       <label>Number of stored setting profiles</label>
@@ -52,6 +53,7 @@
       <default>Automatic</default>
     </entry>
   </group>
+
   <group name="QueryProperties">
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
@@ -123,11 +125,18 @@
       <default>true</default>
     </entry>
   </group>
+
   <group name="Appearance">
     <entry name="ShowSearch" type="Bool">
       <label>Toggle display of the search bar.</label>
       <default>true</default>
     </entry>
+
+    <entry name="TableLessonColumnVisible" type="Bool">
+      <label>Show/hide the lesson column.</label>
+      <default>false</default>
+    </entry>
+
     <entry name="LessonEditingSelection" type="Enum">
       <label>Select which lessons are displayed for editing</label>
       <choices>
@@ -257,6 +266,7 @@
       <default param="7">10368000</default>
     </entry>
   </group>
+
   <group name="KNewStuff">
     <entry name="ProvidersUrl" type="Path">
       <label>The Providers path for KVocTrain</label>

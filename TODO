@@ -4,6 +4,9 @@
 
 QUERY:
 Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
+Add a "show only" query?
+
+Make lesson column hidden/visible at users whim. -working on it - Frederik
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -11,6 +14,8 @@ Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
 Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
+Statistics:
+Statistics still show <no lesson>. And they are ugly.
 
 --------------------
  NOT SO FAR FUTURE:
@@ -20,11 +25,8 @@ Lesson list:
 -count of entries in the lesson could be nice
 -When renaming a lesson, the main table is not updated. It should emit a dataChanged though. Strange. Even changing the focus updates the table.
 
-Library: Add functions: addLesson, removeLesson.
-
 m_tableView and friends: make columns visible/hide as user wishes. Additional columns for word type and all that seems sensible(?).
 
-Combobox: make it editable with regexp or better space as seperator to search-select lessons
 kvttablemodel: make columns hideable, add support for more columns like word type. By default only show original + translations. Are the numbers of the entries significant to the user? maybe better hide them?
 
 Enable drag and drop for lessons and vocab (drag into lesson, change order of lessons).
@@ -54,6 +56,8 @@ Unclutter kvoctrain.h - move for example much of the query stuff away from there
 ------------------
  LONG TERM STUFF:
 ------------------
+
+Combobox: make it editable with regexp or better space as seperator to search-select lessons
 
 Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
 
@@ -117,6 +121,8 @@ Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries
 
 get new vocabulary online skripts? for example from leo.org? (I enter abc, a list of translations appears?)
 
+kiten would like to use kvoctrain for it's practice. Kiruwa told me he'd also like a "lookup in kiten" field. Maybe this could be considered in the new kvtml version. Each vocab could have a "link to external application" - easy as optional xml tag and to be displayed for example in a column of its own, next to the vocab. - Frederik
+
 ------------
  SOLVED:
 ------------
@@ -173,4 +179,6 @@ When deleting a lesson the in query x are not respected - bad! -- DONE
 kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", -- DONE
 
 Multiple choice seems to crash right away. -- DONE - KRandomSequence does not work with a list of 0 entries.
+
+Library: Add functions: addLesson, removeLesson. -- DONE (appendLesson and deleteLesson)
 
