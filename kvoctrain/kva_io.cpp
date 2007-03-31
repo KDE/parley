@@ -42,6 +42,8 @@
 
 #include "kvoctrain.h"
 #include "kvtusage.h"
+#include "newdocument-wizard/kvtnewdocumentwizard.h"
+
 #include <prefs.h>
 
 void KVocTrainApp::slotTimeOutBackup()
@@ -120,6 +122,12 @@ void KVocTrainApp::slotFileNew()
         createNewDocument();
 
     slotStatusMsg(IDS_DEFAULT);
+
+    KVTNewDocumentWizard *wizard = new KVTNewDocumentWizard(this);
+    wizard->show();
+
+    //KVTNewDocumentWizard wizard;
+    //wizard.show();
 }
 
 void KVocTrainApp::slotFileOpen()

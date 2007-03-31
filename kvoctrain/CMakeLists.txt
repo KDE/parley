@@ -109,7 +109,13 @@ kde4_add_ui_files(statisticsdialogs_SRCS
     statistics-dialogs/StatisticsPageForm.ui
 )
 
-set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS} ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
+set(newdocument-wizard_SRCS
+    newdocument-wizard/kvtnewdocumentwizard.cpp
+    newdocument-wizard/kvtnewdocumentwizardintropage.cpp
+)
+
+set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
+${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_io.cpp
     kvoctrain.cpp
     main.cpp
