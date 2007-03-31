@@ -32,68 +32,64 @@
 
 KVTNewStuff::KVTNewStuff(QWidget *parent) : QObject(), KNewStuff("kdeedu/vocabulary", parent)
 {
-  m_app = (KVocTrainApp*) parent;
+    m_app = (KVocTrainApp*) parent;
 }
 
 
 bool KVTNewStuff::install(const QString & fileName)
 {
-  if (m_app->queryExit())
-    m_app->loadFileFromPath(fileName, true);
-  return true;
+    if (m_app->queryExit())
+        m_app->loadFileFromPath(fileName, true);
+    return true;
 }
 
 
 bool KVTNewStuff::createUploadFile(const QString & fileName)
 {
-  Q_UNUSED(fileName);
-  return true;
+    Q_UNUSED(fileName);
+    return true;
 }
 
 
 QString KVTNewStuff::destinationPath(KNS::Entry * entry)
 {
-  if (entry)
-  {
-    KUrl url = entry->payload();
-    QString fileName = url.fileName();
+    if (entry) {
+        KUrl url = entry->payload();
+        QString fileName = url.fileName();
 
-    QString path = Prefs::installPath(); //default is $HOME/Vocabularies
-    QString file;
+        QString path = Prefs::installPath(); //default is $HOME/Vocabularies
+        QString file;
 
-    if (path.isEmpty())
-      file = KNewStuff::downloadDestination(entry); //fall back on a temp file, should never happen
-    else
-    {
-      KStandardDirs::makeDir(path); //ensure the directory exists
-      file = KStandardDirs::realFilePath(path + '/' + fileName);
-    }
-    return file;
-  }
-  else
-    return QString();
+        if (path.isEmpty())
+            file = KNewStuff::downloadDestination(entry); //fall back on a temp file, should never happen
+        else {
+            KStandardDirs::makeDir(path); //ensure the directory exists
+            file = KStandardDirs::realFilePath(path + '/' + fileName);
+        }
+        return file;
+    } else
+        return QString();
 }
 
 
 QString KVTNewStuff::downloadDestination(KNS::Entry * entry)
 {
-  QString file = destinationPath(entry);
+    QString file = destinationPath(entry);
 
-  if (KStandardDirs::exists(file))
-  {
-    int result = KMessageBox::warningContinueCancel(parentWidget(),
-        i18n("The file '%1' already exists. Do you want to overwrite it?",
-         file),
-        QString(), KStandardGuiItem::overwrite() );
-    if (result == KMessageBox::Cancel)
-      return QString();
-  }
-  KMessageBox::information(parentWidget(),
-    i18n("<qt>The selected file will now be downloaded and saved as\n<b>'%1'</b>.</qt>",
-     file),
-    QString(),
-    "NewStuffDownloadLocation");
-  return file;
+    if (KStandardDirs::exists(file)) {
+        int result = KMessageBox::warningContinueCancel(parentWidget(),
+                     i18n("The file '%1' already exists. Do you want to overwrite it?",
+                          file),
+                     QString(), KStandardGuiItem::overwrite());
+        if (result == KMessageBox::Cancel)
+            return QString();
+    }
+    KMessageBox::information(parentWidget(),
+                             i18n("<qt>The selected file will now be downloaded and saved as\n<b>'%1'</b>.</qt>",
+                                  file),
+                             QString(),
+                             "NewStuffDownloadLocation");
+    return file;
 }
 
 

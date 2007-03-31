@@ -1,7 +1,7 @@
 //
 // C++ Interface: kvttablemodel
 //
-// Description: 
+// Description:
 //
 //
 // Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
@@ -31,48 +31,51 @@
 
 class KVTTableModel : public QAbstractTableModel
 {
-Q_OBJECT
+    Q_OBJECT
 public:
 
-  enum KVTItemDataRole {
-    LessonsRole = Qt::UserRole + 1,
-    LessonRole,
-    StateRole,
-    GradeRole
-  };
+    enum KVTItemDataRole {
+        LessonsRole = Qt::UserRole + 1,
+        LessonRole,
+        StateRole,
+        GradeRole
+    };
 
-  KVTTableModel(QObject *parent = 0);
+    KVTTableModel(QObject *parent = 0);
 
-  void setDocument(KEduVocDocument * doc);
-  KEduVocDocument * document() const {return m_doc;}
+    void setDocument(KEduVocDocument * doc);
+    KEduVocDocument * document() const
+    {
+        return m_doc;
+    }
 
-  void setLanguages(const KVTLanguages & languages);
+    void setLanguages(const KVTLanguages & languages);
 
-  bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
-  bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
-  bool insertColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
-  bool removeColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
+    bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
+    bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
+    bool insertColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
+    bool removeColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
 
-  int rowCount(const QModelIndex &parent) const;
-  int columnCount(const QModelIndex &parent) const;
+    int rowCount(const QModelIndex &parent) const;
+    int columnCount(const QModelIndex &parent) const;
 
-  QVariant data(const QModelIndex &index, int role) const;
-  QVariant headerData(int section, Qt::Orientation orientation, int role) const;
+    QVariant data(const QModelIndex &index, int role) const;
+    QVariant headerData(int section, Qt::Orientation orientation, int role) const;
 
-  Qt::ItemFlags flags(const QModelIndex &index) const;
-  bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-  bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role = Qt::EditRole);
+    Qt::ItemFlags flags(const QModelIndex &index) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role = Qt::EditRole);
 
-  //void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
+    //void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 private:
-  KEduVocDocument * m_doc;
-  QPixmap m_pixInactive;
-  QPixmap m_pixInQuery;
-  KVTLanguages m_languages;
+    KEduVocDocument * m_doc;
+    QPixmap m_pixInactive;
+    QPixmap m_pixInQuery;
+    KVTLanguages m_languages;
 
-  friend class KVocTrainApp;
-  friend class KVTStatisticsDialog;
+    friend class KVocTrainApp;
+    friend class KVTStatisticsDialog;
 };
 
 #endif

@@ -85,30 +85,40 @@
 struct UsageRelation
 {
 public:
-  UsageRelation (const QString & id, const QString & shorty, const QString & longy) : ident(id), shortId(shorty), longId(longy) {}
+    UsageRelation(const QString & id, const QString & shorty, const QString & longy) : ident(id), shortId(shorty), longId(longy)
+    {}
 
-  QString identStr() const { return ident; }
-  QString shortStr() const { return shortId; }
-  QString longStr()  const { return longId;  }
+    QString identStr() const
+    {
+        return ident;
+    }
+    QString shortStr() const
+    {
+        return shortId;
+    }
+    QString longStr()  const
+    {
+        return longId;
+    }
 
 protected:
-  QString ident;
-  QString shortId;
-  QString longId;
+    QString ident;
+    QString shortId;
+    QString longId;
 };
 
 
 class KVTUsage
 {
 public:
-  KVTUsage();
+    KVTUsage();
 
-  static bool contains(const QString& label, const QString& collection);
-  static QList<UsageRelation> getRelation();
-  static void setUsageNames(QStringList names);
+    static bool contains(const QString& label, const QString& collection);
+    static QList<UsageRelation> getRelation();
+    static void setUsageNames(QStringList names);
 
 private:
-  static QStringList userUsages;
+    static QStringList userUsages;
 };
 
 #endif // kvtusage_included

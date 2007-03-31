@@ -1,7 +1,7 @@
 //
 // C++ Interface: kvttabledelegate
 //
-// Description: 
+// Description:
 //
 //
 // Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
@@ -19,28 +19,28 @@
 */
 class KVTTableDelegate : public QItemDelegate
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-  KVTTableDelegate(QObject *parent = 0);
+    KVTTableDelegate(QObject *parent = 0);
 
-  QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QWidget * createEditor(QWidget *parent, const QStyleOptionViewItem &option, const QModelIndex &index) const;
 
-  void setEditorData(QWidget *editor, const QModelIndex &index) const;
-  void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
-  void setCurrentIndex(const QModelIndex &index);
+    void setEditorData(QWidget *editor, const QModelIndex &index) const;
+    void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
+    void setCurrentIndex(const QModelIndex &index);
 
-  void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-  QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
-  void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
+    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
+    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
+    void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
 protected:
-  void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
-  void drawFocus(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect) const;
+    void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
+    void drawFocus(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect) const;
 
 private slots:
     void commitAndCloseEditor();
 
 private:
-  QModelIndex m_currentIndex;
+    QModelIndex m_currentIndex;
 };
 
 #endif

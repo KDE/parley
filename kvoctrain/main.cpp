@@ -29,90 +29,90 @@
 #include "kvoctrain.h"
 #include "version.h"
 
-int main(int argc, char* argv[]) {
-
-static KCmdLineOptions options[] =
+int main(int argc, char* argv[])
 {
-  { I18N_NOOP("+[file]"), I18N_NOOP("Document file to open"), 0 },
-  KCmdLineLastOption
-};
 
-static const char description[] = I18N_NOOP("Vocabulary Trainer");
-static const char version[]     = KVOCTRAIN_VERSION_STRING;
+    static KCmdLineOptions options[] = {
+                                           {
+                                               I18N_NOOP("+[file]"), I18N_NOOP("Document file to open"), 0
+                                           },
+                                           KCmdLineLastOption
+                                       };
 
-  KAboutData aboutData("kvoctrain",
-                       I18N_NOOP("KVocTrain"),
-                       version,
-                       description,
-                       KAboutData::License_GPL,
-                       I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
-                       "(c) 2001-2002\tThe KDE team\n"
-                       "(c) 2004-2007\tPeter Hedlund\n"),
-                       I18N_NOOP("Helps you train your vocabulary"),
-                       "http://edu.kde.org/kvoctrain",
-                       "submit@bugs.kde.org");
+    static const char description[] = I18N_NOOP("Vocabulary Trainer");
+    static const char version[]     = KVOCTRAIN_VERSION_STRING;
 
-  aboutData.addAuthor("Peter Hedlund",
-                      I18N_NOOP("Current Maintainer"), "peter.hedlund@kdemail.net");
+    KAboutData aboutData("kvoctrain",
+                         I18N_NOOP("KVocTrain"),
+                         version,
+                         description,
+                         KAboutData::License_GPL,
+                         I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
+                                   "(c) 2001-2002\tThe KDE team\n"
+                                   "(c) 2004-2007\tPeter Hedlund\n"),
+                         I18N_NOOP("Helps you train your vocabulary"),
+                         "http://edu.kde.org/kvoctrain",
+                         "submit@bugs.kde.org");
 
-  aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
-                      "http://www.ewald-arnold.de" );
+    aboutData.addAuthor("Peter Hedlund",
+                        I18N_NOOP("Current Maintainer"), "peter.hedlund@kdemail.net");
 
-  aboutData.addCredit("Waldo Bastian",
-                      I18N_NOOP("Help with port to Qt3/KDE3"));
+    aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
+                        "http://www.ewald-arnold.de");
 
-  aboutData.addCredit("Andrea Marconi",
-                      I18N_NOOP("Initial Italian localization"));
+    aboutData.addCredit("Waldo Bastian",
+                        I18N_NOOP("Help with port to Qt3/KDE3"));
 
-  aboutData.addCredit("Hans Kottmann",
-                      I18N_NOOP("Initial French localization"));
+    aboutData.addCredit("Andrea Marconi",
+                        I18N_NOOP("Initial Italian localization"));
 
-  aboutData.addCredit("Grzegorz Ilczuk",
-                      I18N_NOOP("Initial Polish localization"));
+    aboutData.addCredit("Hans Kottmann",
+                        I18N_NOOP("Initial French localization"));
 
-  aboutData.addCredit("Eric Bischoff",
-                      I18N_NOOP("Converting documentation to docbook format"));
+    aboutData.addCredit("Grzegorz Ilczuk",
+                        I18N_NOOP("Initial Polish localization"));
 
-  aboutData.addCredit("Kevin Kramer",
-                      I18N_NOOP("Tool to create lists with ISO639 codes"));
+    aboutData.addCredit("Eric Bischoff",
+                        I18N_NOOP("Converting documentation to docbook format"));
 
-  aboutData.addCredit("Andreas Neuper",
-                      I18N_NOOP("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
+    aboutData.addCredit("Kevin Kramer",
+                        I18N_NOOP("Tool to create lists with ISO639 codes"));
 
-   aboutData.addCredit("Dennis Haney",
-                      I18N_NOOP("Patch to implement Leitner learning method"));
+    aboutData.addCredit("Andreas Neuper",
+                        I18N_NOOP("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
 
-   aboutData.addCredit("Anne-Marie Mahfouf",
-                       I18N_NOOP("Port to KConfig XT"));
+    aboutData.addCredit("Dennis Haney",
+                        I18N_NOOP("Patch to implement Leitner learning method"));
 
-  aboutData.addCredit(I18N_NOOP("KDE Team"),
-                      I18N_NOOP("Many small enhancements"));
+    aboutData.addCredit("Anne-Marie Mahfouf",
+                        I18N_NOOP("Port to KConfig XT"));
 
-  KCmdLineArgs::init( argc, argv, &aboutData );
-  KCmdLineArgs::addCmdLineOptions( options );
-  KApplication app;
+    aboutData.addCredit(I18N_NOOP("KDE Team"),
+                        I18N_NOOP("Many small enhancements"));
 
-  KVocTrainApp *kva = 0;
-  if (app.isSessionRestored()) {
-    int n = 1;
-    while (KMainWindow::canBeRestored(n)){
-      kva = new KVocTrainApp;
-      kva->restore(n);
-      kva->show();
-      n++;
+    KCmdLineArgs::init(argc, argv, &aboutData);
+    KCmdLineArgs::addCmdLineOptions(options);
+    KApplication app;
+
+    KVocTrainApp *kva = 0;
+    if (app.isSessionRestored()) {
+        int n = 1;
+        while (KMainWindow::canBeRestored(n)) {
+            kva = new KVocTrainApp;
+            kva->restore(n);
+            kva->show();
+            n++;
+        }
+    } else {
+        KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
+        kva = new KVocTrainApp;
+
+        if (args && args->count() == 1) {
+            KUrl url = KUrl::fromPath(args->arg(0));
+            kva->loadFileFromPath(url, true);
+        }
+        kva->show();
     }
-  }
-  else
-  {
-    KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-    kva = new KVocTrainApp;
-
-    if ( args && args->count() == 1 ) {
-      KUrl url = KUrl::fromPath(args->arg(0));
-      kva->loadFileFromPath(url, true);
-    }
-    kva->show();
-  }
-  return app.exec();
+    return app.exec();
 }
 

@@ -36,300 +36,300 @@
 
 QList<QString> lesson_names;
 
-struct spotty {
-  QString  type;
-  int      lesson;
-  QString  en_rem,      // possibly remarks
-           de_rem;
-  QString  en,
-           de;
+struct spotty
+{
+    QString  type;
+    int      lesson;
+    QString  en_rem,      // possibly remarks
+    de_rem;
+    QString  en,
+    de;
 };
 
 QList<spotty> spottys;
 
-void writeSpotty (QTextStream &os, spotty& spot_line, bool first) {
-   os << " <e";
+void writeSpotty(QTextStream &os, spotty& spot_line, bool first)
+{
+    os << " <e";
 
-   if (spot_line.lesson != 0 )
-     os << " m=\"" << spot_line.lesson << "\"";
+    if (spot_line.lesson != 0)
+        os << " m=\"" << spot_line.lesson << "\"";
 
-   if (!spot_line.type.isEmpty() )
-     os << " t=\"" << spot_line.type << "\"";
+    if (!spot_line.type.isEmpty())
+        os << " t=\"" << spot_line.type << "\"";
 
-   os << "><o";
+    os << "><o";
 
-   if (first)
-     os << " l=\"en\"";
+    if (first)
+        os << " l=\"en\"";
 
-   if (!spot_line.en_rem.isEmpty() )
-     os << " r=\"" << spot_line.en_rem.simplified() << "\"";
+    if (!spot_line.en_rem.isEmpty())
+        os << " r=\"" << spot_line.en_rem.simplified() << "\"";
 
-   os << ">" << spot_line.en.simplified() << "</o><t";
+    os << ">" << spot_line.en.simplified() << "</o><t";
 
-   if (first)
-     os << " l=\"de\"";
+    if (first)
+        os << " l=\"de\"";
 
-   if (!spot_line.de_rem.isEmpty() )
-     os << " r=\"" << spot_line.de_rem.simplified() << "\"";
+    if (!spot_line.de_rem.isEmpty())
+        os << " r=\"" << spot_line.de_rem.simplified() << "\"";
 
-   os << ">" << spot_line.de.simplified() << "</t></e>\n";
+    os << ">" << spot_line.de.simplified() << "</t></e>\n";
 }
 
 
-void readToMem (QTextStream &is, QString month, QString year)
+void readToMem(QTextStream &is, QString month, QString year)
 {
-   QString line;
-   bool    lesson_pending = false;
-   QString lesson_str;
-   spotty spot;
+    QString line;
+    bool    lesson_pending = false;
+    QString lesson_str;
+    spotty spot;
 
-   bool first_line = true;
-   while (!is.atEnd() && is.device()->status() == IO_Ok) {
-     line = is.readLine();
+    bool first_line = true;
+    while (!is.atEnd() && is.device()->status() == IO_Ok) {
+        line = is.readLine();
 
-     int pos;
-     while ((pos = line.indexOf("  ")) >= 0)
-       line.remove (pos, 1);
+        int pos;
+        while ((pos = line.indexOf("  ")) >= 0)
+            line.remove(pos, 1);
 
-     bool head_line = (!line.simplified().isEmpty() && line == line.toUpper() );
+        bool head_line = (!line.simplified().isEmpty() && line == line.toUpper());
 
-     if (first_line && !head_line) {
-       line = is.readLine();
-       head_line = (!line.simplified().isEmpty() && line == line.toUpper() );
-     }
-     first_line = false;
+        if (first_line && !head_line) {
+            line = is.readLine();
+            head_line = (!line.simplified().isEmpty() && line == line.toUpper());
+        }
+        first_line = false;
 
-     if (   line.indexOf ("see p.") >= 0
-         || line.indexOf ("see pp.") >= 0
-         || line.indexOf ("see also p") >= 0) {
-       line = "";
-     }
+        if (line.indexOf("see p.") >= 0
+                || line.indexOf("see pp.") >= 0
+                || line.indexOf("see also p") >= 0) {
+            line = "";
+        }
 
-     int c = 0x92;
-     while ((pos = line.indexOf (c)) >= 0)
-       line[pos] = '\'';
+        int c = 0x92;
+        while ((pos = line.indexOf(c)) >= 0)
+            line[pos] = '\'';
 
-     c = 0x94;
-     while ((pos = line.indexOf (c)) >= 0)
-       line[pos] = ' ';
+        c = 0x94;
+        while ((pos = line.indexOf(c)) >= 0)
+            line[pos] = ' ';
 
-     pos = 0;
-     while ((pos = line.indexOf ('&', pos)) >= 0) {
-       line.insert (pos+1, "amp;");
-       pos += 5; // skip &amp;
-     }
+        pos = 0;
+        while ((pos = line.indexOf('&', pos)) >= 0) {
+            line.insert(pos+1, "amp;");
+            pos += 5; // skip &amp;
+        }
 
-     while ((pos = line.indexOf ('<')) >= 0) {
-       line.remove(pos, 1);
-       line.insert (pos, "&lt;");
-     }
+        while ((pos = line.indexOf('<')) >= 0) {
+            line.remove(pos, 1);
+            line.insert(pos, "&lt;");
+        }
 
-     while ((pos = line.indexOf ('>')) >= 0) {
-       line.remove(pos, 1);
-       line.insert (pos, "&gt;");
-     }
+        while ((pos = line.indexOf('>')) >= 0) {
+            line.remove(pos, 1);
+            line.insert(pos, "&gt;");
+        }
 
-     if (!line.isEmpty()) {
+        if (!line.isEmpty()) {
 
-       if (head_line) {
-         lesson_pending = true;
-         lesson_str = line + ", "+month+' '+year;
-       }
-       else {
-         pos = line.indexOf ('\t');
-         if (pos < 0)
-           pos = line.indexOf ('|');
-         if (pos >= 0) {
-           if (lesson_pending) {
-             lesson_pending = false;
-             lesson_names.push_back(lesson_str.simplified());
-           }
+            if (head_line) {
+                lesson_pending = true;
+                lesson_str = line + ", "+month+' '+year;
+            } else {
+                pos = line.indexOf('\t');
+                if (pos < 0)
+                    pos = line.indexOf('|');
+                if (pos >= 0) {
+                    if (lesson_pending) {
+                        lesson_pending = false;
+                        lesson_names.push_back(lesson_str.simplified());
+                    }
 
-           spot.lesson = lesson_names.size();
-           spot.type = "";
-           spot.en_rem = "";
-           spot.de_rem = "";
+                    spot.lesson = lesson_names.size();
+                    spot.type = "";
+                    spot.en_rem = "";
+                    spot.de_rem = "";
 
-           if (line.left (3) == "to ") {
-             spot.type = QM_VERB;
-             line.remove (0, 3);
-             pos -= 3;
-           }
-           spot.en = line.mid(0, pos);
-           spot.de = line.mid(pos+1, line.length()-pos-1);
+                    if (line.left(3) == "to ") {
+                        spot.type = QM_VERB;
+                        line.remove(0, 3);
+                        pos -= 3;
+                    }
+                    spot.en = line.mid(0, pos);
+                    spot.de = line.mid(pos+1, line.length()-pos-1);
 
-           if ((pos = spot.en.indexOf(" UK") ) >= 0) {
-             spot.en_rem+= i18n("UK ").toLocal8Bit();
-             spot.en.remove (pos, 3);
-           }
-           if ((pos = spot.en.indexOf("(UK)") ) >= 0) {
-             spot.en_rem+= i18n("UK ").toLocal8Bit();
-             spot.en.remove (pos, 4);
-           }
+                    if ((pos = spot.en.indexOf(" UK")) >= 0) {
+                        spot.en_rem+= i18n("UK ").toLocal8Bit();
+                        spot.en.remove(pos, 3);
+                    }
+                    if ((pos = spot.en.indexOf("(UK)")) >= 0) {
+                        spot.en_rem+= i18n("UK ").toLocal8Bit();
+                        spot.en.remove(pos, 4);
+                    }
 
-           if ((pos = spot.en.indexOf(" N. Am.") ) >= 0) {
-             spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
-             spot.en.remove (pos, 7);
-           }
-           if ((pos = spot.en.indexOf("(N. Am.)") ) >= 0) {
-             spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
-             spot.en.remove (pos, 8);
-           }
+                    if ((pos = spot.en.indexOf(" N. Am.")) >= 0) {
+                        spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
+                        spot.en.remove(pos, 7);
+                    }
+                    if ((pos = spot.en.indexOf("(N. Am.)")) >= 0) {
+                        spot.en_rem+= i18n("N. Am. ").toLocal8Bit();
+                        spot.en.remove(pos, 8);
+                    }
 
-           if ((pos = spot.en.indexOf(" US") ) >= 0) {
-             spot.en_rem+= i18n("US ").toLocal8Bit();
-             spot.en.remove (pos, 3);
-           }
-           if ((pos = spot.en.indexOf("(US)") ) >= 0) {
-             spot.en_rem+= i18n("US ").toLocal8Bit();
-             spot.en.remove (pos, 4);
-           }
+                    if ((pos = spot.en.indexOf(" US")) >= 0) {
+                        spot.en_rem+= i18n("US ").toLocal8Bit();
+                        spot.en.remove(pos, 3);
+                    }
+                    if ((pos = spot.en.indexOf("(US)")) >= 0) {
+                        spot.en_rem+= i18n("US ").toLocal8Bit();
+                        spot.en.remove(pos, 4);
+                    }
 
-           if ((pos = spot.en.indexOf("ifml.") ) >= 0) {
-             spot.en_rem+= i18n("ifml. ").toLocal8Bit();
-             spot.en.remove (pos, 5);
-           }
-           if ((pos = spot.en.indexOf("(ifml.)") ) >= 0) {
-             spot.en_rem+= i18n("ifml. ").toLocal8Bit();
-             spot.en.remove (pos, 7);
-           }
+                    if ((pos = spot.en.indexOf("ifml.")) >= 0) {
+                        spot.en_rem+= i18n("ifml. ").toLocal8Bit();
+                        spot.en.remove(pos, 5);
+                    }
+                    if ((pos = spot.en.indexOf("(ifml.)")) >= 0) {
+                        spot.en_rem+= i18n("ifml. ").toLocal8Bit();
+                        spot.en.remove(pos, 7);
+                    }
 
-           if ((pos = spot.en.indexOf("vulg.") ) >= 0) {
-             spot.en_rem+= i18n("vulg. ").toLocal8Bit();
-             spot.en.remove (pos, 5);
-           }
-           if ((pos = spot.en.indexOf("(vulg.)") ) >= 0) {
-             spot.en_rem+= i18n("vulg. ").toLocal8Bit();
-             spot.en.remove (pos, 7);
-           }
+                    if ((pos = spot.en.indexOf("vulg.")) >= 0) {
+                        spot.en_rem+= i18n("vulg. ").toLocal8Bit();
+                        spot.en.remove(pos, 5);
+                    }
+                    if ((pos = spot.en.indexOf("(vulg.)")) >= 0) {
+                        spot.en_rem+= i18n("vulg. ").toLocal8Bit();
+                        spot.en.remove(pos, 7);
+                    }
 
-           if (!spot.en.isEmpty() && !spot.de.isEmpty())
-             spottys.push_back(spot);
-         }
-       }
-     }
-   }
+                    if (!spot.en.isEmpty() && !spot.de.isEmpty())
+                        spottys.push_back(spot);
+                }
+            }
+        }
+    }
 }
 
 void writeToKvtml(QTextStream &os, QString month, QString year)
 {
-   os <<
-           "<?xml version=\"1.0\"?>\n"
-           "<!doctype kvtml system \"kvoctrain.dtd\">\n"
-           "<!--\n"
-           "This is a machine generated file.\n"
-           "Be careful when editing here.\n"
-           "\n"
-           "Short definition:\n"
-           "\n"
-           "lesson       lesson group\n"
-           " desc        name\n"
-           "   %no       its index\n"
-           "   %current  is current lesson\n"
-           "type         type group\n"
-           " desc        name\n"
-           "   %no       its index\n"
-           "e            entry of dictionary\n"
-           "  %s         is selected\n"
-           "  %m         lesson member\n"
-           "  %t         common expression type\n"
-           " o           original\n"
-           "   %q        in query (\"o\" is given, \"t\" is wanted)\n"
-           "   %l        language code\n"
-           "   %r        remark\n"
-           "   %p        pronunciation\n"
-           "   %width    column width\n"
-           "   %t        expression type\n"
-           " t           translation ..\n"
-           "   %q        in query (\"t\" is given, \"o\" is wanted)\n"
-           "   %l        language code\n"
-           "   %r        remark\n"
-           "   %p        pronunciation\n"
-           "   %width    column width\n"
-           "   %t        expression type\n"
-           "\n"
-           "   %d        last query date (from;to)\n"
-           "   %w        dito, compressed\n"
-           "   %g        grade (from;to)\n"
-           "   %c        count (from;to)\n"
-           "   %b        bad count (from;to)\n"
-           "\n"
-           "\n"
-           "Valid xml means:\n"
-           " - Close all tags\n"
-           " - Keep proper hierarchy\n"
-           " - All options are quoted\n"
-           "\n"
-           "--\n"
-           ">\n"
-           "<kvtml\n"
-           "  generator=\"spotlight2kvtml " SPOT_VERSION " kvoctrain" KVD_VERS_PREFIX "0.5.0\"\n"
-           "  cols=\"2\"\n"
-           "  lines=\""  << spottys.size() << "\"\n" <<
-           "  title=\"" << i18n("Spotlight Online, issue ").toLocal8Bit() << month << " " << "\'" << year << "\"\n"
-           << "  author=" << i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)").toLocal8Bit()
-           << "\">\n\n"
-           << " <lesson>\n";
+    os <<
+    "<?xml version=\"1.0\"?>\n"
+    "<!doctype kvtml system \"kvoctrain.dtd\">\n"
+    "<!--\n"
+    "This is a machine generated file.\n"
+    "Be careful when editing here.\n"
+    "\n"
+    "Short definition:\n"
+    "\n"
+    "lesson       lesson group\n"
+    " desc        name\n"
+    "   %no       its index\n"
+    "   %current  is current lesson\n"
+    "type         type group\n"
+    " desc        name\n"
+    "   %no       its index\n"
+    "e            entry of dictionary\n"
+    "  %s         is selected\n"
+    "  %m         lesson member\n"
+    "  %t         common expression type\n"
+    " o           original\n"
+    "   %q        in query (\"o\" is given, \"t\" is wanted)\n"
+    "   %l        language code\n"
+    "   %r        remark\n"
+    "   %p        pronunciation\n"
+    "   %width    column width\n"
+    "   %t        expression type\n"
+    " t           translation ..\n"
+    "   %q        in query (\"t\" is given, \"o\" is wanted)\n"
+    "   %l        language code\n"
+    "   %r        remark\n"
+    "   %p        pronunciation\n"
+    "   %width    column width\n"
+    "   %t        expression type\n"
+    "\n"
+    "   %d        last query date (from;to)\n"
+    "   %w        dito, compressed\n"
+    "   %g        grade (from;to)\n"
+    "   %c        count (from;to)\n"
+    "   %b        bad count (from;to)\n"
+    "\n"
+    "\n"
+    "Valid xml means:\n"
+    " - Close all tags\n"
+    " - Keep proper hierarchy\n"
+    " - All options are quoted\n"
+    "\n"
+    "--\n"
+    ">\n"
+    "<kvtml\n"
+    "  generator=\"spotlight2kvtml " SPOT_VERSION " kvoctrain" KVD_VERS_PREFIX "0.5.0\"\n"
+    "  cols=\"2\"\n"
+    "  lines=\""  << spottys.size() << "\"\n" <<
+    "  title=\"" << i18n("Spotlight Online, issue ").toLocal8Bit() << month << " " << "\'" << year << "\"\n"
+    << "  author=" << i18n("\"Spotlight Online, www.spotlight-online.de (converted by spotlight2kvtml)").toLocal8Bit()
+    << "\">\n\n"
+    << " <lesson>\n";
 
-           for (int i = 0; i < (int) lesson_names.size(); i++) {
-             os << "  <desc no=\"" << i+1 << "\">"
-                << lesson_names[i] << "</desc>\n";
-           }
-           os << " </lesson>\n\n";
+    for (int i = 0; i < (int) lesson_names.size(); i++) {
+        os << "  <desc no=\"" << i+1 << "\">"
+        << lesson_names[i] << "</desc>\n";
+    }
+    os << " </lesson>\n\n";
 
-   if (spottys.size() != 0)
-     writeSpotty (os, spottys[0], true);
+    if (spottys.size() != 0)
+        writeSpotty(os, spottys[0], true);
 
-   int l = 1;
-   while (os.device()->status() == IO_Ok && l < (int) spottys.size() ) {
-     writeSpotty (os, spottys[l], false);
-     l++;
-   }
+    int l = 1;
+    while (os.device()->status() == IO_Ok && l < (int) spottys.size()) {
+        writeSpotty(os, spottys[l], false);
+        l++;
+    }
 
-   os << "</kvtml>\n";
+    os << "</kvtml>\n";
 }
 
 
 int main(int argc, char **argv)
 {
-  QCoreApplication app(argc, argv);
+    QCoreApplication app(argc, argv);
 
-  if (argc != 4) {
-    qFatal("usage: spotlight2kvtml spotfile month year");
-  }
+    if (argc != 4) {
+        qFatal("usage: spotlight2kvtml spotfile month year");
+    }
 
-  QString spot (argv[1]);
-  QString kvtml;
+    QString spot(argv[1]);
+    QString kvtml;
 
-  int dot = spot.lastIndexOf('.');
-  if (dot < 0) {
-    kvtml = spot + ".kvtml";
-  }
-  else {
-    kvtml = spot;
-    kvtml.remove (dot, kvtml.length()-dot);
-    kvtml += ".kvtml";
-  }
+    int dot = spot.lastIndexOf('.');
+    if (dot < 0) {
+        kvtml = spot + ".kvtml";
+    } else {
+        kvtml = spot;
+        kvtml.remove(dot, kvtml.length()-dot);
+        kvtml += ".kvtml";
+    }
 
-  QFile fs(spot);
-  fs.open( QIODevice::ReadOnly );
-  QTextStream is( &fs );
-  readToMem (is, argv[2], argv[3]);
-  fs.close();
+    QFile fs(spot);
+    fs.open(QIODevice::ReadOnly);
+    QTextStream is(&fs);
+    readToMem(is, argv[2], argv[3]);
+    fs.close();
 
-  if (is.device()->status() != IO_Ok ) {
-    qFatal("Could not read %s", argv[1]);
-  }
+    if (is.device()->status() != IO_Ok) {
+        qFatal("Could not read %s", argv[1]);
+    }
 
-  QFile fk(kvtml);
-  fk.open( QIODevice::WriteOnly );
-  QTextStream os( &fk );
-  writeToKvtml(os, argv[2], argv[3]);
-  fk.close();
+    QFile fk(kvtml);
+    fk.open(QIODevice::WriteOnly);
+    QTextStream os(&fk);
+    writeToKvtml(os, argv[2], argv[3]);
+    fk.close();
 
-  if (os.device()->status() != IO_Ok ) {
-    qFatal("Could not write %s", QLatin1String(kvtml.toLocal8Bit()).latin1());
-  }
+    if (os.device()->status() != IO_Ok) {
+        qFatal("Could not write %s", QLatin1String(kvtml.toLocal8Bit()).latin1());
+    }
 
-  return 0;
+    return 0;
 }

@@ -1,7 +1,7 @@
 //
 // C++ Implementation: kvtsortfiltermodel
 //
-// Description: 
+// Description:
 //
 //
 // Author:  (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
@@ -16,34 +16,34 @@
 
 KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
-  m_sourceModel = 0;
-  setSortCaseSensitivity(Qt::CaseInsensitive);
-  m_searchFilter = QRegExp();
-  m_lessonFilter = QRegExp();
-  m_restoreNativeOrder = false;
+    m_sourceModel = 0;
+    setSortCaseSensitivity(Qt::CaseInsensitive);
+    m_searchFilter = QRegExp();
+    m_lessonFilter = QRegExp();
+    m_restoreNativeOrder = false;
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
 {
-  m_sourceModel = sourceModel;
-  QSortFilterProxyModel::setSourceModel(sourceModel);
+    m_sourceModel = sourceModel;
+    QSortFilterProxyModel::setSourceModel(sourceModel);
 }
 
 KVTTableModel * KVTSortFilterModel::sourceModel() const
 {
-  return m_sourceModel;
+    return m_sourceModel;
 }
 
 void KVTSortFilterModel::setLessonRegExp(const QRegExp& filter)
 {
-  m_lessonFilter = filter;
-  filterChanged();
+    m_lessonFilter = filter;
+    filterChanged();
 }
 
 void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
 {
-  m_searchFilter = filter;
-  filterChanged();
+    m_searchFilter = filter;
+    filterChanged();
 }
 
 /**
@@ -63,15 +63,15 @@ This on the other hand needs to work on the vocab columns.
 Also space as seperator would be great.
 So searching for "walk go" would find "to go" and "to walk" maybe. This is easy by doing regexp stuff and translating spaces into OR.
 */
-/** 
+/**
  * Check if the lesson is selected
  */
 bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
 {
-  QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
-  if(sourceModel()->data(lesson, Qt::DisplayRole).toString().contains(m_lessonFilter))
-    return true;
-  return false;
+    QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
+    if (sourceModel()->data(lesson, Qt::DisplayRole).toString().contains(m_lessonFilter))
+        return true;
+    return false;
 }
 
 /**
@@ -81,15 +81,14 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
 {
 //sourceModel()->data(index0).toString().contains(filterRegExp()
 
-  /// Check if the vocabs contain the expression:
-  QModelIndex lang;
-  for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++)
-  {
-    lang = sourceModel()->index(sourceRow, i+2, sourceParent);
-    if( sourceModel()->data(lang, Qt::DisplayRole).toString().contains(m_searchFilter) )
-      return true;
-  }
-  return false;
+    /// Check if the vocabs contain the expression:
+    QModelIndex lang;
+    for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++) {
+        lang = sourceModel()->index(sourceRow, i+2, sourceParent);
+        if (sourceModel()->data(lang, Qt::DisplayRole).toString().contains(m_searchFilter))
+            return true;
+    }
+    return false;
 }
 
 
@@ -97,37 +96,37 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
  * Determines if the row is displayed
  * @param sourceRow
  * @param sourceParent
- * @return 
+ * @return
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-  if(!m_lessonFilter.isEmpty())
-    if (!checkLesson(sourceRow, sourceParent))
-      return false;
+    if (!m_lessonFilter.isEmpty())
+        if (!checkLesson(sourceRow, sourceParent))
+            return false;
 
-  if(!m_searchFilter.isEmpty())
-    if (!checkSearch(sourceRow, sourceParent))
-      return false;
+    if (!m_searchFilter.isEmpty())
+        if (!checkSearch(sourceRow, sourceParent))
+            return false;
 
-  return true;
+    return true;
 }
 
 bool KVTSortFilterModel::lessThan(const QModelIndex & left, const QModelIndex & right) const
 {
-  if (m_restoreNativeOrder)
-    return sourceModel()->index(right.row(),  right.column(),  QModelIndex()).row() <
-           sourceModel()->index(left.row(), left.column(), QModelIndex()).row();
-  else
-    return QSortFilterProxyModel::lessThan(left, right);
+    if (m_restoreNativeOrder)
+        return sourceModel()->index(right.row(),  right.column(),  QModelIndex()).row() <
+               sourceModel()->index(left.row(), left.column(), QModelIndex()).row();
+    else
+        return QSortFilterProxyModel::lessThan(left, right);
 }
 
 void KVTSortFilterModel::restoreNativeOrder()
 {
-  kDebug() << "Restoring native order" << endl;
-  m_restoreNativeOrder = true;
-  sort(-1, Qt::AscendingOrder);
-  clear();
-  m_restoreNativeOrder = false;
+    kDebug() << "Restoring native order" << endl;
+    m_restoreNativeOrder = true;
+    sort(-1, Qt::AscendingOrder);
+    clear();
+    m_restoreNativeOrder = false;
 }
 
 #include "kvtsortfiltermodel.moc"

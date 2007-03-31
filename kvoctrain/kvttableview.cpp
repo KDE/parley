@@ -43,7 +43,7 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
     horizontalHeader()->addAction(actionShowLessonColumn);
     connect(actionShowLessonColumn, SIGNAL(toggled(bool)), this, SLOT(slotShowLessonColumn(bool)));
 
-    
+
     KAction *actionRestoreNativeOrder = new KAction(i18n("Restore Native Order"), this);
     actionRestoreNativeOrder->setObjectName("restore_native_order");
     horizontalHeader()->addAction(actionRestoreNativeOrder);
