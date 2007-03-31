@@ -31,31 +31,34 @@
 
 class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  AdjEntryPage(QWidget *parent = 0);
+    AdjEntryPage(QWidget *parent = 0);
 
-  void setData (bool multi_sel, const KEduVocComparison  &comp);
+    void setData(bool multi_sel, const KEduVocComparison  &comp);
 
-  KEduVocComparison getComparison() const { return comparisons; }
+    KEduVocComparison getComparison() const
+    {
+        return comparisons;
+    }
 
-  bool isModified();
-  void setModified(bool mod = true);
-  void setEnabled(int enable_type);
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
 
 signals:
-  void sigModified();
+    void sigModified();
 
 protected slots:
-  void lev1Changed(const QString&);
-  void lev2Changed(const QString&);
-  void lev3Changed(const QString&);
+    void lev1Changed(const QString&);
+    void lev2Changed(const QString&);
+    void lev3Changed(const QString&);
 
 protected:
-  KEduVocComparison comparisons;
-  bool              modified;
-  bool              m_largeSelection;
+    KEduVocComparison comparisons;
+    bool              modified;
+    bool              m_largeSelection;
 };
 
 #endif // AdjEntryPage_included

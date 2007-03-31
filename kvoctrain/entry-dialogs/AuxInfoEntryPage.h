@@ -30,41 +30,41 @@
 
 class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  AuxInfoEntryPage(QWidget *parent = 0);
+    AuxInfoEntryPage(QWidget *parent = 0);
 
-  void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString para);
+    void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString para);
 
-  QString getSynonym ();
-  QString getAntonym ();
-  QString getExample ();
-  QString getRemark  ();
-  QString getParaphrase();
+    QString getSynonym();
+    QString getAntonym();
+    QString getExample();
+    QString getRemark();
+    QString getParaphrase();
 
-  bool isModified();
-  void setModified(bool mod = true);
-  void setEnabled(int enable_type);
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
 
 signals:
-  void sigModified();
+    void sigModified();
 
 protected slots:
-  void slotAntonymSelected();
-  void slotSynonymSelected();
-  void slotExampSelected();
-  void slotRemarkSelected();
-  void slotParaSelected();
+    void slotAntonymSelected();
+    void slotSynonymSelected();
+    void slotExampSelected();
+    void slotRemarkSelected();
+    void slotParaSelected();
 
 protected:
-  QString synonym;
-  QString antonym;
-  QString example;
-  QString remark;
-  QString paraphrase;
-  bool    modified;
-  bool    m_largeSelection;
+    QString synonym;
+    QString antonym;
+    QString example;
+    QString remark;
+    QString paraphrase;
+    bool    modified;
+    bool    m_largeSelection;
 };
 
 #endif // AuxInfoEntryPage_included

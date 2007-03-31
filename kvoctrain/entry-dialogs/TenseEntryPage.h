@@ -31,47 +31,47 @@
 
 class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  TenseEntryPage(QWidget *parent = 0);
+    TenseEntryPage(QWidget *parent = 0);
 
-  void setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations);
+    void setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations);
 
-  KEduVocConjugation getConjugation();
+    KEduVocConjugation getConjugation();
 
-  bool isModified();
-  void setModified(bool mod = true);
-  void setEnabled(int enable_type);
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
 
 signals:
-  void sigModified();
+    void sigModified();
 
 protected:
-  void updateFields();
+    void updateFields();
 
 protected slots:
-  void secondPluralChanged(const QString&);
-  void secondSingularChanged(const QString&);
-  void thirdNSingularChanged(const QString&);
-  void thirdFPluralChanged(const QString&);
-  void thirdMSingularChanged(const QString&);
-  void thirdFSingularChanged(const QString&);
-  void slotTenseSelected(int);
-  void thirdMPluralChanged(const QString&);
-  void thirdNPluralChanged(const QString&);
-  void firstSingularChanged(const QString&);
-  void firstPluralChanged(const QString&);
-  void slotThirdSCommonToggled(bool);
-  void slotThirdPCommonToggled(bool);
-  void slotNextConj();
+    void secondPluralChanged(const QString&);
+    void secondSingularChanged(const QString&);
+    void thirdNSingularChanged(const QString&);
+    void thirdFPluralChanged(const QString&);
+    void thirdMSingularChanged(const QString&);
+    void thirdFSingularChanged(const QString&);
+    void slotTenseSelected(int);
+    void thirdMPluralChanged(const QString&);
+    void thirdNPluralChanged(const QString&);
+    void firstSingularChanged(const QString&);
+    void firstPluralChanged(const QString&);
+    void slotThirdSCommonToggled(bool);
+    void slotThirdPCommonToggled(bool);
+    void slotNextConj();
 
 protected:
-  KEduVocConjugation prefix;
-  KEduVocConjugation conjugations;
-  QString            selection;
-  bool               modified;
-  bool               m_largeSelection;
+    KEduVocConjugation prefix;
+    KEduVocConjugation conjugations;
+    QString            selection;
+    bool               modified;
+    bool               m_largeSelection;
 };
 
 #endif // TenseEntryPage_included

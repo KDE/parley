@@ -45,132 +45,240 @@ class KEduVocDocument;
 
 class EntryDlg : public KPageDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
 
-  enum EditResult {EditCancel, EditApply, EditUndo, EditPageUp, EditPageDown, EditUp, EditDown, EditLeft, EditRight};
+    enum EditResult {EditCancel, EditApply, EditUndo, EditPageUp, EditPageDown, EditUp, EditDown, EditLeft, EditRight};
 
-  enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
+    enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
 
-  EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager);
+    EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager);
 
-  ~EntryDlg ();
+    ~EntryDlg();
 
-  void setData
-   (EnableType     _et,
-    bool           multi_sel,
-    grade_t        f_grd,
-    grade_t        t_grd,
-    count_t        f_qcount,
-    count_t        t_qcount,
-    count_t        f_bcount,
-    count_t        t_bcount,
-    QDateTime      f_qdate,
-    QDateTime      t_qdate,
-    QString        f_faux_ami,
-    QString        t_faux_ami,
-    QString        _expr,
-    int            _lesson,
-    QString        remark,
-    QString        _type,
-    QString        pronounce,
-    QString        synonym,
-    QString        antonym,
-    QString        example,
-    QString        usagelabel,
-    QString        paraphrase,
-    const          KEduVocConjugation &con_prefix,
-    const          KEduVocConjugation &conjugations,
-    const          KEduVocComparison &comp,
-    const          KEduVocMultipleChoice &mc,
-    const QString &title,
-    bool           active);
+    void setData
+    (EnableType     _et,
+     bool           multi_sel,
+     grade_t        f_grd,
+     grade_t        t_grd,
+     count_t        f_qcount,
+     count_t        t_qcount,
+     count_t        f_bcount,
+     count_t        t_bcount,
+     QDateTime      f_qdate,
+     QDateTime      t_qdate,
+     QString        f_faux_ami,
+     QString        t_faux_ami,
+     QString        _expr,
+     int            _lesson,
+     QString        remark,
+     QString        _type,
+     QString        pronounce,
+     QString        synonym,
+     QString        antonym,
+     QString        example,
+     QString        usagelabel,
+     QString        paraphrase,
+     const          KEduVocConjugation &con_prefix,
+     const          KEduVocConjugation &conjugations,
+     const          KEduVocComparison &comp,
+     const          KEduVocMultipleChoice &mc,
+     const QString &title,
+     bool           active);
 
-  QString getFromFauxAmi  () const { return from_page ? from_page->getFauxAmi() : QString(""); }
-  QDateTime  getFromDate   () const { return from_page ? from_page->getDate() : QDateTime(); }
-  grade_t getFromGrade  () const { return from_page ? from_page->getGrade() : KV_NORM_GRADE; }
-  count_t getFromBCount () const { return from_page ? from_page->getBCount() : 0; }
-  count_t getFromQCount () const { return from_page ? from_page->getQCount() : 0; }
+    QString getFromFauxAmi() const
+    {
+        return from_page ? from_page->getFauxAmi() : QString("");
+    }
+    QDateTime  getFromDate() const
+    {
+        return from_page ? from_page->getDate() : QDateTime();
+    }
+    grade_t getFromGrade() const
+    {
+        return from_page ? from_page->getGrade() : KV_NORM_GRADE;
+    }
+    count_t getFromBCount() const
+    {
+        return from_page ? from_page->getBCount() : 0;
+    }
+    count_t getFromQCount() const
+    {
+        return from_page ? from_page->getQCount() : 0;
+    }
 
-  QString getToFauxAmi  () const { return to_page ? to_page->getFauxAmi() : QString(""); }
-  QDateTime  getToDate     () const { return to_page ? to_page->getDate() : QDateTime(); }
-  grade_t getToGrade    () const { return to_page ? to_page->getGrade() : KV_NORM_GRADE; }
-  count_t getToBCount   () const { return to_page ? to_page->getBCount() : 0; }
-  count_t getToQCount   () const { return to_page ? to_page->getQCount() : 0; }
+    QString getToFauxAmi() const
+    {
+        return to_page ? to_page->getFauxAmi() : QString("");
+    }
+    QDateTime  getToDate() const
+    {
+        return to_page ? to_page->getDate() : QDateTime();
+    }
+    grade_t getToGrade() const
+    {
+        return to_page ? to_page->getGrade() : KV_NORM_GRADE;
+    }
+    count_t getToBCount() const
+    {
+        return to_page ? to_page->getBCount() : 0;
+    }
+    count_t getToQCount() const
+    {
+        return to_page ? to_page->getQCount() : 0;
+    }
 
-  int     getLesson   ()  const { return comm_page->getLesson(); }
-  QString getType     ()  const { return comm_page->getType(); }
-  QString getExpr     ()  const { return comm_page->getExpr(); }
-  QString getPronounce ()  const { return comm_page->getPronounce(); }
-  QString getUsageLabel() const { return comm_page->getUsageLabel(); }
-  bool    getActive()     const { return comm_page->getActive(); }
+    int     getLesson()  const
+    {
+        return comm_page->getLesson();
+    }
+    QString getType()  const
+    {
+        return comm_page->getType();
+    }
+    QString getExpr()  const
+    {
+        return comm_page->getExpr();
+    }
+    QString getPronounce()  const
+    {
+        return comm_page->getPronounce();
+    }
+    QString getUsageLabel() const
+    {
+        return comm_page->getUsageLabel();
+    }
+    bool    getActive()     const
+    {
+        return comm_page->getActive();
+    }
 
-  QString getSynonym  () const { return aux_page->getSynonym(); }
-  QString getAntonym  () const { return aux_page->getAntonym(); }
-  QString getRemark   () const { return aux_page->getRemark(); }
-  QString getExample  () const { return aux_page->getExample(); }
-  QString getParaphrase () const { return aux_page->getParaphrase(); }
+    QString getSynonym() const
+    {
+        return aux_page->getSynonym();
+    }
+    QString getAntonym() const
+    {
+        return aux_page->getAntonym();
+    }
+    QString getRemark() const
+    {
+        return aux_page->getRemark();
+    }
+    QString getExample() const
+    {
+        return aux_page->getExample();
+    }
+    QString getParaphrase() const
+    {
+        return aux_page->getParaphrase();
+    }
 
-  KEduVocConjugation getConjugation() const { return tense_page->getConjugation(); }
+    KEduVocConjugation getConjugation() const
+    {
+        return tense_page->getConjugation();
+    }
 
-  KEduVocComparison getComparison() const { return adj_page->getComparison(); }
+    KEduVocComparison getComparison() const
+    {
+        return adj_page->getComparison();
+    }
 
-  KEduVocMultipleChoice getMultipleChoice() const { return mc_page->getMultipleChoice(); }
+    KEduVocMultipleChoice getMultipleChoice() const
+    {
+        return mc_page->getMultipleChoice();
+    }
 
-  bool fromDateIsModified()       { return from_page->dateIsModified(); }
-  bool fromGradeIsModified()      { return from_page->gradeIsModified(); }
-  bool fromQueryCountIsModified() { return from_page->queryCountIsModified(); }
-  bool fromBadCountIsModified()   { return from_page->badCountIsModified(); }
+    bool fromDateIsModified()
+    {
+        return from_page->dateIsModified();
+    }
+    bool fromGradeIsModified()
+    {
+        return from_page->gradeIsModified();
+    }
+    bool fromQueryCountIsModified()
+    {
+        return from_page->queryCountIsModified();
+    }
+    bool fromBadCountIsModified()
+    {
+        return from_page->badCountIsModified();
+    }
 
-  bool toDateIsModified()         { return to_page->dateIsModified(); }
-  bool toGradeIsModified()        { return to_page->gradeIsModified(); }
-  bool toQueryCountIsModified()   { return to_page->queryCountIsModified(); }
-  bool toBadCountIsModified()     { return to_page->badCountIsModified(); }
+    bool toDateIsModified()
+    {
+        return to_page->dateIsModified();
+    }
+    bool toGradeIsModified()
+    {
+        return to_page->gradeIsModified();
+    }
+    bool toQueryCountIsModified()
+    {
+        return to_page->queryCountIsModified();
+    }
+    bool toBadCountIsModified()
+    {
+        return to_page->badCountIsModified();
+    }
 
-  bool usageIsModified()          { return comm_page->usageIsModified(); }
-  bool typeIsModified()           { return comm_page->typeIsModified(); }
-  bool lessonIsModified()         { return comm_page->lessonIsModified(); }
-  bool activeIsModified()         { return comm_page->activeIsModified(); }
+    bool usageIsModified()
+    {
+        return comm_page->usageIsModified();
+    }
+    bool typeIsModified()
+    {
+        return comm_page->typeIsModified();
+    }
+    bool lessonIsModified()
+    {
+        return comm_page->lessonIsModified();
+    }
+    bool activeIsModified()
+    {
+        return comm_page->activeIsModified();
+    }
 
-  bool isModified();
-  void setModified(bool mod);
-  void setEnabled(int);
+    bool isModified();
+    void setModified(bool mod);
+    void setEnabled(int);
 
-  void setCell(int row, int col, const QModelIndexList & sel);
-  void getCell(int &row, int &col, QModelIndexList & sel) const;
+    void setCell(int row, int col, const QModelIndexList & sel);
+    void getCell(int &row, int &col, QModelIndexList & sel) const;
 
 signals:
-  void sigEditChoice(int);
+    void sigEditChoice(int);
 
 public slots:
-  void slotDisplayModified();
-  void slotApply();
-  void slotUndo();
-  void slotDockHorizontal();
-  void slotDockVertical();
+    void slotDisplayModified();
+    void slotApply();
+    void slotUndo();
+    void slotDockHorizontal();
+    void slotDockVertical();
 
 protected slots:
-  void updatePages(const QString &type);
+    void updatePages(const QString &type);
 
 protected:
-  virtual void closeEvent(QCloseEvent*e);
+    virtual void closeEvent(QCloseEvent*e);
 
-  FromToEntryPage  *from_page;
-  FromToEntryPage  *to_page;
-  CommonEntryPage  *comm_page;
-  AuxInfoEntryPage *aux_page;
-  TenseEntryPage   *tense_page;
-  AdjEntryPage     *adj_page;
-  MCEntryPage      *mc_page;
-  int               edit_row;
-  int               edit_col;
-  //QTabWidget       *tabber;
-  QModelIndexList   m_selection;
-  KMainWindow      *mainwin;
-  QSize             oldMainSize;
-  QPoint            oldMainPos;
-  bool              docked;
+    FromToEntryPage  *from_page;
+    FromToEntryPage  *to_page;
+    CommonEntryPage  *comm_page;
+    AuxInfoEntryPage *aux_page;
+    TenseEntryPage   *tense_page;
+    AdjEntryPage     *adj_page;
+    MCEntryPage      *mc_page;
+    int               edit_row;
+    int               edit_col;
+    //QTabWidget       *tabber;
+    QModelIndexList   m_selection;
+    KMainWindow      *mainwin;
+    QSize             oldMainSize;
+    QPoint            oldMainPos;
+    bool              docked;
 };
 
 #endif // EntryDlg_included

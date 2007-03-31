@@ -33,55 +33,79 @@
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  FromToEntryPage(QWidget *parent = 0);
+    FromToEntryPage(QWidget *parent = 0);
 
-  void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
+    void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
 
-  QDateTime  getDate() const;
-  grade_t   getGrade() const  { return grade; }
-  count_t  getQCount() const  { return qcount; }
-  count_t  getBCount() const  { return bcount; }
-  QString getFauxAmi() const  { return fauxami; }
+    QDateTime  getDate() const;
+    grade_t   getGrade() const
+    {
+        return grade;
+    }
+    count_t  getQCount() const
+    {
+        return qcount;
+    }
+    count_t  getBCount() const
+    {
+        return bcount;
+    }
+    QString getFauxAmi() const
+    {
+        return fauxami;
+    }
 
-  bool dateIsModified()       { return m_dateIsModified; }
-  bool gradeIsModified()      { return m_gradeIsModified; }
-  bool queryCountIsModified() { return m_queryCountIsModified; }
-  bool badCountIsModified()   { return m_badCountIsModified; }
-  bool isModified();
-  void setModified(bool mod = true);
-  void setEnabled(int enable_type);
+    bool dateIsModified()
+    {
+        return m_dateIsModified;
+    }
+    bool gradeIsModified()
+    {
+        return m_gradeIsModified;
+    }
+    bool queryCountIsModified()
+    {
+        return m_queryCountIsModified;
+    }
+    bool badCountIsModified()
+    {
+        return m_badCountIsModified;
+    }
+    bool isModified();
+    void setModified(bool mod = true);
+    void setEnabled(int enable_type);
 
 signals:
-  void sigModified();
+    void sigModified();
 
 protected slots:
-  void slotGradeSelected(int);
+    void slotGradeSelected(int);
 
-  void slotToday();
-  void slotNever();
-  void slotFauxAmiChanged(const QString &);
+    void slotToday();
+    void slotNever();
+    void slotFauxAmiChanged(const QString &);
 
-  void slotDateChanged(const QDate &);
-  void totalCountChanged(int);
-  void badCountChanged(int);
+    void slotDateChanged(const QDate &);
+    void totalCountChanged(int);
+    void badCountChanged(int);
 
 protected:
-  void validate();
+    void validate();
 
-  QString fauxami;
-  bool    valid_date;
-  grade_t grade;
-  count_t qcount;
-  count_t bcount;
-  bool    modified;
-  bool    m_largeSelection;
-  bool    m_gradeIsModified;
-  bool    m_queryCountIsModified;
-  bool    m_badCountIsModified;
-  bool    m_dateIsModified;
+    QString fauxami;
+    bool    valid_date;
+    grade_t grade;
+    count_t qcount;
+    count_t bcount;
+    bool    modified;
+    bool    m_largeSelection;
+    bool    m_gradeIsModified;
+    bool    m_queryCountIsModified;
+    bool    m_badCountIsModified;
+    bool    m_dateIsModified;
 };
 
 #endif // FromToEntryPage_included

@@ -1,18 +1,18 @@
- /***************************************************************************
+/***************************************************************************
 
-              dialog page for characters from the phonetic alphabet
+             dialog page for characters from the phonetic alphabet
 
-    -----------------------------------------------------------------------
+   -----------------------------------------------------------------------
 
-    begin          : Sun Dec 9 2001
+   begin          : Sun Dec 9 2001
 
-    copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001-2002 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+   copyright      : (C) 2001-2002 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001-2002 The KDE-EDU team
+                    (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
 
-    -----------------------------------------------------------------------
+   -----------------------------------------------------------------------
 
- ***************************************************************************/
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -33,34 +33,35 @@
 
 class PhoneticEntryPage : public KDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0);
+    PhoneticEntryPage(const QFont &ipafont, QWidget *parent = 0);
 
 signals:
-  void charSelected(wchar_t);
+    void charSelected(wchar_t);
 
 protected:
-  void keyPressEvent( QKeyEvent *e );
+    void keyPressEvent(QKeyEvent *e);
 
-  friend class PhoneticButton;
+    friend class PhoneticButton;
 };
 
 
 class PhoneticButton : public QPushButton
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  PhoneticButton (const QString & text, QWidget * parent, PhoneticEntryPage *_page)
-  : QPushButton (text, parent), page(_page) {}
+    PhoneticButton(const QString & text, QWidget * parent, PhoneticEntryPage *_page)
+            : QPushButton(text, parent), page(_page)
+    {}
 
 protected slots:
-  void slotClicked();
+    void slotClicked();
 
 protected:
-  PhoneticEntryPage *page;
+    PhoneticEntryPage *page;
 };
 
 

@@ -37,164 +37,163 @@
 
 FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 {
-  setupUi(this);
+    setupUi(this);
 
-  connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFauxAmiChanged(const QString &)));
+    connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFauxAmiChanged(const QString &)));
 
-  connect(never, SIGNAL(clicked()), this, SLOT(slotNever()));
-  connect(today, SIGNAL(clicked()), this, SLOT(slotToday()));
-  connect(gradebox, SIGNAL(activated(int)), this, SLOT(slotGradeSelected(int)));
+    connect(never, SIGNAL(clicked()), this, SLOT(slotNever()));
+    connect(today, SIGNAL(clicked()), this, SLOT(slotToday()));
+    connect(gradebox, SIGNAL(activated(int)), this, SLOT(slotGradeSelected(int)));
 
-  connect(queryDateEdit, SIGNAL(dateChanged(const QDate &)), this, SLOT(slotDateChanged(const QDate &)));
-  connect(totalCountEdit, SIGNAL(valueChanged(int)), this, SLOT(totalCountChanged(int)));
-  connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
+    connect(queryDateEdit, SIGNAL(dateChanged(const QDate &)), this, SLOT(slotDateChanged(const QDate &)));
+    connect(totalCountEdit, SIGNAL(valueChanged(int)), this, SLOT(totalCountChanged(int)));
+    connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
 
-  for (int i = 0; i <= KV_MAX_GRADE; i++)
-    gradebox->addItem(KVTQuery::gradeStr(i));
+    for (int i = 0; i <= KV_MAX_GRADE; i++)
+        gradebox->addItem(KVTQuery::gradeStr(i));
 
 }
 
 
 void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, count_t _qcount, count_t _bcount, QString faux, QString label)
 {
-  grade = _grade;
-  qcount = _qcount;
-  bcount = _bcount;
-  fauxami = faux;
-  fauxami_line->setText(fauxami);
+    grade = _grade;
+    qcount = _qcount;
+    bcount = _bcount;
+    fauxami = faux;
+    fauxami_line->setText(fauxami);
 
-  valid_date = false;
-
-  if (_time.toTime_t() != 0 && !multi_sel) {
-    valid_date = true;
-    queryDateEdit->setDateTime(_time);
-  }
-  else
-    queryDateEdit->setDateTime(QDateTime());
-
-  direc_label->setTitle(label);
-
-  gradebox->setCurrentIndex(grade);
-
-  totalCountEdit->setValue(qcount);
-  badCountEdit->setValue(bcount);
-
-  m_largeSelection = multi_sel;
-  if (m_largeSelection) {
-    fauxami_line->setEnabled(false);
     valid_date = false;
-  }
 
-  setModified(false);
-  m_gradeIsModified = false;
-  m_queryCountIsModified = false;
-  m_badCountIsModified = false;
-  m_dateIsModified = false;
+    if (_time.toTime_t() != 0 && !multi_sel) {
+        valid_date = true;
+        queryDateEdit->setDateTime(_time);
+    } else
+        queryDateEdit->setDateTime(QDateTime());
+
+    direc_label->setTitle(label);
+
+    gradebox->setCurrentIndex(grade);
+
+    totalCountEdit->setValue(qcount);
+    badCountEdit->setValue(bcount);
+
+    m_largeSelection = multi_sel;
+    if (m_largeSelection) {
+        fauxami_line->setEnabled(false);
+        valid_date = false;
+    }
+
+    setModified(false);
+    m_gradeIsModified = false;
+    m_queryCountIsModified = false;
+    m_badCountIsModified = false;
+    m_dateIsModified = false;
 }
 
 
 void FromToEntryPage::slotFauxAmiChanged(const QString& s)
 {
-  setModified(true);
-  fauxami = s;
+    setModified(true);
+    fauxami = s;
 }
 
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
-  setModified(true);
-  m_gradeIsModified = true;
-  grade = g;
+    setModified(true);
+    m_gradeIsModified = true;
+    grade = g;
 }
 
 
 QDateTime FromToEntryPage::getDate() const
 {
-  if (valid_date)
-    return queryDateEdit->dateTime();
-  else
-    return QDateTime();
+    if (valid_date)
+        return queryDateEdit->dateTime();
+    else
+        return QDateTime();
 }
 
 
 void FromToEntryPage::validate()
 {
-  if (!valid_date)
-    valid_date = true;
+    if (!valid_date)
+        valid_date = true;
 }
 
 
 void FromToEntryPage::slotToday()
 {
-  setModified(true);
-  m_dateIsModified = true;
-  queryDateEdit->setDateTime(QDateTime::currentDateTime());
-  validate();
+    setModified(true);
+    m_dateIsModified = true;
+    queryDateEdit->setDateTime(QDateTime::currentDateTime());
+    validate();
 }
 
 
 void FromToEntryPage::slotNever()
 {
-  setModified(true);
-  m_dateIsModified = true;
-  queryDateEdit->setDate(queryDateEdit->minimumDate());
-  queryDateEdit->setTime(queryDateEdit->minimumTime());
-  valid_date = false;
+    setModified(true);
+    m_dateIsModified = true;
+    queryDateEdit->setDate(queryDateEdit->minimumDate());
+    queryDateEdit->setTime(queryDateEdit->minimumTime());
+    valid_date = false;
 }
 
 
 bool FromToEntryPage::isModified()
 {
-  return modified;
+    return modified;
 }
 
 
 void FromToEntryPage::setEnabled(int enable)
 {
-  bool ena = enable == EntryDlg::EnableAll;
+    bool ena = enable == EntryDlg::EnableAll;
 
-  totalCountEdit->setEnabled(ena);
-  badCountEdit->setEnabled(ena);
-  fauxami_line->setEnabled(ena && !m_largeSelection);
+    totalCountEdit->setEnabled(ena);
+    badCountEdit->setEnabled(ena);
+    fauxami_line->setEnabled(ena && !m_largeSelection);
 
-  never->setEnabled(ena);
-  today->setEnabled(ena);
-  gradebox->setEnabled(ena);
+    never->setEnabled(ena);
+    today->setEnabled(ena);
+    gradebox->setEnabled(ena);
 
-  queryDateEdit->setEnabled(ena);
+    queryDateEdit->setEnabled(ena);
 }
 
 
 void FromToEntryPage::setModified(bool mod)
 {
-  modified = mod;
-  if (mod)
-    emit sigModified();
+    modified = mod;
+    if (mod)
+        emit sigModified();
 }
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
-  Q_UNUSED(d);
-  m_dateIsModified = true;
-  setModified(true);
-  if (!valid_date)
-    slotToday();
+    Q_UNUSED(d);
+    m_dateIsModified = true;
+    setModified(true);
+    if (!valid_date)
+        slotToday();
 
-  validate();
+    validate();
 }
 
 void FromToEntryPage::totalCountChanged(int count)
 {
-  setModified(true);
-  m_queryCountIsModified = true;
-  qcount = count;
+    setModified(true);
+    m_queryCountIsModified = true;
+    qcount = count;
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
-  setModified(true);
-  m_badCountIsModified = true;
-  bcount = count;
+    setModified(true);
+    m_badCountIsModified = true;
+    bcount = count;
 }
 
 #include "FromToEntryPage.moc"
