@@ -29,17 +29,17 @@
 
 DocOptionsPage::DocOptionsPage(bool sort, QWidget *parent) : QWidget(parent)
 {
-  setupUi(this);
+    setupUi(this);
 
-  m_allowSorting = sort;
-  docsort->setChecked(m_allowSorting);
+    m_allowSorting = sort;
+    docsort->setChecked(m_allowSorting);
 
-  connect(docsort, SIGNAL(toggled(bool)), this, SLOT(docSortToggled(bool)));
+    connect(docsort, SIGNAL(toggled(bool)), this, SLOT(docSortToggled(bool)));
 }
 
 void DocOptionsPage::docSortToggled(bool state)
 {
-  m_allowSorting = state;
+    m_allowSorting = state;
 }
 
 #include "DocOptionsPage.moc"

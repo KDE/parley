@@ -38,16 +38,16 @@ class KVTLanguages;
 
 class DocPropsLangDlg : public KPageDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langset, QWidget *parent = NULL);
+    DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langset, QWidget *parent = NULL);
 
-  KEduVocConjugation getConjugation(int idx) const;
-  KEduVocArticle     getArticle(int idx) const;
+    KEduVocConjugation getConjugation(int idx) const;
+    KEduVocArticle     getArticle(int idx) const;
 
 protected:
-  typedef QList<LangPropPage *> LangPagesList;
-  LangPagesList langPages;
+    typedef QList<LangPropPage *> LangPagesList;
+    LangPagesList langPages;
 };
 
 #endif // DocPropsLangDlg_included

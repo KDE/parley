@@ -32,30 +32,30 @@ class KEduVocDocument;
 
 class TenseOptPage : public QWidget, public Ui::OptionListForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  TenseOptPage(KEduVocDocument * doc, QWidget *parent = 0);
+    TenseOptPage(KEduVocDocument * doc, QWidget *parent = 0);
 
-  void getTenseNames (QStringList &ret_types, QList<int> &ret_Index);
+    void getTenseNames(QStringList &ret_types, QList<int> &ret_Index);
 
-  static void cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses);
+    static void cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses);
 
 protected:
-  void updateListBox(int start);
+    void updateListBox(int start);
 
 protected slots:
-  void slotDeleteTense();
-  void slotNewTense();
-  void slotTenseChosen(int);
-  void slotModifyTense();
-  void slotCleanup();
+    void slotDeleteTense();
+    void slotNewTense();
+    void slotTenseChosen(int);
+    void slotModifyTense();
+    void slotCleanup();
 
 private:
-  KEduVocDocument  *doc;
-  int               m_currentTense;
-  QList<int>        tenseIndex; // contains indices of tenses on exec()
-                                // negative values are new tenses
+    KEduVocDocument  *doc;
+    int               m_currentTense;
+    QList<int>        tenseIndex; // contains indices of tenses on exec()
+    // negative values are new tenses
 };
 
 #endif // TenseOptPage_included

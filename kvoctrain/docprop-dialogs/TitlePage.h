@@ -32,27 +32,39 @@ class KEduVocDocument;
 
 class TitlePage : public QWidget, public Ui::TitlePageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  TitlePage(KEduVocDocument * doc, QWidget *parent = 0);
+    TitlePage(KEduVocDocument * doc, QWidget *parent = 0);
 
-  QString getTitle() { return title; }
-  QString getAuthor() { return author; }
-  QString getLicense() { return license; }
-  QString getDocRemark() { return doc_remark; }
+    QString getTitle()
+    {
+        return title;
+    }
+    QString getAuthor()
+    {
+        return author;
+    }
+    QString getLicense()
+    {
+        return license;
+    }
+    QString getDocRemark()
+    {
+        return doc_remark;
+    }
 
 protected slots:
-  void slotTitleChanged(const QString&);
-  void slotAuthorChanged();
-  void slotLicenseChanged(const QString&);
-  void slotDocRemarkChanged();
+    void slotTitleChanged(const QString&);
+    void slotAuthorChanged();
+    void slotLicenseChanged(const QString&);
+    void slotDocRemarkChanged();
 
 private:
-  QString title;
-  QString author;
-  QString license;
-  QString doc_remark;
+    QString title;
+    QString author;
+    QString license;
+    QString doc_remark;
 };
 
 #endif // TitlePage_included

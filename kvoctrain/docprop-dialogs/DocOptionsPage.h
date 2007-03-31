@@ -30,17 +30,20 @@
 
 class DocOptionsPage : public QWidget, public Ui::DocOptionsPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  DocOptionsPage(bool sort, QWidget *parent = 0);
+    DocOptionsPage(bool sort, QWidget *parent = 0);
 
-  bool getSorting () const { return m_allowSorting; }
+    bool getSorting() const
+    {
+        return m_allowSorting;
+    }
 
 protected slots:
-  void docSortToggled(bool);
+    void docSortToggled(bool);
 
 private:
-  bool m_allowSorting;
+    bool m_allowSorting;
 };
 
 #endif // DocOptionsPage_included

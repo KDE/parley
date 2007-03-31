@@ -32,30 +32,30 @@ class KEduVocDocument;
 
 class TypeOptPage : public QWidget, public Ui::OptionListForm
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  TypeOptPage(KEduVocDocument *doc, QWidget *parent = 0);
+    TypeOptPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-  void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
+    void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
 
-  static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
+    static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
 protected:
-  void updateListBox(int start);
+    void updateListBox(int start);
 
 protected slots:
-  void slotDeleteType();
-  void slotNewType();
-  void slotTypeChosen(int);
-  void slotModifyType();
-  void slotCleanup();
+    void slotDeleteType();
+    void slotNewType();
+    void slotTypeChosen(int);
+    void slotModifyType();
+    void slotCleanup();
 
 private:
-  KEduVocDocument  *doc;
-  int               m_currentType;
-  QList<int>        typeIndex; // contains indices of types on exec()
-                               // negative values are new lessons
+    KEduVocDocument  *doc;
+    int               m_currentType;
+    QList<int>        typeIndex; // contains indices of types on exec()
+    // negative values are new lessons
 };
 
 #endif // TypeOptPage_included

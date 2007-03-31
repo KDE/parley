@@ -45,36 +45,57 @@ class LangPropPage;
   */
 class DocPropsDlg : public KPageDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  DocPropsDlg(KEduVocDocument *doc, QWidget *parent = NULL);
+    DocPropsDlg(KEduVocDocument *doc, QWidget *parent = NULL);
 
-  inline bool getSorting()  const { return docOptPage->getSorting(); }
+    inline bool getSorting()  const
+    {
+        return docOptPage->getSorting();
+    }
 
-  inline QString getTitle()      { return titleOptPage->getTitle(); }
-  inline QString getAuthor()     { return titleOptPage->getAuthor(); }
-  inline QString getLicense()    { return titleOptPage->getLicense(); }
-  inline QString getDocRemark()  { return titleOptPage->getDocRemark(); }
+    inline QString getTitle()
+    {
+        return titleOptPage->getTitle();
+    }
+    inline QString getAuthor()
+    {
+        return titleOptPage->getAuthor();
+    }
+    inline QString getLicense()
+    {
+        return titleOptPage->getLicense();
+    }
+    inline QString getDocRemark()
+    {
+        return titleOptPage->getDocRemark();
+    }
 
-  //inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
-  //  { lessOptPage->getLesson(lessons, ret_index); }
+    //inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
+    //  { lessOptPage->getLesson(lessons, ret_index); }
 
-  inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
-    { typeOptPage->getTypeNames(types, ret_index); }
+    inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
+    {
+        typeOptPage->getTypeNames(types, ret_index);
+    }
 
-  inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
-    { tenseOptPage->getTenseNames(tenses, ret_index); }
+    inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
+    {
+        tenseOptPage->getTenseNames(tenses, ret_index);
+    }
 
-  inline void getUsageLabels(QStringList &usages, QList<int>& ret_index) const
-    { useOptPage->getUsageLabels(usages, ret_index); }
+    inline void getUsageLabels(QStringList &usages, QList<int>& ret_index) const
+    {
+        useOptPage->getUsageLabels(usages, ret_index);
+    }
 
 protected:
-  UsageOptPage   *useOptPage;
-  TypeOptPage    *typeOptPage;
-  TenseOptPage   *tenseOptPage;
+    UsageOptPage   *useOptPage;
+    TypeOptPage    *typeOptPage;
+    TenseOptPage   *tenseOptPage;
 //  LessOptPage    *lessOptPage;
-  TitlePage      *titleOptPage;
-  DocOptionsPage *docOptPage;
+    TitlePage      *titleOptPage;
+    DocOptionsPage *docOptPage;
 };
 
 #endif // DocPropsDlg_included
