@@ -36,7 +36,18 @@ class SimpleQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-  SimpleQueryDlg (KVTQuery::QueryType querytpe,
+    SimpleQueryDlg(KVTQuery::QueryType querytpe,
+                   int entry,
+                   int column,
+                   int q_cycle,
+                   int q_num,
+                   int q_start,
+                   KEduVocExpression *exp,
+                   KEduVocDocument  *doc);
+
+    ~SimpleQueryDlg();
+
+    void setQuery(KVTQuery::QueryType querytpe,
                   int entry,
                   int column,
                   int q_cycle,
@@ -45,40 +56,29 @@ public:
                   KEduVocExpression *exp,
                   KEduVocDocument  *doc);
 
-  ~SimpleQueryDlg();
-
-  void setQuery(KVTQuery::QueryType querytpe,
-                int entry,
-                int column,
-                int q_cycle,
-                int q_num,
-                int q_start,
-                KEduVocExpression *exp,
-                KEduVocDocument  *doc);
-
 public slots:
-  virtual void initFocus() const;
+    virtual void initFocus() const;
 
 protected:
-  void keyPressEvent( QKeyEvent *e );
+    void keyPressEvent(QKeyEvent *e);
 
 public slots:
-  void showMoreClicked();
-  void showAllClicked();
-  void knowItClicked();
-  void dontKnowClicked();
-  void slotAnswerChanged();
-  void slotUser2();
-  void verifyClicked();
-  void timeoutReached();
+    void showMoreClicked();
+    void showAllClicked();
+    void knowItClicked();
+    void dontKnowClicked();
+    void slotAnswerChanged();
+    void slotUser2();
+    void verifyClicked();
+    void timeoutReached();
 
 protected:
-  QString answerstring;
-  KVTQuery::QueryType querytype;
+    QString answerstring;
+    KVTQuery::QueryType querytype;
 
 private:
-  Ui::SimpleQueryDlgForm * mw;
-  void setQueryFieldWordwrap();
+    Ui::SimpleQueryDlgForm * mw;
+    void setQueryFieldWordwrap();
 };
 
 #endif // SimpleQueryDlg_included

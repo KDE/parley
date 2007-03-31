@@ -34,56 +34,56 @@
 
 class AdjQueryDlg : public QueryDlgBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  AdjQueryDlg
-  (
-    QString type,
-    int entry,
-    int col,
-    int query_cycle,
-    int query_num,
-    int query_startnum,
-    KEduVocExpression *exp,
-    KEduVocDocument *doc,
-    const KEduVocComparison &comp);
+    AdjQueryDlg
+    (
+        QString type,
+        int entry,
+        int col,
+        int query_cycle,
+        int query_num,
+        int query_startnum,
+        KEduVocExpression *exp,
+        KEduVocDocument *doc,
+        const KEduVocComparison &comp);
 
-  ~AdjQueryDlg();
+    ~AdjQueryDlg();
 
-  void setQuery(QString type,
-              int entry,
-              int col,
-              int query_cycle,
-              int query_num,
-              int query_startnum,
-              KEduVocExpression *exp,
-              KEduVocDocument *doc,
-              const KEduVocComparison &comp);
+    void setQuery(QString type,
+                  int entry,
+                  int col,
+                  int query_cycle,
+                  int query_num,
+                  int query_startnum,
+                  KEduVocExpression *exp,
+                  KEduVocDocument *doc,
+                  const KEduVocComparison &comp);
 
 public slots:
-  virtual void initFocus() const;
+    virtual void initFocus() const;
 
 protected:
-  void keyPressEvent(QKeyEvent *e);
-  void resetAllFields();
+    void keyPressEvent(QKeyEvent *e);
+    void resetAllFields();
 
 protected slots:
-  void lev1Changed(const QString&);
-  void lev2Changed(const QString&);
-  void lev3Changed(const QString&);
-  void showAllClicked();
-  void slotUser2();
-  void knowItClicked();
-  void returnPressed();
-  void dontKnowClicked();
-  void verifyClicked();
-  void timeoutReached();
+    void lev1Changed(const QString&);
+    void lev2Changed(const QString&);
+    void lev3Changed(const QString&);
+    void showAllClicked();
+    void slotUser2();
+    void knowItClicked();
+    void returnPressed();
+    void dontKnowClicked();
+    void verifyClicked();
+    void timeoutReached();
 
 protected:
-  KEduVocComparison  comp;
+    KEduVocComparison  comp;
 
 private:
-  Ui::AdjQueryDlgForm * mw;
+    Ui::AdjQueryDlgForm * mw;
 };
 #endif // AdjQueryDlg_included

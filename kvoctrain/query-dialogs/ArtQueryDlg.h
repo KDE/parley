@@ -33,56 +33,56 @@
 
 class ArtQueryDlg : public QueryDlgBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  ArtQueryDlg(
-              QString type,
-              int entry,
-              int col,
-              int query_cycle,
-              int query_num,
-              int query_startnum,
-              KEduVocExpression *exp,
-              KEduVocDocument  *doc,
-              const KEduVocArticle &articles);
+    ArtQueryDlg(
+        QString type,
+        int entry,
+        int col,
+        int query_cycle,
+        int query_num,
+        int query_startnum,
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc,
+        const KEduVocArticle &articles);
 
-  ~ArtQueryDlg();
+    ~ArtQueryDlg();
 
-  void setQuery (QString type,
-              int entry,
-              int col,
-              int query_cycle,
-              int query_num,
-              int query_startnum,
-              KEduVocExpression *exp,
-              KEduVocDocument  *doc,
-              const KEduVocArticle &articles);
+    void setQuery(QString type,
+                  int entry,
+                  int col,
+                  int query_cycle,
+                  int query_num,
+                  int query_startnum,
+                  KEduVocExpression *exp,
+                  KEduVocDocument  *doc,
+                  const KEduVocArticle &articles);
 
 public slots:
-  virtual void initFocus() const;
+    virtual void initFocus() const;
 
 protected:
-  void keyPressEvent( QKeyEvent *e );
+    void keyPressEvent(QKeyEvent *e);
 
 protected slots:
-  void showMoreClicked();
-  void showAllClicked();
-  void slotFemClicked();
-  void slotUser2();
-  void knowItClicked();
-  void slotNaturalClicked();
-  void slotMaleClicked();
-  void dontKnowClicked();
-  void verifyClicked();
-  void returnPressed();
-  void timeoutReached();
+    void showMoreClicked();
+    void showAllClicked();
+    void slotFemClicked();
+    void slotUser2();
+    void knowItClicked();
+    void slotNaturalClicked();
+    void slotMaleClicked();
+    void dontKnowClicked();
+    void verifyClicked();
+    void returnPressed();
+    void timeoutReached();
 
 protected:
-  KEduVocArticle   articles;
+    KEduVocArticle   articles;
 
 private:
-  Ui::ArtQueryDlgForm * mw;
+    Ui::ArtQueryDlgForm * mw;
 };
 
 #endif // ArtQueryDlg_included

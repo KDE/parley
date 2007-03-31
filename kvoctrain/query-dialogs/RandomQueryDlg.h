@@ -38,70 +38,70 @@ class KEduVocDocument;
 
 class RandomQueryDlg : public QueryDlgBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  RandomQueryDlg(
-                 QString org,
-                 QString trans,
-                 int entry,
-                 int orgcol,
-                 int transcol,
-                 int query_cycle,
-                 int query_num,
-                 int query_startnum,
-                 KEduVocExpression *exp,
-                 KEduVocDocument  *);
+    RandomQueryDlg(
+        QString org,
+        QString trans,
+        int entry,
+        int orgcol,
+        int transcol,
+        int query_cycle,
+        int query_num,
+        int query_startnum,
+        KEduVocExpression *exp,
+        KEduVocDocument  *);
 
-  ~RandomQueryDlg();
+    ~RandomQueryDlg();
 
-  void setQuery(QString org,
-                      QString trans,
-                      int entry,
-                      int orgcol,
-                      int transcol,
-                      int query_cycle,
-                      int query_num,
-                      int query_startnum,
-                      KEduVocExpression *exp,
-                      KEduVocDocument  *);
-
-public slots:
-  virtual void initFocus() const;
+    void setQuery(QString org,
+                  QString trans,
+                  int entry,
+                  int orgcol,
+                  int transcol,
+                  int query_cycle,
+                  int query_num,
+                  int query_startnum,
+                  KEduVocExpression *exp,
+                  KEduVocDocument  *);
 
 public slots:
-  void verifyClicked();
-  void showMoreClicked();
-  void showAllClicked();
-  void knowItClicked();
-  void dontKnowClicked();
-  void timeoutReached();
-  void slotUser2();
-  void slotTransChanged(const QString&);
-  void slotTransLostFocus();
-  void slotFFClicked();
-  void slotTypeClicked();
-  void slotRemClicked();
+    virtual void initFocus() const;
+
+public slots:
+    void verifyClicked();
+    void showMoreClicked();
+    void showAllClicked();
+    void knowItClicked();
+    void dontKnowClicked();
+    void timeoutReached();
+    void slotUser2();
+    void slotTransChanged(const QString&);
+    void slotTransLostFocus();
+    void slotFFClicked();
+    void slotTypeClicked();
+    void slotRemClicked();
 
 protected:
-  virtual void keyPressEvent(QKeyEvent *e);
+    virtual void keyPressEvent(QKeyEvent *e);
 
-  void setHintFields();
-  QStringList extractTranslations (QString trans);
+    void setHintFields();
+    QStringList extractTranslations(QString trans);
 
-  KEduVocDocument * kv_doc;
+    KEduVocDocument * kv_doc;
 
-  QList<QComboBox*> transCombos;
-  QList<QLineEdit*> transFields;
+    QList<QComboBox*> transCombos;
+    QList<QLineEdit*> transFields;
 
-  QStringList translations;
-  QStringList vocabulary;
+    QStringList translations;
+    QStringList vocabulary;
 
-  bool suggestion_hint;
-  int  fields;
+    bool suggestion_hint;
+    int  fields;
 
 private:
-  Ui::QueryDlgForm * mw;
+    Ui::QueryDlgForm * mw;
 };
 
 #endif

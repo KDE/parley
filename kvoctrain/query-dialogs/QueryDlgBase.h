@@ -48,69 +48,71 @@ class QRadioButton;
 
 class QueryDlgBase : public KDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  enum Result { Unknown, Known, Timeout, StopIt };
+    enum Result { Unknown, Known, Timeout, StopIt };
 
-  QueryDlgBase(const QString & caption, QWidget *parent = 0, const char *name = 0, bool modal = false);
+    QueryDlgBase(const QString & caption, QWidget *parent = 0, const char *name = 0, bool modal = false);
 
-  virtual ~QueryDlgBase ();
+    virtual ~QueryDlgBase();
 
-  /** compare two strings with simplified applied first */
-  bool smartCompare (const QString&, const QString&, int level) const;
+    /** compare two strings with simplified applied first */
+    bool smartCompare(const QString&, const QString&, int level) const;
 
-  /** compare lineEdit and string, set lineEdit style */
-  bool verifyField(QLineEdit *field, const QString &really);
-  /** set the lineEdit to default (enter mode, black font) */
-  void resetField (QLineEdit *field);
+    /** compare lineEdit and string, set lineEdit style */
+    bool verifyField(QLineEdit *field, const QString &really);
+    /** set the lineEdit to default (enter mode, black font) */
+    void resetField(QLineEdit *field);
 
-  /** the same for QTextEdit and QRadioButton */
-  bool verifyField(QTextEdit *field, const QString &really, bool mixed);
-  void resetField (QTextEdit *field);
+    /** the same for QTextEdit and QRadioButton */
+    bool verifyField(QTextEdit *field, const QString &really, bool mixed);
+    void resetField(QTextEdit *field);
 
-  void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
-  void resetButton (QRadioButton *radio, QWidget *widget2 = 0);
+    void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
+    void resetButton(QRadioButton *radio, QWidget *widget2 = 0);
 
-  // Show string after selecting known/unknown
-  // depending on progress and randomness
-  QString  getOKComment(int percent);
-  QString  getNOKComment(int percent);
-  QString  getTimeoutComment(int percent);
+    // Show string after selecting known/unknown
+    // depending on progress and randomness
+    QString  getOKComment(int percent);
+    QString  getNOKComment(int percent);
+    QString  getTimeoutComment(int percent);
 
-  int getRandom(int range)
+    int getRandom(int range)
     {
 //        srand((unsigned int)time((time_t *)NULL));
-        return (int) (range * ((1.0*rand())/RAND_MAX));
+        return (int)(range *((1.0*rand())/RAND_MAX));
     }
 
-  virtual void initFocus() const;
+    virtual void initFocus() const;
 
 signals:
-  void sigQueryChoice(QueryDlgBase::Result);
-  void sigEditEntry(int row, int col);
+    void sigQueryChoice(QueryDlgBase::Result);
+    void sigEditEntry(int row, int col);
 
 protected:
-  void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
+    void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
-  virtual void closeEvent(QCloseEvent*e);
-  virtual void slotUser1();
+    virtual void closeEvent(QCloseEvent*e);
+    virtual void slotUser1();
 
-  struct RB_Label {
-    RB_Label (QRadioButton* _rb, QLabel *_label)
-      : rb(_rb), label(_label) {}
+    struct RB_Label
+    {
+        RB_Label(QRadioButton* _rb, QLabel *_label)
+                : rb(_rb), label(_label)
+        {}
 
-    QRadioButton  *rb;
-    QLabel        *label;
-  };
+        QRadioButton  *rb;
+        QLabel        *label;
+    };
 
-  int            q_row,
-                 queryOriginalColumn,
-                 queryTranslationColumn;
-  KEduVocDocument  *kv_doc;
-  KEduVocExpression *kv_exp;
-  QString        translation;
-  QTimer        *qtimer;
-  int            timercount;
+    int            q_row,
+    queryOriginalColumn,
+    queryTranslationColumn;
+    KEduVocDocument  *kv_doc;
+    KEduVocExpression *kv_exp;
+    QString        translation;
+    QTimer        *qtimer;
+    int            timercount;
 };
 
 

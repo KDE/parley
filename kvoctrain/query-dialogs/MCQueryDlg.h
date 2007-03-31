@@ -33,59 +33,59 @@
 
 class MCQueryDlg : public QueryDlgBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  MCQueryDlg(
-            QString org,
-            QString trans,
-            int entry,
-            int orgcol,
-            int transcol,
-            int query_cycle,
-            int query_num,
-            int query_startnum,
-            KEduVocExpression *exp,
-            KEduVocDocument  *doc);
+    MCQueryDlg(
+        QString org,
+        QString trans,
+        int entry,
+        int orgcol,
+        int transcol,
+        int query_cycle,
+        int query_num,
+        int query_startnum,
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc);
 
-  ~MCQueryDlg();
+    ~MCQueryDlg();
 
-  void setQuery(QString org,
-                QString trans,
-                int entry,
-                int orgcol,
-                int transcol,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                KEduVocExpression *exp,
-                KEduVocDocument  *doc);
-
-public slots:
-  virtual void initFocus() const;
-
-protected:
-  void keyPressEvent(QKeyEvent *e);
+    void setQuery(QString org,
+                  QString trans,
+                  int entry,
+                  int orgcol,
+                  int transcol,
+                  int query_cycle,
+                  int query_num,
+                  int query_startnum,
+                  KEduVocExpression *exp,
+                  KEduVocDocument  *doc);
 
 public slots:
-  void showItClicked();
-  void knowItClicked();
-  void dontKnowClicked();
-  void timeoutReached();
-  void slotUser2();
-  void trans1clicked();
-  void trans2clicked();
-  void trans3clicked();
-  void trans4clicked();
-  void trans5clicked();
-  void verifyClicked();
+    virtual void initFocus() const;
 
 protected:
-  int solution;
-  QList<RB_Label> button_ref;
+    void keyPressEvent(QKeyEvent *e);
+
+public slots:
+    void showItClicked();
+    void knowItClicked();
+    void dontKnowClicked();
+    void timeoutReached();
+    void slotUser2();
+    void trans1clicked();
+    void trans2clicked();
+    void trans3clicked();
+    void trans4clicked();
+    void trans5clicked();
+    void verifyClicked();
+
+protected:
+    int solution;
+    QList<RB_Label> button_ref;
 
 private:
-  Ui::MCQueryDlgForm * mw;
+    Ui::MCQueryDlgForm * mw;
 };
 
 #endif // MCQuery_Dlg_H

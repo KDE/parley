@@ -33,69 +33,69 @@
 
 class VerbQueryDlg : public QueryDlgBase
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
 
-  VerbQueryDlg(
-                QString type,
-                int entry,
-                int col,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                KEduVocExpression *exp,
-                KEduVocDocument  *doc,
-                const KEduVocConjugation &prefix,
-                const KEduVocConjugation &conjug);
+    VerbQueryDlg(
+        QString type,
+        int entry,
+        int col,
+        int query_cycle,
+        int query_num,
+        int query_startnum,
+        KEduVocExpression *exp,
+        KEduVocDocument  *doc,
+        const KEduVocConjugation &prefix,
+        const KEduVocConjugation &conjug);
 
-  ~VerbQueryDlg();
+    ~VerbQueryDlg();
 
-  void setQuery(QString type,
-                int entry,
-                int col,
-                int query_cycle,
-                int query_num,
-                int query_startnum,
-                KEduVocExpression *exp,
-                KEduVocDocument  *doc,
-                const KEduVocConjugation &prefix,
-                const KEduVocConjugation &conjug);
+    void setQuery(QString type,
+                  int entry,
+                  int col,
+                  int query_cycle,
+                  int query_num,
+                  int query_startnum,
+                  KEduVocExpression *exp,
+                  KEduVocDocument  *doc,
+                  const KEduVocConjugation &prefix,
+                  const KEduVocConjugation &conjug);
 
 public slots:
-  virtual void initFocus() const;
+    virtual void initFocus() const;
 
 protected:
-  bool next();
-  void keyPressEvent( QKeyEvent *e );
-  void resetAllFields();
+    bool next();
+    void keyPressEvent(QKeyEvent *e);
+    void resetAllFields();
 
 protected slots:
-  void slotUser2();
-  void slotP3pfChanged(const QString&);
-  void slotP3snChanged(const QString&);
-  void showAllClicked();
-  void slotReturnPressed();
-  void slotP3smChanged(const QString&);
-  void knowItClicked();
-  void dontKnowClicked();
-  void slotP3pnChanged(const QString&);
-  void slotP3sfChanged(const QString&);
-  void slotP1sChanged(const QString&);
-  void slotP2sChanged(const QString&);
-  void slotP3pmChanged(const QString&);
-  void slotP1pChanged(const QString&);
-  void slotP2pChanged(const QString&);
-  void verifyClicked();
-  void timeoutReached();
+    void slotUser2();
+    void slotP3pfChanged(const QString&);
+    void slotP3snChanged(const QString&);
+    void showAllClicked();
+    void slotReturnPressed();
+    void slotP3smChanged(const QString&);
+    void knowItClicked();
+    void dontKnowClicked();
+    void slotP3pnChanged(const QString&);
+    void slotP3sfChanged(const QString&);
+    void slotP1sChanged(const QString&);
+    void slotP2sChanged(const QString&);
+    void slotP3pmChanged(const QString&);
+    void slotP1pChanged(const QString&);
+    void slotP2pChanged(const QString&);
+    void verifyClicked();
+    void timeoutReached();
 
 protected:
-  int current;
-  KEduVocConjugation conjugations;
-  bool all_known;
+    int current;
+    KEduVocConjugation conjugations;
+    bool all_known;
 
 private:
-  Ui::VerbQueryDlgForm * mw;
+    Ui::VerbQueryDlgForm * mw;
 };
 
 #endif // VerbQueryDlg_included
