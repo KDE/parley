@@ -32,65 +32,69 @@
 
 class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  LanguageOptions(KVTLanguages & langset, QWidget* parent = 0);
+    LanguageOptions(KVTLanguages & langset, QWidget* parent = 0);
 
-  KVTLanguages getLangSet () const;
+    KVTLanguages getLangSet() const;
 
-  struct Country
-  {
-    Country(const QString &c, const QList<int> l, const QString &p, int i)
-      : country(c), langs(l), pixmap(p), id(i) {}
-    Country() { }
-    QString country;
-    QList<int> langs;
-    QString pixmap;
-    int id;
-  };
+    struct Country
+    {
+        Country(const QString &c, const QList<int> l, const QString &p, int i)
+                : country(c), langs(l), pixmap(p), id(i)
+        {}
+        Country()
+        { }
+        QString country;
+        QList<int> langs;
+        QString pixmap;
+        int id;
+    };
 
-  struct Region
-  {
-    Region(const QString &reg) : region(reg) {}
-    Region() {}
-    QString region;
-    QList<Country> countries;
-  };
+    struct Region
+    {
+        Region(const QString &reg) : region(reg)
+        {}
+        Region()
+        {}
+        QString region;
+        QList<Country> countries;
+    };
 
-  void updateWidgets();
-  bool hasChanged();
-  bool isDefault();
-  void updateSettings();
+    void updateWidgets();
+    bool hasChanged();
+    bool isDefault();
+    void updateSettings();
 
 signals:
-  void widgetModified();
+    void widgetModified();
 
 protected slots:
-  void slotDeleteClicked();
-  void slotNewClicked();
-  void slotPixmapClicked();
-  void slotLangChanged(const QString&);
-  void slotShort2Changed(const QString&);
-  void slotShortActivated(const QString&);
-  void slotNewNameChanged(const QString&);
-  void slotLangFromGlobalActivated(QAction *);
-  void slotLangFromISO6391Activated(QAction *);
-  void slotKeyboardLayoutChanged(const QString&);
+    void slotDeleteClicked();
+    void slotNewClicked();
+    void slotPixmapClicked();
+    void slotLangChanged(const QString&);
+    void slotShort2Changed(const QString&);
+    void slotShortActivated(const QString&);
+    void slotNewNameChanged(const QString&);
+    void slotLangFromGlobalActivated(QAction *);
+    void slotLangFromISO6391Activated(QAction *);
+    void slotKeyboardLayoutChanged(const QString&);
 
 private:
-  bool setPixmap(QString pm);
-  void enableLangWidgets();
-  void loadCountryData();
-  void loadISO6391Data();
-  void createISO6391Menus();
+    bool setPixmap(QString pm);
+    void enableLangWidgets();
+    void loadCountryData();
+    void loadISO6391Data();
+    void createISO6391Menus();
 
-  KVTLanguages global_langset;
-  QMap<int, Country> countryIdMap;
-  QMenu * m_kdeLanguagesMenu;
-  QMenu * m_isoLanguagesMenu;
-  KVTLanguages m_langSet;
-  QString m_lastPix;
-  bool m_hasChanged;
+    KVTLanguages global_langset;
+    QMap<int, Country> countryIdMap;
+    QMenu * m_kdeLanguagesMenu;
+    QMenu * m_isoLanguagesMenu;
+    KVTLanguages m_langSet;
+    QString m_lastPix;
+    bool m_hasChanged;
 };
 
 #endif

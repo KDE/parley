@@ -33,31 +33,31 @@ class QComboBox;
 
 class BlockOptions : public QWidget, public Ui::BlockOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  BlockOptions(QWidget* parent = 0);
-  void updateWidgets();
-  bool hasChanged();
-  bool isDefault();
-  void updateSettings();
+    BlockOptions(QWidget* parent = 0);
+    void updateWidgets();
+    bool hasChanged();
+    bool isDefault();
+    void updateSettings();
 
 signals:
-  void widgetModified();
-  void blockExpireChanged(bool block, bool expire);
+    void widgetModified();
+    void blockExpireChanged(bool block, bool expire);
 
 protected slots:
-  void slotBlockToggled(bool);
-  void slotExpireToggled(bool);
-  void slotComboBoxActivated(int);
+    void slotBlockToggled(bool);
+    void slotExpireToggled(bool);
+    void slotComboBoxActivated(int);
 
 private:
-  void fillWidgets();
-  void fillComboBox(QComboBox *);
-  void updateComboBox(int, QComboBox *);
-  void checkValidity();
+    void fillWidgets();
+    void fillComboBox(QComboBox *);
+    void updateComboBox(int, QComboBox *);
+    void checkValidity();
 
-  QList<QComboBox *> m_blockComboList;
-  QList<QComboBox *> m_expireComboList;
+    QList<QComboBox *> m_blockComboList;
+    QList<QComboBox *> m_expireComboList;
 };
 
 #endif

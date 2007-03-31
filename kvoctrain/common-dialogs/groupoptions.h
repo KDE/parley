@@ -28,11 +28,11 @@
 
 class GroupOptions : public QWidget, public Ui::GroupOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GroupOptions(QWidget* parent = 0);
+    GroupOptions(QWidget* parent = 0);
 
-  void updateButtons();
+    void updateButtons();
 };
 
 #endif

@@ -31,32 +31,32 @@ class KComboBox;
 
 class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  ThresholdOptions(KVTQuery * m, QWidget* parent = 0);
+    ThresholdOptions(KVTQuery * m, QWidget* parent = 0);
 
-  void updateWidgets();
-  bool hasChanged();
-  bool isDefault();
-  void updateSettings();
+    void updateWidgets();
+    bool hasChanged();
+    bool isDefault();
+    void updateSettings();
 
 signals:
-  void widgetModified();
+    void widgetModified();
 
 protected slots:
-  void slotComboActivated(int);
-  void slotSetGradeComp(int);
-  void slotSetBadComp(int);
-  void slotSetQueryComp(int);
-  void slotSetTypeComp(int);
-  void slotSetDateComp(int);
-  void slotBlockExpire(bool block, bool expire);
+    void slotComboActivated(int);
+    void slotSetGradeComp(int);
+    void slotSetBadComp(int);
+    void slotSetQueryComp(int);
+    void slotSetTypeComp(int);
+    void slotSetDateComp(int);
+    void slotBlockExpire(bool block, bool expire);
 
 private:
-  void fillWidgets();
+    void fillWidgets();
 
-  KVTQuery * m_queryManager;
-  QList<TypeRelation> all_maintypes;
+    KVTQuery * m_queryManager;
+    QList<TypeRelation> all_maintypes;
 };
 
 #endif

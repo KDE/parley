@@ -33,40 +33,40 @@ class GroupOptions;
 class SettingsProfile
 {
 public:
-  SettingsProfile();
-  SettingsProfile (QString n, QString q, QString t, QString b);
+    SettingsProfile();
+    SettingsProfile(QString n, QString q, QString t, QString b);
 
-  QString name;
-  QString query_set;
-  QString thresh_set;
-  QString block_set;
+    QString name;
+    QString query_set;
+    QString thresh_set;
+    QString block_set;
 };
 
 class ProfilesDialog : public KDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 
 public:
-  ProfilesDialog(KVTQuery * m, QWidget *parent = 0, const char *name = 0, bool modal = true);
+    ProfilesDialog(KVTQuery * m, QWidget *parent = 0, const char *name = 0, bool modal = true);
 
 signals:
-  void profileActivated();
+    void profileActivated();
 
 protected slots:
-  void slotDeleteGroup();
-  void slotNewGroup();
-  void slotStoreGroup();
-  void slotRecallGroup();
+    void slotDeleteGroup();
+    void slotNewGroup();
+    void slotStoreGroup();
+    void slotRecallGroup();
 
 private:
-  void selectProfile(int profile);
-  void modifyProfile(int profile);
-  void saveProfiles();
+    void selectProfile(int profile);
+    void modifyProfile(int profile);
+    void saveProfiles();
 
-  typedef QList<SettingsProfile> Profiles;
-  Profiles profiles;
-  KVTQuery * m_queryManager;
-  GroupOptions * mw;
+    typedef QList<SettingsProfile> Profiles;
+    Profiles profiles;
+    KVTQuery * m_queryManager;
+    GroupOptions * mw;
 };
 
 #endif

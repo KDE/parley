@@ -28,11 +28,11 @@
 
 class QueryOptions : public QWidget, public Ui::QueryOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  QueryOptions(QWidget* parent = 0);
+    QueryOptions(QWidget* parent = 0);
 
-  void updateWidgets();
+    void updateWidgets();
 };
 
 #endif

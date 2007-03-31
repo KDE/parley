@@ -28,21 +28,21 @@
 
 class GeneralOptions : public QWidget, public Ui::GeneralOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GeneralOptions(QWidget* parent = 0);
+    GeneralOptions(QWidget* parent = 0);
 
-  void updateWidgets();
-  bool hasChanged();
-  bool isDefault();
-  void updateSettings();
+    void updateWidgets();
+    bool hasChanged();
+    bool isDefault();
+    void updateSettings();
 
 signals:
-  void widgetModified();
+    void widgetModified();
 
 private slots:
-  void fillWidgets();
-  void slotSeparatorComboActivated(int);
+    void fillWidgets();
+    void slotSeparatorComboActivated(int);
 };
 
 #endif

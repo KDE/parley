@@ -28,15 +28,15 @@
 
 GroupOptions::GroupOptions(QWidget* parent) : QWidget(parent)
 {
-  setupUi(this);
+    setupUi(this);
 }
 
 void GroupOptions::updateButtons()
 {
-  ps_del->setEnabled (ps_name->count() > 0);
-  ps_store->setEnabled (ps_name->count() > 0);
-  ps_recall->setEnabled (ps_name->count() > 0);
-  ps_name->setEnabled (ps_name->count() > 0);
+    ps_del->setEnabled(ps_name->count() > 0);
+    ps_store->setEnabled(ps_name->count() > 0);
+    ps_recall->setEnabled(ps_name->count() > 0);
+    ps_name->setEnabled(ps_name->count() > 0);
 }
 
 #include "groupoptions.moc"

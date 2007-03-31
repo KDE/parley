@@ -30,91 +30,89 @@
 #include "prefs.h"
 
 static const char *separator_id[] =
-{
-  ";",              // 0
-  "#",              // 1
-  "!",              // 2
-  "|",              // 3
-  ",",              // 4
-  "\t",             // 5
-  "  ",             // 6
-  ":",              // 7
-  "::",             // 8
-  0
-};
+    {
+        ";",              // 0
+        "#",              // 1
+        "!",              // 2
+        "|",              // 3
+        ",",              // 4
+        "\t",             // 5
+        "  ",             // 6
+        ":",              // 7
+        "::",             // 8
+        0
+    };
 
 GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 {
-  setupUi(this);
-  connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
-  connect(SeparatorCombo, SIGNAL(activated(int)), this, SLOT(slotSeparatorComboActivated(int)));
+    setupUi(this);
+    connect(kcfg_AutoBackup, SIGNAL(toggled(bool)), kcfg_BackupTime, SLOT(setEnabled(bool)));
+    connect(SeparatorCombo, SIGNAL(activated(int)), this, SLOT(slotSeparatorComboActivated(int)));
 
-  fillWidgets();
-  updateWidgets();
-  InstallPathRequester->setMode(KFile::Directory);
-  kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
+    fillWidgets();
+    updateWidgets();
+    InstallPathRequester->setMode(KFile::Directory);
+    kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
 
 
 void GeneralOptions::fillWidgets()
 {
-  SeparatorCombo->addItem(i18n(";"));
-  SeparatorCombo->addItem(i18n("#"));
-  SeparatorCombo->addItem(i18n("!"));
-  SeparatorCombo->addItem(i18n("|"));
-  SeparatorCombo->addItem(i18n(","));
-  SeparatorCombo->addItem(i18n("TAB"));
-  SeparatorCombo->addItem(i18n(">= 2 SPACES"));
-  SeparatorCombo->addItem(i18n(" : "));
-  SeparatorCombo->addItem(i18n(" :: "));
+    SeparatorCombo->addItem(i18n(";"));
+    SeparatorCombo->addItem(i18n("#"));
+    SeparatorCombo->addItem(i18n("!"));
+    SeparatorCombo->addItem(i18n("|"));
+    SeparatorCombo->addItem(i18n(","));
+    SeparatorCombo->addItem(i18n("TAB"));
+    SeparatorCombo->addItem(i18n(">= 2 SPACES"));
+    SeparatorCombo->addItem(i18n(" : "));
+    SeparatorCombo->addItem(i18n(" :: "));
 }
 
 void GeneralOptions::updateWidgets()
 {
-  InstallPathRequester->setPath(Prefs::installPath());
+    InstallPathRequester->setPath(Prefs::installPath());
 
-  for (int i = 0; i < 9; ++i)
-  {
-    if (separator_id[i] == Prefs::separator())
-    {
-      SeparatorCombo->setCurrentIndex(i);
-      break;
+    for (int i = 0; i < 9; ++i) {
+        if (separator_id[i] == Prefs::separator()) {
+            SeparatorCombo->setCurrentIndex(i);
+            break;
+        }
     }
-  }
 
 }
 
 
 void GeneralOptions::slotSeparatorComboActivated(int)
 {
-  emit widgetModified();
+    emit widgetModified();
 }
 
 
 bool GeneralOptions::hasChanged()
 {
-  if (SeparatorCombo->currentIndex() < 0)
-    return false;
+    if (SeparatorCombo->currentIndex() < 0)
+        return false;
 
-  return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()) ||
-          InstallPathRequester->url().path() != Prefs::installPath();
+    return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()) ||
+           InstallPathRequester->url().path() != Prefs::installPath();
 }
 
 
 bool GeneralOptions::isDefault()
 {
-  if (SeparatorCombo->currentIndex() < 0)
-    return false;
-  return !strcmp(separator_id[SeparatorCombo->currentIndex()], "\t");
+    if (SeparatorCombo->currentIndex() < 0)
+        return false;
+    return !strcmp(separator_id[SeparatorCombo->currentIndex()], "\t");
 }
 
 
 void GeneralOptions::updateSettings()
 {
-  Prefs::setInstallPath(InstallPathRequester->url().path());
-  if (SeparatorCombo->currentIndex() < 0)
-    return;
-  Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
+    Prefs::setInstallPath(InstallPathRequester->url().path());
+    if (SeparatorCombo->currentIndex() < 0)
+        return;
+    Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
 }
 
 #include "generaloptions.moc"

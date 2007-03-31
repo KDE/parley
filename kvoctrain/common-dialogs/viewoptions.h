@@ -28,9 +28,9 @@
 
 class ViewOptions : public QWidget, public Ui::ViewOptionsBase
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  ViewOptions(QWidget* parent = 0);
+    ViewOptions(QWidget* parent = 0);
 };
 
 #endif
