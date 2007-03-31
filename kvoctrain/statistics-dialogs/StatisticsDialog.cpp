@@ -38,66 +38,65 @@
 
 KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
 {
-  setCaption(i18n("Document Statistics"));
-  setButtons(Ok | Apply | Cancel);
-  setDefaultButton(Ok);
-  setModal(true);
-  setFaceType(KPageDialog::Tabbed);
+    setCaption(i18n("Document Statistics"));
+    setButtons(Ok | Apply | Cancel);
+    setDefaultButton(Ok);
+    setModal(true);
+    setFaceType(KPageDialog::Tabbed);
 
-  m_model = model;
+    m_model = model;
 
-  QFrame * page;
-  QVBoxLayout * topLayout;
-  StatisticsPage *spage;
-
-  page = new QFrame();
-  addPage(page,i18n("General"));
-  topLayout = new QVBoxLayout(page);
-  topLayout->setMargin(0);
-  topLayout->setSpacing(KDialog::spacingHint());
-  GenStatPage *gspage = new GenStatPage(m_model->document(), page);
-  topLayout->addWidget(gspage);
-
-  for (int i = 1; i < (int) m_model->document()->identifierCount(); i++)
-  {
-    QString s = languages.findLongId(m_model->document()->identifier(i));
-    if (s.isEmpty())
-      s = m_model->document()->identifier(i);
+    QFrame * page;
+    QVBoxLayout * topLayout;
+    StatisticsPage *spage;
 
     page = new QFrame();
-    addPage(page,s);
+    addPage(page,i18n("General"));
     topLayout = new QVBoxLayout(page);
     topLayout->setMargin(0);
     topLayout->setSpacing(KDialog::spacingHint());
-    spage = new StatisticsPage(i, m_model->document(), page);
-    topLayout->addWidget(spage);
-    pageList.append(spage);
-  }
+    GenStatPage *gspage = new GenStatPage(m_model->document(), page);
+    topLayout->addWidget(gspage);
 
-  connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+    for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
+        QString s = languages.findLongId(m_model->document()->identifier(i));
+        if (s.isEmpty())
+            s = m_model->document()->identifier(i);
 
-  KConfigGroup cg( KGlobal::config(), "StatisticsDialog");
-  restoreDialogSize( cg );
+        page = new QFrame();
+        addPage(page,s);
+        topLayout = new QVBoxLayout(page);
+        topLayout->setMargin(0);
+        topLayout->setSpacing(KDialog::spacingHint());
+        spage = new StatisticsPage(i, m_model->document(), page);
+        topLayout->addWidget(spage);
+        pageList.append(spage);
+    }
+
+    connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
+
+    KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
+    restoreDialogSize(cg);
 }
 
 KVTStatisticsDialog::~KVTStatisticsDialog()
 {
-  KConfigGroup cg( KGlobal::config(), "StatisticsDialog");
-  KDialog::saveDialogSize( cg );
+    KConfigGroup cg(KGlobal::config(), "StatisticsDialog");
+    KDialog::saveDialogSize(cg);
 }
 
 void KVTStatisticsDialog::slotApply()
 {
-  foreach(StatisticsPage * page, pageList)
+    foreach(StatisticsPage * page, pageList)
     page->resetStatistics();
-  m_model->reset();
+    m_model->reset();
 }
 
 
 void KVTStatisticsDialog::accept()
 {
-  slotApply();
-  KPageDialog::accept();
+    slotApply();
+    KPageDialog::accept();
 }
 
 #include "StatisticsDialog.moc"

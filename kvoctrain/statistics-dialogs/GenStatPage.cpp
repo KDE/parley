@@ -30,16 +30,16 @@
 
 GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)
 {
-  setupUi(this);
-  l_filename->setText(doc->url().path());
-  l_title->setText(doc->title());
-  l_author->setText(doc->author());
-  QString s;
-  s.setNum(doc->entryCount());
-  kcfg_entriesPerLesson->setText(s);
-  QStringList lesson = doc->lessonDescriptions();
-  s.setNum(lesson.size());
-  l_lessons->setText(s);
+    setupUi(this);
+    l_filename->setText(doc->url().path());
+    l_title->setText(doc->title());
+    l_author->setText(doc->author());
+    QString s;
+    s.setNum(doc->entryCount());
+    kcfg_entriesPerLesson->setText(s);
+    QStringList lesson = doc->lessonDescriptions();
+    s.setNum(lesson.size());
+    l_lessons->setText(s);
 }
 
 #include "GenStatPage.moc"

@@ -34,18 +34,18 @@ class StatisticsPage;
 
 class KVTStatisticsDialog : public KPageDialog
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent = NULL);
-  ~KVTStatisticsDialog();
+    KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent = NULL);
+    ~KVTStatisticsDialog();
 
 protected slots:
-  void slotApply();
-  void accept();
+    void slotApply();
+    void accept();
 
 private:
-  KVTTableModel * m_model;
-  QList<StatisticsPage *> pageList;
+    KVTTableModel * m_model;
+    QList<StatisticsPage *> pageList;
 };
 
 #endif // StatisticsDialog_included

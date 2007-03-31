@@ -33,9 +33,9 @@ class KEduVocDocument;
 
 class GenStatPage : public QWidget, public Ui::GenStatPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  GenStatPage(KEduVocDocument *doc, QWidget* parent = 0);
+    GenStatPage(KEduVocDocument *doc, QWidget* parent = 0);
 };
 
 #endif // GenStatPage_included

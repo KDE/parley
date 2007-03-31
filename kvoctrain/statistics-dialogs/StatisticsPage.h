@@ -37,41 +37,42 @@ class GradeCols;
 
 class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 {
-  Q_OBJECT
+    Q_OBJECT
 public:
-  StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
+    StatisticsPage(int col, KEduVocDocument *doc, QWidget *parent = 0);
 
-  void resetStatistics();
+    void resetStatistics();
 
 private slots:
-  void slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
+    void slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
 
 private:
-  void setupData();
-  QString gradesToolTip(int level, bool reverse);
+    void setupData();
+    QString gradesToolTip(int level, bool reverse);
 
-  struct stat_counter
-  {
-    stat_counter() {
-      for (int i = 0; i <= KV_MAX_GRADE; i++)
-        grade[i] = 0;
-      num = 0;
-    }
+    struct stat_counter
+    {
+        stat_counter()
+        {
+            for (int i = 0; i <= KV_MAX_GRADE; i++)
+                grade[i] = 0;
+            num = 0;
+        }
 
-    int grade [KV_MAX_GRADE + 1];
-    int num;
-  };
+        int grade [KV_MAX_GRADE + 1];
+        int num;
+    };
 
-  int calc_width (struct StatisticsPage::stat_counter *gc, int grade, int max_width);
+    int calc_width(struct StatisticsPage::stat_counter *gc, int grade, int max_width);
 
-  QList<QPixmap> from_pix;
-  QList<QPixmap> to_pix;
+    QList<QPixmap> from_pix;
+    QList<QPixmap> to_pix;
 
-  KEduVocDocument * m_doc;
-  int m_translation;
+    KEduVocDocument * m_doc;
+    int m_translation;
 
-  QVector<stat_counter> fsc;
-  QVector<stat_counter> tsc;
+    QVector<stat_counter> fsc;
+    QVector<stat_counter> tsc;
 };
 
 #endif // StatisticsPage_included
