@@ -45,6 +45,7 @@
 
 // ISO 639-2 codes can be found at http://www.loc.gov/standards/iso639-2/php/English_list.php
 
+
 struct KV_ISO639_Code
 {
     const char *iso1code;
@@ -249,6 +250,7 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
     createISO6391Menus();
     b_lang_iso1->setMenu(m_isoLanguagesMenu);
 
+    // This is actually the ADD button.
     b_langNew->setEnabled(false); // activate after data is entered
 
     for (int i = 0; i < (int) m_langSet.count() && i < MAX_LANGSET; i++)
@@ -285,6 +287,7 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
 
 void LanguageOptions::slotDeleteClicked()
 {
+    // delete the item
     if (d_shortName->count() != 0) {
         m_langSet.erase(d_shortName->currentIndex());
         emit widgetModified();
@@ -294,11 +297,13 @@ void LanguageOptions::slotDeleteClicked()
             d_shortName->setCurrentIndex(0);
     }
 
+    // select the next in line and make it active
     if (d_shortName->count() != 0) {
         setPixmap(m_langSet.pixmapFile(d_shortName->currentIndex()));
         e_langLong->setText(m_langSet.longId(d_shortName->currentIndex()));
         e_shortName2->setText(m_langSet.shortId2(d_shortName->currentIndex()));
     } else {
+        // the deleted one was the last one:
         b_langPixmap->setText(i18n("No picture selected"));
         b_langPixmap->setIcon(QIcon());
         e_langLong->setText("");
@@ -328,13 +333,16 @@ void LanguageOptions::slotKeyboardLayoutChanged(const QString& layout)
 
 void LanguageOptions::enableLangWidgets()
 {
+    // check if we have a short name
     bool enabled = d_shortName->count() != 0;
+    // and set everything depending upon short name
     b_langDel->setEnabled(enabled);
     b_langPixmap->setEnabled(enabled);
     d_shortName->setEnabled(enabled);
     e_langLong->setEnabled(enabled);
     e_shortName2->setEnabled(enabled);
 
+    // try to talk to kxbk - get a list of keyboard layouts
     if (enabled) {
         QDBusInterface kxbk("org.kde.kxkb", "/kxkb", "org.kde.KXKB");
         QDBusReply<QStringList> reply = kxbk.call("getLayoutsList");
@@ -354,21 +362,28 @@ void LanguageOptions::enableLangWidgets()
 }
 
 
-void LanguageOptions::slotNewNameChanged(const QString& _s)
+void LanguageOptions::slotNewNameChanged(const QString& lang)
 {
-    QString s = _s;
-    b_langNew->setEnabled(s.simplified().length() >= 2);
+    // This is actually the ADD button. Enable it, if there are enough chars.
+    b_langNew->setEnabled(lang.simplified().length() >= 2);
 }
 
 
 void LanguageOptions::slotNewClicked()
 {
+    // e_newName is the line edit
     QString s = e_newName->text();
+    // add it's contents to the combo box
     d_shortName->addItem(s.simplified());
+    // select it
     d_shortName->setCurrentIndex(d_shortName->count()-1);
+    // update/enable the other widgets
     enableLangWidgets();
+    
     slotShortActivated(s);
+    // clear the entry line
     e_newName->setText("");
+    // let the user type a new long name
     e_langLong->setFocus();
 }
 
