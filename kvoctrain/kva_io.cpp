@@ -38,7 +38,7 @@
 #include <krecentfilesaction.h>
 #include <kstandarddirs.h>
 #include <kdebug.h>
-#include <knewstuff/downloaddialog.h>
+#include <knewstuff2/engine.h>
 
 #include "kvoctrain.h"
 #include "kvtusage.h"
@@ -200,9 +200,7 @@ void KVocTrainApp::slotFileOpenExample()
 
 void KVocTrainApp::slotGHNS()
 {
-    if (!m_newStuff)
-        m_newStuff = new KVTNewStuff(this);
-    m_newStuff->download();
+    KNS::Entry::List entries = KNS::Engine::download();
 }
 
 

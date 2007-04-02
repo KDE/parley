@@ -122,7 +122,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_init.cpp
     kva_query.cpp
     kvtlanguages.cpp
-    kvtnewstuff.cpp
     kvttabledelegate.cpp
     kvttablemodel.cpp
     kvttableview.cpp
@@ -137,7 +136,7 @@ kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF_LIBS} )
+target_link_libraries(kvoctrain  ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS} )
 
 install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
@@ -158,6 +157,6 @@ install(TARGETS spotlight2kvtml  DESTINATION ${BIN_INSTALL_DIR} )
 ########### install files ###############
 
 install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_DIR} )
-install( FILES kvoctrainrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES kvoctrain.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 install( FILES kvoctrainui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kvoctrain )
 

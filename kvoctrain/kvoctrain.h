@@ -42,7 +42,6 @@
 #include <krandomsequence.h>
 
 #include "query-dialogs/QueryDlgBase.h"
-#include "kvtnewstuff.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"

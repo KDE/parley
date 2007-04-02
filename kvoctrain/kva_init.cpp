@@ -47,6 +47,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 #include <kicon.h>
+#include <knewstuff2/ui/knewstuffaction.h>
 
 #include "kvoctrain.h"
 #include "prefs.h"
