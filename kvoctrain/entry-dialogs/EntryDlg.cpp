@@ -31,7 +31,7 @@
 
 #include <klocale.h>
 #include <kmainwindow.h>
-#include <kwinmodule.h>
+#include <kwm.h>
 
 #include "EntryDlg.h"
 
@@ -282,8 +282,7 @@ void EntryDlg::slotDockVertical()
         docked = true;
     }
 
-    KWinModule info;
-    QRect rect = info.workArea();
+    QRect rect = KWM::workArea();
 
     int diff_x = frameGeometry().width()-width();
     int diff_y = frameGeometry().height()-height();
@@ -305,8 +304,7 @@ void EntryDlg::slotDockHorizontal()
         docked = true;
     }
 
-    KWinModule info;
-    QRect rect = info.workArea();
+    QRect rect = KWM::workArea();
 
     int diff_x = frameGeometry().width()-width();
     int diff_y = frameGeometry().height()-height();
