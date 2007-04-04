@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>LanguageOptionsBase</class>
  <widget class="QWidget" name="LanguageOptionsBase" >
   <property name="geometry" >
@@ -13,10 +10,22 @@
    </rect>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="0" column="0" >
@@ -25,10 +34,22 @@
       <string>Available Languages</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>11</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>11</number>
+      </property>
+      <property name="rightMargin" >
+       <number>11</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>11</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="0" column="2" >
@@ -47,9 +68,7 @@
       <item row="1" column="1" >
        <widget class="QLineEdit" name="e_shortName2" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -65,9 +84,7 @@
       <item row="2" column="1" >
        <widget class="QLineEdit" name="e_langLong" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>3</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -106,19 +123,17 @@
       <item row="0" column="1" >
        <widget class="KComboBox" name="d_shortName" >
         <property name="toolTip" >
-         <string>Select a language or use the Add New Language Code to add one.</string>
+         <string>Select a language or use the Add New Language or Identifier to add one.</string>
         </property>
         <property name="whatsThis" >
-         <string>You can select a language with the drop down box or use the Add New Language Code dialog below to add one.</string>
+         <string>You can select a language with the drop down box or use the Add New Language or Identifier functions below to add one.</string>
         </property>
        </widget>
       </item>
       <item row="0" column="0" >
        <widget class="QLabel" name="label_shortName" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -188,9 +203,7 @@
       <item row="4" column="0" >
        <widget class="QLabel" name="label_kblayout" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -215,38 +228,50 @@
    <item row="1" column="0" >
     <widget class="QGroupBox" name="GroupBox2" >
      <property name="title" >
-      <string>Add New Language Code</string>
+      <string>Add New Language or Identifier</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>11</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>11</number>
+      </property>
+      <property name="rightMargin" >
+       <number>11</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>11</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="1" column="0" colspan="2" >
        <widget class="QPushButton" name="b_lang_kde" >
         <property name="toolTip" >
-         <string>Obtains the language choices from the KDE database</string>
+         <string>Add language information by selecting the name of a country</string>
         </property>
         <property name="whatsThis" >
-         <string>Pressing this button opens a menu that contains all the countries that are known in your KDE installation. Ordered by country you can add your desired language properties to your personal list.</string>
+         <string>Add language information by selecting the name of a country</string>
         </property>
         <property name="text" >
-         <string>Add Language Data From &amp;KDE Database</string>
+         <string>Add Language Data From Country Name</string>
         </property>
        </widget>
       </item>
       <item row="2" column="0" colspan="2" >
        <widget class="QPushButton" name="b_lang_iso1" >
         <property name="toolTip" >
-         <string>List of languages covered by ISO639-1</string>
+         <string>Add language information by selecting the name of a language</string>
         </property>
         <property name="whatsThis" >
-         <string>Pressing this button opens a menu that contains all the language codes that are covered by &quot;ISO639-1&quot;</string>
+         <string>Add language information by selecting the name of a language</string>
         </property>
         <property name="text" >
-         <string>Add Language Data From ISO639-&amp;1</string>
+         <string>Add Language Data From Language Name</string>
         </property>
         <property name="shortcut" >
          <string>Alt+1</string>
@@ -269,9 +294,7 @@
       <item row="0" column="0" >
        <widget class="QLineEdit" name="e_newName" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>3</hsizetype>
-          <vsizetype>1</vsizetype>
+         <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -310,10 +333,8 @@
  <customwidgets>
   <customwidget>
    <class>KComboBox</class>
-   <extends></extends>
+   <extends>QComboBox</extends>
    <header>kcombobox.h</header>
-   <container>0</container>
-   <pixmap></pixmap>
   </customwidget>
  </customwidgets>
  <tabstops>

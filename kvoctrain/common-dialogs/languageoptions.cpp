@@ -32,6 +32,7 @@
 #include <QMenu>
 
 #include <klocale.h>
+#include <kimageio.h>
 #include <kcombobox.h>
 #include <kstandarddirs.h>
 #include <kfiledialog.h>
@@ -42,188 +43,6 @@
 #include "prefs.h"
 
 #define MAX_LANGSET      100
-
-// ISO 639-2 codes can be found at http://www.loc.gov/standards/iso639-2/php/English_list.php
-
-
-struct KV_ISO639_Code
-{
-    const char *iso1code;
-    const char *iso2code;
-    const char *langname;
-};
-
-KV_ISO639_Code kv_iso639_1[] = {
-                                   {"aa", "aar", I18N_NOOP("Afar")},
-                                   {"ab", "abk", I18N_NOOP("Abkhazian")},
-                                   {"ae", "ave", I18N_NOOP("Avestan")},
-                                   {"af", "afr", I18N_NOOP("Afrikaans")},
-                                   {"am", "amh", I18N_NOOP("Amharic")},
-                                   {"ar", "ara", I18N_NOOP("Arabic")},
-                                   {"as", "asm", I18N_NOOP("Assamese")},
-                                   {"ay", "aym", I18N_NOOP("Aymara")},
-                                   {"az", "aze", I18N_NOOP("Azerbaijani")},
-                                   {"ba", "bak", I18N_NOOP("Bashkir")},
-                                   {"be", "bel", I18N_NOOP("Belarusian")},
-                                   {"bg", "bul", I18N_NOOP("Bulgarian")},
-                                   {"bh", "bih", I18N_NOOP("Bihari")},
-                                   {"bi", "bis", I18N_NOOP("Bislama")},
-                                   {"bn", "ben", I18N_NOOP("Bengali")},
-                                   {"bo", "tib", I18N_NOOP("Tibetan")},
-                                   {"br", "bre", I18N_NOOP("Breton")},
-                                   {"bs", "bos", I18N_NOOP("Bosnian")},
-                                   {"ca", "cat", I18N_NOOP("Catalan")},
-                                   {"ce", "che", I18N_NOOP("Chechen")},
-                                   {"ch", "cha", I18N_NOOP("Chamorro")},
-                                   {"co", "cos", I18N_NOOP("Corsican")},
-                                   {"cs", "cze", I18N_NOOP("Czech")},
-                                   {"cu", "chu", I18N_NOOP("Church Slavic")},
-                                   {"cv", "chv", I18N_NOOP("Chuvash")},
-                                   {"cy", "wel", I18N_NOOP("Welsh")},
-                                   {"da", "dan", I18N_NOOP("Danish")},
-                                   {"de", "ger", I18N_NOOP("German")},
-                                   {"dz", "dzo", I18N_NOOP("Dzongkha")},
-                                   {"el", "gre", I18N_NOOP("Greek")},
-                                   {"en", "eng", I18N_NOOP("English")},
-                                   {"eo", "epo", I18N_NOOP("Esperanto")},
-                                   {"es", "spa", I18N_NOOP("Spanish")},
-                                   {"et", "est", I18N_NOOP("Estonian")},
-                                   {"eu", "baq", I18N_NOOP("Basque")},
-                                   {"fa", "per", I18N_NOOP("Persian")},
-                                   {"fi", "fin", I18N_NOOP("Finnish")},
-                                   {"fj", "fij", I18N_NOOP("Fijian")},
-                                   {"fo", "fao", I18N_NOOP("Faroese")},
-                                   {"fr", "fre", I18N_NOOP("French")},
-                                   {"fy", "fry", I18N_NOOP("Frisian")},
-                                   {"ga", "gle", I18N_NOOP("Irish")},
-                                   {"gd", "gla", I18N_NOOP("Gaelic")},
-                                   {"gd", "gla", I18N_NOOP("Scottish Gaelic")},
-                                   {"gl", "glg", I18N_NOOP("Gallegan")},
-                                   {"gn", "grn", I18N_NOOP("Guarani")},
-                                   {"gu", "guj", I18N_NOOP("Gujarati")},
-                                   {"gv", "glv", I18N_NOOP("Manx")},
-                                   {"ha", "hau", I18N_NOOP("Hausa")},
-                                   {"he", "heb", I18N_NOOP("Hebrew")},
-                                   {"hi", "hin", I18N_NOOP("Hindi")},
-                                   {"ho", "hmo", I18N_NOOP("Hiri Motu")},
-                                   {"hr", "scr", I18N_NOOP("Croatian")},
-                                   {"hu", "hun", I18N_NOOP("Hungarian")},
-                                   {"hy", "arm", I18N_NOOP("Armenian")},
-                                   {"hz", "her", I18N_NOOP("Herero")},
-                                   {"id", "ind", I18N_NOOP("Indonesian")},
-                                   {"ie", "ile", I18N_NOOP("Interlingue")},
-                                   {"ik", "ipk", I18N_NOOP("Inupiaq")},
-                                   {"is", "ice", I18N_NOOP("Icelandic")},
-                                   {"it", "ita", I18N_NOOP("Italian")},
-                                   {"iu", "iku", I18N_NOOP("Inuktitut")},
-                                   {"ja", "jpn", I18N_NOOP("Japanese")},
-                                   {"jv", "jav", I18N_NOOP("Javanese")},
-                                   {"ka", "geo", I18N_NOOP("Georgian")},
-                                   {"ki", "kik", I18N_NOOP("Kikuyu")},
-                                   {"kj", "kua", I18N_NOOP("Kuanyama")},
-                                   {"kk", "kaz", I18N_NOOP("Kazakh")},
-                                   {"kl", "kal", I18N_NOOP("Kalaallisut")},
-                                   {"km", "khm", I18N_NOOP("Khmer")},
-                                   {"kn", "kan", I18N_NOOP("Kannada")},
-                                   {"ko", "kor", I18N_NOOP("Korean")},
-                                   {"ks", "kas", I18N_NOOP("Kashmiri")},
-                                   {"ku", "kur", I18N_NOOP("Kurdish")},
-                                   {"kv", "kom", I18N_NOOP("Komi")},
-                                   {"kw", "cor", I18N_NOOP("Cornish")},
-                                   {"ky", "kir", I18N_NOOP("Kirghiz")},
-                                   {"la", "lat", I18N_NOOP("Latin")},
-                                   {"lb", "ltz", I18N_NOOP("Letzeburgesch")},
-                                   {"ln", "lin", I18N_NOOP("Lingala")},
-                                   {"lo", "lao", I18N_NOOP("Lao")},
-                                   {"lt", "lit", I18N_NOOP("Lithuanian")},
-                                   {"lv", "lav", I18N_NOOP("Latvian")},
-                                   {"mg", "mlg", I18N_NOOP("Malagasy")},
-                                   {"mh", "mah", I18N_NOOP("Marshall")},
-                                   {"mi", "mao", I18N_NOOP("Maori")},
-                                   {"mk", "mac", I18N_NOOP("Macedonian")},
-                                   {"ml", "mal", I18N_NOOP("Malayalam")},
-                                   {"mn", "mon", I18N_NOOP("Mongolian")},
-                                   {"mo", "mol", I18N_NOOP("Moldavian")},
-                                   {"mr", "mar", I18N_NOOP("Marathi")},
-                                   {"ms", "may", I18N_NOOP("Malay")},
-                                   {"mt", "mlt", I18N_NOOP("Maltese")},
-                                   {"my", "bur", I18N_NOOP("Burmese")},
-                                   {"na", "nau", I18N_NOOP("Nauru")},
-                                   {"nb", "nob", I18N_NOOP("BokmÃÂÃÂ¥l")},
-                                   {"nd", "nde", I18N_NOOP("Ndebele, North")},
-                                   {"ne", "nep", I18N_NOOP("Nepali")},
-                                   {"ng", "ndo", I18N_NOOP("Ndonga")},
-                                   {"nl", "dut", I18N_NOOP("Dutch")},
-                                   {"nn", "nno", I18N_NOOP("Norwegian Nynorsk")},
-                                   {"no", "nor", I18N_NOOP("Norwegian")},
-                                   {"nr", "nbl", I18N_NOOP("Ndebele, South")},
-                                   {"nv", "nav", I18N_NOOP("Navajo")},
-                                   {"ny", "nya", I18N_NOOP("Chichewa")},
-                                   {"ny", "nya", I18N_NOOP("Nyanja")},
-                                   {"oc", "oci", I18N_NOOP("Occitan")},
-                                   {"oc", "oci", I18N_NOOP("Provencal")},
-                                   {"om", "orm", I18N_NOOP("Oromo")},
-                                   {"or", "ori", I18N_NOOP("Oriya")},
-                                   {"os", "oss", I18N_NOOP("Ossetic")},
-                                   {"pa", "pan", I18N_NOOP("Panjabi")},
-                                   {"pi", "pli", I18N_NOOP("Pali")},
-                                   {"pl", "pol", I18N_NOOP("Polish")},
-                                   {"ps", "pus", I18N_NOOP("Pushto")},
-                                   {"pt", "por", I18N_NOOP("Portuguese")},
-                                   {"qu", "que", I18N_NOOP("Quechua")},
-                                   {"rm", "roh", I18N_NOOP("Raeto-Romance")},
-                                   {"rn", "run", I18N_NOOP("Rundi")},
-                                   {"ro", "rum", I18N_NOOP("Romanian")},
-                                   {"ru", "rus", I18N_NOOP("Russian")},
-                                   {"rw", "kin", I18N_NOOP("Kinyarwanda")},
-                                   {"sa", "san", I18N_NOOP("Sanskrit")},
-                                   {"sc", "srd", I18N_NOOP("Sardinian")},
-                                   {"sd", "snd", I18N_NOOP("Sindhi")},
-                                   {"se", "sme", I18N_NOOP("Northern Sami")},
-                                   {"sg", "sag", I18N_NOOP("Sango")},
-                                   {"si", "sin", I18N_NOOP("Sinhalese")},
-                                   {"sk", "slo", I18N_NOOP("Slovak")},
-                                   {"sl", "slv", I18N_NOOP("Slovenian")},
-                                   {"sm", "smo", I18N_NOOP("Samoan")},
-                                   {"sn", "sna", I18N_NOOP("Shona")},
-                                   {"so", "som", I18N_NOOP("Somali")},
-                                   {"sq", "alb", I18N_NOOP("Albanian")},
-                                   {"sr", "scc", I18N_NOOP("Serbian")},
-                                   {"ss", "ssw", I18N_NOOP("Swati")},
-                                   {"st", "sot", I18N_NOOP("Sotho, Southern")},
-                                   {"su", "sun", I18N_NOOP("Sundanese")},
-                                   {"sv", "swe", I18N_NOOP("Swedish")},
-                                   {"sw", "swa", I18N_NOOP("Swahili")},
-                                   {"ta", "tam", I18N_NOOP("Tamil")},
-                                   {"te", "tel", I18N_NOOP("Telugu")},
-                                   {"tg", "tgk", I18N_NOOP("Tajik")},
-                                   {"th", "tha", I18N_NOOP("Thai")},
-                                   {"ti", "tir", I18N_NOOP("Tigrinya")},
-                                   {"tk", "tuk", I18N_NOOP("Turkmen")},
-                                   {"tl", "tgl", I18N_NOOP("Tagalog")},
-                                   {"tn", "tsn", I18N_NOOP("Tswana")},
-                                   {"to", "ton", I18N_NOOP("Tonga")},
-                                   {"tr", "tur", I18N_NOOP("Turkish")},
-                                   {"ts", "tso", I18N_NOOP("Tsonga")},
-                                   {"tt", "tat", I18N_NOOP("Tatar")},
-                                   {"tw", "twi", I18N_NOOP("Twi")},
-                                   {"ty", "tah", I18N_NOOP("Tahitian")},
-                                   {"ug", "uig", I18N_NOOP("Uighur")},
-                                   {"uk", "ukr", I18N_NOOP("Ukrainian")},
-                                   {"ur", "urd", I18N_NOOP("Urdu")},
-                                   {"uz", "uzb", I18N_NOOP("Uzbek")},
-                                   {"vi", "vie", I18N_NOOP("Vietnamese")},
-                                   {"vo", "vol", I18N_NOOP("VolapÃÂÃÂ¼k")},
-                                   {"wo", "wol", I18N_NOOP("Wolof")},
-                                   {"xh", "xho", I18N_NOOP("Xhosa")},
-                                   {"yi", "yid", I18N_NOOP("Yiddish")},
-                                   {"yo", "yor", I18N_NOOP("Yoruba")},
-                                   {"za", "zha", I18N_NOOP("Zhuang")},
-                                   {"zh", "chi", I18N_NOOP("Chinese")},
-                                   {"zu", "zul", I18N_NOOP("Zulu")},
-                                   {0, 0, 0}
-                               };
-
 
 LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWidget(parent), m_langSet(langset)
 {
@@ -242,7 +61,6 @@ LanguageOptions::LanguageOptions(KVTLanguages & langset, QWidget* parent) : QWid
 
     // Load the languages first, then the countries and create the
     // menus for the languages last, so they will have flags
-    loadISO6391Data();
     loadCountryData();
 
     b_lang_kde->setMenu(m_kdeLanguagesMenu);
@@ -379,7 +197,7 @@ void LanguageOptions::slotNewClicked()
     d_shortName->setCurrentIndex(d_shortName->count()-1);
     // update/enable the other widgets
     enableLangWidgets();
-    
+
     slotShortActivated(s);
     // clear the entry line
     e_newName->setText("");
@@ -508,7 +326,7 @@ void LanguageOptions::slotPixmapClicked()
             m_lastPix = fi.path()+"/flag.png";
         }
 
-        QString s = KFileDialog::getOpenFileName(m_lastPix, "*.png *.xpm *.gif *.xbm");
+        QString s = KFileDialog::getOpenFileName(m_lastPix, KImageIO::pattern(KImageIO::Reading));
         if (!s.isEmpty()) {
             if (setPixmap(s))
                 m_lastPix = s;
@@ -533,10 +351,18 @@ void LanguageOptions::loadCountryData()
     KLocale *lsave = KGlobal::locale();
     QString curr_lang = lsave->language();
 
-//  KLocale locale("kvoctrain");
     KLocale locale(QString::null);
     locale.setLanguage(curr_lang);
     KGlobal::setLocale(&locale);
+
+    QStringList codes = locale.allLanguagesTwoAlpha();
+    codes.sort();
+
+    foreach(QString code, codes) {
+      QString languageName = locale.twoAlphaToLanguageName(code);
+      if (!languageName.isEmpty())
+        global_langset.addLanguage(code, languageName, QString(), QString());
+    }
 
     QString sub = QString::fromLatin1("l10n/");
     QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop"));
@@ -545,74 +371,59 @@ void LanguageOptions::loadCountryData()
     QMap<QString, Region> regions;
 
     foreach(QString region, regionlist) {
-        QString tag = region;
-        int index;
+      QFileInfo fi(region);
+      QString tag = fi.baseName();
 
-        index = tag.lastIndexOf('/');
-        if (index != -1)
-            tag = tag.mid(index + 1);
+      KConfig entry(region, KConfig::OnlyLocal);
+      KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
+      QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
 
-        index = tag.lastIndexOf('.');
-        if (index != -1)
-            tag.truncate(index);
-
-        KConfig entry(region, KConfig::OnlyLocal);
-        KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
-        QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
-
-        regions.insert(tag, Region(name));
+      regions.insert(tag, Region(name));
     }
 
     // add all languages to the list
-    QStringList countrylist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*/entry.desktop"));
+    QStringList countrylist = locale.allCountriesTwoAlpha();
+    countrylist.sort();
 
     int idx = 0;
-    foreach(QString country, countrylist) {
-        KConfig entry(country, KConfig::OnlyLocal);
-        KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
-        QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
-        QString submenu = group.readEntry(QString::fromLatin1("Region"), QString());
+    foreach(QString code, countrylist) {
+      QString country = KGlobal::dirs()->findResource("locale", QString::fromLatin1("%1%2/entry.desktop").arg(sub).arg(code));
+      KConfig entry(country, KConfig::OnlyLocal);
+      KConfigGroup group = entry.group(QString::fromLatin1("KCM Locale"));
+      QString name = group.readEntry(QString::fromLatin1("Name"), i18n("without name"));
+      QString submenu = group.readEntry(QString::fromLatin1("Region"), QString());
 
-        QString tag = country;
-        int index = tag.lastIndexOf('/');
-        tag.truncate(index);
-        index = tag.lastIndexOf('/');
-        tag = tag.mid(index+1);
+      QStringList all_langs = group.readEntry(QString::fromLatin1("Languages"), QString()).split(",", QString::SkipEmptyParts);
+      QList<int> langs;
 
-        if (tag == "C")
-            continue;
+      QString pixmap = country;
+      int index = pixmap.lastIndexOf('/');
+      pixmap.truncate(index);
+      pixmap += "/flag.png";
 
-        QStringList all_langs = group.readEntry(QString::fromLatin1("Languages"), QString()).split(",", QString::SkipEmptyParts);
-        QList<int> langs;
+      foreach(QString lang, all_langs) {
+        // Treat ie "en_GB" and "en_USE" as "en" because the language list
+        // only contains the first letters
+        QString it = lang;
+        if (it.indexOf("_"))
+          it = it.left(it.indexOf("_"));
 
-        QString pixmap = country;
-        index = pixmap.lastIndexOf('/');
-        pixmap.truncate(index);
-        pixmap += "/flag.png";
-
-        foreach(QString lang, all_langs) {
-            // Treat ie "en_GB" and "en_USE" as "en" because the language list
-            // only contains the first letters
-            QString it = lang;
-            if (it.indexOf("_"))
-                it = it.left(it.indexOf("_"));
-
-            int id = global_langset.indexShortId(it);
-            if (id > 0) {
-                langs.append(id);
-                // Set the pixmap of the language to the flag of the first contry that
-                // has the language as official language
-                ///@todo I have turned off icons for the ISO menu as the result was frequently wrong.
-                //if (global_langset.pixmapFile(id).isEmpty())
-                //global_langset.setPixmapFile(pixmap, id);
-            }
-            //else
-            //kDebug() << "Couldn't find the language for: " << *it << endl;
+        int id = global_langset.indexShortId(it);
+        if (id > 0) {
+          langs.append(id);
+          // Set the pixmap of the language to the flag of the first contry that
+          // has the language as official language
+          ///@todo I have turned off icons for the ISO menu as the result was frequently wrong.
+          //if (global_langset.pixmapFile(id).isEmpty())
+          //global_langset.setPixmapFile(pixmap, id);
         }
+        //else
+        //kDebug() << "Couldn't find the language for: " << *it << endl;
+      }
 
-        int id = idx++;
-        countryIdMap.insert(id, Country(name, langs, pixmap, id));
-        regions[submenu].countries.append(countryIdMap[id]);
+      int id = idx++;
+      countryIdMap.insert(id, Country(name, langs, pixmap, id));
+      regions[submenu].countries.append(countryIdMap[id]);
     }
 
     m_kdeLanguagesMenu = new QMenu();
@@ -620,24 +431,24 @@ void LanguageOptions::loadCountryData()
     // To have it sorted by name
     QMap<QString, Region> regmap;
     foreach(Region reg, regions)
-    regmap.insert(reg.region, reg);
+      regmap.insert(reg.region, reg);
 
     QAction *a;
 
     for (QMap<QString, Region>::Iterator it = regmap.begin(); it != regmap.end(); ++it) {
-        QMenu *regpop = m_kdeLanguagesMenu->addMenu(it.key());
-        connect(regpop, SIGNAL(triggered(QAction *)), this, SLOT(slotLangFromGlobalActivated(QAction *)));
-        Region r = it.value();
+      QMenu *regpop = m_kdeLanguagesMenu->addMenu(it.key());
+      connect(regpop, SIGNAL(triggered(QAction *)), this, SLOT(slotLangFromGlobalActivated(QAction *)));
+      Region r = it.value();
 
-        // To have it sorted by name
-        QMap<QString, Country> countrymap;
-        for (QList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it) {
-            countrymap.insert((*it).country, *it);
-        }
-        for (QMap<QString, Country>::Iterator it = countrymap.begin(); it != countrymap.end(); ++it) {
-            a = regpop->addAction(QPixmap(it.value().pixmap), it.key()/*, it.value().id*/);
-            a->setData(it.value().id);
-        }
+      // To have it sorted by name
+      QMap<QString, Country> countrymap;
+      for (QList<Country>::Iterator it = r.countries.begin(); it != r.countries.end(); ++it) {
+        countrymap.insert((*it).country, *it);
+      }
+      for (QMap<QString, Country>::Iterator it = countrymap.begin(); it != countrymap.end(); ++it) {
+          a = regpop->addAction(QPixmap(it.value().pixmap), it.key());
+          a->setData(it.value().id);
+      }
     }
 
     // restore the old global locale
@@ -691,14 +502,6 @@ void LanguageOptions::slotLangFromGlobalActivated(QAction *act)
 }
 
 
-void LanguageOptions::loadISO6391Data()
-{
-    for (unsigned id = 0; id < (int)(sizeof(kv_iso639_1) / sizeof(kv_iso639_1[0])) && kv_iso639_1[id].iso1code != 0; ++id) {
-        QString s = i18n(kv_iso639_1[id].langname);
-        global_langset.addLanguage(kv_iso639_1[id].iso1code, s, QString(), kv_iso639_1[id].iso2code);
-    }
-}
-
 void LanguageOptions::createISO6391Menus()
 {
     // To have it sorted by name
@@ -720,7 +523,6 @@ void LanguageOptions::createISO6391Menus()
 
         lang = it.key();
         QString shortid = global_langset.shortId(it.value());
-        QString short2id = global_langset.shortId2(it.value());
         lang += "\t(" + shortid + ')';
         QString pixmap = global_langset.pixmapFile(it.value());
         if (pixmap.isEmpty()) {

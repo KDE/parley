@@ -63,12 +63,12 @@ public:
         QList<Country> countries;
     };
 
-    
+
     /**
      * Does nothing. Empty.
      */
     void updateWidgets();
-    
+
     /**
      * Status of m_hasChanged variable, reporting if the language list changed.
      * @return m_hasChanged
@@ -79,7 +79,7 @@ public:
      * @return true, always
      */
     bool isDefault();
-    
+
     /**
      * Writes the changes to the prefs.
      */
@@ -94,13 +94,13 @@ protected slots:
     /** A click on the ADD button - add the new entry to the combo box. */
     void slotNewClicked();
     void slotPixmapClicked();
-    
+
     /**
      * The long name (lineEdit) changed. This will set it in m_langSet
      * @param s is the new name for the language
      */
     void slotLangChanged(const QString&);
-    
+
     /**
      * The second (three letter) lineEdit changed. Update m_langSet
      * @param s is the new 3 letter name for the language
@@ -127,6 +127,7 @@ protected slots:
      * @param act
      */
     void slotLangFromISO6391Activated(QAction *);
+
     /** Set the keyboard layout for the currently selected language. */
     void slotKeyboardLayoutChanged(const QString&);
 
@@ -137,18 +138,15 @@ private:
      * @return @c true if successfully changed
      */
     bool setPixmap(QString pm);
+
     /** If a short name is present, enable the other widgets. */
     void enableLangWidgets();
-    
+
     /**
      * Creates the data structure that can be added by the button using KLocale.
      */
     void loadCountryData();
-    /**
-     * Data from kv_iso639_1 (languageoptions.cpp)
-     */
-    void loadISO6391Data();
-    
+
     /**
      * Create the menu for the ISO6391 button.
      */
