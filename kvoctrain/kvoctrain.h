@@ -162,11 +162,12 @@ public slots:
     /** the lessons in query were changed */
     void slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &);
 
-    /** append language to vocabulary */
+    /** append language to vocabulary - creates a new column */
     void slotAppendLanguage(int index);
-    /** assign language to vocabulary column */
+    /** assign language to vocabulary column - changes the column title */
     void slotAssignLanguage(QAction *);
-    /** remove language from vocabulary */
+    /** @todo Frederik - if possible replace slotAssignLanguage with this simpler one */
+    void slotAssignLanguage2(int column, int languageIndex);    /** remove language from vocabulary */
     void slotRemoveLanguage(int index);
     /** exit query mode */
     void slotStopQuery(bool show_view);
@@ -183,6 +184,7 @@ public slots:
     /** set up vocabulary and learning submenus */
     void aboutToShowVocabAppendLanguage();
     void aboutToShowVocabSetLanguage();
+    /** create the remove language menu */
     void aboutToShowVocabRemoveLanguage();
     void aboutToShowLearn();
 

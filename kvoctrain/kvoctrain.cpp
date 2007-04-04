@@ -140,6 +140,8 @@ void KVocTrainApp::readLanguages()
         m_languages.addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(),    languageSettings.keyboardLayout());
     }
 }
+
+
 void KVocTrainApp::saveProperties(KConfigGroup &config)
 {
     saveOptions();
@@ -797,6 +799,17 @@ void KVocTrainApp::slotAssignLanguage(QAction * action)
     m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(index), Qt::EditRole);
 }
 
+
+void KVocTrainApp::slotAssignLanguage2(int column, int languageIndex)
+{
+    column += KV_EXTRA_COLS;
+
+    if (languageIndex >= (int) m_languages.count())
+        return;
+
+    m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages.shortId(languageIndex), Qt::EditRole);
+}
+
 void KVocTrainApp::slotRemoveLanguage(int index)
 {
     int column = index + KV_EXTRA_COLS + 1;
@@ -815,6 +828,9 @@ void KVocTrainApp::slotSearch(const QString& s)
         m_sortFilterModel->setSearchRegExp(QRegExp());
         return;
     }
+    // this can probably be done a little cleaner
+    // now "hello world" becomes "(hello|world)" so it basically works,
+    // but there are bound to be exceptions
     QString searchterm = s.simplified();
     searchterm.replace(QString(" "), QString("|"));
     QRegExp searchRegExp = QRegExp("(" + searchterm + ")");

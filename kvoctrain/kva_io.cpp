@@ -27,6 +27,7 @@
 
 #include <QTimer>
 #include <QFrame>
+#include <QWizard>
 
 #include <kapplication.h>
 #include <kfiledialog.h>
@@ -39,6 +40,8 @@
 #include <kstandarddirs.h>
 #include <kdebug.h>
 #include <knewstuff2/engine.h>
+
+#include "newdocument-wizard/kvtnewdocumentwizardalllanguagespage.h"
 
 #include "kvoctrain.h"
 #include "kvtusage.h"
@@ -123,11 +126,21 @@ void KVocTrainApp::slotFileNew()
 
     slotStatusMsg(IDS_DEFAULT);
 
-    KVTNewDocumentWizard *wizard = new KVTNewDocumentWizard(this);
-    wizard->show();
+    KVTNewDocumentWizard *wizard = new KVTNewDocumentWizard(m_languages, this);
+//    connect(wizard, SIGNAL(setLanguage(int, int)), this, SLOT(slotAssignLanguage2(int, int)));
+    wizard->exec();
+    //wizard->show();
 
-    //KVTNewDocumentWizard wizard;
-    //wizard.show();
+    /// @todo wrong order - need to wizard->getLanguages and saveLanguages first, then set the columns up
+    m_languages = wizard->getLanguages();
+    saveLanguages();
+    slotAssignLanguage2(0, wizard->getFirstLanguageIndex());
+    slotAssignLanguage2(1, wizard->getSecondLanguageIndex());
+    
+    
+//    disconnect(wizard, SIGNAL(setLanguage(int, int)), this, SLOT(slotAssignLanguage2(int, int)));
+    delete wizard;
+
 }
 
 void KVocTrainApp::slotFileOpen()

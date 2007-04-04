@@ -2,11 +2,12 @@
  DO IT:
 -------------------
 
+NEW DOCUMENT:
+When starting KVocTrain for the first time the wizard should come up. This time giving the choice between open and new...
+
 QUERY:
 Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
 Add a "show only" query?
-
-Make lesson column hidden/visible at users whim. -working on it - Frederik
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
 
@@ -16,6 +17,17 @@ Default lesson comes into existence sometimes... why? (When deleting a lesson). 
 
 Statistics:
 Statistics still show <no lesson>. And they are ugly.
+
+GUI:
+Wizard when initializing a new doc.
+Start screen??? open, edit, resume query ???
+Tabs and nice query starter.
+
+LANGUAGES:
+Are they really good in the kvoctrainrc file? Not very portable. But so far, they are pretty much useless anyway. Hmm... Strange... I'll keep that for now. Should be considered when finally redoing kvtml.
+
+NEW DOCUMENT:
+Default lesson is not displayed. Some m_lessonView update needed I guess.
 
 --------------------
  NOT SO FAR FUTURE:
@@ -181,4 +193,7 @@ kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said h
 Multiple choice seems to crash right away. -- DONE - KRandomSequence does not work with a list of 0 entries.
 
 Library: Add functions: addLesson, removeLesson. -- DONE (appendLesson and deleteLesson)
+
+Make lesson column hidden/visible at users whim. -working on it - Frederik -- DONE - right click on header
+
 
