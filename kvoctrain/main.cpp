@@ -57,6 +57,9 @@ int main(int argc, char* argv[])
     aboutData.addAuthor("Peter Hedlund",
                         I18N_NOOP("Current Maintainer"), "peter.hedlund@kdemail.net");
 
+    aboutData.addAuthor("Frederik Gladhorn",
+                        I18N_NOOP("Improvements on the way to KDE4"), "frederik.gladhorn@gmx.de");
+
     aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
 
