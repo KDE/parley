@@ -2,14 +2,33 @@
  DO IT:
 -------------------
 
+Copyright notices are sometimes not ok, it seems.
+
+
 NEW DOCUMENT:
 When starting KVocTrain for the first time the wizard should come up. This time giving the choice between open and new...
+Saving directly after the wizard crashes.
+
+WIZARD:
+Remove allLanugagesPage, instead make a first and second lang page, add an add button to that, to let the user add the needed languages! No need to del at this time.
+
+LangOpts:
+Why do we need two language codes? Maybe only one? That can be 2 or 3 letters...???
+
+Problems for the user when creating a new doc:
+There is new vocab button, nothing in the toolbar. Add it to toolbar and menu! Show it's shortcut in the menu for the advanced. Also new lesson buttons.
+
+Right click menu for big table would be good (new voc, del voc).
+
+Conf->Languages->Picture crashes
 
 QUERY:
 Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
 Add a "show only" query?
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
+
+Open->Discard crashes...?
 
 Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
@@ -23,11 +42,7 @@ Wizard when initializing a new doc.
 Start screen??? open, edit, resume query ???
 Tabs and nice query starter.
 
-LANGUAGES:
-Are they really good in the kvoctrainrc file? Not very portable. But so far, they are pretty much useless anyway. Hmm... Strange... I'll keep that for now. Should be considered when finally redoing kvtml.
-
-NEW DOCUMENT:
-Default lesson is not displayed. Some m_lessonView update needed I guess.
+Restore native order does not reset the sort indicator triangle.
 
 --------------------
  NOT SO FAR FUTURE:
@@ -64,6 +79,9 @@ Unclutter kvoctrain.h - move for example much of the query stuff away from there
 -maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
 <peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
 <Frederik> Yes. Also for the lesson view/model most of the time using the right signals works - like beginInsertRows(...); ...  endInsertRows();.
+
+LANGUAGES:
+Are they really good in the kvoctrainrc file? Not very portable. But so far, they are pretty much useless anyway. Hmm... Strange... I'll keep that for now. Should be considered when finally redoing kvtml.
 
 ------------------
  LONG TERM STUFF:

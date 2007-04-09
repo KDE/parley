@@ -16,7 +16,6 @@
 /**
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.
- * Also includes the right click menu for the lessons.
  * @author Frederik Gladhorn <frederik.gladhorn@gmx.de>
  * @since 4.0
  */
@@ -33,9 +32,9 @@ public:
     void setModel(KVTLessonModel *model);
     /** Select the current lesson from the document.*/
     void initializeSelection();
-    /** Get the QMenu to add it somewhere else.
-     * @returns the right click menu */
-    QMenu *lessonMenu();
+    // /** Append an action to the right click menu.
+    // * @param appendAction */
+    //void appendAction(QAction *appendAction);
 public slots:
     /** The model was reset, we need to update the selection using initializeSelection. */
     void slotModelReset();
@@ -48,9 +47,6 @@ public slots:
     /** Set the selection to a lesson.
      * @param lesson the index of the new selection. */
     void slotSelectLesson(int lesson);
-    /** Display the context menu.
-    * @param ev the event source*/
-    void contextMenuEvent(QContextMenuEvent * ev);
     /**
      * Slot from model/view - a new item has been selected.
      * We only extract the newly selected lesson and call slotSelectLesson.

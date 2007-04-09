@@ -101,6 +101,8 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
 
 void KVocTrainApp::initActions()
 {
+// -- FILE --------------------------------------------------
+
     fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
@@ -154,6 +156,8 @@ void KVocTrainApp::initActions()
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());
 
+// -- EDIT --------------------------------------------------
+
     editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
     editCopy->setWhatsThis(i18n("Copy"));
     editCopy->setToolTip(editCopy->whatsThis());
@@ -176,7 +180,7 @@ void KVocTrainApp::initActions()
 
     editAppend = actionCollection()->addAction("edit_append");
     editAppend->setIcon(KIcon("insert_table_row"));
-    editAppend->setText(i18n("&Append New Entry"));
+    editAppend->setText(i18n("&Add New Entry"));
     connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotAppendRow()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
     editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
@@ -208,6 +212,34 @@ void KVocTrainApp::initActions()
     editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
     editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
+
+// -- LESSON --------------------------------------------------
+
+    QAction *actionNewLesson = actionCollection()->addAction("new_lesson");
+    actionNewLesson->setText(i18n("New lesson"));
+    actionNewLesson->setIcon(KIcon("edit-add"));
+
+    QAction *actionRenameLesson = actionCollection()->addAction("rename_lesson");
+    actionRenameLesson->setText(i18n("Rename lesson"));
+    actionRenameLesson->setIcon(KIcon("edit"));
+
+    QAction *actionDeleteLesson = actionCollection()->addAction("delete_lesson");
+    actionDeleteLesson->setText(i18n("Delete lesson"));
+    actionDeleteLesson->setIcon(KIcon("edit-delete"));
+
+    QAction *actionCheckAllLessons = actionCollection()->addAction("check_all_lessons");
+    actionCheckAllLessons->setText(i18n("Check all lessons"));
+    actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
+
+    QAction *actionCheckNoLessons = actionCollection()->addAction("check_no_lessons");
+    actionCheckNoLessons->setText(i18n("Deselect all lessons"));
+    actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
+
+    QAction *actionSplitLesson = actionCollection()->addAction("split_lesson");
+    actionSplitLesson->setText(i18n("Split lesson into smaller lessons"));
+    actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
+
+// -- VOCABULARY --------------------------------------------------
 
     vocabShowStatistics = actionCollection()->addAction("vocab_show_statistics");
     vocabShowStatistics->setIcon(KIcon("statistics"));
@@ -256,20 +288,20 @@ void KVocTrainApp::initActions()
     vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
     vocabLanguageProperties->setStatusTip(vocabLanguageProperties->whatsThis());
 
-    /*
-      vocabLessons = actionCollection()->addAction("vocab_lessons");
-      vocabLessons->setText(i18n("Lessons"));
-      qobject_cast<KAction*>(vocabLessons)->setDefaultWidget(m_lessonsComboBox);
-      vocabLessons->setWhatsThis(i18n("Choose current lesson"));
-      vocabLessons->setToolTip(vocabLessons->whatsThis());
-      vocabLessons->setStatusTip(vocabLessons->whatsThis());
-    */
-    vocabSearch = actionCollection()->add<KToggleAction>("config_show_search");
-    vocabSearch->setText(i18n("Show Se&arch"));
-    connect(vocabSearch, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
-    vocabSearch->setWhatsThis(i18n("Toggle display of the search bar"));
-    vocabSearch->setToolTip(vocabSearch->whatsThis());
-    vocabSearch->setStatusTip(vocabSearch->whatsThis());
+    vocabShowSearchBar = actionCollection()->add<KToggleAction>("config_show_search");
+    vocabShowSearchBar->setText(i18n("Show Se&arch"));
+    connect(vocabShowSearchBar, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
+    vocabShowSearchBar->setWhatsThis(i18n("Toggle display of the search bar"));
+    vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
+    vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
+
+    QAction *actionShowLessonColumn = actionCollection()->addAction("config_show_lesson_column");
+    actionShowLessonColumn->setText(i18n("Show Lesson Column"));
+    actionShowLessonColumn->setCheckable((true));
+    actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
+
+    
+// -- LEARNING --------------------------------------------------
 
     learningResumeQuery = actionCollection()->addAction("learning_resume");
     learningResumeQuery->setText(i18n("Resume &Query"));
@@ -286,6 +318,8 @@ void KVocTrainApp::initActions()
     learningResumeMultipleChoice->setWhatsThis(i18n("Resumes multiple choice with existing selection"));
     learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
     learningResumeMultipleChoice->setStatusTip(learningResumeMultipleChoice->whatsThis());
+
+// -- SETTINGS --------------------------------------------------
 
     configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
     configApp->setWhatsThis(i18n("Show the configuration dialog"));
@@ -304,6 +338,10 @@ void KVocTrainApp::initActions()
 
     learningMenu = findChild<KMenu *>("learning");
     connect(learningMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
+
+// -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
+    QAction *actionRestoreNativeOrder = actionCollection()->addAction("restore_native_order");
+    actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 }
 
 
@@ -403,6 +441,20 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
 
     m_lessonView->initializeSelection();
+    
+    connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
+    connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
+    connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));
+    connect(actionCollection()->action("check_all_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckAllLessons()));
+    connect(actionCollection()->action("check_no_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckNoLessons()));
+    connect(actionCollection()->action("split_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotSplitLesson()));
+
+    m_lessonView->addAction(actionCollection()->action("new_lesson"));
+    m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
+    /// @todo add a seperator here
+    m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
+    /// @todo add a seperator here
+    m_lessonView->addAction(actionCollection()->action("split_lesson"));
 
     return left;
 }
@@ -449,7 +501,7 @@ void KVocTrainApp::initView()
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
-    vocabSearch->setChecked(Prefs::showSearch());
+    vocabShowSearchBar->setChecked(Prefs::showSearch());
 
     /// Table view
     m_tableView = new KVTTableView(centralWidget());
@@ -483,6 +535,13 @@ void KVocTrainApp::initView()
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
+    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
+    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
+
+    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
+    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
+    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
 
     /** Begin tabs... */
     /*KTabWidget *tabWidget = new KTabWidget(centralWidget());

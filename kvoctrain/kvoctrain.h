@@ -282,7 +282,7 @@ private:
     QAction* vocabDocumentProperties;
     QAction* vocabLanguageProperties;
     QAction* vocabLessons;
-    QAction* vocabSearch;
+    QAction* vocabShowSearchBar;
 
     QAction* learningResumeQuery;
     QAction* learningResumeMultipleChoice;

@@ -36,18 +36,8 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
     m_delegate = new KVTTableDelegate(this);
     setItemDelegate(m_delegate);
 
-    KAction *actionShowLessonColumn = new KAction(i18n("Lesson column"), this);
-    actionShowLessonColumn->setObjectName("show_lesson_column");
-    actionShowLessonColumn->setCheckable((true));
-    actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
-    horizontalHeader()->addAction(actionShowLessonColumn);
-    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), this, SLOT(slotShowLessonColumn(bool)));
-
-
-    KAction *actionRestoreNativeOrder = new KAction(i18n("Restore Native Order"), this);
-    actionRestoreNativeOrder->setObjectName("restore_native_order");
-    horizontalHeader()->addAction(actionRestoreNativeOrder);
-
+    // Enable context menus
+    setContextMenuPolicy(Qt::ActionsContextMenu);
     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
 }
 
@@ -62,9 +52,6 @@ void KVTTableView::setModel(KVTSortFilterModel * model)
     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
     connect(selectionModel(), SIGNAL(currentColumnChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentColumnChanged(const QModelIndex&, const QModelIndex&)));
-
-    KAction *actionRestoreNativeOrder = findChild<KAction *>("restore_native_order");
-    connect(actionRestoreNativeOrder, SIGNAL(triggered()), model, SLOT(restoreNativeOrder()));
 }
 
 void KVTTableView::verticalHeaderResized(int , int , int)

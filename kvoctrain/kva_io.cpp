@@ -120,27 +120,22 @@ void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 void KVocTrainApp::slotFileNew()
 {
     slotStatusMsg(i18n("Creating new file..."));
-
     if (queryExit())
         createNewDocument();
-
     slotStatusMsg(IDS_DEFAULT);
 
     KVTNewDocumentWizard *wizard = new KVTNewDocumentWizard(m_languages, this);
-//    connect(wizard, SIGNAL(setLanguage(int, int)), this, SLOT(slotAssignLanguage2(int, int)));
+    // make it modal
     wizard->exec();
-    //wizard->show();
 
-    /// @todo wrong order - need to wizard->getLanguages and saveLanguages first, then set the columns up
     m_languages = wizard->getLanguages();
     saveLanguages();
     slotAssignLanguage2(0, wizard->getFirstLanguageIndex());
     slotAssignLanguage2(1, wizard->getSecondLanguageIndex());
-    
-    
-//    disconnect(wizard, SIGNAL(setLanguage(int, int)), this, SLOT(slotAssignLanguage2(int, int)));
+
     delete wizard;
 
+    m_lessonView->reset();
 }
 
 void KVocTrainApp::slotFileOpen()

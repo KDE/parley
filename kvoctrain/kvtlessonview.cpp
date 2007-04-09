@@ -36,50 +36,9 @@ KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
     setDropIndicatorShown(true);
     // only allow internal moves - so far no interaction with the outside world.
     setDragDropMode(QAbstractItemView::InternalMove);
-
-    // right click menu
-    m_lessonMenu = new QMenu(this);
-    KAction *actionNewLesson = new KAction(i18n("New lesson"), this);
-    m_lessonMenu->addAction(actionNewLesson);
-    actionNewLesson->setIcon(KIcon("edit-add"));
-    connect(actionNewLesson, SIGNAL(triggered()), this, SLOT(slotCreateNewLesson()));
-
-    KAction *actionRenameLesson = new KAction(i18n("Rename lesson"), this);
-    m_lessonMenu->addAction(actionRenameLesson);
-    actionRenameLesson->setIcon(KIcon("edit"));
-    connect(actionRenameLesson, SIGNAL(triggered()), this, SLOT(slotRenameLesson()));
-
-    KAction *actionDeleteLesson = new KAction(i18n("Delete lesson"), this);
-    m_lessonMenu->addAction(actionDeleteLesson);
-    actionDeleteLesson->setIcon(KIcon("edit-delete"));
-    connect(actionDeleteLesson, SIGNAL(triggered()), this, SLOT(slotDeleteLesson()));
-
-    m_lessonMenu->addSeparator();
-
-    KAction *actionCheckAllLessons = new KAction(i18n("Check all lessons"), this);
-    m_lessonMenu->addAction(actionCheckAllLessons);
-    actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
-    connect(actionCheckAllLessons, SIGNAL(triggered()), this, SLOT(slotCheckAllLessons()));
-
-    KAction *actionCheckNoLessons = new KAction(i18n("Deselect all lessons"), this);
-    m_lessonMenu->addAction(actionCheckNoLessons);
-    actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
-    connect(actionCheckNoLessons, SIGNAL(triggered()), this, SLOT(slotCheckNoLessons()));
-
-    m_lessonMenu->addSeparator();
-
-    KAction *actionSplitLesson = new KAction(i18n("Split lesson into smaller lessons"), this);
-    m_lessonMenu->addAction(actionSplitLesson);
-    actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
-    connect(actionSplitLesson, SIGNAL(triggered()), this, SLOT(slotSplitLesson()));
+    // show the actions added by addAction() as right click menu.
+    setContextMenuPolicy(Qt::ActionsContextMenu);
 }
-
-
-QMenu *KVTLessonView::lessonMenu()
-{
-    return m_lessonMenu;
-}
-
 
 void KVTLessonView::setModel(KVTLessonModel *model)
 {
@@ -109,6 +68,8 @@ void KVTLessonView::slotCheckNoLessons()
 
 void KVTLessonView::slotCreateNewLesson()
 {
+    kDebug() << "Create new lesson!" << endl;
+    
     int newLessonIndex = m_model->addLesson();
     slotSelectLesson(newLessonIndex);
 
@@ -164,13 +125,6 @@ void KVTLessonView::slotSplitLesson()
     Prefs::setEntriesPerLesson(numEntries);
     m_model->splitLesson(indexOfCurrentLesson() +1, numEntries, KVTLessonModel::random);
 }
-
-
-void KVTLessonView::contextMenuEvent(QContextMenuEvent * event)
-{
-    m_lessonMenu->exec(event->globalPos());
-}
-
 
 void KVTLessonView::dropEvent(QDropEvent * event)
 {
