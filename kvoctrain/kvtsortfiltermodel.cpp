@@ -46,7 +46,7 @@ void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
     filterChanged();
 }
 
-/**
+/*
 At the moment I use this to filter the lessons I want:
 m_sortFilterModel->setFilterFixedString( "Lesson name" );      // one lesson
 m_sortFilterModel->setFilterRegExp( "(Lesson 1)|(Lesson 2)" ); // regexp with or
@@ -69,7 +69,7 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
 bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
 {
     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
-    if (sourceModel()->data(lesson, Qt::DisplayRole).toString().contains(m_lessonFilter))
+    if (m_lessonFilter.exactMatch( sourceModel()->data(lesson, Qt::DisplayRole).toString() ) )
         return true;
     return false;
 }
