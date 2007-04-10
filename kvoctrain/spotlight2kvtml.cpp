@@ -78,7 +78,7 @@ void writeSpotty(QTextStream &os, spotty& spot_line, bool first)
 }
 
 
-void readToMem(QTextStream &is, QString month, QString year)
+void readToMem(QTextStream &is, const QString &month, const QString &year)
 {
     QString line;
     bool    lesson_pending = false;
@@ -212,7 +212,7 @@ void readToMem(QTextStream &is, QString month, QString year)
     }
 }
 
-void writeToKvtml(QTextStream &os, QString month, QString year)
+void writeToKvtml(QTextStream &os, const QString &month, const QString &year)
 {
     os <<
     "<?xml version=\"1.0\"?>\n"
