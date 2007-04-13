@@ -612,6 +612,9 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
  */
 bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int current)
 {
+    Q_UNUSED(type);
+    Q_UNUSED(limit);
+    Q_UNUSED(current);
     // maybe a bit minimalistic? but should work... the user has only to set the right checkmarks. that should be ok.
     if (lessonitems.contains(less))
         return true;

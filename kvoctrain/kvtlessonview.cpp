@@ -128,6 +128,7 @@ void KVTLessonView::slotSplitLesson()
 
 void KVTLessonView::dropEvent(QDropEvent * event)
 {
+    Q_UNUSED(event);
     kDebug() << "dropEvent()" << endl;
 }
 

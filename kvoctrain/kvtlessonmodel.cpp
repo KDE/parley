@@ -239,6 +239,7 @@ bool KVTLessonModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeleti
 
 bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
 {
+    Q_UNUSED(parent);
     /// @todo either really use this or remove it
     beginRemoveRows(QModelIndex(), row, row);
     endRemoveRows();
@@ -299,7 +300,8 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
 
 bool KVTLessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent)
 {
-
+    Q_UNUSED(parent);
+    Q_UNUSED(column);
     QByteArray encodedData = data->data("application/vnd.text.list");
     QDataStream stream(&encodedData, QIODevice::ReadOnly);
     QStringList newItems;

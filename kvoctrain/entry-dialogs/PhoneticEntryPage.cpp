@@ -181,7 +181,6 @@ PhoneticEntryPage::PhoneticEntryPage(const QFont &ipafont, QWidget *parent) : KD
     setDefaultButton(Close);
     setCaption(i18n("Select Characters From Phonetic Alphabet"));
     setModal(false);
-    int num = sizeof(kv_unicode_ref) / sizeof(kv_unicode_ref[0]);
     QFrame * dialogFrame = new QFrame(this);
     setMainWidget(dialogFrame);
     QGridLayout *gridLayoutTop = new QGridLayout(dialogFrame);

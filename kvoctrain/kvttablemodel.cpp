@@ -197,7 +197,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 int id = m_languages.indexShortId(m_doc->identifier(section - 2));
 
                 if (id < 0)
-                    int id = m_languages.indexLongId(m_doc->identifier(section - 2));
+                    id = m_languages.indexLongId(m_doc->identifier(section - 2));
 
                 if (id < 0)
                     return m_doc->identifier(section - 2);
