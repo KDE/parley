@@ -144,19 +144,6 @@ target_link_libraries(kvoctrain  ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_L
 install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
 
-########### next target ###############
-
-set(spotlight2kvtml_SRCS spotlight2kvtml.cpp )
-
-kde4_automoc(${spotlight2kvtml_SRCS})
-
-kde4_add_executable(spotlight2kvtml ${spotlight2kvtml_SRCS})
-
-target_link_libraries(spotlight2kvtml  ${KDE4_KDECORE_LIBS} )
-
-install(TARGETS spotlight2kvtml  DESTINATION ${BIN_INSTALL_DIR} )
-
-
 ########### install files ###############
 
 install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_DIR} )
