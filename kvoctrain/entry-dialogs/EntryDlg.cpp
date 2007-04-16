@@ -30,12 +30,12 @@
 #include <QCloseEvent>
 
 #include <klocale.h>
-#include <kmainwindow.h>
+#include <kxmlguiwindow.h>
 #include <kwm.h>
 
 #include "EntryDlg.h"
 
-EntryDlg::EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
+EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
 {
     setButtons(User1|User2|User3|Apply|Close);
     setDefaultButton(Apply);

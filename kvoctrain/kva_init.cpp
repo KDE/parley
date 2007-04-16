@@ -52,7 +52,7 @@
 #include "kvoctrain.h"
 #include "prefs.h"
 
-KVocTrainApp::KVocTrainApp(QWidget *parent) : KMainWindow(parent)
+KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 {
     m_doc = 0;
     m_tableView = 0;

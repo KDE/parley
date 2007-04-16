@@ -40,7 +40,7 @@
 
 class KVTLanguages;
 class QTabWidget;
-class KMainWindow;
+class KXmlGuiWindow;
 class KEduVocDocument;
 
 class EntryDlg : public KPageDialog
@@ -53,7 +53,7 @@ public:
 
     enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
 
-    EntryDlg(KMainWindow *main, KEduVocDocument *doc, KVTQuery &querymanager);
+    EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &querymanager);
 
     ~EntryDlg();
 
@@ -275,7 +275,7 @@ protected:
     int               edit_col;
     //QTabWidget       *tabber;
     QModelIndexList   m_selection;
-    KMainWindow      *mainwin;
+    KXmlGuiWindow      *mainwin;
     QSize             oldMainSize;
     QPoint            oldMainPos;
     bool              docked;

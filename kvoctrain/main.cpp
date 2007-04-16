@@ -100,7 +100,7 @@ int main(int argc, char* argv[])
     KVocTrainApp *kva = 0;
     if (app.isSessionRestored()) {
         int n = 1;
-        while (KMainWindow::canBeRestored(n)) {
+        while (KXmlGuiWindow::canBeRestored(n)) {
             kva = new KVocTrainApp;
             kva->restore(n);
             kva->show();

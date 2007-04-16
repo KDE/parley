@@ -35,7 +35,7 @@
 #include <QPushButton>
 #include <QSignalMapper>
 
-#include <kmainwindow.h>
+#include <kxmlguiwindow.h>
 #include <kaction.h>
 #include <kmenubar.h>
 #include <kmessagebox.h>
@@ -77,7 +77,7 @@ class KVTNewStuff;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class KVocTrainApp : public KMainWindow
+class KVocTrainApp : public KXmlGuiWindow
 {
     Q_OBJECT
 
@@ -116,12 +116,12 @@ public:
 
     /** saves the window properties for each open window during session end to the session config file, including saving the currently
     * opened file by a temporary filename provided by KApplication.
-    * @see KMainWindow#saveProperties
+    * @see KXmlGuiWindow#saveProperties
     */
     virtual void saveProperties(KConfigGroup &);
     /** reads the session config file and restores the application's state including the last opened files and documents by reading the
     * temporary files saved by saveProperties()
-    * @see KMainWindow#readProperties
+    * @see KXmlGuiWindow#readProperties
     */
     virtual void readProperties(const KConfigGroup &);
 
