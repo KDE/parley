@@ -21,10 +21,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kapplication.h>
 #include <kcmdlineargs.h>
 #include <kaboutdata.h>
 #include <klocale.h>
+#include <kapplication.h>
 
 #include "kvoctrain.h"
 #include "version.h"

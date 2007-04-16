@@ -29,7 +29,6 @@
 #include <QFrame>
 #include <QWizard>
 
-#include <kapplication.h>
 #include <kfiledialog.h>
 #include <kcombobox.h>
 #include <qprogressbar.h>
@@ -114,7 +113,7 @@ void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
     Q_UNUSED(curr_doc);
     if (pbar != 0)
         pbar->setValue(percent);
-    kapp->processEvents();
+    qApp->processEvents();
 }
 
 void KVocTrainApp::slotFileNew()

@@ -32,7 +32,6 @@
 #include <QProgressBar>
 #include <QSplitter>
 
-#include <kapplication.h>
 #include <kstatusbar.h>
 #include <klineedit.h>
 #include <kcombobox.h>
@@ -45,6 +44,7 @@
 #include <kprinter.h>
 #include <krecentfilesaction.h>
 #include <kinputdialog.h>
+#include <kapplication.h>
 
 #include <time.h>
 #include <ctype.h>
