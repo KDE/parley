@@ -35,6 +35,7 @@ void KVTLanguageView::currentChanged ( const QModelIndex & current, const QModel
 
 void KVTLanguageView::emitSignalActivated ( const QModelIndex & activatedItem )
 {
+    Q_UNUSED(activatedItem);
     emit signalActivated ();
 }
 
