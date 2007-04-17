@@ -122,19 +122,6 @@ void KVocTrainApp::slotFileNew()
     if (queryExit())
         createNewDocument();
     slotStatusMsg(IDS_DEFAULT);
-
-    KVTNewDocumentWizard *wizard = new KVTNewDocumentWizard(m_languages, this);
-    // make it modal
-    wizard->exec();
-
-    m_languages = wizard->getLanguages();
-    saveLanguages();
-    slotAssignLanguage2(0, wizard->getFirstLanguageIndex());
-    slotAssignLanguage2(1, wizard->getSecondLanguageIndex());
-
-    delete wizard;
-
-    m_lessonView->reset();
 }
 
 void KVocTrainApp::slotFileOpen()
@@ -444,13 +431,29 @@ void KVocTrainApp::removeProgressBar()
 
 void KVocTrainApp::createNewDocument()
 {
+    KVTNewDocumentWizard *wizard;
+
     if (m_doc) {
+        wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::NoFileOpen, this);
         delete m_doc;
         m_doc = 0;
+    } else {
+        wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::ShowFileOpen, this);
     }
+
     m_doc = new KEduVocDocument(this);
-    m_doc->appendIdentifier(i18n("Original"));
-    m_doc->appendIdentifier(i18n("Translation"));
+    wizard->exec();
+    const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
+    foreach(WizardIdentifier ident, newIdentifiers){
+        int index = m_languages.indexShortId( ident.identifierShort() );
+        if ( index == -1 ) {
+            m_languages.addLanguage( ident.identifierShort(), ident.identifier(), QString(), QString());
+            index = m_languages.indexShortId( ident.identifierShort() );
+        }
+        m_doc->appendIdentifier( ident.identifierShort() );
+    }
+    delete wizard;
+
     m_tableModel->setDocument(m_doc);
     m_tableModel->insertRows(0, 20, QModelIndex());
 

@@ -4,23 +4,23 @@
 
 Copyright notices are sometimes not ok, it seems.
 
-
-NEW DOCUMENT:
-When starting KVocTrain for the first time the wizard should come up. This time giving the choice between open and new...
-Saving directly after the wizard crashes.
-
-WIZARD:
-Remove allLanugagesPage, instead make a first and second lang page, add an add button to that, to let the user add the needed languages! No need to del at this time.
-
 LangOpts:
 Why do we need two language codes? Maybe only one? That can be 2 or 3 letters...???
-
-Problems for the user when creating a new doc:
-There is new vocab button, nothing in the toolbar. Add it to toolbar and menu! Show it's shortcut in the menu for the advanced. Also new lesson buttons.
+Peter pointed out, that by not saving the long language name, but only twoLetter code we get localization for free. I would never have thought about that. That really makes saving the lanugages in the doc bad.
+But maybe we don't have to at all...? Could we simply offer a TreeView with all languages to let the user select? (instead of the button).
+If so, maybe we don't need defined languages at all???
+Let's just look the local name up at run time!!!
+Save (like before) 2/3 letter code, use KLocale or whatever to find an apropiate locale... get the icon with that too.
+Problems:
+- Keyboard layout cannot be set like that.
+	For this still the rc file. Need a list to configure this.
+- Impossible to use non language stuff
+	Special field in kvtml. We'll never get l10n for that of course, but that should be no problem. Pics for this? Not too important for now.
+- Impossible to use the same language twice
+	Maybe yes? I'd like to define ids for languages, later. 
+	Also allow a mixture of self defined and pre set langs.
 
 Right click menu for big table would be good (new voc, del voc).
-
-Conf->Languages->Picture crashes
 
 QUERY:
 Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
@@ -153,6 +153,9 @@ get new vocabulary online skripts? for example from leo.org? (I enter abc, a lis
 
 kiten would like to use kvoctrain for it's practice. Kiruwa told me he'd also like a "lookup in kiten" field. Maybe this could be considered in the new kvtml version. Each vocab could have a "link to external application" - easy as optional xml tag and to be displayed for example in a column of its own, next to the vocab. - Frederik
 
+Have a tray icon that pops up with vocab questions from time to time or a calender/planer... dream on. 
+
+
 ------------
  SOLVED:
 ------------
@@ -213,5 +216,15 @@ Multiple choice seems to crash right away. -- DONE - KRandomSequence does not wo
 Library: Add functions: addLesson, removeLesson. -- DONE (appendLesson and deleteLesson)
 
 Make lesson column hidden/visible at users whim. -working on it - Frederik -- DONE - right click on header
+
+
+WIZARD:
+Ok, now it's pretty simple, but we don't want to scare new users off.
+Remove allLanugagesPage, instead make a first and second lang page, add an add button to that, to let the user add the needed languages! No need to del at this time. -- DONE
+
+When starting KVocTrain for the first time the wizard should come up. This time giving the choice between open and new... -- DONE
+
+Problems for the user when creating a new doc:
+There is no new vocab button, nothing in the toolbar. Add it to toolbar and menu! Show it's shortcut in the menu for the advanced. Also new lesson buttons. -- DONE
 
 

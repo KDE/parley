@@ -358,15 +358,20 @@ void LanguageOptions::loadCountryData()
     QStringList codes = locale.allLanguagesTwoAlpha();
     codes.sort();
 
+    // all two letter language codes
     foreach(QString code, codes) {
       QString languageName = locale.twoAlphaToLanguageName(code);
       if (!languageName.isEmpty())
         global_langset.addLanguage(code, languageName, QString(), QString());
     }
 
+    // localized region names are in in kde/share/locale/l10n/*.desktop
+    // eg centraleurope.desktop or southasia.desktop
     QString sub = QString::fromLatin1("l10n/");
-    QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop"));
+    QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop")); // why use fromLatin1 ?
     regionlist.sort();
+
+//kDebug() << regionlist << endl;
 
     QMap<QString, Region> regions;
 

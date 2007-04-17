@@ -14,25 +14,38 @@
 #include <QLabel>
 #include <QLineEdit>
 #include <QVBoxLayout>
+
 #include <KLocale>
 #include <KComboBox>
 #include <kvtlanguages.h>
 
-
-
 #include "kvtnewdocumentwizard.h"
 
-KVTNewDocumentWizard::KVTNewDocumentWizard(const KVTLanguages &languages, QWidget *parent)
+KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
  : QWizard(parent)
 {
-    m_languages=languages;
-    m_allLanguagesPage = new KVTNewDocumentWizardAllLanguagesPage(m_languages);
-    m_languagePage = new KVTNewDocumentWizardLanguagePage();
-    
+    setOption(QWizard::NoCancelButton);
+
+    if ( options == ShowFileOpen ) {
+        m_showFileOpen = true;
+    } else {
+        m_showFileOpen = false;
+    }
+
+    resize(600,600);
+    m_firstLanguagePage = new KVTNewDocumentWizardLanguagePage(true, this);
+    m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
+
     setPage(WizardIntroPage, new KVTNewDocumentWizardIntroPage);
-    setPage(WizardLanguagesPage, m_allLanguagesPage);
-    setPage(WizardLanguagePage, m_languagePage);
+    setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen ) );
+
+    setPage(WizardFirstLanguagePage, m_firstLanguagePage);
+    setPage(WizardSecondLanguagePage, m_secondLanguagePage);
+
+    setPage(WizardOtherPage, new KVTNewDocumentWizardOtherPage);
     setPage(WizardFinalPage, new KVTNewDocumentWizardFinalPage);
+
+    setStartId(WizardIntroPage);
 
     //setPixmap(QWizard::BannerPixmap, QPixmap(":/images/banner.png"));
     //setPixmap(QWizard::BackgroundPixmap, QPixmap(":/images/background.png"));
@@ -43,56 +56,60 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(const KVTLanguages &languages, QWidge
 
 void KVTNewDocumentWizard::initializePage(int id)
 {
-    if (id == WizardLanguagePage){
-        m_languages = m_allLanguagesPage->getLanguages();
-        kDebug() << "About to initialize LanguagePage!" << endl;
-
-
-        QStringList languages;
-        for (int i = 0; i < m_languages.count(); i++){
-            if(!m_languages.longId(i).isEmpty()){
-                languages.append(m_languages.longId(i));
-            }
-            else {
-                languages.append(m_languages.shortId(i));
-            }
-        }
-        m_languagePage->setLanguages(languages);
-    }
     QWizard::initializePage(id);
-
 }
 
 
-void KVTNewDocumentWizard::accept()
+int KVTNewDocumentWizard::nextId() const
 {
-    //m_languages = m_allLanguagesPage->getLanguages();
-    /*
-    int originalLanguageIndex = m_languagePage->firstLanguageIndex();
-    int translationLanguageIndex = m_languagePage->secondLanguageIndex();
-    
-    kDebug() << "Setting languages to: o: " << originalLanguageIndex << " t: " << translationLanguageIndex << endl;*/
-    QDialog::accept();
-    /*
-    emit setLanguage(0, originalLanguageIndex);
-    emit setLanguage(1 , translationLanguageIndex);
-    */
+    switch (currentId()) {
+    case WizardIntroPage:
+        return WizardChoiceLanguageOtherPage;
+    case WizardChoiceLanguageOtherPage:
+        if (field("choiceLanguageOther.language").toBool()) {
+            return WizardFirstLanguagePage;
+        } else if (field("choiceLanguageOther.other").toBool()) {
+            return WizardOtherPage;
+        } else {
+            return WizardFileOpenPage;
+        }
+    case WizardFirstLanguagePage:
+        return WizardSecondLanguagePage;
+    case WizardSecondLanguagePage:
+        return WizardFinalPage;
+    case WizardOtherPage:
+        return WizardFinalPage;
+    case WizardFinalPage:
+    default:
+        return -1;
+    }
 }
 
-
-int KVTNewDocumentWizard::getFirstLanguageIndex()
+QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
 {
-    return m_languagePage->firstLanguageIndex();
+    QList<WizardIdentifier> ident;
+    if ( hasVisitedPage(WizardFirstLanguagePage) ) {
+        kDebug() << "adding first page" << endl;
+        ident.append(WizardIdentifier(true,
+            field("firstLanguagePage.language").toString(),
+            field("firstLanguagePage.languageShort").toString() ));
+    }
+    if ( hasVisitedPage(WizardSecondLanguagePage) ) {
+        kDebug() << "adding second page" << endl;
+        ident.append(WizardIdentifier(true,
+            field("secondLanguagePage.language").toString(),
+            field("secondLanguagePage.languageShort").toString() ));
+    }
+    if ( hasVisitedPage(WizardOtherPage) ) {
+        ident.append(WizardIdentifier(false,
+            field("otherPage.firstIdentifier").toString(),
+            field("otherPage.firstIdentifier").toString() ));
+        ident.append(WizardIdentifier(false,
+            field("otherPage.secondIdentifier").toString(),
+            field("otherPage.secondIdentifier").toString() ));
+    }
+    return ident;
 }
 
-int KVTNewDocumentWizard::getSecondLanguageIndex()
-{
-    return m_languagePage->secondLanguageIndex();
-}
-
-KVTLanguages KVTNewDocumentWizard::getLanguages()
-{
-    return m_languages;
-}
 
 #include "kvtnewdocumentwizard.moc"

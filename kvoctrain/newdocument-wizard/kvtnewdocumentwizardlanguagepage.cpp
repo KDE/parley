@@ -14,88 +14,93 @@
 #include <QWizardPage>
 #include <QLabel>
 #include <QLineEdit>
+#include <QTreeView>
+#include <QCheckBox>
+#include <QVBoxLayout>
+
 
 #include <KComboBox>
+#include <KLocale>
 
-#include <kvtlanguages.h>
-#include "../common-dialogs/languageoptions.h"
+//#include <kvtlanguages.h>
+//#include "../common-dialogs/languageoptions.h"
+#include "../common-dialogs/kvtlanguageview.h"
+#include "kvtnewdocumentwizard.h"
 
 #include "kvtnewdocumentwizardlanguagepage.h"
 
-KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(QWidget *parent)
+KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstLanguagePage, QWizard *parent)
  : QWizardPage(parent)
 {
-    setTitle(i18n("Your language"));
-    setSubTitle(i18n("Now select the languages that will be used."));
-    
-    labelFirst = new QLabel(i18n("First language: "));
-    labelFirst->setWordWrap(true);
-    labelFirst->setBuddy(m_firstLanguageCombo);
-    m_firstLanguageCombo = new KComboBox();
+    m_languageLabel = new QLineEdit;
+    m_languageShortLabel = new QLineEdit;
 
-    labelSecond = new QLabel(i18n("Second language: "));
-    labelSecond->setWordWrap(true);
-    labelSecond->setBuddy(m_secondLanguageCombo);
-    m_secondLanguageCombo = new KComboBox();
+    m_isFirstLanguagePage = isFirstLanguagePage;
 
-    QLabel *labelHint = new QLabel(i18n("Please note that you can add more languages later. Use Vocabulary->AppendLanguage to do that."));
-    labelHint->setWordWrap(true);
-    
     QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(labelFirst);
-    layout->addWidget(m_firstLanguageCombo);
-    layout->addWidget(labelSecond);
-    layout->addWidget(m_secondLanguageCombo);
-    layout->addWidget(labelHint);
+    if ( isFirstLanguagePage ) {
+        setTitle(i18n("First Language"));
+        //setSubTitle(i18n("Now select the first language (e.g. the one you know already)."));
+        
+        registerField("firstLanguagePage.language", m_languageLabel);
+        registerField("firstLanguagePage.languageShort", m_languageShortLabel);
+    } else {
+        setTitle(i18n("Second Language"));
+        //setSubTitle(i18n("Now select the language that you want to learn."));
+        registerField("secondLanguagePage.language", m_languageLabel);
+        registerField("secondLanguagePage.languageShort", m_languageShortLabel);
+        m_beforeSelectionLabel = new QLabel;
+        layout->addWidget(m_beforeSelectionLabel);
+    }
+
+    KVTLanguageView *languageView = new KVTLanguageView(this);
+    connect(languageView, SIGNAL(signalLanguageChanged(const QString&, const QString&)), this, SLOT(slotLanguageChanged(const QString&, const QString&)));
+    connect(languageView, SIGNAL(signalActivated()), parent, SLOT(next()));
+    layout->addWidget(languageView);
+
+    m_currentLabel = new QLabel(i18n("Your selection:"));
+    layout->addWidget(m_currentLabel);
     
+    /*
+    if ( !isFirstLanguagePage ) {*/
+        /* //More confusing than helping:
+        QLabel *labelHint = new QLabel(i18n("Please note that you can "
+            "add more languages later.\n"
+            "Use Vocabulary->AppendLanguage to do that."));
+        labelHint->setWordWrap(true);
+        layout->addWidget(labelHint);*/
+        /*
+        m_moreLanguagesCheckbox=new QCheckBox(i18n("I want to add yet another language"));
+        layout->addWidget(m_moreLanguagesCheckbox);
+        
+    }*/
+    
+    //layout->addWidget(m_languageLabel);
+    //layout->addWidget(m_languageShortLabel);
     setLayout(layout);
-
-    connect(m_firstLanguageCombo, SIGNAL(activated(int)), this, SLOT(slotFirstLanguageComboChanged(int)));
 }
 
-
-void KVTNewDocumentWizardLanguagePage::setLanguages(const QStringList &languageStrings)
-{
-    m_languageStrings = languageStrings;
-}
 
 void KVTNewDocumentWizardLanguagePage::initializePage()
 {
-    // initialize the ComboBoxes
-    m_firstLanguageCombo->clear();
-    m_firstLanguageCombo->addItems(m_languageStrings);
-    //m_firstLanguageCombo->select(0);
-    slotFirstLanguageComboChanged(0);
-
-}
-
-
-void KVTNewDocumentWizardLanguagePage::slotFirstLanguageComboChanged(int newSelection)
-{
-    kDebug() << "slotFirstLanguageComboChanged" << endl;
-    // update the second ComboBox removing the selection from the first
-    m_secondLanguageCombo->clear();
-    for (int i = 0; i<m_firstLanguageCombo->count(); i++){
-        if (i != newSelection){
-            /// @todo change this to the not deprecated functions
-            m_secondLanguageCombo->addItem(m_languageStrings[i]);
-        }
+kDebug() << "initializePage" << field("firstLanguagePage.language").toString() << endl;
+    if (!m_isFirstLanguagePage) {
+        m_beforeSelectionLabel->setText(
+            i18n("So far you have chosen ") +
+            field("firstLanguagePage.language").toString() +
+            i18n("\nPlease add a second language:")
+            );
     }
 }
 
-int KVTNewDocumentWizardLanguagePage::firstLanguageIndex()
+
+void KVTNewDocumentWizardLanguagePage::slotLanguageChanged(const QString &language, const QString &languageShort)
 {
-    return m_firstLanguageCombo->currentIndex();
+    m_languageLabel->setText(language);
+    m_languageShortLabel->setText(languageShort);
+    m_currentLabel->setText(i18n("Your selection: ") + language);
+    kDebug() << "slotLanguageChanged: " << language << " = " << languageShort << endl;
 }
 
-
-int KVTNewDocumentWizardLanguagePage::secondLanguageIndex()
-{
-    int index = m_secondLanguageCombo->currentIndex();
-    if ( index >= firstLanguageIndex() ){
-        index++; // before the original was removed from the list.
-    }
-    return index;
-}
 
 #include "kvtnewdocumentwizardlanguagepage.moc"

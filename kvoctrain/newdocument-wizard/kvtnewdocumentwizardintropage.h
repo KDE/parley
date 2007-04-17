@@ -9,8 +9,12 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
 #ifndef KVTNEWDOCUMENTWIZARDINTROPAGE_H
 #define KVTNEWDOCUMENTWIZARDINTROPAGE_H
+
+#include <QWizardPage>
+#include <QLabel>
 
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>

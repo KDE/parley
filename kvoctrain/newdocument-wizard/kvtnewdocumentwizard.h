@@ -14,9 +14,29 @@
 
 
 #include "kvtnewdocumentwizardintropage.h"
+#include "kvtnewdocumentwizardchoicelanguageother.h"
 #include "kvtnewdocumentwizardlanguagepage.h"
-#include "kvtnewdocumentwizardalllanguagespage.h"
+#include "kvtnewdocumentwizardotherpage.h"
 #include "kvtnewdocumentwizardfinalpage.h"
+
+class WizardIdentifier
+{
+public:
+    WizardIdentifier( bool isLanguage, QString identifier, QString identifierShort)
+    {
+        m_isLanguage = isLanguage;
+        m_identifierShort = identifierShort;
+        m_identifier = identifier;
+    }
+    
+    const bool isLanguage() {return m_isLanguage; }
+    const QString identifier() {return m_identifier; }
+    const QString identifierShort() {return m_identifierShort; }
+private:
+    bool m_isLanguage;
+    QString m_identifierShort;
+    QString m_identifier;
+};
 
 /**
 A wizard to assist in the creation of kvtml documents with KVocTrain. Helps to set up the languages of the document.
@@ -25,37 +45,34 @@ A wizard to assist in the creation of kvtml documents with KVocTrain. Helps to s
 */
 class KVTNewDocumentWizard : public QWizard
 {
+Q_OBJECT
+public:
     /// The pages of this wizard
     enum NewDocumentWizardPages{
         WizardIntroPage,
-        WizardLanguagesPage,
-        WizardLanguagePage,
+        WizardChoiceLanguageOtherPage,
+        WizardFirstLanguagePage,
+        WizardSecondLanguagePage,
+        WizardOtherPage,
+        WizardFileOpenPage,
         WizardFinalPage
     };
-    Q_OBJECT
 
-public:
-    KVTNewDocumentWizard(const KVTLanguages &languages, QWidget *parent = 0);
+    enum Options{
+        NoFileOpen,
+        ShowFileOpen
+    };
+
+    KVTNewDocumentWizard(Options options, QWidget *parent = 0);
 
     void initializePage(int id);
-    void accept();
-    /**
-     * When the wizard is finished, get the new languages
-     * @return the chosen KVTLanguages languages */
-    KVTLanguages getLanguages();
-    /** get users choice for the first language
-     * @return index
-     */
-    int getFirstLanguageIndex();
-    /** get users choice for the second language
-     * @return index
-     */
-    int getSecondLanguageIndex();
+    int nextId() const;
+    
+    QList<WizardIdentifier>  identifiers();
 private:
-    KVTLanguages m_languages;
-    /// @todo rename allLanguages and language to something more distinct
-    KVTNewDocumentWizardAllLanguagesPage *m_allLanguagesPage;
-    KVTNewDocumentWizardLanguagePage *m_languagePage;
+    KVTNewDocumentWizardLanguagePage *m_firstLanguagePage;
+    KVTNewDocumentWizardLanguagePage *m_secondLanguagePage;
+    bool m_showFileOpen;
 signals:
     void setLanguage(int column, int languageIndex);
 };

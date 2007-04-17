@@ -26,6 +26,8 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     common-dialogs/queryoptions.cpp
     common-dialogs/thresholdoptions.cpp
     common-dialogs/profilesdialog.cpp
+    common-dialogs/kvtlanguagemodel.cpp
+    common-dialogs/kvtlanguageview.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
@@ -110,8 +112,9 @@ kde4_add_ui_files(statisticsdialogs_SRCS
 set(newdocument-wizard_SRCS
     newdocument-wizard/kvtnewdocumentwizard.cpp
     newdocument-wizard/kvtnewdocumentwizardintropage.cpp
-    newdocument-wizard/kvtnewdocumentwizardalllanguagespage.cpp
     newdocument-wizard/kvtnewdocumentwizardlanguagepage.cpp
+    newdocument-wizard/kvtnewdocumentwizardchoicelanguageother.cpp
+    newdocument-wizard/kvtnewdocumentwizardotherpage.cpp
     newdocument-wizard/kvtnewdocumentwizardfinalpage.cpp
 )
 
