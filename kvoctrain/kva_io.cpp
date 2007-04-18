@@ -139,11 +139,9 @@ void KVocTrainApp::slotFileOpen()
 void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
 {
     slotStatusMsg(i18n("Opening file..."));
-    if (queryExit() && fileOpenRecent->items().count() > 0) {
-        fileOpenRecent->setCurrentItem(-1);
+    if (queryExit()) {
         loadFileFromPath(url);
     }
-
     slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -166,6 +164,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
         removeProgressBar();
         loadDocProps();
         if (addRecent)
+kDebug() << "addRecent: " << url.path() << endl;
             fileOpenRecent->addUrl(url);
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
         m_doc->setModified(false);
@@ -432,17 +431,24 @@ void KVocTrainApp::removeProgressBar()
 void KVocTrainApp::createNewDocument()
 {
     KVTNewDocumentWizard *wizard;
-
     if (m_doc) {
         wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::NoFileOpen, this);
-        delete m_doc;
-        m_doc = 0;
     } else {
         wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::ShowFileOpen, this);
     }
 
+    if( !wizard->exec() == QDialog::Accepted ){
+        kDebug() << "Wizard - Cancel" << endl;
+        return;
+    }
+
+    if (m_doc) {
+        delete m_doc;
+        m_doc = 0;
+    }
+
     m_doc = new KEduVocDocument(this);
-    wizard->exec();
+    
     const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
     foreach(WizardIdentifier ident, newIdentifiers){
         int index = m_languages.indexShortId( ident.identifierShort() );

@@ -24,8 +24,6 @@
 KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
  : QWizard(parent)
 {
-    setOption(QWizard::NoCancelButton);
-
     if ( options == ShowFileOpen ) {
         m_showFileOpen = true;
     } else {
