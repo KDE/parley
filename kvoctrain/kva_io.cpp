@@ -163,8 +163,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
         removeProgressBar();
         loadDocProps();
-        if (addRecent)
-kDebug() << "addRecent: " << url.path() << endl;
+        if (addRecent) // open sample does not go into recent
             fileOpenRecent->addUrl(url);
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
         m_doc->setModified(false);
@@ -448,7 +447,7 @@ void KVocTrainApp::createNewDocument()
     }
 
     m_doc = new KEduVocDocument(this);
-    
+
     const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
     foreach(WizardIdentifier ident, newIdentifiers){
         int index = m_languages.indexShortId( ident.identifierShort() );
@@ -457,6 +456,7 @@ void KVocTrainApp::createNewDocument()
             index = m_languages.indexShortId( ident.identifierShort() );
         }
         m_doc->appendIdentifier( ident.identifierShort() );
+        m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, ident.identifier(), Qt::EditRole);
     }
     delete wizard;
 
