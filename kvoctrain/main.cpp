@@ -108,11 +108,10 @@ int main(int argc, char* argv[])
         }
     } else {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
-        kva = new KVocTrainApp;
 
+        kva = new KVocTrainApp;
         if (args && args->count() == 1) {
-            KUrl url = KUrl::fromPath(args->arg(0));
-            kva->loadFileFromPath(url, true);
+            kva->loadFileFromPath(args->url(0), true);
         }
         kva->show();
     }

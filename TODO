@@ -4,6 +4,8 @@
 
 Copyright notices are sometimes not ok, it seems.
 
+Deleting a lesson: The main table is not updated when the lesson above is selected automatically.
+
 LangOpts:
 Why do we need two language codes? Maybe only one? That can be 2 or 3 letters...???
 Peter pointed out, that by not saving the long language name, but only twoLetter code we get localization for free. I would never have thought about that. That really makes saving the lanugages in the doc bad.
@@ -27,8 +29,6 @@ Check all query dialogs so that they work properly. Edit expression and Stop que
 Add a "show only" query?
 
 When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
-
-Open->Discard crashes...?
 
 Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
 
@@ -227,4 +227,4 @@ When starting KVocTrain for the first time the wizard should come up. This time 
 Problems for the user when creating a new doc:
 There is no new vocab button, nothing in the toolbar. Add it to toolbar and menu! Show it's shortcut in the menu for the advanced. Also new lesson buttons. -- DONE
 
-
+Clean up recent files menu, it used to change the order at random. Open the right file upon start. make relative paths as command line arguments work. -- DONE

@@ -364,10 +364,14 @@ void KVocTrainApp::initStatusBar()
 
 void KVocTrainApp::initDoc()
 {
-    if (fileOpenRecent->actions().count() > 0  && fileOpenRecent->action(0)->isEnabled()) {
-        fileOpenRecent->action(0)->trigger();
-    } else
+    if (fileOpenRecent->actions().count() > 0  
+        && fileOpenRecent->action(
+            fileOpenRecent->actions().count()-1)->isEnabled() )
+    {
+        fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
+    } else {
         createNewDocument();
+    }
 }
 
 void KVocTrainApp::initModel()
