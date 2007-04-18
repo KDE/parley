@@ -468,8 +468,10 @@ void KVocTrainApp::createNewDocument()
     loadDocProps();
     m_tableModel->reset();
 
-    if (m_tableView)
+    if (m_tableView) {
         m_tableView->adjustContent();
+        m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+    }
 
     m_lessonModel->setDocument(m_doc);
 
