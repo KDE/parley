@@ -40,8 +40,6 @@
 #include <kdebug.h>
 #include <knewstuff2/engine.h>
 
-#include "newdocument-wizard/kvtnewdocumentwizardalllanguagespage.h"
-
 #include "kvoctrain.h"
 #include "kvtusage.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"

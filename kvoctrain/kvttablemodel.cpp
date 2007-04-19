@@ -179,29 +179,32 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
 {
     if (orientation == Qt::Horizontal) {
         if (role == Qt::DisplayRole) {
-            if (section == 0)
+            if (section == 0) // lesson
                 return i18n("Lesson");
             else if (section == 1)
                 return "";
-            else if (section == 2) {
+            else if (section == 2) { // original
+                // try for known two letter code
                 int id = m_languages.indexShortId(m_doc->originalIdentifier());
 
-                if (id < 0)
+                if (id < 0) // otherwise for known longId
                     id = m_languages.indexLongId(m_doc->originalIdentifier());
 
-                if (id < 0)
+                if (id < 0) // if still unknown take what's there
                     return m_doc->originalIdentifier();
-                else
+                else // return the nice long language name
                     return m_languages.longId(id);
-            } else {
+
+            } else { // translations
+                // two letter?
                 int id = m_languages.indexShortId(m_doc->identifier(section - 2));
 
-                if (id < 0)
+                if (id < 0) // longId?
                     id = m_languages.indexLongId(m_doc->identifier(section - 2));
 
-                if (id < 0)
+                if (id < 0) // nothing found
                     return m_doc->identifier(section - 2);
-                else
+                else // long name
                     return m_languages.longId(id);
             }
         }
