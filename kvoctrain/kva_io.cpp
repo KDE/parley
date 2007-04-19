@@ -28,6 +28,7 @@
 #include <QTimer>
 #include <QFrame>
 #include <QWizard>
+#include <QApplication>
 
 #include <kfiledialog.h>
 #include <kcombobox.h>
