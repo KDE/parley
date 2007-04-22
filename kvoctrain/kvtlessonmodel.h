@@ -15,7 +15,7 @@
 
 #include <QAbstractListModel>
 #include <QModelIndex>
-#include <QString>
+
 #include <QObject>
 #include <QStringList>
 
