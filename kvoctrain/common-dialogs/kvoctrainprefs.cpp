@@ -53,8 +53,13 @@ static const char unapplied[] = I18N_NOOP(
 
 KVocTrainPrefs::KVocTrainPrefs(KVTLanguages & ls, KVTQuery * m, QWidget *parent, const char *name, KConfigSkeleton *config, FaceType dialogType,
                                int /*dialogButtons*/, ButtonCode /*defaultButton*/, bool /*modal*/)
-        : KConfigDialog(parent, name, config, dialogType, Default|Ok|Apply|Cancel|Help|User1, Ok, true), m_langSet(ls)
+        : KConfigDialog(parent, name, config),
+        m_langSet(ls)
 {
+    setButtons(Default|Ok|Apply|Cancel|Help|User1);
+    setDefaultButton(Ok);
+    setModal(true);
+    setFaceType(dialogType);
     m_languagePage = 0;
     m_config = config;
     m_queryManager = m;
