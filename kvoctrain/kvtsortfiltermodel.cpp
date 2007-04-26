@@ -37,13 +37,13 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
 void KVTSortFilterModel::setLessonRegExp(const QRegExp& filter)
 {
     m_lessonFilter = filter;
-    filterChanged();
+    invalidateFilter();
 }
 
 void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
 {
     m_searchFilter = filter;
-    filterChanged();
+    invalidateFilter();
 }
 
 /*
@@ -125,7 +125,7 @@ void KVTSortFilterModel::restoreNativeOrder()
     kDebug() << "Restoring native order" << endl;
     m_restoreNativeOrder = true;
     sort(-1, Qt::AscendingOrder);
-    clear();
+    invalidate();
     m_restoreNativeOrder = false;
 }
 
