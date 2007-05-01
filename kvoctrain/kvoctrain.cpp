@@ -833,8 +833,7 @@ void KVocTrainApp::slotSearch(const QString& s)
     // but there are bound to be exceptions
     QString searchterm = s.simplified();
     searchterm.replace(QString(" "), QString("|"));
-    QRegExp searchRegExp = QRegExp("(" + searchterm + ")");
-    searchRegExp.setCaseSensitivity(Qt::CaseInsensitive);
+    QRegExp searchRegExp = QRegExp('(' + searchterm + ')', Qt::CaseInsensitive);
     m_sortFilterModel->setSearchRegExp(searchRegExp);
 }
 

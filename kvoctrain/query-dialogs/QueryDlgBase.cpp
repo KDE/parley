@@ -23,14 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "QueryDlgBase.h"
+
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCloseEvent>
 
 #include <klocale.h>
-
-#include "QueryDlgBase.h"
 
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
         : KDialog(parent)

@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "PhoneticEntryPage.h"
+
 #include <QLayout>
 #include <QFrame>
 #include <QGridLayout>
@@ -30,8 +32,6 @@
 
 #include <kdebug.h>
 #include <klocale.h>
-
-#include "PhoneticEntryPage.h"
 
 #define KV_MAX_HORIZ  20
 #define KV_FONTSIZE   14

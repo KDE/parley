@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "EntryDlg.h"
+
 #include <QLayout>
 #include <QLineEdit>
 #include <QVBoxLayout>
@@ -32,8 +34,6 @@
 #include <klocale.h>
 #include <kxmlguiwindow.h>
 #include <kwindowsystem.h>
-
-#include "EntryDlg.h"
 
 EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
 {

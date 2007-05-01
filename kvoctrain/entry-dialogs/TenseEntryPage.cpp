@@ -23,13 +23,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "TenseEntryPage.h"
+
 #include <QComboBox>
 #include <QCheckBox>
 #include <QPushButton>
 #include <QLineEdit>
 
 #include <kvtlanguages.h>
-#include "TenseEntryPage.h"
 #include "EntryDlg.h"
 
 TenseEntryPage::TenseEntryPage(QWidget *parent) : QWidget(parent)

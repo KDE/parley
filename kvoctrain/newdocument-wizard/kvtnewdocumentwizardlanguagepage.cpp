@@ -10,6 +10,7 @@
 //
 //
 
+#include "kvtnewdocumentwizardlanguagepage.h"
 
 #include <QWizardPage>
 #include <QLabel>
@@ -18,7 +19,6 @@
 #include <QCheckBox>
 #include <QVBoxLayout>
 
-
 #include <KComboBox>
 #include <KLocale>
 
@@ -26,8 +26,6 @@
 //#include "../common-dialogs/languageoptions.h"
 #include "../common-dialogs/kvtlanguageview.h"
 #include "kvtnewdocumentwizard.h"
-
-#include "kvtnewdocumentwizardlanguagepage.h"
 
 KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstLanguagePage, QWizard *parent)
  : QWizardPage(parent)
@@ -101,6 +99,5 @@ void KVTNewDocumentWizardLanguagePage::slotLanguageChanged(const QString &langua
     m_currentLabel->setText(i18n("Your selection: ") + language);
     kDebug() << "slotLanguageChanged: " << language << " = " << languageShort << endl;
 }
-
 
 #include "kvtnewdocumentwizardlanguagepage.moc"

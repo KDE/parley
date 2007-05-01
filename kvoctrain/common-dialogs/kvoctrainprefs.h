@@ -95,7 +95,7 @@ private:
     KConfigSkeleton * m_config;
     KVTLanguages & m_langSet;
     KEduVocDocument * m_doc;
-    KComboBox m_lessons;
+    KComboBox *m_lessons;
     KVTQuery * m_queryManager;
     KPageWidgetItem *m_languagePage;
 };

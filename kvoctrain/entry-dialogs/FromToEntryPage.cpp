@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "FromToEntryPage.h"
+
 #include <QLineEdit>
 #include <QComboBox>
 #include <QPushButton>
@@ -32,7 +34,6 @@
 
 #include <kvtquery.h>
 #include <kvtlanguages.h>
-#include "FromToEntryPage.h"
 #include "EntryDlg.h"
 
 FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)

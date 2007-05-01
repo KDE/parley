@@ -16,14 +16,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "profilesdialog.h"
+
 #include <QComboBox>
 #include <QPushButton>
 
 #include <klocale.h>
 #include <kinputdialog.h>
-#include <klocale.h>
 
-#include "profilesdialog.h"
 #include "groupoptions.h"
 #include "presettings.h"
 #include "prefs.h"

@@ -12,6 +12,9 @@
 #ifndef KVTNEWDOCUMENTWIZARDFINALPAGE_H
 #define KVTNEWDOCUMENTWIZARDFINALPAGE_H
 
+#include <QWizardPage>
+#include <QLabel>
+
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>
 */

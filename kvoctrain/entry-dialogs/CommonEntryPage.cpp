@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "CommonEntryPage.h"
+
 #include <QLineEdit>
 #include <QLabel>
 #include <QComboBox>
@@ -39,7 +41,6 @@
 #include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "PhoneticEntryPage.h"
-#include "CommonEntryPage.h"
 #include "EntryDlg.h"
 
 CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager, QWidget *parent) : QWidget(parent), doc(_doc), querymanager(_querymanager)

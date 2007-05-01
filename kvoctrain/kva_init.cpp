@@ -455,9 +455,9 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 
     m_lessonView->addAction(actionCollection()->action("new_lesson"));
     m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
-    /// @todo add a seperator here
+    /// @todo add a separator here
     m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
-    /// @todo add a seperator here
+    /// @todo add a separator here
     m_lessonView->addAction(actionCollection()->action("split_lesson"));
 
     return left;

@@ -17,7 +17,6 @@
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.
  * @author Frederik Gladhorn <frederik.gladhorn@gmx.de>
- * @since 4.0
  */
 class KVTLessonView : public QTreeView
 {

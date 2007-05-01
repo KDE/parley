@@ -16,6 +16,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kvoctrainprefs.h"
+
 #include <QLayout>
 #include <QRadioButton>
 #include <QCheckBox>
@@ -33,7 +35,6 @@
 #include <kfontrequester.h>
 #include <kcombobox.h>
 
-#include "kvoctrainprefs.h"
 #include <keduvocdocument.h>
 #include "generaloptions.h"
 #include "languageoptions.h"

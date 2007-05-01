@@ -23,10 +23,11 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "AdjEntryPage.h"
+
 #include <QLineEdit>
 
 #include <kvtlanguages.h>
-#include "AdjEntryPage.h"
 #include "EntryDlg.h"
 
 AdjEntryPage::AdjEntryPage(QWidget *parent) : QWidget(parent)

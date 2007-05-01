@@ -21,9 +21,9 @@
  * *
  ***************************************************************************/
 
-#include <QCheckBox>
-
 #include "viewoptions.h"
+
+#include <QCheckBox>
 
 ViewOptions::ViewOptions(QWidget* parent) : QWidget(parent)
 {

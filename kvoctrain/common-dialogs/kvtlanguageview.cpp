@@ -10,9 +10,9 @@
 //
 //
 
-#include <KDebug>
-
 #include "kvtlanguageview.h"
+
+#include <KDebug>
 
 KVTLanguageView::KVTLanguageView(QWidget *parent)
  : QTreeView(parent)

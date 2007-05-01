@@ -10,13 +10,13 @@
 //
 //
 
+#include "kvtnewdocumentwizardfinalpage.h"
 
 #include <QWizardPage>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <KLocale>
 
-#include "kvtnewdocumentwizardfinalpage.h"
+#include <KLocale>
 
 KVTNewDocumentWizardFinalPage::KVTNewDocumentWizardFinalPage(QWidget *parent)
     : QWizardPage(parent)
@@ -34,5 +34,3 @@ KVTNewDocumentWizardFinalPage::KVTNewDocumentWizardFinalPage(QWidget *parent)
 }
 
 #include "kvtnewdocumentwizardfinalpage.moc"
-
-

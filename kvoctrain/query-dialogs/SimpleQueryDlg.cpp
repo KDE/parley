@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "SimpleQueryDlg.h"
+
 #include <QTimer>
 #include <QTextEdit>
 #include <QLabel>
@@ -33,9 +35,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
-#include "SimpleQueryDlg.h"
 #include <kvttablemodel.h>
-
 #include <keduvocdocument.h>
 
 SimpleQueryDlg::SimpleQueryDlg(

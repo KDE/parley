@@ -10,6 +10,7 @@
 //
 //
 
+#include "kvtnewdocumentwizardotherpage.h"
 
 #include <QWizardPage>
 #include <QLabel>
@@ -18,8 +19,6 @@
 
 #include <KLocale>
 #include <KDebug>
-
-#include "kvtnewdocumentwizardotherpage.h"
 
 KVTNewDocumentWizardOtherPage::KVTNewDocumentWizardOtherPage(QWidget *parent)
  : QWizardPage(parent)
@@ -53,6 +52,5 @@ KVTNewDocumentWizardOtherPage::KVTNewDocumentWizardOtherPage(QWidget *parent)
 
     setLayout(layout);
 }
-
 
 #include "kvtnewdocumentwizardotherpage.moc"

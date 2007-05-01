@@ -13,11 +13,13 @@
 #define KVTNEWDOCUMENTWIZARDCHOICELANGUAGEOTHER_H
 
 #include <QRadioButton>
-
+#include <QLabel>
+#include <QWizardPage>
 
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>
 */
+
 class KVTNewDocumentWizardChoiceLanguageOther : public QWizardPage
 {
 Q_OBJECT

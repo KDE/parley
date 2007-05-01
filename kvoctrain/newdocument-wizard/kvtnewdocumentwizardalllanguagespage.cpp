@@ -10,14 +10,14 @@
 //
 //
 
+#include "kvtnewdocumentwizardalllanguagespage.h"
 
 #include <QWizardPage>
 #include <QLabel>
+
 #include <KMessageBox>
 
 #include <kvtlanguages.h>
-
-#include "kvtnewdocumentwizardalllanguagespage.h"
 
 KVTNewDocumentWizardAllLanguagesPage::KVTNewDocumentWizardAllLanguagesPage(KVTLanguages &languages, QWidget *parent)
  : QWizardPage(parent)

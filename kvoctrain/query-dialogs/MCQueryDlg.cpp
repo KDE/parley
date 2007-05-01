@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "MCQueryDlg.h"
+
 #include <QTimer>
 #include <QLabel>
 #include <QRadioButton>
@@ -35,7 +37,6 @@
 #include <kdebug.h>
 #include <krandomsequence.h>
 
-#include "MCQueryDlg.h"
 #include <kvttablemodel.h>
 
 #include <keduvocdocument.h>

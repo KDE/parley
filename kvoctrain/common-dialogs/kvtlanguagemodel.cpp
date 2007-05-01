@@ -9,6 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include "kvtlanguagemodel.h"
+
 #include <QFileInfo>
 
 #include <KGlobal>
@@ -16,9 +19,6 @@
 #include <KStandardDirs>
 
 #include "../common-dialogs/languageoptions.h"
-
-#include "kvtlanguagemodel.h"
-
 
 /*
 

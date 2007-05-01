@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "ArtQueryDlg.h"
+
 #include <QTimer>
 #include <QRadioButton>
 #include <QLabel>
@@ -33,7 +35,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
-#include "ArtQueryDlg.h"
 #include <kvttablemodel.h>
 
 ArtQueryDlg::ArtQueryDlg

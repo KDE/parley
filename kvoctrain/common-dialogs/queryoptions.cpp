@@ -21,6 +21,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "queryoptions.h"
+
 #include <QGroupBox>
 #include <QCheckBox>
 #include <QRadioButton>
@@ -28,7 +30,6 @@
 
 #include <knuminput.h>
 
-#include "queryoptions.h"
 #include "prefs.h"
 
 QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)

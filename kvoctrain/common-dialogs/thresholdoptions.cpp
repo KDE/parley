@@ -21,6 +21,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "thresholdoptions.h"
+
 #include <QPushButton>
 #include <QLabel>
 #include <QComboBox>
@@ -28,10 +30,8 @@
 #include <kcombobox.h>
 #include <klocale.h>
 
-#include "thresholdoptions.h"
 #include "kvtquery.h"
 #include "prefs.h"
-
 
 static Prefs::EnumCompType::type bad_complist[] =
     {

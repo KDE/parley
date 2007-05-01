@@ -10,13 +10,13 @@
 //
 //
 
+#include "kvtnewdocumentwizardintropage.h"
 
 #include <QWizardPage>
 #include <QVBoxLayout>
 #include <QLabel>
-#include <KLocale>
 
-#include "kvtnewdocumentwizardintropage.h"
+#include <KLocale>
 
 KVTNewDocumentWizardIntroPage::KVTNewDocumentWizardIntroPage(QWidget *parent)
     : QWizardPage(parent)
@@ -38,5 +38,3 @@ KVTNewDocumentWizardIntroPage::KVTNewDocumentWizardIntroPage(QWidget *parent)
 }
 
 #include "kvtnewdocumentwizardintropage.moc"
-
-

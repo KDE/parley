@@ -10,6 +10,8 @@
 //
 //
 
+#include "kvtnewdocumentwizard.h"
+
 #include <QWizard>
 #include <QLabel>
 #include <QLineEdit>
@@ -17,9 +19,8 @@
 
 #include <KLocale>
 #include <KComboBox>
-#include <kvtlanguages.h>
 
-#include "kvtnewdocumentwizard.h"
+#include <kvtlanguages.h>
 
 KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
  : QWizard(parent)

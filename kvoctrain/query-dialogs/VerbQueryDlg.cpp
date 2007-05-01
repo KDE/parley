@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "VerbQueryDlg.h"
+
 #include <QTimer>
 #include <QPushButton>
 #include <QLabel>
@@ -32,7 +34,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
-#include "VerbQueryDlg.h"
 #include <kvttablemodel.h>
 
 VerbQueryDlg::VerbQueryDlg

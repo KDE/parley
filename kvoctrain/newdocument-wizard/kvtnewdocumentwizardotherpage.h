@@ -12,6 +12,9 @@
 #ifndef KVTNEWDOCUMENTWIZARDOTHERPAGE_H
 #define KVTNEWDOCUMENTWIZARDOTHERPAGE_H
 
+#include <QWizardPage>
+#include <QLabel>
+
 #include <KLineEdit>
 
 /**

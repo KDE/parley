@@ -23,9 +23,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "AuxInfoEntryPage.h"
+
 #include <QTextEdit>
 
-#include "AuxInfoEntryPage.h"
 #include "EntryDlg.h"
 #include <kvtlanguages.h>
 

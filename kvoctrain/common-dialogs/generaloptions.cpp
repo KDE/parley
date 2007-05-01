@@ -21,12 +21,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <qcheckbox.h>
+#include "generaloptions.h"
+
+#include <QCheckBox>
 
 #include <knuminput.h>
 #include <kfile.h>
 
-#include "generaloptions.h"
 #include "prefs.h"
 
 static const char *separator_id[] =

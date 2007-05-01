@@ -23,9 +23,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "MCEntryPage.h"
+
 #include <QLineEdit>
 
-#include "MCEntryPage.h"
 #include "EntryDlg.h"
 #include <kvtlanguages.h>
 

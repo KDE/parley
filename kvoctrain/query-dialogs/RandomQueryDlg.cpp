@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "RandomQueryDlg.h"
+
 #include <QApplication>
 #include <QCheckBox>
 #include <QGroupBox>
@@ -40,9 +42,7 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
-#include "RandomQueryDlg.h"
 #include <kvttablemodel.h>
-
 #include <keduvocdocument.h>
 
 QStringList RandomQueryDlg::extractTranslations(QString trans)

@@ -21,10 +21,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "groupoptions.h"
+
 #include <QPushButton>
 #include <QComboBox>
-
-#include "groupoptions.h"
 
 GroupOptions::GroupOptions(QWidget* parent) : QWidget(parent)
 {

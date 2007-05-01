@@ -23,6 +23,8 @@
 
 //based on code copyright (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
 
+#include "languageoptions.h"
+
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
@@ -30,6 +32,7 @@
 #include <QPixmap>
 #include <QByteArray>
 #include <QMenu>
+#include <QtDBus>
 
 #include <klocale.h>
 #include <kimageio.h>
@@ -37,8 +40,7 @@
 #include <kstandarddirs.h>
 #include <kfiledialog.h>
 #include <kmessagebox.h>
-#include <QtDBus>
-#include "languageoptions.h"
+
 #include "languagesettings.h"
 #include "prefs.h"
 

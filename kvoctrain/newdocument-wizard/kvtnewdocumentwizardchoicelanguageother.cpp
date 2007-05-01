@@ -10,13 +10,13 @@
 //
 //
 
+#include "kvtnewdocumentwizardchoicelanguageother.h"
+
 #include <QVBoxLayout>
 
 #include <KLocale>
 
 #include "kvtnewdocumentwizard.h"
-
-#include "kvtnewdocumentwizardchoicelanguageother.h"
 
 KVTNewDocumentWizardChoiceLanguageOther::KVTNewDocumentWizardChoiceLanguageOther(bool showFileOpen, QWidget *parent)
  : QWizardPage(parent)

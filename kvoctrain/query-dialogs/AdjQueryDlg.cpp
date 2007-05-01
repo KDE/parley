@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "AdjQueryDlg.h"
+
 #include <QTimer>
 #include <QPushButton>
 #include <QLineEdit>
@@ -32,7 +34,6 @@
 #include <kstandarddirs.h>
 #include <klocale.h>
 
-#include "AdjQueryDlg.h"
 #include <kvttablemodel.h>
 #include <kvtlanguages.h>
 

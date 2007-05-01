@@ -21,13 +21,14 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "blockoptions.h"
+
 #include <QComboBox>
 #include <QCheckBox>
 
 #include <klocale.h>
 #include <kmessagebox.h>
 
-#include "blockoptions.h"
 #include "prefs.h"
 
 struct ListRef
