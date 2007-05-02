@@ -47,8 +47,9 @@ AdjQueryDlg::AdjQueryDlg
     int query_startnum,
     KEduVocExpression *exp,
     KEduVocDocument  *doc,
-    const KEduVocComparison &_comp)
-        : QueryDlgBase(i18n("Comparison Training"))
+    const KEduVocComparison &_comp,
+    QWidget *parent)
+    : QueryDlgBase(i18n("Comparison Training"), parent)
 {
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());

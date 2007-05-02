@@ -23,13 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "DocPropDlg.h"
+
 #include <QLayout>
 #include <QVBoxLayout>
 #include <QFrame>
 
 #include <KLocale>
-
-#include "DocPropDlg.h"
 
 DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {

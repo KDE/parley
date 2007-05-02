@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "StatisticsDialog.h"
+
 #include <QLayout>
 #include <QVBoxLayout>
 
@@ -30,7 +32,6 @@
 #include <kconfig.h>
 #include <kglobal.h>
 
-#include "StatisticsDialog.h"
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
 #include <kvtlanguages.h>

@@ -26,7 +26,7 @@
 
 #include "kvtusage.h"
 
-#include <klocale.h>
+#include <KLocale>
 
 QStringList KVTUsage::userUsages;
 
@@ -46,9 +46,7 @@ struct internalRelation_t
 
 static internalRelation_t InternalUsageRelations [] =
     {
-        {
-            UL_AM,        0,   I18N_NOOP("Am."),      I18N_NOOP("Americanism")
-        },
+        { UL_AM,        0,   I18N_NOOP("Am."),      I18N_NOOP("Americanism")},
         { UL_ABBR,      0,   I18N_NOOP("abbr."),    I18N_NOOP("abbreviation")},
         { UL_ANAT,      0,   I18N_NOOP("anat."),    I18N_NOOP("anatomy")},
         { UL_ASTR,      0,   I18N_NOOP("astr."),    I18N_NOOP("astronomy")},
@@ -143,7 +141,7 @@ bool KVTUsage::contains(const QString& label, const QString& collection)
 }
 
 
-void KVTUsage::setUsageNames(QStringList names)
+void KVTUsage::setUsageNames(const QStringList &names)
 {
     userUsages = names;
 }

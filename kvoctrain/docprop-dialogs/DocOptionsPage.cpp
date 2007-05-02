@@ -23,9 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <QCheckBox>
-
 #include "DocOptionsPage.h"
+
+#include <QCheckBox>
 
 DocOptionsPage::DocOptionsPage(bool sort, QWidget *parent) : QWidget(parent)
 {

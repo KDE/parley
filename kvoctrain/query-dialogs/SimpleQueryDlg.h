@@ -43,7 +43,8 @@ public:
                    int q_num,
                    int q_start,
                    KEduVocExpression *exp,
-                   KEduVocDocument  *doc);
+                   KEduVocDocument  *doc,
+                   QWidget *parent);
 
     ~SimpleQueryDlg();
 

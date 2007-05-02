@@ -23,12 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kvtquery.h"
+
 #include <klocale.h>
 #include <kconfig.h>
 
 #include <keduvocdocument.h>
 
-#include "kvtquery.h"
 #include <prefs.h>
 
 QStringList KVTQuery::userTypes;

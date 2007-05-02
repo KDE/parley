@@ -45,7 +45,8 @@ public:
         int query_startnum,
         KEduVocExpression *exp,
         KEduVocDocument  *doc,
-        const KEduVocArticle &articles);
+        const KEduVocArticle &articles,
+        QWidget *parent);
 
     ~ArtQueryDlg();
 

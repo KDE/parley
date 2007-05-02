@@ -33,7 +33,7 @@ class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
     Q_OBJECT
 public:
-    ThresholdOptions(KVTQuery * m, QWidget* parent = 0);
+    ThresholdOptions(KVTQuery * m, QWidget* parent);
 
     void updateWidgets();
     bool hasChanged();

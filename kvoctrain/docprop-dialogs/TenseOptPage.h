@@ -35,7 +35,7 @@ class TenseOptPage : public QWidget, public Ui::OptionListForm
     Q_OBJECT
 
 public:
-    TenseOptPage(KEduVocDocument * doc, QWidget *parent = 0);
+    TenseOptPage(KEduVocDocument * doc, QWidget *parent);
 
     void getTenseNames(QStringList &ret_types, QList<int> &ret_Index);
 

@@ -25,7 +25,7 @@
 
 #include "kvtlanguages.h"
 
-void KVTLanguages::addLanguage(QString _shortId, QString _longId, QString _pixmapFile, const QString& _shortId2, const QString& keyboardLayout)
+void KVTLanguages::addLanguage(const QString &_shortId, const QString &_longId, const QString &_pixmapFile, const QString& _shortId2, const QString& keyboardLayout)
 {
     KVTLanguage def;
     def.shortId = _shortId;

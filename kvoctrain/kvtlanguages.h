@@ -47,7 +47,8 @@ public:
     KVTLanguages()
     {}
 
-    void addLanguage(QString shortId, QString longId, QString pixmapFile, const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
+    void addLanguage(const QString &shortId, const QString &longId, const QString &pixmapFile,
+                     const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
 
     int count() const
     {

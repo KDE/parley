@@ -32,7 +32,7 @@ class DocOptionsPage : public QWidget, public Ui::DocOptionsPageForm
 {
     Q_OBJECT
 public:
-    DocOptionsPage(bool sort, QWidget *parent = 0);
+    DocOptionsPage(bool sort, QWidget *parent);
 
     bool getSorting() const
     {

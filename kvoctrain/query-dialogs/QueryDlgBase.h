@@ -52,7 +52,7 @@ class QueryDlgBase : public KDialog
 public:
     enum Result { Unknown, Known, Timeout, StopIt };
 
-    QueryDlgBase(const QString & caption, QWidget *parent = 0, const char *name = 0, bool modal = false);
+    QueryDlgBase(const QString & caption, QWidget *parent);
 
     virtual ~QueryDlgBase();
 

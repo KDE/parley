@@ -115,7 +115,7 @@ public:
 
     static bool contains(const QString& label, const QString& collection);
     static QList<UsageRelation> getRelation();
-    static void setUsageNames(QStringList names);
+    static void setUsageNames(const QStringList &names);
 
 private:
     static QStringList userUsages;

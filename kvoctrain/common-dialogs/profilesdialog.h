@@ -47,7 +47,7 @@ class ProfilesDialog : public KDialog
     Q_OBJECT
 
 public:
-    ProfilesDialog(KVTQuery * m, QWidget *parent = 0, const char *name = 0, bool modal = true);
+    ProfilesDialog(KVTQuery * m, QWidget *parent);
 
 signals:
     void profileActivated();

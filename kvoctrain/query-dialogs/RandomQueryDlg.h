@@ -51,7 +51,8 @@ public:
         int query_num,
         int query_startnum,
         KEduVocExpression *exp,
-        KEduVocDocument  *);
+        KEduVocDocument  *,
+        QWidget *parent);
 
     ~RandomQueryDlg();
 

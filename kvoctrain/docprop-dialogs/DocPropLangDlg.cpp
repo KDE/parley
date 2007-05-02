@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "DocPropLangDlg.h"
+
 #include <QStringList>
 #include <QLayout>
 #include <QList>
@@ -34,7 +36,6 @@
 #include <kpagewidgetmodel.h>
 #include <kicon.h>
 
-#include "DocPropLangDlg.h"
 #include "LangPropPage.h"
 #include <keduvocdocument.h>
 #include <kvtlanguages.h>

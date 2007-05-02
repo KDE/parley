@@ -36,13 +36,11 @@ SettingsProfile::SettingsProfile(QString n, QString q, QString t, QString b)
         : name(n), query_set(q), thresh_set(t), block_set(b)
 {}
 
-ProfilesDialog::ProfilesDialog(KVTQuery * m, QWidget *parent, const char *name, bool modal)
-        : KDialog(parent)
+ProfilesDialog::ProfilesDialog(KVTQuery * m, QWidget *parent) : KDialog(parent)
 {
     setCaption(i18n("Profiles"));
     setButtons(Close);
-    setModal(modal);
-    setObjectName(QLatin1String(name));
+    setModal(true);
 
     m_queryManager = m;
     mw = new GroupOptions(this);

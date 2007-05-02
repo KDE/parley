@@ -51,8 +51,9 @@ MCQueryDlg::MCQueryDlg(
     int q_num,
     int q_start,
     KEduVocExpression *vocExpression,
-    KEduVocDocument  *doc)
-        : QueryDlgBase(i18n("Multiple Choice"))
+    KEduVocDocument*doc,
+    QWidget *parent)
+    : QueryDlgBase(i18n("Multiple Choice"), parent)
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());

@@ -29,6 +29,8 @@
 
 #include "ui_LangPropPageForm.h"
 
+#include <keduvocgrammar.h>
+
 class KEduVocDocument;
 class KEduVocConjugation;
 class KEduVocArticle;

@@ -126,8 +126,9 @@ RandomQueryDlg::RandomQueryDlg(
     int q_num,
     int q_start,
     KEduVocExpression *exp,
-    KEduVocDocument  *doc)
-        : QueryDlgBase(i18n("Random Query"))
+    KEduVocDocument *doc,
+    QWidget *parent)
+    : QueryDlgBase(i18n("Random Query"), parent)
 {
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());

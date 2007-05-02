@@ -23,13 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "TitlePage.h"
+
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QLabel>
 
 #include <keduvocdocument.h>
-
-#include "TitlePage.h"
 
 TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
 {

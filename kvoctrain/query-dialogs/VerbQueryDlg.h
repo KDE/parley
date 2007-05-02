@@ -47,7 +47,8 @@ public:
         KEduVocExpression *exp,
         KEduVocDocument  *doc,
         const KEduVocConjugation &prefix,
-        const KEduVocConjugation &conjug);
+        const KEduVocConjugation &conjug,
+        QWidget *parent);
 
     ~VerbQueryDlg();
 

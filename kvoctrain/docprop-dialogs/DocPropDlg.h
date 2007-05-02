@@ -47,7 +47,7 @@ class DocPropsDlg : public KPageDialog
 {
     Q_OBJECT
 public:
-    DocPropsDlg(KEduVocDocument *doc, QWidget *parent = NULL);
+    DocPropsDlg(KEduVocDocument *doc, QWidget *parent);
 
     inline bool getSorting()  const
     {

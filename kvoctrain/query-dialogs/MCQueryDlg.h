@@ -46,7 +46,8 @@ public:
         int query_num,
         int query_startnum,
         KEduVocExpression *exp,
-        KEduVocDocument  *doc);
+        KEduVocDocument  *doc,
+        QWidget *parent);
 
     ~MCQueryDlg();
 

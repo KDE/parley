@@ -47,8 +47,9 @@ VerbQueryDlg::VerbQueryDlg
     KEduVocExpression *exp,
     KEduVocDocument  *doc,
     const KEduVocConjugation &prefix,
-    const KEduVocConjugation &conjug)
-        : QueryDlgBase(i18n("Verb Training"))
+    const KEduVocConjugation &conjug,
+    QWidget *parent)
+    : QueryDlgBase(i18n("Verb Training"), parent)
 {
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());

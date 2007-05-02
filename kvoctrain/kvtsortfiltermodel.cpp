@@ -9,7 +9,6 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
-#include <KDebug>
 
 #include "kvtsortfiltermodel.h"
 #include "kvttablemodel.h"
@@ -122,7 +121,6 @@ bool KVTSortFilterModel::lessThan(const QModelIndex & left, const QModelIndex & 
 
 void KVTSortFilterModel::restoreNativeOrder()
 {
-    kDebug() << "Restoring native order" << endl;
     m_restoreNativeOrder = true;
     sort(-1, Qt::AscendingOrder);
     invalidate();

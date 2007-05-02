@@ -9,18 +9,18 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include "kvttablemodel.h"
+
 #include <QSize>
 
 #include <klocale.h>
 #include <kdebug.h>
 #include <kglobal.h>
 #include <kiconloader.h>
-
 #include <kdialog.h>
 
-#include "kvttablemodel.h"
 #include "prefs.h"
-
 #include <keduvocexpression.h>
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)

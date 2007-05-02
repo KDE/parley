@@ -47,8 +47,9 @@ ArtQueryDlg::ArtQueryDlg
     int query_startnum,
     KEduVocExpression *exp,
     KEduVocDocument  *doc,
-    const KEduVocArticle &articles)
-        : QueryDlgBase(i18n("Article Training"))
+    const KEduVocArticle &articles,
+    QWidget *parent)
+    : QueryDlgBase(i18n("Article Training"), parent)
 {
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());

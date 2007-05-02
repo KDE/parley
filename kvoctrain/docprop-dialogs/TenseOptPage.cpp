@@ -23,15 +23,15 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "TenseOptPage.h"
+
 #include <QPushButton>
 
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "TenseOptPage.h"
 #include <kvtquery.h>
-
 #include <keduvocdocument.h>
 
 #define TENSE_TAG ". "

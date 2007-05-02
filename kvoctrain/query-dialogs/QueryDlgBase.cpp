@@ -30,14 +30,13 @@
 #include <QRadioButton>
 #include <QCloseEvent>
 
-#include <klocale.h>
+#include <KLocale>
 
-QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent, const char *name, bool modal)
-        : KDialog(parent)
+QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(parent)
 {
     setCaption(caption);
-    setModal(modal);
-    setObjectName(QLatin1String(name));
+    setModal(true);
+    //setObjectName(QLatin1String(name));
     setButtons(User1|User2);
     setDefaultButton(NoDefault);
     setButtonGuiItem(User1, KGuiItem(i18n("&Stop Query")));

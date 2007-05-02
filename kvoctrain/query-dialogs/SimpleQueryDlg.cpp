@@ -46,8 +46,9 @@ SimpleQueryDlg::SimpleQueryDlg(
     int q_num,
     int q_start,
     KEduVocExpression *exp,
-    KEduVocDocument  *doc)
-        : QueryDlgBase("")
+    KEduVocDocument  *doc,
+    QWidget *parent)
+    : QueryDlgBase("", parent)
 {
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());

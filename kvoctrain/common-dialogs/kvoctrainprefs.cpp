@@ -143,7 +143,7 @@ void KVocTrainPrefs::slotUser1()
             showDlg = false;
 
     if (showDlg) {
-        ProfilesDialog * dlg = new ProfilesDialog(m_queryManager, this, 0, true);
+        ProfilesDialog * dlg = new ProfilesDialog(m_queryManager, this);
         connect(dlg, SIGNAL(profileActivated()), this, SLOT(updateWidgets()));
         dlg->show();
     }

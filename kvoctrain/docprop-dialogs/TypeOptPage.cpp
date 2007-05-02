@@ -23,15 +23,15 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "TypeOptPage.h"
+
 #include <QPushButton>
 
 #include <kinputdialog.h>
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "TypeOptPage.h"
 #include <kvtquery.h>
-
 #include <keduvocdocument.h>
 
 #define TYPE_TAG ". "

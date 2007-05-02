@@ -35,7 +35,7 @@ class UsageOptPage : public QWidget, public Ui::OptionListForm
 {
     Q_OBJECT
 public:
-    UsageOptPage(KEduVocDocument *doc, QWidget *parent = 0);
+    UsageOptPage(KEduVocDocument *doc, QWidget *parent);
 
     void getUsageLabels(QStringList &ret_usages, QList<int> &ret_Index);
 

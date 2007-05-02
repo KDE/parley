@@ -13,6 +13,10 @@
 #ifndef KVTLESSONVIEW_H
 #define KVTLESSONVIEW_H
 
+#include <QTreeView>
+
+class KVTLessonModel;
+
 /**
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.

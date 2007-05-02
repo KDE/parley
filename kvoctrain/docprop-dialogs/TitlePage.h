@@ -35,7 +35,7 @@ class TitlePage : public QWidget, public Ui::TitlePageForm
     Q_OBJECT
 
 public:
-    TitlePage(KEduVocDocument * doc, QWidget *parent = 0);
+    TitlePage(KEduVocDocument * doc, QWidget *parent);
 
     QString getTitle()
     {

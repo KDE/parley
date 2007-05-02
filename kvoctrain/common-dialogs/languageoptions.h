@@ -35,7 +35,7 @@ class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
     Q_OBJECT
 public:
     /** Constructor - creates the widget of Settings->KVocTrain->Languages */
-    LanguageOptions(KVTLanguages & langset, QWidget* parent = 0);
+    LanguageOptions(KVTLanguages & langset, QWidget* parent);
 
     /** Return the languages m_langSet */
     KVTLanguages getLangSet() const;

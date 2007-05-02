@@ -23,9 +23,10 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "GenStatPage.h"
+
 #include <QLabel>
 
-#include "GenStatPage.h"
 #include <keduvocdocument.h>
 
 GenStatPage::GenStatPage(KEduVocDocument *doc, QWidget* parent): QWidget(parent)

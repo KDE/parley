@@ -9,6 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include "kvttableview.h"
+
 #include <QHeaderView>
 #include <QPainter>
 #include <QResizeEvent>
@@ -18,7 +21,6 @@
 #include <KAction>
 #include <KLocale>
 
-#include "kvttableview.h"
 #include "kvttablemodel.h"
 #include "prefs.h"
 

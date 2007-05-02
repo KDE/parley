@@ -9,6 +9,9 @@
 // Copyright: See COPYING file that comes with this distribution
 //
 //
+
+#include "kvttabledelegate.h"
+
 #include <QComboBox>
 #include <QLineEdit>
 #include <QPainter>
@@ -18,7 +21,6 @@
 #include <klocale.h>
 #include <kiconloader.h>
 
-#include "kvttabledelegate.h"
 #include "kvttablemodel.h"
 #include "prefs.h"
 

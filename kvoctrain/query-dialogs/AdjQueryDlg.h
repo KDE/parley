@@ -47,7 +47,8 @@ public:
         int query_startnum,
         KEduVocExpression *exp,
         KEduVocDocument *doc,
-        const KEduVocComparison &comp);
+        const KEduVocComparison &comp,
+        QWidget *parent);
 
     ~AdjQueryDlg();
 

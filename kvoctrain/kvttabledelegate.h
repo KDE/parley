@@ -13,6 +13,7 @@
 #define KVTTABLEDELEGATE_H
 
 #include <QItemDelegate>
+#include <QModelIndex>
 
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>

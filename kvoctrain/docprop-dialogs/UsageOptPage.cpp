@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "UsageOptPage.h"
+
 #include <QGroupBox>
 #include <QPushButton>
 
@@ -30,7 +32,6 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "UsageOptPage.h"
 #include <kvtquery.h>
 
 #define USAGE_TAG ". "

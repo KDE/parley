@@ -19,7 +19,7 @@
 #include <QObject>
 #include <QStringList>
 
-class KEduVocDocument;
+#include <keduvocdocument.h>
 
 /**
   * Model for the list of lessons. This is a list model for now. It obtains its data from the kvtml document.

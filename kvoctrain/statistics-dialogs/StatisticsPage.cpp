@@ -23,15 +23,16 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "StatisticsPage.h"
+
 #include <QPainter>
 #include <QPixmap>
 
 #include <klocale.h>
 
 #include <keduvocdocument.h>
-
 #include <prefs.h>
-#include "StatisticsPage.h"
+
 
 #define MIN_COL_WIDTH      2
 #define PIX_SHIFT          2

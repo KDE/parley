@@ -23,6 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kvoctrain.h"
+
 #include <QFile>
 #include <QTimer>
 #include <QPixmap>
@@ -46,10 +48,6 @@
 #include <kinputdialog.h>
 #include <kapplication.h>
 
-#include <time.h>
-#include <ctype.h>
-
-#include "kvoctrain.h"
 #include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"
 #include "query-dialogs/AdjQueryDlg.h"

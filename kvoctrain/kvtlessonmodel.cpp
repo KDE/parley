@@ -10,6 +10,8 @@
 //
 //
 
+#include "kvtlessonmodel.h"
+
 #include <QItemSelection>
 #include <QMimeData>
 
@@ -19,8 +21,6 @@
 #include <keduvocdocument.h>
 #include <keduvocexpression.h>
 #include <krandom.h>
-
-#include "kvtlessonmodel.h"
 
 /** @file
   * Implementation of KVTLessonModel.

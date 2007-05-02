@@ -35,7 +35,7 @@ class TypeOptPage : public QWidget, public Ui::OptionListForm
     Q_OBJECT
 
 public:
-    TypeOptPage(KEduVocDocument *doc, QWidget *parent = 0);
+    TypeOptPage(KEduVocDocument *doc, QWidget *parent);
 
     void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
 

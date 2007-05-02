@@ -353,7 +353,7 @@ void LanguageOptions::loadCountryData()
     KLocale *lsave = KGlobal::locale();
     QString curr_lang = lsave->language();
 
-    KLocale locale(QString::null);
+    KLocale locale("");
     locale.setLanguage(curr_lang);
     KGlobal::setLocale(&locale);
 

@@ -4,11 +4,11 @@
 
     -----------------------------------------------------------------------
 
-    begin          : Thu Sep 21 20:50:53 MET 1999
+    begin         : Thu Sep 21 20:50:53 MET 1999
 
-    copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
+                    (C) 2001 The KDE-EDU team
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -35,7 +35,7 @@ class GenStatPage : public QWidget, public Ui::GenStatPageForm
 {
     Q_OBJECT
 public:
-    GenStatPage(KEduVocDocument *doc, QWidget* parent = 0);
+    GenStatPage(KEduVocDocument *doc, QWidget* parent);
 };
 
 #endif // GenStatPage_included

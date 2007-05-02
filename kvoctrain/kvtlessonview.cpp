@@ -10,6 +10,8 @@
 //
 //
 
+#include "kvtlessonview.h"
+
 #include <QTreeView>
 #include <QMenu>
 #include <QContextMenuEvent>
@@ -25,7 +27,6 @@
 
 #include "prefs.h"
 #include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
 
 KVTLessonView::KVTLessonView(QWidget *parent) : QTreeView(parent)
 {
