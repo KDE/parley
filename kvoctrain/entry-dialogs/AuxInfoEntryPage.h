@@ -35,7 +35,7 @@ class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 public:
     AuxInfoEntryPage(QWidget *parent = 0);
 
-    void setData(bool multi_sel, QString syno, QString anto, QString example, QString remark, QString para);
+    void setData(bool multi_sel, const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para);
 
     QString getSynonym();
     QString getAntonym();

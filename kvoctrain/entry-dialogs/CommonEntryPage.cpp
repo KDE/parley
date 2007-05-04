@@ -75,7 +75,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager,
 }
 
 
-void CommonEntryPage::setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString usage, bool active)
+void CommonEntryPage::setData(bool multi_sel, const QString &expr, int less, const QString &type, const QString &pronounce, const QString &usage, bool active)
 {
     lesson = less;
     setLessonBox(lesson);

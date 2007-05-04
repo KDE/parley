@@ -1,14 +1,24 @@
-//
-// C++ Interface: kvtnewdocumentwizardlanguagepage
-//
-// Description: 
-//
-//
-// Author: Frederik Gladhorn <frederik.gladhorn@gmx.de>, (C) 2007
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/***************************************************************************
+
+                             kvtnewdocumentwizardlanguagepage
+
+    -----------------------------------------------------------------------
+
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+
+    -----------------------------------------------------------------------
+
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #ifndef KVTNEWDOCUMENTWIZARDLANGUAGEPAGE_H
 #define KVTNEWDOCUMENTWIZARDLANGUAGEPAGE_H
 
@@ -27,7 +37,7 @@ class KVTNewDocumentWizardLanguagePage : public QWizardPage
 {
 Q_OBJECT
 public:
-    KVTNewDocumentWizardLanguagePage(bool isFirstLanguagePage, QWizard *parent = 0);
+    KVTNewDocumentWizardLanguagePage(bool isFirstLanguagePage, QWizard *parent);
     void initializePage();
 
 private:

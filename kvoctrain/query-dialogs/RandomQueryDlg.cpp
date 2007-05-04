@@ -45,8 +45,9 @@
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-QStringList RandomQueryDlg::extractTranslations(QString trans)
+QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
 {
+    QString trans = _trans;
     QRegExp full_stop("^(.*[^\\. ])\\.* *$");
     //full_stop.setMinimal (true);
     if (full_stop.indexIn(trans) >= 0)
@@ -117,8 +118,8 @@ QStringList RandomQueryDlg::extractTranslations(QString trans)
 }
 
 RandomQueryDlg::RandomQueryDlg(
-    QString org,
-    QString trans,
+    const QString &org,
+    const QString &trans,
     int entry,
     int orgcol,
     int transcol,
@@ -226,8 +227,8 @@ RandomQueryDlg::~RandomQueryDlg()
 }
 
 
-void RandomQueryDlg::setQuery(QString org,
-                              QString trans,
+void RandomQueryDlg::setQuery(const QString &org,
+                              const QString &trans,
                               int entry,
                               int orgcol,
                               int transcol,

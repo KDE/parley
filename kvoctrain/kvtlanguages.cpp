@@ -120,7 +120,7 @@ QString KVTLanguages::findLongId(const QString &_shortId) const
 }
 
 
-int KVTLanguages::indexShortId(QString _shortId) const
+int KVTLanguages::indexShortId(const QString &_shortId) const
 {
     if (_shortId.isEmpty())
         return -1;
@@ -133,7 +133,7 @@ int KVTLanguages::indexShortId(QString _shortId) const
 }
 
 
-int KVTLanguages::indexLongId(QString _longId) const
+int KVTLanguages::indexLongId(const QString &_longId) const
 {
     if (_longId.isEmpty())
         return -1;

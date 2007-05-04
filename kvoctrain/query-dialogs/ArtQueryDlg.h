@@ -37,7 +37,7 @@ class ArtQueryDlg : public QueryDlgBase
 
 public:
     ArtQueryDlg(
-        QString type,
+        const QString &type,
         int entry,
         int col,
         int query_cycle,
@@ -50,7 +50,7 @@ public:
 
     ~ArtQueryDlg();
 
-    void setQuery(QString type,
+    void setQuery(const QString &type,
                   int entry,
                   int col,
                   int query_cycle,

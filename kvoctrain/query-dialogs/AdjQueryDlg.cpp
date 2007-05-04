@@ -39,7 +39,7 @@
 
 AdjQueryDlg::AdjQueryDlg
 (
-    QString type,
+    const QString &type,
     int entry,
     int col,
     int query_cycle,
@@ -89,7 +89,7 @@ AdjQueryDlg::~AdjQueryDlg()
 }
 
 
-void AdjQueryDlg::setQuery(QString,
+void AdjQueryDlg::setQuery(const QString &type,
                            int entry,
                            int col,
                            int q_cycle,

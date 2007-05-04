@@ -42,8 +42,8 @@
 #include <keduvocdocument.h>
 
 MCQueryDlg::MCQueryDlg(
-    QString org,
-    QString trans,
+    const QString &org,
+    const QString &trans,
     int entry,
     int orgcol,
     int transcol,
@@ -92,8 +92,8 @@ MCQueryDlg::~MCQueryDlg()
 }
 
 
-void MCQueryDlg::setQuery(QString org,
-                          QString trans,
+void MCQueryDlg::setQuery(const QString &org,
+                          const QString &trans,
                           int entry,
                           int orgcol,
                           int transcol,

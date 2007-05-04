@@ -38,7 +38,7 @@ class VerbQueryDlg : public QueryDlgBase
 public:
 
     VerbQueryDlg(
-        QString type,
+        const QString &type,
         int entry,
         int col,
         int query_cycle,
@@ -52,7 +52,7 @@ public:
 
     ~VerbQueryDlg();
 
-    void setQuery(QString type,
+    void setQuery(const QString &type,
                   int entry,
                   int col,
                   int query_cycle,

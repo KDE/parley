@@ -1,14 +1,23 @@
-//
-// C++ Implementation: kvtnewdocumentwizard
-//
-// Description: 
-//
-//
-// Author: Frederik Gladhorn <frederik.gladhorn@gmx.de>, (C) 2007
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/***************************************************************************
+
+                             kvtnewdocumentwizard
+
+    -----------------------------------------------------------------------
+
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+
+    -----------------------------------------------------------------------
+
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
 
 #include "kvtnewdocumentwizard.h"
 
@@ -36,7 +45,7 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
     m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
 
     setPage(WizardIntroPage, new KVTNewDocumentWizardIntroPage);
-    setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen ) );
+    setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen, this ) );
 
     setPage(WizardFirstLanguagePage, m_firstLanguagePage);
     setPage(WizardSecondLanguagePage, m_secondLanguagePage);

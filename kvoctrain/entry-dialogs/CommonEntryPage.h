@@ -39,7 +39,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
     CommonEntryPage(KEduVocDocument *doc, KVTQuery &querymanager, QWidget* parent = 0);
 
-    void setData(bool multi_sel, QString expr, int less, QString type, QString pronounce, QString  usage,  bool active);
+    void setData(bool multi_sel, const QString &expr, int less, const QString &type, const QString &pronounce, const QString &usage,  bool active);
 
     int     getLesson() const
     {

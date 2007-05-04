@@ -137,7 +137,7 @@ private:
      * @param pm is the pixmap
      * @return @c true if successfully changed
      */
-    bool setPixmap(QString pm);
+    bool setPixmap(const QString &pm);
 
     /** If a short name is present, enable the other widgets. */
     void enableLangWidgets();

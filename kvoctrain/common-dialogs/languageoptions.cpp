@@ -291,7 +291,7 @@ void LanguageOptions::slotShort2Changed(const QString& s)
 }
 
 
-bool LanguageOptions::setPixmap(QString pm)
+bool LanguageOptions::setPixmap(const QString &pm)
 {
     if (d_shortName->count()) {
         QPixmap pix(pm);

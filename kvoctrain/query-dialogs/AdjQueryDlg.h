@@ -39,7 +39,7 @@ class AdjQueryDlg : public QueryDlgBase
 public:
     AdjQueryDlg
     (
-        QString type,
+        const QString &type,
         int entry,
         int col,
         int query_cycle,
@@ -52,7 +52,7 @@ public:
 
     ~AdjQueryDlg();
 
-    void setQuery(QString type,
+    void setQuery(const QString &type,
                   int entry,
                   int col,
                   int query_cycle,

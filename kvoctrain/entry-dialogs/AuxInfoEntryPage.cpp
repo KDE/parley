@@ -50,7 +50,7 @@ AuxInfoEntryPage::AuxInfoEntryPage(QWidget *parent) : QWidget(parent)
 }
 
 
-void AuxInfoEntryPage::setData(bool multi_sel, QString syno, QString anto, QString  example, QString remark, QString para)
+void AuxInfoEntryPage::setData(bool multi_sel, const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para)
 {
     synonym_line->setText(syno);
     antonym_line->setText(anto);

@@ -37,8 +37,8 @@ class MCQueryDlg : public QueryDlgBase
 
 public:
     MCQueryDlg(
-        QString org,
-        QString trans,
+        const QString &org,
+        const QString &trans,
         int entry,
         int orgcol,
         int transcol,
@@ -51,8 +51,8 @@ public:
 
     ~MCQueryDlg();
 
-    void setQuery(QString org,
-                  QString trans,
+    void setQuery(const QString &org,
+                  const QString &trans,
                   int entry,
                   int orgcol,
                   int transcol,

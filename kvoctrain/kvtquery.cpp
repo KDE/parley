@@ -190,7 +190,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 }
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QString type)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, const QString &type)
 {
     kDebug() << "select(KEduVocDocument *doc, int act_lesson, int idx, QString type)" << endl;
     // initialize vector with (doc->lessonCount() + 1) elements
@@ -219,7 +219,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
 }
 
 
-bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)
+bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const QString &query_type)
 {
     kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)" << endl;
     QString qtype;
@@ -423,7 +423,7 @@ QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
 }
 
 
-QString KVTQuery::typeStr(const QString id)
+QString KVTQuery::typeStr(const QString &id)
 {
     if (id.left(1) == QM_USER_TYPE) {
         QString num = id;
@@ -445,7 +445,7 @@ QString KVTQuery::typeStr(const QString id)
 }
 
 
-bool KVTQuery::compareBlocking(int grade, QDateTime date, bool use_it)
+bool KVTQuery::compareBlocking(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) // don't care || all off
         return true;
@@ -454,7 +454,7 @@ bool KVTQuery::compareBlocking(int grade, QDateTime date, bool use_it)
 }
 
 
-bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
+bool KVTQuery::compareExpiring(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::expireItem(grade) == 0 || !use_it) // don't care || all off
         return false;
@@ -463,7 +463,7 @@ bool KVTQuery::compareExpiring(int grade, QDateTime date, bool use_it)
 }
 
 
-bool KVTQuery::compareDate(int type, QDateTime qd)
+bool KVTQuery::compareDate(int type, const QDateTime &qd)
 {
     QDateTime now = QDateTime::currentDateTime();
     bool erg = true;
@@ -623,7 +623,7 @@ bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int cu
 }
 
 
-void KVTQuery::setTypeNames(QStringList names)
+void KVTQuery::setTypeNames(const QStringList &names)
 {
     userTypes = names;
 }

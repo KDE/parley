@@ -38,7 +38,7 @@
 
 VerbQueryDlg::VerbQueryDlg
 (
-    QString type,
+    const QString &type,
     int entry,
     int col,
     int query_cycle,
@@ -105,7 +105,7 @@ void VerbQueryDlg::initFocus() const
 }
 
 
-void VerbQueryDlg::setQuery(QString,
+void VerbQueryDlg::setQuery(const QString &type,
                             int entry,
                             int col,
                             int q_cycle,

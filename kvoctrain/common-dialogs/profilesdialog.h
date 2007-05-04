@@ -34,7 +34,7 @@ class SettingsProfile
 {
 public:
     SettingsProfile();
-    SettingsProfile(QString n, QString q, QString t, QString b);
+    SettingsProfile(const QString &n, const QString &q, const QString &t, const QString &b);
 
     QString name;
     QString query_set;

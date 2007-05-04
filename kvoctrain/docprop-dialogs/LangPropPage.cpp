@@ -36,7 +36,7 @@
 
 #include <kvtlanguages.h>
 
-LangPropPage::LangPropPage(KEduVocDocument *_doc, QString curr_lang, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget(parent)
+LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 

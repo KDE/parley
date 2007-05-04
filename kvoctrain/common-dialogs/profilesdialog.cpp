@@ -32,7 +32,7 @@
 SettingsProfile::SettingsProfile()
 {}
 
-SettingsProfile::SettingsProfile(QString n, QString q, QString t, QString b)
+SettingsProfile::SettingsProfile(const QString &n, const QString &q, const QString &t, const QString &b)
         : name(n), query_set(q), thresh_set(t), block_set(b)
 {}
 

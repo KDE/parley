@@ -42,8 +42,8 @@ class RandomQueryDlg : public QueryDlgBase
 
 public:
     RandomQueryDlg(
-        QString org,
-        QString trans,
+        const QString &org,
+        const QString &trans,
         int entry,
         int orgcol,
         int transcol,
@@ -56,8 +56,8 @@ public:
 
     ~RandomQueryDlg();
 
-    void setQuery(QString org,
-                  QString trans,
+    void setQuery(const QString &org,
+                  const QString &trans,
                   int entry,
                   int orgcol,
                   int transcol,
@@ -88,7 +88,7 @@ protected:
     virtual void keyPressEvent(QKeyEvent *e);
 
     void setHintFields();
-    QStringList extractTranslations(QString trans);
+    QStringList extractTranslations(const QString &);
 
     KEduVocDocument * kv_doc;
 

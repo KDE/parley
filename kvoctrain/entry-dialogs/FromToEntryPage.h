@@ -38,7 +38,7 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 public:
     FromToEntryPage(QWidget *parent = 0);
 
-    void setData(bool multi_sel, grade_t _grade, QDateTime _date, count_t _qcount, count_t _bcount, QString faux, QString label);
+    void setData(bool multi_sel, grade_t _grade, const QDateTime &_date, count_t _qcount, count_t _bcount, const QString &faux, const QString &label);
 
     QDateTime  getDate() const;
     grade_t   getGrade() const

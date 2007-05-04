@@ -39,7 +39,7 @@
 
 ArtQueryDlg::ArtQueryDlg
 (
-    QString type,
+    const QString &type,
     int entry,
     int col,
     int query_cycle,
@@ -85,7 +85,7 @@ ArtQueryDlg::~ArtQueryDlg()
 }
 
 
-void ArtQueryDlg::setQuery(QString,
+void ArtQueryDlg::setQuery(const QString &type,
                            int entry,
                            int col,
                            int q_cycle,

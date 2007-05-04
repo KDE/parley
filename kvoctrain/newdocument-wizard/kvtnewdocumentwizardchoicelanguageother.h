@@ -1,14 +1,24 @@
-//
-// C++ Interface: kvtnewdocumentwizardchoicelanguageother
-//
-// Description: 
-//
-//
-// Author: Frederik Gladhorn <frederik.gladhorn@gmx.de>, (C) 2007
-//
-// Copyright: See COPYING file that comes with this distribution
-//
-//
+/***************************************************************************
+
+                             kvtnewdocumentwizardchoicelanguageother
+
+    -----------------------------------------------------------------------
+
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+
+    -----------------------------------------------------------------------
+
+ ***************************************************************************/
+
+/***************************************************************************
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ ***************************************************************************/
+
 #ifndef KVTNEWDOCUMENTWIZARDCHOICELANGUAGEOTHER_H
 #define KVTNEWDOCUMENTWIZARDCHOICELANGUAGEOTHER_H
 
@@ -24,7 +34,7 @@ class KVTNewDocumentWizardChoiceLanguageOther : public QWizardPage
 {
 Q_OBJECT
 public:
-    KVTNewDocumentWizardChoiceLanguageOther(bool showFileOpen, QWidget *parent = 0);
+    KVTNewDocumentWizardChoiceLanguageOther(bool showFileOpen, QWidget *parent);
 
 private:
     QLabel *m_label;

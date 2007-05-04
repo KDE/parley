@@ -56,7 +56,7 @@ FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
 }
 
 
-void FromToEntryPage::setData(bool multi_sel, grade_t _grade, QDateTime _time, count_t _qcount, count_t _bcount, QString faux, QString label)
+void FromToEntryPage::setData(bool multi_sel, grade_t _grade, const QDateTime &_time, count_t _qcount, count_t _bcount, const QString &faux, const QString &label)
 {
     grade = _grade;
     qcount = _qcount;
