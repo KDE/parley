@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -32,41 +32,21 @@
 #include <QPushButton>
 #include <QKeyEvent>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <krandomsequence.h>
+#include <KLocale>
+#include <KDebug>
+#include <KRandomSequence>
 
 #include <kvttablemodel.h>
 
 #include <keduvocdocument.h>
 
-MCQueryDlg::MCQueryDlg(
-    const QString &org,
-    const QString &trans,
-    int entry,
-    int orgcol,
-    int transcol,
-    int queryCycle,
-    int q_num,
-    int q_start,
-    KEduVocExpression *vocExpression,
-    KEduVocDocument*doc,
-    QWidget *parent)
-    : QueryDlgBase(i18n("Multiple Choice"), parent)
+MCQueryDlg::MCQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), parent)
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    //mw->transgroup->insert(mw->rb_trans1);
-    //mw->transgroup->insert(mw->rb_trans2);
-    //mw->transgroup->insert(mw->rb_trans3);
-    //mw->transgroup->insert(mw->rb_trans4);
-    //mw->transgroup->insert(mw->rb_trans5);
-
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
-// connect( verify, SIGNAL(clicked()), SLOT(verifyClicked()) );
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showItClicked()));
     connect(mw->rb_trans5, SIGNAL(clicked()), SLOT(trans5clicked()));
     connect(mw->rb_trans4, SIGNAL(clicked()), SLOT(trans4clicked()));
@@ -74,9 +54,10 @@ MCQueryDlg::MCQueryDlg(
     connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(trans2clicked()));
     connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(trans1clicked()));
 
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
     qtimer = 0;
 
-    setQuery(org, trans, entry, orgcol, transcol, queryCycle, q_num, q_start, vocExpression, doc);
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -100,12 +81,11 @@ void MCQueryDlg::setQuery(const QString &org,
                           int queryCycle,
                           int q_num,
                           int q_start,
-                          KEduVocExpression *vocExpression,
-                          KEduVocDocument  *doc)
+                          KEduVocDocument *doc)
 {
-    //type_timeout = type_to;
-    kv_doc = doc;
-    q_row = entry;
+    m_doc = doc;
+    m_row = entry;
+    KEduVocExpression *vocExpression = m_doc->entry(m_row);
     queryOriginalColumn = orgcol;
     queryTranslationColumn = transcol;
     translation = trans;
@@ -192,11 +172,10 @@ void MCQueryDlg::setQuery(const QString &org,
         QList<KEduVocExpression*> exprlist;
         solution = 0;
 
-        srand((unsigned int)time((time_t *)NULL));
         int count = MAX_MULTIPLE_CHOICE;
         // gather random expressions for the choice
         while (count > 0) {
-            int nr = (int)(doc->entryCount() * ((1.0*rand())/RAND_MAX));
+            int nr = getRandom(doc->entryCount()); // * ((1.0*rand())/RAND_MAX));
             // append if new expr found
             bool newex = true;
             for (int i = 0; newex && i < (int) exprlist.size(); i++) {
@@ -376,15 +355,15 @@ void MCQueryDlg::dontKnowClicked()
 }
 
 
-void MCQueryDlg::slotUser2()
+void MCQueryDlg::slotUser1()
 {
 
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 
-    KEduVocExpression *vocExpression = kv_doc->entry(q_row);
+    KEduVocExpression *vocExpression = m_doc->entry(m_row);
     mw->orgField->setText(queryOriginalColumn == 0
                           ? vocExpression->original()
                           : vocExpression->translation(queryOriginalColumn));

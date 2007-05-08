@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,26 +31,22 @@
 #include <QCloseEvent>
 
 #include <KLocale>
+#include <KRandomSequence>
 
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(parent)
 {
     setCaption(caption);
-    setModal(true);
-    //setObjectName(QLatin1String(name));
-    setButtons(User1|User2);
+    setModal(false);
+    setButtons(Close|User1);
     setDefaultButton(NoDefault);
-    setButtonGuiItem(User1, KGuiItem(i18n("&Stop Query")));
-    setButtonGuiItem(User2, KGuiItem(i18n("&Edit Expression...")));
+    setButtonText(Close, i18n("&Stop Query"));
+    setButtonGuiItem(User1, KGuiItem(i18n("&Edit Expression...")));
 
     QWidget *main = new QWidget(this);
     setMainWidget(main);
 
-    kv_doc = 0;
-    kv_exp = 0;
-    //type_timeout = kvq_notimeout;
-    connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
-    //TODO connect to slot (when it will exist)
-    //connect(this,SIGNAL(user2Clicked()),this,SLOT());
+    m_doc = 0;
+    m_expression = 0;
 }
 
 
@@ -62,8 +58,7 @@ void QueryDlgBase::initFocus() const
 {}
 
 
-bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2,
-                                int) const
+bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2, int) const
 {
     return s1.simplified() == s2.simplified();
 }
@@ -198,15 +193,13 @@ QString  QueryDlgBase::getNOKComment(int percent_done)
     return i18n("Your answer was wrong. %1% done.", percent_done);
 }
 
-void QueryDlgBase::closeEvent(QCloseEvent * /*e*/)
+
+void QueryDlgBase::closeEvent(QCloseEvent *e)
 {
+    Q_UNUSED(e);
     emit sigQueryChoice(StopIt);
 }
 
-void QueryDlgBase::slotUser1()
-{
-    emit sigQueryChoice(StopIt);
-}
 
 void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight QFontWeight)
 {
@@ -218,6 +211,13 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
     QFont ft = widget->font();
     ft.setWeight(QFontWeight);
     widget->setFont(ft);
+}
+
+
+int QueryDlgBase::getRandom(int range)
+{
+    KRandomSequence rs;
+    return rs.getLong(range);
 }
 
 #include "QueryDlgBase.moc"

@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,25 +31,12 @@
 #include <QLabel>
 #include <QKeyEvent>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
+#include <KLocale>
 
 #include <kvttablemodel.h>
 #include <kvtlanguages.h>
 
-AdjQueryDlg::AdjQueryDlg
-(
-    const QString &type,
-    int entry,
-    int col,
-    int query_cycle,
-    int query_num,
-    int query_startnum,
-    KEduVocExpression *exp,
-    KEduVocDocument  *doc,
-    const KEduVocComparison &_comp,
-    QWidget *parent)
-    : QueryDlgBase(i18n("Comparison Training"), parent)
+AdjQueryDlg::AdjQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Comparison Training"), parent)
 {
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -67,13 +54,14 @@ AdjQueryDlg::AdjQueryDlg
     connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
     connect(mw->lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
 
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
     qtimer = 0;
 
     mw->lev1Label->setBuddy(mw->lev1Field);
     mw->lev2Label->setBuddy(mw->lev2Field);
     mw->lev3Label->setBuddy(mw->lev3Field);
 
-    setQuery(type, entry, col, query_cycle, query_num, query_startnum, exp, doc, _comp);
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -89,20 +77,14 @@ AdjQueryDlg::~AdjQueryDlg()
 }
 
 
-void AdjQueryDlg::setQuery(const QString &type,
-                           int entry,
+void AdjQueryDlg::setQuery(int entry,
                            int col,
                            int q_cycle,
                            int q_num,
                            int q_start,
-                           KEduVocExpression *exp,
-                           KEduVocDocument  *doc,
                            const KEduVocComparison &_comp)
 {
-    //type_timeout = type_to;
-    kv_doc = doc;
-    kv_exp = exp;
-    q_row = entry;
+    m_row = entry;
     queryOriginalColumn = col;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -240,13 +222,13 @@ void AdjQueryDlg::dontKnowClicked()
 }
 
 
-void AdjQueryDlg::slotUser2()
+void AdjQueryDlg::slotUser1()
 {
 
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 
@@ -277,28 +259,28 @@ void AdjQueryDlg::keyPressEvent(QKeyEvent *e)
 
 
 void AdjQueryDlg::returnPressed()
-                        {}
+{}
 
 
-                        void AdjQueryDlg::lev1Changed(const QString&)
-                        {
-                            mw->verify->setDefault(true);
-                            resetField(mw->lev1Field);
-                        }
+void AdjQueryDlg::lev1Changed(const QString&)
+{
+    mw->verify->setDefault(true);
+    resetField(mw->lev1Field);
+}
 
 
-                        void AdjQueryDlg::lev2Changed(const QString&)
-                        {
-                            mw->verify->setDefault(true);
-                            resetField(mw->lev2Field);
-                        }
+void AdjQueryDlg::lev2Changed(const QString&)
+{
+    mw->verify->setDefault(true);
+    resetField(mw->lev2Field);
+}
 
 
-                        void AdjQueryDlg::lev3Changed(const QString&)
-                        {
-                            mw->verify->setDefault(true);
-                            resetField(mw->lev3Field);
-                        }
+void AdjQueryDlg::lev3Changed(const QString&)
+{
+    mw->verify->setDefault(true);
+    resetField(mw->lev3Field);
+}
 
 
 #include "AdjQueryDlg.moc"

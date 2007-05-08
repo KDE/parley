@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,7 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef AdjQueryDlg_included
 #define AdjQueryDlg_included
 
@@ -37,29 +36,15 @@ class AdjQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    AdjQueryDlg
-    (
-        const QString &type,
-        int entry,
-        int col,
-        int query_cycle,
-        int query_num,
-        int query_startnum,
-        KEduVocExpression *exp,
-        KEduVocDocument *doc,
-        const KEduVocComparison &comp,
-        QWidget *parent);
+    AdjQueryDlg(QWidget *parent);
 
     ~AdjQueryDlg();
 
-    void setQuery(const QString &type,
-                  int entry,
+    void setQuery(int entry,
                   int col,
                   int query_cycle,
                   int query_num,
                   int query_startnum,
-                  KEduVocExpression *exp,
-                  KEduVocDocument *doc,
                   const KEduVocComparison &comp);
 
 public slots:
@@ -74,7 +59,7 @@ protected slots:
     void lev2Changed(const QString&);
     void lev3Changed(const QString&);
     void showAllClicked();
-    void slotUser2();
+    void slotUser1();
     void knowItClicked();
     void returnPressed();
     void dontKnowClicked();

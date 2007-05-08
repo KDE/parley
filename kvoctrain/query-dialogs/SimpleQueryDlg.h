@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,15 +36,7 @@ class SimpleQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    SimpleQueryDlg(KVTQuery::QueryType querytpe,
-                   int entry,
-                   int column,
-                   int q_cycle,
-                   int q_num,
-                   int q_start,
-                   KEduVocExpression *exp,
-                   KEduVocDocument  *doc,
-                   QWidget *parent);
+    SimpleQueryDlg(QWidget *parent);
 
     ~SimpleQueryDlg();
 
@@ -54,7 +46,6 @@ public:
                   int q_cycle,
                   int q_num,
                   int q_start,
-                  KEduVocExpression *exp,
                   KEduVocDocument  *doc);
 
 public slots:
@@ -69,7 +60,7 @@ public slots:
     void knowItClicked();
     void dontKnowClicked();
     void slotAnswerChanged();
-    void slotUser2();
+    void slotUser1();
     void verifyClicked();
     void timeoutReached();
 

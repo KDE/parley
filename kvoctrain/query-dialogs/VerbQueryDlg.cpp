@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,25 +31,11 @@
 #include <QLineEdit>
 #include <QKeyEvent>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
+#include <KLocale>
 
 #include <kvttablemodel.h>
 
-VerbQueryDlg::VerbQueryDlg
-(
-    const QString &type,
-    int entry,
-    int col,
-    int query_cycle,
-    int query_num,
-    int query_startnum,
-    KEduVocExpression *exp,
-    KEduVocDocument  *doc,
-    const KEduVocConjugation &prefix,
-    const KEduVocConjugation &conjug,
-    QWidget *parent)
-    : QueryDlgBase(i18n("Verb Training"), parent)
+VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training"), parent)
 {
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -81,9 +67,10 @@ VerbQueryDlg::VerbQueryDlg
     connect(mw->p1pField, SIGNAL(textChanged(const QString&)), SLOT(slotP1pChanged(const QString&)));
     connect(mw->p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)));
 
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
     qtimer = 0;
 
-    setQuery(type, entry, col, query_cycle, query_num, query_startnum, exp, doc, prefix, conjug);
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -92,7 +79,7 @@ VerbQueryDlg::VerbQueryDlg
 }
 
 
-VerbQueryDlg::~ VerbQueryDlg()
+VerbQueryDlg::~VerbQueryDlg()
 {
     KConfigGroup cg(KGlobal::config(), "VerbQueryDialog");
     KDialog::saveDialogSize(cg);
@@ -105,21 +92,17 @@ void VerbQueryDlg::initFocus() const
 }
 
 
-void VerbQueryDlg::setQuery(const QString &type,
-                            int entry,
+void VerbQueryDlg::setQuery(int entry,
                             int col,
                             int q_cycle,
                             int q_num,
                             int q_start,
                             KEduVocExpression *exp,
-                            KEduVocDocument  *doc,
                             const KEduVocConjugation &prefix,
                             const KEduVocConjugation &conjug)
 {
-    //type_timeout = type_to;
-    kv_doc = doc;
-    kv_exp = exp;
-    q_row = entry;
+    m_expression = exp;
+    m_row = entry;
     queryOriginalColumn = col;
     int mqtime = Prefs::maxTimePer();
     mw->timebar->setEnabled(Prefs::showCounter());
@@ -173,9 +156,9 @@ bool VerbQueryDlg::next()
     resetAllFields();
     QString s, type;
     if (queryOriginalColumn == 0)
-        s = kv_exp->original();
+        s = m_expression->original();
     else
-        s = kv_exp->translation(queryOriginalColumn);
+        s = m_expression->translation(queryOriginalColumn);
 
     if (current < conjugations.entryCount() - 1)
         current++;
@@ -399,13 +382,13 @@ void VerbQueryDlg::dontKnowClicked()
 }
 
 
-void VerbQueryDlg::slotUser2()
+void VerbQueryDlg::slotUser1()
 {
 
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 

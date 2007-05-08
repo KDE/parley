@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -32,33 +32,16 @@
 #include <QButtonGroup>
 #include <QKeyEvent>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
+#include <KLocale>
 
 #include <kvttablemodel.h>
 
-ArtQueryDlg::ArtQueryDlg
-(
-    const QString &type,
-    int entry,
-    int col,
-    int query_cycle,
-    int query_num,
-    int query_startnum,
-    KEduVocExpression *exp,
-    KEduVocDocument  *doc,
-    const KEduVocArticle &articles,
-    QWidget *parent)
-    : QueryDlgBase(i18n("Article Training"), parent)
+ArtQueryDlg::ArtQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Article Training"), parent)
 {
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
 
     qtimer = 0;
-
-    //mw->artGroup->insert (mw->natural);
-    //mw->artGroup->insert (mw->male);
-    //mw->artGroup->insert (mw->rb_fem);
 
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
@@ -69,7 +52,8 @@ ArtQueryDlg::ArtQueryDlg
     connect(mw->male, SIGNAL(clicked()), SLOT(slotMaleClicked()));
     connect(mw->rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()));
 
-    setQuery(type, entry, col, query_cycle, query_num, query_startnum, exp, doc, articles);
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -85,20 +69,16 @@ ArtQueryDlg::~ArtQueryDlg()
 }
 
 
-void ArtQueryDlg::setQuery(const QString &type,
-                           int entry,
+void ArtQueryDlg::setQuery(int entry,
                            int col,
                            int q_cycle,
                            int q_num,
                            int q_start,
                            KEduVocExpression *exp,
-                           KEduVocDocument  *doc,
                            const KEduVocArticle &art)
 {
-    //type_timeout = type_to;
-    kv_exp = exp;
-    kv_doc = doc;
-    q_row = entry;
+    m_expression = exp;
+    m_row = entry;
     queryOriginalColumn = col;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -188,13 +168,13 @@ void ArtQueryDlg::showAllClicked()
     resetButton(mw->male);
     resetButton(mw->natural);
 
-    if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
+    if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
         mw->rb_fem->setChecked(true);
         verifyButton(mw->rb_fem, true);
-    } else if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+    } else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
         mw->male->setChecked(true);
         verifyButton(mw->male, true);
-    } else if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+    } else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
         mw->natural->setChecked(true);
         verifyButton(mw->natural, true);
     }
@@ -209,11 +189,11 @@ void ArtQueryDlg::showMoreClicked()
 void ArtQueryDlg::verifyClicked()
 {
     bool known = false;
-    if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+    if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
         known = mw->rb_fem->isChecked();
-    else if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+    else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
         known = mw->male->isChecked();
-    else if (kv_exp->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+    else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
         known = mw->natural->isChecked();
 
     if (mw->rb_fem->isChecked()) {
@@ -269,13 +249,13 @@ void ArtQueryDlg::dontKnowClicked()
 }
 
 
-void ArtQueryDlg::slotUser2()
+void ArtQueryDlg::slotUser1()
 {
 
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 }
 
 
@@ -306,34 +286,34 @@ void ArtQueryDlg::keyPressEvent(QKeyEvent *e)
 
 
 void ArtQueryDlg::returnPressed()
-                        {}
+{}
 
 
-                        void ArtQueryDlg::slotFemClicked()
-                        {
-                            resetButton(mw->rb_fem);
-                            resetButton(mw->male);
-                            resetButton(mw->natural);
-                            verifyClicked();
-                        }
+void ArtQueryDlg::slotFemClicked()
+{
+    resetButton(mw->rb_fem);
+    resetButton(mw->male);
+    resetButton(mw->natural);
+    verifyClicked();
+}
 
 
-                        void ArtQueryDlg::slotMaleClicked()
-                        {
-                            resetButton(mw->male);
-                            resetButton(mw->natural);
-                            resetButton(mw->rb_fem);
-                            verifyClicked();
-                        }
+void ArtQueryDlg::slotMaleClicked()
+{
+    resetButton(mw->male);
+    resetButton(mw->natural);
+    resetButton(mw->rb_fem);
+    verifyClicked();
+}
 
 
-                        void ArtQueryDlg::slotNaturalClicked()
-                        {
-                            resetButton(mw->natural);
-                            resetButton(mw->male);
-                            resetButton(mw->rb_fem);
-                            verifyClicked();
-                        }
+void ArtQueryDlg::slotNaturalClicked()
+{
+    resetButton(mw->natural);
+    resetButton(mw->male);
+    resetButton(mw->rb_fem);
+    verifyClicked();
+}
 
 
 #include "ArtQueryDlg.moc"

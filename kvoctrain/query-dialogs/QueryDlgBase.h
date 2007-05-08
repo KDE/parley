@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,13 +26,10 @@
 #ifndef Query_Dlg_Base_H
 #define Query_Dlg_Base_H
 
-#include <time.h>
-#include <stdlib.h>
-
 #include <QLabel>
 #include <QCloseEvent>
 
-#include <kdialog.h>
+#include <KDialog>
 
 #include <kvtquery.h>
 #include <keduvocgrammar.h>
@@ -77,11 +74,7 @@ public:
     QString  getNOKComment(int percent);
     QString  getTimeoutComment(int percent);
 
-    int getRandom(int range)
-    {
-//        srand((unsigned int)time((time_t *)NULL));
-        return (int)(range *((1.0*rand())/RAND_MAX));
-    }
+    int getRandom(int range);
 
     virtual void initFocus() const;
 
@@ -93,26 +86,24 @@ protected:
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
     virtual void closeEvent(QCloseEvent*e);
-    virtual void slotUser1();
 
     struct RB_Label
     {
-        RB_Label(QRadioButton* _rb, QLabel *_label)
-                : rb(_rb), label(_label)
+        RB_Label(QRadioButton* _rb, QLabel *_label) : rb(_rb), label(_label)
         {}
 
         QRadioButton  *rb;
         QLabel        *label;
     };
 
-    int            q_row,
-    queryOriginalColumn,
-    queryTranslationColumn;
-    KEduVocDocument  *kv_doc;
-    KEduVocExpression *kv_exp;
-    QString        translation;
-    QTimer        *qtimer;
-    int            timercount;
+    int                m_row;
+    int                queryOriginalColumn;
+    int                queryTranslationColumn;
+    KEduVocDocument   *m_doc;
+    KEduVocExpression *m_expression;
+    QString            translation;
+    QTimer            *qtimer;
+    int                timercount;
 };
 
 

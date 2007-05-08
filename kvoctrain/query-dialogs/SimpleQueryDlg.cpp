@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -32,23 +32,12 @@
 #include <QKeyEvent>
 #include <QWidget>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
+#include <KLocale>
 
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-SimpleQueryDlg::SimpleQueryDlg(
-    KVTQuery::QueryType querytype,
-    int entry,
-    int column,
-    int q_cycle,
-    int q_num,
-    int q_start,
-    KEduVocExpression *exp,
-    KEduVocDocument  *doc,
-    QWidget *parent)
-    : QueryDlgBase("", parent)
+SimpleQueryDlg::SimpleQueryDlg(QWidget *parent) : QueryDlgBase("", parent)
 {
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -60,20 +49,19 @@ SimpleQueryDlg::SimpleQueryDlg(
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
     connect(mw->answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
 
-    kv_doc = 0;
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
     qtimer = 0;
 
-    KConfigGroup cg(KGlobal::config(), "SimpleQueryDialog");
-    restoreDialogSize(cg);
-
-    setQuery(querytype, entry, column, q_cycle, q_num, q_start, exp, doc);
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    KConfigGroup cg(KGlobal::config(), "SimpleQueryDialog");
+    restoreDialogSize(cg);
 }
 
 
-SimpleQueryDlg::~ SimpleQueryDlg()
+SimpleQueryDlg::~SimpleQueryDlg()
 {
     KConfigGroup cg(KGlobal::config(), "SimpleQueryDialog");
     KDialog::saveDialogSize(cg);
@@ -92,13 +80,12 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
                               int q_cycle,
                               int q_num,
                               int q_start,
-                              KEduVocExpression *exp,
                               KEduVocDocument  *doc)
 {
-    //type_timeout = type_to;
     querytype = _querytype;
-    kv_doc = doc;
-    q_row = entry;
+    m_doc = doc;
+    m_row = entry;
+    m_expression = m_doc->entry(m_row);
     queryOriginalColumn = column;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -112,9 +99,9 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the synonym:"));
             setWindowTitle(i18n("Synonym Training"));
-            answerstring = exp->synonym(column);
+            answerstring = m_expression->synonym(column);
             mw->queryField->setAlignment(Qt::AlignVCenter);
-            mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
+            mw->queryField->setText(column == 0 ? m_expression->original() : m_expression->translation(column));
             setQueryFieldWordwrap();
         }
         break;
@@ -123,8 +110,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
-            answerstring = exp->antonym(column);
-            mw->queryField->setText(column == 0 ? exp->original() : exp->translation(column));
+            answerstring = m_expression->antonym(column);
+            mw->queryField->setText(column == 0 ? m_expression->original() : m_expression->translation(column));
             setQueryFieldWordwrap();
         }
         break;
@@ -133,8 +120,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Paraphrase"));
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
-            mw->queryField->setText(exp->paraphrase(column));
-            answerstring = column == 0 ? exp->original() : exp->translation(column);
+            mw->queryField->setText(m_expression->paraphrase(column));
+            answerstring = column == 0 ? m_expression->original() : m_expression->translation(column);
             setQueryFieldWordwrap();
         }
         break;
@@ -143,8 +130,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Example sentence"));
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
-            s = exp->example(column);
-            answerstring = column == 0 ? exp->original().simplified() : exp->translation(column).simplified();
+            s = m_expression->example(column);
+            answerstring = column == 0 ? m_expression->original().simplified() : m_expression->translation(column).simplified();
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
@@ -252,14 +239,14 @@ void SimpleQueryDlg::dontKnowClicked()
 }
 
 
-void SimpleQueryDlg::slotUser2()
+void SimpleQueryDlg::slotUser1()
 {
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 
-    KEduVocExpression *exp = kv_doc->entry(q_row);
+    KEduVocExpression *exp = m_doc->entry(m_row);
 //   queryField->setText (exp->getTranslation(queryOriginalColumn));
 
     switch (querytype) {

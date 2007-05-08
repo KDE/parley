@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -36,18 +36,7 @@ class MCQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    MCQueryDlg(
-        const QString &org,
-        const QString &trans,
-        int entry,
-        int orgcol,
-        int transcol,
-        int query_cycle,
-        int query_num,
-        int query_startnum,
-        KEduVocExpression *exp,
-        KEduVocDocument  *doc,
-        QWidget *parent);
+    MCQueryDlg(QWidget *parent);
 
     ~MCQueryDlg();
 
@@ -59,7 +48,6 @@ public:
                   int query_cycle,
                   int query_num,
                   int query_startnum,
-                  KEduVocExpression *exp,
                   KEduVocDocument  *doc);
 
 public slots:
@@ -73,7 +61,7 @@ public slots:
     void knowItClicked();
     void dontKnowClicked();
     void timeoutReached();
-    void slotUser2();
+    void slotUser1();
     void trans1clicked();
     void trans2clicked();
     void trans3clicked();

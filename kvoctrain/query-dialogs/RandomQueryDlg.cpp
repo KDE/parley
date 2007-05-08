@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2004-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -39,8 +39,7 @@
 #include <QByteArray>
 #include <QList>
 
-#include <kstandarddirs.h>
-#include <klocale.h>
+#include <KLocale>
 
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
@@ -117,19 +116,7 @@ QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
     return translations;
 }
 
-RandomQueryDlg::RandomQueryDlg(
-    const QString &org,
-    const QString &trans,
-    int entry,
-    int orgcol,
-    int transcol,
-    int q_cycle,
-    int q_num,
-    int q_start,
-    KEduVocExpression *exp,
-    KEduVocDocument *doc,
-    QWidget *parent)
-    : QueryDlgBase(i18n("Random Query"), parent)
+RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Query"), parent)
 {
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());
@@ -145,6 +132,8 @@ RandomQueryDlg::RandomQueryDlg(
 
     mw->show_more -> setEnabled(Prefs::showMore());
     mw->know_it -> setEnabled(Prefs::iKnow());
+
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
     bool split = Prefs::split();
     fields = Prefs::fields();
@@ -189,9 +178,9 @@ RandomQueryDlg::RandomQueryDlg(
         }
     }
 
-    kv_doc = 0;
+    kv_doc = doc;
     qtimer = 0;
-    setQuery(org, trans, entry, orgcol, transcol, q_cycle, q_num, q_start, exp, doc);
+
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -235,12 +224,10 @@ void RandomQueryDlg::setQuery(const QString &org,
                               int q_cycle,
                               int q_num,
                               int q_start,
-                              KEduVocExpression *,
-                              KEduVocDocument  *doc)
+                              KEduVocDocument *doc)
 {
-    //type_timeout = type_to;
     kv_doc = doc;
-    q_row = entry;
+    m_row = entry;
     queryOriginalColumn = orgcol;
     queryTranslationColumn = transcol;
     translation = trans;
@@ -515,7 +502,7 @@ void RandomQueryDlg::dontKnowClicked()
 void RandomQueryDlg::setHintFields()
 {
     QString s;
-    KEduVocExpression *exp = kv_doc->entry(q_row);
+    KEduVocExpression *exp = kv_doc->entry(m_row);
 
     s = exp->remark(queryOriginalColumn);
     mw->remark->setText(s);
@@ -538,14 +525,14 @@ void RandomQueryDlg::setHintFields()
 }
 
 
-void RandomQueryDlg::slotUser2()
+void RandomQueryDlg::slotUser1()
 {
     if (qtimer != 0)
         qtimer->stop();
 
-    emit sigEditEntry(q_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
 
-    KEduVocExpression *exp = kv_doc->entry(q_row);
+    KEduVocExpression *exp = kv_doc->entry(m_row);
     mw->orgField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
 
     if (Prefs::suggestions())

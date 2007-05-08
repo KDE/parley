@@ -8,7 +8,7 @@
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                      (C) 2001 The KDE-EDU team
-                     (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                     (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -41,18 +41,7 @@ class RandomQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    RandomQueryDlg(
-        const QString &org,
-        const QString &trans,
-        int entry,
-        int orgcol,
-        int transcol,
-        int query_cycle,
-        int query_num,
-        int query_startnum,
-        KEduVocExpression *exp,
-        KEduVocDocument  *,
-        QWidget *parent);
+    RandomQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~RandomQueryDlg();
 
@@ -64,7 +53,6 @@ public:
                   int query_cycle,
                   int query_num,
                   int query_startnum,
-                  KEduVocExpression *exp,
                   KEduVocDocument  *);
 
 public slots:
@@ -77,7 +65,7 @@ public slots:
     void knowItClicked();
     void dontKnowClicked();
     void timeoutReached();
-    void slotUser2();
+    void slotUser1();
     void slotTransChanged(const QString&);
     void slotTransLostFocus();
     void slotFFClicked();

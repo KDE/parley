@@ -8,7 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
-                    (C) 2005-2006 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,10 +23,11 @@
  *                                                                         *
  ***************************************************************************/
 
-#include <kdebug.h>
-#include <klocale.h>
-
 #include "kvoctrain.h"
+
+#include <KDebug>
+#include <KLocale>
+
 #include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"
 #include "query-dialogs/VerbQueryDlg.h"
@@ -108,7 +109,8 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
     KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
-    simpleQueryDlg = new SimpleQueryDlg(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc, this);
+    simpleQueryDlg = new SimpleQueryDlg(this);
+    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
     simpleQueryDlg->initFocus();
@@ -197,7 +199,7 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
     KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
-    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc);
+    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     simpleQueryDlg->initFocus();
     slotStatusMsg(IDS_DEFAULT);
 }
@@ -243,22 +245,23 @@ void KVocTrainApp::slotStartTypeQuery(int col, const QString & type)
 
     hide();
     if (m_queryType == KVTQuery::ConjugationQuery) {
-        verbQueryDlg = new VerbQueryDlg(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
-                                        m_doc->conjugation(act_query_col), exp->conjugation(act_query_col), this);
+        verbQueryDlg = new VerbQueryDlg(this);
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
+                               m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
         verbQueryDlg->initFocus();
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
     } else if (m_queryType == KVTQuery::ArticlesQuery) {
-        artQueryDlg = new ArtQueryDlg(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
-                                      m_doc->article(act_query_col), this);
+        artQueryDlg = new ArtQueryDlg(this);
+        artQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
-        adjQueryDlg = new AdjQueryDlg(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
-                                      exp->comparison(act_query_col), this);
+        adjQueryDlg = new AdjQueryDlg(this);
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->comparison(act_query_col));
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -354,7 +357,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        verbQueryDlg->setQuery(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
 
         verbQueryDlg->initFocus();
@@ -364,8 +367,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        artQueryDlg->setQuery(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
-                              m_doc->article(act_query_col));
+        artQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
         if (adjQueryDlg == 0) {
@@ -373,8 +375,7 @@ void KVocTrainApp::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        adjQueryDlg->setQuery(exp->type(act_query_col), random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc,
-                              exp->comparison(act_query_col));
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->comparison(act_query_col));
         adjQueryDlg->initFocus();
     } else {
         kError() << "KVocTrainApp::slotTimeOutType: unknown type\n";
@@ -478,13 +479,15 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
     }
 
     if (m_queryType == KVTQuery::RandomQuery) {
-        randomQueryDlg = new RandomQueryDlg(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc, this);
+        randomQueryDlg = new RandomQueryDlg(m_doc, this);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
-        mcQueryDlg = new MCQueryDlg(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc, this);
+        mcQueryDlg = new MCQueryDlg(this);
+        mcQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
@@ -751,7 +754,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
             return;
         }
 
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
 
         randomQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
@@ -760,7 +763,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        mcQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, exp, m_doc);
+        mcQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
     }
     slotStatusMsg(IDS_DEFAULT);
@@ -769,12 +772,18 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
 
 void KVocTrainApp::slotStopQuery(bool)
 {
-    delete simpleQueryDlg;
-    delete mcQueryDlg;
-    delete verbQueryDlg;
-    delete randomQueryDlg;
-    delete adjQueryDlg;
-    delete artQueryDlg;
+    if (simpleQueryDlg != 0)
+        simpleQueryDlg->deleteLater();
+    if (mcQueryDlg != 0)
+        mcQueryDlg->deleteLater();
+    if (verbQueryDlg != 0)
+        verbQueryDlg->deleteLater();
+    if (randomQueryDlg != 0)
+        randomQueryDlg->deleteLater();
+    if (adjQueryDlg != 0)
+        adjQueryDlg->deleteLater();
+    if (artQueryDlg != 0)
+        artQueryDlg->deleteLater();
 
     simpleQueryDlg = 0;
     mcQueryDlg = 0;
