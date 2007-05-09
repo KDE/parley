@@ -485,7 +485,7 @@ void KVocTrainApp::slotStartQuery(const QString & translang, const QString & org
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         mcQueryDlg = new MCQueryDlg(this);
-        mcQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
@@ -761,7 +761,7 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        mcQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
     }
     slotStatusMsg(IDS_DEFAULT);

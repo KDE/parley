@@ -41,8 +41,6 @@ ArtQueryDlg::ArtQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Article Training"
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    qtimer = 0;
-
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -79,7 +77,7 @@ void ArtQueryDlg::setQuery(int entry,
 {
     m_expression = exp;
     m_row = entry;
-    queryOriginalColumn = col;
+    m_queryOriginalColumn = col;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->show_all->setDefault(true);
@@ -89,7 +87,7 @@ void ArtQueryDlg::setQuery(int entry,
     if (col == 0)
         s = exp->original().simplified();
     else
-        s = exp->translation(queryOriginalColumn).simplified();
+        s = exp->translation(m_queryOriginalColumn).simplified();
 
     QString def, indef;
     bool removed = false;
@@ -138,17 +136,17 @@ void ArtQueryDlg::setQuery(int entry,
     mw->countbar->setValue(q_start - q_num + 1);
     int mqtime = Prefs::maxTimePer();
     if (mqtime > 0) {
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -168,13 +166,13 @@ void ArtQueryDlg::showAllClicked()
     resetButton(mw->male);
     resetButton(mw->natural);
 
-    if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
+    if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
         mw->rb_fem->setChecked(true);
         verifyButton(mw->rb_fem, true);
-    } else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+    } else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
         mw->male->setChecked(true);
         verifyButton(mw->male, true);
-    } else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+    } else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
         mw->natural->setChecked(true);
         verifyButton(mw->natural, true);
     }
@@ -189,11 +187,11 @@ void ArtQueryDlg::showMoreClicked()
 void ArtQueryDlg::verifyClicked()
 {
     bool known = false;
-    if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+    if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
         known = mw->rb_fem->isChecked();
-    else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+    else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
         known = mw->male->isChecked();
-    else if (m_expression->type(queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+    else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
         known = mw->natural->isChecked();
 
     if (mw->rb_fem->isChecked()) {
@@ -226,13 +224,13 @@ void ArtQueryDlg::knowItClicked()
 
 void ArtQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showAllClicked();
@@ -252,10 +250,10 @@ void ArtQueryDlg::dontKnowClicked()
 void ArtQueryDlg::slotUser1()
 {
 
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 }
 
 

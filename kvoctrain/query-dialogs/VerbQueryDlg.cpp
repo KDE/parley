@@ -69,8 +69,6 @@ VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training")
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-    qtimer = 0;
-
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -103,7 +101,7 @@ void VerbQueryDlg::setQuery(int entry,
 {
     m_expression = exp;
     m_row = entry;
-    queryOriginalColumn = col;
+    m_queryOriginalColumn = col;
     int mqtime = Prefs::maxTimePer();
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -130,17 +128,17 @@ void VerbQueryDlg::setQuery(int entry,
     mw->countbar->setValue(q_start - q_num + 1);
 
     if (mqtime > 0) { // more than 1000 milli-seconds
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -155,10 +153,10 @@ bool VerbQueryDlg::next()
 {
     resetAllFields();
     QString s, type;
-    if (queryOriginalColumn == 0)
+    if (m_queryOriginalColumn == 0)
         s = m_expression->original();
     else
-        s = m_expression->translation(queryOriginalColumn);
+        s = m_expression->translation(m_queryOriginalColumn);
 
     if (current < conjugations.entryCount() - 1)
         current++;
@@ -326,16 +324,16 @@ void VerbQueryDlg::resetAllFields()
 
 void VerbQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (current >= conjugations.entryCount() - 1) {
-            qtimer->stop();
+            m_timer->stop();
             if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
                 showAllClicked();
                 mw->dont_know->setDefault(true);
@@ -343,13 +341,13 @@ void VerbQueryDlg::timeoutReached()
                 emit sigQueryChoice(Timeout);
         } else {
             if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                qtimer->stop();
+                m_timer->stop();
                 showAllClicked();
                 mw->dont_know->setDefault(true);
             } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
                 next();
-                qtimer->start(1000);
-                timercount = Prefs::maxTimePer();
+                m_timer->start(1000);
+                m_timerCount = Prefs::maxTimePer();
             }
         }
     }
@@ -375,8 +373,8 @@ void VerbQueryDlg::dontKnowClicked()
     if (current >= conjugations.entryCount() - 1)
         emit sigQueryChoice(Unknown);
     else {
-        qtimer->start(1000);
-        timercount = Prefs::maxTimePer();
+        m_timer->start(1000);
+        m_timerCount = Prefs::maxTimePer();
         next();
     }
 }
@@ -385,10 +383,10 @@ void VerbQueryDlg::dontKnowClicked()
 void VerbQueryDlg::slotUser1()
 {
 
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 }
 
 

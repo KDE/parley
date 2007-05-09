@@ -41,7 +41,6 @@ public:
     ~MCQueryDlg();
 
     void setQuery(const QString &org,
-                  const QString &trans,
                   int entry,
                   int orgcol,
                   int transcol,

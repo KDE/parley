@@ -56,8 +56,6 @@ MCQueryDlg::MCQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), 
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-    qtimer = 0;
-
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -74,7 +72,6 @@ MCQueryDlg::~MCQueryDlg()
 
 
 void MCQueryDlg::setQuery(const QString &org,
-                          const QString &trans,
                           int entry,
                           int orgcol,
                           int transcol,
@@ -86,9 +83,8 @@ void MCQueryDlg::setQuery(const QString &org,
     m_doc = doc;
     m_row = entry;
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    queryOriginalColumn = orgcol;
-    queryTranslationColumn = transcol;
-    translation = trans;
+    m_queryOriginalColumn = orgcol;
+    m_queryTranslationColumn = transcol;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->orgField->setFont(Prefs::tableFont());
@@ -106,17 +102,17 @@ void MCQueryDlg::setQuery(const QString &org,
     //Time
     int mqtime = Prefs::maxTimePer();
     if (mqtime > 0) {
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -125,11 +121,11 @@ void MCQueryDlg::setQuery(const QString &org,
     KRandomSequence randomSequence;
     QList<QString> strings; // great descriptive name
     button_ref.clear();
-    button_ref.push_back(RB_Label(mw->rb_trans1, mw->trans1));
-    button_ref.push_back(RB_Label(mw->rb_trans2, mw->trans2));
-    button_ref.push_back(RB_Label(mw->rb_trans3, mw->trans3));
-    button_ref.push_back(RB_Label(mw->rb_trans4, mw->trans4));
-    button_ref.push_back(RB_Label(mw->rb_trans5, mw->trans5));
+    button_ref.append(RB_Label(mw->rb_trans1, mw->trans1));
+    button_ref.append(RB_Label(mw->rb_trans2, mw->trans2));
+    button_ref.append(RB_Label(mw->rb_trans3, mw->trans3));
+    button_ref.append(RB_Label(mw->rb_trans4, mw->trans4));
+    button_ref.append(RB_Label(mw->rb_trans5, mw->trans5));
     randomSequence.randomize(button_ref);
     resetButton(button_ref[0].rb, button_ref[0].label);
     resetButton(button_ref[1].rb, button_ref[1].label);
@@ -139,7 +135,7 @@ void MCQueryDlg::setQuery(const QString &org,
 
     solution = 0;
 
-    KEduVocMultipleChoice multipleChoice = vocExpression->multipleChoice(queryTranslationColumn);
+    KEduVocMultipleChoice multipleChoice = vocExpression->multipleChoice(m_queryTranslationColumn);
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)multipleChoice.size()); ++i) {
         strings.push_back(multipleChoice.mc(i));
     }
@@ -149,10 +145,10 @@ void MCQueryDlg::setQuery(const QString &org,
 
     // always include false friend
     QString ff;
-    if (queryTranslationColumn != 0)
-        ff = vocExpression->fauxAmi(queryTranslationColumn, false).simplified();
+    if (m_queryTranslationColumn != 0)
+        ff = vocExpression->fauxAmi(m_queryTranslationColumn, false).simplified();
     else
-        ff = vocExpression->fauxAmi(queryOriginalColumn, true).simplified();
+        ff = vocExpression->fauxAmi(m_queryOriginalColumn, true).simplified();
 
     if (ff.length())
         strings.insert(strings.begin(), ff);
@@ -162,10 +158,10 @@ void MCQueryDlg::setQuery(const QString &org,
             KEduVocExpression *act = doc->entry(i);
 
             if (act != vocExpression) {
-                if (queryTranslationColumn == 0)
+                if (m_queryTranslationColumn == 0)
                     strings.push_back(act->original());
                 else
-                    strings.push_back(act->translation(queryTranslationColumn));
+                    strings.push_back(act->translation(m_queryTranslationColumn));
             }
         }
     } else {
@@ -189,19 +185,19 @@ void MCQueryDlg::setQuery(const QString &org,
         }
 
         for (int i = 0; i < (int) exprlist.size(); i++) {
-            if (queryTranslationColumn == 0)
+            if (m_queryTranslationColumn == 0)
                 strings.push_back(exprlist[i]->original());
             else
-                strings.push_back(exprlist[i]->translation(queryTranslationColumn));
+                strings.push_back(exprlist[i]->translation(m_queryTranslationColumn));
         }
 
     }
 
     // solution is always the firandomSequencet
-    if (queryTranslationColumn == 0)
+    if (m_queryTranslationColumn == 0)
         strings.insert(strings.begin(), vocExpression->original());
     else
-        strings.insert(strings.begin(), vocExpression->translation(queryTranslationColumn));
+        strings.insert(strings.begin(), vocExpression->translation(m_queryTranslationColumn));
 
     for (int i = strings.size(); i < MAX_MULTIPLE_CHOICE; i++)
         strings.push_back("");
@@ -329,13 +325,13 @@ void MCQueryDlg::knowItClicked()
 
 void MCQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->status->setText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
@@ -358,15 +354,15 @@ void MCQueryDlg::dontKnowClicked()
 void MCQueryDlg::slotUser1()
 {
 
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    mw->orgField->setText(queryOriginalColumn == 0
+    mw->orgField->setText(m_queryOriginalColumn == 0
                           ? vocExpression->original()
-                          : vocExpression->translation(queryOriginalColumn));
+                          : vocExpression->translation(m_queryOriginalColumn));
 }
 
 

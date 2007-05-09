@@ -47,6 +47,7 @@ QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(p
 
     m_doc = 0;
     m_expression = 0;
+    m_timer = 0;
 }
 
 

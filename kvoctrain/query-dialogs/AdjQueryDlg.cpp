@@ -56,8 +56,6 @@ AdjQueryDlg::AdjQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Comparison Traini
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-    qtimer = 0;
-
     mw->lev1Label->setBuddy(mw->lev1Field);
     mw->lev2Label->setBuddy(mw->lev2Field);
     mw->lev3Label->setBuddy(mw->lev3Field);
@@ -85,7 +83,7 @@ void AdjQueryDlg::setQuery(int entry,
                            const KEduVocComparison &_comp)
 {
     m_row = entry;
-    queryOriginalColumn = col;
+    m_queryOriginalColumn = col;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     comp = _comp;
@@ -122,17 +120,17 @@ void AdjQueryDlg::setQuery(int entry,
 
     int mqtime = Prefs::maxTimePer();
     if (mqtime > 0) {
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -199,13 +197,13 @@ void AdjQueryDlg::knowItClicked()
 
 void AdjQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showAllClicked();
@@ -225,10 +223,10 @@ void AdjQueryDlg::dontKnowClicked()
 void AdjQueryDlg::slotUser1()
 {
 
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 }
 
 

@@ -51,8 +51,6 @@ SimpleQueryDlg::SimpleQueryDlg(QWidget *parent) : QueryDlgBase("", parent)
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-    qtimer = 0;
-
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
@@ -86,7 +84,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
     m_doc = doc;
     m_row = entry;
     m_expression = m_doc->entry(m_row);
-    queryOriginalColumn = column;
+    m_queryOriginalColumn = column;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->queryField->setFont(Prefs::tableFont());
@@ -155,17 +153,17 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
     int mqtime = Prefs::maxTimePer();
 
     if (mqtime > 0) {
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -183,13 +181,13 @@ void SimpleQueryDlg::slotAnswerChanged()
 
 void SimpleQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showAllClicked();
@@ -241,36 +239,36 @@ void SimpleQueryDlg::dontKnowClicked()
 
 void SimpleQueryDlg::slotUser1()
 {
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *exp = m_doc->entry(m_row);
 //   queryField->setText (exp->getTranslation(queryOriginalColumn));
 
     switch (querytype) {
     case KVTQuery::SynonymQuery: {
-            answerstring = exp->synonym(queryOriginalColumn);
-            mw->queryField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
+            answerstring = exp->synonym(m_queryOriginalColumn);
+            mw->queryField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
         }
         break;
 
     case KVTQuery::AntonymQuery: {
-            answerstring = exp->antonym(queryOriginalColumn);
-            mw->queryField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
+            answerstring = exp->antonym(m_queryOriginalColumn);
+            mw->queryField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
         }
         break;
 
     case KVTQuery::ParaphraseQuery: {
-            mw->queryField->setText(exp->paraphrase(queryOriginalColumn));
-            answerstring = queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn);
+            mw->queryField->setText(exp->paraphrase(m_queryOriginalColumn));
+            answerstring = m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn);
         }
         break;
 
     case KVTQuery::ExampleQuery: {
-            mw->queryField->setText(exp->example(queryOriginalColumn));
-            answerstring = queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn);
+            mw->queryField->setText(exp->example(m_queryOriginalColumn));
+            answerstring = m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn);
         }
         break;
 

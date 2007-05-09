@@ -179,7 +179,6 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
     }
 
     kv_doc = doc;
-    qtimer = 0;
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -188,14 +187,14 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         for (i = 0; i < kv_doc -> entryCount(); i ++) {
             KEduVocExpression* expr = kv_doc -> entry(i);
             if (split)
-                vocabulary += extractTranslations(queryTranslationColumn ? expr -> translation(queryTranslationColumn) : expr -> original());
+                vocabulary += extractTranslations(m_queryTranslationColumn ? expr -> translation(m_queryTranslationColumn) : expr -> original());
             else
-                vocabulary += queryTranslationColumn ? expr -> translation(queryTranslationColumn) : expr -> original();
+                vocabulary += m_queryTranslationColumn ? expr -> translation(m_queryTranslationColumn) : expr -> original();
             if (Prefs::swapDirection()) {
                 if (split)
-                    vocabulary += extractTranslations(queryOriginalColumn ? expr ->translation(queryOriginalColumn) : expr ->original());
+                    vocabulary += extractTranslations(m_queryOriginalColumn ? expr ->translation(m_queryOriginalColumn) : expr ->original());
                 else
-                    vocabulary += queryOriginalColumn ? expr ->translation(queryOriginalColumn) : expr ->original();
+                    vocabulary += m_queryOriginalColumn ? expr ->translation(m_queryOriginalColumn) : expr ->original();
             }
         }
         vocabulary.sort();
@@ -228,15 +227,14 @@ void RandomQueryDlg::setQuery(const QString &org,
 {
     kv_doc = doc;
     m_row = entry;
-    queryOriginalColumn = orgcol;
-    queryTranslationColumn = transcol;
-    translation = trans;
+    m_queryOriginalColumn = orgcol;
+    m_queryTranslationColumn = transcol;
+
     if (Prefs::split())
         translations = extractTranslations(trans);
-    else {
-        //translations << trans;
+    else
         translations = QStringList(trans);
-    }
+
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     int i;
@@ -284,17 +282,17 @@ void RandomQueryDlg::setQuery(const QString &org,
     mw->countbar->setValue(q_start - q_num + 1);
     int mqtime = Prefs::maxTimePer();
     if (mqtime > 0) {
-        if (qtimer == 0) {
-            qtimer = new QTimer(this);
-            qtimer->setSingleShot(true);
-            connect(qtimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            timercount = mqtime;
-            mw->timebar->setMaximum(timercount);
-            mw->timebar->setValue(timercount);
-            qtimer->start(1000);
+            m_timerCount = mqtime;
+            mw->timebar->setMaximum(m_timerCount);
+            mw->timebar->setValue(m_timerCount);
+            m_timer->start(1000);
         } else
             mw->timebar->setEnabled(false);
     } else
@@ -470,13 +468,13 @@ void RandomQueryDlg::knowItClicked()
 
 void RandomQueryDlg::timeoutReached()
 {
-    if (timercount > 0) {
-        timercount--;
-        mw->timebar->setValue(timercount);
-        qtimer->start(1000);
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        mw->timebar->setValue(m_timerCount);
+        m_timer->start(1000);
     }
 
-    if (timercount <= 0) {
+    if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showAllClicked();
@@ -504,18 +502,18 @@ void RandomQueryDlg::setHintFields()
     QString s;
     KEduVocExpression *exp = kv_doc->entry(m_row);
 
-    s = exp->remark(queryOriginalColumn);
+    s = exp->remark(m_queryOriginalColumn);
     mw->remark->setText(s);
     mw->c_remark->setEnabled(!s.isEmpty());
 
-    s = exp->fauxAmi(queryOriginalColumn, queryOriginalColumn != 0);
+    s = exp->fauxAmi(m_queryOriginalColumn, m_queryOriginalColumn != 0);
     mw->falseFriend->setText(s);
     mw->c_falsefriend->setEnabled(!s.isEmpty());
 
     s = "";
     QList<TypeRelation> all_types = KVTQuery::getRelation(false);
     for (int i = 0; i < (int) all_types.size(); i++) {
-        if (exp->type(queryOriginalColumn) == all_types[i].shortStr()) {
+        if (exp->type(m_queryOriginalColumn) == all_types[i].shortStr()) {
             s = all_types[i].longStr();
             break;
         }
@@ -527,13 +525,13 @@ void RandomQueryDlg::setHintFields()
 
 void RandomQueryDlg::slotUser1()
 {
-    if (qtimer != 0)
-        qtimer->stop();
+    if (m_timer != 0)
+        m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *exp = kv_doc->entry(m_row);
-    mw->orgField->setText(queryOriginalColumn == 0 ? exp->original() : exp->translation(queryOriginalColumn));
+    mw->orgField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
 
     if (Prefs::suggestions())
         for (int i = 0; i < fields; i ++)

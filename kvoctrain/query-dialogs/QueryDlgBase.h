@@ -97,13 +97,12 @@ protected:
     };
 
     int                m_row;
-    int                queryOriginalColumn;
-    int                queryTranslationColumn;
+    int                m_queryOriginalColumn;
+    int                m_queryTranslationColumn;
     KEduVocDocument   *m_doc;
     KEduVocExpression *m_expression;
-    QString            translation;
-    QTimer            *qtimer;
-    int                timercount;
+    QTimer            *m_timer;
+    int                m_timerCount;
 };
 
 
