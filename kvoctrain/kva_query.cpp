@@ -107,7 +107,6 @@ void KVocTrainApp::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     hide();
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
-    KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
     simpleQueryDlg = new SimpleQueryDlg(this);
     simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
@@ -197,7 +196,6 @@ void KVocTrainApp::slotTimeOutProperty(QueryDlgBase::Result res)
     }
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
-    KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
     simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     simpleQueryDlg->initFocus();
