@@ -31,7 +31,6 @@
 #include <QCloseEvent>
 
 #include <KLocale>
-#include <KRandomSequence>
 
 QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(parent)
 {
@@ -59,7 +58,7 @@ void QueryDlgBase::initFocus() const
 {}
 
 
-bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2, int) const
+bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2) const
 {
     return s1.simplified() == s2.simplified();
 }
@@ -77,7 +76,7 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
     if (!field->isEnabled())
         return true;
 
-    if (smartCompare(really, field->text(), 0)) {  // answer was right - green text
+    if (smartCompare(really, field->text())) {  // answer was right - green text
         setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x80, 0x00), QFont::Bold);
         return true;
     }
@@ -89,14 +88,14 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
 
 /**
  * Set text to black, font not bold.
- * @param field
+ * @param widget
  */
-void QueryDlgBase::resetField(QLineEdit *field)
+void QueryDlgBase::resetQueryWidget(QWidget *w)
 {
-    if (!field->isEnabled())
+    if (!w->isEnabled())
         return;
-    // set black text
-    setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x00, 0x00), QFont::Normal);
+    // set black text and normal font
+    setWidgetTextColorAndFontWeight(w, QColor(0x00, 0x00, 0x00), QFont::Normal);
 }
 
 
@@ -110,7 +109,7 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
     QStringList answerlist = really.split('\n');
     QStringList inputlist = field->toPlainText().split('\n');
     if (!mixed) // no tolerance
-        equal = smartCompare(really.simplified(), field->toPlainText().simplified(), 0);
+        equal = smartCompare(really, field->toPlainText());
     else {
         bool all = true;
         for (int ai = 0; ai < answerlist.count(); ai++) {
@@ -138,15 +137,6 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 }
 
 
-void QueryDlgBase::resetField(QTextEdit *field)
-{
-    if (!field->isEnabled())
-        return;
-
-    setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x00, 0x00), QFont::Normal);
-}
-
-
 void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
 {
     if (!radio->isEnabled())
@@ -162,17 +152,6 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
         if (widget2 != 0) {
             setWidgetTextColorAndFontWeight(widget2, QColor(0xff, 0x00, 0x00), QFont::Bold);
         }
-    }
-}
-
-void QueryDlgBase::resetButton(QRadioButton *radio, QWidget *widget2)
-{
-    if (!radio->isEnabled())
-        return;
-
-    setWidgetTextColorAndFontWeight(radio, QColor(0x00, 0x00, 0x00), QFont::Normal);
-    if (widget2 != 0) {
-        setWidgetTextColorAndFontWeight(widget2, QColor(0x00, 0x00, 0x00), QFont::Normal);
     }
 }
 
@@ -212,13 +191,6 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
     QFont ft = widget->font();
     ft.setWeight(QFontWeight);
     widget->setFont(ft);
-}
-
-
-int QueryDlgBase::getRandom(int range)
-{
-    KRandomSequence rs;
-    return rs.getLong(range);
 }
 
 #include "QueryDlgBase.moc"

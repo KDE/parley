@@ -29,7 +29,6 @@
 #include <QTextEdit>
 #include <QLabel>
 #include <QPushButton>
-#include <QKeyEvent>
 #include <QWidget>
 
 #include <KLocale>
@@ -50,6 +49,8 @@ SimpleQueryDlg::SimpleQueryDlg(QWidget *parent) : QueryDlgBase("", parent)
     connect(mw->answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
+    mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -168,14 +169,14 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->timebar->setEnabled(false);
     } else
         mw->timebar->setEnabled(false);
-    resetField(mw->answerField);
+    resetQueryWidget(mw->answerField);
 }
 
 
 void SimpleQueryDlg::slotAnswerChanged()
 {
     mw->verify->setDefault(true);
-    resetField(mw->answerField);
+    resetQueryWidget(mw->answerField);
 }
 
 
@@ -204,7 +205,7 @@ void SimpleQueryDlg::showMoreClicked()
         mw->answerField->setText(answerstring.left(mw->answerField->toPlainText().length()+1));
         mw->dont_know->setDefault(true);
     }
-    resetField(mw->answerField);
+    resetQueryWidget(mw->answerField);
 }
 
 
@@ -277,31 +278,6 @@ void SimpleQueryDlg::slotUser1()
     }
 }
 
-
-void SimpleQueryDlg::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        dontKnowClicked();
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
-            dontKnowClicked();
-        else if (mw->know_it->isDefault())
-            knowItClicked();
-        else if (mw->show_all->isDefault())
-            showAllClicked();
-        else if (mw->verify->isDefault())
-            verifyClicked();
-        break;
-
-    default:
-        e->ignore();
-        break;
-    }
-}
 
 void SimpleQueryDlg::setQueryFieldWordwrap()
 {

@@ -29,9 +29,9 @@
 #include <QPushButton>
 #include <QLineEdit>
 #include <QLabel>
-#include <QKeyEvent>
 
 #include <KLocale>
+#include <KRandomSequence>
 
 #include <kvttablemodel.h>
 #include <kvtlanguages.h>
@@ -46,19 +46,13 @@ AdjQueryDlg::AdjQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Comparison Traini
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()));
 
-    connect(mw->lev1Field, SIGNAL(returnPressed()), SLOT(returnPressed()));
-    connect(mw->lev2Field, SIGNAL(returnPressed()), SLOT(returnPressed()));
-    connect(mw->lev3Field, SIGNAL(returnPressed()), SLOT(returnPressed()));
-
     connect(mw->lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));
     connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
     connect(mw->lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
-    mw->lev1Label->setBuddy(mw->lev1Field);
-    mw->lev2Label->setBuddy(mw->lev2Field);
-    mw->lev3Label->setBuddy(mw->lev3Field);
+    mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -96,7 +90,8 @@ void AdjQueryDlg::setQuery(int entry,
     mw->lev2Field->setText("");
     mw->lev3Field->setText("");
 
-    int sel = getRandom(3);
+    KRandomSequence rs;
+    int sel = rs.getLong(3);
     switch (sel) {
     case 0:
         mw->lev1Field->setText(comp.l1());
@@ -183,9 +178,9 @@ void AdjQueryDlg::verifyClicked()
 
 void AdjQueryDlg::resetAllFields()
 {
-    resetField(mw->lev1Field);
-    resetField(mw->lev2Field);
-    resetField(mw->lev3Field);
+    resetQueryWidget(mw->lev1Field);
+    resetQueryWidget(mw->lev2Field);
+    resetQueryWidget(mw->lev3Field);
 }
 
 
@@ -222,7 +217,6 @@ void AdjQueryDlg::dontKnowClicked()
 
 void AdjQueryDlg::slotUser1()
 {
-
     if (m_timer != 0)
         m_timer->stop();
 
@@ -230,55 +224,24 @@ void AdjQueryDlg::slotUser1()
 }
 
 
-void AdjQueryDlg::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        dontKnowClicked();
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
-            dontKnowClicked();
-        else if (mw->know_it->isDefault())
-            knowItClicked();
-        else if (mw->show_all->isDefault())
-            showAllClicked();
-        else if (mw->verify->isDefault())
-            verifyClicked();
-        break;
-
-    default:
-        e->ignore();
-        break;
-    }
-}
-
-
-void AdjQueryDlg::returnPressed()
-{}
-
-
 void AdjQueryDlg::lev1Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->lev1Field);
+    resetQueryWidget(mw->lev1Field);
 }
 
 
 void AdjQueryDlg::lev2Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->lev2Field);
+    resetQueryWidget(mw->lev2Field);
 }
 
 
 void AdjQueryDlg::lev3Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->lev3Field);
+    resetQueryWidget(mw->lev3Field);
 }
-
 
 #include "AdjQueryDlg.moc"

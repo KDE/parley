@@ -48,13 +48,15 @@ MCQueryDlg::MCQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), 
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showItClicked()));
-    connect(mw->rb_trans5, SIGNAL(clicked()), SLOT(trans5clicked()));
-    connect(mw->rb_trans4, SIGNAL(clicked()), SLOT(trans4clicked()));
-    connect(mw->rb_trans3, SIGNAL(clicked()), SLOT(trans3clicked()));
-    connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(trans2clicked()));
-    connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(trans1clicked()));
+    connect(mw->rb_trans5, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->rb_trans4, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->rb_trans3, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(verifyClicked()));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
+    mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -71,14 +73,7 @@ MCQueryDlg::~MCQueryDlg()
 }
 
 
-void MCQueryDlg::setQuery(const QString &org,
-                          int entry,
-                          int orgcol,
-                          int transcol,
-                          int queryCycle,
-                          int q_num,
-                          int q_start,
-                          KEduVocDocument *doc)
+void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start, KEduVocDocument *doc)
 {
     m_doc = doc;
     m_row = entry;
@@ -92,10 +87,8 @@ void MCQueryDlg::setQuery(const QString &org,
     mw->show_all->setDefault(true);
 
     // Query cycle - how often did this show up (?)
-    QString s;
-    s.setNum(queryCycle);
-    mw->progCount->setText(s);
-    //Counter - how many right out of...
+    mw->progCount->setText(QString::number(queryCycle));
+    //Counter - how many correct out of...
     mw->countbar->setMaximum(q_start);
     mw->countbar->setValue(q_start - q_num + 1);
 
@@ -119,29 +112,32 @@ void MCQueryDlg::setQuery(const QString &org,
         mw->timebar->setEnabled(false);
 
     KRandomSequence randomSequence;
-    QList<QString> strings; // great descriptive name
+    QStringList choices;
     button_ref.clear();
-    button_ref.append(RB_Label(mw->rb_trans1, mw->trans1));
-    button_ref.append(RB_Label(mw->rb_trans2, mw->trans2));
-    button_ref.append(RB_Label(mw->rb_trans3, mw->trans3));
-    button_ref.append(RB_Label(mw->rb_trans4, mw->trans4));
-    button_ref.append(RB_Label(mw->rb_trans5, mw->trans5));
+    button_ref.append(qMakePair(mw->rb_trans1, mw->trans1));
+    button_ref.append(qMakePair(mw->rb_trans2, mw->trans2));
+    button_ref.append(qMakePair(mw->rb_trans3, mw->trans3));
+    button_ref.append(qMakePair(mw->rb_trans4, mw->trans4));
+    button_ref.append(qMakePair(mw->rb_trans5, mw->trans5));
     randomSequence.randomize(button_ref);
-    resetButton(button_ref[0].rb, button_ref[0].label);
-    resetButton(button_ref[1].rb, button_ref[1].label);
-    resetButton(button_ref[2].rb, button_ref[2].label);
-    resetButton(button_ref[3].rb, button_ref[3].label);
-    resetButton(button_ref[4].rb, button_ref[4].label);
-
-    solution = 0;
+    resetQueryWidget(button_ref[0].first);
+    resetQueryWidget(button_ref[1].first);
+    resetQueryWidget(button_ref[2].first);
+    resetQueryWidget(button_ref[3].first);
+    resetQueryWidget(button_ref[4].first);
+    resetQueryWidget(button_ref[0].second);
+    resetQueryWidget(button_ref[1].second);
+    resetQueryWidget(button_ref[2].second);
+    resetQueryWidget(button_ref[3].second);
+    resetQueryWidget(button_ref[4].second);
 
     KEduVocMultipleChoice multipleChoice = vocExpression->multipleChoice(m_queryTranslationColumn);
-    for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int)multipleChoice.size()); ++i) {
-        strings.push_back(multipleChoice.mc(i));
+    for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
+        choices.append(multipleChoice.mc(i));
     }
 
-    if (strings.count() > 1)
-        randomSequence.randomize(strings);
+    if (choices.count() > 1)
+        randomSequence.randomize(choices);
 
     // always include false friend
     QString ff;
@@ -150,83 +146,81 @@ void MCQueryDlg::setQuery(const QString &org,
     else
         ff = vocExpression->fauxAmi(m_queryOriginalColumn, true).simplified();
 
-    if (ff.length())
-        strings.insert(strings.begin(), ff);
+    if (!ff.isEmpty())
+        choices.prepend(ff);
 
     if (doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
-        for (int i = strings.size(); i < doc->entryCount(); ++i) {
+        for (int i = choices.count(); i < doc->entryCount(); ++i) {
             KEduVocExpression *act = doc->entry(i);
 
             if (act != vocExpression) {
                 if (m_queryTranslationColumn == 0)
-                    strings.push_back(act->original());
+                    choices.append(act->original());
                 else
-                    strings.push_back(act->translation(m_queryTranslationColumn));
+                    choices.append(act->translation(m_queryTranslationColumn));
             }
         }
     } else {
         QList<KEduVocExpression*> exprlist;
-        solution = 0;
 
         int count = MAX_MULTIPLE_CHOICE;
         // gather random expressions for the choice
         while (count > 0) {
-            int nr = getRandom(doc->entryCount()); // * ((1.0*rand())/RAND_MAX));
+            int nr = randomSequence.getLong(doc->entryCount());
             // append if new expr found
             bool newex = true;
-            for (int i = 0; newex && i < (int) exprlist.size(); i++) {
+            for (int i = 0; newex && i < exprlist.count(); i++) {
                 if (exprlist[i] == doc->entry(nr))
                     newex = false;
             }
             if (newex && vocExpression != doc->entry(nr)) {
                 count--;
-                exprlist.push_back(doc->entry(nr));
+                exprlist.append(doc->entry(nr));
             }
         }
 
-        for (int i = 0; i < (int) exprlist.size(); i++) {
+        for (int i = 0; i < exprlist.count(); i++) {
             if (m_queryTranslationColumn == 0)
-                strings.push_back(exprlist[i]->original());
+                choices.append(exprlist[i]->original());
             else
-                strings.push_back(exprlist[i]->translation(m_queryTranslationColumn));
+                choices.append(exprlist[i]->translation(m_queryTranslationColumn));
         }
 
     }
 
-    // solution is always the firandomSequencet
     if (m_queryTranslationColumn == 0)
-        strings.insert(strings.begin(), vocExpression->original());
+        choices.prepend(vocExpression->original());
     else
-        strings.insert(strings.begin(), vocExpression->translation(m_queryTranslationColumn));
+        choices.prepend(vocExpression->translation(m_queryTranslationColumn));
 
-    for (int i = strings.size(); i < MAX_MULTIPLE_CHOICE; i++)
-        strings.push_back("");
+    for (int i = choices.count(); i < MAX_MULTIPLE_CHOICE; i++)
+        choices.append("");
 
-    if (strings.size() > MAX_MULTIPLE_CHOICE)
-        strings.erase(strings.begin()+MAX_MULTIPLE_CHOICE, strings.end());
+    if (choices.count() > MAX_MULTIPLE_CHOICE)
+        choices.erase(choices.begin()+MAX_MULTIPLE_CHOICE, choices.end());
 
-    button_ref[0].rb->setEnabled(!strings[0].isEmpty());
-    button_ref[1].rb->setEnabled(!strings[1].isEmpty());
-    button_ref[2].rb->setEnabled(!strings[2].isEmpty());
-    button_ref[3].rb->setEnabled(!strings[3].isEmpty());
-    button_ref[4].rb->setEnabled(!strings[4].isEmpty());
+    button_ref[0].first->setEnabled(!choices[0].isEmpty());
+    button_ref[1].first->setEnabled(!choices[1].isEmpty());
+    button_ref[2].first->setEnabled(!choices[2].isEmpty());
+    button_ref[3].first->setEnabled(!choices[3].isEmpty());
+    button_ref[4].first->setEnabled(!choices[4].isEmpty());
 
-    button_ref[0].label->setEnabled(!strings[0].isEmpty());
-    button_ref[1].label->setEnabled(!strings[1].isEmpty());
-    button_ref[2].label->setEnabled(!strings[2].isEmpty());
-    button_ref[3].label->setEnabled(!strings[3].isEmpty());
-    button_ref[4].label->setEnabled(!strings[4].isEmpty());
+    button_ref[0].second->setEnabled(!choices[0].isEmpty());
+    button_ref[1].second->setEnabled(!choices[1].isEmpty());
+    button_ref[2].second->setEnabled(!choices[2].isEmpty());
+    button_ref[3].second->setEnabled(!choices[3].isEmpty());
+    button_ref[4].second->setEnabled(!choices[4].isEmpty());
 
-    button_ref[0].label->setText(strings[0]);
-    button_ref[0].label->setFont(Prefs::tableFont());
-    button_ref[1].label->setText(strings[1]);
-    button_ref[1].label->setFont(Prefs::tableFont());
-    button_ref[2].label->setText(strings[2]);
-    button_ref[2].label->setFont(Prefs::tableFont());
-    button_ref[3].label->setText(strings[3]);
-    button_ref[3].label->setFont(Prefs::tableFont());
-    button_ref[4].label->setText(strings[4]);
-    button_ref[4].label->setFont(Prefs::tableFont());
+    button_ref[0].second->setText(choices[0]);
+    button_ref[0].second->setFont(Prefs::tableFont());
+    button_ref[1].second->setText(choices[1]);
+    button_ref[1].second->setFont(Prefs::tableFont());
+    button_ref[2].second->setText(choices[2]);
+    button_ref[2].second->setFont(Prefs::tableFont());
+    button_ref[3].second->setText(choices[3]);
+    button_ref[3].second->setFont(Prefs::tableFont());
+    button_ref[4].second->setText(choices[4]);
+    button_ref[4].second->setFont(Prefs::tableFont());
 
     mw->rb_trans1->setChecked(false);
     mw->rb_trans2->setChecked(false);
@@ -246,64 +240,78 @@ void MCQueryDlg::initFocus() const
 
 void MCQueryDlg::showItClicked()
 {
-    resetButton(button_ref[0].rb, button_ref[0].label);
-    resetButton(button_ref[1].rb, button_ref[1].label);
-    resetButton(button_ref[2].rb, button_ref[2].label);
-    resetButton(button_ref[3].rb, button_ref[3].label);
-    resetButton(button_ref[4].rb, button_ref[4].label);
+    resetQueryWidget(button_ref[0].first);
+    resetQueryWidget(button_ref[1].first);
+    resetQueryWidget(button_ref[2].first);
+    resetQueryWidget(button_ref[3].first);
+    resetQueryWidget(button_ref[4].first);
+    resetQueryWidget(button_ref[0].second);
+    resetQueryWidget(button_ref[1].second);
+    resetQueryWidget(button_ref[2].second);
+    resetQueryWidget(button_ref[3].second);
+    resetQueryWidget(button_ref[4].second);
 
-    button_ref[solution].rb->setFocus();
-    button_ref[solution].rb->setChecked(true);
-    verifyButton(button_ref[solution].rb, true, button_ref[solution].label);
+    button_ref[0].first->setFocus();
+    button_ref[0].first->setChecked(true);
+    verifyButton(button_ref[0].first, true, button_ref[0].second);
     mw->dont_know->setDefault(true);
 }
 
 
 void MCQueryDlg::verifyClicked()
 {
+    bool known = button_ref[0].first->isChecked();
 
-    bool known = false;
-    if (solution == 0)
-        known = button_ref[0].rb->isChecked();
-    if (solution == 1)
-        known = button_ref[1].rb->isChecked();
-    if (solution == 2)
-        known = button_ref[2].rb->isChecked();
-    if (solution == 3)
-        known = button_ref[3].rb->isChecked();
-    if (solution == 4)
-        known = button_ref[4].rb->isChecked();
-
-    if (button_ref[0].rb->isChecked()) {
-        verifyButton(button_ref[0].rb, known, button_ref[0].label);
-        resetButton(button_ref[1].rb, button_ref[1].label);
-        resetButton(button_ref[2].rb, button_ref[2].label);
-        resetButton(button_ref[3].rb, button_ref[3].label);
-        resetButton(button_ref[4].rb, button_ref[4].label);
-    } else if (button_ref[1].rb->isChecked()) {
-        resetButton(button_ref[0].rb, button_ref[0].label);
-        verifyButton(button_ref[1].rb, known, button_ref[1].label);
-        resetButton(button_ref[2].rb, button_ref[2].label);
-        resetButton(button_ref[3].rb, button_ref[3].label);
-        resetButton(button_ref[4].rb, button_ref[4].label);
-    } else if (button_ref[2].rb->isChecked()) {
-        resetButton(button_ref[0].rb, button_ref[0].label);
-        resetButton(button_ref[1].rb, button_ref[1].label);
-        verifyButton(button_ref[2].rb, known, button_ref[2].label);
-        resetButton(button_ref[3].rb, button_ref[3].label);
-        resetButton(button_ref[4].rb, button_ref[4].label);
-    } else if (button_ref[3].rb->isChecked()) {
-        resetButton(button_ref[0].rb, button_ref[0].label);
-        resetButton(button_ref[1].rb, button_ref[1].label);
-        resetButton(button_ref[2].rb, button_ref[2].label);
-        verifyButton(button_ref[3].rb, known, button_ref[3].label);
-        resetButton(button_ref[4].rb, button_ref[4].label);
-    } else if (button_ref[4].rb->isChecked()) {
-        resetButton(button_ref[0].rb, button_ref[0].label);
-        resetButton(button_ref[1].rb, button_ref[1].label);
-        resetButton(button_ref[2].rb, button_ref[2].label);
-        resetButton(button_ref[3].rb, button_ref[3].label);
-        verifyButton(button_ref[4].rb, known, button_ref[4].label);
+    if (button_ref[0].first->isChecked()) {
+        verifyButton(button_ref[0].first, known, button_ref[0].second);
+        resetQueryWidget(button_ref[1].first);
+        resetQueryWidget(button_ref[1].second);
+        resetQueryWidget(button_ref[2].first);
+        resetQueryWidget(button_ref[2].second);
+        resetQueryWidget(button_ref[3].first);
+        resetQueryWidget(button_ref[3].second);
+        resetQueryWidget(button_ref[4].first);
+        resetQueryWidget(button_ref[4].second);
+    } else if (button_ref[1].first->isChecked()) {
+        resetQueryWidget(button_ref[0].first);
+        resetQueryWidget(button_ref[0].second);
+        verifyButton(button_ref[1].first, known, button_ref[1].second);
+        resetQueryWidget(button_ref[2].first);
+        resetQueryWidget(button_ref[2].second);
+        resetQueryWidget(button_ref[3].first);
+        resetQueryWidget(button_ref[3].second);
+        resetQueryWidget(button_ref[4].first);
+        resetQueryWidget(button_ref[4].second);
+    } else if (button_ref[2].first->isChecked()) {
+        resetQueryWidget(button_ref[0].first);
+        resetQueryWidget(button_ref[0].second);
+        resetQueryWidget(button_ref[1].first);
+        resetQueryWidget(button_ref[1].second);
+        verifyButton(button_ref[2].first, known, button_ref[2].second);
+        resetQueryWidget(button_ref[3].first);
+        resetQueryWidget(button_ref[3].second);
+        resetQueryWidget(button_ref[4].first);
+        resetQueryWidget(button_ref[4].second);
+    } else if (button_ref[3].first->isChecked()) {
+        resetQueryWidget(button_ref[0].first);
+        resetQueryWidget(button_ref[0].second);
+        resetQueryWidget(button_ref[1].first);
+        resetQueryWidget(button_ref[1].second);
+        resetQueryWidget(button_ref[2].first);
+        resetQueryWidget(button_ref[2].second);
+        verifyButton(button_ref[3].first, known, button_ref[3].second);
+        resetQueryWidget(button_ref[4].first);
+        resetQueryWidget(button_ref[4].second);
+    } else if (button_ref[4].first->isChecked()) {
+        resetQueryWidget(button_ref[0].first);
+        resetQueryWidget( button_ref[0].second);
+        resetQueryWidget(button_ref[1].first);
+        resetQueryWidget(button_ref[1].second);
+        resetQueryWidget(button_ref[2].first);
+        resetQueryWidget(button_ref[2].second);
+        resetQueryWidget(button_ref[3].first);
+        resetQueryWidget(button_ref[3].second);
+        verifyButton(button_ref[4].first, known, button_ref[4].second);
     }
 
     if (known) {
@@ -353,71 +361,13 @@ void MCQueryDlg::dontKnowClicked()
 
 void MCQueryDlg::slotUser1()
 {
-
     if (m_timer != 0)
         m_timer->stop();
 
     emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    mw->orgField->setText(m_queryOriginalColumn == 0
-                          ? vocExpression->original()
-                          : vocExpression->translation(m_queryOriginalColumn));
+    mw->orgField->setText(m_queryOriginalColumn == 0 ? vocExpression->original() : vocExpression->translation(m_queryOriginalColumn));
 }
-
-
-void MCQueryDlg::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        dontKnowClicked();
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
-            dontKnowClicked();
-        else if (mw->know_it->isDefault())
-            knowItClicked();
-        else if (mw->show_all->isDefault())
-            showItClicked();
-        break;
-
-    default:
-        e->ignore();
-        break;
-    }
-}
-
-
-void MCQueryDlg::trans1clicked()
-{
-    verifyClicked();
-}
-
-
-void MCQueryDlg::trans2clicked()
-{
-    verifyClicked();
-}
-
-
-void MCQueryDlg::trans3clicked()
-{
-    verifyClicked();
-}
-
-
-void MCQueryDlg::trans4clicked()
-{
-    verifyClicked();
-}
-
-
-void MCQueryDlg::trans5clicked()
-{
-    verifyClicked();
-}
-
 
 #include "MCQueryDlg.moc"

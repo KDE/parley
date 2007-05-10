@@ -26,8 +26,6 @@
 #ifndef VerbQueryDlg_included
 #define VerbQueryDlg_included
 
-#include <QKeyEvent>
-
 #include "ui_VerbQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
@@ -54,7 +52,6 @@ public slots:
 
 protected:
     bool next();
-    void keyPressEvent(QKeyEvent *e);
     void resetAllFields();
 
 protected slots:
@@ -62,7 +59,6 @@ protected slots:
     void slotP3pfChanged(const QString&);
     void slotP3snChanged(const QString&);
     void showAllClicked();
-    void slotReturnPressed();
     void slotP3smChanged(const QString&);
     void knowItClicked();
     void dontKnowClicked();

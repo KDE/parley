@@ -26,8 +26,6 @@
 #ifndef AdjQueryDlg_included
 #define AdjQueryDlg_included
 
-#include <QKeyEvent>
-
 #include "ui_AdjQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
@@ -51,7 +49,6 @@ public slots:
     virtual void initFocus() const;
 
 protected:
-    void keyPressEvent(QKeyEvent *e);
     void resetAllFields();
 
 protected slots:
@@ -61,7 +58,6 @@ protected slots:
     void showAllClicked();
     void slotUser1();
     void knowItClicked();
-    void returnPressed();
     void dontKnowClicked();
     void verifyClicked();
     void timeoutReached();

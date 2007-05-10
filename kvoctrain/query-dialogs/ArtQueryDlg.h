@@ -26,8 +26,6 @@
 #ifndef ArtQueryDlg_included
 #define ArtQueryDlg_included
 
-#include <QKeyEvent>
-
 #include "ui_ArtQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
@@ -51,20 +49,13 @@ public:
 public slots:
     virtual void initFocus() const;
 
-protected:
-    void keyPressEvent(QKeyEvent *e);
-
 protected slots:
     void showMoreClicked();
     void showAllClicked();
-    void slotFemClicked();
     void slotUser1();
     void knowItClicked();
-    void slotNaturalClicked();
-    void slotMaleClicked();
     void dontKnowClicked();
     void verifyClicked();
-    void returnPressed();
     void timeoutReached();
 
 protected:

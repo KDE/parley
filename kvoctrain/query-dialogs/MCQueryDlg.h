@@ -26,8 +26,6 @@
 #ifndef MCQuery_Dlg_H
 #define MCQuery_Dlg_H
 
-#include <QKeyEvent>
-
 #include "ui_MCQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
@@ -40,39 +38,19 @@ public:
 
     ~MCQueryDlg();
 
-    void setQuery(const QString &org,
-                  int entry,
-                  int orgcol,
-                  int transcol,
-                  int query_cycle,
-                  int query_num,
-                  int query_startnum,
-                  KEduVocDocument  *doc);
+    void setQuery(const QString &org, int entry, int orgcol, int transcol, int query_cycle, int query_num, int query_startnum, KEduVocDocument *doc);
 
 public slots:
     virtual void initFocus() const;
-
-protected:
-    void keyPressEvent(QKeyEvent *e);
-
-public slots:
     void showItClicked();
     void knowItClicked();
     void dontKnowClicked();
     void timeoutReached();
     void slotUser1();
-    void trans1clicked();
-    void trans2clicked();
-    void trans3clicked();
-    void trans4clicked();
-    void trans5clicked();
     void verifyClicked();
 
-protected:
-    int solution;
-    QList<RB_Label> button_ref;
-
 private:
+    QList<QPair<QRadioButton *, QLabel *> > button_ref;
     Ui::MCQueryDlgForm * mw;
 };
 

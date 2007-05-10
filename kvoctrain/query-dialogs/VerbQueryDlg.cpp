@@ -29,7 +29,6 @@
 #include <QPushButton>
 #include <QLabel>
 #include <QLineEdit>
-#include <QKeyEvent>
 
 #include <KLocale>
 
@@ -45,17 +44,6 @@ VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training")
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()));
 
-    connect(mw->p3pmField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p3pnField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p3snField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p3smField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p3pfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p3sfField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p2pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p2sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p1pField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-    connect(mw->p1sField, SIGNAL(returnPressed()), SLOT(slotReturnPressed()));
-
     connect(mw->p3pmField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pmChanged(const QString&)));
     connect(mw->p3snField, SIGNAL(textChanged(const QString&)), SLOT(slotP3snChanged(const QString&)));
     connect(mw->p3pnField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pnChanged(const QString&)));
@@ -68,6 +56,8 @@ VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training")
     connect(mw->p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
+    mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -308,17 +298,17 @@ void VerbQueryDlg::verifyClicked()
 
 void VerbQueryDlg::resetAllFields()
 {
-    resetField(mw->p1sField);
-    resetField(mw->p2sField);
-    resetField(mw->p3sfField);
-    resetField(mw->p3smField);
-    resetField(mw->p3snField);
+    resetQueryWidget(mw->p1sField);
+    resetQueryWidget(mw->p2sField);
+    resetQueryWidget(mw->p3sfField);
+    resetQueryWidget(mw->p3smField);
+    resetQueryWidget(mw->p3snField);
 
-    resetField(mw->p1pField);
-    resetField(mw->p2pField);
-    resetField(mw->p3pfField);
-    resetField(mw->p3pmField);
-    resetField(mw->p3pnField);
+    resetQueryWidget(mw->p1pField);
+    resetQueryWidget(mw->p2pField);
+    resetQueryWidget(mw->p3pfField);
+    resetQueryWidget(mw->p3pmField);
+    resetQueryWidget(mw->p3pnField);
 }
 
 
@@ -390,103 +380,73 @@ void VerbQueryDlg::slotUser1()
 }
 
 
-void VerbQueryDlg::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        dontKnowClicked();
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
-            dontKnowClicked();
-        else if (mw->know_it->isDefault())
-            knowItClicked();
-        else if (mw->show_all->isDefault())
-            showAllClicked();
-        else if (mw->verify->isDefault())
-            verifyClicked();
-        break;
-
-    default:
-        e->ignore();
-        break;
-    }
-}
-
-
 void VerbQueryDlg::slotP3pfChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3pfField);
+    resetQueryWidget(mw->p3pfField);
 }
 
 
 void VerbQueryDlg::slotP3snChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3snField);
+    resetQueryWidget(mw->p3snField);
 }
-
-
-void VerbQueryDlg::slotReturnPressed()
-{}
 
 
 void VerbQueryDlg::slotP3smChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3smField);
+    resetQueryWidget(mw->p3smField);
 }
 
 
 void VerbQueryDlg::slotP3pnChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3pnField);
+    resetQueryWidget(mw->p3pnField);
 }
 
 
 void VerbQueryDlg::slotP3sfChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3sfField);
+    resetQueryWidget(mw->p3sfField);
 }
 
 
 void VerbQueryDlg::slotP1sChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p1sField);
+    resetQueryWidget(mw->p1sField);
 }
 
 
 void VerbQueryDlg::slotP2sChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p2sField);
+    resetQueryWidget(mw->p2sField);
 }
 
 
 void VerbQueryDlg::slotP3pmChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p3pmField);
+    resetQueryWidget(mw->p3pmField);
 }
 
 
 void VerbQueryDlg::slotP1pChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p1pField);
+    resetQueryWidget(mw->p1pField);
 }
 
 
 void VerbQueryDlg::slotP2pChanged(const QString&)
 {
     mw->verify->setDefault(true);
-    resetField(mw->p2pField);
+    resetQueryWidget(mw->p2pField);
 }
 
 #include "VerbQueryDlg.moc"

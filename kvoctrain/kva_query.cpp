@@ -753,7 +753,6 @@ void KVocTrainApp::slotTimeOutQuery(QueryDlgBase::Result res)
         }
 
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
-
         randomQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         if (mcQueryDlg == 0) {

@@ -26,7 +26,6 @@
 #ifndef Query_Dlg_Base_H
 #define Query_Dlg_Base_H
 
-#include <QLabel>
 #include <QCloseEvent>
 
 #include <KDialog>
@@ -40,7 +39,6 @@ class KEduVocDocument;
 
 class QLineEdit;
 class QTextEdit;
-class QLabel;
 class QRadioButton;
 
 class QueryDlgBase : public KDialog
@@ -54,27 +52,23 @@ public:
     virtual ~QueryDlgBase();
 
     /** compare two strings with simplified applied first */
-    bool smartCompare(const QString&, const QString&, int level) const;
+    bool smartCompare(const QString&, const QString&) const;
 
     /** compare lineEdit and string, set lineEdit style */
     bool verifyField(QLineEdit *field, const QString &really);
-    /** set the lineEdit to default (enter mode, black font) */
-    void resetField(QLineEdit *field);
 
     /** the same for QTextEdit and QRadioButton */
     bool verifyField(QTextEdit *field, const QString &really, bool mixed);
-    void resetField(QTextEdit *field);
-
     void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
-    void resetButton(QRadioButton *radio, QWidget *widget2 = 0);
+
+    /** set the default color and font */
+    void resetQueryWidget(QWidget *);
 
     // Show string after selecting known/unknown
     // depending on progress and randomness
     QString  getOKComment(int percent);
     QString  getNOKComment(int percent);
     QString  getTimeoutComment(int percent);
-
-    int getRandom(int range);
 
     virtual void initFocus() const;
 
@@ -86,15 +80,6 @@ protected:
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
     virtual void closeEvent(QCloseEvent*e);
-
-    struct RB_Label
-    {
-        RB_Label(QRadioButton* _rb, QLabel *_label) : rb(_rb), label(_label)
-        {}
-
-        QRadioButton  *rb;
-        QLabel        *label;
-    };
 
     int                m_row;
     int                m_queryOriginalColumn;

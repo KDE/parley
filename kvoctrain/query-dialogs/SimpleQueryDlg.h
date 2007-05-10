@@ -26,8 +26,6 @@
 #ifndef SimpleQueryDlg_included
 #define SimpleQueryDlg_included
 
-#include <QKeyEvent>
-
 #include "ui_SimpleQueryDlgForm.h"
 #include "QueryDlgBase.h"
 
@@ -50,9 +48,6 @@ public:
 
 public slots:
     virtual void initFocus() const;
-
-protected:
-    void keyPressEvent(QKeyEvent *e);
 
 public slots:
     void showMoreClicked();

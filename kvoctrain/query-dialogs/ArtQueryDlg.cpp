@@ -30,7 +30,6 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QButtonGroup>
-#include <QKeyEvent>
 
 #include <KLocale>
 
@@ -46,11 +45,13 @@ ArtQueryDlg::ArtQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Article Training"
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()));
 
-    connect(mw->natural, SIGNAL(clicked()), SLOT(slotNaturalClicked()));
-    connect(mw->male, SIGNAL(clicked()), SLOT(slotMaleClicked()));
-    connect(mw->rb_fem, SIGNAL(clicked()), SLOT(slotFemClicked()));
+    connect(mw->natural, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->male, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->rb_fem, SIGNAL(clicked()), SLOT(verifyClicked()));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+
+    mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -162,9 +163,9 @@ void ArtQueryDlg::initFocus() const
 
 void ArtQueryDlg::showAllClicked()
 {
-    resetButton(mw->rb_fem);
-    resetButton(mw->male);
-    resetButton(mw->natural);
+    resetQueryWidget(mw->rb_fem);
+    resetQueryWidget(mw->male);
+    resetQueryWidget(mw->natural);
 
     if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
         mw->rb_fem->setChecked(true);
@@ -196,16 +197,16 @@ void ArtQueryDlg::verifyClicked()
 
     if (mw->rb_fem->isChecked()) {
         verifyButton(mw->rb_fem, known);
-        resetButton(mw->male);
-        resetButton(mw->natural);
+        resetQueryWidget(mw->male);
+        resetQueryWidget(mw->natural);
     } else if (mw->male->isChecked()) {
         verifyButton(mw->male, known);
-        resetButton(mw->rb_fem);
-        resetButton(mw->natural);
+        resetQueryWidget(mw->rb_fem);
+        resetQueryWidget(mw->natural);
     } else if (mw->natural->isChecked()) {
         verifyButton(mw->natural, known);
-        resetButton(mw->male);
-        resetButton(mw->rb_fem);
+        resetQueryWidget(mw->male);
+        resetQueryWidget(mw->rb_fem);
     }
 
     if (known)
@@ -255,63 +256,5 @@ void ArtQueryDlg::slotUser1()
 
     emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 }
-
-
-void ArtQueryDlg::keyPressEvent(QKeyEvent *e)
-{
-    switch (e->key()) {
-    case Qt::Key_Escape:
-        dontKnowClicked();
-        break;
-
-    case Qt::Key_Return:
-    case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
-            dontKnowClicked();
-        else if (mw->know_it->isDefault())
-            knowItClicked();
-        else if (mw->show_all->isDefault())
-            showAllClicked();
-        else if (mw->verify->isDefault())
-            verifyClicked();
-        break;
-
-    default:
-        e->ignore();
-        break;
-    }
-}
-
-
-void ArtQueryDlg::returnPressed()
-{}
-
-
-void ArtQueryDlg::slotFemClicked()
-{
-    resetButton(mw->rb_fem);
-    resetButton(mw->male);
-    resetButton(mw->natural);
-    verifyClicked();
-}
-
-
-void ArtQueryDlg::slotMaleClicked()
-{
-    resetButton(mw->male);
-    resetButton(mw->natural);
-    resetButton(mw->rb_fem);
-    verifyClicked();
-}
-
-
-void ArtQueryDlg::slotNaturalClicked()
-{
-    resetButton(mw->natural);
-    resetButton(mw->male);
-    resetButton(mw->rb_fem);
-    verifyClicked();
-}
-
 
 #include "ArtQueryDlg.moc"
