@@ -43,7 +43,6 @@
 #include "queryoptions.h"
 #include "thresholdoptions.h"
 #include "blockoptions.h"
-#include "kvtlanguages.h"
 #include "kvtquery.h"
 #include "profilesdialog.h"
 
@@ -52,15 +51,13 @@ static const char unapplied[] = I18N_NOOP(
                                     "If you save a profile, those changes will not be included.\n"
                                     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KVTLanguageList & ls, KVTQuery * m, QWidget *parent, const char *name, KConfigSkeleton *config, FaceType dialogType,
-                               int /*dialogButtons*/, ButtonCode /*defaultButton*/, bool /*modal*/)
-        : KConfigDialog(parent, name, config),
-        m_langSet(ls)
+KVocTrainPrefs::KVocTrainPrefs(const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
+  : KConfigDialog(parent, name, config), m_langSet(ls)
 {
     setButtons(Default|Ok|Apply|Cancel|Help|User1);
     setDefaultButton(Ok);
     setModal(true);
-    setFaceType(dialogType);
+
     m_languagePage = 0;
     m_config = config;
     m_queryManager = m;

@@ -19,7 +19,9 @@
 #ifndef KVOCTRAINPREFS_H
 #define KVOCTRAINPREFS_H
 
-#include <kconfigdialog.h>
+#include <KConfigDialog>
+
+#include "kvtlanguages.h"
 
 /**
   *@author Peter Hedlund
@@ -33,7 +35,7 @@ class QueryOptions;
 class ThresholdOptions;
 class BlockOptions;
 
-class KVTLanguageList;
+//class KVTLanguageList;
 class KEduVocDocument;
 class KVTQuery;
 class KComboBox;
@@ -46,8 +48,7 @@ public:
     /**
      * Creates a configuration dialog.
      */
-    KVocTrainPrefs(KVTLanguageList & ls, KVTQuery * m, QWidget *parent=0, const char *name=0, KConfigSkeleton *config=0, FaceType dialogType=List,
-                   int dialogButtons=Default|Ok|Apply|Cancel|Help, ButtonCode defaultButton=Ok, bool modal=false);
+    KVocTrainPrefs(const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
     /**
      * Displays the dialog with the language page selected.
@@ -92,11 +93,11 @@ private:
     ThresholdOptions * m_thresholdOptions;
     BlockOptions * m_blockOptions;
 
-    KConfigSkeleton * m_config;
-    KVTLanguageList & m_langSet;
-    KEduVocDocument * m_doc;
-    KComboBox *m_lessons;
-    KVTQuery * m_queryManager;
+    KConfigSkeleton *m_config;
+    KVTLanguageList  m_langSet;
+    KEduVocDocument *m_doc;
+    KComboBox       *m_lessons;
+    KVTQuery        *m_queryManager;
     KPageWidgetItem *m_languagePage;
 };
 
