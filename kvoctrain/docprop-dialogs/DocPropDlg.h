@@ -49,6 +49,8 @@ class DocPropsDlg : public KPageDialog
 public:
     DocPropsDlg(KEduVocDocument *doc, QWidget *parent);
 
+    ~DocPropsDlg();
+
     inline bool getSorting()  const
     {
         return docOptPage->getSorting();
