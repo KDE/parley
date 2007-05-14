@@ -535,7 +535,7 @@ void KVocTrainApp::slotDocumentProperties()
 
 void KVocTrainApp::slotDocPropsLang()
 {
-    DocPropsLangDlg ldlg(m_doc, m_languages);
+    DocPropsLangDlg ldlg(m_doc, m_languages, this);
 
     if (ldlg.exec() == QDialog::Accepted) {
         for (int i = 0; i < m_doc->identifierCount(); i++) {

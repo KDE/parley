@@ -26,19 +26,18 @@
 #include "DocPropLangDlg.h"
 
 #include <QStringList>
-#include <QLayout>
 #include <QList>
 #include <QPixmap>
-#include <QVBoxLayout>
-#include <QFrame>
 
-#include <klocale.h>
-#include <kpagewidgetmodel.h>
-#include <kicon.h>
+#include <KLocale>
+#include <KPageWidgetModel>
+#include <KIcon>
+#include <KConfig>
+#include <KGlobal>
 
 #include "LangPropPage.h"
 #include <keduvocdocument.h>
-#include <kvtlanguages.h>
+#include "kvtlanguages.h"
 
 DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &langset, QWidget *parent) : KPageDialog(parent)
 {
@@ -47,11 +46,10 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
     setDefaultButton(Ok);
     setModal(true);
     setFaceType(KPageDialog::Tabbed);
-    QFrame *page;
-    QVBoxLayout *topLayout;
+
     LangPropPage *lpp;
 
-    for (int i = 0; i < (int) doc->identifierCount(); i++) {
+    for (int i = 0; i < doc->identifierCount(); i++) {
         QString s;
         if (i == 0)
             s = doc->originalIdentifier();
@@ -66,25 +64,29 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
         else
             tabCaption = (s);
 
-        page = new QFrame();
-        KPageWidgetItem *pageItem = new KPageWidgetItem(page, tabCaption);
+        lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->article(i), 0);
+        KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, tabCaption);
         pageItem->setHeader(tabCaption);
         pageItem->setIcon(KIcon(QPixmap(langset[idx].pixmapFile())));
         addPage(pageItem);
-        topLayout = new QVBoxLayout(page);
-        topLayout->setMargin(0);
-        topLayout->setSpacing(KDialog::spacingHint());
-        lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->article(i), page);
-        topLayout->addWidget(lpp);
-
         langPages.append(lpp);
     }
+
+    KConfigGroup cg(KGlobal::config(), "LanguagePropertiesDialog");
+    restoreDialogSize(cg);
+}
+
+
+DocPropsLangDlg::~DocPropsLangDlg()
+{
+    KConfigGroup cg(KGlobal::config(), "LanguagePropertiesDialog");
+    KDialog::saveDialogSize(cg);
 }
 
 
 KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
 {
-    if (idx < (int) langPages.count())
+    if (idx < langPages.count())
         return langPages[idx]->getConjugation();
     else
         return KEduVocConjugation();
@@ -93,10 +95,11 @@ KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
 
 KEduVocArticle DocPropsLangDlg::getArticle(int idx) const
 {
-    if (idx < (int) langPages.count())
+    if (idx < langPages.count())
         return langPages[idx]->getArticle();
     else
         return KEduVocArticle();
 }
+
 
 #include "DocPropLangDlg.moc"
