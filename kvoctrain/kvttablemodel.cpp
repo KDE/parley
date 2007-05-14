@@ -202,7 +202,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 if (id < 0) // if still unknown take what's there
                     return m_doc->originalIdentifier();
                 else // return the nice long language name
-                    return m_languages.longId(id);
+                    return m_languages[id].longId();
 
             } else { // translations
                 // two letter?
@@ -214,7 +214,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 if (id < 0) // nothing found
                     return m_doc->identifier(section - 2);
                 else // long name
-                    return m_languages.longId(id);
+                    return m_languages[id].longId();
             }
         }
         if (role == Qt::DecorationRole) {
@@ -231,7 +231,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 if (id < 0)
                     return QVariant();
                 else
-                    return QPixmap(m_languages.pixmapFile(id));
+                    return QPixmap(m_languages[id].pixmapFile());
                 break;
             }
             default: {
@@ -240,7 +240,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 if (id < 0)
                     return QVariant();
                 else
-                    return QPixmap(m_languages.pixmapFile(id));
+                    return QPixmap(m_languages[id].pixmapFile());
                 break;
             }
             }
@@ -349,7 +349,7 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
     return false;
 }
 
-void KVTTableModel::setLanguages(const KVTLanguages & languages)
+void KVTTableModel::setLanguages(const KVTLanguageList & languages)
 {
     m_languages = languages;
 }

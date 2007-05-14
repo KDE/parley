@@ -103,9 +103,6 @@ public:
     /** read the app-specific options on init() or by an Options dialog */
     void readOptions();
 
-    void saveLanguages();
-    void readLanguages();
-
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
     /** Make sure, the lesson is visible - if combo is set to
@@ -339,7 +336,7 @@ private:
     int                  act_query_col;
     QString              act_query_trans;
     QString              act_query_org;
-    KVTLanguages         m_languages;
+    KVTLanguageList      m_languages;
 
     QString              m_textToFind;
 

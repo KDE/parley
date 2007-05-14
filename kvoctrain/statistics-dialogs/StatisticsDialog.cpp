@@ -37,7 +37,7 @@
 #include <kvtlanguages.h>
 #include <kvttablemodel.h>
 
-KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
+KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguageList &languages, KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
 {
     setCaption(i18n("Document Statistics"));
     setButtons(Ok | Apply | Cancel);
@@ -60,8 +60,13 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel 
     topLayout->addWidget(gspage);
 
     for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
-        QString s = languages.findLongId(m_model->document()->identifier(i));
-        if (s.isEmpty())
+        int id = languages.indexShortId(m_model->document()->identifier(i));
+        QString s;
+        if (id >= 0) {
+            s = languages[id].longId();
+            if (s.isEmpty())
+                s = m_model->document()->identifier(i);
+        } else
             s = m_model->document()->identifier(i);
 
         page = new QFrame();

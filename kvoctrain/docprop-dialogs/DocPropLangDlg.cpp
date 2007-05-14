@@ -40,7 +40,7 @@
 #include <keduvocdocument.h>
 #include <kvtlanguages.h>
 
-DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langset, QWidget *parent) : KPageDialog(parent)
+DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &langset, QWidget *parent) : KPageDialog(parent)
 {
     setCaption(i18n("Language Properties"));
     setButtons(Ok|Cancel);
@@ -62,14 +62,14 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguages &langs
 
         QString tabCaption;
         if (idx >= 0)
-            tabCaption = (langset.longId(idx));
+            tabCaption = (langset[idx].longId());
         else
             tabCaption = (s);
 
         page = new QFrame();
         KPageWidgetItem *pageItem = new KPageWidgetItem(page, tabCaption);
         pageItem->setHeader(tabCaption);
-        pageItem->setIcon(KIcon(QPixmap(langset.pixmapFile(idx))));
+        pageItem->setIcon(KIcon(QPixmap(langset[idx].pixmapFile())));
         addPage(pageItem);
         topLayout = new QVBoxLayout(page);
         topLayout->setMargin(0);

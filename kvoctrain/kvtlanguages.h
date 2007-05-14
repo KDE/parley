@@ -32,53 +32,44 @@
 class KVTLanguage
 {
 public:
-    KVTLanguage()
-    {}
-    QString shortId;
-    QString shortId2;
-    QString longId;
-    QString pixmapFile;
-    QString keyboardLayout;
+    KVTLanguage() {}
+    KVTLanguage(const QString &shortId, const QString &longId, const QString &pixmapFile,
+                const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
+    ~KVTLanguage() {}
+
+    const QString &shortId() const { return m_shortId; }
+    const QString &shortId2() const { return m_shortId2; }
+    const QString &longId() const { return m_longId; }
+    const QString &pixmapFile() const { return m_pixmapFile; }
+    const QString &keyboardLayout() const { return m_keyboardLayout; }
+
+    bool operator==(const KVTLanguage&) const;
+    KVTLanguage& operator=(const KVTLanguage& n);
+
+private:
+    QString m_shortId;
+    QString m_shortId2;
+    QString m_longId;
+    QString m_pixmapFile;
+    QString m_keyboardLayout;
 };
 
-class KVTLanguages
+
+class KVTLanguageList : public QList<KVTLanguage>
 {
 public:
-    KVTLanguages()
-    {}
 
     void addLanguage(const QString &shortId, const QString &longId, const QString &pixmapFile,
                      const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
 
-    int count() const
-    {
-        return m_languages.count();
-    }
-    void erase(int idx);
-    void clear();
-
-    QString shortId(int index) const;
-    QString shortId2(int index) const;
-    QString longId(int index) const;
-    QString pixmapFile(int index) const;
-    QString keyboardLayout(int index) const;
+    void addLanguage(KVTLanguage language);
 
     int indexShortId(const QString &shortId) const;
     int indexLongId(const QString &longId) const;
-    // doesn't make sense for keyboard layouts since there is no 1-to-1 relation to languages
 
-    void setShortId(const QString &shortId, int index);
-    void setShortId2(const QString &shortId2, int index);
-    void setLongId(const QString &longId, int index);
-    void setPixmapFile(const QString &pixmapFile, int index);
-    void setKeyboardLayout(const QString &layout, int index);
-
-    QString findShortId(const QString &longId)  const;
-    QString findLongId(const QString &shortId) const;
-
-private:
-    QList<KVTLanguage> m_languages;
+    void read();
+    void write();
 };
 
 
-#endif // langset_h
+#endif

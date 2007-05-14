@@ -29,14 +29,14 @@
 #include <kpagedialog.h>
 
 class KVTTableModel;
-class KVTLanguages;
+class KVTLanguageList;
 class StatisticsPage;
 
 class KVTStatisticsDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    KVTStatisticsDialog(KVTLanguages &languages, KVTTableModel *model, QWidget *parent = NULL);
+    KVTStatisticsDialog(KVTLanguageList &languages, KVTTableModel *model, QWidget *parent = NULL);
     ~KVTStatisticsDialog();
 
 protected slots:

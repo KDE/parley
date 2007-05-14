@@ -59,7 +59,7 @@ public:
         return m_doc;
     }
 
-    void setLanguages(const KVTLanguages & languages);
+    void setLanguages(const KVTLanguageList & languages);
 
     bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
     bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
@@ -82,7 +82,7 @@ private:
     KEduVocDocument * m_doc;
     QPixmap m_pixInactive;
     QPixmap m_pixInQuery;
-    KVTLanguages m_languages;
+    KVTLanguageList m_languages;
 
     friend class KVocTrainApp;
     friend class KVTStatisticsDialog;

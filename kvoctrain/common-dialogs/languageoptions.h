@@ -35,10 +35,10 @@ class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
     Q_OBJECT
 public:
     /** Constructor - creates the widget of Settings->KVocTrain->Languages */
-    LanguageOptions(KVTLanguages & langset, QWidget* parent);
+    LanguageOptions(KVTLanguageList & langset, QWidget* parent);
 
     /** Return the languages m_langSet */
-    KVTLanguages getLangSet() const;
+    KVTLanguageList getLangSet() const;
 
     struct Country
     {
@@ -152,12 +152,12 @@ private:
      */
     void createISO6391Menus();
 
-    KVTLanguages global_langset;
+    KVTLanguageList global_langset;
     QMap<int, Country> countryIdMap; 
     QMenu * m_kdeLanguagesMenu;
     QMenu * m_isoLanguagesMenu;
     /// The languages are kept here:
-    KVTLanguages m_langSet;
+    KVTLanguageList m_langSet;
     QString m_lastPix;
     bool m_hasChanged;
 };
