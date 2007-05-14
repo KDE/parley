@@ -25,17 +25,14 @@
 
 #include "StatisticsDialog.h"
 
-#include <QLayout>
-#include <QVBoxLayout>
-
-#include <klocale.h>
-#include <kconfig.h>
-#include <kglobal.h>
+#include <KLocale>
+#include <KConfig>
+#include <KGlobal>
 
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
-#include <kvtlanguages.h>
-#include <kvttablemodel.h>
+#include "kvtlanguages.h"
+#include "kvttablemodel.h"
 
 KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguageList &languages, KVTTableModel *model, QWidget *parent) : KPageDialog(parent)
 {
@@ -47,17 +44,10 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguageList &languages, KVTTableMod
 
     m_model = model;
 
-    QFrame * page;
-    QVBoxLayout * topLayout;
     StatisticsPage *spage;
 
-    page = new QFrame();
-    addPage(page,i18n("General"));
-    topLayout = new QVBoxLayout(page);
-    topLayout->setMargin(0);
-    topLayout->setSpacing(KDialog::spacingHint());
-    GenStatPage *gspage = new GenStatPage(m_model->document(), page);
-    topLayout->addWidget(gspage);
+    GenStatPage *gspage = new GenStatPage(m_model->document(), 0);
+    addPage(gspage, i18n("General"));
 
     for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
         int id = languages.indexShortId(m_model->document()->identifier(i));
@@ -69,13 +59,8 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguageList &languages, KVTTableMod
         } else
             s = m_model->document()->identifier(i);
 
-        page = new QFrame();
-        addPage(page,s);
-        topLayout = new QVBoxLayout(page);
-        topLayout->setMargin(0);
-        topLayout->setSpacing(KDialog::spacingHint());
-        spage = new StatisticsPage(i, m_model->document(), page);
-        topLayout->addWidget(spage);
+        spage = new StatisticsPage(i, m_model->document(), 0);
+        addPage(spage, s);
         pageList.append(spage);
     }
 
@@ -93,8 +78,8 @@ KVTStatisticsDialog::~KVTStatisticsDialog()
 
 void KVTStatisticsDialog::slotApply()
 {
-    foreach(StatisticsPage * page, pageList)
-    page->resetStatistics();
+    foreach(StatisticsPage *page, pageList)
+        page->resetStatistics();
     m_model->reset();
 }
 
