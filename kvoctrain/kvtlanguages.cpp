@@ -68,8 +68,6 @@ void KVTLanguageList::addLanguage(KVTLanguage language)
 {
     if (!this->contains(language))
         this->append(language);
-
-    kDebug() << "Adding language: " << language.shortId() << " " << language.shortId2() << " " << language.longId() << " " << language.pixmapFile() << endl;
 }
 
 
