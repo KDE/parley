@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
+    copyright     : (C) 2006-2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,11 +23,8 @@
 
 #include <QSize>
 
-#include <klocale.h>
-#include <kdebug.h>
-#include <kglobal.h>
-#include <kiconloader.h>
-#include <kdialog.h>
+#include <KLocale>
+#include <KDebug>
 
 #include "prefs.h"
 #include <keduvocexpression.h>
@@ -35,8 +32,6 @@
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
     m_doc = 0;
-    //m_pixInQuery = SmallIcon("ok"); //QPixmap(KGlobal::iconLoader()->loadIcon("ok", K3Icon::Small));
-    //m_pixInactive = SmallIcon("no"); //QPixmap(KGlobal::iconLoader()->loadIcon("no", K3Icon::Small));
 }
 
 /*!
@@ -148,7 +143,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                     if (m_doc->entry(index.row())->isInQuery())
                         return "@inquery@";
                     else
-                        return "@empty@";
+                        return "";
                 } else
                     return "@inactive@";
             } else if (index.column() == 2)
@@ -156,8 +151,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             else {
                 result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS);
             }
-            if (result.toString().isEmpty())
-                result = "@empty@";
             return result;
             break;
         }

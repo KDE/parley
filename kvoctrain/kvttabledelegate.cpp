@@ -25,10 +25,10 @@
 #include <QLineEdit>
 #include <QPainter>
 
-#include "kdebug.h"
-#include <kglobalsettings.h>
-#include <klocale.h>
-#include <kiconloader.h>
+#include <KDebug>
+#include <KGlobalSettings>
+#include <KLocale>
+#include <KIconLoader>
 
 #include "kvttablemodel.h"
 #include "prefs.h"
@@ -115,9 +115,6 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
-        if (value == "@empty@")
-            value = "";
-
         QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
         lineEdit->setText(value);
     }
@@ -203,8 +200,7 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
         painter->setFont(option.font);
         QRect textRect = rect.adjusted(3, 0, -3, 0); // remove width padding
         QString str = text;
-        if (str == "@empty@")
-            str = "";
+
         if (painter->fontMetrics().width(text) > textRect.width() && !text.contains(QLatin1Char('\n')))
             str = elidedText(option.fontMetrics, textRect.width(), option.textElideMode, str);
 
@@ -220,8 +216,8 @@ void KVTTableDelegate::drawFocus(QPainter * painter, const QStyleOptionViewItem 
         painter->save();
         painter->setPen(Qt::black);
         painter->setBrush(Qt::NoBrush);
-        painter->drawRect(rect.adjusted(0,0,-1,-1));
-        painter->drawRect(rect.adjusted(1,1,-2,-2));
+        painter->drawRect(rect.adjusted(0, 0, -1, -1));
+        painter->drawRect(rect.adjusted(1, 1, -2, -2));
         painter->restore();
     }
 }
