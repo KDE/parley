@@ -91,7 +91,7 @@ void KVocTrainApp::saveOptions()
         Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
 
     m_languages.write();
-    Prefs::writeConfig();
+    Prefs::self()->writeConfig();
 }
 
 
