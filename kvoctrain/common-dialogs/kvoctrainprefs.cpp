@@ -43,7 +43,7 @@
 #include "queryoptions.h"
 #include "thresholdoptions.h"
 #include "blockoptions.h"
-#include "kvtquery.h"
+#include "query-dialogs/kvtquery.h"
 #include "profilesdialog.h"
 
 static const char unapplied[] = I18N_NOOP(

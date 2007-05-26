@@ -27,7 +27,7 @@
 #define CommonEntryPage_included
 
 #include "ui_CommonEntryPageForm.h"
-#include <kvtquery.h>
+#include "query-dialogs/kvtquery.h"
 #include <kvtusage.h>
 
 class PhoneticEntryPage;

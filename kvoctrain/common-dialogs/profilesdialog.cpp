@@ -27,7 +27,7 @@
 #include "groupoptions.h"
 #include "presettings.h"
 #include "prefs.h"
-#include "kvtquery.h"
+#include "query-dialogs/kvtquery.h"
 
 SettingsProfile::SettingsProfile()
 {}

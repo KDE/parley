@@ -37,7 +37,7 @@
 #include <kicon.h>
 #include <kdialog.h>
 
-#include <kvtquery.h>
+#include "query-dialogs/kvtquery.h"
 #include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "PhoneticEntryPage.h"

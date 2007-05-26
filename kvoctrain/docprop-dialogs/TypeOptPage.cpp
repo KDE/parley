@@ -31,7 +31,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include <kvtquery.h>
+#include "query-dialogs/kvtquery.h"
 #include <keduvocdocument.h>
 
 #define TYPE_TAG ". "

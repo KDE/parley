@@ -30,7 +30,7 @@
 #include <kcombobox.h>
 #include <klocale.h>
 
-#include "kvtquery.h"
+#include "query-dialogs/kvtquery.h"
 #include "prefs.h"
 
 static Prefs::EnumCompType::type bad_complist[] =

@@ -30,7 +30,7 @@
 
 #include <KDialog>
 
-#include <kvtquery.h>
+#include "query-dialogs/kvtquery.h"
 #include <keduvocgrammar.h>
 #include "prefs.h"
 

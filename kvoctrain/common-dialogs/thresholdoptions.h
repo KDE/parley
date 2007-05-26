@@ -25,7 +25,8 @@
 #define THRESHOLDOPTIONS_H
 
 #include "ui_thresholdoptionsbase.h"
-#include "kvtquery.h"
+
+#include "query-dialogs/kvtquery.h"
 
 class KComboBox;
 

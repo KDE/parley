@@ -32,7 +32,7 @@
 
 #include <klocale.h>
 
-#include <kvtquery.h>
+#include "query-dialogs/kvtquery.h"
 #include <kvtlanguages.h>
 #include "EntryDlg.h"
 

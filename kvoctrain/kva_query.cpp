@@ -36,6 +36,8 @@
 #include "query-dialogs/SimpleQueryDlg.h"
 #include "prefs.h"
 
+#include "query-dialogs/kvtquery.h"
+
 #define MAX_QUERY_TIMEOUT 3
 
 static const char not_answered[] = I18N_NOOP(
