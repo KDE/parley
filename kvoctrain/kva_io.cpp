@@ -456,15 +456,11 @@ void KVocTrainApp::createNewDocument()
         }
         m_doc->appendIdentifier( ident.identifierShort() );
     }
-
-    m_tableModel->setDocument(m_doc);
-/*
-    foreach(WizardIdentifier ident, newIdentifiers){
-        m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, ident.identifier(), Qt::EditRole);
-    }
-*/  ///@todo correctly update header columns...
     delete wizard;
 
+    m_languages.write();
+
+    m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
     loadDocProps();
@@ -481,6 +477,11 @@ void KVocTrainApp::createNewDocument()
     if (m_lessonView) {
         m_lessonView->setModel(m_lessonModel);
         m_lessonView->initializeSelection();
+    }
+
+    // Set the language headers of the table.
+    for (int i=0; i<m_doc->identifierCount(); i++){
+        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_languages.value(m_languages.indexShortId(m_doc->identifier(i))).longId(), Qt::EditRole);
     }
 
     m_doc->setModified(false);
