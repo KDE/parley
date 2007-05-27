@@ -79,7 +79,7 @@ int KVTNewDocumentWizard::nextId() const
         } else if (field("choiceLanguageOther.other").toBool()) {
             return WizardOtherPage;
         } else {
-            return WizardFileOpenPage;
+            return WizardFinalPage;
         }
     case WizardFirstLanguagePage:
         return WizardSecondLanguagePage;

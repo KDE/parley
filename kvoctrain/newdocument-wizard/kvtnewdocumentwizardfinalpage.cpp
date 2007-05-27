@@ -33,8 +33,9 @@ KVTNewDocumentWizardFinalPage::KVTNewDocumentWizardFinalPage(QWidget *parent)
     setTitle(i18n("Finished"));
 //    setPixmap(QWizard::WatermarkPixmap, QPixmap(":/images/watermark1.png"));
 
-    label = new QLabel(i18n("Now you can start entering your vocabulary directly. "
-                           "Have fun!"));
+    label = new QLabel(i18n("Enjoy learning with KVocTrain.\n"
+                           "Have fun!\n\n"
+                           "The KVocTrain team."));
     label->setWordWrap(true);
 
     QVBoxLayout *layout = new QVBoxLayout;

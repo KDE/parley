@@ -69,4 +69,3 @@ KVTNewDocumentWizardChoiceLanguageOther::KVTNewDocumentWizardChoiceLanguageOther
 
 #include "kvtnewdocumentwizardchoicelanguageother.moc"
 
-

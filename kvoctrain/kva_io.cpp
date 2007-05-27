@@ -435,6 +435,8 @@ void KVocTrainApp::createNewDocument()
             delete wizard;
             return;
         }
+        delete m_doc;
+        m_doc = 0;
     } else {
         wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::ShowFileOpen, this);
         if( !wizard->exec() == QDialog::Accepted ){
@@ -444,12 +446,14 @@ void KVocTrainApp::createNewDocument()
         }
     }
 
-    if (m_doc) {
-        delete m_doc;
-        m_doc = 0;
-    }
-
     m_doc = new KEduVocDocument(this);
+
+    if  (!(wizard->hasVisitedPage(KVTNewDocumentWizard::WizardFirstLanguagePage) || wizard->hasVisitedPage(KVTNewDocumentWizard::WizardOtherPage))) {
+        // file open
+        delete wizard;
+        slotFileOpen();
+        return;
+    }
 
     const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
     foreach(WizardIdentifier ident, newIdentifiers){
