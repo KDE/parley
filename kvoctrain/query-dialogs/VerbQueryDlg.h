@@ -54,6 +54,9 @@ protected:
     bool next();
     void resetAllFields();
 
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
+
 protected slots:
     void slotUser1();
     void slotP3pfChanged(const QString&);
@@ -70,7 +73,6 @@ protected slots:
     void slotP1pChanged(const QString&);
     void slotP2pChanged(const QString&);
     void verifyClicked();
-    void timeoutReached();
 
 protected:
     int current;

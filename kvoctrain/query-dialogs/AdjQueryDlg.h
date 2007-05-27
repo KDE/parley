@@ -51,6 +51,9 @@ public slots:
 protected:
     void resetAllFields();
 
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
+
 protected slots:
     void lev1Changed(const QString&);
     void lev2Changed(const QString&);
@@ -60,7 +63,6 @@ protected slots:
     void knowItClicked();
     void dontKnowClicked();
     void verifyClicked();
-    void timeoutReached();
 
 protected:
     KEduVocComparison  comp;

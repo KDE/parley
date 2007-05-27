@@ -42,7 +42,7 @@ VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training")
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()));
+    connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
     connect(mw->p3pmField, SIGNAL(textChanged(const QString&)), SLOT(slotP3pmChanged(const QString&)));
     connect(mw->p3snField, SIGNAL(textChanged(const QString&)), SLOT(slotP3snChanged(const QString&)));
@@ -312,36 +312,7 @@ void VerbQueryDlg::resetAllFields()
 }
 
 
-void VerbQueryDlg::timeoutReached()
-{
-    if (m_timerCount > 0) {
-        m_timerCount--;
-        mw->timebar->setValue(m_timerCount);
-        m_timer->start(1000);
-    }
 
-    if (m_timerCount <= 0) {
-        mw->timebar->setValue(0);
-        if (current >= conjugations.entryCount() - 1) {
-            m_timer->stop();
-            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                showSolution();
-                mw->dont_know->setDefault(true);
-            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
-                emit sigQueryChoice(Timeout);
-        } else {
-            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                m_timer->stop();
-                showSolution();
-                mw->dont_know->setDefault(true);
-            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
-                next();
-                m_timer->start(1000);
-                m_timerCount = Prefs::maxTimePer();
-            }
-        }
-    }
-}
 
 
 void VerbQueryDlg::knowItClicked()

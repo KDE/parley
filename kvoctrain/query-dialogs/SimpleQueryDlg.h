@@ -57,9 +57,11 @@ public slots:
     void slotAnswerChanged();
     void slotUser1();
     void verifyClicked();
-    void timeoutReached();
 
 protected:
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
+
     QString answerstring;
     KVTQuery::QueryType querytype;
 

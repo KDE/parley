@@ -56,9 +56,11 @@ protected slots:
     void knowItClicked();
     void dontKnowClicked();
     void verifyClicked();
-    void timeoutReached();
 
 protected:
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
+
     KEduVocArticle   articles;
 
 private:

@@ -232,6 +232,8 @@ public slots:
 
     void slotConfigShowSearch();
 
+    void slotResumeQuery() { m_queryManager->slotResumeQuery(); }
+    void slotResumeQueryMC() { m_queryManager->slotResumeQueryMC(); }
 public:
     void removeProgressBar();
     void prepareProgressBar();

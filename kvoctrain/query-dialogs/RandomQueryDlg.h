@@ -64,7 +64,6 @@ public slots:
     void showSolution();
     void knowItClicked();
     void dontKnowClicked();
-    void timeoutReached();
     void slotUser1();
     void slotTransChanged(const QString&);
     void slotTransLostFocus();
@@ -73,7 +72,10 @@ public slots:
     void slotRemClicked();
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *e);
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
+
+    void keyPressEvent(QKeyEvent *e);
 
     void setHintFields();
     QStringList extractTranslations(const QString &);

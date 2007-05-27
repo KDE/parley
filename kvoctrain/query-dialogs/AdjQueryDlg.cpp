@@ -44,7 +44,7 @@ AdjQueryDlg::AdjQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Comparison Traini
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->show_all, SIGNAL(clicked()), SLOT(showAllClicked()));
+    connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
     connect(mw->lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));
     connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
@@ -189,24 +189,6 @@ void AdjQueryDlg::knowItClicked()
     emit sigQueryChoice(Known);
 }
 
-
-void AdjQueryDlg::timeoutReached()
-{
-    if (m_timerCount > 0) {
-        m_timerCount--;
-        mw->timebar->setValue(m_timerCount);
-        m_timer->start(1000);
-    }
-
-    if (m_timerCount <= 0) {
-        mw->timebar->setValue(0);
-        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-            showSolution();
-            mw->dont_know->setDefault(true);
-        } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
-            emit sigQueryChoice(Timeout);
-    }
-}
 
 
 void AdjQueryDlg::dontKnowClicked()

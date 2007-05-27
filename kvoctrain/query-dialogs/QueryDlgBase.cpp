@@ -29,6 +29,7 @@
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCloseEvent>
+#include <QTimer>
 
 #include <KLocale>
 
@@ -192,5 +193,55 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
     ft.setWeight(QFontWeight);
     widget->setFont(ft);
 }
+
+
+
+void QueryDlgBase::timeoutReached()
+{
+    if (m_timerCount > 0) {
+        m_timerCount--;
+        setTimebar(m_timerCount);
+        m_timer->start(1000);
+    }
+
+    if (m_timerCount <= 0) {
+        setTimebar(0);
+        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
+            showSolution();
+        } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
+            emit sigQueryChoice(Timeout);
+        }
+ /// @todo reenable percentage:
+ //       setStatusText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+    }
+}
+
+/*
+void zzzzzzzzzzVerbQueryDlg::timeoutReached()
+{
+
+    if (m_timerCount <= 0) {
+        mw->timebar->setValue(0);
+        if (current >= conjugations.entryCount() - 1) {
+            m_timer->stop();
+            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
+                showSolution();
+                mw->dont_know->setDefault(true);
+            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
+                emit sigQueryChoice(Timeout);
+        } else {
+            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
+                m_timer->stop();
+                showSolution();
+                mw->dont_know->setDefault(true);
+            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
+                next();
+                m_timer->start(1000);
+                m_timerCount = Prefs::maxTimePer();
+            }
+        }
+    }
+}
+*/
 
 #include "QueryDlgBase.moc"

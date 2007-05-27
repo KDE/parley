@@ -45,9 +45,12 @@ public slots:
     void showSolution();
     void knowItClicked();
     void dontKnowClicked();
-    void timeoutReached();
     void slotUser1();
     void verifyClicked();
+
+protected:
+    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setTimebar(int value) { mw->timebar->setValue(value); }
 
 private:
     QList<QPair<QRadioButton *, QLabel *> > button_ref;
