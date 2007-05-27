@@ -455,16 +455,20 @@ void KVocTrainApp::createNewDocument()
             index = m_languages.indexShortId( ident.identifierShort() );
         }
         m_doc->appendIdentifier( ident.identifierShort() );
-        m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, ident.identifier(), Qt::EditRole);
     }
-    delete wizard;
 
     m_tableModel->setDocument(m_doc);
-    m_tableModel->insertRows(0, 20, QModelIndex());
+/*
+    foreach(WizardIdentifier ident, newIdentifiers){
+        m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, ident.identifier(), Qt::EditRole);
+    }
+*/  ///@todo correctly update header columns...
+    delete wizard;
 
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
     loadDocProps();
+    m_tableModel->insertRows(0, 20, QModelIndex());
     m_tableModel->reset();
 
     if (m_tableView) {
