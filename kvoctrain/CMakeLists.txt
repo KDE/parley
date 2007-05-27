@@ -41,6 +41,7 @@ kde4_add_ui_files( libcommondlg_SRCS
 )
 
 set(querydialogs_SRCS
+    query-dialogs/kvtquerymanager.cpp
     query-dialogs/kvtquery.cpp
     query-dialogs/AdjQueryDlg.cpp
     query-dialogs/ArtQueryDlg.cpp
@@ -125,7 +126,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvoctrain.cpp
     main.cpp
     kva_init.cpp
-    kva_query.cpp
     kvtlanguages.cpp
     kvttabledelegate.cpp
     kvttablemodel.cpp
@@ -134,7 +134,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvtlessonview.cpp
     kvtsortfiltermodel.cpp
     kvtusage.cpp
-#    typerelations.cpp later: move code from kvtquery here.
 )
 
 kde4_automoc(${kvoctrain_SRCS})
