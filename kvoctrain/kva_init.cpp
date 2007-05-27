@@ -76,6 +76,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     pbar = 0;
 
     entryDlg = 0;
+    m_queryManager = 0;
 
     initStatusBar();
     initActions();
