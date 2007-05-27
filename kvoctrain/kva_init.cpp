@@ -75,12 +75,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 
     pbar = 0;
 
-    simpleQueryDlg = 0;
-    mcQueryDlg = 0;
-    verbQueryDlg = 0;
-    randomQueryDlg = 0;
-    adjQueryDlg = 0;
-    artQueryDlg = 0;
     entryDlg = 0;
 
     initStatusBar();
@@ -300,7 +294,7 @@ void KVocTrainApp::initActions()
     actionShowLessonColumn->setCheckable((true));
     actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
 
-    
+
 // -- LEARNING --------------------------------------------------
 
     learningResumeQuery = actionCollection()->addAction("learning_resume");
@@ -364,7 +358,7 @@ void KVocTrainApp::initStatusBar()
 
 void KVocTrainApp::initDoc()
 {
-    if (fileOpenRecent->actions().count() > 0  
+    if (fileOpenRecent->actions().count() > 0
         && fileOpenRecent->action(
             fileOpenRecent->actions().count()-1)->isEnabled() )
     {
@@ -445,7 +439,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
 
     m_lessonView->initializeSelection();
-    
+
     connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
     connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
     connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));

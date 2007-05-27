@@ -23,7 +23,6 @@
  *                                                                         *
  ***************************************************************************/
 
-
 #ifndef KVOCTRAIN_H
 #define KVOCTRAIN_H
 
@@ -41,7 +40,7 @@
 #include <kmessagebox.h>
 #include <krandomsequence.h>
 
-#include "query-dialogs/QueryDlgBase.h"
+#include "query-dialogs/kvtquerymanager.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
@@ -50,6 +49,21 @@
 #include "kvtlessonview.h"
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
+
+
+
+//ugly :( make a nice enum in KVTQuery
+#define START_QUERY                 1
+#define START_MULTIPLE              2
+#define START_ARTICLE               3
+#define START_VERB                  4
+#define START_ADJECTIVE             5
+#define START_SYNONYM               6
+#define START_ANTONYM               7
+#define START_EXAMPLE               8
+#define START_PARAPHRASE            9
+
+
 
 class QTimer;
 class QProgressBar;
@@ -62,12 +76,7 @@ class KSelectAction;
 
 class ProgressDlg;
 class KEduVocDocument;
-class SimpleQueryDlg;
-class MCQueryDlg;
-class VerbQueryDlg;
-class RandomQueryDlg;
-class AdjQueryDlg;
-class ArtQueryDlg;
+
 class EntryDlg;
 class KVTNewStuff;
 
@@ -106,7 +115,7 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
     /** Make sure, the lesson is visible - if combo is set to
-      1. all, no problem 
+      1. all, no problem
       2. in query -> if current not in query change combo?
       3. current -> make the lesson current */
     void makeLessonVisibleInTable(int lessonIndex);
@@ -166,8 +175,6 @@ public slots:
     /** @todo Frederik - if possible replace slotAssignLanguage with this simpler one */
     void slotAssignLanguage2(int column, int languageIndex);    /** remove language from vocabulary */
     void slotRemoveLanguage(int index);
-    /** exit query mode */
-    void slotStopQuery(bool show_view);
     bool queryClose();
     /** overloaded for Message box on last window exit */
     bool queryExit();
@@ -185,20 +192,9 @@ public slots:
     void aboutToShowVocabRemoveLanguage();
     void aboutToShowLearn();
 
-    /** starts random query mode */
+    /** starts query mode */
     void slotLearningMapperTriggered(const QString &);
-    void slotResumeQuery();
-    void slotResumeQueryMC();
-    void slotRestartQuery();
-    void slotStartTypeQuery(int col, const QString & type);
-    void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
-    void slotStartQuery(const QString & trans, const QString & org, bool create_new);
 
-    void slotTimeOutRandomQuery(QueryDlgBase::Result res);
-    void slotTimeOutMultipleChoice(QueryDlgBase::Result res);
-    void slotTimeOutQuery(QueryDlgBase::Result res);
-    void slotTimeOutType(QueryDlgBase::Result res);
-    void slotTimeOutProperty(QueryDlgBase::Result res);
     void slotTimeOutBackup();
 
     /** open a new application window */
@@ -322,46 +318,21 @@ private:
     KVTLessonModel      *m_lessonModel;
     KVTSortFilterModel  *m_sortFilterModel;
 
-    QueryEntryList       random_expr1;
-    QueryEntryList       random_expr2;
-    // Vectors for use in Leitner style learning. There is no
-    // correct_0_times, we simply reuse random_expr1.
-    QueryEntryList       correct_1_times;
-    QueryEntryList       correct_2_times;
-    QueryEntryList       correct_3_times;
-    QuerySelection       queryList;
-
-    int                  random_query_nr;
-    QString              def_lang;
-    int                  act_query_col;
-    QString              act_query_trans;
-    QString              act_query_org;
     KVTLanguageList      m_languages;
 
     QString              m_textToFind;
 
     KLineEdit           *m_searchLine;
 
-    KVTQuery             querymanager;
+    QueryManager        *m_queryManager;
     bool                 controlActive;
+
+    EntryDlg            *entryDlg;
 
     QProgressBar        *pbar;
     QLabel              *m_pronunciationStatusBarLabel;
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;
-    SimpleQueryDlg      *simpleQueryDlg;
-    EntryDlg            *entryDlg;
-    MCQueryDlg          *mcQueryDlg;
-    VerbQueryDlg        *verbQueryDlg;
-    RandomQueryDlg      *randomQueryDlg;
-    AdjQueryDlg         *adjQueryDlg;
-    ArtQueryDlg         *artQueryDlg;
-    int                  num_queryTimeout;
-    int                  query_cycle;
-    int                  query_num;
-    int                  query_startnum;
-    KVTQuery::QueryType  m_queryType;
-    KRandomSequence      m_randomSequence;
     KVTNewStuff         *m_newStuff;
 };
 

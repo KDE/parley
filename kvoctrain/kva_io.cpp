@@ -212,7 +212,7 @@ void KVocTrainApp::slotFileMerge()
 
         m_doc->merge(new_doc, true);
 
-        querymanager.setLessonItems(m_doc->lessonsInQuery());
+        m_queryManager->setLessonItems(m_doc->lessonsInQuery());
         KVTQuery::setTypeNames(m_doc->typeDescriptions());
         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
         KVTUsage::setUsageNames(m_doc->usageDescriptions());
@@ -314,48 +314,22 @@ void KVocTrainApp::loadDocProps()
         m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
     }
 
-    random_expr1.clear();
-    random_expr2.clear();
-    queryList.clear();
-    m_doc->queryIdentifier(act_query_org, act_query_trans);
-    if (!act_query_org.isEmpty() && !act_query_trans.isEmpty()) {
-        for (int i = 0; i < m_doc->entryCount(); i++) {
-            KEduVocExpression *entry = m_doc->entry(i);
-            if (entry->isInQuery()) {
-                int less = entry->lesson();
-                for (int l = (int) queryList.size(); l <= less; l++) {
-                    QueryEntryList ref_vec;
-                    queryList.append(ref_vec);
-                }
-                QueryEntry ref(entry, i);
-                queryList[less].append(ref);
-            }
-        }
+    if (m_queryManager) {
+        delete m_queryManager;
     }
+    m_queryManager = new QueryManager(this, m_doc);
 
     KVTQuery::setTypeNames(m_doc->typeDescriptions());
     KVTUsage::setUsageNames(m_doc->usageDescriptions());
     KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 
-    querymanager.setLessonItems(m_doc->lessonsInQuery());
-
-    // remove empty elements
-    for (int i = (int) queryList.size()-1; i >= 0; i--)
-        if (queryList[i].size() == 0) {
-            queryList.erase(queryList.begin() + i);
-        }
-
-    query_cycle = 1;
-    query_startnum = 0;
-    for (int i = 0; i < (int) queryList.size(); i++)
-        query_startnum += queryList[i].size();
-    query_num = query_startnum;
 }
 
 
 void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
 {
-    the_doc->setQueryIdentifier(act_query_org, act_query_trans);
+//    the_doc->setQueryIdentifier(act_query_org, act_query_trans);
+    the_doc->setQueryIdentifier(m_queryManager->fromTranslation(), m_queryManager->toTranslation());
 }
 
 

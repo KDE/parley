@@ -48,12 +48,6 @@
 #include <kinputdialog.h>
 #include <kapplication.h>
 
-#include "query-dialogs/RandomQueryDlg.h"
-#include "query-dialogs/MCQueryDlg.h"
-#include "query-dialogs/AdjQueryDlg.h"
-#include "query-dialogs/VerbQueryDlg.h"
-#include "query-dialogs/ArtQueryDlg.h"
-#include "query-dialogs/SimpleQueryDlg.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
@@ -63,16 +57,6 @@
 
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
-
-#define START_QUERY                 1
-#define START_MULTIPLE              2
-#define START_ARTICLE               3
-#define START_VERB                  4
-#define START_ADJECTIVE             5
-#define START_SYNONYM               6
-#define START_ANTONYM               7
-#define START_EXAMPLE               8
-#define START_PARAPHRASE            9
 
 
 void KVocTrainApp::saveOptions()
@@ -345,7 +329,7 @@ void KVocTrainApp::removeEntryDlg()
 void KVocTrainApp::slotEditEntry(int row, int col)
 {
     if (entryDlg == 0) {
-        entryDlg = new EntryDlg(this, m_doc, querymanager);
+        entryDlg = new EntryDlg(this, m_doc, m_queryManager->getKVTQuery());
         connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
 
     }
@@ -706,7 +690,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, &querymanager, this, "settings",  Prefs::self());
+    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     if (index >= 0)
         dialog->selectLanguagePage();
@@ -1212,96 +1196,22 @@ void KVocTrainApp::slotCurrentLessonChanged(int currentLesson)
 
 void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &)
 {
-    //Q_UNUSED(currentLesson);
     updateTableFilter();
     // I'd rather have this access m_doc->lessonsInQuery() when a query is started.
     // this could make resume query act weird.
     /// @todo look into this
-    querymanager.setLessonItems(m_doc->lessonsInQuery());
+    m_queryManager->getKVTQuery().setLessonItems(m_doc->lessonsInQuery());
 }
 
 
 void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
 {
     int cmd     = mapString.mid(0, 3).toInt(); // type of query
-    int header1 = mapString.mid(3, 3).toInt(); // from language
-    int header2 = mapString.mid(6, 3).toInt(); // to language
-    kDebug() << "slotLearningMapperTriggered() - mapString: " << mapString << " cmd: " << cmd << " header1: " << header1 << " hearder2: " << header2 << endl;
+    int fromTranslation = mapString.mid(3, 3).toInt(); // from language
+    int toTranslation = mapString.mid(6, 3).toInt(); // to language
 
-    switch (cmd) {
+    m_queryManager->query(cmd, toTranslation, fromTranslation);
 
-    case START_QUERY:
-        delete randomQueryDlg;
-        randomQueryDlg = 0;
-        m_queryType = KVTQuery::RandomQuery;
-        slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
-                       header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
-        break;
-
-    case START_MULTIPLE:
-        delete mcQueryDlg;
-        mcQueryDlg = 0;
-        m_queryType = KVTQuery::MultipleChoiceQuery;
-        slotStartQuery(header1 ? m_doc->identifier(header1) : m_doc->originalIdentifier(),
-                       header2 ? m_doc->identifier(header2) : m_doc->originalIdentifier(), true);
-        break;
-
-    case START_VERB: {
-        delete verbQueryDlg;
-        verbQueryDlg = 0;
-        m_queryType = KVTQuery::ConjugationQuery;
-        slotStartTypeQuery(header1, QM_VERB);
-    }
-    break;
-
-    case START_ARTICLE: {
-        delete artQueryDlg;
-        artQueryDlg = 0;
-        m_queryType = KVTQuery::ArticlesQuery;
-        slotStartTypeQuery(header1, QM_NOUN);
-    }
-    break;
-
-    case START_ADJECTIVE: {
-        delete adjQueryDlg;
-        adjQueryDlg = 0;
-        m_queryType = KVTQuery::ComparisonQuery;
-        slotStartTypeQuery(header1, QM_ADJ);
-    }
-    break;
-
-    case START_SYNONYM: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        slotStartPropertyQuery(header1, KVTQuery::SynonymQuery);
-    }
-    break;
-
-    case START_ANTONYM: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        slotStartPropertyQuery(header1, KVTQuery::AntonymQuery);
-    }
-    break;
-
-    case START_EXAMPLE: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        slotStartPropertyQuery(header1, KVTQuery::ExampleQuery);
-    }
-    break;
-
-    case START_PARAPHRASE: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        slotStartPropertyQuery(header1, KVTQuery::ParaphraseQuery);
-    }
-    break;
-
-    default:
-        kError() << "Unknown command" << endl;
-
-    }
     slotStatusMsg(IDS_DEFAULT);
 }
 
