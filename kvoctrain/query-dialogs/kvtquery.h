@@ -102,7 +102,7 @@ struct QueryEntry
 
 typedef QList<QueryEntry> QueryEntryList;
 // Why the hey do use QVector here?
-typedef QVector<QList<QueryEntry> > QuerySelection;
+typedef QVector<QueryEntryList> QuerySelection;
 
 
 class KVTQuery

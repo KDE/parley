@@ -310,9 +310,9 @@ void KVocTrainApp::fillLessonBox()
 
 void KVocTrainApp::loadDocProps()
 {
-    if (m_tableView)
+    if (m_tableView) {
         m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
-//  fillLessonBox();
+    }
 
     random_expr1.clear();
     random_expr2.clear();
@@ -325,10 +325,10 @@ void KVocTrainApp::loadDocProps()
                 int less = entry->lesson();
                 for (int l = (int) queryList.size(); l <= less; l++) {
                     QueryEntryList ref_vec;
-                    queryList.push_back(ref_vec);
+                    queryList.append(ref_vec);
                 }
                 QueryEntry ref(entry, i);
-                queryList[less].push_back(ref);
+                queryList[less].append(ref);
             }
         }
     }
