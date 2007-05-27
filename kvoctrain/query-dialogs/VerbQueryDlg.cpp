@@ -203,7 +203,7 @@ bool VerbQueryDlg::next()
 }
 
 
-void VerbQueryDlg::showAllClicked()
+void VerbQueryDlg::showSolution()
 {
     resetAllFields();
     mw->dont_know->setDefault(true);
@@ -325,14 +325,14 @@ void VerbQueryDlg::timeoutReached()
         if (current >= conjugations.entryCount() - 1) {
             m_timer->stop();
             if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                showAllClicked();
+                showSolution();
                 mw->dont_know->setDefault(true);
             } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
                 emit sigQueryChoice(Timeout);
         } else {
             if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
                 m_timer->stop();
-                showAllClicked();
+                showSolution();
                 mw->dont_know->setDefault(true);
             } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
                 next();

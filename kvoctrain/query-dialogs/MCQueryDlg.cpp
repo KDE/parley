@@ -238,7 +238,7 @@ void MCQueryDlg::initFocus() const
 }
 
 
-void MCQueryDlg::showItClicked()
+void MCQueryDlg::showSolution()
 {
     resetQueryWidget(button_ref[0].first);
     resetQueryWidget(button_ref[1].first);
@@ -343,7 +343,7 @@ void MCQueryDlg::timeoutReached()
         mw->status->setText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-            showItClicked();
+            showSolution();
             mw->dont_know->setDefault(true);
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
             emit sigQueryChoice(Timeout);

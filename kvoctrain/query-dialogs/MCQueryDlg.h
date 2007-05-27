@@ -42,7 +42,7 @@ public:
 
 public slots:
     virtual void initFocus() const;
-    void showItClicked();
+    void showSolution();
     void knowItClicked();
     void dontKnowClicked();
     void timeoutReached();

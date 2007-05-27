@@ -51,6 +51,10 @@ public:
 
     virtual ~QueryDlgBase();
 
+public slots:
+    virtual void showSolution() = 0;
+
+protected:
     /** compare two strings with simplified applied first */
     bool smartCompare(const QString&, const QString&) const;
 

@@ -191,7 +191,7 @@ void SimpleQueryDlg::timeoutReached()
     if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-            showAllClicked();
+            showSolution();
             mw->dont_know->setDefault(true);
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
             emit sigQueryChoice(Timeout);
@@ -209,7 +209,7 @@ void SimpleQueryDlg::showMoreClicked()
 }
 
 
-void SimpleQueryDlg::showAllClicked()
+void SimpleQueryDlg::showSolution()
 {
     mw->answerField->setText(answerstring);
     verifyField(mw->answerField, answerstring, querytype == KVTQuery::SynonymQuery || querytype == KVTQuery::AntonymQuery);

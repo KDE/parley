@@ -91,13 +91,18 @@ protected:
 };
 
 
-struct QueryEntry
+class QueryEntry
 {
+public:
     QueryEntry(KEduVocExpression *_exp, int _nr) : exp(_exp), nr(_nr)
     {}
 
     KEduVocExpression *exp;
     int nr;
+
+private:
+    int m_badCount;
+
 };
 
 typedef QList<QueryEntry> QueryEntryList;

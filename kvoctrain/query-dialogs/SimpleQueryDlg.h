@@ -51,7 +51,7 @@ public slots:
 
 public slots:
     void showMoreClicked();
-    void showAllClicked();
+    void showSolution();
     void knowItClicked();
     void dontKnowClicked();
     void slotAnswerChanged();

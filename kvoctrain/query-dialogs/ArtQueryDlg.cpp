@@ -161,7 +161,7 @@ void ArtQueryDlg::initFocus() const
 }
 
 
-void ArtQueryDlg::showAllClicked()
+void ArtQueryDlg::showSolution()
 {
     resetQueryWidget(mw->rb_fem);
     resetQueryWidget(mw->male);
@@ -234,7 +234,7 @@ void ArtQueryDlg::timeoutReached()
     if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-            showAllClicked();
+            showSolution();
             mw->dont_know->setDefault(true);
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
             emit sigQueryChoice(Timeout);

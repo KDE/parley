@@ -61,7 +61,7 @@ public slots:
 public slots:
     void verifyClicked();
     void showMoreClicked();
-    void showAllClicked();
+    void showSolution();
     void knowItClicked();
     void dontKnowClicked();
     void timeoutReached();

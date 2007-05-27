@@ -412,7 +412,7 @@ void RandomQueryDlg::showMoreClicked()
 }
 
 
-void RandomQueryDlg::showAllClicked()
+void RandomQueryDlg::showSolution()
 {
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
@@ -477,7 +477,7 @@ void RandomQueryDlg::timeoutReached()
     if (m_timerCount <= 0) {
         mw->timebar->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-            showAllClicked();
+            showSolution();
             mw->dont_know->setDefault(true);
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
             emit sigQueryChoice(Timeout);
@@ -611,7 +611,7 @@ void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
         else if (mw->know_it->isDefault())
             knowItClicked();
         else if (mw->show_all->isDefault())
-            showAllClicked();
+            showSolution();
         else if (mw->verify->isDefault())
             verifyClicked();
         break;

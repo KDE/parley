@@ -58,7 +58,7 @@ protected slots:
     void slotUser1();
     void slotP3pfChanged(const QString&);
     void slotP3snChanged(const QString&);
-    void showAllClicked();
+    void showSolution();
     void slotP3smChanged(const QString&);
     void knowItClicked();
     void dontKnowClicked();
