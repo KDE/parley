@@ -223,7 +223,7 @@ void KVocTrainApp::initActions()
     actionDeleteLesson->setIcon(KIcon("edit-delete"));
 
     QAction *actionCheckAllLessons = actionCollection()->addAction("check_all_lessons");
-    actionCheckAllLessons->setText(i18n("Check all lessons"));
+    actionCheckAllLessons->setText(i18n("Select all lessons"));
     actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
 
     QAction *actionCheckNoLessons = actionCollection()->addAction("check_no_lessons");
