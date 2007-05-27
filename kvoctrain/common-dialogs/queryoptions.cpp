@@ -35,20 +35,27 @@
 QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
+    // wether to split up translations
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Periods, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Colons, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Semicolons, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Commas, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Fields, SLOT(setEnabled(bool)));
-    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
-    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
+
     connect(kcfg_Split, SIGNAL(toggled(bool)), label_at, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), label_split_max_fields, SLOT(setEnabled(bool)));
+
+    // time limit
+    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
+    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
     connect(r_no_limit, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
 
+
+    //disable timeout widgets if No Limit
     kcfg_MaxTimePer->setDisabled(r_no_limit->isChecked());
     kcfg_ShowCounter->setDisabled(r_no_limit->isChecked());
     label_mqtime->setDisabled(r_no_limit->isChecked());
+
     kcfg_Periods->setEnabled(kcfg_Split->isChecked());
     kcfg_Colons->setEnabled(kcfg_Split->isChecked());
     kcfg_Semicolons->setEnabled(kcfg_Split->isChecked());
@@ -80,6 +87,7 @@ void QueryOptions::updateWidgets()
     kcfg_MaxTimePer->setValue(Prefs::maxTimePer());
     kcfg_ShowCounter->setChecked(Prefs::showCounter());
     kcfg_SwapDirection->setChecked(Prefs::swapDirection());
+
     kcfg_AltLearn->setChecked(Prefs::altLearn());
     kcfg_Suggestions->setChecked(Prefs::suggestions());
     kcfg_Split->setChecked(Prefs::split());

@@ -92,24 +92,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     mw->countbar->setMaximum(q_start);
     mw->countbar->setValue(q_start - q_num + 1);
 
-    //Time
-    int mqtime = Prefs::maxTimePer();
-    if (mqtime > 0) {
-        if (m_timer == 0) {
-            m_timer = new QTimer(this);
-            m_timer->setSingleShot(true);
-            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
-        }
-
-        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            m_timerCount = mqtime;
-            mw->timebar->setMaximum(m_timerCount);
-            mw->timebar->setValue(m_timerCount);
-            m_timer->start(1000);
-        } else
-            mw->timebar->setEnabled(false);
-    } else
-        mw->timebar->setEnabled(false);
+    startTimer();
 
     KRandomSequence randomSequence;
     QStringList choices;

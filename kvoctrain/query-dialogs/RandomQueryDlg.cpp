@@ -261,7 +261,7 @@ void RandomQueryDlg::setQuery(const QString &org,
         for (i = k; i < fields; i ++)
             transFields.at(i) -> hide();
     }
-    mw->verify -> setEnabled(true);
+    mw->verify->setEnabled(true);
     mw->orgField->setFont(Prefs::tableFont());
     mw->orgField->setText(org);
     mw->show_all->setDefault(true);
@@ -280,26 +280,11 @@ void RandomQueryDlg::setQuery(const QString &org,
 
     mw->countbar->setMaximum(q_start);
     mw->countbar->setValue(q_start - q_num + 1);
-    int mqtime = Prefs::maxTimePer();
-    if (mqtime > 0) {
-        if (m_timer == 0) {
-            m_timer = new QTimer(this);
-            m_timer->setSingleShot(true);
-            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
-        }
 
-        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            m_timerCount = mqtime;
-            mw->timebar->setMaximum(m_timerCount);
-            mw->timebar->setValue(m_timerCount);
-            m_timer->start(1000);
-        } else
-            mw->timebar->setEnabled(false);
-    } else
-        mw->timebar->setEnabled(false);
-
-    mw->status -> clear();
+    mw->status->clear();
     suggestion_hint = false;
+
+    QueryDlgBase::startTimer();
 }
 
 

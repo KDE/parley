@@ -60,7 +60,7 @@ public slots:
 
 protected:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
-    void setTimebar(int value) { mw->timebar->setValue(value); }
+    QProgressBar* timebar() { return mw->timebar; }
 
     QString answerstring;
     KVTQuery::QueryType querytype;

@@ -153,22 +153,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
     mw->countbar->setValue(q_start - q_num + 1);
     int mqtime = Prefs::maxTimePer();
 
-    if (mqtime > 0) {
-        if (m_timer == 0) {
-            m_timer = new QTimer(this);
-            m_timer->setSingleShot(true);
-            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
-        }
+    startTimer();
 
-        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            m_timerCount = mqtime;
-            mw->timebar->setMaximum(m_timerCount);
-            mw->timebar->setValue(m_timerCount);
-            m_timer->start(1000);
-        } else
-            mw->timebar->setEnabled(false);
-    } else
-        mw->timebar->setEnabled(false);
     resetQueryWidget(mw->answerField);
 }
 

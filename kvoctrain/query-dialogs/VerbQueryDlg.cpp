@@ -117,22 +117,8 @@ void VerbQueryDlg::setQuery(int entry,
     mw->countbar->setMaximum(q_start);
     mw->countbar->setValue(q_start - q_num + 1);
 
-    if (mqtime > 0) { // more than 1000 milli-seconds
-        if (m_timer == 0) {
-            m_timer = new QTimer(this);
-            m_timer->setSingleShot(true);
-            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
-        }
+    startTimer();
 
-        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            m_timerCount = mqtime;
-            mw->timebar->setMaximum(m_timerCount);
-            mw->timebar->setValue(m_timerCount);
-            m_timer->start(1000);
-        } else
-            mw->timebar->setEnabled(false);
-    } else
-        mw->timebar->setEnabled(false);
     all_known = true;
     current = -1;
     next();

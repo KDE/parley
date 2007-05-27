@@ -76,7 +76,7 @@
       <default>false</default>
     </entry>
     <entry name="QueryTimeout" type="Enum">
-      <label>If true, there is no time set to answer each query</label>
+      <label>If NoTimeout, there is no time set to answer each query</label>
       <choices>
         <choice name="NoTimeout"/>
         <choice name="Show"/>

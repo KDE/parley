@@ -198,14 +198,15 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
 
 void QueryDlgBase::timeoutReached()
 {
+kDebug() << "timer: " << m_timerCount << endl;
     if (m_timerCount > 0) {
         m_timerCount--;
-        setTimebar(m_timerCount);
+        timebar()->setValue(m_timerCount);
         m_timer->start(1000);
     }
 
     if (m_timerCount <= 0) {
-        setTimebar(0);
+        timebar()->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showSolution();
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
@@ -243,5 +244,33 @@ void zzzzzzzzzzVerbQueryDlg::timeoutReached()
     }
 }
 */
+
+void QueryDlgBase::startTimer()
+{
+    if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
+        kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!" << endl;
+        return;
+    }
+
+    int mqtime = Prefs::maxTimePer();
+    if (mqtime > 0) {
+        if (m_timer == 0) {
+            m_timer = new QTimer(this);
+            m_timer->setSingleShot(true);
+            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+            kDebug() << "connect timer" << endl;
+        }
+
+        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
+            m_timerCount = mqtime;
+            timebar()->setMaximum(m_timerCount);
+            timebar()->setValue(m_timerCount);
+            m_timer->start(1000);
+        } else
+            timebar()->setEnabled(false);
+    } else {
+        timebar()->setEnabled(false);
+    }
+}
 
 #include "QueryDlgBase.moc"

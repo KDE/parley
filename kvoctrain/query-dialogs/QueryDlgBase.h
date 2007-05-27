@@ -27,7 +27,7 @@
 #define Query_Dlg_Base_H
 
 #include <QCloseEvent>
-
+#include <QProgressBar>
 #include <KDialog>
 
 #include "query-dialogs/kvtquery.h"
@@ -51,13 +51,15 @@ public:
 
     virtual ~QueryDlgBase();
 
+    void startTimer();
+
 public slots:
     virtual void showSolution() = 0;
     void timeoutReached();
 
 protected:
     virtual void setStatusText(const QString &status) = 0;
-    virtual void setTimebar(int value) = 0;
+    virtual QProgressBar* timebar() = 0;
 
     /** compare two strings with simplified applied first */
     bool smartCompare(const QString&, const QString&) const;

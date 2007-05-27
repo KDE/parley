@@ -55,7 +55,7 @@ protected:
     void resetAllFields();
 
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
-    void setTimebar(int value) { mw->timebar->setValue(value); }
+    QProgressBar* timebar() { return mw->timebar; }
 
 protected slots:
     void slotUser1();
