@@ -431,13 +431,17 @@ void KVocTrainApp::createNewDocument()
     KVTNewDocumentWizard *wizard;
     if (m_doc) {
         wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::NoFileOpen, this);
+        if( !wizard->exec() == QDialog::Accepted ){
+            delete wizard;
+            return;
+        }
     } else {
         wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::ShowFileOpen, this);
-    }
-
-    if( !wizard->exec() == QDialog::Accepted ){
-        kDebug() << "Wizard - Cancel" << endl;
-        return;
+        if( !wizard->exec() == QDialog::Accepted ){
+            kDebug() << "Wizard - Canceled" << endl;
+            delete wizard;
+            exit(0);
+        }
     }
 
     if (m_doc) {
