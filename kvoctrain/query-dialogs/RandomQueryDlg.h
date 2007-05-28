@@ -52,8 +52,7 @@ public:
                   int transcol,
                   int query_cycle,
                   int query_num,
-                  int query_startnum,
-                  KEduVocDocument  *);
+                  int query_startnum);
 
 public slots:
     virtual void initFocus() const;
@@ -79,8 +78,6 @@ protected:
 
     void setHintFields();
     QStringList extractTranslations(const QString &);
-
-    KEduVocDocument * kv_doc;
 
     QList<QComboBox*> transCombos;
     QList<QLineEdit*> transFields;

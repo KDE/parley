@@ -34,7 +34,7 @@ class MCQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    MCQueryDlg(QWidget *parent);
+    MCQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~MCQueryDlg();
 

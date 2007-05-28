@@ -36,7 +36,7 @@
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-SimpleQueryDlg::SimpleQueryDlg(QWidget *parent) : QueryDlgBase("", parent)
+SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase("", doc, parent)
 {
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -151,7 +151,6 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
 
     mw->countbar->setMaximum(q_start);
     mw->countbar->setValue(q_start - q_num + 1);
-    int mqtime = Prefs::maxTimePer();
 
     startTimer();
 

@@ -34,7 +34,7 @@ class ArtQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    ArtQueryDlg(QWidget *parent);
+    ArtQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~ArtQueryDlg();
 

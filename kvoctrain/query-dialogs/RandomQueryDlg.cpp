@@ -116,7 +116,7 @@ QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
     return translations;
 }
 
-RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Query"), parent)
+RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Query"), doc, parent)
 {
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());
@@ -178,14 +178,12 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         }
     }
 
-    kv_doc = doc;
-
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
     if (suggestions) {
-        for (i = 0; i < kv_doc -> entryCount(); i ++) {
-            KEduVocExpression* expr = kv_doc -> entry(i);
+        for (i = 0; i < m_doc -> entryCount(); i ++) {
+            KEduVocExpression* expr = m_doc -> entry(i);
             if (split)
                 vocabulary += extractTranslations(m_queryTranslationColumn ? expr -> translation(m_queryTranslationColumn) : expr -> original());
             else
@@ -222,10 +220,8 @@ void RandomQueryDlg::setQuery(const QString &org,
                               int transcol,
                               int q_cycle,
                               int q_num,
-                              int q_start,
-                              KEduVocDocument *doc)
+                              int q_start)
 {
-    kv_doc = doc;
     m_row = entry;
     m_queryOriginalColumn = orgcol;
     m_queryTranslationColumn = transcol;
@@ -462,7 +458,7 @@ void RandomQueryDlg::dontKnowClicked()
 void RandomQueryDlg::setHintFields()
 {
     QString s;
-    KEduVocExpression *exp = kv_doc->entry(m_row);
+    KEduVocExpression *exp = m_doc->entry(m_row);
 
     s = exp->remark(m_queryOriginalColumn);
     mw->remark->setText(s);
@@ -492,7 +488,7 @@ void RandomQueryDlg::slotUser1()
 
     emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
-    KEduVocExpression *exp = kv_doc->entry(m_row);
+    KEduVocExpression *exp = m_doc->entry(m_row);
     mw->orgField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
 
     if (Prefs::suggestions())

@@ -34,7 +34,7 @@ class VerbQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    VerbQueryDlg(QWidget *parent);
+    VerbQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~VerbQueryDlg();
 

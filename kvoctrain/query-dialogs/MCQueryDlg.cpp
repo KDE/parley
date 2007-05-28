@@ -40,7 +40,7 @@
 
 #include <keduvocdocument.h>
 
-MCQueryDlg::MCQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), parent)
+MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), doc, parent)
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());

@@ -43,21 +43,26 @@ class QRadioButton;
 
 class QueryDlgBase : public KDialog
 {
-    Q_OBJECT
+Q_OBJECT
 public:
     enum Result { Unknown, Known, Timeout, StopIt };
 
-    QueryDlgBase(const QString & caption, QWidget *parent);
-
+    QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidget *parent);
     virtual ~QueryDlgBase();
 
     void startTimer();
+    void setDocument(KEduVocDocument *doc) { m_doc = doc; }
 
 public slots:
     virtual void showSolution() = 0;
     void timeoutReached();
 
+signals:
+    void sigQueryChoice(QueryDlgBase::Result);
+    void sigEditEntry(int row, int col);
+
 protected:
+    /// @todo make a base query widget so these are no longer needed, let all other query widgets add their specific elements to that base.
     virtual void setStatusText(const QString &status) = 0;
     virtual QProgressBar* timebar() = 0;
 
@@ -81,16 +86,10 @@ protected:
     QString  getTimeoutComment(int percent);
 
     virtual void initFocus() const;
-
-signals:
-    void sigQueryChoice(QueryDlgBase::Result);
-    void sigEditEntry(int row, int col);
-
-protected:
+    virtual void closeEvent(QCloseEvent*e);
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
-    virtual void closeEvent(QCloseEvent*e);
-
+protected:
     int                m_row;
     int                m_queryOriginalColumn;
     int                m_queryTranslationColumn;

@@ -35,7 +35,7 @@
 
 #include <kvttablemodel.h>
 
-ArtQueryDlg::ArtQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Article Training"), parent)
+ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Article Training"), doc, parent)
 {
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());

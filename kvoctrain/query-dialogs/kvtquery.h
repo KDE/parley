@@ -101,8 +101,9 @@ public:
     int nr;
 
 private:
+    // these are for the CURRENT query only, so we can display statistics.
     int m_badCount;
-
+    int m_timesAsked;
 };
 
 typedef QList<QueryEntry> QueryEntryList;

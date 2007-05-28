@@ -34,7 +34,7 @@ class AdjQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    AdjQueryDlg(QWidget *parent);
+    AdjQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~AdjQueryDlg();
 

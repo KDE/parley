@@ -244,7 +244,7 @@ void QueryManager::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
-    simpleQueryDlg = new SimpleQueryDlg(m_app);
+    simpleQueryDlg = new SimpleQueryDlg(m_doc, m_app);
     simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
@@ -376,7 +376,7 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
 
     m_app->hide();
     if (m_queryType == KVTQuery::ConjugationQuery) {
-        verbQueryDlg = new VerbQueryDlg(m_app);
+        verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
         verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
         verbQueryDlg->initFocus();
@@ -384,14 +384,14 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
     } else if (m_queryType == KVTQuery::ArticlesQuery) {
-        artQueryDlg = new ArtQueryDlg(m_app);
+        artQueryDlg = new ArtQueryDlg(m_doc, m_app);
         artQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
-        adjQueryDlg = new AdjQueryDlg(m_app);
+        adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
         adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->comparison(act_query_col));
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
@@ -608,13 +608,13 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
 
     if (m_queryType == KVTQuery::RandomQuery) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
-        mcQueryDlg = new MCQueryDlg(m_app);
+        mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
@@ -882,7 +882,7 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
             return;
         }
 
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         if (mcQueryDlg == 0) {

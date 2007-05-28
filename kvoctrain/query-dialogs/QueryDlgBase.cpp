@@ -33,7 +33,7 @@
 
 #include <KLocale>
 
-QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(parent)
+QueryDlgBase::QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
     setCaption(caption);
     setModal(false);
@@ -45,7 +45,7 @@ QueryDlgBase::QueryDlgBase(const QString & caption, QWidget *parent) : KDialog(p
     QWidget *main = new QWidget(this);
     setMainWidget(main);
 
-    m_doc = 0;
+    m_doc = doc;
     m_expression = 0;
     m_timer = 0;
 }

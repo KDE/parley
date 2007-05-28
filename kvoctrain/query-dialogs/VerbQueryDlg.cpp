@@ -34,7 +34,7 @@
 
 #include <kvttablemodel.h>
 
-VerbQueryDlg::VerbQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Verb Training"), parent)
+VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Verb Training"), doc, parent)
 {
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -92,7 +92,6 @@ void VerbQueryDlg::setQuery(int entry,
     m_expression = exp;
     m_row = entry;
     m_queryOriginalColumn = col;
-    int mqtime = Prefs::maxTimePer();
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->show_all->setDefault(true);

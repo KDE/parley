@@ -36,7 +36,7 @@
 #include <kvttablemodel.h>
 #include <kvtlanguages.h>
 
-AdjQueryDlg::AdjQueryDlg(QWidget *parent) : QueryDlgBase(i18n("Comparison Training"), parent)
+AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Comparison Training"), doc, parent)
 {
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());

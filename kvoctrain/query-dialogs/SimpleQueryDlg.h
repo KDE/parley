@@ -34,7 +34,7 @@ class SimpleQueryDlg : public QueryDlgBase
     Q_OBJECT
 
 public:
-    SimpleQueryDlg(QWidget *parent);
+    SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~SimpleQueryDlg();
 
