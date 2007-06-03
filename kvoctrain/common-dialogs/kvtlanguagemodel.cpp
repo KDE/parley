@@ -39,12 +39,12 @@
     locale.setLanguage(curr_lang);
     KGlobal::setLocale(&locale);
 
-    QStringList codes = locale.allLanguagesTwoAlpha();
+    QStringList codes = locale.allLanguagesList();
     codes.sort();
 
     // all two letter language codes
     foreach(QString code, codes) {
-      QString languageName = locale.twoAlphaToLanguageName(code);
+      QString languageName = locale.languageCodeToName(code);
       if (!languageName.isEmpty())
         global_langset.addLanguage(code, languageName, QString(), QString());
     }
@@ -71,7 +71,7 @@
     }
 
     // add all languages to the list
-    QStringList countrylist = locale.allCountriesTwoAlpha();
+    QStringList countrylist = locale.allCountriesList();
     countrylist.sort();
 
     int idx = 0;
@@ -176,7 +176,7 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
     }
   */  
     KLocale *locale = KGlobal::locale(); //(QString::null);
-    QStringList codes = locale->allLanguagesTwoAlpha();
+    QStringList codes = locale->allLanguagesList();
     //codes.sort();
     
     foreach (QString code, codes){
@@ -187,7 +187,7 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
         pixmap += "/flag.png";
         //kDebug() << code << ": " << pixmap << endl;
         */
-        const QString &languageName = locale->twoAlphaToLanguageName(code);
+        const QString &languageName = locale->languageCodeToName(code);
         if(! languageName.isEmpty()) {
             QStandardItem *languageItem = new QStandardItem(languageName);
             languageItem->setData(code, LanguageTwoLetterRole);

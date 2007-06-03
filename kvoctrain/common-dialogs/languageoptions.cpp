@@ -364,12 +364,12 @@ void LanguageOptions::loadCountryData()
     locale.setLanguage(curr_lang);
     KGlobal::setLocale(&locale);
 
-    QStringList codes = locale.allLanguagesTwoAlpha();
+    QStringList codes = locale.allLanguagesList();
     codes.sort();
 
-    // all two letter language codes
+    // all language codes
     foreach(QString code, codes) {
-      QString languageName = locale.twoAlphaToLanguageName(code);
+      QString languageName = locale.languageCodeToName(code);
       if (!languageName.isEmpty())
         global_langset.addLanguage(code, languageName, QString(), QString());
     }
@@ -396,7 +396,7 @@ void LanguageOptions::loadCountryData()
     }
 
     // add all languages to the list
-    QStringList countrylist = locale.allCountriesTwoAlpha();
+    QStringList countrylist = locale.allCountriesList();
     countrylist.sort();
 
     int idx = 0;
