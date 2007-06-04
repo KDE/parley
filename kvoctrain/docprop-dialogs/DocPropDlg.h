@@ -36,7 +36,6 @@
 #include "TitlePage.h"
 
 class KEduVocDocument;
-class LangPropPage;
 
 /**
   * This is the KPageDialog for all the document option pages. You get it by clicking Vocabulary->Properties.

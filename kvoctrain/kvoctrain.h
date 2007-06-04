@@ -65,7 +65,6 @@
 
 
 
-class QTimer;
 class QProgressBar;
 class QSplitter;
 
@@ -74,7 +73,6 @@ class KComboBox;
 class KRecentFilesAction;
 class KSelectAction;
 
-class ProgressDlg;
 class KEduVocDocument;
 
 class EntryDlg;

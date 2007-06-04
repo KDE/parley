@@ -33,7 +33,6 @@
 #include <keduvocexpression.h>
 
 class KEduVocDocument;
-class GradeCols;
 
 class StatisticsPage : public QWidget, public Ui::StatisticsPageForm
 {

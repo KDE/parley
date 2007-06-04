@@ -32,7 +32,6 @@
 #include "prefs.h"
 
 class KEduVocDocument;
-class KConfig;
 class KEduVocExpression;
 class Prefs;
 class EnumCompType;

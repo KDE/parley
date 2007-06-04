@@ -28,7 +28,6 @@
 
 #include "query-dialogs/kvtquery.h"
 
-class KComboBox;
 
 class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {

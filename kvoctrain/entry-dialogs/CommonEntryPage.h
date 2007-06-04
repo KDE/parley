@@ -30,8 +30,6 @@
 #include "query-dialogs/kvtquery.h"
 #include <kvtusage.h>
 
-class PhoneticEntryPage;
-class KDialogBase;
 
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {

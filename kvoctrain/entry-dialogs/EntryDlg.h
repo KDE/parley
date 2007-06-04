@@ -38,7 +38,6 @@
 #include "AdjEntryPage.h"
 #include "MCEntryPage.h"
 
-class KVTLanguages;
 class QTabWidget;
 class KXmlGuiWindow;
 class KEduVocDocument;
