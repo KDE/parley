@@ -113,6 +113,7 @@ int main(int argc, char* argv[])
         if (args && args->count() == 1) {
             kva->loadFileFromPath(args->url(0), true);
         }
+	args->clear();
         kva->show();
     }
     return app.exec();
