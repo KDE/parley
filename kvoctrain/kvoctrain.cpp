@@ -1136,11 +1136,11 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     }
 
     if (m_remarkStatusBarLabel != 0)
-        m_remarkStatusBarLabel->setText(i18nc("Abbreviation for C)comment","Comment: %1", noData ? QString() : expr->remark(column)));
+        m_remarkStatusBarLabel->setText(i18n("Comment: %1", noData ? QString() : expr->remark(column)));
     if (m_pronunciationStatusBarLabel != 0)
-        m_pronunciationStatusBarLabel->setText(i18nc("Abbreviation for P)ronouncation","Pronunciation: %1", noData ? QString() : expr->pronunciation(column)));
+        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", noData ? QString() : expr->pronunciation(column)));
     if (m_typeStatusBarLabel != 0)
-        m_typeStatusBarLabel->setText(i18nc("Abbreviation for T)ype of word", "Type: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
+        m_typeStatusBarLabel->setText(i18n("Type: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
 
     if (entryDlg != 0) {
         slotEditEntry2(current);
