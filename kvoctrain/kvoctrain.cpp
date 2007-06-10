@@ -1109,25 +1109,38 @@ void KVocTrainApp::slotEditPaste()
 void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     Q_UNUSED(previous);
-    if (!current.isValid())
+    if (!current.isValid()) {
         return;
+    }
 
     int column = current.column() - KV_EXTRA_COLS;
+
+    ///@todo this does not work - row is dependend on the lesson selected!
     int row = current.row();
+
+    kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row() << endl;
+
+    // this crashes and I don't see why!!!
+    //QModelIndex docIndex = m_sortFilterModel->mapToSource(current);
+    //kDebug() << "slotCurrentChanged() " << docIndex.row() << endl;
+
+
     bool noData = false;
     KEduVocExpression *expr = 0;
 
-    if (m_doc->entryCount() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0)
+    if (m_doc->entryCount() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0) {
         noData = true;
-    else
+    } else {
         expr = m_doc->entry(row);
+        kDebug() << "Row is: " << row << endl;
+    }
 
     if (m_remarkStatusBarLabel != 0)
-        m_remarkStatusBarLabel->setText(i18nc("Abbreviation for R)emark","R: %1", noData ? QString() : expr->remark(column)));
+        m_remarkStatusBarLabel->setText(i18nc("Abbreviation for C)comment","Comment: %1", noData ? QString() : expr->remark(column)));
     if (m_pronunciationStatusBarLabel != 0)
-        m_pronunciationStatusBarLabel->setText(i18nc("Abbreviation for P)ronouncation","P: %1", noData ? QString() : expr->pronunciation(column)));
+        m_pronunciationStatusBarLabel->setText(i18nc("Abbreviation for P)ronouncation","Pronunciation: %1", noData ? QString() : expr->pronunciation(column)));
     if (m_typeStatusBarLabel != 0)
-        m_typeStatusBarLabel->setText(i18nc("Abbreviation for T)ype of word", "T: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
+        m_typeStatusBarLabel->setText(i18nc("Abbreviation for T)ype of word", "Type: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
 
     if (entryDlg != 0) {
         slotEditEntry2(current);
