@@ -1118,7 +1118,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     ///@todo this does not work - row is dependend on the lesson selected!
     int row = current.row();
 
-    kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row() << endl;
+    //kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row() << endl;
 
     // this crashes and I don't see why!!!
     //QModelIndex docIndex = m_sortFilterModel->mapToSource(current);
@@ -1132,7 +1132,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         noData = true;
     } else {
         expr = m_doc->entry(row);
-        kDebug() << "Row is: " << row << endl;
+//        kDebug() << "Row is: " << row << endl;
     }
 
     if (m_remarkStatusBarLabel != 0)
