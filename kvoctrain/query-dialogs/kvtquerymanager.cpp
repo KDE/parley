@@ -378,7 +378,7 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
     if (m_queryType == KVTQuery::ConjugationQuery) {
         verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
         verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
+                               m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
         verbQueryDlg->initFocus();
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -392,7 +392,7 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
         artQueryDlg->show();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->comparison(act_query_col));
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -489,7 +489,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             return;
         }
         verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->conjugation(act_query_col), exp->conjugation(act_query_col));
+                               m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
 
         verbQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::ArticlesQuery) {
@@ -506,7 +506,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->comparison(act_query_col));
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
@@ -598,13 +598,8 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
     QString q_org;
     QString q_trans;
 
-    if (oindex == 0) {  // usual: give original, ask for translation x
-        q_org = exp->original();
-        q_trans = exp->translation(tindex);
-    } else {  // alternative: give translation x, ask for original
-        q_org = exp->translation(oindex);
-        q_trans = exp->original();
-    }
+    q_org = exp->translation(oindex).translation();
+    q_trans = exp->translation(tindex).translation();
 
     if (m_queryType == KVTQuery::RandomQuery) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
@@ -655,13 +650,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
     if (res != QueryDlgBase::StopIt) {
         m_doc->setModified();
 
-        if (oindex == 0) {
-            exp->incQueryCount(tindex, false);
-            exp->setQueryDate(tindex, QDateTime::currentDateTime(), false);
-        } else {
-            exp->incQueryCount(oindex, true);
-            exp->setQueryDate(oindex, QDateTime::currentDateTime(), true);
-        }
+        exp->translation(tindex).incQueryCount(oindex);
+        exp->translation(tindex).setQueryDate(oindex, QDateTime::currentDateTime());
     }
 
     switch (res) {
@@ -679,13 +669,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
             else
                 random_expr2.append(qer);
 
-            if (oindex == 0) {
-                exp->incBadCount(tindex, false);
-                exp->setGrade(tindex, KV_LEV1_GRADE, false);  // unknown: reset grade
-            } else {
-                exp->incBadCount(oindex, true);
-                exp->setGrade(oindex, KV_LEV1_GRADE, true);
-            }
+            exp->translation(tindex).incBadCount(oindex);
+            exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE);  // unknown: reset grade
         }
         break;
 
@@ -699,13 +684,9 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         else
             random_expr2.append(qer);
 
-        if (oindex == 0) {
-            exp->incBadCount(tindex, false);
-            exp->setGrade(tindex, KV_LEV1_GRADE, false);  // unknown: reset grade
-        } else {
-            exp->incBadCount(oindex, true);
-            exp->setGrade(oindex, KV_LEV1_GRADE, true);
-        }
+        exp->translation(tindex).incBadCount(oindex);
+        exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE);  // unknown: reset grade
+
         break;
 
     case QueryDlgBase::Known :
@@ -732,11 +713,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
                 exp->setInQuery(false);
 
                 query_num--;
-                if (oindex == 0) {
-                    exp->incGrade(tindex, false);
-                } else {
-                    exp->incGrade(oindex, true);
-                }
+                exp->translation(tindex).incGrade(oindex);
+
                 break;
             default:
                 kError() << "You should not be able to answer correctly more than 4 times\n";
@@ -752,17 +730,9 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         } else { //not Prefs::altLearn()
             query_num--;
             if (query_cycle <= 1) {
-                if (oindex == 0) {
-                    exp->incGrade(tindex, false); // incr grade only in first cycle
-                } else {
-                    exp->incGrade(oindex, true);
-                }
+                exp->translation(tindex).incGrade(oindex); // incr grade only in first cycle
             } else {
-                if (oindex == 0) {
-                    exp->setGrade(tindex, KV_LEV1_GRADE, false); // reset grade
-                } else {
-                    exp->setGrade(oindex, KV_LEV1_GRADE, true);
-                }
+                exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE); // reset grade
             }
             exp->setInQuery(false);
             random_expr1.erase(random_expr1.begin() + random_query_nr);
@@ -866,13 +836,9 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         }
     }
 
-    if (oindex == 0) {  // usual: give original, ask for translation x
-        q_org = exp->original();
-        q_trans = exp->translation(tindex);
-    } else {  // alternative: give translation x, ask for original
-        q_org = exp->translation(oindex);
-        q_trans = exp->original();
-    }
+
+    q_org = exp->translation(oindex).translation();
+    q_trans = exp->translation(tindex).translation();
 
     if (m_queryType == KVTQuery::RandomQuery) {
 

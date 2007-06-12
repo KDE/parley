@@ -130,7 +130,7 @@ void TenseOptPage::slotDeleteTense()
         for (int ent = 0; ent < doc->entryCount(); ent++) {
             KEduVocExpression *exp = doc->entry(ent);
             for (int lang = 0; lang < doc->identifierCount(); lang++) {
-                KEduVocConjugation conj = exp->conjugation(lang);
+                KEduVocConjugation conj = exp->translation(lang).conjugation();
                 for (int con = 0; con < conj.entryCount(); con++) {
                     if (conj.getType(con) == t) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
@@ -164,7 +164,7 @@ void TenseOptPage::slotCleanup()
 
     for (int col = 0; col < doc->identifierCount(); col++)
         for (int i = 0; i < (int) doc->entryCount(); i++) {
-            KEduVocConjugation conj = doc->entry(i)->conjugation(col);
+            KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
             for (int ci = 0; ci < conj.entryCount(); ci++) {
                 QString t = conj.getType(ci);
                 if (t.left(QString(UL_USER_TENSE).length()) == UL_USER_TENSE) {
@@ -230,7 +230,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
     // and translate to new index
     for (int col = 0; col < doc->identifierCount(); col++) {
         for (int i = 0; i < doc->entryCount(); i++) {
-            KEduVocConjugation conj = doc->entry(i)->conjugation(col);
+            KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
             bool dirty = false;
             for (int ci = 0; ci < conj.entryCount(); ci++) {
                 QString old = conj.getType(ci);
@@ -248,7 +248,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
                 }
             }
             if (dirty)
-                doc->entry(i)->setConjugation(col, conj);
+                doc->entry(i)->translation(col).setConjugation(conj);
         }
     }
 }

@@ -130,7 +130,7 @@ void TypeOptPage::slotDeleteType()
         for (int ent = 0; ent < doc->entryCount(); ent++) {
             KEduVocExpression *exp = doc->entry(ent);
             for (int lang = 0; lang < (int) doc->identifierCount(); lang++) {
-                if (exp->type(lang) == t) {
+                if (exp->translation(lang).type() == t) {
                     KMessageBox::information(this, i18n("The selected user defined type could not be deleted\nbecause it is in use."), i18n("Deleting Type Description"));
                     return;
                 }
@@ -161,7 +161,7 @@ void TypeOptPage::slotCleanup()
 
     for (int col = 0; col < doc->identifierCount(); col++)
         for (int i = 0; i < (int) doc->entryCount(); i++) {
-            QString t = doc->entry(i)->type(col);
+            QString t = doc->entry(i)->translation(col).type();
             if (t.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
                 t.remove(0, QString(QM_USER_TYPE).length());
                 int idx = t.toInt();
@@ -224,7 +224,7 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
     // and translate to new index
     for (int col = 0; col < doc->identifierCount(); col++) {
         for (int i = 0; i < doc->entryCount(); i++) {
-            QString old = doc->entry(i)->type(col);
+            QString old = doc->entry(i)->translation(col).type();
             if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
                 old.remove(0, 1);
                 int o = old.toInt();
@@ -232,9 +232,9 @@ void TypeOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &typeIndex,
                 QString newtype;
                 if (translate_index[o] > 0) {
                     newtype.setNum(translate_index[o]).prepend(QM_USER_TYPE);
-                    doc->entry(i)->setType(col, newtype);
+                    doc->entry(i)->translation(col).setType(newtype);
                 } else
-                    doc->entry(i)->setType(col, "");
+                    doc->entry(i)->translation(col).setType("");
             }
         }
     }

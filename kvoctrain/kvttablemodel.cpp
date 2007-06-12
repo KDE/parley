@@ -99,15 +99,15 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
     case KVTTableModel::GradeRole: {
             if (index.column() > KV_EXTRA_COLS) {
-                if (m_doc->entry(index.row())->queryCount(index.column() - KV_EXTRA_COLS, false) != 0)
-                    return QVariant(m_doc->entry(index.row())->grade(index.column() - KV_EXTRA_COLS, false));
+                if (m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).queryCount(0) != 0)
+                    return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).grade(0));
                 else
                     return QVariant(KV_NORM_GRADE);
             } else if (index.column() == 2) {
                 QList<QVariant> result;
                 for (int i = 1; i <= m_doc->identifierCount(); ++i) {
-                    if (m_doc->entry(index.row())->queryCount(i, true) != 0)
-                        result.append(QVariant(m_doc->entry(index.row())->grade(i /*+ KV_EXTRA_COLS*/, true)));
+                    if (m_doc->entry(index.row())->translation(0).queryCount(i) != 0)
+                        result.append(QVariant(m_doc->entry(index.row())->translation(0).grade(i /*+ KV_EXTRA_COLS*/)));
                     else
                         result.append(QVariant(KV_NORM_GRADE));
                 }
@@ -146,10 +146,8 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                         return "";
                 } else
                     return "@inactive@";
-            } else if (index.column() == 2)
-                result = m_doc->entry(index.row())->original();
-            else {
-                result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS);
+            } else {
+                result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).translation();
             }
             return result;
             break;
@@ -292,11 +290,9 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
             }
             m_doc->entry(index.row())->setInQuery(inq);
             m_doc->entry(index.row())->setActive(act);
-        } else if (index.column() == 2)
-            m_doc->entry(index.row())->setOriginal(value.toString());
-        else
+        } else {
             m_doc->entry(index.row())->setTranslation(index.column() - 2, value.toString());
-
+        }
         emit dataChanged(index, index);
         m_doc->setModified(true);
         return true;
@@ -390,7 +386,7 @@ bool KVTTableModel::insertColumns(int column, int count, const QModelIndex & par
     int num = m_doc->entryCount() - 1;
     for (int i = 0; i < (int) num; i++) {
         KEduVocExpression *expr = m_doc->entry(i);
-        expr->setType(num, expr->type(0));
+        expr->translation(num).setType(expr->translation(0).type());
     }
 
     endInsertColumns();

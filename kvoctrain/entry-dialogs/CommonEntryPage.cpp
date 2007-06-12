@@ -276,12 +276,12 @@ void CommonEntryPage::slotTypeSelected(int idx)
                 if (all_types[sub_idx].shortStr().left(main_patt.length()) == main_patt) {
                     if (first) {
                         subtype_box->addItem(i18n("<none>"));
-                        current_subtypes.push_back(all_maintypes[idx-1].shortStr());
+                        current_subtypes.append(all_maintypes[idx-1].shortStr());
                         first = false;
                     }
                     QString s = all_types[sub_idx].longStr();
                     subtype_box->addItem(s.simplified());
-                    current_subtypes.push_back(all_types[sub_idx].shortStr());
+                    current_subtypes.append(all_types[sub_idx].shortStr());
                 }
             }
         }

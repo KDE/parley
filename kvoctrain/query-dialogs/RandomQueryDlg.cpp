@@ -185,14 +185,14 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         for (i = 0; i < m_doc -> entryCount(); i ++) {
             KEduVocExpression* expr = m_doc -> entry(i);
             if (split)
-                vocabulary += extractTranslations(m_queryTranslationColumn ? expr -> translation(m_queryTranslationColumn) : expr -> original());
+                vocabulary += extractTranslations( expr->translation(m_queryTranslationColumn).translation());
             else
-                vocabulary.append(m_queryTranslationColumn ? expr -> translation(m_queryTranslationColumn) : expr -> original());
+                vocabulary.append(expr->translation(m_queryTranslationColumn).translation());
             if (Prefs::swapDirection()) {
                 if (split)
-                    vocabulary += extractTranslations(m_queryOriginalColumn ? expr ->translation(m_queryOriginalColumn) : expr ->original());
+                    vocabulary += extractTranslations( expr->translation(m_queryOriginalColumn).translation() );
                 else
-                    vocabulary.append(m_queryOriginalColumn ? expr ->translation(m_queryOriginalColumn) : expr ->original());
+                    vocabulary.append( expr->translation(m_queryOriginalColumn).translation());
             }
         }
         vocabulary.sort();
@@ -460,18 +460,18 @@ void RandomQueryDlg::setHintFields()
     QString s;
     KEduVocExpression *exp = m_doc->entry(m_row);
 
-    s = exp->remark(m_queryOriginalColumn);
+    s = exp->translation(m_queryOriginalColumn).comment();
     mw->remark->setText(s);
     mw->c_remark->setEnabled(!s.isEmpty());
 
-    s = exp->fauxAmi(m_queryOriginalColumn, m_queryOriginalColumn != 0);
+    s = exp->translation(m_queryOriginalColumn).falseFriend(m_queryTranslationColumn);
     mw->falseFriend->setText(s);
     mw->c_falsefriend->setEnabled(!s.isEmpty());
 
     s = "";
     QList<TypeRelation> all_types = KVTQuery::getRelation(false);
     for (int i = 0; i < (int) all_types.size(); i++) {
-        if (exp->type(m_queryOriginalColumn) == all_types[i].shortStr()) {
+        if (exp->translation(m_queryOriginalColumn).type() == all_types[i].shortStr()) {
             s = all_types[i].longStr();
             break;
         }
@@ -489,7 +489,7 @@ void RandomQueryDlg::slotUser1()
     emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *exp = m_doc->entry(m_row);
-    mw->orgField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
+    mw->orgField->setText( exp->translation(m_queryOriginalColumn).translation() );
 
     if (Prefs::suggestions())
         for (int i = 0; i < fields; i ++)

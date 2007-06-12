@@ -114,7 +114,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     resetQueryWidget(button_ref[3].second);
     resetQueryWidget(button_ref[4].second);
 
-    KEduVocMultipleChoice multipleChoice = vocExpression->multipleChoice(m_queryTranslationColumn);
+    KEduVocMultipleChoice multipleChoice = vocExpression->translation(m_queryTranslationColumn).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
         choices.append(multipleChoice.mc(i));
     }
@@ -124,10 +124,8 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
 
     // always include false friend
     QString ff;
-    if (m_queryTranslationColumn != 0)
-        ff = vocExpression->fauxAmi(m_queryTranslationColumn, false).simplified();
-    else
-        ff = vocExpression->fauxAmi(m_queryOriginalColumn, true).simplified();
+    /// @todo: check if it works: false friend should always be included! (Cannot think if the following is ok in both directions...)
+    ff = vocExpression->translation(m_queryTranslationColumn).falseFriend(m_queryOriginalColumn).simplified();
 
     if (!ff.isEmpty())
         choices.prepend(ff);
@@ -137,10 +135,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
             KEduVocExpression *act = doc->entry(i);
 
             if (act != vocExpression) {
-                if (m_queryTranslationColumn == 0)
-                    choices.append(act->original());
-                else
-                    choices.append(act->translation(m_queryTranslationColumn));
+                choices.append(act->translation(m_queryTranslationColumn).translation());
             }
         }
     } else {
@@ -163,18 +158,12 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            if (m_queryTranslationColumn == 0)
-                choices.append(exprlist[i]->original());
-            else
-                choices.append(exprlist[i]->translation(m_queryTranslationColumn));
+            choices.append(exprlist[i]->translation(m_queryTranslationColumn).translation());
         }
 
     }
 
-    if (m_queryTranslationColumn == 0)
-        choices.prepend(vocExpression->original());
-    else
-        choices.prepend(vocExpression->translation(m_queryTranslationColumn));
+    choices.prepend(vocExpression->translation(m_queryTranslationColumn).translation());
 
     for (int i = choices.count(); i < MAX_MULTIPLE_CHOICE; i++)
         choices.append("");
@@ -329,7 +318,7 @@ void MCQueryDlg::slotUser1()
     emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
 
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    mw->orgField->setText(m_queryOriginalColumn == 0 ? vocExpression->original() : vocExpression->translation(m_queryOriginalColumn));
+    mw->orgField->setText( vocExpression->translation(m_queryOriginalColumn).translation() );
 }
 
 #include "MCQueryDlg.moc"

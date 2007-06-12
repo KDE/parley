@@ -182,7 +182,7 @@ void KVocTrainApp::slotEditCallBack(int res)
                     m_lessonView->slotSelectLesson(lesson);
 
                     QString exp;
-                    exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG);
+                    exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG).translation();
                     if (exp.isEmpty())
                         m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
                 } else
@@ -232,37 +232,37 @@ void KVocTrainApp::commitEntryDlg(bool force)
             m_tableModel->setData(m_tableModel->index(row, col), entryDlg->getExpr(), Qt::EditRole);
             col -= KV_EXTRA_COLS;
 
-            expr->setRemark(col, entryDlg->getRemark());
-            expr->setPronunciation(col, entryDlg->getPronounce());
-            expr->setSynonym(col, entryDlg->getSynonym());
-            expr->setAntonym(col, entryDlg->getAntonym());
-            expr->setExample(col, entryDlg->getExample());
-            expr->setUsageLabel(col, entryDlg->getUsageLabel());
-            expr->setParaphrase(col, entryDlg->getParaphrase());
-            expr->setConjugation(col, entryDlg->getConjugation());
-            expr->setComparison(col, entryDlg->getComparison());
-            expr->setMultipleChoice(col, entryDlg->getMultipleChoice());
-            expr->setFauxAmi(col, entryDlg->getFromFauxAmi(), false);
-            expr->setFauxAmi(col, entryDlg->getToFauxAmi(), true);
-            expr->setGrade(col, entryDlg->getFromGrade(), false);
-            expr->setGrade(col, entryDlg->getToGrade(), true);
-            expr->setQueryCount(col, entryDlg->getFromQCount(), false);
-            expr->setQueryCount(col, entryDlg->getToQCount(), true);
-            expr->setBadCount(col, entryDlg->getFromBCount(), false);
-            expr->setBadCount(col, entryDlg->getToBCount(), true);
-            expr->setQueryDate(col, entryDlg->getFromDate(), false);
-            expr->setQueryDate(col, entryDlg->getToDate(), true);
-            expr->setType(col, entryDlg->getType());
+            expr->translation(col).setComment(entryDlg->getRemark());
+            expr->translation(col).setPronunciation(entryDlg->getPronounce());
+            expr->translation(col).setSynonym(entryDlg->getSynonym());
+            expr->translation(col).setAntonym(entryDlg->getAntonym());
+            expr->translation(col).setExample(entryDlg->getExample());
+            expr->translation(col).setUsageLabel(entryDlg->getUsageLabel());
+            expr->translation(col).setParaphrase(entryDlg->getParaphrase());
+            expr->translation(col).setConjugation(entryDlg->getConjugation());
+            expr->translation(col).setComparison(entryDlg->getComparison());
+            expr->translation(col).setMultipleChoice(entryDlg->getMultipleChoice());
+            expr->translation(col).setFalseFriend(0, entryDlg->getFromFauxAmi());
+            expr->translation(0).setFalseFriend(col, entryDlg->getToFauxAmi());
+            expr->translation(col).setGrade(entryDlg->getFromGrade(), false);
+            expr->translation(col).setGrade(entryDlg->getToGrade(), true);
+            expr->translation(col).setQueryCount(entryDlg->getFromQCount(), false);
+            expr->translation(col).setQueryCount(entryDlg->getToQCount(), true);
+            expr->translation(col).setBadCount(entryDlg->getFromBCount(), false);
+            expr->translation(col).setBadCount(entryDlg->getToBCount(), true);
+            expr->translation(col).setQueryDate(0, entryDlg->getFromDate());
+            expr->translation(0).setQueryDate(col, entryDlg->getToDate());
+            expr->translation(col).setType(entryDlg->getType());
 
             for (int j = 0; j <= expr->translationCount(); j++)
-                if (expr->type(j).isEmpty())
-                    expr->setType(j, entryDlg->getType());
+                if (expr->translation(j).type().isEmpty())
+                    expr->translation(j).setType(entryDlg->getType());
 
             for (int j = 0; j <= expr->translationCount(); j++)
-                if (KVTQuery::getMainType(expr->type(j))
+                if (KVTQuery::getMainType(expr->translation(j).type())
                         !=
                         KVTQuery::getMainType(entryDlg->getType()))
-                    expr->setType(j, entryDlg->getType());
+                    expr->translation(j).setType(entryDlg->getType());
         }
         m_tableModel->setData(m_tableModel->index(row, 0), entryDlg->getLesson(), Qt::EditRole);
         expr->setActive(entryDlg->getActive());
@@ -279,27 +279,27 @@ void KVocTrainApp::commitEntryDlg(bool force)
             if (col >= 0) {
                 // only updated "common" props in multimode
                 if (entryDlg->fromGradeIsModified())
-                    expr->setGrade(col, entryDlg->getFromGrade(), false);
+                    expr->translation(col).setGrade(entryDlg->getFromGrade(), false);
                 if (entryDlg->toGradeIsModified())
-                    expr->setGrade(col, entryDlg->getToGrade(), true);
+                    expr->translation(col).setGrade(entryDlg->getToGrade(), true);
                 if (entryDlg->fromQueryCountIsModified())
-                    expr->setQueryCount(col, entryDlg->getFromQCount(), false);
+                    expr->translation(col).setQueryCount(entryDlg->getFromQCount(), false);
                 if (entryDlg->toQueryCountIsModified())
-                    expr->setQueryCount(col, entryDlg->getToQCount(), true);
+                    expr->translation(col).setQueryCount(entryDlg->getToQCount(), true);
                 if (entryDlg->fromBadCountIsModified())
-                    expr->setBadCount(col, entryDlg->getFromBCount(), false);
+                    expr->translation(col).setBadCount(entryDlg->getFromBCount(), false);
                 if (entryDlg->toBadCountIsModified())
-                    expr->setBadCount(col, entryDlg->getToBCount(), true);
+                    expr->translation(col).setBadCount(entryDlg->getToBCount(), true);
                 if (entryDlg->fromDateIsModified())
-                    expr->setQueryDate(col, entryDlg->getFromDate(), false);
+                    expr->translation(col).setQueryDate(0, entryDlg->getFromDate());
                 if (entryDlg->toDateIsModified())
-                    expr->setQueryDate(col, entryDlg->getToDate(), true);
+                    expr->translation(0).setQueryDate(col, entryDlg->getToDate());
                 if (entryDlg->usageIsModified())
                     for (int j = 0; j <= expr->translationCount(); j++)
-                        expr->setUsageLabel(j, entryDlg->getUsageLabel());
+                        expr->translation(j).setUsageLabel(entryDlg->getUsageLabel());
                 if (entryDlg->typeIsModified())
                     for (int j = 0; j <= expr->translationCount(); j++)
-                        expr->setType(j, entryDlg->getType());
+                        expr->translation(j).setType(entryDlg->getType());
             }
 
             if (entryDlg->activeIsModified())
@@ -404,7 +404,7 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
                           QString(),
                           lesson,
                           QString(),
-                          m_doc->entry(row)->type(0),
+                          m_doc->entry(row)->translation(0).type(),
                           QString(),
                           QString(),
                           QString(),
@@ -428,30 +428,30 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
 
         entryDlg->setData(et,
                           hasSelection,
-                          m_doc->entry(row)->grade(col, false),
-                          m_doc->entry(row)->grade(col, true),
-                          m_doc->entry(row)->queryCount(col, false),
-                          m_doc->entry(row)->queryCount(col, true),
-                          m_doc->entry(row)->badCount(col, false),
-                          m_doc->entry(row)->badCount(col, true),
-                          m_doc->entry(row)->queryDate(col, false),
-                          m_doc->entry(row)->queryDate(col, true),
-                          m_doc->entry(row)->fauxAmi(col, false),
-                          m_doc->entry(row)->fauxAmi(col, true),
+                          m_doc->entry(row)->translation(col).grade(0),
+                          m_doc->entry(row)->translation(0).grade(col),
+                          m_doc->entry(row)->translation(col).queryCount(0),
+                          m_doc->entry(row)->translation(0).queryCount(col),
+                          m_doc->entry(row)->translation(col).badCount(0),
+                          m_doc->entry(row)->translation(0).badCount(col),
+                          m_doc->entry(row)->translation(col).queryDate(0),
+                          m_doc->entry(row)->translation(0).queryDate(col),
+                          m_doc->entry(row)->translation(col).falseFriend(0),
+                          m_doc->entry(row)->translation(0).falseFriend(col),
                           text,
                           lesson,
-                          m_doc->entry(row)->remark(col),
-                          m_doc->entry(row)->type(col),
-                          m_doc->entry(row)->pronunciation(col),
-                          m_doc->entry(row)->synonym(col),
-                          m_doc->entry(row)->antonym(col),
-                          m_doc->entry(row)->example(col),
-                          m_doc->entry(row)->usageLabel(col),
-                          m_doc->entry(row)->paraphrase(col),
+                          m_doc->entry(row)->translation(col).comment(),
+                          m_doc->entry(row)->translation(col).type(),
+                          m_doc->entry(row)->translation(col).pronunciation(),
+                          m_doc->entry(row)->translation(col).synonym(),
+                          m_doc->entry(row)->translation(col).antonym(),
+                          m_doc->entry(row)->translation(col).example(),
+                          m_doc->entry(row)->translation(col).usageLabel(),
+                          m_doc->entry(row)->translation(col).paraphrase(),
                           m_doc->conjugation(col),
-                          m_doc->entry(row)->conjugation(col),
-                          m_doc->entry(row)->comparison(col),
-                          m_doc->entry(row)->multipleChoice(col),
+                          m_doc->entry(row)->translation(col).conjugation(),
+                          m_doc->entry(row)->translation(col).comparison(),
+                          m_doc->entry(row)->translation(col).multipleChoice(),
                           title,
                           m_doc->entry(row)->isActive());
     }
@@ -1136,11 +1136,11 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     }
 
     if (m_remarkStatusBarLabel != 0)
-        m_remarkStatusBarLabel->setText(i18n("Comment: %1", noData ? QString() : expr->remark(column)));
+        m_remarkStatusBarLabel->setText(i18n("Comment: %1", noData ? QString() : expr->translation(column).comment()));
     if (m_pronunciationStatusBarLabel != 0)
-        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", noData ? QString() : expr->pronunciation(column)));
+        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", noData ? QString() : expr->translation(column).pronunciation()));
     if (m_typeStatusBarLabel != 0)
-        m_typeStatusBarLabel->setText(i18n("Type: %1", noData ? QString() : KVTQuery::typeStr(expr->type(column))));
+        m_typeStatusBarLabel->setText(i18n("Type: %1", noData ? QString() : KVTQuery::typeStr(expr->translation(column).type())));
 
     if (entryDlg != 0) {
         slotEditEntry2(current);

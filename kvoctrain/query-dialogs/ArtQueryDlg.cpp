@@ -85,10 +85,7 @@ void ArtQueryDlg::setQuery(int entry,
     articles = art;
 
     QString s;
-    if (col == 0)
-        s = exp->original().simplified();
-    else
-        s = exp->translation(m_queryOriginalColumn).simplified();
+    s = exp->translation(m_queryOriginalColumn).translation().simplified();
 
     QString def, indef;
     bool removed = false;
@@ -152,13 +149,13 @@ void ArtQueryDlg::showSolution()
     resetQueryWidget(mw->male);
     resetQueryWidget(mw->natural);
 
-    if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
+    if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
         mw->rb_fem->setChecked(true);
         verifyButton(mw->rb_fem, true);
-    } else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+    } else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
         mw->male->setChecked(true);
         verifyButton(mw->male, true);
-    } else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+    } else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
         mw->natural->setChecked(true);
         verifyButton(mw->natural, true);
     }
@@ -173,11 +170,11 @@ void ArtQueryDlg::showMoreClicked()
 void ArtQueryDlg::verifyClicked()
 {
     bool known = false;
-    if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+    if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
         known = mw->rb_fem->isChecked();
-    else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+    else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
         known = mw->male->isChecked();
-    else if (m_expression->type(m_queryOriginalColumn) == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+    else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
         known = mw->natural->isChecked();
 
     if (mw->rb_fem->isChecked()) {

@@ -141,14 +141,14 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
                 if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
-                    kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->original() << endl;
+                    kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->translation(0).translation() << endl;
 
                 }
             } else {
                 if (validate(expr, act_lesson, oindex, tindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
-                    kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->original() << endl;
+                    kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->translation(0).translation() << endl;
                 }
             }
         }
@@ -166,23 +166,23 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 {
 // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
 
-    int index = tindex ? tindex : oindex;
-    if ((compareExpiring(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::expire())
+    //int index = tindex ? tindex : oindex;
+    if ( (compareExpiring(expr->translation(tindex).grade(oindex), expr->translation(tindex).queryDate(oindex), Prefs::expire() )
             ||
 
             (
-                compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->grade(index, oindex != 0), Prefs::gradeItem())
-                && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->queryCount(index, oindex != 0), Prefs::queryItem())
-                && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->badCount(index, oindex != 0), Prefs::badItem())
-                && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->queryDate(index, oindex != 0))
-                && compareBlocking(expr->grade(index, oindex != 0), expr->queryDate(index, oindex != 0), Prefs::block())
+                compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(tindex).grade(oindex), Prefs::gradeItem())
+                && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(tindex).queryCount(oindex), Prefs::queryItem())
+                && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(tindex).badCount(oindex), Prefs::badItem())
+                && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(tindex).queryDate(oindex))
+                && compareBlocking(expr->translation(tindex).grade(oindex), expr->translation(tindex).queryDate(oindex), Prefs::block())
             )
         )
             // lesson + word type must ALWAYS match (and there must be a word on both sides)
             && compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
-            && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->type(index), Prefs::typeItem())
-            && !expr->original().simplified().isEmpty()
-            && !expr->translation(index).simplified().isEmpty()
+            && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(tindex).type(), Prefs::typeItem())
+            && !expr->translation(oindex).translation().simplified().isEmpty()
+            && !expr->translation(tindex).translation().simplified().isEmpty()
        )
         return true;
     else
@@ -229,7 +229,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const 
     else
         qtype = query_type;
 
-    QString expr_type = expr->type(idx);
+    QString expr_type = expr->translation(idx).type();
     bool type_ok = false;
     if (qtype == QM_NOUN) {
         type_ok =    expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
@@ -241,10 +241,10 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const 
                    || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
                    || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
                   )
-                  && expr->conjugation(idx).entryCount() > 0;
+                  && expr->translation(idx).conjugation().entryCount() > 0;
 
     } else if (qtype == QM_ADJ) {
-        type_ok = expr_type == QM_ADJ && !expr->comparison(idx).isEmpty();
+        type_ok = expr_type == QM_ADJ && !expr->translation(idx).comparison().isEmpty();
     } else
         return false;
 
@@ -286,13 +286,13 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryT
     kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)" << endl;
     bool type_ok = false;
     if (query_type == KVTQuery::SynonymQuery) {
-        type_ok = !expr->synonym(idx).simplified().isEmpty();
+        type_ok = !expr->translation(idx).synonym().simplified().isEmpty();
     } else if (query_type == KVTQuery::AntonymQuery) {
-        type_ok = !expr->antonym(idx).simplified().isEmpty();
+        type_ok = !expr->translation(idx).antonym().simplified().isEmpty();
     } else if (query_type == KVTQuery::ParaphraseQuery) {
-        type_ok = !expr->paraphrase(idx).simplified().isEmpty();
+        type_ok = !expr->translation(idx).paraphrase().simplified().isEmpty();
     } else if (query_type == KVTQuery::ExampleQuery) {
-        type_ok = !expr->example(idx).simplified().isEmpty();
+        type_ok = !expr->translation(idx).example().simplified().isEmpty();
     }
 
     if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {

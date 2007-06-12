@@ -98,9 +98,9 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the synonym:"));
             setWindowTitle(i18n("Synonym Training"));
-            answerstring = m_expression->synonym(column);
+            answerstring = m_expression->translation(column).synonym();
             mw->queryField->setAlignment(Qt::AlignVCenter);
-            mw->queryField->setText(column == 0 ? m_expression->original() : m_expression->translation(column));
+            mw->queryField->setText( m_expression->translation(column).translation() );
             setQueryFieldWordwrap();
         }
         break;
@@ -109,8 +109,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
-            answerstring = m_expression->antonym(column);
-            mw->queryField->setText(column == 0 ? m_expression->original() : m_expression->translation(column));
+            answerstring = m_expression->translation(column).antonym();
+            mw->queryField->setText( m_expression->translation(column).translation() );
             setQueryFieldWordwrap();
         }
         break;
@@ -119,8 +119,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Paraphrase"));
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
-            mw->queryField->setText(m_expression->paraphrase(column));
-            answerstring = column == 0 ? m_expression->original() : m_expression->translation(column);
+            mw->queryField->setText(m_expression->translation(column).paraphrase());
+            answerstring = m_expression->translation(column).translation();
             setQueryFieldWordwrap();
         }
         break;
@@ -129,8 +129,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->queryLabel->setText(i18n("Example sentence"));
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
-            s = m_expression->example(column);
-            answerstring = column == 0 ? m_expression->original().simplified() : m_expression->translation(column).simplified();
+            s = m_expression->translation(column).example();
+            answerstring = m_expression->translation(column).translation().simplified();
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
@@ -216,26 +216,26 @@ void SimpleQueryDlg::slotUser1()
 
     switch (querytype) {
     case KVTQuery::SynonymQuery: {
-            answerstring = exp->synonym(m_queryOriginalColumn);
-            mw->queryField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
+            answerstring = exp->translation(m_queryOriginalColumn).synonym();
+            mw->queryField->setText( exp->translation(m_queryOriginalColumn).translation() );
         }
         break;
 
     case KVTQuery::AntonymQuery: {
-            answerstring = exp->antonym(m_queryOriginalColumn);
-            mw->queryField->setText(m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn));
+            answerstring = exp->translation(m_queryOriginalColumn).antonym();
+            mw->queryField->setText( exp->translation(m_queryOriginalColumn).translation() );
         }
         break;
 
     case KVTQuery::ParaphraseQuery: {
-            mw->queryField->setText(exp->paraphrase(m_queryOriginalColumn));
-            answerstring = m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn);
+            mw->queryField->setText(exp->translation(m_queryOriginalColumn).paraphrase());
+            answerstring = exp->translation(m_queryOriginalColumn).translation();
         }
         break;
 
     case KVTQuery::ExampleQuery: {
-            mw->queryField->setText(exp->example(m_queryOriginalColumn));
-            answerstring = m_queryOriginalColumn == 0 ? exp->original() : exp->translation(m_queryOriginalColumn);
+            mw->queryField->setText(exp->translation(m_queryOriginalColumn).example());
+            answerstring = exp->translation(m_queryOriginalColumn).translation();
         }
         break;
 

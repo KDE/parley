@@ -128,7 +128,7 @@ void UsageOptPage::slotDeleteUsage()
         for (int ent = 0; ent < doc->entryCount(); ent++) {
             KEduVocExpression *exp = doc->entry(ent);
             for (int lang = 0; lang < doc->identifierCount(); lang++) {
-                QString ul = exp->usageLabel(lang).append(UL_USAGE_DIV);
+                QString ul = exp->translation(lang).usageLabel().append(UL_USAGE_DIV);
                 if (ul.indexOf(t) >= 0) {
                     KMessageBox::information(this, i18nc("usage (area) of an expression", "This user-defined usage label could not be deleted\n"
                                                          "because it is in use."), i18nc("usage (area) of an expression", "Deleting Usage Label"));
@@ -161,7 +161,7 @@ void UsageOptPage::slotCleanup()
 
     for (int col = 0; col < doc->identifierCount(); col++)
         for (int i = 0; i < (int) doc->entryCount(); i++) {
-            QString t = doc->entry(i)->usageLabel(col);
+            QString t = doc->entry(i)->translation(col).usageLabel();
             QString n;
             while (t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {
                 t.remove(0, QString(UL_USER_USAGE).length());
@@ -235,7 +235,7 @@ void UsageOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &usageInde
     // and translate to new index
     for (int col = 0; col < doc->identifierCount(); col++) {
         for (int i = 0; i < doc->entryCount(); i++) {
-            QString t = doc->entry(i)->usageLabel(col);
+            QString t = doc->entry(i)->translation(col).usageLabel();
             if (!t.isEmpty() && t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {
                 QString tg;
                 while (t.left(QString(UL_USER_USAGE).length()) == UL_USER_USAGE) {
@@ -268,7 +268,7 @@ void UsageOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &usageInde
                 else if (t.length() > 0)
                     tg.append(UL_USAGE_DIV).append(t);
 
-                doc->entry(i)->setUsageLabel(col, tg);
+                doc->entry(i)->translation(col).setUsageLabel(tg);
             }
         }
     }
