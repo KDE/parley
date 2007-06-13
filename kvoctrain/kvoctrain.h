@@ -235,7 +235,6 @@ public slots:
 public:
     void removeProgressBar();
     void prepareProgressBar();
-    void fillLessonBox();
     void loadDocProps();
     void saveDocProps(KEduVocDocument *);
 
