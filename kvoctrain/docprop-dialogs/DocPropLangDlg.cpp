@@ -25,7 +25,6 @@
 
 #include "DocPropLangDlg.h"
 
-#include <QStringList>
 #include <QList>
 #include <QPixmap>
 

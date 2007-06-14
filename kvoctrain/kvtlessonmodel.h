@@ -26,7 +26,6 @@
 #include <QModelIndex>
 
 #include <QObject>
-#include <QStringList>
 
 #include <keduvocdocument.h>
 
