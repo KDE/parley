@@ -606,14 +606,14 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
-        connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutQuery(QueryDlgBase::Result)));
+        connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
-        connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutQuery(QueryDlgBase::Result)));
+        connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         mcQueryDlg->show();
     } else {
         kError() << "QueryManager::slotStartQuery: unknown type\n";
@@ -624,7 +624,7 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
 }
 
 
-void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
+void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 {
     m_doc->setModified();
 
@@ -791,7 +791,7 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         }
 
         if (random_expr1.count() == 0) { // should not happen !!
-            kError() << "QueryManager::slotTimeOutQuery: random_expr1.count() == 0\n";
+            kError() << "QueryManager::slotQueryExpressionResult: random_expr1.count() == 0\n";
             slotStopQuery(true);
             return;
         }
