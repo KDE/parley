@@ -75,8 +75,6 @@ public:
     KVTQuery & getKVTQuery() { return m_query; }
 
 public slots:
-    void slotTimeOutRandomQuery(QueryDlgBase::Result res);
-    void slotTimeOutMultipleChoice(QueryDlgBase::Result res);
     void slotTimeOutQuery(QueryDlgBase::Result res);
     void slotTimeOutType(QueryDlgBase::Result res);
     void slotTimeOutProperty(QueryDlgBase::Result res);

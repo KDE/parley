@@ -516,6 +516,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     m_app->slotStatusMsg(IDS_DEFAULT);
 }
 
+
 void QueryManager::slotResumeQuery()
 {
     m_queryType = KVTQuery::RandomQuery;
@@ -547,7 +548,6 @@ void QueryManager::slotRestartQuery()
  */
 void QueryManager::slotStartQuery(const QString & translang, const QString & orglang, bool create_new)
 {
-
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting random query..."));
     num_queryTimeout = 0;
@@ -606,14 +606,14 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
-        connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutRandomQuery(QueryDlgBase::Result)));
+        connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutQuery(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
-        connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutMultipleChoice(QueryDlgBase::Result)));
+        connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutQuery(QueryDlgBase::Result)));
         mcQueryDlg->show();
     } else {
         kError() << "QueryManager::slotStartQuery: unknown type\n";
@@ -621,20 +621,6 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
         return;
     }
     m_app->slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void QueryManager::slotTimeOutRandomQuery(QueryDlgBase::Result res)
-{
-    m_queryType = KVTQuery::RandomQuery;
-    slotTimeOutQuery(res);
-}
-
-
-void QueryManager::slotTimeOutMultipleChoice(QueryDlgBase::Result res)
-{
-    m_queryType = KVTQuery::MultipleChoiceQuery;
-    slotTimeOutQuery(res);
 }
 
 
