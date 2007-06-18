@@ -157,8 +157,8 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        m_tableModel->setDocument(m_doc);
         m_lessonModel->setDocument(m_doc);
+        m_tableModel->setDocument(m_doc);
 
         removeProgressBar();
         loadDocProps();

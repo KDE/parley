@@ -28,6 +28,7 @@
 
 #include <QVector>
 
+#include <keduvocgrade.h>
 #include <keduvocexpression.h>
 #include "prefs.h"
 
@@ -101,8 +102,7 @@ public:
 
 private:
     // these are for the CURRENT query only, so we can display statistics.
-    int m_badCount;
-    int m_timesAsked;
+    KEduVocGrade m_currentGrade;
 };
 
 typedef QList<QueryEntry> QueryEntryList;

@@ -244,14 +244,20 @@ void KVocTrainApp::commitEntryDlg(bool force)
             expr->translation(col).setMultipleChoice(entryDlg->getMultipleChoice());
             expr->translation(col).setFalseFriend(0, entryDlg->getFromFauxAmi());
             expr->translation(0).setFalseFriend(col, entryDlg->getToFauxAmi());
-            expr->translation(col).setGrade(entryDlg->getFromGrade(), false);
-            expr->translation(col).setGrade(entryDlg->getToGrade(), true);
-            expr->translation(col).setQueryCount(entryDlg->getFromQCount(), false);
-            expr->translation(col).setQueryCount(entryDlg->getToQCount(), true);
-            expr->translation(col).setBadCount(entryDlg->getFromBCount(), false);
-            expr->translation(col).setBadCount(entryDlg->getToBCount(), true);
-            expr->translation(col).setQueryDate(0, entryDlg->getFromDate());
-            expr->translation(0).setQueryDate(col, entryDlg->getToDate());
+
+            /// @todo - this is confusing - might be mixed up somewhere:
+            expr->translation(0).gradeFrom(col).setGrade(entryDlg->getFromGrade());
+            expr->translation(col).gradeFrom(0).setGrade(entryDlg->getToGrade());
+
+            expr->translation(0).gradeFrom(col).setQueryCount(entryDlg->getFromQCount());
+            expr->translation(col).gradeFrom(0).setQueryCount(entryDlg->getToQCount());
+
+            expr->translation(0).gradeFrom(col).setBadCount(entryDlg->getFromBCount());
+            expr->translation(col).gradeFrom(0).setBadCount(entryDlg->getToBCount());
+
+            expr->translation(col).gradeFrom(0).setQueryDate( entryDlg->getFromDate() );
+            expr->translation(0).gradeFrom(col).setQueryDate( entryDlg->getToDate() );
+
             expr->translation(col).setType(entryDlg->getType());
 
             for (int j = 0; j <= expr->translationCount(); j++)
@@ -279,21 +285,21 @@ void KVocTrainApp::commitEntryDlg(bool force)
             if (col >= 0) {
                 // only updated "common" props in multimode
                 if (entryDlg->fromGradeIsModified())
-                    expr->translation(col).setGrade(entryDlg->getFromGrade(), false);
+                    expr->translation(col).gradeFrom(0).setGrade(entryDlg->getFromGrade());
                 if (entryDlg->toGradeIsModified())
-                    expr->translation(col).setGrade(entryDlg->getToGrade(), true);
+                    expr->translation(col).gradeFrom(0).setGrade(entryDlg->getToGrade());
                 if (entryDlg->fromQueryCountIsModified())
-                    expr->translation(col).setQueryCount(entryDlg->getFromQCount(), false);
+                    expr->translation(col).gradeFrom(0).setQueryCount(entryDlg->getFromQCount());
                 if (entryDlg->toQueryCountIsModified())
-                    expr->translation(col).setQueryCount(entryDlg->getToQCount(), true);
+                    expr->translation(col).gradeFrom(0).setQueryCount(entryDlg->getToQCount());
                 if (entryDlg->fromBadCountIsModified())
-                    expr->translation(col).setBadCount(entryDlg->getFromBCount(), false);
+                    expr->translation(col).gradeFrom(0).setBadCount(entryDlg->getFromBCount());
                 if (entryDlg->toBadCountIsModified())
-                    expr->translation(col).setBadCount(entryDlg->getToBCount(), true);
+                    expr->translation(col).gradeFrom(0).setBadCount(entryDlg->getToBCount());
                 if (entryDlg->fromDateIsModified())
-                    expr->translation(col).setQueryDate(0, entryDlg->getFromDate());
+                    expr->translation(col).gradeFrom(0).setQueryDate(entryDlg->getFromDate());
                 if (entryDlg->toDateIsModified())
-                    expr->translation(0).setQueryDate(col, entryDlg->getToDate());
+                    expr->translation(0).gradeFrom(col).setQueryDate( entryDlg->getToDate());
                 if (entryDlg->usageIsModified())
                     for (int j = 0; j <= expr->translationCount(); j++)
                         expr->translation(j).setUsageLabel(entryDlg->getUsageLabel());
@@ -428,14 +434,14 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
 
         entryDlg->setData(et,
                           hasSelection,
-                          m_doc->entry(row)->translation(col).grade(0),
-                          m_doc->entry(row)->translation(0).grade(col),
-                          m_doc->entry(row)->translation(col).queryCount(0),
-                          m_doc->entry(row)->translation(0).queryCount(col),
-                          m_doc->entry(row)->translation(col).badCount(0),
-                          m_doc->entry(row)->translation(0).badCount(col),
-                          m_doc->entry(row)->translation(col).queryDate(0),
-                          m_doc->entry(row)->translation(0).queryDate(col),
+                          m_doc->entry(row)->translation(col).gradeFrom(0).grade(),
+                          m_doc->entry(row)->translation(0).gradeFrom(col).grade(),
+                          m_doc->entry(row)->translation(col).gradeFrom(0).queryCount(),
+                          m_doc->entry(row)->translation(0).gradeFrom(col).queryCount(),
+                          m_doc->entry(row)->translation(col).gradeFrom(0).badCount(),
+                          m_doc->entry(row)->translation(0).gradeFrom(col).badCount(),
+                          m_doc->entry(row)->translation(col).gradeFrom(0).queryDate(),
+                          m_doc->entry(row)->translation(0).gradeFrom(col).queryDate(),
                           m_doc->entry(row)->translation(col).falseFriend(0),
                           m_doc->entry(row)->translation(0).falseFriend(col),
                           text,

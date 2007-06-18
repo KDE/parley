@@ -60,6 +60,7 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
+    // languages + lesson column + active/inQuery column
     return 2 + m_doc->identifierCount();
 }
 
@@ -99,15 +100,15 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
     case KVTTableModel::GradeRole: {
             if (index.column() > KV_EXTRA_COLS) {
-                if (m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).queryCount(0) != 0)
-                    return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).grade(0));
+                if (m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).gradeFrom(0).queryCount() != 0)
+                    return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).gradeFrom(0).grade());
                 else
                     return QVariant(KV_NORM_GRADE);
             } else if (index.column() == 2) {
                 QList<QVariant> result;
                 for (int i = 1; i <= m_doc->identifierCount(); ++i) {
-                    if (m_doc->entry(index.row())->translation(0).queryCount(i) != 0)
-                        result.append(QVariant(m_doc->entry(index.row())->translation(0).grade(i /*+ KV_EXTRA_COLS*/)));
+                    if (m_doc->entry(index.row())->translation(0).gradeFrom(i).queryCount() != 0)
+                        result.append(QVariant(m_doc->entry(index.row())->translation(0).gradeFrom(i /*+ KV_EXTRA_COLS*/).grade()));
                     else
                         result.append(QVariant(KV_NORM_GRADE));
                 }
@@ -345,17 +346,22 @@ void KVTTableModel::setLanguages(const KVTLanguageList & languages)
 
 bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
 {
-    Q_UNUSED(parent);
-    if (count < 1 || row < 0 || row > m_doc->entryCount())
+kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count << endl;
+
+    //Q_UNUSED(parent);
+    if (count < 1 || row < 0 || row > m_doc->entryCount()) {
         return false;
+    }
 
-    beginInsertRows(QModelIndex(), row, row + count - 1);
+    beginInsertRows(parent, row, row + count -1);
 
-    for (int i = row; i < row + count; i++)
+    for (int i = row; i < row + count; i++) {
         m_doc->insertEntry(new KEduVocExpression, i);
+    }
 
     endInsertRows();
     m_doc->setModified(true);
+
     return true;
 }
 

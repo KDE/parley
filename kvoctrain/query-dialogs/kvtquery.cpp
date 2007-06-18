@@ -167,15 +167,15 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
 
     //int index = tindex ? tindex : oindex;
-    if ( (compareExpiring(expr->translation(tindex).grade(oindex), expr->translation(tindex).queryDate(oindex), Prefs::expire() )
+    if ( (compareExpiring(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::expire() )
             ||
 
             (
-                compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(tindex).grade(oindex), Prefs::gradeItem())
-                && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(tindex).queryCount(oindex), Prefs::queryItem())
-                && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(tindex).badCount(oindex), Prefs::badItem())
-                && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(tindex).queryDate(oindex))
-                && compareBlocking(expr->translation(tindex).grade(oindex), expr->translation(tindex).queryDate(oindex), Prefs::block())
+                compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(tindex).gradeFrom(oindex).grade(), Prefs::gradeItem())
+                && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(tindex).gradeFrom(oindex).queryCount(), Prefs::queryItem())
+                && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(tindex).gradeFrom(oindex).badCount(), Prefs::badItem())
+                && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(tindex).gradeFrom(oindex).queryDate())
+                && compareBlocking(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::block())
             )
         )
             // lesson + word type must ALWAYS match (and there must be a word on both sides)

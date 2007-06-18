@@ -650,8 +650,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
     if (res != QueryDlgBase::StopIt) {
         m_doc->setModified();
 
-        exp->translation(tindex).incQueryCount(oindex);
-        exp->translation(tindex).setQueryDate(oindex, QDateTime::currentDateTime());
+        exp->translation(tindex).gradeFrom(oindex).incQueryCount();
+        exp->translation(tindex).gradeFrom(oindex).setQueryDate( QDateTime::currentDateTime() );
     }
 
     switch (res) {
@@ -669,8 +669,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
             else
                 random_expr2.append(qer);
 
-            exp->translation(tindex).incBadCount(oindex);
-            exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE);  // unknown: reset grade
+            exp->translation(tindex).gradeFrom(oindex).incBadCount();
+            exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE);  // unknown: reset grade
         }
         break;
 
@@ -684,8 +684,8 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         else
             random_expr2.append(qer);
 
-        exp->translation(tindex).incBadCount(oindex);
-        exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE);  // unknown: reset grade
+        exp->translation(tindex).gradeFrom(oindex).incBadCount();
+        exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE);  // unknown: reset grade
 
         break;
 
@@ -713,7 +713,7 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
                 exp->setInQuery(false);
 
                 query_num--;
-                exp->translation(tindex).incGrade(oindex);
+                exp->translation(tindex).gradeFrom(oindex).incGrade();
 
                 break;
             default:
@@ -730,9 +730,9 @@ void QueryManager::slotTimeOutQuery(QueryDlgBase::Result res)
         } else { //not Prefs::altLearn()
             query_num--;
             if (query_cycle <= 1) {
-                exp->translation(tindex).incGrade(oindex); // incr grade only in first cycle
+                exp->translation(tindex).gradeFrom(oindex).incGrade(); // incr grade only in first cycle
             } else {
-                exp->translation(tindex).setGrade(oindex, KV_LEV1_GRADE); // reset grade
+                exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE); // reset grade
             }
             exp->setInQuery(false);
             random_expr1.erase(random_expr1.begin() + random_query_nr);
