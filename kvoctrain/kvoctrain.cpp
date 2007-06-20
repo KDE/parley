@@ -1121,7 +1121,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 
     int column = current.column() - KV_EXTRA_COLS;
 
-    ///@todo this does not work - row is dependend on the lesson selected!
+    ///@todo this does not work - row is dependant on the lesson selected!
     int row = current.row();
 
     //kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row() << endl;
