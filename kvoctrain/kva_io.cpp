@@ -162,13 +162,15 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
         removeProgressBar();
         loadDocProps();
-        if (addRecent) // open sample does not go into recent
+        if (addRecent) { // open sample does not go into recent
             fileOpenRecent->addUrl(url);
+        }
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
         m_doc->setModified(false);
         m_sortFilterModel->restoreNativeOrder();
-        if (m_tableView)
+        if (m_tableView) {
             m_tableView->adjustContent();
+        }
     }
 }
 
@@ -181,8 +183,9 @@ void KVocTrainApp::slotFileOpenExample()
         QString s = KStandardDirs::locate("data", "kvoctrain/examples/");
         KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
         loadFileFromPath(url, false);
-        if (m_doc)
+        if (m_doc) {
             m_doc->url().setFileName(QString());
+        }
     }
 
     slotStatusMsg(IDS_DEFAULT);
@@ -202,7 +205,6 @@ void KVocTrainApp::slotFileMerge()
     KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
 
     if (!url.isEmpty()) {
-
         QString msg = i18n("Loading %1", url.path());
         slotStatusMsg(msg);
 

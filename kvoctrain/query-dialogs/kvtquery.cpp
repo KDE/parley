@@ -119,7 +119,7 @@ KVTQuery::KVTQuery()
 
 QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
 {
-    kDebug() << "select()" << endl;
+    kDebug() << "KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)" << endl;
 
     QuerySelection random;
     random.resize(doc->lessonCount() + 1);
@@ -141,14 +141,14 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
                 if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
-                    kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->translation(0).translation() << endl;
+                    kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
 
                 }
             } else {
                 if (validate(expr, act_lesson, oindex, tindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
-                    kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->translation(0).translation() << endl;
+                    kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
                 }
             }
         }
