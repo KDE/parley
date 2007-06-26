@@ -260,15 +260,18 @@ void KVocTrainApp::commitEntryDlg(bool force)
 
             expr->translation(col).setType(entryDlg->getType());
 
-            for (int j = 0; j <= expr->translationCount(); j++)
+            for (int j = 0; j < expr->translationCount(); j++) {
+kDebug() << "j: " << j << endl;
                 if (expr->translation(j).type().isEmpty())
                     expr->translation(j).setType(entryDlg->getType());
+            }
 
-            for (int j = 0; j <= expr->translationCount(); j++)
+            for (int j = 0; j < expr->translationCount(); j++) {
                 if (KVTQuery::getMainType(expr->translation(j).type())
                         !=
                         KVTQuery::getMainType(entryDlg->getType()))
                     expr->translation(j).setType(entryDlg->getType());
+            }
         }
         m_tableModel->setData(m_tableModel->index(row, 0), entryDlg->getLesson(), Qt::EditRole);
         expr->setActive(entryDlg->getActive());
