@@ -304,10 +304,10 @@ kDebug() << "j: " << j << endl;
                 if (entryDlg->toDateIsModified())
                     expr->translation(0).gradeFrom(col).setQueryDate( entryDlg->getToDate());
                 if (entryDlg->usageIsModified())
-                    for (int j = 0; j <= expr->translationCount(); j++)
+                    for (int j = 0; j < expr->translationCount(); j++)
                         expr->translation(j).setUsageLabel(entryDlg->getUsageLabel());
                 if (entryDlg->typeIsModified())
-                    for (int j = 0; j <= expr->translationCount(); j++)
+                    for (int j = 0; j < expr->translationCount(); j++)
                         expr->translation(j).setType(entryDlg->getType());
             }
 
