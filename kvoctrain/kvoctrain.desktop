@@ -2,7 +2,6 @@
 Encoding=UTF-8
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
-GenericName[ar]=مدرب الكلمات
 GenericName[be]=Пашырэнне слоўнікавага запасу
 GenericName[ca]=Entrenador de vocabulari
 GenericName[cs]=Procvičování slovní zásoby
@@ -50,7 +49,6 @@ GenericName[xh]=Uqeqeshi Wonobumba ababekwe ngokulandelelana
 GenericName[zh_TW]=字彙訓練師
 Name=KVocTrain
 Name[af]=K-woord-leerder
-Name[ar]=معلم الكلمات ك
 Name[pt_BR]=Treina vocabulário
 Name[sv]=Kvoctrain
 Name[ta]=கேவிஒசி பயிற்சி
