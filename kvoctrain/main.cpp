@@ -32,68 +32,64 @@
 int main(int argc, char* argv[])
 {
 
-    static KCmdLineOptions options[] = {
-                                           {
-                                               I18N_NOOP("+[file]"), I18N_NOOP("Document file to open"), 0
-                                           },
-                                           KCmdLineLastOption
-                                       };
-
     static const char description[] = I18N_NOOP("Vocabulary Trainer");
     static const char version[]     = KVOCTRAIN_VERSION_STRING;
 
-    KAboutData aboutData("kvoctrain",
-                         I18N_NOOP("KVocTrain"),
+    KAboutData aboutData("kvoctrain", 0,
+                         ki18n("KVocTrain"),
                          version,
-                         description,
+                         ki18n(description),
                          KAboutData::License_GPL,
-                         I18N_NOOP("(c) 1999-2002\tEwald Arnold\n"
+                         ki18n("(c) 1999-2002\tEwald Arnold\n"
                                    "(c) 2001-2002\tThe KDE team\n"
                                    "(c) 2004-2007\tPeter Hedlund\n"),
-                         I18N_NOOP("Helps you train your vocabulary"),
+                         ki18n("Helps you train your vocabulary"),
                          "http://edu.kde.org/kvoctrain",
                          "submit@bugs.kde.org");
 
-    aboutData.addAuthor("Peter Hedlund",
-                        I18N_NOOP("Current Maintainer"), "peter.hedlund@kdemail.net");
+    aboutData.addAuthor(ki18n("Peter Hedlund"),
+                        ki18n("Current Maintainer"), "peter.hedlund@kdemail.net");
 
-    aboutData.addAuthor("Frederik Gladhorn",
-                        I18N_NOOP("Improvements on the way to KDE4"), "frederik.gladhorn@gmx.de");
+    aboutData.addAuthor(ki18n("Frederik Gladhorn"),
+                        ki18n("Improvements on the way to KDE4"), "frederik.gladhorn@gmx.de");
 
-    aboutData.addAuthor("Ewald Arnold", I18N_NOOP("Original Author"), "kvoctrain@ewald-arnold.de",
+    aboutData.addAuthor(ki18n("Ewald Arnold"), ki18n("Original Author"), "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
 
-    aboutData.addCredit("Waldo Bastian",
-                        I18N_NOOP("Help with port to Qt3/KDE3"));
+    aboutData.addCredit(ki18n("Waldo Bastian"),
+                        ki18n("Help with port to Qt3/KDE3"));
 
-    aboutData.addCredit("Andrea Marconi",
-                        I18N_NOOP("Initial Italian localization"));
+    aboutData.addCredit(ki18n("Andrea Marconi"),
+                        ki18n("Initial Italian localization"));
 
-    aboutData.addCredit("Hans Kottmann",
-                        I18N_NOOP("Initial French localization"));
+    aboutData.addCredit(ki18n("Hans Kottmann"),
+                        ki18n("Initial French localization"));
 
-    aboutData.addCredit("Grzegorz Ilczuk",
-                        I18N_NOOP("Initial Polish localization"));
+    aboutData.addCredit(ki18n("Grzegorz Ilczuk"),
+                        ki18n("Initial Polish localization"));
 
-    aboutData.addCredit("Eric Bischoff",
-                        I18N_NOOP("Converting documentation to docbook format"));
+    aboutData.addCredit(ki18n("Eric Bischoff"),
+                        ki18n("Converting documentation to docbook format"));
 
-    aboutData.addCredit("Kevin Kramer",
-                        I18N_NOOP("Tool to create lists with ISO639 codes"));
+    aboutData.addCredit(ki18n("Kevin Kramer"),
+                        ki18n("Tool to create lists with ISO639 codes"));
 
-    aboutData.addCredit("Andreas Neuper",
-                        I18N_NOOP("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
+    aboutData.addCredit(ki18n("Andreas Neuper"),
+                        ki18n("Converter script \"langen2kvtml\" \nDownload files at http://www.vokabeln.de/files.htm"));
 
-    aboutData.addCredit("Dennis Haney",
-                        I18N_NOOP("Patch to implement Leitner learning method"));
+    aboutData.addCredit(ki18n("Dennis Haney"),
+                        ki18n("Patch to implement Leitner learning method"));
 
-    aboutData.addCredit("Anne-Marie Mahfouf",
-                        I18N_NOOP("Port to KConfig XT"));
+    aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
+                        ki18n("Port to KConfig XT"));
 
-    aboutData.addCredit(I18N_NOOP("KDE Team"),
-                        I18N_NOOP("Many small enhancements"));
+    aboutData.addCredit(ki18n("KDE Team"),
+                        ki18n("Many small enhancements"));
 
     KCmdLineArgs::init(argc, argv, &aboutData);
+
+    KCmdLineOptions options;
+    options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
     KCmdLineArgs::addCmdLineOptions(options);
     KApplication app;
 
