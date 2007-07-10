@@ -136,7 +136,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvtusage.cpp
 )
 
-kde4_automoc(${kvoctrain_SRCS})
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
