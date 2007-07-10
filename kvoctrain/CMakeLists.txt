@@ -139,7 +139,7 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  ${KDE4_KDEUI_LIBS} kdeeducore ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS} )
+target_link_libraries(kvoctrain  kdeeducore ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS} )
 
 install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
