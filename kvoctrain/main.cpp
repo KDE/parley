@@ -108,8 +108,8 @@ int main(int argc, char* argv[])
         kva = new KVocTrainApp;
         if (args && args->count() == 1) {
             kva->loadFileFromPath(args->url(0), true);
+            args->clear();
         }
-	args->clear();
         kva->show();
     }
     return app.exec();
