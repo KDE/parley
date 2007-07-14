@@ -555,9 +555,8 @@ bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
         ) {
             return true;
         }
+    return false;
 }
-
-
 
 bool KVTQuery::validate(KEduVocExpression *expr)
 {
@@ -617,7 +616,7 @@ bool KVTQuery::validate(KEduVocExpression *expr)
 
     default:
         kError() << "Trying to validate with unknown query type!" << endl;
-        return false; // can this happen?
     }
+    return false;
 }
 
