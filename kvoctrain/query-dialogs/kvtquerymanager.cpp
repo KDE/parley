@@ -134,23 +134,31 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
         delete verbQueryDlg;
         verbQueryDlg = 0;
         m_queryType = KVTQuery::ConjugationQuery;
-        slotStartTypeQuery(fromTranslation, QM_VERB);
+        slotStartTypeQuery(fromTranslation, KVTQuery::ConjugationQuery);
     }
     break;
 
     case START_ARTICLE: {
         delete artQueryDlg;
         artQueryDlg = 0;
-        m_queryType = KVTQuery::ArticlesQuery;
-        slotStartTypeQuery(fromTranslation, QM_NOUN);
+        m_queryType = KVTQuery::ArticleQuery;
+        slotStartTypeQuery(fromTranslation, KVTQuery::ArticleQuery);
     }
     break;
 
     case START_ADJECTIVE: {
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        m_queryType = KVTQuery::ComparisonQuery;
-        slotStartTypeQuery(fromTranslation, QM_ADJ);
+        m_queryType = KVTQuery::ComparisonAdjectiveQuery;
+        slotStartTypeQuery(fromTranslation, KVTQuery::ComparisonAdjectiveQuery);
+    }
+    break;
+
+    case START_ADVERB: {
+        delete adjQueryDlg;
+        adjQueryDlg = 0;
+        m_queryType = KVTQuery::ComparisonAdverbQuery;
+        slotStartTypeQuery(fromTranslation, KVTQuery::ComparisonAdverbQuery);
     }
     break;
 
@@ -218,7 +226,13 @@ void QueryManager::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
-    queryList = m_query.select(m_doc, act_query_col, property);
+
+    m_query.setDocument(m_doc);
+    m_query.setFromTranslation(act_query_col);
+    m_query.setToTranslation(act_query_col);
+    m_query.setQueryType(property);
+
+    queryList = m_query.queryEntries();
 
     query_startnum = 0;
     if (queryList.count() > 0) {
@@ -339,8 +353,10 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 }
 
 
-void QueryManager::slotStartTypeQuery(int col, const QString & type)
+void QueryManager::slotStartTypeQuery(int col, KVTQuery::QueryType queryType)
 {
+    /// @todo merge this with slotStartPropertyQuery (and possibly slotStartQuery)
+
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting special query..."));
     num_queryTimeout = 0;
@@ -350,7 +366,13 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
-    queryList = m_query.select(m_doc, act_query_col, type);
+    m_query.setDocument(m_doc);
+    m_query.setFromTranslation(act_query_col);
+    m_query.setToTranslation(act_query_col);
+    m_query.setQueryType(queryType);
+
+    queryList = m_query.queryEntries();
+
 
     query_startnum = 0;
     if (queryList.count() > 0) {
@@ -383,20 +405,29 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
-    } else if (m_queryType == KVTQuery::ArticlesQuery) {
+    } else if (m_queryType == KVTQuery::ArticleQuery) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
-    } else if (m_queryType == KVTQuery::ComparisonQuery) {
+    } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         adjQueryDlg->show();
+
+        /// @todo implement an adverb query dialog. can we reuse adjQueryDlg ?
+//     } else if (m_queryType == KVTQuery::ComparisonAdverbQuery) {
+//         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
+//         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
+//         adjQueryDlg->initFocus();
+//         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+//         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
+//         adjQueryDlg->show();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
         slotStopQuery(true);
@@ -492,7 +523,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
                                m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
 
         verbQueryDlg->initFocus();
-    } else if (m_queryType == KVTQuery::ArticlesQuery) {
+    } else if (m_queryType == KVTQuery::ArticleQuery) {
         if (artQueryDlg == 0) {
             kError() << "artQueryDlg == 0\n";
             slotStopQuery(true);
@@ -500,7 +531,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
         }
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
-    } else if (m_queryType == KVTQuery::ComparisonQuery) {
+    } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
         if (adjQueryDlg == 0) {
             kError() << "adjQueryDlg == 0\n";
             slotStopQuery(true);
@@ -569,7 +600,12 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
     random_expr2.clear();
 
     if (create_new || queryList.count() == 0) {
-        queryList = m_query.select(m_doc, oindex, tindex);
+        m_query.setDocument(m_doc);
+        m_query.setFromTranslation(oindex);
+        m_query.setToTranslation(tindex);
+        m_query.setQueryType(m_queryType);
+
+        queryList = m_query.queryEntries();
     }
 
     query_startnum = 0;
@@ -819,8 +855,10 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             oindex = tindex;
             tindex = tmp;
         }
+        m_query.setFromTranslation(oindex);
+        m_query.setToTranslation(tindex);
 
-        if (!m_query.validate(exp, oindex, tindex)) {
+        if (!m_query.validate(exp)) {
             int tmp = oindex;  // must use other direction which is the only valid
             oindex = tindex;
             tindex = tmp;

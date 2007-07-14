@@ -58,7 +58,9 @@ public:
     void slotResumeQuery();
     void slotResumeQueryMC();
     void slotRestartQuery();
-    void slotStartTypeQuery(int col, const QString & type);
+
+    // merge these three:
+    void slotStartTypeQuery(int col, KVTQuery::QueryType queryType);
     void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
     void slotStartQuery(const QString & trans, const QString & org, bool create_new);
 

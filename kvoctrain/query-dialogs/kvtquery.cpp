@@ -117,190 +117,10 @@ KVTQuery::KVTQuery()
 }
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int oindex, int tindex)
-{
-    kDebug() << "KVTQuery::select(KEduVocDocument *doc, int oindex, int tindex)" << endl;
-
-    QuerySelection random;
-    random.resize(doc->lessonCount() + 1);
-    for (int i = 0; i < doc->entryCount(); i++)
-        doc->entry(i)->setInQuery(false);
-
-    //Note that Leitner style learning (altlearn) normally only uses 20
-    //entries, we just ignore that here
-    for (int i = 0; i < doc->entryCount(); i++) {
-        KEduVocExpression *expr = doc->entry(i);
-        int lessonno;
-        if (Prefs::altLearn())
-            lessonno = 0; //We only use a single array in Leitner style
-        else
-            lessonno = expr->lesson();
-
-        if (expr->isActive()) {
-            if (Prefs::swapDirection()) {
-                if (validate(expr, oindex, tindex) || validate(expr, tindex, oindex)) {
-                    random[lessonno].append(QueryEntry(expr, i));
-                    expr->setInQuery(true);
-                    kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
-
-                }
-            } else {
-                if (validate(expr, oindex, tindex)) {
-                    random[lessonno].append(QueryEntry(expr, i));
-                    expr->setInQuery(true);
-                    kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
-                }
-            }
-        }
-    }
-
-    // remove empty lesson elements
-    for (int i = random.count() - 1; i >= 0; i--)
-        if (random[i].count() == 0)
-            random.erase(random.begin() + i);
-    return random;
-}
 
 
-bool KVTQuery::validate(KEduVocExpression *expr, int oindex, int tindex)
-{
-    // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int oindex, int tindex)" << endl;
-
-    //int index = tindex ? tindex : oindex;
-    if ( (compareExpiring(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::expire() )
-            ||
-
-            (
-                compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(tindex).gradeFrom(oindex).grade(), Prefs::gradeItem())
-                && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(tindex).gradeFrom(oindex).queryCount(), Prefs::queryItem())
-                && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(tindex).gradeFrom(oindex).badCount(), Prefs::badItem())
-                && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(tindex).gradeFrom(oindex).queryDate())
-                && compareBlocking(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::block())
-            )
-        )
-            // lesson + word type must ALWAYS match (and there must be a word on both sides)
-            && compareLesson( expr->lesson() )
-            && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(tindex).type(), Prefs::typeItem())
-            && !expr->translation(oindex).translation().simplified().isEmpty()
-            && !expr->translation(tindex).translation().simplified().isEmpty()
-       )
-        return true;
-    else
-        return false;
-}
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int idx, const QString &type)
-{
-    kDebug() << "select(KEduVocDocument *doc, int idx, QString type)" << endl;
-    // initialize vector with (doc->lessonCount() + 1) elements
-    QuerySelection random(doc->lessonCount() + 1);
-
-    // disable every single entry
-    for (int i = 0; i < doc->entryCount(); i++)
-        doc->entry(i)->setInQuery(false);
-
-    // reenable those that we like by using isActive and validate
-    for (int i = 0; i < doc->entryCount(); i++) {
-        KEduVocExpression *expr = doc->entry(i);
-        if (expr->isActive() && validate(expr, idx, type)) {
-            random[expr->lesson()].append(QueryEntry(expr, i));
-            expr->setInQuery(true);
-        }
-    }
-
-    // remove empty lesson elements - backwards to not interfere with smaller indexes...
-    for (int i = (int) random.size()-1; i >= 0; i--)
-        if (random[i].size() == 0)
-            random.erase(random.begin() + i);
-
-    // vector of list (lessons) of entries
-    return random;
-}
-
-
-bool KVTQuery::validate(KEduVocExpression *expr, int idx, const QString &query_type)
-{
-    kDebug() << "validate(KEduVocExpression *expr, int idx, QString query_type)" << endl;
-    QString qtype;
-    int pos = query_type.indexOf(QM_TYPE_DIV);
-    if (pos >= 0)
-        qtype = query_type.left(pos);
-    else
-        qtype = query_type;
-
-    QString expr_type = expr->translation(idx).type();
-    bool type_ok = false;
-    if (qtype == QM_NOUN) {
-        type_ok =    expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
-                     || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
-                     || expr_type == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
-
-    } else if (qtype == QM_VERB) {
-        type_ok = (expr_type == QM_VERB
-                   || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
-                   || expr_type == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
-                  )
-                  && expr->translation(idx).conjugation().entryCount() > 0;
-
-    } else if (qtype == QM_ADJ) {
-        type_ok = expr_type == QM_ADJ && !expr->translation(idx).comparison().isEmpty();
-    } else
-        return false;
-
-    if (compareLesson(expr->lesson())) {
-        return true;
-    } else {
-        return false;
-    }
-}
-
-
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int idx, QueryType type)
-{
-    kDebug() << "select(KEduVocDocument *doc, int idx, QueryType type)" << endl;
-    QuerySelection random;
-    random.resize(doc->lessonCount() + 1);
-    for (int i = 0; i < doc->entryCount(); i++)
-        doc->entry(i)->setInQuery(false);
-
-    for (int i = 0; i < doc->entryCount(); i++) {
-        KEduVocExpression *expr = doc->entry(i);
-        if (expr->isActive() && validate(expr, idx, type)) {
-            random[expr->lesson()].append(QueryEntry(expr, i));
-            expr->setInQuery(true);
-        }
-    }
-
-    // remove empty lesson elements
-    for (int i = (int) random.size()-1; i >= 0; i--)
-        if (random[i].size() == 0)
-            random.erase(random.begin() + i);
-
-    return random;
-}
-
-
-bool KVTQuery::validate(KEduVocExpression *expr, int idx, QueryType query_type)
-{
-    kDebug() << "validate(KEduVocExpression *expr, int idx, QueryType query_type)" << endl;
-    bool type_ok = false;
-    if (query_type == KVTQuery::SynonymQuery) {
-        type_ok = !expr->translation(idx).synonym().simplified().isEmpty();
-    } else if (query_type == KVTQuery::AntonymQuery) {
-        type_ok = !expr->translation(idx).antonym().simplified().isEmpty();
-    } else if (query_type == KVTQuery::ParaphraseQuery) {
-        type_ok = !expr->translation(idx).paraphrase().simplified().isEmpty();
-    } else if (query_type == KVTQuery::ExampleQuery) {
-        type_ok = !expr->translation(idx).example().simplified().isEmpty();
-    }
-
-    if (compareLesson( expr->lesson() )) {
-        return true;
-    } else {
-        return false;
-    }
-}
 
 
 QString KVTQuery::compStr(Prefs::EnumCompType::type type)
@@ -652,5 +472,152 @@ QString KVTQuery::lessonItemStr() const
         ret += s;
     }
     return ret;
+}
+
+void KVTQuery::setDocument(KEduVocDocument * doc)
+{
+    m_doc = doc;
+}
+
+void KVTQuery::setFromTranslation(int indexFrom)
+{
+    m_indexFrom = indexFrom;
+}
+
+void KVTQuery::setToTranslation(int indexTo)
+{
+    m_indexTo = indexTo;
+}
+
+void KVTQuery::setQueryType(QueryType queryType)
+{
+    m_queryType = queryType;
+}
+
+QuerySelection KVTQuery::queryEntries()
+{
+    // initialize vector with (m_doc->lessonCount() + 1) elements
+    QuerySelection random(m_doc->lessonCount() + 1);
+
+    // disable every single entry
+    for (int i = 0; i < m_doc->entryCount(); i++)
+        m_doc->entry(i)->setInQuery(false);
+
+    // reenable those that we like by using isActive and validate
+    //Note that Leitner style learning (altlearn) normally only uses 20
+    //entries, we just ignore that here
+    for (int i = 0; i < m_doc->entryCount(); i++) {
+        KEduVocExpression *expr = m_doc->entry(i);
+    /// ##########################################################
+
+        if (expr->isActive()) {
+            if (validate(expr)) {
+
+        int lessonNumber;
+        if (Prefs::altLearn())
+            lessonNumber = 0; //We only use a single array in Leitner style
+        else
+            lessonNumber = expr->lesson();
+                random[lessonNumber].append(QueryEntry(expr, i));
+                expr->setInQuery(true);
+
+                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).translation() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade() << endl;
+            }
+        }
+    }
+
+    // remove empty lesson elements - backwards to not interfere with smaller indexes...
+    for (int i = (int) random.size()-1; i >= 0; i--)
+        if (random[i].size() == 0)
+            random.erase(random.begin() + i);
+
+    // vector of list (lessons) of entries
+    return random;
+}
+
+
+bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
+{
+    if ( (compareExpiring(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::expire() )
+                ||
+
+                (
+                    compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), Prefs::gradeItem())
+                    && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryCount(), Prefs::queryItem())
+                    && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_indexTo).gradeFrom(m_indexFrom).badCount(), Prefs::badItem())
+                    && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate())
+                    && compareBlocking(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::block())
+                )
+            )
+                && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexTo).type(), Prefs::typeItem())
+                && !expr->translation(m_indexFrom).translation().simplified().isEmpty()
+                && !expr->translation(m_indexTo).translation().simplified().isEmpty()
+        ) {
+            return true;
+        }
+}
+
+
+
+bool KVTQuery::validate(KEduVocExpression *expr)
+{
+    if (!compareLesson(expr->lesson())) {
+        return false;
+    }
+
+    switch (m_queryType)
+    {
+    // The type queries so far do not consider any settings except lesson. So they return true as long as the type is right or there is data available.
+    // This could be improved, but there are no open bugs concerning this atm.
+    // So this is rather low priority.
+    case KVTQuery::SynonymQuery:
+        return !expr->translation(m_indexFrom).synonym().simplified().isEmpty();
+        break;
+    case KVTQuery::AntonymQuery:
+        return !expr->translation(m_indexFrom).antonym().simplified().isEmpty();
+        break;
+    case KVTQuery::ParaphraseQuery:
+        return !expr->translation(m_indexFrom).paraphrase().simplified().isEmpty();
+        break;
+    case KVTQuery::ExampleQuery:
+        return !expr->translation(m_indexFrom).example().simplified().isEmpty();
+        break;
+
+    case KVTQuery::ArticleQuery:
+        return expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
+                     || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
+                     || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
+        break;
+    case KVTQuery::ComparisonAdjectiveQuery:
+        return  expr->translation(m_indexFrom).type() == QM_ADJ && !expr->translation(m_indexFrom).comparison().isEmpty();
+        break;
+    case KVTQuery::ComparisonAdverbQuery:
+        return  expr->translation(m_indexFrom).type() == QM_ADV && !expr->translation(m_indexFrom).comparison().isEmpty();
+        break;
+    case KVTQuery::ConjugationQuery:
+        return (expr->translation(m_indexFrom).type() == QM_VERB
+                   || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
+                   || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
+                  )
+                  && expr->translation(m_indexFrom).conjugation().entryCount() > 0;
+        break;
+
+    case KVTQuery::RandomQuery: // Random and MC use the full settings:
+    case KVTQuery::MultipleChoiceQuery:
+        if ( validateWithSettings(expr) ) {
+            return true;
+        }
+        if (Prefs::swapDirection()) {
+            int temp = m_indexFrom;
+            m_indexFrom = m_indexTo;
+            m_indexTo = temp;
+            return validateWithSettings(expr);
+        } // swapDirection
+        break;
+
+    default:
+        kError() << "Trying to validate with unknown query type!" << endl;
+        return false; // can this happen?
+    }
 }
 

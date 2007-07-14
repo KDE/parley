@@ -125,9 +125,10 @@ public:
 
     enum QueryType { RandomQuery,
                      MultipleChoiceQuery,
-                     ArticlesQuery,
+                     ArticleQuery,
                      ConjugationQuery,
-                     ComparisonQuery,
+                     ComparisonAdjectiveQuery,
+                     ComparisonAdverbQuery,
                      SynonymQuery,
                      AntonymQuery,
                      ExampleQuery,
@@ -137,11 +138,7 @@ public:
     KVTQuery();
 
     /// vector of list of entries
-    QuerySelection select(KEduVocDocument*, int oindex, int tindex);
-
-    QuerySelection select(KEduVocDocument*, int index, QueryType type);
-
-    QuerySelection select(KEduVocDocument*, int index, const QString &type);
+    QuerySelection queryEntries();
 
     static QString compStr(Prefs::EnumCompType::type type);
     static QString gradeStr(int i);
@@ -165,13 +162,39 @@ public:
     }
     QString lessonItemStr() const;
 
-    bool validate(KEduVocExpression *expr, int oindex, int tindex);
+    /**
+     * Set the doc to be used for the query
+     * @param doc
+     */
+    void setDocument(KEduVocDocument *doc);
+    /**
+     * Set the index of the from language. Note that queries using only one language need to setToTranslation as well - to the same index!
+     * @param indexFrom
+     */
+    void setFromTranslation(int indexFrom);
+    /**
+     * Set the index of the to language. Note that queries using only one language need to setFromTranslation as well - to the same index!
+     * @param indexTo
+     */
+    void setToTranslation(int indexTo);
+    /**
+     * Set the query type
+     * @param queryType
+     */
+    void setQueryType(QueryType queryType);
 
+
+    /**
+     * DO NOT USE OUTSIDE THIS CLASS! This should become private as soon as it is no longer needed by
+     * void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
+     * (determine if Prefs::swapDirection() is ok)... DO NOT USE OUTSIDE THIS CLASS!
+     * Check if @p expr is valid for the current query settings.
+     * @param expr
+     * @return
+     */
+    bool validate(KEduVocExpression *expr);
 private:
-    bool validate(KEduVocExpression *expr, int index, const QString &type);
-
-    bool validate(KEduVocExpression *expr, int index, QueryType type);
-
+    bool validateWithSettings(KEduVocExpression *expr);
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
     bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
     bool compareDate(int type, const QDateTime &qd);
@@ -182,8 +205,12 @@ private:
     bool compareLesson(int lesson);
 
     QList<int> m_lessons;
-
     static QStringList userTypes;
+
+    KEduVocDocument *m_doc;
+    int m_indexFrom;
+    int m_indexTo;
+    QueryType m_queryType;
 };
 
 #endif // kvtquery_included

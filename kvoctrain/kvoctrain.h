@@ -58,10 +58,11 @@
 #define START_ARTICLE               3
 #define START_VERB                  4
 #define START_ADJECTIVE             5
-#define START_SYNONYM               6
-#define START_ANTONYM               7
-#define START_EXAMPLE               8
-#define START_PARAPHRASE            9
+#define START_ADVERB                6
+#define START_SYNONYM               7
+#define START_ANTONYM               8
+#define START_EXAMPLE               9
+#define START_PARAPHRASE           10
 
 
 
