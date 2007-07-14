@@ -137,11 +137,11 @@ public:
     KVTQuery();
 
     /// vector of list of entries
-    QuerySelection select(KEduVocDocument*, int act_lesson, int oindex, int tindex);
+    QuerySelection select(KEduVocDocument*, int oindex, int tindex);
 
-    QuerySelection select(KEduVocDocument*, int act_lesson, int index, QueryType type);
+    QuerySelection select(KEduVocDocument*, int index, QueryType type);
 
-    QuerySelection select(KEduVocDocument*, int act_lesson, int index, const QString &type);
+    QuerySelection select(KEduVocDocument*, int index, const QString &type);
 
     static QString compStr(Prefs::EnumCompType::type type);
     static QString gradeStr(int i);
@@ -165,12 +165,12 @@ public:
     }
     QString lessonItemStr() const;
 
-    bool validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex);
+    bool validate(KEduVocExpression *expr, int oindex, int tindex);
 
 private:
-    bool validate(KEduVocExpression *expr, int act_lesson, int index, const QString &type);
+    bool validate(KEduVocExpression *expr, int index, const QString &type);
 
-    bool validate(KEduVocExpression *expr, int act_lesson, int index, QueryType type);
+    bool validate(KEduVocExpression *expr, int index, QueryType type);
 
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
     bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
@@ -179,7 +179,7 @@ private:
     bool compareBad(int, int, int);
     bool compareGrade(int, grade_t, grade_t);
     bool compareType(int, const QString &, const QString &);
-    bool compareLesson(int, int, const QList<int> &, int);
+    bool compareLesson(int lesson);
 
     QList<int> m_lessons;
 

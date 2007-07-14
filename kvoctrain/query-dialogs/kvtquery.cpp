@@ -117,9 +117,9 @@ KVTQuery::KVTQuery()
 }
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int oindex, int tindex)
 {
-    kDebug() << "KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex, int tindex)" << endl;
+    kDebug() << "KVTQuery::select(KEduVocDocument *doc, int oindex, int tindex)" << endl;
 
     QuerySelection random;
     random.resize(doc->lessonCount() + 1);
@@ -138,14 +138,14 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
 
         if (expr->isActive()) {
             if (Prefs::swapDirection()) {
-                if (validate(expr, act_lesson, oindex, tindex) || validate(expr, act_lesson, tindex, oindex)) {
+                if (validate(expr, oindex, tindex) || validate(expr, tindex, oindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
                     kDebug() << " Add to query (swap): " << expr->lesson() << " - " << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
 
                 }
             } else {
-                if (validate(expr, act_lesson, oindex, tindex)) {
+                if (validate(expr, oindex, tindex)) {
                     random[lessonno].append(QueryEntry(expr, i));
                     expr->setInQuery(true);
                     kDebug() << " Add to query (noswap): " << expr->lesson() << " - "  << expr->translation(0).translation() << " grade: " << expr->translation(tindex).gradeFrom(oindex).grade() << " grade (reversed): " << expr->translation(oindex).gradeFrom(tindex).grade() << endl;
@@ -162,9 +162,9 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
 }
 
 
-bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
+bool KVTQuery::validate(KEduVocExpression *expr, int oindex, int tindex)
 {
-    // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
+    // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int oindex, int tindex)" << endl;
 
     //int index = tindex ? tindex : oindex;
     if ( (compareExpiring(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::expire() )
@@ -179,7 +179,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
             )
         )
             // lesson + word type must ALWAYS match (and there must be a word on both sides)
-            && compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson)
+            && compareLesson( expr->lesson() )
             && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(tindex).type(), Prefs::typeItem())
             && !expr->translation(oindex).translation().simplified().isEmpty()
             && !expr->translation(tindex).translation().simplified().isEmpty()
@@ -190,9 +190,9 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
 }
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, const QString &type)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int idx, const QString &type)
 {
-    kDebug() << "select(KEduVocDocument *doc, int act_lesson, int idx, QString type)" << endl;
+    kDebug() << "select(KEduVocDocument *doc, int idx, QString type)" << endl;
     // initialize vector with (doc->lessonCount() + 1) elements
     QuerySelection random(doc->lessonCount() + 1);
 
@@ -203,7 +203,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, c
     // reenable those that we like by using isActive and validate
     for (int i = 0; i < doc->entryCount(); i++) {
         KEduVocExpression *expr = doc->entry(i);
-        if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
+        if (expr->isActive() && validate(expr, idx, type)) {
             random[expr->lesson()].append(QueryEntry(expr, i));
             expr->setInQuery(true);
         }
@@ -219,9 +219,9 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, c
 }
 
 
-bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const QString &query_type)
+bool KVTQuery::validate(KEduVocExpression *expr, int idx, const QString &query_type)
 {
-    kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QString query_type)" << endl;
+    kDebug() << "validate(KEduVocExpression *expr, int idx, QString query_type)" << endl;
     QString qtype;
     int pos = query_type.indexOf(QM_TYPE_DIV);
     if (pos >= 0)
@@ -248,7 +248,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const 
     } else
         return false;
 
-    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson) && type_ok) {
+    if (compareLesson(expr->lesson())) {
         return true;
     } else {
         return false;
@@ -256,9 +256,9 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const 
 }
 
 
-QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)
+QuerySelection KVTQuery::select(KEduVocDocument *doc, int idx, QueryType type)
 {
-    kDebug() << "select(KEduVocDocument *doc, int act_lesson, int idx, QueryType type)" << endl;
+    kDebug() << "select(KEduVocDocument *doc, int idx, QueryType type)" << endl;
     QuerySelection random;
     random.resize(doc->lessonCount() + 1);
     for (int i = 0; i < doc->entryCount(); i++)
@@ -266,7 +266,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
 
     for (int i = 0; i < doc->entryCount(); i++) {
         KEduVocExpression *expr = doc->entry(i);
-        if (expr->isActive() && validate(expr, act_lesson, idx, type)) {
+        if (expr->isActive() && validate(expr, idx, type)) {
             random[expr->lesson()].append(QueryEntry(expr, i));
             expr->setInQuery(true);
         }
@@ -281,9 +281,9 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int idx, Q
 }
 
 
-bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)
+bool KVTQuery::validate(KEduVocExpression *expr, int idx, QueryType query_type)
 {
-    kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int idx, QueryType query_type)" << endl;
+    kDebug() << "validate(KEduVocExpression *expr, int idx, QueryType query_type)" << endl;
     bool type_ok = false;
     if (query_type == KVTQuery::SynonymQuery) {
         type_ok = !expr->translation(idx).synonym().simplified().isEmpty();
@@ -295,7 +295,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryT
         type_ok = !expr->translation(idx).example().simplified().isEmpty();
     }
 
-    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson) && type_ok) {
+    if (compareLesson( expr->lesson())) {
         return true;
     } else {
         return false;
@@ -611,14 +611,11 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
  * @param current
  * @return
  */
-bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int current)
+bool KVTQuery::compareLesson(int lesson)
 {
-    Q_UNUSED(type);
-    Q_UNUSED(limit);
-    Q_UNUSED(current);
-    // maybe a bit minimalistic? but should work... the user has only to set the right checkmarks. that should be ok.
-    if (m_lessons.contains(less))
+    if (m_lessons.contains(lesson)) {
         return true;
+    }
     return false;
 }
 

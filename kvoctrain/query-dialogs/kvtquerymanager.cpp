@@ -218,7 +218,7 @@ void QueryManager::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
-    queryList = m_query.select(m_doc, m_doc->currentLesson(), act_query_col, property);
+    queryList = m_query.select(m_doc, act_query_col, property);
 
     query_startnum = 0;
     if (queryList.count() > 0) {
@@ -350,7 +350,7 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
-    queryList = m_query.select(m_doc, m_doc->currentLesson(), act_query_col, type);
+    queryList = m_query.select(m_doc, act_query_col, type);
 
     query_startnum = 0;
     if (queryList.count() > 0) {
@@ -569,7 +569,7 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
     random_expr2.clear();
 
     if (create_new || queryList.count() == 0) {
-        queryList = m_query.select(m_doc, m_doc->currentLesson(), oindex, tindex);
+        queryList = m_query.select(m_doc, oindex, tindex);
     }
 
     query_startnum = 0;
@@ -820,7 +820,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             tindex = tmp;
         }
 
-        if (!m_query.validate(exp, m_doc->currentLesson(), oindex, tindex)) {
+        if (!m_query.validate(exp, oindex, tindex)) {
             int tmp = oindex;  // must use other direction which is the only valid
             oindex = tindex;
             tindex = tmp;
