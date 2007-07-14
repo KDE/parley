@@ -73,6 +73,7 @@ public:
     QString toTranslation() const { return act_query_trans; }
 
     KVTQuery & getKVTQuery() { return m_query; }
+    void showStatistics();
 
 public slots:
     void slotQueryExpressionResult(QueryDlgBase::Result res);
@@ -84,14 +85,20 @@ private:
     KEduVocDocument     *m_doc;
     KVocTrainApp        *m_app;
 
+    // A vector of entry list - so we have Lesson->Entries
+    QuerySelection       queryList;
+
+    // random_expr1 contains the vocabulary after they have been asked once
     QueryEntryList       random_expr1;
+    // random_expr2 contains the vocab that was right
     QueryEntryList       random_expr2;
+
     // Vectors for use in Leitner style learning. There is no
     // correct_0_times, we simply reuse random_expr1.
     QueryEntryList       correct_1_times;
     QueryEntryList       correct_2_times;
     QueryEntryList       correct_3_times;
-    QuerySelection       queryList;
+
 
     int                  random_query_nr;
     QString              def_lang;

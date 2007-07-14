@@ -94,15 +94,24 @@ protected:
 class QueryEntry
 {
 public:
-    QueryEntry(KEduVocExpression *_exp, int _nr) : exp(_exp), nr(_nr)
-    {}
+    QueryEntry(KEduVocExpression *_exp, int _nr) : exp(_exp), m_index(_nr)
+    {
+        m_statisticTotalCount = 0;
+        m_statisticBadCount = 0;
+        m_statisticTimeout = 0;
+        m_statisticSkipUnknown = 0;
+        m_statisticSkipKnown = 0;
+    }
 
     KEduVocExpression *exp;
-    int nr;
+    int m_index;
 
-private:
     // these are for the CURRENT query only, so we can display statistics.
-    KEduVocGrade m_currentGrade;
+    int m_statisticTotalCount;
+    int m_statisticBadCount;
+    int m_statisticTimeout;
+    int m_statisticSkipUnknown;
+    int m_statisticSkipKnown;
 };
 
 typedef QList<QueryEntry> QueryEntryList;
@@ -127,41 +136,42 @@ public:
 
     KVTQuery();
 
-    static QList<TypeRelation> getRelation(bool only_maintypes);
-    static void setTypeNames(const QStringList &names);
-    static QString getSubType(const QString &type);
-    static QString getMainType(const QString &type);
+    /// vector of list of entries
+    QuerySelection select(KEduVocDocument*, int act_lesson, int oindex, int tindex);
+
+    QuerySelection select(KEduVocDocument*, int act_lesson, int index, QueryType type);
+
+    QuerySelection select(KEduVocDocument*, int act_lesson, int index, const QString &type);
 
     static QString compStr(Prefs::EnumCompType::type type);
     static QString gradeStr(int i);
     static QString typeStr(const QString &id);
 
+    static QList<TypeRelation> getRelation(bool only_maintypes);
+    static void setTypeNames(const QStringList &names);
+    static QString getSubType(const QString &type);
+    static QString getMainType(const QString &type);
+
+    void setLessonItemStr(const QString &indices);
+
     void setLessonItems(QList<int> indices)
     {
-        lessonitems = indices;
+        m_lessons = indices;
     }
-    void setLessonItemStr(const QString &indices);
 
     QList<int> lessonItems() const
     {
-        return lessonitems;
+        return m_lessons;
     }
     QString lessonItemStr() const;
 
     bool validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex);
 
-    /// vector of list of entries
-    QuerySelection select(KEduVocDocument*, int act_lesson, int oindex, int tindex);
-
+private:
     bool validate(KEduVocExpression *expr, int act_lesson, int index, const QString &type);
-
-    QuerySelection select(KEduVocDocument*, int act_lesson, int index, const QString &type);
 
     bool validate(KEduVocExpression *expr, int act_lesson, int index, QueryType type);
 
-    QuerySelection select(KEduVocDocument*, int act_lesson, int index, QueryType type);
-
-protected:
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
     bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
     bool compareDate(int, const QDateTime &);
@@ -171,9 +181,8 @@ protected:
     bool compareType(int, const QString &, const QString &);
     bool compareLesson(int, int, const QList<int> &, int);
 
-    QList<int> lessonitems;
+    QList<int> m_lessons;
 
-private:
     static QStringList userTypes;
 };
 

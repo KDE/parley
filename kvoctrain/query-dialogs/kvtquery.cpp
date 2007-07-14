@@ -113,7 +113,7 @@ QString KVTQuery::getMainType(const QString & type)
 
 KVTQuery::KVTQuery()
 {
-    lessonitems.clear();
+    m_lessons.clear();
 }
 
 
@@ -164,7 +164,7 @@ QuerySelection KVTQuery::select(KEduVocDocument *doc, int act_lesson, int oindex
 
 bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)
 {
-// USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
+    // USED when using default: kDebug() << "validate(KEduVocExpression *expr, int act_lesson, int oindex, int tindex)" << endl;
 
     //int index = tindex ? tindex : oindex;
     if ( (compareExpiring(expr->translation(tindex).gradeFrom(oindex).grade(), expr->translation(tindex).gradeFrom(oindex).queryDate(), Prefs::expire() )
@@ -179,7 +179,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int oindex, int
             )
         )
             // lesson + word type must ALWAYS match (and there must be a word on both sides)
-            && compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson)
+            && compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson)
             && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(tindex).type(), Prefs::typeItem())
             && !expr->translation(oindex).translation().simplified().isEmpty()
             && !expr->translation(tindex).translation().simplified().isEmpty()
@@ -248,7 +248,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, const 
     } else
         return false;
 
-    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson) && type_ok) {
         return true;
     } else {
         return false;
@@ -295,7 +295,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int act_lesson, int idx, QueryT
         type_ok = !expr->translation(idx).example().simplified().isEmpty();
     }
 
-    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), lessonitems, act_lesson) && type_ok) {
+    if (compareLesson(Prefs::compType(Prefs::EnumType::Lesson), expr->lesson(), m_lessons, act_lesson) && type_ok) {
         return true;
     } else {
         return false;
@@ -617,7 +617,7 @@ bool KVTQuery::compareLesson(int type, int less, const QList<int> &limit, int cu
     Q_UNUSED(limit);
     Q_UNUSED(current);
     // maybe a bit minimalistic? but should work... the user has only to set the right checkmarks. that should be ok.
-    if (lessonitems.contains(less))
+    if (m_lessons.contains(less))
         return true;
     return false;
 }
@@ -633,14 +633,14 @@ void KVTQuery::setLessonItemStr(const QString & indices)
 {
     int pos;
     QString indices_copy = indices;
-    lessonitems.clear();
+    m_lessons.clear();
     while ((pos = indices_copy.indexOf(' ')) >= 0) {
         QString s = indices_copy.left(pos);
         indices_copy.remove(0, pos + 1);
-        lessonitems.append(s.toInt());
+        m_lessons.append(s.toInt());
     }
     if (indices_copy.length() != 0) {
-        lessonitems.append(indices_copy.toInt());
+        m_lessons.append(indices_copy.toInt());
     }
 }
 
@@ -648,8 +648,8 @@ void KVTQuery::setLessonItemStr(const QString & indices)
 QString KVTQuery::lessonItemStr() const
 {
     QString s, ret;
-    for (int i = 0; i < lessonitems.count(); i++) {
-        s.setNum(lessonitems[i]);
+    for (int i = 0; i < m_lessons.count(); i++) {
+        s.setNum(m_lessons[i]);
         if (i != 0)
             ret += ' ';
         ret += s;

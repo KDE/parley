@@ -245,7 +245,7 @@ void QueryManager::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
     simpleQueryDlg = new SimpleQueryDlg(m_doc, m_app);
-    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
     simpleQueryDlg->initFocus();
@@ -333,7 +333,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
-    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     simpleQueryDlg->initFocus();
     m_app->slotStatusMsg(IDS_DEFAULT);
 }
@@ -377,7 +377,7 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
     m_app->hide();
     if (m_queryType == KVTQuery::ConjugationQuery) {
         verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
-        verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
         verbQueryDlg->initFocus();
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
@@ -385,14 +385,14 @@ void QueryManager::slotStartTypeQuery(int col, const QString & type)
         verbQueryDlg->show();
     } else if (m_queryType == KVTQuery::ArticlesQuery) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
-        artQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -488,7 +488,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        verbQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp,
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
 
         verbQueryDlg->initFocus();
@@ -498,7 +498,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        artQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::ComparisonQuery) {
         if (adjQueryDlg == 0) {
@@ -506,7 +506,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].nr, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
@@ -568,8 +568,9 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
-    if (create_new || queryList.count() == 0)
+    if (create_new || queryList.count() == 0) {
         queryList = m_query.select(m_doc, m_doc->currentLesson(), oindex, tindex);
+    }
 
     query_startnum = 0;
     if (queryList.count() > 0) {
@@ -603,14 +604,14 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
 
     if (m_queryType == KVTQuery::RandomQuery) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
-        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
@@ -630,13 +631,15 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
     int tindex = m_doc->indexOfIdentifier(act_query_trans);
     int oindex = m_doc->indexOfIdentifier(act_query_org);
-    QueryEntry qer = random_expr1[random_query_nr];
-    KEduVocExpression *exp = qer.exp;
+    QueryEntry queryEntry = random_expr1[random_query_nr];
+    KEduVocExpression *exp = queryEntry.exp;
 
+    // update general stuff (count, date), unless the query has been stopped.
     if (res != QueryDlgBase::StopIt) {
         m_doc->setModified();
 
         exp->translation(tindex).gradeFrom(oindex).incQueryCount();
+        queryEntry.m_statisticTotalCount++;
         exp->translation(tindex).gradeFrom(oindex).setQueryDate( QDateTime::currentDateTime() );
     }
 
@@ -651,12 +654,13 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
             //When you get it wrong Leitner style, it ends up in the back of the line
             if (Prefs::altLearn())
-                random_expr1.append(qer);
+                random_expr1.append(queryEntry);
             else
-                random_expr2.append(qer);
+                random_expr2.append(queryEntry);
 
             exp->translation(tindex).gradeFrom(oindex).incBadCount();
             exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE);  // unknown: reset grade
+            queryEntry.m_statisticTimeout++;
         }
         break;
 
@@ -666,12 +670,13 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
         //When you get it wrong Leisner style, it ends up in the back of the line
         if (Prefs::altLearn())
-            random_expr1.append(qer);
+            random_expr1.append(queryEntry);
         else
-            random_expr2.append(qer);
+            random_expr2.append(queryEntry);
 
         exp->translation(tindex).gradeFrom(oindex).incBadCount();
         exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE);  // unknown: reset grade
+        queryEntry.m_statisticSkipUnknown++;
 
         break;
 
@@ -686,13 +691,13 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             //answer). Move the exp up to next level.
             switch (query_cycle) {
             case 1:
-                correct_1_times.append(qer);
+                correct_1_times.append(queryEntry);
                 break;
             case 2:
-                correct_2_times.append(qer);
+                correct_2_times.append(queryEntry);
                 break;
             case 3:
-                correct_3_times.append(qer);
+                correct_3_times.append(queryEntry);
                 break;
             case 4:
                 //The user has answered correctly four times in a row. She is good!
@@ -834,7 +839,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             return;
         }
 
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         if (mcQueryDlg == 0) {
@@ -842,7 +847,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             slotStopQuery(true);
             return;
         }
-        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].nr, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
     }
     m_app->slotStatusMsg(IDS_DEFAULT);
@@ -871,7 +876,33 @@ void QueryManager::slotStopQuery(bool)
     adjQueryDlg = 0;
     artQueryDlg = 0;
 
+    /// @todo something like: if ( Prefs::ShowStatistics ) {
+        // Let's display some statistics:
+
+        showStatistics();
+    //}
     m_app->show();
 }
 
+
+/*!
+    \fn QueryManager::showStatistics
+ */
+void QueryManager::showStatistics()
+{
+    /// @todo implement me
+    kDebug() << "STATISTICS:" << endl;
+    kDebug() << "Count - queryList: " << queryList.count()
+        << " random_expr1: " << random_expr1.count()
+        << " random_expr2: " << random_expr2.count()
+        << " correct_1_times: " << correct_1_times.count()
+        << " correct_2_times: " << correct_2_times.count()
+        << " correct_3_times: " << correct_3_times.count()
+        << endl;
+}
+
+
 #include "kvtquerymanager.moc"
+
+
+
