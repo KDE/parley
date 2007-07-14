@@ -295,7 +295,7 @@ bool KVTQuery::validate(KEduVocExpression *expr, int idx, QueryType query_type)
         type_ok = !expr->translation(idx).example().simplified().isEmpty();
     }
 
-    if (compareLesson( expr->lesson())) {
+    if (compareLesson( expr->lesson() )) {
         return true;
     } else {
         return false;

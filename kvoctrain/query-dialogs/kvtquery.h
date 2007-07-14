@@ -174,11 +174,11 @@ private:
 
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
     bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
-    bool compareDate(int, const QDateTime &);
-    bool compareQuery(int, int, int);
-    bool compareBad(int, int, int);
-    bool compareGrade(int, grade_t, grade_t);
-    bool compareType(int, const QString &, const QString &);
+    bool compareDate(int type, const QDateTime &qd);
+    bool compareQuery(int type, int qgrade, int limit);
+    bool compareBad(int type, int bcount, int limit);
+    bool compareGrade(int type, grade_t qgrade, grade_t limit);
+    bool compareType(int type, const QString & exprtype, const QString & limit);
     bool compareLesson(int lesson);
 
     QList<int> m_lessons;
