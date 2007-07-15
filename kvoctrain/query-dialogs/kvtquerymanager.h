@@ -69,8 +69,6 @@ public:
     /** exit query mode */
     void slotStopQuery();
 
-    void setLessonItems(QList<int> indices) { m_query.setLessonItems(indices); }
-
     QString fromTranslation() const { return act_query_org; }
     QString toTranslation() const { return act_query_trans; }
 

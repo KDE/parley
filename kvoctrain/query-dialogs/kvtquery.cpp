@@ -115,7 +115,6 @@ QString KVTQuery::getMainType(const QString & type)
 KVTQuery::KVTQuery()
 {
     m_doc = 0;
-    m_lessons.clear();
     m_indexFrom = 0;
     m_indexTo = 0;
     m_queryType = RandomQuery;
@@ -422,55 +421,10 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
 }
 
 
-/**
- * Check if the lesson of an expression is in the query lessonitems.
- * @param type
- * @param less the lesson to check
- * @param limit
- * @param current
- * @return
- */
-bool KVTQuery::compareLesson(int lesson)
-{
-    if (m_lessons.contains(lesson)) {
-        return true;
-    }
-    return false;
-}
-
 
 void KVTQuery::setTypeNames(const QStringList &names)
 {
     userTypes = names;
-}
-
-// the next two functions would not be necessary using our great lib ;)
-void KVTQuery::setLessonItemStr(const QString & indices)
-{
-    int pos;
-    QString indices_copy = indices;
-    m_lessons.clear();
-    while ((pos = indices_copy.indexOf(' ')) >= 0) {
-        QString s = indices_copy.left(pos);
-        indices_copy.remove(0, pos + 1);
-        m_lessons.append(s.toInt());
-    }
-    if (indices_copy.length() != 0) {
-        m_lessons.append(indices_copy.toInt());
-    }
-}
-
-// this is used in profilesdialog.cpp to save the lesson numbers - so it's "1 2 4 66" - ???
-QString KVTQuery::lessonItemStr() const
-{
-    QString s, ret;
-    for (int i = 0; i < m_lessons.count(); i++) {
-        s.setNum(m_lessons[i]);
-        if (i != 0)
-            ret += ' ';
-        ret += s;
-    }
-    return ret;
 }
 
 void KVTQuery::setDocument(KEduVocDocument * doc)
@@ -561,7 +515,7 @@ bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
 
 bool KVTQuery::validate(KEduVocExpression *expr)
 {
-    if (!compareLesson(expr->lesson())) {
+    if ( !m_doc->lessonsInQuery().contains( expr->lesson() ) ) {
         return false;
     }
 

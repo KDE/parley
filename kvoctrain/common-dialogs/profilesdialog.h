@@ -5,6 +5,7 @@
     begin                : Fri Apr 29 2005
 
     copyright            : (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                           (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -27,7 +28,7 @@
 @author Peter Hedlund
 */
 
-class KVTQuery;
+class KEduVocDocument;
 class GroupOptions;
 
 class SettingsProfile
@@ -47,7 +48,7 @@ class ProfilesDialog : public KDialog
     Q_OBJECT
 
 public:
-    ProfilesDialog(KVTQuery * m, QWidget *parent);
+    ProfilesDialog(KEduVocDocument *doc, QWidget *parent);
 
 signals:
     void profileActivated();
@@ -65,8 +66,8 @@ private:
 
     typedef QList<SettingsProfile> Profiles;
     Profiles profiles;
-    KVTQuery * m_queryManager;
     GroupOptions * mw;
+    KEduVocDocument *m_doc; // This is used to make changes to the lesson selection.
 };
 
 #endif

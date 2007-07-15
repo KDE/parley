@@ -5,6 +5,7 @@
     begin         : Fri Mar 25 2005
 
     copyright     : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -51,12 +52,14 @@ static const char unapplied[] = I18N_NOOP(
                                     "If you save a profile, those changes will not be included.\n"
                                     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
+KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
   : KConfigDialog(parent, name, config), m_langSet(ls)
 {
     setButtons(Default|Ok|Apply|Cancel|Help|User1);
     setDefaultButton(Ok);
     setModal(true);
+
+    m_doc = doc;
 
     m_languagePage = 0;
     m_config = config;
@@ -139,8 +142,13 @@ void KVocTrainPrefs::slotUser1()
         if (KMessageBox::Yes != KMessageBox::questionYesNo(this, i18n(unapplied), i18n("Unapplied Changes")))
             showDlg = false;
 
+
+    if ( m_doc == 0 ) {
+        kError() << "Preferences do not work with an empty document! (KVocTrainPrefs::slotUser1())" << endl;
+    }
+
     if (showDlg) {
-        ProfilesDialog * dlg = new ProfilesDialog(m_queryManager, this);
+        ProfilesDialog * dlg = new ProfilesDialog(m_doc, this);
         connect(dlg, SIGNAL(profileActivated()), this, SLOT(updateWidgets()));
         dlg->show();
     }

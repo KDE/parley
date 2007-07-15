@@ -150,19 +150,6 @@ public:
     static QString getSubType(const QString &type);
     static QString getMainType(const QString &type);
 
-    void setLessonItemStr(const QString &indices);
-
-    void setLessonItems(QList<int> indices)
-    {
-        m_lessons = indices;
-    }
-
-    QList<int> lessonItems() const
-    {
-        return m_lessons;
-    }
-    QString lessonItemStr() const;
-
     /**
      * Set the doc to be used for the query
      * @param doc
@@ -203,9 +190,7 @@ private:
     bool compareBad(int type, int bcount, int limit);
     bool compareGrade(int type, grade_t qgrade, grade_t limit);
     bool compareType(int type, const QString & exprtype, const QString & limit);
-    bool compareLesson(int lesson);
 
-    QList<int> m_lessons;
     static QStringList userTypes;
 
     KEduVocDocument *m_doc;

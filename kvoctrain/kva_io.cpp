@@ -214,7 +214,6 @@ void KVocTrainApp::slotFileMerge()
 
         m_doc->merge(new_doc, true);
 
-        m_queryManager->setLessonItems(m_doc->lessonsInQuery());
         KVTQuery::setTypeNames(m_doc->typeDescriptions());
         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
         KVTUsage::setUsageNames(m_doc->usageDescriptions());

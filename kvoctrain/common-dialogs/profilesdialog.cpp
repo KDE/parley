@@ -5,6 +5,7 @@
     begin                : Fri Apr 29 2005
 
     copyright            : (C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                           (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -23,11 +24,12 @@
 
 #include <klocale.h>
 #include <kinputdialog.h>
+#include <keduvocdocument.h>
 
 #include "groupoptions.h"
 #include "presettings.h"
 #include "prefs.h"
-#include "query-dialogs/kvtquery.h"
+#include "query-dialogs/kvtquery.h" // for grading constants - would be nice to get rid of this...
 
 SettingsProfile::SettingsProfile()
 {}
@@ -36,13 +38,13 @@ SettingsProfile::SettingsProfile(const QString &n, const QString &q, const QStri
         : name(n), query_set(q), thresh_set(t), block_set(b)
 {}
 
-ProfilesDialog::ProfilesDialog(KVTQuery * m, QWidget *parent) : KDialog(parent)
+ProfilesDialog::ProfilesDialog(KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
     setCaption(i18n("Profiles"));
     setButtons(Close);
     setModal(true);
 
-    m_queryManager = m;
+    m_doc = doc;
     mw = new GroupOptions(this);
     setMainWidget(mw);
 
@@ -171,49 +173,67 @@ void ProfilesDialog::selectProfile(int profile)
         if (extract(line, s))
             Prefs::setIKnow((bool) s.toInt());
 
-#define QCT(x)  Prefs::EnumCompType::type(x)
-
         line = profiles[profile].thresh_set;
 
+        // Correct me if I'm wrong:
+        // There is a line Treshold in the rc file.
+        // Threshold=(3 7 11)13,aj,0,0,0,0,0,0,0,1800,0,
+        // The lessons in the query are saved in this line.
+        // No, I have no clue why.
+        // So we first extract the part (3 7 11) and set our lessons accordingly.
+
+        // The following seems to be somewhat downward compatible (?)
         line.simplified();
+        QString lessonString = "";
         if (line.length() != 0 && line[0] == '(') { // new style: multiple lessons
             int pos;
             line.remove(0, 1);
             if ((pos = line.indexOf(')')) > 0) {
-                s = line.left(pos);
+                lessonString = line.left(pos);
                 line.remove(0, pos+1);
             } else {
-                s = line;
+                lessonString = line;
                 line = "";
             }
-            m_queryManager->setLessonItemStr(s);
-        } else if (extract(line, s))
-            m_queryManager->setLessonItemStr(s);
+        } else {
+            extract(line, lessonString);
+        }
+
+        int pos;
+        QString indices_copy = lessonString;
+        QList<int> lessonList;
+        while ((pos = indices_copy.indexOf(' ')) >= 0) {
+            QString s = indices_copy.left(pos);
+            indices_copy.remove(0, pos + 1);
+            lessonList.append(s.toInt());
+        }
+        if (indices_copy.length() != 0) {
+            lessonList.append(indices_copy.toInt());
+        }
+        m_doc->setLessonsInQuery(lessonList);
 
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::Lesson, QCT(s.toInt()));
+            Prefs::setCompType(Prefs::EnumType::Lesson, Prefs::EnumCompType::type(s.toInt()));
         if (extract(line, s))
             Prefs::setTypeItem(s);   // s.toInt()
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::WordType, QCT(s.toInt())) /*manager.setTypeComp(QCT(s.toInt()))*/;
+            Prefs::setCompType(Prefs::EnumType::WordType, Prefs::EnumCompType::type(s.toInt())) /*manager.setTypeComp(Prefs::EnumCompType::type(s.toInt()))*/;
         if (extract(line, s))
             Prefs::setGradeItem(s.toInt());
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::Grade, QCT(s.toInt()));
+            Prefs::setCompType(Prefs::EnumType::Grade, Prefs::EnumCompType::type(s.toInt()));
         if (extract(line, s))
             Prefs::setQueryItem(s.toInt());
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::Query, QCT(s.toInt()));
+            Prefs::setCompType(Prefs::EnumType::Query, Prefs::EnumCompType::type(s.toInt()));
         if (extract(line, s))
             Prefs::setBadItem(s.toInt());
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::Bad, QCT(s.toInt()));
+            Prefs::setCompType(Prefs::EnumType::Bad, Prefs::EnumCompType::type(s.toInt()));
         if (extract(line, s))
             Prefs::setDateItem(s.toInt());
         if (extract(line, s))
-            Prefs::setCompType(Prefs::EnumType::Date, QCT(s.toInt()));
-
-#undef QCT
+            Prefs::setCompType(Prefs::EnumType::Date, Prefs::EnumCompType::type(s.toInt()));
 
         line = profiles[profile].block_set;
         Prefs::setBlock(false);
@@ -295,8 +315,17 @@ void ProfilesDialog::modifyProfile(int profile)
         line += s + ',';
         profiles[profile].query_set = line;
 
-        line = '(' + m_queryManager->lessonItemStr() + ')';
+        // This is really ugly. Is there no better way to save a list?
+        QString tempLessonIndex, lessonString;
+        for (int i = 0; i < m_doc->lessonsInQuery().count(); i++) {
+            tempLessonIndex.setNum(m_doc->lessonsInQuery().value(i));
+            if (i != 0)
+                lessonString += ' ';
+            lessonString += tempLessonIndex;
+        }
+        line = '(' + lessonString + ')';
         s.setNum((int) Prefs::compType(Prefs::EnumType::Lesson));
+
         line += s + ',';
         s = Prefs::typeItem();
         line += s + ',';

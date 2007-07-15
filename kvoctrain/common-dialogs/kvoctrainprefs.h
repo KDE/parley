@@ -48,7 +48,7 @@ public:
     /**
      * Creates a configuration dialog.
      */
-    KVocTrainPrefs(const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
+    KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
     /**
      * Displays the dialog with the language page selected.

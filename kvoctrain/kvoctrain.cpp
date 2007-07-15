@@ -699,7 +699,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_languages, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
+    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, m_languages, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     if (index >= 0)
         dialog->selectLanguagePage();
@@ -1219,10 +1219,6 @@ void KVocTrainApp::slotCurrentLessonChanged(int currentLesson)
 void KVocTrainApp::slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &)
 {
     updateTableFilter();
-    // I'd rather have this access m_doc->lessonsInQuery() when a query is started.
-    // this could make resume query act weird.
-    /// @todo look into this
-    m_queryManager->getKVTQuery().setLessonItems(m_doc->lessonsInQuery());
 }
 
 

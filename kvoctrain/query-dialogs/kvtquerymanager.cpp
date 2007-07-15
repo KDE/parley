@@ -86,8 +86,6 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
         }
     }
 
-    m_query.setLessonItems(m_doc->lessonsInQuery());
-
     // remove empty elements
     for (int i = (int) queryList.size()-1; i >= 0; i--)
         if (queryList[i].size() == 0) {

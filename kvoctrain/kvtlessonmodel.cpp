@@ -198,7 +198,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 void KVTLessonModel::setAllLessonsInQuery()
 {
     QList<int> intLessons;
-    for (int lesson =1; lesson <= m_doc->lessonCount(); lesson++) {
+    for (int lesson = 1; lesson <= m_doc->lessonCount(); lesson++) {
         intLessons.append(lesson);
     }
     m_doc->setLessonsInQuery(intLessons);
