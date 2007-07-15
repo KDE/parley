@@ -114,14 +114,12 @@ QString KVTQuery::getMainType(const QString & type)
 
 KVTQuery::KVTQuery()
 {
+    m_doc = 0;
     m_lessons.clear();
+    m_indexFrom = 0;
+    m_indexTo = 0;
+    m_queryType = RandomQuery;
 }
-
-
-
-
-
-
 
 
 QString KVTQuery::compStr(Prefs::EnumCompType::type type)
@@ -497,6 +495,10 @@ void KVTQuery::setQueryType(QueryType queryType)
 
 QuerySelection KVTQuery::queryEntries()
 {
+    if (m_doc == 0) {
+        kError() << "KVTQuery::queryEntries(): Cannot create query without source document set." << endl;
+    }
+
     // initialize vector with (m_doc->lessonCount() + 1) elements
     QuerySelection random(m_doc->lessonCount() + 1);
 
