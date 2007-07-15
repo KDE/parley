@@ -9,6 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -508,16 +509,14 @@ QuerySelection KVTQuery::queryEntries()
     //entries, we just ignore that here
     for (int i = 0; i < m_doc->entryCount(); i++) {
         KEduVocExpression *expr = m_doc->entry(i);
-    /// ##########################################################
-
         if (expr->isActive()) {
             if (validate(expr)) {
-
-        int lessonNumber;
-        if (Prefs::altLearn())
-            lessonNumber = 0; //We only use a single array in Leitner style
-        else
-            lessonNumber = expr->lesson();
+                int lessonNumber;
+                if (Prefs::altLearn()) {
+                    lessonNumber = 0; //We only use a single array in Leitner style
+                } else {
+                    lessonNumber = expr->lesson();
+                }
                 random[lessonNumber].append(QueryEntry(expr, i));
                 expr->setInQuery(true);
 

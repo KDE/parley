@@ -272,7 +272,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 {
     if (simpleQueryDlg == 0) {
         kError() << "simpleQueryDlg == 0\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
@@ -282,7 +282,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
     switch (res) {
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-            slotStopQuery(true);
+            slotStopQuery();
             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
             return;
         } else {
@@ -305,26 +305,26 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
         if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
             //nothing
         } else {
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         break;
 
     case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
-        slotStopQuery(true);
+        slotStopQuery();
         return;
         break;
 
     default :
         kError() << "unknown result from QueryDlg\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
     if (random_expr1.count() == 0) {
         if (random_expr2.count() == 0 && queryList.count() == 0) {
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
 
@@ -341,7 +341,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 
     if (random_expr1.count() == 0) { // should not happen !!
         kError() << "QueryManager::slotTimeProperty: random_expr1.count() == 0\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
@@ -430,7 +430,7 @@ void QueryManager::slotStartTypeQuery(int col, KVTQuery::QueryType queryType)
 //         adjQueryDlg->show();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
     m_app->slotStatusMsg(IDS_DEFAULT);
@@ -445,7 +445,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     switch (res) {
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-            slotStopQuery(true);
+            slotStopQuery();
             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
             return;
         } else {
@@ -468,27 +468,27 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
         if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
             // nothing
         } else {
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         break;
 
     case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
-        slotStopQuery(true);
+        slotStopQuery();
         return;
         break;
 
     default :
         kError() << "unknown result from QueryDlg\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
 
     if (random_expr1.count() == 0) {
         if (random_expr2.count() == 0 && queryList.count() == 0) {
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
 
@@ -506,7 +506,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 
     if (random_expr1.count() == 0) { // should not happen !!
         kError() << "QueryManager::slotTimeSpecial: random_expr1.count() == 0\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
@@ -516,7 +516,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     if (m_queryType == KVTQuery::ConjugationQuery) {
         if (verbQueryDlg == 0) {
             kError() << "verbQueryDlg == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
@@ -526,7 +526,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     } else if (m_queryType == KVTQuery::ArticleQuery) {
         if (artQueryDlg == 0) {
             kError() << "artQueryDlg == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
@@ -534,14 +534,14 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
         if (adjQueryDlg == 0) {
             kError() << "adjQueryDlg == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
     m_app->slotStatusMsg(IDS_DEFAULT);
@@ -654,7 +654,7 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
         mcQueryDlg->show();
     } else {
         kError() << "QueryManager::slotStartQuery: unknown type\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
     m_app->slotStatusMsg(IDS_DEFAULT);
@@ -682,7 +682,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     switch (res) {
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-            slotStopQuery(true);
+            slotStopQuery();
             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
             return;
         } else {
@@ -745,12 +745,12 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
                 break;
             default:
                 kError() << "You should not be able to answer correctly more than 4 times\n";
-                slotStopQuery(true);
+                slotStopQuery();
                 return;
             }
 
             if (random_expr1.count() == 0 && correct_1_times.count() == 0 && correct_2_times.count() == 0 && correct_3_times.count() == 0) {
-                slotStopQuery(true);
+                slotStopQuery();
                 return;
             }
 
@@ -764,7 +764,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             exp->setInQuery(false);
             random_expr1.erase(random_expr1.begin() + random_query_nr);
             if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
-                slotStopQuery(true);
+                slotStopQuery();
                 return;
             }
         }
@@ -772,13 +772,13 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
     case QueryDlgBase::StopIt :
         num_queryTimeout = 0;
-        slotStopQuery(true);
+        slotStopQuery();
         return;
         break;
 
     default :
         kError() << "unknown result from QueryDlg\n";
-        slotStopQuery(true);
+        slotStopQuery();
         return;
     }
 
@@ -805,7 +805,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
         } else {
             //else we just pick from random_expr1 then
             if (random_expr1.count() == 0) {
-                slotStopQuery(true);
+                slotStopQuery();
                 return;
             }
             query_cycle = 1;
@@ -816,7 +816,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     } else { // not Prefs::altLearn()
         if (random_expr1.count() == 0) {
             if (random_expr2.count() == 0 && queryList.count() == 0) {
-                slotStopQuery(true);
+                slotStopQuery();
                 return;
             }
 
@@ -833,7 +833,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
         if (random_expr1.count() == 0) { // should not happen !!
             kError() << "QueryManager::slotQueryExpressionResult: random_expr1.count() == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
 
@@ -873,7 +873,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
         if (randomQueryDlg == 0) {
             kError() << "randomQueryDlg == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
 
@@ -882,7 +882,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         if (mcQueryDlg == 0) {
             kError() << "mcQueryDlg == 0\n";
-            slotStopQuery(true);
+            slotStopQuery();
             return;
         }
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
@@ -892,7 +892,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 }
 
 
-void QueryManager::slotStopQuery(bool)
+void QueryManager::slotStopQuery()
 {
     if (simpleQueryDlg != 0)
         simpleQueryDlg->deleteLater();
@@ -937,6 +937,10 @@ void QueryManager::showStatistics()
         << " correct_2_times: " << correct_2_times.count()
         << " correct_3_times: " << correct_3_times.count()
         << endl;
+
+    for (int i = 0; i<random_expr1.count(); i++) {
+        kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).translation() << endl;
+    }
 }
 
 

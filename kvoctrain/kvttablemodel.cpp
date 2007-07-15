@@ -99,14 +99,15 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         }
 
     case KVTTableModel::GradeRole: {
-            if (index.column() > KV_EXTRA_COLS) {
-                if (m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).gradeFrom(0).queryCount() != 0)
-                    return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).gradeFrom(0).grade());
-                else
-                    return QVariant(KV_NORM_GRADE);
-            } else if (index.column() == 2) {
+            if (index.column() > KV_EXTRA_COLS) { // translation
+
+                //kDebug() << "KVTTableModel::GradeRole column: " << index.column() << endl;
+
+                return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS + 1).gradeFrom(0).grade());
+
+            } else if (index.column() == 2) { // original
                 QList<QVariant> result;
-                for (int i = 1; i <= m_doc->identifierCount(); ++i) {
+                for (int i = 1; i < m_doc->identifierCount(); ++i) {
                     if (m_doc->entry(index.row())->translation(0).gradeFrom(i).queryCount() != 0)
                         result.append(QVariant(m_doc->entry(index.row())->translation(0).gradeFrom(i /*+ KV_EXTRA_COLS*/).grade()));
                     else

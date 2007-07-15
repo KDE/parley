@@ -67,7 +67,7 @@ public:
     bool queryIsEmpty();
 
     /** exit query mode */
-    void slotStopQuery(bool show_view);
+    void slotStopQuery();
 
     void setLessonItems(QList<int> indices) { m_query.setLessonItems(indices); }
 
