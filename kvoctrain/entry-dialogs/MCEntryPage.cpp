@@ -46,11 +46,11 @@ void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
 {
     multiplechoice = mc;
 
-    mc1Field->setText(mc.mc1());
-    mc2Field->setText(mc.mc2());
-    mc3Field->setText(mc.mc3());
-    mc4Field->setText(mc.mc4());
-    mc5Field->setText(mc.mc5());
+    mc1Field->setText(mc.choice(1));
+    mc2Field->setText(mc.choice(2));
+    mc3Field->setText(mc.choice(3));
+    mc4Field->setText(mc.choice(4));
+    mc5Field->setText(mc.choice(5));
 
     m_largeSelection = multi_sel;
     if (m_largeSelection) {
@@ -68,35 +68,35 @@ void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
 void MCEntryPage::mc1Changed(const QString& s)
 {
     setModified(true);
-    multiplechoice.setMC1(s);
+    multiplechoice.setChoice(1, s);
 }
 
 
 void MCEntryPage::mc2Changed(const QString& s)
 {
     setModified(true);
-    multiplechoice.setMC2(s);
+    multiplechoice.setChoice(2, s);
 }
 
 
 void MCEntryPage::mc3Changed(const QString& s)
 {
     setModified(true);
-    multiplechoice.setMC3(s);
+    multiplechoice.setChoice(3, s);
 }
 
 
 void MCEntryPage::mc4Changed(const QString& s)
 {
     setModified(true);
-    multiplechoice.setMC4(s);
+    multiplechoice.setChoice(4, s);
 }
 
 
 void MCEntryPage::mc5Changed(const QString& s)
 {
     setModified(true);
-    multiplechoice.setMC5(s);
+    multiplechoice.setChoice(5, s);
 }
 
 

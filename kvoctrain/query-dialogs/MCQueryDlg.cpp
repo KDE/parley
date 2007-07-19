@@ -116,7 +116,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
 
     KEduVocMultipleChoice multipleChoice = vocExpression->translation(m_queryTranslationColumn).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
-        choices.append(multipleChoice.mc(i));
+        choices.append(multipleChoice.choice(i));
     }
 
     if (choices.count() > 1)
