@@ -146,7 +146,7 @@ install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
 ########### install files ###############
 
-install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_DIR} )
+install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES kvoctrain.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
 install( FILES kvoctrainui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kvoctrain )
 
