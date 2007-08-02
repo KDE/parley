@@ -254,7 +254,7 @@ bool KVTLessonModel::removeRows(int row, int count, const QModelIndex &parent)
     endRemoveRows();
 
     // to support drag and drop
-    kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count << endl;
+    kDebug() << "removeRows(int row, int count, const QModelIndex &parent)" << row << ", " << count;
     return true;
 }
 
@@ -298,7 +298,7 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
     }
 
     if (!deleteLesson(lessonIndex -1, KEduVocDocument::DeleteEmptyLesson))
-        kDebug() << "Warning - could not delete old lesson!" << endl;
+        kDebug() << "Warning - could not delete old lesson!";
 
     m_doc->setModified(true);
 
@@ -323,7 +323,7 @@ bool KVTLessonModel::dropMimeData(const QMimeData * data, Qt::DropAction action,
         ++rows;
     }
 
-    kDebug() << "dropMimeData() " << newItems << " row: " << row << " Qt::DropAction: " << action << endl;
+    kDebug() << "dropMimeData() " << newItems << " row: " << row << " Qt::DropAction: " << action;
     return false;
 }
 

@@ -198,7 +198,7 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
 
 void QueryDlgBase::timeoutReached()
 {
-kDebug() << "timer: " << m_timerCount << endl;
+kDebug() << "timer: " << m_timerCount;
     if (m_timerCount > 0) {
         m_timerCount--;
         timebar()->setValue(m_timerCount);
@@ -248,7 +248,7 @@ void zzzzzzzzzzVerbQueryDlg::timeoutReached()
 void QueryDlgBase::startTimer()
 {
     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
-        kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!" << endl;
+        kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!";
         return;
     }
 
@@ -258,7 +258,7 @@ void QueryDlgBase::startTimer()
             m_timer = new QTimer(this);
             m_timer->setSingleShot(true);
             connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
-            kDebug() << "connect timer" << endl;
+            kDebug() << "connect timer";
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {

@@ -97,13 +97,13 @@ QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
 {
     QList<WizardIdentifier> ident;
     if ( hasVisitedPage(WizardFirstLanguagePage) ) {
-        kDebug() << "adding first page" << endl;
+        kDebug() << "adding first page";
         ident.append(WizardIdentifier(true,
             field("firstLanguagePage.language").toString(),
             field("firstLanguagePage.languageShort").toString() ));
     }
     if ( hasVisitedPage(WizardSecondLanguagePage) ) {
-        kDebug() << "adding second page" << endl;
+        kDebug() << "adding second page";
         ident.append(WizardIdentifier(true,
             field("secondLanguagePage.language").toString(),
             field("secondLanguagePage.languageShort").toString() ));

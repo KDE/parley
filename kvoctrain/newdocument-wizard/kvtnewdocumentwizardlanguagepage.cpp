@@ -90,7 +90,7 @@ KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstL
 
 void KVTNewDocumentWizardLanguagePage::initializePage()
 {
-kDebug() << "initializePage" << field("firstLanguagePage.language").toString() << endl;
+kDebug() << "initializePage" << field("firstLanguagePage.language").toString();
     if (!m_isFirstLanguagePage) {
         m_beforeSelectionLabel->setText(
             i18n("So far you have chosen ") +
@@ -106,7 +106,7 @@ void KVTNewDocumentWizardLanguagePage::slotLanguageChanged(const QString &langua
     m_languageLabel->setText(language);
     m_languageShortLabel->setText(languageShort);
     m_currentLabel->setText(i18n("Your selection: ") + language);
-    kDebug() << "slotLanguageChanged: " << language << " = " << languageShort << endl;
+    kDebug() << "slotLanguageChanged: " << language << " = " << languageShort;
 }
 
 #include "kvtnewdocumentwizardlanguagepage.moc"

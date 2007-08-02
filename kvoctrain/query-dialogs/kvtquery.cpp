@@ -476,7 +476,7 @@ QuerySelection KVTQuery::queryEntries()
                 random[lessonNumber].append(QueryEntry(expr, i));
                 expr->setInQuery(true);
 
-                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).translation() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade() << endl;
+                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).translation() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade();
             }
         }
     }

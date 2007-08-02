@@ -927,7 +927,7 @@ void QueryManager::slotStopQuery()
 void QueryManager::showStatistics()
 {
     /// @todo implement me
-    kDebug() << "STATISTICS:" << endl;
+    kDebug() << "STATISTICS:";
     kDebug() << "Count - queryList: " << queryList.count()
         << " random_expr1: " << random_expr1.count()
         << " random_expr2: " << random_expr2.count()
@@ -937,7 +937,7 @@ void QueryManager::showStatistics()
         << endl;
 
     for (int i = 0; i<random_expr1.count(); i++) {
-        kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).translation() << endl;
+        kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).translation();
     }
 }
 

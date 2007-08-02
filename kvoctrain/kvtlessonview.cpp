@@ -78,7 +78,7 @@ void KVTLessonView::slotCheckNoLessons()
 
 void KVTLessonView::slotCreateNewLesson()
 {
-    kDebug() << "Create new lesson!" << endl;
+    kDebug() << "Create new lesson!";
     
     int newLessonIndex = m_model->addLesson();
     slotSelectLesson(newLessonIndex);
@@ -139,14 +139,14 @@ void KVTLessonView::slotSplitLesson()
 void KVTLessonView::dropEvent(QDropEvent * event)
 {
     Q_UNUSED(event);
-    kDebug() << "dropEvent()" << endl;
+    kDebug() << "dropEvent()";
 }
 
 int KVTLessonView::indexOfCurrentLesson()
 {
     QModelIndexList indexes = selectionModel()->selectedIndexes();
     if (indexes.empty()) {
-        kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+        kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!";
         return 0;
     }
     return indexes.at(0).row();

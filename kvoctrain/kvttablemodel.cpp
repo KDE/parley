@@ -101,7 +101,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
     case KVTTableModel::GradeRole: {
             if (index.column() > KV_EXTRA_COLS) { // translation
 
-                //kDebug() << "KVTTableModel::GradeRole column: " << index.column() << endl;
+                //kDebug() << "KVTTableModel::GradeRole column: " << index.column();
 
                 return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS + 1).gradeFrom(0).grade());
 
@@ -347,7 +347,7 @@ void KVTTableModel::setLanguages(const KVTLanguageList & languages)
 
 bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
 {
-kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count << endl;
+kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count;
 
     //Q_UNUSED(parent);
     if (count < 1 || row < 0 || row > m_doc->entryCount()) {

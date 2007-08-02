@@ -261,7 +261,7 @@ void KVocTrainApp::commitEntryDlg(bool force)
             expr->translation(col).setType(entryDlg->getType());
 
             for (int j = 0; j < expr->translationCount(); j++) {
-kDebug() << "j: " << j << endl;
+kDebug() << "j: " << j;
                 if (expr->translation(j).type().isEmpty())
                     expr->translation(j).setType(entryDlg->getType());
             }
@@ -382,7 +382,7 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
         lesson = qMax(0, m_lessonModel->rowCount());
 
     bool hasSelection = (m_tableView->selectionModel()->selectedRows().count() > 1);
-    kDebug() << hasSelection << endl;
+    kDebug() << hasSelection;
 
     col -= KV_EXTRA_COLS;
 
@@ -1127,11 +1127,11 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     ///@todo this does not work - row is dependant on the lesson selected!
     int row = current.row();
 
-    //kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row() << endl;
+    //kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row();
 
     // this crashes and I don't see why!!!
     //QModelIndex docIndex = m_sortFilterModel->mapToSource(current);
-    //kDebug() << "slotCurrentChanged() " << docIndex.row() << endl;
+    //kDebug() << "slotCurrentChanged() " << docIndex.row();
 
 
     bool noData = false;
@@ -1141,7 +1141,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         noData = true;
     } else {
         expr = m_doc->entry(row);
-//        kDebug() << "Row is: " << row << endl;
+//        kDebug() << "Row is: " << row;
     }
 
     if (m_remarkStatusBarLabel != 0)
@@ -1162,7 +1162,7 @@ void KVocTrainApp::updateTableFilter()
     QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
     // oops - this crashes if there is no selection - there should always be a current lesson!!!
     if (indexes.empty()) {
-        kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!" << endl;
+        kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!";
         return;
     }
     QModelIndex current = indexes.at(0); // should be one item selected anyway...
@@ -1182,7 +1182,7 @@ void KVocTrainApp::updateTableFilter()
         break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
         description = m_doc->lessonDescriptions();
-        //kDebug << lessonStrings << endl;
+        //kDebug << lessonStrings;
         lessonStrings.append("(");
         foreach(int lesson, m_doc->lessonsInQuery()) {
             lessonStrings.append(m_doc->lessonDescriptions().at(lesson-1));

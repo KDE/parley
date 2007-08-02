@@ -52,7 +52,7 @@ KVTNewDocumentWizardAllLanguagesPage::KVTNewDocumentWizardAllLanguagesPage(KVTLa
 
 bool KVTNewDocumentWizardAllLanguagesPage::validatePage()
 {
-//    kDebug() << "Validate page." << endl;
+//    kDebug() << "Validate page.";
 //    m_languageOptions->updateSettings();
     if(m_languageOptions->d_shortName->count() >= 2)
         return true;

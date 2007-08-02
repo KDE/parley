@@ -173,10 +173,10 @@ void LanguageOptions::enableLangWidgets()
             d_kblayout->clear();
             d_kblayout->addItems(layouts);
         } else {
-            kDebug() << "kxkb dbus error" << endl;
+            kDebug() << "kxkb dbus error";
         }
     } else {
-        //kDebug() << "kxkb not enabled" << endl;
+        //kDebug() << "kxkb not enabled";
         d_kblayout->clear();
         d_kblayout->setEnabled(false);
     }
@@ -256,7 +256,7 @@ void LanguageOptions::slotShortActivated(const QString& _id)
 
         QString layout = m_langSet[d_shortName->currentIndex()].keyboardLayout();
 
-        //kDebug() << "layout to select " << layout << endl;
+        //kDebug() << "layout to select " << layout;
 
         for (int i = 0; i < d_kblayout->count(); i++) {
             if (d_kblayout->itemText(i) == layout) {
@@ -380,7 +380,7 @@ void LanguageOptions::loadCountryData()
     QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop")); // why use fromLatin1 ?
     regionlist.sort();
 
-//kDebug() << regionlist << endl;
+//kDebug() << regionlist;
 
     QMap<QString, Region> regions;
 
@@ -432,7 +432,7 @@ void LanguageOptions::loadCountryData()
           //global_langset.setPixmapFile(pixmap, id);
         }
         //else
-        //kDebug() << "Couldn't find the language for: " << *it << endl;
+        //kDebug() << "Couldn't find the language for: " << *it;
       }
 
       int id = idx++;
@@ -473,7 +473,7 @@ void LanguageOptions::loadCountryData()
 void LanguageOptions::slotLangFromGlobalActivated(QAction *act)
 {
     int i = act->data().toInt();
-    kDebug() << i << endl;
+    kDebug() << i;
     if (countryIdMap.contains(i)) {
         Country c = countryIdMap[i];
         bool first = true;

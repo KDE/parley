@@ -55,7 +55,7 @@
     QStringList regionlist = KGlobal::dirs()->findAllResources("locale", sub + QString::fromLatin1("*.desktop")); // why use fromLatin1 ?
     regionlist.sort();
 
-//kDebug() << regionlist << endl;
+//kDebug() << regionlist;
 
     QMap<QString, Region> regions;
 
@@ -107,7 +107,7 @@
           //global_langset.setPixmapFile(pixmap, id);
         }
         //else
-        //kDebug() << "Couldn't find the language for: " << *it << endl;
+        //kDebug() << "Couldn't find the language for: " << *it;
       }
 
       int id = idx++;
@@ -158,7 +158,7 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
 //    QStringList regionlist = KGlobal::dirs()->findAllResources("locale", "l10n/*.desktop");
   //  regionlist.sort();
 
-//kDebug() << regionlist << endl;
+//kDebug() << regionlist;
 
 //    QMap<QString, Region> regions;
 /*
@@ -185,7 +185,7 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
             "l10n/" + code + "/entry.desktop");
         pixmap.truncate(pixmap.lastIndexOf('/'));
         pixmap += "/flag.png";
-        //kDebug() << code << ": " << pixmap << endl;
+        //kDebug() << code << ": " << pixmap;
         */
         const QString &languageName = locale->languageCodeToName(code);
         if(! languageName.isEmpty()) {
