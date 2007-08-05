@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>LangPropPageForm</class>
  <widget class="QWidget" name="LangPropPageForm" >
   <property name="geometry" >
@@ -22,10 +19,22 @@
    <string>-</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="1" column="0" >
@@ -47,18 +56,28 @@
       <string>Language Elements</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>11</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>11</number>
+      </property>
+      <property name="rightMargin" >
+       <number>11</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>11</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="0" column="0" >
        <widget class="QLabel" name="unnamed" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -71,9 +90,7 @@
       <item row="0" column="1" >
        <widget class="QLabel" name="l_langcode" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>5</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -111,9 +128,7 @@
       <item row="1" column="0" colspan="3" >
        <widget class="QGroupBox" name="GroupBox3" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -122,23 +137,25 @@
          <string>Articles</string>
         </property>
         <layout class="QGridLayout" >
-         <property name="margin" >
+         <property name="leftMargin" >
           <number>11</number>
          </property>
-         <property name="spacing" >
+         <property name="topMargin" >
+          <number>11</number>
+         </property>
+         <property name="rightMargin" >
+          <number>11</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>11</number>
+         </property>
+         <property name="horizontalSpacing" >
+          <number>6</number>
+         </property>
+         <property name="verticalSpacing" >
           <number>6</number>
          </property>
          <item row="1" column="0" >
-          <widget class="QLabel" name="female_label" >
-           <property name="text" >
-            <string>&amp;Female:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>def_female</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="2" column="0" >
           <widget class="QLabel" name="male_label" >
            <property name="text" >
             <string>&amp;Male:</string>
@@ -148,12 +165,20 @@
            </property>
           </widget>
          </item>
+         <item row="2" column="0" >
+          <widget class="QLabel" name="female_label" >
+           <property name="text" >
+            <string>&amp;Female:</string>
+           </property>
+           <property name="buddy" >
+            <cstring>def_female</cstring>
+           </property>
+          </widget>
+         </item>
          <item row="2" column="2" >
-          <widget class="QLineEdit" name="indef_male" >
+          <widget class="QLineEdit" name="indef_female" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -163,9 +188,7 @@
          <item row="0" column="1" >
           <widget class="QLabel" name="TextLabel3" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>1</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -176,11 +199,9 @@
           </widget>
          </item>
          <item row="2" column="1" >
-          <widget class="QLineEdit" name="def_male" >
+          <widget class="QLineEdit" name="def_female" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -188,11 +209,9 @@
           </widget>
          </item>
          <item row="1" column="2" >
-          <widget class="QLineEdit" name="indef_female" >
+          <widget class="QLineEdit" name="indef_male" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -200,11 +219,9 @@
           </widget>
          </item>
          <item row="1" column="1" >
-          <widget class="QLineEdit" name="def_female" >
+          <widget class="QLineEdit" name="def_male" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -230,9 +247,7 @@
          <item row="3" column="1" >
           <widget class="QLineEdit" name="def_natural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -242,9 +257,7 @@
          <item row="3" column="2" >
           <widget class="QLineEdit" name="indef_natural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -274,9 +287,7 @@
       <item row="2" column="0" colspan="3" >
        <widget class="QGroupBox" name="GroupBox4" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -285,10 +296,22 @@
          <string>Conjugation</string>
         </property>
         <layout class="QGridLayout" >
-         <property name="margin" >
+         <property name="leftMargin" >
           <number>11</number>
          </property>
-         <property name="spacing" >
+         <property name="topMargin" >
+          <number>11</number>
+         </property>
+         <property name="rightMargin" >
+          <number>11</number>
+         </property>
+         <property name="bottomMargin" >
+          <number>11</number>
+         </property>
+         <property name="horizontalSpacing" >
+          <number>6</number>
+         </property>
+         <property name="verticalSpacing" >
           <number>6</number>
          </property>
          <item row="1" column="0" >
@@ -319,11 +342,9 @@
           </widget>
          </item>
          <item row="4" column="2" >
-          <widget class="QLineEdit" name="thirdF_plural" >
+          <widget class="QLineEdit" name="thirdM_plural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -333,9 +354,7 @@
          <item row="6" column="2" >
           <widget class="QLineEdit" name="thirdN_plural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -343,11 +362,9 @@
           </widget>
          </item>
          <item row="5" column="2" >
-          <widget class="QLineEdit" name="thirdM_plural" >
+          <widget class="QLineEdit" name="thirdF_plural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -357,9 +374,7 @@
          <item row="3" column="2" >
           <widget class="QCheckBox" name="thirdP_common" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>0</vsizetype>
+            <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -370,22 +385,22 @@
           </widget>
          </item>
          <item row="4" column="0" >
-          <widget class="QLabel" name="female_c_label" >
-           <property name="text" >
-            <string>F&amp;emale:</string>
-           </property>
-           <property name="buddy" >
-            <cstring>thirdF_singular</cstring>
-           </property>
-          </widget>
-         </item>
-         <item row="5" column="0" >
           <widget class="QLabel" name="male_c_label" >
            <property name="text" >
             <string>M&amp;ale:</string>
            </property>
            <property name="buddy" >
             <cstring>thirdM_singular</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="5" column="0" >
+          <widget class="QLabel" name="female_c_label" >
+           <property name="text" >
+            <string>F&amp;emale:</string>
+           </property>
+           <property name="buddy" >
+            <cstring>thirdF_singular</cstring>
            </property>
           </widget>
          </item>
@@ -409,9 +424,7 @@
          <item row="3" column="1" >
           <widget class="QCheckBox" name="thirdS_common" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>0</vsizetype>
+            <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -447,9 +460,7 @@
          <item row="2" column="1" >
           <widget class="QLineEdit" name="second_singular" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -457,11 +468,9 @@
           </widget>
          </item>
          <item row="4" column="1" >
-          <widget class="QLineEdit" name="thirdF_singular" >
+          <widget class="QLineEdit" name="thirdM_singular" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -469,11 +478,9 @@
           </widget>
          </item>
          <item row="5" column="1" >
-          <widget class="QLineEdit" name="thirdM_singular" >
+          <widget class="QLineEdit" name="thirdF_singular" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -483,9 +490,7 @@
          <item row="6" column="1" >
           <widget class="QLineEdit" name="thirdN_singular" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -495,9 +500,7 @@
          <item row="1" column="1" >
           <widget class="QLineEdit" name="first_singular" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -507,9 +510,7 @@
          <item row="1" column="2" >
           <widget class="QLineEdit" name="first_plural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -519,9 +520,7 @@
          <item row="2" column="2" >
           <widget class="QLineEdit" name="second_plural" >
            <property name="sizePolicy" >
-            <sizepolicy>
-             <hsizetype>7</hsizetype>
-             <vsizetype>1</vsizetype>
+            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
              <horstretch>0</horstretch>
              <verstretch>0</verstretch>
             </sizepolicy>
@@ -539,23 +538,23 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
-  <tabstop>def_female</tabstop>
   <tabstop>def_male</tabstop>
+  <tabstop>def_female</tabstop>
   <tabstop>def_natural</tabstop>
-  <tabstop>indef_female</tabstop>
   <tabstop>indef_male</tabstop>
+  <tabstop>indef_female</tabstop>
   <tabstop>indef_natural</tabstop>
   <tabstop>first_singular</tabstop>
   <tabstop>second_singular</tabstop>
   <tabstop>thirdS_common</tabstop>
-  <tabstop>thirdF_singular</tabstop>
   <tabstop>thirdM_singular</tabstop>
+  <tabstop>thirdF_singular</tabstop>
   <tabstop>thirdN_singular</tabstop>
   <tabstop>first_plural</tabstop>
   <tabstop>second_plural</tabstop>
   <tabstop>thirdP_common</tabstop>
-  <tabstop>thirdF_plural</tabstop>
   <tabstop>thirdM_plural</tabstop>
+  <tabstop>thirdF_plural</tabstop>
   <tabstop>thirdN_plural</tabstop>
  </tabstops>
  <resources/>

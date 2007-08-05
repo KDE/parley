@@ -40,10 +40,10 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
 {
     setupUi(this);
 
-    connect(indef_female,    SIGNAL(textChanged(const QString&)), this, SLOT(indefFemaleChanged(const QString&)));
-    connect(def_female,      SIGNAL(textChanged(const QString&)), this, SLOT(defFemaleChanged(const QString&)));
     connect(def_male,        SIGNAL(textChanged(const QString&)), this, SLOT(defMaleChanged(const QString&)));
     connect(indef_male,      SIGNAL(textChanged(const QString&)), this, SLOT(indefMaleChanged(const QString&)));
+    connect(indef_female,    SIGNAL(textChanged(const QString&)), this, SLOT(indefFemaleChanged(const QString&)));
+    connect(def_female,      SIGNAL(textChanged(const QString&)), this, SLOT(defFemaleChanged(const QString&)));
     connect(def_natural,     SIGNAL(textChanged(const QString&)), this, SLOT(defNaturalChanged(const QString&)));
     connect(indef_natural,   SIGNAL(textChanged(const QString&)), this, SLOT(indefNaturalChanged(const QString&)));
     connect(first_singular,  SIGNAL(textChanged(const QString&)), this, SLOT(firstSingularChanged(const QString&)));
@@ -68,12 +68,12 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
     first_singular->setText(conjugations.pers1Singular(CONJ_PREFIX));
     second_singular->setText(conjugations.pers2Singular(CONJ_PREFIX));
     second_plural->setText(conjugations.pers2Plural(CONJ_PREFIX));
+    thirdM_plural->setText(conjugations.pers3MalePlural(CONJ_PREFIX));
+    thirdM_singular->setText(conjugations.pers3MaleSingular(CONJ_PREFIX));
     thirdF_plural->setText(conjugations.pers3FemalePlural(CONJ_PREFIX));
     thirdF_singular->setText(conjugations.pers3FemaleSingular(CONJ_PREFIX));
     thirdN_plural->setText(conjugations.pers3NaturalPlural(CONJ_PREFIX));
     thirdN_singular->setText(conjugations.pers3NaturalSingular(CONJ_PREFIX));
-    thirdM_plural->setText(conjugations.pers3MalePlural(CONJ_PREFIX));
-    thirdM_singular->setText(conjugations.pers3MaleSingular(CONJ_PREFIX));
 
     bool common = conjugations.pers3SingularCommon(CONJ_PREFIX);
     thirdS_common->setChecked(common);
@@ -86,13 +86,13 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
     thirdM_plural->setEnabled(!common);
 
     QString def, indef;
-    articles.getFemale(&def, &indef);
-    def_female->setText(def);
-    indef_female->setText(indef);
-
     articles.getMale(&def, &indef);
     def_male->setText(def);
     indef_male->setText(indef);
+
+    articles.getFemale(&def, &indef);
+    def_female->setText(def);
+    indef_female->setText(indef);
 
     articles.getNatural(&def, &indef);
     def_natural->setText(def);

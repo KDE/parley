@@ -103,14 +103,14 @@ void VerbQueryDlg::setQuery(int entry,
 
     mw->p1sLabel->setText(prefix.pers1Singular(CONJ_PREFIX));
     mw->p2sLabel->setText(prefix.pers2Singular(CONJ_PREFIX));
-    mw->p3sfLabel->setText(prefix.pers3FemaleSingular(CONJ_PREFIX));
     mw->p3smLabel->setText(prefix.pers3MaleSingular(CONJ_PREFIX));
+    mw->p3sfLabel->setText(prefix.pers3FemaleSingular(CONJ_PREFIX));
     mw->p3snLabel->setText(prefix.pers3NaturalSingular(CONJ_PREFIX));
 
     mw->p1pLabel->setText(prefix.pers1Plural(CONJ_PREFIX));
     mw->p2pLabel->setText(prefix.pers2Plural(CONJ_PREFIX));
-    mw->p3pfLabel->setText(prefix.pers3FemalePlural(CONJ_PREFIX));
     mw->p3pmLabel->setText(prefix.pers3MalePlural(CONJ_PREFIX));
+    mw->p3pfLabel->setText(prefix.pers3FemalePlural(CONJ_PREFIX));
     mw->p3pnLabel->setText(prefix.pers3NaturalPlural(CONJ_PREFIX));
 
     mw->countbar->setMaximum(q_start);
@@ -146,11 +146,11 @@ bool VerbQueryDlg::next()
     mw->p2sField->setText("");
     mw->p2sField->setEnabled(!conjugations.pers2Singular(type).isEmpty());
 
-    mw->p3sfField->setText("");
-    mw->p3sfField->setEnabled(!conjugations.pers3FemaleSingular(type).isEmpty());
-
     mw->p3smField->setText("");
     mw->p3smField->setEnabled(!conjugations.pers3MaleSingular(type).isEmpty());
+
+    mw->p3sfField->setText("");
+    mw->p3sfField->setEnabled(!conjugations.pers3FemaleSingular(type).isEmpty());
 
     mw->p3snField->setText("");
     mw->p3snField->setEnabled(!conjugations.pers3NaturalSingular(type).isEmpty());
@@ -161,11 +161,11 @@ bool VerbQueryDlg::next()
     mw->p2pField->setText("");
     mw->p2pField->setEnabled(!conjugations.pers2Plural(type).isEmpty());
 
-    mw->p3pfField->setText("");
-    mw->p3pfField->setEnabled(!conjugations.pers3FemalePlural(type).isEmpty());
-
     mw->p3pmField->setText("");
     mw->p3pmField->setEnabled(!conjugations.pers3MalePlural(type).isEmpty());
+
+    mw->p3pfField->setText("");
+    mw->p3pfField->setEnabled(!conjugations.pers3FemalePlural(type).isEmpty());
 
     mw->p3pnField->setText("");
     mw->p3pnField->setEnabled(!conjugations.pers3NaturalPlural(type).isEmpty());
@@ -195,14 +195,14 @@ void VerbQueryDlg::showSolution()
 
     mw->p1sField->setText(conjugations.pers1Singular(type));
     mw->p2sField->setText(conjugations.pers2Singular(type));
-    mw->p3sfField->setText(conjugations.pers3FemaleSingular(type));
     mw->p3smField->setText(conjugations.pers3MaleSingular(type));
+    mw->p3sfField->setText(conjugations.pers3FemaleSingular(type));
     mw->p3snField->setText(conjugations.pers3NaturalSingular(type));
 
     mw->p1pField->setText(conjugations.pers1Plural(type));
     mw->p2pField->setText(conjugations.pers2Plural(type));
-    mw->p3pfField->setText(conjugations.pers3FemalePlural(type));
     mw->p3pmField->setText(conjugations.pers3MalePlural(type));
+    mw->p3pfField->setText(conjugations.pers3FemalePlural(type));
     mw->p3pnField->setText(conjugations.pers3NaturalPlural(type));
 
     verifyField(mw->p1sField, conjugations.pers1Singular(type));

@@ -1,7 +1,4 @@
 <ui version="4.0" >
- <author></author>
- <comment></comment>
- <exportmacro></exportmacro>
  <class>TenseEntryPageForm</class>
  <widget class="QWidget" name="TenseEntryPageForm" >
   <property name="geometry" >
@@ -22,10 +19,22 @@
    <string>-</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="1" column="0" >
@@ -47,26 +56,48 @@
       <string>Conjugation of Verbs</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>11</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>11</number>
+      </property>
+      <property name="rightMargin" >
+       <number>11</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>11</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="1" column="0" >
        <layout class="QGridLayout" >
-        <property name="margin" >
+        <property name="leftMargin" >
          <number>0</number>
         </property>
-        <property name="spacing" >
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <property name="horizontalSpacing" >
+         <number>6</number>
+        </property>
+        <property name="verticalSpacing" >
          <number>6</number>
         </property>
         <item row="6" column="2" >
          <widget class="QLineEdit" name="thirdN_plural" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -83,9 +114,7 @@
         <item row="2" column="2" >
          <widget class="QLineEdit" name="second_plural" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>0</vsizetype>
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -93,11 +122,9 @@
          </widget>
         </item>
         <item row="5" column="2" >
-         <widget class="QLineEdit" name="thirdM_plural" >
+         <widget class="QLineEdit" name="thirdF_plural" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -114,9 +141,7 @@
         <item row="1" column="0" >
          <widget class="QLabel" name="pers1_label" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>5</vsizetype>
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -130,12 +155,12 @@
          </widget>
         </item>
         <item row="4" column="0" >
-         <widget class="QLabel" name="female_label" >
+         <widget class="QLabel" name="male_label" >
           <property name="text" >
-           <string>&amp;Female:</string>
+           <string>&amp;Male:</string>
           </property>
           <property name="buddy" >
-           <cstring>thirdF_singular</cstring>
+           <cstring>thirdM_singular</cstring>
           </property>
          </widget>
         </item>
@@ -147,11 +172,9 @@
          </widget>
         </item>
         <item row="4" column="2" >
-         <widget class="QLineEdit" name="thirdF_plural" >
+         <widget class="QLineEdit" name="thirdM_plural" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -159,11 +182,9 @@
          </widget>
         </item>
         <item row="4" column="1" >
-         <widget class="QLineEdit" name="thirdF_singular" >
+         <widget class="QLineEdit" name="thirdM_singular" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -183,9 +204,7 @@
         <item row="1" column="2" >
          <widget class="QLineEdit" name="first_plural" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>0</vsizetype>
+           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -193,11 +212,9 @@
          </widget>
         </item>
         <item row="5" column="1" >
-         <widget class="QLineEdit" name="thirdM_singular" >
+         <widget class="QLineEdit" name="thirdF_singular" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -207,9 +224,7 @@
         <item row="1" column="1" >
          <widget class="QLineEdit" name="first_singular" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>0</vsizetype>
+           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -235,9 +250,7 @@
         <item row="6" column="1" >
          <widget class="QLineEdit" name="thirdN_singular" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -255,21 +268,19 @@
          </widget>
         </item>
         <item row="5" column="0" >
-         <widget class="QLabel" name="male_label" >
+         <widget class="QLabel" name="female_label" >
           <property name="text" >
-           <string>&amp;Male:</string>
+           <string>&amp;Female:</string>
           </property>
           <property name="buddy" >
-           <cstring>thirdM_singular</cstring>
+           <cstring>thirdF_singular</cstring>
           </property>
          </widget>
         </item>
         <item row="2" column="1" >
          <widget class="QLineEdit" name="second_singular" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>1</hsizetype>
-            <vsizetype>0</vsizetype>
+           <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -297,18 +308,28 @@
       </item>
       <item row="0" column="0" >
        <layout class="QGridLayout" >
-        <property name="margin" >
+        <property name="leftMargin" >
          <number>0</number>
         </property>
-        <property name="spacing" >
+        <property name="topMargin" >
+         <number>0</number>
+        </property>
+        <property name="rightMargin" >
+         <number>0</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>0</number>
+        </property>
+        <property name="horizontalSpacing" >
+         <number>6</number>
+        </property>
+        <property name="verticalSpacing" >
          <number>6</number>
         </property>
         <item row="0" column="0" >
          <widget class="QLabel" name="tenselabel" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>5</vsizetype>
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -324,9 +345,7 @@
         <item row="0" column="2" >
          <widget class="QPushButton" name="b_next" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -339,9 +358,7 @@
         <item row="0" column="1" >
          <widget class="QComboBox" name="tensebox" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>3</hsizetype>
-            <vsizetype>0</vsizetype>
+           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -365,12 +382,12 @@
   <tabstop>first_plural</tabstop>
   <tabstop>second_plural</tabstop>
   <tabstop>third_s_common</tabstop>
-  <tabstop>thirdF_singular</tabstop>
   <tabstop>thirdM_singular</tabstop>
+  <tabstop>thirdF_singular</tabstop>
   <tabstop>thirdN_singular</tabstop>
   <tabstop>third_p_common</tabstop>
-  <tabstop>thirdF_plural</tabstop>
   <tabstop>thirdM_plural</tabstop>
+  <tabstop>thirdF_plural</tabstop>
   <tabstop>thirdN_plural</tabstop>
  </tabstops>
  <resources/>

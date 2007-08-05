@@ -61,12 +61,12 @@ TenseEntryPage::TenseEntryPage(QWidget *parent) : QWidget(parent)
       label_first_singular->setText (con_prefix.pers1Singular (CONJ_PREFIX));
       label_second_singular->setText (con_prefix.pers2Singular (CONJ_PREFIX));
       label_second_plural->setText (con_prefix.pers2Plural (CONJ_PREFIX));
-      label_thirdF_plural->setText (con_prefix.pers3FemalePlural (CONJ_PREFIX));
-      label_thirdF_singular->setText (con_prefix.pers3FemaleSingular (CONJ_PREFIX));
       label_thirdM_singular->setText (con_prefix.pers3MaleSingular (CONJ_PREFIX));
+      label_thirdM_plural->setText (con_prefix.pers3MalePlural (CONJ_PREFIX));
+      label_thirdF_singular->setText (con_prefix.pers3FemaleSingular (CONJ_PREFIX));
+      label_thirdF_plural->setText (con_prefix.pers3FemalePlural (CONJ_PREFIX));
       label_thirdN_singular->setText (con_prefix.pers3NaturalSingular (CONJ_PREFIX));
       label_thirdN_plural->setText (con_prefix.pers3NaturalPlural (CONJ_PREFIX));
-      label_thirdM_plural->setText (con_prefix.pers3MalePlural (CONJ_PREFIX));
     */
 }
 
@@ -192,10 +192,10 @@ void TenseEntryPage::slotTenseSelected(int sel)
         first_singular->setText(conjugations.pers1Singular(selection));
         second_plural->setText(conjugations.pers2Plural(selection));
         second_singular->setText(conjugations.pers2Singular(selection));
-        thirdF_plural->setText(conjugations.pers3FemalePlural(selection));
-        thirdF_singular->setText(conjugations.pers3FemaleSingular(selection));
         thirdM_plural->setText(conjugations.pers3MalePlural(selection));
         thirdM_singular->setText(conjugations.pers3MaleSingular(selection));
+        thirdF_plural->setText(conjugations.pers3FemalePlural(selection));
+        thirdF_singular->setText(conjugations.pers3FemaleSingular(selection));
         thirdN_plural->setText(conjugations.pers3NaturalPlural(selection));
         thirdN_singular->setText(conjugations.pers3NaturalSingular(selection));
 
