@@ -58,15 +58,18 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
         int idx = langset.indexShortId(s);
 
         QString tabCaption;
-        if (idx >= 0)
+        if (idx >= 0) {
             tabCaption = (langset[idx].longId());
-        else
+        } else {
             tabCaption = (s);
+        }
 
         lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->article(i), 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, tabCaption);
         pageItem->setHeader(tabCaption);
-        pageItem->setIcon(KIcon(QPixmap(langset[idx].pixmapFile())));
+        if (idx >= 0) {
+            pageItem->setIcon(KIcon(QPixmap(langset[idx].pixmapFile())));
+        }
         addPage(pageItem);
         langPages.append(lpp);
     }
