@@ -285,7 +285,12 @@ void KVTTableView::keyPressEvent(QKeyEvent * e)
 {
     if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) {
         e->accept();
-        setCurrentIndex(QTableView::moveCursor(QAbstractItemView::MoveNext, 0));
+        // move to the next language entry. for the last language this means first of next row.
+        if ( currentIndex().column() == model()->columnCount(QModelIndex()) - 1 ) {
+            setCurrentIndex(model()->index( currentIndex().row() + 1, KV_EXTRA_COLS ) );
+        } else {
+            setCurrentIndex(QTableView::moveCursor(QAbstractItemView::MoveNext, 0));
+        }
         return;
     }
     QTableView::keyPressEvent(e);
