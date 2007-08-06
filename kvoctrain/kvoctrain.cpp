@@ -558,23 +558,23 @@ void KVocTrainApp::slotDeleteEntry()
         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {
             int currentRow = m_tableView->currentIndex().row();
             int currentColumn = m_tableView->currentIndex().column();
-            m_tableModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
-            m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+            m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
+            m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
         }
     } else {
         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entries?"), "", KStandardGuiItem::del())) {
             int currentRow = m_tableView->currentIndex().row();
             int currentColumn = m_tableView->currentIndex().column();
-            int rowCount = m_tableModel->rowCount(QModelIndex());
+            int rowCount = m_sortFilterModel->rowCount(QModelIndex());
             // Must count backwards otherwise entry-numbering goes wrong when
             // deleting.
             for (int i = rowCount - 1; i >= 0; i--)
                 if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
-                    m_tableModel->removeRows(i, 1, QModelIndex());
-            m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+                    m_sortFilterModel->removeRows(i, 1, QModelIndex());
+            m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
         }
     }
-    editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 
