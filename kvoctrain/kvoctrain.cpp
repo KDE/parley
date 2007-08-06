@@ -552,7 +552,7 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 }
 
 
-void KVocTrainApp::slotRemoveRow()
+void KVocTrainApp::slotDeleteEntry()
 {
     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {

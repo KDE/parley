@@ -223,7 +223,7 @@ public slots:
     void slotNewEntry();
 
     /** Delete an entry */
-    void slotRemoveRow();
+    void slotDeleteEntry();
 
     void slotEditRow();
     /** paste the clipboard into the document*/

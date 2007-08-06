@@ -185,7 +185,7 @@ void KVocTrainApp::initActions()
     editDelete = actionCollection()->addAction("edit_remove_selected_area");
     editDelete->setIcon(KIcon("delete_table_row"));
     editDelete->setText(i18n("&Delete Entry"));
-    connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotRemoveRow()));
+    connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
     editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
     editDelete->setWhatsThis(i18n("Delete the selected rows"));
     editDelete->setToolTip(editDelete->whatsThis());
