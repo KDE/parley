@@ -218,8 +218,13 @@ public slots:
 
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
-    void slotAppendRow();
+
+    /** Create a new entry */
+    void slotNewEntry();
+
+    /** Delete an entry */
     void slotRemoveRow();
+
     void slotEditRow();
     /** paste the clipboard into the document*/
     void slotEditPaste();

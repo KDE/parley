@@ -366,6 +366,27 @@ kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count;
     return true;
 }
 
+bool KVTTableModel::appendEntry(KEduVocExpression *entry)
+{
+kDebug() << "KVTTableModel::appendEntry()";
+
+    // insert one row
+    beginInsertRows(QModelIndex(), m_doc->entryCount(), m_doc->entryCount());
+    m_doc->insertEntry(entry, m_doc->entryCount());
+    endInsertRows();
+
+kDebug() << "KVTTableModel::appendEntry() new lesson: " << entry->lesson() << "m_doc->e ->lesson: " << m_doc->entry(m_doc->entryCount()-1)->lesson() << " current lesson: " << m_doc->currentLesson();
+
+
+    // can be set when edited. empty entries are unimportant.
+    // m_doc->setModified(true);
+
+    // should return a qmodelindex
+    return true;
+}
+
+
+
 bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
 {
     Q_UNUSED(parent);

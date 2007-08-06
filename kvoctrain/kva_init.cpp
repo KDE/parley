@@ -176,7 +176,7 @@ void KVocTrainApp::initActions()
     editAppend = actionCollection()->addAction("edit_append");
     editAppend->setIcon(KIcon("insert_table_row"));
     editAppend->setText(i18n("&Add New Entry"));
-    connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotAppendRow()));
+    connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
     editAppend->setWhatsThis(i18n("Append a new row to the vocabulary"));
     editAppend->setToolTip(editAppend->whatsThis());

@@ -78,8 +78,6 @@ void KVTLessonView::slotCheckNoLessons()
 
 void KVTLessonView::slotCreateNewLesson()
 {
-    kDebug() << "Create new lesson!";
-    
     int newLessonIndex = m_model->addLesson();
     slotSelectLesson(newLessonIndex);
 

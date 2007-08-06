@@ -447,7 +447,7 @@ void KVocTrainApp::createNewDocument()
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
     loadDocProps();
-    m_tableModel->insertRows(0, 20, QModelIndex());
+    m_tableModel->insertRows(0, 20);
     m_tableModel->reset();
 
     if (m_tableView) {

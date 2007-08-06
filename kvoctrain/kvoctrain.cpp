@@ -186,7 +186,8 @@ void KVocTrainApp::slotEditCallBack(int res)
                     if (exp.isEmpty())
                         m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
                 } else
-                    slotAppendRow();
+                    slotNewEntry();
+                    //slotAppendRow();
             }
         }
         break;
@@ -577,14 +578,24 @@ void KVocTrainApp::slotRemoveRow()
 }
 
 
-void KVocTrainApp::slotAppendRow()
+void KVocTrainApp::slotNewEntry()
 {
-    m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
-    m_tableView->selectionModel()->setCurrentIndex(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, KV_COL_ORG), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-    m_tableModel->setData(m_tableView->currentIndex(), m_doc->currentLesson(), KVTTableModel::LessonRole);
+    KEduVocExpression *entry = new KEduVocExpression();
+    entry->setLesson(m_doc->currentLesson());
+
+    m_tableModel->appendEntry(entry);
+
+    m_tableView->selectionModel()->setCurrentIndex(
+       m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_ORG),
+       QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+
+    // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
     editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+
+    // show the new entry
     makeLessonVisibleInTable(m_doc->currentLesson());
 }
+
 
 void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
 {
@@ -1101,7 +1112,7 @@ void KVocTrainApp::slotEditPaste()
     while (!ts.atEnd()) {
         s = ts.readLine();
         if (!s.isEmpty()) {
-            m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1, QModelIndex());
+            m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1);
             QStringList sl = s.split('\t', QString::KeepEmptyParts);
 
             for (int i = 0; i < sl.count(); ++i) {
@@ -1212,7 +1223,7 @@ void KVocTrainApp::slotLessonSelectionComboChanged(int index)
 
 void KVocTrainApp::slotCurrentLessonChanged(int currentLesson)
 {
-    Q_UNUSED(currentLesson);
+    m_doc->setCurrentLesson(currentLesson);
     updateTableFilter();
 }
 
