@@ -35,6 +35,10 @@
 #define KV_COL_ORG       2   // col: original
 #define KV_COL_TRANS     3   // col: first translation
 
+// To enable use of KEduVocExpression* in a QVariant
+Q_DECLARE_METATYPE ( KEduVocExpression* )
+
+
 /**
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */
@@ -48,7 +52,8 @@ public:
         LessonsRole = Qt::UserRole + 1,
         LessonRole,
         StateRole,
-        GradeRole
+        GradeRole,
+        ExpressionRole
     };
 
     KVTTableModel(QObject *parent = 0);

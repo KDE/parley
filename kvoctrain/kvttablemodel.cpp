@@ -154,6 +154,12 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             return result;
             break;
         }
+    case KVTTableModel::ExpressionRole: {
+            QVariant v;
+            v.setValue(m_doc->entry(index.row()));
+            return v;
+            break;
+        }
 
         /*case Qt::DecorationRole: {
          if (index.column() == 1)

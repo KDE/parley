@@ -1133,34 +1133,19 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         return;
     }
 
-    int column = current.column() - KV_EXTRA_COLS;
-
-    ///@todo this does not work - row is dependant on the lesson selected!
-    int row = current.row();
-
-    //kDebug() << "slotCurrentChanged() " << current.data() << " row: " << current.row();
-
-    // this crashes and I don't see why!!!
-    //QModelIndex docIndex = m_sortFilterModel->mapToSource(current);
-    //kDebug() << "slotCurrentChanged() " << docIndex.row();
-
-
-    bool noData = false;
-    KEduVocExpression *expr = 0;
-
-    if (m_doc->entryCount() <= row || m_doc->identifierCount() <= column || row < 0 || column < 0) {
-        noData = true;
-    } else {
-        expr = m_doc->entry(row);
-//        kDebug() << "Row is: " << row;
+    int translationId = current.column() - KV_EXTRA_COLS;
+    if ( translationId < 0 ) {
+        translationId = 0;
     }
 
+    KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
+
     if (m_remarkStatusBarLabel != 0)
-        m_remarkStatusBarLabel->setText(i18n("Comment: %1", noData ? QString() : expr->translation(column).comment()));
+        m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
     if (m_pronunciationStatusBarLabel != 0)
-        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", noData ? QString() : expr->translation(column).pronunciation()));
+        m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", currentExpression->translation(translationId).pronunciation()));
     if (m_typeStatusBarLabel != 0)
-        m_typeStatusBarLabel->setText(i18n("Type: %1", noData ? QString() : KVTQuery::typeStr(expr->translation(column).type())));
+        m_typeStatusBarLabel->setText(i18n("Type: %1", KVTQuery::typeStr(currentExpression->translation(translationId).type())));
 
     if (entryDlg != 0) {
         slotEditEntry2(current);
