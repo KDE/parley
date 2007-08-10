@@ -52,7 +52,6 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 
     fillWidgets();
     updateWidgets();
-    InstallPathRequester->setMode(KFile::Directory);
     kcfg_BackupTime->setEnabled(kcfg_AutoBackup->isChecked());
 }
 
@@ -72,8 +71,6 @@ void GeneralOptions::fillWidgets()
 
 void GeneralOptions::updateWidgets()
 {
-    InstallPathRequester->setPath(Prefs::installPath());
-
     for (int i = 0; i < 9; ++i) {
         if (separator_id[i] == Prefs::separator()) {
             SeparatorCombo->setCurrentIndex(i);
@@ -95,8 +92,7 @@ bool GeneralOptions::hasChanged()
     if (SeparatorCombo->currentIndex() < 0)
         return false;
 
-    return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator()) ||
-           InstallPathRequester->url().path() != Prefs::installPath();
+    return (separator_id[SeparatorCombo->currentIndex()] != Prefs::separator());
 }
 
 
@@ -110,7 +106,6 @@ bool GeneralOptions::isDefault()
 
 void GeneralOptions::updateSettings()
 {
-    Prefs::setInstallPath(InstallPathRequester->url().path());
     if (SeparatorCombo->currentIndex() < 0)
         return;
     Prefs::setSeparator((separator_id[SeparatorCombo->currentIndex()]));
