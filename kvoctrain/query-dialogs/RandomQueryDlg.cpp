@@ -30,7 +30,6 @@
 #include <QGroupBox>
 #include <QLabel>
 #include <QLayout>
-#include <QLineEdit>
 #include <QPushButton>
 #include <QRegExp>
 #include <QTimer>
@@ -39,6 +38,8 @@
 #include <QByteArray>
 #include <QList>
 
+#include <KComboBox>
+#include <KLineEdit>
 #include <KLocale>
 
 #include <kvttablemodel.h>
@@ -150,7 +151,7 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
     int i;
     if (suggestions) {
         for (i = 0; i < fields; i ++) {
-            QComboBox * combo = new QComboBox(mw->TranslationFrame);
+            KComboBox * combo = new KComboBox(mw->TranslationFrame);
             transCombos.append(combo);
             combo -> setObjectName(QString("transCombo%1").arg(i));
             combo -> setEditable(false);
@@ -166,7 +167,7 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         }
     } else {
         for (i = 0; i < fields; i ++) {
-            QLineEdit * line = new QLineEdit(mw->TranslationFrame);
+            KLineEdit * line = new KLineEdit(mw->TranslationFrame);
             transFields.append(line);
             line -> setObjectName(QString("transField%1").arg(i));
             QSizePolicy pol(QSizePolicy::Expanding, QSizePolicy::Minimum);
@@ -300,7 +301,7 @@ void RandomQueryDlg::verifyClicked()
     int i;
     int j;
     if (Prefs::suggestions()) {
-        QList<QComboBox*> combos(transCombos);
+        QList<KComboBox*> combos(transCombos);
         for (i = combos.count() - 1; i >= translations.count(); i --)
             combos.removeAt(i);
         for (i = 0; i < combos.count(); i ++)
@@ -323,7 +324,7 @@ void RandomQueryDlg::verifyClicked()
             mw->dont_know->setDefault(true);
         }
     } else {
-        QList<QLineEdit*> fields(transFields);
+        QList<KLineEdit*> fields(transFields);
         for (i = fields.count() - 1; i >= translations.count(); i --)
             fields.removeAt(i);
         for (i = 0; i < fields.count(); i ++) {
@@ -356,7 +357,7 @@ void RandomQueryDlg::showMoreClicked()
 {
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
-            QComboBox* combo = transCombos.at(i);
+            KComboBox* combo = transCombos.at(i);
             if (! smartCompare(combo -> currentText(), translations[i])) {
                 int length = combo -> currentText().length() + 1;
                 if (length >= translations[i].length()) {
@@ -373,7 +374,7 @@ void RandomQueryDlg::showMoreClicked()
         }
     else
         for (int i = 0; i < translations.count(); i ++) {
-            QLineEdit* field = transFields.at(i);
+            KLineEdit* field = transFields.at(i);
             if (! smartCompare(field -> text(), translations[i])) {
                 int length = field -> text().length() + 1;
                 if (length >= translations[i].length()) {
@@ -416,10 +417,10 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 {
     mw->verify->setDefault(true);
     bool suggestions = Prefs::suggestions();
-    QComboBox* combo = sender() ? qobject_cast<QComboBox*>(sender()) : 0;
-    QLineEdit* senderedit = sender() ? qobject_cast<QLineEdit*>(sender()) : 0;
+    KComboBox* combo = sender() ? qobject_cast<KComboBox*>(sender()) : 0;
+    KLineEdit* senderedit = sender() ? qobject_cast<KLineEdit*>(sender()) : 0;
     if (suggestions && combo) {
-        QLineEdit* edit = combo -> lineEdit();
+        KLineEdit* edit = qobject_cast<KLineEdit*>(combo -> lineEdit());
         resetQueryWidget(edit);
         suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
         if (suggestion_hint)
@@ -525,7 +526,7 @@ void RandomQueryDlg::slotTypeClicked()
 void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
 {
     if (Prefs::suggestions()) {
-        QComboBox* combo = 0;
+        KComboBox* combo = 0;
         if (e -> key() == Qt::Key_F4 || e -> key() == Qt::Key_F5 || e -> key() == Qt::Key_F6)
             for (int i = 0; i < translations.count(); i ++)
                 if (transCombos.at(i)->hasFocus()) {

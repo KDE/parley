@@ -21,12 +21,12 @@
 
 #include "kvttabledelegate.h"
 
-#include <QComboBox>
-#include <QLineEdit>
 #include <QPainter>
 
+#include <KComboBox>
 #include <KDebug>
 #include <KGlobalSettings>
+#include <KLineEdit>
 #include <KLocale>
 #include <KIconLoader>
 
@@ -47,7 +47,7 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
 
     switch (index.column()) {
     case 0: {
-        QComboBox *lessonbox = new QComboBox(parent);
+        KComboBox *lessonbox = new KComboBox(parent);
         lessonbox->setFrame(false);
         lessonbox->setFont(KGlobalSettings::generalFont());
         connect(lessonbox, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
@@ -56,7 +56,7 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
     break;
 
     case 1: {
-        QComboBox *statebox = new QComboBox(parent);
+        KComboBox *statebox = new KComboBox(parent);
         statebox->setFrame(false);
         statebox->setFont(KGlobalSettings::generalFont());
         connect(statebox, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
@@ -65,7 +65,7 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
     break;
 
     default: {
-        QLineEdit *editor = new QLineEdit(parent);
+        KLineEdit *editor = new KLineEdit(parent);
         editor->setFrame(false);
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
         ///@todo activate the keyboard layout switching code
@@ -97,14 +97,14 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
 
     switch (index.column()) {
     case 0: {
-        QComboBox *lessonbox = static_cast<QComboBox*>(editor);
+        KComboBox *lessonbox = static_cast<KComboBox*>(editor);
         lessonbox->addItems(index.model()->data(index, KVTTableModel::LessonsRole).toStringList());
         lessonbox->setCurrentIndex(index.model()->data(index, KVTTableModel::LessonRole).toInt());
     }
     break;
 
     case 1: {
-        QComboBox *statebox = static_cast<QComboBox*>(editor);
+        KComboBox *statebox = static_cast<KComboBox*>(editor);
         statebox->addItem(i18nc("state of a row", "Active, Not in Query"));
         statebox->addItem(i18nc("state of a row", "In Query"));
         statebox->addItem(i18nc("state of a row", "Inactive"));
@@ -115,7 +115,7 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
-        QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+        KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
         lineEdit->setText(value);
     }
     }
@@ -128,21 +128,21 @@ void KVTTableDelegate::setModelData(QWidget * editor, QAbstractItemModel * model
 
     switch (index.column()) {
     case 0: {
-        QComboBox *lessonbox = static_cast<QComboBox*>(editor);
+        KComboBox *lessonbox = static_cast<KComboBox*>(editor);
         int value = lessonbox->currentIndex();
         model->setData(index, value);
     }
     break;
 
     case 1: {
-        QComboBox *statebox = static_cast<QComboBox*>(editor);
+        KComboBox *statebox = static_cast<KComboBox*>(editor);
         int value = statebox->currentIndex();
         model->setData(index, value);
     }
     break;
 
     default: {
-        QLineEdit *lineEdit = static_cast<QLineEdit*>(editor);
+        KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
         QString value = lineEdit->text();
         model->setData(index, value);
     }

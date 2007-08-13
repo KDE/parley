@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TitleDialog_included
-#define TitleDialog_included
+#ifndef TITLEPAGE_H
+#define TITLEPAGE_H
 
 #include "ui_TitlePageForm.h"
 

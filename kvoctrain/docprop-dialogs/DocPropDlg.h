@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef DocPropsDlg_included
-#define DocPropsDlg_included
+#ifndef DOCPROPDLG_H
+#define DOCPROPDLG_H
 
 #include <kpagedialog.h>
 

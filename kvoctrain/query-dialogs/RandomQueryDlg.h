@@ -26,8 +26,6 @@
 #ifndef Query_Dlg_H
 #define Query_Dlg_H
 
-#include <QComboBox>
-#include <QLineEdit>
 #include <QKeyEvent>
 #include <QList>
 
@@ -35,6 +33,9 @@
 #include "QueryDlgBase.h"
 
 class KEduVocDocument;
+
+class KComboBox;
+class KLineEdit;
 
 class RandomQueryDlg : public QueryDlgBase
 {
@@ -79,8 +80,8 @@ protected:
     void setHintFields();
     QStringList extractTranslations(const QString &);
 
-    QList<QComboBox*> transCombos;
-    QList<QLineEdit*> transFields;
+    QList<KComboBox*> transCombos;
+    QList<KLineEdit*> transFields;
 
     QStringList translations;
     QStringList vocabulary;

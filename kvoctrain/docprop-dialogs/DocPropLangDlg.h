@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef DocPropsLangDlg_included
-#define DocPropsLangDlg_included
+#ifndef DOCPROPLANGDLG_H
+#define DOCPROPLANGDLG_H
 
 #include <QList>
 
