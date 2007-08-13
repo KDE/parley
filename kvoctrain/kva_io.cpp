@@ -198,7 +198,7 @@ void KVocTrainApp::slotGHNS()
   KConfig conf("kvoctrain.knsrc");
   KConfigGroup confGroup = conf.group("KNewStuff2");
   QString installDir = confGroup.readEntry("InstallPath", "Vocabularies");
-  KStandardDirs::makeDir(QDir::home().path() + "/" + installDir);
+  KStandardDirs::makeDir(QDir::home().path() + '/' + installDir);
 
   KNS::Entry::List entries = KNS::Engine::download();
 }
@@ -245,7 +245,7 @@ void KVocTrainApp::slotFileSave()
         return;
     }
 
-    QString msg = i18n("Saving %1", m_doc->url().path());
+    QString msg = i18nc("@info:status saving a file", "Saving %1", m_doc->url().path());
     slotStatusMsg(msg);
 
     // remove previous backup
@@ -278,13 +278,13 @@ void KVocTrainApp::slotFileSaveAs()
     if (!url.isEmpty()) {
         QFileInfo fileinfo(url.path());
         if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
+                i18n("<qt>The file<br><b>%1</b><br />already exists. Do you want to overwrite it?</qt>",
                      url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             // do nothing
         } else
 
             if (m_doc) {
-                QString msg = i18n("Saving %1", url.path());
+                QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
                 slotStatusMsg(msg);
 
                 QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
@@ -366,11 +366,11 @@ void KVocTrainApp::slotSaveSelection()
     if (!url.isEmpty()) {
         QFileInfo fileinfo(url.path());
         if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<br><b>%1</b><br>already exists. Do you want to overwrite it?</qt>",
+                i18n("<qt>The file<br><b>%1</b><br />already exists. Do you want to overwrite it?</qt>",
                      url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             // do nothing
         } else {
-            QString msg = i18n("Saving %1", url.path());
+            QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
             slotStatusMsg(msg);
 
             QFile::remove(url.path()+'~'); // remove previous backup
