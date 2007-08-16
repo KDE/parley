@@ -35,7 +35,7 @@
     KLocale *lsave = KGlobal::locale();
     QString curr_lang = lsave->language();
 
-    KLocale locale(QString::null);
+    KLocale locale(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
     locale.setLanguage(curr_lang);
     KGlobal::setLocale(&locale);
 
@@ -175,7 +175,7 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
         parentItem->appendRow(item);
     }
   */  
-    KLocale *locale = KGlobal::locale(); //(QString::null);
+    KLocale *locale = KGlobal::locale(); //(QString::null);	//krazy:exclude=nullstrassign for old broken gcc
     QStringList codes = locale->allLanguagesList();
     //codes.sort();
     
