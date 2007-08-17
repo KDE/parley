@@ -2755,8 +2755,7 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 
 <para>In order to successfully compile &kvoctrain;,
 you need the &kde; libraries as well as the &Qt; C++
-library. All required libraries can be found on <ulink
-url="ftp://ftp.kde.org/pub/kde/">ftp.kde.org/pub/kde/</ulink>.</para>
+library. All required libraries can be found on &kde-ftp;.</para>
 
 <para>&kvoctrain; is tested with &kde; 3.0 and &Qt; 3.0. It should also
 basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
