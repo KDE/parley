@@ -9,6 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -43,12 +44,11 @@
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"
 
-CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, KVTQuery &_querymanager, QWidget *parent) : QWidget(parent), doc(_doc), querymanager(_querymanager)
+CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent), m_doc(_doc)
 {
     setupUi(this);
 
     connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
-    //connect(b_LessDlg, SIGNAL(clicked()), SLOT(invokeLessDlg()));
     connect(b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()));
     connect(b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()));
     connect(usage_box, SIGNAL(itemSelectionChanged()), SLOT(slotUsageChanged()));
@@ -90,7 +90,7 @@ void CommonEntryPage::setData(bool multi_sel, const QString &expr, int less, con
     m_pronounce = pronounce;
     pronounce_line->setText(pronounce);
 
-    entry_active = active;
+    m_entry_active = active;
     c_active->setChecked(active);
 
     int start = -1;
@@ -168,8 +168,8 @@ void CommonEntryPage::setTypeBox(const QString &act_type)
 void CommonEntryPage::setLessonBox(int lesson)
 {
     lesson_box->clear();
-    //lesson_box->addItem(doc->lessonDescription(0));
-    lesson_box->addItems(doc->lessonDescriptions());
+    //lesson_box->addItem(m_doc->lessonDescription(0));
+    lesson_box->addItems(m_doc->lessonDescriptions());
 
     //if (lesson >= lesson_box->count())
     //  lesson = 0;
@@ -226,7 +226,7 @@ void CommonEntryPage::slotActiveChanged(bool state)
 {
     setModified(true);
     m_activeIsModified = true;
-    entry_active = state;
+    m_entry_active = state;
 }
 
 
@@ -313,7 +313,7 @@ void CommonEntryPage::invokeUsageDlg()
     QList<int> usageIndex;
     QStringList new_usageStr;
 
-    int old_usages = (int) doc->usageDescriptions().size();
+    int old_usages = (int) m_doc->usageDescriptions().size();
 
     KDialog *subDialog= new KDialog(b_usageDlg);
     subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
@@ -323,56 +323,26 @@ void CommonEntryPage::invokeUsageDlg()
 
     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
-    UsageOptPage *usageOptPage = new UsageOptPage(doc, this);
+    UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
     subDialog->setMainWidget(usageOptPage);
 
     if (subDialog->exec() == QDialog::Accepted) {
         usageOptPage->getUsageLabels(new_usageStr, usageIndex);
-        UsageOptPage::cleanUnused(doc, usageIndex, old_usages);
+        UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
         KVTUsage::setUsageNames(new_usageStr);
         setUsageBox(usageCollection);
-        doc->setUsageDescriptions(new_usageStr);
-        doc->setModified();
+        m_doc->setUsageDescriptions(new_usageStr);
+        m_doc->setModified();
     }
 }
 
-/*
-void CommonEntryPage::invokeLessDlg()
-{
-  QList<int> lessonIndex;
-  QStringList new_lessonStr;
-
-  int old_lessons = (int) lesson_box->count();
-  KDialog *subDialog = new KDialog(b_LessDlg);
-  subDialog->setCaption(i18n("Edit Lesson Names"));
-  subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
-
-  subDialog->setDefaultButton(KDialog::Ok);
-
-  connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
-
-  LessOptPage *lessOptPage = new LessOptPage(doc, this);
-  subDialog->setMainWidget(lessOptPage);
-
-  QList<int> lessoninquery = doc->lessonsInQuery();
-  if (subDialog->exec() == QDialog::Accepted)
-  {
-    lessOptPage->getLesson(new_lessonStr, lessonIndex);
-    LessOptPage::cleanUnused(doc, lessonIndex, old_lessons, lessoninquery);
-    doc->setLessonDescriptions(new_lessonStr);
-    doc->setLessonsInQuery(lessoninquery);
-    querymanager.setLessonItems(lessoninquery);
-    doc->setModified();
-  }
-}
-*/
 
 void CommonEntryPage::invokeTypeDlg()
 {
     QList<int> typeIndex;
     QStringList new_typeStr;
 
-    int old_types = (int) doc->typeDescriptions().size();
+    int old_types = (int) m_doc->typeDescriptions().size();
     KDialog *subDialog = new KDialog(b_TypeDlg);
     subDialog->setCaption(i18n("Edit User Defined Types"));
     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
@@ -381,16 +351,16 @@ void CommonEntryPage::invokeTypeDlg()
 
     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
 
-    TypeOptPage *typeOptPage = new TypeOptPage(doc, this);
+    TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
     subDialog->setMainWidget(typeOptPage);
 
     if (subDialog->exec() == QDialog::Accepted) {
         typeOptPage->getTypeNames(new_typeStr, typeIndex);
-        TypeOptPage::cleanUnused(doc, typeIndex, old_types);
+        TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
         KVTQuery::setTypeNames(new_typeStr);
         setTypeBox(m_type);
-        doc->setTypeDescriptions(new_typeStr);
-        doc->setModified();
+        m_doc->setTypeDescriptions(new_typeStr);
+        m_doc->setModified();
     }
 }
 

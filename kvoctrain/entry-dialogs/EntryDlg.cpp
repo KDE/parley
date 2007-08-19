@@ -36,7 +36,7 @@
 #include <kwindowsystem.h>
 #include <KMessageBox>
 
-EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
+EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 {
     setButtons(User1|User2|User3|Apply|Close);
     setDefaultButton(Apply);
@@ -55,7 +55,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &queryman
 
     m_doc = doc;
 
-    comm_page = new CommonEntryPage(doc, querymanager, this);
+    comm_page = new CommonEntryPage(doc, this);
     addPage(comm_page, i18n("Co&mmon"));
 
     aux_page = new AuxInfoEntryPage(this);

@@ -218,9 +218,8 @@ void KVocTrainApp::removeEntryDlg()
 void KVocTrainApp::slotEditEntry(int row, int col)
 {
     if (entryDlg == 0) {
-        entryDlg = new EntryDlg(this, m_doc, m_queryManager->getKVTQuery());
+        entryDlg = new EntryDlg(this, m_doc);
         connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
-
     }
 
     if (entryDlg != 0) {

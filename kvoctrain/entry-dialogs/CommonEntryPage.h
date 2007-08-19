@@ -9,6 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -35,7 +36,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
     Q_OBJECT
 public:
-    CommonEntryPage(KEduVocDocument *doc, KVTQuery &querymanager, QWidget* parent = 0);
+    CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
 
     void setData(bool multi_sel, const QString &expr, int less, const QString &type, const QString &pronounce, const QString &usage,  bool active);
 
@@ -61,7 +62,7 @@ public:
     }
     bool    getActive() const
     {
-        return entry_active;
+        return m_entry_active;
     }
 
     bool usageIsModified()
@@ -101,7 +102,6 @@ protected slots:
     void slotUsageChanged();
     void slotActiveChanged(bool state);
     void phoneticSelected(wchar_t);
-    //void invokeLessDlg();
     void invokeTypeDlg();
     void invokePronDlg();
     void invokeUsageDlg();
@@ -116,9 +116,8 @@ protected:
     QString              usageCollection;
     int                  lesson;
     QString              m_type;
-    KEduVocDocument     *doc;
-    KVTQuery            &querymanager;
-    bool                 entry_active;
+    KEduVocDocument     *m_doc;
+    bool                 m_entry_active;
 
     QList<TypeRelation>  all_maintypes;
     QList<TypeRelation>  all_types;
