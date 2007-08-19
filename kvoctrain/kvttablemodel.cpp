@@ -432,24 +432,6 @@ void KVTTableModel::appendTranslation()
     m_doc->setModified(true);
 }
 
-/*
-bool KVTTableModel::insertColumns(int column, int count, const QModelIndex & parent)
-{
-    Q_UNUSED(parent);
-    beginInsertColumns(QModelIndex(), column, column + count - 1);
-
-    m_doc->appendIdentifier("");
-    int num = m_doc->entryCount() - 1;
-    for (int i = 0; i < (int) num; i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        expr->translation(num).setType(expr->translation(0).type());
-    }
-
-    endInsertColumns();
-    m_doc->setModified(true);
-    return true;
-}*/
-
 
 bool KVTTableModel::removeTranslation(int translationIndex)
 {
