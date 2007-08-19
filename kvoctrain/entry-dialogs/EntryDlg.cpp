@@ -401,31 +401,8 @@ kDebug() << "Changes should be committed but the table probably is not updated. 
             //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
             expr->setLesson(comm_page->getLesson());
             expr->translation(m_currentTranslation).setTranslation(comm_page->getExpr());
-            expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
             expr->translation(m_currentTranslation).setPronunciation(comm_page->getPronounce());
-            expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());
-            expr->translation(m_currentTranslation).setAntonym(aux_page->getAntonym());
-            expr->translation(m_currentTranslation).setExample(aux_page->getExample());
             expr->translation(m_currentTranslation).setUsageLabel(comm_page->getUsageLabel());
-            expr->translation(m_currentTranslation).setParaphrase(aux_page->getParaphrase());
-            expr->translation(m_currentTranslation).setConjugation(tense_page->getConjugation());
-            expr->translation(m_currentTranslation).setComparison(adj_page->getComparison());
-            expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
-            expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));
-            expr->translation(0).setFalseFriend(m_currentTranslation, to_page->getFauxAmi());
-
-            expr->translation(0).gradeFrom(m_currentTranslation).setGrade( from_page ? from_page->getGrade() : KV_NORM_GRADE );
-            expr->translation(m_currentTranslation).gradeFrom(0).setGrade( to_page ? to_page->getGrade() : KV_NORM_GRADE );
-
-            expr->translation(0).gradeFrom(m_currentTranslation).setQueryCount(from_page ? from_page->getQCount() : 0);
-            expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(to_page ? to_page->getQCount() : 0);
-
-            expr->translation(0).gradeFrom(m_currentTranslation).setBadCount(from_page ? from_page->getBCount() : 0);
-            expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(to_page ? to_page->getBCount() : 0);
-
-            expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate( from_page ? from_page->getDate() : QDateTime() );
-            expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page ? to_page->getDate() : QDateTime() );
-
             expr->translation(m_currentTranslation).setType( comm_page->getType() );
 
             for (int j = 0; j < expr->translationCount(); j++) {
@@ -440,10 +417,37 @@ kDebug() << "j: " << j;
                         KVTQuery::getMainType(comm_page->getType()))
                     expr->translation(j).setType(comm_page->getType());
             }
+
+
+
+            expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
+            expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());
+            expr->translation(m_currentTranslation).setAntonym(aux_page->getAntonym());
+            expr->translation(m_currentTranslation).setExample(aux_page->getExample());
+            expr->translation(m_currentTranslation).setParaphrase(aux_page->getParaphrase());
+
+            expr->translation(m_currentTranslation).setConjugation(tense_page->getConjugation());
+            expr->translation(m_currentTranslation).setComparison(adj_page->getComparison());
+            expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
+
+            expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));
+            expr->translation(0).setFalseFriend(m_currentTranslation, to_page->getFauxAmi());
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setGrade( from_page ? from_page->getGrade() : KV_NORM_GRADE );
+            expr->translation(m_currentTranslation).gradeFrom(0).setGrade( to_page ? to_page->getGrade() : KV_NORM_GRADE );
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setQueryCount(from_page ? from_page->getQCount() : 0);
+            expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(to_page ? to_page->getQCount() : 0);
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setBadCount(from_page ? from_page->getBCount() : 0);
+            expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(to_page ? to_page->getBCount() : 0);
+
+            expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate( from_page ? from_page->getDate() : QDateTime() );
+            expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page ? to_page->getDate() : QDateTime() );
         }
 
 
-        /// @todo reactivate active: expr->setActive(getActive());
+        expr->setActive(comm_page->getActive());
 
 
     } else {
