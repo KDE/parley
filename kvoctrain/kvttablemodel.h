@@ -70,7 +70,11 @@ public:
     bool appendEntry(KEduVocExpression *entry);
 
     bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
-    bool insertColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
+
+    /**
+     * Adds a new translation
+     */
+    void appendTranslation();
 
     /**
      * Remove a translation from the document

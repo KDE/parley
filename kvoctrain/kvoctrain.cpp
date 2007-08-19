@@ -540,7 +540,8 @@ void KVocTrainApp::slotAppendLanguage(int index)
         return;
     }
 
-    m_tableModel->insertColumns(m_tableModel->columnCount(QModelIndex()), 1, QModelIndex());
+    m_tableModel->appendTranslation();
+
     m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, m_languages[index].shortId(), Qt::EditRole);
 }
 
