@@ -72,37 +72,45 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QWidget *parent) : QWidg
     b_pronDlg->setIcon(pron_pm);
 
     subDialog = 0;
+
+    m_currentRow = -1;
+    m_currentTranslation = -1;
 }
 
 
-void CommonEntryPage::setData(bool multi_sel, const QString &expr, int less, const QString &type, const QString &pronounce, const QString &usage, bool active)
+void CommonEntryPage::setData(int row, int col, const QModelIndexList & selection)
 {
-    lesson = less;
+    m_currentRow = row;
+    m_currentTranslation = col;
+    m_selection = selection;
+
+    expr_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation());
+
+    lesson = m_doc->entry(m_currentRow)->lesson(),
     setLessonBox(lesson);
 
-    usageCollection = usage;
-    setUsageBox(usage);
+    usageCollection = m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel();
+    setUsageBox(usageCollection);
 
-    expr_line->setText(expr);
+    m_type = m_doc->entry(m_currentRow)->translation(m_currentTranslation).type();
+    setTypeBox(m_type);
 
-    m_type = type;
-    setTypeBox(type);
-    m_pronounce = pronounce;
-    pronounce_line->setText(pronounce);
+    m_pronounce = m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation();
+    pronounce_line->setText(m_pronounce);
 
-    m_entry_active = active;
-    c_active->setChecked(active);
+    m_entry_active = m_doc->entry(m_currentRow)->isActive();
+    c_active->setChecked(m_entry_active);
 
     int start = -1;
     int i = 0;
     while (start < 0 && i < (int) all_types.size()) {
-        if (all_types [i].shortStr() == KVTQuery::getMainType(type))
+        if (all_types [i].shortStr() == KVTQuery::getMainType(m_type))
             start = i;
         i++;
     }
     int offset = -1;
     while (offset < 0 && i < (int) all_types.size()) {
-        if (all_types [i].shortStr() == type)
+        if (all_types [i].shortStr() == m_type)
             offset = i - start;
         i++;
     }
@@ -111,7 +119,7 @@ void CommonEntryPage::setData(bool multi_sel, const QString &expr, int less, con
         subtype_box->setCurrentIndex(offset);
     }
 
-    m_largeSelection = multi_sel;
+    m_largeSelection = (m_selection.count() > 1);
     if (m_largeSelection) {
         expr_line->setEnabled(false);
         pronounce_line->setEnabled(false);

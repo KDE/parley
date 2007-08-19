@@ -38,7 +38,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
     CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
 
-    void setData(bool multi_sel, const QString &expr, int less, const QString &type, const QString &pronounce, const QString &usage,  bool active);
+    void setData(int row, int col, const QModelIndexList & selection);
 
     int     getLesson() const
     {
@@ -131,5 +131,12 @@ protected:
     bool                 m_typeIsModified;
     bool                 m_lessonIsModified;
     bool                 m_activeIsModified;
+
+    /// The row currently selected in the document - this is the entry number
+    int               m_currentRow;
+    /// Column in the document - corresponds to the language (-KV_EXTRA_COLS)
+    int               m_currentTranslation;
+    /// Selection in the doc - if more than one row is selected behavior is different
+    QModelIndexList   m_selection;
 };
 #endif // CommonEntryPage_included

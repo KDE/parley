@@ -292,13 +292,7 @@ void EntryDlg::updateData()
 
     bool editMultipleRows = (m_selection.count() > 1);
 
-    comm_page->setData(editMultipleRows,
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation(),
-        m_doc->entry(m_currentRow)->lesson(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).type(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel(),
-        m_doc->entry(m_currentRow)->isActive());
+    comm_page->setData(m_currentRow, m_currentTranslation, m_selection);
 
     adj_page->setData(editMultipleRows,
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).comparison());
