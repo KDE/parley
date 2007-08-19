@@ -44,6 +44,7 @@
 #include "kvoctrain.h"
 #include "kvtusage.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
+#include "entry-dialogs/EntryDlg.h"
 
 #include <prefs.h>
 
@@ -237,8 +238,9 @@ void KVocTrainApp::slotFileMerge()
 
 void KVocTrainApp::slotFileSave()
 {
-    if (entryDlg != 0)
-        commitEntryDlg(false);
+    if (entryDlg != 0) {
+        entryDlg->commitData(false);
+    }
 
     if (m_doc->url().fileName() == i18n("Untitled")) {
         slotFileSaveAs();
@@ -270,8 +272,9 @@ void KVocTrainApp::slotFileSaveAs()
 {
     slotStatusMsg(i18n("Saving file under new filename..."));
 
-    if (entryDlg != 0)
-        commitEntryDlg(false);
+    if (entryDlg != 0) {
+        entryDlg->commitData(false);
+    }
 
     KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
@@ -342,9 +345,9 @@ void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
 
 void KVocTrainApp::slotSaveSelection()
 {
-    if (entryDlg != 0)
-        commitEntryDlg(false);
-
+    if (entryDlg != 0) {
+        entryDlg->commitData(false);
+    }
     slotStatusMsg(i18n("Saving selected area under new filename..."));
     QString save_separator = Prefs::separator();
     Prefs::setSeparator("\t");

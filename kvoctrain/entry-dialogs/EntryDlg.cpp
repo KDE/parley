@@ -34,6 +34,7 @@
 #include <klocale.h>
 #include <kxmlguiwindow.h>
 #include <kwindowsystem.h>
+#include <KMessageBox>
 
 EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &querymanager) : KPageDialog()
 {
@@ -47,10 +48,12 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &queryman
 
     mainwin = main;
     docked = false;
-    edit_row = -1;
-    edit_col = -1;
+    m_currentRow = -1;
+    m_currentTranslation = -1;
     from_page = 0;
     to_page = 0;
+
+    m_doc = doc;
 
     comm_page = new CommonEntryPage(doc, querymanager, this);
     addPage(comm_page, i18n("Co&mmon"));
@@ -93,76 +96,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc, KVTQuery &queryman
     enableButton(User1, false);
     setModified(false);
     comm_page->expr_line->setFocus();
-}
-
-
-void EntryDlg::setData(
-    EnableType       et,
-    bool             multi_sel,
-    grade_t          f_grd,
-    grade_t          t_grd,
-    count_t          f_qcount,
-    count_t          t_qcount,
-    count_t          f_bcount,
-    count_t          t_bcount,
-    const QDateTime &f_qdate,
-    const QDateTime &t_qdate,
-    const QString   &f_faux_ami,
-    const QString   &t_faux_ami,
-    const QString   &expr,
-    int              lesson,
-    const QString   &rem,
-    const QString   &type,
-    const QString   &pronounce,
-    const QString   &synonym,
-    const QString   &antonym,
-    const QString   &example,
-    const QString   &usagelabel,
-    const QString   &paraphrase,
-    const KEduVocConjugation &con_prefix,
-    const KEduVocConjugation &conjugations,
-    const KEduVocComparison &comp,
-    const KEduVocMultipleChoice &mc,
-    const QString &title,
-    bool             active)
-{
-    setCaption(title);
-
-    comm_page->setData(multi_sel, expr, lesson, type, pronounce, usagelabel, active);
-    adj_page->setData(multi_sel, comp);
-    aux_page->setData(multi_sel, synonym, antonym, example, rem, paraphrase);
-    mc_page->setData(multi_sel, mc);
-    tense_page->setData(multi_sel, con_prefix, conjugations);
-    if (from_page != 0)
-        from_page->setData(multi_sel, f_grd, f_qdate, f_qcount, f_bcount, f_faux_ami, i18n("Properties From Original"));
-    if (to_page != 0)
-        to_page->setData(multi_sel, t_grd, t_qdate, t_qcount, t_bcount, t_faux_ami, i18n("Properties to Original"));
-
-    setModified(false);
-    updatePages(type);
-    setEnabled(et);
-}
-
-
-void EntryDlg::updatePages(const QString &type)
-{
-    QString main;
-    int pos;
-    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0)   // only use main type
-        main = type;
-    else
-        main = type.left(pos);
-
-    if (main == QM_VERB) {
-        tense_page->setEnabled(EntryDlg::EnableAll);
-        adj_page->setEnabled(EntryDlg::EnableNone);
-    } else if (main == QM_ADJ) {
-        tense_page->setEnabled(EntryDlg::EnableNone);
-        adj_page->setEnabled(EntryDlg::EnableAll);
-    } else {
-        tense_page->setEnabled(EntryDlg::EnableNone);
-        adj_page->setEnabled(EntryDlg::EnableNone);
-    }
 }
 
 
@@ -227,7 +160,7 @@ void EntryDlg::slotApply()
 
 void EntryDlg::slotUndo()
 {
-    emit sigEditChoice(EditUndo);
+    setData(m_currentRow, m_currentTranslation, m_selection);
 }
 
 
@@ -253,22 +186,6 @@ void EntryDlg::slotDisplayModified()
 {
     enableButtonApply(true);
     enableButton(User1, true);
-}
-
-
-void EntryDlg::setCell(int row, int col, const QModelIndexList & sel)
-{
-    edit_row = row;
-    edit_col = col;
-    m_selection = sel;
-}
-
-
-void EntryDlg::getCell(int &row, int &col, QModelIndexList & sel) const
-{
-    row = edit_row;
-    col = edit_col;
-    sel = m_selection;
 }
 
 
@@ -332,6 +249,253 @@ void EntryDlg::closeEvent(QCloseEvent * e)
 {
     Q_UNUSED(e);
     emit sigEditChoice(EditCancel);
+}
+
+
+void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndexList & selection)
+{
+    m_currentRow = currentRow;
+    m_currentTranslation = currentTranslation;
+    m_selection = selection;
+
+    updateData();
+}
+
+void EntryDlg::updateData()
+{
+    /*
+    kDebug() << "m_currentRow" << m_currentRow;
+
+    kDebug() << "EntryDlg::updateData() for expression: " << m_currentRow << " language: " << m_currentTranslation;
+    if (m_currentTranslation >= 0) {
+        kDebug() << " word: " << m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation();
+        kDebug() << "Grades: " << " from original :" <<
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).grade() << " count " <<
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryCount() << " to original :" <<
+        m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).grade() << " count: " <<
+        m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryCount()
+        ;
+    } else {
+        kDebug() << " translation number invalid: " << m_currentTranslation;
+    }
+    */
+
+    QString title;
+    if (m_currentTranslation < 0) {
+        title = i18n("Edit General Properties");
+    } else if (m_currentTranslation == 0) {
+        title = i18n("Edit Properties for Original");
+    } else {
+        title = i18n("Edit Properties of a Translation");
+    }
+    setCaption(title);
+
+    bool editMultipleRows = (m_selection.count() > 1);
+
+    comm_page->setData(editMultipleRows,
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation(),
+        m_doc->entry(m_currentRow)->lesson(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).type(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel(),
+        m_doc->entry(m_currentRow)->isActive());
+
+    adj_page->setData(editMultipleRows,
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).comparison());
+
+    aux_page->setData(editMultipleRows,
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).example(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment(),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
+
+    mc_page->setData(editMultipleRows,
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice());
+    tense_page->setData(editMultipleRows,
+        m_doc->conjugation(m_currentTranslation),
+        m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugation());
+
+// for now use the old grading system only to/from original
+// these are only valid if we edit a translation > 0. Otherwise they are disabled
+    if (from_page != 0)
+        from_page->setData(editMultipleRows,
+            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).grade(),
+            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryDate(),
+            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryCount(),
+            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).badCount(),
+            m_doc->entry(m_currentRow)->translation(m_currentTranslation).falseFriend(0),
+            i18n("Properties From Original"));
+
+    if (to_page != 0)
+        to_page->setData(editMultipleRows,
+            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).grade(),
+            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryDate(),
+            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryCount(),
+            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).badCount(),
+            m_doc->entry(m_currentRow)->translation(0).falseFriend(m_currentTranslation),
+            i18n("Properties to Original"));
+
+    setModified(false);
+    updatePages( m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() );
+
+    EntryDlg::EnableType et;
+
+    if (m_currentTranslation < 0)
+        et = EntryDlg::EnableOnlyCommon;
+    else if (m_currentTranslation == 0)
+        et = EntryDlg::EnableOnlyOriginal;
+    else
+        et = EntryDlg::EnableAll;
+
+    setEnabled(et);
+}
+
+
+void EntryDlg::updatePages(const QString &type)
+{
+    QString main;
+    int pos;
+    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0)   // only use main type
+        main = type;
+    else
+        main = type.left(pos);
+
+    if (main == QM_VERB) {
+        tense_page->setEnabled(EntryDlg::EnableAll);
+        adj_page->setEnabled(EntryDlg::EnableNone);
+    } else if (main == QM_ADJ) {
+        tense_page->setEnabled(EntryDlg::EnableNone);
+        adj_page->setEnabled(EntryDlg::EnableAll);
+    } else {
+        tense_page->setEnabled(EntryDlg::EnableNone);
+        adj_page->setEnabled(EntryDlg::EnableNone);
+    }
+}
+
+void EntryDlg::commitData(bool force)
+{
+
+    if ( m_currentRow < 0 ) {
+        return;
+    }
+
+    if ( m_currentTranslation < 0) {
+        return;
+    }
+
+
+    if (!force && isModified() && !Prefs::autoEntryApply()) {
+        if (KMessageBox::No == KMessageBox::warningYesNo(this,
+                i18n("The entry dialog contains unsaved changes.\n"
+                     "Do you want to apply or discard your changes?"),
+                i18n("Unsaved Changes"),
+                KStandardGuiItem::apply(), KStandardGuiItem::discard())) {
+            return;
+        }
+    }
+
+kDebug() << "EntryDlg::commitData() for entry: " << m_currentRow << " trans: " << m_currentTranslation;
+
+    int hasSel = m_selection.count() > 1;
+
+    if (!hasSel) {
+        KEduVocExpression *expr = m_doc->entry(m_currentRow);
+        if (m_currentTranslation >= 0) {
+            /// @todo emit some data changed signal
+kDebug() << "Changes should be committed but the table probably is not updated. FIXME";
+            //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
+            expr->setLesson(comm_page->getLesson());
+            expr->translation(m_currentTranslation).setTranslation(comm_page->getExpr());
+            expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
+            expr->translation(m_currentTranslation).setPronunciation(comm_page->getPronounce());
+            expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());
+            expr->translation(m_currentTranslation).setAntonym(aux_page->getAntonym());
+            expr->translation(m_currentTranslation).setExample(aux_page->getExample());
+            expr->translation(m_currentTranslation).setUsageLabel(comm_page->getUsageLabel());
+            expr->translation(m_currentTranslation).setParaphrase(aux_page->getParaphrase());
+            expr->translation(m_currentTranslation).setConjugation(tense_page->getConjugation());
+            expr->translation(m_currentTranslation).setComparison(adj_page->getComparison());
+            expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
+            expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));
+            expr->translation(0).setFalseFriend(m_currentTranslation, to_page->getFauxAmi());
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setGrade( from_page ? from_page->getGrade() : KV_NORM_GRADE );
+            expr->translation(m_currentTranslation).gradeFrom(0).setGrade( to_page ? to_page->getGrade() : KV_NORM_GRADE );
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setQueryCount(from_page ? from_page->getQCount() : 0);
+            expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(to_page ? to_page->getQCount() : 0);
+
+            expr->translation(0).gradeFrom(m_currentTranslation).setBadCount(from_page ? from_page->getBCount() : 0);
+            expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(to_page ? to_page->getBCount() : 0);
+
+            expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate( from_page ? from_page->getDate() : QDateTime() );
+            expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page ? to_page->getDate() : QDateTime() );
+
+            expr->translation(m_currentTranslation).setType( comm_page->getType() );
+
+            for (int j = 0; j < expr->translationCount(); j++) {
+kDebug() << "j: " << j;
+                if (expr->translation(j).type().isEmpty())
+                    expr->translation(j).setType( comm_page->getType() );
+            }
+
+            for (int j = 0; j < expr->translationCount(); j++) {
+                if (KVTQuery::getMainType(expr->translation(j).type())
+                        !=
+                        KVTQuery::getMainType(comm_page->getType()))
+                    expr->translation(j).setType(comm_page->getType());
+            }
+        }
+
+
+        /// @todo reactivate active: expr->setActive(getActive());
+
+
+    } else {
+        foreach(QModelIndex selIndex, m_selection) {
+            //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
+            KEduVocExpression *expr = m_doc->entry(m_currentRow);
+
+            if (m_currentTranslation >= 0) {
+                // only updated "common" props in multimode
+                // is the modified necessary? maybe because it can be different and will only be saved if the user changes it. otherwise it should stay different probably. so maybe leave the modified stuff in here.
+                if (from_page->gradeIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setGrade(from_page->getGrade());
+                if (to_page->gradeIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setGrade(to_page->getGrade());
+                if (from_page->queryCountIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(from_page->getQCount());
+                if (to_page->queryCountIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(to_page->getQCount());
+                if (from_page->badCountIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(from_page->getBCount());
+                if (to_page->badCountIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(to_page->getBCount());
+                if (from_page->dateIsModified())
+                    expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate(from_page->getDate());
+                if (to_page->dateIsModified())
+                    expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page->getDate());
+                if (comm_page->usageIsModified())
+                    for (int j = 0; j < expr->translationCount(); j++)
+                        expr->translation(j).setUsageLabel(comm_page->getUsageLabel());
+                if (comm_page->typeIsModified())
+                    for (int j = 0; j < expr->translationCount(); j++)
+                        expr->translation(j).setType(comm_page->getType());
+            }
+
+            if (comm_page->activeIsModified())
+                expr->setActive(comm_page->getActive());
+
+            if (comm_page->lessonIsModified()) {
+                //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
+                expr->setLesson(comm_page->getLesson());
+            }
+        }
+    }
+
+    setModified(false);
+    m_doc->setModified(true);
 }
 
 #include "EntryDlg.moc"
