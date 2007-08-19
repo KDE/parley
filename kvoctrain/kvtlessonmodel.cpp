@@ -28,6 +28,7 @@
 #include <klocale.h>
 
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <krandom.h>
 
@@ -154,7 +155,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-        return m_doc->lessonDescription(index.row()+1);
+        return m_doc->lesson(index.row()+1)->description();
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
@@ -176,7 +177,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     /** rename a lesson */
     if (role == Qt::EditRole) {
-        m_doc->renameLesson(index.row()+1, value.toString());
+        m_doc->lesson(index.row()+1)->setDescription(value.toString());
         emit dataChanged(index, index);
         return true;
     }
@@ -222,12 +223,12 @@ int KVTLessonModel::addLesson(const QString &lessonName)
     beginInsertRows(QModelIndex(), m_doc->lessonCount(), m_doc->lessonCount());
     int newLessonIndex;
     if (lessonName.isNull()) {
-        int i = 1;
-        while (m_doc->lessonIndex(i18n("New lesson") + QString(" %1").arg(i)) > 0)
-            i++;
-        newLessonIndex = m_doc->appendLesson(QString(i18n("New lesson") + QString(" %1").arg(i)));
+        // add the lesson
+        newLessonIndex = m_doc->addLesson(i18n("New Lesson"));
+        // then name it according to its index
+        m_doc->lesson(newLessonIndex)->setDescription(i18n("New Lesson %1").arg(newLessonIndex));
     } else {
-        newLessonIndex = m_doc->appendLesson(lessonName);
+        newLessonIndex = m_doc->addLesson(lessonName);
     }
     /// Now add the new lesson to the query. Not necessary, but nice.
     m_doc->addLessonToQuery(newLessonIndex);
@@ -269,7 +270,7 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
             entryList.append(expr);
     }
 
-    QString originalLessonName = m_doc->lessonDescription(lessonIndex);
+    QString originalLessonName = m_doc->lesson(lessonIndex)->description();
     int numNewLessons = entryList.count()/entriesPerLesson;
     if (entryList.count()%entriesPerLesson) // modulo - fraction lesson if not 0 we need one more
         numNewLessons++;

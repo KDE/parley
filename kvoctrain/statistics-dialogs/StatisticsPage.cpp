@@ -31,6 +31,7 @@
 #include <klocale.h>
 
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 #include <prefs.h>
 
 
@@ -252,7 +253,9 @@ void StatisticsPage::setupData()
     // setup rows with pixmaps and strings
     QTreeWidgetItem *listItem = 0;
 
-    for (int i = 0; i <= (int) m_doc->lessonDescriptions().count(); i++) {
+    QMap<int, KEduVocLesson*> lessons = m_doc->lessons();
+    QList<int> lessonIds = lessons.keys();
+    for (int i = 0; i < lessonIds.size(); i++) {
         listItem = new QTreeWidgetItem(StatListView);
         listItem->setFlags(listItem->flags() | Qt::ItemIsUserCheckable);
         listItem->setCheckState(TB_RESET, Qt::Unchecked);
@@ -261,8 +264,8 @@ void StatisticsPage::setupData()
         listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
         listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
         listItem->setText(TB_COUNT, QString::number(tsc[i].num));
-        listItem->setText(TB_LESSON, m_doc->lessonDescription(i));
-        listItem->setData(TB_LESSON, Qt::UserRole, QVariant(i));
+        listItem->setText(TB_LESSON, lessons[lessonIds[i] ]->description());
+        listItem->setData(TB_LESSON, Qt::UserRole, QVariant(lessonIds[i]));
         StatListView->addTopLevelItem(listItem);
     }
 }
