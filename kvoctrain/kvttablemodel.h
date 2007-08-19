@@ -5,7 +5,7 @@
     -----------------------------------------------------------------------
 
     copyright     : (C) 2006 Peter Hedlund <peter.hedlund@kdemail.net>
-
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
     -----------------------------------------------------------------------
 
  ***************************************************************************/
@@ -36,13 +36,13 @@
 #define KV_COL_TRANS     3   // col: first translation
 
 // To enable use of KEduVocExpression* in a QVariant
-Q_DECLARE_METATYPE ( KEduVocExpression* )
+Q_DECLARE_METATYPE ( KEduVocExpression* );
 
 
 /**
+  The model for the big table in the main window. Here the vocabulary can be edited directly.
   @author Peter Hedlund <peter.hedlund@kdemail.net>
 */
-
 class KVTTableModel : public QAbstractTableModel
 {
     Q_OBJECT
@@ -71,7 +71,13 @@ public:
 
     bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
     bool insertColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
-    bool removeColumns(int column, int count = 1, const QModelIndex & parent = QModelIndex());
+
+    /**
+     * Remove a translation from the document
+     * @param translationIndex is the id of the translation
+     * @return true if the translation was removed
+     */
+    bool removeTranslation(int translationIndex);
 
     int rowCount(const QModelIndex &parent) const;
     int columnCount(const QModelIndex &parent) const;
@@ -82,8 +88,6 @@ public:
     Qt::ItemFlags flags(const QModelIndex &index) const;
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
     bool setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role = Qt::EditRole);
-
-    //void sort(int column, Qt::SortOrder order = Qt::AscendingOrder);
 
 private:
     KEduVocDocument * m_doc;

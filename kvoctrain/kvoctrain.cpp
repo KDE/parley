@@ -9,7 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
     -----------------------------------------------------------------------
 
  ***************************************************************************/
@@ -569,14 +569,19 @@ void KVocTrainApp::slotAssignLanguage2(int column, int languageIndex)
 
 void KVocTrainApp::slotRemoveLanguage(int index)
 {
-    int column = index + KV_EXTRA_COLS + 1;
+    /// @todo make it possible to remove the first language. that implies changing the menus. if the menus are kept like this at all.
+    int translation = index + 1; // 0 the menu only includes 0.. translations-1
+
+    /// @todo use languages from the doc instead of the table header
+    int column = translation + KV_EXTRA_COLS;
     QString name = m_tableModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
 
     QString msg = i18n("You are about to delete a language permanently.\nDo you really want to delete '%1'?", name);
 
     int result = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
-    if (result == KMessageBox::Continue)
-        m_tableModel->removeColumns(column, 1, QModelIndex());
+    if (result == KMessageBox::Continue) {
+        m_tableModel->removeTranslation(translation);
+    }
 }
 
 void KVocTrainApp::slotSearch(const QString& s)

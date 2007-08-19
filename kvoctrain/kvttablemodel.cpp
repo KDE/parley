@@ -5,6 +5,7 @@
     -----------------------------------------------------------------------
 
     copyright     : (C) 2006-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -434,13 +435,14 @@ bool KVTTableModel::insertColumns(int column, int count, const QModelIndex & par
 }
 
 
-bool KVTTableModel::removeColumns(int column, int count, const QModelIndex & parent)
+bool KVTTableModel::removeTranslation(int translationIndex)
 {
-    Q_UNUSED(parent);
-    beginRemoveColumns(QModelIndex(), column, column + count - 1);
+    if( translationIndex < 0 || translationIndex >= m_doc->identifierCount() ) {
+        return false;
+    }
 
-    m_doc->removeIdentifier(column - KV_EXTRA_COLS);
-
+    beginRemoveColumns(QModelIndex(), translationIndex, translationIndex);
+    m_doc->removeIdentifier(translationIndex - KV_EXTRA_COLS);
     endRemoveColumns();
 
     m_doc->setModified(true);
