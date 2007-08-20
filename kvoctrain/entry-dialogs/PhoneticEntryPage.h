@@ -30,6 +30,7 @@
 #include <QKeyEvent>
 
 #include <kdialog.h>
+#include <keduvocdocument.h>
 
 class PhoneticEntryPage : public KDialog
 {

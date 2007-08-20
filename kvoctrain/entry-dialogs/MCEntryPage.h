@@ -28,13 +28,14 @@
 
 #include "ui_MCEntryPageForm.h"
 #include <keduvocmultiplechoice.h>
+#include <keduvocdocument.h>
 
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
     Q_OBJECT
 
 public:
-    MCEntryPage(QWidget *parent = 0);
+    MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(bool multi_sel, const KEduVocMultipleChoice &mc);
 
@@ -61,6 +62,7 @@ protected:
     KEduVocMultipleChoice  multiplechoice;
     bool                   modified;
     bool                   m_largeSelection;
+    KEduVocDocument     *m_doc;
 };
 
 #endif // MCEntryPage_included

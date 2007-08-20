@@ -30,6 +30,7 @@
 #include "ui_CommonEntryPageForm.h"
 #include "query-dialogs/kvtquery.h"
 #include <kvtusage.h>
+#include <keduvocdocument.h>
 
 
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm

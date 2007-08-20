@@ -315,7 +315,7 @@ void MCQueryDlg::slotUser1()
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_TRANS+m_queryOriginalColumn);
 
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
     mw->orgField->setText( vocExpression->translation(m_queryOriginalColumn).translation() );

@@ -36,8 +36,10 @@
 #include <kvtlanguages.h>
 #include "EntryDlg.h"
 
-FromToEntryPage::FromToEntryPage(QWidget *parent) : QWidget(parent)
+FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+
     setupUi(this);
 
     connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFauxAmiChanged(const QString &)));

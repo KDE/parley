@@ -33,8 +33,10 @@
 #include <kvtlanguages.h>
 #include "EntryDlg.h"
 
-TenseEntryPage::TenseEntryPage(QWidget *parent) : QWidget(parent)
+TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+
     setupUi(this);
 
     connect(third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)));

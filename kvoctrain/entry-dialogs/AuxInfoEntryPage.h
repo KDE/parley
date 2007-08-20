@@ -27,13 +27,14 @@
 #define AuxInfoEntryPage_included
 
 #include "ui_AuxInfoEntryPageForm.h"
+#include <keduvocdocument.h>
 
 class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 {
     Q_OBJECT
 
 public:
-    AuxInfoEntryPage(QWidget *parent = 0);
+    AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(bool multi_sel, const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para);
 
@@ -65,6 +66,8 @@ protected:
     QString paraphrase;
     bool    modified;
     bool    m_largeSelection;
+
+    KEduVocDocument     *m_doc;
 };
 
 #endif // AuxInfoEntryPage_included

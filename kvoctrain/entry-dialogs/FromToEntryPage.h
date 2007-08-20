@@ -30,13 +30,15 @@
 
 #include "ui_FromToEntryPageForm.h"
 #include <keduvocexpression.h>
+#include <keduvocgrammar.h>
+#include <keduvocdocument.h>
 
 class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 {
     Q_OBJECT
 
 public:
-    FromToEntryPage(QWidget *parent = 0);
+    FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(bool multi_sel, grade_t _grade, const QDateTime &_date, count_t _qcount, count_t _bcount, const QString &faux, const QString &label);
 
@@ -106,6 +108,8 @@ protected:
     bool    m_queryCountIsModified;
     bool    m_badCountIsModified;
     bool    m_dateIsModified;
+
+    KEduVocDocument     *m_doc;
 };
 
 #endif // FromToEntryPage_included

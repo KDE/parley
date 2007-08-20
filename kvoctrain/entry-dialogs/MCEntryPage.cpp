@@ -30,8 +30,10 @@
 #include "EntryDlg.h"
 #include <kvtlanguages.h>
 
-MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
+MCEntryPage::MCEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+
     setupUi(this);
 
     connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)));

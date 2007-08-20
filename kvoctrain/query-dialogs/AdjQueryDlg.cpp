@@ -187,7 +187,7 @@ void AdjQueryDlg::slotUser1()
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, KV_COL_ORG+m_queryOriginalColumn);
+    emit sigEditEntry(m_row, KV_COL_TRANS+m_queryOriginalColumn);
 }
 
 

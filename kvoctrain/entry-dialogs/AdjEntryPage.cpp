@@ -30,8 +30,10 @@
 #include <kvtlanguages.h>
 #include "EntryDlg.h"
 
-AdjEntryPage::AdjEntryPage(QWidget *parent) : QWidget(parent)
+AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+
     setupUi(this);
 
     connect(lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));

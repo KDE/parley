@@ -30,8 +30,10 @@
 #include "EntryDlg.h"
 #include <kvtlanguages.h>
 
-AuxInfoEntryPage::AuxInfoEntryPage(QWidget *parent) : QWidget(parent)
+AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+
     setupUi(this);
     QFontMetrics fm(synonym_line->font());
     int sz = fm.lineSpacing();

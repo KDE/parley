@@ -55,25 +55,25 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     m_doc = doc;
 
-    comm_page = new CommonEntryPage(doc, this);
+    comm_page = new CommonEntryPage(m_doc, this);
     addPage(comm_page, i18n("Co&mmon"));
 
-    aux_page = new AuxInfoEntryPage(this);
+    aux_page = new AuxInfoEntryPage(m_doc, this);
     addPage(aux_page, i18n("A&dditional"));
 
-    mc_page = new MCEntryPage(this);
+    mc_page = new MCEntryPage(m_doc, this);
     addPage(mc_page, i18n("&Multiple Choice"));
 
-    tense_page = new TenseEntryPage(this);
+    tense_page = new TenseEntryPage(m_doc, this);
     addPage(tense_page, i18n("Con&jugation"));
 
-    adj_page = new AdjEntryPage(this);
+    adj_page = new AdjEntryPage(m_doc, this);
     addPage(adj_page, i18n("Compar&ison"));
 
-    from_page = new FromToEntryPage(this);
+    from_page = new FromToEntryPage(m_doc, this);
     addPage(from_page, i18n("&From Original"));
 
-    to_page = new FromToEntryPage(this);
+    to_page = new FromToEntryPage(m_doc, this);
     addPage(to_page, i18n("&To Original"));
 
     connect(comm_page, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
@@ -372,6 +372,7 @@ void EntryDlg::commitData(bool force)
 
     comm_page->commitData();
 
+
     int hasSel = m_selection.count() > 1;
 
     if (!hasSel) {
@@ -380,6 +381,12 @@ void EntryDlg::commitData(bool force)
             /// @todo emit data changed signal for the big table
 kDebug() << "Changes should be committed but the table is not updated. FIXME";
             //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
+
+
+//             aux_page->commitData();
+//             tense_page->commitData();
+//             adj_page->commitData();
+//             mc_page->commitData();
 
             expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
             expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());

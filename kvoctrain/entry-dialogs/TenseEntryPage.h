@@ -27,14 +27,14 @@
 #define TenseEntryPage_included
 
 #include "ui_TenseEntryPageForm.h"
-#include <keduvocgrammar.h>
+#include <keduvocdocument.h>
 
 class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 {
     Q_OBJECT
 
 public:
-    TenseEntryPage(QWidget *parent = 0);
+    TenseEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations);
 
@@ -72,6 +72,7 @@ protected:
     QString            selection;
     bool               modified;
     bool               m_largeSelection;
+    KEduVocDocument     *m_doc;
 };
 
 #endif // TenseEntryPage_included

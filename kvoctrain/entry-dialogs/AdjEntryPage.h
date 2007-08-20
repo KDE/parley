@@ -27,14 +27,14 @@
 #define AdjEntryPage_included
 
 #include "ui_AdjEntryPageForm.h"
-#include <keduvocgrammar.h>
+#include <keduvocdocument.h>
 
 class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 {
     Q_OBJECT
 
 public:
-    AdjEntryPage(QWidget *parent = 0);
+    AdjEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(bool multi_sel, const KEduVocComparison  &comp);
 
@@ -59,6 +59,8 @@ protected:
     KEduVocComparison comparisons;
     bool              modified;
     bool              m_largeSelection;
+
+    KEduVocDocument     *m_doc;
 };
 
 #endif // AdjEntryPage_included
