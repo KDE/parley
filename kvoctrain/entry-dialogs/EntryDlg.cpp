@@ -106,7 +106,6 @@ void EntryDlg::setModified(bool mod)
     mc_page->setModified(mod);
     tense_page->setModified(mod);
     mc_page->setModified(mod);
-    adj_page->setModified(mod);
     if (from_page != 0)
         from_page->setModified(mod);
     if (to_page != 0)
@@ -118,13 +117,22 @@ void EntryDlg::setModified(bool mod)
 
 void EntryDlg::setEnabled(int enable)
 {
+
+kDebug() << " EntryDlg::setEnabled() " << m_currentTranslation;
     QString type = comm_page->getType();
     QString main;
     int pos;
-    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0)   // only use main type
+    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
         main = type;
-    else
+    } else {
         main = type.left(pos);
+    }
+
+    if ( m_selection.count() == 1 && m_currentTranslation >= 0 ) {
+        adj_page->setEnabled(main == QM_ADJ);
+    } else {
+        adj_page->setEnabled(false);
+    }
 
     if (enable == EnableOnlyOriginal) {
         comm_page->setEnabled(EnableAll);
@@ -132,7 +140,6 @@ void EntryDlg::setEnabled(int enable)
         mc_page->setEnabled(EnableAll);
         tense_page->setEnabled(main == QM_VERB ? EnableAll : EnableNone);
         mc_page->setEnabled(EnableAll);
-        adj_page->setEnabled(main == QM_ADJ ? EnableAll : EnableNone);
         if (from_page != 0)
             from_page->setEnabled(EnableNone);
         if (to_page != 0)
@@ -143,7 +150,6 @@ void EntryDlg::setEnabled(int enable)
         mc_page->setEnabled(enable);
         tense_page->setEnabled(main == QM_VERB ? enable : EnableNone);
         mc_page->setEnabled(enable);
-        adj_page->setEnabled(main == QM_ADJ ? enable : EnableNone);
         if (from_page != 0)
             from_page->setEnabled(enable);
         if (to_page != 0)
@@ -277,8 +283,9 @@ void EntryDlg::updateData()
 
     comm_page->setData(m_currentRow, m_currentTranslation, m_selection);
 
-    adj_page->setData(editMultipleRows,
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).comparison());
+    if ( !editMultipleRows ) {
+        adj_page->setData( m_currentRow, m_currentTranslation );
+    }
 
     aux_page->setData(editMultipleRows,
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym(),
@@ -385,7 +392,7 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
 //             aux_page->commitData();
 //             tense_page->commitData();
-//             adj_page->commitData();
+            adj_page->commitData();
 //             mc_page->commitData();
 
             expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
@@ -395,7 +402,6 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
             expr->translation(m_currentTranslation).setParaphrase(aux_page->getParaphrase());
 
             expr->translation(m_currentTranslation).setConjugation(tense_page->getConjugation());
-            expr->translation(m_currentTranslation).setComparison(adj_page->getComparison());
             expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
 
             expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));

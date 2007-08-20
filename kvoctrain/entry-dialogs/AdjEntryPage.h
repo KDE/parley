@@ -36,31 +36,23 @@ class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
 public:
     AdjEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(bool multi_sel, const KEduVocComparison  &comp);
-
-    KEduVocComparison getComparison() const
-    {
-        return comparisons;
-    }
+    void setData(int row, int col);
+    void commitData();
 
     bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
 
 signals:
     void sigModified();
 
-protected slots:
+private slots:
     void lev1Changed(const QString&);
     void lev2Changed(const QString&);
     void lev3Changed(const QString&);
 
-protected:
-    KEduVocComparison comparisons;
-    bool              modified;
-    bool              m_largeSelection;
-
+private:
     KEduVocDocument     *m_doc;
+    int m_currentRow;
+    int m_currentTranslation;
 };
 
 #endif // AdjEntryPage_included

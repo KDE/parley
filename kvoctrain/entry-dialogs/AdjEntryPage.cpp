@@ -33,6 +33,8 @@
 AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
+    m_currentRow = -1;
+    m_currentTranslation = -1;
 
     setupUi(this);
 
@@ -42,67 +44,68 @@ AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(pare
 }
 
 
-void AdjEntryPage::setData(bool multi_sel, const KEduVocComparison  &comp)
-{
-    comparisons = comp;
-    m_largeSelection = multi_sel;
-    if (m_largeSelection) {
-        lev1Field->setEnabled(false);
-        lev2Field->setEnabled(false);
-        lev3Field->setEnabled(false);
-    } else {
-        lev1Field->setText(comp.l1());
-        lev2Field->setText(comp.l2());
-        lev3Field->setText(comp.l3());
-    }
-    setModified(false);
-}
-
-
 void AdjEntryPage::lev1Changed(const QString& s)
 {
-    setModified(true);
-    comparisons.setL1(s);
+    Q_UNUSED(s)
+    emit sigModified();
 }
 
 
 void AdjEntryPage::lev2Changed(const QString& s)
 {
-    setModified(true);
-    comparisons.setL2(s);
+    Q_UNUSED(s)
+    emit sigModified();
 }
 
 
 void AdjEntryPage::lev3Changed(const QString& s)
 {
-    setModified(true);
-    comparisons.setL3(s);
+    Q_UNUSED(s)
+    emit sigModified();
 }
 
 
 bool AdjEntryPage::isModified()
 {
-    return modified;
+    if ( m_currentRow < 0 ) {
+        return false;
+    }
+    if ( m_currentTranslation < 0 ) {
+        return false;
+    }
+
+    KEduVocExpression *expr = m_doc->entry(m_currentRow);
+    if ( expr->translation(m_currentTranslation).comparison().l1() != lev1Field->text() ) {
+        return true;
+    }
+    if ( expr->translation(m_currentTranslation).comparison().l2() != lev2Field->text() ) {
+        return true;
+    }
+    if ( expr->translation(m_currentTranslation).comparison().l3() != lev3Field->text() ) {
+        return true;
+    }
+    return false;
 }
 
 
-void AdjEntryPage::setEnabled(int enable)
+void AdjEntryPage::setData(int row, int col)
 {
-    bool ena = enable == EntryDlg::EnableAll;
-    if (m_largeSelection)
-        ena = false;
-
-    lev1Field->setEnabled(ena);
-    lev2Field->setEnabled(ena);
-    lev3Field->setEnabled(ena);
+    m_currentRow = row;
+    m_currentTranslation = col;
+    KEduVocExpression *expr = m_doc->entry(m_currentRow);
+    lev1Field->setText(expr->translation(m_currentTranslation).comparison().l1());
+    lev2Field->setText(expr->translation(m_currentTranslation).comparison().l2());
+    lev3Field->setText(expr->translation(m_currentTranslation).comparison().l3());
 }
 
-
-void AdjEntryPage::setModified(bool mod)
+void AdjEntryPage::commitData()
 {
-    modified = mod;
-    if (mod)
-        emit sigModified();
+    KEduVocComparison comp;
+    comp.setL1(lev1Field->text());
+    comp.setL2(lev2Field->text());
+    comp.setL3(lev3Field->text());
+
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComparison( comp );
 }
 
 #include "AdjEntryPage.moc"
