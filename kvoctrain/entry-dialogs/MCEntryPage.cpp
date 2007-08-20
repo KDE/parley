@@ -81,6 +81,7 @@ bool MCEntryPage::isModified()
 
 
 ///@todo the lib now supports an arbitrary number of entries for multiple choice. We should reflect that and have a list rather than five fixed entries.
+// also starting with 0 might be nicer. crashes though.
 void MCEntryPage::setData(int row, int col)
 {
     m_currentRow = row;

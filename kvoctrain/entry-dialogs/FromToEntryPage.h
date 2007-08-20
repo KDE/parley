@@ -42,6 +42,27 @@ public:
 
     void setData(bool multi_sel, grade_t _grade, const QDateTime &_date, count_t _qcount, count_t _bcount, const QString &faux, const QString &label);
 
+    void setData(int row, int toTrans, int fromTrans, const QModelIndexList & selection);
+    void commitData();
+    void clear();
+
+    bool isModified();
+
+signals:
+    void sigModified();
+
+private slots:
+    void slotGradeSelected(int);
+
+    void slotToday();
+    void slotNever();
+    void slotFauxAmiChanged(const QString &);
+
+    void slotDateChanged(const QDate &);
+    void totalCountChanged(int);
+    void badCountChanged(int);
+
+private:
     QDateTime  getDate() const;
     grade_t   getGrade() const
     {
@@ -76,25 +97,9 @@ public:
     {
         return m_badCountIsModified;
     }
-    bool isModified();
     void setModified(bool mod = true);
     void setEnabled(int enable_type);
 
-signals:
-    void sigModified();
-
-protected slots:
-    void slotGradeSelected(int);
-
-    void slotToday();
-    void slotNever();
-    void slotFauxAmiChanged(const QString &);
-
-    void slotDateChanged(const QDate &);
-    void totalCountChanged(int);
-    void badCountChanged(int);
-
-protected:
     void validate();
 
     QString fauxami;
@@ -110,6 +115,10 @@ protected:
     bool    m_dateIsModified;
 
     KEduVocDocument     *m_doc;
+    int m_currentRow;
+    int m_translationFrom;
+    int m_translationTo;
+    QModelIndexList m_selection;
 };
 
 #endif // FromToEntryPage_included

@@ -55,7 +55,7 @@ public:
     ~EntryDlg();
 
     bool isModified();
-    void setModified(bool mod);
+    void disableApplyButton();
     void setData(int row, int col, const QModelIndexList & selection);
 
     /// saves the changes to m_doc
@@ -82,8 +82,8 @@ private:
 
     /// The dialog pages
     CommonEntryPage  *commonPage;
-    FromToEntryPage  *from_page;
-    FromToEntryPage  *to_page;
+    FromToEntryPage  *fromPage;
+    FromToEntryPage  *toPage;
     AuxInfoEntryPage *additionalPage;
     TenseEntryPage   *conjugationPage;
     AdjEntryPage     *comparisonPage;

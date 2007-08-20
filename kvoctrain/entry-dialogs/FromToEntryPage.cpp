@@ -39,6 +39,9 @@
 FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
+    m_currentRow = -1;
+    m_translationFrom = -1;
+    m_translationTo = -1;
 
     setupUi(this);
 
@@ -185,4 +188,97 @@ void FromToEntryPage::badCountChanged(int count)
     bcount = count;
 }
 
+
+void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelIndexList & selection )
+{
+    m_currentRow = row;
+    m_translationFrom = fromTrans;
+    m_translationTo = toTrans;
+    m_selection = selection;
+
+    KEduVocExpression *entry = m_doc->entry(row);
+
+    queryDateEdit->setDateTime(QDateTime());
+    QDateTime time = m_doc->entry(m_currentRow)
+        ->translation(m_translationTo).gradeFrom(m_translationFrom).queryDate();
+
+    if ( m_selection.count() > 1 ) {
+        fauxami_line->setEnabled(false);
+        fauxami_line->setText(QString());
+    } else {
+        fauxami_line->setEnabled(true);
+        fauxami_line->setText(entry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
+        if ( time.toTime_t() != 0 ) {
+            valid_date = true;
+            queryDateEdit->setDateTime(time);
+        }
+    }
+
+    grade = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).grade();
+
+    qcount = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount();
+
+    bcount = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).badCount();
+
+    gradebox->setCurrentIndex(grade);
+    totalCountEdit->setValue(qcount);
+    badCountEdit->setValue(bcount);
+
+
+    QString label = QString(i18n("Grades"));
+    direc_label->setTitle(label);
+
+    setModified(false);
+    m_gradeIsModified = false;
+    m_queryCountIsModified = false;
+    m_badCountIsModified = false;
+    m_dateIsModified = false;
+}
+
+void FromToEntryPage::commitData()
+{
+/// @todo enable writing of data for multiple selection
+    KEduVocTranslation * trans = &m_doc->entry(m_currentRow)->translation(m_translationTo);
+
+    trans->setFalseFriend(m_translationFrom, getFauxAmi());
+    trans->gradeFrom(m_translationFrom).setGrade( getGrade() );
+    trans->gradeFrom(m_translationFrom).setQueryCount( getQCount() );
+    trans->gradeFrom(m_translationFrom).setBadCount( getBCount() );
+    trans->gradeFrom(m_translationFrom).setQueryDate( getDate() );
+
+// } else {
+//         foreach(QModelIndex selIndex, m_selection) {
+//             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
+//             KEduVocExpression *expr = m_doc->entry(m_currentRow);
+//
+//             if (m_currentTranslation >= 0) {
+//                 // only updated "common" props in multimode
+//                 // is the modified necessary? maybe because it can be different and will only be saved if the user changes it. otherwise it should stay different probably. so maybe leave the modified stuff in here.
+//                 if (fromPage->gradeIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setGrade(fromPage->getGrade());
+//                 if (toPage->gradeIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setGrade(toPage->getGrade());
+//                 if (fromPage->queryCountIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(fromPage->getQCount());
+//                 if (toPage->queryCountIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(toPage->getQCount());
+//                 if (fromPage->badCountIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(fromPage->getBCount());
+//                 if (toPage->badCountIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(toPage->getBCount());
+//                 if (fromPage->dateIsModified())
+//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate(fromPage->getDate());
+//                 if (toPage->dateIsModified())
+//                     expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( toPage->getDate());
+//             }
+//         }
+
+}
+
+void FromToEntryPage::clear()
+{
+}
+
+
 #include "FromToEntryPage.moc"
+
