@@ -44,14 +44,14 @@
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"
 
-CommonEntryPage::CommonEntryPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent), m_doc(_doc)
+CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent), m_doc(doc)
 {
     setupUi(this);
 
     connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
     connect(b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()));
     connect(b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()));
-    connect(usage_box, SIGNAL(itemSelectionChanged()), SLOT(slotUsageChanged()));
+    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     connect(lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)));
     connect(subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)));
     connect(type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)));
@@ -86,11 +86,11 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
 
     expr_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation());
 
-    lesson = m_doc->entry(m_currentRow)->lesson(),
-    setLessonBox(lesson);
+    m_lesson = m_doc->entry(m_currentRow)->lesson(),
+    setLessonBox(m_lesson);
 
-    usageCollection = m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel();
-    setUsageBox(usageCollection);
+    m_usageCollection = m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel();
+    setUsageBox(m_usageCollection);
 
     m_type = m_doc->entry(m_currentRow)->translation(m_currentTranslation).type();
     setTypeBox(m_type);
@@ -187,6 +187,7 @@ void CommonEntryPage::setLessonBox(int lesson)
 
 void CommonEntryPage::setUsageBox(const QString & act_usage)
 {
+    disconnect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     usages = KVTUsage::getRelation();
     usage_box->clear();
     for (int i = 0; i < (int) usages.size(); i++) {
@@ -195,23 +196,22 @@ void CommonEntryPage::setUsageBox(const QString & act_usage)
             usage_box->setCurrentRow(i);
         }
     }
+    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     slotUsageChanged();
 }
-
 
 void CommonEntryPage::slotUsageChanged()
 {
     setModified(true);
     m_usageIsModified = true;
-    usageCollection = "";
+    m_usageCollection = "";
     QString s;
 
     for (int i = 0; i < usage_box->count(); i++) {
         if (usage_box->item(i)->isSelected()) {
-
-            if (!usageCollection.isEmpty())
-                usageCollection += UL_USAGE_DIV;
-            usageCollection += usages[i].identStr();
+            if (!m_usageCollection.isEmpty())
+                m_usageCollection += UL_USAGE_DIV;
+            m_usageCollection += usages[i].identStr();
 
             if (!s.isEmpty())
                 s += ", ";
@@ -226,7 +226,7 @@ void CommonEntryPage::slotLessonSelected(int l)
 {
     setModified(true);
     m_lessonIsModified = true;
-    lesson = l+1;
+    m_lesson = l+1;
 }
 
 
@@ -241,7 +241,7 @@ void CommonEntryPage::slotActiveChanged(bool state)
 void CommonEntryPage::slotExprSelected(const QString& s)
 {
     setModified(true);
-    expression = s;
+    m_expression = s;
 }
 
 
@@ -338,7 +338,7 @@ void CommonEntryPage::invokeUsageDlg()
         usageOptPage->getUsageLabels(new_usageStr, usageIndex);
         UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
         KVTUsage::setUsageNames(new_usageStr);
-        setUsageBox(usageCollection);
+        setUsageBox(m_usageCollection);
         m_doc->setUsageDescriptions(new_usageStr);
         m_doc->setModified();
     }
@@ -392,6 +392,57 @@ void CommonEntryPage::slotSubDialogClosed()
         disconnect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
         subDialog->deleteLater();
         subDialog = 0L;
+    }
+}
+
+void CommonEntryPage::commitData()
+{
+    if ( !m_largeSelection ) { // single entry
+        KEduVocExpression *expr = m_doc->entry(m_currentRow);
+        expr->setActive(m_entry_active);
+        expr->setLesson(m_lesson);
+
+        if (m_currentTranslation >= 0) {
+            expr->translation(m_currentTranslation).setTranslation(m_expression);
+            expr->translation(m_currentTranslation).setPronunciation(m_pronounce);
+            expr->translation(m_currentTranslation).setUsageLabel(m_usageCollection);
+            expr->translation(m_currentTranslation).setType(m_type);
+
+            for (int j = 0; j < expr->translationCount(); j++) {
+                if (expr->translation(j).type().isEmpty())
+                    expr->translation(j).setType( m_type );
+            }
+
+            for (int j = 0; j < expr->translationCount(); j++) {
+                if (KVTQuery::getMainType(expr->translation(j).type())
+                        !=
+                        KVTQuery::getMainType(m_type))
+                    expr->translation(j).setType(m_type);
+            }
+        }
+    } else { // multiple entries (don't change the word itself for example)
+        foreach(QModelIndex selIndex, m_selection) {
+            //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
+            KEduVocExpression *expr = m_doc->entry(m_currentRow);
+
+            // modified because it can be different for multiple entries and will only be saved if the user changes it. otherwise it should stay different.
+            if (m_activeIsModified) {
+                expr->setActive(m_entry_active);
+            }
+            if (m_lessonIsModified) {
+                //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
+                expr->setLesson(m_lesson);
+            }
+            // only update "common" properties in multiple entries selection mode
+            if (m_currentTranslation >= 0) {
+                if (m_usageIsModified)
+                    for (int j = 0; j < expr->translationCount(); j++)
+                        expr->translation(j).setUsageLabel(m_usageCollection);
+                if (m_typeIsModified)
+                    for (int j = 0; j < expr->translationCount(); j++)
+                        expr->translation(j).setType(m_type);
+            }
+        }
     }
 }
 

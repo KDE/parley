@@ -263,23 +263,6 @@ void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndex
 
 void EntryDlg::updateData()
 {
-    /*
-    kDebug() << "m_currentRow" << m_currentRow;
-
-    kDebug() << "EntryDlg::updateData() for expression: " << m_currentRow << " language: " << m_currentTranslation;
-    if (m_currentTranslation >= 0) {
-        kDebug() << " word: " << m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation();
-        kDebug() << "Grades: " << " from original :" <<
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).grade() << " count " <<
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryCount() << " to original :" <<
-        m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).grade() << " count: " <<
-        m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryCount()
-        ;
-    } else {
-        kDebug() << " translation number invalid: " << m_currentTranslation;
-    }
-    */
-
     QString title;
     if (m_currentTranslation < 0) {
         title = i18n("Edit General Properties");
@@ -369,17 +352,15 @@ void EntryDlg::updatePages(const QString &type)
 
 void EntryDlg::commitData(bool force)
 {
+    if ( !isModified() ) {
+        return;
+    }
 
     if ( m_currentRow < 0 ) {
         return;
     }
 
-    if ( m_currentTranslation < 0) {
-        return;
-    }
-
-
-    if (!force && isModified() && !Prefs::autoEntryApply()) {
+    if (!force && !Prefs::autoEntryApply()) {
         if (KMessageBox::No == KMessageBox::warningYesNo(this,
                 i18n("The entry dialog contains unsaved changes.\n"
                      "Do you want to apply or discard your changes?"),
@@ -389,36 +370,16 @@ void EntryDlg::commitData(bool force)
         }
     }
 
-kDebug() << "EntryDlg::commitData() for entry: " << m_currentRow << " trans: " << m_currentTranslation;
+    comm_page->commitData();
 
     int hasSel = m_selection.count() > 1;
 
     if (!hasSel) {
         KEduVocExpression *expr = m_doc->entry(m_currentRow);
         if (m_currentTranslation >= 0) {
-            /// @todo emit some data changed signal
-kDebug() << "Changes should be committed but the table probably is not updated. FIXME";
+            /// @todo emit data changed signal for the big table
+kDebug() << "Changes should be committed but the table is not updated. FIXME";
             //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
-            expr->setLesson(comm_page->getLesson());
-            expr->translation(m_currentTranslation).setTranslation(comm_page->getExpr());
-            expr->translation(m_currentTranslation).setPronunciation(comm_page->getPronounce());
-            expr->translation(m_currentTranslation).setUsageLabel(comm_page->getUsageLabel());
-            expr->translation(m_currentTranslation).setType( comm_page->getType() );
-
-            for (int j = 0; j < expr->translationCount(); j++) {
-kDebug() << "j: " << j;
-                if (expr->translation(j).type().isEmpty())
-                    expr->translation(j).setType( comm_page->getType() );
-            }
-
-            for (int j = 0; j < expr->translationCount(); j++) {
-                if (KVTQuery::getMainType(expr->translation(j).type())
-                        !=
-                        KVTQuery::getMainType(comm_page->getType()))
-                    expr->translation(j).setType(comm_page->getType());
-            }
-
-
 
             expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
             expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());
@@ -446,10 +407,6 @@ kDebug() << "j: " << j;
             expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page ? to_page->getDate() : QDateTime() );
         }
 
-
-        expr->setActive(comm_page->getActive());
-
-
     } else {
         foreach(QModelIndex selIndex, m_selection) {
             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
@@ -474,20 +431,6 @@ kDebug() << "j: " << j;
                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate(from_page->getDate());
                 if (to_page->dateIsModified())
                     expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( to_page->getDate());
-                if (comm_page->usageIsModified())
-                    for (int j = 0; j < expr->translationCount(); j++)
-                        expr->translation(j).setUsageLabel(comm_page->getUsageLabel());
-                if (comm_page->typeIsModified())
-                    for (int j = 0; j < expr->translationCount(); j++)
-                        expr->translation(j).setType(comm_page->getType());
-            }
-
-            if (comm_page->activeIsModified())
-                expr->setActive(comm_page->getActive());
-
-            if (comm_page->lessonIsModified()) {
-                //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
-                expr->setLesson(comm_page->getLesson());
             }
         }
     }

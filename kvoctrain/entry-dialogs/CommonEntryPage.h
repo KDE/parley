@@ -39,48 +39,13 @@ public:
     CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
 
     void setData(int row, int col, const QModelIndexList & selection);
+    void commitData();
 
-    int     getLesson() const
-    {
-        return lesson;
-    }
     QString getType() const
     {
         return m_type;
     }
-    QString getExpr() const
-    {
-        return expression;
-    }
-    QString getPronounce() const
-    {
-        return m_pronounce;
-    }
-    QString getUsageLabel() const
-    {
-        return usageCollection;
-    }
-    bool    getActive() const
-    {
-        return m_entry_active;
-    }
 
-    bool usageIsModified()
-    {
-        return m_usageIsModified;
-    }
-    bool typeIsModified()
-    {
-        return m_typeIsModified;
-    }
-    bool lessonIsModified()
-    {
-        return m_lessonIsModified;
-    }
-    bool activeIsModified()
-    {
-        return m_activeIsModified;
-    }
     bool isModified();
     void setModified(bool mod = true);
     void setEnabled(int enable_type);
@@ -88,12 +53,12 @@ public:
 signals:
     void typeSelected(const QString &);
 
-protected:
+private:
     void setTypeBox(const QString &act_type);
     void setLessonBox(int lesson);
     void setUsageBox(const QString & act_type);
 
-protected slots:
+private slots:
     void slotLessonSelected(int);
     void slotExprSelected(const QString&);
     void slotTypeSelected(int);
@@ -110,11 +75,11 @@ protected slots:
 signals:
     void sigModified();
 
-protected:
+private:
     QString              m_pronounce;
-    QString              expression;
-    QString              usageCollection;
-    int                  lesson;
+    QString              m_expression;
+    QString              m_usageCollection;
+    int                  m_lesson;
     QString              m_type;
     KEduVocDocument     *m_doc;
     bool                 m_entry_active;
