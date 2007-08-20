@@ -125,8 +125,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 void EntryDlg::setModified(bool mod)
 {
     commonPage->setModified(mod);
-    mc_page->setModified(mod);
-    mc_page->setModified(mod);
     if (from_page != 0)
         from_page->setModified(mod);
     if (to_page != 0)
@@ -320,14 +318,13 @@ void EntryDlg::updateData()
         comparisonPage->clear();
         conjugationPage->clear();
         additionalPage->clear();
+        mc_page->clear();
     } else {
         comparisonPage->setData( m_currentRow, m_currentTranslation );
         conjugationPage->setData( m_currentRow, m_currentTranslation );
         additionalPage->setData( m_currentRow, m_currentTranslation );
+        mc_page->setData( m_currentRow, m_currentTranslation );
     }
-
-    mc_page->setData(
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice());
 
 // for now use the old grading system only to/from original
 // these are only valid if we edit a translation > 0. Otherwise they are disabled
@@ -445,10 +442,7 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
             additionalPage->commitData();
             conjugationPage->commitData();
             comparisonPage->commitData();
-//             mc_page->commitData();
-
-
-            expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
+            mc_page->commitData();
 
             expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));
             expr->translation(0).setFalseFriend(m_currentTranslation, to_page->getFauxAmi());

@@ -37,30 +37,30 @@ class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 public:
     MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
+    void setData(int row, int col);
+    void commitData();
+    void clear();
+
     void setData(const KEduVocMultipleChoice &mc);
 
-    KEduVocMultipleChoice getMultipleChoice() const
-    {
-        return multiplechoice;
-    }
+//     KEduVocMultipleChoice getMultipleChoice() const
+//     {
+//         return multiplechoice;
+//     }
 
     bool isModified();
-    void setModified(bool mod = true);
+//     void setModified(bool mod = true);
 
 signals:
     void sigModified();
 
-protected slots:
-    void mc1Changed(const QString&);
-    void mc2Changed(const QString&);
-    void mc3Changed(const QString&);
-    void mc4Changed(const QString&);
-    void mc5Changed(const QString&);
+private slots:
+    void slotDataChanged(const QString&);
 
-protected:
-    KEduVocMultipleChoice  multiplechoice;
-    bool                   modified;
+private:
     KEduVocDocument     *m_doc;
+    int m_currentRow;
+    int m_currentTranslation;
 };
 
 #endif // MCEntryPage_included

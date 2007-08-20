@@ -36,74 +36,83 @@ MCEntryPage::MCEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent
 
     setupUi(this);
 
-    connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(mc1Changed(const QString&)));
-    connect(mc2Field, SIGNAL(textChanged(const QString&)), SLOT(mc2Changed(const QString&)));
-    connect(mc3Field, SIGNAL(textChanged(const QString&)), SLOT(mc3Changed(const QString&)));
-    connect(mc4Field, SIGNAL(textChanged(const QString&)), SLOT(mc4Changed(const QString&)));
-    connect(mc5Field, SIGNAL(textChanged(const QString&)), SLOT(mc5Changed(const QString&)));
+    connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(mc2Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(mc3Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(mc4Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(mc5Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
 }
 
 
-void MCEntryPage::setData(const KEduVocMultipleChoice &mc)
+void MCEntryPage::slotDataChanged(const QString&)
 {
-    multiplechoice = mc;
+    emit sigModified();
+}
+
+
+bool MCEntryPage::isModified()
+{
+    if ( m_currentRow < 0 ) {
+        return false;
+    }
+    if ( m_currentTranslation < 0 ) {
+        return false;
+    }
+
+    KEduVocMultipleChoice mc = m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice();
+
+    if ( mc.choice(1) != mc1Field->text() ) {
+        return true;
+    }
+    if ( mc.choice(2) != mc2Field->text() ) {
+        return true;
+    }
+    if ( mc.choice(3) != mc3Field->text() ) {
+        return true;
+    }
+    if ( mc.choice(4) != mc4Field->text() ) {
+        return true;
+    }
+    if ( mc.choice(5) != mc5Field->text() ) {
+        return true;
+    }
+    return false;
+}
+
+
+///@todo the lib now supports an arbitrary number of entries for multiple choice. We should reflect that and have a list rather than five fixed entries.
+void MCEntryPage::setData(int row, int col)
+{
+    m_currentRow = row;
+    m_currentTranslation = col;
+    KEduVocMultipleChoice mc = m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice();
 
     mc1Field->setText(mc.choice(1));
     mc2Field->setText(mc.choice(2));
     mc3Field->setText(mc.choice(3));
     mc4Field->setText(mc.choice(4));
     mc5Field->setText(mc.choice(5));
-
-    setModified(false);
 }
 
-
-void MCEntryPage::mc1Changed(const QString& s)
+void MCEntryPage::commitData()
 {
-    setModified(true);
-    multiplechoice.setChoice(1, s);
+    KEduVocMultipleChoice mc = KEduVocMultipleChoice();
+    mc.setChoice(1, mc1Field->text());
+    mc.setChoice(2, mc2Field->text());
+    mc.setChoice(3, mc3Field->text());
+    mc.setChoice(4, mc4Field->text());
+    mc.setChoice(5, mc5Field->text());
+
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setMultipleChoice(mc);
 }
 
-
-void MCEntryPage::mc2Changed(const QString& s)
+void MCEntryPage::clear()
 {
-    setModified(true);
-    multiplechoice.setChoice(2, s);
-}
-
-
-void MCEntryPage::mc3Changed(const QString& s)
-{
-    setModified(true);
-    multiplechoice.setChoice(3, s);
-}
-
-
-void MCEntryPage::mc4Changed(const QString& s)
-{
-    setModified(true);
-    multiplechoice.setChoice(4, s);
-}
-
-
-void MCEntryPage::mc5Changed(const QString& s)
-{
-    setModified(true);
-    multiplechoice.setChoice(5, s);
-}
-
-
-bool MCEntryPage::isModified()
-{
-    return modified;
-}
-
-
-void MCEntryPage::setModified(bool mod)
-{
-    modified = mod;
-    if (mod)
-        emit sigModified();
+    mc1Field->setText(QString());
+    mc2Field->setText(QString());
+    mc3Field->setText(QString());
+    mc4Field->setText(QString());
+    mc5Field->setText(QString());
 }
 
 
