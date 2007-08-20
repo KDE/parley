@@ -378,7 +378,7 @@ void KVocTrainApp::slotNewEntry()
     m_tableModel->appendEntry(entry);
 
     m_tableView->selectionModel()->setCurrentIndex(
-       m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_ORG),
+       m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_TRANS),
        QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 
     // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
@@ -914,8 +914,8 @@ void KVocTrainApp::slotEditPaste()
             QStringList sl = s.split('\t', QString::KeepEmptyParts);
 
             for (int i = 0; i < sl.count(); ++i) {
-                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), sl[i], Qt::EditRole);
-                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_ORG), m_doc->currentLesson(), KVTTableModel::LessonRole);
+                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_TRANS), sl[i], Qt::EditRole);
+                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_TRANS), m_doc->currentLesson(), KVTTableModel::LessonRole);
             }
         }
     }

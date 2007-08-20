@@ -232,7 +232,7 @@ void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & op
     if (Prefs::useGradeCol()) {
         QColor color = KV_NORM_COLOR;
 
-        if (index.column() > KV_COL_ORG) {
+        if (index.column() > KV_COL_TRANS) {
             color = Prefs::gradeCol(0);
             switch (index.model()->data(index, KVTTableModel::GradeRole).toInt()) {
             case KV_NORM_GRADE:
@@ -262,7 +262,7 @@ void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & op
             default           :
                 color = Prefs::gradeCol(1);
             }
-        } else if (index.column() == KV_COL_ORG) {
+        } else if (index.column() == KV_COL_TRANS) {
             color = Prefs::gradeCol(0);
             QList<QVariant> result = index.model()->data(index, KVTTableModel::GradeRole).toList();
 

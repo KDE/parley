@@ -518,12 +518,13 @@ void KVocTrainApp::initView()
     m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
-    int cc = Prefs::currentCol();
-    int cr = Prefs::currentRow();
-    if (cc <= KV_COL_LESS)
-        cc = KV_COL_ORG;
+    int currentColumn = Prefs::currentCol();
+    int currentRow = Prefs::currentRow();
+    if (currentColumn <= KV_COL_LESS) {
+        currentColumn = KV_COL_TRANS;
+    }
 
-    m_tableView->setCurrentIndex(m_tableModel->index(cr, cc));
+    m_tableView->setCurrentIndex(m_tableModel->index(currentRow, currentColumn));
     m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
     setCaption(m_doc->url().fileName(), false);

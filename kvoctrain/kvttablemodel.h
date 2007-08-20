@@ -32,8 +32,7 @@
 
 #define KV_COL_LESS      0   // col: lesson number
 #define KV_COL_MARK      1   // col: mark
-#define KV_COL_ORG       2   // col: original
-#define KV_COL_TRANS     3   // col: first translation
+#define KV_COL_TRANS     2   // col: first translation
 
 // To enable use of KEduVocExpression* in a QVariant
 Q_DECLARE_METATYPE ( KEduVocExpression* )

@@ -236,7 +236,7 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
             remainder -= x;
             header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
             remainder -= KV_COLWIDTH_MARK;
-            for (int i = KV_COL_ORG; i < colCount - 1; i++) {
+            for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
                 remainder -= 2 * x;
                 header->resizeSection(i, 2 * x);
             }
@@ -253,7 +253,7 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
             header->resizeSection(KV_COL_LESS, x);
             remainder -= x;
 
-            for (int i = KV_COL_ORG; i < colCount - 1; i++) {
+            for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
                 x = qMax(HEADER_MINSIZE, (int)((header->sectionSize(i) * grow) + 0.5));
                 remainder -= x;
                 header->resizeSection(i, x);
