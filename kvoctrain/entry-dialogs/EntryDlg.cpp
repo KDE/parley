@@ -40,7 +40,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 {
     setButtons(User1|User2|User3|Apply|Close);
     setDefaultButton(Apply);
-    setFaceType(KPageDialog::Tabbed);
+    setFaceType(KPageDialog::List);
     setModal(false);
     setButtonGuiItem(User1, KGuiItem(i18n("&Reset")));
     setButtonGuiItem(User2, KGuiItem(QString(), "view-left-right"));
@@ -56,25 +56,25 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     m_doc = doc;
 
     comm_page = new CommonEntryPage(m_doc, this);
-    addPage(comm_page, i18n("Co&mmon"));
+    addPage(comm_page, i18n("Common"));
 
     aux_page = new AuxInfoEntryPage(m_doc, this);
-    addPage(aux_page, i18n("A&dditional"));
+    addPage(aux_page, i18n("Additional"));
 
     mc_page = new MCEntryPage(m_doc, this);
-    addPage(mc_page, i18n("&Multiple Choice"));
+    addPage(mc_page, i18n("Multiple Choice"));
 
     tense_page = new TenseEntryPage(m_doc, this);
-    addPage(tense_page, i18n("Con&jugation"));
+    addPage(tense_page, i18n("Conjugation"));
 
     adj_page = new AdjEntryPage(m_doc, this);
-    addPage(adj_page, i18n("Compar&ison"));
+    addPage(adj_page, i18n("Comparison"));
 
     from_page = new FromToEntryPage(m_doc, this);
-    addPage(from_page, i18n("&From Original"));
+    addPage(from_page, i18n("From Original"));
 
     to_page = new FromToEntryPage(m_doc, this);
-    addPage(to_page, i18n("&To Original"));
+    addPage(to_page, i18n("To Original"));
 
     connect(comm_page, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
 
