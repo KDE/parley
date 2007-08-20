@@ -125,7 +125,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 void EntryDlg::setModified(bool mod)
 {
     commonPage->setModified(mod);
-    additionalPage->setModified(mod);
     mc_page->setModified(mod);
     mc_page->setModified(mod);
     if (from_page != 0)
@@ -320,17 +319,12 @@ void EntryDlg::updateData()
     if(editMultipleRows) {
         comparisonPage->clear();
         conjugationPage->clear();
+        additionalPage->clear();
     } else {
         comparisonPage->setData( m_currentRow, m_currentTranslation );
         conjugationPage->setData( m_currentRow, m_currentTranslation );
+        additionalPage->setData( m_currentRow, m_currentTranslation );
     }
-
-    additionalPage->setData(
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).example(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment(),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
 
     mc_page->setData(editMultipleRows,
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice());
@@ -448,17 +442,11 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
             //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
 
 
-//             additonalPage->commitData();
+            additionalPage->commitData();
             conjugationPage->commitData();
             comparisonPage->commitData();
 //             mc_page->commitData();
 
-
-            expr->translation(m_currentTranslation).setComment(additionalPage->getRemark());
-            expr->translation(m_currentTranslation).setSynonym(additionalPage->getSynonym());
-            expr->translation(m_currentTranslation).setAntonym(additionalPage->getAntonym());
-            expr->translation(m_currentTranslation).setExample(additionalPage->getExample());
-            expr->translation(m_currentTranslation).setParaphrase(additionalPage->getParaphrase());
 
             expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
 

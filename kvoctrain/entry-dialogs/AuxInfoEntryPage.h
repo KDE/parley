@@ -36,37 +36,23 @@ class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 public:
     AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para);
 
-    QString getSynonym();
-    QString getAntonym();
-    QString getExample();
-    QString getRemark();
-    QString getParaphrase();
+    void setData(int row, int col);
+    void commitData();
+    void clear();
 
     bool isModified();
-    void setModified(bool mod = true);
 
 signals:
     void sigModified();
 
-protected slots:
-    void slotAntonymSelected();
-    void slotSynonymSelected();
-    void slotExampSelected();
-    void slotRemarkSelected();
-    void slotParaSelected();
+private slots:
+    void slotDataChanged();
 
-protected:
-    QString synonym;
-    QString antonym;
-    QString example;
-    QString remark;
-    QString paraphrase;
-    bool    modified;
-    bool    m_largeSelection;
-
+private:
     KEduVocDocument     *m_doc;
+    int m_currentRow;
+    int m_currentTranslation;
 };
 
 #endif // AuxInfoEntryPage_included
