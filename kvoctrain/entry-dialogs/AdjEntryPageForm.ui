@@ -19,10 +19,22 @@
    <string>-</string>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="1" column="0" >
@@ -44,18 +56,28 @@
       <string>Comparison of Adjectives</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>8</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>8</number>
+      </property>
+      <property name="rightMargin" >
+       <number>8</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>8</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="2" column="1" >
        <widget class="QLineEdit" name="lev3Field" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -65,15 +87,16 @@
       <item row="2" column="0" >
        <widget class="QLabel" name="lev3Label" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip" >
+         <string>The superlative (fastest)</string>
+        </property>
         <property name="text" >
-         <string>Level &amp;3:</string>
+         <string>&amp;3. Superlative:</string>
         </property>
         <property name="buddy" >
          <cstring>lev3Field</cstring>
@@ -83,9 +106,7 @@
       <item row="1" column="1" >
        <widget class="QLineEdit" name="lev2Field" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -95,15 +116,16 @@
       <item row="1" column="0" >
        <widget class="QLabel" name="lev2Label" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip" >
+         <string>The comparative is used to compare nouns or verbs (faster)</string>
+        </property>
         <property name="text" >
-         <string>Level &amp;2:</string>
+         <string>&amp;2. Comparative:</string>
         </property>
         <property name="buddy" >
          <cstring>lev2Field</cstring>
@@ -113,15 +135,16 @@
       <item row="0" column="0" >
        <widget class="QLabel" name="lev1Label" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>1</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="toolTip" >
+         <string>The base for of the adjectiv or adverb (fast)</string>
+        </property>
         <property name="text" >
-         <string>Level &amp;1:</string>
+         <string>&amp;1. Absolute:</string>
         </property>
         <property name="buddy" >
          <cstring>lev1Field</cstring>
@@ -131,9 +154,7 @@
       <item row="0" column="1" >
        <widget class="QLineEdit" name="lev1Field" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>5</vsizetype>
+         <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
