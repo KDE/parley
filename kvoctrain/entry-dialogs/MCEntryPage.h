@@ -46,7 +46,6 @@ public:
 
     bool isModified();
     void setModified(bool mod = true);
-    void setEnabled(int enable_type);
 
 signals:
     void sigModified();

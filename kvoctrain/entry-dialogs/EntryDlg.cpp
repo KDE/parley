@@ -55,39 +55,62 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     m_doc = doc;
 
-    comm_page = new CommonEntryPage(m_doc, this);
-    addPage(comm_page, i18n("Common"));
+    commonPage = new CommonEntryPage(m_doc, this);
+    commonPageWidget = new KPageWidgetItem( commonPage, i18n( "Common" ) );
+    commonPageWidget->setHeader( i18n( "General properties of the word" ) );
+    commonPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(commonPageWidget);
 
-    aux_page = new AuxInfoEntryPage(m_doc, this);
-    addPage(aux_page, i18n("Additional"));
+    additionalPage = new AuxInfoEntryPage(m_doc, this);
+    additionalPageWidget = new KPageWidgetItem( additionalPage, i18n( "Additional" ) );
+    additionalPageWidget->setHeader( i18n( "Additional properties" ) );
+    additionalPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(additionalPageWidget);
 
     mc_page = new MCEntryPage(m_doc, this);
-    addPage(mc_page, i18n("Multiple Choice"));
+    multipleChoicePageWidget = new KPageWidgetItem( mc_page, i18n( "Multiple Choice" ) );
+    multipleChoicePageWidget->setHeader( i18n( "Predetermined multiple choice suggestions" ) );
+    multipleChoicePageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(multipleChoicePageWidget);
 
-    tense_page = new TenseEntryPage(m_doc, this);
-    addPage(tense_page, i18n("Conjugation"));
+    conjugationPage = new TenseEntryPage(m_doc, this);
+    //addPage(conjugationPage, i18n("Conjugation"));
+    conjugationPageWidget = new KPageWidgetItem( conjugationPage, i18n( "Conjugation" ) );
+    conjugationPageWidget->setHeader( i18n( "Conjugation of the selected verb" ) );
+    conjugationPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(conjugationPageWidget);
 
-    adj_page = new AdjEntryPage(m_doc, this);
-    addPage(adj_page, i18n("Comparison"));
+    comparisonPage = new AdjEntryPage(m_doc, this);
+    //addPage(comparisonPage, i18n("Comparison"));
+    comparisonPageWidget = new KPageWidgetItem( comparisonPage, i18n( "Comparison" ) );
+    comparisonPageWidget->setHeader( i18n( "Comparison forms of the selected adjective or adverb" ) );
+    comparisonPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(comparisonPageWidget);
 
     from_page = new FromToEntryPage(m_doc, this);
-    addPage(from_page, i18n("From Original"));
+    fromPageWidget = new KPageWidgetItem( from_page,  i18n("From Original") );
+    fromPageWidget->setHeader( i18n( "Grades when asked to type in this language" ) );
+    fromPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(fromPageWidget);
 
     to_page = new FromToEntryPage(m_doc, this);
-    addPage(to_page, i18n("To Original"));
+    toPageWidget = new KPageWidgetItem( to_page, i18n( "To Original" ) );
+    toPageWidget->setHeader( i18n( "Grades when asked to enter the original language" ) );
+    toPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    addPage(toPageWidget);
 
-    connect(comm_page, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
+    connect(commonPage, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
     connect(this, SIGNAL(user2Clicked()), this, SLOT(slotDockVertical()));
     connect(this, SIGNAL(user3Clicked()), this, SLOT(slotDockHorizontal()));
 
-    connect(comm_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(aux_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(adj_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(comparisonPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
     connect(mc_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(tense_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(conjugationPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
 
     connect(from_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
     connect(to_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
@@ -95,16 +118,15 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     enableButtonApply(false);
     enableButton(User1, false);
     setModified(false);
-    comm_page->expr_line->setFocus();
+    commonPage->expr_line->setFocus();
 }
 
 
 void EntryDlg::setModified(bool mod)
 {
-    comm_page->setModified(mod);
-    aux_page->setModified(mod);
+    commonPage->setModified(mod);
+    additionalPage->setModified(mod);
     mc_page->setModified(mod);
-    tense_page->setModified(mod);
     mc_page->setModified(mod);
     if (from_page != 0)
         from_page->setModified(mod);
@@ -114,12 +136,12 @@ void EntryDlg::setModified(bool mod)
     enableButton(User1, false);
 }
 
-
+/*
 void EntryDlg::setEnabled(int enable)
 {
 
 kDebug() << " EntryDlg::setEnabled() " << m_currentTranslation;
-    QString type = comm_page->getType();
+    QString type = commonPage->getType();
     QString main;
     int pos;
     if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
@@ -129,26 +151,26 @@ kDebug() << " EntryDlg::setEnabled() " << m_currentTranslation;
     }
 
     if ( m_selection.count() == 1 && m_currentTranslation >= 0 ) {
-        adj_page->setEnabled(main == QM_ADJ);
+        comparisonPage->setEnabled(main == QM_ADJ);
     } else {
-        adj_page->setEnabled(false);
+        comparisonPage->setEnabled(false);
     }
 
     if (enable == EnableOnlyOriginal) {
-        comm_page->setEnabled(EnableAll);
-        aux_page->setEnabled(EnableAll);
+        commonPage->setEnabled(EnableAll);
+        additonalPage->setEnabled(EnableAll);
         mc_page->setEnabled(EnableAll);
-        tense_page->setEnabled(main == QM_VERB ? EnableAll : EnableNone);
+        conjugationPage->setEnabled(main == QM_VERB ? EnableAll : EnableNone);
         mc_page->setEnabled(EnableAll);
         if (from_page != 0)
             from_page->setEnabled(EnableNone);
         if (to_page != 0)
             to_page->setEnabled(EnableNone);
     } else {
-        comm_page->setEnabled(enable);
-        aux_page->setEnabled(enable);
+        commonPage->setEnabled(enable);
+        additonalPage->setEnabled(enable);
         mc_page->setEnabled(enable);
-        tense_page->setEnabled(main == QM_VERB ? enable : EnableNone);
+        conjugationPage->setEnabled(main == QM_VERB ? enable : EnableNone);
         mc_page->setEnabled(enable);
         if (from_page != 0)
             from_page->setEnabled(enable);
@@ -156,7 +178,7 @@ kDebug() << " EntryDlg::setEnabled() " << m_currentTranslation;
             to_page->setEnabled(enable);
     }
 }
-
+*/
 
 void EntryDlg::slotApply()
 {
@@ -172,19 +194,30 @@ void EntryDlg::slotUndo()
 
 bool EntryDlg::isModified()
 {
-    bool mod = comm_page->isModified()
-               || aux_page->isModified()
-               || tense_page->isModified()
-               || mc_page->isModified()
-               || adj_page->isModified();
+    bool modified = false;
 
-    if (from_page != 0)
-        mod |= from_page->isModified();
-
-    if (to_page != 0)
-        mod |= to_page->isModified();
-
-    return mod;
+    if( commonPage->isModified() ) {
+        modified = true;
+    }
+    if( additionalPage->isModified() ) {
+        modified = true;
+    }
+    if( conjugationPage->isModified() ) {
+        modified = true;
+    }
+    if( mc_page->isModified() ) {
+        modified = true;
+    }
+    if( comparisonPage->isModified() ) {
+        modified = true;
+    }
+    if( from_page->isModified() ) {
+        modified = true;
+    }
+    if( to_page->isModified() ) {
+        modified = true;
+    }
+    return modified;
 }
 
 
@@ -267,6 +300,7 @@ void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndex
     updateData();
 }
 
+
 void EntryDlg::updateData()
 {
     QString title;
@@ -281,13 +315,17 @@ void EntryDlg::updateData()
 
     bool editMultipleRows = (m_selection.count() > 1);
 
-    comm_page->setData(m_currentRow, m_currentTranslation, m_selection);
+    commonPage->setData(m_currentRow, m_currentTranslation, m_selection);
 
-    if ( !editMultipleRows ) {
-        adj_page->setData( m_currentRow, m_currentTranslation );
+    if(editMultipleRows) {
+        comparisonPage->clear();
+        conjugationPage->clear();
+    } else {
+        comparisonPage->setData( m_currentRow, m_currentTranslation );
+        conjugationPage->setData( m_currentRow, m_currentTranslation );
     }
 
-    aux_page->setData(editMultipleRows,
+    additionalPage->setData(
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym(),
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym(),
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).example(),
@@ -296,14 +334,11 @@ void EntryDlg::updateData()
 
     mc_page->setData(editMultipleRows,
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice());
-    tense_page->setData(editMultipleRows,
-        m_doc->conjugation(m_currentTranslation),
-        m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugation());
 
 // for now use the old grading system only to/from original
 // these are only valid if we edit a translation > 0. Otherwise they are disabled
-    if (from_page != 0)
-        from_page->setData(editMultipleRows,
+
+    from_page->setData(editMultipleRows,
             m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).grade(),
             m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryDate(),
             m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryCount(),
@@ -311,8 +346,7 @@ void EntryDlg::updateData()
             m_doc->entry(m_currentRow)->translation(m_currentTranslation).falseFriend(0),
             i18n("Properties From Original"));
 
-    if (to_page != 0)
-        to_page->setData(editMultipleRows,
+    to_page->setData(editMultipleRows,
             m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).grade(),
             m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryDate(),
             m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryCount(),
@@ -322,38 +356,63 @@ void EntryDlg::updateData()
 
     setModified(false);
     updatePages( m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() );
-
-    EntryDlg::EnableType et;
-
-    if (m_currentTranslation < 0)
-        et = EntryDlg::EnableOnlyCommon;
-    else if (m_currentTranslation == 0)
-        et = EntryDlg::EnableOnlyOriginal;
-    else
-        et = EntryDlg::EnableAll;
-
-    setEnabled(et);
 }
 
 
 void EntryDlg::updatePages(const QString &type)
 {
+    // we always have the common page enabled
+
+    // no translation selected (index < 0) leaves only common
+    if ( m_currentTranslation < 0 ) {
+        kDebug() << "EntryDlg::updatePages() trans index < 0";
+        // remove all pages that are currently there
+        additionalPageWidget->setEnabled(false);
+        multipleChoicePageWidget->setEnabled(false);
+        conjugationPageWidget->setEnabled(false);
+        comparisonPageWidget->setEnabled(false);
+        fromPageWidget->setEnabled(false);
+        toPageWidget->setEnabled(false);
+        return;
+    }
+
+    // multiple selection: have only common and grading pages
+    if ( m_selection.count() > 1 ) {
+        kDebug() << "EntryDlg::updatePages() count > 1";
+        additionalPageWidget->setEnabled(false);
+        multipleChoicePageWidget->setEnabled(false);
+        conjugationPageWidget->setEnabled(false);
+        comparisonPageWidget->setEnabled(false);
+        fromPageWidget->setEnabled(true);
+        toPageWidget->setEnabled(true);
+        return;
+    }
+
+    fromPageWidget->setEnabled(true);
+    toPageWidget->setEnabled(true);
+
+    // only one entry selected - now add entry specific pages
+    additionalPageWidget->setEnabled(true);
+    multipleChoicePageWidget->setEnabled(true);
+
     QString main;
     int pos;
-    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0)   // only use main type
+    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
         main = type;
-    else
+    } else {
         main = type.left(pos);
+    }
 
     if (main == QM_VERB) {
-        tense_page->setEnabled(EntryDlg::EnableAll);
-        adj_page->setEnabled(EntryDlg::EnableNone);
-    } else if (main == QM_ADJ) {
-        tense_page->setEnabled(EntryDlg::EnableNone);
-        adj_page->setEnabled(EntryDlg::EnableAll);
+        conjugationPageWidget->setEnabled(true);
     } else {
-        tense_page->setEnabled(EntryDlg::EnableNone);
-        adj_page->setEnabled(EntryDlg::EnableNone);
+        conjugationPageWidget->setEnabled(false);
+    }
+
+    if (main == QM_ADJ) {
+        comparisonPageWidget->setEnabled(true);
+    } else {
+        comparisonPageWidget->setEnabled(false);
     }
 }
 
@@ -377,8 +436,7 @@ void EntryDlg::commitData(bool force)
         }
     }
 
-    comm_page->commitData();
-
+    commonPage->commitData();
 
     int hasSel = m_selection.count() > 1;
 
@@ -390,18 +448,18 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
             //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
 
 
-//             aux_page->commitData();
-//             tense_page->commitData();
-            adj_page->commitData();
+//             additonalPage->commitData();
+            conjugationPage->commitData();
+            comparisonPage->commitData();
 //             mc_page->commitData();
 
-            expr->translation(m_currentTranslation).setComment(aux_page->getRemark());
-            expr->translation(m_currentTranslation).setSynonym(aux_page->getSynonym());
-            expr->translation(m_currentTranslation).setAntonym(aux_page->getAntonym());
-            expr->translation(m_currentTranslation).setExample(aux_page->getExample());
-            expr->translation(m_currentTranslation).setParaphrase(aux_page->getParaphrase());
 
-            expr->translation(m_currentTranslation).setConjugation(tense_page->getConjugation());
+            expr->translation(m_currentTranslation).setComment(additionalPage->getRemark());
+            expr->translation(m_currentTranslation).setSynonym(additionalPage->getSynonym());
+            expr->translation(m_currentTranslation).setAntonym(additionalPage->getAntonym());
+            expr->translation(m_currentTranslation).setExample(additionalPage->getExample());
+            expr->translation(m_currentTranslation).setParaphrase(additionalPage->getParaphrase());
+
             expr->translation(m_currentTranslation).setMultipleChoice(mc_page->getMultipleChoice());
 
             expr->translation(m_currentTranslation).setFalseFriend(0, from_page ? from_page->getFauxAmi() : QString(""));
@@ -451,5 +509,6 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
     setModified(false);
     m_doc->setModified(true);
 }
+
 
 #include "EntryDlg.moc"

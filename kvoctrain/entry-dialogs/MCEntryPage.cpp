@@ -54,15 +54,6 @@ void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
     mc4Field->setText(mc.choice(4));
     mc5Field->setText(mc.choice(5));
 
-    m_largeSelection = multi_sel;
-    if (m_largeSelection) {
-        mc1Field->setEnabled(false);
-        mc2Field->setEnabled(false);
-        mc3Field->setEnabled(false);
-        mc4Field->setEnabled(false);
-        mc5Field->setEnabled(false);
-    }
-
     setModified(false);
 }
 
@@ -115,17 +106,5 @@ void MCEntryPage::setModified(bool mod)
         emit sigModified();
 }
 
-
-void MCEntryPage::setEnabled(int enable)
-{
-    bool ena = enable == EntryDlg::EnableAll;
-    if (m_largeSelection)
-        ena = false;
-    mc1Field->setEnabled(ena);
-    mc2Field->setEnabled(ena);
-    mc3Field->setEnabled(ena);
-    mc4Field->setEnabled(ena);
-    mc5Field->setEnabled(ena);
-}
 
 #include "MCEntryPage.moc"

@@ -33,8 +33,7 @@
 AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
-    m_currentRow = -1;
-    m_currentTranslation = -1;
+
 
     setupUi(this);
 
@@ -106,6 +105,13 @@ void AdjEntryPage::commitData()
     comp.setL3(lev3Field->text());
 
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComparison( comp );
+}
+
+void AdjEntryPage::clear()
+{
+    lev1Field->setText(QString());
+    lev2Field->setText(QString());
+    lev3Field->setText(QString());
 }
 
 #include "AdjEntryPage.moc"

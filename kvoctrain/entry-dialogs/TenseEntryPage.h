@@ -36,21 +36,16 @@ class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
 public:
     TenseEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjugations);
-
-    KEduVocConjugation getConjugation();
+    void setData(int row, int col);
+    void commitData();
+    void clear();
 
     bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(int enable_type);
 
 signals:
     void sigModified();
 
-protected:
-    void updateFields();
-
-protected slots:
+private slots:
     void secondPluralChanged(const QString&);
     void secondSingularChanged(const QString&);
     void thirdNSingularChanged(const QString&);
@@ -66,13 +61,16 @@ protected slots:
     void slotThirdPCommonToggled(bool);
     void slotNextConj();
 
-protected:
+private:
+    void updateFields();
+    void setModified(bool mod);
     KEduVocConjugation prefix;
     KEduVocConjugation conjugations;
     QString            selection;
-    bool               modified;
-    bool               m_largeSelection;
+    bool               m_modified;
     KEduVocDocument     *m_doc;
+    int m_currentRow;
+    int m_currentTranslation;
 };
 
 #endif // TenseEntryPage_included

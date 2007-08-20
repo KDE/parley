@@ -49,7 +49,7 @@ public:
 
     bool isModified();
     void setModified(bool mod = true);
-    void setEnabled(int enable_type);
+    void setEnabled(bool enable);
 
 signals:
     void typeSelected(const QString &);

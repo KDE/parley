@@ -36,7 +36,7 @@ class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
 public:
     AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(bool multi_sel, const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para);
+    void setData(const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para);
 
     QString getSynonym();
     QString getAntonym();
@@ -46,7 +46,6 @@ public:
 
     bool isModified();
     void setModified(bool mod = true);
-    void setEnabled(int enable_type);
 
 signals:
     void sigModified();

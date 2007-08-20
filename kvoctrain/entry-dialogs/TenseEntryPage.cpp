@@ -36,6 +36,8 @@
 TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
+    m_currentRow = -1;
+    m_currentTranslation = -1;
 
     setupUi(this);
 
@@ -72,19 +74,17 @@ TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(
     */
 }
 
-
-void TenseEntryPage::setData(bool multi_sel, const KEduVocConjugation &con_prefix, const KEduVocConjugation &conjug)
+void TenseEntryPage::setData(int row, int col)
 {
-    prefix = con_prefix;
+    m_currentRow = row;
+    m_currentTranslation = col;
 
-    m_largeSelection = multi_sel;
-    if (m_largeSelection)
-        tensebox->setEnabled(false);
+    prefix = m_doc->conjugation(m_currentTranslation);
 
     for (int i = 0; i <  KEduVocConjugation::tenseCount(); i++)
         tensebox->addItem(KEduVocConjugation::getName(i));
 
-    conjugations = conjug;
+    conjugations = m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugation();
     slotTenseSelected(0);
     updateFields();
 
@@ -174,43 +174,27 @@ void TenseEntryPage::thirdMPluralChanged(const QString& s)
 
 void TenseEntryPage::slotTenseSelected(int sel)
 {
-    if (m_largeSelection) {
-        b_next->setEnabled(false);
-        third_s_common->setEnabled(false);
-        third_p_common->setEnabled(false);
-        first_plural->setEnabled(false);
-        first_singular->setEnabled(false);
-        second_singular->setEnabled(false);
-        second_plural->setEnabled(false);
-        thirdF_plural->setEnabled(false);
-        thirdF_singular->setEnabled(false);
-        thirdM_singular->setEnabled(false);
-        thirdN_singular->setEnabled(false);
-        thirdN_plural->setEnabled(false);
-        thirdM_plural->setEnabled(false);
-    } else {
-        selection = KEduVocConjugation::getAbbrev(sel);
-        first_plural->setText(conjugations.pers1Plural(selection));
-        first_singular->setText(conjugations.pers1Singular(selection));
-        second_plural->setText(conjugations.pers2Plural(selection));
-        second_singular->setText(conjugations.pers2Singular(selection));
-        thirdM_plural->setText(conjugations.pers3MalePlural(selection));
-        thirdM_singular->setText(conjugations.pers3MaleSingular(selection));
-        thirdF_plural->setText(conjugations.pers3FemalePlural(selection));
-        thirdF_singular->setText(conjugations.pers3FemaleSingular(selection));
-        thirdN_plural->setText(conjugations.pers3NaturalPlural(selection));
-        thirdN_singular->setText(conjugations.pers3NaturalSingular(selection));
+    selection = KEduVocConjugation::getAbbrev(sel);
+    first_plural->setText(conjugations.pers1Plural(selection));
+    first_singular->setText(conjugations.pers1Singular(selection));
+    second_plural->setText(conjugations.pers2Plural(selection));
+    second_singular->setText(conjugations.pers2Singular(selection));
+    thirdM_plural->setText(conjugations.pers3MalePlural(selection));
+    thirdM_singular->setText(conjugations.pers3MaleSingular(selection));
+    thirdF_plural->setText(conjugations.pers3FemalePlural(selection));
+    thirdF_singular->setText(conjugations.pers3FemaleSingular(selection));
+    thirdN_plural->setText(conjugations.pers3NaturalPlural(selection));
+    thirdN_singular->setText(conjugations.pers3NaturalSingular(selection));
 
-        bool common = conjugations.pers3SingularCommon(selection);
-        third_s_common->setChecked(common);
-        thirdM_singular->setEnabled(!common);
-        thirdN_singular->setEnabled(!common);
+    bool common = conjugations.pers3SingularCommon(selection);
+    third_s_common->setChecked(common);
+    thirdM_singular->setEnabled(!common);
+    thirdN_singular->setEnabled(!common);
 
-        common = conjugations.pers3PluralCommon(selection);
-        third_p_common->setChecked(common);
-        thirdN_plural->setEnabled(!common);
-        thirdM_plural->setEnabled(!common);
-    }
+    common = conjugations.pers3PluralCommon(selection);
+    third_p_common->setChecked(common);
+    thirdN_plural->setEnabled(!common);
+    thirdM_plural->setEnabled(!common);
 }
 
 
@@ -258,13 +242,6 @@ void TenseEntryPage::slotNextConj()
 }
 
 
-KEduVocConjugation TenseEntryPage::getConjugation()
-{
-    conjugations.cleanUp();
-    return conjugations;
-}
-
-
 void TenseEntryPage::updateFields()
 {
     b_next->setEnabled(conjugations.entryCount() > 1); // next button
@@ -273,38 +250,27 @@ void TenseEntryPage::updateFields()
 
 bool TenseEntryPage::isModified()
 {
-    return modified;
+    return m_modified;
 }
-
-
-void TenseEntryPage::setEnabled(int enable)
-{
-    bool ena = enable == EntryDlg::EnableAll;
-    if (m_largeSelection)
-        ena = false;
-
-    b_next->setEnabled(ena);
-    tensebox->setEnabled(ena);
-    third_s_common->setEnabled(ena);
-    third_p_common->setEnabled(ena);
-    first_plural->setEnabled(ena);
-    first_singular->setEnabled(ena);
-    second_singular->setEnabled(ena);
-    second_plural->setEnabled(ena);
-    thirdF_plural->setEnabled(ena);
-    thirdF_singular->setEnabled(ena);
-    thirdM_singular->setEnabled(ena);
-    thirdN_singular->setEnabled(ena);
-    thirdN_plural->setEnabled(ena);
-    thirdM_plural->setEnabled(ena);
-}
-
 
 void TenseEntryPage::setModified(bool mod)
 {
-    modified = mod;
-    if (mod)
+    m_modified = mod;
+    if (mod) {
         emit sigModified();
+    }
 }
 
+void TenseEntryPage::commitData()
+{
+    conjugations.cleanUp();
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setConjugation(conjugations);
+    setModified(false);
+}
+
+void TenseEntryPage::clear()
+{
+    conjugations = KEduVocConjugation();
+    updateFields();
+}
 #include "TenseEntryPage.moc"

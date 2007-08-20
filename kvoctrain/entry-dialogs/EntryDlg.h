@@ -50,17 +50,16 @@ public:
 
     enum EditResult {EditCancel, EditApply, EditUndo, EditPageUp, EditPageDown, EditUp, EditDown, EditLeft, EditRight};
 
-    enum EnableType {EnableAll, EnableOnlyCommon, EnableNone, EnableOnlyOriginal };
-
     EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc);
 
     ~EntryDlg();
 
     bool isModified();
     void setModified(bool mod);
-    void setEnabled(int);
-
     void setData(int row, int col, const QModelIndexList & selection);
+
+    /// saves the changes to m_doc
+    void commitData(bool force);
 
 signals:
     void sigEditChoice(int);
@@ -72,31 +71,39 @@ public slots:
     void slotDockHorizontal();
     void slotDockVertical();
 
-protected slots:
+private slots:
     void updatePages(const QString &type);
 
-protected:
-    virtual void closeEvent(QCloseEvent*e);
+private:
+    void closeEvent(QCloseEvent*e);
 
+    /// reloads the expression data into the widgets
+    void updateData ();
+
+    /// The dialog pages
+    CommonEntryPage  *commonPage;
     FromToEntryPage  *from_page;
     FromToEntryPage  *to_page;
-    CommonEntryPage  *comm_page;
-    AuxInfoEntryPage *aux_page;
-    TenseEntryPage   *tense_page;
-    AdjEntryPage     *adj_page;
+    AuxInfoEntryPage *additionalPage;
+    TenseEntryPage   *conjugationPage;
+    AdjEntryPage     *comparisonPage;
     MCEntryPage      *mc_page;
+
+    /// Container for KPageDialog
+    KPageWidgetItem  *commonPageWidget;
+    KPageWidgetItem  *additionalPageWidget;
+    KPageWidgetItem  *multipleChoicePageWidget;
+    KPageWidgetItem  *comparisonPageWidget;
+    KPageWidgetItem  *conjugationPageWidget;
+    KPageWidgetItem  *fromPageWidget;
+    KPageWidgetItem  *toPageWidget;
 
     KXmlGuiWindow      *mainwin;
     QSize             oldMainSize;
     QPoint            oldMainPos;
     bool              docked;
 
-public:
-    /// saves the changes to m_doc
-    void commitData(bool force);
-private:
-    /// reloads the expression data into the widgets
-    void updateData ();
+
 
 
     KEduVocDocument *m_doc;

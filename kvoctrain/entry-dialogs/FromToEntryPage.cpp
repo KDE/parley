@@ -85,6 +85,8 @@ void FromToEntryPage::setData(bool multi_sel, grade_t _grade, const QDateTime &_
     if (m_largeSelection) {
         fauxami_line->setEnabled(false);
         valid_date = false;
+    } else {
+        fauxami_line->setEnabled(true);
     }
 
     setModified(false);
@@ -148,22 +150,6 @@ void FromToEntryPage::slotNever()
 bool FromToEntryPage::isModified()
 {
     return modified;
-}
-
-
-void FromToEntryPage::setEnabled(int enable)
-{
-    bool ena = enable == EntryDlg::EnableAll;
-
-    totalCountEdit->setEnabled(ena);
-    badCountEdit->setEnabled(ena);
-    fauxami_line->setEnabled(ena && !m_largeSelection);
-
-    never->setEnabled(ena);
-    today->setEnabled(ena);
-    gradebox->setEnabled(ena);
-
-    queryDateEdit->setEnabled(ena);
 }
 
 

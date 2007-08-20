@@ -38,6 +38,7 @@ public:
 
     void setData(int row, int col);
     void commitData();
+    void clear();
 
     bool isModified();
 

@@ -121,9 +121,6 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
 
     m_largeSelection = (m_selection.count() > 1);
     if (m_largeSelection) {
-        expr_line->setEnabled(false);
-        pronounce_line->setEnabled(false);
-        b_pronDlg->setEnabled(false);
         expr_line->setText("");
         pronounce_line->setText("");
         lesson_box->setCurrentIndex(-1);
@@ -139,18 +136,25 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
 }
 
 
-void CommonEntryPage::setEnabled(int enable)
+void CommonEntryPage::setEnabled(bool enable)
 {
-    bool ena = enable == EntryDlg::EnableAll;
-
-    usage_box->setEnabled(ena);
-    subtype_box->setEnabled(ena);
-    type_box->setEnabled(ena);
-    pronounce_line->setEnabled(ena && !m_largeSelection);
-    expr_line->setEnabled(ena && !m_largeSelection);
-    b_pronDlg->setEnabled(pronounce_line->isEnabled());
-    lesson_box->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
-    c_active->setEnabled(ena || enable == EntryDlg::EnableOnlyCommon);
+    lesson_box->setEnabled(enable);
+    c_active->setEnabled(enable);
+    if ( m_currentTranslation >= 0 ) {
+        usage_box->setEnabled(enable);
+        subtype_box->setEnabled(enable);
+        type_box->setEnabled(enable);
+        b_pronDlg->setEnabled(pronounce_line->isEnabled());
+        pronounce_line->setEnabled(enable && !m_largeSelection);
+        expr_line->setEnabled(enable && !m_largeSelection);
+    } else {
+        usage_box->setEnabled(false);
+        subtype_box->setEnabled(false);
+        type_box->setEnabled(false);
+        b_pronDlg->setEnabled(false);
+        pronounce_line->setEnabled(false);
+        expr_line->setEnabled(false);
+    }
 }
 
 

@@ -52,22 +52,13 @@ AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWid
 }
 
 
-void AuxInfoEntryPage::setData(bool multi_sel, const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para)
+void AuxInfoEntryPage::setData(const QString &syno, const QString &anto, const QString &example, const QString &remark, const QString &para)
 {
     synonym_line->setText(syno);
     antonym_line->setText(anto);
     examp_line->setText(example);
     remark_line->setText(remark);
     para_line->setText(para);
-
-    m_largeSelection = multi_sel;
-    if (m_largeSelection) {
-        synonym_line->setEnabled(false);
-        antonym_line->setEnabled(false);
-        remark_line->setEnabled(false);
-        examp_line->setEnabled(false);
-        para_line->setEnabled(false);
-    }
 
     setModified(false);
 }
@@ -141,19 +132,6 @@ QString AuxInfoEntryPage::getParaphrase()
 bool AuxInfoEntryPage::isModified()
 {
     return modified;
-}
-
-
-void AuxInfoEntryPage::setEnabled(int enable)
-{
-    bool ena = enable == EntryDlg::EnableAll;
-    if (m_largeSelection)
-        ena = false;
-    synonym_line->setEnabled(ena);
-    antonym_line->setEnabled(ena);
-    para_line->setEnabled(ena);
-    remark_line->setEnabled(ena);
-    examp_line->setEnabled(ena);
 }
 
 
