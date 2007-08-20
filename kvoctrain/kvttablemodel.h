@@ -36,7 +36,7 @@
 #define KV_COL_TRANS     3   // col: first translation
 
 // To enable use of KEduVocExpression* in a QVariant
-Q_DECLARE_METATYPE ( KEduVocExpression* );
+Q_DECLARE_METATYPE ( KEduVocExpression* )
 
 
 /**
