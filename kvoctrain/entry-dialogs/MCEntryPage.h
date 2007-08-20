@@ -37,7 +37,7 @@ class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 public:
     MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(bool multi_sel, const KEduVocMultipleChoice &mc);
+    void setData(const KEduVocMultipleChoice &mc);
 
     KEduVocMultipleChoice getMultipleChoice() const
     {
@@ -60,7 +60,6 @@ protected slots:
 protected:
     KEduVocMultipleChoice  multiplechoice;
     bool                   modified;
-    bool                   m_largeSelection;
     KEduVocDocument     *m_doc;
 };
 

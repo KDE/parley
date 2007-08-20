@@ -33,31 +33,18 @@
 AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
-
+    m_currentTranslation = -1;
+    m_currentRow = -1;
 
     setupUi(this);
 
-    connect(lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));
-    connect(lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
-    connect(lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
+    connect(lev1Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(lev2Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(lev3Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
 }
 
 
-void AdjEntryPage::lev1Changed(const QString& s)
-{
-    Q_UNUSED(s)
-    emit sigModified();
-}
-
-
-void AdjEntryPage::lev2Changed(const QString& s)
-{
-    Q_UNUSED(s)
-    emit sigModified();
-}
-
-
-void AdjEntryPage::lev3Changed(const QString& s)
+void AdjEntryPage::slotDataChanged(const QString& s)
 {
     Q_UNUSED(s)
     emit sigModified();

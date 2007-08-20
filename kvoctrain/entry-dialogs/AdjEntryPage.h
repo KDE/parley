@@ -46,9 +46,7 @@ signals:
     void sigModified();
 
 private slots:
-    void lev1Changed(const QString&);
-    void lev2Changed(const QString&);
-    void lev3Changed(const QString&);
+    void slotDataChanged(const QString&);
 
 private:
     KEduVocDocument     *m_doc;

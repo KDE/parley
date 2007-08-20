@@ -44,7 +44,7 @@ MCEntryPage::MCEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent
 }
 
 
-void MCEntryPage::setData(bool multi_sel, const KEduVocMultipleChoice &mc)
+void MCEntryPage::setData(const KEduVocMultipleChoice &mc)
 {
     multiplechoice = mc;
 

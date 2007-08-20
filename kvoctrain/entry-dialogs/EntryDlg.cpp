@@ -326,7 +326,7 @@ void EntryDlg::updateData()
         additionalPage->setData( m_currentRow, m_currentTranslation );
     }
 
-    mc_page->setData(editMultipleRows,
+    mc_page->setData(
         m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice());
 
 // for now use the old grading system only to/from original
