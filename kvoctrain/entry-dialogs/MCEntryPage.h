@@ -41,15 +41,7 @@ public:
     void commitData();
     void clear();
 
-    void setData(const KEduVocMultipleChoice &mc);
-
-//     KEduVocMultipleChoice getMultipleChoice() const
-//     {
-//         return multiplechoice;
-//     }
-
     bool isModified();
-//     void setModified(bool mod = true);
 
 signals:
     void sigModified();
