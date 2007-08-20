@@ -193,7 +193,7 @@ void KVocTrainApp::initActions()
 
     editEditEntry = actionCollection()->addAction("edit_edit_selected_area");
     editEditEntry->setIcon(KIcon("edit_table_row"));
-    editEditEntry->setText(i18n("&Edit Entry..."));
+    editEditEntry->setText(i18n("&Edit Entry"));
     connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditRow()));
     editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
     editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));

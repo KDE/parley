@@ -1,5 +1,6 @@
-<!DOCTYPE kpartgui>
-<kpartgui version="0.4" name="kvoctrain" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
+<gui name="kvoctrain"  version="0.8.3">
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />
@@ -9,12 +10,18 @@
    <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
   </Menu>
-  <Menu name="edit" >
-   <Separator/>
-   <Action name="edit_append" />
-   <Action name="edit_remove_selected_area" />
-   <Separator/>
-   <Action name="edit_edit_selected_area" />
+  <Menu name="vocabulary" >
+      <text>&amp;Vocabulary</text>
+      <Action name="vocab_show_statistics" />
+      <Action name="vocab_assign_lessons" />
+      <Action name="vocab_clean_up" />
+      <Separator/>
+      <Action name="vocab_append_language" />
+      <Action name="vocab_set_language" />
+      <Action name="vocab_remove_language" />
+      <Separator/>
+      <Action name="vocab_document_properties" />
+      <Action name="vocab_language_properties" />
   </Menu>
   <Menu name="lesson" >
    <text>&amp;Lesson</text>
@@ -27,18 +34,12 @@
    <Separator/>
    <Action name="split_lesson" />
   </Menu>
-  <Menu name="vocabulary" >
-   <text>&amp;Vocabulary</text>
-   <Action name="vocab_show_statistics" />
-   <Action name="vocab_assign_lessons" />
-   <Action name="vocab_clean_up" />
-   <Separator/>
-   <Action name="vocab_append_language" />
-   <Action name="vocab_set_language" />
-   <Action name="vocab_remove_language" />
-   <Separator/>
-   <Action name="vocab_document_properties" />
-   <Action name="vocab_language_properties" />
+  <Menu name="edit" >
+      <Separator/>
+      <Action name="edit_append" />
+      <Action name="edit_remove_selected_area" />
+      <Separator/>
+      <Action name="edit_edit_selected_area" />
   </Menu>
   <Menu name="learning" >
    <text>&amp;Learning</text>
@@ -52,6 +53,7 @@
     <Action name="config_show_lesson_column" />
   </Menu>
  </MenuBar>
+
  <ToolBar noMerge="1" name="mainToolBar" >
   <text>Main Toolbar</text>
   <Action name="file_open" />
@@ -59,13 +61,10 @@
   <Separator/>
   <Action name="edit_copy" />
   <Action name="edit_paste" />
-  <Separator name="separator_1" />
+  <Separator/>
   <Action name="new_lesson" />
   <Action name="edit_append" />
-  <Action name="vocab_lessons" />
-  <Separator name="separator_0" />
-  <Action name="edit_find" />
-  <Action name="vocab_search" />
-
+  <Separator/>
+  <Action name="edit_edit_selected_area" />
  </ToolBar>
-</kpartgui>
+</gui>
