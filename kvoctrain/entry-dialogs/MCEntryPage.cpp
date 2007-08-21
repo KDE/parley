@@ -52,10 +52,7 @@ void MCEntryPage::slotDataChanged(const QString&)
 
 bool MCEntryPage::isModified()
 {
-    if ( m_currentRow < 0 ) {
-        return false;
-    }
-    if ( m_currentTranslation < 0 ) {
+    if ( m_currentRow < 0 || m_currentTranslation < 0 ) {
         return false;
     }
 

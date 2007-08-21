@@ -54,6 +54,10 @@ AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWid
 
 bool AuxInfoEntryPage::isModified()
 {
+    if ( m_currentRow < 0 || m_currentTranslation < 0 ) {
+        return false;
+    }
+
     bool modified = false;
 
     if (synonym_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym()) {

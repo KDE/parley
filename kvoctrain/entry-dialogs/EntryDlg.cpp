@@ -141,27 +141,35 @@ void EntryDlg::slotUndo()
 
 bool EntryDlg::isModified()
 {
+    kDebug() << "Checking modified status of pages - row:" << m_currentRow << " trans: " << m_currentTranslation ;
     bool modified = false;
 
     if( commonPage->isModified() ) {
+    kDebug() << "isModified(): commonPage";
         modified = true;
     }
     if( additionalPage->isModified() ) {
+    kDebug() << "isModified(): additionalPage";
         modified = true;
     }
     if( conjugationPage->isModified() ) {
+    kDebug() << "isModified(): conjugationPage";
         modified = true;
     }
     if( mc_page->isModified() ) {
+    kDebug() << "isModified(): mc_page";
         modified = true;
     }
     if( comparisonPage->isModified() ) {
+    kDebug() << "isModified(): comparisonPage";
         modified = true;
     }
     if( fromPage->isModified() ) {
+    kDebug() << "isModified(): fromPage";
         modified = true;
     }
     if( toPage->isModified() ) {
+    kDebug() << "isModified(): toPage";
         modified = true;
     }
     return modified;
@@ -243,6 +251,8 @@ void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndex
     m_currentRow = currentRow;
     m_currentTranslation = currentTranslation;
     m_selection = selection;
+
+    kDebug() << "EntryDlg::setData() selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
 
     updateData();
 }

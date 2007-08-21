@@ -54,14 +54,16 @@ private slots:
 
     void slotToday();
     void slotNever();
-    void slotFauxAmiChanged(const QString &);
+    void slotFalseFriendChanged(const QString &);
 
     void slotDateChanged(const QDate &);
     void totalCountChanged(int);
     void badCountChanged(int);
 
 private:
-    QDateTime  getDate() const;
+    /*QDateTime  getDate() const;
+
+
     grade_t   getGrade() const
     {
         return grade;
@@ -74,10 +76,7 @@ private:
     {
         return bcount;
     }
-    QString getFauxAmi() const
-    {
-        return fauxami;
-    }
+
 
     bool dateIsModified()
     {
@@ -97,20 +96,16 @@ private:
     }
     void setModified(bool mod = true);
     void setEnabled(int enable_type);
+    */
 
-    void validate();
+//     void validate();
 
-    QString fauxami;
-    bool    valid_date;
-    grade_t grade;
-    count_t qcount;
-    count_t bcount;
-    bool    modified;
-    bool    m_largeSelection;
-    bool    m_gradeIsModified;
-    bool    m_queryCountIsModified;
-    bool    m_badCountIsModified;
-    bool    m_dateIsModified;
+//     QString fauxami;
+//     bool    valid_date;
+//     grade_t grade;
+//     count_t qcount;
+//     count_t bcount;
+
 
     KEduVocDocument     *m_doc;
     int m_currentRow;

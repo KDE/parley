@@ -45,7 +45,7 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 
     setupUi(this);
 
-    connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFauxAmiChanged(const QString &)));
+    connect(fauxami_line, SIGNAL(textChanged(const QString&)), this, SLOT(slotFalseFriendChanged(const QString &)));
 
     connect(never, SIGNAL(clicked()), this, SLOT(slotNever()));
     connect(today, SIGNAL(clicked()), this, SLOT(slotToday()));
@@ -61,93 +61,95 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 }
 
 
-void FromToEntryPage::slotFauxAmiChanged(const QString& s)
+void FromToEntryPage::slotFalseFriendChanged(const QString& s)
 {
-    setModified(true);
-    fauxami = s;
+    emit sigModified();
 }
 
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
-    setModified(true);
-    m_gradeIsModified = true;
-    grade = g;
-}
-
-
-QDateTime FromToEntryPage::getDate() const
-{
-    if (valid_date)
-        return queryDateEdit->dateTime();
-    else
-        return QDateTime();
-}
-
-
-void FromToEntryPage::validate()
-{
-    if (!valid_date)
-        valid_date = true;
+    emit sigModified();
 }
 
 
 void FromToEntryPage::slotToday()
 {
-    setModified(true);
-    m_dateIsModified = true;
     queryDateEdit->setDateTime(QDateTime::currentDateTime());
-    validate();
+    emit sigModified();
 }
 
 
 void FromToEntryPage::slotNever()
 {
-    setModified(true);
-    m_dateIsModified = true;
     queryDateEdit->setDate(queryDateEdit->minimumDate());
     queryDateEdit->setTime(queryDateEdit->minimumTime());
-    valid_date = false;
+    emit sigModified();
 }
 
 
 bool FromToEntryPage::isModified()
 {
-    return modified;
-}
-
-
-void FromToEntryPage::setModified(bool mod)
-{
-    modified = mod;
-    if (mod) {
-        emit sigModified();
+    if ( m_currentRow < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
+        return false;
     }
+
+    KEduVocExpression *entry = m_doc->entry(m_currentRow);
+
+    kDebug() << "FromToEntryPage::isModified(): entry: " << m_currentRow << " from " << m_translationFrom << " to: " << m_translationTo;
+
+    if ( m_selection.count() == 1 ) {
+        if( fauxami_line->text() != entry->translation( m_translationTo ).falseFriend( m_translationFrom ) ) {
+            return true;
+        }
+    }
+
+    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).grade()
+            != gradebox->currentIndex() ) {
+        return true;
+    }
+
+    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount()
+            != totalCountEdit->value() ) {
+        return true;
+    }
+
+    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount()
+            != badCountEdit->value() ) {
+        return true;
+    }
+
+    return false;
+/// @todo check other fields!!!
+
+
+//queryDateEdit->dateTime();
+    /*
+if ( time.toTime_t() != 0 ) {
+            valid_date = true;
+            queryDateEdit->setDateTime(time);
+        }
+    queryDateEdit->setDateTime(QDateTime());
+    QDateTime time = m_doc->entry(m_currentRow)
+        ->translation(m_translationTo).gradeFrom(m_translationFrom).queryDate();
+
+*/
 }
+
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
-    Q_UNUSED(d);
-    m_dateIsModified = true;
-    setModified(true);
-    if (!valid_date)
-        slotToday();
-
-    validate();
+    emit sigModified();
 }
 
 void FromToEntryPage::totalCountChanged(int count)
 {
-    setModified(true);
-    m_queryCountIsModified = true;
-    qcount = count;
+    emit sigModified();
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
-    setModified(true);
-    m_badCountIsModified = true;
-    bcount = count;
+    emit sigModified();
 }
 
 
@@ -158,11 +160,15 @@ void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelI
     m_translationTo = toTrans;
     m_selection = selection;
 
+    // only set Grades as title for now:
+    QString label = QString(i18n("Grades"));
+    direc_label->setTitle(label);
+
     KEduVocExpression *entry = m_doc->entry(row);
 
-    queryDateEdit->setDateTime(QDateTime());
-    QDateTime time = m_doc->entry(m_currentRow)
-        ->translation(m_translationTo).gradeFrom(m_translationFrom).queryDate();
+    queryDateEdit->setDateTime(
+        m_doc->entry(m_currentRow)->translation(m_translationTo)
+        .gradeFrom(m_translationFrom).queryDate() );
 
     if ( m_selection.count() > 1 ) {
         fauxami_line->setEnabled(false);
@@ -170,31 +176,14 @@ void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelI
     } else {
         fauxami_line->setEnabled(true);
         fauxami_line->setText(entry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
-        if ( time.toTime_t() != 0 ) {
-            valid_date = true;
-            queryDateEdit->setDateTime(time);
-        }
     }
 
-    grade = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).grade();
+    gradebox->setCurrentIndex(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
 
-    qcount = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount();
+    totalCountEdit->setValue(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
 
-    bcount = m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).badCount();
+    badCountEdit->setValue(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
 
-    gradebox->setCurrentIndex(grade);
-    totalCountEdit->setValue(qcount);
-    badCountEdit->setValue(bcount);
-
-
-    QString label = QString(i18n("Grades"));
-    direc_label->setTitle(label);
-
-    m_gradeIsModified = false;
-    m_queryCountIsModified = false;
-    m_badCountIsModified = false;
-    m_dateIsModified = false;
-    setModified(false);
 }
 
 void FromToEntryPage::commitData()
@@ -202,11 +191,21 @@ void FromToEntryPage::commitData()
 /// @todo enable writing of data for multiple selection
     KEduVocTranslation * trans = &m_doc->entry(m_currentRow)->translation(m_translationTo);
 
-    trans->setFalseFriend(m_translationFrom, getFauxAmi());
-    trans->gradeFrom(m_translationFrom).setGrade( getGrade() );
-    trans->gradeFrom(m_translationFrom).setQueryCount( getQCount() );
-    trans->gradeFrom(m_translationFrom).setBadCount( getBCount() );
-    trans->gradeFrom(m_translationFrom).setQueryDate( getDate() );
+    trans->setFalseFriend(m_translationFrom, fauxami_line->text());
+    trans->gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
+    trans->gradeFrom(m_translationFrom).setQueryCount( totalCountEdit->value() );
+    trans->gradeFrom(m_translationFrom).setBadCount( badCountEdit->value() );
+    trans->gradeFrom(m_translationFrom).setQueryDate( queryDateEdit->dateTime() );
+
+/*
+    Q_UNUSED(d);
+    m_dateIsModified = true;
+    setModified(true);
+    if (!valid_date)
+        slotToday();
+
+    validate();
+*/
 
 // } else {
 //         foreach(QModelIndex selIndex, m_selection) {

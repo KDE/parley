@@ -158,8 +158,6 @@ void KVocTrainApp::slotSelectAll()
 
 void KVocTrainApp::slotEditRow()
 {
-kDebug() << "slotEditRow()";
-
     slotEditEntry2(m_tableView->currentIndex());
 }
 
@@ -236,13 +234,14 @@ kDebug() << "slotEditEntry() " << row << ", " << col;
 
 void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 {
-kDebug() << "slotEditEntry2(const QModelIndex & index) " << index.row() << ", " << index.column();
-
     if (index.isValid()) {
-        /// @todo mapToSource seems to sometimes not work. Especially when starting KVocTrain and directly using Edit Entry without selecting anything in the table. This happens despite the index has valid row/column entries.
-        //QModelIndex docIndex = m_sortFilterModel->mapToSource(index);
-        //slotEditEntry(docIndex.row(), docIndex.column());
-        slotEditEntry(index.row(), index.column());
+        QModelIndex sourceIndex = index;
+        // this function expects an index from the original model, NOT the filter model.
+        if ( index.model() == m_sortFilterModel ) {
+            kWarning() << "Source model expected but got proxy instead.";
+            sourceIndex = m_sortFilterModel->mapToSource(index);
+        }
+        slotEditEntry(sourceIndex.row(), sourceIndex.column());
     }
 }
 
@@ -255,18 +254,27 @@ kDebug() << "setDataEntryDlg() " << row << ", " << col;
         return;
     }
 
-    if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0)) {
+    if ((row < 0) || (col < 0)) {
         return;
     }
 
     col -= KV_EXTRA_COLS;
 
-    entryDlg->setData(row, col,
-        QModelIndexList());
+    // to pass on the selection we need to translate from m_sortFilterModel to the real model
+    QModelIndexList modelIndexList;
+    modelIndexList = m_tableView->selectionModel()->selectedRows();
 
-/// FIXME reenable
-//     entryDlg->setData(row, col,
-//         m_tableView->selectionModel()->selectedRows());
+    QModelIndexList sourceModelIndexList;
+    foreach (QModelIndex modelIndex, modelIndexList) {
+        if ( modelIndex.model() == m_sortFilterModel ) {
+            kDebug() << "setDataEntryDlg(): got filter model";
+            sourceModelIndexList.append(m_sortFilterModel->mapToSource(modelIndex));
+        } else {
+            kDebug() << "setDataEntryDlg(): got source model";
+            sourceModelIndexList.append(modelIndex);
+        }
+    }
+    entryDlg->setData(row, col, sourceModelIndexList);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
