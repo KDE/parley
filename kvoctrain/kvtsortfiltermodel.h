@@ -45,9 +45,20 @@ public:
     /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
     void setLessonRegExp(const QRegExp& filter);
+
+
     void setSearchRegExp(const QRegExp& filter);
 
 public slots:
+    /**
+     * React to changes in the search line.
+     * @param s String to search for
+     */
+    void slotSearch(const QString& s);
+
+    /**
+     * Put entries in the order they are in the file.
+     */
     void restoreNativeOrder();
 
 protected:

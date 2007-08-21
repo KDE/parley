@@ -153,8 +153,6 @@ public slots:
     void slotCancelSelection();
     void slotSelectAll();
     void slotProgress(KEduVocDocument*,int);
-    /** Use this to filter out stuff - access from search line. */
-    void slotSearch(const QString&);
 
     // was never used: void slotCreateLesson(int header);
     void slotCleanVocabulary();

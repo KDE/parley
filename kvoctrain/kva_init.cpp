@@ -481,7 +481,7 @@ void KVocTrainApp::initView()
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
-    connect(m_searchLine, SIGNAL(textChanged(const QString&)), this, SLOT(slotSearch(const QString&)));
+    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);

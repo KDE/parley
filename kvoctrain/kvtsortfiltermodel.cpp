@@ -85,6 +85,25 @@ bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourcePar
     return false;
 }
 
+
+void KVTSortFilterModel::slotSearch(const QString& s)
+{
+    // searching for one letter takes up much time and is probably not needed. so start at lenth 2.
+    if (s.length() <= 1) {
+        setSearchRegExp(QRegExp());
+        return;
+    }
+    // this can probably be done a little cleaner
+    // now "hello world" becomes "(hello|world)" so it basically works,
+    // but there are bound to be exceptions
+    QString searchterm = s.simplified();
+    searchterm.replace(QString(" "), QString("|"));
+    QRegExp searchRegExp = QRegExp('(' + searchterm + ')', Qt::CaseInsensitive);
+
+    setSearchRegExp(searchRegExp);
+}
+
+
 /**
  * Check the search terms
  */
@@ -144,5 +163,6 @@ void KVTSortFilterModel::restoreNativeOrder()
     invalidate();
     m_restoreNativeOrder = false;
 }
+
 
 #include "kvtsortfiltermodel.moc"
