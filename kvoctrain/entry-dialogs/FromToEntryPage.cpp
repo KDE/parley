@@ -61,45 +61,6 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 }
 
 
-void FromToEntryPage::setData(bool multi_sel, grade_t _grade, const QDateTime &_time, count_t _qcount, count_t _bcount, const QString &faux, const QString &label)
-{
-    grade = _grade;
-    qcount = _qcount;
-    bcount = _bcount;
-    fauxami = faux;
-    fauxami_line->setText(fauxami);
-
-    valid_date = false;
-
-    if (_time.toTime_t() != 0 && !multi_sel) {
-        valid_date = true;
-        queryDateEdit->setDateTime(_time);
-    } else
-        queryDateEdit->setDateTime(QDateTime());
-
-    direc_label->setTitle(label);
-
-    gradebox->setCurrentIndex(grade);
-
-    totalCountEdit->setValue(qcount);
-    badCountEdit->setValue(bcount);
-
-    m_largeSelection = multi_sel;
-    if (m_largeSelection) {
-        fauxami_line->setEnabled(false);
-        valid_date = false;
-    } else {
-        fauxami_line->setEnabled(true);
-    }
-
-    setModified(false);
-    m_gradeIsModified = false;
-    m_queryCountIsModified = false;
-    m_badCountIsModified = false;
-    m_dateIsModified = false;
-}
-
-
 void FromToEntryPage::slotFauxAmiChanged(const QString& s)
 {
     setModified(true);
@@ -159,8 +120,9 @@ bool FromToEntryPage::isModified()
 void FromToEntryPage::setModified(bool mod)
 {
     modified = mod;
-    if (mod)
+    if (mod) {
         emit sigModified();
+    }
 }
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
@@ -228,11 +190,11 @@ void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelI
     QString label = QString(i18n("Grades"));
     direc_label->setTitle(label);
 
-    setModified(false);
     m_gradeIsModified = false;
     m_queryCountIsModified = false;
     m_badCountIsModified = false;
     m_dateIsModified = false;
+    setModified(false);
 }
 
 void FromToEntryPage::commitData()

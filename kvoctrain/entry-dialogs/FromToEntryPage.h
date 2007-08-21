@@ -40,8 +40,6 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 public:
     FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(bool multi_sel, grade_t _grade, const QDateTime &_date, count_t _qcount, count_t _bcount, const QString &faux, const QString &label);
-
     void setData(int row, int toTrans, int fromTrans, const QModelIndexList & selection);
     void commitData();
     void clear();
