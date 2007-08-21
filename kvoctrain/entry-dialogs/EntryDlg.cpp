@@ -58,45 +58,45 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     commonPage = new CommonEntryPage(m_doc, this);
     commonPageWidget = new KPageWidgetItem( commonPage, i18n( "Common" ) );
     commonPageWidget->setHeader( i18n( "General properties of the word" ) );
-    commonPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    commonPageWidget->setIcon( KIcon( "edit_table_row" ) );
     addPage(commonPageWidget);
 
     additionalPage = new AuxInfoEntryPage(m_doc, this);
     additionalPageWidget = new KPageWidgetItem( additionalPage, i18n( "Additional" ) );
     additionalPageWidget->setHeader( i18n( "Additional properties" ) );
-    additionalPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    additionalPageWidget->setIcon( KIcon( "configure" ) );
     addPage(additionalPageWidget);
 
     mc_page = new MCEntryPage(m_doc, this);
     multipleChoicePageWidget = new KPageWidgetItem( mc_page, i18n( "Multiple Choice" ) );
     multipleChoicePageWidget->setHeader( i18n( "Predetermined multiple choice suggestions" ) );
-    multipleChoicePageWidget->setIcon( KIcon( "kvoctrain" ) );
+    multipleChoicePageWidget->setIcon( KIcon( "run_multi" ) );
     addPage(multipleChoicePageWidget);
 
     conjugationPage = new TenseEntryPage(m_doc, this);
     //addPage(conjugationPage, i18n("Conjugation"));
     conjugationPageWidget = new KPageWidgetItem( conjugationPage, i18n( "Conjugation" ) );
     conjugationPageWidget->setHeader( i18n( "Conjugation of the selected verb" ) );
-    conjugationPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    conjugationPageWidget->setIcon( KIcon( "chronometer" ) );
     addPage(conjugationPageWidget);
 
     comparisonPage = new AdjEntryPage(m_doc, this);
     //addPage(comparisonPage, i18n("Comparison"));
     comparisonPageWidget = new KPageWidgetItem( comparisonPage, i18n( "Comparison" ) );
     comparisonPageWidget->setHeader( i18n( "Comparison forms of the selected adjective or adverb" ) );
-    comparisonPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    comparisonPageWidget->setIcon( KIcon( "arrow-up" ) );
     addPage(comparisonPageWidget);
 
     fromPage = new FromToEntryPage(m_doc, this);
     fromPageWidget = new KPageWidgetItem( fromPage,  i18n("From Original") );
     fromPageWidget->setHeader( i18n( "Grades when asked to type in this language" ) );
-    fromPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    fromPageWidget->setIcon( KIcon( "statistics" ) );
     addPage(fromPageWidget);
 
     toPage = new FromToEntryPage(m_doc, this);
     toPageWidget = new KPageWidgetItem( toPage, i18n( "To Original" ) );
     toPageWidget->setHeader( i18n( "Grades when asked to enter the original language" ) );
-    toPageWidget->setIcon( KIcon( "kvoctrain" ) );
+    toPageWidget->setIcon( KIcon( "statistics" ) );
     addPage(toPageWidget);
 
     connect(commonPage, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
