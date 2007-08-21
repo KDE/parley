@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ public:
         m_identifierShort = identifierShort;
         m_identifier = identifier;
     }
-    
+
     const bool isLanguage() {return m_isLanguage; }
     const QString identifier() {return m_identifier; }
     const QString identifierShort() {return m_identifierShort; }
@@ -51,7 +51,7 @@ private:
 /**
 A wizard to assist in the creation of kvtml documents with KVocTrain. Helps to set up the languages of the document.
 
-	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class KVTNewDocumentWizard : public QWizard
 {
@@ -77,7 +77,7 @@ public:
 
     void initializePage(int id);
     int nextId() const;
-    
+
     QList<WizardIdentifier>  identifiers();
 private:
     KVTNewDocumentWizardLanguagePage *m_firstLanguagePage;

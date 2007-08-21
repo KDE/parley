@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -39,10 +39,10 @@ KVTNewDocumentWizardAllLanguagesPage::KVTNewDocumentWizardAllLanguagesPage(KVTLa
 
     QVBoxLayout *layout = new QVBoxLayout;
     layout->addWidget(label);
-    
+
     m_languageOptions = new LanguageOptions(languages, 0);
     layout->addWidget(m_languageOptions);
-    
+
 //    connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
     registerField("languagesComboBox", m_languageOptions->d_shortName);

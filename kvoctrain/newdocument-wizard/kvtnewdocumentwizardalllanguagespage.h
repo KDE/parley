@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -26,7 +26,7 @@
 
 
 /**
-	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class KVTNewDocumentWizardAllLanguagesPage : public QWizardPage
 {

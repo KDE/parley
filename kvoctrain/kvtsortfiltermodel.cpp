@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
                     (C) 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------

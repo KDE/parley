@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -27,7 +27,7 @@
 #include "kvtlanguagemodel.h"
 
 /**
-	@author Frederik Gladhorn <frederik.gladhorn@gmx.de>
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class KVTLanguageView : public QTreeView
 {

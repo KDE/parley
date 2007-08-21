@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,7 +29,7 @@ class KVTLessonModel;
 /**
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.
- * @author Frederik Gladhorn <frederik.gladhorn@gmx.de>
+ * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
 class KVTLessonView : public QTreeView
 {

@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -174,14 +174,14 @@ KVTLanguageModel::KVTLanguageModel(QObject *parent)
         QStandardItem *item = new QStandardItem(name);
         parentItem->appendRow(item);
     }
-  */  
+  */
     KLocale *locale = KGlobal::locale(); //QString();
     QStringList codes = locale->allLanguagesList();
     //codes.sort();
-    
+
     foreach (QString code, codes){
         /*
-        QString pixmap = KGlobal::dirs()->findResource("locale", 
+        QString pixmap = KGlobal::dirs()->findResource("locale",
             "l10n/" + code + "/entry.desktop");
         pixmap.truncate(pixmap.lastIndexOf('/'));
         pixmap += "/flag.png";

@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -31,7 +31,7 @@ KVTLanguageView::KVTLanguageView(QWidget *parent)
     setModel(languageModel);
     setRootIsDecorated(false);
     sortByColumn(0, Qt::AscendingOrder);
-    connect(this, SIGNAL( activated( const QModelIndex& )), 
+    connect(this, SIGNAL( activated( const QModelIndex& )),
         this, SLOT(  emitSignalActivated(const QModelIndex&) ));
 }
 

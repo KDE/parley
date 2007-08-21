@@ -4,7 +4,7 @@
 
     -----------------------------------------------------------------------
 
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@gmx.de>
+    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstL
     if ( isFirstLanguagePage ) {
         setTitle(i18n("First Language"));
         //setSubTitle(i18n("Now select the first language (e.g. the one you know already)."));
-        
+
         registerField("firstLanguagePage.language", m_languageLabel);
         registerField("firstLanguagePage.languageShort", m_languageShortLabel);
     } else {
@@ -67,7 +67,7 @@ KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstL
 
     m_currentLabel = new QLabel(i18n("Your selection:"));
     layout->addWidget(m_currentLabel);
-    
+
     /*
     if ( !isFirstLanguagePage ) {*/
         /* //More confusing than helping:
@@ -79,9 +79,9 @@ KVTNewDocumentWizardLanguagePage::KVTNewDocumentWizardLanguagePage(bool isFirstL
         /*
         m_moreLanguagesCheckbox=new QCheckBox(i18n("I want to add yet another language"));
         layout->addWidget(m_moreLanguagesCheckbox);
-        
+
     }*/
-    
+
     //layout->addWidget(m_languageLabel);
     //layout->addWidget(m_languageShortLabel);
     setLayout(layout);
