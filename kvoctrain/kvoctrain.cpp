@@ -158,6 +158,8 @@ void KVocTrainApp::slotSelectAll()
 
 void KVocTrainApp::slotEditRow()
 {
+kDebug() << "slotEditRow()";
+
     slotEditEntry2(m_tableView->currentIndex());
 }
 
@@ -217,6 +219,8 @@ void KVocTrainApp::removeEntryDlg()
 
 void KVocTrainApp::slotEditEntry(int row, int col)
 {
+kDebug() << "slotEditEntry() " << row << ", " << col;
+
     if (entryDlg == 0) {
         entryDlg = new EntryDlg(this, m_doc);
         connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
@@ -232,16 +236,20 @@ void KVocTrainApp::slotEditEntry(int row, int col)
 
 void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 {
+kDebug() << "slotEditEntry2(const QModelIndex & index) " << index.row() << ", " << index.column();
+
     if (index.isValid()) {
         /// @todo mapToSource seems to sometimes not work. Especially when starting KVocTrain and directly using Edit Entry without selecting anything in the table. This happens despite the index has valid row/column entries.
-        QModelIndex docIndex = m_sortFilterModel->mapToSource(index);
-        slotEditEntry(docIndex.row(), docIndex.column());
+        //QModelIndex docIndex = m_sortFilterModel->mapToSource(index);
+        //slotEditEntry(docIndex.row(), docIndex.column());
+        slotEditEntry(index.row(), index.column());
     }
 }
 
 
 void KVocTrainApp::setDataEntryDlg(int row, int col)
 {
+kDebug() << "setDataEntryDlg() " << row << ", " << col;
     if (entryDlg == 0) {
         kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
         return;
@@ -254,7 +262,11 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
     col -= KV_EXTRA_COLS;
 
     entryDlg->setData(row, col,
-        m_tableView->selectionModel()->selectedRows());
+        QModelIndexList());
+
+/// FIXME reenable
+//     entryDlg->setData(row, col,
+//         m_tableView->selectionModel()->selectedRows());
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
@@ -917,6 +929,19 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         translationId = 0;
     }
 
+    bool table = false;
+    if (current.model() == m_tableModel) {
+        kDebug() << "KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous) model is table: " << current.row() << ", " << current.column();
+    }
+
+    QModelIndex index = current;
+
+    bool filter = false;
+    if (current.model() == m_sortFilterModel) {
+        kDebug() << "KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous) model is proxy";
+        index = m_sortFilterModel->mapToSource(current);
+    }
+
     // mapToSource seems rather broken for some reason
     KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
 
@@ -928,7 +953,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         m_typeStatusBarLabel->setText(i18n("Type: %1", KVTQuery::typeStr(currentExpression->translation(translationId).type())));
 
     if (entryDlg != 0) {
-        slotEditEntry2(current);
+        slotEditEntry2(index);
     }
 }
 

@@ -426,6 +426,8 @@ void CommonEntryPage::commitData()
         }
     } else { // multiple entries (don't change the word itself for example)
         foreach(QModelIndex selIndex, m_selection) {
+
+        kDebug() << "Changing multiple - row: " << selIndex.row();
             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
 
             ///@todo need to use the selection!!!

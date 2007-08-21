@@ -532,6 +532,7 @@ void KVocTrainApp::initView()
     connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
