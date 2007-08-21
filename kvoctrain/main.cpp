@@ -40,20 +40,24 @@ int main(int argc, char* argv[])
                          version,
                          ki18n(description),
                          KAboutData::License_GPL,
-                         ki18n("(c) 1999-2002\tEwald Arnold\n"
-                                   "(c) 2001-2002\tThe KDE team\n"
-                                   "(c) 2004-2007\tPeter Hedlund\n"),
+                         ki18n("© 1999-2002\tEwald Arnold\n"
+                                   "© 2001-2002\tThe KDE team\n"
+                                   "© 2004-2007\tPeter Hedlund\n"
+                                   "© 2007\tFrederik Gladhorn\n"),
                          ki18n("Helps you train your vocabulary"),
                          "http://edu.kde.org/kvoctrain",
                          "submit@bugs.kde.org");
 
-    aboutData.addAuthor(ki18n("Peter Hedlund"),
-                        ki18n("Current Maintainer"), "peter.hedlund@kdemail.net");
-
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),
-                        ki18n("Improvements on the way to KDE4"), "frederik.gladhorn@gmx.de");
+                        ki18n("Current Maintainer"),
+                        "frederik.gladhorn@kdemail.net");
 
-    aboutData.addAuthor(ki18n("Ewald Arnold"), ki18n("Original Author"), "kvoctrain@ewald-arnold.de",
+    aboutData.addAuthor(ki18n("Peter Hedlund"),
+                        ki18n("Countless fixes, former maintainer, port to KDE4"),
+                        "peter.hedlund@kdemail.net");
+
+    aboutData.addAuthor(ki18n("Ewald Arnold"), ki18n("Original Author"),
+                        "kvoctrain@ewald-arnold.de",
                         "http://www.ewald-arnold.de");
 
     aboutData.addCredit(ki18n("Waldo Bastian"),
@@ -82,6 +86,9 @@ int main(int argc, char* argv[])
 
     aboutData.addCredit(ki18n("Anne-Marie Mahfouf"),
                         ki18n("Port to KConfig XT"));
+
+    aboutData.addCredit(ki18n("Jeremy Whiting"),
+                        ki18n("Rewriting the kvtml library for KDE4"));
 
     aboutData.addCredit(ki18n("KDE Team"),
                         ki18n("Many small enhancements"));
