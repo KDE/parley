@@ -582,7 +582,8 @@ void KVocTrainApp::slotRemoveLanguage(int index)
 
 void KVocTrainApp::slotSearch(const QString& s)
 {
-    if (s.length() == 0) {
+    // searching for one letter takes up much time and is probably not needed. so start at lenth 2.
+    if (s.length() <= 1) {
         m_sortFilterModel->setSearchRegExp(QRegExp());
         return;
     }
