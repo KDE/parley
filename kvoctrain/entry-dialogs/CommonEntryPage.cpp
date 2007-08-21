@@ -427,6 +427,8 @@ void CommonEntryPage::commitData()
     } else { // multiple entries (don't change the word itself for example)
         foreach(QModelIndex selIndex, m_selection) {
             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
+
+            ///@todo need to use the selection!!!
             KEduVocExpression *expr = m_doc->entry(m_currentRow);
 
             // modified because it can be different for multiple entries and will only be saved if the user changes it. otherwise it should stay different.

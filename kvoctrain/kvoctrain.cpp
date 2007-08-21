@@ -233,6 +233,7 @@ void KVocTrainApp::slotEditEntry(int row, int col)
 void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 {
     if (index.isValid()) {
+        /// @todo mapToSource seems to sometimes not work. Especially when starting KVocTrain and directly using Edit Entry without selecting anything in the table. This happens despite the index has valid row/column entries.
         QModelIndex docIndex = m_sortFilterModel->mapToSource(index);
         slotEditEntry(docIndex.row(), docIndex.column());
     }
@@ -249,16 +250,11 @@ void KVocTrainApp::setDataEntryDlg(int row, int col)
     if ((row < 0) || (col < 0) || (m_tableModel->rowCount(QModelIndex()) <= 0)) {
         return;
     }
-/* // is this necessary?
-    KEduVocExpression *expr = m_doc->entry(row);
-
-    if (expr == 0) {
-        return; // entry delete in the meantime
-    }*/
 
     col -= KV_EXTRA_COLS;
 
-    entryDlg->setData(row, col, m_tableView->selectionModel()->selectedRows());
+    entryDlg->setData(row, col,
+        m_tableView->selectionModel()->selectedRows());
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
@@ -936,6 +932,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         translationId = 0;
     }
 
+    // mapToSource seems rather broken for some reason
     KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
 
     if (m_remarkStatusBarLabel != 0)

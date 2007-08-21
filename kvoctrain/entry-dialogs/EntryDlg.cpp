@@ -283,24 +283,6 @@ void EntryDlg::updateData()
         toPage->setData( m_currentRow, 0, m_currentTranslation, m_selection);
     }
 
-    /*
-    fromPage->setData(editMultipleRows,
-            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).grade(),
-            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryDate(),
-            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).queryCount(),
-            m_doc->entry(m_currentRow)->translation(m_currentTranslation).gradeFrom(0).badCount(),
-            m_doc->entry(m_currentRow)->translation(m_currentTranslation).falseFriend(0),
-            i18n("Properties From Original"));
-
-    toPage->setData(editMultipleRows,
-            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).grade(),
-            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryDate(),
-            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).queryCount(),
-            m_doc->entry(m_currentRow)->translation(0).gradeFrom(m_currentTranslation).badCount(),
-            m_doc->entry(m_currentRow)->translation(0).falseFriend(m_currentTranslation),
-            i18n("Properties to Original"));
-    */
-
     disableApplyButton();
     updatePages( m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() );
 }
@@ -320,49 +302,52 @@ void EntryDlg::updatePages(const QString &type)
         comparisonPageWidget->setEnabled(false);
         fromPageWidget->setEnabled(false);
         toPageWidget->setEnabled(false);
-        return;
-    }
-
-    if ( m_currentTranslation > 0 ) {
-        fromPageWidget->setEnabled(true);
-        toPageWidget->setEnabled(true);
     } else {
-        fromPageWidget->setEnabled(false);
-        toPageWidget->setEnabled(false);
+
+        if ( m_currentTranslation > 0 ) {
+            fromPageWidget->setEnabled(true);
+            toPageWidget->setEnabled(true);
+        } else {
+            fromPageWidget->setEnabled(false);
+            toPageWidget->setEnabled(false);
+        }
+
+        // multiple selection: have only common and grading pages
+        if ( m_selection.count() > 1 ) {
+            kDebug() << "EntryDlg::updatePages() count > 1";
+            additionalPageWidget->setEnabled(false);
+            multipleChoicePageWidget->setEnabled(false);
+            conjugationPageWidget->setEnabled(false);
+            comparisonPageWidget->setEnabled(false);
+        } else {
+            // only one entry selected - now add entry specific pages
+            additionalPageWidget->setEnabled(true);
+            multipleChoicePageWidget->setEnabled(true);
+
+            QString main;
+            int pos;
+            if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
+                main = type;
+            } else {
+                main = type.left(pos);
+            }
+
+            if (main == QM_VERB) {
+                conjugationPageWidget->setEnabled(true);
+            } else {
+                conjugationPageWidget->setEnabled(false);
+            }
+
+            if (main == QM_ADJ) {
+                comparisonPageWidget->setEnabled(true);
+            } else {
+                comparisonPageWidget->setEnabled(false);
+            }
+        } // single entry selected
     }
 
-    // multiple selection: have only common and grading pages
-    if ( m_selection.count() > 1 ) {
-        kDebug() << "EntryDlg::updatePages() count > 1";
-        additionalPageWidget->setEnabled(false);
-        multipleChoicePageWidget->setEnabled(false);
-        conjugationPageWidget->setEnabled(false);
-        comparisonPageWidget->setEnabled(false);
-        return;
-    }
-
-    // only one entry selected - now add entry specific pages
-    additionalPageWidget->setEnabled(true);
-    multipleChoicePageWidget->setEnabled(true);
-
-    QString main;
-    int pos;
-    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
-        main = type;
-    } else {
-        main = type.left(pos);
-    }
-
-    if (main == QM_VERB) {
-        conjugationPageWidget->setEnabled(true);
-    } else {
-        conjugationPageWidget->setEnabled(false);
-    }
-
-    if (main == QM_ADJ) {
-        comparisonPageWidget->setEnabled(true);
-    } else {
-        comparisonPageWidget->setEnabled(false);
+    if ( !currentPage()->isEnabled() ) {
+        setCurrentPage(commonPageWidget);
     }
 }
 
@@ -389,8 +374,6 @@ void EntryDlg::commitData(bool force)
     commonPage->commitData();
     fromPage->commitData();
     toPage->commitData();
-
-    int hasSel = m_selection.count() > 1;
 
     if (m_selection.count() == 1) {
         if (m_currentTranslation >= 0) {
