@@ -23,6 +23,8 @@
 #include "kvtsortfiltermodel.h"
 #include "kvttablemodel.h"
 
+#include <keduvocexpression.h>
+
 KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
     m_sourceModel = 0;
@@ -88,14 +90,15 @@ bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourcePar
  */
 bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourceParent) const
 {
-//sourceModel()->data(index0).toString().contains(filterRegExp()
+    Q_UNUSED(sourceParent)
 
-    /// Check if the vocabs contain the expression:
-    QModelIndex lang;
-    for (int i=0 ; i<m_sourceModel->document()->identifierCount(); i++) {
-        lang = sourceModel()->index(sourceRow, i+2, sourceParent);
-        if (sourceModel()->data(lang, Qt::DisplayRole).toString().contains(m_searchFilter))
+    /// Check if the entries contain the expression:
+    for (int i=0; i < m_sourceModel->document()->identifierCount(); i++) {
+        if ( m_sourceModel->document()->
+            entry(sourceRow)->translation(i).
+            translation().contains(m_searchFilter) ) {
             return true;
+        }
     }
     return false;
 }
@@ -109,24 +112,29 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
-    if (!m_lessonFilter.isEmpty())
-        if (!checkLesson(sourceRow, sourceParent))
+    if (!m_lessonFilter.isEmpty()) {
+        if (!checkLesson(sourceRow, sourceParent)) {
             return false;
+        }
+    }
 
-    if (!m_searchFilter.isEmpty())
-        if (!checkSearch(sourceRow, sourceParent))
+    if (!m_searchFilter.isEmpty()) {
+        if (!checkSearch(sourceRow, sourceParent)) {
             return false;
+        }
+    }
 
     return true;
 }
 
 bool KVTSortFilterModel::lessThan(const QModelIndex & left, const QModelIndex & right) const
 {
-    if (m_restoreNativeOrder)
+    if (m_restoreNativeOrder) {
         return sourceModel()->index(right.row(),  right.column(),  QModelIndex()).row() <
                sourceModel()->index(left.row(), left.column(), QModelIndex()).row();
-    else
+    } else {
         return QSortFilterProxyModel::lessThan(left, right);
+    }
 }
 
 void KVTSortFilterModel::restoreNativeOrder()
