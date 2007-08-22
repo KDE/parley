@@ -298,76 +298,52 @@ void CommonEntryPage::slotSubDialogClosed()
 
 void CommonEntryPage::commitData()
 {
-    if ( m_selection.count() == 1 ) { // single entry
+    if ( m_selection.count() == 1 ) {
+    // these things are only changed when editing a single entry
         KEduVocExpression *expr = m_doc->entry(m_currentRow);
-        expr->setActive( c_active->checkState() == Qt::Checked );
-        expr->setLesson( lesson_box->currentIndex() + 1 ); /// @todo care about default lesson
-
         if (m_currentTranslation >= 0) {
             expr->translation(m_currentTranslation).setTranslation( expr_line->text() );
             expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
-
-            ///@todo reenable:
-//             expr->translation(m_currentTranslation).setUsageLabel( );
-
-            // set the type
-            QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
-            expr->translation(m_currentTranslation).setType( type );
-            // also set the same type for the other translations
-            for (int j = 0; j < expr->translationCount(); j++) {
-                if (expr->translation(j).type().isEmpty()) {
-                    expr->translation(j).setType( type );
-                }
-            }
-
-            for (int j = 0; j < expr->translationCount(); j++) {
-                if (KVTQuery::getMainType(expr->translation(j).type())
-                        !=
-                        KVTQuery::getMainType(type)) {
-                    expr->translation(j).setType(type);
-                }
-            }
         }
-    } else { // multiple entries (don't change the word itself for example)
-        foreach(QModelIndex selIndex, m_selection) {
-            kDebug() << "Changing multiple entries - entry: " << selIndex.row();
-            KEduVocExpression *expr = m_doc->entry(selIndex.row());
+    }
 
-            // modified because it can be different for multiple entries and will only be saved if the user changes it. otherwise it should stay different.
-            if ( c_active->checkState() != Qt::PartiallyChecked ) {
-                expr->setActive( c_active->checkState() == Qt::Checked );
-            }
-            if ( lesson_box->currentIndex() != -1 ) {
-                //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
-                expr->setLesson( lesson_box->currentIndex() + 1 );
-            }
-            // only update "common" properties in multiple entries selection mode
-            ///@todo reenable
-            if (m_currentTranslation >= 0) {
+    // things that are changed for multiple or single entries
+
+    foreach(QModelIndex selIndex, m_selection) {
+        kDebug() << "Changing multiple entries - entry: " << selIndex.row();
+        KEduVocExpression *expr = m_doc->entry(selIndex.row());
+
+        // modified because it can be different for multiple entries and will only be saved if the user changes it. if partially checked no entry will be changed.
+        if ( c_active->checkState() != Qt::PartiallyChecked ) {
+            expr->setActive( c_active->checkState() == Qt::Checked );
+        }
+        if ( lesson_box->currentIndex() != -1 ) {
+            //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
+            expr->setLesson( lesson_box->currentIndex() + 1 );
+        }
+
+        if (m_currentTranslation >= 0) {
 //                 if (m_usageIsModified)
 //                     for (int j = 0; j < expr->translationCount(); j++)
 //                         expr->translation(j).setUsageLabel(m_usageCollection);
-                if ( type_box->currentIndex() != -1 ) {
-                    QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
-                    expr->translation(m_currentTranslation).setType( type );
-                    // also set the same type for the other translations
-                    for (int j = 0; j < expr->translationCount(); j++) {
-                        if (expr->translation(j).type().isEmpty())
-                            expr->translation(j).setType( type );
-                    }
+            if ( type_box->currentIndex() != -1 ) {
+                QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
+                // set the type
+                expr->translation(m_currentTranslation).setType( type );
+                // also set the same type for the other translations
+                for (int j = 0; j < expr->translationCount(); j++) {
+                    if (expr->translation(j).type().isEmpty())
+                        expr->translation(j).setType( type );
+                }
 
-                    for (int j = 0; j < expr->translationCount(); j++) {
-                        if (KVTQuery::getMainType(expr->translation(j).type())
-                                !=
-                                KVTQuery::getMainType(type)) {
-                            expr->translation(j).setType(type);
-                        }
+                for (int j = 0; j < expr->translationCount(); j++) {
+                    if (KVTQuery::getMainType(expr->translation(j).type())
+                            !=
+                            KVTQuery::getMainType(type)) {
+                        expr->translation(j).setType(type);
                     }
-                } // type
-
-//                     for (int j = 0; j < expr->translationCount(); j++)
-//                         expr->translation(j).setType(m_type);
-            }
+                }
+            } // type
         }
     }
 }

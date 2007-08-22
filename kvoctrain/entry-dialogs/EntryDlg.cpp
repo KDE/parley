@@ -217,7 +217,21 @@ void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndex
         m_currentRow = currentRow;
     }
 
-    kDebug() << "EntryDlg::setData() selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
+
+// FOR TESTING ONLY, REMOVE SOON:
+    kDebug() << "EntryDlg::setData() row: " << currentRow << " selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
+
+    bool found = false;
+    foreach(QModelIndex mi, selection) {
+        if ( mi.row() == currentRow ) {
+            found = true;
+        }
+    }
+
+    if(!found) {
+        kError() << "currentRow was not in the selection. this is a serious BUG!";
+    }
+
 
     updatePages();
 }
