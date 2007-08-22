@@ -57,6 +57,8 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 
     // in general only the modified state interests us.
     connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotDataChanged()));
+    // to update the usage label
+    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     connect(lesson_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
     connect(subtype_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
     connect(c_active, SIGNAL(stateChanged(int)), SLOT(slotDataChanged(int)));
@@ -246,16 +248,14 @@ void CommonEntryPage::invokeUsageDlg()
     UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
     subDialog->setMainWidget(usageOptPage);
 
-    /*
     if (subDialog->exec() == QDialog::Accepted) {
         usageOptPage->getUsageLabels(new_usageStr, usageIndex);
         UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
         KVTUsage::setUsageNames(new_usageStr);
-        setUsageBox(m_usageCollection);
+        //setUsageBox(m_usageCollection);
         m_doc->setUsageDescriptions(new_usageStr);
         m_doc->setModified();
     }
-    */
 }
 
 
