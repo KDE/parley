@@ -63,12 +63,14 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 
 void FromToEntryPage::slotFalseFriendChanged(const QString& s)
 {
+    Q_UNUSED(s)
     emit sigModified();
 }
 
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
+    Q_UNUSED(g)
     emit sigModified();
 }
 
@@ -139,16 +141,19 @@ if ( time.toTime_t() != 0 ) {
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
+    Q_UNUSED(d)
     emit sigModified();
 }
 
 void FromToEntryPage::totalCountChanged(int count)
 {
+    Q_UNUSED(count)
     emit sigModified();
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
+    Q_UNUSED(count)
     emit sigModified();
 }
 

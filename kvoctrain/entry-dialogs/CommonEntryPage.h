@@ -42,10 +42,7 @@ public:
     void setData(int row, int col, const QModelIndexList & selection);
     void commitData();
 
-    QString getType() const
-    {
-        return m_type;
-    }
+
 
     bool isModified();
     void setModified(bool mod = true);

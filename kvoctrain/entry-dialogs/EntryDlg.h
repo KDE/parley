@@ -103,9 +103,6 @@ private:
     QPoint            oldMainPos;
     bool              docked;
 
-
-
-
     KEduVocDocument *m_doc;
     /// The row currently selected in the document - this is the entry number
     int               m_currentRow;
