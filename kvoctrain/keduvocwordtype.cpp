@@ -68,8 +68,7 @@ KEduVocWordType::~KEduVocWordType()
 void KEduVocWordType::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    m_userTypeDescriptions = m_doc->typeDescriptions();
-    initOldTypeLists();
+    update();
 }
 
 
@@ -202,4 +201,10 @@ QString KEduVocWordType::getOldType(const QString & mainType, const QString & su
 
     kDebug() << "KEduVocWordType::getOldType(): " << mainType << ", "<< subType << " gives: " << oldType;
     return oldType;
+}
+
+void KEduVocWordType::update()
+{
+    m_userTypeDescriptions = m_doc->typeDescriptions();
+    initOldTypeLists();
 }

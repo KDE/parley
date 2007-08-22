@@ -107,17 +107,19 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
     c_active->setChecked(firstEntry->isActive());
 
 
-    type_box->clear();
-    type_box->addItems( m_wordTypes.getMainTypeList() );
-
-
 kDebug() << " TYPE: " << m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+
+    updateMainTypeBoxContents();
 
 
     QString mainType =
-        m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+        m_wordTypes.getMainTypeFromOldFormat(
+            m_doc->entry(m_currentRow)->
+            translation(m_currentTranslation).type());
     QString subType =
-        m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+        m_wordTypes.getSubTypeFromOldFormat(
+            m_doc->entry(m_currentRow)->
+            translation(m_currentTranslation).type());
 
 kDebug() << " type index: " << mainType << " sub " << subType;
 
@@ -274,16 +276,15 @@ void CommonEntryPage::invokeTypeDlg()
     TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
     subDialog->setMainWidget(typeOptPage);
 
-    /*
     if (subDialog->exec() == QDialog::Accepted) {
         typeOptPage->getTypeNames(new_typeStr, typeIndex);
         TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
         KVTQuery::setTypeNames(new_typeStr);
-        setTypeBox(m_type);
+        updateMainTypeBoxContents();
+        //setTypeBox(m_type);
         m_doc->setTypeDescriptions(new_typeStr);
         m_doc->setModified();
     }
-    */
 }
 
 
@@ -353,21 +354,21 @@ void CommonEntryPage::slotDataChanged()
     emit sigModified();
 }
 
-
 void CommonEntryPage::slotDataChanged(int )
 {
     emit sigModified();
 }
-
 
 void CommonEntryPage::slotDataChanged(const QString& )
 {
     emit sigModified();
 }
 
-void CommonEntryPage::setTypeBoxData()
+void CommonEntryPage::updateMainTypeBoxContents()
 {
     type_box->clear();
+    type_box->addItems( m_wordTypes.getMainTypeList() );
 
 }
+
 #include "CommonEntryPage.moc"

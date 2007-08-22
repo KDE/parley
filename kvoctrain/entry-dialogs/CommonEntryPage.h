@@ -48,11 +48,9 @@ signals:
     void typeSelected(const QString &);
 
 private:
-    void setTypeBox(const QString &act_type);
+    void updateMainTypeBoxContents();
     void setLessonBox(int lesson);
     void setUsageBox(const QString & act_type);
-
-    void setTypeBoxData();
 
 private slots:
     // to get noted upon modification

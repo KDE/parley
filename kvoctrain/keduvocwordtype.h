@@ -35,6 +35,7 @@ public:
     ~KEduVocWordType();
 
     void setDocument(KEduVocDocument *doc);
+    void update();
 
     QString getMainTypeFromOldFormat(const QString& typeSubtypeString) const;
     QString getSubTypeFromOldFormat(const QString& typeSubtypeString) const;
