@@ -205,47 +205,9 @@ void CommonEntryPage::slotUsageChanged()
 
 void CommonEntryPage::slotUpdateSubTypeBoxContents(const QString &mainType)
 {
-    kDebug() << "CommonEntryPage::slotUpdateSubTypeBoxContents(): " << mainType;
-
     subtype_box->clear();
     subtype_box->addItems( m_wordTypes.getSubTypeList( mainType) );
-
     subtype_box->setCurrentIndex(-1);
-    /*
-
-    // the horror...
-    subtype_box->clear();
-    current_subtypes.clear();
-    bool first = true;
-
-    if (idx == 0) { // 0 == none !
-        m_type = "";
-        emit typeSelected(m_type);
-    } else {
-        m_type = all_maintypes[idx-1].shortStr();
-        emit typeSelected(m_type);
-        QString main_patt = all_maintypes[idx-1].shortStr()+QM_TYPE_DIV;
-        int sub_idx;
-        if (idx-1 < (int) all_types.size()) {
-            for (sub_idx = 0; sub_idx < (int) all_types.size(); sub_idx++) {
-                if (all_types[sub_idx].shortStr().left(main_patt.length()) == main_patt) {
-                    if (first) {
-                        subtype_box->addItem(i18n("<none>"));
-                        current_subtypes.append(all_maintypes[idx-1].shortStr());
-                        first = false;
-                    }
-                    QString s = all_types[sub_idx].longStr();
-                    subtype_box->addItem(s.simplified());
-                    current_subtypes.append(all_types[sub_idx].shortStr());
-                }
-            }
-        }
-    }
-
-    subtype_box->setEnabled(!first);
-    subtype_label->setEnabled(!first);
-    emit sigModified();
-    */
 }
 
 

@@ -55,7 +55,7 @@ private:
     KEduVocDocument *m_doc;
 
     /// user defined types of old documents
-    QStringList m_typeDescriptions;
+    QStringList m_userTypeDescriptions;
 
     QMap<QString, QString> m_oldMainTypeNames;
     QMap<QString, QString> m_oldSubTypeNames;

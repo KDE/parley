@@ -80,7 +80,7 @@ KEduVocWordType::~KEduVocWordType()
 void KEduVocWordType::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    m_typeDescriptions = m_doc->typeDescriptions();
+    m_userTypeDescriptions = m_doc->typeDescriptions();
     initOldTypeLists();
 }
 
@@ -95,6 +95,15 @@ QString KEduVocWordType::getMainTypeFromOldFormat(const QString & typeSubtypeStr
         mainType = typeSubtypeString.left(i);
     else
         mainType = typeSubtypeString;
+
+    if ( mainType.startsWith("#") ) {
+        mainType.remove(0, 1);
+        i = mainType.toInt()-1;
+        if (i >= 0 && i < m_userTypeDescriptions.count())
+            return m_userTypeDescriptions[i];
+        else
+            return QString();
+    }
 
     QString wt = m_oldMainTypeNames.value( mainType );
     if ( wt == QString() ) {
@@ -178,7 +187,10 @@ QStringList KEduVocWordType::getSubTypeList(const QString & mainType) const
 
 QStringList KEduVocWordType::getMainTypeList() const
 {
-    return m_wordTypeList.keys();
+    QStringList mainTypeList = m_wordTypeList.keys();
+    mainTypeList << m_userTypeDescriptions;
+    kDebug() << "m_userTypeDescriptions: " << m_userTypeDescriptions;
+    return mainTypeList;
 }
 
 QString KEduVocWordType::getOldType(const QString & mainType, const QString & subType) const
@@ -189,6 +201,17 @@ QString KEduVocWordType::getOldType(const QString & mainType, const QString & su
         oldType.append(":");
         oldType.append(m_oldSubTypeNames.key(subType));
     }
+
+    if ( oldType.isEmpty() ) {
+        kDebug() << "Not found in preset types.";
+        int index = m_userTypeDescriptions.indexOf(mainType);
+        if ( index >= 0 ) {
+            kDebug() << "Found user type.";
+            // for some reason we count from one
+            oldType = QString("#%1").arg(index + 1);
+        }
+    }
+
     kDebug() << "KEduVocWordType::getOldType(): " << mainType << ", "<< subType << " gives: " << oldType;
     return oldType;
 }
