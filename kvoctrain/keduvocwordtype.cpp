@@ -24,51 +24,39 @@
 
 #include <klocale.h>
 
-#define QM_VERB           "v"    // go
-#define   QM_VERB_IRR     "ir"
-#define   QM_VERB_REG     "re"
-#define QM_NOUN           "n"    // table, coffee
-#define   QM_NOUN_F       "f"
-#define   QM_NOUN_M       "m"
-#define   QM_NOUN_S       "s"
-#define QM_NAME           "nm"
-#define QM_ART            "ar"   // article
-#define   QM_ART_DEF      "def"  // definite    a/an
-#define   QM_ART_IND      "ind"  // indefinite  the
-#define QM_ADJ            "aj"   // adjective   expensive, good
-#define QM_ADV            "av"   // adverb      today, strongly
-#define QM_PRON           "pr"   // pronoun     you, she
-#define   QM_PRON_POS     "pos"  // possessive  my, your
-#define   QM_PRON_PER     "per"  // personal
-#define QM_PHRASE         "ph"
-#define QM_NUM            "num"  // numeral
-#define   QM_NUM_ORD      "ord"  // ordinal     first, second
-#define   QM_NUM_CARD     "crd"  // cardinal    one, two
-#define QM_INFORMAL       "ifm"
-#define QM_FIG            "fig"
-#define QM_CON            "con"  // conjuncton  and, but
-#define QM_PREP           "pre"  // preposition behind, between
-#define QM_QUEST          "qu"   // question    who, what
+// #define QM_VERB           "v"    // go
+// #define   QM_VERB_IRR     "ir"
+// #define   QM_VERB_REG     "re"
+// #define QM_NOUN           "n"    // table, coffee
+// #define   QM_NOUN_F       "f"
+// #define   QM_NOUN_M       "m"
+// #define   QM_NOUN_S       "s"
+// #define QM_NAME           "nm"
+// #define QM_ART            "ar"   // article
+// #define   QM_ART_DEF      "def"  // definite    a/an
+// #define   QM_ART_IND      "ind"  // indefinite  the
+// #define QM_ADJ            "aj"   // adjective   expensive, good
+// #define QM_ADV            "av"   // adverb      today, strongly
+// #define QM_PRON           "pr"   // pronoun     you, she
+// #define   QM_PRON_POS     "pos"  // possessive  my, your
+// #define   QM_PRON_PER     "per"  // personal
+// #define QM_PHRASE         "ph"
+// #define QM_NUM            "num"  // numeral
+// #define   QM_NUM_ORD      "ord"  // ordinal     first, second
+// #define   QM_NUM_CARD     "crd"  // cardinal    one, two
+// #define QM_INFORMAL       "ifm"
+// #define QM_FIG            "fig"
+// #define QM_CON            "con"  // conjuncton  and, but
+// #define QM_PREP           "pre"  // preposition behind, between
+// #define QM_QUEST          "qu"   // question    who, what
 
 // type delimiters
 
-#define QM_USER_TYPE  "#"   // designates number of user type
-#define QM_TYPE_DIV   ":"   // divide main from subtype
+// #define QM_USER_TYPE  "#"   // designates number of user type
+// #define QM_TYPE_DIV   ":"   // divide main from subtype
 
-
-
-// class KEduVocWordType::WordType {
-// public:
-//     WordType(const QString& mainType = QString());
-//
-//     QString     m_mainType;
-//     QStringList m_subTypes;
-// };
-
-// KEduVocWordType::WordType::WordType(const QString & mainType)
-// {
-//     m_mainType = mainType;
-// }
+const QString KEduVocWordType::KVTML_1_TYPE_USER = QString("#");
+const QString KEduVocWordType::KVTML_1_TYPE_DIV = QString(":");
 
 KEduVocWordType::KEduVocWordType()
 {
@@ -89,14 +77,13 @@ QString KEduVocWordType::getMainTypeFromOldFormat(const QString & typeSubtypeStr
 {
     QString mainType;
     int i;
-    /// @todo check for user type first!!!
-    //"#"
-    if ((i = typeSubtypeString.indexOf(":")) >= 0)
+
+    if ((i = typeSubtypeString.indexOf(KVTML_1_TYPE_DIV)) >= 0)
         mainType = typeSubtypeString.left(i);
     else
         mainType = typeSubtypeString;
 
-    if ( mainType.startsWith("#") ) {
+    if ( mainType.startsWith(KVTML_1_TYPE_USER) ) {
         mainType.remove(0, 1);
         i = mainType.toInt()-1;
         if (i >= 0 && i < m_userTypeDescriptions.count())
@@ -118,7 +105,7 @@ QString KEduVocWordType::getSubTypeFromOldFormat(const QString & typeSubtypeStri
 {
     int i;
     QString t = typeSubtypeString;
-    if ((i = t.indexOf(":")) >= 0) {
+    if ((i = t.indexOf(KVTML_1_TYPE_DIV)) >= 0) {
         t.remove(0, i+1);
     } else {
         return QString();
@@ -198,7 +185,7 @@ QString KEduVocWordType::getOldType(const QString & mainType, const QString & su
     QString oldType;
     oldType = m_oldMainTypeNames.key(mainType);
     if ( subType != QString() ) {
-        oldType.append(":");
+        oldType.append(KVTML_1_TYPE_DIV);
         oldType.append(m_oldSubTypeNames.key(subType));
     }
 
@@ -208,7 +195,8 @@ QString KEduVocWordType::getOldType(const QString & mainType, const QString & su
         if ( index >= 0 ) {
             kDebug() << "Found user type.";
             // for some reason we count from one
-            oldType = QString("#%1").arg(index + 1);
+            oldType = KVTML_1_TYPE_USER;
+            oldType.append(QString::number(index + 1));
         }
     }
 

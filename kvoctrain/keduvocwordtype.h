@@ -40,17 +40,14 @@ public:
     QString getSubTypeFromOldFormat(const QString& typeSubtypeString) const;
     QString getOldType(const QString& mainType, const QString& subType) const;
 
-//     QString getType(int index) const;
     QStringList getMainTypeList() const;
     QStringList getSubTypeList(const QString& mainType) const;
 
-    //int indexOfMainType(const QString& type);
-    //int indexOfSubType(const QString& type);
-
 private:
-    void initOldTypeLists();
+    static const QString KVTML_1_TYPE_USER;
+    static const QString KVTML_1_TYPE_DIV;
 
-    //class WordType;
+    void initOldTypeLists();
 
     KEduVocDocument *m_doc;
 
