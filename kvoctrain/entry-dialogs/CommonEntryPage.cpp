@@ -431,7 +431,7 @@ void CommonEntryPage::commitData()
             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
 
             ///@todo need to use the selection!!!
-            KEduVocExpression *expr = m_doc->entry(m_currentRow);
+            KEduVocExpression *expr = m_doc->entry(selIndex.row());
 
             // modified because it can be different for multiple entries and will only be saved if the user changes it. otherwise it should stay different.
             if (m_activeIsModified) {

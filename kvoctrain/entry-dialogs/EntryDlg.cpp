@@ -99,7 +99,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     toPageWidget->setIcon( KIcon( "statistics" ) );
     addPage(toPageWidget);
 
-    connect(commonPage, SIGNAL(typeSelected(const QString&)), SLOT(updatePages(const QString&)));
+    connect(commonPage, SIGNAL(typeSelected(const QString&)), SLOT(slotTypeChanged(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
@@ -254,11 +254,11 @@ void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndex
 
     kDebug() << "EntryDlg::setData() selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
 
-    updateData();
+    updatePages();
 }
 
 
-void EntryDlg::updateData()
+void EntryDlg::updatePages()
 {
     QString title;
     if (m_currentTranslation < 0) {
@@ -293,13 +293,6 @@ void EntryDlg::updateData()
         toPage->setData( m_currentRow, 0, m_currentTranslation, m_selection);
     }
 
-    disableApplyButton();
-    updatePages( m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() );
-}
-
-
-void EntryDlg::updatePages(const QString &type)
-{
     // we always have the common page enabled
 
     // no translation selected (index < 0) leaves only common
@@ -334,31 +327,16 @@ void EntryDlg::updatePages(const QString &type)
             additionalPageWidget->setEnabled(true);
             multipleChoicePageWidget->setEnabled(true);
 
-            QString main;
-            int pos;
-            if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
-                main = type;
-            } else {
-                main = type.left(pos);
-            }
+            QString type = m_doc->entry(m_currentRow)->translation(m_currentTranslation).type();
 
-            if (main == QM_VERB) {
-                conjugationPageWidget->setEnabled(true);
-            } else {
-                conjugationPageWidget->setEnabled(false);
-            }
-
-            if (main == QM_ADJ) {
-                comparisonPageWidget->setEnabled(true);
-            } else {
-                comparisonPageWidget->setEnabled(false);
-            }
+            slotTypeChanged( type );
         } // single entry selected
     }
 
     if ( !currentPage()->isEnabled() ) {
         setCurrentPage(commonPageWidget);
     }
+    disableApplyButton();
 }
 
 void EntryDlg::commitData(bool force)
@@ -400,6 +378,37 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
     disableApplyButton();
     m_doc->setModified(true);
+}
+
+void EntryDlg::slotTypeChanged(const QString & type)
+{
+    if ( m_selection.count() > 1 ) {
+        conjugationPageWidget->setEnabled(false);
+        comparisonPageWidget->setEnabled(false);
+        return;
+    }
+
+    // enable/disable conjugation or comparison pages:
+    QString main;
+    int pos;
+    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
+        main = type;
+    } else {
+        main = type.left(pos);
+    }
+
+    if (main == QM_VERB) {
+        conjugationPageWidget->setEnabled(true);
+    } else {
+        conjugationPageWidget->setEnabled(false);
+    }
+
+    if (main == QM_ADJ) {
+        comparisonPageWidget->setEnabled(true);
+    } else {
+        comparisonPageWidget->setEnabled(false);
+    }
+
 }
 
 

@@ -188,6 +188,10 @@ void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelI
 
 void FromToEntryPage::commitData()
 {
+    if ( m_currentRow < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
+        kDebug() << "FromToEntryPage::commitData() invalid data to commit: " << m_currentRow << ", " << m_translationFrom << ", " << m_translationTo;
+    }
+
 /// @todo enable writing of data for multiple selection
     KEduVocTranslation * trans = &m_doc->entry(m_currentRow)->translation(m_translationTo);
 

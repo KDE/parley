@@ -72,13 +72,13 @@ public slots:
     void slotDockVertical();
 
 private slots:
-    void updatePages(const QString &type);
+    void slotTypeChanged(const QString& type);
 
 private:
     void closeEvent(QCloseEvent*e);
 
     /// reloads the expression data into the widgets
-    void updateData ();
+    void updatePages ();
 
     /// The dialog pages
     CommonEntryPage  *commonPage;
