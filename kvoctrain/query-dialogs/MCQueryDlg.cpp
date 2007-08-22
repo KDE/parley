@@ -9,6 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -114,6 +115,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     resetQueryWidget(button_ref[3].second);
     resetQueryWidget(button_ref[4].second);
 
+
     KEduVocMultipleChoice multipleChoice = vocExpression->translation(m_queryTranslationColumn).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
         choices.append(multipleChoice.choice(i));
@@ -194,11 +196,11 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     button_ref[4].second->setText(choices[4]);
     button_ref[4].second->setFont(Prefs::tableFont());
 
-    mw->rb_trans1->setChecked(false);
-    mw->rb_trans2->setChecked(false);
-    mw->rb_trans3->setChecked(false);
-    mw->rb_trans4->setChecked(false);
+    // As long as the buttons are AutoExclusive we cannot uncheck all.
+    mw->rb_trans5->setChecked(true);
+    mw->rb_trans5->setAutoExclusive ( false );
     mw->rb_trans5->setChecked(false);
+    mw->rb_trans5->setAutoExclusive ( true );
 
     mw->show_all->setFocus();
 }
