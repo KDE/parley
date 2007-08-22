@@ -93,6 +93,8 @@ private:
     /// Selection in the doc - if more than one row is selected behavior is different
     QModelIndexList   m_selection;
 
+    bool m_usageIsModified;
+
     KEduVocWordType   m_wordTypes;
 };
 #endif // CommonEntryPage_included

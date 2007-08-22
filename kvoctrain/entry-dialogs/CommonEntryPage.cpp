@@ -105,6 +105,7 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
     // set these to the first entry, check if that's ok later
     setLessonBox(firstEntry->lesson());
     setUsageBox(firstEntry->translation(m_currentTranslation).usageLabel());
+    kDebug() << "usageLabel: " << firstEntry->translation(m_currentTranslation).usageLabel();
 
     c_active->setChecked(firstEntry->isActive());
 
@@ -164,6 +165,8 @@ kDebug() << " type index: " << mainType << " sub " << subType;
             }
         } // foreach
     } // edit more than one entry
+
+    m_usageIsModified = false;
 }
 
 
@@ -204,6 +207,7 @@ void CommonEntryPage::slotUsageChanged()
         }
     }
     usage_line->setText(s);
+    m_usageIsModified = true;
 }
 
 
@@ -324,9 +328,17 @@ void CommonEntryPage::commitData()
         }
 
         if (m_currentTranslation >= 0) {
-//                 if (m_usageIsModified)
-//                     for (int j = 0; j < expr->translationCount(); j++)
-//                         expr->translation(j).setUsageLabel(m_usageCollection);
+            if (m_usageIsModified) {
+                QString usageString;
+                for (int i = 0; i < usage_box->count(); i++) {
+                    if (usage_box->item(i)->isSelected()) {
+                        if (!usageString.isEmpty())
+                            usageString += ":";
+                        usageString += usages[i].identStr();
+                    }
+                }
+                expr->translation(m_currentTranslation).setUsageLabel( usageString );
+            }
             if ( type_box->currentIndex() != -1 ) {
                 QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
                 // set the type
@@ -347,6 +359,7 @@ void CommonEntryPage::commitData()
             } // type
         }
     }
+    m_usageIsModified = false;
 }
 
 void CommonEntryPage::slotDataChanged()
