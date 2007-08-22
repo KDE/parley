@@ -48,16 +48,26 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 {
     setupUi(this);
 
+    m_wordTypes.setDocument(m_doc);
+
+    // subdialogs
     connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
     connect(b_pronDlg, SIGNAL(clicked()), SLOT(invokePronDlg()));
     connect(b_TypeDlg, SIGNAL(clicked()), SLOT(invokeTypeDlg()));
-    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
-    connect(lesson_box, SIGNAL(activated(int)), SLOT(slotLessonSelected(int)));
-    connect(subtype_box, SIGNAL(activated(int)), SLOT(slotSubTypeSelected(int)));
-    connect(type_box, SIGNAL(activated(int)), SLOT(slotTypeSelected(int)));
-    connect(c_active, SIGNAL(toggled(bool)), SLOT(slotActiveChanged(bool)));
-    connect(pronounce_line, SIGNAL(textChanged(const QString&)), SLOT(slotPronounceSelected(const QString&)));
-    connect(expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotExprSelected(const QString&)));
+
+    // in general only the modified state interests us.
+    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotDataChanged()));
+    connect(lesson_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
+    connect(subtype_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
+    connect(c_active, SIGNAL(stateChanged(int)), SLOT(slotDataChanged(int)));
+    connect(pronounce_line, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+    connect(expr_line, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
+
+    connect(type_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
+    // type is tricky - need to update subtype
+    connect(type_box, SIGNAL(activated(const QString&)), SLOT(slotUpdateSubTypeBoxContents(const QString&)));
+
+
 
     usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
     pronounce_line->setFont(Prefs::iPAFont());
@@ -84,96 +94,72 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
     m_currentTranslation = col;
     m_selection = selection;
 
-    expr_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation());
+    bool editSingleEntry = (m_selection.count() == 1);
+    //disable fields that cannot be changed for multiple, enable them if only one entry is edited
+    expr_line->setEnabled(editSingleEntry);
+    pronounce_line->setEnabled(editSingleEntry);
 
-    m_lesson = m_doc->entry(m_currentRow)->lesson(),
-    setLessonBox(m_lesson);
+    KEduVocExpression *firstEntry = m_doc->entry(m_currentRow);
+    // set these to the first entry, check if that's ok later
+    setLessonBox(firstEntry->lesson());
+    setUsageBox(firstEntry->translation(m_currentTranslation).usageLabel());
 
-    m_usageCollection = m_doc->entry(m_currentRow)->translation(m_currentTranslation).usageLabel();
-    setUsageBox(m_usageCollection);
+    c_active->setChecked(firstEntry->isActive());
 
-    m_type = m_doc->entry(m_currentRow)->translation(m_currentTranslation).type();
-    setTypeBox(m_type);
 
-    m_pronounce = m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation();
-    pronounce_line->setText(m_pronounce);
+    type_box->clear();
+    type_box->addItems( m_wordTypes.getMainTypeList() );
 
-    m_entry_active = m_doc->entry(m_currentRow)->isActive();
-    c_active->setChecked(m_entry_active);
 
-    int start = -1;
-    int i = 0;
-    while (start < 0 && i < (int) all_types.size()) {
-        if (all_types [i].shortStr() == KVTQuery::getMainType(m_type))
-            start = i;
-        i++;
-    }
-    int offset = -1;
-    while (offset < 0 && i < (int) all_types.size()) {
-        if (all_types [i].shortStr() == m_type)
-            offset = i - start;
-        i++;
-    }
-    if (offset >= 0) {
-        slotSubTypeSelected(offset);
-        subtype_box->setCurrentIndex(offset);
-    }
+kDebug() << " TYPE: " << m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
 
-    m_largeSelection = (m_selection.count() > 1);
-    if (m_largeSelection) {
+
+    QString mainType =
+        m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+    QString subType =
+        m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+
+kDebug() << " type index: " << mainType << " sub " << subType;
+
+    type_box->setCurrentIndex( type_box->findText( mainType ) );
+    slotUpdateSubTypeBoxContents( mainType );
+    subtype_box->setCurrentIndex( subtype_box->findText( subType ) );
+
+    if (editSingleEntry) {
+        c_active->setTristate(false);
+        // these can only be edited in single mode
+        expr_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation());
+
+        pronounce_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation());
+
+    } else { // edit more than one entry
+        c_active->setTristate(true);
         expr_line->setText("");
         pronounce_line->setText("");
-        lesson_box->setCurrentIndex(-1);
-        type_box->setCurrentIndex(-1);
-        subtype_box->setCurrentIndex(-1);
-    }
 
-    m_usageIsModified = false;
-    m_typeIsModified = false;
-    m_lessonIsModified = false;
-    m_activeIsModified = false;
-    setModified(false);
-}
+        // fill enabled fields if equal for all edited entries, otherwise empty.
+        foreach ( QModelIndex modelIndex, m_selection) {
+            KEduVocExpression *currentEntry = m_doc->entry(modelIndex.row());
+            if ( firstEntry->lesson() != currentEntry->lesson() ) {
+                lesson_box->setCurrentIndex(-1);
+            }
 
-
-void CommonEntryPage::setEnabled(bool enable)
-{
-    lesson_box->setEnabled(enable);
-    c_active->setEnabled(enable);
-    if ( m_currentTranslation >= 0 ) {
-        usage_box->setEnabled(enable);
-        subtype_box->setEnabled(enable);
-        type_box->setEnabled(enable);
-        b_pronDlg->setEnabled(pronounce_line->isEnabled());
-        pronounce_line->setEnabled(enable && !m_largeSelection);
-        expr_line->setEnabled(enable && !m_largeSelection);
-    } else {
-        usage_box->setEnabled(false);
-        subtype_box->setEnabled(false);
-        type_box->setEnabled(false);
-        b_pronDlg->setEnabled(false);
-        pronounce_line->setEnabled(false);
-        expr_line->setEnabled(false);
-    }
-}
-
-
-void CommonEntryPage::setTypeBox(const QString &act_type)
-{
-    all_types = KVTQuery::getRelation(false);
-    all_maintypes = KVTQuery::getRelation(true);
-
-    QString s = KVTQuery::getMainType(act_type)+QM_TYPE_DIV;
-    int curr_type = 0;
-    type_box->clear();
-    type_box->addItem(i18n("<none>"));
-    for (int i = 0; i < (int) all_maintypes.size(); i++) {
-        type_box->addItem(all_maintypes[i].longStr());
-        if (s == all_maintypes[i].shortStr()+QM_TYPE_DIV)
-            curr_type = i+1;
-    }
-    type_box->setCurrentIndex(curr_type);
-    slotTypeSelected(curr_type);
+            /// @todo as soon as we have a .subtype() function use that and check for type differences. Now cheating: only set, if type and subtype are equal.
+            if ( firstEntry->translation(m_currentTranslation).type()
+                    != currentEntry->translation(m_currentTranslation).type()) {
+                type_box->setCurrentIndex(-1);
+                subtype_box->setCurrentIndex(-1);
+            }
+            if ( firstEntry->translation(m_currentTranslation).usageLabel()
+                    != currentEntry->translation(m_currentTranslation).usageLabel()) {
+                setUsageBox("");
+            }
+            if ( firstEntry->isActive() != currentEntry->isActive() ) {
+                kDebug() << "Setting active box to PartiallyChecked.";
+                c_active->setCheckState(Qt::PartiallyChecked);
+            }
+        } // foreach
+    } // edit more than one entry
 }
 
 
@@ -191,7 +177,6 @@ void CommonEntryPage::setLessonBox(int lesson)
 
 void CommonEntryPage::setUsageBox(const QString & act_usage)
 {
-    disconnect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     usages = KVTUsage::getRelation();
     usage_box->clear();
     for (int i = 0; i < (int) usages.size(); i++) {
@@ -200,23 +185,15 @@ void CommonEntryPage::setUsageBox(const QString & act_usage)
             usage_box->setCurrentRow(i);
         }
     }
-    connect(usage_box, SIGNAL(itemSelectionChanged()), this, SLOT(slotUsageChanged()));
     slotUsageChanged();
 }
 
 void CommonEntryPage::slotUsageChanged()
 {
-    setModified(true);
-    m_usageIsModified = true;
-    m_usageCollection = "";
     QString s;
 
     for (int i = 0; i < usage_box->count(); i++) {
         if (usage_box->item(i)->isSelected()) {
-            if (!m_usageCollection.isEmpty())
-                m_usageCollection += UL_USAGE_DIV;
-            m_usageCollection += usages[i].identStr();
-
             if (!s.isEmpty())
                 s += ", ";
             s += usages[i].shortStr();
@@ -226,51 +203,17 @@ void CommonEntryPage::slotUsageChanged()
 }
 
 
-void CommonEntryPage::slotLessonSelected(int l)
+void CommonEntryPage::slotUpdateSubTypeBoxContents(const QString &mainType)
 {
-    setModified(true);
-    m_lessonIsModified = true;
-    m_lesson = l+1;
-}
+    kDebug() << "CommonEntryPage::slotUpdateSubTypeBoxContents(): " << mainType;
 
+    subtype_box->clear();
+    subtype_box->addItems( m_wordTypes.getSubTypeList( mainType) );
 
-void CommonEntryPage::slotActiveChanged(bool state)
-{
-    setModified(true);
-    m_activeIsModified = true;
-    m_entry_active = state;
-}
+    subtype_box->setCurrentIndex(-1);
+    /*
 
-
-void CommonEntryPage::slotExprSelected(const QString& s)
-{
-    setModified(true);
-    m_expression = s;
-}
-
-
-void CommonEntryPage::slotPronounceSelected(const QString& s)
-{
-    setModified(true);
-    m_pronounce = s;
-}
-
-
-void CommonEntryPage::slotSubTypeSelected(int i)
-{
-    setModified(true);
-    m_typeIsModified = true;
-    if (i < (int) current_subtypes.size()) {
-        m_type = current_subtypes[i];
-        emit typeSelected(m_type);
-    }
-}
-
-
-void CommonEntryPage::slotTypeSelected(int idx)
-{
-    setModified(true);
-    m_typeIsModified = true;
+    // the horror...
     subtype_box->clear();
     current_subtypes.clear();
     bool first = true;
@@ -301,14 +244,15 @@ void CommonEntryPage::slotTypeSelected(int idx)
 
     subtype_box->setEnabled(!first);
     subtype_label->setEnabled(!first);
+    emit sigModified();
+    */
 }
 
 
 void CommonEntryPage::phoneticSelected(wchar_t wc)
 {
-    setModified(true);
-    m_pronounce += QChar(wc);
-    pronounce_line->setText(m_pronounce);
+    pronounce_line->setText( pronounce_line->text() += QChar(wc) );
+    emit sigModified();
 }
 
 
@@ -338,6 +282,7 @@ void CommonEntryPage::invokeUsageDlg()
     UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
     subDialog->setMainWidget(usageOptPage);
 
+    /*
     if (subDialog->exec() == QDialog::Accepted) {
         usageOptPage->getUsageLabels(new_usageStr, usageIndex);
         UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
@@ -346,6 +291,7 @@ void CommonEntryPage::invokeUsageDlg()
         m_doc->setUsageDescriptions(new_usageStr);
         m_doc->setModified();
     }
+    */
 }
 
 
@@ -366,6 +312,7 @@ void CommonEntryPage::invokeTypeDlg()
     TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
     subDialog->setMainWidget(typeOptPage);
 
+    /*
     if (subDialog->exec() == QDialog::Accepted) {
         typeOptPage->getTypeNames(new_typeStr, typeIndex);
         TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
@@ -374,21 +321,9 @@ void CommonEntryPage::invokeTypeDlg()
         m_doc->setTypeDescriptions(new_typeStr);
         m_doc->setModified();
     }
+    */
 }
 
-
-bool CommonEntryPage::isModified()
-{
-    return modified;
-}
-
-
-void CommonEntryPage::setModified(bool mod)
-{
-    modified = mod;
-    if (mod)
-        emit sigModified();
-}
 
 void CommonEntryPage::slotSubDialogClosed()
 {
@@ -401,27 +336,32 @@ void CommonEntryPage::slotSubDialogClosed()
 
 void CommonEntryPage::commitData()
 {
-    if ( !m_largeSelection ) { // single entry
+    if ( m_selection.count() == 1 ) { // single entry
         KEduVocExpression *expr = m_doc->entry(m_currentRow);
-        expr->setActive(m_entry_active);
-        expr->setLesson(m_lesson);
+        expr->setActive( c_active->checkState() == Qt::Checked );
+        expr->setLesson( lesson_box->currentIndex() + 1 ); /// @todo care about default lesson
 
         if (m_currentTranslation >= 0) {
-            expr->translation(m_currentTranslation).setTranslation(m_expression);
-            expr->translation(m_currentTranslation).setPronunciation(m_pronounce);
-            expr->translation(m_currentTranslation).setUsageLabel(m_usageCollection);
-            expr->translation(m_currentTranslation).setType(m_type);
+            expr->translation(m_currentTranslation).setTranslation( expr_line->text() );
+            expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
 
+            ///@todo reenable:
+//             expr->translation(m_currentTranslation).setUsageLabel( );
+
+            // set the type
+            QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
+            expr->translation(m_currentTranslation).setType( type );
+            // also set the same type for the other translations
             for (int j = 0; j < expr->translationCount(); j++) {
                 if (expr->translation(j).type().isEmpty())
-                    expr->translation(j).setType( m_type );
+                    expr->translation(j).setType( type );
             }
 
             for (int j = 0; j < expr->translationCount(); j++) {
                 if (KVTQuery::getMainType(expr->translation(j).type())
                         !=
-                        KVTQuery::getMainType(m_type))
-                    expr->translation(j).setType(m_type);
+                        KVTQuery::getMainType(type))
+                    expr->translation(j).setType(type);
             }
         }
     } else { // multiple entries (don't change the word itself for example)
@@ -434,24 +374,47 @@ void CommonEntryPage::commitData()
             KEduVocExpression *expr = m_doc->entry(selIndex.row());
 
             // modified because it can be different for multiple entries and will only be saved if the user changes it. otherwise it should stay different.
-            if (m_activeIsModified) {
-                expr->setActive(m_entry_active);
+            if ( c_active->checkState() != Qt::PartiallyChecked ) {
+                expr->setActive( c_active->checkState() == Qt::Checked );
             }
-            if (m_lessonIsModified) {
+            if ( lesson_box->currentIndex() != -1 ) {
                 //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
-                expr->setLesson(m_lesson);
+                expr->setLesson( lesson_box->currentIndex() + 1 );
             }
             // only update "common" properties in multiple entries selection mode
-            if (m_currentTranslation >= 0) {
-                if (m_usageIsModified)
-                    for (int j = 0; j < expr->translationCount(); j++)
-                        expr->translation(j).setUsageLabel(m_usageCollection);
-                if (m_typeIsModified)
-                    for (int j = 0; j < expr->translationCount(); j++)
-                        expr->translation(j).setType(m_type);
-            }
+            ///@todo reenable
+//             if (m_currentTranslation >= 0) {
+//                 if (m_usageIsModified)
+//                     for (int j = 0; j < expr->translationCount(); j++)
+//                         expr->translation(j).setUsageLabel(m_usageCollection);
+//                 if (m_typeIsModified)
+//                     for (int j = 0; j < expr->translationCount(); j++)
+//                         expr->translation(j).setType(m_type);
+//             }
         }
     }
 }
 
+void CommonEntryPage::slotDataChanged()
+{
+    emit sigModified();
+}
+
+
+void CommonEntryPage::slotDataChanged(int )
+{
+    emit sigModified();
+}
+
+
+void CommonEntryPage::slotDataChanged(const QString& )
+{
+    emit sigModified();
+}
+
+void CommonEntryPage::setTypeBoxData()
+{
+    type_box->clear();
+
+}
 #include "CommonEntryPage.moc"

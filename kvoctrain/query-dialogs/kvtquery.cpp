@@ -49,9 +49,7 @@ struct t_type_rel
 
 static t_type_rel InternalTypeRelations [] =
     {
-        {
-            QM_ADJ,                           I18N_NOOP("Adjective")
-        },
+        { QM_ADJ,                           I18N_NOOP("Adjective") },
 
         { QM_ADV,                           I18N_NOOP("Adverb") },
 
@@ -415,7 +413,7 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
         erg = getMainType(exprtype) != getMainType(limit);
         break;     // other type
     default:
-        ;
+        break;
     }
     return erg;
 }

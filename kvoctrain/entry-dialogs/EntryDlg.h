@@ -55,7 +55,6 @@ public:
     ~EntryDlg();
 
     bool isModified();
-    void disableApplyButton();
     void setData(int row, int col, const QModelIndexList & selection);
 
     /// saves the changes to m_doc
@@ -65,7 +64,7 @@ signals:
     void sigEditChoice(int);
 
 public slots:
-    void slotDisplayModified();
+    void slotChildPageModified();
     void slotApply();
     void slotUndo();
     void slotDockHorizontal();
@@ -76,6 +75,8 @@ private slots:
 
 private:
     void closeEvent(QCloseEvent*e);
+
+    void setModified(bool isModified);
 
     /// reloads the expression data into the widgets
     void updatePages ();
@@ -110,6 +111,9 @@ private:
     int               m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
     QModelIndexList   m_selection;
+
+    /// Modified status of child pages. Needs to be reset when committing etc.
+    bool m_modified;
 };
 
 #endif // EntryDlg_included

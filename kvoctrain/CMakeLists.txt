@@ -134,6 +134,7 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvtlessonview.cpp
     kvtsortfiltermodel.cpp
     kvtusage.cpp
+    keduvocwordtype.cpp
 )
 
 

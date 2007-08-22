@@ -101,24 +101,25 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     connect(this, SIGNAL(user2Clicked()), this, SLOT(slotDockVertical()));
     connect(this, SIGNAL(user3Clicked()), this, SLOT(slotDockHorizontal()));
 
-    connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(comparisonPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
+    connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
+    connect(comparisonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(mc_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(conjugationPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(conjugationPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
 
-    connect(fromPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
-    connect(toPage, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(fromPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
+    connect(toPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
 
-    disableApplyButton();
     commonPage->expr_line->setFocus();
+    setModified(false);
 }
 
 
-void EntryDlg::disableApplyButton()
+void EntryDlg::setModified(bool isModified)
 {
-    enableButtonApply(false);
-    enableButton(User1, false);
+    enableButtonApply(isModified);
+    enableButton(User1, isModified);
+    m_modified = isModified;
 }
 
 
@@ -136,59 +137,7 @@ void EntryDlg::slotUndo()
 
 bool EntryDlg::isModified()
 {
-    kDebug() << "Checking modified status of pages - row:" << m_currentRow << " trans: " << m_currentTranslation ;
-    bool modified = false;
-
-    if( commonPage->isEnabled() ) {
-        if( commonPage->isModified() ) {
-        kDebug() << "isModified(): commonPage";
-            modified = true;
-        }
-    }
-    if( additionalPage->isEnabled() ) {
-        if( additionalPage->isModified() ) {
-        kDebug() << "isModified(): additionalPage";
-            modified = true;
-        }
-    }
-    if( conjugationPage->isEnabled() ) {
-        if( conjugationPage->isModified() ) {
-        kDebug() << "isModified(): conjugationPage";
-            modified = true;
-        }
-    }
-    if( mc_page->isEnabled() ) {
-        if( mc_page->isModified() ) {
-        kDebug() << "isModified(): mc_page";
-            modified = true;
-        }
-    }
-    if( comparisonPage->isEnabled() ) {
-        if( comparisonPage->isModified() ) {
-        kDebug() << "isModified(): comparisonPage";
-            modified = true;
-        }
-    }
-    if( fromPage->isEnabled() ) {
-        if( fromPage->isModified() ) {
-        kDebug() << "isModified(): fromPage";
-            modified = true;
-        }
-    }
-    if( toPage->isEnabled() ) {
-        if( toPage->isModified() ) {
-        kDebug() << "isModified(): toPage";
-            modified = true;
-        }
-    }
-    return modified;
-}
-
-
-void EntryDlg::slotDisplayModified()
-{
-    enableButtonApply(true);
-    enableButton(User1, true);
+    return m_modified;
 }
 
 
@@ -257,9 +206,16 @@ void EntryDlg::closeEvent(QCloseEvent * e)
 
 void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndexList & selection)
 {
-    m_currentRow = currentRow;
-    m_currentTranslation = currentTranslation;
+    // I suppose we could switch over to only use the selection and translation.
     m_selection = selection;
+    m_currentTranslation = currentTranslation;
+
+    if ( m_selection.count() > 1 ) {
+        // if we receive multiple entries, use the first of them.
+        m_currentRow = m_selection.first().row();
+    } else {
+        m_currentRow = currentRow;
+    }
 
     kDebug() << "EntryDlg::setData() selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
 
@@ -345,7 +301,7 @@ void EntryDlg::updatePages()
     if ( !currentPage()->isEnabled() ) {
         setCurrentPage(commonPageWidget);
     }
-    disableApplyButton();
+    setModified(false);
 }
 
 void EntryDlg::commitData(bool force)
@@ -396,7 +352,7 @@ void EntryDlg::commitData(bool force)
     /// @todo emit data changed signal for the big table
 kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
-    disableApplyButton();
+    setModified(false);
     m_doc->setModified(true);
 }
 
@@ -429,6 +385,13 @@ void EntryDlg::slotTypeChanged(const QString & type)
         comparisonPageWidget->setEnabled(false);
     }
 
+}
+
+void EntryDlg::slotChildPageModified()
+{
+    enableButtonApply(true);
+    enableButton(User1, true);
+    m_modified = true;
 }
 
 

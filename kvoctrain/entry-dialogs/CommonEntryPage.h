@@ -27,11 +27,11 @@
 #ifndef CommonEntryPage_included
 #define CommonEntryPage_included
 
+#include "keduvocwordtype.h"
 #include "ui_CommonEntryPageForm.h"
 #include "query-dialogs/kvtquery.h"
 #include <kvtusage.h>
 #include <keduvocdocument.h>
-
 
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
@@ -42,11 +42,7 @@ public:
     void setData(int row, int col, const QModelIndexList & selection);
     void commitData();
 
-
-
     bool isModified();
-    void setModified(bool mod = true);
-    void setEnabled(bool enable);
 
 signals:
     void typeSelected(const QString &);
@@ -56,14 +52,23 @@ private:
     void setLessonBox(int lesson);
     void setUsageBox(const QString & act_type);
 
+    void setTypeBoxData();
+
 private slots:
-    void slotLessonSelected(int);
-    void slotExprSelected(const QString&);
-    void slotTypeSelected(int);
-    void slotSubTypeSelected(int);
-    void slotPronounceSelected(const QString&);
+    // to get noted upon modification
+    void slotDataChanged();
+    void slotDataChanged(int);
+    void slotDataChanged(const QString&);
+
+    /// Updates the usage label and emits sigModified()
     void slotUsageChanged();
-    void slotActiveChanged(bool state);
+    /// Updates the subtype box and emits sigModified()
+    void slotUpdateSubTypeBoxContents(const QString &mainType);
+
+    /**
+     * Append a char from the phonetics dialog
+     * @param  the new letter
+     */
     void phoneticSelected(wchar_t);
     void invokeTypeDlg();
     void invokePronDlg();
@@ -74,26 +79,14 @@ signals:
     void sigModified();
 
 private:
-    QString              m_pronounce;
-    QString              m_expression;
-    QString              m_usageCollection;
-    int                  m_lesson;
-    QString              m_type;
     KEduVocDocument     *m_doc;
-    bool                 m_entry_active;
 
     QList<TypeRelation>  all_maintypes;
     QList<TypeRelation>  all_types;
     QList<UsageRelation> usages;
     QList<QString>       current_subtypes;
 
-    bool                 modified;
     KDialog             *subDialog;
-    bool                 m_largeSelection;
-    bool                 m_usageIsModified;
-    bool                 m_typeIsModified;
-    bool                 m_lessonIsModified;
-    bool                 m_activeIsModified;
 
     /// The row currently selected in the document - this is the entry number
     int               m_currentRow;
@@ -101,5 +94,7 @@ private:
     int               m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
     QModelIndexList   m_selection;
+
+    KEduVocWordType   m_wordTypes;
 };
 #endif // CommonEntryPage_included
