@@ -144,33 +144,47 @@ bool EntryDlg::isModified()
     kDebug() << "Checking modified status of pages - row:" << m_currentRow << " trans: " << m_currentTranslation ;
     bool modified = false;
 
-    if( commonPage->isModified() ) {
-    kDebug() << "isModified(): commonPage";
-        modified = true;
+    if( commonPage->isEnabled() ) {
+        if( commonPage->isModified() ) {
+        kDebug() << "isModified(): commonPage";
+            modified = true;
+        }
     }
-    if( additionalPage->isModified() ) {
-    kDebug() << "isModified(): additionalPage";
-        modified = true;
+    if( additionalPage->isEnabled() ) {
+        if( additionalPage->isModified() ) {
+        kDebug() << "isModified(): additionalPage";
+            modified = true;
+        }
     }
-    if( conjugationPage->isModified() ) {
-    kDebug() << "isModified(): conjugationPage";
-        modified = true;
+    if( conjugationPage->isEnabled() ) {
+        if( conjugationPage->isModified() ) {
+        kDebug() << "isModified(): conjugationPage";
+            modified = true;
+        }
     }
-    if( mc_page->isModified() ) {
-    kDebug() << "isModified(): mc_page";
-        modified = true;
+    if( mc_page->isEnabled() ) {
+        if( mc_page->isModified() ) {
+        kDebug() << "isModified(): mc_page";
+            modified = true;
+        }
     }
-    if( comparisonPage->isModified() ) {
-    kDebug() << "isModified(): comparisonPage";
-        modified = true;
+    if( comparisonPage->isEnabled() ) {
+        if( comparisonPage->isModified() ) {
+        kDebug() << "isModified(): comparisonPage";
+            modified = true;
+        }
     }
-    if( fromPage->isModified() ) {
-    kDebug() << "isModified(): fromPage";
-        modified = true;
+    if( fromPage->isEnabled() ) {
+        if( fromPage->isModified() ) {
+        kDebug() << "isModified(): fromPage";
+            modified = true;
+        }
     }
-    if( toPage->isModified() ) {
-    kDebug() << "isModified(): toPage";
-        modified = true;
+    if( toPage->isEnabled() ) {
+        if( toPage->isModified() ) {
+        kDebug() << "isModified(): toPage";
+            modified = true;
+        }
     }
     return modified;
 }
@@ -359,22 +373,33 @@ void EntryDlg::commitData(bool force)
         }
     }
 
-    commonPage->commitData();
-    fromPage->commitData();
-    toPage->commitData();
-
-    if (m_selection.count() == 1) {
-        if (m_currentTranslation >= 0) {
-            /// @todo emit data changed signal for the big table
-kDebug() << "Changes should be committed but the table is not updated. FIXME";
-            //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
-
-            additionalPage->commitData();
-            conjugationPage->commitData();
-            comparisonPage->commitData();
-            mc_page->commitData();
-        }
+    if( commonPage->isEnabled() ) {
+        commonPage->commitData();
     }
+    if( fromPage->isEnabled() ) {
+        fromPage->commitData();
+    }
+    if( toPage->isEnabled() ) {
+        toPage->commitData();
+    }
+    if( additionalPage->isEnabled() ) {
+        additionalPage->commitData();
+    }
+    if( conjugationPage->isEnabled() ) {
+        conjugationPage->commitData();
+    }
+    if( comparisonPage->isEnabled() ) {
+        comparisonPage->commitData();
+    }
+    if( mc_page->isEnabled() ) {
+        mc_page->commitData();
+    }
+
+
+//m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
+
+    /// @todo emit data changed signal for the big table
+kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
     disableApplyButton();
     m_doc->setModified(true);
