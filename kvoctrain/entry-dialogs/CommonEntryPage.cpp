@@ -280,8 +280,8 @@ void CommonEntryPage::invokeTypeDlg()
         typeOptPage->getTypeNames(new_typeStr, typeIndex);
         TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
         KVTQuery::setTypeNames(new_typeStr);
+        m_wordTypes.update();
         updateMainTypeBoxContents();
-        //setTypeBox(m_type);
         m_doc->setTypeDescriptions(new_typeStr);
         m_doc->setModified();
     }
