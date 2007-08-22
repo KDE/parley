@@ -9,7 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
     -----------------------------------------------------------------------
 
  ***************************************************************************
@@ -50,9 +50,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     docked = false;
     m_currentRow = -1;
     m_currentTranslation = -1;
-    fromPage = 0;
-    toPage = 0;
-
     m_doc = doc;
 
     commonPage = new CommonEntryPage(m_doc, this);
@@ -74,14 +71,12 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     addPage(multipleChoicePageWidget);
 
     conjugationPage = new TenseEntryPage(m_doc, this);
-    //addPage(conjugationPage, i18n("Conjugation"));
     conjugationPageWidget = new KPageWidgetItem( conjugationPage, i18n( "Conjugation" ) );
     conjugationPageWidget->setHeader( i18n( "Conjugation of the selected verb" ) );
     conjugationPageWidget->setIcon( KIcon( "chronometer" ) );
     addPage(conjugationPageWidget);
 
     comparisonPage = new AdjEntryPage(m_doc, this);
-    //addPage(comparisonPage, i18n("Comparison"));
     comparisonPageWidget = new KPageWidgetItem( comparisonPage, i18n( "Comparison" ) );
     comparisonPageWidget->setHeader( i18n( "Comparison forms of the selected adjective or adverb" ) );
     comparisonPageWidget->setIcon( KIcon( "arrow-up" ) );
