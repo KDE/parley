@@ -164,32 +164,7 @@ void KVocTrainApp::slotSelectAll()
  */
 void KVocTrainApp::slotEditEntry()
 {
-    QModelIndex index = m_tableView->currentIndex();
-    if (index.isValid()) {
-        index = m_sortFilterModel->mapToSource(index);
-
-
-// in here it's always consistent.
-
-QModelIndexList modelIndexList;
-modelIndexList = m_tableView->selectionModel()->selectedRows();
-
-QString selectedRows;
-foreach (QModelIndex mi, modelIndexList) {
-    selectedRows.append(QString("%1, ").arg(m_sortFilterModel->mapToSource(mi).row()));
-}
-
-kDebug() << "KVocTrainApp::slotEditEntry() the simple one speaking to you. \nCurrent status is - row: " << index.row() << " column: " << index.column() << " selection: " << selectedRows << "\n";
-
-        slotEditEntry(index.row(), index.column());
-    }
-}
-
-
-void KVocTrainApp::slotEditEntry(int row, int col)
-{
-kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
-
+    // prepare the entry dialog
     if (entryDlg == 0) {
         entryDlg = new EntryDlg(this, m_doc);
         connect(entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
@@ -206,7 +181,8 @@ kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
         return;
     }
 
-    col -= KV_EXTRA_COLS;
+
+    // set the data in the dialog
 
     // to pass on the selection we need to translate from m_sortFilterModel to the real model
     QModelIndexList modelIndexList;
@@ -216,7 +192,17 @@ kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
     foreach (QModelIndex modelIndex, modelIndexList) {
         entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
     }
-    entryDlg->setData(entryList, col);
+
+    QModelIndex currentIndex = m_tableView->currentIndex();
+    if (currentIndex.isValid()) {
+        currentIndex = m_sortFilterModel->mapToSource(currentIndex);
+    }
+
+    if (entryList.isEmpty() ) {
+        entryList.append( currentIndex.row() );
+    }
+
+    entryDlg->setData(entryList, currentIndex.column() - KV_EXTRA_COLS);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
@@ -878,8 +864,26 @@ void KVocTrainApp::slotEditPaste()
     slotStatusMsg(IDS_DEFAULT);
 }
 
+
+
+
+
+
+
+
+
+void KVocTrainApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
+{
+    // update the entry dialog if it is there
+    if (entryDlg != 0) {
+        slotEditEntry();
+    }
+}
+
+
 void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
+    // update the status bar
     Q_UNUSED(previous);
     if (!current.isValid()) {
         return;
@@ -890,21 +894,11 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         translationId = 0;
     }
 
-    bool table = false;
-    if (current.model() == m_tableModel) {
-        kDebug() << "KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous) model is table: " << current.row() << ", " << current.column();
-    }
-
     QModelIndex index = current;
+    index = m_sortFilterModel->mapToSource(current);
 
-    bool filter = false;
-    if (current.model() == m_sortFilterModel) {
-        kDebug() << "KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous) model is proxy";
-        index = m_sortFilterModel->mapToSource(current);
-    }
-
-    // mapToSource seems rather broken for some reason
-    KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
+    //KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
+    KEduVocExpression * currentExpression = m_doc->entry(index.row());
 
     if (m_remarkStatusBarLabel != 0)
         m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
@@ -913,8 +907,9 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     if (m_typeStatusBarLabel != 0)
         m_typeStatusBarLabel->setText(i18n("Type: %1", KVTQuery::typeStr(currentExpression->translation(translationId).type())));
 
+    // update the entry dialog if it is there
     if (entryDlg != 0) {
-        slotEditEntry(index.row(), index.column());
+        slotEditEntry();
     }
 }
 
@@ -1002,5 +997,6 @@ void KVocTrainApp::slotConfigShowSearch()
         Prefs::setShowSearch(m_searchWidget->isVisible());
     }
 }
+
 
 #include "kvoctrain.moc"

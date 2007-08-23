@@ -130,6 +130,11 @@ public:
     */
     virtual void readProperties(const KConfigGroup &);
 
+    void removeProgressBar();
+    void prepareProgressBar();
+    void loadDocProps();
+    void saveDocProps(KEduVocDocument *);
+
 signals:
     void progressChanged(KEduVocDocument *, int curr_percent);
 
@@ -137,13 +142,6 @@ public slots:
     void keyPressEvent(QKeyEvent *e);
 //  void keyReleaseEvent( QKeyEvent *e );
     void slotModifiedDoc(bool mod);
-    void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
-//  void slotSelectEntry (int row, int col, int key_state);
-
-    /** edit an entry */
-    void slotEditEntry();
-    void slotEditEntry(int row, int col);
-    void removeEntryDlg();
 
     /** select an entry */
     void slotSaveSelection();
@@ -233,11 +231,27 @@ public slots:
     void slotResumeQuery() { m_queryManager->slotResumeQuery(); }
     void slotResumeQueryMC() { m_queryManager->slotResumeQueryMC(); }
 
-public:
-    void removeProgressBar();
-    void prepareProgressBar();
-    void loadDocProps();
-    void saveDocProps(KEduVocDocument *);
+    /**
+     * Close the entry dialog
+     */
+    void removeEntryDlg();
+
+private slots:
+    /**
+     * To update the statusbar and the entry dialog
+     * @param
+     * @param
+     */
+    void slotCurrentChanged(const QModelIndex &, const QModelIndex &);
+    /**
+     * To update the entry dialog
+     * @param
+     * @param
+     */
+    void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
+
+    /** edit an entry */
+    void slotEditEntry();
 
 private:
     /** used for the query slotStartXYZ - to check if query is not empty */

@@ -514,10 +514,18 @@ void KVocTrainApp::initView()
     m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
     setCaption(m_doc->url().fileName(), false);
-    connect(m_tableModel, SIGNAL(modelAboutToBeReset()), m_tableView, SLOT(slotModelAboutToBeReset()));
+
+    //connect(m_tableModel, SIGNAL(modelAboutToBeReset()), m_tableView, SLOT(slotModelAboutToBeReset()));
+
     connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
+
+    // selection changes (the entry dialog needs these)
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
+
 
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
