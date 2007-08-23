@@ -162,22 +162,9 @@ void KVocTrainApp::slotEditRow()
 }
 
 
-void KVocTrainApp::slotEditCallBack(int res)
-{
-    switch (res) {
-    case EntryDlg::EditCancel:
-        removeEntryDlg();
-        break;
-    } // switch
-}
-
-
-
 void KVocTrainApp::removeEntryDlg()
 {
     if (entryDlg != 0) {
-        entryDlg->commitData(false);
-        disconnect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
         entryDlg->deleteLater();
         entryDlg = 0;
     }
@@ -206,7 +193,7 @@ kDebug() << "slotEditEntry() " << row << ", " << col;
 
     if (entryDlg == 0) {
         entryDlg = new EntryDlg(this, m_doc);
-        connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
+        connect(entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
         connect(entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
     }
 

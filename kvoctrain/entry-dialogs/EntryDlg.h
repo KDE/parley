@@ -64,16 +64,15 @@ public:
 signals:
     void sigEditChoice(int);
     void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void closeEntryDialog();
 
-public slots:
+private slots:
+    void slotTypeChanged(const QString& type);
     void slotChildPageModified();
     void slotApply();
     void slotUndo();
     void slotDockHorizontal();
     void slotDockVertical();
-
-private slots:
-    void slotTypeChanged(const QString& type);
 
 private:
     void closeEvent(QCloseEvent*e);

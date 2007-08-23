@@ -143,7 +143,6 @@ public slots:
     /** edit an entry */
     void slotEditEntry(int row, int col); ///@todo get rid of
     void slotEditEntry2(const QModelIndex &);
-    void slotEditCallBack(int res);
 
     void setDataEntryDlg(int row, int col);
     void removeEntryDlg();

@@ -226,7 +226,8 @@ void EntryDlg::slotDockHorizontal()
 void EntryDlg::closeEvent(QCloseEvent * e)
 {
     Q_UNUSED(e);
-    emit sigEditChoice(EditCancel);
+    commitData(false);
+    emit closeEntryDialog();
 }
 
 
