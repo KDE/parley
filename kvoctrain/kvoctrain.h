@@ -141,10 +141,8 @@ public slots:
 //  void slotSelectEntry (int row, int col, int key_state);
 
     /** edit an entry */
-    void slotEditEntry(int row, int col);
     void slotEditEntry();
-
-    void setDataEntryDlg(int row, int col);
+    void slotEditEntry(int row, int col);
     void removeEntryDlg();
 
     /** select an entry */

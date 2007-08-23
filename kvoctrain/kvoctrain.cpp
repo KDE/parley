@@ -167,6 +167,20 @@ void KVocTrainApp::slotEditEntry()
     QModelIndex index = m_tableView->currentIndex();
     if (index.isValid()) {
         index = m_sortFilterModel->mapToSource(index);
+
+
+// in here it's always consistent.
+
+QModelIndexList modelIndexList;
+modelIndexList = m_tableView->selectionModel()->selectedRows();
+
+QString selectedRows;
+foreach (QModelIndex mi, modelIndexList) {
+    selectedRows.append(QString("%1, ").arg(m_sortFilterModel->mapToSource(mi).row()));
+}
+
+kDebug() << "KVocTrainApp::slotEditEntry() the simple one speaking to you. \nCurrent status is - row: " << index.row() << " column: " << index.column() << " selection: " << selectedRows << "\n";
+
         slotEditEntry(index.row(), index.column());
     }
 }
@@ -186,12 +200,7 @@ kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
         entryDlg->commitData(false);
     }
     entryDlg->show();
-    setDataEntryDlg(row, col);
-}
 
-
-void KVocTrainApp::setDataEntryDlg(int row, int col)
-{
 kDebug() << "setDataEntryDlg() " << row << ", " << col;
     if (entryDlg == 0) {
         kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
