@@ -530,16 +530,16 @@ void KVocTrainApp::initView()
     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
 
-    /** Begin tabs... */
-    /*KTabWidget *tabWidget = new KTabWidget(centralWidget());
-    tabWidget->addTab(m_tableView, "Edit vocabulary");
-
-    QPushButton *button = new QPushButton("Resume query");
-    connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
-    tabWidget->addTab(button, "Query");
-
-    m_mainSplitter->addWidget(tabWidget);*/
-    /** End tabs - comment out these lines to get the nomal behavior. */
+//     /* Begin tabs... */
+//     KTabWidget *tabWidget = new KTabWidget(centralWidget());
+//     tabWidget->addTab(rightWidget, "Edit vocabulary");
+//
+//     QPushButton *button = new QPushButton("Resume query");
+//     connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
+//     tabWidget->addTab(button, "Query");
+//
+//     m_mainSplitter->addWidget(tabWidget);
+//     /* End tabs - comment out these lines to get the nomal behavior. */
 
     updateTableFilter();
 
