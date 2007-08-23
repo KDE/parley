@@ -63,6 +63,7 @@ public:
 
 signals:
     void sigEditChoice(int);
+    void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
 
 public slots:
     void slotChildPageModified();

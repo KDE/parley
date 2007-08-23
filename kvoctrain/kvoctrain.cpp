@@ -168,35 +168,6 @@ void KVocTrainApp::slotEditCallBack(int res)
     case EntryDlg::EditCancel:
         removeEntryDlg();
         break;
-
-/// @todo eventualle append a row if we are in the last row???
-/// @todo move this into the entry dialog itself
-
-    case EntryDlg::EditApply:
-        kDebug() << "EntryDlg::EditApply";
-        entryDlg->commitData(true);
-/*
-        commitEntryDlg(true);
-        if (Prefs::smartAppend()) {
-            int row = m_tableView->currentIndex().row();
-            if (row == m_tableModel->rowCount(QModelIndex()) - 1) {
-                int col = m_tableView->currentIndex().column();
-                if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG) {
-                    int lesson = m_doc->entry(row)->lesson();
-                    //if (lesson >= m_lessonsComboBox->count())
-                    //lesson = qMax (0, m_lessonsComboBox->count()-1);
-                    m_lessonView->slotSelectLesson(lesson);
-
-                    QString exp;
-                    exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG).translation();
-                    if (exp.isEmpty())
-                        m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
-                } else
-                    slotNewEntry();
-                    //slotAppendRow();
-            }
-        }*/
-        break;
     } // switch
 }
 
@@ -215,23 +186,6 @@ void KVocTrainApp::removeEntryDlg()
 }
 
 
-void KVocTrainApp::slotEditEntry(int row, int col)
-{
-kDebug() << "slotEditEntry() " << row << ", " << col;
-
-    if (entryDlg == 0) {
-        entryDlg = new EntryDlg(this, m_doc);
-        connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
-    }
-
-    if (entryDlg != 0) {
-        entryDlg->commitData(false);
-    }
-    entryDlg->show();
-    setDataEntryDlg(row, col);
-}
-
-
 void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
 {
     if (index.isValid()) {
@@ -243,6 +197,24 @@ void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
         }
         slotEditEntry(sourceIndex.row(), sourceIndex.column());
     }
+}
+
+
+void KVocTrainApp::slotEditEntry(int row, int col)
+{
+kDebug() << "slotEditEntry() " << row << ", " << col;
+
+    if (entryDlg == 0) {
+        entryDlg = new EntryDlg(this, m_doc);
+        connect(entryDlg, SIGNAL(sigEditChoice(int)), this, SLOT(slotEditCallBack(int)));
+        connect(entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
+    }
+
+    if (entryDlg != 0) {
+        entryDlg->commitData(false);
+    }
+    entryDlg->show();
+    setDataEntryDlg(row, col);
 }
 
 

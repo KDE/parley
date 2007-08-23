@@ -105,7 +105,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(comparisonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
-    connect(mc_page, SIGNAL(sigModified()), this, SLOT(slotDisplayModified()));
+    connect(mc_page, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(conjugationPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
 
     connect(fromPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
@@ -113,6 +113,16 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     commonPage->expr_line->setFocus();
     setModified(false);
+}
+
+
+EntryDlg::~EntryDlg()
+{
+    if (docked) {
+        docked = false;
+        mainwin->resize(oldMainSize);
+        mainwin->move(oldMainPos);
+    }
 }
 
 
@@ -126,7 +136,32 @@ void EntryDlg::setModified(bool isModified)
 
 void EntryDlg::slotApply()
 {
-    emit sigEditChoice(EditApply);
+    commitData(true);
+    setModified(false);
+
+/// @todo eventually append a row if we are in the last row???
+
+/*
+        commitEntryDlg(true);
+        if (Prefs::smartAppend()) {
+            int row = m_tableView->currentIndex().row();
+            if (row == m_tableModel->rowCount(QModelIndex()) - 1) {
+                int col = m_tableView->currentIndex().column();
+                if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG) {
+                    int lesson = m_doc->entry(row)->lesson();
+                    //if (lesson >= m_lessonsComboBox->count())
+                    //lesson = qMax (0, m_lessonsComboBox->count()-1);
+                    m_lessonView->slotSelectLesson(lesson);
+
+                    QString exp;
+                    exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG).translation();
+                    if (exp.isEmpty())
+                        m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
+                } else
+                    slotNewEntry();
+                    //slotAppendRow();
+            }
+        }*/
 }
 
 
@@ -185,16 +220,6 @@ void EntryDlg::slotDockHorizontal()
     move(0, 0);
     mainwin->move(0, frameGeometry().height());
 #endif
-}
-
-
-EntryDlg::~EntryDlg()
-{
-    if (docked) {
-        docked = false;
-        mainwin->resize(oldMainSize);
-        mainwin->move(oldMainPos);
-    }
 }
 
 
@@ -366,6 +391,8 @@ void EntryDlg::commitData(bool force)
 
     /// @todo emit data changed signal for the big table
 kDebug() << "Changes should be committed but the table is not updated. FIXME";
+
+    emit dataChanged(m_selection.first(), m_selection.last());
 
     setModified(false);
     m_doc->setModified(true);
