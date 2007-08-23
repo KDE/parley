@@ -41,7 +41,7 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
 public:
     FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
-    void setData(int row, int toTrans, int fromTrans, const QModelIndexList & selection);
+    void setData(const QList<int>& entries, int toTrans, int fromTrans);
     void commitData();
     void clear();
 
@@ -109,10 +109,9 @@ private:
 
 
     KEduVocDocument     *m_doc;
-    int m_currentRow;
     int m_translationFrom;
     int m_translationTo;
-    QModelIndexList m_selection;
+    QList<int> m_entries;
 };
 
 #endif // FromToEntryPage_included

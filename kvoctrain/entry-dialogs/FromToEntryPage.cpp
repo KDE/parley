@@ -40,7 +40,6 @@
 FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
-    m_currentRow = -1;
     m_translationFrom = -1;
     m_translationTo = -1;
 
@@ -93,15 +92,15 @@ void FromToEntryPage::slotNever()
 
 bool FromToEntryPage::isModified()
 {
-    if ( m_currentRow < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
+    if ( m_entries.value(0) < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
         return false;
     }
 
-    KEduVocExpression *entry = m_doc->entry(m_currentRow);
+    KEduVocExpression *entry = m_doc->entry(m_entries.value(0));
 
-    kDebug() << "FromToEntryPage::isModified(): entry: " << m_currentRow << " from " << m_translationFrom << " to: " << m_translationTo;
+    kDebug() << "FromToEntryPage::isModified(): entry: " << m_entries.value(0) << " from " << m_translationFrom << " to: " << m_translationTo;
 
-    if ( m_selection.count() == 1 ) {
+    if ( m_entries.count() == 1 ) {
         if( fauxami_line->text() != entry->translation( m_translationTo ).falseFriend( m_translationFrom ) ) {
             return true;
         }
@@ -133,7 +132,7 @@ if ( time.toTime_t() != 0 ) {
             queryDateEdit->setDateTime(time);
         }
     queryDateEdit->setDateTime(QDateTime());
-    QDateTime time = m_doc->entry(m_currentRow)
+    QDateTime time = m_doc->entry(m_entries.value(0))
         ->translation(m_translationTo).gradeFrom(m_translationFrom).queryDate();
 
 */
@@ -159,24 +158,23 @@ void FromToEntryPage::badCountChanged(int count)
 }
 
 
-void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelIndexList & selection )
+void FromToEntryPage::setData(const QList<int>& entries, int toTrans, int fromTrans)
 {
-    m_currentRow = row;
     m_translationFrom = fromTrans;
     m_translationTo = toTrans;
-    m_selection = selection;
+    m_entries = entries;
 
     // only set Grades as title for now:
     QString label = QString(i18n("Grades"));
     direc_label->setTitle(label);
 
-    KEduVocExpression *entry = m_doc->entry(row);
+    KEduVocExpression *entry = m_doc->entry(m_entries.value(0));
 
     queryDateEdit->setDateTime(
-        m_doc->entry(m_currentRow)->translation(m_translationTo)
+        m_doc->entry(m_entries.value(0))->translation(m_translationTo)
         .gradeFrom(m_translationFrom).queryDate() );
 
-    if ( m_selection.count() > 1 ) {
+    if ( m_entries.count() > 1 ) {
         fauxami_line->setEnabled(false);
         fauxami_line->setText(QString());
     } else {
@@ -184,22 +182,22 @@ void FromToEntryPage::setData(int row, int toTrans, int fromTrans, const QModelI
         fauxami_line->setText(entry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
     }
 
-    gradebox->setCurrentIndex(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
+    gradebox->setCurrentIndex(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
 
-    totalCountEdit->setValue(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
+    totalCountEdit->setValue(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
 
-    badCountEdit->setValue(m_doc->entry(m_currentRow)->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
+    badCountEdit->setValue(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
 
 }
 
 void FromToEntryPage::commitData()
 {
-    if ( m_currentRow < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
-        kDebug() << "FromToEntryPage::commitData() invalid data to commit: " << m_currentRow << ", " << m_translationFrom << ", " << m_translationTo;
+    if ( m_entries.value(0) < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
+        kDebug() << "FromToEntryPage::commitData() invalid data to commit: " << m_entries.value(0) << ", " << m_translationFrom << ", " << m_translationTo;
     }
 
 /// @todo enable writing of data for multiple selection
-    KEduVocTranslation * trans = &m_doc->entry(m_currentRow)->translation(m_translationTo);
+    KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
 
     trans->setFalseFriend(m_translationFrom, fauxami_line->text());
     trans->gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
@@ -218,9 +216,9 @@ void FromToEntryPage::commitData()
 */
 
 // } else {
-//         foreach(QModelIndex selIndex, m_selection) {
+//         foreach(QModelIndex selIndex, m_entries) {
 //             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
-//             KEduVocExpression *expr = m_doc->entry(m_currentRow);
+//             KEduVocExpression *expr = m_doc->entry(m_entries.value(0));
 //
 //             if (m_currentTranslation >= 0) {
 //                 // only updated "common" props in multimode

@@ -85,23 +85,21 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 
     subDialog = 0;
 
-    m_currentRow = -1;
     m_currentTranslation = -1;
 }
 
 
-void CommonEntryPage::setData(int row, int col, const QModelIndexList & selection)
+void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
 {
-    m_currentRow = row;
-    m_currentTranslation = col;
-    m_selection = selection;
+    m_currentTranslation = currentTranslation;
+    m_entries = entries;
 
-    bool editSingleEntry = (m_selection.count() == 1);
+    bool editSingleEntry = (m_entries.count() == 1);
     //disable fields that cannot be changed for multiple, enable them if only one entry is edited
     expr_line->setEnabled(editSingleEntry);
     pronounce_line->setEnabled(editSingleEntry);
 
-    KEduVocExpression *firstEntry = m_doc->entry(m_currentRow);
+    KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
     // set these to the first entry, check if that's ok later
     setLessonBox(firstEntry->lesson());
     setUsageBox(firstEntry->translation(m_currentTranslation).usageLabel());
@@ -110,18 +108,18 @@ void CommonEntryPage::setData(int row, int col, const QModelIndexList & selectio
     c_active->setChecked(firstEntry->isActive());
 
 
-kDebug() << " TYPE: " << m_doc->entry(m_currentRow)->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_currentRow)->translation(m_currentTranslation).type());
+// kDebug() << " TYPE: " << m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type());
 
     updateMainTypeBoxContents();
 
 
     QString mainType =
         m_wordTypes.getMainTypeFromOldFormat(
-            m_doc->entry(m_currentRow)->
+            m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).type());
     QString subType =
         m_wordTypes.getSubTypeFromOldFormat(
-            m_doc->entry(m_currentRow)->
+            m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).type());
 
 kDebug() << " type index: " << mainType << " sub " << subType;
@@ -133,9 +131,9 @@ kDebug() << " type index: " << mainType << " sub " << subType;
     if (editSingleEntry) {
         c_active->setTristate(false);
         // these can only be edited in single mode
-        expr_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).translation());
+        expr_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).translation());
 
-        pronounce_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).pronunciation());
+        pronounce_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).pronunciation());
 
     } else { // edit more than one entry
         c_active->setTristate(true);
@@ -143,8 +141,8 @@ kDebug() << " type index: " << mainType << " sub " << subType;
         pronounce_line->setText("");
 
         // fill enabled fields if equal for all edited entries, otherwise empty.
-        foreach ( QModelIndex modelIndex, m_selection) {
-            KEduVocExpression *currentEntry = m_doc->entry(modelIndex.row());
+        foreach ( int entry, m_entries) {
+            KEduVocExpression *currentEntry = m_doc->entry(entry);
             if ( firstEntry->lesson() != currentEntry->lesson() ) {
                 lesson_box->setCurrentIndex(-1);
             }
@@ -303,9 +301,9 @@ void CommonEntryPage::slotSubDialogClosed()
 
 void CommonEntryPage::commitData()
 {
-    if ( m_selection.count() == 1 ) {
+    if ( m_entries.count() == 1 ) {
     // these things are only changed when editing a single entry
-        KEduVocExpression *expr = m_doc->entry(m_currentRow);
+        KEduVocExpression *expr = m_doc->entry(m_entries.value(0));
         if (m_currentTranslation >= 0) {
             expr->translation(m_currentTranslation).setTranslation( expr_line->text() );
             expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
@@ -314,16 +312,16 @@ void CommonEntryPage::commitData()
 
     // things that are changed for multiple or single entries
 
-    foreach(QModelIndex selIndex, m_selection) {
-        kDebug() << "Changing multiple entries - entry: " << selIndex.row();
-        KEduVocExpression *expr = m_doc->entry(selIndex.row());
+    foreach(int entry, m_entries) {
+        kDebug() << "Changing multiple entries - entry: " << entry;
+        KEduVocExpression *expr = m_doc->entry(entry);
 
         // modified because it can be different for multiple entries and will only be saved if the user changes it. if partially checked no entry will be changed.
         if ( c_active->checkState() != Qt::PartiallyChecked ) {
             expr->setActive( c_active->checkState() == Qt::Checked );
         }
         if ( lesson_box->currentIndex() != -1 ) {
-            //m_tableModel->setData(m_tableModel->index(index.m_currentRow(), 0), getLesson(), Qt::EditRole);
+            //m_tableModel->setData(m_tableModel->index(index.m_entries.value(0)(), 0), getLesson(), Qt::EditRole);
             expr->setLesson( lesson_box->currentIndex() + 1 );
         }
 

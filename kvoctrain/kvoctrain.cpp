@@ -201,13 +201,8 @@ kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
     }
     entryDlg->show();
 
-kDebug() << "setDataEntryDlg() " << row << ", " << col;
     if (entryDlg == 0) {
         kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
-        return;
-    }
-
-    if ((row < 0) || (col < 0)) {
         return;
     }
 
@@ -217,17 +212,11 @@ kDebug() << "setDataEntryDlg() " << row << ", " << col;
     QModelIndexList modelIndexList;
     modelIndexList = m_tableView->selectionModel()->selectedRows();
 
-    QModelIndexList sourceModelIndexList;
+    QList<int> entryList;
     foreach (QModelIndex modelIndex, modelIndexList) {
-        if ( modelIndex.model() == m_sortFilterModel ) {
-            kDebug() << "setDataEntryDlg(): got filter model";
-            sourceModelIndexList.append(m_sortFilterModel->mapToSource(modelIndex));
-        } else {
-            kDebug() << "setDataEntryDlg(): got source model";
-            sourceModelIndexList.append(modelIndex);
-        }
+        entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
     }
-    entryDlg->setData(row, col, sourceModelIndexList);
+    entryDlg->setData(entryList, col);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 

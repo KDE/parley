@@ -39,9 +39,10 @@
 #include "query-dialogs/ArtQueryDlg.h"
 #include "query-dialogs/SimpleQueryDlg.h"
 
-#include "prefs.h"
+#include "entry-dialogs/EntryDlg.h"
 
 #include "query-dialogs/kvtquery.h"
+#include "prefs.h"
 
 #define MAX_QUERY_TIMEOUT 3
 
@@ -258,7 +259,7 @@ void QueryManager::slotStartPropertyQuery(int col, KVTQuery::QueryType property)
 
     simpleQueryDlg = new SimpleQueryDlg(m_doc, m_app);
     simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
-    connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+    connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
     simpleQueryDlg->initFocus();
     simpleQueryDlg->show();
@@ -400,21 +401,21 @@ void QueryManager::slotStartTypeQuery(int col, KVTQuery::QueryType queryType)
         verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->conjugation(act_query_col), exp->translation(act_query_col).conjugation());
         verbQueryDlg->initFocus();
-        connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+        connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
     } else if (m_queryType == KVTQuery::ArticleQuery) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
         artQueryDlg->initFocus();
-        connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+        connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
     } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
-        connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+        connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         adjQueryDlg->show();
 
@@ -640,14 +641,14 @@ void QueryManager::slotStartQuery(const QString & translang, const QString & org
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
-        connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+        connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
-        connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
+        connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         mcQueryDlg->show();
     } else {
@@ -941,6 +942,18 @@ void QueryManager::showStatistics()
     }
 }
 
+void QueryManager::slotEditEntry(int row, int translation)
+{
+kDebug() << "slotEditEntry(int, int) from a query: " << row << ", " << translation;
+
+    EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
+    //connect(entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
+
+    QList<int> entry;
+    entry.append(row);
+    entryDlg->setData(entry, translation);
+    entryDlg->exec();
+}
 
 #include "kvtquerymanager.moc"
 

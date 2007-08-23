@@ -39,7 +39,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 public:
     CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
 
-    void setData(int row, int col, const QModelIndexList & selection);
+    void setData(const QList<int>& entries, int currentTranslation);
     void commitData();
 
     bool isModified();
@@ -86,12 +86,10 @@ private:
 
     KDialog             *subDialog;
 
-    /// The row currently selected in the document - this is the entry number
-    int               m_currentRow;
     /// Column in the document - corresponds to the language (-KV_EXTRA_COLS)
     int               m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
-    QModelIndexList   m_selection;
+    QList<int>        m_entries;
 
     bool m_usageIsModified;
 

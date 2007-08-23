@@ -56,14 +56,12 @@ public:
     ~EntryDlg();
 
     bool isModified();
-    void setData(int row, int col, const QModelIndexList & selection);
+    void setData(const QList<int>& entries, int currentTranslation);
 
     /// saves the changes to m_doc
     void commitData(bool force);
 
 signals:
-    void sigEditChoice(int);
-    void dataChanged(const QModelIndex& topLeft, const QModelIndex& bottomRight);
     void closeEntryDialog();
 
 private slots:
@@ -106,12 +104,13 @@ private:
     bool              docked;
 
     KEduVocDocument *m_doc;
-    /// The row currently selected in the document - this is the entry number
-    int               m_currentRow;
+//    // The row currently selected in the document - this is the entry number
+//     int               m_currentRow;
     /// Column in the document - corresponds to the language (-KV_EXTRA_COLS)
     int               m_currentTranslation;
+
     /// Selection in the doc - if more than one row is selected behavior is different
-    QModelIndexList   m_selection;
+    QList<int>        m_entries;
 
     /// Modified status of child pages. Needs to be reset when committing etc.
     bool m_modified;

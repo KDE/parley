@@ -80,6 +80,9 @@ public slots:
     void slotTimeOutType(QueryDlgBase::Result res);
     void slotTimeOutProperty(QueryDlgBase::Result res);
 
+private slots:
+    void slotEditEntry(int row, int translation);
+
 private:
     KVTQuery             m_query;
     KEduVocDocument     *m_doc;

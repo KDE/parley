@@ -49,7 +49,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     mainwin = main;
     docked = false;
-    m_currentRow = -1;
     m_currentTranslation = -1;
     m_doc = doc;
 
@@ -167,7 +166,7 @@ void EntryDlg::slotApply()
 
 void EntryDlg::slotUndo()
 {
-    setData(m_currentRow, m_currentTranslation, m_selection);
+    setData(m_entries, m_currentTranslation);
 }
 
 
@@ -231,34 +230,13 @@ void EntryDlg::closeEvent(QCloseEvent * e)
 }
 
 
-void EntryDlg::setData(int currentRow, int currentTranslation, const QModelIndexList & selection)
+void EntryDlg::setData(const QList<int>& entries, int currentTranslation)
 {
-    // I suppose we could switch over to only use the selection and translation.
-    m_selection = selection;
+    m_entries = entries;
     m_currentTranslation = currentTranslation;
 
-    if ( m_selection.count() > 1 ) {
-        // if we receive multiple entries, use the first of them.
-        m_currentRow = m_selection.first().row();
-    } else {
-        m_currentRow = currentRow;
-    }
-
-
 // FOR TESTING ONLY, REMOVE SOON:
-    kDebug() << "EntryDlg::setData() row: " << currentRow << " selection - first row: " << m_selection.first().row() << " last: " << m_selection.last().row();
-
-    bool found = false;
-    foreach(QModelIndex mi, selection) {
-        if ( mi.row() == currentRow ) {
-            found = true;
-        }
-    }
-
-    if(!found) {
-        kError() << "currentRow was not in the selection. this is a serious BUG!";
-    }
-
+    kDebug() << "EntryDlg::setData() translation: " << currentTranslation << " selection - first row: " << m_entries.first() << " last: " << m_entries.last();
 
     updatePages();
 }
@@ -276,9 +254,9 @@ void EntryDlg::updatePages()
     }
     setCaption(title);
 
-    bool editMultipleRows = (m_selection.count() > 1);
+    bool editMultipleRows = (m_entries.count() > 1);
 
-    commonPage->setData(m_currentRow, m_currentTranslation, m_selection);
+    commonPage->setData(m_entries, m_currentTranslation);
 
     if(editMultipleRows) {
         comparisonPage->clear();
@@ -286,17 +264,17 @@ void EntryDlg::updatePages()
         additionalPage->clear();
         mc_page->clear();
     } else {
-        comparisonPage->setData( m_currentRow, m_currentTranslation );
-        conjugationPage->setData( m_currentRow, m_currentTranslation );
-        additionalPage->setData( m_currentRow, m_currentTranslation );
-        mc_page->setData( m_currentRow, m_currentTranslation );
+        comparisonPage->setData( m_entries.value(0), m_currentTranslation );
+        conjugationPage->setData( m_entries.value(0), m_currentTranslation );
+        additionalPage->setData( m_entries.value(0), m_currentTranslation );
+        mc_page->setData( m_entries.value(0), m_currentTranslation );
     }
 
 // for now use the old grading system only to/from original
 // these are only valid if we edit a translation > 0. Otherwise they are disabled
     if ( m_currentTranslation > 0 ) {
-        fromPage->setData( m_currentRow, m_currentTranslation, 0, m_selection);
-        toPage->setData( m_currentRow, 0, m_currentTranslation, m_selection);
+        fromPage->setData( m_entries, m_currentTranslation, 0);
+        toPage->setData( m_entries, 0, m_currentTranslation);
     }
 
     // we always have the common page enabled
@@ -322,7 +300,7 @@ void EntryDlg::updatePages()
         }
 
         // multiple selection: have only common and grading pages
-        if ( m_selection.count() > 1 ) {
+        if ( m_entries.count() > 1 ) {
             kDebug() << "EntryDlg::updatePages() count > 1";
             additionalPageWidget->setEnabled(false);
             multipleChoicePageWidget->setEnabled(false);
@@ -333,7 +311,7 @@ void EntryDlg::updatePages()
             additionalPageWidget->setEnabled(true);
             multipleChoicePageWidget->setEnabled(true);
 
-            QString type = m_doc->entry(m_currentRow)->translation(m_currentTranslation).type();
+            QString type = m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type();
 
             slotTypeChanged( type );
         } // single entry selected
@@ -348,10 +326,6 @@ void EntryDlg::updatePages()
 void EntryDlg::commitData(bool force)
 {
     if ( !isModified() ) {
-        return;
-    }
-
-    if ( m_currentRow < 0 ) {
         return;
     }
 
@@ -393,15 +367,13 @@ void EntryDlg::commitData(bool force)
     /// @todo emit data changed signal for the big table
 kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
-    emit dataChanged(m_selection.first(), m_selection.last());
-
     setModified(false);
     m_doc->setModified(true);
 }
 
 void EntryDlg::slotTypeChanged(const QString & type)
 {
-    if ( m_selection.count() > 1 ) {
+    if ( m_entries.count() > 1 ) {
         conjugationPageWidget->setEnabled(false);
         comparisonPageWidget->setEnabled(false);
         return;
