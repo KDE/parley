@@ -194,7 +194,7 @@ void KVocTrainApp::initActions()
     editEditEntry = actionCollection()->addAction("edit_edit_selected_area");
     editEditEntry->setIcon(KIcon("edit_table_row"));
     editEditEntry->setText(i18n("&Edit Entry..."));
-    connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditRow()));
+    connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
     editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
     editEditEntry->setWhatsThis(i18n("Edit the entries in the selected rows"));
     editEditEntry->setToolTip(editEditEntry->whatsThis());
@@ -411,21 +411,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
     m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
     m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
-    /*
-    /// The buttons (new/rename/delete)
-    m_buttonNewLesson = new QPushButton(i18n("New lesson"), left);
-    m_buttonNewLesson->setToolTip(i18n("Click here to create a new lesson. You can then type its name directly in the list."));
-    boxLayout->addWidget(m_buttonNewLesson);
-    connect(m_buttonNewLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotCreateNewLesson()));
-    m_buttonRenameLesson = new QPushButton(i18n("Rename lesson"), left);
-    m_buttonRenameLesson->setToolTip(i18n("Click here to rename the currently selected lesson. You can then type its name directly in the list."));
-    boxLayout->addWidget(m_buttonRenameLesson);
-    connect(m_buttonRenameLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotRenameLesson()));
-    m_buttonDeleteLesson = new QPushButton(i18n("Delete lesson"), left);
-    m_buttonDeleteLesson->setToolTip(i18n("Click here to delete the current lesson."));
-    boxLayout->addWidget(m_buttonDeleteLesson);
-    connect(m_buttonDeleteLesson, SIGNAL(clicked()), m_lessonView, SLOT(slotDeleteLesson()));
-    */
+
 
     /// New lesson selected
     connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged(int)));
@@ -505,7 +491,6 @@ void KVocTrainApp::initView()
     /// Table view
     m_tableView = new KVTTableView(centralWidget());
     m_tableView->setFrameStyle(QFrame::NoFrame);
-    /// @todo Looks nice, makes reading a little easier. Maybe add an option to enable this? Enable by default?
     m_tableView->setAlternatingRowColors(true);
     rightLayout->addWidget(m_tableView, 1, 0);
 
@@ -524,7 +509,8 @@ void KVocTrainApp::initView()
         currentColumn = KV_COL_TRANS;
     }
 
-    m_tableView->setCurrentIndex(m_tableModel->index(currentRow, currentColumn));
+    // always operate from m_sortFilterModel
+    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
     m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
     setCaption(m_doc->url().fileName(), false);

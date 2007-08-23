@@ -64,8 +64,10 @@ void KVocTrainApp::saveOptions()
     fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
 
     if (m_tableView) {
-        Prefs::setCurrentRow(m_tableView->currentIndex().row());
-        Prefs::setCurrentCol(m_tableView->currentIndex().column());
+        // map to original entry numbers:
+        QModelIndex sourceIndex = m_sortFilterModel->mapToSource(m_tableView->currentIndex());
+        Prefs::setCurrentRow(sourceIndex.row());
+        Prefs::setCurrentCol(sourceIndex.column());
     }
 
     if (m_lessonSelectionCombo)
@@ -156,40 +158,23 @@ void KVocTrainApp::slotSelectAll()
 }
 
 
-void KVocTrainApp::slotEditRow()
+/**
+ * This slotEditEntry() is called by the button in the toolbar.
+ * Uses the current selection.
+ */
+void KVocTrainApp::slotEditEntry()
 {
-    slotEditEntry2(m_tableView->currentIndex());
-}
-
-
-void KVocTrainApp::removeEntryDlg()
-{
-    if (entryDlg != 0) {
-        entryDlg->deleteLater();
-        entryDlg = 0;
-    }
-
-    m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
-}
-
-
-void KVocTrainApp::slotEditEntry2(const QModelIndex & index)
-{
+    QModelIndex index = m_tableView->currentIndex();
     if (index.isValid()) {
-        QModelIndex sourceIndex = index;
-        // this function expects an index from the original model, NOT the filter model.
-        if ( index.model() == m_sortFilterModel ) {
-            kWarning() << "Source model expected but got proxy instead.";
-            sourceIndex = m_sortFilterModel->mapToSource(index);
-        }
-        slotEditEntry(sourceIndex.row(), sourceIndex.column());
+        index = m_sortFilterModel->mapToSource(index);
+        slotEditEntry(index.row(), index.column());
     }
 }
 
 
 void KVocTrainApp::slotEditEntry(int row, int col)
 {
-kDebug() << "slotEditEntry() " << row << ", " << col;
+kDebug() << "slotEditEntry(int, int) " << row << ", " << col;
 
     if (entryDlg == 0) {
         entryDlg = new EntryDlg(this, m_doc);
@@ -235,6 +220,17 @@ kDebug() << "setDataEntryDlg() " << row << ", " << col;
     }
     entryDlg->setData(row, col, sourceModelIndexList);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+}
+
+
+void KVocTrainApp::removeEntryDlg()
+{
+    if (entryDlg != 0) {
+        entryDlg->deleteLater();
+        entryDlg = 0;
+    }
+
+    m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 }
 
 
@@ -920,7 +916,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         m_typeStatusBarLabel->setText(i18n("Type: %1", KVTQuery::typeStr(currentExpression->translation(translationId).type())));
 
     if (entryDlg != 0) {
-        slotEditEntry2(index);
+        slotEditEntry(index.row(), index.column());
     }
 }
 

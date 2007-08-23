@@ -141,8 +141,8 @@ public slots:
 //  void slotSelectEntry (int row, int col, int key_state);
 
     /** edit an entry */
-    void slotEditEntry(int row, int col); ///@todo get rid of
-    void slotEditEntry2(const QModelIndex &);
+    void slotEditEntry(int row, int col);
+    void slotEditEntry();
 
     void setDataEntryDlg(int row, int col);
     void removeEntryDlg();
@@ -221,7 +221,7 @@ public slots:
     /** Delete an entry */
     void slotDeleteEntry();
 
-    void slotEditRow();
+
     /** paste the clipboard into the document*/
     void slotEditPaste();
 
