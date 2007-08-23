@@ -447,4 +447,14 @@ bool KVTTableModel::removeTranslation(int translationIndex)
     return true;
 }
 
+void KVTTableModel::dataChangedFromOutside(const QModelIndex & firstRow, const QModelIndex & lastRow)
+{
+    kDebug() << "Updating: " << firstRow.row() << ", " << firstRow.column() << " to " << lastRow.row() << ", " << lastRow.column() << " columnCount: " << columnCount(QModelIndex());
+    QModelIndex topLeft = index(firstRow.row()-1, 0);
+    QModelIndex bottomRight = index(lastRow.row()+1, columnCount(QModelIndex()));
+    emit dataChanged(topLeft, bottomRight);
+}
+
+
+
 #include "kvttablemodel.moc"
