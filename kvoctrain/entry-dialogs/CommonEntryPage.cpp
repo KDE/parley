@@ -75,8 +75,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
     pronounce_line->setFont(Prefs::iPAFont());
 
     QIcon list_pm = KIcon("list");
-    b_LessDlg->setIcon(list_pm);
-    b_LessDlg->setEnabled(false);
+
     b_TypeDlg->setIcon(list_pm);
     b_usageDlg->setIcon(list_pm);
 
