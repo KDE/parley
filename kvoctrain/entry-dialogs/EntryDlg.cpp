@@ -235,6 +235,11 @@ void EntryDlg::setData(const QList<int>& entries, int currentTranslation)
     m_entries = entries;
     m_currentTranslation = currentTranslation;
 
+    if ( entries.first() < 0 )
+        kDebug() << "EntryDlg::setData() invalid selection: translation: " << currentTranslation << " selection - first row: " << m_entries.first() << " last: " << m_entries.last(); {
+        return;
+    }
+
 // FOR TESTING ONLY, REMOVE SOON:
     kDebug() << "EntryDlg::setData() translation: " << currentTranslation << " selection - first row: " << m_entries.first() << " last: " << m_entries.last();
 
