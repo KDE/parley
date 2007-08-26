@@ -476,5 +476,7 @@ void KVocTrainApp::createNewDocument()
         m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_languages.value(m_languages.indexShortId(m_doc->identifier(i))).longId(), Qt::EditRole);
     }
 
+    m_doc->wordTypes()->createDefaultWordTypes();
+
     m_doc->setModified(false);
 }
