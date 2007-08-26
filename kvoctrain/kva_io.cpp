@@ -357,7 +357,7 @@ void KVocTrainApp::slotSaveSelection()
     seldoc.setAuthor(m_doc->author());
     //seldoc.setLessons(m_doc->lessons());
     //seldoc.setLessonsInQuery(m_doc->lessonsInQuery());
-    seldoc.setTypeDescriptions(m_doc->typeDescriptions());
+    //seldoc.setTypeDescriptions(m_doc->typeDescriptions());
 
     for (int i = m_doc->entryCount()-1; i >= 0; i--)
         if (m_doc->entry(i)->isInQuery())
