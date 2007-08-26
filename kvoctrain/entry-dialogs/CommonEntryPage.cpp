@@ -263,27 +263,20 @@ void CommonEntryPage::invokeUsageDlg()
 
 void CommonEntryPage::invokeTypeDlg()
 {
-//     QList<int> typeIndex;
-//     QStringList new_typeStr;
-//
-//     int old_types = (int) m_doc->typeDescriptions().size();
-//     KDialog *subDialog = new KDialog(b_TypeDlg);
-//     subDialog->setCaption(i18n("Edit User Defined Types"));
-//     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
-//
-//     subDialog->setDefaultButton(KDialog::Ok);
-//
-//     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
-//
-//     TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
-//     subDialog->setMainWidget(typeOptPage);
-//
-//     if (subDialog->exec() == QDialog::Accepted) {
-//
-//         m_wordTypes->update();
-//         updateMainTypeBoxContents();
-//
-//     }
+    KDialog *subDialog = new KDialog(b_TypeDlg);
+    subDialog->setCaption(i18n("Edit User Defined Types"));
+    subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
+
+    subDialog->setDefaultButton(KDialog::Ok);
+
+    connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
+
+    WordTypeOptionPage *typeOptPage = new WordTypeOptionPage(m_doc, this);
+    subDialog->setMainWidget(typeOptPage);
+
+    if (subDialog->exec() == QDialog::Accepted) {
+        updateMainTypeBoxContents();
+    }
 }
 
 
