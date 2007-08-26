@@ -143,11 +143,6 @@ public:
 
     static QString compStr(Prefs::EnumCompType::type type);
     static QString gradeStr(int i);
-    static QString typeStr(const QString &id);
-
-    static QList<TypeRelation> getRelation(bool only_maintypes);
-    static QString getSubType(const QString &type);
-    static QString getMainType(const QString &type);
 
     /**
      * Set the doc to be used for the query

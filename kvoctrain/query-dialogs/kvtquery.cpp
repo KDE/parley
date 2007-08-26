@@ -408,10 +408,10 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & w
         erg = true;
         break;
     case Prefs::EnumCompType::EqualTo:
-        erg = exprtype == wordtype;
+        erg = (exprtype == wordtype);
         break;     // type is same
     case Prefs::EnumCompType::NotEqual:
-        erg = exprtype != wordtype;
+        erg = (exprtype != wordtype);
         break;     // other type
     default:
         break;
@@ -486,24 +486,43 @@ QuerySelection KVTQuery::queryEntries()
 
 bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
 {
-    if ( (compareExpiring(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::expire() )
-                ||
+    // check type in both directions
+    if ( !
+        (compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexTo).type(), Prefs::typeItem())
+        ||
+        compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexFrom).type(), Prefs::typeItem()) )) {
+        return false;
+    }
+    if(expr->translation(m_indexFrom).translation().simplified().isEmpty()) {
+        return false;
+    }
+    if(expr->translation(m_indexTo).translation().simplified().isEmpty()) {
+        return false;
+    }
 
-                (
-                    compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), Prefs::gradeItem())
-                    && compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryCount(), Prefs::queryItem())
-                    && compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_indexTo).gradeFrom(m_indexFrom).badCount(), Prefs::badItem())
-                    && compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate())
-                    && compareBlocking(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::block())
-                )
-            )
-                && compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexTo).type(), Prefs::typeItem())
-                && !expr->translation(m_indexFrom).translation().simplified().isEmpty()
-                && !expr->translation(m_indexTo).translation().simplified().isEmpty()
-        ) {
-            return true;
-        }
-    return false;
+    // if expired, always take it
+    if( compareExpiring(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::expire() ) ) {
+        return true;
+    }
+
+    if ( !compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), Prefs::gradeItem()) ) {
+        return false;
+    }
+
+    if ( !compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryCount(), Prefs::queryItem())) {
+        return false;
+    }
+    if ( !compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_indexTo).gradeFrom(m_indexFrom).badCount(), Prefs::badItem())) {
+        return false;
+    }
+    if ( !compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate())) {
+        return false;
+    }
+    if ( !compareBlocking(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::block())) {
+        return false;
+    }
+kDebug() << "Adding expression to query: " << expr->translation(m_indexTo).translation();
+    return true;
 }
 
 bool KVTQuery::validate(KEduVocExpression *expr)
