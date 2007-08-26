@@ -7,6 +7,7 @@
     begin                : Tue Apr 5 2005
 
     copyright            :(C) 2005 Peter Hedlund <peter.hedlund@kdemail.net>
+                          (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 

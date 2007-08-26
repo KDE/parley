@@ -6,6 +6,7 @@
 
     copyright     : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
                     (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+
  ***************************************************************************/
 
 /***************************************************************************
@@ -79,7 +80,7 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, 
     m_queryOptions = new QueryOptions(0);
     addPage(m_queryOptions, i18n("Query"), "run_query", i18n("Query Settings"), true);
 
-    m_thresholdOptions = new ThresholdOptions(m_queryManager, 0);
+    m_thresholdOptions = new ThresholdOptions(m_doc, m_queryManager, 0);
     addPage(m_thresholdOptions, i18n("Thresholds"), "configure", i18n("Threshold Settings"), true);
     connect(m_thresholdOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 

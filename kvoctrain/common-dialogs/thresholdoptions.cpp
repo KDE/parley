@@ -7,6 +7,7 @@
     begin         : Tue Apr 5 2005
 
     copyright     : (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,15 +24,16 @@
 
 #include "thresholdoptions.h"
 
+#include "query-dialogs/kvtquery.h"
+#include "prefs.h"
+
 #include <QPushButton>
 #include <QLabel>
 #include <QComboBox>
 
-#include <kcombobox.h>
-#include <klocale.h>
-
-#include "query-dialogs/kvtquery.h"
-#include "prefs.h"
+#include <KComboBox>
+#include <KLocale>
+#include <keduvocdocument.h>
 
 static Prefs::EnumCompType::type bad_complist[] =
     {
@@ -106,7 +108,7 @@ static ThreshListRef Threshdate_itemlist [] =
     };
 
 
-ThresholdOptions::ThresholdOptions(KVTQuery * m, QWidget* parent) : QWidget(parent)
+ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, KVTQuery* m, QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
 
@@ -121,6 +123,7 @@ ThresholdOptions::ThresholdOptions(KVTQuery * m, QWidget* parent) : QWidget(pare
     connect(datecomp,    SIGNAL(activated(int)), SLOT(slotSetDateComp(int)));
     connect(datelist,    SIGNAL(activated(int)), SLOT(slotComboActivated(int)));
 
+    m_doc = doc;
     m_queryManager = m;
     fillWidgets();
     updateWidgets();
@@ -136,16 +139,9 @@ void ThresholdOptions::fillWidgets()
     for (int i = 1; i <= KV_MAX_GRADE; i++)
         gradelist->addItem(m_queryManager->gradeStr(i));
 
-
-
     typelist->clear();
-    /// @todo enable word type selection
-/*    all_maintypes = KVTQuery::getRelation(true); // collect main types
+    typelist->addItems(m_doc->wordTypes()->typeNameList());
 
-
-    for (int i = 0; i < all_maintypes.count(); i++)
-        typelist->addItem(all_maintypes[i].longStr());
-*/
     badlist->clear();
     querylist->clear();
     for (int i = 0; i <= 15; i++) {
@@ -205,11 +201,7 @@ void ThresholdOptions::updateWidgets()
 
     gradelist->setCurrentIndex(Prefs::gradeItem() - 1);
 
-    for (int i = 0; i < typelist->count(); i++) {
-        if (Prefs::typeItem() == all_maintypes[i].shortStr())
-            index = i;
-    }
-    typelist->setCurrentIndex(index);
+    typelist->setCurrentIndex(typelist->findText(Prefs::typeItem()));
 
     badlist->setCurrentIndex(Prefs::badItem());
     querylist->setCurrentIndex(Prefs::queryItem());
@@ -339,7 +331,7 @@ void ThresholdOptions::updateSettings()
     if (typecomp->currentIndex() >= 0)
         Prefs::setCompType(Prefs::EnumType::WordType, type_complist[typecomp->currentIndex()]);
     if (typelist->currentIndex() >= 0)
-        Prefs::setTypeItem(all_maintypes[typelist->currentIndex()].shortStr());
+        Prefs::setTypeItem(typelist->currentText());
     if (gradecomp->currentIndex() >= 0)
         Prefs::setCompType(Prefs::EnumType::Grade, grade_complist[gradecomp->currentIndex()]);
     Prefs::setGradeItem(gradelist->currentIndex() + 1);
@@ -370,7 +362,7 @@ bool ThresholdOptions::hasChanged()
            query_complist[querycomp->currentIndex()]          != Prefs::compType(Prefs::EnumType::Query)    ||
            bad_complist[badcomp->currentIndex()]              != Prefs::compType(Prefs::EnumType::Bad)      ||
            date_complist[datecomp->currentIndex()]            != Prefs::compType(Prefs::EnumType::Date)     ||
-           all_maintypes[typelist->currentIndex()].shortStr() != Prefs::typeItem()                          ||
+           typelist->currentText() != Prefs::typeItem() ||
            gradelist->currentIndex() + 1                      != Prefs::gradeItem()                         ||
            querylist->currentIndex()                          != Prefs::queryItem()                         ||
            badlist->currentIndex()                            != Prefs::badItem()                           ||

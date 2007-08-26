@@ -7,6 +7,7 @@
     begin         : Tue Apr 5 2005
 
     copyright     : (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -29,11 +30,14 @@
 #include "query-dialogs/kvtquery.h"
 
 
+class KEduVocDocument;
+
+
 class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
     Q_OBJECT
 public:
-    ThresholdOptions(KVTQuery * m, QWidget* parent);
+    ThresholdOptions(KEduVocDocument* doc, KVTQuery * m, QWidget* parent);
 
     void updateWidgets();
     bool hasChanged();
@@ -56,7 +60,7 @@ private:
     void fillWidgets();
 
     KVTQuery * m_queryManager;
-    QList<TypeRelation> all_maintypes;
+    KEduVocDocument *m_doc;
 };
 
 #endif
