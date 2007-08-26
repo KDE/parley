@@ -35,7 +35,7 @@ class TenseEntryPage : public QWidget, public Ui::TenseEntryPageForm
     Q_OBJECT
 
 public:
-    TenseEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit TenseEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(int row, int col);
     void commitData();

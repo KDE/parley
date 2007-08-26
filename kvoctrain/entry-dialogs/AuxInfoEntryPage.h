@@ -35,7 +35,7 @@ class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
     Q_OBJECT
 
 public:
-    AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
 
     void setData(int row, int col);

@@ -328,7 +328,7 @@ void CommonEntryPage::commitData()
                 for (int i = 0; i < usage_box->count(); i++) {
                     if (usage_box->item(i)->isSelected()) {
                         if (!usageString.isEmpty())
-                            usageString += ":";
+                            usageString += ':';
                         usageString += usages[i].identStr();
                     }
                 }

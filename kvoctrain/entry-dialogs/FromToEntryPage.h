@@ -39,7 +39,7 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
     Q_OBJECT
 
 public:
-    FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(const QList<int>& entries, int toTrans, int fromTrans);
     void commitData();

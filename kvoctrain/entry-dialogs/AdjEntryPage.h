@@ -35,7 +35,7 @@ class AdjEntryPage : public QWidget, public Ui::AdjEntryPageForm
     Q_OBJECT
 
 public:
-    AdjEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit AdjEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(int row, int col);
     void commitData();

@@ -36,7 +36,7 @@ class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
     Q_OBJECT
 
 public:
-    MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
 
     void setData(int row, int col);
     void commitData();

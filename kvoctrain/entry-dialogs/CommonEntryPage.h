@@ -41,7 +41,7 @@ class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
     Q_OBJECT
 public:
-    CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
+    explicit CommonEntryPage(KEduVocDocument *doc, QWidget* parent = 0);
 
     void setData(const QList<int>& entries, int currentTranslation);
     void commitData();
