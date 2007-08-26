@@ -229,8 +229,8 @@ public slots:
 
     void slotConfigShowSearch();
 
-    void slotResumeQuery() { m_queryManager->slotResumeQuery(); }
-    void slotResumeQueryMC() { m_queryManager->slotResumeQueryMC(); }
+    void resumeQuery() { m_queryManager->resumeQuery(); }
+    void resumeQueryMC() { m_queryManager->resumeQueryMC(); }
 
     /**
      * Close the entry dialog

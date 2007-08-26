@@ -54,20 +54,19 @@ public:
 
     void query(int queryType, int toTranslation, int fromTranslation);
 
-///@todo these are not slots - adjust names
-    void slotResumeQuery();
-    void slotResumeQueryMC();
-    void slotRestartQuery();
+    void resumeQuery();
+    void resumeQueryMC();
+    void restartQuery();
 
     // merge these three:
-    void slotStartTypeQuery(int col, KVTQuery::QueryType queryType);
-    void slotStartPropertyQuery(int col, KVTQuery::QueryType property);
-    void slotStartQuery(const QString & trans, const QString & org, bool create_new);
+    void startTypeQuery(int col, KVTQuery::QueryType queryType);
+    void startPropertyQuery(int col, KVTQuery::QueryType property);
+    void startQuery(const QString & trans, const QString & org, bool create_new);
 
     bool queryIsEmpty();
 
     /** exit query mode */
-    void slotStopQuery();
+    void stopQuery();
 
     QString fromTranslation() const { return act_query_org; }
     QString toTranslation() const { return act_query_trans; }
