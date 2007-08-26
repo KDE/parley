@@ -220,7 +220,6 @@ void KVocTrainApp::removeEntryDlg()
 
 void KVocTrainApp::slotDocumentProperties()
 {
-    int old_types = (int) m_doc->typeDescriptions().count();
     int old_tenses = (int) m_doc->tenseDescriptions().count();
     int old_usages = (int) m_doc->usageDescriptions().count();
 
@@ -231,7 +230,6 @@ void KVocTrainApp::slotDocumentProperties()
         QList<int> tenseIndex;
         QList<int> usageIndex;
         QList<int> lessonIndex;
-        QStringList new_typeStr;
         QStringList new_tenseStr;
         QStringList new_usageStr;
 
@@ -243,13 +241,8 @@ void KVocTrainApp::slotDocumentProperties()
         slotStatusMsg(i18n("Updating lesson indices..."));
         QApplication::setOverrideCursor(Qt::WaitCursor);
 
-        ddlg.getTypeNames(new_typeStr, typeIndex);
         ddlg.getTenseNames(new_tenseStr, tenseIndex);
         ddlg.getUsageLabels(new_usageStr, usageIndex);
-
-        slotStatusMsg(i18n("Updating type indices..."));
-        TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
-        KVTQuery::setTypeNames(new_typeStr);
 
         slotStatusMsg(i18n("Updating tense indices..."));
         TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
@@ -261,7 +254,7 @@ void KVocTrainApp::slotDocumentProperties()
 
         m_doc->setSortingEnabled(ddlg.getSorting());
         m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
-        m_doc->setTypeDescriptions(new_typeStr);
+
         m_doc->setTenseDescriptions(new_tenseStr);
         m_doc->setUsageDescriptions(new_usageStr);
         m_doc->setModified();
@@ -904,8 +897,13 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
     if (m_pronunciationStatusBarLabel != 0)
         m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", currentExpression->translation(translationId).pronunciation()));
+
+    QString typeText = currentExpression->translation(translationId).type();
+    if ( !currentExpression->translation(translationId).subType().isEmpty() ){
+        typeText.append(i18n(" (%1)", currentExpression->translation(translationId).subType()));
+    }
     if (m_typeStatusBarLabel != 0)
-        m_typeStatusBarLabel->setText(i18n("Type: %1", KVTQuery::typeStr(currentExpression->translation(translationId).type())));
+        m_typeStatusBarLabel->setText(i18n("Type: %1", typeText));
 
     // update the entry dialog if it is there
     if (entryDlg != 0) {

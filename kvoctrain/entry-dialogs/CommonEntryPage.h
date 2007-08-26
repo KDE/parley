@@ -27,10 +27,14 @@
 #ifndef CommonEntryPage_included
 #define CommonEntryPage_included
 
-#include "keduvocwordtype.h"
+
 #include "ui_CommonEntryPageForm.h"
+
+// kvtquery.h is still needed for usages
 #include "query-dialogs/kvtquery.h"
 #include <kvtusage.h>
+
+#include <keduvocwordtype.h>
 #include <keduvocdocument.h>
 
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
@@ -79,10 +83,11 @@ signals:
 private:
     KEduVocDocument     *m_doc;
 
-    QList<TypeRelation>  all_maintypes;
-    QList<TypeRelation>  all_types;
+//     QList<TypeRelation>  all_maintypes;
+//     QList<TypeRelation>  all_types;
+//     QList<QString>       current_subtypes;
     QList<UsageRelation> usages;
-    QList<QString>       current_subtypes;
+
 
     KDialog             *subDialog;
 
@@ -93,6 +98,6 @@ private:
 
     bool m_usageIsModified;
 
-    KEduVocWordType   m_wordTypes;
+    KEduVocWordType*  m_wordTypes;
 };
 #endif // CommonEntryPage_included

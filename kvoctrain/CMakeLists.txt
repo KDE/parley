@@ -77,7 +77,7 @@ kde4_add_ui_files(docprop_SRCS
     docprop-dialogs/LangPropPageForm.ui
     docprop-dialogs/TitlePageForm.ui
     docprop-dialogs/optionlistform.ui
-
+    docprop-dialogs/typeeditform.ui
 )
 
 set(entrydialogs_SRCS
@@ -134,7 +134,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvtlessonview.cpp
     kvtsortfiltermodel.cpp
     kvtusage.cpp
-    keduvocwordtype.cpp
 )
 
 

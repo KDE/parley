@@ -146,7 +146,6 @@ public:
     static QString typeStr(const QString &id);
 
     static QList<TypeRelation> getRelation(bool only_maintypes);
-    static void setTypeNames(const QStringList &names);
     static QString getSubType(const QString &type);
     static QString getMainType(const QString &type);
 
@@ -190,8 +189,6 @@ private:
     bool compareBad(int type, int bcount, int limit);
     bool compareGrade(int type, grade_t qgrade, grade_t limit);
     bool compareType(int type, const QString & exprtype, const QString & limit);
-
-    static QStringList userTypes;
 
     KEduVocDocument *m_doc;
     int m_indexFrom;

@@ -40,7 +40,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
     titleOptPage = new TitlePage(doc, 0);
     addPage(titleOptPage, i18n("&General"));
 
-    typeOptPage = new TypeOptPage(doc, 0);
+    typeOptPage = new WordTypeOptionPage(doc, 0);
     addPage(typeOptPage, i18nc("word types","T&ypes"));
 
     tenseOptPage = new TenseOptPage(doc, 0);

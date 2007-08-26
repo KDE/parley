@@ -136,11 +136,16 @@ void ThresholdOptions::fillWidgets()
     for (int i = 1; i <= KV_MAX_GRADE; i++)
         gradelist->addItem(m_queryManager->gradeStr(i));
 
+
+
     typelist->clear();
-    all_maintypes = KVTQuery::getRelation(true); // collect main types
+    /// @todo enable word type selection
+/*    all_maintypes = KVTQuery::getRelation(true); // collect main types
+
+
     for (int i = 0; i < all_maintypes.count(); i++)
         typelist->addItem(all_maintypes[i].longStr());
-
+*/
     badlist->clear();
     querylist->clear();
     for (int i = 0; i <= 15; i++) {

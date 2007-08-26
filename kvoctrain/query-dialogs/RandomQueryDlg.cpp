@@ -469,14 +469,7 @@ void RandomQueryDlg::setHintFields()
     mw->falseFriend->setText(s);
     mw->c_falsefriend->setEnabled(!s.isEmpty());
 
-    s = "";
-    QList<TypeRelation> all_types = KVTQuery::getRelation(false);
-    for (int i = 0; i < (int) all_types.size(); i++) {
-        if (exp->translation(m_queryOriginalColumn).type() == all_types[i].shortStr()) {
-            s = all_types[i].longStr();
-            break;
-        }
-    }
+    s = exp->translation(m_queryOriginalColumn).type();
     mw->type->setText(s);
     mw->c_type->setEnabled(!s.isEmpty());
 }

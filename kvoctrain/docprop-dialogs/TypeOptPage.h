@@ -9,6 +9,7 @@
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2001 The KDE-EDU team
                     (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -23,39 +24,37 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef TypeOptPage_included
-#define TypeOptPage_included
+#ifndef WORDTYPEOPTIONPAGE_H
+#define WORDTYPEOPTIONPAGE_H
 
-#include "ui_optionlistform.h"
+#include "ui_typeeditform.h"
+
+#include "keduvocwordtype.h"
+
+#include <QStandardItemModel>
 
 class KEduVocDocument;
 
-class TypeOptPage : public QWidget, public Ui::OptionListForm
+class WordTypeOptionPage : public QWidget, public Ui::WordTypeEditForm
 {
     Q_OBJECT
 
 public:
-    TypeOptPage(KEduVocDocument *doc, QWidget *parent);
+    WordTypeOptionPage(KEduVocDocument *doc, QWidget *parent);
 
-    void getTypeNames(QStringList &ret_types, QList<int> &ret_Index);
+private slots:
+    void itemChanged( QStandardItem * item );
+    void slotActivated( QModelIndex * modelIndex );
 
-    static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
-
-protected:
-    void updateListBox(int start);
-
-protected slots:
-    void slotDeleteType();
-    void slotNewType();
-    void slotTypeChosen(int);
-    void slotModifyType();
-    void slotCleanup();
+    void slotNewWordType();
+    void slotNewSubWordType();
+    void slotRename();
+    void slotDelete();
 
 private:
-    KEduVocDocument  *doc;
-    int               m_currentType;
-    QList<int>        typeIndex; // contains indices of types on exec()
-    // negative values are new lessons
+    KEduVocDocument    *m_doc;
+    KEduVocWordType    *m_wordTypes;
+    QStandardItemModel *m_wordTypeModel;
 };
 
-#endif // TypeOptPage_included
+#endif // WordTypeOptionPage_included

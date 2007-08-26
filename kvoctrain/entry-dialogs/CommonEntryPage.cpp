@@ -48,7 +48,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 {
     setupUi(this);
 
-    m_wordTypes.setDocument(m_doc);
+    m_wordTypes = m_doc->wordTypes();
 
     // subdialogs
     connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
@@ -108,19 +108,17 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
     c_active->setChecked(firstEntry->isActive());
 
 
-// kDebug() << " TYPE: " << m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes.getMainTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes.getSubTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type());
+// kDebug() << " TYPE: " << m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes->getMainTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes->getSubTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type());
 
     updateMainTypeBoxContents();
 
 
     QString mainType =
-        m_wordTypes.getMainTypeFromOldFormat(
-            m_doc->entry(m_entries.value(0))->
-            translation(m_currentTranslation).type());
+        m_doc->entry(m_entries.value(0))->
+            translation(m_currentTranslation).type();
     QString subType =
-        m_wordTypes.getSubTypeFromOldFormat(
-            m_doc->entry(m_entries.value(0))->
-            translation(m_currentTranslation).type());
+        m_doc->entry(m_entries.value(0))->
+            translation(m_currentTranslation).subType();
 
 kDebug() << " type index: " << mainType << " sub " << subType;
 
@@ -193,6 +191,7 @@ void CommonEntryPage::setUsageBox(const QString & act_usage)
     slotUsageChanged();
 }
 
+
 void CommonEntryPage::slotUsageChanged()
 {
     QString s;
@@ -212,7 +211,8 @@ void CommonEntryPage::slotUsageChanged()
 void CommonEntryPage::slotUpdateSubTypeBoxContents(const QString &mainType)
 {
     subtype_box->clear();
-    subtype_box->addItems( m_wordTypes.getSubTypeList( mainType) );
+    subtype_box->addItems( m_wordTypes->subTypeNameList(mainType) );
+kDebug() << "fill subType box" << mainType;
     subtype_box->setCurrentIndex(-1);
 }
 
@@ -263,30 +263,27 @@ void CommonEntryPage::invokeUsageDlg()
 
 void CommonEntryPage::invokeTypeDlg()
 {
-    QList<int> typeIndex;
-    QStringList new_typeStr;
-
-    int old_types = (int) m_doc->typeDescriptions().size();
-    KDialog *subDialog = new KDialog(b_TypeDlg);
-    subDialog->setCaption(i18n("Edit User Defined Types"));
-    subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
-
-    subDialog->setDefaultButton(KDialog::Ok);
-
-    connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
-
-    TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
-    subDialog->setMainWidget(typeOptPage);
-
-    if (subDialog->exec() == QDialog::Accepted) {
-        typeOptPage->getTypeNames(new_typeStr, typeIndex);
-        TypeOptPage::cleanUnused(m_doc, typeIndex, old_types);
-        KVTQuery::setTypeNames(new_typeStr);
-        m_wordTypes.update();
-        updateMainTypeBoxContents();
-        m_doc->setTypeDescriptions(new_typeStr);
-        m_doc->setModified();
-    }
+//     QList<int> typeIndex;
+//     QStringList new_typeStr;
+//
+//     int old_types = (int) m_doc->typeDescriptions().size();
+//     KDialog *subDialog = new KDialog(b_TypeDlg);
+//     subDialog->setCaption(i18n("Edit User Defined Types"));
+//     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
+//
+//     subDialog->setDefaultButton(KDialog::Ok);
+//
+//     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
+//
+//     TypeOptPage *typeOptPage = new TypeOptPage(m_doc, this);
+//     subDialog->setMainWidget(typeOptPage);
+//
+//     if (subDialog->exec() == QDialog::Accepted) {
+//
+//         m_wordTypes->update();
+//         updateMainTypeBoxContents();
+//
+//     }
 }
 
 
@@ -338,21 +335,15 @@ void CommonEntryPage::commitData()
                 expr->translation(m_currentTranslation).setUsageLabel( usageString );
             }
             if ( type_box->currentIndex() != -1 ) {
-                QString type = m_wordTypes.getOldType( type_box->currentText(),  subtype_box->currentText() );
+                QString type = type_box->currentText();
                 // set the type
-                expr->translation(m_currentTranslation).setType( type );
+                expr->translation(m_currentTranslation).setType( type_box->currentText() );
+                expr->translation(m_currentTranslation).setSubType( subtype_box->currentText() );
                 // also set the same type for the other translations
                 for (int j = 0; j < expr->translationCount(); j++) {
                     if (expr->translation(j).type().isEmpty())
                         expr->translation(j).setType( type );
-                }
-
-                for (int j = 0; j < expr->translationCount(); j++) {
-                    if (KVTQuery::getMainType(expr->translation(j).type())
-                            !=
-                            KVTQuery::getMainType(type)) {
-                        expr->translation(j).setType(type);
-                    }
+                        ///@todo reset subtype if new type != old type
                 }
             } // type
         }
@@ -378,8 +369,7 @@ void CommonEntryPage::slotDataChanged(const QString& )
 void CommonEntryPage::updateMainTypeBoxContents()
 {
     type_box->clear();
-    type_box->addItems( m_wordTypes.getMainTypeList() );
-
+    type_box->addItems( m_wordTypes->typeNameList() );
 }
 
 #include "CommonEntryPage.moc"

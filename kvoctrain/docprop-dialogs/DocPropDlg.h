@@ -40,7 +40,6 @@ class KEduVocDocument;
 /**
   * This is the KPageDialog for all the document option pages. You get it by clicking Vocabulary->Properties.
   * It contains the pages for General, Lesson, Types, Tenses, Usage and Options.
-  * I hope that at least Lesson can be removed here soon.
   */
 class DocPropsDlg : public KPageDialog
 {
@@ -72,13 +71,10 @@ public:
         return titleOptPage->getDocRemark();
     }
 
-    //inline void getLesson(QStringList &lessons, QList<int>& ret_index) const
-    //  { lessOptPage->getLesson(lessons, ret_index); }
-
-    inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
-    {
-        typeOptPage->getTypeNames(types, ret_index);
-    }
+//     inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
+//     {
+//         //typeOptPage->getTypeNames(types, ret_index);
+//     }
 
     inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
     {
@@ -92,9 +88,8 @@ public:
 
 protected:
     UsageOptPage   *useOptPage;
-    TypeOptPage    *typeOptPage;
+    WordTypeOptionPage    *typeOptPage;
     TenseOptPage   *tenseOptPage;
-//  LessOptPage    *lessOptPage;
     TitlePage      *titleOptPage;
     DocOptionsPage *docOptPage;
 };

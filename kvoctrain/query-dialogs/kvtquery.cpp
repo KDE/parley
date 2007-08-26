@@ -33,13 +33,14 @@
 
 #include <prefs.h>
 
-QStringList KVTQuery::userTypes;
 
-struct t_type_rel
-{
-    const char *short_ref;
-    const char *long_ref;
-};
+// QStringList KVTQuery::userTypes;
+//
+// struct t_type_rel
+// {
+//     const char *short_ref;
+//     const char *long_ref;
+// };
 
 // types are hierarchical !
 // - . divides main from sub type
@@ -47,67 +48,67 @@ struct t_type_rel
 
 // user types are strings-references like this: #1
 
-static t_type_rel InternalTypeRelations [] =
-    {
-        { QM_ADJ,                           I18N_NOOP("Adjective") },
-
-        { QM_ADV,                           I18N_NOOP("Adverb") },
-
-        { QM_ART,                           I18N_NOOP("Article") },
-        { QM_ART QM_TYPE_DIV QM_ART_DEF,    I18N_NOOP("Article Definite") },
-        { QM_ART QM_TYPE_DIV QM_ART_IND,    I18N_NOOP("Article Indefinite") },
-
-        { QM_CON,                           I18N_NOOP("Conjunction") },
-
-        { QM_NAME,                          I18N_NOOP("Name") },   // old type "3"
-
-        { QM_NOUN,                          I18N_NOOP("Noun") },   // old type "2"
-        { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    I18N_NOOP("Noun Male") },
-        { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    I18N_NOOP("Noun Female") },
-        { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    I18N_NOOP("Noun Neutral") },
-
-        { QM_NUM,                           I18N_NOOP("Numeral") },
-        { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    I18N_NOOP("Numeral Ordinal") },
-        { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   I18N_NOOP("Numeral Cardinal") },
-
-        { QM_PHRASE,                        I18N_NOOP("Phrase") },
-
-        { QM_PREP,                          I18N_NOOP("Preposition") },
-
-        { QM_PRON,                          I18N_NOOP("Pronoun") },
-        { QM_PRON QM_TYPE_DIV QM_PRON_POS,  I18N_NOOP("Pronoun Possessive") },
-        { QM_PRON QM_TYPE_DIV QM_PRON_PER,  I18N_NOOP("Pronoun Personal") },
-
-        { QM_QUEST,                         I18N_NOOP("Question") },
-
-        { QM_VERB,                          I18N_NOOP("Verb") },   // old type "1"
-        { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, I18N_NOOP("Verb Irregular") },
-        { QM_VERB  QM_TYPE_DIV QM_VERB_REG, I18N_NOOP("Verb Regular") },
-
-        { 0, 0 }  // the end
-    };
-
-
-QString KVTQuery::getSubType(const QString & type)
-{
-    int i;
-    QString t = type;
-    if ((i = t.indexOf(QM_TYPE_DIV)) >= 0) {
-        t.remove(0, i+1);
-        return t;
-    } else
-        return QString();
-}
-
-
-QString KVTQuery::getMainType(const QString & type)
-{
-    int i;
-    if ((i = type.indexOf(QM_TYPE_DIV)) >= 0)
-        return type.left(i);
-    else
-        return type;
-}
+// static t_type_rel InternalTypeRelations [] =
+//     {
+//         { QM_ADJ,                           I18N_NOOP("Adjective") },
+//
+//         { QM_ADV,                           I18N_NOOP("Adverb") },
+//
+//         { QM_ART,                           I18N_NOOP("Article") },
+//         { QM_ART QM_TYPE_DIV QM_ART_DEF,    I18N_NOOP("Article Definite") },
+//         { QM_ART QM_TYPE_DIV QM_ART_IND,    I18N_NOOP("Article Indefinite") },
+//
+//         { QM_CON,                           I18N_NOOP("Conjunction") },
+//
+//         { QM_NAME,                          I18N_NOOP("Name") },   // old type "3"
+//
+//         { QM_NOUN,                          I18N_NOOP("Noun") },   // old type "2"
+//         { QM_NOUN QM_TYPE_DIV QM_NOUN_M,    I18N_NOOP("Noun Male") },
+//         { QM_NOUN QM_TYPE_DIV QM_NOUN_F,    I18N_NOOP("Noun Female") },
+//         { QM_NOUN QM_TYPE_DIV QM_NOUN_S,    I18N_NOOP("Noun Neutral") },
+//
+//         { QM_NUM,                           I18N_NOOP("Numeral") },
+//         { QM_NUM QM_TYPE_DIV QM_NUM_ORD,    I18N_NOOP("Numeral Ordinal") },
+//         { QM_NUM QM_TYPE_DIV QM_NUM_CARD,   I18N_NOOP("Numeral Cardinal") },
+//
+//         { QM_PHRASE,                        I18N_NOOP("Phrase") },
+//
+//         { QM_PREP,                          I18N_NOOP("Preposition") },
+//
+//         { QM_PRON,                          I18N_NOOP("Pronoun") },
+//         { QM_PRON QM_TYPE_DIV QM_PRON_POS,  I18N_NOOP("Pronoun Possessive") },
+//         { QM_PRON QM_TYPE_DIV QM_PRON_PER,  I18N_NOOP("Pronoun Personal") },
+//
+//         { QM_QUEST,                         I18N_NOOP("Question") },
+//
+//         { QM_VERB,                          I18N_NOOP("Verb") },   // old type "1"
+//         { QM_VERB  QM_TYPE_DIV QM_VERB_IRR, I18N_NOOP("Verb Irregular") },
+//         { QM_VERB  QM_TYPE_DIV QM_VERB_REG, I18N_NOOP("Verb Regular") },
+//
+//         { 0, 0 }  // the end
+//     };
+//
+//
+// QString KVTQuery::getSubType(const QString & type)
+// {
+//     int i;
+//     QString t = type;
+//     if ((i = t.indexOf(QM_TYPE_DIV)) >= 0) {
+//         t.remove(0, i+1);
+//         return t;
+//     } else
+//         return QString();
+// }
+//
+//
+// QString KVTQuery::getMainType(const QString & type)
+// {
+//     int i;
+//     if ((i = type.indexOf(QM_TYPE_DIV)) >= 0)
+//         return type.left(i);
+//     else
+//         return type;
+// }
 
 
 KVTQuery::KVTQuery()
@@ -218,47 +219,47 @@ QString KVTQuery::gradeStr(int i)
 }
 
 
-QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
-{
-    QList<TypeRelation> vec;
-    for (int i = 0; i < userTypes.count(); i++) {
-        QString s;
-        s.setNum(i + 1);
-        s.prepend(QM_USER_TYPE);
-        vec.append(TypeRelation(s, userTypes[i]));
-    }
-
-    t_type_rel *type = InternalTypeRelations;
-    while (type->short_ref != 0) {
-        if (!only_maintypes || strstr(type->short_ref, QM_TYPE_DIV) == 0)
-            vec.append(TypeRelation(type->short_ref, i18n(type->long_ref)));
-        type++;
-    }
-
-    return vec;
-}
-
-
-QString KVTQuery::typeStr(const QString &id)
-{
-    if (id.left(1) == QM_USER_TYPE) {
-        QString num = id;
-        num.remove(0, 1);
-        int i = num.toInt()-1;
-        if (i >= 0 && i < userTypes.count())
-            return userTypes[i];
-        else
-            return QString();
-    } else {
-        t_type_rel *type = InternalTypeRelations;
-        while (type->short_ref != 0) {
-            if (type->short_ref == id)
-                return i18n(type->long_ref);
-            type++;
-        }
-    }
-    return QString();
-}
+// QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
+// {
+//     QList<TypeRelation> vec;
+//     for (int i = 0; i < userTypes.count(); i++) {
+//         QString s;
+//         s.setNum(i + 1);
+//         s.prepend(QM_USER_TYPE);
+//         vec.append(TypeRelation(s, userTypes[i]));
+//     }
+//
+//     t_type_rel *type = InternalTypeRelations;
+//     while (type->short_ref != 0) {
+//         if (!only_maintypes || strstr(type->short_ref, QM_TYPE_DIV) == 0)
+//             vec.append(TypeRelation(type->short_ref, i18n(type->long_ref)));
+//         type++;
+//     }
+//
+//     return vec;
+// }
+//
+//
+// QString KVTQuery::typeStr(const QString &id)
+// {
+//     if (id.left(1) == QM_USER_TYPE) {
+//         QString num = id;
+//         num.remove(0, 1);
+//         int i = num.toInt()-1;
+//         if (i >= 0 && i < userTypes.count())
+//             return userTypes[i];
+//         else
+//             return QString();
+//     } else {
+//         t_type_rel *type = InternalTypeRelations;
+//         while (type->short_ref != 0) {
+//             if (type->short_ref == id)
+//                 return i18n(type->long_ref);
+//             type++;
+//         }
+//     }
+//     return QString();
+// }
 
 
 bool KVTQuery::compareBlocking(int grade, const QDateTime &date, bool use_it)
@@ -399,7 +400,7 @@ bool KVTQuery::compareGrade(int type, grade_t qgrade, grade_t limit)
 }
 
 
-bool KVTQuery::compareType(int type, const QString & exprtype, const QString & limit)
+bool KVTQuery::compareType(int type, const QString & exprtype, const QString & wordtype)
 {
     bool erg = true;
     switch (type) {
@@ -407,10 +408,10 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
         erg = true;
         break;
     case Prefs::EnumCompType::EqualTo:
-        erg = getMainType(exprtype) == getMainType(limit);
+        erg = exprtype == wordtype;
         break;     // type is same
     case Prefs::EnumCompType::NotEqual:
-        erg = getMainType(exprtype) != getMainType(limit);
+        erg = exprtype != wordtype;
         break;     // other type
     default:
         break;
@@ -418,12 +419,6 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & l
     return erg;
 }
 
-
-
-void KVTQuery::setTypeNames(const QStringList &names)
-{
-    userTypes = names;
-}
 
 void KVTQuery::setDocument(KEduVocDocument * doc)
 {

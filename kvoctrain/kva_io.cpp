@@ -221,7 +221,6 @@ void KVocTrainApp::slotFileMerge()
 
         m_doc->merge(new_doc, true);
 
-        KVTQuery::setTypeNames(m_doc->typeDescriptions());
         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
         KVTUsage::setUsageNames(m_doc->usageDescriptions());
 
@@ -329,7 +328,6 @@ void KVocTrainApp::loadDocProps()
     }
     m_queryManager = new QueryManager(this, m_doc);
 
-    KVTQuery::setTypeNames(m_doc->typeDescriptions());
     KVTUsage::setUsageNames(m_doc->usageDescriptions());
     KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 

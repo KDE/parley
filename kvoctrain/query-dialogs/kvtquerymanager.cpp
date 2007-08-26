@@ -198,7 +198,6 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
 
 bool QueryManager::queryIsEmpty()
 {
-/// @todo Make part of QueryManager!
     if (m_doc->lessonsInQuery().empty()) {
         KMessageBox::information(m_app, i18n("You have selected no lessons to be queried. Please select at least one on the left."), i18n("Starting Query"));
         return true;
