@@ -523,11 +523,16 @@ void KVocTrainApp::initView()
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
-connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
 
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
+
+    m_tableView->addAction(actionCollection()->action("edit_append"));
+    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
+    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
+
 
     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
