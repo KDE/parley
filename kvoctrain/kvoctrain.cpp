@@ -325,15 +325,15 @@ void KVocTrainApp::slotNewEntry()
 
     m_tableModel->appendEntry(entry);
 
-    m_tableView->selectionModel()->setCurrentIndex(
-       m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_TRANS),
-       QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
-
-    // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
-    editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
-
     // show the new entry
     makeLessonVisibleInTable(m_doc->currentLesson());
+
+    // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
+    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+
+    m_tableView->selectionModel()->setCurrentIndex(
+        m_sortFilterModel->mapFromSource(m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_TRANS)),
+       QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
 }
 
 
