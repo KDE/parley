@@ -5,90 +5,30 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>394</width>
-    <height>194</height>
+    <width>590</width>
+    <height>317</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
     <number>6</number>
    </property>
-   <item row="1" column="1" >
-    <widget class="QComboBox" name="typecomp" >
-     <property name="sizePolicy" >
-      <sizepolicy>
-       <hsizetype>3</hsizetype>
-       <vsizetype>0</vsizetype>
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" >
-    <widget class="QComboBox" name="querycomp" />
-   </item>
-   <item row="4" column="1" >
-    <widget class="QComboBox" name="badcomp" />
-   </item>
-   <item row="2" column="0" >
-    <widget class="QLabel" name="label_grade" >
-     <property name="text" >
-      <string>G&amp;rade:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>gradecomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="0" >
-    <widget class="QLabel" name="label_bcount" >
-     <property name="text" >
-      <string>&amp;Bad count:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>badcomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="0" >
-    <widget class="QLabel" name="label_qdate" >
-     <property name="text" >
-      <string>Last q&amp;uery:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>datecomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="5" column="1" >
-    <widget class="QComboBox" name="datecomp" />
-   </item>
-   <item row="4" column="2" >
-    <widget class="QComboBox" name="badlist" />
-   </item>
-   <item row="3" column="2" >
-    <widget class="QComboBox" name="querylist" />
-   </item>
-   <item row="5" column="2" >
-    <widget class="QComboBox" name="datelist" />
-   </item>
-   <item row="1" column="2" >
-    <widget class="QComboBox" name="typelist" >
-     <property name="sizePolicy" >
-      <sizepolicy>
-       <hsizetype>3</hsizetype>
-       <vsizetype>0</vsizetype>
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
+   <property name="verticalSpacing" >
+    <number>6</number>
+   </property>
+   <item row="0" column="0" >
     <widget class="QLabel" name="label_type" >
      <property name="text" >
       <string>Word t&amp;ype:</string>
@@ -98,13 +38,43 @@
      </property>
     </widget>
    </item>
-   <item row="2" column="2" >
-    <widget class="QComboBox" name="gradelist" />
+   <item row="0" column="1" >
+    <widget class="QComboBox" name="typecomp" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
    </item>
-   <item row="2" column="1" >
+   <item row="0" column="2" >
+    <widget class="QComboBox" name="typelist" >
+     <property name="sizePolicy" >
+      <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="0" >
+    <widget class="QLabel" name="label_grade" >
+     <property name="text" >
+      <string>G&amp;rade:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>gradecomp</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1" >
     <widget class="QComboBox" name="gradecomp" />
    </item>
-   <item row="3" column="0" >
+   <item row="1" column="2" >
+    <widget class="QComboBox" name="gradelist" />
+   </item>
+   <item row="2" column="0" >
     <widget class="QLabel" name="label_qcount" >
      <property name="text" >
       <string>Query c&amp;ount:</string>
@@ -114,7 +84,45 @@
      </property>
     </widget>
    </item>
-   <item row="6" column="0" colspan="3" >
+   <item row="2" column="1" >
+    <widget class="QComboBox" name="querycomp" />
+   </item>
+   <item row="2" column="2" >
+    <widget class="QComboBox" name="querylist" />
+   </item>
+   <item row="3" column="0" >
+    <widget class="QLabel" name="label_bcount" >
+     <property name="text" >
+      <string>&amp;Bad count:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>badcomp</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="1" >
+    <widget class="QComboBox" name="badcomp" />
+   </item>
+   <item row="3" column="2" >
+    <widget class="QComboBox" name="badlist" />
+   </item>
+   <item row="4" column="0" >
+    <widget class="QLabel" name="label_qdate" >
+     <property name="text" >
+      <string>Last q&amp;uery:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>datecomp</cstring>
+     </property>
+    </widget>
+   </item>
+   <item row="4" column="1" >
+    <widget class="QComboBox" name="datecomp" />
+   </item>
+   <item row="4" column="2" >
+    <widget class="QComboBox" name="datelist" />
+   </item>
+   <item row="7" column="0" colspan="3" >
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
@@ -129,6 +137,16 @@
       </size>
      </property>
     </spacer>
+   </item>
+   <item row="8" column="0" colspan="2" >
+    <widget class="QLabel" name="labelInfoBlockingExpiring" >
+     <property name="text" >
+      <string>Grade and query count options can only be set, if neither blocking nor expiring on the next page is selected.</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
