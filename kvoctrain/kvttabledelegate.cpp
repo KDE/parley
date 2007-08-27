@@ -34,6 +34,7 @@
 #include "prefs.h"
 
 #include <keduvocexpression.h>
+#include <keduvocgrade.h>
 
 #define KV_NORM_COLOR      Qt::black
 

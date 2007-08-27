@@ -30,6 +30,7 @@
 #include "prefs.h"
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
+#include <keduvocgrade.h>
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {

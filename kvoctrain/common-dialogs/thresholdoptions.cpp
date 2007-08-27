@@ -34,6 +34,7 @@
 #include <KComboBox>
 #include <KLocale>
 #include <keduvocdocument.h>
+#include <keduvocwordtype.h>
 
 static Prefs::EnumCompType::type bad_complist[] =
     {
