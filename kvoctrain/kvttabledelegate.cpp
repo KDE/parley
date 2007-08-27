@@ -35,6 +35,8 @@
 
 #include <keduvocexpression.h>
 
+#define KV_NORM_COLOR      Qt::black
+
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
 {}
 

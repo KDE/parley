@@ -41,6 +41,8 @@
 
 #include <keduvocdocument.h>
 
+#define MAX_MULTIPLE_CHOICE  5  // select one out of x
+
 MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), doc, parent)
 {
     mw = new Ui::MCQueryDlgForm();
