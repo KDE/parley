@@ -257,7 +257,7 @@ void KVocTrainApp::slotFileSave()
     prepareProgressBar();
     saveDocProps(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
-    if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::automatic, "KVocTrain")) {
+    if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "KVocTrain")) {
         slotFileSaveAs();
         return;
     }
@@ -296,7 +296,7 @@ void KVocTrainApp::slotFileSaveAs()
 
                 prepareProgressBar();
                 m_doc->setCsvDelimiter(Prefs::separator());
-                m_doc->saveAs(url, KEduVocDocument::automatic, "KVocTrain");
+                m_doc->saveAs(url, KEduVocDocument::Automatic, "KVocTrain");
                 fileOpenRecent->addUrl(m_doc->url());
                 removeProgressBar();
             }
@@ -383,7 +383,7 @@ void KVocTrainApp::slotSaveSelection()
 
             prepareProgressBar();
             seldoc.setCsvDelimiter(Prefs::separator());
-            seldoc.saveAs(url, KEduVocDocument::automatic, "KVocTrain");
+            seldoc.saveAs(url, KEduVocDocument::Automatic, "KVocTrain");
             removeProgressBar();
         }
     }
