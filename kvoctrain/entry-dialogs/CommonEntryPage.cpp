@@ -333,7 +333,7 @@ void CommonEntryPage::commitData()
                 expr->translation(m_currentTranslation).setType( type_box->currentText() );
                 expr->translation(m_currentTranslation).setSubType( subtype_box->currentText() );
                 // also set the same type for the other translations
-                for (int j = 0; j < expr->translationCount(); j++) {
+                foreach (int j, expr->translationIndices()) {
                     if (expr->translation(j).type().isEmpty())
                         expr->translation(j).setType( type );
                         ///@todo reset subtype if new type != old type
