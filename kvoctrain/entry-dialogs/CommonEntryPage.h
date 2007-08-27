@@ -32,7 +32,6 @@
 
 // kvtquery.h is still needed for usages
 #include "query-dialogs/kvtquery.h"
-#include <kvtusage.h>
 
 #include <keduvocwordtype.h>
 #include <keduvocdocument.h>

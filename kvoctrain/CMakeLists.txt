@@ -133,7 +133,6 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
     kvtlessonmodel.cpp
     kvtlessonview.cpp
     kvtsortfiltermodel.cpp
-    kvtusage.cpp
 )
 
 

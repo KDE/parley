@@ -43,7 +43,6 @@
 #include <knewstuff2/engine.h>
 
 #include "kvoctrain.h"
-#include "kvtusage.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "entry-dialogs/EntryDlg.h"
 
