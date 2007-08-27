@@ -67,7 +67,7 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
 
     connect(type_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
     // type is tricky - need to update subtype
-    connect(type_box, SIGNAL(activated(const QString&)), SLOT(slotUpdateSubTypeBoxContents(const QString&)));
+    connect(type_box, SIGNAL(activated(const QString&)), SLOT(slotTypeBoxChanged(const QString&)));
 
 
 
@@ -122,7 +122,7 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
 kDebug() << " type index: " << mainType << " sub " << subType;
 
     type_box->setCurrentIndex( type_box->findText( mainType ) );
-    slotUpdateSubTypeBoxContents( mainType );
+    slotTypeBoxChanged( mainType );
     subtype_box->setCurrentIndex( subtype_box->findText( subType ) );
 
     if (editSingleEntry) {
@@ -207,12 +207,14 @@ void CommonEntryPage::slotUsageChanged()
 }
 
 
-void CommonEntryPage::slotUpdateSubTypeBoxContents(const QString &mainType)
+void CommonEntryPage::slotTypeBoxChanged(const QString &mainType)
 {
     subtype_box->clear();
     subtype_box->addItems( m_wordTypes->subTypeNameList(mainType) );
 kDebug() << "fill subType box" << mainType;
     subtype_box->setCurrentIndex(-1);
+
+    emit signalTypeSelected( mainType );
 }
 
 

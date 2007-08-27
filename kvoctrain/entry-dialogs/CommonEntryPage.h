@@ -49,7 +49,7 @@ public:
     bool isModified();
 
 signals:
-    void typeSelected(const QString &);
+    void signalTypeSelected(const QString &);
 
 private:
     void updateMainTypeBoxContents();
@@ -65,7 +65,7 @@ private slots:
     /// Updates the usage label and emits sigModified()
     void slotUsageChanged();
     /// Updates the subtype box and emits sigModified()
-    void slotUpdateSubTypeBoxContents(const QString &mainType);
+    void slotTypeBoxChanged(const QString &mainType);
 
     /**
      * Append a char from the phonetics dialog

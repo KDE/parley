@@ -94,7 +94,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     toPageWidget->setIcon( KIcon( "statistics" ) );
     addPage(toPageWidget);
 
-    connect(commonPage, SIGNAL(typeSelected(const QString&)), SLOT(slotTypeChanged(const QString&)));
+    connect(commonPage, SIGNAL(signalTypeSelected(const QString&)), this,  SLOT(slotTypeChanged(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
@@ -378,6 +378,9 @@ kDebug() << "Changes should be committed but the table is not updated. FIXME";
 
 void EntryDlg::slotTypeChanged(const QString & type)
 {
+
+    kDebug() << "EntryDlg::slotTypeChanged: " << type;
+
     if ( m_entries.count() > 1 ) {
         conjugationPageWidget->setEnabled(false);
         comparisonPageWidget->setEnabled(false);
@@ -385,21 +388,19 @@ void EntryDlg::slotTypeChanged(const QString & type)
     }
 
     // enable/disable conjugation or comparison pages:
-    QString main;
-    int pos;
-    if ((pos = type.indexOf(QM_TYPE_DIV)) < 0) {  // only use main type
-        main = type;
-    } else {
-        main = type.left(pos);
-    }
+    QString verbType = m_doc->wordTypes()->typeOfSpecialType(m_doc->wordTypes()->verbSpecialType());
+    QString adjectiveType = m_doc->wordTypes()->typeOfSpecialType(m_doc->wordTypes()->adjectiveSpecialType());
+    QString adverbType = m_doc->wordTypes()->typeOfSpecialType(m_doc->wordTypes()->adverbSpecialType());
 
-    if (main == QM_VERB) {
+    kDebug() << verbType;
+
+    if (type == verbType) {
         conjugationPageWidget->setEnabled(true);
     } else {
         conjugationPageWidget->setEnabled(false);
     }
 
-    if (main == QM_ADJ) {
+    if (type == adjectiveType || type == adverbType) {
         comparisonPageWidget->setEnabled(true);
     } else {
         comparisonPageWidget->setEnabled(false);

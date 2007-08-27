@@ -247,6 +247,9 @@ void zzzzzzzzzzVerbQueryDlg::timeoutReached()
 
 void QueryDlgBase::startTimer()
 {
+
+    kDebug() << "QueryDlgBase::startTimer -- Prefs::queryTimeout(): " << Prefs::queryTimeout() << " Prefs::EnumQueryTimeout::NoTimeout: " << Prefs::EnumQueryTimeout::NoTimeout;
+
     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
         kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!";
         return;
