@@ -1,5 +1,18 @@
 /** @mainpage
-*
-* KVocTrain helps practicing vocabulary. 
-*
+
+KVocTrain is a vocabulary trainer.
+It supports multiple languages in one docuement.
+Vocabulary are stored in XML.
+See KEduVocDocument for information about the file format.
+
+The main class is KVocTrainApp
+
+The lesson list is contained in KVTLessonModel and KVTLessonView
+
+The list of vocabulary uses a proxy model for sorting and filtering. It is contained in KVTTableView and KVTTableModel. Sorting via KVTSortFilterModel. Delegate for custom editing is KVTTableDelegate.
+
+
+Advanced vocabulary editing is done by using the EntryDlg classes.
+
+
 */
