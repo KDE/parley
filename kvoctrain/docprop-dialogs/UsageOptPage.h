@@ -27,7 +27,7 @@
 #define UsageOptPage_included
 
 #include "ui_optionlistform.h"
-#include <kvtusage.h>
+#include <keduvocdocument.h>
 
 class KEduVocDocument;
 
@@ -37,14 +37,14 @@ class UsageOptPage : public QWidget, public Ui::OptionListForm
 public:
     UsageOptPage(KEduVocDocument *doc, QWidget *parent);
 
-    void getUsageLabels(QStringList &ret_usages, QList<int> &ret_Index);
-
     static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
-protected:
+    void commitData();
+
+private:
     void updateListBox(int start);
 
-protected slots:
+private slots:
     void slotDeleteUsage();
     void slotNewUsage();
     void slotUsageChosen(int);
@@ -52,10 +52,12 @@ protected slots:
     void slotCleanup();
 
 private:
-    KEduVocDocument  *doc;
-    int              m_currentUsage;
-    QList<int>       usageIndex; // contains indices of usages on exec()
-    // negative values are new lessons
+    KEduVocDocument  *m_doc;
+    int               m_currentUsage;
+
+    QStringList            m_newUsages;
+    QStringList            m_deletedUsages;
+    QList<QPair<QString, QString> > m_renameList;
 };
 
 #endif // UsageOptPage_included

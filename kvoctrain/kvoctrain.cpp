@@ -221,7 +221,6 @@ void KVocTrainApp::removeEntryDlg()
 void KVocTrainApp::slotDocumentProperties()
 {
     int old_tenses = (int) m_doc->tenseDescriptions().count();
-    int old_usages = (int) m_doc->usageDescriptions().count();
 
     DocPropsDlg ddlg(m_doc, this);
 
@@ -242,7 +241,7 @@ void KVocTrainApp::slotDocumentProperties()
         QApplication::setOverrideCursor(Qt::WaitCursor);
 
         ddlg.getTenseNames(new_tenseStr, tenseIndex);
-        ddlg.getUsageLabels(new_usageStr, usageIndex);
+        ddlg.commitData();
 
         slotStatusMsg(i18n("Updating tense indices..."));
         /// @todo should this really be here? clean unused is supposed to delete all tenses not used?
@@ -250,14 +249,15 @@ void KVocTrainApp::slotDocumentProperties()
         KEduVocConjugation::setTenseNames(new_tenseStr);
 
         slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
-        UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
-        KVTUsage::setUsageNames(new_usageStr);
+
+///@todo the below of any use?
+//         UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
+//         KVTUsage::setUsageNames(new_usageStr);
 
         m_doc->setSortingEnabled(ddlg.getSorting());
         m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
         m_doc->setTenseDescriptions(new_tenseStr);
-        m_doc->setUsageDescriptions(new_usageStr);
         m_doc->setModified();
 
         m_tableModel->reset();

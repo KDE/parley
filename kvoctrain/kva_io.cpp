@@ -208,31 +208,31 @@ void KVocTrainApp::slotGHNS()
 
 void KVocTrainApp::slotFileMerge()
 {
-    slotStatusMsg(i18n("Merging file..."));
-
-    KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
-
-    if (!url.isEmpty()) {
-        QString msg = i18n("Loading %1", url.path());
-        slotStatusMsg(msg);
-
-        KEduVocDocument *new_doc = new KEduVocDocument(this);
-        new_doc->setCsvDelimiter(Prefs::separator());
-        new_doc->open(url);
-
-        m_doc->merge(new_doc, true);
-
-        KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
-        KVTUsage::setUsageNames(m_doc->usageDescriptions());
-
-        delete(new_doc);
-        fileOpenRecent->addUrl(url);
-        m_tableModel->reset();
-        m_lessonModel->setDocument(m_doc);
-        m_tableView->adjustContent();
-    }
-
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(i18n("Merging file..."));
+//
+//     KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
+//
+//     if (!url.isEmpty()) {
+//         QString msg = i18n("Loading %1", url.path());
+//         slotStatusMsg(msg);
+//
+//         KEduVocDocument *new_doc = new KEduVocDocument(this);
+//         new_doc->setCsvDelimiter(Prefs::separator());
+//         new_doc->open(url);
+//
+//         m_doc->merge(new_doc, true);
+//
+//         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
+//         KVTUsage::setUsageNames(m_doc->usageDescriptions());
+//
+//         delete(new_doc);
+//         fileOpenRecent->addUrl(url);
+//         m_tableModel->reset();
+//         m_lessonModel->setDocument(m_doc);
+//         m_tableView->adjustContent();
+//     }
+//
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -329,9 +329,7 @@ void KVocTrainApp::loadDocProps()
     }
     m_queryManager = new QueryManager(this, m_doc);
 
-    KVTUsage::setUsageNames(m_doc->usageDescriptions());
     KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
-
 }
 
 
@@ -477,6 +475,25 @@ void KVocTrainApp::createNewDocument()
     }
 
     m_doc->wordTypes()->createDefaultWordTypes();
+
+    // Preset some usages
+    m_doc->addUsage( i18n("abbreviation") );
+    m_doc->addUsage( i18n("anatomy") );
+    m_doc->addUsage( i18n("biology") );
+    m_doc->addUsage( i18n("figuratively") );
+    m_doc->addUsage( i18n("geology") );
+    m_doc->addUsage( i18n("historical") );
+    m_doc->addUsage( i18n("informal") );
+    m_doc->addUsage( i18n("ironic") );
+    m_doc->addUsage( i18n("literary") );
+    m_doc->addUsage( i18n("mythology") );
+    m_doc->addUsage( i18n("proper name") );
+    m_doc->addUsage( i18n("pharmacy") );
+    m_doc->addUsage( i18n("philosophy") );
+    m_doc->addUsage( i18n("physics") );
+    m_doc->addUsage( i18n("physiology") );
+    m_doc->addUsage( i18n("rhetoric") );
+    m_doc->addUsage( i18n("zoology") );
 
     m_doc->setModified(false);
 }

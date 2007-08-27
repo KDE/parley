@@ -101,8 +101,7 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
     KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
     // set these to the first entry, check if that's ok later
     setLessonBox(firstEntry->lesson());
-    setUsageBox(firstEntry->translation(m_currentTranslation).usageLabel());
-    kDebug() << "usageLabel: " << firstEntry->translation(m_currentTranslation).usageLabel();
+    setUsageSelection(firstEntry->translation(m_currentTranslation).usages());
 
     c_active->setChecked(firstEntry->isActive());
 
@@ -150,9 +149,10 @@ kDebug() << " type index: " << mainType << " sub " << subType;
                 type_box->setCurrentIndex(-1);
                 subtype_box->setCurrentIndex(-1);
             }
-            if ( firstEntry->translation(m_currentTranslation).usageLabel()
-                    != currentEntry->translation(m_currentTranslation).usageLabel()) {
-                setUsageBox("");
+            if ( firstEntry->translation(m_currentTranslation).usages()
+                    != currentEntry->translation(m_currentTranslation).usages()) {
+                setUsageSelection(QStringList());
+                m_usageIsModified = false;
             }
             if ( firstEntry->isActive() != currentEntry->isActive() ) {
                 kDebug() << "Setting active box to PartiallyChecked.";
@@ -177,13 +177,14 @@ void CommonEntryPage::setLessonBox(int lesson)
 }
 
 
-void CommonEntryPage::setUsageBox(const QString & act_usage)
+void CommonEntryPage::setUsageSelection(const QStringList& usageList)
 {
-    usages = KVTUsage::getRelation();
     usage_box->clear();
-    for (int i = 0; i < (int) usages.size(); i++) {
-        usage_box->addItem(usages[i].longStr());
-        if (KVTUsage::contains(QString(usages[i].identStr()), act_usage)) {
+    QStringList docUsages = m_doc->usages(); //KVTUsage::getRelation();
+
+    for (int i = 0; i < (int) docUsages.size(); i++) {
+        usage_box->addItem(docUsages.value(i));
+        if ( usageList.contains(docUsages.value(i))) {
             usage_box->setCurrentRow(i);
         }
     }
@@ -197,9 +198,10 @@ void CommonEntryPage::slotUsageChanged()
 
     for (int i = 0; i < usage_box->count(); i++) {
         if (usage_box->item(i)->isSelected()) {
-            if (!s.isEmpty())
-                s += ", ";
-            s += usages[i].shortStr();
+            if (!s.isEmpty()) {
+                s.append('\n');
+            }
+            s += usage_box->item(i)->text();
         }
     }
     usage_line->setText(s);
@@ -235,30 +237,29 @@ void CommonEntryPage::invokePronDlg()
 
 void CommonEntryPage::invokeUsageDlg()
 {
-    QList<int> usageIndex;
-    QStringList new_usageStr;
-
-    int old_usages = (int) m_doc->usageDescriptions().size();
-
-    KDialog *subDialog= new KDialog(b_usageDlg);
-    subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
-    subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
-
-    subDialog->setDefaultButton(KDialog::Ok);
-
-    connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
-
-    UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
-    subDialog->setMainWidget(usageOptPage);
-
-    if (subDialog->exec() == QDialog::Accepted) {
-        usageOptPage->getUsageLabels(new_usageStr, usageIndex);
-        UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
-        KVTUsage::setUsageNames(new_usageStr);
-        //setUsageBox(m_usageCollection);
-        m_doc->setUsageDescriptions(new_usageStr);
-        m_doc->setModified();
-    }
+//     QList<int> usageIndex;
+//     QStringList new_usageStr;
+//
+//     int old_usages = (int) m_doc->usageDescriptions().size();
+//
+//     KDialog *subDialog= new KDialog(b_usageDlg);
+//     subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
+//     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
+//
+//     subDialog->setDefaultButton(KDialog::Ok);
+//
+//     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
+//
+//     UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
+//     subDialog->setMainWidget(usageOptPage);
+//
+//     if (subDialog->exec() == QDialog::Accepted) {
+///@todo enable the usage dialog
+//
+//         //setUsageBox(m_usageCollection);
+//         //m_doc->setUsageDescriptions(new_usageStr);
+//         //m_doc->setModified();
+//     }
 }
 
 
@@ -318,15 +319,13 @@ void CommonEntryPage::commitData()
 
         if (m_currentTranslation >= 0) {
             if (m_usageIsModified) {
-                QString usageString;
+                QStringList usages;
                 for (int i = 0; i < usage_box->count(); i++) {
                     if (usage_box->item(i)->isSelected()) {
-                        if (!usageString.isEmpty())
-                            usageString += ':';
-                        usageString += usages[i].identStr();
+                        usages.append(usage_box->item(i)->text());
                     }
                 }
-                expr->translation(m_currentTranslation).setUsageLabel( usageString );
+                expr->translation(m_currentTranslation).setUsages( usages );
             }
             if ( type_box->currentIndex() != -1 ) {
                 QString type = type_box->currentText();
@@ -365,5 +364,6 @@ void CommonEntryPage::updateMainTypeBoxContents()
     type_box->clear();
     type_box->addItems( m_wordTypes->typeNameList() );
 }
+
 
 #include "CommonEntryPage.moc"

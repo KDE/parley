@@ -26,7 +26,7 @@
 #ifndef DOCPROPDLG_H
 #define DOCPROPDLG_H
 
-#include <kpagedialog.h>
+
 
 #include "DocOptionsPage.h"
 //#include "LessOptPage.h"
@@ -35,7 +35,7 @@
 #include "UsageOptPage.h"
 #include "TitlePage.h"
 
-class KEduVocDocument;
+#include <KPageDialog>
 
 /**
   * This is the KPageDialog for all the document option pages. You get it by clicking Vocabulary->Properties.
@@ -81,10 +81,7 @@ public:
         tenseOptPage->getTenseNames(tenses, ret_index);
     }
 
-    inline void getUsageLabels(QStringList &usages, QList<int>& ret_index) const
-    {
-        useOptPage->getUsageLabels(usages, ret_index);
-    }
+    void commitData();
 
 protected:
     UsageOptPage   *useOptPage;

@@ -54,7 +54,7 @@ signals:
 private:
     void updateMainTypeBoxContents();
     void setLessonBox(int lesson);
-    void setUsageBox(const QString & act_type);
+    void setUsageSelection(const QStringList& selectionList);
 
 private slots:
     // to get noted upon modification
@@ -82,12 +82,6 @@ signals:
 
 private:
     KEduVocDocument     *m_doc;
-
-//     QList<TypeRelation>  all_maintypes;
-//     QList<TypeRelation>  all_types;
-//     QList<QString>       current_subtypes;
-    QList<UsageRelation> usages;
-
 
     KDialog             *subDialog;
 

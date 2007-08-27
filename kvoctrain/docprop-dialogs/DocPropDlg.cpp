@@ -62,4 +62,13 @@ DocPropsDlg::~DocPropsDlg()
     KDialog::saveDialogSize(cg);
 }
 
+
+void DocPropsDlg::commitData()
+{
+    useOptPage->commitData();
+}
+
+
 #include "DocPropDlg.moc"
+
+

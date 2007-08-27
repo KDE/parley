@@ -210,6 +210,8 @@ void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
 
 void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses)
 {
+///@todo tenses
+/*
     QList<int> translate_index;
     QStringList new_tenseStr;
 
@@ -252,6 +254,7 @@ void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseInde
                 doc->entry(i)->translation(col).setConjugation(conj);
         }
     }
+*/
 }
 
 #include "TenseOptPage.moc"

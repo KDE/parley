@@ -130,6 +130,7 @@ void KVocTrainApp::initActions()
     fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
     fileMerge->setToolTip(fileMerge->whatsThis());
     fileMerge->setStatusTip(fileMerge->whatsThis());
+    fileMerge->setEnabled(false); ///@todo merging files is horribly broken
 
     fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
