@@ -347,7 +347,6 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
         }
 
         emit headerDataChanged(orientation, section, section);
-        m_doc->setModified(true);
         return true;
     }
     return false;
