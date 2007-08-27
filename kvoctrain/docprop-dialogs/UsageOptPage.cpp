@@ -114,6 +114,8 @@ void UsageOptPage::slotModifyUsage()
 
         int i = m_currentUsage + 1;
         optionsList->item(m_currentUsage)->setText(newUsageString);
+
+        m_renameList.append(qMakePair(str, newUsageString));
     }
 }
 
@@ -131,9 +133,7 @@ void UsageOptPage::updateListBox(int start)
 
 void UsageOptPage::slotDeleteUsage()
 {
-
     m_deletedUsages.append(optionsList->currentItem()->text());
-
     delete optionsList->takeItem(optionsList->currentRow());
 
 
