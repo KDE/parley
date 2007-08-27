@@ -113,7 +113,6 @@ void UsageOptPage::slotModifyUsage()
             return;
         }
 
-        int i = m_currentUsage + 1;
         optionsList->item(m_currentUsage)->setText(newUsageString);
 
         m_renameList.append(qMakePair(str, newUsageString));
