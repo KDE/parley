@@ -41,15 +41,11 @@ public:
 
     void commitData();
 
-private:
-    void updateListBox(int start);
-
 private slots:
     void slotDeleteUsage();
     void slotNewUsage();
     void slotUsageChosen(int);
     void slotModifyUsage();
-    void slotCleanup();
 
 private:
     KEduVocDocument  *m_doc;
