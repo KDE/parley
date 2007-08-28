@@ -257,7 +257,6 @@ void CommonEntryPage::invokeUsageDlg()
     subDialog->setMainWidget(usageOptPage);
 
     if (subDialog->exec() == QDialog::Accepted) {
-        // should update the usage box
         usageOptPage->commitData();
         setUsageSelection( usages );
     }

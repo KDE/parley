@@ -30,6 +30,7 @@
 #include "ui_LangPropPageForm.h"
 
 #include <keduvocgrammar.h>
+#include <keduvocconjugation.h>
 
 class KEduVocDocument;
 class KEduVocConjugation;

@@ -31,6 +31,7 @@
 #include <kpagedialog.h>
 
 #include <keduvocgrammar.h>
+#include <keduvocconjugation.h>
 
 class KEduVocDocument;
 class LangPropPage;

@@ -29,10 +29,9 @@
 #include <QCheckBox>
 #include <QLabel>
 
-#include <klocale.h>
+#include <KLocale>
 
 #include <keduvocdocument.h>
-#include <keduvocgrammar.h>
 
 #include <kvtlanguages.h>
 
