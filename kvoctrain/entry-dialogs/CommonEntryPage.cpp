@@ -237,29 +237,21 @@ void CommonEntryPage::invokePronDlg()
 
 void CommonEntryPage::invokeUsageDlg()
 {
-//     QList<int> usageIndex;
-//     QStringList new_usageStr;
-//
-//     int old_usages = (int) m_doc->usageDescriptions().size();
-//
-//     KDialog *subDialog= new KDialog(b_usageDlg);
-//     subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
-//     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
-//
-//     subDialog->setDefaultButton(KDialog::Ok);
-//
-//     connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
-//
-//     UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
-//     subDialog->setMainWidget(usageOptPage);
-//
-//     if (subDialog->exec() == QDialog::Accepted) {
-///@todo enable the usage dialog
-//
-//         //setUsageBox(m_usageCollection);
-//         //m_doc->setUsageDescriptions(new_usageStr);
-//         //m_doc->setModified();
-//     }
+    KDialog *subDialog= new KDialog(b_usageDlg);
+    subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
+    subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
+
+    subDialog->setDefaultButton(KDialog::Ok);
+
+    connect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
+
+    UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
+    subDialog->setMainWidget(usageOptPage);
+
+    if (subDialog->exec() == QDialog::Accepted) {
+        // should update the usage box
+        usageOptPage->commitData();
+    }
 }
 
 
