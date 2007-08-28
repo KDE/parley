@@ -237,6 +237,14 @@ void CommonEntryPage::invokePronDlg()
 
 void CommonEntryPage::invokeUsageDlg()
 {
+
+    QStringList usages;
+    for (int i = 0; i < usage_box->count(); i++) {
+        if (usage_box->item(i)->isSelected()) {
+            usages.append(usage_box->item(i)->text());
+        }
+    }
+
     KDialog *subDialog= new KDialog(b_usageDlg);
     subDialog->setCaption(i18nc("usage (area) of an expression", "Edit User-Defined Usage Labels"));
     subDialog->setButtons(KDialog::Ok|KDialog::Cancel);
@@ -251,6 +259,7 @@ void CommonEntryPage::invokeUsageDlg()
     if (subDialog->exec() == QDialog::Accepted) {
         // should update the usage box
         usageOptPage->commitData();
+        setUsageSelection( usages );
     }
 }
 
