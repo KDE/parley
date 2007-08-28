@@ -101,7 +101,7 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
     KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
     // set these to the first entry, check if that's ok later
     setLessonBox(firstEntry->lesson());
-    setUsageSelection(firstEntry->translation(m_currentTranslation).usages());
+    setUsageSelection(firstEntry->translation(m_currentTranslation).usages().values());
 
     c_active->setChecked(firstEntry->isActive());
 
@@ -319,10 +319,10 @@ void CommonEntryPage::commitData()
 
         if (m_currentTranslation >= 0) {
             if (m_usageIsModified) {
-                QStringList usages;
+                QSet<QString> usages;
                 for (int i = 0; i < usage_box->count(); i++) {
                     if (usage_box->item(i)->isSelected()) {
-                        usages.append(usage_box->item(i)->text());
+                        usages.insert(usage_box->item(i)->text());
                     }
                 }
                 expr->translation(m_currentTranslation).setUsages( usages );
