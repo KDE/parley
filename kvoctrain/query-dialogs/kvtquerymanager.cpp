@@ -633,8 +633,8 @@ void QueryManager::startQuery(const QString & translang, const QString & orglang
     QString q_org;
     QString q_trans;
 
-    q_org = exp->translation(oindex).translation();
-    q_trans = exp->translation(tindex).translation();
+    q_org = exp->translation(oindex).text();
+    q_trans = exp->translation(tindex).text();
 
     if (m_queryType == KVTQuery::RandomQuery) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
@@ -864,8 +864,8 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     }
 
 
-    q_org = exp->translation(oindex).translation();
-    q_trans = exp->translation(tindex).translation();
+    q_org = exp->translation(oindex).text();
+    q_trans = exp->translation(tindex).text();
 
     if (m_queryType == KVTQuery::RandomQuery) {
 
@@ -937,7 +937,7 @@ void QueryManager::showStatistics()
         << endl;
 
     for (int i = 0; i<random_expr1.count(); i++) {
-        kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).translation();
+        kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).text();
     }
 }
 

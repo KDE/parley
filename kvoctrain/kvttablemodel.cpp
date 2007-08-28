@@ -156,7 +156,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                 } else
                     return "@inactive@";
             } else {
-                result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).translation();
+                result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).text();
             }
             return result;
             break;

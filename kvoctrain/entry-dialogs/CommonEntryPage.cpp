@@ -127,7 +127,7 @@ kDebug() << " type index: " << mainType << " sub " << subType;
     if (editSingleEntry) {
         c_active->setTristate(false);
         // these can only be edited in single mode
-        expr_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).translation());
+        expr_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).text());
 
         pronounce_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).pronunciation());
 
@@ -297,7 +297,7 @@ void CommonEntryPage::commitData()
     // these things are only changed when editing a single entry
         KEduVocExpression *expr = m_doc->entry(m_entries.value(0));
         if (m_currentTranslation >= 0) {
-            expr->translation(m_currentTranslation).setTranslation( expr_line->text() );
+            expr->translation(m_currentTranslation).setText( expr_line->text() );
             expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
         }
     }

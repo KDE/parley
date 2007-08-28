@@ -186,14 +186,14 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         for (i = 0; i < m_doc -> entryCount(); i ++) {
             KEduVocExpression* expr = m_doc -> entry(i);
             if (split)
-                vocabulary += extractTranslations( expr->translation(m_queryTranslationColumn).translation());
+                vocabulary += extractTranslations( expr->translation(m_queryTranslationColumn).text());
             else
-                vocabulary.append(expr->translation(m_queryTranslationColumn).translation());
+                vocabulary.append(expr->translation(m_queryTranslationColumn).text());
             if (Prefs::swapDirection()) {
                 if (split)
-                    vocabulary += extractTranslations( expr->translation(m_queryOriginalColumn).translation() );
+                    vocabulary += extractTranslations( expr->translation(m_queryOriginalColumn).text() );
                 else
-                    vocabulary.append( expr->translation(m_queryOriginalColumn).translation());
+                    vocabulary.append( expr->translation(m_queryOriginalColumn).text());
             }
         }
         vocabulary.sort();
@@ -483,7 +483,7 @@ void RandomQueryDlg::slotUser1()
     emit sigEditEntry(m_row, m_queryOriginalColumn);
 
     KEduVocExpression *exp = m_doc->entry(m_row);
-    mw->orgField->setText( exp->translation(m_queryOriginalColumn).translation() );
+    mw->orgField->setText( exp->translation(m_queryOriginalColumn).text() );
 
     if (Prefs::suggestions())
         for (int i = 0; i < fields; i ++)

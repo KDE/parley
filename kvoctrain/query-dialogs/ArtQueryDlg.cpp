@@ -85,7 +85,7 @@ void ArtQueryDlg::setQuery(int entry,
     articles = art;
 
     QString s;
-    s = exp->translation(m_queryOriginalColumn).translation().simplified();
+    s = exp->translation(m_queryOriginalColumn).text().simplified();
 
     QString def, indef;
     bool removed = false;

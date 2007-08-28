@@ -100,7 +100,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             setWindowTitle(i18n("Synonym Training"));
             answerstring = m_expression->translation(column).synonym();
             mw->queryField->setAlignment(Qt::AlignVCenter);
-            mw->queryField->setText( m_expression->translation(column).translation() );
+            mw->queryField->setText( m_expression->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -110,7 +110,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
             answerstring = m_expression->translation(column).antonym();
-            mw->queryField->setText( m_expression->translation(column).translation() );
+            mw->queryField->setText( m_expression->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -120,7 +120,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
             mw->queryField->setText(m_expression->translation(column).paraphrase());
-            answerstring = m_expression->translation(column).translation();
+            answerstring = m_expression->translation(column).text();
             setQueryFieldWordwrap();
         }
         break;
@@ -130,7 +130,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
             s = m_expression->translation(column).example();
-            answerstring = m_expression->translation(column).translation().simplified();
+            answerstring = m_expression->translation(column).text().simplified();
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
@@ -217,25 +217,25 @@ void SimpleQueryDlg::slotUser1()
     switch (querytype) {
     case KVTQuery::SynonymQuery: {
             answerstring = exp->translation(m_queryOriginalColumn).synonym();
-            mw->queryField->setText( exp->translation(m_queryOriginalColumn).translation() );
+            mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
         }
         break;
 
     case KVTQuery::AntonymQuery: {
             answerstring = exp->translation(m_queryOriginalColumn).antonym();
-            mw->queryField->setText( exp->translation(m_queryOriginalColumn).translation() );
+            mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
         }
         break;
 
     case KVTQuery::ParaphraseQuery: {
             mw->queryField->setText(exp->translation(m_queryOriginalColumn).paraphrase());
-            answerstring = exp->translation(m_queryOriginalColumn).translation();
+            answerstring = exp->translation(m_queryOriginalColumn).text();
         }
         break;
 
     case KVTQuery::ExampleQuery: {
             mw->queryField->setText(exp->translation(m_queryOriginalColumn).example());
-            answerstring = exp->translation(m_queryOriginalColumn).translation();
+            answerstring = exp->translation(m_queryOriginalColumn).text();
         }
         break;
 

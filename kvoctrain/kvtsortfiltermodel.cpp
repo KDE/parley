@@ -115,7 +115,7 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
     for (int i=0; i < m_sourceModel->document()->identifierCount(); i++) {
         if ( m_sourceModel->document()->
             entry(sourceRow)->translation(i).
-            translation().contains(m_searchFilter) ) {
+            text().contains(m_searchFilter) ) {
             return true;
         }
     }

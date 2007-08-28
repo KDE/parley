@@ -129,7 +129,7 @@ bool VerbQueryDlg::next()
     resetAllFields();
     QString s, type;
 
-    s = m_expression->translation(m_queryOriginalColumn).translation();
+    s = m_expression->translation(m_queryOriginalColumn).text();
 
     if (current < conjugations.entryCount() - 1)
         current++;

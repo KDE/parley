@@ -469,7 +469,7 @@ QuerySelection KVTQuery::queryEntries()
                 random[lessonNumber].append(QueryEntry(expr, i));
                 expr->setInQuery(true);
 
-                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).translation() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade();
+                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).text() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade();
             }
         }
     }
@@ -493,10 +493,10 @@ bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
         compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexFrom).type(), Prefs::typeItem()) )) {
         return false;
     }
-    if(expr->translation(m_indexFrom).translation().simplified().isEmpty()) {
+    if(expr->translation(m_indexFrom).text().simplified().isEmpty()) {
         return false;
     }
-    if(expr->translation(m_indexTo).translation().simplified().isEmpty()) {
+    if(expr->translation(m_indexTo).text().simplified().isEmpty()) {
         return false;
     }
 
@@ -521,7 +521,7 @@ bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
     if ( !compareBlocking(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::block())) {
         return false;
     }
-kDebug() << "Adding expression to query: " << expr->translation(m_indexTo).translation();
+kDebug() << "Adding expression to query: " << expr->translation(m_indexTo).text();
     return true;
 }
 

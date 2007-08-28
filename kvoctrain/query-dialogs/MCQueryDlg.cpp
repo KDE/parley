@@ -139,7 +139,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
             KEduVocExpression *act = doc->entry(i);
 
             if (act != vocExpression) {
-                choices.append(act->translation(m_queryTranslationColumn).translation());
+                choices.append(act->translation(m_queryTranslationColumn).text());
             }
         }
     } else {
@@ -162,12 +162,12 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(m_queryTranslationColumn).translation());
+            choices.append(exprlist[i]->translation(m_queryTranslationColumn).text());
         }
 
     }
 
-    choices.prepend(vocExpression->translation(m_queryTranslationColumn).translation());
+    choices.prepend(vocExpression->translation(m_queryTranslationColumn).text());
 
     for (int i = choices.count(); i < MAX_MULTIPLE_CHOICE; i++)
         choices.append("");
@@ -322,7 +322,7 @@ void MCQueryDlg::slotUser1()
     emit sigEditEntry(m_row, m_queryOriginalColumn);
 
     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    mw->orgField->setText( vocExpression->translation(m_queryOriginalColumn).translation() );
+    mw->orgField->setText( vocExpression->translation(m_queryOriginalColumn).text() );
 }
 
 #include "MCQueryDlg.moc"
