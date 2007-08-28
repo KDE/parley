@@ -219,49 +219,6 @@ QString KVTQuery::gradeStr(int i)
 }
 
 
-// QList<TypeRelation> KVTQuery::getRelation(bool only_maintypes)
-// {
-//     QList<TypeRelation> vec;
-//     for (int i = 0; i < userTypes.count(); i++) {
-//         QString s;
-//         s.setNum(i + 1);
-//         s.prepend(QM_USER_TYPE);
-//         vec.append(TypeRelation(s, userTypes[i]));
-//     }
-//
-//     t_type_rel *type = InternalTypeRelations;
-//     while (type->short_ref != 0) {
-//         if (!only_maintypes || strstr(type->short_ref, QM_TYPE_DIV) == 0)
-//             vec.append(TypeRelation(type->short_ref, i18n(type->long_ref)));
-//         type++;
-//     }
-//
-//     return vec;
-// }
-//
-//
-// QString KVTQuery::typeStr(const QString &id)
-// {
-//     if (id.left(1) == QM_USER_TYPE) {
-//         QString num = id;
-//         num.remove(0, 1);
-//         int i = num.toInt()-1;
-//         if (i >= 0 && i < userTypes.count())
-//             return userTypes[i];
-//         else
-//             return QString();
-//     } else {
-//         t_type_rel *type = InternalTypeRelations;
-//         while (type->short_ref != 0) {
-//             if (type->short_ref == id)
-//                 return i18n(type->long_ref);
-//             type++;
-//         }
-//     }
-//     return QString();
-// }
-
-
 bool KVTQuery::compareBlocking(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) // don't care || all off
