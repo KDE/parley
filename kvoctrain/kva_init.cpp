@@ -512,7 +512,6 @@ void KVocTrainApp::initView()
 
     // always operate from m_sortFilterModel
     m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
-    m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
 
     setCaption(m_doc->url().fileName(), false);
 

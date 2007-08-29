@@ -250,13 +250,6 @@ void KVocTrainApp::slotDocumentProperties()
 
         slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
 
-///@todo the below of any use?
-//         UsageOptPage::cleanUnused(m_doc, usageIndex, old_usages);
-//         KVTUsage::setUsageNames(new_usageStr);
-
-        m_doc->setSortingEnabled(ddlg.getSorting());
-        m_tableView->setSortingEnabled(m_doc->isSortingEnabled());
-
         m_doc->setTenseDescriptions(new_tenseStr);
         m_doc->setModified();
 

@@ -62,7 +62,6 @@ kde4_add_ui_files(querydialogs_SRCS
 )
 
 set(docprop_SRCS
-    docprop-dialogs/DocOptionsPage.cpp
     docprop-dialogs/DocPropDlg.cpp
     docprop-dialogs/DocPropLangDlg.cpp
     docprop-dialogs/LangPropPage.cpp
@@ -73,7 +72,6 @@ set(docprop_SRCS
 )
 
 kde4_add_ui_files(docprop_SRCS
-    docprop-dialogs/DocOptionsPageForm.ui
     docprop-dialogs/LangPropPageForm.ui
     docprop-dialogs/TitlePageForm.ui
     docprop-dialogs/optionlistform.ui

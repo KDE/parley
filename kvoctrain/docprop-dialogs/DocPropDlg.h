@@ -27,9 +27,6 @@
 #define DOCPROPDLG_H
 
 
-
-#include "DocOptionsPage.h"
-//#include "LessOptPage.h"
 #include "TypeOptPage.h"
 #include "TenseOptPage.h"
 #include "UsageOptPage.h"
@@ -49,11 +46,6 @@ public:
 
     ~DocPropsDlg();
 
-    inline bool getSorting()  const
-    {
-        return docOptPage->getSorting();
-    }
-
     inline QString getTitle()
     {
         return titleOptPage->getTitle();
@@ -71,11 +63,6 @@ public:
         return titleOptPage->getDocRemark();
     }
 
-//     inline void getTypeNames(QStringList &types, QList<int>& ret_index) const
-//     {
-//         //typeOptPage->getTypeNames(types, ret_index);
-//     }
-
     inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
     {
         tenseOptPage->getTenseNames(tenses, ret_index);
@@ -83,12 +70,11 @@ public:
 
     void commitData();
 
-protected:
+private:
     UsageOptPage   *useOptPage;
     WordTypeOptionPage    *typeOptPage;
     TenseOptPage   *tenseOptPage;
     TitlePage      *titleOptPage;
-    DocOptionsPage *docOptPage;
 };
 
 #endif // DocPropsDlg_included

@@ -49,9 +49,6 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
     useOptPage = new UsageOptPage(doc, 0);
     addPage(useOptPage, i18nc("usage (area) of an expression", "&Usage"));
 
-    docOptPage = new DocOptionsPage(doc->isSortingEnabled(), 0);
-    addPage(docOptPage, i18n("&Options"));
-
     KConfigGroup cg(KGlobal::config(), "DocumentPropertiesDialog");
     restoreDialogSize(cg);
 }
