@@ -345,8 +345,7 @@ void KVocTrainApp::slotSaveSelection()
     Prefs::setSeparator("\t");
     KEduVocDocument seldoc(this);
     // transfer most important parts
-    seldoc.appendIdentifier(m_doc->originalIdentifier());
-    for (int i = 1; i < m_doc->identifierCount(); i++)
+    for (int i = 0; i < m_doc->identifierCount(); i++)
         seldoc.appendIdentifier(m_doc->identifier(i));
     seldoc.setAuthor(m_doc->author());
     //seldoc.setLessons(m_doc->lessons());

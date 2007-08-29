@@ -196,20 +196,8 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
         if (role == Qt::DisplayRole) {
             if (section == 0) // lesson
                 return i18n("Lesson");
-            else if (section == 1)
-                return "";
-            else if (section == 2) { // original
-                // try for known two letter code
-                int id = m_languages.indexShortId(m_doc->originalIdentifier());
-
-                if (id < 0) // otherwise for known longId
-                    id = m_languages.indexLongId(m_doc->originalIdentifier());
-
-                if (id < 0) // if still unknown take what's there
-                    return m_doc->originalIdentifier();
-                else // return the nice long language name
-                    return m_languages[id].longId();
-
+            else if (section == 1) {
+                return QString();
             } else { // translations
                 // two letter?
                 int id = m_languages.indexShortId(m_doc->identifier(section - 2));
@@ -231,15 +219,6 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             case 1:
                 return QVariant();
                 break;
-            case 2: {
-                int id = m_languages.indexShortId(m_doc->originalIdentifier());
-
-                if (id < 0)
-                    return QVariant();
-                else
-                    return QPixmap(m_languages[id].pixmapFile());
-                break;
-            }
             default: {
                 int id = m_languages.indexShortId(m_doc->identifier(section - 2));
 
@@ -330,10 +309,10 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
               /// @todo handle
             else if (section == 1)
               /// @todo handle
-            else*/ if (section == 2)
-                m_doc->setOriginalIdentifier(value.toString());
-            else
+            else*/
+            if (section >= 2) {
                 m_doc->setIdentifier(section - 2, value.toString());
+            }
         }
         if (role == Qt::SizeHintRole) {
             switch (section) {

@@ -117,16 +117,16 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
         delete randomQueryDlg;
         randomQueryDlg = 0;
         m_queryType = KVTQuery::RandomQuery;
-        startQuery(fromTranslation ? m_doc->identifier(fromTranslation) : m_doc->originalIdentifier(),
-                       toTranslation ? m_doc->identifier(toTranslation) : m_doc->originalIdentifier(), true);
+        startQuery(m_doc->identifier(fromTranslation),
+                    m_doc->identifier(toTranslation), true);
         break;
 
     case START_MULTIPLE:
         delete mcQueryDlg;
         mcQueryDlg = 0;
         m_queryType = KVTQuery::MultipleChoiceQuery;
-        startQuery(fromTranslation ? m_doc->identifier(fromTranslation) : m_doc->originalIdentifier(),
-                       toTranslation ? m_doc->identifier(toTranslation) : m_doc->originalIdentifier(), true);
+        startQuery(m_doc->identifier(fromTranslation),
+                       m_doc->identifier(toTranslation), true);
         break;
 
     case START_VERB: {
