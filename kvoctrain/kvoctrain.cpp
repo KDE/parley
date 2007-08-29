@@ -930,11 +930,11 @@ void KVocTrainApp::updateTableFilter()
         m_sortFilterModel->setLessonRegExp(QRegExp(m_lessonModel->data(current, Qt::DisplayRole).toString(), Qt::CaseInsensitive, QRegExp::FixedString));
         break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-        description = m_doc->lessonDescriptions();
+        description = m_doc->lessonNames();
         //kDebug << lessonStrings;
         lessonStrings.append("(");
         foreach(int lesson, m_doc->lessonsInQuery()) {
-            lessonStrings.append(m_doc->lessonDescriptions().at(lesson-1));
+            lessonStrings.append(m_doc->lessonNames().at(lesson-1));
             lessonStrings.append(")|(");
         }
         lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("

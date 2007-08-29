@@ -77,7 +77,7 @@ void StatisticsPage::setupData()
     to_pix.clear();
     StatListView->clear();
 
-    QStringList lesson = m_doc->lessonDescriptions();
+    QStringList lesson = m_doc->lessonNames();
 
     fsc.resize(lesson.size() + 1);
     tsc.resize(lesson.size() + 1);
@@ -264,7 +264,7 @@ void StatisticsPage::setupData()
         listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
         listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
         listItem->setText(TB_COUNT, QString::number(tsc[i].num));
-        listItem->setText(TB_LESSON, lessons[lessonIds[i] ]->description());
+        listItem->setText(TB_LESSON, lessons[lessonIds[i] ]->name());
         listItem->setData(TB_LESSON, Qt::UserRole, QVariant(lessonIds[i]));
         StatListView->addTopLevelItem(listItem);
     }

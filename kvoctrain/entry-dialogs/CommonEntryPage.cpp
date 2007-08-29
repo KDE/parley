@@ -167,13 +167,12 @@ kDebug() << " type index: " << mainType << " sub " << subType;
 
 void CommonEntryPage::setLessonBox(int lesson)
 {
+///@todo lessons - if we have a default (0) lesson, do we need something here?
     lesson_box->clear();
     //lesson_box->addItem(m_doc->lessonDescription(0));
-    lesson_box->addItems(m_doc->lessonDescriptions());
+    lesson_box->addItems(m_doc->lessonNames());
 
-    //if (lesson >= lesson_box->count())
-    //  lesson = 0;
-    lesson_box->setCurrentIndex(lesson-1);
+    lesson_box->setCurrentIndex(lesson);
 }
 
 
