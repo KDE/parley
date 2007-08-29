@@ -38,7 +38,7 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
     title = doc->title();
     author = doc->author();
     license = doc->license();
-    doc_remark = doc->documentRemark();
+    doc_remark = doc->documentComment();
 
     e_title->setText(title);
     e_title->setFocus();
@@ -51,7 +51,7 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
     connect(e_title,   SIGNAL(textChanged(const QString&)), this, SLOT(slotTitleChanged(const QString&)));
     connect(e_author,  SIGNAL(textChanged()),               this, SLOT(slotAuthorChanged()));
     connect(e_license, SIGNAL(textChanged(const QString&)), this, SLOT(slotLicenseChanged(const QString&)));
-    connect(e_remark,  SIGNAL(textChanged()),               this, SLOT(slotDocRemarkChanged()));
+    connect(e_remark,  SIGNAL(textChanged()),               this, SLOT(slotDocCommentChanged()));
 }
 
 
@@ -73,7 +73,7 @@ void TitlePage::slotLicenseChanged(const QString& s)
 }
 
 
-void TitlePage::slotDocRemarkChanged()
+void TitlePage::slotDocCommentChanged()
 {
     doc_remark = e_remark->toPlainText();
 }

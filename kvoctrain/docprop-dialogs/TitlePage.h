@@ -49,7 +49,7 @@ public:
     {
         return license;
     }
-    QString getDocRemark()
+    QString getDocComment()
     {
         return doc_remark;
     }
@@ -58,7 +58,7 @@ protected slots:
     void slotTitleChanged(const QString&);
     void slotAuthorChanged();
     void slotLicenseChanged(const QString&);
-    void slotDocRemarkChanged();
+    void slotDocCommentChanged();
 
 private:
     QString title;

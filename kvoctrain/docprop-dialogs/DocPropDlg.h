@@ -58,9 +58,9 @@ public:
     {
         return titleOptPage->getLicense();
     }
-    inline QString getDocRemark()
+    inline QString getDocComment()
     {
-        return titleOptPage->getDocRemark();
+        return titleOptPage->getDocComment();
     }
 
     inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
