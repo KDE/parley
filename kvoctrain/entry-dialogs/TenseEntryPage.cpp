@@ -80,7 +80,7 @@ void TenseEntryPage::setData(int row, int col)
     m_currentRow = row;
     m_currentTranslation = col;
 
-    prefix = m_doc->conjugation(m_currentTranslation);
+    prefix = m_doc->identifier(m_currentTranslation).personalPronouns();
 
     for (int i = 0; i <  KEduVocConjugation::tenseCount(); i++)
         tensebox->addItem(KEduVocConjugation::getName(i));

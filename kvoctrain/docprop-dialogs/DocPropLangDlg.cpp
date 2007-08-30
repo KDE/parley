@@ -70,7 +70,7 @@ doc->identifier(i).article().getMale(&def, &indef);
 kDebug() << " article: " << def << indef;
 
 
-        lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->identifier(i).article(), 0);
+        lpp = new LangPropPage(doc, s, doc->identifier(i).personalPronouns(), doc->identifier(i).article(), 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, tabCaption);
         pageItem->setHeader(tabCaption);
         if (idx >= 0) {

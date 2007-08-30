@@ -268,7 +268,7 @@ void KVocTrainApp::slotDocPropsLang()
     if (ldlg.exec() == QDialog::Accepted) {
         for (int i = 0; i < m_doc->identifierCount(); i++) {
             m_doc->identifier(i).setArticle(ldlg.getArticle(i));
-            m_doc->setConjugation(i, ldlg.getConjugation(i));
+            m_doc->identifier(i).setPersonalPronouns(ldlg.getConjugation(i));
         }
 
         m_doc->setModified();
