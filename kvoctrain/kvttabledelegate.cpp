@@ -74,7 +74,7 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
         ///@todo activate the keyboard layout switching code
         /*if (m_doc) {
           QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
-            : m_doc->identifier(col - KV_EXTRA_COLS);
+            : m_doc->identifier(col - KV_EXTRA_COLS).name();
 
           if (langs) {
             QString kbLayout(langs->keyboardLayout(langs->indexShortId(id)));

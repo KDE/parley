@@ -51,7 +51,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
     for (int i = 0; i < doc->identifierCount(); i++) {
         QString s;
 
-        s = doc->identifier(i);
+        s = doc->identifier(i).name();
 
         int idx = langset.indexShortId(s);
 

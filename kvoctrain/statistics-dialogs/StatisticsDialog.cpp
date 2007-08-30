@@ -50,14 +50,14 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTLanguageList &languages, KVTTableMod
     addPage(gspage, i18n("General"));
 
     for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
-        int id = languages.indexShortId(m_model->document()->identifier(i));
+        int id = languages.indexShortId(m_model->document()->identifier(i).name());
         QString s;
         if (id >= 0) {
             s = languages[id].longId();
             if (s.isEmpty())
-                s = m_model->document()->identifier(i);
+                s = m_model->document()->identifier(i).name();
         } else
-            s = m_model->document()->identifier(i);
+            s = m_model->document()->identifier(i).name();
 
         spage = new StatisticsPage(i, m_model->document(), 0);
         addPage(spage, s);

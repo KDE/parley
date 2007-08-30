@@ -200,13 +200,13 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return QString();
             } else { // translations
                 // two letter?
-                int id = m_languages.indexShortId(m_doc->identifier(section - 2));
+                int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
 
                 if (id < 0) // longId?
-                    id = m_languages.indexLongId(m_doc->identifier(section - 2));
+                    id = m_languages.indexLongId(m_doc->identifier(section - 2).name());
 
                 if (id < 0) // nothing found
-                    return m_doc->identifier(section - 2);
+                    return m_doc->identifier(section - 2).name();
                 else // long name
                     return m_languages[id].longId();
             }
@@ -220,7 +220,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return QVariant();
                 break;
             default: {
-                int id = m_languages.indexShortId(m_doc->identifier(section - 2));
+                int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
 
                 if (id < 0)
                     return QVariant();
@@ -311,7 +311,7 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
               /// @todo handle
             else*/
             if (section >= 2) {
-                m_doc->setIdentifier(section - 2, value.toString());
+                m_doc->identifier(section - 2).setName(value.toString());
             }
         }
         if (role == Qt::SizeHintRole) {
@@ -400,7 +400,8 @@ void KVTTableModel::appendTranslation()
 {
     beginInsertColumns(QModelIndex(), columnCount(QModelIndex()), columnCount(QModelIndex()));
 
-    m_doc->appendIdentifier("");
+///@todo check if this is a good idea
+    m_doc->appendIdentifier();
     int num = m_doc->entryCount() - 1;
     for (int i = 0; i < (int) num; i++) {
         KEduVocExpression *expr = m_doc->entry(i);

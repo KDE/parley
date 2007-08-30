@@ -746,17 +746,17 @@ void KVocTrainApp::aboutToShowVocabRemoveLanguage()
         QStringList names;
         for (int j = 1; j < (int) m_doc->identifierCount(); j++) {
             int i;
-            if ((i = m_languages.indexShortId(m_doc->identifier(j))) >= 0)
+            if ((i = m_languages.indexShortId(m_doc->identifier(j).name())) >= 0)
                 names.append(m_languages[i].longId());
             else
-                names.append(m_doc->identifier(j));
+                names.append(m_doc->identifier(j).name());
         }
 
         QAction *action = 0;
 
         for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
             int j;
-            if ((j = m_languages.indexShortId(m_doc->identifier(i))) >= 0 && !m_languages[j].pixmapFile().isEmpty() && !m_languages[j].longId().isEmpty())
+            if ((j = m_languages.indexShortId(m_doc->identifier(i).name())) >= 0 && !m_languages[j].pixmapFile().isEmpty() && !m_languages[j].longId().isEmpty())
                 action = new QAction(QIcon(QPixmap(m_languages[j].pixmapFile())), names[i - 1], vocabRemoveLanguage->selectableActionGroup());
             else
                 action = new QAction(names[i - 1], vocabRemoveLanguage->selectableActionGroup());

@@ -345,8 +345,9 @@ void KVocTrainApp::slotSaveSelection()
     Prefs::setSeparator("\t");
     KEduVocDocument seldoc(this);
     // transfer most important parts
-    for (int i = 0; i < m_doc->identifierCount(); i++)
+    for (int i = 0; i < m_doc->identifierCount(); i++) {
         seldoc.appendIdentifier(m_doc->identifier(i));
+    }
     seldoc.setAuthor(m_doc->author());
     //seldoc.setLessons(m_doc->lessons());
     //seldoc.setLessonsInQuery(m_doc->lessonsInQuery());
@@ -438,7 +439,9 @@ void KVocTrainApp::createNewDocument()
             m_languages.addLanguage( ident.identifierShort(), ident.identifier(), QString(), QString());
             index = m_languages.indexShortId( ident.identifierShort() );
         }
-        m_doc->appendIdentifier( ident.identifierShort() );
+        int i = m_doc->appendIdentifier();
+        m_doc->identifier(i).setLocale(ident.identifierShort());
+        m_doc->identifier(i).setName(ident.identifier());
     }
     delete wizard;
 
@@ -465,7 +468,7 @@ void KVocTrainApp::createNewDocument()
 
     // Set the language headers of the table.
     for (int i=0; i<m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_languages.value(m_languages.indexShortId(m_doc->identifier(i))).longId(), Qt::EditRole);
+        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_languages.value(m_languages.indexShortId(m_doc->identifier(i).name())).longId(), Qt::EditRole);
     }
 
     m_doc->wordTypes()->createDefaultWordTypes();
