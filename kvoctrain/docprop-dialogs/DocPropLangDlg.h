@@ -48,7 +48,7 @@ public:
     KEduVocConjugation getConjugation(int idx) const;
     KEduVocArticle     getArticle(int idx) const;
 
-protected:
+private:
     typedef QList<LangPropPage *> LangPagesList;
     LangPagesList langPages;
 };

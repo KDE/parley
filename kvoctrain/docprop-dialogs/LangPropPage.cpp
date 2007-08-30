@@ -60,6 +60,8 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
 
     doc = _doc;
     conjugations = conjug;
+
+
     articles = art;
 
     l_langcode->setText(curr_lang);

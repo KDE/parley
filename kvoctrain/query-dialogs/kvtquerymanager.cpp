@@ -405,7 +405,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
         verbQueryDlg->show();
     } else if (m_queryType == KVTQuery::ArticleQuery) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
-        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -527,7 +527,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             stopQuery();
             return;
         }
-        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->article(act_query_col));
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
         artQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
         if (adjQueryDlg == 0) {

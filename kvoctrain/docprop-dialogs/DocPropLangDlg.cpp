@@ -44,7 +44,9 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
     setModal(true);
-    setFaceType(KPageDialog::Tabbed);
+
+//    setFaceType(KPageDialog::Tabbed);
+    setFaceType(KPageDialog::List);
 
     LangPropPage *lpp;
 
@@ -62,7 +64,13 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
             tabCaption = (s);
         }
 
-        lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->article(i), 0);
+kDebug() << " identifier: " << i;
+QString def, indef;
+doc->identifier(i).article().getMale(&def, &indef);
+kDebug() << " article: " << def << indef;
+
+
+        lpp = new LangPropPage(doc, s, doc->conjugation(i), doc->identifier(i).article(), 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, tabCaption);
         pageItem->setHeader(tabCaption);
         if (idx >= 0) {
