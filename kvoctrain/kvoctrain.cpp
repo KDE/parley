@@ -569,16 +569,16 @@ void KVocTrainApp::aboutToShowLearn()
 
         //Random and multiple choice items
         if (j == 0) {
-            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_query"), i18n("Create Random &Query"));
+            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_query"), i18n("Create Written Test"));
             for (int k = 1; k < columns; k++) {
                 typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
-                typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[k], titles[0]));
+                typeAction->setWhatsThis(i18n("Creates and starts test from %1 to %2", titles[k], titles[0]));
                 typeAction->setToolTip(typeAction->whatsThis());
                 typeAction->setStatusTip(typeAction->whatsThis());
                 m_learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
             }
 
-            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice"));
+            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice Test"));
             for (int k = 1; k < columns; k++) {
                 typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
                 typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[k], titles[0]));
@@ -587,14 +587,14 @@ void KVocTrainApp::aboutToShowLearn()
                 m_learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
             }
         } else {
-            typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Random &Query"), m_learningMapper, SLOT(map()));
-            typeAction->setWhatsThis(i18n("Creates and starts query from %1 to %2", titles[0], titles[j]));
+            typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Written Test"), m_learningMapper, SLOT(map()));
+            typeAction->setWhatsThis(i18n("Creates and starts practice from %1 to %2", titles[0], titles[j]));
             typeAction->setToolTip(typeAction->whatsThis());
             typeAction->setStatusTip(typeAction->whatsThis());
             m_learningMapper->setMapping(typeAction, mapString.arg(START_QUERY, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
 
-            typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice"), m_learningMapper, SLOT(map()));
-            typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[0], titles[j]));
+            typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice Test"), m_learningMapper, SLOT(map()));
+            typeAction->setWhatsThis(i18n("Creates and starts multiple choice test from %1 to %2", titles[0], titles[j]));
             typeAction->setToolTip(typeAction->whatsThis());
             typeAction->setStatusTip(typeAction->whatsThis());
             m_learningMapper->setMapping(typeAction, mapString.arg(START_MULTIPLE, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));

@@ -117,7 +117,7 @@ QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
     return translations;
 }
 
-RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Query"), doc, parent)
+RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Test"), doc, parent)
 {
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());

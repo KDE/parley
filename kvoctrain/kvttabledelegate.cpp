@@ -108,8 +108,8 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
 
     case 1: {
         KComboBox *statebox = static_cast<KComboBox*>(editor);
-        statebox->addItem(i18nc("state of a row", "Active, Not in Query"));
-        statebox->addItem(i18nc("state of a row", "In Query"));
+        statebox->addItem(i18nc("state of a row", "Active, Not in Test"));
+        statebox->addItem(i18nc("state of a row", "In Test"));
         statebox->addItem(i18nc("state of a row", "Inactive"));
         statebox->setCurrentIndex(index.model()->data(index, KVTTableModel::StateRole).toInt());
     }

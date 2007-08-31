@@ -10,8 +10,8 @@
    <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
   </Menu>
-  <Menu name="vocabulary" >
-      <text>&amp;Vocabulary</text>
+  <Menu name="practice" >
+      <text>&amp;Practice</text>
       <Action name="vocab_show_statistics" />
       <Action name="vocab_assign_lessons" />
       <Action name="vocab_clean_up" />

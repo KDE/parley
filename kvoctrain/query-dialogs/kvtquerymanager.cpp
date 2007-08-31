@@ -47,18 +47,18 @@
 #define MAX_QUERY_TIMEOUT 3
 
 static const char not_answered[] = I18N_NOOP(
-                                       "The query dialog was not answered several times in a row.\n"
+                                       "The test dialog was not answered several times in a row.\n"
                                        "It is assumed that there is currently nobody in front of "
                                        "the screen, and for that reason the query is stopped.");
 
 
 static const char not_contain[] = I18N_NOOP(
                                       "There are currently no suitable expressions for the "
-                                      "query you started.\n"
+                                      "test you started.\n"
                                       "There are several possible reasons for this; maybe you do not have "
-                                      "any expressions for the type of query you requested.\n"
+                                      "any expressions for the type of practice you requested.\n"
                                       "Most likely, you should adjust your settings referring to "
-                                      "thresholds and blocking values in the query options:\n"
+                                      "thresholds and blocking values in the practice options:\n"
                                       "should the configuration dialog be invoked now?");
 
 
@@ -199,12 +199,12 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
 bool QueryManager::queryIsEmpty()
 {
     if (m_doc->lessonsInQuery().empty()) {
-        KMessageBox::information(m_app, i18n("You have selected no lessons to be queried. Please select at least one on the left."), i18n("Starting Query"));
+        KMessageBox::information(m_app, i18n("You have selected no lessons to be practiced. Please select at least one on the left."), i18n("Starting Test"));
         return true;
     }
 
     if (query_startnum == 0) {
-        if (KMessageBox::Yes == KMessageBox::questionYesNo(m_app, i18n(not_contain), i18n("Starting Query")))
+        if (KMessageBox::Yes == KMessageBox::questionYesNo(m_app, i18n(not_contain), i18n("Starting Test")))
             m_app->slotGeneralOptionsPage(5);
         return true;
     }
@@ -215,7 +215,7 @@ bool QueryManager::queryIsEmpty()
 void QueryManager::startPropertyQuery(int col, KVTQuery::QueryType property)
 {
     m_app->removeEntryDlg();
-    m_app->slotStatusMsg(i18n("Starting property query..."));
+    m_app->slotStatusMsg(i18n("Starting property practice..."));
     m_queryType = property;
     num_queryTimeout = 0;
     act_query_col = col;
@@ -281,7 +281,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
             stopQuery();
-            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
+            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
             return;
         } else {
             random_expr2.append(random_expr1[random_query_nr]);
@@ -356,7 +356,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
     /// @todo merge this with startPropertyQuery (and possibly startQuery)
 
     m_app->removeEntryDlg();
-    m_app->slotStatusMsg(i18n("Starting special query..."));
+    m_app->slotStatusMsg(i18n("Starting special practice..."));
     num_queryTimeout = 0;
     act_query_col = col;
 
@@ -444,7 +444,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
             stopQuery();
-            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
+            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
             return;
         } else {
             random_expr2.append(random_expr1[random_query_nr]);
@@ -578,7 +578,7 @@ void QueryManager::restartQuery()
 void QueryManager::startQuery(const QString & translang, const QString & orglang, bool create_new)
 {
     m_app->removeEntryDlg();
-    m_app->slotStatusMsg(i18n("Starting random query..."));
+    m_app->slotStatusMsg(i18n("Starting written practice..."));
     num_queryTimeout = 0;
 
     //is translang ok?
@@ -681,7 +681,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     case QueryDlgBase::Timeout:
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
             stopQuery();
-            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Query"));
+            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
             return;
         } else {
             random_expr1.erase(random_expr1.begin() + random_query_nr);

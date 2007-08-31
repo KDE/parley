@@ -39,7 +39,7 @@ QueryDlgBase::QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidge
     setModal(false);
     setButtons(Close|User1);
     setDefaultButton(NoDefault);
-    setButtonText(Close, i18n("&Stop Query"));
+    setButtonText(Close, i18n("&Stop Test"));
     setButtonGuiItem(User1, KGuiItem(i18n("&Edit Expression...")));
 
     QWidget *main = new QWidget(this);

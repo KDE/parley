@@ -203,36 +203,36 @@ void KVocTrainApp::initActions()
 
     editSaveSelectedArea = actionCollection()->addAction("edit_save_selected_area");
     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
-    editSaveSelectedArea->setText(i18n("Save E&ntries in Query As..."));
+    editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
     connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
-    editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the query as a new vocabulary"));
+    editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the current test as a new vocabulary"));
     editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
 
 // -- LESSON --------------------------------------------------
 
     QAction *actionNewLesson = actionCollection()->addAction("new_lesson");
-    actionNewLesson->setText(i18n("New lesson"));
+    actionNewLesson->setText(i18n("New Lesson"));
     actionNewLesson->setIcon(KIcon("edit-add"));
 
     QAction *actionRenameLesson = actionCollection()->addAction("rename_lesson");
-    actionRenameLesson->setText(i18n("Rename lesson"));
+    actionRenameLesson->setText(i18n("Rename Lesson"));
     actionRenameLesson->setIcon(KIcon("edit"));
 
     QAction *actionDeleteLesson = actionCollection()->addAction("delete_lesson");
-    actionDeleteLesson->setText(i18n("Delete lesson"));
+    actionDeleteLesson->setText(i18n("Delete Lesson"));
     actionDeleteLesson->setIcon(KIcon("edit-delete"));
 
     QAction *actionCheckAllLessons = actionCollection()->addAction("check_all_lessons");
-    actionCheckAllLessons->setText(i18n("Select all lessons"));
+    actionCheckAllLessons->setText(i18n("Select All Lessons"));
     actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
 
     QAction *actionCheckNoLessons = actionCollection()->addAction("check_no_lessons");
-    actionCheckNoLessons->setText(i18n("Deselect all lessons"));
+    actionCheckNoLessons->setText(i18n("Deselect All Lessons"));
     actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
 
     QAction *actionSplitLesson = actionCollection()->addAction("split_lesson");
-    actionSplitLesson->setText(i18n("Split lesson into smaller lessons"));
+    actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
 
 // -- VOCABULARY --------------------------------------------------
@@ -300,10 +300,10 @@ void KVocTrainApp::initActions()
 // -- LEARNING --------------------------------------------------
 
     learningResumeQuery = actionCollection()->addAction("learning_resume");
-    learningResumeQuery->setText(i18n("Resume &Query"));
+    learningResumeQuery->setText(i18n("Resume Written Test"));
     learningResumeQuery->setIcon(KIcon("run_query"));
     connect(learningResumeQuery, SIGNAL(triggered(bool)), this, SLOT(slotResumeQuery()));
-    learningResumeQuery->setWhatsThis(i18n("Resumes random query with existing selection"));
+    learningResumeQuery->setWhatsThis(i18n("Resumes written test with existing selection"));
     learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
     learningResumeQuery->setStatusTip(learningResumeQuery->whatsThis());
 
