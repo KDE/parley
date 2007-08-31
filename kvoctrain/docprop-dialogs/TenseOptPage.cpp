@@ -168,8 +168,10 @@ void TenseOptPage::slotCleanup()
             KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
             for (int ci = 0; ci < conj.entryCount(); ci++) {
                 QString t = conj.getType(ci);
-                if (t.left(QString(UL_USER_TENSE).length()) == UL_USER_TENSE) {
-                    t.remove(0, QString(UL_USER_TENSE).length());
+                ///@todo the following lines make no sense
+                // since the conjugations will change more, do it later
+                if (t.left(QString('#').length()) == "#") {
+                    t.remove(0, QString('#').length());
                     int idx = t.toInt();
                     if ((int) used_tense.count() < idx)
                         used_tense.resize(idx);

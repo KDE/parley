@@ -101,6 +101,7 @@ void VerbQueryDlg::setQuery(int entry,
 
     conjugations = conjug;
 
+///@todo conjugations enable setting personal pronouns
     mw->p1sLabel->setText(prefix.pers1Singular(CONJ_PREFIX));
     mw->p2sLabel->setText(prefix.pers2Singular(CONJ_PREFIX));
     mw->p3smLabel->setText(prefix.pers3MaleSingular(CONJ_PREFIX));
