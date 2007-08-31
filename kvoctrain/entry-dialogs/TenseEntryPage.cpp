@@ -80,10 +80,15 @@ void TenseEntryPage::setData(int row, int col)
     m_currentRow = row;
     m_currentTranslation = col;
 
+    if ( m_currentTranslation < 0 ) {
+        kDebug() << "Invalid tense for TenseEntryPage";
+        return;
+    }
+
     prefix = m_doc->identifier(m_currentTranslation).personalPronouns();
 
-    for (int i = 0; i <  KEduVocConjugation::tenseCount(); i++)
-        tensebox->addItem(KEduVocConjugation::getName(i));
+    tensebox->clear();
+    tensebox->addItems(m_doc->tenseDescriptions());
 
     conjugations = m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugation();
     slotTenseSelected(0);
@@ -175,7 +180,7 @@ void TenseEntryPage::thirdMPluralChanged(const QString& s)
 
 void TenseEntryPage::slotTenseSelected(int sel)
 {
-    selection = KEduVocConjugation::getAbbrev(sel);
+    selection = m_doc->tenseDescriptions().value(sel);
     first_plural->setText(conjugations.pers1Plural(selection));
     first_singular->setText(conjugations.pers1Singular(selection));
     second_plural->setText(conjugations.pers2Plural(selection));
@@ -223,7 +228,7 @@ void TenseEntryPage::slotNextConj()
     for (int i = tensebox->currentIndex()+1; i < tensebox->count(); i++) {
 
         for (j = 0; j < conjugations.entryCount(); j++) {
-            if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
+            if (m_doc->tenseDescriptions().value(i) == conjugations.getType(j)) {
                 tensebox->setCurrentIndex(i);
                 slotTenseSelected(i);
                 return;
@@ -233,7 +238,7 @@ void TenseEntryPage::slotNextConj()
 
     for (int i = 0; i < tensebox->currentIndex()-1; i++) {
         for (j = 0; j < conjugations.entryCount(); j++) {
-            if (KEduVocConjugation::getAbbrev(i) == conjugations.getType(j)) {
+            if (m_doc->tenseDescriptions().value(i) == conjugations.getType(j)) {
                 tensebox->setCurrentIndex(i);
                 slotTenseSelected(i);
                 return;

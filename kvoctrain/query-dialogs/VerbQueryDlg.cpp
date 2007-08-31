@@ -127,56 +127,58 @@ void VerbQueryDlg::setQuery(int entry,
 bool VerbQueryDlg::next()
 {
     resetAllFields();
-    QString s, type;
+    QString tense;
 
+    QString s;
     s = m_expression->translation(m_queryOriginalColumn).text();
+    mw->baseLabel->setText(s);
 
     if (current < conjugations.entryCount() - 1)
         current++;
 
-    type = conjugations.getType(current);
-    QString msg = i18n("Current tense is: %1.", conjugations.getName(type));
+    tense = conjugations.getType(current);
+    QString msg = i18n("Current tense is: %1.", tense);
 
     mw->instructionLabel->setText(msg);
-    mw->baseLabel->setText(s);
+
 
     mw->p1sField->setText("");
-    mw->p1sField->setEnabled(!conjugations.pers1Singular(type).isEmpty());
+    mw->p1sField->setEnabled(!conjugations.pers1Singular(tense).isEmpty());
 
     mw->p2sField->setText("");
-    mw->p2sField->setEnabled(!conjugations.pers2Singular(type).isEmpty());
+    mw->p2sField->setEnabled(!conjugations.pers2Singular(tense).isEmpty());
 
     mw->p3smField->setText("");
-    mw->p3smField->setEnabled(!conjugations.pers3MaleSingular(type).isEmpty());
+    mw->p3smField->setEnabled(!conjugations.pers3MaleSingular(tense).isEmpty());
 
     mw->p3sfField->setText("");
-    mw->p3sfField->setEnabled(!conjugations.pers3FemaleSingular(type).isEmpty());
+    mw->p3sfField->setEnabled(!conjugations.pers3FemaleSingular(tense).isEmpty());
 
     mw->p3snField->setText("");
-    mw->p3snField->setEnabled(!conjugations.pers3NaturalSingular(type).isEmpty());
+    mw->p3snField->setEnabled(!conjugations.pers3NaturalSingular(tense).isEmpty());
 
     mw->p1pField->setText("");
-    mw->p1pField->setEnabled(!conjugations.pers1Plural(type).isEmpty());
+    mw->p1pField->setEnabled(!conjugations.pers1Plural(tense).isEmpty());
 
     mw->p2pField->setText("");
-    mw->p2pField->setEnabled(!conjugations.pers2Plural(type).isEmpty());
+    mw->p2pField->setEnabled(!conjugations.pers2Plural(tense).isEmpty());
 
     mw->p3pmField->setText("");
-    mw->p3pmField->setEnabled(!conjugations.pers3MalePlural(type).isEmpty());
+    mw->p3pmField->setEnabled(!conjugations.pers3MalePlural(tense).isEmpty());
 
     mw->p3pfField->setText("");
-    mw->p3pfField->setEnabled(!conjugations.pers3FemalePlural(type).isEmpty());
+    mw->p3pfField->setEnabled(!conjugations.pers3FemalePlural(tense).isEmpty());
 
     mw->p3pnField->setText("");
-    mw->p3pnField->setEnabled(!conjugations.pers3NaturalPlural(type).isEmpty());
+    mw->p3pnField->setEnabled(!conjugations.pers3NaturalPlural(tense).isEmpty());
 
-    bool common = conjugations.pers3SingularCommon(type);
+    bool common = conjugations.pers3SingularCommon(tense);
     if (common) {
         mw->p3smField->setEnabled(false);
         mw->p3snField->setEnabled(false);
     }
 
-    common = conjugations.pers3PluralCommon(type);
+    common = conjugations.pers3PluralCommon(tense);
     if (common) {
         mw->p3pmField->setEnabled(false);
         mw->p3pnField->setEnabled(false);

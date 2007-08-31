@@ -246,7 +246,7 @@ void KVocTrainApp::slotDocumentProperties()
         slotStatusMsg(i18n("Updating tense indices..."));
         /// @todo should this really be here? clean unused is supposed to delete all tenses not used?
         TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
-        KEduVocConjugation::setTenseNames(new_tenseStr);
+
 
         slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
 

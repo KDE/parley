@@ -323,8 +323,6 @@ void KVocTrainApp::loadDocProps()
         delete m_queryManager;
     }
     m_queryManager = new QueryManager(this, m_doc);
-
-    KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
 }
 
 
