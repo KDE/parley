@@ -178,13 +178,12 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
     QPen pen = painter->pen();
     QPalette::ColorGroup cg = option.state & QStyle::State_Enabled ? QPalette::Normal : QPalette::Disabled;
     if (option.state & QStyle::State_Selected) {
-        painter->fillRect(rect, option.palette.brush(cg, option.state & QStyle::State_HasFocus ? QPalette::Base : QPalette::Highlight));
-        if (option.state & QStyle::State_HasFocus)
-            /**/;
-        else
-            painter->setPen(option.palette.color(cg, QPalette::HighlightedText));
+        painter->fillRect(rect, option.palette.brush(cg, option.state & QStyle::State_HasFocus ?
+          QPalette::Base : QPalette::Highlight));
+        painter->setPen(option.palette.color(cg, option.state & QStyle::State_HasFocus ?
+          QPalette::Text : QPalette::HighlightedText));
     } else {
-        //painter->setPen(option.palette.color(cg, QPalette::Text));
+        painter->setPen(option.palette.color(cg, QPalette::Text));
     }
 
     if (option.state & QStyle::State_Editing) {
@@ -233,6 +232,7 @@ QSize KVTTableDelegate::sizeHint(const QStyleOptionViewItem & option, const QMod
 void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
     if (Prefs::useGradeCol()) {
+        QStyleOptionViewItem opt = option;
         QColor color = KV_NORM_COLOR;
 
         if (index.column() > KV_COL_TRANS) {
@@ -300,10 +300,12 @@ void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & op
                 }
             }
         }
-
-        painter->setPen(color);
+        QPalette::ColorGroup cg = QPalette::Normal;
+        opt.palette.setColor(cg, QPalette::Text, color);
+        QItemDelegate::paint(painter, opt, index);
+    } else {
+        QItemDelegate::paint(painter, option, index);
     }
-    QItemDelegate::paint(painter, option, index);
 }
 
 void KVTTableDelegate::setCurrentIndex(const QModelIndex & index)
