@@ -135,9 +135,10 @@ QVariant KVTLessonModel::headerData(int section, Qt::Orientation orientation, in
 Qt::ItemFlags KVTLessonModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
-        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable | Qt::ItemIsDragEnabled); // | Qt::ItemIsDropEnabled);
+        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
+        // | Qt::ItemIsDragEnabled); // | Qt::ItemIsDropEnabled);
     }
-    return  Qt::ItemIsEnabled | Qt::ItemIsDropEnabled;
+    return  Qt::ItemIsEnabled; // | Qt::ItemIsDropEnabled;
 }
 
 Qt::DropActions KVTLessonModel::supportedDropActions() const
