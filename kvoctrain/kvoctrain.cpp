@@ -47,6 +47,7 @@
 #include <krecentfilesaction.h>
 #include <kinputdialog.h>
 #include <kapplication.h>
+#include <KActionCollection>
 
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
@@ -651,6 +652,10 @@ void KVocTrainApp::aboutToShowLearn()
     learningMenu->addSeparator();
     learningMenu->addAction(learningResumeQuery);
     learningMenu->addAction(learningResumeMultipleChoice);
+
+    learningMenu->addSeparator();
+
+    learningMenu->addAction( actionCollection()->action("vocab_show_statistics") );
 }
 
 

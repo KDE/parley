@@ -10,9 +10,8 @@
    <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
   </Menu>
-  <Menu name="practice" >
-      <text>&amp;Practice</text>
-      <Action name="vocab_show_statistics" />
+  <Menu name="language" >
+      <text>&amp;Language</text>
       <Action name="vocab_assign_lessons" />
       <Action name="vocab_clean_up" />
       <Separator/>
@@ -42,11 +41,12 @@
       <Action name="edit_edit_selected_area" />
   </Menu>
   <Menu name="learning" >
-   <text>&amp;Learning</text>
+   <text>&amp;Practice</text>
 <!--<Action name="learning_language" />
    <Separator/>
    <Action name="learning_resume_query" />
    <Action name="learning_resume_multiple_choice" /> -->
+   <Action name="vocab_show_statistics" />
   </Menu>
   <Menu name="settings" >
     <Action name="config_show_search" />
