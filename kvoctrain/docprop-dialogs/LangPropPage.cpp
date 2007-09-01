@@ -103,7 +103,7 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
 
 KEduVocConjugation LangPropPage::getConjugation()
 {
-    conjugations.cleanUp();
+//     conjugations.cleanUp();
     return conjugations;
 }
 

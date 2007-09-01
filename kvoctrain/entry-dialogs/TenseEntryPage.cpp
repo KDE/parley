@@ -269,7 +269,7 @@ void TenseEntryPage::setModified(bool mod)
 
 void TenseEntryPage::commitData()
 {
-    conjugations.cleanUp();
+//     conjugations.cleanUp();
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setConjugation(conjugations);
     setModified(false);
 }
