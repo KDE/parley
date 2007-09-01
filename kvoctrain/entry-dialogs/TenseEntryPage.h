@@ -63,7 +63,6 @@ private slots:
     void slotNextConj();
 
 private:
-    void updateFields();
     void setModified(bool mod);
     KEduVocConjugation prefix;
     QMap <QString, KEduVocConjugation> m_conjugations;

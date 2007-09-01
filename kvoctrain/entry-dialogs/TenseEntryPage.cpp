@@ -92,7 +92,6 @@ void TenseEntryPage::setData(int row, int col)
 
     m_conjugations = m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugations();
     slotTenseSelected(0);
-    updateFields();
 
     setModified(false);
 }
@@ -101,7 +100,6 @@ void TenseEntryPage::setData(int row, int col)
 void TenseEntryPage::firstPluralChanged(const QString& s)
 {
     m_conjugations[selection].setPers1Plural(s);
-    updateFields();
     setModified(true);
 }
 
@@ -109,7 +107,6 @@ void TenseEntryPage::firstPluralChanged(const QString& s)
 void TenseEntryPage::firstSingularChanged(const QString& s)
 {
     m_conjugations[selection].setPers1Singular(s);
-    updateFields();
     setModified(true);
 }
 
@@ -117,7 +114,6 @@ void TenseEntryPage::firstSingularChanged(const QString& s)
 void TenseEntryPage::secondSingularChanged(const QString& s)
 {
     m_conjugations[selection].setPers2Singular(s);
-    updateFields();
     setModified(true);
 }
 
@@ -125,7 +121,6 @@ void TenseEntryPage::secondSingularChanged(const QString& s)
 void TenseEntryPage::secondPluralChanged(const QString& s)
 {
     m_conjugations[selection].setPers2Plural(s);
-    updateFields();
     setModified(true);
 }
 
@@ -133,7 +128,6 @@ void TenseEntryPage::secondPluralChanged(const QString& s)
 void TenseEntryPage::thirdFPluralChanged(const QString& s)
 {
     m_conjugations[selection].setPers3FemalePlural(s);
-    updateFields();
     setModified(true);
 }
 
@@ -141,7 +135,6 @@ void TenseEntryPage::thirdFPluralChanged(const QString& s)
 void TenseEntryPage::thirdFSingularChanged(const QString& s)
 {
     m_conjugations[selection].setPers3FemaleSingular(s);
-    updateFields();
     setModified(true);
 }
 
@@ -149,7 +142,6 @@ void TenseEntryPage::thirdFSingularChanged(const QString& s)
 void TenseEntryPage::thirdMSingularChanged(const QString& s)
 {
     m_conjugations[selection].setPers3MaleSingular(s);
-    updateFields();
     setModified(true);
 }
 
@@ -157,7 +149,6 @@ void TenseEntryPage::thirdMSingularChanged(const QString& s)
 void TenseEntryPage::thirdNSingularChanged(const QString& s)
 {
     m_conjugations[selection].setPers3NaturalSingular(s);
-    updateFields();
     setModified(true);
 }
 
@@ -165,7 +156,6 @@ void TenseEntryPage::thirdNSingularChanged(const QString& s)
 void TenseEntryPage::thirdNPluralChanged(const QString& s)
 {
     m_conjugations[selection].setPers3NaturalPlural(s);
-    updateFields();
     setModified(true);
 }
 
@@ -173,7 +163,6 @@ void TenseEntryPage::thirdNPluralChanged(const QString& s)
 void TenseEntryPage::thirdMPluralChanged(const QString& s)
 {
     m_conjugations[selection].setPers3MalePlural(s);
-    updateFields();
     setModified(true);
 }
 
@@ -236,12 +225,6 @@ void TenseEntryPage::slotNextConj()
 }
 
 
-void TenseEntryPage::updateFields()
-{
-    b_next->setEnabled(m_conjugations.count() > 1); // next button
-}
-
-
 bool TenseEntryPage::isModified()
 {
     return m_modified;
@@ -265,6 +248,5 @@ void TenseEntryPage::commitData()
 void TenseEntryPage::clear()
 {
     m_conjugations.clear();
-    updateFields();
 }
 #include "TenseEntryPage.moc"
