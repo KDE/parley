@@ -224,27 +224,15 @@ void TenseEntryPage::slotThirdPCommonToggled(bool common)
 
 void TenseEntryPage::slotNextConj()
 {
-    int j;
-    for (int i = tensebox->currentIndex()+1; i < tensebox->count(); i++) {
-
-        for (j = 0; j < m_conjugations.count(); j++) {
-            if (m_doc->tenseDescriptions().value(i) == m_conjugations.keys().value(j)) {
-                tensebox->setCurrentIndex(i);
-                slotTenseSelected(i);
-                return;
-            }
-        }
+    QString tense = tensebox->currentText();
+    int newIndex = m_doc->tenseDescriptions().indexOf(tense) +1;
+    if ( newIndex >= m_doc->tenseDescriptions().count() ) {
+        newIndex = 0;
     }
-
-    for (int i = 0; i < tensebox->currentIndex()-1; i++) {
-        for (j = 0; j < m_conjugations.count(); j++) {
-            if (m_doc->tenseDescriptions().value(i) == m_conjugations.keys().value(j)) {
-                tensebox->setCurrentIndex(i);
-                slotTenseSelected(i);
-                return;
-            }
-        }
-    }
+    QString newTense = m_doc->tenseDescriptions().value(newIndex);
+    int tenseboxIndex = tensebox->findText(newTense);
+    tensebox->setCurrentIndex(tenseboxIndex);
+    slotTenseSelected(tenseboxIndex);
 }
 
 
