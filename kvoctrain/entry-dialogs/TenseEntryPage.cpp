@@ -59,6 +59,7 @@ TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(
     connect(first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)));
 
     selection = "";
+
     /*
       // FIXME: fill labels with prefixes ?
 

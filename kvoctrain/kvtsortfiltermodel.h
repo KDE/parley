@@ -46,8 +46,8 @@ public:
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
     void setLessonRegExp(const QRegExp& filter);
 
-
     void setSearchRegExp(const QRegExp& filter);
+    void setWordType(const QRegExp& wordType);
 
 public slots:
     /**
@@ -66,12 +66,14 @@ protected:
 
 private:
     /// used by filterAcceptsRow()
-    bool checkLesson(int sourceRow, const QModelIndex &sourceParent) const;
-    bool checkSearch(int sourceRow, const QModelIndex &sourceParent) const;
+    bool checkLesson(int sourceRow) const;
+    bool checkSearch(int sourceRow) const;
+    bool checkWordType(int sourceRow) const;
 
     KVTTableModel * m_sourceModel;
     QRegExp m_lessonFilter;
     QRegExp m_searchFilter;
+    QRegExp m_wordType;
 
     bool m_restoreNativeOrder;
 };

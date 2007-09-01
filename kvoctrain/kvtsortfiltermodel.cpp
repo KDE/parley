@@ -24,6 +24,9 @@
 #include "kvttablemodel.h"
 
 #include <keduvocexpression.h>
+#include <keduvoclesson.h>
+
+#include <KDebug>
 
 KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
@@ -31,6 +34,7 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
     setSortCaseSensitivity(Qt::CaseInsensitive);
     m_searchFilter = QRegExp();
     m_lessonFilter = QRegExp();
+    m_wordType = QRegExp();
     m_restoreNativeOrder = false;
 }
 
@@ -57,6 +61,12 @@ void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
     invalidateFilter();
 }
 
+void KVTSortFilterModel::setWordType(const QRegExp& wordType)
+{
+    m_wordType = wordType;
+    invalidateFilter();
+}
+
 /*
 At the moment I use this to filter the lessons I want:
 m_sortFilterModel->setFilterFixedString( "Lesson name" );      // one lesson
@@ -77,10 +87,16 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
 /**
  * Check if the lesson is selected
  */
-bool KVTSortFilterModel::checkLesson(int sourceRow, const QModelIndex &sourceParent) const
+bool KVTSortFilterModel::checkLesson(int sourceRow) const
 {
-    QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
-    if (m_lessonFilter.exactMatch( sourceModel()->data(lesson, Qt::DisplayRole).toString() ) )
+//     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
+//     if (m_lessonFilter.exactMatch( sourceModel()->data(lesson, Qt::DisplayRole).toString() ) )
+//         return true;
+//     return false;
+
+
+//     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
+    if (m_lessonFilter.exactMatch( m_sourceModel->document()->lesson( m_sourceModel->document()->entry(sourceRow)->lesson() )->name()  ))
         return true;
     return false;
 }
@@ -90,15 +106,26 @@ void KVTSortFilterModel::slotSearch(const QString& s)
 {
     // searching for one letter takes up much time and is probably not needed. so start at lenth 2.
     if (s.length() <= 1) {
+        m_wordType = QRegExp();
         setSearchRegExp(QRegExp());
         return;
     }
     // this can probably be done a little cleaner
     // now "hello world" becomes "(hello|world)" so it basically works,
     // but there are bound to be exceptions
-    QString searchterm = s.simplified();
-    searchterm.replace(QString(" "), QString("|"));
-    QRegExp searchRegExp = QRegExp('(' + searchterm + ')', Qt::CaseInsensitive);
+    QStringList searchterms = s.split(' ', QString::SkipEmptyParts);
+
+    QStringList types = searchterms.filter("type:", Qt::CaseInsensitive);
+    // get rid of type searches
+    foreach (QString type, types) {
+        searchterms.removeAt(searchterms.indexOf(type));
+    }
+
+    types.replaceInStrings("type:", "", Qt::CaseInsensitive);
+kDebug() << "Search types: " << '(' + types.join("|") + ')';
+    m_wordType = QRegExp('(' + types.join("|") + ')', Qt::CaseInsensitive);
+
+    QRegExp searchRegExp = QRegExp('(' + searchterms.join("|") + ')', Qt::CaseInsensitive);
 
     setSearchRegExp(searchRegExp);
 }
@@ -107,15 +134,30 @@ void KVTSortFilterModel::slotSearch(const QString& s)
 /**
  * Check the search terms
  */
-bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourceParent) const
+bool KVTSortFilterModel::checkSearch(int sourceRow) const
 {
-    Q_UNUSED(sourceParent)
-
     /// Check if the entries contain the expression:
     for (int i=0; i < m_sourceModel->document()->identifierCount(); i++) {
         if ( m_sourceModel->document()->
             entry(sourceRow)->translation(i).
             text().contains(m_searchFilter) ) {
+            return true;
+        }
+    }
+    return false;
+}
+
+
+bool KVTSortFilterModel::checkWordType(int sourceRow) const
+{
+    if (m_wordType.isEmpty()) {
+        return true;
+    }
+
+    for (int i=0; i < m_sourceModel->document()->identifierCount(); i++) {
+        if ( m_sourceModel->document()->
+            entry(sourceRow)->translation(i).
+            type().contains(m_wordType) ) {
             return true;
         }
     }
@@ -131,14 +173,22 @@ bool KVTSortFilterModel::checkSearch(int sourceRow, const QModelIndex &sourcePar
  */
 bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const
 {
+    Q_UNUSED(sourceParent);
+
     if (!m_lessonFilter.isEmpty()) {
-        if (!checkLesson(sourceRow, sourceParent)) {
+        if (!checkLesson(sourceRow)) {
             return false;
         }
     }
 
     if (!m_searchFilter.isEmpty()) {
-        if (!checkSearch(sourceRow, sourceParent)) {
+        if (!checkSearch(sourceRow)) {
+            return false;
+        }
+    }
+
+    if (!m_wordType.isEmpty()) {
+        if (!checkWordType(sourceRow)) {
             return false;
         }
     }
