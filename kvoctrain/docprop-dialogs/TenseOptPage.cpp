@@ -133,7 +133,7 @@ void TenseOptPage::slotDeleteTense()
             for (int lang = 0; lang < doc->identifierCount(); lang++) {
                 KEduVocConjugation conj = exp->translation(lang).conjugation();
                 for (int con = 0; con < conj.entryCount(); con++) {
-                    if (conj.getType(con) == t) {
+                    if (conj.tenses().value(con) == t) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
                         return;
                     }
@@ -167,7 +167,7 @@ void TenseOptPage::slotCleanup()
         for (int i = 0; i < (int) doc->entryCount(); i++) {
             KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
             for (int ci = 0; ci < conj.entryCount(); ci++) {
-                QString t = conj.getType(ci);
+                QString t = conj.tenses().value(ci);
                 ///@todo the following lines make no sense
                 // since the conjugations will change more, do it later
                 if (t.left(QString('#').length()) == "#") {

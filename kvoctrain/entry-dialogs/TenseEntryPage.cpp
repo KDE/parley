@@ -228,7 +228,7 @@ void TenseEntryPage::slotNextConj()
     for (int i = tensebox->currentIndex()+1; i < tensebox->count(); i++) {
 
         for (j = 0; j < conjugations.entryCount(); j++) {
-            if (m_doc->tenseDescriptions().value(i) == conjugations.getType(j)) {
+            if (m_doc->tenseDescriptions().value(i) == conjugations.tenses().value(j)) {
                 tensebox->setCurrentIndex(i);
                 slotTenseSelected(i);
                 return;
@@ -238,7 +238,7 @@ void TenseEntryPage::slotNextConj()
 
     for (int i = 0; i < tensebox->currentIndex()-1; i++) {
         for (j = 0; j < conjugations.entryCount(); j++) {
-            if (m_doc->tenseDescriptions().value(i) == conjugations.getType(j)) {
+            if (m_doc->tenseDescriptions().value(i) == conjugations.tenses().value(j)) {
                 tensebox->setCurrentIndex(i);
                 slotTenseSelected(i);
                 return;

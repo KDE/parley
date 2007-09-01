@@ -50,14 +50,14 @@ public:
 public slots:
     virtual void initFocus() const;
 
-protected:
+private:
     bool next();
     void resetAllFields();
 
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
-protected slots:
+private slots:
     void slotUser1();
     void slotP3pfChanged(const QString&);
     void slotP3snChanged(const QString&);
@@ -74,12 +74,11 @@ protected slots:
     void slotP2pChanged(const QString&);
     void verifyClicked();
 
-protected:
+private:
     int current;
     KEduVocConjugation conjugations;
     bool all_known;
 
-private:
     Ui::VerbQueryDlgForm * mw;
 };
 

@@ -134,10 +134,10 @@ bool VerbQueryDlg::next()
     s = m_expression->translation(m_queryOriginalColumn).text();
     mw->baseLabel->setText(s);
 
-    if (current < conjugations.entryCount() - 1)
+    if (current < conjugations.tenses().count() - 1)
         current++;
 
-    tense = conjugations.getType(current);
+    tense = conjugations.tenses().value(current);
     QString msg = i18n("Current tense is: %1.", tense);
 
     mw->instructionLabel->setText(msg);
@@ -194,38 +194,38 @@ void VerbQueryDlg::showSolution()
     resetAllFields();
     mw->dont_know->setDefault(true);
 
-    QString type = conjugations.getType(current);
+    QString tense = conjugations.tenses().value(current);
 
-    mw->p1sField->setText(conjugations.pers1Singular(type));
-    mw->p2sField->setText(conjugations.pers2Singular(type));
-    mw->p3smField->setText(conjugations.pers3MaleSingular(type));
-    mw->p3sfField->setText(conjugations.pers3FemaleSingular(type));
-    mw->p3snField->setText(conjugations.pers3NaturalSingular(type));
+    mw->p1sField->setText(conjugations.pers1Singular(tense));
+    mw->p2sField->setText(conjugations.pers2Singular(tense));
+    mw->p3smField->setText(conjugations.pers3MaleSingular(tense));
+    mw->p3sfField->setText(conjugations.pers3FemaleSingular(tense));
+    mw->p3snField->setText(conjugations.pers3NaturalSingular(tense));
 
-    mw->p1pField->setText(conjugations.pers1Plural(type));
-    mw->p2pField->setText(conjugations.pers2Plural(type));
-    mw->p3pmField->setText(conjugations.pers3MalePlural(type));
-    mw->p3pfField->setText(conjugations.pers3FemalePlural(type));
-    mw->p3pnField->setText(conjugations.pers3NaturalPlural(type));
+    mw->p1pField->setText(conjugations.pers1Plural(tense));
+    mw->p2pField->setText(conjugations.pers2Plural(tense));
+    mw->p3pmField->setText(conjugations.pers3MalePlural(tense));
+    mw->p3pfField->setText(conjugations.pers3FemalePlural(tense));
+    mw->p3pnField->setText(conjugations.pers3NaturalPlural(tense));
 
-    verifyField(mw->p1sField, conjugations.pers1Singular(type));
-    verifyField(mw->p2sField, conjugations.pers2Singular(type));
-    verifyField(mw->p3sfField, conjugations.pers3FemaleSingular(type));
+    verifyField(mw->p1sField, conjugations.pers1Singular(tense));
+    verifyField(mw->p2sField, conjugations.pers2Singular(tense));
+    verifyField(mw->p3sfField, conjugations.pers3FemaleSingular(tense));
 
-    bool common = conjugations.pers3SingularCommon(type);
+    bool common = conjugations.pers3SingularCommon(tense);
     if (!common) {
-        verifyField(mw->p3smField, conjugations.pers3MaleSingular(type));
-        verifyField(mw->p3snField, conjugations.pers3NaturalSingular(type));
+        verifyField(mw->p3smField, conjugations.pers3MaleSingular(tense));
+        verifyField(mw->p3snField, conjugations.pers3NaturalSingular(tense));
     }
 
-    verifyField(mw->p1pField, conjugations.pers1Plural(type));
-    verifyField(mw->p2pField, conjugations.pers2Plural(type));
-    verifyField(mw->p3pfField, conjugations.pers3FemalePlural(type));
+    verifyField(mw->p1pField, conjugations.pers1Plural(tense));
+    verifyField(mw->p2pField, conjugations.pers2Plural(tense));
+    verifyField(mw->p3pfField, conjugations.pers3FemalePlural(tense));
 
-    common = conjugations.pers3PluralCommon(type);
+    common = conjugations.pers3PluralCommon(tense);
     if (!common) {
-        verifyField(mw->p3pmField, conjugations.pers3MalePlural(type));
-        verifyField(mw->p3pnField, conjugations.pers3NaturalPlural(type));
+        verifyField(mw->p3pmField, conjugations.pers3MalePlural(tense));
+        verifyField(mw->p3pnField, conjugations.pers3NaturalPlural(tense));
     }
 
 }
@@ -233,43 +233,43 @@ void VerbQueryDlg::showSolution()
 
 void VerbQueryDlg::verifyClicked()
 {
-    QString type = conjugations.getType(current);
+    QString tense = conjugations.tenses().value(current);
 
     bool known = true;
 
-    if (!verifyField(mw->p1sField, conjugations.pers1Singular(type)))
+    if (!verifyField(mw->p1sField, conjugations.pers1Singular(tense)))
         known = false;
 
-    if (!verifyField(mw->p2sField, conjugations.pers2Singular(type)))
+    if (!verifyField(mw->p2sField, conjugations.pers2Singular(tense)))
         known = false;
 
-    if (!verifyField(mw->p3sfField, conjugations.pers3FemaleSingular(type)))
+    if (!verifyField(mw->p3sfField, conjugations.pers3FemaleSingular(tense)))
         known = false;
 
-    bool common = conjugations.pers3SingularCommon(type);
+    bool common = conjugations.pers3SingularCommon(tense);
     if (!common) {
-        if (!verifyField(mw->p3smField, conjugations.pers3MaleSingular(type)))
+        if (!verifyField(mw->p3smField, conjugations.pers3MaleSingular(tense)))
             known = false;
 
-        if (!verifyField(mw->p3snField, conjugations.pers3NaturalSingular(type)))
+        if (!verifyField(mw->p3snField, conjugations.pers3NaturalSingular(tense)))
             known = false;
     }
 
-    if (!verifyField(mw->p1pField, conjugations.pers1Plural(type)))
+    if (!verifyField(mw->p1pField, conjugations.pers1Plural(tense)))
         known = false;
 
-    if (!verifyField(mw->p2pField, conjugations.pers2Plural(type)))
+    if (!verifyField(mw->p2pField, conjugations.pers2Plural(tense)))
         known = false;
 
-    if (!verifyField(mw->p3pfField, conjugations.pers3FemalePlural(type)))
+    if (!verifyField(mw->p3pfField, conjugations.pers3FemalePlural(tense)))
         known = false;
 
-    common = conjugations.pers3PluralCommon(type);
+    common = conjugations.pers3PluralCommon(tense);
     if (!common) {
-        if (!verifyField(mw->p3pmField, conjugations.pers3MalePlural(type)))
+        if (!verifyField(mw->p3pmField, conjugations.pers3MalePlural(tense)))
             known = false;
 
-        if (!verifyField(mw->p3pnField, conjugations.pers3NaturalPlural(type)))
+        if (!verifyField(mw->p3pnField, conjugations.pers3NaturalPlural(tense)))
             known = false;
     }
 
