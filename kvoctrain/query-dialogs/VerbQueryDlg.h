@@ -45,7 +45,7 @@ public:
                   int query_startnum,
                   KEduVocExpression *exp,
                   const KEduVocConjugation &prefix,
-                  const KEduVocConjugation &conjug);
+                  const QMap<QString, KEduVocConjugation> &conjug);
 
 public slots:
     virtual void initFocus() const;
@@ -76,7 +76,7 @@ private slots:
 
 private:
     int current;
-    KEduVocConjugation conjugations;
+    QMap<QString, KEduVocConjugation> m_conjugations;
     bool all_known;
 
     Ui::VerbQueryDlgForm * mw;

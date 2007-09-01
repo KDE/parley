@@ -398,7 +398,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
     if (m_queryType == KVTQuery::ConjugationQuery) {
         verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
         verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugation());
+                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
         verbQueryDlg->initFocus();
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -518,7 +518,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             return;
         }
         verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugation());
+                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
 
         verbQueryDlg->initFocus();
     } else if (m_queryType == KVTQuery::ArticleQuery) {

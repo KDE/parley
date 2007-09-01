@@ -66,7 +66,7 @@ private:
     void updateFields();
     void setModified(bool mod);
     KEduVocConjugation prefix;
-    KEduVocConjugation conjugations;
+    QMap <QString, KEduVocConjugation> m_conjugations;
     QString            selection;
     bool               m_modified;
     KEduVocDocument     *m_doc;

@@ -125,18 +125,14 @@ void TenseOptPage::slotDeleteTense()
     int act = m_currentTense;
     if (optionsList->count() > 0 && (int) optionsList->count() > act) {
 
-        QString t;
-        t.setNum(tenseIndex[m_currentTense] - 1).prepend(QM_USER_TYPE);
+        QString t = optionsList->item(act)->text();
 
         for (int ent = 0; ent < doc->entryCount(); ent++) {
             KEduVocExpression *exp = doc->entry(ent);
             for (int lang = 0; lang < doc->identifierCount(); lang++) {
-                KEduVocConjugation conj = exp->translation(lang).conjugation();
-                for (int con = 0; con < conj.entryCount(); con++) {
-                    if (conj.tenses().value(con) == t) {
+                if ( exp->translation(lang).conjugationTenses().contains(t)) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
                         return;
-                    }
                 }
             }
         }
@@ -159,7 +155,8 @@ void TenseOptPage::slotDeleteTense()
 
 void TenseOptPage::slotCleanup()
 {
-    QVector<bool> used_tense;
+///@todo reimplement me, if I am still needed
+/*    QVector<bool> used_tense;
     for (int i = 0; i <= (int) optionsList->count(); i++)
         used_tense.append(false);
 
@@ -193,7 +190,7 @@ void TenseOptPage::slotCleanup()
         }
 
     m_currentTense = 0;
-    optionsList->setCurrentRow(m_currentTense);
+    optionsList->setCurrentRow(m_currentTense);*/
 }
 
 

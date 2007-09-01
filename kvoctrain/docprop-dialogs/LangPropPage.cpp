@@ -65,23 +65,23 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
     articles = art;
 
     l_langcode->setText(curr_lang);
-    first_plural->setText(conjugations.pers1Plural(CONJ_PREFIX));
-    first_singular->setText(conjugations.pers1Singular(CONJ_PREFIX));
-    second_singular->setText(conjugations.pers2Singular(CONJ_PREFIX));
-    second_plural->setText(conjugations.pers2Plural(CONJ_PREFIX));
-    thirdM_plural->setText(conjugations.pers3MalePlural(CONJ_PREFIX));
-    thirdM_singular->setText(conjugations.pers3MaleSingular(CONJ_PREFIX));
-    thirdF_plural->setText(conjugations.pers3FemalePlural(CONJ_PREFIX));
-    thirdF_singular->setText(conjugations.pers3FemaleSingular(CONJ_PREFIX));
-    thirdN_plural->setText(conjugations.pers3NaturalPlural(CONJ_PREFIX));
-    thirdN_singular->setText(conjugations.pers3NaturalSingular(CONJ_PREFIX));
+    first_plural->setText(conjugations.pers1Plural());
+    first_singular->setText(conjugations.pers1Singular());
+    second_singular->setText(conjugations.pers2Singular());
+    second_plural->setText(conjugations.pers2Plural());
+    thirdM_plural->setText(conjugations.pers3MalePlural());
+    thirdM_singular->setText(conjugations.pers3MaleSingular());
+    thirdF_plural->setText(conjugations.pers3FemalePlural());
+    thirdF_singular->setText(conjugations.pers3FemaleSingular());
+    thirdN_plural->setText(conjugations.pers3NaturalPlural());
+    thirdN_singular->setText(conjugations.pers3NaturalSingular());
 
-    bool common = conjugations.pers3SingularCommon(CONJ_PREFIX);
+    bool common = conjugations.pers3SingularCommon();
     thirdS_common->setChecked(common);
     thirdM_singular->setEnabled(!common);
     thirdN_singular->setEnabled(!common);
 
-    common = conjugations.pers3PluralCommon(CONJ_PREFIX);
+    common = conjugations.pers3PluralCommon();
     thirdP_common->setChecked(common);
     thirdN_plural->setEnabled(!common);
     thirdM_plural->setEnabled(!common);
@@ -110,67 +110,67 @@ KEduVocConjugation LangPropPage::getConjugation()
 
 void LangPropPage::firstPluralChanged(const QString& s)
 {
-    conjugations.setPers1Plural(CONJ_PREFIX, s);
+    conjugations.setPers1Plural(s);
 }
 
 
 void LangPropPage::firstSingularChanged(const QString& s)
 {
-    conjugations.setPers1Singular(CONJ_PREFIX, s);
+    conjugations.setPers1Singular(s);
 }
 
 
 void LangPropPage::secondSingularChanged(const QString& s)
 {
-    conjugations.setPers2Singular(CONJ_PREFIX, s);
+    conjugations.setPers2Singular(s);
 }
 
 
 void LangPropPage::secondPluralChanged(const QString& s)
 {
-    conjugations.setPers2Plural(CONJ_PREFIX, s);
+    conjugations.setPers2Plural(s);
 }
 
 
 void LangPropPage::thirdFPluralChanged(const QString& s)
 {
-    conjugations.setPers3FemalePlural(CONJ_PREFIX, s);
+    conjugations.setPers3FemalePlural(s);
 }
 
 
 void LangPropPage::thirdFSingularChanged(const QString& s)
 {
-    conjugations.setPers3FemaleSingular(CONJ_PREFIX, s);
+    conjugations.setPers3FemaleSingular(s);
 }
 
 
 void LangPropPage::thirdMSingularChanged(const QString& s)
 {
-    conjugations.setPers3MaleSingular(CONJ_PREFIX, s);
+    conjugations.setPers3MaleSingular(s);
 }
 
 
 void LangPropPage::thirdNSingularChanged(const QString& s)
 {
-    conjugations.setPers3NaturalSingular(CONJ_PREFIX, s);
+    conjugations.setPers3NaturalSingular(s);
 }
 
 
 void LangPropPage::thirdNPluralChanged(const QString& s)
 {
-    conjugations.setPers3NaturalPlural(CONJ_PREFIX, s);
+    conjugations.setPers3NaturalPlural(s);
 }
 
 
 void LangPropPage::thirdMPluralChanged(const QString& s)
 {
-    conjugations.setPers3MalePlural(CONJ_PREFIX, s);
+    conjugations.setPers3MalePlural(s);
 }
 
 
 void LangPropPage::slotThirdSCommonToggled(bool common)
 {
-    conjugations.setPers3SingularCommon(CONJ_PREFIX, common);
+    conjugations.setPers3SingularCommon(common);
     thirdN_singular->setEnabled(!common);
     thirdM_singular->setEnabled(!common);
 }
@@ -178,7 +178,7 @@ void LangPropPage::slotThirdSCommonToggled(bool common)
 
 void LangPropPage::slotThirdPCommonToggled(bool common)
 {
-    conjugations.setPers3PluralCommon(CONJ_PREFIX, common);
+    conjugations.setPers3PluralCommon(common);
     thirdN_plural->setEnabled(!common);
     thirdM_plural->setEnabled(!common);
 }

@@ -522,7 +522,7 @@ bool KVTQuery::validate(KEduVocExpression *expr)
                    || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
                    || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
                   )
-                  && expr->translation(m_indexFrom).conjugation().entryCount() > 0;
+                  && expr->translation(m_indexFrom).conjugations().count() > 0;
         break;
 
     case KVTQuery::RandomQuery: // Random and MC use the full settings:
