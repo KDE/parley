@@ -75,7 +75,7 @@ public:
      */
     bool hasChanged();
     /**
-     * 
+     *
      * @return true, always
      */
     bool isDefault();
@@ -101,11 +101,6 @@ protected slots:
      */
     void slotLangChanged(const QString&);
 
-    /**
-     * The second (three letter) lineEdit changed. Update m_langSet
-     * @param s is the new 3 letter name for the language
-     */
-    void slotShort2Changed(const QString&);
     /** The combo box selection changed.
      * @param _id was selected
     */
@@ -118,7 +113,7 @@ protected slots:
 
     /**
      * A language was added by the button "Add Language Data From KDE Database"
-     * @param act 
+     * @param act
      */
     void slotLangFromGlobalActivated(QAction *);
 
@@ -153,7 +148,7 @@ private:
     void createISO6391Menus();
 
     KVTLanguageList global_langset;
-    QMap<int, Country> countryIdMap; 
+    QMap<int, Country> countryIdMap;
     QMenu * m_kdeLanguagesMenu;
     QMenu * m_isoLanguagesMenu;
     /// The languages are kept here:

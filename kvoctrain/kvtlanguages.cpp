@@ -28,8 +28,8 @@
 #include "prefs.h"
 #include "languagesettings.h"
 
-KVTLanguage::KVTLanguage(const QString & shortId, const QString & longId, const QString & pixmapFile, const QString & shortId2, const QString & keyboardLayout)
-                       : m_shortId(shortId), m_shortId2(shortId2), m_longId(longId), m_pixmapFile(pixmapFile), m_keyboardLayout(keyboardLayout)
+KVTLanguage::KVTLanguage(const QString & shortId, const QString & longId, const QString & pixmapFile, const QString & keyboardLayout)
+                       : m_shortId(shortId), m_longId(longId), m_pixmapFile(pixmapFile), m_keyboardLayout(keyboardLayout)
 {
 }
 
@@ -37,10 +37,9 @@ KVTLanguage::KVTLanguage(const QString & shortId, const QString & longId, const 
 bool KVTLanguage::operator ==(const KVTLanguage &n) const
 {
   if (n.shortId() == m_shortId &&
-      n.shortId2() == m_shortId2 &&
       n.longId() == m_longId &&
       n.pixmapFile() == m_pixmapFile &&
-      n.keyboardLayout() == m_keyboardLayout) 
+      n.keyboardLayout() == m_keyboardLayout)
       return true;
   return false;
 }
@@ -49,7 +48,6 @@ bool KVTLanguage::operator ==(const KVTLanguage &n) const
 KVTLanguage & KVTLanguage::operator =(const KVTLanguage & n)
 {
     m_shortId  = n.shortId();
-    m_shortId2 = n.shortId2();
     m_longId  = n.longId();
     m_pixmapFile = n.pixmapFile();
     m_keyboardLayout = n.keyboardLayout();
@@ -57,9 +55,9 @@ KVTLanguage & KVTLanguage::operator =(const KVTLanguage & n)
 }
 
 
-void KVTLanguageList::addLanguage(const QString &_shortId, const QString &_longId, const QString &_pixmapFile, const QString& _shortId2, const QString& keyboardLayout)
+void KVTLanguageList::addLanguage(const QString &_shortId, const QString &_longId, const QString &_pixmapFile, const QString& keyboardLayout)
 {
-    KVTLanguage language = KVTLanguage(_shortId, _longId, _pixmapFile, _shortId2, keyboardLayout);
+    KVTLanguage language = KVTLanguage(_shortId, _longId, _pixmapFile, keyboardLayout);
     addLanguage(language);
 }
 
@@ -77,7 +75,7 @@ int KVTLanguageList::indexShortId(const QString &_shortId) const
         return -1;
 
     for (int i = 0; i < count(); i++) {
-        if (this->at(i).shortId() == _shortId || this->at(i).shortId2() == _shortId)
+        if (this->at(i).shortId() == _shortId)
             return i;
     }
     return -1;
@@ -117,7 +115,7 @@ void KVTLanguageList::read()
             longId.prepend("ident");
         }
 
-        addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.short2Id(), languageSettings.keyboardLayout());
+        addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.keyboardLayout());
     }
 }
 
@@ -128,7 +126,6 @@ void KVTLanguageList::write()
     for (int i = 0 ; i < count(); i++) {
         LanguageSettings languageSettings(QString::number(i));
         languageSettings.setShortId(this->at(i).shortId());
-        languageSettings.setShort2Id(this->at(i).shortId2());
         languageSettings.setLongId(this->at(i).longId());
         languageSettings.setPixmapFile(this->at(i).pixmapFile());
         languageSettings.setKeyboardLayout(this->at(i).keyboardLayout());

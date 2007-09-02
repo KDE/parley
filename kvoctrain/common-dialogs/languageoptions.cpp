@@ -57,7 +57,6 @@ LanguageOptions::LanguageOptions(KVTLanguageList & langset, QWidget* parent) : Q
     connect(e_newName, SIGNAL(textChanged(const QString&)), this, SLOT(slotNewNameChanged(const QString&)));
     connect(d_shortName, SIGNAL(activated(const QString&)), this, SLOT(slotShortActivated(const QString&)));
     connect(e_langLong, SIGNAL(textChanged(const QString&)), this, SLOT(slotLangChanged(const QString&)));
-    connect(e_shortName2, SIGNAL(textChanged(const QString&)), this, SLOT(slotShort2Changed(const QString&)));
     connect(d_kblayout, SIGNAL(activated(const QString&)), this, SLOT(slotKeyboardLayoutChanged(const QString&)));
 
     // Load the languages first, then the countries and create the
@@ -80,7 +79,6 @@ LanguageOptions::LanguageOptions(KVTLanguageList & langset, QWidget* parent) : Q
     if (d_shortName->count()) {
         d_shortName->setCurrentIndex(0);
         e_langLong->setText(m_langSet[0].longId());
-        e_shortName2->setText(m_langSet[0].shortId2());
         if (!m_langSet[0].pixmapFile().isEmpty()) {
             QPixmap pix(m_langSet[0].pixmapFile());
             if (!pix.isNull()) {
@@ -120,13 +118,11 @@ void LanguageOptions::slotDeleteClicked()
     if (d_shortName->count() != 0) {
         setPixmap(m_langSet[d_shortName->currentIndex()].pixmapFile());
         e_langLong->setText(m_langSet[d_shortName->currentIndex()].longId());
-        e_shortName2->setText(m_langSet[d_shortName->currentIndex()].shortId2());
     } else {
         // the deleted one was the last one:
         b_langPixmap->setText(i18n("No picture selected"));
         b_langPixmap->setIcon(QIcon());
         e_langLong->setText("");
-        e_shortName2->setText("");
         b_langPixmap->setEnabled(false);
     }
     enableLangWidgets();
@@ -146,7 +142,7 @@ void LanguageOptions::slotDeleteClicked()
 void LanguageOptions::slotKeyboardLayoutChanged(const QString& layout)
 {
     KVTLanguage l = m_langSet[d_shortName->currentIndex()];
-    KVTLanguage l2(l.shortId(), l.longId(), l.pixmapFile(), l.shortId2(), layout);
+    KVTLanguage l2(l.shortId(), l.longId(), l.pixmapFile(), layout);
     m_langSet.replace(d_shortName->currentIndex(), l2);
     emit widgetModified();
     m_hasChanged = true;
@@ -161,7 +157,6 @@ void LanguageOptions::enableLangWidgets()
     b_langPixmap->setEnabled(enabled);
     d_shortName->setEnabled(enabled);
     e_langLong->setEnabled(enabled);
-    e_shortName2->setEnabled(enabled);
 
     // try to talk to kxbk - get a list of keyboard layouts
     if (enabled) {
@@ -238,7 +233,6 @@ void LanguageOptions::slotShortActivated(const QString& _id)
     if (d_shortName->count() != 0) {
         b_langPixmap->setEnabled(true);
         e_langLong->setText(m_langSet[d_shortName->currentIndex()].longId());
-        e_shortName2->setText(m_langSet[d_shortName->currentIndex()].shortId2());
 
         if (!m_langSet[d_shortName->currentIndex()].pixmapFile().isEmpty()) {
             QPixmap pix(m_langSet[d_shortName->currentIndex()].pixmapFile());
@@ -276,19 +270,7 @@ void LanguageOptions::slotLangChanged(const QString& s)
 {
     if (d_shortName->count() != 0 && d_shortName->currentIndex() < m_langSet.count()) {
         KVTLanguage l = m_langSet[d_shortName->currentIndex()];
-        KVTLanguage l2(l.shortId(), s, l.pixmapFile(), l.shortId2(), l.keyboardLayout());
-        m_langSet.replace(d_shortName->currentIndex(), l2);
-        emit widgetModified();
-        m_hasChanged = true;
-    }
-}
-
-
-void LanguageOptions::slotShort2Changed(const QString& s)
-{
-    if (d_shortName->count() != 0 && d_shortName->currentIndex() < m_langSet.count()) {
-        KVTLanguage l = m_langSet[d_shortName->currentIndex()];
-        KVTLanguage l2(l.shortId(), l.longId(), l.pixmapFile(), s, l.keyboardLayout());
+        KVTLanguage l2(l.shortId(), s, l.pixmapFile(), l.keyboardLayout());
         m_langSet.replace(d_shortName->currentIndex(), l2);
         emit widgetModified();
         m_hasChanged = true;
@@ -302,7 +284,7 @@ bool LanguageOptions::setPixmap(const QString &pm)
         QPixmap pix(pm);
         if (!pix.isNull()) {
             KVTLanguage l = m_langSet[d_shortName->currentIndex()];
-            KVTLanguage l2(l.shortId(), l.longId(), pm, l.shortId2(), l.keyboardLayout());
+            KVTLanguage l2(l.shortId(), l.longId(), pm, l.keyboardLayout());
             m_langSet.replace(d_shortName->currentIndex(), l2);
             b_langPixmap->setText(QString());
             b_langPixmap->setIcon(QIcon(pix));
@@ -490,7 +472,7 @@ void LanguageOptions::slotLangFromGlobalActivated(QAction *act)
             }
 
             d_shortName->addItem(s.simplified());
-            m_langSet.addLanguage(s, global_langset[*it].longId(), global_langset[*it].pixmapFile(), global_langset[*it].shortId2());
+            m_langSet.addLanguage(s, global_langset[*it].longId(), global_langset[*it].pixmapFile());
             emit widgetModified();
             m_hasChanged = true;
 
@@ -498,9 +480,6 @@ void LanguageOptions::slotLangFromGlobalActivated(QAction *act)
                 d_shortName->setCurrentIndex(d_shortName->count()-1);
                 slotShortActivated(s);
                 enableLangWidgets();
-
-                e_shortName2->setText(global_langset[*it].shortId2());
-                slotShort2Changed(e_shortName2->text());
 
                 e_langLong->setText(global_langset[*it].longId());
                 slotLangChanged(global_langset[*it].longId());
@@ -567,9 +546,6 @@ void LanguageOptions::slotLangFromISO6391Activated(QAction *act)
         d_shortName->setCurrentIndex(d_shortName->count()-1);
         slotShortActivated(shortid);
         enableLangWidgets();
-
-        e_shortName2->setText(global_langset[id].shortId2());
-        slotShort2Changed(global_langset[id].shortId2());
 
         e_langLong->setText(global_langset[id].longId());
         slotLangChanged(e_langLong->text());

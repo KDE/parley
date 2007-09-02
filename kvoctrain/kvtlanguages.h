@@ -33,12 +33,13 @@ class KVTLanguage
 {
 public:
     KVTLanguage() {}
-    KVTLanguage(const QString &shortId, const QString &longId, const QString &pixmapFile,
-                const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
+    KVTLanguage(const QString &shortId, const QString &longId,
+            const QString &pixmapFile,
+            const QString& keyboardLayout = QString());
+
     ~KVTLanguage() {}
 
     const QString &shortId() const { return m_shortId; }
-    const QString &shortId2() const { return m_shortId2; }
     const QString &longId() const { return m_longId; }
     const QString &pixmapFile() const { return m_pixmapFile; }
     const QString &keyboardLayout() const { return m_keyboardLayout; }
@@ -48,7 +49,6 @@ public:
 
 private:
     QString m_shortId;
-    QString m_shortId2;
     QString m_longId;
     QString m_pixmapFile;
     QString m_keyboardLayout;
@@ -59,8 +59,9 @@ class KVTLanguageList : public QList<KVTLanguage>
 {
 public:
 
-    void addLanguage(const QString &shortId, const QString &longId, const QString &pixmapFile,
-                     const QString& shortId2 = QString(), const QString& keyboardLayout = QString());
+    void addLanguage(const QString &shortId, const QString &longId,
+            const QString &pixmapFile,
+            const QString& keyboardLayout = QString());
 
     void addLanguage(KVTLanguage language);
 

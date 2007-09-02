@@ -12,10 +12,6 @@
       <whatsthis></whatsthis>
       <default>id</default>
     </entry>
-    <entry name="Short2Id" type="String">
-      <label></label>
-      <whatsthis></whatsthis>
-    </entry>
     <entry name="LongId" type="String">
       <label></label>
       <whatsthis></whatsthis>
