@@ -72,7 +72,7 @@
       <item row="3" column="0" >
        <widget class="QLabel" name="label_remark" >
         <property name="text" >
-         <string>&amp;Remark:</string>
+         <string>&amp;Comment:</string>
         </property>
         <property name="buddy" >
          <cstring>e_remark</cstring>
