@@ -42,7 +42,6 @@ private:
     QLabel *m_labelSecond;
     KLineEdit *m_firstIdentifierLineEdit;
     KLineEdit *m_secondIdentifierLineEdit;
-    //QStringList m_languageStrings;
 
 private slots:
 };

@@ -55,42 +55,22 @@
    <item>
     <widget class="QLabel" name="label_2" >
      <property name="text" >
-      <string>Which language:</string>
+      <string>Please enter the language of the above:</string>
      </property>
     </widget>
-   </item>
-   <item>
-    <widget class="KVTLanguageView" native="1" name="languageWidget" />
    </item>
    <item>
     <widget class="QComboBox" name="languageComboBox" />
    </item>
    <item>
-    <widget class="KLanguageButton" native="1" name="languageButton" />
-   </item>
-   <item>
     <widget class="QLabel" name="label_4" >
      <property name="text" >
-      <string>(Please select wich language the above is in.)</string>
+      <string>(Can simply be the same as above.)</string>
      </property>
     </widget>
    </item>
   </layout>
  </widget>
- <customwidgets>
-  <customwidget>
-   <class>KVTLanguageView</class>
-   <extends>QWidget</extends>
-   <header>common-dialogs/kvtlanguageview.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KLanguageButton</class>
-   <extends>QWidget</extends>
-   <header location="global" >klanguagebutton.h</header>
-   <container>1</container>
-  </customwidget>
- </customwidgets>
  <resources/>
  <connections/>
 </ui>

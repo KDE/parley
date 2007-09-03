@@ -120,36 +120,14 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
 
     setupUi(this);
 
-    languageButton->loadAllLanguages( );
+    QStringList codes = KGlobal::locale()->allLanguagesList();
+    QStringList languageNames;
+    foreach (QString code, codes){
+        languageNames.append( KGlobal::locale()->languageCodeToName(code) );
+    }
 
 
-
-/*
-    KVTLanguageView *languageView = new KVTLanguageView( languageWidget );
-    languageView->setParent( languageWidget );
-    */
-
-//     languageWidget->addChildWidget( languageView );
-
-
-/*
-    ui = new IdentifierLanguagePageUi();
-
-    QWidget *widget = new QWidget();
-
-
-
-
-
-    QLabel* label = new QLabel(i18n("Blubb..."));
-    label->setWordWrap(true);
-
-    QVBoxLayout *layout = new QVBoxLayout;
-    layout->addWidget(ui);
-    layout->addWidget(widget);
-    layout->addWidget(label);
-    setLayout(layout);*/
-
+    languageComboBox->addItems(languageNames);
 
 }
 

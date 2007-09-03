@@ -46,7 +46,6 @@ AuthorTitlePage::AuthorTitlePage(QWizard * parent)
 
 AuthorTitlePage::~ AuthorTitlePage()
 {
-
 }
 
 
