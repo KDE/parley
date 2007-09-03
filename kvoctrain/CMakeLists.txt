@@ -123,6 +123,7 @@ set(newdocument-wizard_SRCS
 
 kde4_add_ui_files(newdocument-wizard_SRCS
     newdocument-wizard/identifierlanguagepage.ui
+    newdocument-wizard/secondidentifierlanguagepage.ui
 )
 
 set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}

@@ -22,7 +22,7 @@
 #ifndef SECONDIDENTIFIERLANGUAGEPAGE_H
 #define SECONDIDENTIFIERLANGUAGEPAGE_H
 
-#include "ui_identifierlanguagepage.h"
+#include "ui_secondidentifierlanguagepage.h"
 #include "common-dialogs/kvtlanguageview.h"
 #include <QWizardPage>
 
@@ -30,12 +30,14 @@
  * QWizardPage to let the user select the first two languages that he wants in his document.
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
-class SecondIdentifierLanguagePage : public QWizardPage, public Ui::IdentifierLanguagePage
+class SecondIdentifierLanguagePage : public QWizardPage, public Ui::SecondIdentifierLanguagePage
 {
 Q_OBJECT
 public:
     SecondIdentifierLanguagePage(QWizard *parent);
     ~SecondIdentifierLanguagePage();
+
+    void initializePage();
 
 private slots:
     void currentLanguageChanged(const QString& language);

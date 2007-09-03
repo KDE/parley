@@ -42,14 +42,12 @@
 SecondIdentifierLanguagePage::SecondIdentifierLanguagePage(QWizard * parent)
     : QWizardPage(parent)
 {
-
     setTitle(i18n("Identifier and language selection"));
-
     setSubTitle(i18n("Please select the second column data:"));
 
     setupUi(this);
-    QStringList codes = KGlobal::locale()->allLanguagesList();
 
+    QStringList codes = KGlobal::locale()->allLanguagesList();
     int current = codes.indexOf(KGlobal::locale()->language());
 
     QStringList languageNames;
@@ -72,10 +70,14 @@ SecondIdentifierLanguagePage::~SecondIdentifierLanguagePage()
 
 void SecondIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
-kDebug() << "currentLanguageChanged";
     if ( identifierNameLineEdit->text().isEmpty() ) {
         identifierNameLineEdit->setText(language);
     }
+}
+
+void SecondIdentifierLanguagePage::initializePage()
+{
+    firstLanguageName->setText( field("firstIdentifierName").toString() );
 }
 
 

@@ -1,0 +1,106 @@
+<ui version="4.0" >
+ <class>SecondIdentifierLanguagePage</class>
+ <widget class="QWidget" name="SecondIdentifierLanguagePage" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>642</width>
+    <height>494</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="label_5" >
+     <property name="text" >
+      <string>So far your document contains:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="firstLanguageName" >
+     <property name="readOnly" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Please enter a name for the second column:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>identifierNameLineEdit</cstring>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="identifierNameLineEdit" />
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3" >
+     <property name="text" >
+      <string>(This does not have to be a language actually. Anything goes: Definition, Chinese simplified or anything else you want to learn.)</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2" >
+     <property name="text" >
+      <string>Please enter the language of the above:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="languageComboBox" />
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>(Can simply be the same as above.)</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
