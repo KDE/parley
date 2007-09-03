@@ -116,6 +116,9 @@
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+        <property name="tabChangesFocus" >
+         <bool>true</bool>
+        </property>
         <property name="acceptRichText" >
          <bool>false</bool>
         </property>
@@ -177,6 +180,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="tabChangesFocus" >
+         <bool>true</bool>
         </property>
         <property name="acceptRichText" >
          <bool>false</bool>
