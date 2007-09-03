@@ -61,7 +61,7 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
     connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
 
     registerField("firstIdentifierName*", identifierNameLineEdit);
-    registerField("firstLocale", languageComboBox, "currentText", "editTextChanged(const QString&)");
+    registerField("firstLocale", languageComboBox);
 }
 
 IdentifierLanguagePage::~IdentifierLanguagePage()
