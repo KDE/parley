@@ -498,7 +498,9 @@ void KVocTrainApp::createNewDocument()
 
     int lessonIndex = m_lessonModel->addLesson();
 
-    m_lessonView->slotSelectLesson(lessonIndex);
+    if (m_lessonView) {
+        m_lessonView->slotSelectLesson(lessonIndex);
+    }
 
     // add some entries
     for ( int i = 0; i < 20 ; i++ ) {
