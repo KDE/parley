@@ -446,6 +446,9 @@ void KVocTrainApp::createNewDocument()
 //     }
     delete wizard;
 
+    m_languages.addLanguage( m_doc->identifier(0).locale(), m_doc->identifier(0).name(), QString(), QString());
+    m_languages.addLanguage( m_doc->identifier(1).locale(), m_doc->identifier(1).name(), QString(), QString());
+
     m_languages.write();
 
     m_tableModel->setDocument(m_doc);
@@ -469,7 +472,7 @@ void KVocTrainApp::createNewDocument()
 
     // Set the language headers of the table.
     for (int i=0; i<m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_languages.value(m_languages.indexShortId(m_doc->identifier(i).name())).longId(), Qt::EditRole);
+        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
     }
 
     m_doc->wordTypes()->createDefaultWordTypes();
