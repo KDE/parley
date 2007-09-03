@@ -42,21 +42,26 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
 //     }
 
     resize(600,600);
-    m_firstLanguagePage = new KVTNewDocumentWizardLanguagePage(true, this);
-    m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
+//     m_firstLanguagePage = new KVTNewDocumentWizardLanguagePage(true, this);
+//     m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
 
     setPage(WizardIntroPage, new KVTNewDocumentWizardIntroPage);
 
     setPage(WizardAuthorTitlePage, new AuthorTitlePage(this));
 
-    setPage(WizardIdentifierLanguagePage, new IdentifierLanguagePage(this));
+    setPage(WizardFirstIdentifierLanguagePage, new FirstIdentifierLanguagePage(this));
 
-    setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen, this ) );
+    setPage(WizardSecondIdentifierLanguagePage, new SecondIdentifierLanguagePage(this));
 
-    setPage(WizardFirstLanguagePage, m_firstLanguagePage);
-    setPage(WizardSecondLanguagePage, m_secondLanguagePage);
 
-    setPage(WizardOtherPage, new KVTNewDocumentWizardOtherPage);
+//     setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen, this ) );
+//
+//     setPage(WizardFirstLanguagePage, m_firstLanguagePage);
+//     setPage(WizardSecondLanguagePage, m_secondLanguagePage);
+//
+//     setPage(WizardOtherPage, new KVTNewDocumentWizardOtherPage);
+
+
     setPage(WizardFinalPage, new KVTNewDocumentWizardFinalPage);
 
     setStartId(WizardIntroPage);
@@ -68,10 +73,10 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
 }
 
 
-void KVTNewDocumentWizard::initializePage(int id)
-{
-    QWizard::initializePage(id);
-}
+// // void KVTNewDocumentWizard::initializePage(int id)
+// // {
+// //     QWizard::initializePage(id);
+// // }
 
 
 int KVTNewDocumentWizard::nextId() const
@@ -80,54 +85,59 @@ int KVTNewDocumentWizard::nextId() const
     case WizardIntroPage:
             return WizardAuthorTitlePage;
     case WizardAuthorTitlePage:
-        return WizardIdentifierLanguagePage;
-    case WizardIdentifierLanguagePage:
-        return WizardChoiceLanguageOtherPage;
-    case WizardChoiceLanguageOtherPage:
-        if (field("choiceLanguageOther.language").toBool()) {
-            return WizardFirstLanguagePage;
-        } else if (field("choiceLanguageOther.other").toBool()) {
-            return WizardOtherPage;
-        } else {
-            return WizardFinalPage;
-        }
-    case WizardFirstLanguagePage:
-        return WizardSecondLanguagePage;
-    case WizardSecondLanguagePage:
+        return WizardFirstIdentifierLanguagePage;
+    case WizardFirstIdentifierLanguagePage:
+        return WizardSecondIdentifierLanguagePage;
+    case WizardSecondIdentifierLanguagePage:
         return WizardFinalPage;
-    case WizardOtherPage:
-        return WizardFinalPage;
+
+//     case WizardFirstIdentifierLanguagePage:
+//         return WizardChoiceLanguageOtherPage;
+//     case WizardChoiceLanguageOtherPage:
+//         if (field("choiceLanguageOther.language").toBool()) {
+//             return WizardFirstLanguagePage;
+//         } else if (field("choiceLanguageOther.other").toBool()) {
+//             return WizardOtherPage;
+//         } else {
+//             return WizardFinalPage;
+//         }
+//     case WizardFirstLanguagePage:
+//         return WizardSecondLanguagePage;
+//     case WizardSecondLanguagePage:
+//         return WizardFinalPage;
+//     case WizardOtherPage:
+//         return WizardFinalPage;
     case WizardFinalPage:
     default:
         return -1;
     }
 }
 
-QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
-{
-    QList<WizardIdentifier> ident;
-    if ( hasVisitedPage(WizardFirstLanguagePage) ) {
-        kDebug() << "adding first page";
-        ident.append(WizardIdentifier(true,
-            field("firstLanguagePage.language").toString(),
-            field("firstLanguagePage.languageShort").toString() ));
-    }
-    if ( hasVisitedPage(WizardSecondLanguagePage) ) {
-        kDebug() << "adding second page";
-        ident.append(WizardIdentifier(true,
-            field("secondLanguagePage.language").toString(),
-            field("secondLanguagePage.languageShort").toString() ));
-    }
-    if ( hasVisitedPage(WizardOtherPage) ) {
-        ident.append(WizardIdentifier(false,
-            field("otherPage.firstIdentifier").toString(),
-            field("otherPage.firstIdentifier").toString() ));
-        ident.append(WizardIdentifier(false,
-            field("otherPage.secondIdentifier").toString(),
-            field("otherPage.secondIdentifier").toString() ));
-    }
-    return ident;
-}
+// QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
+// {
+//     QList<WizardIdentifier> ident;
+//     if ( hasVisitedPage(WizardFirstLanguagePage) ) {
+//         kDebug() << "adding first page";
+//         ident.append(WizardIdentifier(true,
+//             field("firstLanguagePage.language").toString(),
+//             field("firstLanguagePage.languageShort").toString() ));
+//     }
+//     if ( hasVisitedPage(WizardSecondLanguagePage) ) {
+//         kDebug() << "adding second page";
+//         ident.append(WizardIdentifier(true,
+//             field("secondLanguagePage.language").toString(),
+//             field("secondLanguagePage.languageShort").toString() ));
+//     }
+//     if ( hasVisitedPage(WizardOtherPage) ) {
+//         ident.append(WizardIdentifier(false,
+//             field("otherPage.firstIdentifier").toString(),
+//             field("otherPage.firstIdentifier").toString() ));
+//         ident.append(WizardIdentifier(false,
+//             field("otherPage.secondIdentifier").toString(),
+//             field("otherPage.secondIdentifier").toString() ));
+//     }
+//     return ident;
+// }
 
 void KVTNewDocumentWizard::accept()
 {
@@ -138,11 +148,12 @@ void KVTNewDocumentWizard::accept()
     m_doc->setDocumentComment( field("commentField").toString() );
     m_doc->setCategory( field("categoryField").toString() );
 
-
-
-
-kDebug() << "Wizard: author: " << author;
-kDebug() << "type: " << field("authorField").type();
+    m_doc->appendIdentifier();
+    m_doc->appendIdentifier();
+    m_doc->identifier(0).setName( field("firstIdentifierName").toString() );
+    m_doc->identifier(0).setLocale( KGlobal::locale()->allLanguagesList().value(field("firstLocale").toInt()) );
+    m_doc->identifier(1).setName( field("secondIdentifierName").toString() );
+    m_doc->identifier(1).setLocale( KGlobal::locale()->allLanguagesList().value(field("secondLocale").toInt()) );
 
 
     QDialog::accept();

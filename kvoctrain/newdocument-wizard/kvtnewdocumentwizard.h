@@ -28,7 +28,8 @@
 #include "kvtnewdocumentwizardlanguagepage.h"
 #include "kvtnewdocumentwizardotherpage.h"
 #include "kvtnewdocumentwizardfinalpage.h"
-#include "identifierlanguagepage.h"
+#include "firstidentifierlanguagepage.h"
+#include "secondidentifierlanguagepage.h"
 #include "authortitlepage.h"
 
 #include <keduvocdocument.h>
@@ -65,7 +66,8 @@ public:
     enum NewDocumentWizardPages{
         WizardIntroPage,
         WizardAuthorTitlePage,
-        WizardIdentifierLanguagePage,
+        WizardFirstIdentifierLanguagePage,
+        WizardSecondIdentifierLanguagePage,
         WizardChoiceLanguageOtherPage,
         WizardFirstLanguagePage,
         WizardSecondLanguagePage,
@@ -81,7 +83,7 @@ public:
 
     KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent);
 
-    void initializePage(int id);
+//     void initializePage(int id);
     int nextId() const;
 
     QList<WizardIdentifier>  identifiers();
@@ -91,9 +93,9 @@ signals:
     void setLanguage(int column, int languageIndex);
 
 private:
-    KVTNewDocumentWizardLanguagePage* m_firstLanguagePage;
-    KVTNewDocumentWizardLanguagePage* m_secondLanguagePage;
-    bool m_showFileOpen;
+//     KVTNewDocumentWizardLanguagePage* m_firstLanguagePage;
+//     KVTNewDocumentWizardLanguagePage* m_secondLanguagePage;
+//     bool m_showFileOpen;
 
     KEduVocDocument* m_doc;
 };

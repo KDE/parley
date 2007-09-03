@@ -19,7 +19,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "identifierlanguagepage.h"
+#include "firstidentifierlanguagepage.h"
 
 #include <QWizardPage>
 #include <QLabel>
@@ -39,11 +39,13 @@
  *
  * @param parent
  */
-IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
+FirstIdentifierLanguagePage::FirstIdentifierLanguagePage(QWizard * parent)
     : QWizardPage(parent)
 {
 
     setTitle(i18n("Identifier and language selection"));
+
+    setSubTitle(i18n("Please select the first column data:"));
 
     setupUi(this);
     QStringList codes = KGlobal::locale()->allLanguagesList();
@@ -64,11 +66,11 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
     registerField("firstLocale", languageComboBox);
 }
 
-IdentifierLanguagePage::~IdentifierLanguagePage()
+FirstIdentifierLanguagePage::~FirstIdentifierLanguagePage()
 {
 }
 
-void IdentifierLanguagePage::currentLanguageChanged(const QString & language)
+void FirstIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
 kDebug() << "currentLanguageChanged";
     if ( identifierNameLineEdit->text().isEmpty() ) {
@@ -77,4 +79,4 @@ kDebug() << "currentLanguageChanged";
 }
 
 
-#include "identifierlanguagepage.moc"
+#include "firstidentifierlanguagepage.moc"

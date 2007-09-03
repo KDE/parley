@@ -426,24 +426,24 @@ void KVocTrainApp::createNewDocument()
 
     m_doc = newDoc;
 
-    if  (!(wizard->hasVisitedPage(KVTNewDocumentWizard::WizardFirstLanguagePage) || wizard->hasVisitedPage(KVTNewDocumentWizard::WizardOtherPage))) {
-        // file open
-        delete wizard;
-        slotFileOpen();
-        return;
-    }
+//     if  (!(wizard->hasVisitedPage(KVTNewDocumentWizard::WizardFirstLanguagePage) || wizard->hasVisitedPage(KVTNewDocumentWizard::WizardOtherPage))) {
+//         // file open
+//         delete wizard;
+//         slotFileOpen();
+//         return;
+//     }
 
-    const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
-    foreach(WizardIdentifier ident, newIdentifiers){
-        int index = m_languages.indexShortId( ident.identifierShort() );
-        if ( index == -1 ) {
-            m_languages.addLanguage( ident.identifierShort(), ident.identifier(), QString(), QString());
-            index = m_languages.indexShortId( ident.identifierShort() );
-        }
-        int i = m_doc->appendIdentifier();
-        m_doc->identifier(i).setLocale(ident.identifierShort());
-        m_doc->identifier(i).setName(ident.identifier());
-    }
+//     const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
+//     foreach(WizardIdentifier ident, newIdentifiers){
+//         int index = m_languages.indexShortId( ident.identifierShort() );
+//         if ( index == -1 ) {
+//             m_languages.addLanguage( ident.identifierShort(), ident.identifier(), QString(), QString());
+//             index = m_languages.indexShortId( ident.identifierShort() );
+//         }
+//         int i = m_doc->appendIdentifier();
+//         m_doc->identifier(i).setLocale(ident.identifierShort());
+//         m_doc->identifier(i).setName(ident.identifier());
+//     }
     delete wizard;
 
     m_languages.write();
