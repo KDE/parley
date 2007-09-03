@@ -96,7 +96,7 @@ bool KVTSortFilterModel::checkLesson(int sourceRow) const
 
 
 //     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
-    if (m_lessonFilter.exactMatch( m_sourceModel->document()->lesson( m_sourceModel->document()->entry(sourceRow)->lesson() )->name()  ))
+    if (m_lessonFilter.exactMatch( m_sourceModel->document()->lesson( m_sourceModel->document()->entry(sourceRow)->lesson() ).name()  ))
         return true;
     return false;
 }

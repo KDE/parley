@@ -81,7 +81,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case KVTTableModel::LessonsRole: {
             QStringList sl = m_doc->lessonNames();
-            sl.prepend(m_doc->lesson(0)->name());
+            sl.prepend(m_doc->lesson(0).name());
             return QVariant(sl);
             break;
         }
@@ -146,7 +146,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                     //m_doc->entry(index.row())->setLesson(defaultLessonIndex);
                     //result = i18n("Default lesson");
                 } else
-                    result = m_doc->lesson(m_doc->entry(index.row())->lesson())->name();
+                    result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
             } else if (index.column() == 1) {
                 if (m_doc->entry(index.row())->isActive()) {
                     if (m_doc->entry(index.row())->isInQuery())

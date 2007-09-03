@@ -156,7 +156,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-        return m_doc->lesson(index.row()+1)->name();
+        return m_doc->lesson(index.row()+1).name();
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
@@ -178,7 +178,7 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     /** rename a lesson */
     if (role == Qt::EditRole) {
-        m_doc->lesson(index.row()+1)->setName(value.toString());
+        m_doc->lesson(index.row()+1).setName(value.toString());
         emit dataChanged(index, index);
         return true;
     }
@@ -227,7 +227,7 @@ int KVTLessonModel::addLesson(const QString &lessonName)
         // add the lesson
         newLessonIndex = m_doc->addLesson(QString());
         // then name it according to its index
-        m_doc->lesson(newLessonIndex)->setName(i18n("Lesson %1", newLessonIndex));
+        m_doc->lesson(newLessonIndex).setName(i18n("Lesson %1", newLessonIndex));
     } else {
         newLessonIndex = m_doc->addLesson(lessonName);
     }
@@ -271,7 +271,7 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
             entryList.append(expr);
     }
 
-    QString originalLessonName = m_doc->lesson(lessonIndex)->name();
+    QString originalLessonName = m_doc->lesson(lessonIndex).name();
     int numNewLessons = entryList.count()/entriesPerLesson;
     if (entryList.count()%entriesPerLesson) // modulo - fraction lesson if not 0 we need one more
         numNewLessons++;
