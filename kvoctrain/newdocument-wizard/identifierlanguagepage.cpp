@@ -121,13 +121,16 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
     setupUi(this);
 
     QStringList codes = KGlobal::locale()->allLanguagesList();
+
+    int current = codes.indexOf(KGlobal::locale()->language());
+
     QStringList languageNames;
     foreach (QString code, codes){
         languageNames.append( KGlobal::locale()->languageCodeToName(code) );
     }
 
-
     languageComboBox->addItems(languageNames);
+    languageComboBox->setCurrentIndex(current);
 
 }
 
