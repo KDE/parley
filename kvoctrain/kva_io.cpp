@@ -328,7 +328,6 @@ void KVocTrainApp::loadDocProps()
 
 void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
 {
-//    the_doc->setQueryIdentifier(act_query_org, act_query_trans);
     the_doc->setQueryIdentifier(m_queryManager->fromTranslation(), m_queryManager->toTranslation());
 }
 
@@ -418,32 +417,14 @@ void KVocTrainApp::createNewDocument()
     } else {
         wizard = new KVTNewDocumentWizard(newDoc, this);
         if( !wizard->exec() == QDialog::Accepted ){
-            kDebug() << "Wizard - Canceled";
-            delete wizard;
-            exit(0);
+            // start with default values
+            newDoc->appendIdentifier();
+            newDoc->appendIdentifier();
         }
     }
 
     m_doc = newDoc;
 
-//     if  (!(wizard->hasVisitedPage(KVTNewDocumentWizard::WizardFirstLanguagePage) || wizard->hasVisitedPage(KVTNewDocumentWizard::WizardOtherPage))) {
-//         // file open
-//         delete wizard;
-//         slotFileOpen();
-//         return;
-//     }
-
-//     const QList<WizardIdentifier> newIdentifiers = wizard->identifiers();
-//     foreach(WizardIdentifier ident, newIdentifiers){
-//         int index = m_languages.indexShortId( ident.identifierShort() );
-//         if ( index == -1 ) {
-//             m_languages.addLanguage( ident.identifierShort(), ident.identifier(), QString(), QString());
-//             index = m_languages.indexShortId( ident.identifierShort() );
-//         }
-//         int i = m_doc->appendIdentifier();
-//         m_doc->identifier(i).setLocale(ident.identifierShort());
-//         m_doc->identifier(i).setName(ident.identifier());
-//     }
     delete wizard;
 
     m_languages.addLanguage( m_doc->identifier(0).locale(), m_doc->identifier(0).name(), QString(), QString());
