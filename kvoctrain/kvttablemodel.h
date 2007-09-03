@@ -65,7 +65,7 @@ public:
 
     void setLanguages(const KVTLanguageList & languages);
 
-    bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
+//     bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
     bool appendEntry(KEduVocExpression *entry);
 
     bool removeRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());

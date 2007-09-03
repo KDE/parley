@@ -455,19 +455,16 @@ void KVocTrainApp::createNewDocument()
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
     loadDocProps();
-    m_tableModel->insertRows(0, 20);
-    m_tableModel->reset();
+
+    m_lessonModel->setDocument(m_doc);
+    if (m_lessonView) {
+        m_lessonView->setModel(m_lessonModel);
+        m_lessonView->initializeSelection();
+    }
 
     if (m_tableView) {
         m_tableView->adjustContent();
         m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-    }
-
-    m_lessonModel->setDocument(m_doc);
-
-    if (m_lessonView) {
-        m_lessonView->setModel(m_lessonModel);
-        m_lessonView->initializeSelection();
     }
 
     // Set the language headers of the table.
@@ -495,6 +492,18 @@ void KVocTrainApp::createNewDocument()
     m_doc->addUsage( i18n("physiology") );
     m_doc->addUsage( i18n("rhetoric") );
     m_doc->addUsage( i18n("zoology") );
+
+
+    m_tableModel->reset(); // clear old entries
+
+    int lessonIndex = m_lessonModel->addLesson();
+
+    m_lessonView->slotSelectLesson(lessonIndex);
+
+    // add some entries
+    for ( int i = 0; i < 20 ; i++ ) {
+        m_tableModel->appendEntry( new KEduVocExpression(QString(), lessonIndex) );
+    }
 
     m_doc->setModified(false);
 }

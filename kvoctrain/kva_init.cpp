@@ -374,7 +374,7 @@ void KVocTrainApp::initModel()
 {
     m_lessonModel = new KVTLessonModel(this);
     m_tableModel = new KVTTableModel(this);
-//     m_tableModel->setLanguages(m_languages);
+    m_tableModel->setLanguages(m_languages);
     m_sortFilterModel= new KVTSortFilterModel(this);
     m_sortFilterModel->setSourceModel(m_tableModel);
 }

@@ -336,26 +336,26 @@ void KVTTableModel::setLanguages(const KVTLanguageList & languages)
     m_languages = languages;
 }
 
-bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
-{
-kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count;
-
-    //Q_UNUSED(parent);
-    if (count < 1 || row < 0 || row > m_doc->entryCount()) {
-        return false;
-    }
-
-    beginInsertRows(parent, row, row + count -1);
-
-    for (int i = row; i < row + count; i++) {
-        m_doc->insertEntry(new KEduVocExpression, i);
-    }
-
-    endInsertRows();
-    m_doc->setModified(true);
-
-    return true;
-}
+// bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
+// {
+// kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count;
+//
+//     //Q_UNUSED(parent);
+//     if (count < 1 || row < 0 || row > m_doc->entryCount()) {
+//         return false;
+//     }
+//
+//     beginInsertRows(parent, row, row + count -1);
+//
+//     for (int i = row; i < row + count; i++) {
+//         m_doc->insertEntry(new KEduVocExpression, i);
+//     }
+//
+//     endInsertRows();
+//     m_doc->setModified(true);
+//
+//     return true;
+// }
 
 bool KVTTableModel::appendEntry(KEduVocExpression *entry)
 {
