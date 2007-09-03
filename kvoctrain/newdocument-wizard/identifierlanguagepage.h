@@ -36,26 +36,9 @@ Q_OBJECT
 public:
     IdentifierLanguagePage(QWizard *parent);
     ~IdentifierLanguagePage();
-//     void initializePage();
 
-
-// public:
-//     IdentifierLanguagePage(bool isFirstLanguagePage, QWizard *parent);
-//     void initializePage();
-//
-// private:
-//     bool m_isFirstLanguagePage;
-//     QLabel *m_beforeSelectionLabel;
-//     QLabel *m_currentLabel;
-//     QCheckBox *m_moreLanguagesCheckbox;
-//
-//     QLineEdit *m_languageLabel;
-//     QLineEdit *m_languageShortLabel;
-//
-// private slots:
-//     void slotLanguageChanged(const QString &language, const QString &languageShort);
-
-
+private slots:
+    void currentLanguageChanged(const QString& language);
 
 };
 

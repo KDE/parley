@@ -115,11 +115,9 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
     : QWizardPage(parent)
 {
 
-
     setTitle(i18n("Identifier and language selection"));
 
     setupUi(this);
-
     QStringList codes = KGlobal::locale()->allLanguagesList();
 
     int current = codes.indexOf(KGlobal::locale()->language());
@@ -132,11 +130,19 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
     languageComboBox->addItems(languageNames);
     languageComboBox->setCurrentIndex(current);
 
+    connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
 }
 
-IdentifierLanguagePage::~ IdentifierLanguagePage()
+IdentifierLanguagePage::~IdentifierLanguagePage()
 {
-//     delete ui;
+}
+
+void IdentifierLanguagePage::currentLanguageChanged(const QString & language)
+{
+kDebug() << "currentLanguageChanged";
+    if ( identifierNameLineEdit->text().isEmpty() ) {
+        identifierNameLineEdit->setText(language);
+    }
 }
 
 
