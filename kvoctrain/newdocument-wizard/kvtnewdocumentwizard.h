@@ -31,6 +31,8 @@
 #include "identifierlanguagepage.h"
 #include "authortitlepage.h"
 
+#include <keduvocdocument.h>
+
 class WizardIdentifier
 {
 public:
@@ -72,23 +74,28 @@ public:
         WizardFinalPage
     };
 
-    enum Options{
-        NoFileOpen,
-        ShowFileOpen
-    };
+//     enum Options{
+//         NoFileOpen,
+//         ShowFileOpen
+//     };
 
-    KVTNewDocumentWizard(Options options, QWidget *parent);
+    KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent);
 
     void initializePage(int id);
     int nextId() const;
 
     QList<WizardIdentifier>  identifiers();
-private:
-    KVTNewDocumentWizardLanguagePage *m_firstLanguagePage;
-    KVTNewDocumentWizardLanguagePage *m_secondLanguagePage;
-    bool m_showFileOpen;
+    void accept();
+
 signals:
     void setLanguage(int column, int languageIndex);
+
+private:
+    KVTNewDocumentWizardLanguagePage* m_firstLanguagePage;
+    KVTNewDocumentWizardLanguagePage* m_secondLanguagePage;
+    bool m_showFileOpen;
+
+    KEduVocDocument* m_doc;
 };
 
 #endif

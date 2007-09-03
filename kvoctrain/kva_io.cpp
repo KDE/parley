@@ -404,8 +404,11 @@ void KVocTrainApp::removeProgressBar()
 void KVocTrainApp::createNewDocument()
 {
     KVTNewDocumentWizard *wizard;
+
+    KEduVocDocument* newDoc = new KEduVocDocument(this);
+
     if (m_doc) {
-        wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::NoFileOpen, this);
+        wizard = new KVTNewDocumentWizard(newDoc, this);
         if( !wizard->exec() == QDialog::Accepted ){
             delete wizard;
             return;
@@ -413,7 +416,7 @@ void KVocTrainApp::createNewDocument()
         delete m_doc;
         m_doc = 0;
     } else {
-        wizard = new KVTNewDocumentWizard(KVTNewDocumentWizard::ShowFileOpen, this);
+        wizard = new KVTNewDocumentWizard(newDoc, this);
         if( !wizard->exec() == QDialog::Accepted ){
             kDebug() << "Wizard - Canceled";
             delete wizard;
@@ -421,7 +424,7 @@ void KVocTrainApp::createNewDocument()
         }
     }
 
-    m_doc = new KEduVocDocument(this);
+    m_doc = newDoc;
 
     if  (!(wizard->hasVisitedPage(KVTNewDocumentWizard::WizardFirstLanguagePage) || wizard->hasVisitedPage(KVTNewDocumentWizard::WizardOtherPage))) {
         // file open

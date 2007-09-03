@@ -31,14 +31,15 @@
 
 #include <kvtlanguages.h>
 
-KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
+KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent)
  : QWizard(parent)
 {
-    if ( options == ShowFileOpen ) {
-        m_showFileOpen = true;
-    } else {
-        m_showFileOpen = false;
-    }
+    m_doc = doc;
+//     if ( options == ShowFileOpen ) {
+//         m_showFileOpen = true;
+//     } else {
+//         m_showFileOpen = false;
+//     }
 
     resize(600,600);
     m_firstLanguagePage = new KVTNewDocumentWizardLanguagePage(true, this);
@@ -127,6 +128,23 @@ QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
     }
     return ident;
 }
+
+void KVTNewDocumentWizard::accept()
+{
+    QString author = field("authorField").toString();
+    m_doc->setAuthor(author);
+    m_doc->setTitle( field("titleField").toString() );
+    m_doc->setLicense( field("licenseField").toString() );
+    m_doc->setDocumentComment( field("commentField").toString() );
+    m_doc->setCategory( field("categoryField").toString() );
+
+
+kDebug() << "Wizard: author: " << author;
+
+    QDialog::accept();
+}
+
+
 
 
 #include "kvtnewdocumentwizard.moc"

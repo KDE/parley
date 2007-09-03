@@ -36,6 +36,12 @@ AuthorTitlePage::AuthorTitlePage(QWizard * parent)
 
     setupUi(this);
 
+    registerField("authorField", e_author);
+    registerField("titleField", e_title);
+    registerField("licenseField", e_license);
+    registerField("commentField", e_comment);
+    registerField("categoryField", categoryComboBox);
+
 }
 
 AuthorTitlePage::~ AuthorTitlePage()
