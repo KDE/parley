@@ -139,7 +139,11 @@ void KVTNewDocumentWizard::accept()
     m_doc->setCategory( field("categoryField").toString() );
 
 
+
+
 kDebug() << "Wizard: author: " << author;
+kDebug() << "type: " << field("authorField").type();
+
 
     QDialog::accept();
 }

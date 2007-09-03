@@ -120,6 +120,7 @@ IdentifierLanguagePage::IdentifierLanguagePage(QWizard * parent)
 
     setupUi(this);
 
+    languageButton->loadAllLanguages( );
 
 
 
