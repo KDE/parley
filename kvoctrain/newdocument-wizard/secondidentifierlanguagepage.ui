@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>642</width>
-    <height>494</height>
+    <height>625</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -44,6 +44,32 @@
     </spacer>
    </item>
    <item>
+    <widget class="QLabel" name="label_2" >
+     <property name="text" >
+      <string>Please select a second language (can be the same as before):</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QComboBox" name="languageComboBox" />
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
       <string>Please enter a name for the second column:</string>
@@ -63,39 +89,6 @@
      </property>
      <property name="wordWrap" >
       <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
-    <widget class="QLabel" name="label_2" >
-     <property name="text" >
-      <string>Please enter the language of the above:</string>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QComboBox" name="languageComboBox" />
-   </item>
-   <item>
-    <widget class="QLabel" name="label_4" >
-     <property name="text" >
-      <string>(Can simply be the same as above.)</string>
      </property>
     </widget>
    </item>
