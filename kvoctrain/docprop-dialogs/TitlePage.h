@@ -51,7 +51,11 @@ public:
     }
     QString getDocComment()
     {
-        return doc_remark;
+        return doc_comment;
+    }
+    QString getCategory()
+    {
+        return category;
     }
 
 protected slots:
@@ -59,12 +63,14 @@ protected slots:
     void slotAuthorChanged();
     void slotLicenseChanged(const QString&);
     void slotDocCommentChanged();
+    void slotCategoryChanged(const QString&);
 
 private:
     QString title;
     QString author;
     QString license;
-    QString doc_remark;
+    QString doc_comment;
+    QString category;
 };
 
 #endif // TitlePage_included

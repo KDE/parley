@@ -45,6 +45,11 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(Options options, QWidget *parent)
     m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
 
     setPage(WizardIntroPage, new KVTNewDocumentWizardIntroPage);
+
+    setPage(WizardAuthorTitlePage, new AuthorTitlePage(this));
+
+    setPage(WizardIdentifierLanguagePage, new IdentifierLanguagePage(this));
+
     setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen, this ) );
 
     setPage(WizardFirstLanguagePage, m_firstLanguagePage);
@@ -72,6 +77,10 @@ int KVTNewDocumentWizard::nextId() const
 {
     switch (currentId()) {
     case WizardIntroPage:
+            return WizardAuthorTitlePage;
+    case WizardAuthorTitlePage:
+        return WizardIdentifierLanguagePage;
+    case WizardIdentifierLanguagePage:
         return WizardChoiceLanguageOtherPage;
     case WizardChoiceLanguageOtherPage:
         if (field("choiceLanguageOther.language").toBool()) {

@@ -62,7 +62,10 @@ public:
     {
         return titleOptPage->getDocComment();
     }
-
+    inline QString getCategory()
+    {
+        return titleOptPage->getCategory();
+    }
     inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
     {
         tenseOptPage->getTenseNames(tenses, ret_index);

@@ -1,0 +1,84 @@
+<ui version="4.0" >
+ <class>IdentifierLanguagePage</class>
+ <widget class="QWidget" name="IdentifierLanguagePage" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>642</width>
+    <height>494</height>
+   </rect>
+  </property>
+  <property name="windowTitle" >
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Please enter a name for the first language:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>identifierNameLineEdit</cstring>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="identifierNameLineEdit" />
+   </item>
+   <item>
+    <widget class="QLabel" name="label_3" >
+     <property name="text" >
+      <string>(This does not have to be a language actually. Anything goes: Definition, Chinese simplified or anything else you want to learn.)</string>
+     </property>
+     <property name="wordWrap" >
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Fixed</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2" >
+     <property name="text" >
+      <string>Which language:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="KVTLanguageView" native="1" name="languageWidget" />
+   </item>
+   <item>
+    <widget class="QLabel" name="label_4" >
+     <property name="text" >
+      <string>(Please select wich language the above is in.)</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KVTLanguageView</class>
+   <extends>QWidget</extends>
+   <header>common-dialogs/kvtlanguageview.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

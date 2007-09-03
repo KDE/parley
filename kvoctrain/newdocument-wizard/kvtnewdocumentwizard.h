@@ -28,6 +28,8 @@
 #include "kvtnewdocumentwizardlanguagepage.h"
 #include "kvtnewdocumentwizardotherpage.h"
 #include "kvtnewdocumentwizardfinalpage.h"
+#include "identifierlanguagepage.h"
+#include "authortitlepage.h"
 
 class WizardIdentifier
 {
@@ -60,6 +62,8 @@ public:
     /// The pages of this wizard
     enum NewDocumentWizardPages{
         WizardIntroPage,
+        WizardAuthorTitlePage,
+        WizardIdentifierLanguagePage,
         WizardChoiceLanguageOtherPage,
         WizardFirstLanguagePage,
         WizardSecondLanguagePage,

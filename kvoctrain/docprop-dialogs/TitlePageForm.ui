@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>339</width>
-    <height>200</height>
+    <width>524</width>
+    <height>443</height>
    </rect>
   </property>
   <property name="minimumSize" >
@@ -19,11 +19,20 @@
    <string>-</string>
   </property>
   <layout class="QVBoxLayout" >
-   <property name="margin" >
-    <number>0</number>
-   </property>
    <property name="spacing" >
     <number>6</number>
+   </property>
+   <property name="leftMargin" >
+    <number>0</number>
+   </property>
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
    </property>
    <item>
     <widget class="QGroupBox" name="tiltle_group" >
@@ -31,10 +40,22 @@
       <string>General Document Properties</string>
      </property>
      <layout class="QGridLayout" >
-      <property name="margin" >
+      <property name="leftMargin" >
        <number>11</number>
       </property>
-      <property name="spacing" >
+      <property name="topMargin" >
+       <number>11</number>
+      </property>
+      <property name="rightMargin" >
+       <number>11</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>11</number>
+      </property>
+      <property name="horizontalSpacing" >
+       <number>6</number>
+      </property>
+      <property name="verticalSpacing" >
        <number>6</number>
       </property>
       <item row="0" column="0" >
@@ -50,9 +71,7 @@
       <item row="0" column="1" >
        <widget class="QLineEdit" name="e_title" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -75,7 +94,7 @@
          <string>&amp;Comment:</string>
         </property>
         <property name="buddy" >
-         <cstring>e_remark</cstring>
+         <cstring>e_comment</cstring>
         </property>
        </widget>
       </item>
@@ -90,11 +109,9 @@
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="QTextEdit" name="e_remark" >
+       <widget class="QTextEdit" name="e_comment" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>3</hsizetype>
-          <vsizetype>3</vsizetype>
+         <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -107,9 +124,7 @@
       <item row="1" column="1" >
        <widget class="QTextEdit" name="e_author" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>3</hsizetype>
-          <vsizetype>1</vsizetype>
+         <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
@@ -122,13 +137,50 @@
       <item row="2" column="1" >
        <widget class="QLineEdit" name="e_license" >
         <property name="sizePolicy" >
-         <sizepolicy>
-          <hsizetype>7</hsizetype>
-          <vsizetype>0</vsizetype>
+         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
         </property>
+       </widget>
+      </item>
+      <item row="4" column="0" >
+       <widget class="QLabel" name="label" >
+        <property name="text" >
+         <string>Category</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" >
+       <widget class="QComboBox" name="categoryComboBox" >
+        <property name="editable" >
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text" >
+          <string>Languages</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Music</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Geography</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>Anatomy</string>
+         </property>
+        </item>
+        <item>
+         <property name="text" >
+          <string>History</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -142,7 +194,7 @@
   <tabstop>e_title</tabstop>
   <tabstop>e_author</tabstop>
   <tabstop>e_license</tabstop>
-  <tabstop>e_remark</tabstop>
+  <tabstop>e_comment</tabstop>
  </tabstops>
  <resources/>
  <connections/>

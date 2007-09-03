@@ -112,10 +112,16 @@ kde4_add_ui_files(statisticsdialogs_SRCS
 set(newdocument-wizard_SRCS
     newdocument-wizard/kvtnewdocumentwizard.cpp
     newdocument-wizard/kvtnewdocumentwizardintropage.cpp
+    newdocument-wizard/authortitlepage.cpp
+    newdocument-wizard/identifierlanguagepage.cpp
     newdocument-wizard/kvtnewdocumentwizardlanguagepage.cpp
     newdocument-wizard/kvtnewdocumentwizardchoicelanguageother.cpp
     newdocument-wizard/kvtnewdocumentwizardotherpage.cpp
     newdocument-wizard/kvtnewdocumentwizardfinalpage.cpp
+)
+
+kde4_add_ui_files(newdocument-wizard_SRCS
+    newdocument-wizard/identifierlanguagepage.ui
 )
 
 set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
