@@ -89,13 +89,12 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
  */
 bool KVTSortFilterModel::checkLesson(int sourceRow) const
 {
-//     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
-//     if (m_lessonFilter.exactMatch( sourceModel()->data(lesson, Qt::DisplayRole).toString() ) )
-//         return true;
-//     return false;
+    int lessonIndex = m_sourceModel->document()->entry(sourceRow)->lesson();
+    if ( lessonIndex <= 0 ) {
+        kDebug() << "WARNING, LESSON <= 0 FOUND: " << lessonIndex;
+        return true;
+    }
 
-
-//     QModelIndex lesson = sourceModel()->index(sourceRow, 0, sourceParent);
     if (m_lessonFilter.exactMatch( m_sourceModel->document()->lesson( m_sourceModel->document()->entry(sourceRow)->lesson() ).name()  ))
         return true;
     return false;

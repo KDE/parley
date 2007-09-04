@@ -199,16 +199,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             else if (section == 1) {
                 return QString();
             } else { // translations
-                // two letter?
-                int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
-
-                if (id < 0) // longId?
-                    id = m_languages.indexLongId(m_doc->identifier(section - 2).name());
-
-                if (id < 0) // nothing found
-                    return m_doc->identifier(section - 2).name();
-                else // long name
-                    return m_languages[id].longId();
+                return m_doc->identifier(section - KV_EXTRA_COLS).name();
             }
         }
         if (role == Qt::DecorationRole) {

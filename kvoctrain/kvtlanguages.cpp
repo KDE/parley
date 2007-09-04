@@ -36,10 +36,10 @@ KVTLanguage::KVTLanguage(const QString & shortId, const QString & longId, const 
 
 bool KVTLanguage::operator ==(const KVTLanguage &n) const
 {
-  if (n.shortId() == m_shortId &&
-      n.longId() == m_longId &&
-      n.pixmapFile() == m_pixmapFile &&
-      n.keyboardLayout() == m_keyboardLayout)
+  if (n.m_shortId == m_shortId &&
+      n.m_longId == m_longId &&
+      n.m_pixmapFile == m_pixmapFile &&
+      n.m_keyboardLayout == m_keyboardLayout)
       return true;
   return false;
 }
@@ -47,10 +47,10 @@ bool KVTLanguage::operator ==(const KVTLanguage &n) const
 
 KVTLanguage & KVTLanguage::operator =(const KVTLanguage & n)
 {
-    m_shortId  = n.shortId();
-    m_longId  = n.longId();
-    m_pixmapFile = n.pixmapFile();
-    m_keyboardLayout = n.keyboardLayout();
+    m_shortId  = n.m_shortId;
+    m_longId  = n.m_longId;
+    m_pixmapFile = n.m_pixmapFile;
+    m_keyboardLayout = n.m_keyboardLayout;
     return *this;
 }
 
