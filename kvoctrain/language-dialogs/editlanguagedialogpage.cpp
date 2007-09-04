@@ -28,6 +28,7 @@
 #include <KStandardDirs>
 #include <KLocale>
 #include <QLabel>
+#include <QtDBus>
 
 /**
  *
@@ -95,6 +96,22 @@ void EditLanguageDialogPage::initialize()
     }
 
     iconComboBox->setCurrentIndex(iconComboBox->findData(currentIcon));
+
+    // keyboard layout
+        // try to talk to kxbk - get a list of keyboard layouts
+
+    QDBusInterface kxbk("org.kde.kxkb", "/kxkb", "org.kde.KXKB");
+    QDBusReply<QStringList> reply = kxbk.call("getLayoutsList");
+    if (reply.isValid()) {
+        QStringList layouts = reply;
+        layouts.prepend(QString());
+        keyboardLayoutComboBox->clear();
+        keyboardLayoutComboBox->addItems(layouts);
+        keyboardLayoutComboBox->setEnabled(true);
+    } else {
+        kDebug() << "kxkb dbus error";
+        keyboardLayoutComboBox->setEnabled(false);
+    }
 }
 
 
@@ -108,10 +125,14 @@ void EditLanguageDialogPage::commitData()
 
     LanguageSettings settings(locale);
     settings.setIcon(icon);
-    settings.setKeyboardLayout("");
+    if ( keyboardLayoutComboBox->isEnabled() ) {
+        settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
+    }
     settings.writeConfig();
 
     kDebug() << "commitData: " << m_identifierIndex << " locale: " << locale << " icon: " << icon;
+
+
 }
 
 #include "editlanguagedialogpage.moc"
