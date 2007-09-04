@@ -115,9 +115,6 @@ set(newdocument-wizard_SRCS
     newdocument-wizard/authortitlepage.cpp
     newdocument-wizard/firstidentifierlanguagepage.cpp
     newdocument-wizard/secondidentifierlanguagepage.cpp
-    newdocument-wizard/kvtnewdocumentwizardlanguagepage.cpp
-    newdocument-wizard/kvtnewdocumentwizardchoicelanguageother.cpp
-    newdocument-wizard/kvtnewdocumentwizardotherpage.cpp
     newdocument-wizard/kvtnewdocumentwizardfinalpage.cpp
 )
 

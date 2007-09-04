@@ -68,7 +68,6 @@ void EditLanguageDialogPage::initialize()
     localeComboBox->setCurrentIndex(localeComboBox->findData(
         m_doc->identifier(m_identifierIndex).locale()));
 
-
     // icons
     LanguageSettings currentSettings(m_doc->identifier(m_identifierIndex).locale());
     currentSettings.readConfig();

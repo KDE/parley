@@ -24,9 +24,9 @@
 
 
 #include "kvtnewdocumentwizardintropage.h"
-#include "kvtnewdocumentwizardchoicelanguageother.h"
-#include "kvtnewdocumentwizardlanguagepage.h"
-#include "kvtnewdocumentwizardotherpage.h"
+// #include "kvtnewdocumentwizardchoicelanguageother.h"
+// #include "kvtnewdocumentwizardlanguagepage.h"
+// #include "kvtnewdocumentwizardotherpage.h"
 #include "kvtnewdocumentwizardfinalpage.h"
 #include "firstidentifierlanguagepage.h"
 #include "secondidentifierlanguagepage.h"
@@ -68,11 +68,11 @@ public:
         WizardAuthorTitlePage,
         WizardFirstIdentifierLanguagePage,
         WizardSecondIdentifierLanguagePage,
-        WizardChoiceLanguageOtherPage,
-        WizardFirstLanguagePage,
-        WizardSecondLanguagePage,
-        WizardOtherPage,
-        WizardFileOpenPage,
+//         WizardChoiceLanguageOtherPage,
+//         WizardFirstLanguagePage,
+//         WizardSecondLanguagePage,
+//         WizardOtherPage,
+//         WizardFileOpenPage,
         WizardFinalPage
     };
 
