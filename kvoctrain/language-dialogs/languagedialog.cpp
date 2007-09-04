@@ -48,8 +48,8 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
     setButtonText(User1, i18n("Remove language"));
 //     setButtonIcon(User1, KIcon("delete_table_col"));
 
-    connect( this, SIGNAL(user2clicked()), this, SLOT(slotAppendIdentifier()));
-    connect( this, SIGNAL(user1clicked()), this, SLOT(slotDeleteIdentifier()));
+    connect( this, SIGNAL(user2Clicked()), this, SLOT(slotAppendIdentifier()));
+    connect( this, SIGNAL(user1Clicked()), this, SLOT(slotDeleteIdentifier()));
 
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
 
@@ -83,6 +83,26 @@ void LanguageDialog::accept()
 
 void LanguageDialog::slotAppendIdentifier()
 {
+    kDebug() << "Append identifier";
+
+    int i = m_doc->appendIdentifier();
+
+    EditLanguageDialogPage* editPageWidget = new EditLanguageDialogPage(m_doc, i, this);
+
+    KPageWidgetItem *editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
+    editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
+
+
+    // icons
+    LanguageSettings currentSettings(m_doc->identifier(i).locale());
+    currentSettings.readConfig();
+    QString currentIcon = currentSettings.icon();
+    editPage->setIcon( KIcon( currentIcon ) );
+
+
+    addPage( editPage );
+
+    connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
 }
 
 void LanguageDialog::slotDeleteIdentifier()

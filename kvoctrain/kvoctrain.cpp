@@ -1003,7 +1003,9 @@ void KVocTrainApp::slotConfigShowSearch()
 void KVocTrainApp::slotEditLanguages()
 {
     LanguageDialog* languageDialog = new LanguageDialog(m_doc, this);
-    languageDialog->exec();
+    if ( languageDialog->exec() == QDialog::Accepted ) {
+        m_tableModel->reset();
+    }
 }
 
 
