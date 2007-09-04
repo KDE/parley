@@ -39,7 +39,17 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
 {
     m_doc = doc;
 
+    setCaption(i18n("Configure languages"));
     setFaceType( List );
+    setButtons(User1|User2|Ok|Cancel);
+
+    setButtonText(User2, i18n("Add language"));
+//     setButtonIcon(User2, KIcon("insert_table_col"));
+    setButtonText(User1, i18n("Remove language"));
+//     setButtonIcon(User1, KIcon("delete_table_col"));
+
+    connect( this, SIGNAL(user2clicked()), this, SLOT(slotAppendIdentifier()));
+    connect( this, SIGNAL(user1clicked()), this, SLOT(slotDeleteIdentifier()));
 
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
 
@@ -69,6 +79,14 @@ void LanguageDialog::accept()
 {
     emit signalCommitData();
     QDialog::accept();
+}
+
+void LanguageDialog::slotAppendIdentifier()
+{
+}
+
+void LanguageDialog::slotDeleteIdentifier()
+{
 }
 
 

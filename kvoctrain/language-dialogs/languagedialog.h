@@ -43,6 +43,10 @@ public:
 signals:
     void signalCommitData();
 
+private slots:
+    void slotAppendIdentifier();
+    void slotDeleteIdentifier();
+
 private:
     KEduVocDocument* m_doc;
 };
