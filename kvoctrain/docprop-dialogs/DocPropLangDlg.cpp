@@ -46,7 +46,6 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
     setDefaultButton(Ok);
     setModal(true);
 
-//    setFaceType(KPageDialog::Tabbed);
     setFaceType(KPageDialog::List);
 
     LangPropPage *lpp;
@@ -58,8 +57,6 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
         lpp = new LangPropPage(doc, doc->identifier(i).locale(), doc->identifier(i).personalPronouns(), doc->identifier(i).article(), 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, s);
         pageItem->setHeader(s);
-
-///@todo get the pixmap by using kconfig
 
         LanguageSettings currentSettings(doc->identifier(i).locale());
         currentSettings.readConfig();

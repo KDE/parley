@@ -23,7 +23,6 @@
 #define SECONDIDENTIFIERLANGUAGEPAGE_H
 
 #include "ui_secondidentifierlanguagepage.h"
-#include "common-dialogs/kvtlanguageview.h"
 #include <QWizardPage>
 
 /**
