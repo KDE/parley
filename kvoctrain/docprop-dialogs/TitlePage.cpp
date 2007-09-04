@@ -41,19 +41,19 @@ TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
     doc_comment = doc->documentComment();
     category = doc->category();
 
-    e_title->setText(title);
-    e_title->setFocus();
-    e_title->selectAll();
+    titleLineEdit->setText(title);
+    titleLineEdit->setFocus();
+    titleLineEdit->selectAll();
 
-    e_author->setText(author);
-    e_license->setText(license);
-    e_comment->setText(doc_comment);
+    authorTextEdit->setText(author);
+    licenseComboBox->setEditText(license);
+    commentTextEdit->setText(doc_comment);
     categoryComboBox->setEditText(category);
 
-    connect(e_title,   SIGNAL(textChanged(const QString&)), this, SLOT(slotTitleChanged(const QString&)));
-    connect(e_author,  SIGNAL(textChanged()),               this, SLOT(slotAuthorChanged()));
-    connect(e_license, SIGNAL(textChanged(const QString&)), this, SLOT(slotLicenseChanged(const QString&)));
-    connect(e_comment,  SIGNAL(textChanged()),               this, SLOT(slotDocCommentChanged()));
+    connect(titleLineEdit,   SIGNAL(textChanged(const QString&)), this, SLOT(slotTitleChanged(const QString&)));
+    connect(authorTextEdit,  SIGNAL(textChanged()),               this, SLOT(slotAuthorChanged()));
+    connect(licenseComboBox, SIGNAL(textChanged(const QString&)), this, SLOT(slotLicenseChanged(const QString&)));
+    connect(commentTextEdit,  SIGNAL(textChanged()),               this, SLOT(slotDocCommentChanged()));
     connect(categoryComboBox, SIGNAL(textChanged(const QString&)), this, SLOT(slotCategoryChanged(const QString&)));
 }
 
@@ -66,7 +66,7 @@ void TitlePage::slotTitleChanged(const QString& s)
 
 void TitlePage::slotAuthorChanged()
 {
-    author = e_author->toPlainText();
+    author = authorTextEdit->toPlainText();
 }
 
 
@@ -78,7 +78,7 @@ void TitlePage::slotLicenseChanged(const QString& s)
 
 void TitlePage::slotDocCommentChanged()
 {
-    doc_comment = e_comment->toPlainText();
+    doc_comment = commentTextEdit->toPlainText();
 }
 
 void TitlePage::slotCategoryChanged(const QString& s)

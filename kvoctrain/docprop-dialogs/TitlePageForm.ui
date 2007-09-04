@@ -64,17 +64,20 @@
          <string>&amp;Title:</string>
         </property>
         <property name="buddy" >
-         <cstring>e_title</cstring>
+         <cstring>titleLineEdit</cstring>
         </property>
        </widget>
       </item>
       <item row="0" column="1" >
-       <widget class="QLineEdit" name="e_title" >
+       <widget class="QLineEdit" name="titleLineEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>A title for you document.</string>
         </property>
        </widget>
       </item>
@@ -84,7 +87,7 @@
          <string>&amp;Authors:</string>
         </property>
         <property name="buddy" >
-         <cstring>e_author</cstring>
+         <cstring>authorTextEdit</cstring>
         </property>
        </widget>
       </item>
@@ -94,7 +97,7 @@
          <string>&amp;Comment:</string>
         </property>
         <property name="buddy" >
-         <cstring>e_comment</cstring>
+         <cstring>commentTextEdit</cstring>
         </property>
        </widget>
       </item>
@@ -104,17 +107,20 @@
          <string>&amp;License:</string>
         </property>
         <property name="buddy" >
-         <cstring>e_license</cstring>
+         <cstring>licenseComboBox</cstring>
         </property>
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="QTextEdit" name="e_comment" >
+       <widget class="QTextEdit" name="commentTextEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="MinimumExpanding" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Any additional information.</string>
         </property>
         <property name="tabChangesFocus" >
          <bool>true</bool>
@@ -124,25 +130,21 @@
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QLineEdit" name="e_license" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-       </widget>
-      </item>
       <item row="4" column="0" >
        <widget class="QLabel" name="label" >
         <property name="text" >
-         <string>Category</string>
+         <string>Cat&amp;egory</string>
+        </property>
+        <property name="buddy" >
+         <cstring>categoryComboBox</cstring>
         </property>
        </widget>
       </item>
       <item row="4" column="1" >
        <widget class="QComboBox" name="categoryComboBox" >
+        <property name="toolTip" >
+         <string>A general category into which your document belongs.</string>
+        </property>
         <property name="editable" >
          <bool>true</bool>
         </property>
@@ -174,12 +176,15 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="QTextEdit" name="e_author" >
+       <widget class="QTextEdit" name="authorTextEdit" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="toolTip" >
+         <string>Your name. You can also add an email address as contact information.</string>
         </property>
         <property name="tabChangesFocus" >
          <bool>true</bool>
@@ -187,6 +192,22 @@
         <property name="acceptRichText" >
          <bool>false</bool>
         </property>
+       </widget>
+      </item>
+      <item row="2" column="1" >
+       <widget class="QComboBox" name="licenseComboBox" >
+        <property name="toolTip" >
+         <string>The license under which your document will be.
+If you consider contributing your file to KDE in the future, an appropriate license is required.</string>
+        </property>
+        <property name="editable" >
+         <bool>true</bool>
+        </property>
+        <item>
+         <property name="text" >
+          <string>GPL (GNU General Public License)</string>
+         </property>
+        </item>
        </widget>
       </item>
      </layout>
@@ -197,10 +218,11 @@
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
  <tabstops>
-  <tabstop>e_title</tabstop>
-  <tabstop>e_author</tabstop>
-  <tabstop>e_license</tabstop>
-  <tabstop>e_comment</tabstop>
+  <tabstop>titleLineEdit</tabstop>
+  <tabstop>authorTextEdit</tabstop>
+  <tabstop>licenseComboBox</tabstop>
+  <tabstop>commentTextEdit</tabstop>
+  <tabstop>categoryComboBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
