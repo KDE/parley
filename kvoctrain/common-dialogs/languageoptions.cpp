@@ -557,18 +557,11 @@ void LanguageOptions::slotLangFromISO6391Activated(QAction *act)
     }
 }
 
-void LanguageOptions::updateWidgets()
-{}
-
 bool LanguageOptions::hasChanged()
 {
     return m_hasChanged;
 }
 
-bool LanguageOptions::isDefault()
-{
-    return true;
-}
 
 void LanguageOptions::updateSettings()
 {

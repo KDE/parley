@@ -112,7 +112,6 @@ bool KVocTrainPrefs::hasChanged()
 bool KVocTrainPrefs::isDefault()
 {
     return m_generalOptions->isDefault() &&
-           m_languageOptions->isDefault() &&
            m_thresholdOptions->isDefault() &&
            m_blockOptions->isDefault();
 }
@@ -130,7 +129,6 @@ void KVocTrainPrefs::updateWidgetsDefault()
 {
     bool bUseDefaults = m_config->useDefaults(true);
     m_generalOptions->updateWidgets();
-    m_languageOptions->updateWidgets();
     m_thresholdOptions->updateWidgets();
     m_blockOptions->updateWidgets();
     m_config->useDefaults(bUseDefaults);

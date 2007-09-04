@@ -65,11 +65,6 @@ public:
 
 
     /**
-     * Does nothing. Empty.
-     */
-    void updateWidgets();
-
-    /**
      * Status of m_hasChanged variable, reporting if the language list changed.
      * @return m_hasChanged
      */
