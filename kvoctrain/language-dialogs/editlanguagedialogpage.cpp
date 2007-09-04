@@ -70,11 +70,9 @@ void EditLanguageDialogPage::initialize()
 
 
     // icons
-    LanguageSettings currentSettings(localeComboBox->currentText());
+    LanguageSettings currentSettings(m_doc->identifier(m_identifierIndex).locale());
     currentSettings.readConfig();
     QString currentIcon = currentSettings.icon();
-
-kDebug() << " Current icon: " << currentIcon;
 
     iconComboBox->addItem(i18n("No icon"));
 
@@ -94,14 +92,11 @@ kDebug() << " Current icon: " << currentIcon;
         pixmap.truncate(pixmap.lastIndexOf('/'));
         pixmap += "/flag.png";
 
-        if ( pixmap == currentIcon ) {
-            currentIndex = iconComboBox->count();
-        }
-
         iconComboBox->addItem(QIcon(pixmap), name, pixmap);
     }
 
-    iconComboBox->setCurrentIndex(currentIndex);
+
+    iconComboBox->setCurrentIndex(iconComboBox->findData(currentIcon));
 }
 
 
