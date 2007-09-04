@@ -10,11 +10,16 @@
    <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
   </Menu>
+  <Menu name="edit" >
+      <Separator/>
+      <Action name="edit_append" />
+      <Action name="edit_remove_selected_area" />
+      <Separator/>
+      <Action name="edit_edit_selected_area" />
+      <Action name="vocab_clean_up" />
+  </Menu>
   <Menu name="language" >
       <text>&amp;Language</text>
-      <Action name="vocab_assign_lessons" />
-      <Action name="vocab_clean_up" />
-      <Separator/>
       <Action name="vocab_append_language" />
       <Action name="vocab_set_language" />
       <Action name="vocab_remove_language" />
@@ -32,13 +37,6 @@
    <Action name="check_no_lessons" />
    <Separator/>
    <Action name="split_lesson" />
-  </Menu>
-  <Menu name="edit" >
-      <Separator/>
-      <Action name="edit_append" />
-      <Action name="edit_remove_selected_area" />
-      <Separator/>
-      <Action name="edit_edit_selected_area" />
   </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>
