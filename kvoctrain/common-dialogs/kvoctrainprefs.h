@@ -5,6 +5,7 @@
     begin         : Fri Mar 25 2005
 
     copyright     : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************/
 
 /***************************************************************************
@@ -28,7 +29,6 @@
 */
 
 class GeneralOptions;
-class LanguageOptions;
 class ViewOptions;
 class PasteOptions;
 class QueryOptions;
@@ -86,7 +86,6 @@ protected:
 
 private:
     GeneralOptions * m_generalOptions;
-    LanguageOptions * m_languageOptions;
     ViewOptions * m_viewOptions;
     PasteOptions * m_pasteOptions;
     QueryOptions * m_queryOptions;

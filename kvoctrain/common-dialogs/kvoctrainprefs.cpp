@@ -39,7 +39,6 @@
 
 #include <keduvocdocument.h>
 #include "generaloptions.h"
-#include "languageoptions.h"
 #include "viewoptions.h"
 #include "groupoptions.h"
 #include "queryoptions.h"
@@ -73,10 +72,6 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
 
-    m_languageOptions = new LanguageOptions(m_doc, 0);
-    m_languagePage = addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
-    connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
-
     m_queryOptions = new QueryOptions(0);
     addPage(m_queryOptions, i18nc("Configure settings for practicing vocabulary, short title in config dialog.", "Practice"), "run_query", i18nc("Configure settings for practicing vocabulary.", "Practice Settings"), true);
 
@@ -104,7 +99,6 @@ void KVocTrainPrefs::selectLanguagePage()
 bool KVocTrainPrefs::hasChanged()
 {
     return m_generalOptions->hasChanged() |
-           m_languageOptions->hasChanged() |
            m_thresholdOptions->hasChanged() |
            m_blockOptions->hasChanged();
 }
@@ -119,7 +113,6 @@ bool KVocTrainPrefs::isDefault()
 void KVocTrainPrefs::updateSettings()
 {
     m_generalOptions->updateSettings();
-    m_languageOptions->updateSettings();
     m_thresholdOptions->updateSettings();
     m_blockOptions->updateSettings();
     emit settingsChanged("");

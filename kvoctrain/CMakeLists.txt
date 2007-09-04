@@ -22,7 +22,6 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     common-dialogs/viewoptions.cpp
     common-dialogs/blockoptions.cpp
     common-dialogs/groupoptions.cpp
-    common-dialogs/languageoptions.cpp
     common-dialogs/queryoptions.cpp
     common-dialogs/thresholdoptions.cpp
     common-dialogs/profilesdialog.cpp
