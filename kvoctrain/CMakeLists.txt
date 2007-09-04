@@ -26,8 +26,6 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     common-dialogs/queryoptions.cpp
     common-dialogs/thresholdoptions.cpp
     common-dialogs/profilesdialog.cpp
-    common-dialogs/kvtlanguagemodel.cpp
-    common-dialogs/kvtlanguageview.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
