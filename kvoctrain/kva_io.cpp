@@ -119,8 +119,9 @@ void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 void KVocTrainApp::slotFileNew()
 {
     slotStatusMsg(i18n("Creating new file..."));
-    if (queryExit())
-        createNewDocument();
+    if (queryExit()) {
+        newDocumentWizard();
+    }
     slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -400,7 +401,7 @@ void KVocTrainApp::removeProgressBar()
 }
 
 
-void KVocTrainApp::createNewDocument()
+void KVocTrainApp::newDocumentWizard()
 {
     KVTNewDocumentWizard *wizard;
 

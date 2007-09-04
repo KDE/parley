@@ -366,7 +366,7 @@ void KVocTrainApp::initDoc()
     {
         fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
     } else {
-        createNewDocument();
+        newDocumentWizard();
     }
 }
 
@@ -558,6 +558,6 @@ void KVocTrainApp::initView()
     updateTableFilter();
 
     m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
-    m_doc->setModified(false); ///@todo doc being modified at startup is due to resize code. Needs to be improved.
+    m_doc->setModified(false);
     m_sortFilterModel->restoreNativeOrder();
 }

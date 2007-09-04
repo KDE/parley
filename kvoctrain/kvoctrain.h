@@ -257,7 +257,7 @@ private slots:
 private:
     /** used for the query slotStartXYZ - to check if query is not empty */
     bool queryIsEmpty();
-    void createNewDocument();
+    void newDocumentWizard();
 
     // KAction pointers to enable/disable actions
     QAction* fileNew;
