@@ -36,7 +36,7 @@ class KVTStatisticsDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    KVTStatisticsDialog(KVTLanguageList &languages, KVTTableModel *model, QWidget *parent);
+    KVTStatisticsDialog(KVTTableModel *model, QWidget *parent);
     ~KVTStatisticsDialog();
 
 protected slots:

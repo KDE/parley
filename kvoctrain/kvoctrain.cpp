@@ -413,7 +413,7 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 
 void KVocTrainApp::slotShowStatistics()
 {
-    KVTStatisticsDialog sdlg(m_languages, m_tableModel, this);
+    KVTStatisticsDialog sdlg(m_tableModel, this);
     sdlg.exec();
 }
 
