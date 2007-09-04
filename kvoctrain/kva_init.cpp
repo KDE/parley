@@ -278,7 +278,7 @@ void KVocTrainApp::initActions()
     vocabDocumentProperties->setStatusTip(vocabAppendLanguage->whatsThis());
 
     vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
-    vocabLanguageProperties->setText(i18n("Lan&guage Properties..."));
+    vocabLanguageProperties->setText(i18n("Articles and Personal Pronouns..."));
     connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
     vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
     vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
