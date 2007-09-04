@@ -94,7 +94,6 @@ void EditLanguageDialogPage::initialize()
         iconComboBox->addItem(QIcon(pixmap), name, pixmap);
     }
 
-
     iconComboBox->setCurrentIndex(iconComboBox->findData(currentIcon));
 }
 

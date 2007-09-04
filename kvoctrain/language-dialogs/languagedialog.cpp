@@ -22,6 +22,7 @@
 #include "languagedialog.h"
 
 #include "editlanguagedialogpage.h"
+#include "languagesettings.h"
 
 #include <keduvocdocument.h>
 
@@ -47,8 +48,12 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
         KPageWidgetItem *editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
         editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
 
-        ///@todo get the icon
-        editPage->setIcon( KIcon( ) );
+
+        // icons
+        LanguageSettings currentSettings(m_doc->identifier(i).locale());
+        currentSettings.readConfig();
+        QString currentIcon = currentSettings.icon();
+        editPage->setIcon( KIcon( currentIcon ) );
 
 
         addPage( editPage );
