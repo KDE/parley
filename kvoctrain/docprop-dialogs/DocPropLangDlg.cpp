@@ -25,8 +25,9 @@
 
 #include "DocPropLangDlg.h"
 
-#include <QList>
-#include <QPixmap>
+#include "LangPropPage.h"
+#include "languagesettings.h"
+#include <keduvocdocument.h>
 
 #include <KLocale>
 #include <KPageWidgetModel>
@@ -34,9 +35,9 @@
 #include <KConfig>
 #include <KGlobal>
 
-#include "LangPropPage.h"
-#include <keduvocdocument.h>
-#include "kvtlanguages.h"
+#include <QList>
+#include <QPixmap>
+
 
 DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &langset, QWidget *parent) : KPageDialog(parent)
 {
@@ -58,9 +59,13 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &la
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, s);
         pageItem->setHeader(s);
 
-        int languageIndex = langset.indexShortId(doc->identifier(i).locale());
-        if ( languageIndex >= 0 ) {
-            pageItem->setIcon(KIcon(QPixmap(langset[languageIndex].pixmapFile())));
+///@todo get the pixmap by using kconfig
+
+        LanguageSettings currentSettings(doc->identifier(i).locale());
+        currentSettings.readConfig();
+        QString icon = currentSettings.icon();
+        if ( !icon.isEmpty() ) {
+            pageItem->setIcon(KIcon(icon));
         }
         addPage(pageItem);
         langPages.append(lpp);

@@ -54,6 +54,7 @@
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "common-dialogs/kvoctrainprefs.h"
+#include "language-dialogs/languagedialog.h"
 #include "prefs.h"
 
 #define MAX_LESSON       25
@@ -77,7 +78,7 @@ void KVocTrainApp::saveOptions()
     if (m_mainSplitter)
         Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
 
-    m_languages.write();
+//     m_languages.write();
     Prefs::self()->writeConfig();
 }
 
@@ -85,7 +86,7 @@ void KVocTrainApp::saveOptions()
 void KVocTrainApp::readOptions()
 {
     fileOpenRecent->loadEntries(KGlobal::config()->group("Recent Files"));
-    m_languages.read();
+//     m_languages.read();
 }
 
 
@@ -465,68 +466,71 @@ void KVocTrainApp::slotApplyPreferences()
     m_tableView->setFont(Prefs::tableFont());
     m_tableView->reset();
 
-    m_languages.read();
-    m_tableModel->setLanguages(m_languages);
+//     m_languages.read();
+//     m_tableModel->setLanguages(m_languages);
     m_tableModel->reset();
 }
 
 
-void KVocTrainApp::slotAppendLanguage(int index)
-{
-    if (index >= m_languages.count()) {
-
-        QString msg = i18n("To add a language which is not listed in the menu, you must first define its properties in the "
-                           "general options dialog.\n\nWould you like to add a new language?");
-        if (KMessageBox::Yes == KMessageBox::questionYesNo(this, msg)) {
-            slotGeneralOptionsPage(1);
-        }
-        return;
-    }
-
-    m_tableModel->appendTranslation();
-
-    m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, m_languages[index].shortId(), Qt::EditRole);
-}
 
 
-void KVocTrainApp::slotAssignLanguage(QAction * action)
-{
-    int column = qvariant_cast<QPoint>(action->data()).x() + KV_EXTRA_COLS;
-    int index  = qvariant_cast<QPoint>(action->data()).y();
 
-    if (index >= (int) m_languages.count())
-        return;
+// void KVocTrainApp::slotAppendLanguage(int index)
+// {
+//     if (index >= m_languages.count()) {
+//
+//         QString msg = i18n("To add a language which is not listed in the menu, you must first define its properties in the "
+//                            "general options dialog.\n\nWould you like to add a new language?");
+//         if (KMessageBox::Yes == KMessageBox::questionYesNo(this, msg)) {
+//             slotGeneralOptionsPage(1);
+//         }
+//         return;
+//     }
+//
+//     m_tableModel->appendTranslation();
+//
+//     m_tableModel->setHeaderData(m_tableModel->columnCount(QModelIndex()) - 1, Qt::Horizontal, m_languages[index].shortId(), Qt::EditRole);
+// }
 
-    m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages[index].shortId(), Qt::EditRole);
-}
+
+// void KVocTrainApp::slotAssignLanguage(QAction * action)
+// {
+//     int column = qvariant_cast<QPoint>(action->data()).x() + KV_EXTRA_COLS;
+//     int index  = qvariant_cast<QPoint>(action->data()).y();
+//
+//     if (index >= (int) m_languages.count())
+//         return;
+//
+//     m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages[index].shortId(), Qt::EditRole);
+// }
 
 
-void KVocTrainApp::slotAssignLanguage2(int column, int languageIndex)
-{
-    column += KV_EXTRA_COLS;
+// void KVocTrainApp::slotAssignLanguage2(int column, int languageIndex)
+// {
+//     column += KV_EXTRA_COLS;
+//
+//     if (languageIndex >= (int) m_languages.count())
+//         return;
+//
+//     m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages[languageIndex].shortId(), Qt::EditRole);
+// }
 
-    if (languageIndex >= (int) m_languages.count())
-        return;
-
-    m_tableModel->setHeaderData(column, Qt::Horizontal, m_languages[languageIndex].shortId(), Qt::EditRole);
-}
-
-void KVocTrainApp::slotRemoveLanguage(int index)
-{
-    /// @todo make it possible to remove the first language. that implies changing the menus. if the menus are kept like this at all.
-    int translation = index + 1; // 0 the menu only includes 0.. translations-1
-
-    /// @todo use languages from the doc instead of the table header
-    int column = translation + KV_EXTRA_COLS;
-    QString name = m_tableModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
-
-    QString msg = i18n("You are about to delete a language permanently.\nDo you really want to delete '%1'?", name);
-
-    int result = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
-    if (result == KMessageBox::Continue) {
-        m_tableModel->removeTranslation(translation);
-    }
-}
+// void KVocTrainApp::slotRemoveLanguage(int index)
+// {
+//     /// @todo make it possible to remove the first language. that implies changing the menus. if the menus are kept like this at all.
+//     int translation = index + 1; // 0 the menu only includes 0.. translations-1
+//
+//     /// @todo use languages from the doc instead of the table header
+//     int column = translation + KV_EXTRA_COLS;
+//     QString name = m_tableModel->headerData(column, Qt::Horizontal, Qt::DisplayRole).toString();
+//
+//     QString msg = i18n("You are about to delete a language permanently.\nDo you really want to delete '%1'?", name);
+//
+//     int result = KMessageBox::warningContinueCancel(this, msg, "", KStandardGuiItem::del());
+//     if (result == KMessageBox::Continue) {
+//         m_tableModel->removeTranslation(translation);
+//     }
+// }
 
 
 void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
@@ -660,119 +664,119 @@ void KVocTrainApp::aboutToShowLearn()
 }
 
 
-void KVocTrainApp::aboutToShowVocabAppendLanguage()
-{
-    if (m_doc != 0) {
-        vocabAppendLanguage->removeAllActions();
-
-        QStringList names;
-        for (int i = 0; i < m_languages.count(); i++) {
-            if (m_languages[i].longId().isEmpty())
-                names.append(m_languages[i].shortId());
-            else
-                names.append(m_languages[i].longId());
-        }
-
-        QAction *action = 0;
-
-        for (int i = 0; i < m_languages.count(); i++) {
-            if (!m_languages[i].pixmapFile().isEmpty() && !m_languages[i].longId().isEmpty())
-                action = new QAction(QIcon(QPixmap(m_languages[i].pixmapFile())), names[i], vocabAppendLanguage->selectableActionGroup());
-            else
-                action = new QAction(names[i], vocabAppendLanguage->selectableActionGroup());
-            action->setWhatsThis(i18n("Add the language '%1' to the vocabulary", names[i]));
-            action->setToolTip(action->whatsThis());
-            action->setStatusTip(action->whatsThis());
-            vocabAppendLanguage->addAction(action);
-        }
-
-        action = new QAction("", vocabAppendLanguage->selectableActionGroup());
-        action->setSeparator(true);
-        vocabAppendLanguage->addAction(action);
-
-        action = new QAction(i18n("&New Language..."), vocabAppendLanguage->selectableActionGroup());
-        action->setWhatsThis(i18n("Add a new language to the vocabulary"));
-        action->setToolTip(action->whatsThis());
-        action->setStatusTip(action->whatsThis());
-        vocabAppendLanguage->addAction(action);
-    }
-}
-
-
-void KVocTrainApp::aboutToShowVocabSetLanguage()
-{
-    if (m_doc != 0) {
-        vocabSetLanguage->removeAllActions();
-        //QMenu * set_m = vocabSetLanguage->menu();
-
-        QStringList names;
-        for (int i = 0; i < m_languages.count(); i++) {
-            if (m_languages[i].longId().isEmpty())
-                names.append(m_languages[i].shortId());
-            else
-                names.append(m_languages[i].longId());
-        }
-
-        QAction *action = 0;
-        KSelectAction *selAction = 0;
-
-        for (int column = 0; column < m_doc->identifierCount(); ++column) {
-            if (column == 0)
-                selAction = new KSelectAction(i18n("&Original"), vocabSetLanguage->selectableActionGroup());
-            else {
-                if (m_doc->identifierCount() <= 2)
-                    selAction = new KSelectAction(i18n("&Translation"), vocabSetLanguage->selectableActionGroup());
-                else
-                    selAction = new KSelectAction(i18n("&%1. Translation", column), vocabSetLanguage->selectableActionGroup());
-            }
-            connect(selAction, SIGNAL(triggered(QAction *)), this, SLOT(slotAssignLanguage(QAction *)));
-            vocabSetLanguage->addAction(selAction);
-
-            for (int i = 0; i < m_languages.count(); i++) {
-                if (!m_languages[i].pixmapFile().isEmpty() && !m_languages[i].longId().isEmpty())
-                    action = new QAction(QIcon(QPixmap(m_languages[i].pixmapFile())), names[i], selAction->selectableActionGroup());
-                else
-                    action = new QAction(names[i], selAction->selectableActionGroup());
-                action->setData(QVariant(QPoint(column, i))); //QPair doesn't work with QVariant
-                action->setWhatsThis(i18n("Assign the language '%1' to the selected column", names[i]));
-                action->setToolTip(action->whatsThis());
-                action->setStatusTip(action->whatsThis());
-                selAction->addAction(action);
-            }
-        }
-    }
-}
+// void KVocTrainApp::aboutToShowVocabAppendLanguage()
+// {
+//     if (m_doc != 0) {
+//         vocabAppendLanguage->removeAllActions();
+//
+//         QStringList names;
+//         for (int i = 0; i < m_languages.count(); i++) {
+//             if (m_languages[i].longId().isEmpty())
+//                 names.append(m_languages[i].shortId());
+//             else
+//                 names.append(m_languages[i].longId());
+//         }
+//
+//         QAction *action = 0;
+//
+//         for (int i = 0; i < m_languages.count(); i++) {
+//             if (!m_languages[i].pixmapFile().isEmpty() && !m_languages[i].longId().isEmpty())
+//                 action = new QAction(QIcon(QPixmap(m_languages[i].pixmapFile())), names[i], vocabAppendLanguage->selectableActionGroup());
+//             else
+//                 action = new QAction(names[i], vocabAppendLanguage->selectableActionGroup());
+//             action->setWhatsThis(i18n("Add the language '%1' to the vocabulary", names[i]));
+//             action->setToolTip(action->whatsThis());
+//             action->setStatusTip(action->whatsThis());
+//             vocabAppendLanguage->addAction(action);
+//         }
+//
+//         action = new QAction("", vocabAppendLanguage->selectableActionGroup());
+//         action->setSeparator(true);
+//         vocabAppendLanguage->addAction(action);
+//
+//         action = new QAction(i18n("&New Language..."), vocabAppendLanguage->selectableActionGroup());
+//         action->setWhatsThis(i18n("Add a new language to the vocabulary"));
+//         action->setToolTip(action->whatsThis());
+//         action->setStatusTip(action->whatsThis());
+//         vocabAppendLanguage->addAction(action);
+//     }
+// }
 
 
-void KVocTrainApp::aboutToShowVocabRemoveLanguage()
-{
-    if (m_doc != 0) {
-        vocabRemoveLanguage->removeAllActions();
+// void KVocTrainApp::aboutToShowVocabSetLanguage()
+// {
+//     if (m_doc != 0) {
+//         vocabSetLanguage->removeAllActions();
+//         //QMenu * set_m = vocabSetLanguage->menu();
+//
+//         QStringList names;
+//         for (int i = 0; i < m_languages.count(); i++) {
+//             if (m_languages[i].longId().isEmpty())
+//                 names.append(m_languages[i].shortId());
+//             else
+//                 names.append(m_languages[i].longId());
+//         }
+//
+//         QAction *action = 0;
+//         KSelectAction *selAction = 0;
+//
+//         for (int column = 0; column < m_doc->identifierCount(); ++column) {
+//             if (column == 0)
+//                 selAction = new KSelectAction(i18n("&Original"), vocabSetLanguage->selectableActionGroup());
+//             else {
+//                 if (m_doc->identifierCount() <= 2)
+//                     selAction = new KSelectAction(i18n("&Translation"), vocabSetLanguage->selectableActionGroup());
+//                 else
+//                     selAction = new KSelectAction(i18n("&%1. Translation", column), vocabSetLanguage->selectableActionGroup());
+//             }
+//             connect(selAction, SIGNAL(triggered(QAction *)), this, SLOT(slotAssignLanguage(QAction *)));
+//             vocabSetLanguage->addAction(selAction);
+//
+//             for (int i = 0; i < m_languages.count(); i++) {
+//                 if (!m_languages[i].pixmapFile().isEmpty() && !m_languages[i].longId().isEmpty())
+//                     action = new QAction(QIcon(QPixmap(m_languages[i].pixmapFile())), names[i], selAction->selectableActionGroup());
+//                 else
+//                     action = new QAction(names[i], selAction->selectableActionGroup());
+//                 action->setData(QVariant(QPoint(column, i))); //QPair doesn't work with QVariant
+//                 action->setWhatsThis(i18n("Assign the language '%1' to the selected column", names[i]));
+//                 action->setToolTip(action->whatsThis());
+//                 action->setStatusTip(action->whatsThis());
+//                 selAction->addAction(action);
+//             }
+//         }
+//     }
+// }
 
-        QStringList names;
-        for (int j = 1; j < (int) m_doc->identifierCount(); j++) {
-            int i;
-            if ((i = m_languages.indexShortId(m_doc->identifier(j).name())) >= 0)
-                names.append(m_languages[i].longId());
-            else
-                names.append(m_doc->identifier(j).name());
-        }
 
-        QAction *action = 0;
-
-        for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
-            int j;
-            if ((j = m_languages.indexShortId(m_doc->identifier(i).name())) >= 0 && !m_languages[j].pixmapFile().isEmpty() && !m_languages[j].longId().isEmpty())
-                action = new QAction(QIcon(QPixmap(m_languages[j].pixmapFile())), names[i - 1], vocabRemoveLanguage->selectableActionGroup());
-            else
-                action = new QAction(names[i - 1], vocabRemoveLanguage->selectableActionGroup());
-            action->setWhatsThis(i18n("Permanently remove the language '%1' from the vocabulary", names[i - 1]));
-            action->setToolTip(action->whatsThis());
-            action->setStatusTip(action->whatsThis());
-            vocabRemoveLanguage->addAction(action);
-        }
-    }
-}
+// void KVocTrainApp::aboutToShowVocabRemoveLanguage()
+// {
+//     if (m_doc != 0) {
+//         vocabRemoveLanguage->removeAllActions();
+//
+//         QStringList names;
+//         for (int j = 1; j < (int) m_doc->identifierCount(); j++) {
+//             int i;
+//             if ((i = m_languages.indexShortId(m_doc->identifier(j).name())) >= 0)
+//                 names.append(m_languages[i].longId());
+//             else
+//                 names.append(m_doc->identifier(j).name());
+//         }
+//
+//         QAction *action = 0;
+//
+//         for (int i = 1; i < (int) m_doc->identifierCount(); i++) {
+//             int j;
+//             if ((j = m_languages.indexShortId(m_doc->identifier(i).name())) >= 0 && !m_languages[j].pixmapFile().isEmpty() && !m_languages[j].longId().isEmpty())
+//                 action = new QAction(QIcon(QPixmap(m_languages[j].pixmapFile())), names[i - 1], vocabRemoveLanguage->selectableActionGroup());
+//             else
+//                 action = new QAction(names[i - 1], vocabRemoveLanguage->selectableActionGroup());
+//             action->setWhatsThis(i18n("Permanently remove the language '%1' from the vocabulary", names[i - 1]));
+//             action->setToolTip(action->whatsThis());
+//             action->setStatusTip(action->whatsThis());
+//             vocabRemoveLanguage->addAction(action);
+//         }
+//     }
+// }
 
 
 void KVocTrainApp::slotStatusHelpMsg(const QString &text)
@@ -994,6 +998,12 @@ void KVocTrainApp::slotConfigShowSearch()
         m_searchWidget->setVisible(m_searchWidget->isHidden());
         Prefs::setShowSearch(m_searchWidget->isVisible());
     }
+}
+
+void KVocTrainApp::slotEditLanguages()
+{
+    LanguageDialog* languageDialog = new LanguageDialog(m_doc, this);
+    languageDialog->exec();
 }
 
 

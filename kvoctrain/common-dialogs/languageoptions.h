@@ -28,17 +28,17 @@
 #include <QMenu>
 
 #include "ui_languageoptionsbase.h"
-#include "kvtlanguages.h"
+#include <keduvocdocument.h>
 
 class LanguageOptions : public QWidget, public Ui::LanguageOptionsBase
 {
     Q_OBJECT
 public:
     /** Constructor - creates the widget of Settings->KVocTrain->Languages */
-    LanguageOptions(KVTLanguageList & langset, QWidget* parent);
+    LanguageOptions(KEduVocDocument* doc, QWidget* parent);
 
     /** Return the languages m_langSet */
-    KVTLanguageList getLangSet() const;
+//     KVTLanguageList getLangSet() const;
 
     struct Country
     {
@@ -69,11 +69,6 @@ public:
      * @return m_hasChanged
      */
     bool hasChanged();
-    /**
-     *
-     * @return true, always
-     */
-    bool isDefault();
 
     /**
      * Writes the changes to the prefs.
@@ -83,7 +78,14 @@ public:
 signals:
     void widgetModified();
 
-protected slots:
+private slots:
+
+    void slotIconChanged(int index);
+
+
+
+
+
     /** Remove a language */
     void slotDeleteClicked();
     /** A click on the ADD button - add the new entry to the combo box. */
@@ -142,14 +144,15 @@ private:
      */
     void createISO6391Menus();
 
-    KVTLanguageList global_langset;
+//     KVTLanguageList global_langset;
     QMap<int, Country> countryIdMap;
     QMenu * m_kdeLanguagesMenu;
     QMenu * m_isoLanguagesMenu;
     /// The languages are kept here:
-    KVTLanguageList m_langSet;
+//     KVTLanguageList m_langSet;
     QString m_lastPix;
     bool m_hasChanged;
+    KEduVocDocument* m_doc;
 };
 
 #endif

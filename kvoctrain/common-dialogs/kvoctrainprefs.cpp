@@ -73,7 +73,7 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, 
     m_viewOptions = new ViewOptions(0);
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
 
-    m_languageOptions = new LanguageOptions(m_langSet, 0);
+    m_languageOptions = new LanguageOptions(m_doc, 0);
     m_languagePage = addPage(m_languageOptions, i18n("Languages"), "set_language", i18n("Language Settings"), true);
     connect(m_languageOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 

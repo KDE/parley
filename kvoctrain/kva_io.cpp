@@ -428,10 +428,10 @@ void KVocTrainApp::newDocumentWizard()
 
     delete wizard;
 
-    m_languages.addLanguage( m_doc->identifier(0).locale(), m_doc->identifier(0).name(), QString(), QString());
-    m_languages.addLanguage( m_doc->identifier(1).locale(), m_doc->identifier(1).name(), QString(), QString());
+//     m_languages.addLanguage( m_doc->identifier(0).locale(), m_doc->identifier(0).name(), QString(), QString());
+//     m_languages.addLanguage( m_doc->identifier(1).locale(), m_doc->identifier(1).name(), QString(), QString());
 
-    m_languages.write();
+//     m_languages.write();
 
     m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));

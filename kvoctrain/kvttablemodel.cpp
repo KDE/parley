@@ -23,14 +23,18 @@
 #include "kvttablemodel.h"
 
 #include <QSize>
+// #include <QIcon>
 
 #include <KLocale>
 #include <KDebug>
 
-#include "prefs.h"
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 #include <keduvocgrade.h>
+
+#include "prefs.h"
+#include "languagesettings.h"
+
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {
@@ -211,12 +215,18 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return QVariant();
                 break;
             default: {
-                int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
+                kDebug() << "Getting pixmap...";
+                LanguageSettings currentSettings(m_doc->identifier(section - KV_EXTRA_COLS).locale());
+                currentSettings.readConfig();
+                QString icon = currentSettings.icon();
+                return QPixmap(icon);
+                    ///@todo get pixmap from config
+//                 int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
 
-                if (id < 0)
-                    return QVariant();
-                else
-                    return QPixmap(m_languages[id].pixmapFile());
+//                 if (id < 0)
+//                     return QVariant();
+//                 else
+                    return QVariant(); ///@todo QPixmap(m_languages[id].pixmapFile());
                 break;
             }
             }
@@ -322,31 +332,11 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
     return false;
 }
 
-void KVTTableModel::setLanguages(const KVTLanguageList & languages)
-{
-    m_languages = languages;
-}
-
-// bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
+// void KVTTableModel::setLanguages(const KVTLanguageList & languages)
 // {
-// kDebug() << "KVTTableModel::insertRows() row: " << row << " count: " << count;
-//
-//     //Q_UNUSED(parent);
-//     if (count < 1 || row < 0 || row > m_doc->entryCount()) {
-//         return false;
-//     }
-//
-//     beginInsertRows(parent, row, row + count -1);
-//
-//     for (int i = row; i < row + count; i++) {
-//         m_doc->insertEntry(new KEduVocExpression, i);
-//     }
-//
-//     endInsertRows();
-//     m_doc->setModified(true);
-//
-//     return true;
+//     m_languages = languages;
 // }
+
 
 bool KVTTableModel::appendEntry(KEduVocExpression *entry)
 {
@@ -358,10 +348,6 @@ kDebug() << "KVTTableModel::appendEntry()";
     endInsertRows();
 
 kDebug() << "KVTTableModel::appendEntry() new lesson: " << entry->lesson() << "m_doc->e ->lesson: " << m_doc->entry(m_doc->entryCount()-1)->lesson() << " current lesson: " << m_doc->currentLesson();
-
-
-    // can be set when edited. empty entries are unimportant.
-    // m_doc->setModified(true);
 
     // should return a qmodelindex
     return true;

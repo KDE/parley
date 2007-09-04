@@ -126,13 +126,21 @@ kde4_add_ui_files(newdocument-wizard_SRCS
     newdocument-wizard/secondidentifierlanguagepage.ui
 )
 
+set(languagedialogs_SRCS
+    language-dialogs/languagedialog.cpp
+    language-dialogs/editlanguagedialogpage.cpp
+)
+
+kde4_add_ui_files(languagedialogs_SRCS
+    language-dialogs/languagepage.ui
+)
+
 set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
-${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${newdocument-wizard_SRCS}
+${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_io.cpp
     kvoctrain.cpp
     main.cpp
     kva_init.cpp
-    kvtlanguages.cpp
     kvttabledelegate.cpp
     kvttablemodel.cpp
     kvttableview.cpp

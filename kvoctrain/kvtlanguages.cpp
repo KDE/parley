@@ -117,6 +117,10 @@ void KVTLanguageList::read()
 
         addLanguage(shortId, longId, languageSettings.pixmapFile(), languageSettings.keyboardLayout());
     }
+
+    LanguageSettings de("de");
+    de.readConfig();
+    kDebug() << " de settings: " << de.pixmapFile();
 }
 
 

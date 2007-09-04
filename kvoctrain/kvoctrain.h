@@ -161,12 +161,16 @@ public slots:
     void slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &);
 
     /** append language to vocabulary - creates a new column */
-    void slotAppendLanguage(int index);
+    void slotEditLanguages();
+
+    /** append language to vocabulary - creates a new column */
+//     void slotAppendLanguage(int index);
     /** assign language to vocabulary column - changes the column title */
-    void slotAssignLanguage(QAction *);
+//     void slotAssignLanguage(QAction *);
     /** @todo Frederik - if possible replace slotAssignLanguage with this simpler one */
-    void slotAssignLanguage2(int column, int languageIndex);    /** remove language from vocabulary */
-    void slotRemoveLanguage(int index);
+//    void slotAssignLanguage2(int column, int languageIndex);
+    /** remove language from vocabulary */
+//     void slotRemoveLanguage(int index);
     bool queryClose();
     /** overloaded for Message box on last window exit */
     bool queryExit();
@@ -178,10 +182,10 @@ public slots:
     void slotDocPropsLang();
     void slotShowStatistics();
     /** set up vocabulary and learning submenus */
-    void aboutToShowVocabAppendLanguage();
-    void aboutToShowVocabSetLanguage();
+//     void aboutToShowVocabAppendLanguage();
+//     void aboutToShowVocabSetLanguage();
     /** create the remove language menu */
-    void aboutToShowVocabRemoveLanguage();
+//     void aboutToShowVocabRemoveLanguage();
     void aboutToShowLearn();
 
     /** starts query mode */
@@ -284,9 +288,9 @@ private:
     QAction* vocabShowStatistics;
     QAction* vocabAssignLessons;
     QAction* vocabCleanUp;
-    KSelectAction* vocabAppendLanguage;
-    KSelectAction* vocabSetLanguage;
-    KSelectAction* vocabRemoveLanguage;
+//     KSelectAction* vocabAppendLanguage;
+    QAction* vocabEditLanguages;
+
     QAction* vocabDocumentProperties;
     QAction* vocabLanguageProperties;
     QAction* vocabLessons;

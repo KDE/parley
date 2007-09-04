@@ -20,9 +20,7 @@
   </Menu>
   <Menu name="language" >
       <text>&amp;Language</text>
-      <Action name="vocab_append_language" />
-      <Action name="vocab_set_language" />
-      <Action name="vocab_remove_language" />
+      <Action name="vocab_edit_languages" />
       <Separator/>
       <Action name="vocab_document_properties" />
       <Action name="vocab_language_properties" />

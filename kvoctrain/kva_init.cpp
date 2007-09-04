@@ -253,12 +253,14 @@ void KVocTrainApp::initActions()
     vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
     vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
-    vocabAppendLanguage = actionCollection()->add<KSelectAction>("vocab_append_language");
-    vocabAppendLanguage->setIcon(KIcon("insert_table_col"));
-    vocabAppendLanguage->setText(i18n("&Append Language"));
-    connect(vocabAppendLanguage->menu(), SIGNAL(aboutToShow()),  this, SLOT(aboutToShowVocabAppendLanguage()));
-    connect(vocabAppendLanguage,         SIGNAL(triggered(int)), this, SLOT(slotAppendLanguage(int)));
 
+    vocabEditLanguages = actionCollection()->addAction("vocab_edit_languages");
+    vocabEditLanguages->setIcon(KIcon("insert_table_col"));
+    vocabEditLanguages->setText(i18n("&Edit Languages"));
+    connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
+
+
+/*
     vocabSetLanguage = actionCollection()->add<KSelectAction>("vocab_set_language");
     vocabSetLanguage->setIcon(KIcon("set_language"));
     vocabSetLanguage->setText(i18n("Assign &Language"));
@@ -268,14 +270,14 @@ void KVocTrainApp::initActions()
     vocabRemoveLanguage->setIcon(KIcon("delete_table_col"));
     vocabRemoveLanguage->setText(i18n("&Remove Language"));
     connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()),  this, SLOT(aboutToShowVocabRemoveLanguage()));
-    connect(vocabRemoveLanguage,         SIGNAL(triggered(int)), this, SLOT(slotRemoveLanguage(int)));
+    connect(vocabRemoveLanguage,         SIGNAL(triggered(int)), this, SLOT(slotRemoveLanguage(int)));*/
 
     vocabDocumentProperties = actionCollection()->addAction("vocab_document_properties");
     vocabDocumentProperties->setText(i18n("&Properties..."));
     connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
     vocabDocumentProperties->setWhatsThis(i18n("Edit vocabulary properties"));
-    vocabDocumentProperties->setToolTip(vocabAppendLanguage->whatsThis());
-    vocabDocumentProperties->setStatusTip(vocabAppendLanguage->whatsThis());
+    vocabDocumentProperties->setToolTip(vocabDocumentProperties->whatsThis());
+    vocabDocumentProperties->setStatusTip(vocabDocumentProperties->whatsThis());
 
     vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
     vocabLanguageProperties->setText(i18n("Articles and Personal Pronouns..."));
@@ -374,7 +376,7 @@ void KVocTrainApp::initModel()
 {
     m_lessonModel = new KVTLessonModel(this);
     m_tableModel = new KVTTableModel(this);
-    m_tableModel->setLanguages(m_languages);
+//     m_tableModel->setLanguages(m_languages);
     m_sortFilterModel= new KVTSortFilterModel(this);
     m_sortFilterModel->setSourceModel(m_tableModel);
 }

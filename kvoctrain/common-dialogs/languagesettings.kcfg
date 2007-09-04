@@ -4,30 +4,18 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name="kvoctrainrc">
-    <parameter name="langId" />
+    <parameter name="locale" />
   </kcfgfile>
-  <group name="Language #$(langId)">
-    <entry name="ShortId" type="String">
-      <label></label>
-      <whatsthis></whatsthis>
-      <default>id</default>
-    </entry>
-    <entry name="LongId" type="String">
-      <label></label>
-      <whatsthis></whatsthis>
-      <default>ident</default>
-    </entry>
-    <entry name="PixmapFile" type="String">
-      <label></label>
-      <whatsthis></whatsthis>
+  <group name="Locale $(locale)">
+    <entry name="Icon" type="String">
+      <label>Icon for an identifier</label>
+      <whatsthis>The icon shown for the identifier (locale)</whatsthis>
       <default></default>
     </entry>
     <entry name="KeyboardLayout" type="String">
-      <label></label>
-      <whatsthis></whatsthis>
+      <label>Keyboard layout for this locale</label>
+      <whatsthis>Keyboard layout for this locale</whatsthis>
       <default></default>
     </entry>
-
   </group>
-
 </kcfg>
