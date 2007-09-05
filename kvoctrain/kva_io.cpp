@@ -45,6 +45,8 @@
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "entry-dialogs/EntryDlg.h"
 
+#include <KUser>
+
 #include <prefs.h>
 
 void KVocTrainApp::slotTimeOutBackup()
@@ -470,8 +472,25 @@ void KVocTrainApp::createExampleEntries()
 {
     m_tableModel->reset(); // clear old entries otherwise we get crashes
 
+    // some default values
+    KUser user;
+    QString userName = user.fullName();
+    if ( userName.isEmpty() ) {
+        userName = user.loginName();
+    }
+    m_doc->setAuthor( userName );
+    m_doc->setTitle( i18n("Welcome") );
+    m_doc->setLicense( i18n("GPL (GNU General Public License)") );
+    m_doc->setCategory( i18n("Example document") );
+
+    QString locale = KGlobal::locale()->language();
+
     m_doc->appendIdentifier();
     m_doc->appendIdentifier();
+    m_doc->identifier(0).setName( KGlobal::locale()->languageCodeToName( locale) );
+    m_doc->identifier(0).setLocale( locale );
+    m_doc->identifier(1).setName( "A second language." );
+    m_doc->identifier(1).setLocale( "none" );
 
     // Set the language headers of the table.
     for (int i=0; i < m_doc->identifierCount(); i++){

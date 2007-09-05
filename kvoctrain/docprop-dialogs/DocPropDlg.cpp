@@ -39,16 +39,16 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
     setFaceType(KPageDialog::List);
 
     titleOptPage = new TitlePage(doc, 0);
-    addPage(titleOptPage, i18n("&General"));
+    addPage(titleOptPage, i18n("General"));
 
     typeOptPage = new WordTypeOptionPage(doc, 0);
-    addPage(typeOptPage, i18nc("word types","T&ypes"));
+    addPage(typeOptPage, i18nc("word types","Types"));
 
     tenseOptPage = new TenseOptPage(doc, 0);
-    addPage(tenseOptPage, i18n("Te&nses"));
+    addPage(tenseOptPage, i18n("Tenses"));
 
     useOptPage = new UsageOptPage(doc, 0);
-    addPage(useOptPage, i18nc("usage (area) of an expression", "&Usage"));
+    addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
 
     KConfigGroup cg(KGlobal::config(), "DocumentPropertiesDialog");
     restoreDialogSize(cg);
