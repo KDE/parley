@@ -50,6 +50,7 @@ signals:
 
 private slots:
     void iconChanged(int iconIndex);
+    void localeChanged(const QString&);
 
 private:
     void initialize();

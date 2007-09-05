@@ -70,9 +70,9 @@ SecondIdentifierLanguagePage::~SecondIdentifierLanguagePage()
 
 void SecondIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
-    if ( identifierNameLineEdit->text().isEmpty() ) {
-        identifierNameLineEdit->setText(language);
-    }
+//     if ( identifierNameLineEdit->text().isEmpty() ) {
+    identifierNameLineEdit->setText(language);
+//     }
 }
 
 void SecondIdentifierLanguagePage::initializePage()

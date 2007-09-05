@@ -72,10 +72,9 @@ FirstIdentifierLanguagePage::~FirstIdentifierLanguagePage()
 
 void FirstIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
-kDebug() << "currentLanguageChanged";
-    if ( identifierNameLineEdit->text().isEmpty() ) {
-        identifierNameLineEdit->setText(language);
-    }
+    //if ( identifierNameLineEdit->text().isEmpty() ) {
+    identifierNameLineEdit->setText(language);
+    //}
 }
 
 
