@@ -129,14 +129,12 @@ void EditLanguageDialogPage::commitData()
         settings.setKeyboardLayout( keyboardLayoutComboBox->currentText() );
     }
     settings.writeConfig();
-
-    kDebug() << "commitData: " << m_identifierIndex << " locale: " << locale << " icon: " << icon;
 }
 
 void EditLanguageDialogPage::iconChanged(int iconIndex)
 {
-    QString icon = iconComboBox->itemData(iconComboBox->currentIndex()).toString();
-    emit iconSelected(icon);
+    emit iconSelected( iconComboBox->itemData(iconIndex).toString() );
 }
+
 
 #include "editlanguagedialogpage.moc"

@@ -46,9 +46,12 @@ signals:
 private slots:
     void slotAppendIdentifier();
     void slotDeleteIdentifier();
+    void pageNameChanged(const QString & newName);
     void pageIconChanged(const QString& newIcon);
 
 private:
+    KPageWidgetItem*  createPage(int identifierIndex);
+
     KEduVocDocument* m_doc;
 };
 

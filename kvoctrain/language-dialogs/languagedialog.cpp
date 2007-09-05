@@ -52,25 +52,7 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
     connect( this, SIGNAL(user1Clicked()), this, SLOT(slotDeleteIdentifier()));
 
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
-
-        EditLanguageDialogPage* editPageWidget = new EditLanguageDialogPage(m_doc, i, this);
-
-        KPageWidgetItem *editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
-        editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
-
-
-        // icons
-        LanguageSettings currentSettings(m_doc->identifier(i).locale());
-        currentSettings.readConfig();
-        QString currentIcon = currentSettings.icon();
-        editPage->setIcon( KIcon( currentIcon ) );
-
-
-        addPage( editPage );
-
-        connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
-
-        connect(editPageWidget, SIGNAL(iconSelected(const QString&)), this, SLOT(pageIconChanged(const QString&)));
+        createPage(i);
     }
 }
 
@@ -89,24 +71,8 @@ void LanguageDialog::slotAppendIdentifier()
 
     int i = m_doc->appendIdentifier();
 
-    EditLanguageDialogPage* editPageWidget = new EditLanguageDialogPage(m_doc, i, this);
-
-    KPageWidgetItem *editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
-    editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
-
-
-    // icons
-    LanguageSettings currentSettings(m_doc->identifier(i).locale());
-    currentSettings.readConfig();
-    QString currentIcon = currentSettings.icon();
-    editPage->setIcon( KIcon( currentIcon ) );
-
-
-    addPage( editPage );
-
-    connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
-
-    setCurrentPage( editPage );
+    KPageWidgetItem* newPage = createPage( i );
+    setCurrentPage( newPage );
 }
 
 void LanguageDialog::slotDeleteIdentifier()
@@ -116,6 +82,35 @@ void LanguageDialog::slotDeleteIdentifier()
 void LanguageDialog::pageIconChanged(const QString & newIcon)
 {
     currentPage()->setIcon( KIcon(newIcon) );
+}
+
+void LanguageDialog::pageNameChanged(const QString & newName)
+{
+    currentPage()->setName( newName );
+}
+
+KPageWidgetItem*  LanguageDialog::createPage(int i)
+{
+    EditLanguageDialogPage* editPageWidget = new EditLanguageDialogPage(m_doc, i, this);
+
+    KPageWidgetItem* editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
+    editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
+
+    // icons
+    LanguageSettings currentSettings(m_doc->identifier(i).locale());
+    currentSettings.readConfig();
+    QString currentIcon = currentSettings.icon();
+    editPage->setIcon( KIcon( currentIcon ) );
+
+    addPage( editPage );
+
+    connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
+
+    connect(editPageWidget->identifierNameLineEdit, SIGNAL(textChanged(const QString&)), this, SLOT(pageNameChanged(const QString&)));
+
+    connect(editPageWidget, SIGNAL(iconSelected(const QString&)), this, SLOT(pageIconChanged(const QString&)));
+
+    return editPage;
 }
 
 
