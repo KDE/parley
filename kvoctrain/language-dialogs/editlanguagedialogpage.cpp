@@ -45,7 +45,7 @@ EditLanguageDialogPage::EditLanguageDialogPage(KEduVocDocument* doc, int identif
 
     identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
 
-
+    connect(iconComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(iconChanged(int)));
 }
 
 
@@ -131,8 +131,12 @@ void EditLanguageDialogPage::commitData()
     settings.writeConfig();
 
     kDebug() << "commitData: " << m_identifierIndex << " locale: " << locale << " icon: " << icon;
+}
 
-
+void EditLanguageDialogPage::iconChanged(int iconIndex)
+{
+    QString icon = iconComboBox->itemData(iconComboBox->currentIndex()).toString();
+    emit iconSelected(icon);
 }
 
 #include "editlanguagedialogpage.moc"

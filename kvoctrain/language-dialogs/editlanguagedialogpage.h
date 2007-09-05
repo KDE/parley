@@ -44,6 +44,12 @@ public:
 public slots:
     void commitData();
 
+signals:
+    void iconSelected( const QString& );
+
+private slots:
+    void iconChanged(int iconIndex);
+
 private:
     void initialize();
 

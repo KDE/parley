@@ -46,6 +46,7 @@ signals:
 private slots:
     void slotAppendIdentifier();
     void slotDeleteIdentifier();
+    void pageIconChanged(const QString& newIcon);
 
 private:
     KEduVocDocument* m_doc;

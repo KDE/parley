@@ -69,6 +69,8 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
         addPage( editPage );
 
         connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
+
+        connect(editPageWidget, SIGNAL(iconSelected(const QString&)), this, SLOT(pageIconChanged(const QString&)));
     }
 }
 
@@ -109,6 +111,11 @@ void LanguageDialog::slotAppendIdentifier()
 
 void LanguageDialog::slotDeleteIdentifier()
 {
+}
+
+void LanguageDialog::pageIconChanged(const QString & newIcon)
+{
+    currentPage()->setIcon( KIcon(newIcon) );
 }
 
 
