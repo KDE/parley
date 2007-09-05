@@ -22,6 +22,12 @@
    </item>
    <item>
     <widget class="QLineEdit" name="firstLanguageName" >
+     <property name="focusPolicy" >
+      <enum>Qt::NoFocus</enum>
+     </property>
+     <property name="toolTip" >
+      <string>To change the first selection go back one page.</string>
+     </property>
      <property name="readOnly" >
       <bool>true</bool>
      </property>
@@ -48,10 +54,17 @@
      <property name="text" >
       <string>Please select a second language (can be the same as before):</string>
      </property>
+     <property name="buddy" >
+      <cstring>languageComboBox</cstring>
+     </property>
     </widget>
    </item>
    <item>
-    <widget class="QComboBox" name="languageComboBox" />
+    <widget class="QComboBox" name="languageComboBox" >
+     <property name="toolTip" >
+      <string>The language of the second column of vocabulary.</string>
+     </property>
+    </widget>
    </item>
    <item>
     <spacer>
@@ -80,7 +93,11 @@
     </widget>
    </item>
    <item>
-    <widget class="QLineEdit" name="identifierNameLineEdit" />
+    <widget class="QLineEdit" name="identifierNameLineEdit" >
+     <property name="toolTip" >
+      <string>The name. For example the name of the language you want to practice.</string>
+     </property>
+    </widget>
    </item>
    <item>
     <widget class="QLabel" name="label_3" >
