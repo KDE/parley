@@ -427,11 +427,6 @@ void KVocTrainApp::newDocumentWizard()
 
     delete wizard;
 
-//     m_languages.addLanguage( m_doc->identifier(0).locale(), m_doc->identifier(0).name(), QString(), QString());
-//     m_languages.addLanguage( m_doc->identifier(1).locale(), m_doc->identifier(1).name(), QString(), QString());
-
-//     m_languages.write();
-
     m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
@@ -474,8 +469,7 @@ void KVocTrainApp::newDocumentWizard()
     m_doc->addUsage( i18n("rhetoric") );
     m_doc->addUsage( i18n("zoology") );
 
-
-    m_tableModel->reset(); // clear old entries
+    m_tableModel->reset(); // clear old entries otherwise we get crashes
 
     int lessonIndex = m_lessonModel->addLesson();
 

@@ -77,7 +77,6 @@ void KVocTrainApp::saveOptions()
     if (m_mainSplitter)
         Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
 
-//     m_languages.write();
     Prefs::self()->writeConfig();
 }
 
@@ -85,7 +84,6 @@ void KVocTrainApp::saveOptions()
 void KVocTrainApp::readOptions()
 {
     fileOpenRecent->loadEntries(KGlobal::config()->group("Recent Files"));
-//     m_languages.read();
 }
 
 
@@ -134,11 +132,6 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
     show();
 }
 
-/*void KVocTrainApp::slotSaveOptions()
-{
-   saveOptions(true);
-}
-*/
 
 KVocTrainApp::~KVocTrainApp()
 {
@@ -182,7 +175,6 @@ void KVocTrainApp::slotEditEntry()
         return;
     }
 
-
     // set the data in the dialog
 
     // to pass on the selection we need to translate from m_sortFilterModel to the real model
@@ -221,17 +213,11 @@ void KVocTrainApp::removeEntryDlg()
 
 void KVocTrainApp::slotDocumentProperties()
 {
-    int old_tenses = (int) m_doc->tenseDescriptions().count();
-
     DocPropsDlg ddlg(m_doc, this);
 
     if (ddlg.exec() == QDialog::Accepted) {
-        QList<int> typeIndex;
         QList<int> tenseIndex;
-        QList<int> usageIndex;
-        QList<int> lessonIndex;
         QStringList new_tenseStr;
-        QStringList new_usageStr;
 
         m_doc->setTitle(ddlg.getTitle());
         m_doc->setAuthor(ddlg.getAuthor());
@@ -239,25 +225,15 @@ void KVocTrainApp::slotDocumentProperties()
         m_doc->setDocumentComment(ddlg.getDocComment());
         m_doc->setCategory(ddlg.getCategory());
 
-        slotStatusMsg(i18n("Updating lesson indices..."));
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-
         ddlg.getTenseNames(new_tenseStr, tenseIndex);
         ddlg.commitData();
-
-        slotStatusMsg(i18n("Updating tense indices..."));
-        /// @todo should this really be here? clean unused is supposed to delete all tenses not used?
-        TenseOptPage::cleanUnused(m_doc, tenseIndex, old_tenses);
-
-
-        slotStatusMsg(i18nc("usage (area) of an expression", "Updating usage label indices..."));
 
         m_doc->setTenseDescriptions(new_tenseStr);
         m_doc->setModified();
 
         m_tableModel->reset();
         setCaption(m_doc->title(), m_doc->isModified());
-        QApplication::restoreOverrideCursor();
+
         slotStatusMsg(IDS_DEFAULT);
     }
 }
