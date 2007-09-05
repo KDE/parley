@@ -59,8 +59,8 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
 void KVTTableView::setModel(KVTSortFilterModel * model)
 {
     QTableView::setModel(model);
-    setCurrentIndex(model->index(0, 0));
-    scrollTo(currentIndex());
+//     setCurrentIndex(model->index(0, 0));
+//     scrollTo(currentIndex());
     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
     connect(selectionModel(), SIGNAL(currentColumnChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentColumnChanged(const QModelIndex&, const QModelIndex&)));
