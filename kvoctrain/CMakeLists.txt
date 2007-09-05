@@ -112,12 +112,13 @@ set(newdocument-wizard_SRCS
     newdocument-wizard/authortitlepage.cpp
     newdocument-wizard/firstidentifierlanguagepage.cpp
     newdocument-wizard/secondidentifierlanguagepage.cpp
-    newdocument-wizard/kvtnewdocumentwizardfinalpage.cpp
+    newdocument-wizard/wizardfinalpage.cpp
 )
 
 kde4_add_ui_files(newdocument-wizard_SRCS
     newdocument-wizard/identifierlanguagepage.ui
     newdocument-wizard/secondidentifierlanguagepage.ui
+    newdocument-wizard/wizardfinalpage.ui
 )
 
 set(languagedialogs_SRCS
