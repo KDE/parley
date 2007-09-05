@@ -214,26 +214,50 @@ void KVocTrainApp::initActions()
     QAction *actionNewLesson = actionCollection()->addAction("new_lesson");
     actionNewLesson->setText(i18n("New Lesson"));
     actionNewLesson->setIcon(KIcon("edit-add"));
+    actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
+    actionNewLesson->setToolTip(actionNewLesson->whatsThis());
+    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
+    actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
     QAction *actionRenameLesson = actionCollection()->addAction("rename_lesson");
     actionRenameLesson->setText(i18n("Rename Lesson"));
     actionRenameLesson->setIcon(KIcon("edit"));
+    actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
+    actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
+    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
+    actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
     QAction *actionDeleteLesson = actionCollection()->addAction("delete_lesson");
     actionDeleteLesson->setText(i18n("Delete Lesson"));
     actionDeleteLesson->setIcon(KIcon("edit-delete"));
+    actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
+    actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
+    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
+    actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
     QAction *actionCheckAllLessons = actionCollection()->addAction("check_all_lessons");
     actionCheckAllLessons->setText(i18n("Select All Lessons"));
     actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
+    actionCheckAllLessons->setWhatsThis(i18n("Select all lessons for the test."));
+    actionCheckAllLessons->setToolTip(actionCheckAllLessons->whatsThis());
+    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
+    actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
 
     QAction *actionCheckNoLessons = actionCollection()->addAction("check_no_lessons");
     actionCheckNoLessons->setText(i18n("Deselect All Lessons"));
     actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
+    actionCheckNoLessons->setWhatsThis(i18n("Remove all lessons from the test."));
+    actionCheckNoLessons->setToolTip(actionCheckNoLessons->whatsThis());
+    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
+    actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
 
     QAction *actionSplitLesson = actionCollection()->addAction("split_lesson");
     actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
+    actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
+    actionSplitLesson->setToolTip(actionSplitLesson->whatsThis());
+    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
+    actionSplitLesson->setStatusTip(actionSplitLesson->whatsThis());
 
 // -- VOCABULARY --------------------------------------------------
 
