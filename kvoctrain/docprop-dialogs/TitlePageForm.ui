@@ -77,7 +77,7 @@
          </sizepolicy>
         </property>
         <property name="toolTip" >
-         <string>A title for you document.</string>
+         <string>A title for your document.</string>
         </property>
        </widget>
       </item>
