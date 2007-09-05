@@ -103,6 +103,8 @@ void LanguageDialog::slotAppendIdentifier()
     addPage( editPage );
 
     connect(this, SIGNAL(signalCommitData()), editPageWidget, SLOT(commitData()));
+
+    setCurrentPage( editPage );
 }
 
 void LanguageDialog::slotDeleteIdentifier()
