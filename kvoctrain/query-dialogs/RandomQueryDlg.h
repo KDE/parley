@@ -7,7 +7,6 @@
     begin          : Thu Mar 11 20:50:53 MET 1999
 
     copyright      : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                     (C) 2001 The KDE-EDU team
                      (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
 
     -----------------------------------------------------------------------
