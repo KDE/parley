@@ -170,7 +170,7 @@ QString KVTQuery::compStr(Prefs::EnumCompType::type type)
         str = i18n("Before");
         break;
     case Prefs::EnumCompType::NotQueried:
-        str = i18n("Not Queried");
+        str = i18n("Never Practiced");
         break;
     case Prefs::EnumCompType::Current:
         return i18n("Current Lesson");

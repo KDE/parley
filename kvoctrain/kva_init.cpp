@@ -426,9 +426,9 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     m_lessonModel->setDocument(m_doc);
     // I need to initialize the lessons with the model as well...
     m_lessonView->setModel(m_lessonModel);
-    m_lessonView->setToolTip(i18n("Double click to rename. Right click to add, delete, or rename lessons. \n"
-                                  "With the checkboxes you can select which lessons you want to be queried. \n"
-                                  "Only checked lessons [x] will be asked in the query!"));
+    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
+                                  "With the checkboxes you can select which lessons you want to practice. \n"
+                                  "Only checked lessons [x] will be asked in the tests!"));
 
     // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
     m_lessonSelectionCombo = new KComboBox();
