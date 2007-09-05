@@ -421,7 +421,6 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     m_lessonView = new KVTLessonView(left);
     // To make the treeview appear like a listview
     m_lessonView->setRootIsDecorated(false);
-    boxLayout->addWidget(m_lessonView);
     // Get the lessons form vocab document
     m_lessonModel->setDocument(m_doc);
     // I need to initialize the lessons with the model as well...
@@ -432,13 +431,14 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 
     // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
     m_lessonSelectionCombo = new KComboBox();
-    boxLayout->addWidget(m_lessonSelectionCombo);
     m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
     m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
     m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
     m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
     m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
 
+    boxLayout->addWidget(m_lessonSelectionCombo);
+    boxLayout->addWidget(m_lessonView);
 
     /// New lesson selected
     connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged(int)));
