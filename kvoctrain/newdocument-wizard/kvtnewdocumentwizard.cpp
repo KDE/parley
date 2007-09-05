@@ -34,79 +34,37 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
  : QWizard(parent)
 {
     m_doc = doc;
-//     if ( options == ShowFileOpen ) {
-//         m_showFileOpen = true;
-//     } else {
-//         m_showFileOpen = false;
-//     }
 
     resize(600,600);
-//     m_firstLanguagePage = new KVTNewDocumentWizardLanguagePage(true, this);
-//     m_secondLanguagePage = new KVTNewDocumentWizardLanguagePage(false, this);
 
-    setPage(WizardIntroPage, new KVTNewDocumentWizardIntroPage);
+    setPage(Intro, new KVTNewDocumentWizardIntroPage);
 
-    setPage(WizardAuthorTitlePage, new AuthorTitlePage(this));
+    setPage(AuthorTitle, new AuthorTitlePage(this));
 
-    setPage(WizardFirstIdentifierLanguagePage, new FirstIdentifierLanguagePage(this));
+    setPage(FirstIdentifierLanguage, new FirstIdentifierLanguagePage(this));
 
-    setPage(WizardSecondIdentifierLanguagePage, new SecondIdentifierLanguagePage(this));
+    setPage(SecondIdentifierLanguage, new SecondIdentifierLanguagePage(this));
 
+    setPage(Final, new WizardFinalPage(this));
 
-//     setPage(WizardChoiceLanguageOtherPage, new KVTNewDocumentWizardChoiceLanguageOther ( m_showFileOpen, this ) );
-//
-//     setPage(WizardFirstLanguagePage, m_firstLanguagePage);
-//     setPage(WizardSecondLanguagePage, m_secondLanguagePage);
-//
-//     setPage(WizardOtherPage, new KVTNewDocumentWizardOtherPage);
-
-
-    setPage(WizardFinalPage, new KVTNewDocumentWizardFinalPage);
-
-    setStartId(WizardIntroPage);
-
-    //setPixmap(QWizard::BannerPixmap, QPixmap(":/images/banner.png"));
-    //setPixmap(QWizard::BackgroundPixmap, QPixmap(":/images/background.png"));
+    setStartId(Intro);
 
     setWindowTitle(i18n("Create a new KVocTrain document"));
 }
 
 
-// // void KVTNewDocumentWizard::initializePage(int id)
-// // {
-// //     QWizard::initializePage(id);
-// // }
-
-
 int KVTNewDocumentWizard::nextId() const
 {
     switch (currentId()) {
-    case WizardIntroPage:
-            return WizardAuthorTitlePage;
-    case WizardAuthorTitlePage:
-        return WizardFirstIdentifierLanguagePage;
-    case WizardFirstIdentifierLanguagePage:
-        return WizardSecondIdentifierLanguagePage;
-    case WizardSecondIdentifierLanguagePage:
-        return WizardFinalPage;
-
-//     case WizardFirstIdentifierLanguagePage:
-//         return WizardChoiceLanguageOtherPage;
-//     case WizardChoiceLanguageOtherPage:
-//         if (field("choiceLanguageOther.language").toBool()) {
-//             return WizardFirstLanguagePage;
-//         } else if (field("choiceLanguageOther.other").toBool()) {
-//             return WizardOtherPage;
-//         } else {
-//             return WizardFinalPage;
-//         }
-//     case WizardFirstLanguagePage:
-//         return WizardSecondLanguagePage;
-//     case WizardSecondLanguagePage:
-//         return WizardFinalPage;
-//     case WizardOtherPage:
-//         return WizardFinalPage;
-    case WizardFinalPage:
+    case Intro:
+            return AuthorTitle;
+    case AuthorTitle:
+        return FirstIdentifierLanguage;
+    case FirstIdentifierLanguage:
+        return SecondIdentifierLanguage;
+    case SecondIdentifierLanguage:
+        return Final;
+    case Final:
     default:
         return -1;
     }

@@ -1,6 +1,6 @@
 /***************************************************************************
 
-                             kvtnewdocumentwizardfinalpage
+                             kvtnewdocumentwizardlanguagepage
 
     -----------------------------------------------------------------------
 
@@ -19,24 +19,22 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KVTNEWDOCUMENTWIZARDFINALPAGE_H
-#define KVTNEWDOCUMENTWIZARDFINALPAGE_H
+#ifndef WIZARDFINALPAGE_H
+#define WIZARDFINALPAGE_H
+
+#include "ui_wizardfinalpage.h"
 
 #include <QWizardPage>
-#include <QLabel>
 
 /**
+ * QWizardPage giving additional information. Last page.
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
-class KVTNewDocumentWizardFinalPage : public QWizardPage
+class WizardFinalPage : public QWizardPage, public Ui::WizardFinalPage
 {
-    Q_OBJECT
-
+Q_OBJECT
 public:
-    KVTNewDocumentWizardFinalPage(QWidget *parent = 0);
-
-private:
-    QLabel *label;
+    WizardFinalPage(QWizard *parent);
 };
 
 #endif
