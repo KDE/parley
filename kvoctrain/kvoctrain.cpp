@@ -983,5 +983,29 @@ void KVocTrainApp::slotEditLanguages()
     }
 }
 
+void KVocTrainApp::initializeDocument()
+{
+    m_doc->wordTypes()->createDefaultWordTypes();
+
+    // Preset some usages
+    m_doc->addUsage( i18n("abbreviation") );
+    m_doc->addUsage( i18n("anatomy") );
+    m_doc->addUsage( i18n("biology") );
+    m_doc->addUsage( i18n("figuratively") );
+    m_doc->addUsage( i18n("geology") );
+    m_doc->addUsage( i18n("historical") );
+    m_doc->addUsage( i18n("informal") );
+    m_doc->addUsage( i18n("ironic") );
+    m_doc->addUsage( i18n("literary") );
+    m_doc->addUsage( i18n("mythology") );
+    m_doc->addUsage( i18n("proper name") );
+    m_doc->addUsage( i18n("pharmacy") );
+    m_doc->addUsage( i18n("philosophy") );
+    m_doc->addUsage( i18n("physics") );
+    m_doc->addUsage( i18n("physiology") );
+    m_doc->addUsage( i18n("rhetoric") );
+    m_doc->addUsage( i18n("zoology") );
+}
+
 
 #include "kvoctrain.moc"

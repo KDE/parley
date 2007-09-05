@@ -392,7 +392,9 @@ void KVocTrainApp::initDoc()
     {
         fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
     } else {
-        newDocumentWizard();
+        m_doc = new KEduVocDocument();
+        initializeDocument();
+        m_tableModel->setDocument(m_doc);
     }
 }
 

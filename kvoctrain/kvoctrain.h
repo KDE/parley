@@ -260,6 +260,7 @@ private:
     /** used for the query slotStartXYZ - to check if query is not empty */
     bool queryIsEmpty();
     void newDocumentWizard();
+    void initializeDocument();
 
     // KAction pointers to enable/disable actions
     QAction* fileNew;

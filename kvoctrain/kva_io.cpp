@@ -403,29 +403,18 @@ void KVocTrainApp::removeProgressBar()
 void KVocTrainApp::newDocumentWizard()
 {
     KVTNewDocumentWizard *wizard;
-
     KEduVocDocument* newDoc = new KEduVocDocument(this);
 
-    if (m_doc) {
-        wizard = new KVTNewDocumentWizard(newDoc, this);
-        if( !wizard->exec() == QDialog::Accepted ){
+    wizard = new KVTNewDocumentWizard(newDoc, this);
+    if( !wizard->exec() == QDialog::Accepted ){
             delete wizard;
             return;
-        }
-        delete m_doc;
-        m_doc = 0;
-    } else {
-        wizard = new KVTNewDocumentWizard(newDoc, this);
-        if( !wizard->exec() == QDialog::Accepted ){
-            // start with default values
-            newDoc->appendIdentifier();
-            newDoc->appendIdentifier();
-        }
     }
-
-    m_doc = newDoc;
-
     delete wizard;
+
+    delete m_doc;
+    m_doc = 0;
+    m_doc = newDoc;
 
     m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
@@ -443,33 +432,12 @@ void KVocTrainApp::newDocumentWizard()
         m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
     }
 
+    m_tableModel->reset(); // clear old entries otherwise we get crashes
+
     // Set the language headers of the table.
     for (int i=0; i<m_doc->identifierCount(); i++){
         m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
     }
-
-    m_doc->wordTypes()->createDefaultWordTypes();
-
-    // Preset some usages
-    m_doc->addUsage( i18n("abbreviation") );
-    m_doc->addUsage( i18n("anatomy") );
-    m_doc->addUsage( i18n("biology") );
-    m_doc->addUsage( i18n("figuratively") );
-    m_doc->addUsage( i18n("geology") );
-    m_doc->addUsage( i18n("historical") );
-    m_doc->addUsage( i18n("informal") );
-    m_doc->addUsage( i18n("ironic") );
-    m_doc->addUsage( i18n("literary") );
-    m_doc->addUsage( i18n("mythology") );
-    m_doc->addUsage( i18n("proper name") );
-    m_doc->addUsage( i18n("pharmacy") );
-    m_doc->addUsage( i18n("philosophy") );
-    m_doc->addUsage( i18n("physics") );
-    m_doc->addUsage( i18n("physiology") );
-    m_doc->addUsage( i18n("rhetoric") );
-    m_doc->addUsage( i18n("zoology") );
-
-    m_tableModel->reset(); // clear old entries otherwise we get crashes
 
     int lessonIndex = m_lessonModel->addLesson();
 
@@ -478,7 +446,7 @@ void KVocTrainApp::newDocumentWizard()
     }
 
     // add some entries
-    for ( int i = 0; i < 20 ; i++ ) {
+    for ( int i = 0; i < 15 ; i++ ) {
         m_tableModel->appendEntry( new KEduVocExpression(QString(), lessonIndex) );
     }
 
