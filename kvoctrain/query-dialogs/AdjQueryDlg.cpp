@@ -34,7 +34,6 @@
 #include <KRandomSequence>
 
 #include <kvttablemodel.h>
-#include <kvtlanguages.h>
 
 AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Comparison Training"), doc, parent)
 {

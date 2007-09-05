@@ -29,7 +29,6 @@
 #include <QTextEdit>
 
 #include "EntryDlg.h"
-#include <kvtlanguages.h>
 
 AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {

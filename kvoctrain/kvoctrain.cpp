@@ -266,7 +266,7 @@ void KVocTrainApp::slotDocumentProperties()
 
 void KVocTrainApp::slotDocPropsLang()
 {
-    DocPropsLangDlg ldlg(m_doc, m_languages, this);
+    DocPropsLangDlg ldlg(m_doc, this);
 
     if (ldlg.exec() == QDialog::Accepted) {
         for (int i = 0; i < m_doc->identifierCount(); i++) {
@@ -447,7 +447,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, m_languages, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
+    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     if (index >= 0)
         dialog->selectLanguagePage();

@@ -29,7 +29,6 @@
 #include <KLocale>
 #include <KComboBox>
 
-#include <kvtlanguages.h>
 
 KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent)
  : QWizard(parent)

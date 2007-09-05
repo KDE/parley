@@ -52,8 +52,8 @@ static const char unapplied[] = I18N_NOOP(
                                     "If you save a profile, those changes will not be included.\n"
                                     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
-  : KConfigDialog(parent, name, config), m_langSet(ls)
+KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
+  : KConfigDialog(parent, name, config)
 {
     setButtons(Default|Ok|Apply|Cancel|Help|User1);
     setDefaultButton(Ok);

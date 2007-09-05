@@ -31,7 +31,6 @@
 #include <QPushButton>
 #include <QLineEdit>
 
-#include <kvtlanguages.h>
 #include "EntryDlg.h"
 
 TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)

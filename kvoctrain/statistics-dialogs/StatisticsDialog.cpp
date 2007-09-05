@@ -31,7 +31,6 @@
 
 #include "StatisticsPage.h"
 #include "GenStatPage.h"
-#include "kvtlanguages.h"
 #include "kvttablemodel.h"
 
 KVTStatisticsDialog::KVTStatisticsDialog(KVTTableModel *model, QWidget *parent) : KPageDialog(parent)

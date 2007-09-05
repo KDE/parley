@@ -28,7 +28,6 @@
 
 #include <QLineEdit>
 
-#include <kvtlanguages.h>
 #include "EntryDlg.h"
 
 AdjEntryPage::AdjEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)

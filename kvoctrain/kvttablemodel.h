@@ -26,7 +26,6 @@
 #include <QPixmap>
 
 #include <keduvocdocument.h>
-#include <kvtlanguages.h>
 
 #define KV_EXTRA_COLS    2   // add col for lesson number
 
@@ -63,8 +62,6 @@ public:
         return m_doc;
     }
 
-    void setLanguages(const KVTLanguageList & languages);
-
 //     bool insertRows(int row, int count = 1, const QModelIndex &parent = QModelIndex());
     bool appendEntry(KEduVocExpression *entry);
 
@@ -99,7 +96,6 @@ private:
     KEduVocDocument * m_doc;
     QPixmap m_pixInactive;
     QPixmap m_pixInQuery;
-    KVTLanguageList m_languages;
 
     friend class KVocTrainApp;
     friend class KVTStatisticsDialog;

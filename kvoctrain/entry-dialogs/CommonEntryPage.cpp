@@ -39,7 +39,6 @@
 #include <kdialog.h>
 
 #include "query-dialogs/kvtquery.h"
-#include <kvtlanguages.h>
 #include "DocPropDlg.h"
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"

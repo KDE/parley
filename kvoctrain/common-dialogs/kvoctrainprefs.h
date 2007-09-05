@@ -22,7 +22,6 @@
 
 #include <KConfigDialog>
 
-#include "kvtlanguages.h"
 
 /**
   *@author Peter Hedlund
@@ -48,7 +47,7 @@ public:
     /**
      * Creates a configuration dialog.
      */
-    KVocTrainPrefs(KEduVocDocument *doc, const KVTLanguageList &ls, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
+    KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
     /**
      * Displays the dialog with the language page selected.
@@ -93,7 +92,6 @@ private:
     BlockOptions * m_blockOptions;
 
     KConfigSkeleton *m_config;
-    KVTLanguageList  m_langSet;
     KEduVocDocument *m_doc;
     KComboBox       *m_lessons;
     KVTQuery        *m_queryManager;

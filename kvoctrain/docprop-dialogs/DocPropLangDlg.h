@@ -35,13 +35,12 @@
 
 class KEduVocDocument;
 class LangPropPage;
-class KVTLanguageList;
 
 class DocPropsLangDlg : public KPageDialog
 {
     Q_OBJECT
 public:
-    DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &langset, QWidget *parent);
+    DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent);
 
     ~DocPropsLangDlg();
 

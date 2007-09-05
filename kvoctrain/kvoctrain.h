@@ -45,7 +45,6 @@
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
-#include "kvtlanguages.h"
 #include "kvtlessonmodel.h"
 #include "kvtlessonview.h"
 
@@ -336,8 +335,6 @@ private:
     KVTTableModel       *m_tableModel;
     KVTLessonModel      *m_lessonModel;
     KVTSortFilterModel  *m_sortFilterModel;
-
-    KVTLanguageList      m_languages;
 
     QString              m_textToFind;
 

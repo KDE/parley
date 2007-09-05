@@ -39,7 +39,7 @@
 #include <QPixmap>
 
 
-DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, const KVTLanguageList &langset, QWidget *parent) : KPageDialog(parent)
+DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
     setCaption(i18n("Language Properties"));
     setButtons(Ok|Cancel);
