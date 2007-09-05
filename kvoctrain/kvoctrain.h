@@ -259,8 +259,18 @@ private slots:
 private:
     /** used for the query slotStartXYZ - to check if query is not empty */
     bool queryIsEmpty();
+    /**
+     * Start the wizard to help set up the doc.
+     */
     void newDocumentWizard();
-    void initializeDocument();
+    /**
+     * Add some pre defined types and usages.
+     */
+    void initializeDefaultGrammar();
+    /**
+     * When starting the first time, create some entries to get started.
+     */
+    void createExampleEntries();
 
     // KAction pointers to enable/disable actions
     QAction* fileNew;

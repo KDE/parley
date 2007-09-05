@@ -392,8 +392,28 @@ void KVocTrainApp::initDoc()
     {
         fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
     } else {
+        // this is probably the first time we start.
         m_doc = new KEduVocDocument();
-        initializeDocument();
+
+        m_lessonModel->setDocument(m_doc);
+        if (m_lessonView) {
+            m_lessonView->setModel(m_lessonModel);
+            m_lessonView->initializeSelection();
+        }
+        if (m_tableView) {
+            m_tableView->adjustContent();
+            m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+        }
+
+        m_tableModel->setDocument(m_doc);
+        initializeDefaultGrammar();
+        createExampleEntries();
+
+
+        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+
+        loadDocProps();
+
         m_tableModel->setDocument(m_doc);
     }
 }
@@ -402,7 +422,6 @@ void KVocTrainApp::initModel()
 {
     m_lessonModel = new KVTLessonModel(this);
     m_tableModel = new KVTTableModel(this);
-//     m_tableModel->setLanguages(m_languages);
     m_sortFilterModel= new KVTSortFilterModel(this);
     m_sortFilterModel->setSourceModel(m_tableModel);
 }
@@ -589,3 +608,4 @@ void KVocTrainApp::initView()
     m_doc->setModified(false);
     m_sortFilterModel->restoreNativeOrder();
 }
+

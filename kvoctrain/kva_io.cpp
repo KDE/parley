@@ -158,8 +158,8 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        m_lessonModel->setDocument(m_doc);
         m_tableModel->setDocument(m_doc);
+        m_tableModel->reset();
 
         removeProgressBar();
         loadDocProps();
@@ -172,6 +172,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
         if (m_tableView) {
             m_tableView->adjustContent();
         }
+        m_lessonModel->setDocument(m_doc);
     }
 }
 
@@ -302,20 +303,6 @@ void KVocTrainApp::slotFileSaveAs()
     }
     slotStatusMsg(IDS_DEFAULT);
 }
-
-/*
-void KVocTrainApp::fillLessonBox()
-{
-  m_lessonsComboBox->clear();
-  m_lessonsComboBox->addItems(m_tableModel->data(m_tableModel->index(0, 0), KVTTableModel::LessonsRole).toStringList());
-  m_currentLesson = m_doc->currentLesson();
-  if (m_currentLesson > m_lessonsComboBox->count()) {
-    m_currentLesson = 0;
-    m_doc->setCurrentLesson(m_currentLesson);
-  }
-  m_lessonsComboBox->setCurrentIndex(m_currentLesson);
-}
-*/
 
 void KVocTrainApp::loadDocProps()
 {
@@ -452,3 +439,57 @@ void KVocTrainApp::newDocumentWizard()
 
     m_doc->setModified(false);
 }
+
+
+void KVocTrainApp::initializeDefaultGrammar()
+{
+    m_doc->wordTypes()->createDefaultWordTypes();
+
+    // Preset some usages
+    m_doc->addUsage( i18n("abbreviation") );
+    m_doc->addUsage( i18n("anatomy") );
+    m_doc->addUsage( i18n("biology") );
+    m_doc->addUsage( i18n("figuratively") );
+    m_doc->addUsage( i18n("geology") );
+    m_doc->addUsage( i18n("historical") );
+    m_doc->addUsage( i18n("informal") );
+    m_doc->addUsage( i18n("ironic") );
+    m_doc->addUsage( i18n("literary") );
+    m_doc->addUsage( i18n("mythology") );
+    m_doc->addUsage( i18n("proper name") );
+    m_doc->addUsage( i18n("pharmacy") );
+    m_doc->addUsage( i18n("philosophy") );
+    m_doc->addUsage( i18n("physics") );
+    m_doc->addUsage( i18n("physiology") );
+    m_doc->addUsage( i18n("rhetoric") );
+    m_doc->addUsage( i18n("zoology") );
+}
+
+
+void KVocTrainApp::createExampleEntries()
+{
+    m_tableModel->reset(); // clear old entries otherwise we get crashes
+
+    m_doc->appendIdentifier();
+    m_doc->appendIdentifier();
+
+    // Set the language headers of the table.
+    for (int i=0; i < m_doc->identifierCount(); i++){
+        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
+    }
+
+    int lessonIndex = m_lessonModel->addLesson();
+
+    if (m_lessonView) {
+        m_lessonView->slotSelectLesson(lessonIndex);
+    }
+
+    // add some entries
+    for ( int i = 0; i < 15 ; i++ ) {
+        m_tableModel->appendEntry( new KEduVocExpression(QString(), lessonIndex) );
+    }
+
+    m_doc->setModified(false);
+}
+
+
