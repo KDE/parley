@@ -44,7 +44,7 @@ public:
 
     /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-    void setLessonRegExp(const QRegExp& filter);
+    void setLessonList(const QList<int>& filter);
 
     void setSearchRegExp(const QRegExp& filter);
     void setWordType(const QRegExp& wordType);
@@ -71,9 +71,9 @@ private:
     bool checkWordType(int sourceRow) const;
 
     KVTTableModel * m_sourceModel;
-    QRegExp m_lessonFilter;
-    QRegExp m_searchFilter;
-    QRegExp m_wordType;
+    QList<int>      m_lessonList;
+    QRegExp         m_searchFilter;
+    QRegExp         m_wordType;
 
     bool m_restoreNativeOrder;
 };

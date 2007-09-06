@@ -24,14 +24,15 @@
 
 #include "kvoctrain.h"
 
-#include <QFile>
-#include <QTimer>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QApplication>
-#include <QClipboard>
-#include <QProgressBar>
-#include <QSplitter>
+#include "entry-dialogs/EntryDlg.h"
+#include "docprop-dialogs/DocPropDlg.h"
+#include "docprop-dialogs/DocPropLangDlg.h"
+#include "statistics-dialogs/StatisticsDialog.h"
+#include "common-dialogs/kvoctrainprefs.h"
+#include "language-dialogs/languagedialog.h"
+#include "prefs.h"
+
+#include <keduvoclesson.h>
 
 #include <kstatusbar.h>
 #include <klineedit.h>
@@ -48,13 +49,14 @@
 #include <kapplication.h>
 #include <KActionCollection>
 
-#include "entry-dialogs/EntryDlg.h"
-#include "docprop-dialogs/DocPropDlg.h"
-#include "docprop-dialogs/DocPropLangDlg.h"
-#include "statistics-dialogs/StatisticsDialog.h"
-#include "common-dialogs/kvoctrainprefs.h"
-#include "language-dialogs/languagedialog.h"
-#include "prefs.h"
+#include <QFile>
+#include <QTimer>
+#include <QPixmap>
+#include <QKeyEvent>
+#include <QApplication>
+#include <QClipboard>
+#include <QProgressBar>
+#include <QSplitter>
 
 #define MAX_LESSON       25
 #define THRESH_LESSON    KV_MIN_GRADE
@@ -318,7 +320,7 @@ void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
         break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
         m_doc->setCurrentLesson(lessonIndex);
-        if (!m_doc->lessonInQuery(lessonIndex)) {
+        if ( !m_doc->lesson(lessonIndex).inQuery() ) {
             m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
         }
         m_sortFilterModel->clear();
@@ -901,38 +903,28 @@ void KVocTrainApp::updateTableFilter()
     }
     QModelIndex current = indexes.at(0); // should be one item selected anyway...
 
-    m_doc->setCurrentLesson(current.row()+1);
+    m_doc->setCurrentLesson(current.row());
     int comboState = m_lessonSelectionCombo->currentIndex();
 
     // do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results... so this should only apply for the lesson column. How do I do something with the search at the same time?
 
-    //QRegExp myReg("(Lektion 09)|(Lektion 04)");
-    QString lessonStrings;
-    QStringList description;
+    QList<int> lessonList;
 
     switch (comboState) {
     case Prefs::EnumLessonEditingSelection::CurrentLesson:
-        m_sortFilterModel->setLessonRegExp(QRegExp(m_lessonModel->data(current, Qt::DisplayRole).toString(), Qt::CaseInsensitive, QRegExp::FixedString));
+        lessonList.append(current.row());
+        m_sortFilterModel->setLessonList(lessonList);
         break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-        description = m_doc->lessonNames();
-        //kDebug << lessonStrings;
-        lessonStrings.append("(");
-        foreach(int lesson, m_doc->lessonsInQuery()) {
-            lessonStrings.append(m_doc->lessonNames().at(lesson-1));
-            lessonStrings.append(")|(");
+        for ( int i = 0; i < m_doc->lessonCount(); i++ ) {
+            if ( m_doc->lesson(i).inQuery() ) {
+                lessonList.append(i);
+            }
         }
-        lessonStrings.remove(lessonStrings.length()-2, 2); // remove the last "|("
-        if (lessonStrings.compare("")==0) // in this case select none to be consistent!
-        {
-            lessonStrings = "$^"; // hoping no-one hase a lesson called "" for now. It's your own fault, if you call them like this ;) this is generally unfortunate... maybe I should forbid it and default back to "New lesson 1".
-        }
-        //m_sortFilterModel->setFilterRegExp(lessonStrings);
-
-        m_sortFilterModel->setLessonRegExp(QRegExp(lessonStrings));
+        m_sortFilterModel->setLessonList(lessonList);
         break;
     case Prefs::EnumLessonEditingSelection::AllLessons:
-        m_sortFilterModel->setLessonRegExp(QRegExp());
+        m_sortFilterModel->setLessonList(lessonList);
         break;
     }
     m_doc->setModified();

@@ -28,6 +28,7 @@
 #include <klocale.h>
 #include <kconfig.h>
 
+#include <keduvoclesson.h>
 #include <keduvocdocument.h>
 
 #include <prefs.h>
@@ -483,7 +484,7 @@ kDebug() << "Adding expression to query: " << expr->translation(m_indexTo).text(
 
 bool KVTQuery::validate(KEduVocExpression *expr)
 {
-    if ( !m_doc->lessonsInQuery().contains( expr->lesson() ) ) {
+    if ( !m_doc->lesson(expr->lesson()).inQuery() ) {
         return false;
     }
 

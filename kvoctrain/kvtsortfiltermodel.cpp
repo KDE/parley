@@ -33,7 +33,6 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
     m_sourceModel = 0;
     setSortCaseSensitivity(Qt::CaseInsensitive);
     m_searchFilter = QRegExp();
-    m_lessonFilter = QRegExp();
     m_wordType = QRegExp();
     m_restoreNativeOrder = false;
 }
@@ -49,9 +48,9 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
     return m_sourceModel;
 }
 
-void KVTSortFilterModel::setLessonRegExp(const QRegExp& filter)
+void KVTSortFilterModel::setLessonList(const QList<int>& filter)
 {
-    m_lessonFilter = filter;
+    m_lessonList = filter;
     invalidateFilter();
 }
 
@@ -89,14 +88,11 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
  */
 bool KVTSortFilterModel::checkLesson(int sourceRow) const
 {
-    int lessonIndex = m_sourceModel->document()->entry(sourceRow)->lesson();
-    if ( lessonIndex < 0 ) {
-        kDebug() << "WARNING, LESSON < 0 FOUND: " << lessonIndex;
+    if ( m_lessonList.contains(
+        m_sourceModel->document()->entry(sourceRow)->lesson()) ) {
         return true;
     }
 
-    if (m_lessonFilter.exactMatch( m_sourceModel->document()->lesson( m_sourceModel->document()->entry(sourceRow)->lesson() ).name()  ))
-        return true;
     return false;
 }
 
@@ -174,7 +170,7 @@ bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
 {
     Q_UNUSED(sourceParent);
 
-    if (!m_lessonFilter.isEmpty()) {
+    if (!m_lessonList.isEmpty()) {
         if (!checkLesson(sourceRow)) {
             return false;
         }
