@@ -122,8 +122,6 @@ void KVTLessonView::slotSelectLesson(int lesson)
 
     m_model->document()->setCurrentLesson(lesson);
     emit signalCurrentLessonChanged(lesson);
-
-    kDebug() << "Current lesson: " << lesson;
 }
 
 void KVTLessonView::slotSplitLesson()
