@@ -895,39 +895,42 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 
 void KVocTrainApp::updateTableFilter()
 {
-    QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
-    // oops - this crashes if there is no selection - there should always be a current lesson!!!
-    if (indexes.empty()) {
-        kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!";
-        return;
-    }
-    QModelIndex current = indexes.at(0); // should be one item selected anyway...
-
-    m_doc->setCurrentLesson(current.row());
     int comboState = m_lessonSelectionCombo->currentIndex();
+    m_sortFilterModel->setLessonSelection(comboState);
 
-    // do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results... so this should only apply for the lesson column. How do I do something with the search at the same time?
-
-    QList<int> lessonList;
-
-    switch (comboState) {
-    case Prefs::EnumLessonEditingSelection::CurrentLesson:
-        lessonList.append(current.row());
-        m_sortFilterModel->setLessonList(lessonList);
-        break;
-    case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-        for ( int i = 0; i < m_doc->lessonCount(); i++ ) {
-            if ( m_doc->lesson(i).inQuery() ) {
-                lessonList.append(i);
-            }
-        }
-        m_sortFilterModel->setLessonList(lessonList);
-        break;
-    case Prefs::EnumLessonEditingSelection::AllLessons:
-        m_sortFilterModel->setLessonList(lessonList);
-        break;
-    }
-    m_doc->setModified();
+//     QModelIndexList indexes = m_lessonView->selectionModel()->selectedIndexes();
+//     // oops - this crashes if there is no selection - there should always be a current lesson!!!
+//     if (indexes.empty()) {
+//         kDebug() << "WARNING - NO SELECTION FOR ACTIVE LESSON! THIS SHOULD NOT HAPPEN!";
+//         return;
+//     }
+//     QModelIndex current = indexes.at(0); // should be one item selected anyway...
+//
+//     m_doc->setCurrentLesson(current.row());
+//     int comboState = m_lessonSelectionCombo->currentIndex();
+//
+//     // do the columns play a role here??? I mean... I also wanto to use this for search - to filter out results... so this should only apply for the lesson column. How do I do something with the search at the same time?
+//
+//     QList<int> lessonList;
+//
+//     switch (comboState) {
+//     case Prefs::EnumLessonEditingSelection::CurrentLesson:
+//         lessonList.append(current.row());
+//         m_sortFilterModel->setLessonList(lessonList);
+//         break;
+//     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
+//         for ( int i = 0; i < m_doc->lessonCount(); i++ ) {
+//             if ( m_doc->lesson(i).inQuery() ) {
+//                 lessonList.append(i);
+//             }
+//         }
+//         m_sortFilterModel->setLessonList(lessonList);
+//         break;
+//     case Prefs::EnumLessonEditingSelection::AllLessons:
+//         m_sortFilterModel->setLessonList(lessonList);
+//         break;
+//     }
+//     m_doc->setModified();
 }
 
 void KVocTrainApp::slotLessonSelectionComboChanged(int index)

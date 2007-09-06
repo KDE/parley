@@ -22,6 +22,7 @@
 
 #include "kvtsortfiltermodel.h"
 #include "kvttablemodel.h"
+#include "prefs.h"
 
 #include <keduvocexpression.h>
 #include <keduvoclesson.h>
@@ -48,12 +49,6 @@ KVTTableModel * KVTSortFilterModel::sourceModel() const
     return m_sourceModel;
 }
 
-void KVTSortFilterModel::setLessonList(const QList<int>& filter)
-{
-    m_lessonList = filter;
-    invalidateFilter();
-}
-
 void KVTSortFilterModel::setSearchRegExp(const QRegExp& filter)
 {
     m_searchFilter = filter;
@@ -66,33 +61,25 @@ void KVTSortFilterModel::setWordType(const QRegExp& wordType)
     invalidateFilter();
 }
 
-/*
-At the moment I use this to filter the lessons I want:
-m_sortFilterModel->setFilterFixedString( "Lesson name" );      // one lesson
-m_sortFilterModel->setFilterRegExp( "(Lesson 1)|(Lesson 2)" ); // regexp with or
-
-What about special chars in lesson names!?! ahhh
-
-I'd like to have someting easier here:
-setVisibleLessonsFilter(QStringList)
-setVisibleLessonsFilterRexExp(QString)
-This should of course only work on the Lesson Column.
-
-Also when doing a search I want to filter out all that does not contain the search string.
-This on the other hand needs to work on the vocab columns.
-Also space as separator would be great.
-So searching for "walk go" would find "to go" and "to walk" maybe. This is easy by doing regexp stuff and translating spaces into OR.
-*/
 /**
  * Check if the lesson is selected
  */
 bool KVTSortFilterModel::checkLesson(int sourceRow) const
 {
-    if ( m_lessonList.contains(
-        m_sourceModel->document()->entry(sourceRow)->lesson()) ) {
+    switch (m_lessonSelection) {
+    case Prefs::EnumLessonEditingSelection::CurrentLesson:
+        return m_sourceModel->document()->entry(sourceRow)->lesson()
+             == m_sourceModel->document()->currentLesson();
+        break;
+    case Prefs::EnumLessonEditingSelection::LessonsInQuery:
+        return m_sourceModel->document()->lesson(
+            m_sourceModel->document()->entry(sourceRow)->lesson()
+            ).inQuery();
+        break;
+    case Prefs::EnumLessonEditingSelection::AllLessons:
         return true;
+        break;
     }
-
     return false;
 }
 
@@ -170,10 +157,8 @@ bool KVTSortFilterModel::filterAcceptsRow(int sourceRow, const QModelIndex &sour
 {
     Q_UNUSED(sourceParent);
 
-    if (!m_lessonList.isEmpty()) {
-        if (!checkLesson(sourceRow)) {
-            return false;
-        }
+    if (!checkLesson(sourceRow)) {
+        return false;
     }
 
     if (!m_searchFilter.isEmpty()) {
@@ -207,6 +192,12 @@ void KVTSortFilterModel::restoreNativeOrder()
     sort(-1, Qt::AscendingOrder);
     invalidate();
     m_restoreNativeOrder = false;
+}
+
+void KVTSortFilterModel::setLessonSelection(int lessonSelection)
+{
+    m_lessonSelection = lessonSelection;
+    invalidate();
 }
 
 
