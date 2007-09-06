@@ -81,7 +81,7 @@ void KVTLessonView::slotCreateNewLesson()
     int newLessonIndex = m_model->addLesson();
     slotSelectLesson(newLessonIndex);
 
-    QModelIndex modelIndex = m_model->index(newLessonIndex -1, 0, QModelIndex());
+    QModelIndex modelIndex = m_model->index(newLessonIndex, 0, QModelIndex());
     edit(modelIndex);    // let the user type a new name for the lesson
 }
 
@@ -106,18 +106,18 @@ void KVTLessonView::slotDeleteLesson()
 void KVTLessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     Q_UNUSED(deselected);
-    slotSelectLesson(selected.indexes().at(0).row() +1);
+    slotSelectLesson(selected.indexes().at(0).row());
 }
 
 
 void KVTLessonView::slotSelectLesson(int lesson)
 {
     // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
-    if (lesson <= 0 || lesson > m_model->rowCount())
-        lesson = 1;
+    if (lesson < 0 || lesson > m_model->rowCount()) {
+        lesson = 0;
+    }
 
-    // -1 because of counting from 1 of m_doc
-    QModelIndex indexOfCurrent = m_model->index(lesson -1, 0, QModelIndex());
+    QModelIndex indexOfCurrent = m_model->index(lesson, 0, QModelIndex());
     setCurrentIndex(indexOfCurrent);
     emit signalCurrentLessonChanged(lesson);
 }
@@ -131,7 +131,7 @@ void KVTLessonView::slotSplitLesson()
     if (!ok)
         return;
     Prefs::setEntriesPerLesson(numEntries);
-    m_model->splitLesson(indexOfCurrentLesson() +1, numEntries, KVTLessonModel::random);
+    m_model->splitLesson(indexOfCurrentLesson(), numEntries, KVTLessonModel::random);
 }
 
 void KVTLessonView::dropEvent(QDropEvent * event)

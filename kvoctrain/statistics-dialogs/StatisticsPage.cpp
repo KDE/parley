@@ -252,9 +252,7 @@ void StatisticsPage::setupData()
     // setup rows with pixmaps and strings
     QTreeWidgetItem *listItem = 0;
 
-    QMap<int, KEduVocLesson> lessons = m_doc->lessons();
-    QList<int> lessonIds = lessons.keys();
-    for (int i = 0; i < lessonIds.size(); i++) {
+    for (int i = 0; i < m_doc->lessonCount(); i++) {
         listItem = new QTreeWidgetItem(StatListView);
         listItem->setFlags(listItem->flags() | Qt::ItemIsUserCheckable);
         listItem->setCheckState(TB_RESET, Qt::Unchecked);
@@ -263,8 +261,8 @@ void StatisticsPage::setupData()
         listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
         listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
         listItem->setText(TB_COUNT, QString::number(tsc[i].num));
-        listItem->setText(TB_LESSON, lessons[lessonIds[i] ].name());
-        listItem->setData(TB_LESSON, Qt::UserRole, QVariant(lessonIds[i]));
+        listItem->setText(TB_LESSON, m_doc->lesson(i).name());
+        listItem->setData(TB_LESSON, Qt::UserRole, QVariant(i));
         StatListView->addTopLevelItem(listItem);
     }
 }

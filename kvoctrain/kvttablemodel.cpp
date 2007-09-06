@@ -134,23 +134,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             QVariant result;
             if (index.column() == 0) {
                 // Lesson is set to zero if none is set, but we don't allow this any more. Entries are rather moved into a default lesson.
-                if (m_doc->entry(index.row())->lesson() == 0) {
-                    // find entry for default lesson
-
-                    // TODO: this is going to go away since the library will ensure
-                    // a default lesson exists for lost words to belong to : jpw
-
-                    //defaultLessonIndex = m_doc->lessonIndex(i18n("Default lesson"));
-                    //if (defaultLessonIndex <= 0) { // create it if it does not exist
-                    //    QStringList list = m_doc->lessonDescriptions();
-                    //    list.append(i18n("Default lesson"));
-                    //    m_doc->setLessonDescriptions(list);
-                    //    defaultLessonIndex = m_doc->lessonIndex(i18n("Default lesson"));
-                    //}
-                    //m_doc->entry(index.row())->setLesson(defaultLessonIndex);
-                    //result = i18n("Default lesson");
-                } else
-                    result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
+                result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
             } else if (index.column() == 1) {
                 if (m_doc->entry(index.row())->isActive()) {
                     if (m_doc->entry(index.row())->isInQuery())

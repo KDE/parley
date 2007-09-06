@@ -90,8 +90,8 @@ So searching for "walk go" would find "to go" and "to walk" maybe. This is easy 
 bool KVTSortFilterModel::checkLesson(int sourceRow) const
 {
     int lessonIndex = m_sourceModel->document()->entry(sourceRow)->lesson();
-    if ( lessonIndex <= 0 ) {
-        kDebug() << "WARNING, LESSON <= 0 FOUND: " << lessonIndex;
+    if ( lessonIndex < 0 ) {
+        kDebug() << "WARNING, LESSON < 0 FOUND: " << lessonIndex;
         return true;
     }
 

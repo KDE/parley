@@ -156,11 +156,11 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
         return QVariant();
 
     if (role == Qt::DisplayRole || role == Qt::EditRole)
-        return m_doc->lesson(index.row()+1).name();
+        return m_doc->lesson(index.row()).name();
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (m_doc->lessonInQuery(index.row()+1))
+        if (m_doc->lessonInQuery(index.row()))
             return Qt::Checked;
         else
             return Qt::Unchecked;
@@ -178,17 +178,17 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     /** rename a lesson */
     if (role == Qt::EditRole) {
-        m_doc->lesson(index.row()+1).setName(value.toString());
+        m_doc->lesson(index.row()).setName(value.toString());
         emit dataChanged(index, index);
         return true;
     }
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (!m_doc->lessonInQuery(index.row()+1))
-            m_doc->addLessonToQuery(index.row()+1);
+        if (!m_doc->lessonInQuery(index.row()))
+            m_doc->addLessonToQuery(index.row());
         else
-            m_doc->removeLessonFromQuery(index.row()+1);
+            m_doc->removeLessonFromQuery(index.row());
         m_doc->setModified();
         emit dataChanged(index, index);
         return true;
@@ -199,11 +199,10 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
 void KVTLessonModel::setAllLessonsInQuery()
 {
-    QList<int> intLessons;
-    for (int lesson = 1; lesson <= m_doc->lessonCount(); lesson++) {
-        intLessons.append(lesson);
+    for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
+        m_doc->lesson(lesson).setInQuery(true);
     }
-    m_doc->setLessonsInQuery(intLessons);
+
     // this is not too great - say all data has changed
     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
     //emit signalLessonsInQueryChanged(intLessons);
@@ -212,8 +211,10 @@ void KVTLessonModel::setAllLessonsInQuery()
 
 void KVTLessonModel::setNoLessonsInQuery()
 {
-    QList<int> intLessons;
-    m_doc->setLessonsInQuery(intLessons);
+    for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
+        m_doc->lesson(lesson).setInQuery(false);
+    }
+
     // this is not too great - say all data has changed
     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
     //emit signalLessonsInQueryChanged(intLessons);
@@ -225,14 +226,12 @@ int KVTLessonModel::addLesson(const QString &lessonName)
     int newLessonIndex;
     if (lessonName.isNull()) {
         // add the lesson
-        newLessonIndex = m_doc->addLesson(QString());
+        newLessonIndex = m_doc->appendLesson(QString(), true);
         // then name it according to its index
         m_doc->lesson(newLessonIndex).setName(i18n("Lesson %1", newLessonIndex));
     } else {
-        newLessonIndex = m_doc->addLesson(lessonName);
+        newLessonIndex = m_doc->appendLesson(lessonName);
     }
-    /// Now add the new lesson to the query. Not necessary, but nice.
-    m_doc->addLessonToQuery(newLessonIndex);
 
     endInsertRows();
     return newLessonIndex;
@@ -242,7 +241,7 @@ bool KVTLessonModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeleti
 {
     bool couldDelete = m_doc->deleteLesson(lessonIndex, mode);
     if (couldDelete) {
-        beginRemoveRows(QModelIndex(), lessonIndex-1, lessonIndex-1);
+        beginRemoveRows(QModelIndex(), lessonIndex, lessonIndex);
         endRemoveRows();
     }
     return couldDelete;
@@ -299,12 +298,12 @@ void KVTLessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLes
         entries++;
     }
 
-    if (!deleteLesson(lessonIndex -1, KEduVocDocument::DeleteEmptyLesson))
+    if (!deleteLesson(lessonIndex, KEduVocDocument::DeleteEmptyLesson))
         kDebug() << "Warning - could not delete old lesson!";
 
     m_doc->setModified(true);
 
-    ///@todo select a sensible lesson - like the first new one.
+    ///@todo check the entire function
 }
 
 
