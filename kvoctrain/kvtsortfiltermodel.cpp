@@ -36,6 +36,7 @@ KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(
     m_searchFilter = QRegExp();
     m_wordType = QRegExp();
     m_restoreNativeOrder = false;
+    m_lessonSelection = Prefs::lessonEditingSelection();
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
@@ -198,6 +199,20 @@ void KVTSortFilterModel::setLessonSelection(int lessonSelection)
 {
     m_lessonSelection = lessonSelection;
     invalidate();
+}
+
+void KVTSortFilterModel::slotCurrentLessonChanged(int )
+{
+    if ( m_lessonSelection == Prefs::EnumLessonEditingSelection::CurrentLesson ) {
+        invalidate();
+    }
+}
+
+void KVTSortFilterModel::slotLessonsInQueryChanged()
+{
+    if ( m_lessonSelection == Prefs::EnumLessonEditingSelection::LessonsInQuery ) {
+        invalidate();
+    }
 }
 
 

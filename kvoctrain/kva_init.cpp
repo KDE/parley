@@ -456,22 +456,20 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
     m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
     m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
     m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
-    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
 
     boxLayout->addWidget(m_lessonSelectionCombo);
     boxLayout->addWidget(m_lessonView);
 
     /// New lesson selected
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged(int)));
+    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), m_sortFilterModel, SLOT(slotCurrentLessonChanged(int)));
     /** this is a little general, but at least we get notified of the changes */
-    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotLessonCheckboxesChanged(const QModelIndex &, const QModelIndex &)));
-    //connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentLessonChanged(const QModelIndex &, const QModelIndex &)));
-    connect(m_lessonSelectionCombo, SIGNAL(activated(int)), this, SLOT(slotLessonSelectionComboChanged(int)));
+    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
+
+    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_sortFilterModel, SLOT(setLessonSelection(int)));
     connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
 
-    //slotCurrentChanged(m_lessonView->currentIndex(), m_lessonView->currentIndex());
+    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
 
-    //connect(m_lessonView, SIGNAL(newCurrentLesson()), this, SLOT(slotChooseLesson(int)));
 
     m_lessonView->initializeSelection();
 
@@ -602,7 +600,9 @@ void KVocTrainApp::initView()
 //     m_mainSplitter->addWidget(tabWidget);
 //     /* End tabs - comment out these lines to get the nomal behavior. */
 
-    updateTableFilter();
+///@todo initialize m_sortFilterModel if it is not!!
+// m_sortFilterModel->setLessonSelection(Prefs::LessonEditingSelection);
+m_sortFilterModel->clear();
 
     m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
     m_doc->setModified(false);

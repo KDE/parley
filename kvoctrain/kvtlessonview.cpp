@@ -113,13 +113,17 @@ void KVTLessonView::selectionChanged(const QItemSelection & selected, const QIte
 void KVTLessonView::slotSelectLesson(int lesson)
 {
     // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
-    if (lesson < 0 || lesson > m_model->rowCount()) {
+    if ( (lesson < 0) || (lesson > m_model->document()->lessonCount()) ) {
         lesson = 0;
     }
 
     QModelIndex indexOfCurrent = m_model->index(lesson, 0, QModelIndex());
     setCurrentIndex(indexOfCurrent);
+
+    m_model->document()->setCurrentLesson(lesson);
     emit signalCurrentLessonChanged(lesson);
+
+    kDebug() << "Current lesson: " << lesson;
 }
 
 void KVTLessonView::slotSplitLesson()

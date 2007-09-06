@@ -44,7 +44,6 @@ public:
 
     /** Returns true if a row is to be displayed. Respects the lesson setting and the search expression */
     bool filterAcceptsRow(int sourceRow, const QModelIndex &sourceParent) const;
-    void setLessonSelection(int lessonSelection);
 
     void setSearchRegExp(const QRegExp& filter);
     void setWordType(const QRegExp& wordType);
@@ -60,6 +59,10 @@ public slots:
      * Put entries in the order they are in the file.
      */
     void restoreNativeOrder();
+
+    void setLessonSelection(int lessonSelection);
+    void slotCurrentLessonChanged(int);
+    void slotLessonsInQueryChanged();
 
 protected:
     bool lessThan(const QModelIndex & left, const QModelIndex & right) const;
