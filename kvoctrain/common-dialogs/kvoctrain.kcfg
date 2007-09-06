@@ -21,7 +21,7 @@
     </entry>
     <entry name="SmartAppend" type="Bool">
       <label>If true, when using the entry dialog, new rows will be appended as needed</label>
-      <default>false</default>
+      <default>true</default>
     </entry>
     <entry name="Separator" type="String">
       <label>This sets the separator used when copying/pasting text, default is Tab</label>

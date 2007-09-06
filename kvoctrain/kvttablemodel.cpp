@@ -324,8 +324,6 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
 
 bool KVTTableModel::appendEntry(KEduVocExpression *entry)
 {
-kDebug() << "KVTTableModel::appendEntry()";
-
     // insert one row
     beginInsertRows(QModelIndex(), m_doc->entryCount(), m_doc->entryCount());
     m_doc->insertEntry(entry, m_doc->entryCount());
@@ -394,6 +392,11 @@ void KVTTableModel::dataChangedFromOutside(const QModelIndex & firstRow, const Q
     QModelIndex topLeft = index(firstRow.row()-1, 0);
     QModelIndex bottomRight = index(lastRow.row()+1, columnCount(QModelIndex()));
     emit dataChanged(topLeft, bottomRight);
+}
+
+void KVTTableModel::appendEntry()
+{
+    appendEntry( new KEduVocExpression(QString(), m_doc->currentLesson() ) );
 }
 
 

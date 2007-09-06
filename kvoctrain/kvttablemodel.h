@@ -91,6 +91,7 @@ public:
 
 public slots:
     void dataChangedFromOutside(const QModelIndex& topLeft, const QModelIndex& bottomRight);
+    void appendEntry();
 
 private:
     KEduVocDocument * m_doc;

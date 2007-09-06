@@ -5,6 +5,7 @@
     -----------------------------------------------------------------------
 
     copyright     : (C) 2006, 2007 Peter Hedlund <peter.hedlund@kdemail.net>
+                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -286,6 +287,14 @@ void KVTTableView::keyPressEvent(QKeyEvent * e)
 {
     if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) {
         e->accept();
+        // Should we be in the last row, will we autoappend a new entry?
+        if ( currentIndex().row() == model()->rowCount() - 1 ) {
+            if ( currentIndex().column() == model()->columnCount(QModelIndex()) - 1 ) {
+                if( Prefs::smartAppend() ) {
+                    emit(appendEntry());
+                }
+            }
+        }
         // move to the next language entry. for the last language this means first of next row.
         if ( currentIndex().column() == model()->columnCount(QModelIndex()) - 1 ) {
             setCurrentIndex(model()->index( currentIndex().row() + 1, KV_EXTRA_COLS ) );

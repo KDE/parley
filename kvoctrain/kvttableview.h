@@ -42,7 +42,13 @@ public:
     void print(KPrinter *pPrinter);
     void adjustContent();
 
-protected slots:
+public slots:
+    void slotModelReset();
+
+signals:
+    void appendEntry();
+
+private slots:
     void verticalHeaderResized(int, int, int);
     void horizontalHeaderResized(int, int, int);
     void slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous);
@@ -50,9 +56,6 @@ protected slots:
      * @param show if @c true the lesson column is shown
      */
     void slotShowLessonColumn(bool show);
-
-public slots:
-    void slotModelReset();
 
 protected:
     /** resizes table when frame is resized */

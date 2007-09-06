@@ -62,6 +62,7 @@ LanguageDialog::~LanguageDialog()
 void LanguageDialog::accept()
 {
     emit signalCommitData();
+//     emit deletePages();
     QDialog::accept();
 }
 
@@ -77,6 +78,7 @@ void LanguageDialog::slotAppendIdentifier()
 
 void LanguageDialog::slotDeleteIdentifier()
 {
+    removePage(currentPage());
 }
 
 void LanguageDialog::pageIconChanged(const QString & newIcon)

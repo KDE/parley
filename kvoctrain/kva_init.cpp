@@ -563,7 +563,9 @@ void KVocTrainApp::initView()
 
     //connect(m_tableModel, SIGNAL(modelAboutToBeReset()), m_tableView, SLOT(slotModelAboutToBeReset()));
 
+///@todo are these disconnected, once the model is changed? they probably never get reconnected.
     connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
+    connect(m_tableView, SIGNAL(appendEntry()), m_tableModel, SLOT(appendEntry()));
 
     // selection changes (the entry dialog needs these)
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
