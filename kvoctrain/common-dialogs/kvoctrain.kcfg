@@ -29,7 +29,7 @@
     </entry>
     <entry name="EntriesPerLesson" type="Int">
       <label>The number of entries per lesson</label>
-      <default>50</default>
+      <default>20</default>
     </entry>
     <entry name="AutoSave" type="Bool">
       <label>If true, vocabularies are automatically saved on close and exit</label>
