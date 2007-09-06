@@ -160,7 +160,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (m_doc->lessonInQuery(index.row()))
+        if (m_doc->lesson(index.row()).inQuery())
             return Qt::Checked;
         else
             return Qt::Unchecked;
@@ -185,10 +185,10 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (!m_doc->lessonInQuery(index.row()))
-            m_doc->addLessonToQuery(index.row());
+        if (!m_doc->lesson(index.row()).inQuery())
+            m_doc->lesson(index.row()).setInQuery(true);
         else
-            m_doc->removeLessonFromQuery(index.row());
+            m_doc->lesson(index.row()).setInQuery(false);
         m_doc->setModified();
         emit dataChanged(index, index);
         return true;
