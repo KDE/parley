@@ -25,6 +25,7 @@
 #include <klocale.h>
 #include <kinputdialog.h>
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 
 #include "groupoptions.h"
 #include "presettings.h"
@@ -199,18 +200,18 @@ void ProfilesDialog::selectProfile(int profile)
             extract(line, lessonString);
         }
 
+        for ( int i = 0; i < m_doc->lessonCount(); i++) {
+            m_doc->lesson(i).setInQuery(false);
+        }
+
         int pos;
         QString indices_copy = lessonString;
-        QList<int> lessonList;
+
         while ((pos = indices_copy.indexOf(' ')) >= 0) {
             QString s = indices_copy.left(pos);
             indices_copy.remove(0, pos + 1);
-            lessonList.append(s.toInt());
+            m_doc->lesson(s.toInt()).setInQuery(true);
         }
-        if (indices_copy.length() != 0) {
-            lessonList.append(indices_copy.toInt());
-        }
-        m_doc->setLessonsInQuery(lessonList);
 
         if (extract(line, s))
             Prefs::setCompType(Prefs::EnumType::Lesson, Prefs::EnumCompType::type(s.toInt()));
@@ -315,13 +316,14 @@ void ProfilesDialog::modifyProfile(int profile)
         line += s + ',';
         profiles[profile].query_set = line;
 
-        // This is really ugly. Is there no better way to save a list?
+        ///@todo This is really ugly. Is there no better way to save a list?
         QString tempLessonIndex, lessonString;
-        for (int i = 0; i < m_doc->lessonsInQuery().count(); i++) {
-            tempLessonIndex.setNum(m_doc->lessonsInQuery().value(i));
-            if (i != 0)
+        for (int i = 0; i < m_doc->lessonCount(); i++) {
+            if ( m_doc->lesson(i).inQuery() ) {
+                tempLessonIndex.setNum(i);
+                lessonString += tempLessonIndex;
                 lessonString += ' ';
-            lessonString += tempLessonIndex;
+            }
         }
         line = '(' + lessonString + ')';
         s.setNum((int) Prefs::compType(Prefs::EnumType::Lesson));

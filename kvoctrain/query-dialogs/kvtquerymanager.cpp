@@ -27,10 +27,6 @@
 
 #include "kvoctrain.h"
 
-#include <QString>
-#include <KDebug>
-#include <KLocale>
-
 #include "query-dialogs/RandomQueryDlg.h"
 #include "query-dialogs/MCQueryDlg.h"
 #include "query-dialogs/AdjQueryDlg.h"
@@ -42,6 +38,12 @@
 
 #include "query-dialogs/kvtquery.h"
 #include "prefs.h"
+
+#include <keduvoclesson.h>
+
+#include <QString>
+#include <KDebug>
+#include <KLocale>
 
 #define MAX_QUERY_TIMEOUT 3
 
@@ -197,7 +199,14 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
 
 bool QueryManager::queryIsEmpty()
 {
-    if (m_doc->lessonsInQuery().empty()) {
+    int i;
+    for ( i = 0; i < m_doc->lessonCount(); i++ ) {
+        if ( m_doc->lesson(i).inQuery() ) {
+            break;
+        }
+    }
+
+    if ( i == m_doc->lessonCount() ) {
         KMessageBox::information(m_app, i18n("You have selected no lessons to be practiced. Please select at least one on the left."), i18n("Starting Test"));
         return true;
     }

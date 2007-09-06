@@ -60,8 +60,6 @@ void EditLanguageDialogPage::initialize()
     // language codes
     QStringList codes = KGlobal::locale()->allLanguagesList();
 
-    int current = codes.indexOf(KGlobal::locale()->language());
-
     QStringList languageNames;
     foreach (QString code, codes){
         localeComboBox->addItem( KGlobal::locale()->languageCodeToName(code), code);
@@ -79,8 +77,6 @@ void EditLanguageDialogPage::initialize()
 
     QStringList countrylist = KGlobal::locale()->allCountriesList();
     countrylist.sort();
-
-    int currentIndex = 0;
 
     foreach(QString code, countrylist) {
         QString country = KGlobal::dirs()->findResource("locale",
