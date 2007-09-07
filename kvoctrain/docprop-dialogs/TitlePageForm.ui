@@ -210,7 +210,7 @@ If you consider contributing your file to KDE in the future, an appropriate lice
         </property>
         <item>
          <property name="text" >
-          <string>GPL (GNU General Public License)</string>
+          <string>GPLv2 (GNU General Public License version 2)</string>
          </property>
         </item>
        </widget>
