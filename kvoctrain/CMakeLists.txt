@@ -147,7 +147,7 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocu
 
 kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
 
-target_link_libraries(kvoctrain  keduvocdocument ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS} )
+target_link_libraries(kvoctrain  keduvocdocument ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
 
 install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
 
