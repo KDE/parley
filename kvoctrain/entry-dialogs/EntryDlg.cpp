@@ -246,17 +246,23 @@ void EntryDlg::setData(const QList<int>& entries, int currentTranslation)
 
 void EntryDlg::updatePages()
 {
+    bool editMultipleRows = (m_entries.count() > 1);
+
     QString title;
     if (m_currentTranslation < 0) {
-        title = i18n("Edit General Properties");
-    } else if (m_currentTranslation == 0) {
-        title = i18n("Edit Properties for Original");
+        title = i18np("Edit General Properties", "Edit General Properties for %1 Files", m_entries.count());
     } else {
-        title = i18n("Edit Properties of a Translation");
+        if ( !editMultipleRows ) {
+            title = i18nc("@title:window Editing one entry, %1 the word, %2 the language", "\"%1\" (%2)",
+                m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).text(),
+                m_doc->identifier(m_currentTranslation).name() );
+        } else {
+            title = i18ncp("@title:window Editing %1 entries, %2 the language", "Edit One Word (%2)", "Edit %1 words (%2)",
+                m_entries.count(),
+                m_doc->identifier(m_currentTranslation).name() );
+        }
     }
     setCaption(title);
-
-    bool editMultipleRows = (m_entries.count() > 1);
 
     commonPage->setData(m_entries, m_currentTranslation);
 
