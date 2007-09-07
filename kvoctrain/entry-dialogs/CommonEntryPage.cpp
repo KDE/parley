@@ -108,9 +108,6 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
 
     c_active->setChecked(firstEntry->isActive());
 
-
-// kDebug() << " TYPE: " << m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type() << " WordType: " << m_wordTypes->getMainTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type()) << " sub: " << m_wordTypes->getSubTypeFromOldFormat(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).type());
-
     updateMainTypeBoxContents();
 
 
@@ -120,8 +117,6 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
     QString subType =
         m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).subType();
-
-kDebug() << " type index: " << mainType << " sub " << subType;
 
     type_box->setCurrentIndex( type_box->findText( mainType ) );
     slotTypeBoxChanged( mainType );
@@ -134,7 +129,16 @@ kDebug() << " type index: " << mainType << " sub " << subType;
 
         pronounce_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).pronunciation());
 
-        audioUrlRequester->setUrl( KUrl(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).soundUrl()) );
+        // create the audio url relative to the document
+        // this would set the doc itself as url, so check, if sound url is empty.
+        if ( !m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).soundUrl().isEmpty() ) {
+            audioUrlRequester->setUrl(
+                KUrl( m_doc->url(),
+                    m_doc->entry(
+                        m_entries.value(0))->translation(m_currentTranslation).soundUrl()) );
+        } else {
+            audioUrlRequester->clear();
+        }
 
     } else { // edit more than one entry
         c_active->setTristate(true);
@@ -304,7 +308,9 @@ void CommonEntryPage::commitData()
             expr->translation(m_currentTranslation).setText( expr_line->text() );
             expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
 
-            expr->translation(m_currentTranslation).setSoundUrl( audioUrlRequester->url().url());
+            // try to save as relative url
+            expr->translation(m_currentTranslation).setSoundUrl( KUrl::relativeUrl( m_doc->url() , audioUrlRequester->url().url()) );
+kDebug() << "url: " << audioUrlRequester->url().url();
         }
     }
 
@@ -379,9 +385,7 @@ void CommonEntryPage::playAudio()
     {
         m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
         m_player->setParent(this);
-    }
-    else
-    {
+    } else {
         m_player->setCurrentSource(soundFile);
     }
     m_player->play();
