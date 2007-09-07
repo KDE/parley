@@ -24,12 +24,29 @@
     <widget class="QComboBox" name="languageComboBox" />
    </item>
    <item>
+    <widget class="QLabel" name="label" >
+     <property name="text" >
+      <string>Title:</string>
+     </property>
+     <property name="buddy" >
+      <cstring>identifierNameLineEdit</cstring>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QLineEdit" name="identifierNameLineEdit" >
+     <property name="toolTip" >
+      <string>This does not have to be a language. Anything goes: Definition, Chinese simplified or anything else you want to learn.</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <spacer>
      <property name="orientation" >
       <enum>Qt::Vertical</enum>
      </property>
      <property name="sizeType" >
-      <enum>QSizePolicy::Fixed</enum>
+      <enum>QSizePolicy::Expanding</enum>
      </property>
      <property name="sizeHint" >
       <size>
@@ -38,29 +55,6 @@
       </size>
      </property>
     </spacer>
-   </item>
-   <item>
-    <widget class="QLabel" name="label" >
-     <property name="text" >
-      <string>Please enter a name:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>identifierNameLineEdit</cstring>
-     </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QLineEdit" name="identifierNameLineEdit" />
-   </item>
-   <item>
-    <widget class="QLabel" name="label_3" >
-     <property name="text" >
-      <string>(This does not have to be a language actually. Anything goes: Definition, Chinese simplified or anything else you want to learn.)</string>
-     </property>
-     <property name="wordWrap" >
-      <bool>true</bool>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

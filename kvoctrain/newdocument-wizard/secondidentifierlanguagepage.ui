@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>642</width>
-    <height>625</height>
+    <width>531</width>
+    <height>490</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -43,8 +43,8 @@
      </property>
      <property name="sizeHint" >
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>513</width>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -67,25 +67,9 @@
     </widget>
    </item>
    <item>
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Fixed</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Please enter a name for the second column:</string>
+      <string>Second title:</string>
      </property>
      <property name="buddy" >
       <cstring>identifierNameLineEdit</cstring>
@@ -95,19 +79,22 @@
    <item>
     <widget class="QLineEdit" name="identifierNameLineEdit" >
      <property name="toolTip" >
-      <string>The name. For example the name of the language you want to practice.</string>
+      <string>This does not have to be a language. Anything goes: Definition, Chinese simplified or anything else you want to learn.</string>
      </property>
     </widget>
    </item>
    <item>
-    <widget class="QLabel" name="label_3" >
-     <property name="text" >
-      <string>(This does not have to be a language actually. Anything goes: Definition, Chinese simplified or anything else you want to learn.)</string>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
      </property>
-     <property name="wordWrap" >
-      <bool>true</bool>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
      </property>
-    </widget>
+    </spacer>
    </item>
   </layout>
  </widget>

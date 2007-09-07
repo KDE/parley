@@ -60,6 +60,8 @@ FirstIdentifierLanguagePage::FirstIdentifierLanguagePage(QWizard * parent)
     languageComboBox->addItems(languageNames);
     languageComboBox->setCurrentIndex(current);
 
+    identifierNameLineEdit->setText( languageComboBox->currentText() );
+
     connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
 
     registerField("firstIdentifierName*", identifierNameLineEdit);

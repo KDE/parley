@@ -173,6 +173,11 @@
           <string>History</string>
          </property>
         </item>
+        <item>
+         <property name="text" >
+          <string>Test Preparation</string>
+         </property>
+        </item>
        </widget>
       </item>
       <item row="1" column="1" >

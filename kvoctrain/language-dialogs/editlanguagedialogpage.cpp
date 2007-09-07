@@ -44,6 +44,7 @@ EditLanguageDialogPage::EditLanguageDialogPage(KEduVocDocument* doc, int identif
     initialize();
 
     identifierNameLineEdit->setText(m_doc->identifier(m_identifierIndex).name());
+
     connect(localeComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(localeChanged(const QString&)));
 
     connect(iconComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(iconChanged(int)));
