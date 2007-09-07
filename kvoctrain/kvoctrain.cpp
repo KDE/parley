@@ -294,10 +294,7 @@ void KVocTrainApp::slotDeleteEntry()
 
 void KVocTrainApp::slotNewEntry()
 {
-    KEduVocExpression *entry = new KEduVocExpression();
-    entry->setLesson(m_doc->currentLesson());
-
-    m_tableModel->appendEntry(entry);
+    m_tableModel->appendEntry();
 
     // show the new entry
     makeLessonVisibleInTable(m_doc->currentLesson());

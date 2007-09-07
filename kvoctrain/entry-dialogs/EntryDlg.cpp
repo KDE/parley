@@ -139,27 +139,25 @@ void EntryDlg::slotApply()
 
 /// @todo eventually append a row if we are in the last row???
 
-/*
-        commitEntryDlg(true);
-        if (Prefs::smartAppend()) {
-            int row = m_tableView->currentIndex().row();
-            if (row == m_tableModel->rowCount(QModelIndex()) - 1) {
-                int col = m_tableView->currentIndex().column();
-                if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG) {
-                    int lesson = m_doc->entry(row)->lesson();
-                    //if (lesson >= m_lessonsComboBox->count())
-                    //lesson = qMax (0, m_lessonsComboBox->count()-1);
-                    m_lessonView->slotSelectLesson(lesson);
-
-                    QString exp;
-                    exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG).translation();
-                    if (exp.isEmpty())
-                        m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
-                } else
-                    slotNewEntry();
-                    //slotAppendRow();
-            }
-        }*/
+//         if (Prefs::smartAppend()) {
+//             int row = m_tableView->currentIndex().row();
+//             if (row == m_tableModel->rowCount(QModelIndex()) - 1) {
+//                 int col = m_tableView->currentIndex().column();
+//                 if (col < m_tableModel->columnCount(QModelIndex()) - 1 && col >= KV_COL_ORG) {
+//                     int lesson = m_doc->entry(row)->lesson();
+//                     //if (lesson >= m_lessonsComboBox->count())
+//                     //lesson = qMax (0, m_lessonsComboBox->count()-1);
+//                     m_lessonView->slotSelectLesson(lesson);
+//
+//                     QString exp;
+//                     exp = m_doc->entry(row)->translation(col+1-KV_COL_ORG).translation();
+//                     if (exp.isEmpty())
+//                         m_tableView->setCurrentIndex(m_tableModel->index(row, col + 1));
+//                 } else
+//                     slotNewEntry();
+//                     //slotAppendRow();
+//             }
+//         }
 }
 
 

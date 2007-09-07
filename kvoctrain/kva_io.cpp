@@ -436,7 +436,7 @@ void KVocTrainApp::newDocumentWizard()
 
     // add some entries
     for ( int i = 0; i < 15 ; i++ ) {
-        m_tableModel->appendEntry( new KEduVocExpression(QString(), lessonIndex) );
+        m_tableModel->appendEntry();
     }
 
     m_doc->setModified(false);
@@ -503,25 +503,14 @@ void KVocTrainApp::createExampleEntries()
         m_lessonView->slotSelectLesson(lessonIndex);
     }
 
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("a word") << i18n("a translation"), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("Click") << i18n("and type your own words"), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QString(), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("Press Enter") << i18n("to go to the next word"), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("To Start") << i18n("choose File->New"), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("Get Files Online") << i18n("File->Download New..."), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("Setup Languages") << i18n("Language->Edit Languages"), lessonIndex) );
-
-    m_tableModel->appendEntry( new KEduVocExpression(QStringList() << i18n("Start a Test") << i18n("Practice->A Language->Create Written Test"), lessonIndex) );
+    // add some entries
+    for ( int i = 0; i < 15 ; i++ ) {
+        m_tableModel->appendEntry();
+    }
 
     // select the empty row
     Prefs::setCurrentCol(KV_COL_TRANS);
-    Prefs::setCurrentRow(2);
+    Prefs::setCurrentRow(0);
 
     m_doc->setModified(false);
 }

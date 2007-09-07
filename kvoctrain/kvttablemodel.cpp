@@ -316,26 +316,6 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
     return false;
 }
 
-// void KVTTableModel::setLanguages(const KVTLanguageList & languages)
-// {
-//     m_languages = languages;
-// }
-
-
-bool KVTTableModel::appendEntry(KEduVocExpression *entry)
-{
-    // insert one row
-    beginInsertRows(QModelIndex(), m_doc->entryCount(), m_doc->entryCount());
-    m_doc->insertEntry(entry, m_doc->entryCount());
-    endInsertRows();
-
-kDebug() << "KVTTableModel::appendEntry() new lesson: " << entry->lesson() << "m_doc->e ->lesson: " << m_doc->entry(m_doc->entryCount()-1)->lesson() << " current lesson: " << m_doc->currentLesson();
-
-    // should return a qmodelindex
-    return true;
-}
-
-
 
 bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
 {
@@ -396,9 +376,12 @@ void KVTTableModel::dataChangedFromOutside(const QModelIndex & firstRow, const Q
 
 void KVTTableModel::appendEntry()
 {
-    appendEntry( new KEduVocExpression(QString(), m_doc->currentLesson() ) );
+    KEduVocExpression* entry = new KEduVocExpression(QString(), m_doc->currentLesson() );
+
+    // insert one row
+    beginInsertRows(QModelIndex(), m_doc->entryCount(), m_doc->entryCount());
+    m_doc->insertEntry(entry, m_doc->entryCount());
+    endInsertRows();
 }
-
-
 
 #include "kvttablemodel.moc"
