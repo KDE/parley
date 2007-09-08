@@ -380,6 +380,7 @@ void CommonEntryPage::updateMainTypeBoxContents()
 void CommonEntryPage::playAudio()
 {
     KUrl soundFile = audioUrlRequester->url();
+    kDebug() << "sound file: " << soundFile.url();
 
     if (!m_player)
     {
@@ -389,8 +390,6 @@ void CommonEntryPage::playAudio()
         m_player->setCurrentSource(soundFile);
     }
     m_player->play();
-
-    kDebug() << "play sound: " << soundFile;
 }
 
 
