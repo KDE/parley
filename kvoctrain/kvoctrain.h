@@ -258,47 +258,13 @@ private:
      */
     void createExampleEntries();
 
+    ///@todo these are refered to somewhere. should probably be avoidable.
     // KAction pointers to enable/disable actions
-    QAction* fileNew;
-    QAction* fileOpen;
-    QAction* fileOpenExample;
-    QAction* fileGHNS;
     KRecentFilesAction* fileOpenRecent;
-    QAction* fileMerge;
-    QAction* fileSave;
-    QAction* fileSaveAs;
-    QAction* filePrint;
-    QAction* fileQuit;
-
-    QAction* editCopy;
-    QAction* editPaste;
-    QAction* editSelectAll;
-    QAction* editClearSelection;
-
-    QAction* editAppend;
-    QAction* editEditEntry;
     QAction* editDelete;
-    QAction* editSaveSelectedArea;
-
-    QAction* vocabShowStatistics;
-    QAction* vocabAssignLessons;
-    QAction* vocabCleanUp;
-//     KSelectAction* vocabAppendLanguage;
-    QAction* vocabEditLanguages;
-
-    QAction* languageProperties;
-
-    QAction* vocabDocumentProperties;
-
-    QAction* vocabLessons;
-    QAction* vocabShowSearchBar;
-
     QAction* learningResumeQuery;
     QAction* learningResumeMultipleChoice;
-
-    QAction* configToolbar;
-    QAction* configNotifications;
-    QAction* configApp;
+    QAction* vocabShowSearchBar;
 
     QString lastPixName;
 

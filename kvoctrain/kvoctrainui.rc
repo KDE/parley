@@ -9,6 +9,8 @@
    <Action append="open_merge" name="file_merge" />
    <Action append="save_merge" name="edit_save_selected_area" />
    <Separator/>
+   <Action name="file_properties" />
+   <Separator/>
   </Menu>
   <Menu name="edit" >
       <Separator/>
@@ -22,7 +24,6 @@
       <text>&amp;Language</text>
       <Action name="vocab_edit_languages" />
       <Separator/>
-      <Action name="vocab_document_properties" />
       <Action name="vocab_grammar_properties" />
       <Action name="vocab_language_properties" />
   </Menu>

@@ -96,6 +96,36 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 
 void KVocTrainApp::initActions()
 {
+
+    QAction* fileNew;
+    QAction* fileOpen;
+    QAction* fileOpenExample;
+    QAction* fileGHNS;
+
+    QAction* fileMerge;
+    QAction* fileSave;
+    QAction* fileSaveAs;
+    QAction* filePrint;
+    QAction* fileQuit;
+
+    QAction* editCopy;
+    QAction* editPaste;
+    QAction* editSelectAll;
+    QAction* editClearSelection;
+    QAction* editAppend;
+    QAction* editEditEntry;
+    QAction* editSaveSelectedArea;
+
+    QAction* vocabShowStatistics;
+    QAction* vocabAssignLessons;
+    QAction* vocabCleanUp;
+    QAction* vocabEditLanguages;
+    QAction* vocabLessons;
+
+    QAction* configToolbar;
+    QAction* configNotifications;
+    QAction* configApp;
+
 // -- FILE --------------------------------------------------
 
     fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
@@ -146,6 +176,15 @@ void KVocTrainApp::initActions()
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
+
+    QAction* fileProperties = actionCollection()->addAction("file_properties");
+    fileProperties->setText(i18n("&Properties..."));
+    connect(fileProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
+    fileProperties->setIcon(KIcon("document-properties"));
+    fileProperties->setWhatsThis(i18n("Edit document properties"));
+    fileProperties->setToolTip(fileProperties->whatsThis());
+    fileProperties->setStatusTip(fileProperties->whatsThis());
+
 
     fileQuit = KStandardAction::quit(this, SLOT(slotFileQuit()), actionCollection());
     fileQuit->setWhatsThis(i18n("Quit KVocTrain"));
@@ -283,14 +322,6 @@ void KVocTrainApp::initActions()
     vocabEditLanguages->setText(i18n("&Edit Languages"));
     connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
     ///@todo tooltip
-
-    ///@todo cleanup
-    vocabDocumentProperties = actionCollection()->addAction("vocab_document_properties");
-    vocabDocumentProperties->setText(i18n("&Document Properties..."));
-    connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
-    vocabDocumentProperties->setWhatsThis(i18n("Edit vocabulary properties"));
-    vocabDocumentProperties->setToolTip(vocabDocumentProperties->whatsThis());
-    vocabDocumentProperties->setStatusTip(vocabDocumentProperties->whatsThis());
 
     KAction* languageProperties = new KAction(this);
     languageProperties->setText(i18n("&Grammar Properties..."));
