@@ -213,7 +213,7 @@ void KVocTrainApp::removeEntryDlg()
 }
 
 
-void KVocTrainApp::slotDocumentProperties()
+void KVocTrainApp::slotLanguageProperties()
 {
     DocPropsDlg ddlg(m_doc, this);
 
@@ -723,6 +723,19 @@ void KVocTrainApp::slotEditLanguages()
     if ( languageDialog->exec() == QDialog::Accepted ) {
         m_tableModel->reset();
     }
+}
+
+void KVocTrainApp::slotDocumentProperties()
+{
+    TitlePage* titleAuthorWidget = new TitlePage(m_doc, this);
+    KDialog* titleAuthorDialog;
+    titleAuthorDialog = new KDialog(this);
+    titleAuthorDialog->setMainWidget( titleAuthorWidget );
+
+    if ( titleAuthorDialog->exec() == QDialog::Accepted ) {
+        titleAuthorWidget->commitData();
+    }
+    delete titleAuthorDialog;
 }
 
 

@@ -34,7 +34,7 @@
 
 #include <KTabWidget>
 
-#include <kactioncollection.h>
+#include <KActionCollection>
 #include <klineedit.h>
 #include <kcombobox.h>
 #include <krecentfilesaction.h>
@@ -282,28 +282,25 @@ void KVocTrainApp::initActions()
     vocabEditLanguages->setIcon(KIcon("insert_table_col"));
     vocabEditLanguages->setText(i18n("&Edit Languages"));
     connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
+    ///@todo tooltip
 
-
-/*
-    vocabSetLanguage = actionCollection()->add<KSelectAction>("vocab_set_language");
-    vocabSetLanguage->setIcon(KIcon("set_language"));
-    vocabSetLanguage->setText(i18n("Assign &Language"));
-    connect(vocabSetLanguage->menu(),    SIGNAL(aboutToShow()), this, SLOT(aboutToShowVocabSetLanguage()));
-
-    vocabRemoveLanguage = actionCollection()->add<KSelectAction>("vocab_remove_language");
-    vocabRemoveLanguage->setIcon(KIcon("delete_table_col"));
-    vocabRemoveLanguage->setText(i18n("&Remove Language"));
-    connect(vocabRemoveLanguage->menu(), SIGNAL(aboutToShow()),  this, SLOT(aboutToShowVocabRemoveLanguage()));
-    connect(vocabRemoveLanguage,         SIGNAL(triggered(int)), this, SLOT(slotRemoveLanguage(int)));*/
-
+    ///@todo cleanup
     vocabDocumentProperties = actionCollection()->addAction("vocab_document_properties");
-    vocabDocumentProperties->setText(i18n("&Properties..."));
+    vocabDocumentProperties->setText(i18n("&Document Properties..."));
     connect(vocabDocumentProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
     vocabDocumentProperties->setWhatsThis(i18n("Edit vocabulary properties"));
     vocabDocumentProperties->setToolTip(vocabDocumentProperties->whatsThis());
     vocabDocumentProperties->setStatusTip(vocabDocumentProperties->whatsThis());
 
-    vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
+    KAction* languageProperties = new KAction(this);
+    languageProperties->setText(i18n("&Grammar Properties..."));
+    languageProperties->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
+    languageProperties->setToolTip(languageProperties->whatsThis());
+    languageProperties->setStatusTip(languageProperties->whatsThis());
+    actionCollection()->addAction("vocab_grammar_properties", languageProperties);
+    connect(languageProperties, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
+
+    QAction* vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
     vocabLanguageProperties->setText(i18n("Articles and Personal Pronouns..."));
     connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
     vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));

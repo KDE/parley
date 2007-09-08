@@ -160,6 +160,7 @@ public slots:
     void slotGeneralOptionsPage(int index);
     void slotGeneralOptions();
     void slotApplyPreferences();
+    void slotLanguageProperties();
     void slotDocumentProperties();
     void slotDocPropsLang();
     void slotShowStatistics();
@@ -194,6 +195,7 @@ public slots:
     void slotFileSaveAs();
     void slotFilePrint();
     void slotFileQuit();
+
 
     /** put the marked text/object into the clipboard*/
     void slotEditCopy();
@@ -284,8 +286,10 @@ private:
 //     KSelectAction* vocabAppendLanguage;
     QAction* vocabEditLanguages;
 
+    QAction* languageProperties;
+
     QAction* vocabDocumentProperties;
-    QAction* vocabLanguageProperties;
+
     QAction* vocabLessons;
     QAction* vocabShowSearchBar;
 

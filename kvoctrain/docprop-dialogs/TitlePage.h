@@ -37,7 +37,7 @@ class TitlePage : public QWidget, public Ui::TitlePageForm
 public:
     TitlePage(KEduVocDocument * doc, QWidget *parent);
 
-// public slots:
+public slots:
     void commitData();
 
 private:
