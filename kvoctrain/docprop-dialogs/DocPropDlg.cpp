@@ -64,6 +64,7 @@ DocPropsDlg::~DocPropsDlg()
 void DocPropsDlg::commitData()
 {
     useOptPage->commitData();
+    titleOptPage->commitData();
 }
 
 

@@ -221,12 +221,6 @@ void KVocTrainApp::slotDocumentProperties()
         QList<int> tenseIndex;
         QStringList new_tenseStr;
 
-        m_doc->setTitle(ddlg.getTitle());
-        m_doc->setAuthor(ddlg.getAuthor());
-        m_doc->setLicense(ddlg.getLicense());
-        m_doc->setDocumentComment(ddlg.getDocComment());
-        m_doc->setCategory(ddlg.getCategory());
-
         ddlg.getTenseNames(new_tenseStr, tenseIndex);
         ddlg.commitData();
 

@@ -33,57 +33,24 @@
 
 TitlePage::TitlePage(KEduVocDocument * doc, QWidget* parent) : QWidget(parent)
 {
+    m_doc = doc;
     setupUi(this);
 
-    title = doc->title();
-    author = doc->author();
-    license = doc->license();
-    doc_comment = doc->documentComment();
-    category = doc->category();
-
-    titleLineEdit->setText(title);
-    titleLineEdit->setFocus();
-    titleLineEdit->selectAll();
-
-    authorTextEdit->setText(author);
-    licenseComboBox->setEditText(license);
-    commentTextEdit->setText(doc_comment);
-    categoryComboBox->setEditText(category);
-
-    connect(titleLineEdit,   SIGNAL(textChanged(const QString&)), this, SLOT(slotTitleChanged(const QString&)));
-    connect(authorTextEdit,  SIGNAL(textChanged()),               this, SLOT(slotAuthorChanged()));
-    connect(licenseComboBox, SIGNAL(textChanged(const QString&)), this, SLOT(slotLicenseChanged(const QString&)));
-    connect(commentTextEdit,  SIGNAL(textChanged()),               this, SLOT(slotDocCommentChanged()));
-    connect(categoryComboBox, SIGNAL(textChanged(const QString&)), this, SLOT(slotCategoryChanged(const QString&)));
+    titleLineEdit->setText(doc->title());
+    authorTextEdit->setText(doc->author());
+    licenseComboBox->setEditText(doc->license());
+    commentTextEdit->setText(doc->documentComment());
+    categoryComboBox->setEditText(doc->category());
 }
 
 
-void TitlePage::slotTitleChanged(const QString& s)
+void TitlePage::commitData()
 {
-    title = s;
-}
-
-
-void TitlePage::slotAuthorChanged()
-{
-    author = authorTextEdit->toPlainText();
-}
-
-
-void TitlePage::slotLicenseChanged(const QString& s)
-{
-    license = s;
-}
-
-
-void TitlePage::slotDocCommentChanged()
-{
-    doc_comment = commentTextEdit->toPlainText();
-}
-
-void TitlePage::slotCategoryChanged(const QString& s)
-{
-    category = s;
+    m_doc->setTitle(titleLineEdit->text());
+    m_doc->setAuthor(authorTextEdit->toPlainText());
+    m_doc->setLicense(licenseComboBox->currentText());
+    m_doc->setDocumentComment(commentTextEdit->toPlainText());
+    m_doc->setCategory(categoryComboBox->currentText());
 }
 
 #include "TitlePage.moc"
