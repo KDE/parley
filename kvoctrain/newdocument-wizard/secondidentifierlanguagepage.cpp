@@ -46,24 +46,19 @@ SecondIdentifierLanguagePage::SecondIdentifierLanguagePage(QWizard * parent)
     setSubTitle(i18n("Please select the second column data:"));
 
     setupUi(this);
+    registerField("secondIdentifierName*", identifierNameLineEdit);
+    registerField("secondLocale", languageComboBox);
+    connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
 
     QStringList codes = KGlobal::locale()->allLanguagesList();
-    int current = codes.indexOf(KGlobal::locale()->language());
 
     QStringList languageNames;
     foreach (QString code, codes){
         languageNames.append( KGlobal::locale()->languageCodeToName(code) );
     }
+    languageNames.sort();
 
     languageComboBox->addItems(languageNames);
-    languageComboBox->setCurrentIndex(current);
-
-    identifierNameLineEdit->setText( languageComboBox->currentText() );
-
-    connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
-
-    registerField("secondIdentifierName*", identifierNameLineEdit);
-    registerField("secondLocale", languageComboBox);
 }
 
 SecondIdentifierLanguagePage::~SecondIdentifierLanguagePage()
@@ -72,14 +67,17 @@ SecondIdentifierLanguagePage::~SecondIdentifierLanguagePage()
 
 void SecondIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
-//     if ( identifierNameLineEdit->text().isEmpty() ) {
     identifierNameLineEdit->setText(language);
-//     }
 }
 
 void SecondIdentifierLanguagePage::initializePage()
 {
     firstLanguageName->setText( field("firstIdentifierName").toString() );
+
+    // maybe stupid, but just assume everyone wants to learn english :)
+    languageComboBox->setCurrentIndex(
+        languageComboBox->findText(
+            KGlobal::locale()->languageCodeToName("en") ) );
 }
 
 

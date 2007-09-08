@@ -27,17 +27,19 @@
 
 /**
  * QWizardPage to let the user select the first two languages that he wants in his document.
-	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+ @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
 class FirstIdentifierLanguagePage : public QWizardPage, public Ui::IdentifierLanguagePage
 {
-Q_OBJECT
+    Q_OBJECT
 public:
-    FirstIdentifierLanguagePage(QWizard *parent);
+    FirstIdentifierLanguagePage ( QWizard *parent );
     ~FirstIdentifierLanguagePage();
 
+    void initializePage();
+
 private slots:
-    void currentLanguageChanged(const QString& language);
+    void currentLanguageChanged ( const QString& language );
 
 };
 

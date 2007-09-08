@@ -31,9 +31,7 @@
 #include <KComboBox>
 #include <KLocale>
 
-
 #include "kvtnewdocumentwizard.h"
-
 
 /**
  *
@@ -42,30 +40,24 @@
 FirstIdentifierLanguagePage::FirstIdentifierLanguagePage(QWizard * parent)
     : QWizardPage(parent)
 {
-
     setTitle(i18n("Identifier and language selection"));
-
     setSubTitle(i18n("Please select the first column data:"));
 
     setupUi(this);
-    QStringList codes = KGlobal::locale()->allLanguagesList();
+    registerField("firstIdentifierName*", identifierNameLineEdit);
+    registerField("firstLocale", languageComboBox);
 
-    int current = codes.indexOf(KGlobal::locale()->language());
+    connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
+
+    QStringList codes = KGlobal::locale()->allLanguagesList();
 
     QStringList languageNames;
     foreach (QString code, codes){
         languageNames.append( KGlobal::locale()->languageCodeToName(code) );
     }
+    languageNames.sort();
 
     languageComboBox->addItems(languageNames);
-    languageComboBox->setCurrentIndex(current);
-
-    identifierNameLineEdit->setText( languageComboBox->currentText() );
-
-    connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
-
-    registerField("firstIdentifierName*", identifierNameLineEdit);
-    registerField("firstLocale", languageComboBox);
 }
 
 FirstIdentifierLanguagePage::~FirstIdentifierLanguagePage()
@@ -74,9 +66,15 @@ FirstIdentifierLanguagePage::~FirstIdentifierLanguagePage()
 
 void FirstIdentifierLanguagePage::currentLanguageChanged(const QString & language)
 {
-    //if ( identifierNameLineEdit->text().isEmpty() ) {
     identifierNameLineEdit->setText(language);
-    //}
+}
+
+void FirstIdentifierLanguagePage::initializePage()
+{
+    QString currentCode = KGlobal::locale()->language();
+    languageComboBox->setCurrentIndex(
+        languageComboBox->findText(
+            KGlobal::locale()->languageCodeToName(currentCode) ) );
 }
 
 
