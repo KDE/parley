@@ -38,9 +38,6 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
 //     setFaceType(KPageDialog::Tabbed);
     setFaceType(KPageDialog::List);
 
-    titleOptPage = new TitlePage(doc, 0);
-    addPage(titleOptPage, i18n("General"));
-
     typeOptPage = new WordTypeOptionPage(doc, 0);
     addPage(typeOptPage, i18nc("word types","Types"));
 
@@ -64,7 +61,6 @@ DocPropsDlg::~DocPropsDlg()
 void DocPropsDlg::commitData()
 {
     useOptPage->commitData();
-    titleOptPage->commitData();
 }
 
 

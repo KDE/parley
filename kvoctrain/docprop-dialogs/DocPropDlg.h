@@ -30,7 +30,6 @@
 #include "TypeOptPage.h"
 #include "TenseOptPage.h"
 #include "UsageOptPage.h"
-#include "TitlePage.h"
 
 #include <KPageDialog>
 
@@ -57,7 +56,6 @@ private:
     UsageOptPage   *useOptPage;
     WordTypeOptionPage    *typeOptPage;
     TenseOptPage   *tenseOptPage;
-    TitlePage      *titleOptPage;
 };
 
 #endif // DocPropsDlg_included

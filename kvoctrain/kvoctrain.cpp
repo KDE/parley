@@ -30,6 +30,7 @@
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "common-dialogs/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
+#include "TitlePage.h"
 #include "prefs.h"
 
 #include <keduvoclesson.h>
