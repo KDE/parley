@@ -227,8 +227,8 @@ int KVTLessonModel::addLesson(const QString &lessonName)
     if (lessonName.isNull()) {
         // add the lesson
         newLessonIndex = m_doc->appendLesson(QString(), true);
-        // then name it according to its index
-        m_doc->lesson(newLessonIndex).setName(i18n("Lesson %1", newLessonIndex));
+        // then name it according to its index (humans like to count from 1)
+        m_doc->lesson(newLessonIndex).setName(i18n("Lesson %1", newLessonIndex + 1));
     } else {
         newLessonIndex = m_doc->appendLesson(lessonName);
     }
