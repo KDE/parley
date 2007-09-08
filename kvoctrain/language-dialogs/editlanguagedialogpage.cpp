@@ -61,9 +61,14 @@ void EditLanguageDialogPage::initialize()
     // language codes
     QStringList codes = KGlobal::locale()->allLanguagesList();
 
-    QStringList languageNames;
+    // qmap automatically sorts by keys
+    QMap<QString, QString> languageCodeMap;
     foreach (QString code, codes){
-        localeComboBox->addItem( KGlobal::locale()->languageCodeToName(code), code);
+        languageCodeMap[KGlobal::locale()->languageCodeToName(code)] = code;
+    }
+    // add the language, but also it's code as data
+    foreach ( QString language, languageCodeMap.keys() ) {
+        localeComboBox->addItem( language, languageCodeMap.value(language) );
     }
 
     localeComboBox->setCurrentIndex(localeComboBox->findData(
