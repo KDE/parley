@@ -199,7 +199,7 @@ void KVocTrainApp::slotFileOpenExample()
 void KVocTrainApp::slotGHNS()
 {
   ///Make sure the installation directory exists
-  KConfig conf("kvoctrain.knsrc");
+  KConfig conf("parley.knsrc");
   KConfigGroup confGroup = conf.group("KNewStuff2");
   QString installDir = confGroup.readEntry("InstallPath", "Vocabularies");
   KStandardDirs::makeDir(QDir::home().path() + '/' + installDir);
