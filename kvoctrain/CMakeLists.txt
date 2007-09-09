@@ -47,6 +47,7 @@ set(querydialogs_SRCS
     query-dialogs/RandomQueryDlg.cpp
     query-dialogs/SimpleQueryDlg.cpp
     query-dialogs/VerbQueryDlg.cpp
+    query-dialogs/startpracticedialog.cpp
 )
 
 kde4_add_ui_files(querydialogs_SRCS
@@ -56,6 +57,7 @@ kde4_add_ui_files(querydialogs_SRCS
     query-dialogs/RandomQueryDlgForm.ui
     query-dialogs/SimpleQueryDlgForm.ui
     query-dialogs/VerbQueryDlgForm.ui
+    query-dialogs/startpracticewidget.ui
 )
 
 set(docprop_SRCS

@@ -369,6 +369,24 @@ void KVocTrainApp::initActions()
     learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
     learningResumeMultipleChoice->setStatusTip(learningResumeMultipleChoice->whatsThis());
 
+
+    KAction* startPractice = new KAction(this);
+    startPractice->setText(i18n("Start Practice..."));
+    startPractice->setWhatsThis(i18n("Set up and start a test"));
+    startPractice->setToolTip(startPractice->whatsThis());
+    startPractice->setStatusTip(startPractice->whatsThis());
+    actionCollection()->addAction("practice_start", startPractice);
+    connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
+
+    KAction* resumePractice = new KAction(this);
+    resumePractice->setText(i18n("Resume Practice..."));
+    resumePractice->setWhatsThis(i18n("Start a test with the last settings"));
+    resumePractice->setToolTip(resumePractice->whatsThis());
+    resumePractice->setStatusTip(resumePractice->whatsThis());
+    actionCollection()->addAction("practice_resume", resumePractice);
+    connect(resumePractice, SIGNAL(triggered(bool)), SLOT(resumePractice()));
+
+
 // -- SETTINGS --------------------------------------------------
 
     configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());

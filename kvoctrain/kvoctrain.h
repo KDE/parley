@@ -164,12 +164,9 @@ public slots:
     void slotDocumentProperties();
     void slotDocPropsLang();
     void slotShowStatistics();
-    /** set up vocabulary and learning submenus */
-//     void aboutToShowVocabAppendLanguage();
-//     void aboutToShowVocabSetLanguage();
-    /** create the remove language menu */
-//     void aboutToShowVocabRemoveLanguage();
-    void aboutToShowLearn();
+
+    /// @todo as soon as a new way to start tests is implemented, get rid of this
+    KDE_DEPRECATED void aboutToShowLearn();
 
     /** starts query mode */
     void slotLearningMapperTriggered(const QString &);

@@ -563,6 +563,9 @@ void KVocTrainApp::aboutToShowLearn()
     learningMenu->addAction(learningResumeQuery);
     learningMenu->addAction(learningResumeMultipleChoice);
 
+    learningMenu->addAction( actionCollection()->action("practice_start") );
+    learningMenu->addAction( actionCollection()->action("practice_resume") );
+
     learningMenu->addSeparator();
 
     learningMenu->addAction( actionCollection()->action("vocab_show_statistics") );
