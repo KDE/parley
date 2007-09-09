@@ -24,6 +24,9 @@
         <property name="text" >
          <string>Written</string>
         </property>
+        <property name="checked" >
+         <bool>true</bool>
+        </property>
        </widget>
       </item>
       <item row="0" column="1" >
@@ -102,37 +105,10 @@
       </widget>
      </item>
      <item row="1" column="0" >
-      <widget class="QListWidget" name="LanguageFromList" >
-       <item>
-        <property name="text" >
-         <string>English</string>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>German</string>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Spanish</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QListWidget" name="LanguageFromList" />
      </item>
      <item row="1" column="1" >
-      <widget class="QListWidget" name="LanguageToList" >
-       <item>
-        <property name="text" >
-         <string>German</string>
-        </property>
-       </item>
-       <item>
-        <property name="text" >
-         <string>Spanish</string>
-        </property>
-       </item>
-      </widget>
+      <widget class="QListWidget" name="LanguageToList" />
      </item>
     </layout>
    </item>
