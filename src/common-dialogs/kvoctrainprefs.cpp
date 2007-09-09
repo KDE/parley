@@ -1,5 +1,5 @@
 /***************************************************************************
-             kvoctrainprefs.cpp  -  KVocTrain configuration dialog
+             kvoctrainprefs.cpp  -  Parley configuration dialog
 
                              -------------------
     begin         : Fri Mar 25 2005

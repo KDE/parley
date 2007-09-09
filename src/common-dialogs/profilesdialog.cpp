@@ -1,5 +1,5 @@
 /***************************************************************************
-             profilesdialog.cpp  -  KVocTrain profiles dialog
+             profilesdialog.cpp  -  Parley profiles dialog
 
                              -------------------
     begin                : Fri Apr 29 2005

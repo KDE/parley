@@ -1,7 +1,5 @@
 /***************************************************************************
-                kvoctrainprefs.h  -  KVocTrain configuration dialog
 
-                             -------------------
     begin         : Fri Mar 25 2005
 
     copyright     : (C) 2005, 2007 Peter Hedlund <peter.hedlund@kdemail.net>

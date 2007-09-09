@@ -1,5 +1,5 @@
 /***************************************************************************
-             profilesdialog.h  -  KVocTrain profiles dialog
+             profilesdialog.h  -  Parley profiles dialog
 
                              -------------------
     begin                : Fri Apr 29 2005

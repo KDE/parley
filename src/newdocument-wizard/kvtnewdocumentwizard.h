@@ -51,7 +51,7 @@ private:
 };
 
 /**
-A wizard to assist in the creation of kvtml documents with KVocTrain. Helps to set up the languages of the document.
+A wizard to assist in the creation of kvtml documents with Parley. Helps to set up the languages of the document.
 
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
