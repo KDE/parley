@@ -44,7 +44,7 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
 
     ///@todo get this from config
-    LanguageFromList->setCurrentItem(0);
+    LanguageFromList->setCurrentRow(0);
 //     LanguageToList
 
 }
@@ -67,7 +67,7 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
     }
 
     ///@todo get this from config
-    LanguageToList->setCurrentItem(0);
+    LanguageToList->setCurrentRow(0);
 //     LanguageToList
 }
 
