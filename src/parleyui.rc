@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="kvoctrain"  version="0.4">
+<gui name="parley"  version="0.5">
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />

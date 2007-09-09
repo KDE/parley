@@ -4,7 +4,7 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <include>kglobalsettings.h</include>
-  <kcfgfile name="kvoctrainrc"/>
+  <kcfgfile name="parleyrc"/>
 
   <group name="General">
     <entry name="NumPreSetting" type="Int">
@@ -266,15 +266,14 @@
       <default param="7">10368000</default>
     </entry>
   </group>
-
   <group name="KNewStuff">
     <entry name="ProvidersUrl" type="Path">
-      <label>The Providers path for KVocTrain</label>
-      <default>"http://edu.kde.org/kvoctrain/providers.xml"</default>
+      <label>The Providers path for Parley</label>
+      <default>"http://edu.kde.org/parley/providers.xml"</default>
     </entry>
     <entry name="InstallationCommand" type="String">
       <label>The command used to start a downloaded vocabulary</label>
-      <default>kvoctrain %f</default>
+      <default>parley %f</default>
     </entry>
     <entry name="InstallPath" type="Path">
       <label>The folder where downloaded vocabularies are saved by default</label>

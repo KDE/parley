@@ -129,7 +129,7 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
-set(kvoctrain_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
+set(parley_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
 ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_io.cpp
     kvoctrain.cpp
@@ -144,16 +144,16 @@ ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocu
 )
 
 
-kde4_add_executable(kvoctrain ${kvoctrain_SRCS})
+kde4_add_executable(parley ${parley_SRCS})
 
-target_link_libraries(kvoctrain  keduvocdocument ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
+target_link_libraries(parley  keduvocdocument ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
 
-install(TARGETS kvoctrain  DESTINATION ${BIN_INSTALL_DIR} )
+install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 
 
 ########### install files ###############
 
-install( FILES kvoctrain.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
-install( FILES kvoctrain.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
-install( FILES kvoctrainui.rc  DESTINATION  ${DATA_INSTALL_DIR}/kvoctrain )
+install( FILES parley.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
+install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
+install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 

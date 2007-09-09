@@ -34,7 +34,6 @@ class QueryOptions;
 class ThresholdOptions;
 class BlockOptions;
 
-//class KVTLanguageList;
 class KEduVocDocument;
 class KVTQuery;
 class KComboBox;
