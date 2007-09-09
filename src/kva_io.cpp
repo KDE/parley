@@ -259,7 +259,7 @@ void KVocTrainApp::slotFileSave()
     prepareProgressBar();
     saveDocProps(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
-    if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "KVocTrain")) {
+    if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley")) {
         slotFileSaveAs();
         return;
     }
