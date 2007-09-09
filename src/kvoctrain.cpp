@@ -439,142 +439,6 @@ void KVocTrainApp::slotApplyPreferences()
 }
 
 
-void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
-{}
-
-/** create the learning action menu
- * use a qsignalmapper to connect all subitems to one slot.
- */
-void KVocTrainApp::aboutToShowLearn()
-{
-    QMenu *identifierSubMenu;
-    QMenu *identifierSubSubMenu;
-    QAction *typeAction;
-
-    QString mapString = QString("%1%2%3");
-    QChar fillChar = QLatin1Char('0');
-
-    learningMenu->clear();
-
-    if (m_learningMapper != 0)
-        delete m_learningMapper;
-    m_learningMapper = 0;
-    m_learningMapper = new QSignalMapper(this);
-    connect(m_learningMapper, SIGNAL(mapped(const QString &)), this, SLOT(slotLearningMapperTriggered(const QString &)));
-
-    int columns = m_tableModel->columnCount(QModelIndex()) - KV_EXTRA_COLS;
-
-    //collect needed data
-
-    /// @todo this should come from m_doc
-    QStringList titles;
-    QList<QPixmap> icons;
-    for (int i = 0; i < columns; i++) {
-        titles.append(m_tableModel->headerData(i + KV_EXTRA_COLS, Qt::Horizontal, Qt::DisplayRole).toString());
-        icons.append(m_tableModel->headerData(i + KV_EXTRA_COLS, Qt::Horizontal, Qt::DecorationRole).value<QPixmap>());
-    }
-
-    for (int j = 0; j < columns; j++) {
-
-        //top level item for each identifier
-        identifierSubMenu = learningMenu->addMenu(icons[j], titles[j]);
-
-        //Random and multiple choice items
-        if (j == 0) {
-            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_query"), i18n("Create Written Test"));
-            for (int k = 1; k < columns; k++) {
-                typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
-                typeAction->setWhatsThis(i18n("Creates and starts test from %1 to %2", titles[k], titles[0]));
-                typeAction->setToolTip(typeAction->whatsThis());
-                typeAction->setStatusTip(typeAction->whatsThis());
-                m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::WrittenTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
-            }
-
-            identifierSubSubMenu = identifierSubMenu->addMenu(KIcon("run_multi"), i18n("Create &Multiple Choice Test"));
-            for (int k = 1; k < columns; k++) {
-                typeAction = identifierSubSubMenu->addAction(icons[k], i18n("From %1", titles[k]), m_learningMapper, SLOT(map()));
-                typeAction->setWhatsThis(i18n("Creates and starts multiple choice from %1 to %2", titles[k], titles[0]));
-                typeAction->setToolTip(typeAction->whatsThis());
-                typeAction->setStatusTip(typeAction->whatsThis());
-                m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::MultipleChoiceTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(k, 3, 10, fillChar));
-            }
-        } else {
-            typeAction = identifierSubMenu->addAction(KIcon("run_query"), i18n("Create Written Test"), m_learningMapper, SLOT(map()));
-            typeAction->setWhatsThis(i18n("Creates and starts practice from %1 to %2", titles[0], titles[j]));
-            typeAction->setToolTip(typeAction->whatsThis());
-            typeAction->setStatusTip(typeAction->whatsThis());
-            m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::WrittenTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-            typeAction = identifierSubMenu->addAction(KIcon("run_multi"), i18n("Create &Multiple Choice Test"), m_learningMapper, SLOT(map()));
-            typeAction->setWhatsThis(i18n("Creates and starts multiple choice test from %1 to %2", titles[0], titles[j]));
-            typeAction->setToolTip(typeAction->whatsThis());
-            typeAction->setStatusTip(typeAction->whatsThis());
-            m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::MultipleChoiceTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-        }
-
-        identifierSubMenu->addSeparator();
-
-        //Special queries items for each identifier
-        typeAction = identifierSubMenu->addAction(i18n("&Verbs"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with verbs"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::ConjugationTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        typeAction = identifierSubMenu->addAction(i18n("&Articles"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with articles"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::ArticleTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        typeAction = identifierSubMenu->addAction(i18n("&Comparisons"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with adjectives"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::ComparisonAdjectiveTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        identifierSubMenu->addSeparator();
-
-        typeAction = identifierSubMenu->addAction(i18n("S&ynonyms"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with synonyms"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::SynonymTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        typeAction = identifierSubMenu->addAction(i18n("A&ntonyms"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with antonyms"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::AntonymTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        typeAction = identifierSubMenu->addAction(i18n("E&xamples"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with examples"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::ExampleTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-
-        typeAction = identifierSubMenu->addAction(i18n("&Paraphrase"), m_learningMapper, SLOT(map()));
-        typeAction->setWhatsThis(i18n("Starts training with paraphrases"));
-        typeAction->setToolTip(typeAction->whatsThis());
-        typeAction->setStatusTip(typeAction->whatsThis());
-        m_learningMapper->setMapping(typeAction, mapString.arg(Prefs::EnumTestType::ParaphraseTest, 3, 10, fillChar).arg(j, 3, 10, fillChar).arg(0, 3, 10, fillChar));
-    }
-
-    learningMenu->addSeparator();
-    learningMenu->addAction(learningResumeQuery);
-    learningMenu->addAction(learningResumeMultipleChoice);
-
-    learningMenu->addSeparator();
-
-    learningMenu->addAction( actionCollection()->action("practice_start") );
-    learningMenu->addAction( actionCollection()->action("practice_resume") );
-
-    learningMenu->addSeparator();
-
-    learningMenu->addAction( actionCollection()->action("vocab_show_statistics") );
-}
-
-
 void KVocTrainApp::slotStatusHelpMsg(const QString &text)
 {
     ///////////////////////////////////////////////////////////////////
@@ -592,6 +456,10 @@ void KVocTrainApp::slotFilePrint()
         m_tableView->print(&printer);
     slotStatusMsg(i18n("Ready"));
 }
+
+
+void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
+{}
 
 
 void KVocTrainApp::slotEditCopy()
@@ -705,17 +573,6 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 }
 
 
-void KVocTrainApp::slotLearningMapperTriggered(const QString & mapString)
-{
-    int cmd     = mapString.mid(0, 3).toInt(); // type of query
-    int fromTranslation = mapString.mid(3, 3).toInt(); // from language
-    int toTranslation = mapString.mid(6, 3).toInt(); // to language
-
-    m_queryManager->query(cmd, toTranslation, fromTranslation);
-
-    slotStatusMsg(IDS_DEFAULT);
-}
-
 void KVocTrainApp::slotConfigShowSearch()
 {
     if (m_searchWidget) {
@@ -756,8 +613,6 @@ void KVocTrainApp::startPractice()
     startPracticeDialog->deleteLater();
 
     m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
-
-
 }
 
 void KVocTrainApp::resumePractice()

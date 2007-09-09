@@ -150,12 +150,6 @@ public slots:
     void slotDocPropsLang();
     void slotShowStatistics();
 
-    /// @todo as soon as a new way to start tests is implemented, get rid of this
-    KDE_DEPRECATED void aboutToShowLearn();
-
-    /** starts query mode */
-    KDE_DEPRECATED void slotLearningMapperTriggered(const QString &);
-
     void startPractice();
     void resumePractice();
 
@@ -203,9 +197,6 @@ public slots:
 
     void slotConfigShowSearch();
 
-    void resumeQuery() { m_queryManager->resumeQuery(); }
-    void resumeQueryMC() { m_queryManager->resumeQueryMC(); }
-
     /**
      * Close the entry dialog
      */
@@ -248,14 +239,14 @@ private:
     // KAction pointers to enable/disable actions
     KRecentFilesAction* fileOpenRecent;
     QAction* editDelete;
-    QAction* learningResumeQuery;
-    QAction* learningResumeMultipleChoice;
+//     QAction* learningResumeQuery;
+//     QAction* learningResumeMultipleChoice;
     QAction* vocabShowSearchBar;
 
     QString lastPixName;
 
-    QMenu *learningMenu;
-    QSignalMapper *m_learningMapper;
+//     QMenu *learningMenu;
+//     QSignalMapper *m_learningMapper;
 
 
 //   QPushButton *m_buttonNewLesson;

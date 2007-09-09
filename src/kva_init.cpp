@@ -65,7 +65,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_mainSplitter = 0;
     m_searchWidget = 0;
     m_newStuff = 0;
-    m_learningMapper = 0;
     m_pronunciationStatusBarLabel = 0;
     m_remarkStatusBarLabel = 0;
     m_typeStatusBarLabel = 0;
@@ -117,13 +116,13 @@ void KVocTrainApp::initActions()
     QAction* editSaveSelectedArea;
 
     QAction* vocabShowStatistics;
-    QAction* vocabAssignLessons;
+//     QAction* vocabAssignLessons;
     QAction* vocabCleanUp;
     QAction* vocabEditLanguages;
-    QAction* vocabLessons;
+//     QAction* vocabLessons;
 
     QAction* configToolbar;
-    QAction* configNotifications;
+//     QAction* configNotifications;
     QAction* configApp;
 
 // -- FILE --------------------------------------------------
@@ -353,22 +352,6 @@ void KVocTrainApp::initActions()
 
 // -- LEARNING --------------------------------------------------
 
-    learningResumeQuery = actionCollection()->addAction("learning_resume");
-    learningResumeQuery->setText(i18n("Resume Written Test"));
-    learningResumeQuery->setIcon(KIcon("run_query"));
-    connect(learningResumeQuery, SIGNAL(triggered(bool)), this, SLOT(slotResumeQuery()));
-    learningResumeQuery->setWhatsThis(i18n("Resumes written test with existing selection"));
-    learningResumeQuery->setToolTip(learningResumeQuery->whatsThis());
-    learningResumeQuery->setStatusTip(learningResumeQuery->whatsThis());
-
-    learningResumeMultipleChoice = actionCollection()->addAction("learning_resume_mc");
-    learningResumeMultipleChoice->setText(i18n("Resume &Multiple Choice"));
-    learningResumeMultipleChoice->setIcon(KIcon("run_multi"));
-    connect(learningResumeMultipleChoice, SIGNAL(triggered(bool)), this, SLOT(slotResumeQueryMC()));
-    learningResumeMultipleChoice->setWhatsThis(i18n("Resumes multiple choice with existing selection"));
-    learningResumeMultipleChoice->setToolTip(learningResumeMultipleChoice->whatsThis());
-    learningResumeMultipleChoice->setStatusTip(learningResumeMultipleChoice->whatsThis());
-
 
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
@@ -404,8 +387,6 @@ void KVocTrainApp::initActions()
     configToolbar->setToolTip(configToolbar->whatsThis());
     configToolbar->setStatusTip(configToolbar->whatsThis());
 
-    learningMenu = findChild<KMenu *>("learning");
-    connect(learningMenu, SIGNAL(aboutToShow()), this, SLOT(aboutToShowLearn()));
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     QAction *actionRestoreNativeOrder = actionCollection()->addAction("restore_native_order");
