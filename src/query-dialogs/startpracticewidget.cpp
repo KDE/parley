@@ -48,12 +48,68 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
 //     LanguageToList
 
+    switch ( Prefs::testType() ) {
+    case Prefs::EnumTestType::WrittenTest:
+        WrittenRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::MultipleChoiceTest:
+        MultipleChoiceRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::ArticleTest:
+        ArticlesRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::ConjugationTest:
+        ConjugationsRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::ComparisonAdjectiveTest:
+        ComparisonsRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::SynonymTest:
+        SynonymsRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::AntonymTest:
+        AntonymsRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::ExampleTest:
+        ExamplesRadio->setChecked(true);
+        break;
+    case Prefs::EnumTestType::ParaphraseTest:
+        ParaphraseRadio->setChecked(true);
+        break;
+    }
 }
 
 
 void StartPracticeWidget::commitData()
 {
-//     Prefs::setTestType();
+    if ( WrittenRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::WrittenTest);
+    }
+    if ( MultipleChoiceRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::MultipleChoiceTest);
+    }
+    if ( ArticlesRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::ArticleTest);
+    }
+    if ( ConjugationsRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::ConjugationTest);
+    }
+    if ( ComparisonsRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::ComparisonAdjectiveTest);
+    }
+    if ( SynonymsRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::SynonymTest);
+    }
+    if ( AntonymsRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::AntonymTest);
+    }
+    if ( ExamplesRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::ExampleTest);
+    }
+    if ( ParaphraseRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::ParaphraseTest);
+    }
+
     Prefs::setFromIdentifier(LanguageFromList->currentRow());
     Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 }

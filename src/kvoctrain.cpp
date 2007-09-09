@@ -755,14 +755,14 @@ void KVocTrainApp::startPractice()
     }
     startPracticeDialog->deleteLater();
 
-    m_queryManager->query(Prefs::EnumTestType::WrittenTest, Prefs::toIdentifier(), Prefs::fromIdentifier());
+    m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
 
 
 }
 
 void KVocTrainApp::resumePractice()
 {
-    m_queryManager->query(Prefs::EnumTestType::WrittenTest, Prefs::toIdentifier(), Prefs::fromIdentifier());
+    m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
 }
 
 
