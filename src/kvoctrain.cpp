@@ -564,6 +564,8 @@ void KVocTrainApp::aboutToShowLearn()
     learningMenu->addAction(learningResumeQuery);
     learningMenu->addAction(learningResumeMultipleChoice);
 
+    learningMenu->addSeparator();
+
     learningMenu->addAction( actionCollection()->action("practice_start") );
     learningMenu->addAction( actionCollection()->action("practice_resume") );
 
@@ -760,6 +762,7 @@ void KVocTrainApp::startPractice()
 
 void KVocTrainApp::resumePractice()
 {
+    m_queryManager->query(Prefs::EnumTestType::WrittenTest, Prefs::toIdentifier(), Prefs::fromIdentifier());
 }
 
 

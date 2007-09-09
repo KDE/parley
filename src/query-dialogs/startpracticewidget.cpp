@@ -20,6 +20,7 @@
 #include "startpracticewidget.h"
 
 #include "languagesettings.h"
+#include "prefs.h"
 
 #include <keduvocdocument.h>
 
@@ -44,7 +45,7 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
 
     ///@todo get this from config
-    LanguageFromList->setCurrentRow(0);
+    LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
 //     LanguageToList
 
 }
@@ -52,10 +53,9 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
 
 void StartPracticeWidget::commitData()
 {
-    m_doc->setQueryIdentifier(LanguageToList->currentItem()->text(), LanguageFromList->currentItem()->text());
-//     LanguageSettings settings(locale);
-//     settings.setIcon(icon);
-//     settings.writeConfig();
+//     Prefs::setTestType();
+    Prefs::setFromIdentifier(LanguageFromList->currentRow());
+    Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 }
 
 void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
@@ -64,12 +64,15 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
         if ( i != identifierFromIndex ) {
             LanguageToList->addItem( m_doc->identifier(i).name() );
+            LanguageToList->item(LanguageToList->count()-1)->setData(Qt::UserRole, i);
+            if ( i == Prefs::toIdentifier() ) {
+                LanguageToList->setCurrentRow(i);
+            }
         }
     }
-
-    ///@todo get this from config
-    LanguageToList->setCurrentRow(0);
-//     LanguageToList
+    if ( LanguageToList->currentRow() < 0 ) {
+        LanguageToList->setCurrentRow(0);
+    }
 }
 
 
