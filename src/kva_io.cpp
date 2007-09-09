@@ -184,7 +184,7 @@ void KVocTrainApp::slotFileOpenExample()
     slotStatusMsg(i18n("Opening example file..."));
 
     if (queryExit()) {
-        QString s = KStandardDirs::locate("data", "kvoctrain/examples/");
+        QString s = KStandardDirs::locate("data", "parley/examples/");
         KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
         loadFileFromPath(url, false);
         if (m_doc) {
