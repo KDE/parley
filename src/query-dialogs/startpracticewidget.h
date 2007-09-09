@@ -1,12 +1,14 @@
 /***************************************************************************
 
+    -----------------------------------------------------------------------
+
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
- ***************************************************************************
+ ***************************************************************************/
 
- ***************************************************************************
+/***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -15,27 +17,30 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef STARTPRACTICEDIALOG_H
-#define STARTPRACTICEDIALOG_H
+#ifndef STARTPRACTICEWIDGET_H
+#define STARTPRACTICEWIDGET_H
 
-#include <keduvocdocument.h>
-#include <KPageDialog>
+#include "ui_startpracticewidget.h"
+#include <QWidget>
+
+class KEduVocDocument;
 
 /**
-  *
-  */
-class StartPracticeDialog : public KPageDialog
+ *
+	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
+*/
+class StartPracticeWidget
+    : public QWidget, public Ui::StartPracticeWidget
 {
-    Q_OBJECT
+Q_OBJECT
 public:
-    StartPracticeDialog(KEduVocDocument *doc, QWidget *parent);
-    ~StartPracticeDialog();
+    StartPracticeWidget(KEduVocDocument* doc, QWidget *parent);
 
+public slots:
     void commitData();
 
 private:
-    KPageWidgetItem* startPracticePage;
+    KEduVocDocument* m_doc;
 };
 
-#endif // StartPracticeDialog_included
-
+#endif

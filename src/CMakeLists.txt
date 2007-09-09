@@ -44,6 +44,7 @@ set(querydialogs_SRCS
     query-dialogs/SimpleQueryDlg.cpp
     query-dialogs/VerbQueryDlg.cpp
     query-dialogs/startpracticedialog.cpp
+    query-dialogs/startpracticewidget.cpp
 )
 
 kde4_add_ui_files(querydialogs_SRCS

@@ -31,6 +31,7 @@
 #include "common-dialogs/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
 #include "docprop-dialogs/TitlePage.h"
+#include "query-dialogs/startpracticedialog.h"
 #include "prefs.h"
 
 #include <keduvoclesson.h>
@@ -740,6 +741,21 @@ void KVocTrainApp::slotDocumentProperties()
         titleAuthorWidget->commitData();
     }
     delete titleAuthorDialog;
+}
+
+void KVocTrainApp::startPractice()
+{
+    StartPracticeDialog* startPracticeDialog;
+    startPracticeDialog = new StartPracticeDialog(m_doc, this);
+
+    if ( startPracticeDialog->exec() == QDialog::Accepted ) {
+        kDebug() << "Starting practice...";
+    }
+    startPracticeDialog->deleteLater();
+}
+
+void KVocTrainApp::resumePractice()
+{
 }
 
 

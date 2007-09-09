@@ -16,7 +16,7 @@
  ***************************************************************************/
 
 #include "startpracticedialog.h"
-
+#include "startpracticewidget.h"
 #include <KLocale>
 
 StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
@@ -24,10 +24,15 @@ StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) 
     setCaption(i18n("Start Practice"));
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
-//     setModal(true);
-// //     setFaceType(KPageDialog::Tabbed);
-//     setFaceType(KPageDialog::List);
-//
+    setFaceType(List);
+
+    StartPracticeWidget* startPracticeWidget= new StartPracticeWidget(doc, this);
+    startPracticePage = new KPageWidgetItem(startPracticeWidget, i18n("Test") );
+    startPracticePage->setHeader( i18n("Test options") );
+    startPracticePage->setIcon( KIcon( "run_query" ) );
+    addPage(startPracticePage);
+
+
 //     typeOptPage = new WordTypeOptionPage(doc, 0);
 //     addPage(typeOptPage, i18nc("word types","Types"));
 //
@@ -36,9 +41,7 @@ StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) 
 //
 //     useOptPage = new UsageOptPage(doc, 0);
 //     addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
-//
-//     KConfigGroup cg(KGlobal::config(), "DocumentPropertiesDialog");
-//     restoreDialogSize(cg);
+
 }
 
 StartPracticeDialog::~StartPracticeDialog()

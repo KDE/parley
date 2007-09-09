@@ -169,7 +169,11 @@ public slots:
     KDE_DEPRECATED void aboutToShowLearn();
 
     /** starts query mode */
-    void slotLearningMapperTriggered(const QString &);
+    KDE_DEPRECATED void slotLearningMapperTriggered(const QString &);
+
+    void startPractice();
+    void resumePractice();
+
 
     void slotTimeOutBackup();
 

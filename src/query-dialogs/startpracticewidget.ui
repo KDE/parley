@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>StartQueryWidget</class>
- <widget class="QWidget" name="StartQueryWidget" >
+ <class>StartPracticeWidget</class>
+ <widget class="QWidget" name="StartPracticeWidget" >
   <property name="geometry" >
    <rect>
     <x>0</x>

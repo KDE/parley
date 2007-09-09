@@ -1,12 +1,14 @@
 /***************************************************************************
 
+    -----------------------------------------------------------------------
+
     copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
- ***************************************************************************
+ ***************************************************************************/
 
- ***************************************************************************
+/***************************************************************************
  *                                                                         *
  *   This program is free software; you can redistribute it and/or modify  *
  *   it under the terms of the GNU General Public License as published by  *
@@ -15,27 +17,36 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef STARTPRACTICEDIALOG_H
-#define STARTPRACTICEDIALOG_H
+#include "startpracticewidget.h"
+
+#include "languagesettings.h"
 
 #include <keduvocdocument.h>
-#include <KPageDialog>
+
+#include <KStandardDirs>
+#include <KLocale>
+#include <QLabel>
+#include <QtDBus>
 
 /**
-  *
-  */
-class StartPracticeDialog : public KPageDialog
+ *
+ * @param parent
+ */
+StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
+    : QWidget(parent)
 {
-    Q_OBJECT
-public:
-    StartPracticeDialog(KEduVocDocument *doc, QWidget *parent);
-    ~StartPracticeDialog();
+    m_doc = doc;
+    setupUi(this);
 
-    void commitData();
+}
 
-private:
-    KPageWidgetItem* startPracticePage;
-};
 
-#endif // StartPracticeDialog_included
+void StartPracticeWidget::commitData()
+{
+//     LanguageSettings settings(locale);
+//     settings.setIcon(icon);
+//     settings.writeConfig();
+}
 
+
+#include "startpracticewidget.moc"
