@@ -33,10 +33,10 @@ int main(int argc, char* argv[])
 {
 
     static const char description[] = I18N_NOOP("Vocabulary Trainer");
-    static const char version[]     = KVOCTRAIN_VERSION_STRING;
+    static const char version[]     = PARLEY_VERSION_STRING;
 
-    KAboutData aboutData("kvoctrain", 0,
-                         ki18n("KVocTrain"),
+    KAboutData aboutData("parley", 0,
+                         ki18n("Parley"),
                          version,
                          ki18n(description),
                          KAboutData::License_GPL,
@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
                                    "© 2004-2007\tPeter Hedlund\n"
                                    "© 2007\tFrederik Gladhorn\n"),
                          ki18n("Helps you train your vocabulary"),
-                         "http://edu.kde.org/kvoctrain",
+                         "http://edu.kde.org/parley",
                          "submit@bugs.kde.org");
 
     aboutData.addAuthor(ki18n("Frederik Gladhorn"),

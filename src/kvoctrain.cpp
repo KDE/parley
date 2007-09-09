@@ -101,7 +101,7 @@ void KVocTrainApp::saveProperties(KConfigGroup &config)
         QString filename=m_doc->url().path();
         QString tempname = kapp->tempSaveName(filename);
         saveDocProps(m_doc);
-        m_doc->saveAs(KUrl(tempname), KEduVocDocument::Automatic, "KVocTrain");
+        m_doc->saveAs(KUrl(tempname), KEduVocDocument::Automatic, "Parley");
     }
 }
 

@@ -298,7 +298,7 @@ void KVocTrainApp::slotFileSaveAs()
 
                 prepareProgressBar();
                 m_doc->setCsvDelimiter(Prefs::separator());
-                m_doc->saveAs(url, KEduVocDocument::Automatic, "KVocTrain");
+                m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
                 fileOpenRecent->addUrl(m_doc->url());
                 removeProgressBar();
             }
@@ -362,7 +362,7 @@ void KVocTrainApp::slotSaveSelection()
 
             prepareProgressBar();
             seldoc.setCsvDelimiter(Prefs::separator());
-            seldoc.saveAs(url, KEduVocDocument::Automatic, "KVocTrain");
+            seldoc.saveAs(url, KEduVocDocument::Automatic, "Parley");
             removeProgressBar();
         }
     }

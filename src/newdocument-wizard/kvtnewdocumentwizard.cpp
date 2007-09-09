@@ -49,7 +49,7 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
 
     setStartId(Intro);
 
-    setWindowTitle(i18n("Create a new KVocTrain document"));
+    setWindowTitle(i18n("Create a New Parley Document"));
 }
 
 

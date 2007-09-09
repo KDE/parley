@@ -35,7 +35,7 @@ KVTNewDocumentWizardIntroPage::KVTNewDocumentWizardIntroPage(QWidget *parent)
 
     label = new QLabel(i18n("This wizard will get you started "
                             "setting up your new document.\n\n"
-                            "With KVocTrain you can practice anything that comes in pairs. For example foreign languages and their translation to your language.\n\n"
+                            "With Parley you can practice anything that comes in pairs. For example foreign languages and their translation to your language.\n\n"
                             "To get started it is necessary to set up what you would like to practice.\n\n"
                             "On the next page you can choose to use languages or anything else. In that case you can simply define yourself what it is you practice by typing a title for it."
                             ));
