@@ -38,6 +38,15 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     m_doc = doc;
     setupUi(this);
 
+    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
+        LanguageFromList->addItem( m_doc->identifier(i).name() );
+    }
+    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
+
+    ///@todo get this from config
+    LanguageFromList->setCurrentItem(0);
+//     LanguageToList
+
 }
 
 
@@ -46,6 +55,20 @@ void StartPracticeWidget::commitData()
 //     LanguageSettings settings(locale);
 //     settings.setIcon(icon);
 //     settings.writeConfig();
+}
+
+void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
+{
+    LanguageToList->clear();
+    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
+        if ( i != identifierFromIndex ) {
+            LanguageToList->addItem( m_doc->identifier(i).name() );
+        }
+    }
+
+    ///@todo get this from config
+    LanguageToList->setCurrentItem(0);
+//     LanguageToList
 }
 
 

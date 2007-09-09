@@ -39,6 +39,8 @@ public:
 public slots:
     void commitData();
 
+private slots:
+    void fromLanguageSelected(int identifierFromIndex);
 private:
     KEduVocDocument* m_doc;
 };
