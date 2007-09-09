@@ -1,3 +1,4 @@
-project(kvoctrain)
+project(parley)
 
-add_subdirectory( kvoctrain ) 
+add_subdirectory( src ) 
+

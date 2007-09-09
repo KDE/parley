@@ -1,6 +1,6 @@
 /** @mainpage
 
-KVocTrain is a vocabulary trainer.
+Parley is a vocabulary trainer. It used to be called KVocTrain.
 It supports multiple languages in one docuement.
 Vocabulary are stored in XML.
 See KEduVocDocument for information about the file format.
