@@ -27,7 +27,6 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
 kde4_add_ui_files( libcommondlg_SRCS
     common-dialogs/blockoptionsbase.ui
     common-dialogs/groupoptionsbase.ui
-    common-dialogs/languageoptionsbase.ui
     common-dialogs/queryoptionsbase.ui
     common-dialogs/thresholdoptionsbase.ui
     common-dialogs/viewoptionsbase.ui
