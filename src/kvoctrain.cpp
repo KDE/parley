@@ -608,11 +608,11 @@ void KVocTrainApp::startPractice()
     startPracticeDialog = new StartPracticeDialog(m_doc, this);
 
     if ( startPracticeDialog->exec() == QDialog::Accepted ) {
-        kDebug() << "Starting practice...";
+        m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
     }
     startPracticeDialog->deleteLater();
 
-    m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
+
 }
 
 void KVocTrainApp::resumePractice()
