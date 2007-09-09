@@ -752,6 +752,32 @@ void KVocTrainApp::startPractice()
         kDebug() << "Starting practice...";
     }
     startPracticeDialog->deleteLater();
+
+
+//     int cmd = mapString.mid(0, 3).toInt(); // type of query
+//     int fromTranslation = mapString.mid(3, 3).toInt(); // from language
+//     int toTranslation = mapString.mid(6, 3).toInt(); // to language
+
+    QString from;
+    QString to;
+    m_doc->queryIdentifier(from, to);
+
+
+    int fromIndex = 0;
+    int toIndex = 0;
+
+    for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
+        if ( m_doc->identifier(i).name() == from ) {
+            fromIndex = i;
+        }
+        if ( m_doc->identifier(i).name() == to ) {
+            toIndex = i;
+        }
+    }
+kDebug() << "query: (" << fromIndex << ") " << from << " to (" << toIndex << ")" << to;
+    m_queryManager->query(START_QUERY, toIndex, fromIndex);
+
+
 }
 
 void KVocTrainApp::resumePractice()

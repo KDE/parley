@@ -26,11 +26,11 @@ StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) 
     setDefaultButton(Ok);
     setFaceType(List);
 
-    StartPracticeWidget* startPracticeWidget= new StartPracticeWidget(doc, this);
-    startPracticePage = new KPageWidgetItem(startPracticeWidget, i18n("Test") );
-    startPracticePage->setHeader( i18n("Test options") );
-    startPracticePage->setIcon( KIcon( "run_query" ) );
-    addPage(startPracticePage);
+    m_startPracticeWidget= new StartPracticeWidget(doc, this);
+    m_startPracticePage = new KPageWidgetItem(m_startPracticeWidget, i18n("Test") );
+    m_startPracticePage->setHeader( i18n("Test options") );
+    m_startPracticePage->setIcon( KIcon( "run_query" ) );
+    addPage(m_startPracticePage);
 
 
 //     typeOptPage = new WordTypeOptionPage(doc, 0);
@@ -53,7 +53,15 @@ StartPracticeDialog::~StartPracticeDialog()
 
 void StartPracticeDialog::commitData()
 {
+    m_startPracticeWidget->commitData();
 }
+
+void StartPracticeDialog::accept()
+{
+    commitData();
+    QDialog::accept();
+}
+
 
 
 #include "startpracticedialog.moc"

@@ -52,6 +52,7 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
 
 void StartPracticeWidget::commitData()
 {
+    m_doc->setQueryIdentifier(LanguageFromList->currentItem()->text(),  LanguageToList->currentItem()->text());
 //     LanguageSettings settings(locale);
 //     settings.setIcon(icon);
 //     settings.writeConfig();

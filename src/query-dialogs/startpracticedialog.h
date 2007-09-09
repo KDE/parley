@@ -21,6 +21,8 @@
 #include <keduvocdocument.h>
 #include <KPageDialog>
 
+class StartPracticeWidget;
+
 /**
   *
   */
@@ -33,8 +35,12 @@ public:
 
     void commitData();
 
+public slots:
+    void accept();
+
 private:
-    KPageWidgetItem* startPracticePage;
+    KPageWidgetItem* m_startPracticePage;
+    StartPracticeWidget* m_startPracticeWidget;
 };
 
 #endif // StartPracticeDialog_included
