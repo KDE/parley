@@ -180,10 +180,10 @@
         <item row="0" column="1" >
          <widget class="KIntNumInput" name="kcfg_MaxTimePer" >
           <property name="toolTip" >
-           <string>Set the maximum time allowed per query.</string>
+           <string>Set the maximum time allowed per answer.</string>
           </property>
           <property name="whatsThis" >
-           <string>You may set a time limit KVocTrain grants you to remember the correct answer. Set here the maximum time you want to allow per query.</string>
+           <string>Set here the maximum time you want to allow per answer.</string>
           </property>
           <property name="minimum" >
            <number>0</number>

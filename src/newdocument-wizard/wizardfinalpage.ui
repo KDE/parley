@@ -16,7 +16,7 @@
    <item>
     <widget class="QLabel" name="label" >
      <property name="text" >
-      <string>Enjoy learning with KVocTrain.</string>
+      <string>Enjoy learning with Parley.</string>
      </property>
     </widget>
    </item>
@@ -39,7 +39,7 @@
       <enum>Qt::RightToLeft</enum>
      </property>
      <property name="text" >
-      <string>The KVocTrain team</string>
+      <string>The Parley Team</string>
      </property>
     </widget>
    </item>
