@@ -114,7 +114,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
 {
     switch (command) {
 
-    case START_QUERY:
+    case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
         randomQueryDlg = 0;
         m_queryType = KVTQuery::RandomQuery;
@@ -122,7 +122,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
                     m_doc->identifier(toTranslation).name(), true);
         break;
 
-    case START_MULTIPLE:
+    case Prefs::EnumTestType::MultipleChoiceTest:
         delete mcQueryDlg;
         mcQueryDlg = 0;
         m_queryType = KVTQuery::MultipleChoiceQuery;
@@ -130,7 +130,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
                        m_doc->identifier(toTranslation).name(), true);
         break;
 
-    case START_VERB: {
+    case Prefs::EnumTestType::ConjugationTest: {
         delete verbQueryDlg;
         verbQueryDlg = 0;
         m_queryType = KVTQuery::ConjugationQuery;
@@ -138,7 +138,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
     }
     break;
 
-    case START_ARTICLE: {
+    case Prefs::EnumTestType::ArticleTest: {
         delete artQueryDlg;
         artQueryDlg = 0;
         m_queryType = KVTQuery::ArticleQuery;
@@ -146,7 +146,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
     }
     break;
 
-    case START_ADJECTIVE: {
+    case Prefs::EnumTestType::ComparisonAdjectiveTest: {
         delete adjQueryDlg;
         adjQueryDlg = 0;
         m_queryType = KVTQuery::ComparisonAdjectiveQuery;
@@ -154,7 +154,7 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
     }
     break;
 
-    case START_ADVERB: {
+    case Prefs::EnumTestType::ComparisonAdverbTest: {
         delete adjQueryDlg;
         adjQueryDlg = 0;
         m_queryType = KVTQuery::ComparisonAdverbQuery;
@@ -162,28 +162,28 @@ void QueryManager::query(int command, int toTranslation, int fromTranslation)
     }
     break;
 
-    case START_SYNONYM: {
+    case Prefs::EnumTestType::SynonymTest: {
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
         startPropertyQuery(fromTranslation, KVTQuery::SynonymQuery);
     }
     break;
 
-    case START_ANTONYM: {
+    case Prefs::EnumTestType::AntonymTest: {
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
         startPropertyQuery(fromTranslation, KVTQuery::AntonymQuery);
     }
     break;
 
-    case START_EXAMPLE: {
+    case Prefs::EnumTestType::ExampleTest: {
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
         startPropertyQuery(fromTranslation, KVTQuery::ExampleQuery);
     }
     break;
 
-    case START_PARAPHRASE: {
+    case Prefs::EnumTestType::ParaphraseTest: {
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
         startPropertyQuery(fromTranslation, KVTQuery::ParaphraseQuery);

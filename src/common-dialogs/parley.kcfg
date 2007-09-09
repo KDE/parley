@@ -11,10 +11,6 @@
       <label>Number of stored setting profiles</label>
       <default>0</default>
     </entry>
-    <entry name="NumLangSet" type="Int">
-      <label>Number of defined languages</label>
-      <default>0</default>
-    </entry>
     <entry name="AutoEntryApply" type="Bool">
       <label></label>
       <default>false</default>
@@ -186,6 +182,29 @@
   </group>
 
   <group name="QueryManager">
+    <entry name="FromIdentifier" type="Int">
+      <label>The language that is displayed in a test.</label>
+      <default>0</default>
+    </entry>
+    <entry name="ToIdentifier" type="Int">
+      <label>The language in which the user has to answer.</label>
+      <default>1</default>
+    </entry>
+    <entry name="TestType" type="Enum">
+        <choices>
+            <choice name="WrittenTest"/>
+            <choice name="MultipleChoiceTest"/>
+            <choice name="ArticleTest"/>
+            <choice name="ConjugationTest"/>
+            <choice name="ComparisonAdjectiveTest"/>
+            <choice name="ComparisonAdverbTest"/>
+            <choice name="SynonymTest"/>
+            <choice name="AntonymTest"/>
+            <choice name="ExampleTest"/>
+            <choice name="ParaphraseTest"/>
+        </choices>
+        <label>The test type that is currently selected.</label>
+    </entry>
     <entry name="CompType$(Type)" type="Enum" key="CompType$(Type)">
       <parameter name="Type" type="Enum">
         <values>

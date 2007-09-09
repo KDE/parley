@@ -50,21 +50,6 @@
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
 
-
-//ugly :( make a nice enum in KVTQuery
-#define START_QUERY                 1
-#define START_MULTIPLE              2
-#define START_ARTICLE               3
-#define START_VERB                  4
-#define START_ADJECTIVE             5
-#define START_ADVERB                6
-#define START_SYNONYM               7
-#define START_ANTONYM               8
-#define START_EXAMPLE               9
-#define START_PARAPHRASE           10
-
-
-
 class QProgressBar;
 class QSplitter;
 
