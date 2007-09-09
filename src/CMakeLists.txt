@@ -3,10 +3,7 @@ add_subdirectory( common-dialogs )
 add_subdirectory( examples )
 add_subdirectory( pics )
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/
-                     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/docprop-dialogs/
-                     ${CMAKE_SOURCE_DIR}/kvoctrain/kvoctrain/entry-dialogs/
-)
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 
 ########### next target ###############
