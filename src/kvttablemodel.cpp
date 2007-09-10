@@ -198,21 +198,12 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             case 1:
                 return QVariant();
                 break;
-            default: {
-                kDebug() << "Getting pixmap...";
+            default:
                 LanguageSettings currentSettings(m_doc->identifier(section - KV_EXTRA_COLS).locale());
                 currentSettings.readConfig();
                 QString icon = currentSettings.icon();
                 return QPixmap(icon);
-                    ///@todo get pixmap from config
-//                 int id = m_languages.indexShortId(m_doc->identifier(section - 2).name());
-
-//                 if (id < 0)
-//                     return QVariant();
-//                 else
-                    return QVariant(); ///@todo QPixmap(m_languages[id].pixmapFile());
                 break;
-            }
             }
         }
         if (role == Qt::SizeHintRole) {
@@ -320,8 +311,9 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
 bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
 {
     Q_UNUSED(parent);
-    if (count < 1 || row < 0 || row + count > m_doc->entryCount() || count >= m_doc->entryCount())
+    if (count < 1 || row < 0 || row + count > m_doc->entryCount()) {
         return false;
+    }
 
     int bottomRow = row + count -1;
     beginRemoveRows(QModelIndex(), row, row + count - 1);

@@ -83,7 +83,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     initDoc();
     initView();
 
-
     editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
     if (Prefs::autoBackup()) {
