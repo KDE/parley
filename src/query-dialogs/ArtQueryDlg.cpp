@@ -90,7 +90,7 @@ void ArtQueryDlg::setQuery(int entry,
     bool removed = false;
 
     articles.getFemale(&def, &indef);
-    mw->rb_fem->setText(i18n("&female:\t")+def+" / "+indef);
+    mw->rb_fem->setText(i18nc("@label the gender of the word: female", "&female:\t")+def+" / "+indef);
     mw->rb_fem->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
@@ -102,7 +102,7 @@ void ArtQueryDlg::setQuery(int entry,
     }
 
     articles.getMale(&def, &indef);
-    mw->male->setText(i18n("&male:\t")+def+" / "+indef);
+    mw->male->setText(i18nc("@label the gender of the word: male", "&male:\t")+def+" / "+indef);
     mw->male->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
@@ -114,7 +114,7 @@ void ArtQueryDlg::setQuery(int entry,
     }
 
     articles.getNatural(&def, &indef);
-    mw->natural->setText(i18n("&natural:\t")+def+" / "+indef);
+    mw->natural->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t")+def+" / "+indef);
     mw->natural->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
