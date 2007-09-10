@@ -27,7 +27,6 @@
 #include "authortitlepage.h"
 #include "firstidentifierlanguagepage.h"
 #include "secondidentifierlanguagepage.h"
-#include "wizardfinalpage.h"
 
 #include <keduvocdocument.h>
 
@@ -64,8 +63,7 @@ public:
         Intro,
         AuthorTitle,
         FirstIdentifierLanguage,
-        SecondIdentifierLanguage,
-        Final
+        SecondIdentifierLanguage
     };
 
     KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent);

@@ -45,8 +45,6 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
 
     setPage(SecondIdentifierLanguage, new SecondIdentifierLanguagePage(this));
 
-    setPage(Final, new WizardFinalPage(this));
-
     setStartId(Intro);
 
     setWindowTitle(i18n("Create a New Parley Document"));
@@ -63,38 +61,11 @@ int KVTNewDocumentWizard::nextId() const
     case FirstIdentifierLanguage:
         return SecondIdentifierLanguage;
     case SecondIdentifierLanguage:
-        return Final;
-    case Final:
     default:
         return -1;
     }
 }
 
-// QList<WizardIdentifier> KVTNewDocumentWizard::identifiers()
-// {
-//     QList<WizardIdentifier> ident;
-//     if ( hasVisitedPage(WizardFirstLanguagePage) ) {
-//         kDebug() << "adding first page";
-//         ident.append(WizardIdentifier(true,
-//             field("firstLanguagePage.language").toString(),
-//             field("firstLanguagePage.languageShort").toString() ));
-//     }
-//     if ( hasVisitedPage(WizardSecondLanguagePage) ) {
-//         kDebug() << "adding second page";
-//         ident.append(WizardIdentifier(true,
-//             field("secondLanguagePage.language").toString(),
-//             field("secondLanguagePage.languageShort").toString() ));
-//     }
-//     if ( hasVisitedPage(WizardOtherPage) ) {
-//         ident.append(WizardIdentifier(false,
-//             field("otherPage.firstIdentifier").toString(),
-//             field("otherPage.firstIdentifier").toString() ));
-//         ident.append(WizardIdentifier(false,
-//             field("otherPage.secondIdentifier").toString(),
-//             field("otherPage.secondIdentifier").toString() ));
-//     }
-//     return ident;
-// }
 
 void KVTNewDocumentWizard::accept()
 {
@@ -112,11 +83,8 @@ void KVTNewDocumentWizard::accept()
     m_doc->identifier(1).setName( field("secondIdentifierName").toString() );
     m_doc->identifier(1).setLocale( KGlobal::locale()->allLanguagesList().value(field("secondLocale").toInt()) );
 
-
     QDialog::accept();
 }
-
-
 
 
 #include "kvtnewdocumentwizard.moc"
