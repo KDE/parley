@@ -27,15 +27,12 @@
 
 #include <keduvocdocument.h>
 
-#define KV_EXTRA_COLS    2   // add col for lesson number
-
 #define KV_COL_LESS      0   // col: lesson number
 #define KV_COL_MARK      1   // col: mark
 #define KV_COL_TRANS     2   // col: first translation
 
 // To enable use of KEduVocExpression* in a QVariant
-Q_DECLARE_METATYPE ( KEduVocExpression* )
-
+// Q_DECLARE_METATYPE ( KEduVocExpression* )
 
 /**
   The model for the big table in the main window. Here the vocabulary can be edited directly.
@@ -50,8 +47,8 @@ public:
         LessonsRole = Qt::UserRole + 1,
         LessonRole,
         StateRole,
-        GradeRole,
-        ExpressionRole
+        GradeRole
+//         ExpressionRole
     };
 
     KVTTableModel(QObject *parent = 0);

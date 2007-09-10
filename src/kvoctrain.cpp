@@ -200,7 +200,7 @@ void KVocTrainApp::slotEditEntry()
         entryList.append( currentIndex.row() );
     }
 
-    entryDlg->setData(entryList, currentIndex.column() - KV_EXTRA_COLS);
+    entryDlg->setData(entryList, currentIndex.column() - KV_COL_TRANS);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
@@ -474,7 +474,7 @@ void KVocTrainApp::slotEditCopy()
 
     foreach(const QModelIndex &idx, selectedRows) {
         bool sep = false;
-        for (int i = KV_EXTRA_COLS; i < m_tableModel->columnCount(QModelIndex()); i++) {
+        for (int i = KV_COL_TRANS; i < m_tableModel->columnCount(QModelIndex()); i++) {
             if (!sep)
                 sep = true;
             else
@@ -544,7 +544,7 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
         return;
     }
 
-    int translationId = current.column() - KV_EXTRA_COLS;
+    int translationId = current.column() - KV_COL_TRANS;
     if ( translationId < 0 ) {
         translationId = 0;
     }

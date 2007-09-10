@@ -105,7 +105,7 @@ private:
     KEduVocDocument *m_doc;
 //    // The row currently selected in the document - this is the entry number
 //     int               m_currentRow;
-    /// Column in the document - corresponds to the language (-KV_EXTRA_COLS)
+    /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int               m_currentTranslation;
 
     /// Selection in the doc - if more than one row is selected behavior is different

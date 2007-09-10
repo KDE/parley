@@ -106,11 +106,11 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         }
 
     case KVTTableModel::GradeRole: {
-            if (index.column() > KV_EXTRA_COLS) { // translation
+            if (index.column() > KV_COL_TRANS) { // translation
 
                 //kDebug() << "KVTTableModel::GradeRole column: " << index.column();
 
-                return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).gradeFrom(0).grade());
+                return QVariant(m_doc->entry(index.row())->translation(index.column() - KV_COL_TRANS).gradeFrom(0).grade());
 
             } else if (index.column() == 2) { // original
                 QList<QVariant> result;
@@ -144,17 +144,17 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                 } else
                     return "@inactive@";
             } else {
-                result = m_doc->entry(index.row())->translation(index.column() - KV_EXTRA_COLS).text();
+                result = m_doc->entry(index.row())->translation(index.column() - KV_COL_TRANS).text();
             }
             return result;
             break;
         }
-    case KVTTableModel::ExpressionRole: {
-            QVariant v;
-            v.setValue(m_doc->entry(index.row()));
-            return v;
-            break;
-        }
+//     case KVTTableModel::ExpressionRole: {
+//             QVariant v;
+//             v.setValue(m_doc->entry(index.row()));
+//             return v;
+//             break;
+//         }
 
         /*case Qt::DecorationRole: {
          if (index.column() == 1)
@@ -187,7 +187,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             else if (section == 1) {
                 return QString();
             } else { // translations
-                return m_doc->identifier(section - KV_EXTRA_COLS).name();
+                return m_doc->identifier(section - KV_COL_TRANS).name();
             }
         }
         if (role == Qt::DecorationRole) {
@@ -199,7 +199,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return QVariant();
                 break;
             default:
-                LanguageSettings currentSettings(m_doc->identifier(section - KV_EXTRA_COLS).locale());
+                LanguageSettings currentSettings(m_doc->identifier(section - KV_COL_TRANS).locale());
                 currentSettings.readConfig();
                 QString icon = currentSettings.icon();
                 return QPixmap(icon);
@@ -215,7 +215,7 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return QSize(25, 25);
                 break;
             default:
-                return QSize(m_doc->sizeHint(section - KV_EXTRA_COLS), 25);
+                return QSize(m_doc->sizeHint(section - KV_COL_TRANS), 25);
                 break;
             }
         }
@@ -297,7 +297,7 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
                 ;
             case 1: //
             default:
-                m_doc->setSizeHint(section - KV_EXTRA_COLS, qvariant_cast<QSize>(value).width());
+                m_doc->setSizeHint(section - KV_COL_TRANS, qvariant_cast<QSize>(value).width());
             }
         }
 
@@ -345,7 +345,7 @@ bool KVTTableModel::removeTranslation(int translationIndex)
     }
 
     beginRemoveColumns(QModelIndex(), translationIndex, translationIndex);
-    m_doc->removeIdentifier(translationIndex - KV_EXTRA_COLS);
+    m_doc->removeIdentifier(translationIndex - KV_COL_TRANS);
     endRemoveColumns();
 
     m_doc->setModified(true);

@@ -90,7 +90,7 @@ private:
 
     KDialog             *subDialog;
 
-    /// Column in the document - corresponds to the language (-KV_EXTRA_COLS)
+    /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int               m_currentTranslation;
     /// Selection in the doc - if more than one row is selected behavior is different
     QList<int>        m_entries;

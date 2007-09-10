@@ -417,7 +417,7 @@ void KVocTrainApp::newDocumentWizard()
 
     // Set the language headers of the table.
     for (int i=0; i<m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
+        m_tableModel->setHeaderData(i+KV_COL_TRANS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
     }
 
     int lessonIndex = m_lessonModel->addLesson();
@@ -486,7 +486,7 @@ void KVocTrainApp::createExampleEntries()
 
     // Set the language headers of the table.
     for (int i=0; i < m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_EXTRA_COLS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
+        m_tableModel->setHeaderData(i+KV_COL_TRANS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
     }
 
     int lessonIndex = m_lessonModel->addLesson();
