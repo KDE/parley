@@ -1,6 +1,8 @@
 /** @mainpage
 
-Parley is a vocabulary trainer. It used to be called KVocTrain.
+Parley is a vocabulary trainer.
+
+Its original name was KVocTrain.
 It supports multiple languages in one docuement.
 Vocabulary are stored in XML.
 See KEduVocDocument for information about the file format.

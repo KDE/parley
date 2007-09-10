@@ -331,13 +331,7 @@ void KVTTableModel::appendTranslation()
 {
     beginInsertColumns(QModelIndex(), columnCount(QModelIndex()), columnCount(QModelIndex()));
 
-///@todo check if this is a good idea
     m_doc->appendIdentifier();
-    int num = m_doc->entryCount() - 1;
-    for (int i = 0; i < (int) num; i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        expr->translation(num).setType(expr->translation(0).type());
-    }
 
     endInsertColumns();
     m_doc->setModified(true);
