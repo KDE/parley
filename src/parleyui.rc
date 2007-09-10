@@ -40,11 +40,6 @@
   </Menu>
   <Menu name="learning" >
    <text>&amp;Practice</text>
-<!--<Action name="learning_language" />
-   <Separator/>
-   <Action name="learning_resume_query" />
-   <Action name="learning_resume_multiple_choice" /> -->
-   <Separator/>
    <Action name="practice_start" />
    <Action name="practice_resume" />
    <Separator/>
@@ -68,5 +63,8 @@
   <Action name="edit_append" />
   <Separator/>
   <Action name="edit_edit_selected_area" />
+  <Separator/>
+  <Action name="practice_start" />
+  <Action name="practice_resume" />
  </ToolBar>
 </gui>
