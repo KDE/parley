@@ -21,7 +21,7 @@
 
 StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
-    setCaption(i18n("Start Practice"));
+    setCaption(i18nc("@title:window", "Configure Practice"));
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
     setFaceType(List);
