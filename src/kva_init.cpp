@@ -23,6 +23,9 @@
  *                                                                         *
  ***************************************************************************/
 
+#include "kvoctrain.h"
+#include "prefs.h"
+
 #include <QClipboard>
 #include <QTimer>
 #include <QLabel>
@@ -35,22 +38,13 @@
 #include <KTabWidget>
 
 #include <KActionCollection>
-#include <klineedit.h>
-#include <kcombobox.h>
-#include <krecentfilesaction.h>
-#include <kselectaction.h>
-#include <kstatusbar.h>
-#include <kstandardaction.h>
-#include <ktoggleaction.h>
-#include <kmenu.h>
-#include <kiconloader.h>
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kicon.h>
+#include <KLineEdit>
+#include <KComboBox>
+#include <KRecentFilesAction>
+#include <KStatusBar>
+#include <KToggleAction>
+#include <KLocale>
 #include <knewstuff2/ui/knewstuffaction.h>
-
-#include "kvoctrain.h"
-#include "prefs.h"
 
 KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 {
@@ -94,7 +88,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 void KVocTrainApp::initActions()
 {
 // -- FILE --------------------------------------------------
-
     KAction* fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
