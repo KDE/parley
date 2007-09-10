@@ -588,12 +588,6 @@ void KVocTrainApp::initView()
 
     setCaption(m_doc->url().fileName(), false);
 
-    //connect(m_tableModel, SIGNAL(modelAboutToBeReset()), m_tableView, SLOT(slotModelAboutToBeReset()));
-
-///@todo are these disconnected, once the model is changed? they probably never get reconnected.
-    connect(m_tableModel, SIGNAL(modelReset()), m_tableView, SLOT(slotModelReset()));
-    connect(m_tableView, SIGNAL(appendEntry()), m_tableModel, SLOT(appendEntry()));
-
     // selection changes (the entry dialog needs these)
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
@@ -629,9 +623,7 @@ void KVocTrainApp::initView()
 //     m_mainSplitter->addWidget(tabWidget);
 //     /* End tabs - comment out these lines to get the nomal behavior. */
 
-///@todo initialize m_sortFilterModel if it is not!!
-// m_sortFilterModel->setLessonSelection(Prefs::LessonEditingSelection);
-m_sortFilterModel->clear();
+    m_sortFilterModel->clear();
 
     m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
     m_doc->setModified(false);

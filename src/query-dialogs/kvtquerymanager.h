@@ -25,18 +25,13 @@
 #ifndef KVTQUERYMANAGER_H
 #define KVTQUERYMANAGER_H
 
+#include "kvtquery.h"
+#include "QueryDlgBase.h"
 #include <QString>
 #include <KRandomSequence>
 
-#include "kvtquery.h"
-#include "QueryDlgBase.h"
-
-// class KVTQuery;
-// class QueryDlgBase;
-
 class KVocTrainApp;
 class KEduVocDocument;
-
 
 class SimpleQueryDlg;
 class MCQueryDlg;
