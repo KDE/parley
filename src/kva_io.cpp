@@ -23,31 +23,22 @@
  *                                                                         *
  ***************************************************************************/
 
-//#include <unistd.h>
+#include "kvoctrain.h"
+#include "newdocument-wizard/kvtnewdocumentwizard.h"
+#include "entry-dialogs/EntryDlg.h"
+#include "prefs.h"
 
 #include <QTimer>
 #include <QFrame>
 #include <QWizard>
 #include <QApplication>
 
-#include <kfiledialog.h>
-#include <kcombobox.h>
-#include <qprogressbar.h>
-#include <krecentdocument.h>
-#include <kstatusbar.h>
-#include <klocale.h>
-#include <krecentfilesaction.h>
-#include <kstandarddirs.h>
-#include <kdebug.h>
+#include <KFileDialog>
+#include <KStatusBar>
+#include <KRecentFilesAction>
+#include <KStandardDirs>
 #include <knewstuff2/engine.h>
-
-#include "kvoctrain.h"
-#include "newdocument-wizard/kvtnewdocumentwizard.h"
-#include "entry-dialogs/EntryDlg.h"
-
 #include <KUser>
-
-#include <prefs.h>
 
 void KVocTrainApp::slotTimeOutBackup()
 {

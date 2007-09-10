@@ -36,7 +36,6 @@
 #include <QVBoxLayout>
 
 #include <KTabWidget>
-
 #include <KActionCollection>
 #include <KLineEdit>
 #include <KComboBox>
