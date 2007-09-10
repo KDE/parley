@@ -28,10 +28,12 @@
 #include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"
 
-#include <QTimer>
-#include <QFrame>
-#include <QWizard>
-#include <QApplication>
+#include "query-dialogs/kvtquerymanager.h"
+#include "kvttablemodel.h"
+#include "kvtsortfiltermodel.h"
+#include "kvttableview.h"
+#include "kvtlessonmodel.h"
+#include "kvtlessonview.h"
 
 #include <KFileDialog>
 #include <KStatusBar>
@@ -39,6 +41,13 @@
 #include <KStandardDirs>
 #include <knewstuff2/engine.h>
 #include <KUser>
+#include <KMessageBox>
+
+#include <QTimer>
+#include <QFrame>
+#include <QWizard>
+#include <QApplication>
+#include <QProgressBar>
 
 void KVocTrainApp::slotTimeOutBackup()
 {
@@ -298,7 +307,8 @@ void KVocTrainApp::slotFileSaveAs()
 void KVocTrainApp::loadDocProps()
 {
     if (m_queryManager) {
-        delete m_queryManager;
+        m_queryManager->deleteLater();
+        m_queryManager=0;
     }
     m_queryManager = new QueryManager(this, m_doc);
 }

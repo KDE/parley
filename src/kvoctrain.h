@@ -26,42 +26,31 @@
 #ifndef KVOCTRAIN_H
 #define KVOCTRAIN_H
 
-#include <QPainter>
-#include <QLabel>
-#include <QKeyEvent>
-#include <QVBoxLayout>
-#include <QTreeView>
-#include <QPushButton>
-#include <QSignalMapper>
-
-#include <kxmlguiwindow.h>
-#include <kaction.h>
-#include <kmenubar.h>
-#include <kmessagebox.h>
-#include <krandomsequence.h>
-
-#include "query-dialogs/kvtquerymanager.h"
-#include "kvttablemodel.h"
-#include "kvtsortfiltermodel.h"
-#include "kvttableview.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include <KXmlGuiWindow>
+#include <KUrl>
+#include <QItemSelection>
+#include <QModelIndex>
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
-
-class QProgressBar;
-class QSplitter;
-
-class KLineEdit;
-class KComboBox;
-class KRecentFilesAction;
-class KSelectAction;
-
-class KEduVocDocument;
-
+class KVTTableModel;
+class KVTSortFilterModel;
+class KVTTableView;
+class KVTLessonModel;
+class KVTLessonView;
+class QueryManager;
 class EntryDlg;
 class KVTNewStuff;
+
+class KEduVocDocument;
+class KLineEdit;
+class KComboBox;
+class KMessageBox;
+class KRecentFilesAction;
+class KAction;
+class QProgressBar;
+class QSplitter;
+class QLabel;
 
 /**
   * This Class is the base class for your application. It sets up the main

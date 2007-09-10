@@ -26,14 +26,12 @@
 #include "kvoctrain.h"
 #include "prefs.h"
 
-#include <QClipboard>
-#include <QTimer>
-#include <QLabel>
-#include <QHeaderView>
-#include <QSplitter>
-#include <QTreeView>
-#include <QAbstractItemModel>
-#include <QVBoxLayout>
+#include "query-dialogs/kvtquerymanager.h"
+#include "kvttablemodel.h"
+#include "kvtsortfiltermodel.h"
+#include "kvttableview.h"
+#include "kvtlessonmodel.h"
+#include "kvtlessonview.h"
 
 #include <KTabWidget>
 #include <KActionCollection>
@@ -44,6 +42,15 @@
 #include <KToggleAction>
 #include <KLocale>
 #include <knewstuff2/ui/knewstuffaction.h>
+
+#include <QClipboard>
+#include <QTimer>
+#include <QLabel>
+#include <QHeaderView>
+#include <QSplitter>
+#include <QTreeView>
+#include <QAbstractItemModel>
+#include <QVBoxLayout>
 
 KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 {

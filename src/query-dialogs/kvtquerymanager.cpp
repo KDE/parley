@@ -41,9 +41,11 @@
 
 #include <keduvoclesson.h>
 
-#include <QString>
 #include <KDebug>
 #include <KLocale>
+#include <KMessageBox>
+
+#include <QString>
 
 #define MAX_QUERY_TIMEOUT 3
 

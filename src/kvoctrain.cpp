@@ -24,6 +24,13 @@
 
 #include "kvoctrain.h"
 
+#include "query-dialogs/kvtquerymanager.h"
+#include "kvttablemodel.h"
+#include "kvtsortfiltermodel.h"
+#include "kvttableview.h"
+#include "kvtlessonmodel.h"
+#include "kvtlessonview.h"
+
 #include "entry-dialogs/EntryDlg.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
@@ -50,6 +57,7 @@
 #include <kinputdialog.h>
 #include <kapplication.h>
 #include <KActionCollection>
+#include <KMessageBox>
 
 #include <QFile>
 #include <QTimer>
