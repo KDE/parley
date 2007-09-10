@@ -43,7 +43,7 @@
    <Action name="practice_start" />
    <Action name="practice_configure" />
    <Separator/>
-   <Action name="vocab_show_statistics" />
+   <Action name="show_statistics" />
   </Menu>
   <Menu name="settings" >
     <Action name="config_show_search" />
@@ -62,7 +62,7 @@
   <Action name="new_lesson" />
   <Action name="edit_append" />
   <Separator/>
-  <Action name="edit_edit_selected_area" />
+  <Action name="edit_selected_area" />
   <Separator/>
   <!--Action name="practice_configure"/-->
   <Action name="practice_start" />

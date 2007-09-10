@@ -123,7 +123,7 @@ void KVocTrainApp::initActions()
     fileOpenRecent = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
     KAction* fileMerge = new KAction(this);
-    actionCollection()->addAction("file_merge");
+    actionCollection()->addAction("file_merge", fileMerge);
     fileMerge->setText(i18n("&Merge..."));
     connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
     fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
@@ -147,7 +147,7 @@ void KVocTrainApp::initActions()
     filePrint->setStatusTip(filePrint->whatsThis());
 
     KAction* fileProperties = new KAction(this);
-    actionCollection()->addAction("file_properties");
+    actionCollection()->addAction("file_properties", fileProperties);
     fileProperties->setText(i18n("&Properties..."));
     connect(fileProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
     fileProperties->setIcon(KIcon("document-properties"));
@@ -184,7 +184,7 @@ void KVocTrainApp::initActions()
     editClearSelection->setStatusTip(editClearSelection->whatsThis());
 
     KAction* editAppend = new KAction(this);
-    actionCollection()->addAction("edit_append");
+    actionCollection()->addAction("edit_append", editAppend);
     editAppend->setIcon(KIcon("insert_table_row"));
     editAppend->setText(i18n("&Add New Entry"));
     connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
@@ -194,7 +194,7 @@ void KVocTrainApp::initActions()
     editAppend->setStatusTip(editAppend->whatsThis());
 
     editDelete = new KAction(this);
-    actionCollection()->addAction("edit_remove_selected_area");
+    actionCollection()->addAction("edit_remove_selected_area", editDelete);
     editDelete->setIcon(KIcon("delete_table_row"));
     editDelete->setText(i18n("&Delete Entry"));
     connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
@@ -204,7 +204,7 @@ void KVocTrainApp::initActions()
     editDelete->setStatusTip(editDelete->whatsThis());
 
     KAction* editEditEntry = new KAction(this);
-     actionCollection()->addAction("edit_edit_selected_area");
+     actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
     editEditEntry->setIcon(KIcon("edit_table_row"));
     editEditEntry->setText(i18n("&Edit Entry..."));
     connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
@@ -214,7 +214,7 @@ void KVocTrainApp::initActions()
     editEditEntry->setStatusTip(editEditEntry->whatsThis());
 
     KAction* editSaveSelectedArea = new KAction(this);
-     actionCollection()->addAction("edit_save_selected_area");
+     actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
     editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
     connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
@@ -280,17 +280,8 @@ void KVocTrainApp::initActions()
 
 // -- VOCABULARY --------------------------------------------------
 
-    KAction* vocabShowStatistics = new KAction(this);
-     actionCollection()->addAction("vocab_show_statistics");
-    vocabShowStatistics->setIcon(KIcon("statistics"));
-    vocabShowStatistics->setText(i18n("&Statistics..."));
-    connect(vocabShowStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
-    vocabShowStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
-    vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
-    vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());
-
     KAction* vocabCleanUp = new KAction(this);
-    actionCollection()->addAction("vocab_clean_up");
+    actionCollection()->addAction("vocab_clean_up", vocabCleanUp);
     vocabCleanUp->setIcon(KIcon("cleanup"));
     vocabCleanUp->setText(i18n("Remove &Duplicates"));
     connect(vocabCleanUp, SIGNAL(triggered(bool)), this, SLOT(slotCleanVocabulary()));
@@ -300,21 +291,22 @@ void KVocTrainApp::initActions()
 
 
     KAction* vocabEditLanguages =new KAction(this);
-     actionCollection()->addAction("vocab_edit_languages");
+     actionCollection()->addAction("vocab_edit_languages", vocabEditLanguages);
     vocabEditLanguages->setIcon(KIcon("insert_table_col"));
     vocabEditLanguages->setText(i18n("&Edit Languages"));
     connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
     ///@todo tooltip
 
     KAction* languageProperties = new KAction(this);
+    actionCollection()->addAction("vocab_grammar_properties", languageProperties);
     languageProperties->setText(i18n("&Grammar Properties..."));
     languageProperties->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
     languageProperties->setToolTip(languageProperties->whatsThis());
     languageProperties->setStatusTip(languageProperties->whatsThis());
-    actionCollection()->addAction("vocab_grammar_properties", languageProperties);
     connect(languageProperties, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
 
-    QAction* vocabLanguageProperties = actionCollection()->addAction("vocab_language_properties");
+    KAction* vocabLanguageProperties = new KAction(this);
+    actionCollection()->addAction("vocab_language_properties", vocabLanguageProperties);
     vocabLanguageProperties->setText(i18n("Articles and Personal Pronouns..."));
     connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
     vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
@@ -328,14 +320,13 @@ void KVocTrainApp::initActions()
     vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
     vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
 
-    QAction *actionShowLessonColumn = actionCollection()->addAction("config_show_lesson_column");
+    KAction *actionShowLessonColumn = new KAction(this);
+    actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
     actionShowLessonColumn->setText(i18n("Show Lesson Column"));
     actionShowLessonColumn->setCheckable((true));
     actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
 
-
-// -- LEARNING --------------------------------------------------
-
+// -- PRACTICE --------------------------------------------------
 
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Configure Practice..."));
@@ -347,11 +338,21 @@ void KVocTrainApp::initActions()
 
     KAction* resumePractice = new KAction(this);
     resumePractice->setText(i18n("Start Practice..."));
+    resumePractice->setIcon(KIcon("practice"));
     resumePractice->setWhatsThis(i18n("Start a test with the last settings"));
     resumePractice->setToolTip(resumePractice->whatsThis());
     resumePractice->setStatusTip(resumePractice->whatsThis());
     actionCollection()->addAction("practice_start", resumePractice);
     connect(resumePractice, SIGNAL(triggered(bool)), SLOT(resumePractice()));
+
+    KAction* showStatistics = new KAction(this);
+    actionCollection()->addAction("show_statistics", showStatistics);
+    showStatistics->setIcon(KIcon("statistics"));
+    showStatistics->setText(i18n("&Statistics..."));
+    connect(showStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
+    showStatistics->setWhatsThis(i18n("Show and reset statistics for the current vocabulary"));
+    showStatistics->setToolTip(showStatistics->whatsThis());
+    showStatistics->setStatusTip(showStatistics->whatsThis());
 
 
 // -- SETTINGS --------------------------------------------------
@@ -375,7 +376,8 @@ void KVocTrainApp::initActions()
 
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
-    QAction *actionRestoreNativeOrder = actionCollection()->addAction("restore_native_order");
+    KAction *actionRestoreNativeOrder = new KAction(this);
+    actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
 }
 
