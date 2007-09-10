@@ -112,7 +112,7 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 }
 
 
-void QueryManager::query(int command, int toTranslation, int fromTranslation)
+void QueryManager::query(int command, int fromTranslation, int toTranslation)
 {
     switch (command) {
 
@@ -581,12 +581,13 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 
 /**
  * Start regular type query
- * @param translang that is asked
  * @param orglang shown
+ * @param translang that is asked
  * @param create_new create query=true, resume=false
  */
-void QueryManager::startQuery(const QString & translang, const QString & orglang, bool create_new)
+void QueryManager::startQuery(const QString & orglang, const QString & translang, bool create_new)
 {
+kDebug() << " from: " << orglang << " to: " << translang;
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting written practice..."));
     num_queryTimeout = 0;

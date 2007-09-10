@@ -47,7 +47,7 @@ Q_OBJECT
 public:
     QueryManager(KVocTrainApp *app, KEduVocDocument *doc);
 
-    void query(int queryType, int toTranslation, int fromTranslation);
+    void query(int queryType, int fromTranslation, int toTranslation);
 
     KDE_DEPRECATED void resumeQuery();
     KDE_DEPRECATED void resumeQueryMC();

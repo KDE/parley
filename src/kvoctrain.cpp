@@ -609,14 +609,14 @@ void KVocTrainApp::startPractice()
     startPracticeDialog = new StartPracticeDialog(m_doc, this);
 
     if ( startPracticeDialog->exec() == QDialog::Accepted ) {
-//         m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
+//         m_queryManager->query(Prefs::testType(), Prefs::fromIdentifier(), Prefs::toIdentifier());
     }
     startPracticeDialog->deleteLater();
 }
 
 void KVocTrainApp::resumePractice()
 {
-    m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
+    m_queryManager->query(Prefs::testType(), Prefs::fromIdentifier(), Prefs::toIdentifier());
 }
 
 
