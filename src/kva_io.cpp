@@ -257,7 +257,7 @@ void KVocTrainApp::slotFileSave()
     ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
 
     prepareProgressBar();
-    saveDocProps(m_doc);
+//     saveDocProps(m_doc);
     m_doc->setCsvDelimiter(Prefs::separator());
     if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley")) {
         slotFileSaveAs();
@@ -294,7 +294,7 @@ void KVocTrainApp::slotFileSaveAs()
 
                 QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
                 ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
-                saveDocProps(m_doc);
+//                 saveDocProps(m_doc);
 
                 prepareProgressBar();
                 m_doc->setCsvDelimiter(Prefs::separator());
@@ -312,12 +312,6 @@ void KVocTrainApp::loadDocProps()
         delete m_queryManager;
     }
     m_queryManager = new QueryManager(this, m_doc);
-}
-
-
-void KVocTrainApp::saveDocProps(KEduVocDocument *the_doc)
-{
-    the_doc->setQueryIdentifier(m_queryManager->fromTranslation(), m_queryManager->toTranslation());
 }
 
 
@@ -358,7 +352,7 @@ void KVocTrainApp::slotSaveSelection()
             QFile::remove(url.path()+'~'); // remove previous backup
             // FIXME: check error
             ::rename(QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
-            saveDocProps(&seldoc);
+//             saveDocProps(&seldoc);
 
             prepareProgressBar();
             seldoc.setCsvDelimiter(Prefs::separator());

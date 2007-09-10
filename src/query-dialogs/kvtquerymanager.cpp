@@ -72,21 +72,21 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
     random_expr1.clear();
     random_expr2.clear();
     queryList.clear();
-    m_doc->queryIdentifier(act_query_org, act_query_trans);
-    if (!act_query_org.isEmpty() && !act_query_trans.isEmpty()) {
-        for (int i = 0; i < m_doc->entryCount(); i++) {
-            KEduVocExpression *entry = m_doc->entry(i);
-            if (entry->isInQuery()) {
-                int less = entry->lesson();
-                for (int l = (int) queryList.size(); l <= less; l++) {
-                    QueryEntryList ref_vec;
-                    queryList.append(ref_vec);
-                }
-                QueryEntry ref(entry, i);
-                queryList[less].append(ref);
-            }
-        }
-    }
+//     m_doc->queryIdentifier(act_query_org, act_query_trans);
+//     if (!act_query_org.isEmpty() && !act_query_trans.isEmpty()) {
+//         for (int i = 0; i < m_doc->entryCount(); i++) {
+//             KEduVocExpression *entry = m_doc->entry(i);
+//             if (entry->isInQuery()) {
+//                 int less = entry->lesson();
+//                 for (int l = (int) queryList.size(); l <= less; l++) {
+//                     QueryEntryList ref_vec;
+//                     queryList.append(ref_vec);
+//                 }
+//                 QueryEntry ref(entry, i);
+//                 queryList[less].append(ref);
+//             }
+//         }
+//     }
 
     // remove empty elements
     for (int i = (int) queryList.size()-1; i >= 0; i--)
@@ -554,28 +554,28 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 }
 
 
-void QueryManager::resumeQuery()
-{
-    m_queryType = KVTQuery::RandomQuery;
-    restartQuery();
-}
+// void QueryManager::resumeQuery()
+// {
+//     m_queryType = KVTQuery::RandomQuery;
+//     restartQuery();
+// }
 
 
-void QueryManager::resumeQueryMC()
-{
-    m_queryType = KVTQuery::MultipleChoiceQuery;
-    restartQuery();
-}
+// void QueryManager::resumeQueryMC()
+// {
+//     m_queryType = KVTQuery::MultipleChoiceQuery;
+//     restartQuery();
+// }
 
 
-void QueryManager::restartQuery()
-{
-    if (random_expr1.count() != 0) {
-        queryList.insert(queryList.begin(), random_expr1);
-        random_expr1.clear();
-    }
-    startQuery(act_query_trans, act_query_org, false);
-}
+// void QueryManager::restartQuery()
+// {
+//     if (random_expr1.count() != 0) {
+//         queryList.insert(queryList.begin(), random_expr1);
+//         random_expr1.clear();
+//     }
+//     startQuery(act_query_trans, act_query_org, false);
+// }
 
 /**
  * Start regular type query
@@ -673,6 +673,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
     int tindex = m_doc->indexOfIdentifier(act_query_trans);
     int oindex = m_doc->indexOfIdentifier(act_query_org);
+
     QueryEntry queryEntry = random_expr1[random_query_nr];
     KEduVocExpression *exp = queryEntry.exp;
 

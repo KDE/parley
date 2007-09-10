@@ -101,7 +101,7 @@ void KVocTrainApp::saveProperties(KConfigGroup &config)
 
         QString filename=m_doc->url().path();
         QString tempname = kapp->tempSaveName(filename);
-        saveDocProps(m_doc);
+//         saveDocProps(m_doc);
         m_doc->saveAs(KUrl(tempname), KEduVocDocument::Automatic, "Parley");
     }
 }
@@ -608,11 +608,9 @@ void KVocTrainApp::startPractice()
     startPracticeDialog = new StartPracticeDialog(m_doc, this);
 
     if ( startPracticeDialog->exec() == QDialog::Accepted ) {
-        m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
+//         m_queryManager->query(Prefs::testType(), Prefs::toIdentifier(), Prefs::fromIdentifier());
     }
     startPracticeDialog->deleteLater();
-
-
 }
 
 void KVocTrainApp::resumePractice()

@@ -117,7 +117,6 @@ public:
     void removeProgressBar();
     void prepareProgressBar();
     void loadDocProps();
-    void saveDocProps(KEduVocDocument *);
 
 signals:
     void progressChanged(KEduVocDocument *, int curr_percent);
@@ -238,20 +237,10 @@ private:
     ///@todo these are refered to somewhere. should probably be avoidable.
     // KAction pointers to enable/disable actions
     KRecentFilesAction* fileOpenRecent;
-    QAction* editDelete;
-//     QAction* learningResumeQuery;
-//     QAction* learningResumeMultipleChoice;
-    QAction* vocabShowSearchBar;
+    KAction* editDelete;
+    KAction* vocabShowSearchBar;
 
     QString lastPixName;
-
-//     QMenu *learningMenu;
-//     QSignalMapper *m_learningMapper;
-
-
-//   QPushButton *m_buttonNewLesson;
-//   QPushButton *m_buttonRenameLesson;
-//   QPushButton *m_buttonDeleteLesson;
 
     /** m_editCombo selects which lessons to display in m_tableView (the main table) */
     KComboBox *m_lessonSelectionCombo;

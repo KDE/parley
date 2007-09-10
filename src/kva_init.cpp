@@ -69,9 +69,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_remarkStatusBarLabel = 0;
     m_typeStatusBarLabel = 0;
 
-//  controlActive = false; ///@todo delete this variable when deleting the old lesson combo
-//  m_currentLesson = 0;
-
     pbar = 0;
 
     entryDlg = 0;
@@ -88,56 +85,28 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 
     editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
-    if (Prefs::autoBackup())
+    if (Prefs::autoBackup()) {
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
+    }
 }
 
 
 void KVocTrainApp::initActions()
 {
-
-    QAction* fileNew;
-    QAction* fileOpen;
-    QAction* fileOpenExample;
-    QAction* fileGHNS;
-
-    QAction* fileMerge;
-    QAction* fileSave;
-    QAction* fileSaveAs;
-    QAction* filePrint;
-    QAction* fileQuit;
-
-    QAction* editCopy;
-    QAction* editPaste;
-    QAction* editSelectAll;
-    QAction* editClearSelection;
-    QAction* editAppend;
-    QAction* editEditEntry;
-    QAction* editSaveSelectedArea;
-
-    QAction* vocabShowStatistics;
-//     QAction* vocabAssignLessons;
-    QAction* vocabCleanUp;
-    QAction* vocabEditLanguages;
-//     QAction* vocabLessons;
-
-    QAction* configToolbar;
-//     QAction* configNotifications;
-    QAction* configApp;
-
 // -- FILE --------------------------------------------------
 
-    fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
+    KAction* fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());
 
-    fileOpen = KStandardAction::open(this, SLOT(slotFileOpen()), actionCollection());
+    KAction* fileOpen = KStandardAction::open(this, SLOT(slotFileOpen()), actionCollection());
     fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
 
-    fileOpenExample = actionCollection()->addAction("file_open_example");
+    KAction* fileOpenExample = new KAction(this);
+    actionCollection()->addAction("file_open_example", fileOpenExample);
     fileOpenExample->setIcon(KIcon("document-open"));
     fileOpenExample->setText(i18n("Open &Example..."));
     connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
@@ -145,7 +114,7 @@ void KVocTrainApp::initActions()
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-    fileGHNS = KNS::standardAction(i18n("Vocabularies..."), this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
@@ -153,7 +122,8 @@ void KVocTrainApp::initActions()
 
     fileOpenRecent = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
-    fileMerge = actionCollection()->addAction("file_merge");
+    KAction* fileMerge = new KAction(this);
+    actionCollection()->addAction("file_merge");
     fileMerge->setText(i18n("&Merge..."));
     connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
     fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
@@ -161,22 +131,23 @@ void KVocTrainApp::initActions()
     fileMerge->setStatusTip(fileMerge->whatsThis());
     fileMerge->setEnabled(false); ///@todo merging files is horribly broken
 
-    fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
+    KAction* fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
     fileSave->setToolTip(fileSave->whatsThis());
     fileSave->setStatusTip(fileSave->whatsThis());
 
-    fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+    KAction* fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
     fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
-    filePrint = KStandardAction::print(this, SLOT(slotFilePrint()), actionCollection());
+    KAction* filePrint = KStandardAction::print(this, SLOT(slotFilePrint()), actionCollection());
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
 
-    QAction* fileProperties = actionCollection()->addAction("file_properties");
+    KAction* fileProperties = new KAction(this);
+    actionCollection()->addAction("file_properties");
     fileProperties->setText(i18n("&Properties..."));
     connect(fileProperties, SIGNAL(triggered(bool)), SLOT(slotDocumentProperties()));
     fileProperties->setIcon(KIcon("document-properties"));
@@ -185,34 +156,35 @@ void KVocTrainApp::initActions()
     fileProperties->setStatusTip(fileProperties->whatsThis());
 
 
-    fileQuit = KStandardAction::quit(this, SLOT(slotFileQuit()), actionCollection());
+    KAction* fileQuit = KStandardAction::quit(this, SLOT(slotFileQuit()), actionCollection());
     fileQuit->setWhatsThis(i18n("Quit KVocTrain"));
     fileQuit->setToolTip(fileQuit->whatsThis());
     fileQuit->setStatusTip(fileQuit->whatsThis());
 
 // -- EDIT --------------------------------------------------
 
-    editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
+    KAction* editCopy = KStandardAction::copy(this, SLOT(slotEditCopy()), actionCollection());
     editCopy->setWhatsThis(i18n("Copy"));
     editCopy->setToolTip(editCopy->whatsThis());
     editCopy->setStatusTip(editCopy->whatsThis());
 
-    editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
+    KAction* editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
     editPaste->setWhatsThis(i18n("Paste"));
     editPaste->setToolTip(editPaste->whatsThis());
     editPaste->setStatusTip(editPaste->whatsThis());
 
-    editSelectAll = KStandardAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
+    KAction* editSelectAll = KStandardAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
     editSelectAll->setWhatsThis(i18n("Select all rows"));
     editSelectAll->setToolTip(editSelectAll->whatsThis());
     editSelectAll->setStatusTip(editSelectAll->whatsThis());
 
-    editClearSelection = KStandardAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
+    KAction* editClearSelection = KStandardAction::deselect(this, SLOT(slotCancelSelection()), actionCollection());
     editClearSelection->setWhatsThis(i18n("Deselect all rows"));
     editClearSelection->setToolTip(editClearSelection->whatsThis());
     editClearSelection->setStatusTip(editClearSelection->whatsThis());
 
-    editAppend = actionCollection()->addAction("edit_append");
+    KAction* editAppend = new KAction(this);
+    actionCollection()->addAction("edit_append");
     editAppend->setIcon(KIcon("insert_table_row"));
     editAppend->setText(i18n("&Add New Entry"));
     connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
@@ -221,7 +193,8 @@ void KVocTrainApp::initActions()
     editAppend->setToolTip(editAppend->whatsThis());
     editAppend->setStatusTip(editAppend->whatsThis());
 
-    editDelete = actionCollection()->addAction("edit_remove_selected_area");
+    editDelete = new KAction(this);
+    actionCollection()->addAction("edit_remove_selected_area");
     editDelete->setIcon(KIcon("delete_table_row"));
     editDelete->setText(i18n("&Delete Entry"));
     connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
@@ -230,7 +203,8 @@ void KVocTrainApp::initActions()
     editDelete->setToolTip(editDelete->whatsThis());
     editDelete->setStatusTip(editDelete->whatsThis());
 
-    editEditEntry = actionCollection()->addAction("edit_edit_selected_area");
+    KAction* editEditEntry = new KAction(this);
+     actionCollection()->addAction("edit_edit_selected_area");
     editEditEntry->setIcon(KIcon("edit_table_row"));
     editEditEntry->setText(i18n("&Edit Entry..."));
     connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
@@ -239,7 +213,8 @@ void KVocTrainApp::initActions()
     editEditEntry->setToolTip(editEditEntry->whatsThis());
     editEditEntry->setStatusTip(editEditEntry->whatsThis());
 
-    editSaveSelectedArea = actionCollection()->addAction("edit_save_selected_area");
+    KAction* editSaveSelectedArea = new KAction(this);
+     actionCollection()->addAction("edit_save_selected_area");
     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
     editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
     connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
@@ -249,7 +224,8 @@ void KVocTrainApp::initActions()
 
 // -- LESSON --------------------------------------------------
 
-    QAction *actionNewLesson = actionCollection()->addAction("new_lesson");
+    KAction *actionNewLesson = new KAction(this);
+    actionCollection()->addAction("new_lesson", actionNewLesson);
     actionNewLesson->setText(i18n("New Lesson"));
     actionNewLesson->setIcon(KIcon("edit-add"));
     actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
@@ -257,7 +233,8 @@ void KVocTrainApp::initActions()
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
 
-    QAction *actionRenameLesson = actionCollection()->addAction("rename_lesson");
+    KAction *actionRenameLesson = new KAction(this);
+    actionCollection()->addAction("rename_lesson", actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Lesson"));
     actionRenameLesson->setIcon(KIcon("edit"));
     actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
@@ -265,7 +242,8 @@ void KVocTrainApp::initActions()
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());
 
-    QAction *actionDeleteLesson = actionCollection()->addAction("delete_lesson");
+    KAction *actionDeleteLesson = new KAction(this);
+    actionCollection()->addAction("delete_lesson", actionDeleteLesson);
     actionDeleteLesson->setText(i18n("Delete Lesson"));
     actionDeleteLesson->setIcon(KIcon("edit-delete"));
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
@@ -273,7 +251,8 @@ void KVocTrainApp::initActions()
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
 
-    QAction *actionCheckAllLessons = actionCollection()->addAction("check_all_lessons");
+    KAction *actionCheckAllLessons = new KAction(this);
+    actionCollection()->addAction("check_all_lessons", actionCheckAllLessons);
     actionCheckAllLessons->setText(i18n("Select All Lessons"));
     actionCheckAllLessons->setIcon(KIcon("edit-add"));  /// @todo better icon
     actionCheckAllLessons->setWhatsThis(i18n("Select all lessons for the test."));
@@ -281,7 +260,8 @@ void KVocTrainApp::initActions()
     actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
     actionCheckAllLessons->setStatusTip(actionCheckAllLessons->whatsThis());
 
-    QAction *actionCheckNoLessons = actionCollection()->addAction("check_no_lessons");
+    KAction *actionCheckNoLessons = new KAction(this);
+    actionCollection()->addAction("check_no_lessons", actionCheckNoLessons);
     actionCheckNoLessons->setText(i18n("Deselect All Lessons"));
     actionCheckNoLessons->setIcon(KIcon("edit-delete"));  /// @todo better icon
     actionCheckNoLessons->setWhatsThis(i18n("Remove all lessons from the test."));
@@ -289,7 +269,8 @@ void KVocTrainApp::initActions()
     actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
     actionCheckNoLessons->setStatusTip(actionCheckNoLessons->whatsThis());
 
-    QAction *actionSplitLesson = actionCollection()->addAction("split_lesson");
+    KAction *actionSplitLesson = new KAction(this);
+    actionCollection()->addAction("split_lesson", actionSplitLesson);
     actionSplitLesson->setText(i18n("Split Lesson into Smaller Lessons"));
     actionSplitLesson->setIcon(KIcon("edit-copy"));  /// @todo better icon
     actionSplitLesson->setWhatsThis(i18n("Make multiple smaller lessons out of one big lesson."));
@@ -299,7 +280,8 @@ void KVocTrainApp::initActions()
 
 // -- VOCABULARY --------------------------------------------------
 
-    vocabShowStatistics = actionCollection()->addAction("vocab_show_statistics");
+    KAction* vocabShowStatistics = new KAction(this);
+     actionCollection()->addAction("vocab_show_statistics");
     vocabShowStatistics->setIcon(KIcon("statistics"));
     vocabShowStatistics->setText(i18n("&Statistics..."));
     connect(vocabShowStatistics, SIGNAL(triggered(bool)), this, SLOT(slotShowStatistics()));
@@ -307,7 +289,8 @@ void KVocTrainApp::initActions()
     vocabShowStatistics->setToolTip(vocabShowStatistics->whatsThis());
     vocabShowStatistics->setStatusTip(vocabShowStatistics->whatsThis());
 
-    vocabCleanUp = actionCollection()->addAction("vocab_clean_up");
+    KAction* vocabCleanUp = new KAction(this);
+    actionCollection()->addAction("vocab_clean_up");
     vocabCleanUp->setIcon(KIcon("cleanup"));
     vocabCleanUp->setText(i18n("Remove &Duplicates"));
     connect(vocabCleanUp, SIGNAL(triggered(bool)), this, SLOT(slotCleanVocabulary()));
@@ -316,7 +299,8 @@ void KVocTrainApp::initActions()
     vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
 
 
-    vocabEditLanguages = actionCollection()->addAction("vocab_edit_languages");
+    KAction* vocabEditLanguages =new KAction(this);
+     actionCollection()->addAction("vocab_edit_languages");
     vocabEditLanguages->setIcon(KIcon("insert_table_col"));
     vocabEditLanguages->setText(i18n("&Edit Languages"));
     connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
@@ -354,35 +338,37 @@ void KVocTrainApp::initActions()
 
 
     KAction* startPractice = new KAction(this);
-    startPractice->setText(i18n("Start Practice..."));
+    startPractice->setText(i18n("Configure Practice..."));
     startPractice->setWhatsThis(i18n("Set up and start a test"));
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
-    actionCollection()->addAction("practice_start", startPractice);
+    actionCollection()->addAction("practice_configure", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
 
     KAction* resumePractice = new KAction(this);
-    resumePractice->setText(i18n("Resume Practice..."));
+    resumePractice->setText(i18n("Start Practice..."));
     resumePractice->setWhatsThis(i18n("Start a test with the last settings"));
     resumePractice->setToolTip(resumePractice->whatsThis());
     resumePractice->setStatusTip(resumePractice->whatsThis());
-    actionCollection()->addAction("practice_resume", resumePractice);
+    actionCollection()->addAction("practice_start", resumePractice);
     connect(resumePractice, SIGNAL(triggered(bool)), SLOT(resumePractice()));
 
 
 // -- SETTINGS --------------------------------------------------
 
-    configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
+    KAction* configApp = KStandardAction::preferences(this, SLOT(slotGeneralOptions()), actionCollection());
     configApp->setWhatsThis(i18n("Show the configuration dialog"));
     configApp->setToolTip(configApp->whatsThis());
     configApp->setStatusTip(configApp->whatsThis());
 
-    if (!initialGeometrySet())
+    if (!initialGeometrySet()) {
         resize(QSize(550, 400).expandedTo(minimumSizeHint()));
+    }
     setupGUI(ToolBar | Keys | StatusBar | Create);
     setAutoSaveSettings();
 
-    configToolbar = actionCollection()->action("options_configure_toolbars");
+    KAction* configToolbar = new KAction(this);
+    actionCollection()->addAction("options_configure_toolbars", configToolbar);
     configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
     configToolbar->setToolTip(configToolbar->whatsThis());
     configToolbar->setStatusTip(configToolbar->whatsThis());

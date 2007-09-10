@@ -41,7 +41,7 @@
   <Menu name="learning" >
    <text>&amp;Practice</text>
    <Action name="practice_start" />
-   <Action name="practice_resume" />
+   <Action name="practice_configure" />
    <Separator/>
    <Action name="vocab_show_statistics" />
   </Menu>
@@ -64,7 +64,7 @@
   <Separator/>
   <Action name="edit_edit_selected_area" />
   <Separator/>
+  <!--Action name="practice_configure"/-->
   <Action name="practice_start" />
-  <Action name="practice_resume" />
  </ToolBar>
 </gui>
