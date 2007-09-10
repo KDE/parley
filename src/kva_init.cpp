@@ -77,11 +77,12 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     initStatusBar();
     initActions();
 
-    readOptions();
+    fileOpenRecent->loadEntries(KGlobal::config()->group("Recent Files"));
 
     initModel();
     initDoc();
     initView();
+
 
     editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 

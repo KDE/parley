@@ -92,8 +92,6 @@ public:
     void initView();
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
-    /** read the app-specific options on init() or by an Options dialog */
-    void readOptions();
 
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
