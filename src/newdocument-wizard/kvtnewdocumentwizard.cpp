@@ -35,7 +35,7 @@ KVTNewDocumentWizard::KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent
 {
     m_doc = doc;
 
-    resize(600,600);
+    resize(800,400);
 
     setPage(Intro, new KVTNewDocumentWizardIntroPage);
 
