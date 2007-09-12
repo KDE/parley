@@ -29,6 +29,7 @@
 #include <KLineEdit>
 #include <KLocale>
 #include <KIconLoader>
+#include <KIcon>
 
 #include "kvttablemodel.h"
 #include "prefs.h"
@@ -108,9 +109,8 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
 
     case 1: {
         KComboBox *statebox = static_cast<KComboBox*>(editor);
-        statebox->addItem(i18nc("state of a row", "Active, Not in Test"));
-        statebox->addItem(i18nc("state of a row", "In Test"));
-        statebox->addItem(i18nc("state of a row", "Inactive"));
+        statebox->addItem(KIcon("no"), i18nc("state of a row", "Inactive"));
+        statebox->addItem(KIcon("ok"), i18nc("state of a row", "Active"));
         statebox->setCurrentIndex(index.model()->data(index, KVTTableModel::StateRole).toInt());
     }
     break;
@@ -195,7 +195,7 @@ void KVTTableDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewIte
 
     if (text == "@inactive@") {
         painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("no"));
-    } else if (text == "@inquery@") {
+    } else if (text == "@active@") {
         painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("ok"));
     } else {
         QFont font = painter->font();

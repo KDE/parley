@@ -95,7 +95,8 @@ private:
     QueryEntryList       correct_1_times;
     QueryEntryList       correct_2_times;
     QueryEntryList       correct_3_times;
-
+    // not used, maybe later. holds expressions that are done.
+    QueryEntryList       correct_4_times;
 
     int                  random_query_nr;
     QString              def_lang;

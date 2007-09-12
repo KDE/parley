@@ -212,14 +212,16 @@ void KVocTrainApp::initActions()
     editEditEntry->setToolTip(editEditEntry->whatsThis());
     editEditEntry->setStatusTip(editEditEntry->whatsThis());
 
-    KAction* editSaveSelectedArea = new KAction(this);
-     actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
-    editSaveSelectedArea->setIcon(KIcon("document-save-as"));
-    editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
-    connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
-    editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the current test as a new vocabulary"));
-    editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
-    editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
+//     KAction* editSaveSelectedArea = new KAction(this);
+//      actionCollection()->addAction("edit_save_selected_area", editSaveSelectedArea);
+//     editSaveSelectedArea->setIcon(KIcon("document-save-as"));
+//     editSaveSelectedArea->setText(i18n("Save E&ntries in Current Test as..."));
+//     connect(editSaveSelectedArea, SIGNAL(triggered(bool)), this, SLOT(slotSaveSelection()));
+//     editSaveSelectedArea->setWhatsThis(i18n("Save the entries in the current test as a new vocabulary"));
+//     editSaveSelectedArea->setToolTip(editSaveSelectedArea->whatsThis());
+//     editSaveSelectedArea->setStatusTip(editSaveSelectedArea->whatsThis());
+//     ///@todo enable when/if the corresponding function is rewritten
+//     editSaveSelectedArea->setEnabled(false);
 
 // -- LESSON --------------------------------------------------
 

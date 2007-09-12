@@ -747,7 +747,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
                 break;
             case 4:
                 //The user has answered correctly four times in a row. She is good!
-                exp->setInQuery(false);
+                correct_4_times.append(queryEntry);
 
                 query_num--;
                 exp->translation(tindex).gradeFrom(oindex).incGrade();
@@ -771,7 +771,6 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
             } else {
                 exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE); // reset grade
             }
-            exp->setInQuery(false);
             random_expr1.erase(random_expr1.begin() + random_query_nr);
             if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
                 stopQuery();

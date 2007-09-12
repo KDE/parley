@@ -406,11 +406,7 @@ QuerySelection KVTQuery::queryEntries()
     // initialize vector with (m_doc->lessonCount() + 1) elements
     QuerySelection random(m_doc->lessonCount() + 1);
 
-    // disable every single entry
-    for (int i = 0; i < m_doc->entryCount(); i++)
-        m_doc->entry(i)->setInQuery(false);
-
-    // reenable those that we like by using isActive and validate
+    // choose entries that we like by using isActive and validate
     //Note that Leitner style learning (altlearn) normally only uses 20
     //entries, we just ignore that here
     for (int i = 0; i < m_doc->entryCount(); i++) {
@@ -424,7 +420,6 @@ QuerySelection KVTQuery::queryEntries()
                     lessonNumber = expr->lesson();
                 }
                 random[lessonNumber].append(QueryEntry(expr, i));
-                expr->setInQuery(true);
 
                 kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).text() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade();
             }

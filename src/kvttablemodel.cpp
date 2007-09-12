@@ -23,7 +23,7 @@
 #include "kvttablemodel.h"
 
 #include <QSize>
-// #include <QIcon>
+#include <KIcon>
 
 #include <KLocale>
 #include <KDebug>
@@ -84,12 +84,10 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
         }
 
     case KVTTableModel::StateRole: {
-            if (!m_doc->entry(index.row())->isActive())
-                return 2;
-            else if (m_doc->entry(index.row())->isInQuery())
+            if (m_doc->entry(index.row())->isActive()) {
                 return 1;
-            else
-                return 0;
+            }
+            return 0;
             break;
         }
 
@@ -125,11 +123,10 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                 result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
             } else if (index.column() == 1) {
                 if (m_doc->entry(index.row())->isActive()) {
-                    if (m_doc->entry(index.row())->isInQuery())
-                        return "@inquery@";
-                    else
-                        return "";
+//                     return KIcon("ok");
+                    return "@active@";
                 } else
+//                     return KIcon("no");
                     return "@inactive@";
             } else {
                 result = m_doc->entry(index.row())->translation(index.column() - KV_COL_TRANS).text();
@@ -225,20 +222,7 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
         if (index.column() == 0)
             m_doc->entry(index.row())->setLesson(value.toInt());
         else if (index.column() == 1) {
-            bool inq = false;
-            bool act = true;
-            if (value.toInt() == 0) {
-                inq = false;
-                act = true;
-            } else if (value.toInt() == 1) {
-                inq = true;
-                act = true;
-            } else if (value.toInt() == 2) {
-                inq = false;
-                act = false;
-            }
-            m_doc->entry(index.row())->setInQuery(inq);
-            m_doc->entry(index.row())->setActive(act);
+            m_doc->entry(index.row())->setActive(value.toInt());
         } else {
             m_doc->entry(index.row())->setTranslation(index.column() - 2, value.toString());
         }

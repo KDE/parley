@@ -316,6 +316,9 @@ void KVocTrainApp::loadDocProps()
 
 void KVocTrainApp::slotSaveSelection()
 {
+///@todo I doubt this words. If it's not checked, better not enable it.
+
+    /*
     if (entryDlg != 0) {
         entryDlg->commitData(false);
     }
@@ -332,9 +335,9 @@ void KVocTrainApp::slotSaveSelection()
     //seldoc.setLessonsInQuery(m_doc->lessonsInQuery());
     //seldoc.setTypeDescriptions(m_doc->typeDescriptions());
 
-    for (int i = m_doc->entryCount()-1; i >= 0; i--)
-        if (m_doc->entry(i)->isInQuery())
-            seldoc.appendEntry(m_doc->entry(i));
+//     for (int i = m_doc->entryCount()-1; i >= 0; i--)
+//         if (m_doc->entry(i)->isInQuery())
+//             seldoc.appendEntry(m_doc->entry(i));
 
     KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
 
@@ -360,6 +363,7 @@ void KVocTrainApp::slotSaveSelection()
     }
     Prefs::setSeparator(save_separator);
     slotStatusMsg(IDS_DEFAULT);
+    */
 }
 
 
