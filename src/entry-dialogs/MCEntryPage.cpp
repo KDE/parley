@@ -84,21 +84,21 @@ void MCEntryPage::setData(int row, int col)
     m_currentTranslation = col;
     KEduVocMultipleChoice mc = m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice();
 
-    mc1Field->setText(mc.choice(1));
-    mc2Field->setText(mc.choice(2));
-    mc3Field->setText(mc.choice(3));
-    mc4Field->setText(mc.choice(4));
-    mc5Field->setText(mc.choice(5));
+    mc1Field->setText(mc.choice(0));
+    mc2Field->setText(mc.choice(1));
+    mc3Field->setText(mc.choice(2));
+    mc4Field->setText(mc.choice(3));
+    mc5Field->setText(mc.choice(4));
 }
 
 void MCEntryPage::commitData()
 {
     KEduVocMultipleChoice mc = KEduVocMultipleChoice();
-    mc.setChoice(1, mc1Field->text());
-    mc.setChoice(2, mc2Field->text());
-    mc.setChoice(3, mc3Field->text());
-    mc.setChoice(4, mc4Field->text());
-    mc.setChoice(5, mc5Field->text());
+    mc.setChoice(0, mc1Field->text());
+    mc.setChoice(1, mc2Field->text());
+    mc.setChoice(2, mc3Field->text());
+    mc.setChoice(3, mc4Field->text());
+    mc.setChoice(4, mc5Field->text());
 
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setMultipleChoice(mc);
 }
