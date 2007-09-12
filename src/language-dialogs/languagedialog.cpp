@@ -63,6 +63,12 @@ void LanguageDialog::accept()
 {
     emit signalCommitData();
 //     emit deletePages();
+
+    qSort(m_deleteList.begin(), m_deleteList.end());
+    for ( int identifierIndex = m_deleteList.count() - 1; identifierIndex >= 0; identifierIndex-- ) {
+        kDebug() << "Delete Language: " << m_deleteList.value(identifierIndex);
+        m_doc->removeIdentifier(m_deleteList.value(identifierIndex));
+    }
     QDialog::accept();
 }
 
@@ -78,6 +84,8 @@ void LanguageDialog::slotAppendIdentifier()
 
 void LanguageDialog::slotDeleteIdentifier()
 {
+    int index = m_pages.indexOf(currentPage());
+    m_deleteList.append(index);
     removePage(currentPage());
 }
 
@@ -97,6 +105,8 @@ KPageWidgetItem*  LanguageDialog::createPage(int i)
 
     KPageWidgetItem* editPage = new KPageWidgetItem( editPageWidget,  m_doc->identifier(i).name() );
     editPage->setHeader( i18nc("Edit language properties", "Properties for %1", m_doc->identifier(i).name() ) );
+
+    m_pages.append(editPage);
 
     // icons
     LanguageSettings currentSettings(m_doc->identifier(i).locale());

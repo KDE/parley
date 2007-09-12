@@ -26,7 +26,6 @@
 
 class KEduVocDocument;
 
-
 /**
  *
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -53,6 +52,8 @@ private:
     KPageWidgetItem*  createPage(int identifierIndex);
 
     KEduVocDocument* m_doc;
+    QList<KPageWidgetItem*> m_pages;
+    QList<int> m_deleteList;
 };
 
 #endif
