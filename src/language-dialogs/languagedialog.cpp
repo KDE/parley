@@ -39,7 +39,7 @@ LanguageDialog::LanguageDialog(KEduVocDocument* doc, QWidget * parent)
 {
     m_doc = doc;
 
-    setCaption(i18n("Configure languages"));
+    setCaption(i18n("Edit Languages"));
     setFaceType( List );
     setButtons(User1|User2|Ok|Cancel);
 
