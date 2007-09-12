@@ -47,7 +47,8 @@ SecondIdentifierLanguagePage::SecondIdentifierLanguagePage(QWizard * parent)
 
     setupUi(this);
     registerField("secondIdentifierName*", identifierNameLineEdit);
-    registerField("secondLocale", languageComboBox);
+    registerField("secondLocale", languageComboBox, "currentText", "currentTextChanged()");
+
     connect(languageComboBox, SIGNAL(currentIndexChanged(const QString&)), this, SLOT(currentLanguageChanged(const QString&)));
 
     QStringList codes = KGlobal::locale()->allLanguagesList();

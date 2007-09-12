@@ -30,25 +30,6 @@
 
 #include <keduvocdocument.h>
 
-class WizardIdentifier
-{
-public:
-    WizardIdentifier( bool isLanguage, QString identifier, QString identifierShort)
-    {
-        m_isLanguage = isLanguage;
-        m_identifierShort = identifierShort;
-        m_identifier = identifier;
-    }
-
-    const bool isLanguage() {return m_isLanguage; }
-    const QString identifier() {return m_identifier; }
-    const QString identifierShort() {return m_identifierShort; }
-private:
-    bool m_isLanguage;
-    QString m_identifierShort;
-    QString m_identifier;
-};
-
 /**
 A wizard to assist in the creation of kvtml documents with Parley. Helps to set up the languages of the document.
 
@@ -69,8 +50,6 @@ public:
     KVTNewDocumentWizard(KEduVocDocument* doc, QWidget *parent);
 
     int nextId() const;
-
-    QList<WizardIdentifier>  identifiers();
     void accept();
 
 signals:

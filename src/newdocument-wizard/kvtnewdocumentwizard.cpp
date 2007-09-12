@@ -79,9 +79,17 @@ void KVTNewDocumentWizard::accept()
     m_doc->appendIdentifier();
     m_doc->appendIdentifier();
     m_doc->identifier(0).setName( field("firstIdentifierName").toString() );
-    m_doc->identifier(0).setLocale( KGlobal::locale()->allLanguagesList().value(field("firstLocale").toInt()) );
     m_doc->identifier(1).setName( field("secondIdentifierName").toString() );
-    m_doc->identifier(1).setLocale( KGlobal::locale()->allLanguagesList().value(field("secondLocale").toInt()) );
+
+    // ugly but works for now: iterate over languages to check which code we have
+    foreach ( QString code, KGlobal::locale()->allLanguagesList() ) {
+        if ( field("firstLocale").toString() == KGlobal::locale()->languageCodeToName(code) ) {
+            m_doc->identifier(0).setLocale( code );
+        }
+        if ( field("secondLocale").toString() == KGlobal::locale()->languageCodeToName(code) ) {
+            m_doc->identifier(1).setLocale( code );
+        }
+    }
 
     QDialog::accept();
 }
