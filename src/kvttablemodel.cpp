@@ -41,9 +41,7 @@ KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
     m_doc = 0;
 }
 
-/*!
-    \fn KVTTableModel::setDocument(KEduVocDocument * doc)
- */
+
 void KVTTableModel::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
@@ -51,9 +49,6 @@ void KVTTableModel::setDocument(KEduVocDocument * doc)
 }
 
 
-/*!
-    \fn KVTTableModel::rowCount(const QModelIndex &parent) const
- */
 int KVTTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
@@ -61,9 +56,6 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
 }
 
 
-/*!
-    \fn KVTTableModel::columnCount(const QModelIndex &parent) const
- */
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
@@ -72,9 +64,6 @@ int KVTTableModel::columnCount(const QModelIndex &parent) const
 }
 
 
-/*!
-    \fn KVTTableModel::data(const QModelIndex &index, int role) const
- */
 QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid())
@@ -175,9 +164,6 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 }
 
 
-/*!
-    \fn KVTTableModel::headerData(int section, Qt::Orientation orientation, int role) const
- */
 QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if (orientation == Qt::Horizontal) {
@@ -225,9 +211,6 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
 }
 
 
-/*!
-    \fn KVTTableModel::flags(const QModelIndex &index) const
- */
 Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
@@ -237,9 +220,6 @@ Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 }
 
 
-/*!
-    \fn KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
- */
 bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
@@ -273,9 +253,6 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
 }
 
 
-/*!
-    \fn KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
- */
 bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     if (orientation == Qt::Horizontal) {
