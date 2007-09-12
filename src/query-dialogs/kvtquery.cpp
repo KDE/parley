@@ -116,7 +116,7 @@ KVTQuery::KVTQuery()
     m_doc = 0;
     m_indexFrom = 0;
     m_indexTo = 0;
-    m_queryType = RandomQuery;
+    m_testType = Prefs::EnumTestType::WrittenTest;
 }
 
 
@@ -392,9 +392,9 @@ void KVTQuery::setToTranslation(int indexTo)
     m_indexTo = indexTo;
 }
 
-void KVTQuery::setQueryType(QueryType queryType)
+void KVTQuery::setQueryType(int testType)
 {
-    m_queryType = queryType;
+    m_testType = testType;
 }
 
 QuerySelection KVTQuery::queryEntries()
@@ -483,36 +483,36 @@ bool KVTQuery::validate(KEduVocExpression *expr)
         return false;
     }
 
-    switch (m_queryType)
+    switch (m_testType)
     {
     // The type queries so far do not consider any settings except lesson. So they return true as long as the type is right or there is data available.
     // This could be improved, but there are no open bugs concerning this atm.
     // So this is rather low priority.
-    case KVTQuery::SynonymQuery:
+    case Prefs::EnumTestType::SynonymTest:
         return !expr->translation(m_indexFrom).synonym().simplified().isEmpty();
         break;
-    case KVTQuery::AntonymQuery:
+    case Prefs::EnumTestType::AntonymTest:
         return !expr->translation(m_indexFrom).antonym().simplified().isEmpty();
         break;
-    case KVTQuery::ParaphraseQuery:
+    case Prefs::EnumTestType::ParaphraseTest:
         return !expr->translation(m_indexFrom).paraphrase().simplified().isEmpty();
         break;
-    case KVTQuery::ExampleQuery:
+    case Prefs::EnumTestType::ExampleTest:
         return !expr->translation(m_indexFrom).example().simplified().isEmpty();
         break;
 
-    case KVTQuery::ArticleQuery:
+    case Prefs::EnumTestType::ArticleTest:
         return expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
                      || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
                      || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
         break;
-    case KVTQuery::ComparisonAdjectiveQuery:
+    case Prefs::EnumTestType::ComparisonAdjectiveTest:
         return  expr->translation(m_indexFrom).type() == QM_ADJ && !expr->translation(m_indexFrom).comparison().isEmpty();
         break;
-    case KVTQuery::ComparisonAdverbQuery:
+    case Prefs::EnumTestType::ComparisonAdverbTest:
         return  expr->translation(m_indexFrom).type() == QM_ADV && !expr->translation(m_indexFrom).comparison().isEmpty();
         break;
-    case KVTQuery::ConjugationQuery:
+    case Prefs::EnumTestType::ConjugationTest:
         return (expr->translation(m_indexFrom).type() == QM_VERB
                    || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
                    || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
@@ -520,8 +520,8 @@ bool KVTQuery::validate(KEduVocExpression *expr)
                   && expr->translation(m_indexFrom).conjugations().count() > 0;
         break;
 
-    case KVTQuery::RandomQuery: // Random and MC use the full settings:
-    case KVTQuery::MultipleChoiceQuery:
+    case Prefs::EnumTestType::WrittenTest: // Random and MC use the full settings:
+    case Prefs::EnumTestType::MultipleChoiceTest:
         if ( validateWithSettings(expr) ) {
             return true;
         }

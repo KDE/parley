@@ -50,8 +50,8 @@ public:
     void query(int queryType, int fromTranslation, int toTranslation);
 
     // merge these three:
-    void startTypeQuery(int col, KVTQuery::QueryType queryType);
-    void startPropertyQuery(int col, KVTQuery::QueryType property);
+    void startTypeQuery(int col, int testType);
+    void startPropertyQuery(int col, int property);
     void startQuery(const QString & trans, const QString & org, bool create_new);
 
     bool queryIsEmpty();
@@ -107,7 +107,7 @@ private:
     int                  query_cycle;
     int                  query_num;
     int                  query_startnum;
-    KVTQuery::QueryType  m_queryType;
+    int                  m_testType;
     KRandomSequence      m_randomSequence;
 
 };

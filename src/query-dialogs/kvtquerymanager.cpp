@@ -112,14 +112,15 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 }
 
 
-void QueryManager::query(int command, int fromTranslation, int toTranslation)
+void QueryManager::query(int testType, int fromTranslation, int toTranslation)
 {
-    switch (command) {
+    m_testType = testType;
+
+    switch (testType) {
 
     case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
         randomQueryDlg = 0;
-        m_queryType = KVTQuery::RandomQuery;
         startQuery(m_doc->identifier(fromTranslation).name(),
                     m_doc->identifier(toTranslation).name(), true);
         break;
@@ -127,70 +128,43 @@ void QueryManager::query(int command, int fromTranslation, int toTranslation)
     case Prefs::EnumTestType::MultipleChoiceTest:
         delete mcQueryDlg;
         mcQueryDlg = 0;
-        m_queryType = KVTQuery::MultipleChoiceQuery;
         startQuery(m_doc->identifier(fromTranslation).name(),
                        m_doc->identifier(toTranslation).name(), true);
         break;
 
-    case Prefs::EnumTestType::ConjugationTest: {
+    case Prefs::EnumTestType::ConjugationTest:
         delete verbQueryDlg;
         verbQueryDlg = 0;
-        m_queryType = KVTQuery::ConjugationQuery;
-        startTypeQuery(fromTranslation, KVTQuery::ConjugationQuery);
-    }
-    break;
+        startTypeQuery(fromTranslation, testType);
+        break;
 
-    case Prefs::EnumTestType::ArticleTest: {
+    case Prefs::EnumTestType::ArticleTest:
         delete artQueryDlg;
         artQueryDlg = 0;
-        m_queryType = KVTQuery::ArticleQuery;
-        startTypeQuery(fromTranslation, KVTQuery::ArticleQuery);
-    }
-    break;
+        startTypeQuery(fromTranslation, testType);
+        break;
 
-    case Prefs::EnumTestType::ComparisonAdjectiveTest: {
+    case Prefs::EnumTestType::ComparisonAdjectiveTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        m_queryType = KVTQuery::ComparisonAdjectiveQuery;
-        startTypeQuery(fromTranslation, KVTQuery::ComparisonAdjectiveQuery);
-    }
-    break;
+        startTypeQuery(fromTranslation, testType);
+        break;
 
-    case Prefs::EnumTestType::ComparisonAdverbTest: {
+    case Prefs::EnumTestType::ComparisonAdverbTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        m_queryType = KVTQuery::ComparisonAdverbQuery;
-        startTypeQuery(fromTranslation, KVTQuery::ComparisonAdverbQuery);
-    }
-    break;
+        startTypeQuery(fromTranslation, testType);
+        break;
 
-    case Prefs::EnumTestType::SynonymTest: {
+    // tests using the simple dialog
+    case Prefs::EnumTestType::SynonymTest:
+    case Prefs::EnumTestType::AntonymTest:
+    case Prefs::EnumTestType::ExampleTest:
+    case Prefs::EnumTestType::ParaphraseTest:
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, KVTQuery::SynonymQuery);
-    }
-    break;
-
-    case Prefs::EnumTestType::AntonymTest: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, KVTQuery::AntonymQuery);
-    }
-    break;
-
-    case Prefs::EnumTestType::ExampleTest: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, KVTQuery::ExampleQuery);
-    }
-    break;
-
-    case Prefs::EnumTestType::ParaphraseTest: {
-        delete simpleQueryDlg;
-        simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, KVTQuery::ParaphraseQuery);
-    }
-    break;
+        startPropertyQuery(fromTranslation, testType);
+        break;
 
     default:
         kError() << "Unknown command" << endl;
@@ -222,11 +196,11 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::startPropertyQuery(int col, KVTQuery::QueryType property)
+void QueryManager::startPropertyQuery(int col, int property)
 {
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting property practice..."));
-    m_queryType = property;
+    m_testType = property;
     num_queryTimeout = 0;
     act_query_col = col;
 
@@ -267,7 +241,7 @@ void QueryManager::startPropertyQuery(int col, KVTQuery::QueryType property)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
     simpleQueryDlg = new SimpleQueryDlg(m_doc, m_app);
-    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
     simpleQueryDlg->initFocus();
@@ -355,13 +329,13 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
-    simpleQueryDlg->setQuery(m_queryType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
     simpleQueryDlg->initFocus();
     m_app->slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
+void QueryManager::startTypeQuery(int col, int testType)
 {
     /// @todo merge this with startPropertyQuery (and possibly startQuery)
 
@@ -377,7 +351,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
     m_query.setDocument(m_doc);
     m_query.setFromTranslation(act_query_col);
     m_query.setToTranslation(act_query_col);
-    m_query.setQueryType(queryType);
+    m_query.setQueryType(testType);
 
     queryList = m_query.queryEntries();
 
@@ -405,7 +379,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
     KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
     m_app->hide();
-    if (m_queryType == KVTQuery::ConjugationQuery) {
+    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
         verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
         verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
                                m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
@@ -413,14 +387,14 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
-    } else if (m_queryType == KVTQuery::ArticleQuery) {
+    } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
-    } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
+    } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
         adjQueryDlg->initFocus();
@@ -429,7 +403,7 @@ void QueryManager::startTypeQuery(int col, KVTQuery::QueryType queryType)
         adjQueryDlg->show();
 
         /// @todo implement an adverb query dialog. can we reuse adjQueryDlg ?
-//     } else if (m_queryType == KVTQuery::ComparisonAdverbQuery) {
+//     } else if (m_testType == KVTQuery::ComparisonAdverbQuery) {
 //         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
 //         adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
 //         adjQueryDlg->initFocus();
@@ -521,7 +495,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
     KEduVocExpression *exp = random_expr1[random_query_nr].exp;
 
-    if (m_queryType == KVTQuery::ConjugationQuery) {
+    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
         if (verbQueryDlg == 0) {
             kError() << "verbQueryDlg == 0\n";
             stopQuery();
@@ -531,7 +505,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
                                m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
 
         verbQueryDlg->initFocus();
-    } else if (m_queryType == KVTQuery::ArticleQuery) {
+    } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
         if (artQueryDlg == 0) {
             kError() << "artQueryDlg == 0\n";
             stopQuery();
@@ -539,7 +513,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
         }
         artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
         artQueryDlg->initFocus();
-    } else if (m_queryType == KVTQuery::ComparisonAdjectiveQuery) {
+    } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
         if (adjQueryDlg == 0) {
             kError() << "adjQueryDlg == 0\n";
             stopQuery();
@@ -558,14 +532,14 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 
 // void QueryManager::resumeQuery()
 // {
-//     m_queryType = KVTQuery::RandomQuery;
+//     m_testType = KVTQuery::RandomQuery;
 //     restartQuery();
 // }
 
 
 // void QueryManager::resumeQueryMC()
 // {
-//     m_queryType = KVTQuery::MultipleChoiceQuery;
+//     m_testType = KVTQuery::MultipleChoiceQuery;
 //     restartQuery();
 // }
 
@@ -612,7 +586,7 @@ kDebug() << " from: " << orglang << " to: " << translang;
         m_query.setDocument(m_doc);
         m_query.setFromTranslation(oindex);
         m_query.setToTranslation(tindex);
-        m_query.setQueryType(m_queryType);
+        m_query.setQueryType(m_testType);
 
         queryList = m_query.queryEntries();
     }
@@ -647,14 +621,14 @@ kDebug() << " from: " << orglang << " to: " << translang;
     q_org = exp->translation(oindex).text();
     q_trans = exp->translation(tindex).text();
 
-    if (m_queryType == KVTQuery::RandomQuery) {
+    if (m_testType == Prefs::EnumTestType::WrittenTest) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
-    } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
+    } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
@@ -878,7 +852,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
     q_org = exp->translation(oindex).text();
     q_trans = exp->translation(tindex).text();
 
-    if (m_queryType == KVTQuery::RandomQuery) {
+    if (m_testType == Prefs::EnumTestType::WrittenTest) {
 
         if (randomQueryDlg == 0) {
             kError() << "randomQueryDlg == 0\n";
@@ -888,7 +862,7 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
         randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
-    } else if (m_queryType == KVTQuery::MultipleChoiceQuery) {
+    } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
         if (mcQueryDlg == 0) {
             kError() << "mcQueryDlg == 0\n";
             stopQuery();

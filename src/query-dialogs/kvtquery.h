@@ -123,18 +123,6 @@ class KVTQuery
 {
 public:
 
-    enum QueryType { RandomQuery,
-                     MultipleChoiceQuery,
-                     ArticleQuery,
-                     ConjugationQuery,
-                     ComparisonAdjectiveQuery,
-                     ComparisonAdverbQuery,
-                     SynonymQuery,
-                     AntonymQuery,
-                     ExampleQuery,
-                     ParaphraseQuery
-                   };
-
     KVTQuery();
 
     /// vector of list of entries
@@ -162,7 +150,7 @@ public:
      * Set the query type
      * @param queryType
      */
-    void setQueryType(QueryType queryType);
+    void setQueryType(int queryType);
 
 
     /**
@@ -187,7 +175,7 @@ private:
     KEduVocDocument *m_doc;
     int m_indexFrom;
     int m_indexTo;
-    QueryType m_queryType;
+    int m_testType;
 };
 
 #endif // kvtquery_included

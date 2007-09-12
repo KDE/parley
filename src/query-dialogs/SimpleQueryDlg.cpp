@@ -72,7 +72,7 @@ void SimpleQueryDlg::initFocus() const
 }
 
 
-void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
+void SimpleQueryDlg::setQuery(int testType,
                               int entry,
                               int column,
                               int q_cycle,
@@ -80,7 +80,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
                               int q_start,
                               KEduVocDocument  *doc)
 {
-    querytype = _querytype;
+    m_testType = testType;
     m_doc = doc;
     m_row = entry;
     m_expression = m_doc->entry(m_row);
@@ -92,8 +92,8 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
     mw->answerField->setText("");
 
     QString s;
-    switch (querytype) {
-    case KVTQuery::SynonymQuery: {
+    switch (m_testType) {
+    case Prefs::EnumTestType::SynonymTest: {
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the synonym:"));
             setWindowTitle(i18n("Synonym Training"));
@@ -104,7 +104,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
         }
         break;
 
-    case KVTQuery::AntonymQuery: {
+    case Prefs::EnumTestType::AntonymTest: {
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
@@ -114,7 +114,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
         }
         break;
 
-    case KVTQuery::ParaphraseQuery: {
+    case Prefs::EnumTestType::ParaphraseTest: {
             mw->queryLabel->setText(i18n("Paraphrase"));
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
@@ -124,7 +124,7 @@ void SimpleQueryDlg::setQuery(KVTQuery::QueryType _querytype,
         }
         break;
 
-    case KVTQuery::ExampleQuery: {
+    case Prefs::EnumTestType::ExampleTest: {
             mw->queryLabel->setText(i18n("Example sentence"));
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
@@ -177,14 +177,14 @@ void SimpleQueryDlg::showMoreClicked()
 void SimpleQueryDlg::showSolution()
 {
     mw->answerField->setText(answerstring);
-    verifyField(mw->answerField, answerstring, querytype == KVTQuery::SynonymQuery || querytype == KVTQuery::AntonymQuery);
+    verifyField(mw->answerField, answerstring, m_testType == Prefs::EnumTestType::SynonymTest || m_testType == Prefs::EnumTestType::AntonymTest);
     mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-    if (verifyField(mw->answerField, answerstring, querytype == KVTQuery::SynonymQuery || querytype == KVTQuery::AntonymQuery))
+    if (verifyField(mw->answerField, answerstring, m_testType == Prefs::EnumTestType::SynonymTest || m_testType == Prefs::EnumTestType::AntonymTest))
         knowItClicked();
     else
         mw->dont_know->setDefault(true);
@@ -213,26 +213,26 @@ void SimpleQueryDlg::slotUser1()
     KEduVocExpression *exp = m_doc->entry(m_row);
 //   queryField->setText (exp->getTranslation(queryOriginalColumn));
 
-    switch (querytype) {
-    case KVTQuery::SynonymQuery: {
+    switch (m_testType) {
+    case Prefs::EnumTestType::SynonymTest: {
             answerstring = exp->translation(m_queryOriginalColumn).synonym();
             mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
         }
         break;
 
-    case KVTQuery::AntonymQuery: {
+    case Prefs::EnumTestType::AntonymTest: {
             answerstring = exp->translation(m_queryOriginalColumn).antonym();
             mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
         }
         break;
 
-    case KVTQuery::ParaphraseQuery: {
+    case Prefs::EnumTestType::ParaphraseTest: {
             mw->queryField->setText(exp->translation(m_queryOriginalColumn).paraphrase());
             answerstring = exp->translation(m_queryOriginalColumn).text();
         }
         break;
 
-    case KVTQuery::ExampleQuery: {
+    case Prefs::EnumTestType::ExampleTest: {
             mw->queryField->setText(exp->translation(m_queryOriginalColumn).example());
             answerstring = exp->translation(m_queryOriginalColumn).text();
         }

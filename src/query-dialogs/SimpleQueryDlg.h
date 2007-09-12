@@ -38,7 +38,7 @@ public:
 
     ~SimpleQueryDlg();
 
-    void setQuery(KVTQuery::QueryType querytpe,
+    void setQuery(int testType,
                   int entry,
                   int column,
                   int q_cycle,
@@ -63,7 +63,7 @@ protected:
     QProgressBar* timebar() { return mw->timebar; }
 
     QString answerstring;
-    KVTQuery::QueryType querytype;
+    int m_testType;
 
 private:
     Ui::SimpleQueryDlgForm * mw;
