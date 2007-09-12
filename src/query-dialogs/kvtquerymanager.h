@@ -49,10 +49,6 @@ public:
 
     void query(int queryType, int fromTranslation, int toTranslation);
 
-    KDE_DEPRECATED void resumeQuery();
-    KDE_DEPRECATED void resumeQueryMC();
-    KDE_DEPRECATED void restartQuery();
-
     // merge these three:
     void startTypeQuery(int col, KVTQuery::QueryType queryType);
     void startPropertyQuery(int col, KVTQuery::QueryType property);
@@ -62,9 +58,6 @@ public:
 
     /** exit query mode */
     void stopQuery();
-
-//     QString fromTranslation() const { return act_query_org; }
-//     QString toTranslation() const { return act_query_trans; }
 
     KVTQuery & getKVTQuery() { return m_query; }
     void showStatistics();
