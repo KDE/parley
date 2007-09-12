@@ -2,47 +2,10 @@
  DO IT:
 -------------------
 
-Copyright notices are sometimes not ok, it seems.
-
-Deleting a lesson: The main table is not updated when the lesson above is selected automatically.
-
-LangOpts:
-Why do we need two language codes? Maybe only one? That can be 2 or 3 letters...???
-Peter pointed out, that by not saving the long language name, but only twoLetter code we get localization for free. I would never have thought about that. That really makes saving the lanugages in the doc bad.
-But maybe we don't have to at all...? Could we simply offer a TreeView with all languages to let the user select? (instead of the button).
-If so, maybe we don't need defined languages at all???
-Let's just look the local name up at run time!!!
-Save (like before) 2/3 letter code, use KLocale or whatever to find an apropiate locale... get the icon with that too.
-Problems:
-- Keyboard layout cannot be set like that.
-	For this still the rc file. Need a list to configure this.
-- Impossible to use non language stuff
-	Special field in kvtml. We'll never get l10n for that of course, but that should be no problem. Pics for this? Not too important for now.
-- Impossible to use the same language twice
-	Maybe yes? I'd like to define ids for languages, later. 
-	Also allow a mixture of self defined and pre set langs.
-
-Right click menu for big table would be good (new voc, del voc).
-
-QUERY:
-Check all query dialogs so that they work properly. Edit expression and Stop query don't work for me.
-Add a "show only" query?
-
-When opening a doc with $kvoctrain doc.kvtml, it fails and in recent appears doc.kvtml instead of /home/xy/doc.kvtml. -- now works, but is only added to recent files if a full path is given.
-
 Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
-
-Default lesson comes into existence sometimes... why? (When deleting a lesson). Also when inserting a new vocabulary.
 
 Statistics:
 Statistics still show <no lesson>. And they are ugly.
-
-GUI:
-Wizard when initializing a new doc.
-Start screen??? open, edit, resume query ???
-Tabs and nice query starter.
-
-Restore native order does not reset the sort indicator triangle.
 
 --------------------
  NOT SO FAR FUTURE:
@@ -60,8 +23,6 @@ Enable drag and drop for lessons and vocab (drag into lesson, change order of le
 
 Icons and artwork seems rather old... maybe ask those oxygen guys? annma said she'll ask for a new icon.
 
-Allow sorting: is it still necessary? If we have a undo sort function? Otherwise document it. (Vocab->Prop->Options)
-
 Just noticed: we have what's this - need to add hints!!
 
 Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
@@ -72,16 +33,6 @@ Is there no standard way to get strange characters?
 In query: make an option to show current lesson, when questioning.
 A limit to first n vocab would be cool. Create query, but only with 30 words...
 
-Creating a new document is still hell. Maybe for now we could just ask for two languages which covers probably about 99% of the cases, the others will then find their way to add another...
-
-Unclutter kvoctrain.h - move for example much of the query stuff away from there.
-
--maybe it's a bit more efficient without all this reset() ? But I don't know a better way at the moment. Is there a filter->updateSomething()??
-<peter> Yes, we should try to get rid of all resets, as they clear the selection. filterChanged() and clear() seem to do the job most of the time, but I'm still figuring out how they work.
-<Frederik> Yes. Also for the lesson view/model most of the time using the right signals works - like beginInsertRows(...); ...  endInsertRows();.
-
-LANGUAGES:
-Are they really good in the kvoctrainrc file? Not very portable. But so far, they are pretty much useless anyway. Hmm... Strange... I'll keep that for now. Should be considered when finally redoing kvtml.
 
 ------------------
  LONG TERM STUFF:
@@ -90,12 +41,6 @@ Are they really good in the kvoctrainrc file? Not very portable. But so far, the
 Combobox: make it editable with regexp or better space as seperator to search-select lessons
 
 Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
-
-rename query to test, practice whatever ???
-according to some Australians and Canadians I talked to, query is basically kind of ok. But it's rather formal, teacher like. And it is used more to look someting up, like "to google" or to search in a database. It has a relation to inquire though :)
-
-Welcome screen with options: New file (wizzard?), manage old and query/test
-AND/OR: Tabs in Main Window allowing allowing a quick switch between table and query option page (which can start the query)
 
 More test possibilities? Like plugins?
 -Letter mixup like on www.ponsline.de ->vocab trainer
@@ -127,24 +72,7 @@ I also don't think the original-trans1-trans2 thing is great. Original should no
 
 <peter>See https://bugs.kde.org/show_bug.cgi?id=93446 for why this might not be such a good idea.
 Frederik: I see. Well, when thinking about a new xml structure, this could be taken into account. I'd still like to do it somehow. This has to be done careful anyway.
-Maybe it is sufficient to not allow twice the same "language identifier". So twice en/English would be ok, but each language also gets a unique title. So you cannot have "English" as description twice. So have "English"/en and "English - pronouciation"/en and "English - Synonyms"/en. So still it is not permissible to do same column with itself queries. That's useless anyway. You'd always see the answer as question. So just have unique id's/description for each lang/identyfier. Did I overlook something? Just looking at kvtquery.cpp makes me want to do that immediately. There is 4x the same code with little substitutions for original and lang-id...
 Statistics: well, that's not much data anyway. Maybe we could offer some "Delete statistics from doc" button. I'd keep them in there, that makes taking the vocab to another computer simpler. Well, create the statistics also with from-to ids. No matter. And so if my vocab file actually grows to one MB? I have that much space, I guess.
-
-<lesson "My test">
-	<entry>
-		<lang "en">to go</lang>
-		<lang "de">gehen</lang>
-		<lang "es">ir</lang>
-		<type>verb</type>
-	</entry>
-	<entry>
-		<lang "en">entry</lang>
-		<lang "es">la entrada</lang>
-		<type>noun</type>
-	</entry>
-
-
-</lesson>
 
 
 Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries> </lesson></lesson>
@@ -156,75 +84,4 @@ kiten would like to use kvoctrain for it's practice. Kiruwa told me he'd also li
 Have a tray icon that pops up with vocab questions from time to time or a calender/planer... dream on. 
 
 
-------------
- SOLVED:
-------------
 
-What happens in the unlikely (and stupid) but possible event, that the user deletes the last lesson that exists? Do we pop up with a new Default lesson? Ha, cannot happen - the last vocabulary cannot be deleted. Great!
-
-Save splitter position, maybe set a more sensible default for it???? -- DONE Thanks a lot Peter! I never did anything with KConfigXT so that's great.
-
-Move Merge to the library so both KVT and KWQ can use it. -- DONE
-
-Be able to configure directory for New Stuff downloads -- DONE
-
-Crash when close -> cancel (I think it does not happen any more(?)) -- DONE
-
-Get rid of copy/paste order stuff.  -- DONE
-
-Review the configuration dialog -- DONE
-
-DONE ? Crash when close -> cancel (I think it does not happen any more(?)) -- DONE
-
-Right click stuff: delete for lessons -Frederik -- DONE 
-
-Throw out m_currentLesson - this will be handled only in m_doc->currentLesson(). -Frederik -- DONE
-
-If I add a new entry it is not displayed in the table!!!!!!!!!
-What happens if current lesson is not in query, but I want to add to it? Switch combo state for now. -Frederik -- DONE
-
-All Lessons related stuff now gone from the Configuration dialog. Lessons in query, etc. now has to be handled through the new interface. -- DONE
-
-Inserting new vocab does not insert it into the currently selected lesson. Maybe we could also just change to this lesson, if Edit query is selected in the combo - otherwise the new entry is not displayed. That is frustrating. -- DONE
-
-Right click -> all/none select does not update table (when combo = query). -- DONE
-
-Make it respect the checked lessons. That's easy: the checkboxes always update m_doc->lessonsInQuery(). So make it use that. -- DONE 
-
-If no checkbox is set? Hint? -- DONE
-
-Lessons: focus via qwidget->setFocus() ??? sometimes a dotted frame is shown upon startup, which does not correspond with the selection. setCurrent() does the trick. -- DONE
-
-Get rid of Qt/kde 3 stuff:
-[21:46:28] <pinotree> common-dialogs/thresholdoptionsbase.ui:      <widget class="Q3ListBox" name="lessonlist" > -- DELETED
-[21:46:52] <pinotree> common-dialogs/pasteoptionsbase.ui:       <widget class="Q3ListBox" name="OrderList" >  -- DELETED
-<peter> both of those will go away in the near future.  -- DONE
-
-checked lessons are not saved. -- DONE - Also make the lib use a QList<int> for m_lessonsInQuery instad of the bool list which was difficult and strange to handle.
-
-Search:
--the sorting reverses again. change it to ascending or so...
-<peter> I have now implemented a slot that restores the native order. Please review. <Frederik> Seems to work when loading. But how do I get original order, once I clicked sort?
-<peter>Right-click on the horizontal header. -- DONE
-
-When deleting a lesson the in query x are not respected - bad! -- DONE
-
-kvoctrain: KVocTrainApp::slotCreateRandom() needs to be redone - Frederik said he'd do that. Switch to new lesson stuff. Maybe add this to right click menu - split into sublessons. (Remember, we have no vocabulary without lesson!). So "New lesson" becomes "New lesson 01", "New lesson 02", -- DONE
-
-Multiple choice seems to crash right away. -- DONE - KRandomSequence does not work with a list of 0 entries.
-
-Library: Add functions: addLesson, removeLesson. -- DONE (appendLesson and deleteLesson)
-
-Make lesson column hidden/visible at users whim. -working on it - Frederik -- DONE - right click on header
-
-
-WIZARD:
-Ok, now it's pretty simple, but we don't want to scare new users off.
-Remove allLanugagesPage, instead make a first and second lang page, add an add button to that, to let the user add the needed languages! No need to del at this time. -- DONE
-
-When starting KVocTrain for the first time the wizard should come up. This time giving the choice between open and new... -- DONE
-
-Problems for the user when creating a new doc:
-There is no new vocab button, nothing in the toolbar. Add it to toolbar and menu! Show it's shortcut in the menu for the advanced. Also new lesson buttons. -- DONE
-
-Clean up recent files menu, it used to change the order at random. Open the right file upon start. make relative paths as command line arguments work. -- DONE
