@@ -61,13 +61,10 @@ private slots:
 
 private:
 
-
-
-
     // merge these three:
     void startTypeQuery(int col, int testType);
     void startPropertyQuery(int col, int property);
-    void startQuery(const QString & trans, const QString & org, bool create_new);
+    void startQuery(int fromIdentifier, int toIdentifier);
 
     bool queryIsEmpty();
 
@@ -75,9 +72,6 @@ private:
     void stopQuery();
 
     void showStatistics();
-
-
-
 
     KVTQuery             m_query;
     KEduVocDocument     *m_doc;

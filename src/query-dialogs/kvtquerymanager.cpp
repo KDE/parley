@@ -123,15 +123,13 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
         randomQueryDlg = 0;
-        startQuery(m_doc->identifier(fromTranslation).name(),
-                    m_doc->identifier(toTranslation).name(), true);
+        startQuery(fromTranslation, toTranslation);
         break;
 
     case Prefs::EnumTestType::MultipleChoiceTest:
         delete mcQueryDlg;
         mcQueryDlg = 0;
-        startQuery(m_doc->identifier(fromTranslation).name(),
-                       m_doc->identifier(toTranslation).name(), true);
+        startQuery(fromTranslation, toTranslation);
         break;
 
     case Prefs::EnumTestType::ConjugationTest:
@@ -561,33 +559,29 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
  * @param translang that is asked
  * @param create_new create query=true, resume=false
  */
-void QueryManager::startQuery(const QString & orglang, const QString & translang, bool create_new)
+void QueryManager::startQuery(int fromIdentifier, int toIdentifier)
 {
-kDebug() << " from: " << orglang << " to: " << translang;
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting written practice..."));
     num_queryTimeout = 0;
 
-    //is translang ok?
-    int tindex = m_doc->indexOfIdentifier(translang);
-    if (tindex < 0)
+    if (fromIdentifier < 0 || toIdentifier < 0) {
+        kDebug() << "Invalid indetifiers for test! " << fromIdentifier << ", " << toIdentifier;
         return;
-    //the original language?
-    int oindex = m_doc->indexOfIdentifier(orglang);
-    if (oindex < 0)
-        return;
+    }
 
-    act_query_trans = translang;
-    act_query_org = orglang;
+    /// @todo what is act_query_trans etc supposed to be? rename
+    act_query_trans = toIdentifier;
+    act_query_org = fromIdentifier;
 
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
-    if (create_new || queryList.count() == 0) {
+    if (queryList.count() == 0) {
         m_query.setDocument(m_doc);
-        m_query.setFromTranslation(oindex);
-        m_query.setToTranslation(tindex);
+        m_query.setFromTranslation(fromIdentifier);
+        m_query.setToTranslation(toIdentifier);
         m_query.setQueryType(m_testType);
 
         queryList = m_query.queryEntries();
@@ -620,19 +614,19 @@ kDebug() << " from: " << orglang << " to: " << translang;
     QString q_org;
     QString q_trans;
 
-    q_org = exp->translation(oindex).text();
-    q_trans = exp->translation(tindex).text();
+    q_org = exp->translation(fromIdentifier).text();
+    q_trans = exp->translation(toIdentifier).text();
 
     if (m_testType == Prefs::EnumTestType::WrittenTest) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, fromIdentifier, toIdentifier, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
-        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, oindex, tindex, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, fromIdentifier, toIdentifier, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
