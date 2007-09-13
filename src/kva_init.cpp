@@ -329,22 +329,22 @@ void KVocTrainApp::initActions()
 
 // -- PRACTICE --------------------------------------------------
 
+    KAction* configurePractice = new KAction(this);
+    configurePractice->setText(i18n("Configure Practice..."));
+    configurePractice->setWhatsThis(i18n("Set up and start a test"));
+    configurePractice->setToolTip(configurePractice->whatsThis());
+    configurePractice->setStatusTip(configurePractice->whatsThis());
+    actionCollection()->addAction("practice_configure", configurePractice);
+    connect(configurePractice, SIGNAL(triggered(bool)), SLOT(configurePractice()));
+
     KAction* startPractice = new KAction(this);
-    startPractice->setText(i18n("Configure Practice..."));
-    startPractice->setWhatsThis(i18n("Set up and start a test"));
+    startPractice->setText(i18n("Start Practice..."));
+    startPractice->setIcon(KIcon("practice"));
+    startPractice->setWhatsThis(i18n("Start a test with the last settings"));
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
-    actionCollection()->addAction("practice_configure", startPractice);
+    actionCollection()->addAction("practice_start", startPractice);
     connect(startPractice, SIGNAL(triggered(bool)), SLOT(startPractice()));
-
-    KAction* resumePractice = new KAction(this);
-    resumePractice->setText(i18n("Start Practice..."));
-    resumePractice->setIcon(KIcon("practice"));
-    resumePractice->setWhatsThis(i18n("Start a test with the last settings"));
-    resumePractice->setToolTip(resumePractice->whatsThis());
-    resumePractice->setStatusTip(resumePractice->whatsThis());
-    actionCollection()->addAction("practice_start", resumePractice);
-    connect(resumePractice, SIGNAL(triggered(bool)), SLOT(resumePractice()));
 
     KAction* showStatistics = new KAction(this);
     actionCollection()->addAction("show_statistics", showStatistics);

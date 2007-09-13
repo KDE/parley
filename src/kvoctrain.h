@@ -137,7 +137,7 @@ public slots:
     void slotShowStatistics();
 
     void startPractice();
-    void resumePractice();
+    void configurePractice();
 
 
     void slotTimeOutBackup();

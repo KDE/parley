@@ -603,7 +603,7 @@ void KVocTrainApp::slotDocumentProperties()
     delete titleAuthorDialog;
 }
 
-void KVocTrainApp::startPractice()
+void KVocTrainApp::configurePractice()
 {
     StartPracticeDialog* startPracticeDialog;
     startPracticeDialog = new StartPracticeDialog(m_doc, this);
@@ -614,7 +614,7 @@ void KVocTrainApp::startPractice()
     startPracticeDialog->deleteLater();
 }
 
-void KVocTrainApp::resumePractice()
+void KVocTrainApp::startPractice()
 {
     m_queryManager->startPractice();
 }
