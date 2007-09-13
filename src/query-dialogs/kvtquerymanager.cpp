@@ -123,37 +123,37 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
         randomQueryDlg = 0;
-        startQuery(m_fromTranslation, m_toTranslation);
+        startQuery();
         break;
 
     case Prefs::EnumTestType::MultipleChoiceTest:
         delete mcQueryDlg;
         mcQueryDlg = 0;
-        startQuery(m_fromTranslation, m_toTranslation);
+        startQuery();
         break;
 
     case Prefs::EnumTestType::ConjugationTest:
         delete verbQueryDlg;
         verbQueryDlg = 0;
-        startTypeQuery(m_fromTranslation, m_testType);
+        startTypeQuery(m_testType);
         break;
 
     case Prefs::EnumTestType::ArticleTest:
         delete artQueryDlg;
         artQueryDlg = 0;
-        startTypeQuery(m_fromTranslation, m_testType);
+        startTypeQuery(m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdjectiveTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(m_fromTranslation, m_testType);
+        startTypeQuery(m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdverbTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(m_fromTranslation, m_testType);
+        startTypeQuery(m_testType);
         break;
 
     // tests using the simple dialog
@@ -163,7 +163,7 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::ParaphraseTest:
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
-        startPropertyQuery(m_fromTranslation, m_testType);
+        startPropertyQuery(m_testType);
         break;
 
     default:
@@ -196,22 +196,20 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::startPropertyQuery(int col, int property)
+void QueryManager::startPropertyQuery(int property)
 {
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting property practice..."));
     m_testType = property;
     num_queryTimeout = 0;
-    act_query_col = col;
-
 
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
     m_query.setDocument(m_doc);
-    m_query.setFromTranslation(act_query_col);
-    m_query.setToTranslation(act_query_col);
+    m_query.setFromTranslation(m_fromTranslation);
+    m_query.setToTranslation(m_toTranslation);
     m_query.setQueryType(property);
 
     queryList = m_query.queryEntries();
@@ -241,7 +239,7 @@ void QueryManager::startPropertyQuery(int col, int property)
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
     simpleQueryDlg = new SimpleQueryDlg(m_doc, m_app);
-    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, m_doc);
     connect(simpleQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(simpleQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
     simpleQueryDlg->initFocus();
@@ -329,28 +327,27 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 
     random_query_nr = m_randomSequence.getLong(random_expr1.count());
 
-    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, m_doc);
+    simpleQueryDlg->setQuery(m_testType, random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, m_doc);
     simpleQueryDlg->initFocus();
     m_app->slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void QueryManager::startTypeQuery(int col, int testType)
+void QueryManager::startTypeQuery(int testType)
 {
     /// @todo merge this with startPropertyQuery (and possibly startQuery)
 
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting special practice..."));
     num_queryTimeout = 0;
-    act_query_col = col;
 
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
 
     m_query.setDocument(m_doc);
-    m_query.setFromTranslation(act_query_col);
-    m_query.setToTranslation(act_query_col);
+    m_query.setFromTranslation(m_fromTranslation);
+    m_query.setToTranslation(m_toTranslation);
     m_query.setQueryType(testType);
 
     queryList = m_query.queryEntries();
@@ -381,22 +378,22 @@ void QueryManager::startTypeQuery(int col, int testType)
     m_app->hide();
     if (m_testType == Prefs::EnumTestType::ConjugationTest) {
         verbQueryDlg = new VerbQueryDlg(m_doc, m_app);
-        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp,
+                               m_doc->identifier(m_toTranslation).personalPronouns(), exp->translation(m_toTranslation).conjugations());
         verbQueryDlg->initFocus();
         connect(verbQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(verbQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         verbQueryDlg->show();
     } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
         artQueryDlg = new ArtQueryDlg(m_doc, m_app);
-        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp, m_doc->identifier(m_toTranslation).article());
         artQueryDlg->initFocus();
         connect(artQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(artQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
         artQueryDlg->show();
     } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
         adjQueryDlg = new AdjQueryDlg(m_doc, m_app);
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp->translation(m_toTranslation).comparison());
         adjQueryDlg->initFocus();
         connect(adjQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(adjQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
@@ -501,8 +498,8 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             stopQuery();
             return;
         }
-        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp,
-                               m_doc->identifier(act_query_col).personalPronouns(), exp->translation(act_query_col).conjugations());
+        verbQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp,
+                               m_doc->identifier(m_toTranslation).personalPronouns(), exp->translation(m_toTranslation).conjugations());
 
         verbQueryDlg->initFocus();
     } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
@@ -511,7 +508,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             stopQuery();
             return;
         }
-        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp, m_doc->identifier(act_query_col).article());
+        artQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp, m_doc->identifier(m_toTranslation).article());
         artQueryDlg->initFocus();
     } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
         if (adjQueryDlg == 0) {
@@ -519,7 +516,7 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
             stopQuery();
             return;
         }
-        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
+        adjQueryDlg->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp->translation(m_toTranslation).comparison());
         adjQueryDlg->initFocus();
     } else {
         kError() << "QueryManager::slotTimeOutType: unknown type\n";
@@ -530,43 +527,20 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 }
 
 
-// void QueryManager::resumeQuery()
-// {
-//     m_testType = KVTQuery::RandomQuery;
-//     restartQuery();
-// }
-
-
-// void QueryManager::resumeQueryMC()
-// {
-//     m_testType = KVTQuery::MultipleChoiceQuery;
-//     restartQuery();
-// }
-
-
-// void QueryManager::restartQuery()
-// {
-//     if (random_expr1.count() != 0) {
-//         queryList.insert(queryList.begin(), random_expr1);
-//         random_expr1.clear();
-//     }
-//     startQuery(act_query_trans, act_query_org, false);
-// }
-
 /**
  * Start regular type query
  * @param orglang shown
  * @param translang that is asked
  * @param create_new create query=true, resume=false
  */
-void QueryManager::startQuery(int fromIdentifier, int toIdentifier)
+void QueryManager::startQuery()
 {
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting written practice..."));
     num_queryTimeout = 0;
 
-    if (fromIdentifier < 0 || toIdentifier < 0) {
-        kDebug() << "Invalid indetifiers for test! " << fromIdentifier << ", " << toIdentifier;
+    if (m_fromTranslation < 0 || m_toTranslation < 0) {
+        kDebug() << "Invalid indetifiers for test! " << m_fromTranslation << ", " << m_toTranslation;
         return;
     }
 
@@ -576,8 +550,8 @@ void QueryManager::startQuery(int fromIdentifier, int toIdentifier)
 
     if (queryList.count() == 0) {
         m_query.setDocument(m_doc);
-        m_query.setFromTranslation(fromIdentifier);
-        m_query.setToTranslation(toIdentifier);
+        m_query.setFromTranslation(m_fromTranslation);
+        m_query.setToTranslation(m_toTranslation);
         m_query.setQueryType(m_testType);
 
         queryList = m_query.queryEntries();
@@ -610,19 +584,19 @@ void QueryManager::startQuery(int fromIdentifier, int toIdentifier)
     QString q_org;
     QString q_trans;
 
-    q_org = exp->translation(fromIdentifier).text();
-    q_trans = exp->translation(toIdentifier).text();
+    q_org = exp->translation(m_fromTranslation).text();
+    q_trans = exp->translation(m_toTranslation).text();
 
     if (m_testType == Prefs::EnumTestType::WrittenTest) {
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
-        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, fromIdentifier, toIdentifier, query_cycle, query_num, query_startnum);
+        randomQueryDlg->setQuery(q_org, q_trans, random_expr1[random_query_nr].m_index, m_fromTranslation, m_toTranslation, query_cycle, query_num, query_startnum);
         randomQueryDlg->initFocus();
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(randomQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
         randomQueryDlg->show();
     } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
-        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, fromIdentifier, toIdentifier, query_cycle, query_num, query_startnum, m_doc);
+        mcQueryDlg->setQuery(q_org, random_expr1[random_query_nr].m_index, m_fromTranslation, m_toTranslation, query_cycle, query_num, query_startnum, m_doc);
         mcQueryDlg->initFocus();
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));

@@ -62,9 +62,9 @@ private slots:
 private:
 
     // merge these three:
-    void startTypeQuery(int col, int testType);
-    void startPropertyQuery(int col, int property);
-    void startQuery(int fromIdentifier, int toIdentifier);
+    void startTypeQuery(int testType);
+    void startPropertyQuery(int property);
+    void startQuery();
 
     bool queryIsEmpty();
 
@@ -95,10 +95,6 @@ private:
 
     int                  random_query_nr;
     QString              def_lang;
-    int                  act_query_col;
-
-//     QString              act_query_trans;
-//     QString              act_query_org;
 
     int     m_fromTranslation;
     int     m_toTranslation;
