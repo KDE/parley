@@ -417,7 +417,7 @@ void KVocTrainApp::slotGeneralOptions()
 
 void KVocTrainApp::slotGeneralOptionsPage(int index)
 {
-    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, &m_queryManager->getKVTQuery(), this, "settings",  Prefs::self());
+    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     if (index >= 0)
         dialog->selectLanguagePage();
@@ -616,7 +616,7 @@ void KVocTrainApp::startPractice()
 
 void KVocTrainApp::resumePractice()
 {
-    m_queryManager->query(Prefs::testType(), Prefs::fromIdentifier(), Prefs::toIdentifier());
+    m_queryManager->startPractice();
 }
 
 

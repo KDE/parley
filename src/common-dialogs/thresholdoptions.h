@@ -37,7 +37,7 @@ class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
 {
     Q_OBJECT
 public:
-    ThresholdOptions(KEduVocDocument* doc, KVTQuery * m, QWidget* parent);
+    ThresholdOptions(KEduVocDocument* doc, QWidget* parent);
 
     void updateWidgets();
     bool hasChanged();
@@ -59,7 +59,6 @@ protected slots:
 private:
     void fillWidgets();
 
-    KVTQuery * m_queryManager;
     KEduVocDocument *m_doc;
 };
 

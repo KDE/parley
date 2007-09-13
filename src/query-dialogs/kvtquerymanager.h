@@ -47,7 +47,22 @@ Q_OBJECT
 public:
     QueryManager(KVocTrainApp *app, KEduVocDocument *doc);
 
-    void query(int queryType, int fromTranslation, int toTranslation);
+    void startPractice();
+
+
+
+public slots:
+    void slotQueryExpressionResult(QueryDlgBase::Result res);
+    void slotTimeOutType(QueryDlgBase::Result res);
+    void slotTimeOutProperty(QueryDlgBase::Result res);
+
+private slots:
+    void slotEditEntry(int row, int translation);
+
+private:
+
+
+
 
     // merge these three:
     void startTypeQuery(int col, int testType);
@@ -62,15 +77,9 @@ public:
     KVTQuery & getKVTQuery() { return m_query; }
     void showStatistics();
 
-public slots:
-    void slotQueryExpressionResult(QueryDlgBase::Result res);
-    void slotTimeOutType(QueryDlgBase::Result res);
-    void slotTimeOutProperty(QueryDlgBase::Result res);
 
-private slots:
-    void slotEditEntry(int row, int translation);
 
-private:
+
     KVTQuery             m_query;
     KEduVocDocument     *m_doc;
     KVocTrainApp        *m_app;

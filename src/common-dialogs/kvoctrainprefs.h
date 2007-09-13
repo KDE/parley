@@ -44,7 +44,7 @@ public:
     /**
      * Creates a configuration dialog.
      */
-    KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config);
+    KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
     /**
      * Displays the dialog with the language page selected.
@@ -91,7 +91,6 @@ private:
     KConfigSkeleton *m_config;
     KEduVocDocument *m_doc;
     KComboBox       *m_lessons;
-    KVTQuery        *m_queryManager;
     KPageWidgetItem *m_languagePage;
 };
 

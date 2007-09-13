@@ -112,11 +112,13 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 }
 
 
-void QueryManager::query(int testType, int fromTranslation, int toTranslation)
+void QueryManager::startPractice()
 {
-    m_testType = testType;
+    int fromTranslation = Prefs::fromIdentifier();
+    int toTranslation = Prefs::toIdentifier();
+    m_testType = Prefs::testType();
 
-    switch (testType) {
+    switch (m_testType) {
 
     case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
@@ -135,25 +137,25 @@ void QueryManager::query(int testType, int fromTranslation, int toTranslation)
     case Prefs::EnumTestType::ConjugationTest:
         delete verbQueryDlg;
         verbQueryDlg = 0;
-        startTypeQuery(fromTranslation, testType);
+        startTypeQuery(fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ArticleTest:
         delete artQueryDlg;
         artQueryDlg = 0;
-        startTypeQuery(fromTranslation, testType);
+        startTypeQuery(fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdjectiveTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(fromTranslation, testType);
+        startTypeQuery(fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdverbTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(fromTranslation, testType);
+        startTypeQuery(fromTranslation, m_testType);
         break;
 
     // tests using the simple dialog
@@ -163,7 +165,7 @@ void QueryManager::query(int testType, int fromTranslation, int toTranslation)
     case Prefs::EnumTestType::ParaphraseTest:
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, testType);
+        startPropertyQuery(fromTranslation, m_testType);
         break;
 
     default:

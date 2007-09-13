@@ -109,7 +109,7 @@ static ThreshListRef Threshdate_itemlist [] =
     };
 
 
-ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, KVTQuery* m, QWidget* parent) : QWidget(parent)
+ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
 
@@ -125,7 +125,6 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, KVTQuery* m, QWidget* p
     connect(datelist,    SIGNAL(activated(int)), SLOT(slotComboActivated(int)));
 
     m_doc = doc;
-    m_queryManager = m;
     fillWidgets();
     updateWidgets();
 }
@@ -138,7 +137,7 @@ void ThresholdOptions::fillWidgets()
     // limits and thresholds (the five comboboxes on the right)
     gradelist->clear();
     for (int i = 1; i <= KV_MAX_GRADE; i++)
-        gradelist->addItem(m_queryManager->gradeStr(i));
+        gradelist->addItem(KVTQuery::gradeStr(i));
 
     typelist->clear();
     typelist->addItems(m_doc->wordTypes()->typeNameList());
@@ -161,35 +160,35 @@ void ThresholdOptions::fillWidgets()
     ct = type_complist;
     typecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        typecomp->addItem(m_queryManager->compStr(*ct));
+        typecomp->addItem(KVTQuery::compStr(*ct));
         ct++;
     }
 
     ct = query_complist;
     querycomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        querycomp->addItem(m_queryManager->compStr(*ct));
+        querycomp->addItem(KVTQuery::compStr(*ct));
         ct++;
     }
 
     ct = bad_complist;
     badcomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        badcomp->addItem(m_queryManager->compStr(*ct));
+        badcomp->addItem(KVTQuery::compStr(*ct));
         ct++;
     }
 
     ct = grade_complist;
     gradecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        gradecomp->addItem(m_queryManager->compStr(*ct));
+        gradecomp->addItem(KVTQuery::compStr(*ct));
         ct++;
     }
 
     ct = date_complist;
     datecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        datecomp->addItem(m_queryManager->compStr(*ct));
+        datecomp->addItem(KVTQuery::compStr(*ct));
         ct++;
     }
 }

@@ -52,7 +52,7 @@ static const char unapplied[] = I18N_NOOP(
                                     "If you save a profile, those changes will not be included.\n"
                                     "Do you wish to continue?");
 
-KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *parent, const QString &name, KConfigSkeleton *config)
+KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
   : KConfigDialog(parent, name, config)
 {
     setButtons(Default|Ok|Apply|Cancel|Help|User1);
@@ -63,7 +63,6 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *paren
 
     m_languagePage = 0;
     m_config = config;
-    m_queryManager = m;
 
     m_generalOptions = new GeneralOptions(0);
     addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
@@ -75,7 +74,7 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, KVTQuery *m, QWidget *paren
     m_queryOptions = new QueryOptions(0);
     addPage(m_queryOptions, i18nc("Configure settings for practicing vocabulary, short title in config dialog.", "Practice"), "run_query", i18nc("Configure settings for practicing vocabulary.", "Practice Settings"), true);
 
-    m_thresholdOptions = new ThresholdOptions(m_doc, m_queryManager, 0);
+    m_thresholdOptions = new ThresholdOptions(m_doc, 0);
     addPage(m_thresholdOptions, i18n("Thresholds"), "configure", i18n("Threshold Settings"), true);
     connect(m_thresholdOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
