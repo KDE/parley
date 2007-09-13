@@ -62,8 +62,8 @@ private slots:
 private:
 
     // merge these three:
-    void startTypeQuery(int testType);
-    void startPropertyQuery(int property);
+    void startTypeQuery();
+    void startPropertyQuery();
     void startQuery();
 
     bool queryIsEmpty();

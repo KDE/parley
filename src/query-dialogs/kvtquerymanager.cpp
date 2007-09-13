@@ -135,25 +135,25 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::ConjugationTest:
         delete verbQueryDlg;
         verbQueryDlg = 0;
-        startTypeQuery(m_testType);
+        startTypeQuery();
         break;
 
     case Prefs::EnumTestType::ArticleTest:
         delete artQueryDlg;
         artQueryDlg = 0;
-        startTypeQuery(m_testType);
+        startTypeQuery();
         break;
 
     case Prefs::EnumTestType::ComparisonAdjectiveTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(m_testType);
+        startTypeQuery();
         break;
 
     case Prefs::EnumTestType::ComparisonAdverbTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(m_testType);
+        startTypeQuery();
         break;
 
     // tests using the simple dialog
@@ -163,7 +163,7 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::ParaphraseTest:
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
-        startPropertyQuery(m_testType);
+        startPropertyQuery();
         break;
 
     default:
@@ -196,11 +196,10 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::startPropertyQuery(int property)
+void QueryManager::startPropertyQuery()
 {
     m_app->removeEntryDlg();
     m_app->slotStatusMsg(i18n("Starting property practice..."));
-    m_testType = property;
     num_queryTimeout = 0;
 
     m_app->prepareProgressBar();
@@ -210,7 +209,7 @@ void QueryManager::startPropertyQuery(int property)
     m_query.setDocument(m_doc);
     m_query.setFromTranslation(m_fromTranslation);
     m_query.setToTranslation(m_toTranslation);
-    m_query.setQueryType(property);
+    m_query.setQueryType(m_testType);
 
     queryList = m_query.queryEntries();
 
@@ -333,7 +332,7 @@ void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
 }
 
 
-void QueryManager::startTypeQuery(int testType)
+void QueryManager::startTypeQuery()
 {
     /// @todo merge this with startPropertyQuery (and possibly startQuery)
 
@@ -348,7 +347,7 @@ void QueryManager::startTypeQuery(int testType)
     m_query.setDocument(m_doc);
     m_query.setFromTranslation(m_fromTranslation);
     m_query.setToTranslation(m_toTranslation);
-    m_query.setQueryType(testType);
+    m_query.setQueryType(m_testType);
 
     queryList = m_query.queryEntries();
 
