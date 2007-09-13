@@ -114,8 +114,8 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 
 void QueryManager::startPractice()
 {
-    int fromTranslation = Prefs::fromIdentifier();
-    int toTranslation = Prefs::toIdentifier();
+    m_fromTranslation = Prefs::fromIdentifier();
+    m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
     switch (m_testType) {
@@ -123,37 +123,37 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::WrittenTest:
         delete randomQueryDlg;
         randomQueryDlg = 0;
-        startQuery(fromTranslation, toTranslation);
+        startQuery(m_fromTranslation, m_toTranslation);
         break;
 
     case Prefs::EnumTestType::MultipleChoiceTest:
         delete mcQueryDlg;
         mcQueryDlg = 0;
-        startQuery(fromTranslation, toTranslation);
+        startQuery(m_fromTranslation, m_toTranslation);
         break;
 
     case Prefs::EnumTestType::ConjugationTest:
         delete verbQueryDlg;
         verbQueryDlg = 0;
-        startTypeQuery(fromTranslation, m_testType);
+        startTypeQuery(m_fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ArticleTest:
         delete artQueryDlg;
         artQueryDlg = 0;
-        startTypeQuery(fromTranslation, m_testType);
+        startTypeQuery(m_fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdjectiveTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(fromTranslation, m_testType);
+        startTypeQuery(m_fromTranslation, m_testType);
         break;
 
     case Prefs::EnumTestType::ComparisonAdverbTest:
         delete adjQueryDlg;
         adjQueryDlg = 0;
-        startTypeQuery(fromTranslation, m_testType);
+        startTypeQuery(m_fromTranslation, m_testType);
         break;
 
     // tests using the simple dialog
@@ -163,7 +163,7 @@ void QueryManager::startPractice()
     case Prefs::EnumTestType::ParaphraseTest:
         delete simpleQueryDlg;
         simpleQueryDlg = 0;
-        startPropertyQuery(fromTranslation, m_testType);
+        startPropertyQuery(m_fromTranslation, m_testType);
         break;
 
     default:
@@ -570,10 +570,6 @@ void QueryManager::startQuery(int fromIdentifier, int toIdentifier)
         return;
     }
 
-    /// @todo what is act_query_trans etc supposed to be? rename
-    act_query_trans = toIdentifier;
-    act_query_org = fromIdentifier;
-
     m_app->prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     random_expr2.clear();
@@ -644,8 +640,9 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 {
     m_doc->setModified();
 
-    int tindex = m_doc->indexOfIdentifier(act_query_trans);
-    int oindex = m_doc->indexOfIdentifier(act_query_org);
+    ///@todo simply replace
+    int tindex = m_toTranslation;
+    int oindex = m_fromTranslation;
 
     QueryEntry queryEntry = random_expr1[random_query_nr];
     KEduVocExpression *exp = queryEntry.exp;
@@ -821,8 +818,8 @@ void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
 
     exp = random_expr1[random_query_nr].exp;
 
-    tindex = m_doc->indexOfIdentifier(act_query_trans);
-    oindex = m_doc->indexOfIdentifier(act_query_org);
+    tindex = m_toTranslation;
+    oindex = m_fromTranslation;
     QString q_org,
     q_trans;
 
