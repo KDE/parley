@@ -528,9 +528,6 @@ void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
 
 /**
  * Start regular type query
- * @param orglang shown
- * @param translang that is asked
- * @param create_new create query=true, resume=false
  */
 void QueryManager::startQuery()
 {
@@ -897,7 +894,6 @@ void QueryManager::slotEditEntry(int row, int translation)
 kDebug() << "slotEditEntry(int, int) from a query: " << row << ", " << translation;
 
     EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
-    //connect(entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
 
     QList<int> entry;
     entry.append(row);
