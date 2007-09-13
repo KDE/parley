@@ -74,7 +74,6 @@ private:
     /** exit query mode */
     void stopQuery();
 
-    KVTQuery & getKVTQuery() { return m_query; }
     void showStatistics();
 
 
