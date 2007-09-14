@@ -75,7 +75,7 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
     m_entryManager = new TestEntryManager(m_doc);
 
     simpleQueryDlg = 0;
-    mcQueryDlg = 0;
+    m_testDialog = 0;
     verbQueryDlg = 0;
     m_testDialog = 0;
     adjQueryDlg = 0;
@@ -100,8 +100,8 @@ kDebug() << "QueryManager::startPractice()";
         break;
 
     case Prefs::EnumTestType::MultipleChoiceTest:
-        delete mcQueryDlg;
-        mcQueryDlg = 0;
+        delete m_testDialog;
+        m_testDialog = 0;
         startQuery();
         break;
 
@@ -472,33 +472,22 @@ kDebug() << "QueryManager::startQuery()";
 
     m_app->hide();
 
-kDebug() << "QueryManager::startQuery";
-
     if (m_testType == Prefs::EnumTestType::WrittenTest) {
         m_testDialog = new RandomQueryDlg(m_doc, m_app);
-        m_testDialog->setQuery( entry );
-        m_testDialog->initFocus();
-        m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-        connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-
-    kDebug() << "connecting m_testDialog";
-        connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
-        m_testDialog->show();
     } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
-        mcQueryDlg = new MCQueryDlg(m_doc, m_app);
-        mcQueryDlg->setQuery(entry);
-        mcQueryDlg->initFocus();
-        mcQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-        connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-        kDebug() << "connecting mc";
-        connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
-        mcQueryDlg->show();
+        m_testDialog = new MCQueryDlg(m_doc, m_app);
     } else {
         kError() << "QueryManager::startQuery: unknown type\n";
         stopQuery();
         return;
     }
-    m_app->slotStatusMsg(IDS_DEFAULT);
+
+    m_testDialog->setQuery( entry );
+    m_testDialog->initFocus();
+    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+    connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
+    connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
+    m_testDialog->show();
 }
 
 
@@ -532,29 +521,15 @@ kDebug() << "result: " << res;
         return;
     }
 
-    if (m_testType == Prefs::EnumTestType::WrittenTest) {
-
-        if (m_testDialog == 0) {
-            kError() << "m_testDialog == 0\n";
-            stopQuery();
-            return;
-        }
-
-        m_testDialog->setQuery(entry);
-        m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-        m_testDialog->initFocus();
+    if (m_testDialog == 0) {
+        kError() << "m_testDialog == 0\n";
+        stopQuery();
+        return;
     }
 
-    if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
-        if (mcQueryDlg == 0) {
-            kError() << "mcQueryDlg == 0\n";
-            stopQuery();
-            return;
-        }
-        mcQueryDlg->setQuery(entry);
-        mcQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-        mcQueryDlg->initFocus();
-    }
+    m_testDialog->setQuery(entry);
+    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+    m_testDialog->initFocus();
 }
 
 
@@ -563,8 +538,8 @@ void QueryManager::stopQuery()
 kDebug() << "stopQuery";
     if (simpleQueryDlg != 0)
         simpleQueryDlg->deleteLater();
-    if (mcQueryDlg != 0)
-        mcQueryDlg->deleteLater();
+    if (m_testDialog != 0)
+        m_testDialog->deleteLater();
     if (verbQueryDlg != 0)
         verbQueryDlg->deleteLater();
     if (m_testDialog != 0)
@@ -575,7 +550,7 @@ kDebug() << "stopQuery";
         artQueryDlg->deleteLater();
 
     simpleQueryDlg = 0;
-    mcQueryDlg = 0;
+    m_testDialog = 0;
     verbQueryDlg = 0;
     m_testDialog = 0;
     adjQueryDlg = 0;

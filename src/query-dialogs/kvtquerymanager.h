@@ -78,9 +78,7 @@ private:
     QueryDlgBase        *m_testDialog;
 
     SimpleQueryDlg      *simpleQueryDlg;
-    MCQueryDlg          *mcQueryDlg;
     VerbQueryDlg        *verbQueryDlg;
-//     RandomQueryDlg      *randomQueryDlg;
     AdjQueryDlg         *adjQueryDlg;
     ArtQueryDlg         *artQueryDlg;
     int                  num_queryTimeout;
