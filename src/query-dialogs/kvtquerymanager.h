@@ -49,19 +49,14 @@ public:
     void startPractice();
 
 public slots:
-    void slotQueryExpressionResult(QueryDlgBase::Result res);
+    void slotResult(QueryDlgBase::Result res);
     void slotEditEntry(int row, int translation);
 
-signals:
-    void endPractice();
-
 private:
-    void startQuery();
-
     bool queryIsEmpty();
 
     /** exit query mode */
-    void stopQuery();
+    void stopPractice();
 
     TestEntryManager    *m_entryManager;
     KEduVocDocument     *m_doc;

@@ -85,48 +85,12 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 
 void QueryManager::startPractice()
 {
-kDebug() << "QueryManager::startPractice()";
     m_fromTranslation = Prefs::fromIdentifier();
     m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
     m_testDialog->deleteLater();
     m_testDialog = 0;
-    startQuery();
-}
-
-
-bool QueryManager::queryIsEmpty()
-{
-    int i;
-    for ( i = 0; i < m_doc->lessonCount(); i++ ) {
-        if ( m_doc->lesson(i).inQuery() ) {
-            break;
-        }
-    }
-
-    if ( i == m_doc->lessonCount() ) {
-        KMessageBox::information(m_app, i18n("You have selected no lessons to be practiced. Please select at least one on the left."), i18n("Starting Test"));
-        return true;
-    }
-
-///@todo handle empty test
-//     if (query_startnum == 0) {
-//         if (KMessageBox::Yes == KMessageBox::questionYesNo(m_app, i18n(not_contain), i18n("Starting Test")))
-//             m_app->slotGeneralOptionsPage(5);
-//         return true;
-//     }
-    return false;
-}
-
-
-
-/**
- * Start regular type query
- */
-void QueryManager::startQuery()
-{
-kDebug() << "QueryManager::startQuery()";
 
     m_app->removeEntryDlg();
     num_queryTimeout = 0;
@@ -171,7 +135,7 @@ kDebug() << "QueryManager::startQuery()";
         break;
     default:
         kError() << "QueryManager::startQuery: unknown type\n";
-        stopQuery();
+        stopPractice();
         return;
     }
 
@@ -179,12 +143,37 @@ kDebug() << "QueryManager::startQuery()";
     m_testDialog->initFocus();
     m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-    connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));
+    connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotResult(QueryDlgBase::Result)));
     m_testDialog->show();
 }
 
 
-void QueryManager::slotQueryExpressionResult(QueryDlgBase::Result res)
+
+bool QueryManager::queryIsEmpty()
+{
+    int i;
+    for ( i = 0; i < m_doc->lessonCount(); i++ ) {
+        if ( m_doc->lesson(i).inQuery() ) {
+            break;
+        }
+    }
+
+    if ( i == m_doc->lessonCount() ) {
+        KMessageBox::information(m_app, i18n("You have selected no lessons to be practiced. Please select at least one on the left."), i18n("Starting Test"));
+        return true;
+    }
+
+///@todo handle empty test
+//     if (query_startnum == 0) {
+//         if (KMessageBox::Yes == KMessageBox::questionYesNo(m_app, i18n(not_contain), i18n("Starting Test")))
+//             m_app->slotGeneralOptionsPage(5);
+//         return true;
+//     }
+    return false;
+}
+
+
+void QueryManager::slotResult(QueryDlgBase::Result res)
 {
 kDebug() << "result: " << res;
     m_doc->setModified();
@@ -194,7 +183,7 @@ kDebug() << "result: " << res;
 
     // check if stop was requested
     if ( res == QueryDlgBase::StopIt ) {
-        stopQuery();
+        stopPractice();
         return;
     }
 
@@ -210,13 +199,13 @@ kDebug() << "result: " << res;
     // get a new entry
     TestEntry* entry = m_entryManager->nextEntry();
     if ( entry == 0 ) {
-        stopQuery();
+        stopPractice();
         return;
     }
 
     if (m_testDialog == 0) {
         kError() << "m_testDialog == 0\n";
-        stopQuery();
+        stopPractice();
         return;
     }
 
@@ -226,9 +215,9 @@ kDebug() << "result: " << res;
 }
 
 
-void QueryManager::stopQuery()
+void QueryManager::stopPractice()
 {
-kDebug() << "stopQuery";
+kDebug() << "stopPractice";
     if (m_testDialog != 0)
         m_testDialog->deleteLater();
     if (m_testDialog != 0)

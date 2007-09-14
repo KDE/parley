@@ -617,14 +617,8 @@ void KVocTrainApp::configurePractice()
 void KVocTrainApp::startPractice()
 {
     m_queryManager = new QueryManager(this, m_doc);
-    connect( m_queryManager, SIGNAL(endPractice()), this, SLOT(endPractice()));
     m_queryManager->startPractice();
 }
 
-void KVocTrainApp::endPractice()
-{
-//  is called withing the dialog itself
-//     m_queryManager->deleteLater();
-}
 
 #include "kvoctrain.moc"

@@ -136,7 +136,6 @@ public slots:
     void slotShowStatistics();
 
     void startPractice();
-    void endPractice();
     void configurePractice();
 
     void slotTimeOutBackup();
@@ -205,8 +204,6 @@ private slots:
     void slotEditEntry();
 
 private:
-    /** used for the query slotStartXYZ - to check if query is not empty */
-    bool queryIsEmpty();
     /**
      * Start the wizard to help set up the doc.
      */
