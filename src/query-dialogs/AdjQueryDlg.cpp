@@ -206,4 +206,11 @@ void AdjQueryDlg::lev3Changed(const QString&)
     resetQueryWidget(mw->lev3Field);
 }
 
+
+void AdjQueryDlg::setProgressCounter(int current, int total)
+{///@todo
+}
+
 #include "AdjQueryDlg.moc"
+
+

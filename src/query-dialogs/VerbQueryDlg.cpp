@@ -396,4 +396,9 @@ void VerbQueryDlg::slotP2pChanged(const QString&)
     resetQueryWidget(mw->p2pField);
 }
 
+void VerbQueryDlg::setProgressCounter(int current, int total)
+{
+    ///@todo
+}
+
 #include "VerbQueryDlg.moc"

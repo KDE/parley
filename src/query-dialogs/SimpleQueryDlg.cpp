@@ -141,9 +141,6 @@ void SimpleQueryDlg::setQuery(TestEntry* entry)
 //     s.setNum(q_cycle);
 //     mw->progCount->setText(s);
 
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
-
     startTimer();
 
     resetQueryWidget(mw->answerField);
@@ -242,5 +239,13 @@ void SimpleQueryDlg::setQueryFieldWordwrap()
     mw->queryField->setWordWrap(w > w2);
 }
 
+void SimpleQueryDlg::setProgressCounter(int current, int total)
+{
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
+}
+
 
 #include "SimpleQueryDlg.moc"
+
+

@@ -713,3 +713,13 @@ int TestEntry::statisticGoodCount()
 {
     return m_statisticGoodCount;
 }
+
+int TestEntryManager::totalEntryCount()
+{
+    return m_allTestEntries.count();
+}
+
+int TestEntryManager::activeEntryCount()
+{
+    return m_allTestEntries.count() - (m_notAskedTestEntries.count() + m_currentEntries.count());
+}

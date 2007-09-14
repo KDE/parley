@@ -52,6 +52,7 @@ public:
     void startTimer();
 
     virtual void setQuery(TestEntry* entry);
+    virtual void setProgressCounter(int current, int total) = 0;
 
 public slots:
     virtual void showSolution() = 0;

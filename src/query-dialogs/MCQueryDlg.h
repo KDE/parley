@@ -39,6 +39,7 @@ public:
     ~MCQueryDlg();
 
     void setQuery(TestEntry* entry);
+    void setProgressCounter(int current, int total);
 
 public slots:
     virtual void initFocus() const;

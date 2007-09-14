@@ -478,6 +478,7 @@ kDebug() << "QueryManager::startQuery";
         randomQueryDlg = new RandomQueryDlg(m_doc, m_app);
         randomQueryDlg->setQuery( entry );
         randomQueryDlg->initFocus();
+        randomQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
         connect(randomQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
 
     kDebug() << "connecting randomQueryDlg";
@@ -539,6 +540,7 @@ kDebug() << "result: " << res;
         }
 
         randomQueryDlg->setQuery(entry);
+        randomQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
         randomQueryDlg->initFocus();
     }
 
@@ -549,6 +551,7 @@ kDebug() << "result: " << res;
             return;
         }
         mcQueryDlg->setQuery(entry);
+        mcQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
         mcQueryDlg->initFocus();
     }
 }

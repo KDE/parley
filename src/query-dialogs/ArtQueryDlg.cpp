@@ -213,4 +213,12 @@ void ArtQueryDlg::slotUser1()
     emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
+
+void ArtQueryDlg::setProgressCounter(int current, int total)
+{///@todo
+}
+
+
 #include "ArtQueryDlg.moc"
+
+

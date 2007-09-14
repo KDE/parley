@@ -122,6 +122,8 @@ public:
     int statisticSkipUnknown();
     int statisticTimeout();
 
+    int totalEntries();
+
     ///@todo make these two members private
     KEduVocExpression *exp;
     int m_index;
@@ -137,7 +139,9 @@ private:
     int m_statisticSkipKnown;
     int m_answeredCorrectInSequence;
     bool m_canSwitchDirection;
+
 };
+
 
 // typedef QList<TestEntry> TestEntryList;
 
@@ -162,9 +166,12 @@ public:
 
     /**
      * The user has answered with this result, internal update.
-     * @param
+     * @param result the result (QueryDlgBase)
      */
     void result(int result);
+
+    int totalEntryCount();
+    int activeEntryCount();
 
 
     /// grade int to string (?)

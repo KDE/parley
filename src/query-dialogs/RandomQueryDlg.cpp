@@ -271,12 +271,6 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
     mw->c_type->setChecked(false);
     setHintFields();
 
-///@todo update progress
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
-mw->countbar->setMaximum(0);
-mw->countbar->setValue(0);
-
     mw->status->clear();
     suggestion_hint = false;
 
@@ -313,7 +307,6 @@ void RandomQueryDlg::verifyClicked()
                 }
         if (trans.count() == 0) {
             int percent = (mw->countbar->value()/mw->countbar->maximum()) * 100;
-            //status->setText(getOKComment(countbar->getPercentage()));
             mw->status->setText(getOKComment(percent));
             knowItClicked();
         } else {
@@ -338,13 +331,13 @@ void RandomQueryDlg::verifyClicked()
         }
 
         if (trans.count() == 0) {
-//             mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+            mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
             knowItClicked();
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);
             }
-//             mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+            mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
             mw->dont_know->setDefault(true);
         }
     }
@@ -572,6 +565,12 @@ void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
         e->ignore();
         break;
     }
+}
+
+void RandomQueryDlg::setProgressCounter(int current, int total)
+{
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
 }
 
 #include "RandomQueryDlg.moc"

@@ -328,3 +328,10 @@ void MCQueryDlg::slotUser1()
 }
 
 #include "MCQueryDlg.moc"
+
+
+void MCQueryDlg::setProgressCounter(int current, int total)
+{
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
+}

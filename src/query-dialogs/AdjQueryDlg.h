@@ -38,6 +38,7 @@ public:
     ~AdjQueryDlg();
 
     void setQuery(TestEntry* entry);
+    void setProgressCounter(int current, int total);
 
 public slots:
     void initFocus() const;
