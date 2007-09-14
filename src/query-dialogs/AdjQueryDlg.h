@@ -26,9 +26,9 @@
 #define AdjQueryDlg_included
 
 #include "ui_AdjQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
-class AdjQueryDlg : public QueryDlgBase
+class AdjQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

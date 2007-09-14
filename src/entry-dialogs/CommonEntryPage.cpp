@@ -176,11 +176,9 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
 
 void CommonEntryPage::setLessonBox(int lesson)
 {
-///@todo lessons - if we have a default (0) lesson, do we need something here?
     lesson_box->clear();
-    //lesson_box->addItem(m_doc->lessonDescription(0));
+    /// @todo get rid of lessonNames (?)
     lesson_box->addItems(m_doc->lessonNames());
-
     lesson_box->setCurrentIndex(lesson);
 }
 

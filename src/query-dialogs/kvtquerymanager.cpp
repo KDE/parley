@@ -85,8 +85,6 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 
 void QueryManager::startPractice()
 {
-    m_fromTranslation = Prefs::fromIdentifier();
-    m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
     m_testDialog->deleteLater();
@@ -94,11 +92,6 @@ void QueryManager::startPractice()
 
     m_app->removeEntryDlg();
     num_queryTimeout = 0;
-
-    if (m_fromTranslation < 0 || m_toTranslation < 0) {
-        kDebug() << "Invalid indetifiers for test! " << m_fromTranslation << ", " << m_toTranslation;
-        return;
-    }
 
     TestEntry * entry = m_entryManager->nextEntry();
     if ( entry == 0 ) {
@@ -143,7 +136,7 @@ void QueryManager::startPractice()
     m_testDialog->initFocus();
     m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-    connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotResult(QueryDlgBase::Result)));
+    connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
     m_testDialog->show();
 }
 
@@ -173,7 +166,7 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::slotResult(QueryDlgBase::Result res)
+void QueryManager::slotResult(PracticeDialog::Result res)
 {
 kDebug() << "result: " << res;
     m_doc->setModified();
@@ -182,12 +175,12 @@ kDebug() << "result: " << res;
     m_entryManager->result(res);
 
     // check if stop was requested
-    if ( res == QueryDlgBase::StopIt ) {
+    if ( res == PracticeDialog::StopIt ) {
         stopPractice();
         return;
     }
 
-    if ( res == QueryDlgBase::Timeout ) {
+    if ( res == PracticeDialog::Timeout ) {
         // too many timeouts in a row will hold the test
         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));

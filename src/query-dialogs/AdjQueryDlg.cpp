@@ -34,7 +34,7 @@
 
 #include <kvttablemodel.h>
 
-AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Comparison Training"), doc, parent)
+AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Comparison Training"), doc, parent)
 {
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -69,7 +69,7 @@ AdjQueryDlg::~AdjQueryDlg()
 
 void AdjQueryDlg::setQuery(TestEntry* entry)
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
     comp = entry->exp->translation(Prefs::toIdentifier()).comparison();
 
@@ -103,10 +103,6 @@ void AdjQueryDlg::setQuery(TestEntry* entry)
     mw->lev1Field->setEnabled(!comp.l1().isEmpty());
     mw->lev2Field->setEnabled(!comp.l2().isEmpty());
     mw->lev3Field->setEnabled(!comp.l3().isEmpty());
-
-///@todo
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 
@@ -208,7 +204,9 @@ void AdjQueryDlg::lev3Changed(const QString&)
 
 
 void AdjQueryDlg::setProgressCounter(int current, int total)
-{///@todo
+{
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
 }
 
 #include "AdjQueryDlg.moc"

@@ -26,7 +26,7 @@
 #include "kvtquery.h"
 
 // for the enum
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
 #include <prefs.h>
 #include <klocale.h>
@@ -465,7 +465,7 @@ void TestEntryManager::result(int result)
 kDebug() << "Result: " << result;
     // handle the result
 
-    if ( result == QueryDlgBase::StopIt ) {
+    if ( result == PracticeDialog::StopIt ) {
         kDebug() << "Query stopped. Should not reach this function! TestEntryManager::result";
         return;
     }
@@ -475,7 +475,7 @@ kDebug() << "Result: " << result;
 
     // change statistics, remove entry from test, if aplicable
     switch ( result ) {
-    case QueryDlgBase::Correct:
+    case PracticeDialog::Correct:
         m_currentEntries[m_currentEntry]->incGoodCount();
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
         if ( !Prefs::altLearn() ) {
@@ -488,7 +488,7 @@ kDebug() << "Result: " << result;
         }
         break;
 
-    case QueryDlgBase::SkipKnown:
+    case PracticeDialog::SkipKnown:
         m_currentEntries[m_currentEntry]->incSkipKnown();
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
         if ( !Prefs::altLearn() ) {
@@ -501,15 +501,15 @@ kDebug() << "Result: " << result;
         }
         break;
 
-    case QueryDlgBase::SkipUnknown:
+    case PracticeDialog::SkipUnknown:
         m_currentEntries[m_currentEntry]->incSkipUnknown();
         break;
 
-    case QueryDlgBase::Wrong:
+    case PracticeDialog::Wrong:
         m_currentEntries[m_currentEntry]->incBadCount();
         break;
 
-    case QueryDlgBase::Timeout:
+    case PracticeDialog::Timeout:
         m_currentEntries[m_currentEntry]->incTimeout();
         break;
 

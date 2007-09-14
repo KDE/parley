@@ -166,7 +166,7 @@ public:
 
     /**
      * The user has answered with this result, internal update.
-     * @param result the result (QueryDlgBase)
+     * @param result the result (PracticeDialog)
      */
     void result(int result);
 

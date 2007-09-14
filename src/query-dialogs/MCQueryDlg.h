@@ -27,9 +27,9 @@
 #define MCQuery_Dlg_H
 
 #include "ui_MCQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
-class MCQueryDlg : public QueryDlgBase
+class MCQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

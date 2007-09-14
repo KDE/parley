@@ -35,7 +35,7 @@
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase("", doc, parent)
+SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog("", doc, parent)
 {
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -74,7 +74,7 @@ void SimpleQueryDlg::initFocus()
 
 void SimpleQueryDlg::setQuery(TestEntry* entry)
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());

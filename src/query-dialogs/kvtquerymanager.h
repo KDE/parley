@@ -26,18 +26,11 @@
 #define KVTQUERYMANAGER_H
 
 #include "kvtquery.h"
-#include "QueryDlgBase.h"
-#include <QString>
+#include "practicedialog.h"
 
 class KVocTrainApp;
 class KEduVocDocument;
-
-class SimpleQueryDlg;
-class MCQueryDlg;
-class VerbQueryDlg;
-class RandomQueryDlg;
-class AdjQueryDlg;
-class ArtQueryDlg;
+class PracticeDialog;
 
 class QueryManager :public QObject
 {
@@ -49,7 +42,7 @@ public:
     void startPractice();
 
 public slots:
-    void slotResult(QueryDlgBase::Result res);
+    void slotResult(PracticeDialog::Result res);
     void slotEditEntry(int row, int translation);
 
 private:
@@ -62,10 +55,8 @@ private:
     KEduVocDocument     *m_doc;
     KVocTrainApp        *m_app;
 
-    int     m_fromTranslation;
-    int     m_toTranslation;
-
-    QueryDlgBase        *m_testDialog;
+    /// The dialog
+    PracticeDialog      *m_testDialog;
 
     int                  num_queryTimeout;
     int                  m_testType;

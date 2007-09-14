@@ -42,7 +42,7 @@
 
 #define MAX_MULTIPLE_CHOICE  5  // select one out of x
 
-MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Multiple Choice"), doc, parent)
+MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Multiple Choice"), doc, parent)
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -77,7 +77,7 @@ MCQueryDlg::~MCQueryDlg()
 
 void MCQueryDlg::setQuery( TestEntry* entry)
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
 // const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start,
 

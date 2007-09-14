@@ -29,14 +29,14 @@
 #include <QList>
 
 #include "ui_RandomQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
 class KEduVocDocument;
 
 class KComboBox;
 class KLineEdit;
 
-class RandomQueryDlg : public QueryDlgBase
+class RandomQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

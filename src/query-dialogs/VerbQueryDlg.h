@@ -26,9 +26,9 @@
 #define VerbQueryDlg_included
 
 #include "ui_VerbQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
-class VerbQueryDlg : public QueryDlgBase
+class VerbQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

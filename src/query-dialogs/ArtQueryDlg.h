@@ -26,9 +26,9 @@
 #define ArtQueryDlg_included
 
 #include "ui_ArtQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
-class ArtQueryDlg : public QueryDlgBase
+class ArtQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

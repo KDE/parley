@@ -27,9 +27,9 @@
 #define SimpleQueryDlg_included
 
 #include "ui_SimpleQueryDlgForm.h"
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
-class SimpleQueryDlg : public QueryDlgBase
+class SimpleQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 

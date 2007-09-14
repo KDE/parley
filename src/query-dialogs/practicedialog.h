@@ -22,14 +22,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef Query_Dlg_Base_H
-#define Query_Dlg_Base_H
+#ifndef PRACTICEDIALOG_H
+#define PRACTICEDIALOG_H
 
 #include <QCloseEvent>
 #include <QProgressBar>
 #include <KDialog>
 
-#include "query-dialogs/kvtquery.h"
+#include "kvtquery.h"
 #include <keduvocgrammar.h>
 #include "prefs.h"
 
@@ -40,14 +40,14 @@ class QLineEdit;
 class QTextEdit;
 class QRadioButton;
 
-class QueryDlgBase : public KDialog
+class PracticeDialog : public KDialog
 {
 Q_OBJECT
 public:
     enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopIt };
 
-    QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidget *parent);
-    virtual ~QueryDlgBase();
+    PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent);
+    virtual ~PracticeDialog();
 
     void startTimer();
 
@@ -60,7 +60,7 @@ public slots:
     void timeoutReached();
 
 signals:
-    void sigQueryChoice(QueryDlgBase::Result);
+    void sigQueryChoice(PracticeDialog::Result);
     void sigEditEntry(int row, int col);
 
 protected:

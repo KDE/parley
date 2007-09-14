@@ -36,10 +36,10 @@ kde4_add_ui_files( libcommondlg_SRCS
 set(querydialogs_SRCS
     query-dialogs/kvtquerymanager.cpp
     query-dialogs/kvtquery.cpp
+    query-dialogs/practicedialog.cpp
     query-dialogs/AdjQueryDlg.cpp
     query-dialogs/ArtQueryDlg.cpp
     query-dialogs/MCQueryDlg.cpp
-    query-dialogs/QueryDlgBase.cpp
     query-dialogs/RandomQueryDlg.cpp
     query-dialogs/SimpleQueryDlg.cpp
     query-dialogs/VerbQueryDlg.cpp

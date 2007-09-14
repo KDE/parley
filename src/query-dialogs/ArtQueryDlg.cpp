@@ -34,7 +34,7 @@
 
 #include <kvttablemodel.h>
 
-ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Article Training"), doc, parent)
+ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Article Training"), doc, parent)
 {
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -69,7 +69,7 @@ ArtQueryDlg::~ArtQueryDlg()
 
 void ArtQueryDlg::setQuery(TestEntry* entry)
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -215,7 +215,9 @@ void ArtQueryDlg::slotUser1()
 
 
 void ArtQueryDlg::setProgressCounter(int current, int total)
-{///@todo
+{
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
 }
 
 

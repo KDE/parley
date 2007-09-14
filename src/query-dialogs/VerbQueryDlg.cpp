@@ -33,7 +33,7 @@
 
 #include <kvttablemodel.h>
 
-VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Verb Training"), doc, parent)
+VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Verb Training"), doc, parent)
 {
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
@@ -81,7 +81,7 @@ void VerbQueryDlg::initFocus()
 
 void VerbQueryDlg::setQuery(TestEntry* entry)
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -398,7 +398,8 @@ void VerbQueryDlg::slotP2pChanged(const QString&)
 
 void VerbQueryDlg::setProgressCounter(int current, int total)
 {
-    ///@todo
+    mw->countbar->setMaximum(total);
+    mw->countbar->setValue(current);
 }
 
 #include "VerbQueryDlg.moc"

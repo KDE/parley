@@ -22,7 +22,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "QueryDlgBase.h"
+#include "practicedialog.h"
 
 #include <QLineEdit>
 #include <QTextEdit>
@@ -32,7 +32,7 @@
 
 #include <KLocale>
 
-QueryDlgBase::QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
+PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
     setCaption(caption);
     setModal(false);
@@ -50,11 +50,11 @@ QueryDlgBase::QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidge
 }
 
 
-QueryDlgBase::~QueryDlgBase()
+PracticeDialog::~PracticeDialog()
 {}
 
 
-bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2) const
+bool PracticeDialog::smartCompare(const QString& s1, const QString &s2) const
 {
     return s1.simplified() == s2.simplified();
 }
@@ -66,7 +66,7 @@ bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2) const
  * @param really the solution
  * @return solution is right
  */
-bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
+bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
 {
     /** @todo the colors should not be hard coded here. */
     if (!field->isEnabled())
@@ -86,7 +86,7 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
  * Set text to black, font not bold.
  * @param widget
  */
-void QueryDlgBase::resetQueryWidget(QWidget *w)
+void PracticeDialog::resetQueryWidget(QWidget *w)
 {
     if (!w->isEnabled()) {
         return;
@@ -96,7 +96,7 @@ void QueryDlgBase::resetQueryWidget(QWidget *w)
 }
 
 
-bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mixed)
+bool PracticeDialog::verifyField(QTextEdit *field, const QString &really, bool mixed)
 {
     if (!field->isEnabled())
         return true;
@@ -134,7 +134,7 @@ bool QueryDlgBase::verifyField(QTextEdit *field, const QString &really, bool mix
 }
 
 
-void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
+void PracticeDialog::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
 {
     if (!radio->isEnabled())
         return;
@@ -153,32 +153,32 @@ void QueryDlgBase::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget
 }
 
 
-QString  QueryDlgBase::getOKComment(int percent_done)
+QString  PracticeDialog::getOKComment(int percent_done)
 {
     return i18n("Well done, you knew the correct answer. %1% done.", percent_done);
 }
 
 
-QString  QueryDlgBase::getTimeoutComment(int percent_done)
+QString  PracticeDialog::getTimeoutComment(int percent_done)
 {
     return i18n("You waited too long to enter the correct answer. %1% done.", percent_done);
 }
 
 
-QString  QueryDlgBase::getNOKComment(int percent_done)
+QString  PracticeDialog::getNOKComment(int percent_done)
 {
     return i18n("Your answer was wrong. %1% done.", percent_done);
 }
 
 
-void QueryDlgBase::closeEvent(QCloseEvent *e)
+void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);
     emit sigQueryChoice(StopIt);
 }
 
 
-void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight QFontWeight)
+void PracticeDialog::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight QFontWeight)
 {
     QPalette qp = QPalette(widget->palette());
     qp.setColor(QPalette::Active, QPalette::Text, color);
@@ -192,7 +192,7 @@ void QueryDlgBase::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor
 
 
 
-void QueryDlgBase::timeoutReached()
+void PracticeDialog::timeoutReached()
 {
 kDebug() << "timer: " << m_timerCount;
     if (m_timerCount > 0) {
@@ -239,10 +239,10 @@ void zzzzzzzzzzVerbQueryDlg::timeoutReached()
 }
 */
 
-void QueryDlgBase::startTimer()
+void PracticeDialog::startTimer()
 {
 
-    kDebug() << "QueryDlgBase::startTimer -- Prefs::queryTimeout(): " << Prefs::queryTimeout() << " Prefs::EnumQueryTimeout::NoTimeout: " << Prefs::EnumQueryTimeout::NoTimeout;
+    kDebug() << "PracticeDialog::startTimer -- Prefs::queryTimeout(): " << Prefs::queryTimeout() << " Prefs::EnumQueryTimeout::NoTimeout: " << Prefs::EnumQueryTimeout::NoTimeout;
 
     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
         kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!";
@@ -270,10 +270,10 @@ void QueryDlgBase::startTimer()
     }
 }
 
-void QueryDlgBase::setQuery(TestEntry * entry)
+void PracticeDialog::setQuery(TestEntry * entry)
 {
     m_entry = entry;
     m_testType = Prefs::testType();
 }
 
-#include "QueryDlgBase.moc"
+#include "practicedialog.moc"

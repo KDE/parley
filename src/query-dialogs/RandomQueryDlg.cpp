@@ -116,7 +116,7 @@ QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
     return translations;
 }
 
-RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlgBase(i18n("Random Test"), doc, parent)
+RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Random Test"), doc, parent)
 {
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());
@@ -220,7 +220,7 @@ RandomQueryDlg::~RandomQueryDlg()
 
 void RandomQueryDlg::setQuery( TestEntry* entry )
 {
-    QueryDlgBase::setQuery(entry);
+    PracticeDialog::setQuery(entry);
 
     QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
     if (Prefs::split())
@@ -274,7 +274,7 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
     mw->status->clear();
     suggestion_hint = false;
 
-    QueryDlgBase::startTimer();
+    PracticeDialog::startTimer();
 }
 
 
