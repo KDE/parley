@@ -112,22 +112,19 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
         }
     }
 
-//// DEBUG:
-    int i=0;
-    foreach (TestEntry* entry, m_allTestEntries) {
-        kDebug() << i << " " << entry->exp->lesson() << " " << entry->exp->translation(0).text();
-    }
-//// DEBUG
+
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
 
+    // use the old validate methods for now
+    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+        if ( !validateWithSettings(m_allTestEntries.value(i)->exp) ) {
+            delete m_allTestEntries.takeAt(i);
+        }
+    }
 
+    kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
-
-///@todo put in the other tests!
-
-
-
-
+///@todo seperate the tests to show better info here. take blocking etc into account for tests other than written/mc.
 
     m_notAskedTestEntries = m_allTestEntries;
 
@@ -136,8 +133,6 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
     }
 
     m_currentEntry = 0;
-
-    printStatistics();
 }
 
 
@@ -381,10 +376,6 @@ kDebug() << "Adding expression to query: " << expr->translation(m_toTranslation)
 
 bool TestEntryManager::validate(KEduVocExpression *expr)
 {
-    if ( !m_doc->lesson(expr->lesson()).inQuery() ) {
-        return false;
-    }
-
     switch (m_testType)
     {
     // The type queries so far do not consider any settings except lesson. So they return true as long as the type is right or there is data available.
@@ -450,8 +441,6 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
 
 TestEntry * TestEntryManager::nextEntry()
 {
-printStatistics();
-
     // refill current entries
     if ( m_currentEntries.count() < Prefs::testNumberOfEntries() ) {
         if ( m_notAskedTestEntries.count() > 0 ) {
@@ -460,10 +449,10 @@ printStatistics();
     }
 
     // return one of the current entries
-kDebug() << "nextEntry: " << m_currentEntries.value(0)->exp->translation(0).text() << " (" << m_currentEntries.count() << "entries remaining)";
     if ( m_currentEntries.count() > 0 ) {
         // one of the current words (by random)
         m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+        kDebug() << "nextEntry: " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() << "entries remaining)";
         return m_currentEntries.value( m_currentEntry );
     }
     return 0;
