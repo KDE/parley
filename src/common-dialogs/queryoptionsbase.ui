@@ -178,17 +178,17 @@
          </spacer>
         </item>
         <item row="0" column="1" >
-         <widget class="KIntNumInput" name="kcfg_MaxTimePer" >
+         <widget class="KIntNumInput" native="1" name="kcfg_MaxTimePer" >
           <property name="toolTip" >
            <string>Set the maximum time allowed per answer.</string>
           </property>
           <property name="whatsThis" >
            <string>Set here the maximum time you want to allow per answer.</string>
           </property>
-          <property name="minimum" >
+          <property name="minimum" stdset="0" >
            <number>0</number>
           </property>
-          <property name="maximum" >
+          <property name="maximum" stdset="0" >
            <number>604800</number>
           </property>
          </widget>
@@ -233,13 +233,13 @@
    <item row="2" column="0" >
     <widget class="QCheckBox" name="kcfg_AltLearn" >
      <property name="toolTip" >
-      <string>Use the Leitner learning method</string>
+      <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
      </property>
      <property name="whatsThis" >
-      <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 4 times in a row. </string>
+      <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
      </property>
      <property name="text" >
-      <string>&amp;Use alternative learning method</string>
+      <string>Require 3 consecutive correct answers to count as right</string>
      </property>
     </widget>
    </item>
@@ -447,7 +447,7 @@
        </spacer>
       </item>
       <item row="3" column="4" colspan="2" >
-       <widget class="KIntNumInput" name="kcfg_Fields" >
+       <widget class="KIntNumInput" native="1" name="kcfg_Fields" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
           <horstretch>0</horstretch>
@@ -466,10 +466,10 @@
         <property name="whatsThis" >
          <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
         </property>
-        <property name="minimum" >
+        <property name="minimum" stdset="0" >
          <number>2</number>
         </property>
-        <property name="maximum" >
+        <property name="maximum" stdset="0" >
          <number>10</number>
         </property>
        </widget>
