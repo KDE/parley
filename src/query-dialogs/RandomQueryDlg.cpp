@@ -130,8 +130,8 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
 
-    mw->show_more -> setEnabled(Prefs::showMore());
-    mw->know_it -> setEnabled(Prefs::iKnow());
+    mw->show_more->setEnabled(Prefs::showMore());
+    mw->know_it->setEnabled(Prefs::iKnow());
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
 
@@ -152,26 +152,26 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
         for (i = 0; i < fields; i ++) {
             KComboBox * combo = new KComboBox(mw->TranslationFrame);
             transCombos.append(combo);
-            combo -> setObjectName(QString("transCombo%1").arg(i));
-            combo -> setEditable(false);
+            combo->setObjectName(QString("transCombo%1").arg(i));
+            combo->setEditable(false);
             QSizePolicy pol(QSizePolicy::Expanding, QSizePolicy::Minimum);
-            pol.setHeightForWidth(combo -> sizePolicy().hasHeightForWidth());
-            combo -> setSizePolicy(pol);
-            combo -> setEditable(true);
-            combo -> setInsertPolicy(QComboBox::NoInsert);
-            combo -> setDuplicatesEnabled(false);
+            pol.setHeightForWidth(combo->sizePolicy().hasHeightForWidth());
+            combo->setSizePolicy(pol);
+            combo->setEditable(true);
+            combo->setInsertPolicy(QComboBox::NoInsert);
+            combo->setDuplicatesEnabled(false);
             vb->addWidget(combo);
             connect(combo, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
-            connect(combo -> lineEdit(), SIGNAL(lostFocus()), SLOT(slotTransLostFocus()));
+            connect(combo->lineEdit(), SIGNAL(lostFocus()), SLOT(slotTransLostFocus()));
         }
     } else {
         for (i = 0; i < fields; i ++) {
             KLineEdit * line = new KLineEdit(mw->TranslationFrame);
             transFields.append(line);
-            line -> setObjectName(QString("transField%1").arg(i));
+            line->setObjectName(QString("transField%1").arg(i));
             QSizePolicy pol(QSizePolicy::Expanding, QSizePolicy::Minimum);
-            pol.setHeightForWidth(line -> sizePolicy().hasHeightForWidth());
-            line -> setSizePolicy(pol);
+            pol.setHeightForWidth(line->sizePolicy().hasHeightForWidth());
+            line->setSizePolicy(pol);
             vb->addWidget(line);
             connect(line, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
             connect(line, SIGNAL(lostFocus()), SLOT(slotTransLostFocus()));
@@ -187,8 +187,8 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
 
 
     if (suggestions) {
-        for (i = 0; i < m_doc -> entryCount(); i ++) {
-            KEduVocExpression* expr = m_doc -> entry(i);
+        for (i = 0; i < m_doc->entryCount(); i ++) {
+            KEduVocExpression* expr = m_doc->entry(i);
             if (split)
                 vocabulary += extractTranslations( expr->translation(m_queryTranslationColumn).text());
             else
@@ -234,17 +234,17 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
     int k;
     if (Prefs::suggestions()) {
         for (i = 0; i < fields; i ++) {
-            transCombos.at(i) -> clearEditText();
-            resetQueryWidget(transCombos.at(i) -> lineEdit());
+            transCombos.at(i)->clearEditText();
+            resetQueryWidget(transCombos.at(i)->lineEdit());
         }
         for (k = 0; k < translations.count(); k ++)
-            transCombos.at(k) -> show();
+            transCombos.at(k)->show();
         for (i = k; i < fields; i ++)
-            transCombos.at(i) -> hide();
+            transCombos.at(i)->hide();
     } else {
         for (i = 0; i < fields; i ++) {
-            transFields.at(i) -> clear();
-            transFields.at(i) -> setFont(Prefs::tableFont());
+            transFields.at(i)->clear();
+            transFields.at(i)->setFont(Prefs::tableFont());
             resetQueryWidget(transFields.at(i));
         }
 
@@ -252,7 +252,7 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
             transFields.at(k)->show();
         }
         for (i = k; i < fields; i ++)
-            transFields.at(i) -> hide();
+            transFields.at(i)->hide();
     }
     mw->verify->setEnabled(true);
     mw->orgField->setFont(Prefs::tableFont());
@@ -282,9 +282,9 @@ void RandomQueryDlg::initFocus()
 {
     RandomQueryDlg* that = (RandomQueryDlg*) this;
     if (Prefs::suggestions())
-        that -> transCombos.at(0) -> setFocus();
+        that->transCombos.at(0)->setFocus();
     else
-        that -> transFields.at(0) -> setFocus();
+        that->transFields.at(0)->setFocus();
 }
 
 
@@ -299,8 +299,8 @@ void RandomQueryDlg::verifyClicked()
             combos.removeAt(i);
         for (i = 0; i < combos.count(); i ++)
             for (j = 0; j < trans.count(); j ++)
-                if (smartCompare(trans[j], combos.at(i) -> currentText())) {
-                    verifyField(combos.at(i) -> lineEdit(), trans[j]);
+                if (smartCompare(trans[j], combos.at(i)->currentText())) {
+                    verifyField(combos.at(i)->lineEdit(), trans[j]);
                     trans.removeAt(j);
                     combos.removeAt(i --);
                     break;
@@ -311,7 +311,7 @@ void RandomQueryDlg::verifyClicked()
             knowItClicked();
         } else {
             for (i = 0; i < combos.count(); i ++)
-                verifyField(combos.at(i) -> lineEdit(), "a\na");  // always fail
+                verifyField(combos.at(i)->lineEdit(), "a\na");  // always fail
             mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
             mw->dont_know->setDefault(true);
         }
@@ -321,7 +321,7 @@ void RandomQueryDlg::verifyClicked()
             fields.removeAt(i);
         for (i = 0; i < fields.count(); i ++) {
             for (j = 0; j < trans.count(); j ++) {
-                if (smartCompare(trans[j], fields.at(i) -> text())) {
+                if (smartCompare(trans[j], fields.at(i)->text())) {
                     verifyField(fields.at(i), "a\na");  // always fail
                     trans.removeAt(j);
                     fields.removeAt(i --);
@@ -350,38 +350,38 @@ void RandomQueryDlg::showMoreClicked()
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
             KComboBox* combo = transCombos.at(i);
-            if (! smartCompare(combo -> currentText(), translations[i])) {
-                int length = combo -> currentText().length() + 1;
+            if (! smartCompare(combo->currentText(), translations[i])) {
+                int length = combo->currentText().length() + 1;
                 if (length >= translations[i].length()) {
-                    combo -> setEditText(translations[i]);
-                    verifyField(combo -> lineEdit(), translations[i]);
-                    mw->verify -> setEnabled(false);
+                    combo->setEditText(translations[i]);
+                    verifyField(combo->lineEdit(), translations[i]);
+                    mw->verify->setEnabled(false);
                 } else {
-                    combo -> setEditText(translations[i].left(length));
-                    resetQueryWidget(combo -> lineEdit());
+                    combo->setEditText(translations[i].left(length));
+                    resetQueryWidget(combo->lineEdit());
                 }
-                mw->dont_know -> setDefault(true);
+                mw->dont_know->setDefault(true);
                 break;
             }
         }
     else
         for (int i = 0; i < translations.count(); i ++) {
             KLineEdit* field = transFields.at(i);
-            if (! smartCompare(field -> text(), translations[i])) {
-                int length = field -> text().length() + 1;
+            if (! smartCompare(field->text(), translations[i])) {
+                int length = field->text().length() + 1;
                 if (length >= translations[i].length()) {
-                    field -> setText(translations[i]);
+                    field->setText(translations[i]);
                     verifyField(field, translations[i]);
-                    mw->verify -> setEnabled(false);
+                    mw->verify->setEnabled(false);
                 } else {
-                    field -> setText(translations[i].left(length));
+                    field->setText(translations[i].left(length));
                     resetQueryWidget(field);
                 }
-                mw->dont_know -> setDefault(true);
+                mw->dont_know->setDefault(true);
                 break;
             }
         }
-    mw->status -> clear();
+    mw->status->clear();
     suggestion_hint = false;
 }
 
@@ -390,17 +390,17 @@ void RandomQueryDlg::showSolution()
 {
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
-            transCombos.at(i) -> setEditText(translations[i]);
-            verifyField(transCombos.at(i) -> lineEdit(), translations[i]);
+            transCombos.at(i)->setEditText(translations[i]);
+            verifyField(transCombos.at(i)->lineEdit(), translations[i]);
         }
     else
         for (int i = 0; i < translations.count(); i ++) {
-            transFields.at(i) -> setText(translations[i]);
+            transFields.at(i)->setText(translations[i]);
             verifyField(transFields.at(i), translations[i]);
         }
-    mw->verify -> setEnabled(false);
+    mw->verify->setEnabled(false);
     mw->dont_know->setDefault(true);
-    mw->status -> clear();
+    mw->status->clear();
     suggestion_hint = false;
 }
 
@@ -412,14 +412,14 @@ void RandomQueryDlg::slotTransChanged(const QString&)
     KComboBox* combo = sender() ? qobject_cast<KComboBox*>(sender()) : 0;
     KLineEdit* senderedit = sender() ? qobject_cast<KLineEdit*>(sender()) : 0;
     if (suggestions && combo) {
-        KLineEdit* edit = qobject_cast<KLineEdit*>(combo -> lineEdit());
+        KLineEdit* edit = qobject_cast<KLineEdit*>(combo->lineEdit());
         resetQueryWidget(edit);
-        suggestion_hint = ! edit -> text().isEmpty() && edit -> text().length() <= 10;
+        suggestion_hint = ! edit->text().isEmpty() && edit->text().length() <= 10;
         if (suggestion_hint)
-            mw->status -> setText(i18n("Press F5 for a list of translations starting with '%1'\n"
-                                       "Press F6 for a list of translations containing '%1'", edit -> text()));
+            mw->status->setText(i18n("Press F5 for a list of translations starting with '%1'\n"
+                                       "Press F6 for a list of translations containing '%1'", edit->text()));
         else
-            mw->status -> clear();
+            mw->status->clear();
     } else if (! suggestions && senderedit)
         resetQueryWidget(senderedit);
 }
@@ -427,14 +427,14 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 void RandomQueryDlg::slotTransLostFocus()
 {
     if (suggestion_hint)
-        mw->status -> clear();
+        mw->status->clear();
     suggestion_hint = false;
 }
 
 
 void RandomQueryDlg::knowItClicked()
 {
-    mw->status -> clear();
+    mw->status->clear();
     suggestion_hint = false;
     emit sigQueryChoice(SkipKnown);
 }
@@ -442,7 +442,7 @@ void RandomQueryDlg::knowItClicked()
 
 void RandomQueryDlg::dontKnowClicked()
 {
-    mw->status -> clear();
+    mw->status->clear();
     suggestion_hint = false;
     emit sigQueryChoice(SkipUnknown);
 }
@@ -480,11 +480,11 @@ void RandomQueryDlg::slotUser1()
 //
 //     if (Prefs::suggestions())
 //         for (int i = 0; i < fields; i ++)
-//             transCombos.at(i) -> clearEditText();
+//             transCombos.at(i)->clearEditText();
 //     else
 //         for (int i = 0; i < fields; i ++)
-//             transFields.at(i) -> clear();
-//     mw->status -> clear();
+//             transFields.at(i)->clear();
+//     mw->status->clear();
 //     suggestion_hint = false;
 //
 //     setHintFields();
@@ -513,7 +513,7 @@ void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
 {
     if (Prefs::suggestions()) {
         KComboBox* combo = 0;
-        if (e -> key() == Qt::Key_F4 || e -> key() == Qt::Key_F5 || e -> key() == Qt::Key_F6)
+        if (e->key() == Qt::Key_F4 || e->key() == Qt::Key_F5 || e->key() == Qt::Key_F6)
             for (int i = 0; i < translations.count(); i ++)
                 if (transCombos.at(i)->hasFocus()) {
                     combo = transCombos.at(i);
