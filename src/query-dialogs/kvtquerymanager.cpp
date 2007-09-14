@@ -90,59 +90,9 @@ kDebug() << "QueryManager::startPractice()";
     m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
-///@todo in general rather use deleteLater()
-
-    switch (m_testType) {
-    case Prefs::EnumTestType::WrittenTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startQuery();
-        break;
-
-    case Prefs::EnumTestType::MultipleChoiceTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startQuery();
-        break;
-
-    case Prefs::EnumTestType::ConjugationTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startTypeQuery();
-        break;
-
-    case Prefs::EnumTestType::ArticleTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startTypeQuery();
-        break;
-
-    case Prefs::EnumTestType::ComparisonAdjectiveTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startTypeQuery();
-        break;
-
-    case Prefs::EnumTestType::ComparisonAdverbTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startTypeQuery();
-        break;
-
-    // tests using the simple dialog
-    case Prefs::EnumTestType::SynonymTest:
-    case Prefs::EnumTestType::AntonymTest:
-    case Prefs::EnumTestType::ExampleTest:
-    case Prefs::EnumTestType::ParaphraseTest:
-        delete m_testDialog;
-        m_testDialog = 0;
-        startPropertyQuery();
-        break;
-
-    default:
-        kError() << "Unknown command" << endl;
-
-    }
+    m_testDialog->deleteLater();
+    m_testDialog = 0;
+    startQuery();
 }
 
 
@@ -170,284 +120,6 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::startPropertyQuery()
-{
-    m_app->removeEntryDlg();
-    num_queryTimeout = 0;
-
-    TestEntry* entry = m_entryManager->nextEntry();
-
-    if (entry == 0) {
-        return;
-    }
-
-    m_app->hide();
-
-    m_testDialog = new SimpleQueryDlg(m_doc, m_app);
-    m_testDialog->setQuery(entry);
-    connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-    connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutProperty(QueryDlgBase::Result)));
-    m_testDialog->initFocus();
-    m_testDialog->show();
-}
-
-
-void QueryManager::slotTimeOutProperty(QueryDlgBase::Result res)
-{
-kDebug() << "implement me :(";
-
-    if (m_testDialog == 0) {
-        kError() << "m_testDialog == 0\n";
-        stopQuery();
-        return;
-    }
-
-
-    stopQuery();
-
-//    FIXME: keep track of knowledge ?
-
-//     m_doc->setModified();
-//     switch (res) {
-//     case QueryDlgBase::Timeout:
-//         if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-//             stopQuery();
-//             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
-//             return;
-//         } else {
-//             random_expr2.append(random_expr1[random_query_nr]);
-//             random_expr1.erase(random_expr1.begin() + random_query_nr);
-//         }
-//         break;
-//
-//     case QueryDlgBase::Unknown :
-//         num_queryTimeout = 0;
-//         random_expr2.append(random_expr1[random_query_nr]);
-//         random_expr1.erase(random_expr1.begin() + random_query_nr);
-//         break;
-//
-//     case QueryDlgBase::Known :
-//         num_queryTimeout = 0;
-//         query_num--;
-//
-//         random_expr1.erase(random_expr1.begin() + random_query_nr);
-//         if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
-//             //nothing
-//         } else {
-//             stopQuery();
-//             return;
-//         }
-//         break;
-//
-//     case QueryDlgBase::StopIt :
-//         num_queryTimeout = 0;
-//         stopQuery();
-//         return;
-//         break;
-//
-//     default :
-//         kError() << "unknown result from QueryDlg\n";
-//         stopQuery();
-//         return;
-//     }
-//
-//     if (random_expr1.count() == 0) {
-//         if (random_expr2.count() == 0 && queryList.count() == 0) {
-//             stopQuery();
-//             return;
-//         }
-//
-//         if (random_expr2.count() != 0) {  // next cycle with current lesson
-//             random_expr1 = random_expr2;
-//             random_expr2.clear();
-//             query_cycle++;
-//         } else { // next lesson
-//             query_cycle = 1;
-//             random_expr1 = queryList[0];
-//             queryList.erase(queryList.begin());
-//         }
-//     }
-//
-//     if (random_expr1.count() == 0) { // should not happen !!
-//         kError() << "QueryManager::slotTimeProperty: random_expr1.count() == 0\n";
-//         stopQuery();
-//         return;
-//     }
-//
-//     random_query_nr = m_randomSequence.getLong(random_expr1.count());
-//
-//     m_testDialog->setQuery(m_testType, random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, m_doc);
-//     m_testDialog->initFocus();
-//     m_app->slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void QueryManager::startTypeQuery()
-{
-    /// @todo merge this with startPropertyQuery (and possibly startQuery)
-
-    m_app->removeEntryDlg();
-    m_app->slotStatusMsg(i18n("Starting special practice..."));
-    num_queryTimeout = 0;
-
-    TestEntry* entry = m_entryManager->nextEntry();
-
-    if (entry == 0) {
-        return;
-    }
-
-    m_app->hide();
-
-    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
-        m_testDialog = new VerbQueryDlg(m_doc, m_app);
-        m_testDialog->setQuery(entry);
-        m_testDialog->initFocus();
-        connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-        connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-        m_testDialog->show();
-    } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
-        m_testDialog = new ArtQueryDlg(m_doc, m_app);
-        m_testDialog->setQuery(entry);
-        m_testDialog->initFocus();
-        connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-        connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-        m_testDialog->show();
-    } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
-        m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        m_testDialog->setQuery(entry);
-        m_testDialog->initFocus();
-        connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
-        connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-        m_testDialog->show();
-
-        /// @todo implement an adverb query dialog. can we reuse m_testDialog ?
-//     } else if (m_testType == KVTQuery::ComparisonAdverbQuery) {
-//         m_testDialog = new AdjQueryDlg(m_doc, m_app);
-//         m_testDialog->setQuery(random_expr1[random_query_nr].m_index, act_query_col, query_cycle, query_num, query_startnum, exp->translation(act_query_col).comparison());
-//         m_testDialog->initFocus();
-//         connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), m_app, SLOT(slotEditEntry(int,int)));
-//         connect(m_testDialog, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotTimeOutType(QueryDlgBase::Result)));
-//         m_testDialog->show();
-    } else {
-        kError() << "QueryManager::slotTimeOutType: unknown type\n";
-        stopQuery();
-        return;
-    }
-    m_app->slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void QueryManager::slotTimeOutType(QueryDlgBase::Result res)
-{
-kDebug() << "implement me :(";
-//    FIXME: keep track of knowledge ?
-    stopQuery();
-/*    m_doc->setModified();
-    switch (res) {
-    case QueryDlgBase::Timeout:
-        if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
-            stopQuery();
-            KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
-            return;
-        } else {
-            random_expr2.append(random_expr1[random_query_nr]);
-            random_expr1.erase(random_expr1.begin() + random_query_nr);
-        }
-        break;
-
-    case QueryDlgBase::Unknown :
-        num_queryTimeout = 0;
-        random_expr2.append(random_expr1[random_query_nr]);
-        random_expr1.erase(random_expr1.begin() + random_query_nr);
-        break;
-
-    case QueryDlgBase::Known :
-        num_queryTimeout = 0;
-        query_num--;
-
-        random_expr1.erase(random_expr1.begin() + random_query_nr);
-        if (random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0) {
-            // nothing
-        } else {
-            stopQuery();
-            return;
-        }
-        break;
-
-    case QueryDlgBase::StopIt :
-        num_queryTimeout = 0;
-        stopQuery();
-        return;
-        break;
-
-    default :
-        kError() << "unknown result from QueryDlg\n";
-        stopQuery();
-        return;
-    }
-
-
-    if (random_expr1.count() == 0) {
-        if (random_expr2.count() == 0 && queryList.count() == 0) {
-            stopQuery();
-            return;
-        }
-
-        if (random_expr2.count() != 0) {  // next cycle with current lesson
-            random_expr1 = random_expr2;
-            random_expr2.clear();
-            query_cycle++;
-        } else { // next lesson
-            query_cycle = 1;
-            random_expr1 = queryList[0];
-            queryList.erase(queryList.begin());
-        }
-    }
-    m_app->hide();
-
-    if (random_expr1.count() == 0) { // should not happen !!
-        kError() << "QueryManager::slotTimeSpecial: random_expr1.count() == 0\n";
-        stopQuery();
-        return;
-    }
-
-    random_query_nr = m_randomSequence.getLong(random_expr1.count());
-    KEduVocExpression *exp = random_expr1[random_query_nr].exp;
-
-    if (m_testType == Prefs::EnumTestType::ConjugationTest) {
-        if (m_testDialog == 0) {
-            kError() << "m_testDialog == 0\n";
-            stopQuery();
-            return;
-        }
-        m_testDialog->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp,
-                               m_doc->identifier(m_toTranslation).personalPronouns(), exp->translation(m_toTranslation).conjugations());
-
-        m_testDialog->initFocus();
-    } else if (m_testType == Prefs::EnumTestType::ArticleTest) {
-        if (m_testDialog == 0) {
-            kError() << "m_testDialog == 0\n";
-            stopQuery();
-            return;
-        }
-        m_testDialog->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp, m_doc->identifier(m_toTranslation).article());
-        m_testDialog->initFocus();
-    } else if (m_testType == Prefs::EnumTestType::ComparisonAdjectiveTest) {
-        if (m_testDialog == 0) {
-            kError() << "m_testDialog == 0\n";
-            stopQuery();
-            return;
-        }
-        m_testDialog->setQuery(random_expr1[random_query_nr].m_index, m_toTranslation, query_cycle, query_num, query_startnum, exp->translation(m_toTranslation).comparison());
-        m_testDialog->initFocus();
-    } else {
-        kError() << "QueryManager::slotTimeOutType: unknown type\n";
-        stopQuery();
-        return;
-    }
-    m_app->slotStatusMsg(IDS_DEFAULT);*/
-}
-
 
 /**
  * Start regular type query
@@ -472,11 +144,32 @@ kDebug() << "QueryManager::startQuery()";
 
     m_app->hide();
 
-    if (m_testType == Prefs::EnumTestType::WrittenTest) {
+    switch ( m_testType ) {
+    case Prefs::EnumTestType::WrittenTest:
         m_testDialog = new RandomQueryDlg(m_doc, m_app);
-    } else if (m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
+        break;
+    case Prefs::EnumTestType::MultipleChoiceTest:
         m_testDialog = new MCQueryDlg(m_doc, m_app);
-    } else {
+        break;
+
+    // tests using the simple dialog
+    case Prefs::EnumTestType::SynonymTest:
+    case Prefs::EnumTestType::AntonymTest:
+    case Prefs::EnumTestType::ExampleTest:
+    case Prefs::EnumTestType::ParaphraseTest:
+        m_testDialog = new SimpleQueryDlg(m_doc, m_app);
+        break;
+
+    case Prefs::EnumTestType::ConjugationTest:
+        m_testDialog = new VerbQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::ArticleTest:
+        m_testDialog = new ArtQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::ComparisonAdjectiveTest:
+        m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        break;
+    default:
         kError() << "QueryManager::startQuery: unknown type\n";
         stopQuery();
         return;

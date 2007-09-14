@@ -50,17 +50,12 @@ public:
 
 public slots:
     void slotQueryExpressionResult(QueryDlgBase::Result res);
-    void slotTimeOutType(QueryDlgBase::Result res);
-    void slotTimeOutProperty(QueryDlgBase::Result res);
     void slotEditEntry(int row, int translation);
 
 signals:
     void endPractice();
 
 private:
-    // merge these three:
-    void startTypeQuery();
-    void startPropertyQuery();
     void startQuery();
 
     bool queryIsEmpty();

@@ -78,7 +78,9 @@ private:
     QStringList translations;
     QStringList vocabulary;
 
+    ///
     bool suggestion_hint;
+    ///
     int  fields;
 
     Ui::QueryDlgForm * mw;
