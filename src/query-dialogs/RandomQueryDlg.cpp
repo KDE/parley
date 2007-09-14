@@ -426,8 +426,9 @@ void RandomQueryDlg::slotTransChanged(const QString&)
 
 void RandomQueryDlg::slotTransLostFocus()
 {
-    if (suggestion_hint)
+    if (suggestion_hint) {
         mw->status->clear();
+    }
     suggestion_hint = false;
 }
 
@@ -470,24 +471,23 @@ void RandomQueryDlg::setHintFields()
 void RandomQueryDlg::slotUser1()
 {
 ///@todo: move into base and implement cleanly
-//     if (m_timer != 0)
-//         m_timer->stop();
-//
-//     emit sigEditEntry(m_row, m_queryOriginalColumn);
-//
-//     KEduVocExpression *exp = m_doc->entry(m_row);
-//     mw->orgField->setText( exp->translation(m_queryOriginalColumn).text() );
-//
-//     if (Prefs::suggestions())
-//         for (int i = 0; i < fields; i ++)
-//             transCombos.at(i)->clearEditText();
-//     else
-//         for (int i = 0; i < fields; i ++)
-//             transFields.at(i)->clear();
-//     mw->status->clear();
-//     suggestion_hint = false;
-//
-//     setHintFields();
+    if (m_timer != 0)
+        m_timer->stop();
+
+    emit sigEditEntry(m_entry->m_index, Prefs::fromIdentifier());
+
+    mw->orgField->setText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
+
+    if (Prefs::suggestions())
+        for (int i = 0; i < fields; i ++)
+            transCombos.at(i)->clearEditText();
+    else
+        for (int i = 0; i < fields; i ++)
+            transFields.at(i)->clear();
+    mw->status->clear();
+    suggestion_hint = false;
+
+    setHintFields();
 }
 
 

@@ -88,8 +88,9 @@ bool QueryDlgBase::verifyField(QLineEdit *field, const QString &really)
  */
 void QueryDlgBase::resetQueryWidget(QWidget *w)
 {
-    if (!w->isEnabled())
+    if (!w->isEnabled()) {
         return;
+    }
     // set black text and normal font
     setWidgetTextColorAndFontWeight(w, QColor(0x00, 0x00, 0x00), QFont::Normal);
 }
@@ -207,8 +208,6 @@ kDebug() << "timer: " << m_timerCount;
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
             emit sigQueryChoice(Timeout);
         }
- /// @todo reenable percentage:
- //       setStatusText(getTimeoutComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
     }
 }
 

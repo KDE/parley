@@ -452,7 +452,7 @@ TestEntry * TestEntryManager::nextEntry()
     if ( m_currentEntries.count() > 0 ) {
         // one of the current words (by random)
         m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
-        kDebug() << "nextEntry: " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() << "entries remaining)";
+        kDebug() << "nextEntry: " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
         return m_currentEntries.value( m_currentEntry );
     }
     return 0;
@@ -477,18 +477,28 @@ kDebug() << "Result: " << result;
     switch ( result ) {
     case QueryDlgBase::Correct:
         m_currentEntries[m_currentEntry]->incGoodCount();
-        ///@todo consider Leitner
-
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
-        m_currentEntries.takeAt(m_currentEntry);
+        if ( !Prefs::altLearn() ) {
+            m_currentEntries.takeAt(m_currentEntry);
+        } else {
+            // alt learn: 3 times right
+            if ( m_currentEntries[m_currentEntry]->answeredCorrectInSequence() >= 3 ) {
+                m_currentEntries.takeAt(m_currentEntry);
+            }
+        }
         break;
 
     case QueryDlgBase::SkipKnown:
         m_currentEntries[m_currentEntry]->incSkipKnown();
-        ///@todo consider Leitner
-
         // takeAt but no delete, since we still have the pointer in m_allTestEntries!
-        m_currentEntries.takeAt(m_currentEntry);
+        if ( !Prefs::altLearn() ) {
+            m_currentEntries.takeAt(m_currentEntry);
+        } else {
+            // alt learn: 3 times right
+            if ( m_currentEntries[m_currentEntry]->answeredCorrectInSequence() >= 3 ) {
+                m_currentEntries.takeAt(m_currentEntry);
+            }
+        }
         break;
 
     case QueryDlgBase::SkipUnknown:
@@ -507,8 +517,6 @@ kDebug() << "Result: " << result;
         kError() << "Unknown result from QueryDlg\n";
         return;
     }
-
-
 
 
 
@@ -722,4 +730,9 @@ int TestEntryManager::totalEntryCount()
 int TestEntryManager::activeEntryCount()
 {
     return m_allTestEntries.count() - (m_notAskedTestEntries.count() + m_currentEntries.count());
+}
+
+int TestEntry::answeredCorrectInSequence()
+{
+    return m_answeredCorrectInSequence;
 }
