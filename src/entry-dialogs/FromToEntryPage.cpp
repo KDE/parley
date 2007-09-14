@@ -32,7 +32,7 @@
 
 #include <klocale.h>
 
-#include "query-dialogs/kvtquery.h"
+#include "practice/kvtquery.h"
 #include "EntryDlg.h"
 
 FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)

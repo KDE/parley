@@ -33,28 +33,28 @@ kde4_add_ui_files( libcommondlg_SRCS
     common-dialogs/generaloptionsbase.ui
 )
 
-set(querydialogs_SRCS
-    query-dialogs/kvtquerymanager.cpp
-    query-dialogs/kvtquery.cpp
-    query-dialogs/practicedialog.cpp
-    query-dialogs/AdjQueryDlg.cpp
-    query-dialogs/ArtQueryDlg.cpp
-    query-dialogs/MCQueryDlg.cpp
-    query-dialogs/RandomQueryDlg.cpp
-    query-dialogs/SimpleQueryDlg.cpp
-    query-dialogs/VerbQueryDlg.cpp
-    query-dialogs/startpracticedialog.cpp
-    query-dialogs/startpracticewidget.cpp
+set(practice_SRCS
+    practice/kvtquerymanager.cpp
+    practice/kvtquery.cpp
+    practice/practicedialog.cpp
+    practice/AdjQueryDlg.cpp
+    practice/ArtQueryDlg.cpp
+    practice/MCQueryDlg.cpp
+    practice/RandomQueryDlg.cpp
+    practice/SimpleQueryDlg.cpp
+    practice/VerbQueryDlg.cpp
+    practice/startpracticedialog.cpp
+    practice/startpracticewidget.cpp
 )
 
-kde4_add_ui_files(querydialogs_SRCS
-    query-dialogs/AdjQueryDlgForm.ui
-    query-dialogs/ArtQueryDlgForm.ui
-    query-dialogs/MCQueryDlgForm.ui
-    query-dialogs/RandomQueryDlgForm.ui
-    query-dialogs/SimpleQueryDlgForm.ui
-    query-dialogs/VerbQueryDlgForm.ui
-    query-dialogs/startpracticewidget.ui
+kde4_add_ui_files(practice_SRCS
+    practice/AdjQueryDlgForm.ui
+    practice/ArtQueryDlgForm.ui
+    practice/MCQueryDlgForm.ui
+    practice/RandomQueryDlgForm.ui
+    practice/SimpleQueryDlgForm.ui
+    practice/VerbQueryDlgForm.ui
+    practice/startpracticewidget.ui
 )
 
 set(docprop_SRCS
@@ -127,7 +127,7 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
-set(parley_SRCS ${libcommondlg_SRCS} ${querydialogs_SRCS} ${docprop_SRCS}
+set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS} ${docprop_SRCS}
 ${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_io.cpp
     kvoctrain.cpp

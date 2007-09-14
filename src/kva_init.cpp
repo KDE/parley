@@ -26,7 +26,6 @@
 #include "kvoctrain.h"
 #include "prefs.h"
 
-#include "query-dialogs/kvtquerymanager.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
@@ -41,6 +40,7 @@
 #include <KStatusBar>
 #include <KToggleAction>
 #include <KLocale>
+#include <KDialog>
 #include <knewstuff2/ui/knewstuffaction.h>
 
 #include <QClipboard>

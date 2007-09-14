@@ -24,7 +24,7 @@
 
 #include "thresholdoptions.h"
 
-#include "query-dialogs/kvtquery.h"
+#include "practice/kvtquery.h"
 #include "prefs.h"
 
 #include <QPushButton>

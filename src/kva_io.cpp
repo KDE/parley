@@ -28,7 +28,6 @@
 #include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"
 
-#include "query-dialogs/kvtquerymanager.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"

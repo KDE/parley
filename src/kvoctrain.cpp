@@ -24,7 +24,7 @@
 
 #include "kvoctrain.h"
 
-#include "query-dialogs/kvtquerymanager.h"
+#include "practice/kvtquerymanager.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
@@ -38,7 +38,7 @@
 #include "common-dialogs/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
 #include "docprop-dialogs/TitlePage.h"
-#include "query-dialogs/startpracticedialog.h"
+#include "practice/startpracticedialog.h"
 #include "prefs.h"
 
 #include <keduvoclesson.h>

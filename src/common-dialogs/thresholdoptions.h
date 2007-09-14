@@ -26,9 +26,7 @@
 #define THRESHOLDOPTIONS_H
 
 #include "ui_thresholdoptionsbase.h"
-
-#include "query-dialogs/kvtquery.h"
-
+#include "prefs.h"
 
 class KEduVocDocument;
 

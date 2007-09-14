@@ -32,7 +32,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "query-dialogs/kvtquery.h"
+#include "practice/kvtquery.h"
 
 #define USAGE_TAG ". "
 

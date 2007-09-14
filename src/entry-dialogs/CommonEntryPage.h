@@ -30,7 +30,7 @@
 #include "ui_CommonEntryPageForm.h"
 
 // kvtquery.h is still needed for usages
-#include "query-dialogs/kvtquery.h"
+#include "practice/kvtquery.h"
 
 #include <keduvocwordtype.h>
 #include <keduvocdocument.h>
