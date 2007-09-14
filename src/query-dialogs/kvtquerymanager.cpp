@@ -488,6 +488,7 @@ kDebug() << "QueryManager::startQuery";
         mcQueryDlg = new MCQueryDlg(m_doc, m_app);
         mcQueryDlg->setQuery(entry);
         mcQueryDlg->initFocus();
+        mcQueryDlg->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
         connect(mcQueryDlg, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
         kDebug() << "connecting mc";
         connect(mcQueryDlg, SIGNAL(sigQueryChoice(QueryDlgBase::Result)), this, SLOT(slotQueryExpressionResult(QueryDlgBase::Result)));

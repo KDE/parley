@@ -89,10 +89,7 @@ void MCQueryDlg::setQuery( TestEntry* entry)
     mw->show_all->setDefault(true);
 
     // Query cycle - how often did this show up (?)
-//     mw->progCount->setText(QString::number(queryCycle));
-    //Counter - how many correct out of...
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
+    mw->progCount->setText(QString::number(entry->statisticCount()));
 
     startTimer();
 
