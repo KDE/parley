@@ -37,23 +37,18 @@ public:
 
     ~AdjQueryDlg();
 
-    void setQuery(int entry,
-                  int col,
-                  int query_cycle,
-                  int query_num,
-                  int query_startnum,
-                  const KEduVocComparison &comp);
+    void setQuery(TestEntry* entry);
 
 public slots:
-    virtual void initFocus() const;
+    void initFocus() const;
 
-protected:
+private:
     void resetAllFields();
 
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
-protected slots:
+private slots:
     void lev1Changed(const QString&);
     void lev2Changed(const QString&);
     void lev3Changed(const QString&);
@@ -63,10 +58,9 @@ protected slots:
     void dontKnowClicked();
     void verifyClicked();
 
-protected:
-    KEduVocComparison  comp;
-
 private:
     Ui::AdjQueryDlgForm * mw;
+
+    KEduVocComparison comp;
 };
 #endif // AdjQueryDlg_included

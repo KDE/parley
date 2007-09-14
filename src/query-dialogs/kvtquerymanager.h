@@ -28,7 +28,6 @@
 #include "kvtquery.h"
 #include "QueryDlgBase.h"
 #include <QString>
-#include <KRandomSequence>
 
 class KVocTrainApp;
 class KEduVocDocument;
@@ -49,15 +48,14 @@ public:
 
     void startPractice();
 
-
-
 public slots:
     void slotQueryExpressionResult(QueryDlgBase::Result res);
     void slotTimeOutType(QueryDlgBase::Result res);
     void slotTimeOutProperty(QueryDlgBase::Result res);
-
-private slots:
     void slotEditEntry(int row, int translation);
+
+signals:
+    void endPractice();
 
 private:
 
@@ -71,30 +69,30 @@ private:
     /** exit query mode */
     void stopQuery();
 
-    void showStatistics();
+//     void showStatistics();
 
-    KVTQuery             m_query;
+    TestEntryManager    *m_entryManager;
     KEduVocDocument     *m_doc;
     KVocTrainApp        *m_app;
 
-    // A vector of entry list - so we have Lesson->Entries
-    QuerySelection       queryList;
-
-    // random_expr1 contains the vocabulary after they have been asked once
-    QueryEntryList       random_expr1;
-    // random_expr2 contains the vocab that was right
-    QueryEntryList       random_expr2;
-
-    // Vectors for use in Leitner style learning. There is no
-    // correct_0_times, we simply reuse random_expr1.
-    QueryEntryList       correct_1_times;
-    QueryEntryList       correct_2_times;
-    QueryEntryList       correct_3_times;
-    // not used, maybe later. holds expressions that are done.
-    QueryEntryList       correct_4_times;
-
-    int                  random_query_nr;
-    QString              def_lang;
+//     // A vector of entry list - so we have Lesson->Entries
+//     QuerySelection       queryList;
+//
+//     // random_expr1 contains the vocabulary after they have been asked once
+//     QueryEntryList       random_expr1;
+//     // random_expr2 contains the vocab that was right
+//     QueryEntryList       random_expr2;
+//
+//     // Vectors for use in Leitner style learning. There is no
+//     // correct_0_times, we simply reuse random_expr1.
+//     QueryEntryList       correct_1_times;
+//     QueryEntryList       correct_2_times;
+//     QueryEntryList       correct_3_times;
+//     // not used, maybe later. holds expressions that are done.
+//     QueryEntryList       correct_4_times;
+//
+//     int                  random_query_nr;
+//     QString              def_lang;
 
     int     m_fromTranslation;
     int     m_toTranslation;
@@ -106,12 +104,7 @@ private:
     AdjQueryDlg         *adjQueryDlg;
     ArtQueryDlg         *artQueryDlg;
     int                  num_queryTimeout;
-    int                  query_cycle;
-    int                  query_num;
-    int                  query_startnum;
     int                  m_testType;
-    KRandomSequence      m_randomSequence;
-
 };
 
 #endif

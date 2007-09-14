@@ -37,13 +37,7 @@ public:
 
     ~ArtQueryDlg();
 
-    void setQuery(int entry,
-                  int col,
-                  int query_cycle,
-                  int query_num,
-                  int query_startnum,
-                  KEduVocExpression *exp,
-                  const KEduVocArticle &articles);
+    void setQuery(TestEntry* entry);
 
 public slots:
     virtual void initFocus() const;

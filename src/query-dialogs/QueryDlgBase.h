@@ -44,13 +44,14 @@ class QueryDlgBase : public KDialog
 {
 Q_OBJECT
 public:
-    enum Result { Unknown, Known, Timeout, StopIt };
+    enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopIt };
 
     QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidget *parent);
     virtual ~QueryDlgBase();
 
     void startTimer();
-    void setDocument(KEduVocDocument *doc) { m_doc = doc; }
+
+    virtual void setQuery(TestEntry* entry);
 
 public slots:
     virtual void showSolution() = 0;
@@ -89,13 +90,12 @@ protected:
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
 protected:
-    int                m_row;
-    int                m_queryOriginalColumn;
-    int                m_queryTranslationColumn;
     KEduVocDocument   *m_doc;
-    KEduVocExpression *m_expression;
-    QTimer            *m_timer;
-    int                m_timerCount;
+    QTimer    *m_timer;
+    int        m_timerCount;
+
+    TestEntry* m_entry;
+    int m_testType;
 };
 
 

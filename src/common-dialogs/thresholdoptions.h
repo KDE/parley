@@ -57,6 +57,8 @@ protected slots:
     void slotBlockExpire(bool block, bool expire);
 
 private:
+    static QString compStr(Prefs::EnumCompType::type type);
+
     void fillWidgets();
 
     KEduVocDocument *m_doc;

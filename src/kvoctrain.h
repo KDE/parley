@@ -103,7 +103,6 @@ public:
 
     void removeProgressBar();
     void prepareProgressBar();
-    void loadDocProps();
 
 signals:
     void progressChanged(KEduVocDocument *, int curr_percent);
@@ -137,8 +136,8 @@ public slots:
     void slotShowStatistics();
 
     void startPractice();
+    void endPractice();
     void configurePractice();
-
 
     void slotTimeOutBackup();
 
@@ -258,7 +257,7 @@ private:
     KLineEdit           *m_searchLine;
 
     QueryManager        *m_queryManager;
-    bool                 controlActive;
+//     bool                 controlActive;
 
     EntryDlg            *entryDlg;
 

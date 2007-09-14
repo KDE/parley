@@ -38,7 +38,7 @@ public:
 
     ~MCQueryDlg();
 
-    void setQuery(const QString &org, int entry, int orgcol, int transcol, int query_cycle, int query_num, int query_startnum, KEduVocDocument *doc);
+    void setQuery(TestEntry* entry);
 
 public slots:
     virtual void initFocus() const;

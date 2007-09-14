@@ -181,6 +181,11 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : QueryDlg
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    ///@todo this is not a member any longer!
+    int m_queryOriginalColumn = Prefs::fromIdentifier();
+    int m_queryTranslationColumn = Prefs::toIdentifier();
+
+
     if (suggestions) {
         for (i = 0; i < m_doc -> entryCount(); i ++) {
             KEduVocExpression* expr = m_doc -> entry(i);
@@ -213,19 +218,11 @@ RandomQueryDlg::~RandomQueryDlg()
 }
 
 
-void RandomQueryDlg::setQuery(const QString &org,
-                              const QString &trans,
-                              int entry,
-                              int orgcol,
-                              int transcol,
-                              int q_cycle,
-                              int q_num,
-                              int q_start)
+void RandomQueryDlg::setQuery( TestEntry* entry )
 {
-    m_row = entry;
-    m_queryOriginalColumn = orgcol;
-    m_queryTranslationColumn = transcol;
+    QueryDlgBase::setQuery(entry);
 
+    QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
     if (Prefs::split())
         translations = extractTranslations(trans);
     else
@@ -259,10 +256,10 @@ void RandomQueryDlg::setQuery(const QString &org,
     }
     mw->verify->setEnabled(true);
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(org);
+    mw->orgField->setText(entry->exp->translation( Prefs::fromIdentifier() ).text());
     mw->show_all->setDefault(true);
     QString s;
-    s.setNum(q_cycle);
+    s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
 
     mw->remark->hide();
@@ -274,8 +271,11 @@ void RandomQueryDlg::setQuery(const QString &org,
     mw->c_type->setChecked(false);
     setHintFields();
 
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+///@todo update progress
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
+mw->countbar->setMaximum(0);
+mw->countbar->setValue(0);
 
     mw->status->clear();
     suggestion_hint = false;
@@ -338,13 +338,13 @@ void RandomQueryDlg::verifyClicked()
         }
 
         if (trans.count() == 0) {
-            mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+//             mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
             knowItClicked();
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);
             }
-            mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+//             mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
             mw->dont_know->setDefault(true);
         }
     }
@@ -443,7 +443,7 @@ void RandomQueryDlg::knowItClicked()
 {
     mw->status -> clear();
     suggestion_hint = false;
-    emit sigQueryChoice(Known);
+    emit sigQueryChoice(SkipKnown);
 }
 
 
@@ -451,24 +451,24 @@ void RandomQueryDlg::dontKnowClicked()
 {
     mw->status -> clear();
     suggestion_hint = false;
-    emit sigQueryChoice(Unknown);
+    emit sigQueryChoice(SkipUnknown);
 }
 
 
 void RandomQueryDlg::setHintFields()
 {
     QString s;
-    KEduVocExpression *exp = m_doc->entry(m_row);
+    KEduVocExpression* exp = m_entry->exp;
 
-    s = exp->translation(m_queryOriginalColumn).comment();
+    s = exp->translation(Prefs::fromIdentifier()).comment();
     mw->remark->setText(s);
     mw->c_remark->setEnabled(!s.isEmpty());
 
-    s = exp->translation(m_queryOriginalColumn).falseFriend(m_queryTranslationColumn);
+    s = exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier());
     mw->falseFriend->setText(s);
     mw->c_falsefriend->setEnabled(!s.isEmpty());
 
-    s = exp->translation(m_queryOriginalColumn).type();
+    s = exp->translation(Prefs::fromIdentifier()).type();
     mw->type->setText(s);
     mw->c_type->setEnabled(!s.isEmpty());
 }
@@ -476,24 +476,25 @@ void RandomQueryDlg::setHintFields()
 
 void RandomQueryDlg::slotUser1()
 {
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
-
-    KEduVocExpression *exp = m_doc->entry(m_row);
-    mw->orgField->setText( exp->translation(m_queryOriginalColumn).text() );
-
-    if (Prefs::suggestions())
-        for (int i = 0; i < fields; i ++)
-            transCombos.at(i) -> clearEditText();
-    else
-        for (int i = 0; i < fields; i ++)
-            transFields.at(i) -> clear();
-    mw->status -> clear();
-    suggestion_hint = false;
-
-    setHintFields();
+///@todo: move into base and implement cleanly
+//     if (m_timer != 0)
+//         m_timer->stop();
+//
+//     emit sigEditEntry(m_row, m_queryOriginalColumn);
+//
+//     KEduVocExpression *exp = m_doc->entry(m_row);
+//     mw->orgField->setText( exp->translation(m_queryOriginalColumn).text() );
+//
+//     if (Prefs::suggestions())
+//         for (int i = 0; i < fields; i ++)
+//             transCombos.at(i) -> clearEditText();
+//     else
+//         for (int i = 0; i < fields; i ++)
+//             transFields.at(i) -> clear();
+//     mw->status -> clear();
+//     suggestion_hint = false;
+//
+//     setHintFields();
 }
 
 

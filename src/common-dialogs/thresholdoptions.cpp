@@ -137,7 +137,7 @@ void ThresholdOptions::fillWidgets()
     // limits and thresholds (the five comboboxes on the right)
     gradelist->clear();
     for (int i = 1; i <= KV_MAX_GRADE; i++)
-        gradelist->addItem(KVTQuery::gradeStr(i));
+        gradelist->addItem(TestEntryManager::gradeStr(i));
 
     typelist->clear();
     typelist->addItems(m_doc->wordTypes()->typeNameList());
@@ -160,35 +160,35 @@ void ThresholdOptions::fillWidgets()
     ct = type_complist;
     typecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        typecomp->addItem(KVTQuery::compStr(*ct));
+        typecomp->addItem(compStr(*ct));
         ct++;
     }
 
     ct = query_complist;
     querycomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        querycomp->addItem(KVTQuery::compStr(*ct));
+        querycomp->addItem(compStr(*ct));
         ct++;
     }
 
     ct = bad_complist;
     badcomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        badcomp->addItem(KVTQuery::compStr(*ct));
+        badcomp->addItem(compStr(*ct));
         ct++;
     }
 
     ct = grade_complist;
     gradecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        gradecomp->addItem(KVTQuery::compStr(*ct));
+        gradecomp->addItem(compStr(*ct));
         ct++;
     }
 
     ct = date_complist;
     datecomp->clear();
     while (*ct != Prefs::EnumCompType::type(-1)) {
-        datecomp->addItem(KVTQuery::compStr(*ct));
+        datecomp->addItem(compStr(*ct));
         ct++;
     }
 }
@@ -369,4 +369,68 @@ bool ThresholdOptions::hasChanged()
            Threshdate_itemlist[datelist->currentIndex()].num  != Prefs::dateItem();
 }
 
+
+QString ThresholdOptions::compStr(Prefs::EnumCompType::type type)
+{
+    QString str = "???";
+    switch (type) {
+    case Prefs::EnumCompType::DontCare:
+        str = i18n("Do not Care");
+        break;
+    case Prefs::EnumCompType::WorseThan:
+        str = i18n("Worse Than");
+        break;
+    case Prefs::EnumCompType::WorseEqThan:
+        str = i18n("Equal/Worse Than");
+        break;
+    case Prefs::EnumCompType::MoreThan:
+        str = i18n(">");
+        break;
+    case Prefs::EnumCompType::MoreEqThan:
+        str = i18n(">=");
+        break;
+    case Prefs::EnumCompType::BetterEqThan:
+        str = i18n("Equal/Better Than");
+        break;
+    case Prefs::EnumCompType::BetterThan:
+        str = i18n("Better Than");
+        break;
+    case Prefs::EnumCompType::LessEqThan:
+        str = i18n("<=");
+        break;
+    case Prefs::EnumCompType::LessThan:
+        str = i18n("<");
+        break;
+    case Prefs::EnumCompType::EqualTo:
+        str = i18n("Equal To");
+        break;
+    case Prefs::EnumCompType::NotEqual:
+        str = i18n("Not Equal");
+        break;
+    case Prefs::EnumCompType::OneOf:
+        str = i18n("Contained In");
+        break;
+    case Prefs::EnumCompType::NotOneOf:
+        str = i18n("Not Contained In");
+        break;
+    case Prefs::EnumCompType::Within:
+        str = i18n("Within Last");
+        break;
+    case Prefs::EnumCompType::Before:
+        str = i18n("Before");
+        break;
+    case Prefs::EnumCompType::NotQueried:
+        str = i18n("Never Practiced");
+        break;
+    case Prefs::EnumCompType::Current:
+        return i18n("Current Lesson");
+        break;
+    case Prefs::EnumCompType::NotAssigned:
+        return i18n("Not Assigned");
+        break;
+    default:
+        ;
+    }
+    return str;
+}
 #include "thresholdoptions.moc"

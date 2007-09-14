@@ -63,6 +63,14 @@
       <label>Use the Leitner learning method</label>
       <default>false</default>
     </entry>
+    <entry name="TestOrderLesson" type="Bool">
+      <label>Append new vocabulary in a test in order of their lessons. Note that this will not be a hard transition, but a slow mix from one lesson to the next.</label>
+      <default>true</default>
+    </entry>
+    <entry name="TestNumberOfEntries" type="Int">
+      <label>The number of entries that are practiced at the same time. If one of these is answered correctly another entry will be appended.</label>
+      <default>20</default>
+    </entry>
     <entry name="SwapDirection" type="Bool">
       <label>Swap direction randomly</label>
       <default>false</default>

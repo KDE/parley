@@ -45,7 +45,7 @@ QueryDlgBase::QueryDlgBase(const QString & caption, KEduVocDocument *doc, QWidge
     setMainWidget(main);
 
     m_doc = doc;
-    m_expression = 0;
+    m_entry = 0;
     m_timer = 0;
 }
 
@@ -273,6 +273,12 @@ void QueryDlgBase::startTimer()
     } else {
         timebar()->setEnabled(false);
     }
+}
+
+void QueryDlgBase::setQuery(TestEntry * entry)
+{
+    m_entry = entry;
+    m_testType = Prefs::testType();
 }
 
 #include "QueryDlgBase.moc"

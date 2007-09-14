@@ -75,24 +75,24 @@ MCQueryDlg::~MCQueryDlg()
 }
 
 
-void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start, KEduVocDocument *doc)
+void MCQueryDlg::setQuery( TestEntry* entry)
 {
-    m_doc = doc;
-    m_row = entry;
-    KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    m_queryOriginalColumn = orgcol;
-    m_queryTranslationColumn = transcol;
+    QueryDlgBase::setQuery(entry);
+
+// const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start,
+
+    KEduVocExpression *vocExpression = entry->exp;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(org);
+    mw->orgField->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
     mw->show_all->setDefault(true);
 
     // Query cycle - how often did this show up (?)
-    mw->progCount->setText(QString::number(queryCycle));
+//     mw->progCount->setText(QString::number(queryCycle));
     //Counter - how many correct out of...
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 
@@ -117,7 +117,7 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     resetQueryWidget(button_ref[4].second);
 
 
-    KEduVocMultipleChoice multipleChoice = vocExpression->translation(m_queryTranslationColumn).multipleChoice();
+    KEduVocMultipleChoice multipleChoice = vocExpression->translation(Prefs::toIdentifier()).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
         choices.append(multipleChoice.choice(i));
         kDebug() << "Append choice: " << multipleChoice.choice(i);
@@ -129,17 +129,17 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
     // always include false friend
     QString ff;
     /// @todo: check if it works: false friend should always be included! (Cannot think if the following is ok in both directions...)
-    ff = vocExpression->translation(m_queryTranslationColumn).falseFriend(m_queryOriginalColumn).simplified();
+    ff = vocExpression->translation(Prefs::toIdentifier()).falseFriend(Prefs::fromIdentifier()).simplified();
 
     if (!ff.isEmpty())
         choices.prepend(ff);
 
-    if (doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
-        for (int i = choices.count(); i < doc->entryCount(); ++i) {
-            KEduVocExpression *act = doc->entry(i);
+    if (m_doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
+        for (int i = choices.count(); i < m_doc->entryCount(); ++i) {
+            KEduVocExpression *act = m_doc->entry(i);
 
             if (act != vocExpression) {
-                choices.append(act->translation(m_queryTranslationColumn).text());
+                choices.append(act->translation(Prefs::toIdentifier()).text());
             }
         }
     } else {
@@ -148,26 +148,26 @@ void MCQueryDlg::setQuery(const QString &org, int entry, int orgcol, int transco
         int count = MAX_MULTIPLE_CHOICE;
         // gather random expressions for the choice
         while (count > 0) {
-            int nr = randomSequence.getLong(doc->entryCount());
+            int nr = randomSequence.getLong(m_doc->entryCount());
             // append if new expr found
             bool newex = true;
             for (int i = 0; newex && i < exprlist.count(); i++) {
-                if (exprlist[i] == doc->entry(nr))
+                if (exprlist[i] == m_doc->entry(nr))
                     newex = false;
             }
-            if (newex && vocExpression != doc->entry(nr)) {
+            if (newex && vocExpression != m_doc->entry(nr)) {
                 count--;
-                exprlist.append(doc->entry(nr));
+                exprlist.append(m_doc->entry(nr));
             }
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(m_queryTranslationColumn).text());
+            choices.append(exprlist[i]->translation(Prefs::toIdentifier()).text());
         }
 
     }
 
-    choices.prepend(vocExpression->translation(m_queryTranslationColumn).text());
+    choices.prepend(vocExpression->translation(Prefs::toIdentifier()).text());
 
     for (int i = choices.count(); i < MAX_MULTIPLE_CHOICE; i++)
         choices.append("");
@@ -236,6 +236,7 @@ void MCQueryDlg::showSolution()
 
 void MCQueryDlg::verifyClicked()
 {
+kDebug() << "verify";
     bool known = button_ref[0].first->isChecked();
 
     if (button_ref[0].first->isChecked()) {
@@ -302,27 +303,28 @@ void MCQueryDlg::verifyClicked()
 
 void MCQueryDlg::knowItClicked()
 {
+kDebug() << "Emit signal: Known";
     mw->status->setText("");
-    emit sigQueryChoice(Known);
+    emit sigQueryChoice(SkipKnown);
 }
 
 
 void MCQueryDlg::dontKnowClicked()
 {
     mw->status->setText("");
-    emit sigQueryChoice(Unknown);
+    emit sigQueryChoice(SkipUnknown);
 }
 
 
 void MCQueryDlg::slotUser1()
 {
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
-
-    KEduVocExpression *vocExpression = m_doc->entry(m_row);
-    mw->orgField->setText( vocExpression->translation(m_queryOriginalColumn).text() );
+//     if (m_timer != 0)
+//         m_timer->stop();
+//
+//     emit sigEditEntry(m_row, Prefs::fromIdentifier());
+//
+//     KEduVocExpression *vocExpression = m_doc->entry(m_row);
+//     mw->orgField->setText( vocExpression->translation(Prefs::fromIdentifier()).text() );
 }
 
 #include "MCQueryDlg.moc"

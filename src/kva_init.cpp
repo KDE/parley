@@ -72,7 +72,6 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
     pbar = 0;
 
     entryDlg = 0;
-    m_queryManager = 0;
 
     initStatusBar();
     initActions();
@@ -425,10 +424,7 @@ void KVocTrainApp::initDoc()
         initializeDefaultGrammar();
         createExampleEntries();
 
-
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-
-        loadDocProps();
 
         m_tableModel->setDocument(m_doc);
     }

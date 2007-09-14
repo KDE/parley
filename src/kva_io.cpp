@@ -164,7 +164,6 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
         m_tableModel->reset();
 
         removeProgressBar();
-        loadDocProps();
         if (addRecent) { // open sample does not go into recent
             fileOpenRecent->addUrl(url);
         }
@@ -304,15 +303,6 @@ void KVocTrainApp::slotFileSaveAs()
     slotStatusMsg(IDS_DEFAULT);
 }
 
-void KVocTrainApp::loadDocProps()
-{
-    if (m_queryManager) {
-        m_queryManager->deleteLater();
-        m_queryManager=0;
-    }
-    m_queryManager = new QueryManager(this, m_doc);
-}
-
 
 void KVocTrainApp::slotSaveSelection()
 {
@@ -403,8 +393,6 @@ void KVocTrainApp::newDocumentWizard()
 
     m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-
-    loadDocProps();
 
     m_lessonModel->setDocument(m_doc);
     if (m_lessonView) {

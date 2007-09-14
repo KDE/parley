@@ -72,24 +72,17 @@ void SimpleQueryDlg::initFocus() const
 }
 
 
-void SimpleQueryDlg::setQuery(int testType,
-                              int entry,
-                              int column,
-                              int q_cycle,
-                              int q_num,
-                              int q_start,
-                              KEduVocDocument  *doc)
+void SimpleQueryDlg::setQuery(TestEntry* entry)
 {
-    m_testType = testType;
-    m_doc = doc;
-    m_row = entry;
-    m_expression = m_doc->entry(m_row);
-    m_queryOriginalColumn = column;
+    QueryDlgBase::setQuery(entry);
+
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->queryField->setFont(Prefs::tableFont());
     mw->answerField->setFont(Prefs::tableFont());
     mw->answerField->setText("");
+
+    int column = Prefs::toIdentifier();
 
     QString s;
     switch (m_testType) {
@@ -97,9 +90,9 @@ void SimpleQueryDlg::setQuery(int testType,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the synonym:"));
             setWindowTitle(i18n("Synonym Training"));
-            answerstring = m_expression->translation(column).synonym();
+            answerstring = m_entry->exp->translation(column).synonym();
             mw->queryField->setAlignment(Qt::AlignVCenter);
-            mw->queryField->setText( m_expression->translation(column).text() );
+            mw->queryField->setText( m_entry->exp->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -108,8 +101,8 @@ void SimpleQueryDlg::setQuery(int testType,
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
-            answerstring = m_expression->translation(column).antonym();
-            mw->queryField->setText( m_expression->translation(column).text() );
+            answerstring = m_entry->exp->translation(column).antonym();
+            mw->queryField->setText( m_entry->exp->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -118,8 +111,8 @@ void SimpleQueryDlg::setQuery(int testType,
             mw->queryLabel->setText(i18n("Paraphrase"));
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
-            mw->queryField->setText(m_expression->translation(column).paraphrase());
-            answerstring = m_expression->translation(column).text();
+            mw->queryField->setText(m_entry->exp->translation(column).paraphrase());
+            answerstring = m_entry->exp->translation(column).text();
             setQueryFieldWordwrap();
         }
         break;
@@ -128,8 +121,8 @@ void SimpleQueryDlg::setQuery(int testType,
             mw->queryLabel->setText(i18n("Example sentence"));
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
-            s = m_expression->translation(column).example();
-            answerstring = m_expression->translation(column).text().simplified();
+            s = m_entry->exp->translation(column).example();
+            answerstring = m_entry->exp->translation(column).text().simplified();
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
@@ -145,11 +138,11 @@ void SimpleQueryDlg::setQuery(int testType,
     }
 
     mw->show_all->setDefault(true);
-    s.setNum(q_cycle);
-    mw->progCount->setText(s);
+//     s.setNum(q_cycle);
+//     mw->progCount->setText(s);
 
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 
@@ -193,13 +186,13 @@ void SimpleQueryDlg::verifyClicked()
 
 void SimpleQueryDlg::knowItClicked()
 {
-    emit sigQueryChoice(Known);
+    emit sigQueryChoice(SkipKnown);
 }
 
 
 void SimpleQueryDlg::dontKnowClicked()
 {
-    emit sigQueryChoice(Unknown);
+    emit sigQueryChoice(SkipUnknown);
 }
 
 
@@ -208,38 +201,34 @@ void SimpleQueryDlg::slotUser1()
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
+    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 
-    KEduVocExpression *exp = m_doc->entry(m_row);
 //   queryField->setText (exp->getTranslation(queryOriginalColumn));
 
     switch (m_testType) {
     case Prefs::EnumTestType::SynonymTest: {
-            answerstring = exp->translation(m_queryOriginalColumn).synonym();
-            mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
+            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).synonym();
+            mw->queryField->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
         }
         break;
 
     case Prefs::EnumTestType::AntonymTest: {
-            answerstring = exp->translation(m_queryOriginalColumn).antonym();
-            mw->queryField->setText( exp->translation(m_queryOriginalColumn).text() );
+            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).antonym();
+            mw->queryField->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
         }
         break;
 
     case Prefs::EnumTestType::ParaphraseTest: {
-            mw->queryField->setText(exp->translation(m_queryOriginalColumn).paraphrase());
-            answerstring = exp->translation(m_queryOriginalColumn).text();
+            mw->queryField->setText(m_entry->exp->translation(Prefs::toIdentifier()).paraphrase());
+            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).text();
         }
         break;
 
     case Prefs::EnumTestType::ExampleTest: {
-            mw->queryField->setText(exp->translation(m_queryOriginalColumn).example());
-            answerstring = exp->translation(m_queryOriginalColumn).text();
+            mw->queryField->setText(m_entry->exp->translation(Prefs::toIdentifier()).example());
+            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).text();
         }
         break;
-
-    default:
-        ;
     }
 }
 

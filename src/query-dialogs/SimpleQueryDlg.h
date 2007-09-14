@@ -38,13 +38,7 @@ public:
 
     ~SimpleQueryDlg();
 
-    void setQuery(int testType,
-                  int entry,
-                  int column,
-                  int q_cycle,
-                  int q_num,
-                  int q_start,
-                  KEduVocDocument  *doc);
+    void setQuery(TestEntry* entry);
 
 public slots:
     virtual void initFocus() const;
@@ -63,7 +57,6 @@ protected:
     QProgressBar* timebar() { return mw->timebar; }
 
     QString answerstring;
-    int m_testType;
 
 private:
     Ui::SimpleQueryDlgForm * mw;

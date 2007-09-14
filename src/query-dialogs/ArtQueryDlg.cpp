@@ -67,24 +67,16 @@ ArtQueryDlg::~ArtQueryDlg()
 }
 
 
-void ArtQueryDlg::setQuery(int entry,
-                           int col,
-                           int q_cycle,
-                           int q_num,
-                           int q_start,
-                           KEduVocExpression *exp,
-                           const KEduVocArticle &art)
+void ArtQueryDlg::setQuery(TestEntry* entry)
 {
-    m_expression = exp;
-    m_row = entry;
-    m_queryOriginalColumn = col;
+    QueryDlgBase::setQuery(entry);
+
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->show_all->setDefault(true);
-    articles = art;
 
     QString s;
-    s = exp->translation(m_queryOriginalColumn).text().simplified();
+    s = m_entry->exp->translation(Prefs::toIdentifier()).text().simplified();
 
     QString def, indef;
     bool removed = false;
@@ -126,11 +118,11 @@ void ArtQueryDlg::setQuery(int entry,
     }
 
     mw->orgField->setText(s);
-    s.setNum(q_cycle);
-    mw->progCount->setText(s);
+//     s.setNum(q_cycle);
+//     mw->progCount->setText(s);
 
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 }
@@ -144,21 +136,22 @@ void ArtQueryDlg::initFocus() const
 
 void ArtQueryDlg::showSolution()
 {
-    resetQueryWidget(mw->rb_fem);
-    resetQueryWidget(mw->male);
-    resetQueryWidget(mw->natural);
-
-    if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F) {
-        mw->rb_fem->setChecked(true);
-        verifyButton(mw->rb_fem, true);
-    } else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
-        mw->male->setChecked(true);
-        verifyButton(mw->male, true);
-    } else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
-        mw->natural->setChecked(true);
-        verifyButton(mw->natural, true);
-    }
-    mw->dont_know->setDefault(true);
+///@todo
+//     resetQueryWidget(mw->rb_fem);
+//     resetQueryWidget(mw->male);
+//     resetQueryWidget(mw->natural);
+//
+//     if (m_expression->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes().specialTypeNoundMale()) {
+//         mw->rb_fem->setChecked(true);
+//         verifyButton(mw->rb_fem, true);
+//     } else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
+//         mw->male->setChecked(true);
+//         verifyButton(mw->male, true);
+//     } else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
+//         mw->natural->setChecked(true);
+//         verifyButton(mw->natural, true);
+//     }
+//     mw->dont_know->setDefault(true);
 }
 
 
@@ -168,45 +161,46 @@ void ArtQueryDlg::showMoreClicked()
 
 void ArtQueryDlg::verifyClicked()
 {
-    bool known = false;
-    if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
-        known = mw->rb_fem->isChecked();
-    else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
-        known = mw->male->isChecked();
-    else if (m_expression->translation(m_queryOriginalColumn).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
-        known = mw->natural->isChecked();
-
-    if (mw->rb_fem->isChecked()) {
-        verifyButton(mw->rb_fem, known);
-        resetQueryWidget(mw->male);
-        resetQueryWidget(mw->natural);
-    } else if (mw->male->isChecked()) {
-        verifyButton(mw->male, known);
-        resetQueryWidget(mw->rb_fem);
-        resetQueryWidget(mw->natural);
-    } else if (mw->natural->isChecked()) {
-        verifyButton(mw->natural, known);
-        resetQueryWidget(mw->male);
-        resetQueryWidget(mw->rb_fem);
-    }
-
-    if (known)
-//    know_it->setDefault(true);
-        knowItClicked();
-    else
-        mw->dont_know->setDefault(true);
+///@todo
+//     bool known = false;
+//     if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
+//         known = mw->rb_fem->isChecked();
+//     else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
+//         known = mw->male->isChecked();
+//     else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
+//         known = mw->natural->isChecked();
+//
+//     if (mw->rb_fem->isChecked()) {
+//         verifyButton(mw->rb_fem, known);
+//         resetQueryWidget(mw->male);
+//         resetQueryWidget(mw->natural);
+//     } else if (mw->male->isChecked()) {
+//         verifyButton(mw->male, known);
+//         resetQueryWidget(mw->rb_fem);
+//         resetQueryWidget(mw->natural);
+//     } else if (mw->natural->isChecked()) {
+//         verifyButton(mw->natural, known);
+//         resetQueryWidget(mw->male);
+//         resetQueryWidget(mw->rb_fem);
+//     }
+//
+//     if (known)
+// //    know_it->setDefault(true);
+//         knowItClicked();
+//     else
+//         mw->dont_know->setDefault(true);
 }
 
 
 void ArtQueryDlg::knowItClicked()
 {
-    emit sigQueryChoice(Known);
+    emit sigQueryChoice(SkipKnown);
 }
 
 
 void ArtQueryDlg::dontKnowClicked()
 {
-    emit sigQueryChoice(Unknown);
+    emit sigQueryChoice(SkipUnknown);
 }
 
 
@@ -216,7 +210,7 @@ void ArtQueryDlg::slotUser1()
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
+    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 #include "ArtQueryDlg.moc"

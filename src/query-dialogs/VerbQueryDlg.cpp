@@ -79,42 +79,33 @@ void VerbQueryDlg::initFocus() const
 }
 
 
-void VerbQueryDlg::setQuery(int entry,
-                            int col,
-                            int q_cycle,
-                            int q_num,
-                            int q_start,
-                            KEduVocExpression *exp,
-                            const KEduVocConjugation &prefix,
-                            const QMap<QString, KEduVocConjugation> &conjug)
+void VerbQueryDlg::setQuery(TestEntry* entry)
 {
-    m_expression = exp;
-    m_row = entry;
-    m_queryOriginalColumn = col;
+    QueryDlgBase::setQuery(entry);
+
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
     mw->show_all->setDefault(true);
-    QString s;
-    s.setNum(q_cycle);
-    mw->progCount->setText(s);
+//     QString s;
+//     s.setNum(q_cycle);
+//     mw->progCount->setText(s);
 
-    m_conjugations = conjug;
 
 ///@todo conjugations enable setting personal pronouns
-    mw->p1sLabel->setText(prefix.pers1Singular());
-    mw->p2sLabel->setText(prefix.pers2Singular());
-    mw->p3smLabel->setText(prefix.pers3MaleSingular());
-    mw->p3sfLabel->setText(prefix.pers3FemaleSingular());
-    mw->p3snLabel->setText(prefix.pers3NaturalSingular());
+    mw->p1sLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers1Singular());
+    mw->p2sLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers2Singular());
+    mw->p3smLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3MaleSingular());
+    mw->p3sfLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3FemaleSingular());
+    mw->p3snLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3NaturalSingular());
 
-    mw->p1pLabel->setText(prefix.pers1Plural());
-    mw->p2pLabel->setText(prefix.pers2Plural());
-    mw->p3pmLabel->setText(prefix.pers3MalePlural());
-    mw->p3pfLabel->setText(prefix.pers3FemalePlural());
-    mw->p3pnLabel->setText(prefix.pers3NaturalPlural());
+    mw->p1pLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers1Plural());
+    mw->p2pLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers2Plural());
+    mw->p3pmLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3MalePlural());
+    mw->p3pfLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3FemalePlural());
+    mw->p3pnLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3NaturalPlural());
 
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 
@@ -130,56 +121,56 @@ bool VerbQueryDlg::next()
     QString tense;
 
     QString s;
-    s = m_expression->translation(m_queryOriginalColumn).text();
+    s = m_entry->exp->translation(Prefs::toIdentifier()).text();
     mw->baseLabel->setText(s);
 
-    if (current < m_conjugations.count() - 1) {
+    if (current < m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1) {
         current++;
     }
 
-    tense = m_conjugations.keys().value(current);
+    tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(current);
     QString msg = i18n("Current tense is: %1.", tense);
 
     mw->instructionLabel->setText(msg);
 
 
     mw->p1sField->setText("");
-    mw->p1sField->setEnabled(!m_conjugations[tense].pers1Singular().isEmpty());
+    mw->p1sField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Singular().isEmpty());
 
     mw->p2sField->setText("");
-    mw->p2sField->setEnabled(!m_conjugations[tense].pers2Singular().isEmpty());
+    mw->p2sField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Singular().isEmpty());
 
     mw->p3smField->setText("");
-    mw->p3smField->setEnabled(!m_conjugations[tense].pers3MaleSingular().isEmpty());
+    mw->p3smField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MaleSingular().isEmpty());
 
     mw->p3sfField->setText("");
-    mw->p3sfField->setEnabled(!m_conjugations[tense].pers3FemaleSingular().isEmpty());
+    mw->p3sfField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemaleSingular().isEmpty());
 
     mw->p3snField->setText("");
-    mw->p3snField->setEnabled(!m_conjugations[tense].pers3NaturalSingular().isEmpty());
+    mw->p3snField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalSingular().isEmpty());
 
     mw->p1pField->setText("");
-    mw->p1pField->setEnabled(!m_conjugations[tense].pers1Plural().isEmpty());
+    mw->p1pField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Plural().isEmpty());
 
     mw->p2pField->setText("");
-    mw->p2pField->setEnabled(!m_conjugations[tense].pers2Plural().isEmpty());
+    mw->p2pField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Plural().isEmpty());
 
     mw->p3pmField->setText("");
-    mw->p3pmField->setEnabled(!m_conjugations[tense].pers3MalePlural().isEmpty());
+    mw->p3pmField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MalePlural().isEmpty());
 
     mw->p3pfField->setText("");
-    mw->p3pfField->setEnabled(!m_conjugations[tense].pers3FemalePlural().isEmpty());
+    mw->p3pfField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemalePlural().isEmpty());
 
     mw->p3pnField->setText("");
-    mw->p3pnField->setEnabled(!m_conjugations[tense].pers3NaturalPlural().isEmpty());
+    mw->p3pnField->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalPlural().isEmpty());
 
-    bool common = m_conjugations[tense].pers3SingularCommon();
+    bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3SingularCommon();
     if (common) {
         mw->p3smField->setEnabled(false);
         mw->p3snField->setEnabled(false);
     }
 
-    common = m_conjugations[tense].pers3PluralCommon();
+    common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3PluralCommon();
     if (common) {
         mw->p3pmField->setEnabled(false);
         mw->p3pnField->setEnabled(false);
@@ -194,38 +185,38 @@ void VerbQueryDlg::showSolution()
     resetAllFields();
     mw->dont_know->setDefault(true);
 
-    QString tense = m_conjugations.keys().value(current);
+    QString tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(current);
 
-    mw->p1sField->setText(m_conjugations[tense].pers1Singular());
-    mw->p2sField->setText(m_conjugations[tense].pers2Singular());
-    mw->p3smField->setText(m_conjugations[tense].pers3MaleSingular());
-    mw->p3sfField->setText(m_conjugations[tense].pers3FemaleSingular());
-    mw->p3snField->setText(m_conjugations[tense].pers3NaturalSingular());
+    mw->p1sField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Singular());
+    mw->p2sField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Singular());
+    mw->p3smField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MaleSingular());
+    mw->p3sfField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemaleSingular());
+    mw->p3snField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalSingular());
 
-    mw->p1pField->setText(m_conjugations[tense].pers1Plural());
-    mw->p2pField->setText(m_conjugations[tense].pers2Plural());
-    mw->p3pmField->setText(m_conjugations[tense].pers3MalePlural());
-    mw->p3pfField->setText(m_conjugations[tense].pers3FemalePlural());
-    mw->p3pnField->setText(m_conjugations[tense].pers3NaturalPlural());
+    mw->p1pField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Plural());
+    mw->p2pField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Plural());
+    mw->p3pmField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MalePlural());
+    mw->p3pfField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemalePlural());
+    mw->p3pnField->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalPlural());
 
-    verifyField(mw->p1sField, m_conjugations[tense].pers1Singular());
-    verifyField(mw->p2sField, m_conjugations[tense].pers2Singular());
-    verifyField(mw->p3sfField, m_conjugations[tense].pers3FemaleSingular());
+    verifyField(mw->p1sField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Singular());
+    verifyField(mw->p2sField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Singular());
+    verifyField(mw->p3sfField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemaleSingular());
 
-    bool common = m_conjugations[tense].pers3SingularCommon();
+    bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3SingularCommon();
     if (!common) {
-        verifyField(mw->p3smField, m_conjugations[tense].pers3MaleSingular());
-        verifyField(mw->p3snField, m_conjugations[tense].pers3NaturalSingular());
+        verifyField(mw->p3smField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MaleSingular());
+        verifyField(mw->p3snField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalSingular());
     }
 
-    verifyField(mw->p1pField, m_conjugations[tense].pers1Plural());
-    verifyField(mw->p2pField, m_conjugations[tense].pers2Plural());
-    verifyField(mw->p3pfField, m_conjugations[tense].pers3FemalePlural());
+    verifyField(mw->p1pField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Plural());
+    verifyField(mw->p2pField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Plural());
+    verifyField(mw->p3pfField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemalePlural());
 
-    common = m_conjugations[tense].pers3PluralCommon();
+    common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3PluralCommon();
     if (!common) {
-        verifyField(mw->p3pmField, m_conjugations[tense].pers3MalePlural());
-        verifyField(mw->p3pnField, m_conjugations[tense].pers3NaturalPlural());
+        verifyField(mw->p3pmField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MalePlural());
+        verifyField(mw->p3pnField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalPlural());
     }
 
 }
@@ -233,43 +224,43 @@ void VerbQueryDlg::showSolution()
 
 void VerbQueryDlg::verifyClicked()
 {
-    QString tense = m_conjugations.keys().value(current);
+    QString tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(current);
 
     bool known = true;
 
-    if (!verifyField(mw->p1sField, m_conjugations[tense].pers1Singular()))
+    if (!verifyField(mw->p1sField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Singular()))
         known = false;
 
-    if (!verifyField(mw->p2sField, m_conjugations[tense].pers2Singular()))
+    if (!verifyField(mw->p2sField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Singular()))
         known = false;
 
-    if (!verifyField(mw->p3sfField, m_conjugations[tense].pers3FemaleSingular()))
+    if (!verifyField(mw->p3sfField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemaleSingular()))
         known = false;
 
-    bool common = m_conjugations[tense].pers3SingularCommon();
+    bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3SingularCommon();
     if (!common) {
-        if (!verifyField(mw->p3smField, m_conjugations[tense].pers3MaleSingular()))
+        if (!verifyField(mw->p3smField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MaleSingular()))
             known = false;
 
-        if (!verifyField(mw->p3snField, m_conjugations[tense].pers3NaturalSingular()))
+        if (!verifyField(mw->p3snField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalSingular()))
             known = false;
     }
 
-    if (!verifyField(mw->p1pField, m_conjugations[tense].pers1Plural()))
+    if (!verifyField(mw->p1pField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers1Plural()))
         known = false;
 
-    if (!verifyField(mw->p2pField, m_conjugations[tense].pers2Plural()))
+    if (!verifyField(mw->p2pField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers2Plural()))
         known = false;
 
-    if (!verifyField(mw->p3pfField, m_conjugations[tense].pers3FemalePlural()))
+    if (!verifyField(mw->p3pfField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3FemalePlural()))
         known = false;
 
-    common = m_conjugations[tense].pers3PluralCommon();
+    common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3PluralCommon();
     if (!common) {
-        if (!verifyField(mw->p3pmField, m_conjugations[tense].pers3MalePlural()))
+        if (!verifyField(mw->p3pmField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3MalePlural()))
             known = false;
 
-        if (!verifyField(mw->p3pnField, m_conjugations[tense].pers3NaturalPlural()))
+        if (!verifyField(mw->p3pnField, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].pers3NaturalPlural()))
             known = false;
     }
 
@@ -304,11 +295,11 @@ void VerbQueryDlg::resetAllFields()
 void VerbQueryDlg::knowItClicked()
 {
     resetAllFields();
-    if (current >= m_conjugations.count() - 1) {
+    if (current >= m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1) {
         if (all_known)
-            emit sigQueryChoice(Known);
+            emit sigQueryChoice(SkipKnown);
         else
-            emit sigQueryChoice(Unknown);
+            emit sigQueryChoice(SkipUnknown);
     } else
         next();
 }
@@ -317,8 +308,8 @@ void VerbQueryDlg::knowItClicked()
 void VerbQueryDlg::dontKnowClicked()
 {
     all_known = false;
-    if (current >= m_conjugations.count() - 1)
-        emit sigQueryChoice(Unknown);
+    if (current >= m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1)
+        emit sigQueryChoice(SkipUnknown);
     else {
         m_timer->start(1000);
         m_timerCount = Prefs::maxTimePer();
@@ -329,11 +320,10 @@ void VerbQueryDlg::dontKnowClicked()
 
 void VerbQueryDlg::slotUser1()
 {
-
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
+    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 

@@ -45,14 +45,7 @@ public:
 
     ~RandomQueryDlg();
 
-    void setQuery(const QString &org,
-                  const QString &trans,
-                  int entry,
-                  int orgcol,
-                  int transcol,
-                  int query_cycle,
-                  int query_num,
-                  int query_startnum);
+    void setQuery( TestEntry* entry );
 
 public slots:
     virtual void initFocus() const;
@@ -70,7 +63,7 @@ public slots:
     void slotTypeClicked();
     void slotRemClicked();
 
-protected:
+private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
@@ -88,7 +81,6 @@ protected:
     bool suggestion_hint;
     int  fields;
 
-private:
     Ui::QueryDlgForm * mw;
 };
 

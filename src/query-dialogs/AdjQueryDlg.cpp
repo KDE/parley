@@ -67,21 +67,17 @@ AdjQueryDlg::~AdjQueryDlg()
 }
 
 
-void AdjQueryDlg::setQuery(int entry,
-                           int col,
-                           int q_cycle,
-                           int q_num,
-                           int q_start,
-                           const KEduVocComparison &_comp)
+void AdjQueryDlg::setQuery(TestEntry* entry)
 {
-    m_row = entry;
-    m_queryOriginalColumn = col;
+    QueryDlgBase::setQuery(entry);
+
+    comp = entry->exp->translation(Prefs::toIdentifier()).comparison();
+
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
-    comp = _comp;
     mw->show_all->setDefault(true);
     QString s;
-    s.setNum(q_cycle);
+//     s.setNum(q_cycle);
     mw->progCount->setText(s);
 
     mw->lev1Field->setText("");
@@ -108,8 +104,9 @@ void AdjQueryDlg::setQuery(int entry,
     mw->lev2Field->setEnabled(!comp.l2().isEmpty());
     mw->lev3Field->setEnabled(!comp.l3().isEmpty());
 
-    mw->countbar->setMaximum(q_start);
-    mw->countbar->setValue(q_start - q_num + 1);
+///@todo
+//     mw->countbar->setMaximum(q_start);
+//     mw->countbar->setValue(q_start - q_num + 1);
 
     startTimer();
 
@@ -169,14 +166,14 @@ void AdjQueryDlg::resetAllFields()
 
 void AdjQueryDlg::knowItClicked()
 {
-    emit sigQueryChoice(Known);
+    emit sigQueryChoice(SkipKnown);
 }
 
 
 
 void AdjQueryDlg::dontKnowClicked()
 {
-    emit sigQueryChoice(Unknown);
+    emit sigQueryChoice(SkipUnknown);
 }
 
 
@@ -185,7 +182,7 @@ void AdjQueryDlg::slotUser1()
     if (m_timer != 0)
         m_timer->stop();
 
-    emit sigEditEntry(m_row, m_queryOriginalColumn);
+    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 

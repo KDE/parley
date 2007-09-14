@@ -54,7 +54,7 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
     connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
 
     for (int i = 0; i <= KV_MAX_GRADE; i++)
-        gradebox->addItem(KVTQuery::gradeStr(i));
+        gradebox->addItem(TestEntryManager::gradeStr(i));
 
 }
 

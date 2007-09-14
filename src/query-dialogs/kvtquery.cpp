@@ -25,90 +25,26 @@
 
 #include "kvtquery.h"
 
+// for the enum
+#include "QueryDlgBase.h"
+
+#include <prefs.h>
 #include <klocale.h>
 #include <kconfig.h>
 
 #include <keduvoclesson.h>
 #include <keduvocdocument.h>
-
-#include <prefs.h>
-
-
-KVTQuery::KVTQuery()
-{
-    m_doc = 0;
-    m_indexFrom = 0;
-    m_indexTo = 0;
-    m_testType = Prefs::EnumTestType::WrittenTest;
-}
+#include <keduvocwordtype.h>
+#include <KRandomSequence>
+#include <QDateTime>
 
 
-QString KVTQuery::compStr(Prefs::EnumCompType::type type)
-{
-    QString str = "???";
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        str = i18n("Do not Care");
-        break;
-    case Prefs::EnumCompType::WorseThan:
-        str = i18n("Worse Than");
-        break;
-    case Prefs::EnumCompType::WorseEqThan:
-        str = i18n("Equal/Worse Than");
-        break;
-    case Prefs::EnumCompType::MoreThan:
-        str = i18n(">");
-        break;
-    case Prefs::EnumCompType::MoreEqThan:
-        str = i18n(">=");
-        break;
-    case Prefs::EnumCompType::BetterEqThan:
-        str = i18n("Equal/Better Than");
-        break;
-    case Prefs::EnumCompType::BetterThan:
-        str = i18n("Better Than");
-        break;
-    case Prefs::EnumCompType::LessEqThan:
-        str = i18n("<=");
-        break;
-    case Prefs::EnumCompType::LessThan:
-        str = i18n("<");
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        str = i18n("Equal To");
-        break;
-    case Prefs::EnumCompType::NotEqual:
-        str = i18n("Not Equal");
-        break;
-    case Prefs::EnumCompType::OneOf:
-        str = i18n("Contained In");
-        break;
-    case Prefs::EnumCompType::NotOneOf:
-        str = i18n("Not Contained In");
-        break;
-    case Prefs::EnumCompType::Within:
-        str = i18n("Within Last");
-        break;
-    case Prefs::EnumCompType::Before:
-        str = i18n("Before");
-        break;
-    case Prefs::EnumCompType::NotQueried:
-        str = i18n("Never Practiced");
-        break;
-    case Prefs::EnumCompType::Current:
-        return i18n("Current Lesson");
-        break;
-    case Prefs::EnumCompType::NotAssigned:
-        return i18n("Not Assigned");
-        break;
-    default:
-        ;
-    }
-    return str;
-}
+///@todo rename this file and the .h
 
 
-QString KVTQuery::gradeStr(int i)
+
+// this has nothing really to do with the rest. stays here until it has a better home.
+QString TestEntryManager::gradeStr(int i)
 {
     switch (i) {
     case KV_NORM_GRADE:
@@ -141,8 +77,71 @@ QString KVTQuery::gradeStr(int i)
     }
 }
 
+TestEntryManager::~ TestEntryManager()
+{
+    delete m_randomSequence;
+}
 
-bool KVTQuery::compareBlocking(int grade, const QDateTime &date, bool use_it)
+TestEntryManager::TestEntryManager(KEduVocDocument* doc)
+{
+    m_doc = doc;
+    m_fromTranslation = Prefs::fromIdentifier();
+    m_toTranslation = Prefs::toIdentifier();
+    m_testType = Prefs::testType();
+
+    m_randomSequence = new KRandomSequence( QDateTime().toTime_t() );
+
+    // append lesson entries
+    foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
+        if ( lesson.inQuery() ) {
+            int lessonLimit = m_allTestEntries.count();
+            foreach ( int entryIndex, lesson.entries() ) {
+                if ( Prefs::testOrderLesson() ) {
+                    // insert after the last entry of the last lesson
+                    m_allTestEntries.insert(
+                        lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
+                        new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                } else {
+                    // insert at total random position
+                    m_allTestEntries.insert(
+                        m_randomSequence->getLong(m_allTestEntries.count()),
+                        new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+
+                }
+            }
+        }
+    }
+
+//// DEBUG:
+    int i=0;
+    foreach (TestEntry* entry, m_allTestEntries) {
+        kDebug() << i << " " << entry->exp->lesson() << " " << entry->exp->translation(0).text();
+    }
+//// DEBUG
+    kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
+
+
+
+
+///@todo put in the other tests!
+
+
+
+
+
+    m_notAskedTestEntries = m_allTestEntries;
+
+    for ( int i = 0; i < qMin(m_notAskedTestEntries.count(), Prefs::testNumberOfEntries() ); i++ ) {
+        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
+    }
+
+    m_currentEntry = 0;
+
+    printStatistics();
+}
+
+
+bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) // don't care || all off
         return true;
@@ -151,7 +150,7 @@ bool KVTQuery::compareBlocking(int grade, const QDateTime &date, bool use_it)
 }
 
 
-bool KVTQuery::compareExpiring(int grade, const QDateTime &date, bool use_it)
+bool TestEntryManager::compareExpiring(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::expireItem(grade) == 0 || !use_it) // don't care || all off
         return false;
@@ -160,7 +159,7 @@ bool KVTQuery::compareExpiring(int grade, const QDateTime &date, bool use_it)
 }
 
 
-bool KVTQuery::compareDate(int type, const QDateTime &qd)
+bool TestEntryManager::compareDate(int type, const QDateTime &qd)
 {
     QDateTime now = QDateTime::currentDateTime();
     bool erg = true;
@@ -184,7 +183,7 @@ bool KVTQuery::compareDate(int type, const QDateTime &qd)
 }
 
 
-bool KVTQuery::compareQuery(int type, int qgrade, int limit)
+bool TestEntryManager::compareQuery(int type, int qgrade, int limit)
 {
     bool erg = true;
     switch (type) {
@@ -216,7 +215,7 @@ bool KVTQuery::compareQuery(int type, int qgrade, int limit)
 }
 
 
-bool KVTQuery::compareBad(int type, int bcount, int limit)
+bool TestEntryManager::compareBad(int type, int bcount, int limit)
 {
     bool erg = true;
     switch (type) {
@@ -248,7 +247,7 @@ bool KVTQuery::compareBad(int type, int bcount, int limit)
 }
 
 
-bool KVTQuery::compareGrade(int type, grade_t qgrade, grade_t limit)
+bool TestEntryManager::compareGrade(int type, grade_t qgrade, grade_t limit)
 {
     bool erg = true;
     switch (type) {
@@ -280,7 +279,7 @@ bool KVTQuery::compareGrade(int type, grade_t qgrade, grade_t limit)
 }
 
 
-bool KVTQuery::compareType(int type, const QString & exprtype, const QString & wordtype)
+bool TestEntryManager::compareType(int type, const QString & exprtype, const QString & wordtype)
 {
     bool erg = true;
     switch (type) {
@@ -300,107 +299,87 @@ bool KVTQuery::compareType(int type, const QString & exprtype, const QString & w
 }
 
 
-void KVTQuery::setDocument(KEduVocDocument * doc)
-{
-    m_doc = doc;
-}
-
-void KVTQuery::setFromTranslation(int indexFrom)
-{
-    m_indexFrom = indexFrom;
-}
-
-void KVTQuery::setToTranslation(int indexTo)
-{
-    m_indexTo = indexTo;
-}
-
-void KVTQuery::setQueryType(int testType)
-{
-    m_testType = testType;
-}
-
-QuerySelection KVTQuery::queryEntries()
-{
-    if (m_doc == 0) {
-        kError() << "KVTQuery::queryEntries(): Cannot create query without source document set." << endl;
-    }
-
-    // initialize vector with (m_doc->lessonCount() + 1) elements
-    QuerySelection random(m_doc->lessonCount() + 1);
-
-    // choose entries that we like by using isActive and validate
-    //Note that Leitner style learning (altlearn) normally only uses 20
-    //entries, we just ignore that here
-    for (int i = 0; i < m_doc->entryCount(); i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        if (expr->isActive()) {
-            if (validate(expr)) {
-                int lessonNumber;
-                if (Prefs::altLearn()) {
-                    lessonNumber = 0; //We only use a single array in Leitner style
-                } else {
-                    lessonNumber = expr->lesson();
-                }
-                random[lessonNumber].append(QueryEntry(expr, i));
-
-                kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_indexFrom).text() << " grade: " << expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade() << " grade (reversed): " << expr->translation(m_indexFrom).gradeFrom(m_indexTo).grade();
-            }
-        }
-    }
-
-    // remove empty lesson elements - backwards to not interfere with smaller indexes...
-    for (int i = (int) random.size()-1; i >= 0; i--)
-        if (random[i].size() == 0)
-            random.erase(random.begin() + i);
-
-    // vector of list (lessons) of entries
-    return random;
-}
+// QuerySelection TestEntryManager::queryEntries()
+// {
+//     if (m_doc == 0) {
+//         kError() << "TestEntryManager::queryEntries(): Cannot create query without source document set." << endl;
+//     }
+//
+//     // initialize vector with (m_doc->lessonCount() + 1) elements
+//     QuerySelection random(m_doc->lessonCount() + 1);
+//
+//     // choose entries that we like by using isActive and validate
+//     //Note that Leitner style learning (altlearn) normally only uses 20
+//     //entries, we just ignore that here
+//     for (int i = 0; i < m_doc->entryCount(); i++) {
+//         KEduVocExpression *expr = m_doc->entry(i);
+//         if (expr->isActive()) {
+//             if (validate(expr)) {
+//                 int lessonNumber;
+//                 if (Prefs::altLearn()) {
+//                     lessonNumber = 0; //We only use a single array in Leitner style
+//                 } else {
+//                     lessonNumber = expr->lesson();
+//                 }
+//                 random[lessonNumber].append(QueryEntry(expr, i));
+//
+//                 kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_fromTranslation).text() << " grade: " << expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade() << " grade (reversed): " << expr->translation(m_fromTranslation).gradeFrom(m_toTranslation).grade();
+//             }
+//         }
+//     }
+//
+//     // remove empty lesson elements - backwards to not interfere with smaller indexes...
+//     for (int i = (int) random.size()-1; i >= 0; i--)
+//         if (random[i].size() == 0)
+//             random.erase(random.begin() + i);
+//
+//     // vector of list (lessons) of entries
+//     return random;
+// }
 
 
-bool KVTQuery::validateWithSettings(KEduVocExpression *expr)
+bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
     // check type in both directions
     if ( !
-        (compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexTo).type(), Prefs::typeItem())
+        (compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_toTranslation).type(), Prefs::typeItem())
         ||
-        compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_indexFrom).type(), Prefs::typeItem()) )) {
+        compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_fromTranslation).type(), Prefs::typeItem()) )) {
         return false;
     }
-    if(expr->translation(m_indexFrom).text().simplified().isEmpty()) {
+    if(expr->translation(m_fromTranslation).text().simplified().isEmpty()) {
         return false;
     }
-    if(expr->translation(m_indexTo).text().simplified().isEmpty()) {
+    if(expr->translation(m_toTranslation).text().simplified().isEmpty()) {
         return false;
     }
 
     // if expired, always take it
-    if( compareExpiring(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::expire() ) ) {
+    if( compareExpiring(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::expire() ) ) {
         return true;
     }
 
-    if ( !compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), Prefs::gradeItem()) ) {
+    if ( !compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), Prefs::gradeItem()) ) {
         return false;
     }
 
-    if ( !compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryCount(), Prefs::queryItem())) {
+    if ( !compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryCount(), Prefs::queryItem())) {
         return false;
     }
-    if ( !compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_indexTo).gradeFrom(m_indexFrom).badCount(), Prefs::badItem())) {
+    if ( !compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).badCount(), Prefs::badItem())) {
         return false;
     }
-    if ( !compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate())) {
+    if ( !compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate())) {
         return false;
     }
-    if ( !compareBlocking(expr->translation(m_indexTo).gradeFrom(m_indexFrom).grade(), expr->translation(m_indexTo).gradeFrom(m_indexFrom).queryDate(), Prefs::block())) {
+    if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::block())) {
         return false;
     }
-kDebug() << "Adding expression to query: " << expr->translation(m_indexTo).text();
+kDebug() << "Adding expression to query: " << expr->translation(m_toTranslation).text();
     return true;
 }
 
-bool KVTQuery::validate(KEduVocExpression *expr)
+bool TestEntryManager::validate(KEduVocExpression *expr)
 {
     if ( !m_doc->lesson(expr->lesson()).inQuery() ) {
         return false;
@@ -412,35 +391,41 @@ bool KVTQuery::validate(KEduVocExpression *expr)
     // This could be improved, but there are no open bugs concerning this atm.
     // So this is rather low priority.
     case Prefs::EnumTestType::SynonymTest:
-        return !expr->translation(m_indexFrom).synonym().simplified().isEmpty();
+        return !expr->translation(m_fromTranslation).synonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::AntonymTest:
-        return !expr->translation(m_indexFrom).antonym().simplified().isEmpty();
+        return !expr->translation(m_fromTranslation).antonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ParaphraseTest:
-        return !expr->translation(m_indexFrom).paraphrase().simplified().isEmpty();
+        return !expr->translation(m_fromTranslation).paraphrase().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ExampleTest:
-        return !expr->translation(m_indexFrom).example().simplified().isEmpty();
+        return !expr->translation(m_fromTranslation).example().simplified().isEmpty();
         break;
 
     case Prefs::EnumTestType::ArticleTest:
-        return expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S
-                     || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M
-                     || expr->translation(m_indexFrom).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F;
+        if ( !(expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeNoun()) ) {
+            return false;
+        }
+        return
+            expr->translation(m_fromTranslation).subType() ==
+            m_doc->wordTypes()->specialTypeNounMale() ||
+            expr->translation(m_fromTranslation).subType() ==
+            m_doc->wordTypes()->specialTypeNounFemale() ||
+            expr->translation(m_fromTranslation).subType() ==
+            m_doc->wordTypes()->specialTypeNounNeutral();
         break;
     case Prefs::EnumTestType::ComparisonAdjectiveTest:
-        return  expr->translation(m_indexFrom).type() == QM_ADJ && !expr->translation(m_indexFrom).comparison().isEmpty();
+        return  expr->translation(m_fromTranslation).type() ==  m_doc->wordTypes()->specialTypeAdjective() && !expr->translation(m_fromTranslation).comparison().isEmpty();
         break;
     case Prefs::EnumTestType::ComparisonAdverbTest:
-        return  expr->translation(m_indexFrom).type() == QM_ADV && !expr->translation(m_indexFrom).comparison().isEmpty();
+        return  expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeAdverb() && !expr->translation(m_fromTranslation).comparison().isEmpty();
         break;
     case Prefs::EnumTestType::ConjugationTest:
-        return (expr->translation(m_indexFrom).type() == QM_VERB
-                   || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_IRR
-                   || expr->translation(m_indexFrom).type() == QM_VERB  QM_TYPE_DIV  QM_VERB_REG
-                  )
-                  && expr->translation(m_indexFrom).conjugations().count() > 0;
+        return (expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeVerb())
+                && expr->translation(m_fromTranslation).conjugations().count() > 0;
+        break;
+        return false;
         break;
 
     case Prefs::EnumTestType::WrittenTest: // Random and MC use the full settings:
@@ -448,10 +433,11 @@ bool KVTQuery::validate(KEduVocExpression *expr)
         if ( validateWithSettings(expr) ) {
             return true;
         }
+        ///@todo not sure about swap dir stuff...
         if (Prefs::swapDirection()) {
-            int temp = m_indexFrom;
-            m_indexFrom = m_indexTo;
-            m_indexTo = temp;
+            int temp = m_fromTranslation;
+            m_fromTranslation = m_toTranslation;
+            m_toTranslation = temp;
             return validateWithSettings(expr);
         } // swapDirection
         break;
@@ -462,3 +448,279 @@ bool KVTQuery::validate(KEduVocExpression *expr)
     return false;
 }
 
+TestEntry * TestEntryManager::nextEntry()
+{
+printStatistics();
+
+    // refill current entries
+    if ( m_currentEntries.count() < Prefs::testNumberOfEntries() ) {
+        if ( m_notAskedTestEntries.count() > 0 ) {
+            m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
+        }
+    }
+
+    // return one of the current entries
+kDebug() << "nextEntry: " << m_currentEntries.value(0)->exp->translation(0).text() << " (" << m_currentEntries.count() << "entries remaining)";
+    if ( m_currentEntries.count() > 0 ) {
+        // one of the current words (by random)
+        m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+        return m_currentEntries.value( m_currentEntry );
+    }
+    return 0;
+}
+
+
+
+void TestEntryManager::result(int result)
+{
+kDebug() << "Result: " << result;
+    // handle the result
+
+    if ( result == QueryDlgBase::StopIt ) {
+        kDebug() << "Query stopped. Should not reach this function! TestEntryManager::result";
+        return;
+    }
+
+    // update general stuff (count, date), unless the query has been stopped.
+    m_doc->setModified();
+
+    // change statistics, remove entry from test, if aplicable
+    switch ( result ) {
+    case QueryDlgBase::Correct:
+        m_currentEntries[m_currentEntry]->incGoodCount();
+        ///@todo consider Leitner
+
+        // takeAt but no delete, since we still have the pointer in m_allTestEntries!
+        m_currentEntries.takeAt(m_currentEntry);
+        break;
+
+    case QueryDlgBase::SkipKnown:
+        m_currentEntries[m_currentEntry]->incSkipKnown();
+        ///@todo consider Leitner
+
+        // takeAt but no delete, since we still have the pointer in m_allTestEntries!
+        m_currentEntries.takeAt(m_currentEntry);
+        break;
+
+    case QueryDlgBase::SkipUnknown:
+        m_currentEntries[m_currentEntry]->incSkipUnknown();
+        break;
+
+    case QueryDlgBase::Wrong:
+        m_currentEntries[m_currentEntry]->incBadCount();
+        break;
+
+    case QueryDlgBase::Timeout:
+        m_currentEntries[m_currentEntry]->incTimeout();
+        break;
+
+    default :
+        kError() << "Unknown result from QueryDlg\n";
+        return;
+    }
+
+
+
+
+
+    /*
+        num_queryTimeout = 0;
+        if (Prefs::altLearn()) {
+            //we always store the current question in the random_expr
+            //array, so delete it from there.
+            random_expr1.erase(random_expr1.begin() + random_query_nr);
+
+            //The user guessed right (or she actually knew the
+            //answer). Move the exp up to next level.
+            switch (query_cycle) {
+            case 1:
+                correct_1_times.append(queryEntry);
+                break;
+            case 2:
+                correct_2_times.append(queryEntry);
+                break;
+            case 3:
+                correct_3_times.append(queryEntry);
+                break;
+            case 4:
+                //The user has answered correctly four times in a row. She is good!
+                correct_4_times.append(queryEntry);
+
+                query_num--;
+                exp->translation(tindex).gradeFrom(oindex).incGrade();
+
+                break;
+            default:
+                kError() << "You should not be able to answer correctly more than 4 times\n";
+                stopQuery();
+                return;
+            }
+
+            if (random_expr1.count() == 0 && correct_1_times.count() == 0 && correct_2_times.count() == 0 && correct_3_times.count() == 0) {
+                stopQuery();
+                return;
+            }
+
+        } else { //not Prefs::altLearn()
+            query_num--;
+            if (query_cycle <= 1) {
+                exp->translation(tindex).gradeFrom(oindex).incGrade(); // incr grade only in first cycle
+            } else {
+                exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE); // reset grade
+            }
+            random_expr1.erase(random_expr1.begin() + random_query_nr);
+            if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
+                stopQuery();
+                return;
+            }
+        }
+        break;*/
+
+
+
+
+
+
+
+
+
+
+//         //When you get it wrong Leisner style, it ends up in the back of the line
+//         if (Prefs::altLearn())
+//             random_expr1.append(queryEntry);
+//         else
+//             random_expr2.append(queryEntry);
+//
+
+
+
+
+
+
+
+
+
+//     if (Prefs::altLearn()) {
+//
+//         if (correct_3_times.count() > 7 || (correct_3_times.count() > 0 && correct_2_times.count() == 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
+//             QueryEntry t_qer = correct_3_times[0];
+//             correct_3_times.erase(correct_3_times.begin());
+//             random_query_nr = random_expr1.count();
+//             random_expr1.append(t_qer);
+//             query_cycle = 4;
+//         } else if (correct_2_times.count() > 5 || (correct_2_times.count() > 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
+//             QueryEntry t_qer = correct_2_times[0];
+//             correct_2_times.erase(correct_2_times.begin());
+//             random_query_nr = random_expr1.count();
+//             random_expr1.append(t_qer);
+//             query_cycle = 3;
+//         } else if (correct_1_times.count() > 5 || (correct_1_times.count() > 0  && random_expr1.count() == 0)) {
+//             QueryEntry t_qer = correct_1_times[0];
+//             correct_1_times.erase(correct_1_times.begin());
+//             random_query_nr = random_expr1.count();
+//             random_expr1.append(t_qer);
+//             query_cycle = 2;
+//         } else {
+//             //else we just pick from random_expr1 then
+//             if (random_expr1.count() == 0) {
+//                 stopQuery();
+//                 return;
+//             }
+//             query_cycle = 1;
+//
+//             random_query_nr = m_randomSequence.getLong(random_expr1.count());
+//         }
+
+    // not Prefs::altLearn()
+
+}
+
+void TestEntry::incGoodCount()
+{
+    update();
+    m_statisticGoodCount++;
+    m_answeredCorrectInSequence++;
+}
+
+void TestEntry::incSkipKnown()
+{
+    update();
+    m_statisticSkipKnown++;
+    m_answeredCorrectInSequence++;
+}
+
+void TestEntry::incBadCount()
+{
+    update();
+    m_statisticBadCount++;
+    m_answeredCorrectInSequence = 0;
+    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
+}
+
+void TestEntry::incTimeout()
+{
+    update();
+    m_statisticTimeout++;
+    m_answeredCorrectInSequence = 0;
+    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
+}
+
+void TestEntry::incSkipUnknown()
+{
+    update();
+    m_statisticSkipUnknown++;
+    m_answeredCorrectInSequence = 0;
+    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
+}
+
+
+void TestEntry::update()
+{
+    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incQueryCount();
+    m_statisticCount++;
+    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).setQueryDate( QDateTime::currentDateTime() );
+}
+
+
+void TestEntryManager::printStatistics()
+{
+    kDebug() << "Test statistics: ";
+    foreach ( TestEntry* entry, m_allTestEntries ) {
+        kDebug()
+            << " asked: " << entry->statisticCount()
+            << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
+            << " ->+" << entry->statisticSkipKnown() << " ->-" << entry->statisticSkipUnknown()
+            << " time:" << entry->statisticTimeout()
+            << "Entry: " << entry->exp->translation(0).text();
+    }
+}
+
+int TestEntry::statisticCount()
+{
+    return m_statisticCount;
+}
+
+int TestEntry::statisticBadCount()
+{
+    return m_statisticBadCount;
+}
+
+int TestEntry::statisticSkipKnown()
+{
+    return m_statisticSkipKnown;
+}
+
+int TestEntry::statisticSkipUnknown()
+{
+    return m_statisticSkipUnknown;
+}
+
+int TestEntry::statisticTimeout()
+{
+    return m_statisticTimeout;
+}
+
+int TestEntry::statisticGoodCount()
+{
+    return m_statisticGoodCount;
+}
