@@ -114,7 +114,7 @@ void AdjQueryDlg::setQuery(TestEntry* entry)
 }
 
 
-void AdjQueryDlg::initFocus() const
+void AdjQueryDlg::initFocus()
 {
     mw->lev1Field->setFocus();
 }

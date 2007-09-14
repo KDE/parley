@@ -73,7 +73,7 @@ VerbQueryDlg::~VerbQueryDlg()
 }
 
 
-void VerbQueryDlg::initFocus() const
+void VerbQueryDlg::initFocus()
 {
     mw->p1sField->setFocus();
 }

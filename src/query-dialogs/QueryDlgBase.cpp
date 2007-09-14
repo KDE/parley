@@ -54,10 +54,6 @@ QueryDlgBase::~QueryDlgBase()
 {}
 
 
-void QueryDlgBase::initFocus() const
-{}
-
-
 bool QueryDlgBase::smartCompare(const QString& s1, const QString &s2) const
 {
     return s1.simplified() == s2.simplified();

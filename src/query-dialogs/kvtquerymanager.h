@@ -58,7 +58,6 @@ signals:
     void endPractice();
 
 private:
-
     // merge these three:
     void startTypeQuery();
     void startPropertyQuery();
@@ -69,38 +68,19 @@ private:
     /** exit query mode */
     void stopQuery();
 
-//     void showStatistics();
-
     TestEntryManager    *m_entryManager;
     KEduVocDocument     *m_doc;
     KVocTrainApp        *m_app;
 
-//     // A vector of entry list - so we have Lesson->Entries
-//     QuerySelection       queryList;
-//
-//     // random_expr1 contains the vocabulary after they have been asked once
-//     QueryEntryList       random_expr1;
-//     // random_expr2 contains the vocab that was right
-//     QueryEntryList       random_expr2;
-//
-//     // Vectors for use in Leitner style learning. There is no
-//     // correct_0_times, we simply reuse random_expr1.
-//     QueryEntryList       correct_1_times;
-//     QueryEntryList       correct_2_times;
-//     QueryEntryList       correct_3_times;
-//     // not used, maybe later. holds expressions that are done.
-//     QueryEntryList       correct_4_times;
-//
-//     int                  random_query_nr;
-//     QString              def_lang;
-
     int     m_fromTranslation;
     int     m_toTranslation;
+
+    QueryDlgBase        *m_testDialog;
 
     SimpleQueryDlg      *simpleQueryDlg;
     MCQueryDlg          *mcQueryDlg;
     VerbQueryDlg        *verbQueryDlg;
-    RandomQueryDlg      *randomQueryDlg;
+//     RandomQueryDlg      *randomQueryDlg;
     AdjQueryDlg         *adjQueryDlg;
     ArtQueryDlg         *artQueryDlg;
     int                  num_queryTimeout;

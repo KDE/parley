@@ -205,7 +205,7 @@ void MCQueryDlg::setQuery( TestEntry* entry)
 }
 
 
-void MCQueryDlg::initFocus() const
+void MCQueryDlg::initFocus()
 {
     mw->rb_trans1->setFocus();
 }
@@ -324,11 +324,14 @@ void MCQueryDlg::slotUser1()
 //     mw->orgField->setText( vocExpression->translation(Prefs::fromIdentifier()).text() );
 }
 
-#include "MCQueryDlg.moc"
-
 
 void MCQueryDlg::setProgressCounter(int current, int total)
 {
     mw->countbar->setMaximum(total);
     mw->countbar->setValue(current);
 }
+
+
+#include "MCQueryDlg.moc"
+
+

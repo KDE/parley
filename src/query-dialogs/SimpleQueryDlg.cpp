@@ -66,7 +66,7 @@ SimpleQueryDlg::~SimpleQueryDlg()
 }
 
 
-void SimpleQueryDlg::initFocus() const
+void SimpleQueryDlg::initFocus()
 {
     mw->answerField->setFocus();
 }

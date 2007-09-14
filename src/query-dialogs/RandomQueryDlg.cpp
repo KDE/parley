@@ -278,7 +278,7 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
 }
 
 
-void RandomQueryDlg::initFocus() const
+void RandomQueryDlg::initFocus()
 {
     RandomQueryDlg* that = (RandomQueryDlg*) this;
     if (Prefs::suggestions())

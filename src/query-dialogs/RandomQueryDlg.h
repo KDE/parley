@@ -48,8 +48,7 @@ public:
     void setQuery( TestEntry* entry );
     void setProgressCounter(int current, int total);
 
-public slots:
-    virtual void initFocus() const;
+    void initFocus();
 
 public slots:
     void verifyClicked();

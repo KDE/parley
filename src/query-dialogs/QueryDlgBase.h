@@ -53,6 +53,7 @@ public:
 
     virtual void setQuery(TestEntry* entry);
     virtual void setProgressCounter(int current, int total) = 0;
+    virtual void initFocus() = 0;
 
 public slots:
     virtual void showSolution() = 0;
@@ -86,7 +87,6 @@ protected:
     QString  getNOKComment(int percent);
     QString  getTimeoutComment(int percent);
 
-    virtual void initFocus() const;
     virtual void closeEvent(QCloseEvent*e);
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 

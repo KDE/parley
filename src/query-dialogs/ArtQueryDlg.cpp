@@ -128,7 +128,7 @@ void ArtQueryDlg::setQuery(TestEntry* entry)
 }
 
 
-void ArtQueryDlg::initFocus() const
+void ArtQueryDlg::initFocus()
 {
     mw->rb_fem->setFocus();
 }
