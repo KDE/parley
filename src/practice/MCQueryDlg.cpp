@@ -111,7 +111,6 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     resetQueryWidget(button_ref[3].second);
     resetQueryWidget(button_ref[4].second);
 
-
     KEduVocMultipleChoice multipleChoice = vocExpression->translation(Prefs::toIdentifier()).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
         choices.append(multipleChoice.choice(i));
@@ -229,56 +228,15 @@ void MCQueryDlg::verifyClicked()
 
     if (button_ref[0].first->isChecked()) {
         verifyButton(button_ref[0].first, known, button_ref[0].second);
-        resetQueryWidget(button_ref[1].first);
-        resetQueryWidget(button_ref[1].second);
-        resetQueryWidget(button_ref[2].first);
-        resetQueryWidget(button_ref[2].second);
-        resetQueryWidget(button_ref[3].first);
-        resetQueryWidget(button_ref[3].second);
-        resetQueryWidget(button_ref[4].first);
-        resetQueryWidget(button_ref[4].second);
     } else if (button_ref[1].first->isChecked()) {
-        resetQueryWidget(button_ref[0].first);
-        resetQueryWidget(button_ref[0].second);
         verifyButton(button_ref[1].first, known, button_ref[1].second);
-        resetQueryWidget(button_ref[2].first);
-        resetQueryWidget(button_ref[2].second);
-        resetQueryWidget(button_ref[3].first);
-        resetQueryWidget(button_ref[3].second);
-        resetQueryWidget(button_ref[4].first);
-        resetQueryWidget(button_ref[4].second);
     } else if (button_ref[2].first->isChecked()) {
-        resetQueryWidget(button_ref[0].first);
-        resetQueryWidget(button_ref[0].second);
-        resetQueryWidget(button_ref[1].first);
-        resetQueryWidget(button_ref[1].second);
         verifyButton(button_ref[2].first, known, button_ref[2].second);
-        resetQueryWidget(button_ref[3].first);
-        resetQueryWidget(button_ref[3].second);
-        resetQueryWidget(button_ref[4].first);
-        resetQueryWidget(button_ref[4].second);
     } else if (button_ref[3].first->isChecked()) {
-        resetQueryWidget(button_ref[0].first);
-        resetQueryWidget(button_ref[0].second);
-        resetQueryWidget(button_ref[1].first);
-        resetQueryWidget(button_ref[1].second);
-        resetQueryWidget(button_ref[2].first);
-        resetQueryWidget(button_ref[2].second);
         verifyButton(button_ref[3].first, known, button_ref[3].second);
-        resetQueryWidget(button_ref[4].first);
-        resetQueryWidget(button_ref[4].second);
     } else if (button_ref[4].first->isChecked()) {
-        resetQueryWidget(button_ref[0].first);
-        resetQueryWidget(button_ref[0].second);
-        resetQueryWidget(button_ref[1].first);
-        resetQueryWidget(button_ref[1].second);
-        resetQueryWidget(button_ref[2].first);
-        resetQueryWidget(button_ref[2].second);
-        resetQueryWidget(button_ref[3].first);
-        resetQueryWidget(button_ref[3].second);
         verifyButton(button_ref[4].first, known, button_ref[4].second);
     }
-
 
 
     if (known) {
