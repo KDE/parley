@@ -192,6 +192,8 @@ void PracticeDialog::startTimer()
             m_timer->setSingleShot(true);
             connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
             kDebug() << "connect timer";
+        } else {
+            m_timer->stop();
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {

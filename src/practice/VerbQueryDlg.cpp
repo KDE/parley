@@ -302,8 +302,7 @@ void VerbQueryDlg::dontKnowClicked()
     if (current >= m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1)
         emit sigQueryChoice(SkipUnknown);
     else {
-        m_timer->start(1000);
-        m_timerCount = Prefs::maxTimePer();
+        startTimer();
         next();
     }
 }

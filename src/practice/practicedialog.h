@@ -126,18 +126,19 @@ protected:
 
 protected:
     KEduVocDocument   *m_doc;
-    QTimer    *m_timer;
-    int        m_timerCount;
-
     TestEntry* m_entry;
     int m_testType;
 
-private:
     /**
      * When a timeout per question is set in the prefs, this starts the timer.
-     * Called by setQuery, so don't wory about it.
+     * Called by setQuery, so don't wory about it. Cann be called to restart the timer.
      */
     void startTimer();
+private:
+    QTimer    *m_timer;
+    int        m_timerCount;
+
+
 };
 
 
