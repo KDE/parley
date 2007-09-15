@@ -24,15 +24,14 @@
 
 #include "ArtQueryDlg.h"
 
+#include "kvttablemodel.h"
+#include <keduvocwordtype.h>
+#include <KLocale>
 #include <QTimer>
 #include <QRadioButton>
 #include <QLabel>
 #include <QPushButton>
 #include <QButtonGroup>
-
-#include <KLocale>
-
-#include <kvttablemodel.h>
 
 ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Article Training"), doc, parent)
 {
@@ -131,22 +130,21 @@ void ArtQueryDlg::initFocus()
 
 void ArtQueryDlg::showSolution()
 {
-///@todo
-//     resetQueryWidget(mw->rb_fem);
-//     resetQueryWidget(mw->male);
-//     resetQueryWidget(mw->natural);
-//
-//     if (m_expression->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes().specialTypeNoundMale()) {
-//         mw->rb_fem->setChecked(true);
-//         verifyButton(mw->rb_fem, true);
-//     } else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M) {
-//         mw->male->setChecked(true);
-//         verifyButton(mw->male, true);
-//     } else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S) {
-//         mw->natural->setChecked(true);
-//         verifyButton(mw->natural, true);
-//     }
-//     mw->dont_know->setDefault(true);
+    resetQueryWidget(mw->male);
+    resetQueryWidget(mw->rb_fem);
+    resetQueryWidget(mw->natural);
+
+    if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounMale()) {
+        mw->male->setChecked(true);
+        verifyButton(mw->male, true);
+    } else if (m_entry->exp->translation(Prefs::toIdentifier()).type() == m_doc->wordTypes()->specialTypeNounFemale()) {
+        mw->rb_fem->setChecked(true);
+        verifyButton(mw->rb_fem, true);
+    } else if (m_entry->exp->translation(Prefs::toIdentifier()).type() == m_doc->wordTypes()->specialTypeNounNeutral()) {
+        mw->natural->setChecked(true);
+        verifyButton(mw->natural, true);
+    }
+    mw->dont_know->setDefault(true);
 }
 
 
@@ -156,34 +154,33 @@ void ArtQueryDlg::showMoreClicked()
 
 void ArtQueryDlg::verifyClicked()
 {
-///@todo
-//     bool known = false;
-//     if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_F)
-//         known = mw->rb_fem->isChecked();
-//     else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_M)
-//         known = mw->male->isChecked();
-//     else if (m_expression->translation(Prefs::toIdentifier()).type() == QM_NOUN  QM_TYPE_DIV  QM_NOUN_S)
-//         known = mw->natural->isChecked();
-//
-//     if (mw->rb_fem->isChecked()) {
-//         verifyButton(mw->rb_fem, known);
-//         resetQueryWidget(mw->male);
-//         resetQueryWidget(mw->natural);
-//     } else if (mw->male->isChecked()) {
-//         verifyButton(mw->male, known);
-//         resetQueryWidget(mw->rb_fem);
-//         resetQueryWidget(mw->natural);
-//     } else if (mw->natural->isChecked()) {
-//         verifyButton(mw->natural, known);
-//         resetQueryWidget(mw->male);
-//         resetQueryWidget(mw->rb_fem);
-//     }
-//
-//     if (known)
-// //    know_it->setDefault(true);
-//         knowItClicked();
-//     else
-//         mw->dont_know->setDefault(true);
+    bool known = false;
+    if (m_entry->exp->translation(Prefs::toIdentifier()).subType() ==  m_doc->wordTypes()->specialTypeNounMale())
+        known = mw->male->isChecked();
+    else if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounFemale())
+        known = mw->rb_fem->isChecked();
+    else if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounNeutral())
+        known = mw->natural->isChecked();
+
+    if (mw->rb_fem->isChecked()) {
+        verifyButton(mw->rb_fem, known);
+        resetQueryWidget(mw->male);
+        resetQueryWidget(mw->natural);
+    } else if (mw->male->isChecked()) {
+        verifyButton(mw->male, known);
+        resetQueryWidget(mw->rb_fem);
+        resetQueryWidget(mw->natural);
+    } else if (mw->natural->isChecked()) {
+        verifyButton(mw->natural, known);
+        resetQueryWidget(mw->male);
+        resetQueryWidget(mw->rb_fem);
+    }
+
+    if (known)
+//    know_it->setDefault(true);
+        knowItClicked();
+    else
+        mw->dont_know->setDefault(true);
 }
 
 
