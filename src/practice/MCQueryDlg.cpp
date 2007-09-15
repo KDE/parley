@@ -56,7 +56,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(verifyClicked()));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
@@ -308,18 +308,6 @@ void MCQueryDlg::dontKnowClicked()
 {
     mw->status->setText("");
     emit sigQueryChoice(SkipUnknown);
-}
-
-
-void MCQueryDlg::slotUser1()
-{
-//     if (m_timer != 0)
-//         m_timer->stop();
-//
-//     emit sigEditEntry(m_row, Prefs::fromIdentifier());
-//
-//     KEduVocExpression *vocExpression = m_doc->entry(m_row);
-//     mw->orgField->setText( vocExpression->translation(Prefs::fromIdentifier()).text() );
 }
 
 

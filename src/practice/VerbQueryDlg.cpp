@@ -54,7 +54,7 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
     connect(mw->p1pField, SIGNAL(textChanged(const QString&)), SLOT(slotP1pChanged(const QString&)));
     connect(mw->p1sField, SIGNAL(textChanged(const QString&)), SLOT(slotP1sChanged(const QString&)));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
@@ -310,15 +310,6 @@ void VerbQueryDlg::dontKnowClicked()
         m_timerCount = Prefs::maxTimePer();
         next();
     }
-}
-
-
-void VerbQueryDlg::slotUser1()
-{
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 

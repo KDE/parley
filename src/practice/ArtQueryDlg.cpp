@@ -47,7 +47,7 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     connect(mw->male, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->rb_fem, SIGNAL(clicked()), SLOT(verifyClicked()));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
@@ -193,16 +193,6 @@ void ArtQueryDlg::knowItClicked()
 void ArtQueryDlg::dontKnowClicked()
 {
     emit sigQueryChoice(SkipUnknown);
-}
-
-
-void ArtQueryDlg::slotUser1()
-{
-
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 

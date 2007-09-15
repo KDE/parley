@@ -53,7 +53,6 @@ private slots:
     void lev2Changed(const QString&);
     void lev3Changed(const QString&);
     void showSolution();
-    void slotUser1();
     void knowItClicked();
     void dontKnowClicked();
     void verifyClicked();

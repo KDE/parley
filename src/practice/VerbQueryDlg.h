@@ -50,7 +50,6 @@ private:
     QProgressBar* timebar() { return mw->timebar; }
 
 private slots:
-    void slotUser1();
     void slotP3pfChanged(const QString&);
     void slotP3snChanged(const QString&);
     void showSolution();

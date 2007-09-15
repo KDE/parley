@@ -89,13 +89,18 @@ public slots:
      */
     void timeoutReached();
 
+    /**
+     * Slot that starts the edit entry dialog.
+     A practice dialog can call this to allow editing an entry.
+     */
+    void editEntry();
+
 signals:
     /**
      * The result to this question.
      * @param result
      */
     void sigQueryChoice(PracticeDialog::Result);
-    void sigEditEntry(int row, int col);
 
 protected:
     /// @todo make a base query widget so these are no longer needed, let all other query widgets add their specific elements to that base.

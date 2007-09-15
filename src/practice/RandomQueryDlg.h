@@ -56,7 +56,6 @@ public slots:
     void showSolution();
     void knowItClicked();
     void dontKnowClicked();
-    void slotUser1();
     void slotTransChanged(const QString&);
     void slotTransLostFocus();
     void slotFFClicked();

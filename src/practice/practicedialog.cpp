@@ -23,6 +23,7 @@
  ***************************************************************************/
 
 #include "practicedialog.h"
+#include "entry-dialogs/EntryDlg.h"
 
 #include <QLineEdit>
 #include <QTextEdit>
@@ -212,4 +213,24 @@ void PracticeDialog::setEntry(TestEntry * entry)
     startTimer();
 }
 
+void PracticeDialog::editEntry()
+{
+    if (m_timer != 0) {
+        m_timer->stop();
+    }
+
+    EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
+
+    QList<int> entry;
+    entry.append(m_entry->m_index);
+    entryDlg->setData(entry, Prefs::toIdentifier());
+    entryDlg->exec();
+
+    // punish with a don't know
+    kDebug() << "Edit entry. For now count this attempt as wrong!";
+    emit sigQueryChoice(Wrong);
+}
+
+
 #include "practicedialog.moc"
+

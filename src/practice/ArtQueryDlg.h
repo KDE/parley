@@ -45,7 +45,6 @@ public:
 protected slots:
     void showMoreClicked();
     void showSolution();
-    void slotUser1();
     void knowItClicked();
     void dontKnowClicked();
     void verifyClicked();

@@ -47,7 +47,7 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
     connect(mw->answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
@@ -188,43 +188,6 @@ void SimpleQueryDlg::knowItClicked()
 void SimpleQueryDlg::dontKnowClicked()
 {
     emit sigQueryChoice(SkipUnknown);
-}
-
-
-void SimpleQueryDlg::slotUser1()
-{
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
-
-//   queryField->setText (exp->getTranslation(queryOriginalColumn));
-
-    switch (m_testType) {
-    case Prefs::EnumTestType::SynonymTest: {
-            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).synonym();
-            mw->queryField->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
-        }
-        break;
-
-    case Prefs::EnumTestType::AntonymTest: {
-            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).antonym();
-            mw->queryField->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
-        }
-        break;
-
-    case Prefs::EnumTestType::ParaphraseTest: {
-            mw->queryField->setText(m_entry->exp->translation(Prefs::toIdentifier()).paraphrase());
-            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).text();
-        }
-        break;
-
-    case Prefs::EnumTestType::ExampleTest: {
-            mw->queryField->setText(m_entry->exp->translation(Prefs::toIdentifier()).example());
-            answerstring = m_entry->exp->translation(Prefs::toIdentifier()).text();
-        }
-        break;
-    }
 }
 
 

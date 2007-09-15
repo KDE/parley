@@ -43,7 +43,6 @@ public:
 
 public slots:
     void slotResult(PracticeDialog::Result res);
-    void slotEditEntry(int row, int translation);
 
 private:
     bool queryIsEmpty();

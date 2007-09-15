@@ -48,7 +48,7 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
     connect(mw->lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
@@ -168,15 +168,6 @@ void AdjQueryDlg::knowItClicked()
 void AdjQueryDlg::dontKnowClicked()
 {
     emit sigQueryChoice(SkipUnknown);
-}
-
-
-void AdjQueryDlg::slotUser1()
-{
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_entry->m_index, Prefs::toIdentifier());
 }
 
 

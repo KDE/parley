@@ -133,7 +133,7 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw->show_more->setEnabled(Prefs::showMore());
     mw->know_it->setEnabled(Prefs::iKnow());
 
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUser1()));
+    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     bool split = Prefs::split();
     fields = Prefs::fields();
@@ -463,29 +463,6 @@ void RandomQueryDlg::setHintFields()
     s = exp->translation(Prefs::fromIdentifier()).type();
     mw->type->setText(s);
     mw->c_type->setEnabled(!s.isEmpty());
-}
-
-
-void RandomQueryDlg::slotUser1()
-{
-///@todo: move into base and implement cleanly
-    if (m_timer != 0)
-        m_timer->stop();
-
-    emit sigEditEntry(m_entry->m_index, Prefs::fromIdentifier());
-
-    mw->orgField->setText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
-
-    if (Prefs::suggestions())
-        for (int i = 0; i < fields; i ++)
-            transCombos.at(i)->clearEditText();
-    else
-        for (int i = 0; i < fields; i ++)
-            transFields.at(i)->clear();
-    mw->status->clear();
-    suggestion_hint = false;
-
-    setHintFields();
 }
 
 

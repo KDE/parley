@@ -34,12 +34,11 @@
 #include "ArtQueryDlg.h"
 #include "SimpleQueryDlg.h"
 
-#include "entry-dialogs/EntryDlg.h"
-
 #include "kvtquery.h"
 #include "prefs.h"
 
 #include <keduvoclesson.h>
+#include <keduvocdocument.h>
 
 #include <KDebug>
 #include <KLocale>
@@ -135,7 +134,6 @@ void QueryManager::startPractice()
     m_testDialog->setEntry( entry );
     m_testDialog->initFocus();
     m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-    connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
     connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
     m_testDialog->show();
 }
@@ -261,17 +259,6 @@ kDebug() << "stopPractice";
 //     }
 // }
 
-void QueryManager::slotEditEntry(int row, int translation)
-{
-kDebug() << "slotEditEntry(int, int) from a query: " << row << ", " << translation;
-
-    EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
-
-    QList<int> entry;
-    entry.append(row);
-    entryDlg->setData(entry, translation);
-    entryDlg->exec();
-}
 
 #include "kvtquerymanager.moc"
 
