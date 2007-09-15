@@ -205,7 +205,6 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
 void MCQueryDlg::initFocus()
 {
-    mw->rb_trans1->setFocus();
 }
 
 

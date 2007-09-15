@@ -38,7 +38,6 @@ Q_OBJECT
 
 public:
     QueryManager(KVocTrainApp *app, KEduVocDocument *doc);
-
     void startPractice();
 
 public slots:
