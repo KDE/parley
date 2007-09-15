@@ -47,8 +47,8 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
-    connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
+    connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->rb_trans5, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->rb_trans4, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -78,8 +78,6 @@ MCQueryDlg::~MCQueryDlg()
 void MCQueryDlg::setEntry( TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
-
-// const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start,
 
     KEduVocExpression *vocExpression = entry->exp;
     mw->timebar->setEnabled(Prefs::showCounter());
@@ -225,7 +223,6 @@ void MCQueryDlg::showSolution()
 
 void MCQueryDlg::verifyClicked()
 {
-kDebug() << "verify";
     bool known = button_ref[0].first->isChecked();
 
     if (button_ref[0].first->isChecked()) {
@@ -270,7 +267,7 @@ kDebug() << "verify";
         resetQueryWidget(button_ref[4].second);
     } else if (button_ref[4].first->isChecked()) {
         resetQueryWidget(button_ref[0].first);
-        resetQueryWidget( button_ref[0].second);
+        resetQueryWidget(button_ref[0].second);
         resetQueryWidget(button_ref[1].first);
         resetQueryWidget(button_ref[1].second);
         resetQueryWidget(button_ref[2].first);
@@ -281,27 +278,13 @@ kDebug() << "verify";
     }
 
     if (known) {
-        mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
-        knowItClicked();
+        mw->status->setText(getOKComment((((double)mw->countbar->value())/mw->countbar->maximum()) * 100));
+        resultCorrect();
     } else {
-        mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+        mw->status->setText(getNOKComment((((double)mw->countbar->value())/mw->countbar->maximum()) * 100));
         mw->dont_know->setDefault(true);
+//         resultWrong();
     }
-}
-
-
-void MCQueryDlg::knowItClicked()
-{
-kDebug() << "Emit signal: Known";
-    mw->status->setText("");
-    emit sigQueryChoice(SkipKnown);
-}
-
-
-void MCQueryDlg::dontKnowClicked()
-{
-    mw->status->setText("");
-    emit sigQueryChoice(SkipUnknown);
 }
 
 
@@ -313,5 +296,4 @@ void MCQueryDlg::setProgressCounter(int current, int total)
 
 
 #include "MCQueryDlg.moc"
-
 

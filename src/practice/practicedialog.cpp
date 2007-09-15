@@ -232,6 +232,26 @@ void PracticeDialog::editEntry()
     emit sigQueryChoice(Wrong);
 }
 
+void PracticeDialog::skipKnown()
+{
+    emit sigQueryChoice(SkipKnown);
+}
+
+void PracticeDialog::skipUnknown()
+{
+    emit sigQueryChoice(SkipUnknown);
+}
+
+void PracticeDialog::resultCorrect()
+{
+    emit sigQueryChoice(Correct);
+}
+
+void PracticeDialog::resultWrong()
+{
+    emit sigQueryChoice(Wrong);
+}
+
 
 #include "practicedialog.moc"
 

@@ -43,8 +43,6 @@ public:
 
 public slots:
     void showSolution();
-    void knowItClicked();
-    void dontKnowClicked();
     void verifyClicked();
 
 protected:

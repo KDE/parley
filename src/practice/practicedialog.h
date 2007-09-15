@@ -97,7 +97,22 @@ signals:
      */
     void sigQueryChoice(PracticeDialog::Result);
 
+protected slots:
+    /**
+     * Call this when the user decided to skip this entry as KNOWN.
+     */
+    void skipKnown();
+
+    /**
+     * Call this when the user decided to skip this entry as UNKNOWN.
+     */
+    void skipUnknown();
+
 protected:
+    void resultCorrect();
+    void resultWrong();
+
+
     /// @todo make a base query widget so these are no longer needed, let all other query widgets add their specific elements to that base.
 
     virtual void setStatusText(const QString &status) = 0;
@@ -124,7 +139,6 @@ protected:
     virtual void closeEvent(QCloseEvent*e);
     void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
 
-protected:
     KEduVocDocument   *m_doc;
     TestEntry* m_entry;
     int m_testType;
