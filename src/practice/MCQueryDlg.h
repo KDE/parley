@@ -41,8 +41,6 @@ public:
     void setEntry(TestEntry* entry);
     void setProgressCounter(int current, int total);
 
-    void initFocus();
-
 public slots:
     void showSolution();
     void knowItClicked();

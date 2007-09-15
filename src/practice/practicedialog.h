@@ -73,11 +73,6 @@ public:
      */
     virtual void setProgressCounter(int current, int total) = 0;
 
-    /**
-     * Set the focus. Can probably be moved into setQuery.
-     */
-    virtual void initFocus() = 0;
-
 public slots:
     /**
      * Let the dialog show the solution.

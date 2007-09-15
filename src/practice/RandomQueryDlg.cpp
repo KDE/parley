@@ -273,16 +273,13 @@ void RandomQueryDlg::setEntry( TestEntry* entry )
 
     mw->status->clear();
     suggestion_hint = false;
-}
 
-
-void RandomQueryDlg::initFocus()
-{
-    RandomQueryDlg* that = (RandomQueryDlg*) this;
-    if (Prefs::suggestions())
-        that->transCombos.at(0)->setFocus();
-    else
-        that->transFields.at(0)->setFocus();
+    if (Prefs::suggestions()) {
+        transCombos.at(0)->setFocus();
+    }
+    else {
+        transFields.at(0)->setFocus();
+    }
 }
 
 

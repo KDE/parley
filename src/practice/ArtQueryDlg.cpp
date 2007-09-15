@@ -119,11 +119,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->orgField->setText(s);
     s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
-}
 
-
-void ArtQueryDlg::initFocus()
-{
     mw->rb_fem->setFocus();
 }
 

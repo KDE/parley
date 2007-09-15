@@ -66,12 +66,6 @@ SimpleQueryDlg::~SimpleQueryDlg()
 }
 
 
-void SimpleQueryDlg::initFocus()
-{
-    mw->answerField->setFocus();
-}
-
-
 void SimpleQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
@@ -142,6 +136,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
     mw->progCount->setText(s);
 
     resetQueryWidget(mw->answerField);
+    mw->answerField->setFocus();
 }
 
 

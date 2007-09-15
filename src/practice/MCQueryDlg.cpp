@@ -203,11 +203,6 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 }
 
 
-void MCQueryDlg::initFocus()
-{
-}
-
-
 void MCQueryDlg::showSolution()
 {
     resetQueryWidget(button_ref[0].first);

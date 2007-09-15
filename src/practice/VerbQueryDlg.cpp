@@ -73,12 +73,6 @@ VerbQueryDlg::~VerbQueryDlg()
 }
 
 
-void VerbQueryDlg::initFocus()
-{
-    mw->p1sField->setFocus();
-}
-
-
 void VerbQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
@@ -107,6 +101,8 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     all_known = true;
     current = -1;
     next();
+
+    mw->p1sField->setFocus();
 }
 
 

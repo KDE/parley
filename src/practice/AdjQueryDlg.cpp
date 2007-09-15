@@ -105,11 +105,7 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
     mw->lev3Field->setEnabled(!comp.l3().isEmpty());
 
     resetAllFields();
-}
 
-
-void AdjQueryDlg::initFocus()
-{
     mw->lev1Field->setFocus();
 }
 
