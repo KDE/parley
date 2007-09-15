@@ -74,8 +74,7 @@ protected:
     /** compare lineEdit and string, set lineEdit style */
     bool verifyField(QLineEdit *field, const QString &really);
 
-    /** the same for QTextEdit and QRadioButton */
-    bool verifyField(QTextEdit *field, const QString &really, bool mixed);
+    /** the same for QRadioButton */
     void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
 
     /** set the default color and font */

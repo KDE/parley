@@ -156,8 +156,8 @@ void SimpleQueryDlg::slotAnswerChanged()
 
 void SimpleQueryDlg::showMoreClicked()
 {
-    if (mw->answerField->toPlainText().length() < answerstring.length()) {
-        mw->answerField->setText(answerstring.left(mw->answerField->toPlainText().length()+1));
+    if (mw->answerField->text().length() < answerstring.length()) {
+        mw->answerField->setText(answerstring.left(mw->answerField->text().length()+1));
         mw->dont_know->setDefault(true);
     }
     resetQueryWidget(mw->answerField);
@@ -167,14 +167,14 @@ void SimpleQueryDlg::showMoreClicked()
 void SimpleQueryDlg::showSolution()
 {
     mw->answerField->setText(answerstring);
-    verifyField(mw->answerField, answerstring, m_testType == Prefs::EnumTestType::SynonymTest || m_testType == Prefs::EnumTestType::AntonymTest);
+    verifyField(mw->answerField, answerstring);
     mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-    if (verifyField(mw->answerField, answerstring, m_testType == Prefs::EnumTestType::SynonymTest || m_testType == Prefs::EnumTestType::AntonymTest))
+    if (verifyField(mw->answerField, answerstring))
         knowItClicked();
     else
         mw->dont_know->setDefault(true);

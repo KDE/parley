@@ -96,44 +96,6 @@ void PracticeDialog::resetQueryWidget(QWidget *w)
 }
 
 
-bool PracticeDialog::verifyField(QTextEdit *field, const QString &really, bool mixed)
-{
-    if (!field->isEnabled())
-        return true;
-
-    bool ret = false;
-    bool equal = false;
-    QStringList answerlist = really.split('\n');
-    QStringList inputlist = field->toPlainText().split('\n');
-    if (!mixed) // no tolerance
-        equal = smartCompare(really, field->toPlainText());
-    else {
-        bool all = true;
-        for (int ai = 0; ai < answerlist.count(); ai++) {
-            bool found = false;
-            for (int ii = 0; ii < inputlist.count(); ii++) {
-                if (answerlist[ai].simplified() == inputlist[ii].simplified()) {
-                    found = true;
-                    break;
-                }
-            }
-            if (!found)
-                all = false;
-        }
-        if (all)
-            equal = true;
-    }
-
-    if (equal) {
-        ret = true;
-        setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x80, 0x00), QFont::Bold);
-    } else {
-        setWidgetTextColorAndFontWeight(field, QColor(0xff, 0x00, 0x00), QFont::Bold);
-    }
-    return ret;
-}
-
-
 void PracticeDialog::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
 {
     if (!radio->isEnabled())
@@ -211,33 +173,6 @@ kDebug() << "timer: " << m_timerCount;
     }
 }
 
-/*
-void zzzzzzzzzzVerbQueryDlg::timeoutReached()
-{
-
-    if (m_timerCount <= 0) {
-        mw->timebar->setValue(0);
-        if (current >= conjugations.entryCount() - 1) {
-            m_timer->stop();
-            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                showSolution();
-                mw->dont_know->setDefault(true);
-            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue)
-                emit sigQueryChoice(Timeout);
-        } else {
-            if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
-                m_timer->stop();
-                showSolution();
-                mw->dont_know->setDefault(true);
-            } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
-                next();
-                m_timer->start(1000);
-                m_timerCount = Prefs::maxTimePer();
-            }
-        }
-    }
-}
-*/
 
 void PracticeDialog::startTimer()
 {
