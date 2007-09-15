@@ -65,19 +65,41 @@ public:
      * @param entry
      */
     virtual void setQuery(TestEntry* entry) = 0;
+
+    /**
+     * Informs the dialog of the number of entries to be tested.
+     * @param current number of answered entries
+     * @param total number of entries in the test
+     */
     virtual void setProgressCounter(int current, int total) = 0;
+
+    /**
+     * Set the focus. Can probably be moved into setQuery.
+     */
     virtual void initFocus() = 0;
 
 public slots:
+    /**
+     * Let the dialog show the solution.
+     */
     virtual void showSolution() = 0;
+
+    /**
+     * Informs the dialog that the time is up.
+     */
     void timeoutReached();
 
 signals:
+    /**
+     * The result to this question.
+     * @param result
+     */
     void sigQueryChoice(PracticeDialog::Result);
     void sigEditEntry(int row, int col);
 
 protected:
     /// @todo make a base query widget so these are no longer needed, let all other query widgets add their specific elements to that base.
+
     virtual void setStatusText(const QString &status) = 0;
     virtual QProgressBar* timebar() = 0;
 
