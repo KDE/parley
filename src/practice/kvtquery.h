@@ -139,11 +139,8 @@ private:
     int m_statisticSkipKnown;
     int m_answeredCorrectInSequence;
     bool m_canSwitchDirection;
-
 };
 
-
-// typedef QList<TestEntry> TestEntryList;
 
 class TestEntryManager
 {

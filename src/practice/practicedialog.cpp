@@ -146,6 +146,8 @@ void PracticeDialog::setWidgetTextColorAndFontWeight(QWidget *widget, const QCol
     QPalette qp = QPalette(widget->palette());
     qp.setColor(QPalette::Active, QPalette::Text, color);
     qp.setColor(QPalette::Inactive, QPalette::Text, color);
+    qp.setColor(QPalette::Active, QPalette::WindowText, color);
+    qp.setColor(QPalette::Inactive, QPalette::WindowText, color);
     widget->setPalette(qp);
 
     QFont ft = widget->font();
