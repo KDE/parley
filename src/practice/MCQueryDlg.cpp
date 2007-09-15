@@ -79,6 +79,8 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
+    m_answeredWrong = false;
+
     KEduVocExpression *vocExpression = entry->exp;
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -277,13 +279,24 @@ void MCQueryDlg::verifyClicked()
         verifyButton(button_ref[4].first, known, button_ref[4].second);
     }
 
+
+
     if (known) {
-        mw->status->setText(getOKComment((((double)mw->countbar->value())/mw->countbar->maximum()) * 100));
-        resultCorrect();
+        if ( !m_answeredWrong ) {
+            mw->status->setText(
+                getOKComment((((double)mw->countbar->value())
+                    /mw->countbar->maximum()) * 100));
+            resultCorrect();
+        } else {
+            resultWrong();
+            mw->status->setText(
+                getNOKComment((((double)mw->countbar->value())
+                    /mw->countbar->maximum()) * 100));
+        }
     } else {
-        mw->status->setText(getNOKComment((((double)mw->countbar->value())/mw->countbar->maximum()) * 100));
+        /// @todo color the wrong answer in red!
         mw->dont_know->setDefault(true);
-//         resultWrong();
+        m_answeredWrong = true;
     }
 }
 

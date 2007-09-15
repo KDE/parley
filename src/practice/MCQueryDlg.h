@@ -52,6 +52,9 @@ protected:
 private:
     QList<QPair<QRadioButton *, QLabel *> > button_ref;
     Ui::MCQueryDlgForm * mw;
+
+    /// true if the user entered a false answer. we still let the user make choices until the right one is selected.
+    bool m_answeredWrong;
 };
 
 #endif // MCQuery_Dlg_H
