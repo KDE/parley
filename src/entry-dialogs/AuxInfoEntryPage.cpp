@@ -34,20 +34,20 @@ AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWid
     m_doc = doc;
 
     setupUi(this);
-    QFontMetrics fm(synonym_line->font());
+    QFontMetrics fm(synonymLineEdit->font());
     int sz = fm.lineSpacing();
 
-    synonym_line->setMaximumHeight(sz*3);
-    antonym_line->setMaximumHeight(sz*3);
-    para_line->setMaximumHeight(sz*3);
-    remark_line->setMaximumHeight(sz*3);
-    examp_line->setMaximumHeight(sz*3);
+    synonymLineEdit->setMaximumHeight(sz*3);
+    antonymLineEdit->setMaximumHeight(sz*3);
+    paraphraseLineEdit->setMaximumHeight(sz*3);
+    commentLineEdit->setMaximumHeight(sz*3);
+    exampleLineEdit->setMaximumHeight(sz*3);
 
-    connect(para_line, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(remark_line, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(examp_line, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(antonym_line, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(synonym_line, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(paraphraseLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(commentLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(exampleLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(antonymLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(synonymLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
 }
 
 
@@ -59,19 +59,19 @@ bool AuxInfoEntryPage::isModified()
 
     bool modified = false;
 
-    if (synonym_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym()) {
+    if (synonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym()) {
         modified = true;
     }
-    if (antonym_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym()) {
+    if (antonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym()) {
         modified = true;
     }
-    if (examp_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).example()) {
+    if (exampleLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).example()) {
         modified = true;
     }
-    if (remark_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment()) {
+    if (commentLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment()) {
         modified = true;
     }
-    if (para_line->toPlainText() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase()) {
+    if (paraphraseLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase()) {
         modified = true;
     }
     return modified;
@@ -83,31 +83,31 @@ void AuxInfoEntryPage::setData(int row, int col)
     m_currentRow = row;
     m_currentTranslation = col;
 
-    synonym_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym());
-    antonym_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym());
-    examp_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).example());
-    remark_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
-    para_line->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
+    synonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym());
+    antonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym());
+    exampleLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).example());
+    commentLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
+    paraphraseLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
 }
 
 
 void AuxInfoEntryPage::commitData()
 {
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComment(remark_line->toPlainText());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSynonym(synonym_line->toPlainText());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setAntonym(antonym_line->toPlainText());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setExample(examp_line->toPlainText());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(para_line->toPlainText());
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComment(commentLineEdit->text());
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSynonym(synonymLineEdit->text());
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setAntonym(antonymLineEdit->text());
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setExample(exampleLineEdit->text());
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(paraphraseLineEdit->text());
 }
 
 
 void AuxInfoEntryPage::clear()
 {
-    synonym_line->setText(QString());
-    antonym_line->setText(QString());
-    examp_line->setText(QString());
-    remark_line->setText(QString());
-    para_line->setText(QString());
+    synonymLineEdit->setText(QString());
+    antonymLineEdit->setText(QString());
+    exampleLineEdit->setText(QString());
+    commentLineEdit->setText(QString());
+    paraphraseLineEdit->setText(QString());
 }
 
 void AuxInfoEntryPage::slotDataChanged()
