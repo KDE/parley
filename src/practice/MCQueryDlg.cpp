@@ -75,9 +75,9 @@ MCQueryDlg::~MCQueryDlg()
 }
 
 
-void MCQueryDlg::setQuery( TestEntry* entry)
+void MCQueryDlg::setEntry( TestEntry* entry)
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
 // const QString &org, int entry, int orgcol, int transcol, int queryCycle, int q_num, int q_start,
 

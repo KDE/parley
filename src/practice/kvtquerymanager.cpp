@@ -132,7 +132,7 @@ void QueryManager::startPractice()
         return;
     }
 
-    m_testDialog->setQuery( entry );
+    m_testDialog->setEntry( entry );
     m_testDialog->initFocus();
     m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     connect(m_testDialog, SIGNAL(sigEditEntry(int,int)), this, SLOT(slotEditEntry(int,int)));
@@ -202,7 +202,7 @@ kDebug() << "result: " << res;
         return;
     }
 
-    m_testDialog->setQuery(entry);
+    m_testDialog->setEntry(entry);
     m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     m_testDialog->initFocus();
 }

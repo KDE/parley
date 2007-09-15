@@ -64,7 +64,7 @@ public:
      * You must call this to get the timer started!
      * @param entry
      */
-    virtual void setQuery(TestEntry* entry) = 0;
+    virtual void setEntry(TestEntry* entry) = 0;
 
     /**
      * Informs the dialog of the number of entries to be tested.

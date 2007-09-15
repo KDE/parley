@@ -218,9 +218,9 @@ RandomQueryDlg::~RandomQueryDlg()
 }
 
 
-void RandomQueryDlg::setQuery( TestEntry* entry )
+void RandomQueryDlg::setEntry( TestEntry* entry )
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
     QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
     if (Prefs::split())

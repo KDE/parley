@@ -66,9 +66,9 @@ ArtQueryDlg::~ArtQueryDlg()
 }
 
 
-void ArtQueryDlg::setQuery(TestEntry* entry)
+void ArtQueryDlg::setEntry(TestEntry* entry)
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());

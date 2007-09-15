@@ -205,7 +205,7 @@ void PracticeDialog::startTimer()
     }
 }
 
-void PracticeDialog::setQuery(TestEntry * entry)
+void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
     m_testType = Prefs::testType();

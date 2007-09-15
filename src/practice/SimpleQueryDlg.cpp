@@ -72,9 +72,9 @@ void SimpleQueryDlg::initFocus()
 }
 
 
-void SimpleQueryDlg::setQuery(TestEntry* entry)
+void SimpleQueryDlg::setEntry(TestEntry* entry)
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());

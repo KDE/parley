@@ -67,9 +67,9 @@ AdjQueryDlg::~AdjQueryDlg()
 }
 
 
-void AdjQueryDlg::setQuery(TestEntry* entry)
+void AdjQueryDlg::setEntry(TestEntry* entry)
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
     comp = entry->exp->translation(Prefs::toIdentifier()).comparison();
 

@@ -45,7 +45,7 @@ public:
 
     ~RandomQueryDlg();
 
-    void setQuery( TestEntry* entry );
+    void setEntry( TestEntry* entry );
     void setProgressCounter(int current, int total);
 
     void initFocus();

@@ -79,9 +79,9 @@ void VerbQueryDlg::initFocus()
 }
 
 
-void VerbQueryDlg::setQuery(TestEntry* entry)
+void VerbQueryDlg::setEntry(TestEntry* entry)
 {
-    PracticeDialog::setQuery(entry);
+    PracticeDialog::setEntry(entry);
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
