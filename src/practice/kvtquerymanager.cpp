@@ -74,11 +74,6 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
     m_entryManager = new TestEntryManager(m_doc);
 
     m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
 }
 
 
@@ -209,31 +204,11 @@ kDebug() << "result: " << res;
 void QueryManager::stopPractice()
 {
 kDebug() << "stopPractice";
-    if (m_testDialog != 0)
+    if (m_testDialog != 0) {
         m_testDialog->deleteLater();
-    if (m_testDialog != 0)
-        m_testDialog->deleteLater();
-    if (m_testDialog != 0)
-        m_testDialog->deleteLater();
-    if (m_testDialog != 0)
-        m_testDialog->deleteLater();
-    if (m_testDialog != 0)
-        m_testDialog->deleteLater();
-    if (m_testDialog != 0)
-        m_testDialog->deleteLater();
+    }
 
     m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-    m_testDialog = 0;
-
-    /// @todo something like: if ( Prefs::ShowStatistics ) {
-        // Let's display some statistics:
-
-//         showStatistics();
-    //}
 
     m_entryManager->printStatistics();
 
@@ -242,25 +217,5 @@ kDebug() << "stopPractice";
 }
 
 
-// void QueryManager::showStatistics()
-// {
-//     /// @todo implement me
-//     kDebug() << "STATISTICS:";
-//     kDebug() << "Count - queryList: " << queryList.count()
-//         << " random_expr1: " << random_expr1.count()
-//         << " random_expr2: " << random_expr2.count()
-//         << " correct_1_times: " << correct_1_times.count()
-//         << " correct_2_times: " << correct_2_times.count()
-//         << " correct_3_times: " << correct_3_times.count()
-//         << endl;
-//
-//     for (int i = 0; i<random_expr1.count(); i++) {
-//         kDebug() << "random_expr1 " << i << " " << random_expr1[i].exp->translation(0).text();
-//     }
-// }
-
-
 #include "kvtquerymanager.moc"
-
-
 
