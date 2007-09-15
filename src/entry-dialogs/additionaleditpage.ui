@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>AuxInfoEntryPageForm</class>
- <widget class="QWidget" name="AuxInfoEntryPageForm" >
+ <class>AdditionalEditPage</class>
+ <widget class="QWidget" name="AdditionalEditPage" >
   <property name="geometry" >
    <rect>
     <x>0</x>

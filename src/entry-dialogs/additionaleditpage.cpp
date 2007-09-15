@@ -23,13 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "AuxInfoEntryPage.h"
+#include "additionaleditpage.h"
 
 #include <QTextEdit>
 
 #include "EntryDlg.h"
 
-AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
+AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
 
@@ -51,7 +51,7 @@ AuxInfoEntryPage::AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent) : QWid
 }
 
 
-bool AuxInfoEntryPage::isModified()
+bool AdditionalEditPage::isModified()
 {
     if ( m_currentRow < 0 || m_currentTranslation < 0 ) {
         return false;
@@ -78,7 +78,7 @@ bool AuxInfoEntryPage::isModified()
 }
 
 
-void AuxInfoEntryPage::setData(int row, int col)
+void AdditionalEditPage::setData(int row, int col)
 {
     m_currentRow = row;
     m_currentTranslation = col;
@@ -91,7 +91,7 @@ void AuxInfoEntryPage::setData(int row, int col)
 }
 
 
-void AuxInfoEntryPage::commitData()
+void AdditionalEditPage::commitData()
 {
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComment(commentLineEdit->text());
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSynonym(synonymLineEdit->text());
@@ -101,7 +101,7 @@ void AuxInfoEntryPage::commitData()
 }
 
 
-void AuxInfoEntryPage::clear()
+void AdditionalEditPage::clear()
 {
     synonymLineEdit->setText(QString());
     antonymLineEdit->setText(QString());
@@ -110,10 +110,10 @@ void AuxInfoEntryPage::clear()
     paraphraseLineEdit->setText(QString());
 }
 
-void AuxInfoEntryPage::slotDataChanged()
+void AdditionalEditPage::slotDataChanged()
 {
     emit sigModified();
 }
 
 
-#include "AuxInfoEntryPage.moc"
+#include "additionaleditpage.moc"

@@ -23,18 +23,18 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef AuxInfoEntryPage_included
-#define AuxInfoEntryPage_included
+#ifndef ADDITIONALEDITPAGE_H
+#define ADDITIONALEDITPAGE_H
 
-#include "ui_AuxInfoEntryPageForm.h"
+#include "ui_additionaleditpage.h"
 #include <keduvocdocument.h>
 
-class AuxInfoEntryPage : public QWidget, public Ui::AuxInfoEntryPageForm
+class AdditionalEditPage : public QWidget, public Ui::AdditionalEditPage
 {
     Q_OBJECT
 
 public:
-    explicit AuxInfoEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit AdditionalEditPage(KEduVocDocument *doc, QWidget *parent = 0);
 
 
     void setData(int row, int col);
@@ -55,4 +55,4 @@ private:
     int m_currentTranslation;
 };
 
-#endif // AuxInfoEntryPage_included
+#endif
