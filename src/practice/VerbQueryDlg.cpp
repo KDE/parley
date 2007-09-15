@@ -104,11 +104,6 @@ void VerbQueryDlg::setQuery(TestEntry* entry)
     mw->p3pfLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3FemalePlural());
     mw->p3pnLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().pers3NaturalPlural());
 
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
-
-    startTimer();
-
     all_known = true;
     current = -1;
     next();

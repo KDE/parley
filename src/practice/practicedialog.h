@@ -46,12 +46,25 @@ Q_OBJECT
 public:
     enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopIt };
 
+    /**
+     * Default constructor for a test dialog.
+     * @param caption the dialog title
+     * @param doc the document to be used
+     * @param parent parent widget
+     */
     PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent);
+
+    /**
+     * Default dtor
+     */
     virtual ~PracticeDialog();
 
-    void startTimer();
-
-    virtual void setQuery(TestEntry* entry);
+    /**
+     * Set an entry to be tested. Each dialog should reimplement this.
+     * You must call this to get the timer started!
+     * @param entry
+     */
+    virtual void setQuery(TestEntry* entry) = 0;
     virtual void setProgressCounter(int current, int total) = 0;
     virtual void initFocus() = 0;
 
@@ -96,6 +109,13 @@ protected:
 
     TestEntry* m_entry;
     int m_testType;
+
+private:
+    /**
+     * When a timeout per question is set in the prefs, this starts the timer.
+     * Called by setQuery, so don't wory about it.
+     */
+    void startTimer();
 };
 
 

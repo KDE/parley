@@ -118,13 +118,8 @@ void ArtQueryDlg::setQuery(TestEntry* entry)
     }
 
     mw->orgField->setText(s);
-//     s.setNum(q_cycle);
-//     mw->progCount->setText(s);
-
-//     mw->countbar->setMaximum(q_start);
-//     mw->countbar->setValue(q_start - q_num + 1);
-
-    startTimer();
+    s.setNum(entry->statisticCount());
+    mw->progCount->setText(s);
 }
 
 

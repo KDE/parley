@@ -209,6 +209,7 @@ void PracticeDialog::setQuery(TestEntry * entry)
 {
     m_entry = entry;
     m_testType = Prefs::testType();
+    startTimer();
 }
 
 #include "practicedialog.moc"

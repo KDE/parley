@@ -273,8 +273,6 @@ void RandomQueryDlg::setQuery( TestEntry* entry )
 
     mw->status->clear();
     suggestion_hint = false;
-
-    PracticeDialog::startTimer();
 }
 
 

@@ -138,10 +138,8 @@ void SimpleQueryDlg::setQuery(TestEntry* entry)
     }
 
     mw->show_all->setDefault(true);
-//     s.setNum(q_cycle);
-//     mw->progCount->setText(s);
-
-    startTimer();
+    s.setNum(entry->statisticCount());
+    mw->progCount->setText(s);
 
     resetQueryWidget(mw->answerField);
 }

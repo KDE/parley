@@ -91,8 +91,6 @@ void MCQueryDlg::setQuery( TestEntry* entry)
     // Query cycle - how often did this show up (?)
     mw->progCount->setText(QString::number(entry->statisticCount()));
 
-    startTimer();
-
     KRandomSequence randomSequence;
     QStringList choices;
     button_ref.clear();

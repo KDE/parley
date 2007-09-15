@@ -104,8 +104,6 @@ void AdjQueryDlg::setQuery(TestEntry* entry)
     mw->lev2Field->setEnabled(!comp.l2().isEmpty());
     mw->lev3Field->setEnabled(!comp.l3().isEmpty());
 
-    startTimer();
-
     resetAllFields();
 }
 
