@@ -76,7 +76,7 @@ kde4_add_ui_files(docprop_SRCS
 
 set(entrydialogs_SRCS
     entry-dialogs/AdjEntryPage.cpp
-    entry-dialogs/AuxInfoEntryPage.cpp
+    entry-dialogs/additionaleditpage.cpp
     entry-dialogs/CommonEntryPage.cpp
     entry-dialogs/EntryDlg.cpp
     entry-dialogs/FromToEntryPage.cpp
@@ -87,7 +87,7 @@ set(entrydialogs_SRCS
 
 kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/AdjEntryPageForm.ui
-    entry-dialogs/AuxInfoEntryPageForm.ui
+    entry-dialogs/additionaleditpage.ui
     entry-dialogs/CommonEntryPageForm.ui
     entry-dialogs/FromToEntryPageForm.ui
     entry-dialogs/MCEntryPageForm.ui

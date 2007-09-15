@@ -57,7 +57,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     commonPageWidget->setIcon( KIcon( "edit_table_row" ) );
     addPage(commonPageWidget);
 
-    additionalPage = new AuxInfoEntryPage(m_doc, this);
+    additionalPage = new AdditionalEditPage(m_doc, this);
     additionalPageWidget = new KPageWidgetItem( additionalPage, i18n( "Additional" ) );
     additionalPageWidget->setHeader( i18n( "Additional properties" ) );
     additionalPageWidget->setIcon( KIcon( "configure" ) );

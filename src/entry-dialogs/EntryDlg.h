@@ -33,7 +33,7 @@
 
 #include "FromToEntryPage.h"
 #include "CommonEntryPage.h"
-#include "AuxInfoEntryPage.h"
+#include "additionaleditpage.h"
 #include "TenseEntryPage.h"
 #include "AdjEntryPage.h"
 #include "MCEntryPage.h"
@@ -83,7 +83,7 @@ private:
     CommonEntryPage  *commonPage;
     FromToEntryPage  *fromPage;
     FromToEntryPage  *toPage;
-    AuxInfoEntryPage *additionalPage;
+    AdditionalEditPage *additionalPage;
     TenseEntryPage   *conjugationPage;
     AdjEntryPage     *comparisonPage;
     MCEntryPage      *mc_page;
