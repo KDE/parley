@@ -158,6 +158,7 @@ void PracticeDialog::setWidgetTextColorAndFontWeight(QWidget *widget, const QCol
 void PracticeDialog::timeoutReached()
 {
 kDebug() << "timer: " << m_timerCount;
+    // update every second, count down m_timerCount
     if (m_timerCount > 0) {
         m_timerCount--;
         timebar()->setValue(m_timerCount);
@@ -192,8 +193,6 @@ void PracticeDialog::startTimer()
             m_timer->setSingleShot(true);
             connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
             kDebug() << "connect timer";
-        } else {
-            m_timer->stop();
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
