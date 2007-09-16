@@ -244,17 +244,16 @@ void MCQueryDlg::verifyClicked()
     if (known) {
         if ( !m_answeredWrong ) {
             mw->status->setText(
-                getOKComment((((double)mw->countbar->value())
-                    /mw->countbar->maximum()) * 100));
+                getOKComment((int)(((double)mw->countbar->value())
+                    /mw->countbar->maximum() * 100.0)));
             resultCorrect();
         } else {
             resultWrong();
             mw->status->setText(
-                getNOKComment((((double)mw->countbar->value())
-                    /mw->countbar->maximum()) * 100));
+                getNOKComment((int)(((double)mw->countbar->value())
+                    /mw->countbar->maximum() * 100.0)));
         }
     } else {
-        /// @todo color the wrong answer in red!
         mw->dont_know->setDefault(true);
         m_answeredWrong = true;
     }

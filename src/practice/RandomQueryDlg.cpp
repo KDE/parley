@@ -302,13 +302,13 @@ void RandomQueryDlg::verifyClicked()
                     break;
                 }
         if (trans.count() == 0) {
-            int percent = (mw->countbar->value()/mw->countbar->maximum()) * 100;
+            int percent = ((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0));
             mw->status->setText(getOKComment(percent));
             knowItClicked();
         } else {
             for (i = 0; i < combos.count(); i ++)
                 verifyField(combos.at(i)->lineEdit(), "a\na");  // always fail
-            mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+            mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             mw->dont_know->setDefault(true);
         }
     } else {
@@ -327,13 +327,13 @@ void RandomQueryDlg::verifyClicked()
         }
 
         if (trans.count() == 0) {
-            mw->status->setText(getOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+            mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             knowItClicked();
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);
             }
-            mw->status->setText(getNOKComment((mw->countbar->value()/mw->countbar->maximum()) * 100));
+            mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             mw->dont_know->setDefault(true);
         }
     }
