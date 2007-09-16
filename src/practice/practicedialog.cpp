@@ -24,14 +24,13 @@
 
 #include "practicedialog.h"
 #include "entry-dialogs/EntryDlg.h"
-
+#include <KLocale>
+#include <Phonon/MediaObject>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QRadioButton>
 #include <QCloseEvent>
 #include <QTimer>
-
-#include <KLocale>
 
 PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
@@ -48,11 +47,17 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_doc = doc;
     m_entry = 0;
     m_timer = 0;
+
+    m_player = 0;
 }
 
 
 PracticeDialog::~PracticeDialog()
-{}
+{
+    if ( m_player ) {
+        m_player->deleteLater();
+    }
+}
 
 
 bool PracticeDialog::smartCompare(const QString& s1, const QString &s2) const
@@ -213,6 +218,8 @@ void PracticeDialog::setEntry(TestEntry * entry)
     m_entry = entry;
     m_testType = Prefs::testType();
     startTimer();
+
+//     audioPlayFromIdentifier();
 }
 
 void PracticeDialog::editEntry()
@@ -245,12 +252,44 @@ void PracticeDialog::skipUnknown()
 
 void PracticeDialog::resultCorrect()
 {
+//     audioPlayToIdentifier();
     emit sigQueryChoice(Correct);
 }
 
 void PracticeDialog::resultWrong()
 {
     emit sigQueryChoice(Wrong);
+}
+
+void PracticeDialog::audioPlayFromIdentifier()
+{
+    QString file = KUrl( m_doc->url(), m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl()).toLocalFile();
+    if ( !file.isEmpty() ) {
+        audioPlayFile(file);
+    }
+}
+
+void PracticeDialog::audioPlayToIdentifier()
+{
+    QString file = KUrl( m_doc->url(), m_entry->exp->translation(Prefs::toIdentifier()).soundUrl()).toLocalFile();
+    if ( !file.isEmpty() ) {
+        audioPlayFile(file);
+    }
+}
+
+void PracticeDialog::audioPlayFile(const QString & soundFile)
+{
+    kDebug() << "Attempting to play sound: " << soundFile;
+    if (!m_player)
+    {
+        kDebug() << "Creating Phonon player...";
+        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
+        m_player->setParent(this);
+    } else {
+        m_player->setCurrentSource(soundFile);
+//         m_player->enqueue(soundFile);
+    }
+    m_player->play();
 }
 
 

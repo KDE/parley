@@ -40,6 +40,11 @@ class QLineEdit;
 class QTextEdit;
 class QRadioButton;
 
+namespace Phonon
+{
+    class MediaObject;
+}
+
 class PracticeDialog : public KDialog
 {
 Q_OBJECT
@@ -118,6 +123,10 @@ protected:
     virtual void setStatusText(const QString &status) = 0;
     virtual QProgressBar* timebar() = 0;
 
+    void audioPlayFromIdentifier();
+    void audioPlayToIdentifier();
+    void audioPlayFile(const QString& soundFile);
+
     /** compare two strings with simplified applied first */
     bool smartCompare(const QString&, const QString&) const;
 
@@ -152,7 +161,7 @@ private:
     QTimer    *m_timer;
     int        m_timerCount;
 
-
+    Phonon::MediaObject* m_player;
 };
 
 
