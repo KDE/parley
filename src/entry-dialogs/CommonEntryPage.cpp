@@ -42,14 +42,11 @@
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"
 
-#include <Phonon/MediaObject>
-
 CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent), m_doc(doc)
 {
     setupUi(this);
 
     m_wordTypes = m_doc->wordTypes();
-    m_player = 0;
 
     // subdialogs
     connect(b_usageDlg, SIGNAL(clicked()), SLOT(invokeUsageDlg()));
@@ -69,9 +66,6 @@ CommonEntryPage::CommonEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
     connect(type_box, SIGNAL(activated(int)), SLOT(slotDataChanged(int)));
     // type is tricky - need to update subtype
     connect(type_box, SIGNAL(activated(const QString&)), SLOT(slotTypeBoxChanged(const QString&)));
-
-    connect(audioPlayButton, SIGNAL(clicked()), this, SLOT(playAudio()) );
-
 
 
     usage_label->setTitle(i18nc("Usage (area) of an Expression", "&Usage Labels"));
@@ -128,17 +122,6 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
         expr_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).text());
 
         pronounce_line->setText(m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).pronunciation());
-
-        // create the audio url relative to the document
-        // this would set the doc itself as url, so check, if sound url is empty.
-        if ( !m_doc->entry(m_entries.value(0))->translation(m_currentTranslation).soundUrl().isEmpty() ) {
-            audioUrlRequester->setUrl(
-                KUrl( m_doc->url(),
-                    m_doc->entry(
-                        m_entries.value(0))->translation(m_currentTranslation).soundUrl()) );
-        } else {
-            audioUrlRequester->clear();
-        }
 
     } else { // edit more than one entry
         c_active->setTristate(true);
@@ -305,10 +288,6 @@ void CommonEntryPage::commitData()
         if (m_currentTranslation >= 0) {
             expr->translation(m_currentTranslation).setText( expr_line->text() );
             expr->translation(m_currentTranslation).setPronunciation( pronounce_line->text() );
-
-            // try to save as relative url
-            expr->translation(m_currentTranslation).setSoundUrl( KUrl::relativeUrl( m_doc->url() , audioUrlRequester->url().url()) );
-kDebug() << "url: " << audioUrlRequester->url().url();
         }
     }
 
@@ -373,21 +352,6 @@ void CommonEntryPage::updateMainTypeBoxContents()
 {
     type_box->clear();
     type_box->addItems( m_wordTypes->typeNameList() );
-}
-
-void CommonEntryPage::playAudio()
-{
-    KUrl soundFile = audioUrlRequester->url();
-    kDebug() << "sound file: " << soundFile.url();
-
-    if (!m_player)
-    {
-        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
-        m_player->setParent(this);
-    } else {
-        m_player->setCurrentSource(soundFile);
-    }
-    m_player->play();
 }
 
 

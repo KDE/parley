@@ -35,11 +35,6 @@
 #include <keduvocwordtype.h>
 #include <keduvocdocument.h>
 
-namespace Phonon
-{
-    class MediaObject;
-}
-
 class CommonEntryPage : public QWidget, public Ui::CommonEntryPageForm
 {
     Q_OBJECT
@@ -80,8 +75,6 @@ private slots:
     void invokeUsageDlg();
     void slotSubDialogClosed();
 
-    void playAudio();
-
 signals:
     void sigModified();
 
@@ -96,7 +89,5 @@ private:
     QList<int>        m_entries;
     bool m_usageIsModified;
     KEduVocWordType*  m_wordTypes;
-
-    Phonon::MediaObject* m_player;
 };
 #endif // CommonEntryPage_included

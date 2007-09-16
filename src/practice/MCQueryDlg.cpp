@@ -219,6 +219,8 @@ void MCQueryDlg::showSolution()
     button_ref[0].first->setChecked(true);
     verifyButton(button_ref[0].first, true, button_ref[0].second);
     mw->dont_know->setDefault(true);
+
+    m_answeredWrong = true;
 }
 
 

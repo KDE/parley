@@ -24,14 +24,14 @@
  ***************************************************************************/
 
 #include "additionaleditpage.h"
-
-#include <QTextEdit>
-
 #include "EntryDlg.h"
+#include <QTextEdit>
+#include <Phonon/MediaObject>
 
 AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
+    m_player = 0;
 
     setupUi(this);
     QFontMetrics fm(synonymLineEdit->font());
@@ -43,11 +43,14 @@ AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : 
     commentLineEdit->setMaximumHeight(sz*3);
     exampleLineEdit->setMaximumHeight(sz*3);
 
-    connect(paraphraseLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(commentLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(exampleLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(antonymLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
-    connect(synonymLineEdit, SIGNAL(textChanged()), SLOT(slotDataChanged()));
+    connect(paraphraseLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(commentLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(exampleLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(antonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(synonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(audioUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+
+    connect(audioPlayButton, SIGNAL(clicked()), this, SLOT(playAudio()) );
 }
 
 
@@ -88,6 +91,26 @@ void AdditionalEditPage::setData(int row, int col)
     exampleLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).example());
     commentLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
     paraphraseLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
+
+    // create the audio url relative to the document
+    // this would set the doc itself as url, so check, if sound url is empty.
+    if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).soundUrl().isEmpty() ) {
+        audioUrlRequester->setUrl(
+            KUrl( m_doc->url(),
+                m_doc->entry(
+                    m_currentRow)->translation(m_currentTranslation).soundUrl()) );
+    } else {
+        audioUrlRequester->clear();
+    }
+
+    if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
+        imageUrlRequester->setUrl(
+            KUrl( m_doc->url(),
+                m_doc->entry(
+                    m_currentRow)->translation(m_currentTranslation).imageUrl()) );
+    } else {
+        imageUrlRequester->clear();
+    }
 }
 
 
@@ -98,6 +121,12 @@ void AdditionalEditPage::commitData()
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setAntonym(antonymLineEdit->text());
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setExample(exampleLineEdit->text());
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(paraphraseLineEdit->text());
+
+    // sound and image
+    // try to save as relative url
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( KUrl::relativeUrl( m_doc->url() , audioUrlRequester->url().url()) );
+
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( KUrl::relativeUrl( m_doc->url() , imageUrlRequester->url().url()) );
 }
 
 
@@ -113,6 +142,22 @@ void AdditionalEditPage::clear()
 void AdditionalEditPage::slotDataChanged()
 {
     emit sigModified();
+}
+
+
+void AdditionalEditPage::playAudio()
+{
+    KUrl soundFile = audioUrlRequester->url();
+    kDebug() << "sound file: " << soundFile.url();
+
+    if (!m_player)
+    {
+        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
+        m_player->setParent(this);
+    } else {
+        m_player->setCurrentSource(soundFile);
+    }
+    m_player->play();
 }
 
 

@@ -8,6 +8,7 @@
 
     copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
                     (C) 2004-2007 Peter Hedlund <peter.hedlund@kdemail.net>
+    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
     -----------------------------------------------------------------------
 
@@ -124,8 +125,8 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     connect(mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()));
     connect(mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()));
     connect(mw->c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()));
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
-    connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
+    connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));

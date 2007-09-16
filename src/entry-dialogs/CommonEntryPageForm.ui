@@ -146,23 +146,6 @@
           </property>
          </widget>
         </item>
-        <item row="3" column="0" >
-         <widget class="QLabel" name="sound_label" >
-          <property name="text" >
-           <string>Audio:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="2" >
-         <widget class="QPushButton" name="audioPlayButton" >
-          <property name="text" >
-           <string>Play</string>
-          </property>
-         </widget>
-        </item>
-        <item row="3" column="1" >
-         <widget class="KUrlRequester" name="audioUrlRequester" />
-        </item>
        </layout>
       </item>
       <item>
@@ -439,13 +422,6 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <customwidgets>
-  <customwidget>
-   <class>KUrlRequester</class>
-   <extends>QFrame</extends>
-   <header>kurlrequester.h</header>
-  </customwidget>
- </customwidgets>
  <tabstops>
   <tabstop>expr_line</tabstop>
   <tabstop>lesson_box</tabstop>

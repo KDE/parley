@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>444</width>
-    <height>272</height>
+    <width>538</width>
+    <height>401</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -54,103 +54,136 @@
      <property name="title" >
       <string>Additional Properties</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="leftMargin" >
-       <number>11</number>
-      </property>
-      <property name="topMargin" >
-       <number>11</number>
-      </property>
-      <property name="rightMargin" >
-       <number>11</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>11</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
-       <number>6</number>
-      </property>
-      <item row="0" column="0" >
-       <widget class="QLabel" name="synonym_label" >
-        <property name="text" >
-         <string>S&amp;ynonym:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>synonymLineEdit</cstring>
-        </property>
-       </widget>
+     <layout class="QVBoxLayout" >
+      <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="synonym_label" >
+          <property name="text" >
+           <string>S&amp;ynonym:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>synonymLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLineEdit" name="synonymLineEdit" >
+          <property name="toolTip" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="antonym_label" >
+          <property name="text" >
+           <string>Ant&amp;onym:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>antonymLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QLineEdit" name="antonymLineEdit" />
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="examp_label" >
+          <property name="text" >
+           <string>E&amp;xample:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>exampleLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="QLineEdit" name="exampleLineEdit" />
+        </item>
+        <item row="3" column="0" >
+         <widget class="QLabel" name="remark_label" >
+          <property name="text" >
+           <string>&amp;Comment:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>commentLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <widget class="QLineEdit" name="commentLineEdit" />
+        </item>
+        <item row="4" column="0" >
+         <widget class="QLabel" name="para_label" >
+          <property name="text" >
+           <string>&amp;Paraphrase:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>paraphraseLineEdit</cstring>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <widget class="QLineEdit" name="paraphraseLineEdit" />
+        </item>
+       </layout>
       </item>
-      <item row="1" column="0" >
-       <widget class="QLabel" name="antonym_label" >
-        <property name="text" >
-         <string>Ant&amp;onym:</string>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
         </property>
-        <property name="buddy" >
-         <cstring>antonymLineEdit</cstring>
+        <property name="sizeType" >
+         <enum>QSizePolicy::Fixed</enum>
         </property>
-       </widget>
-      </item>
-      <item row="2" column="0" >
-       <widget class="QLabel" name="examp_label" >
-        <property name="text" >
-         <string>E&amp;xample:</string>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
         </property>
-        <property name="buddy" >
-         <cstring>exampleLineEdit</cstring>
-        </property>
-       </widget>
+       </spacer>
       </item>
-      <item row="3" column="0" >
-       <widget class="QLabel" name="remark_label" >
-        <property name="text" >
-         <string>&amp;Comment:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>commentLineEdit</cstring>
-        </property>
-       </widget>
+      <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="imageLabel" >
+          <property name="text" >
+           <string>Image:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="KUrlRequester" name="imageUrlRequester" />
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="audioLabel" >
+          <property name="text" >
+           <string>Audio:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="KUrlRequester" name="audioUrlRequester" />
+        </item>
+        <item row="1" column="2" >
+         <widget class="QPushButton" name="audioPlayButton" >
+          <property name="text" >
+           <string>Play</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
-      <item row="4" column="0" >
-       <widget class="QLabel" name="para_label" >
-        <property name="text" >
-         <string>&amp;Paraphrase:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>paraphraseLineEdit</cstring>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <widget class="QLineEdit" name="synonymLineEdit" >
-        <property name="toolTip" >
-         <string/>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <widget class="QLineEdit" name="antonymLineEdit" />
-      </item>
-      <item row="2" column="1" >
-       <widget class="QLineEdit" name="exampleLineEdit" />
-      </item>
-      <item row="3" column="1" >
-       <widget class="QLineEdit" name="commentLineEdit" />
-      </item>
-      <item row="4" column="1" >
-       <widget class="QLineEdit" name="paraphraseLineEdit" />
-      </item>
-      <item row="5" column="1" >
+      <item>
        <spacer>
         <property name="orientation" >
          <enum>Qt::Vertical</enum>
         </property>
         <property name="sizeHint" >
          <size>
-          <width>20</width>
-          <height>40</height>
+          <width>410</width>
+          <height>51</height>
          </size>
         </property>
        </spacer>
@@ -162,6 +195,13 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
+ <customwidgets>
+  <customwidget>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
+   <header>kurlrequester.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

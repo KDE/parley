@@ -29,6 +29,11 @@
 #include "ui_additionaleditpage.h"
 #include <keduvocdocument.h>
 
+namespace Phonon
+{
+    class MediaObject;
+}
+
 class AdditionalEditPage : public QWidget, public Ui::AdditionalEditPage
 {
     Q_OBJECT
@@ -48,11 +53,14 @@ signals:
 
 private slots:
     void slotDataChanged();
+    void playAudio();
 
 private:
     KEduVocDocument     *m_doc;
     int m_currentRow;
     int m_currentTranslation;
+
+    Phonon::MediaObject* m_player;
 };
 
 #endif

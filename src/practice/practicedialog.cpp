@@ -156,7 +156,6 @@ void PracticeDialog::setWidgetTextColorAndFontWeight(QWidget *widget, const QCol
 }
 
 
-
 void PracticeDialog::timeoutReached()
 {
 kDebug() << "timer: " << m_timerCount;
