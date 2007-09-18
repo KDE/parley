@@ -121,12 +121,12 @@ void MCQueryDlg::setEntry( TestEntry* entry)
         randomSequence.randomize(choices);
 
     // always include false friend
-    QString ff;
-    /// @todo: check if it works: false friend should always be included! (Cannot think if the following is ok in both directions...)
-    ff = vocExpression->translation(Prefs::toIdentifier()).falseFriend(Prefs::fromIdentifier()).simplified();
+    QString ff = vocExpression->translation(Prefs::toIdentifier())
+        .falseFriend(Prefs::fromIdentifier()).simplified();
 
-    if (!ff.isEmpty())
+    if (!ff.isEmpty()) {
         choices.prepend(ff);
+    }
 
     if (m_doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
         for (int i = choices.count(); i < m_doc->entryCount(); ++i) {

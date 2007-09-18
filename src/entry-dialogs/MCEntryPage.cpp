@@ -94,11 +94,11 @@ void MCEntryPage::setData(int row, int col)
 void MCEntryPage::commitData()
 {
     KEduVocMultipleChoice mc = KEduVocMultipleChoice();
-    mc.setChoice(0, mc1Field->text());
-    mc.setChoice(1, mc2Field->text());
-    mc.setChoice(2, mc3Field->text());
-    mc.setChoice(3, mc4Field->text());
-    mc.setChoice(4, mc5Field->text());
+    mc.appendChoice(mc1Field->text());
+    mc.appendChoice(mc2Field->text());
+    mc.appendChoice(mc3Field->text());
+    mc.appendChoice(mc4Field->text());
+    mc.appendChoice(mc5Field->text());
 
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setMultipleChoice(mc);
 }
