@@ -135,6 +135,7 @@ void KVocTrainApp::initActions()
     fileSave->setStatusTip(fileSave->whatsThis());
 
     KAction* fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+    fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
     fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
