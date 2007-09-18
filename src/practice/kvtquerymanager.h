@@ -61,6 +61,8 @@ private:
     int                  num_queryTimeout;
     int                  m_testType;
 
+    QString              m_lastTestType;
+
     TestEntry* m_entry;
 };
 

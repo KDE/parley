@@ -80,6 +80,7 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 
 void QueryManager::startPractice()
 {
+    m_lastTestType = QString();
     m_testType = Prefs::testType();
 
     m_testDialog->deleteLater();
@@ -160,7 +161,10 @@ kDebug() << "result: " << res;
         return;
     }
 
-    if ( m_testType == Prefs::EnumTestType::GrammarTest ) {
+    // check if we need a different grammar dialog
+    if ( m_testType == Prefs::EnumTestType::GrammarTest &&
+        m_doc->wordTypes()->specialType(
+            m_entry->exp->translation(Prefs::toIdentifier()).type()) != m_lastTestType ) {
         m_testDialog->accept();
         m_testDialog->deleteLater();
         kDebug() << "Creating new grammar dialog...";
@@ -226,6 +230,7 @@ void QueryManager::createDialog()
                 m_doc->wordTypes()->specialTypeVerb() ) {
             m_testDialog = new VerbQueryDlg(m_doc, m_app);
         }
+        m_lastTestType = specialWordType;
         break;
     default:
         kError() << "QueryManager::startQuery: unknown type\n";
