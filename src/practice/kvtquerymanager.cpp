@@ -37,6 +37,7 @@
 #include "kvtquery.h"
 #include "prefs.h"
 
+#include <keduvocwordtype.h>
 #include <keduvoclesson.h>
 #include <keduvocdocument.h>
 
@@ -95,6 +96,8 @@ void QueryManager::startPractice()
 
     m_app->hide();
 
+    QString specialWordType;
+
     switch ( m_testType ) {
     case Prefs::EnumTestType::WrittenTest:
         m_testDialog = new RandomQueryDlg(m_doc, m_app);
@@ -111,18 +114,34 @@ void QueryManager::startPractice()
         m_testDialog = new SimpleQueryDlg(m_doc, m_app);
         break;
 
-    case Prefs::EnumTestType::ConjugationTest:
-        m_testDialog = new VerbQueryDlg(m_doc, m_app);
-        break;
-    case Prefs::EnumTestType::ArticleTest:
-        m_testDialog = new ArtQueryDlg(m_doc, m_app);
-        break;
-    case Prefs::EnumTestType::ComparisonAdjectiveTest:
-        m_testDialog = new AdjQueryDlg(m_doc, m_app);
+    case Prefs::EnumTestType::GrammarTest:
+        specialWordType = m_doc->wordTypes()->specialType(
+            entry->exp->translation(Prefs::toIdentifier()).type());
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeNoun() ) {
+            m_testDialog = new ArtQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeAdjective() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeAdverb() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeVerb() ) {
+            m_testDialog = new VerbQueryDlg(m_doc, m_app);
+        }
         break;
     default:
         kError() << "QueryManager::startQuery: unknown type\n";
         stopPractice();
+        return;
+    }
+
+    if ( !m_testDialog ) {
+        kError() << "Test dialog was not created!";
         return;
     }
 
@@ -192,6 +211,26 @@ kDebug() << "result: " << res;
         kError() << "m_testDialog == 0\n";
         stopPractice();
         return;
+    }
+    if ( m_testType == Prefs::EnumTestType::GrammarTest ) {
+        m_testDialog->deleteLater();
+
+        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
+                m_doc->wordTypes()->specialTypeNoun() ) {
+            m_testDialog = new ArtQueryDlg(m_doc, m_app);
+        }
+        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
+                m_doc->wordTypes()->specialTypeAdjective() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
+                m_doc->wordTypes()->specialTypeAdverb() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
+                m_doc->wordTypes()->specialTypeVerb() ) {
+            m_testDialog = new VerbQueryDlg(m_doc, m_app);
+        }
     }
 
     m_testDialog->setEntry(entry);

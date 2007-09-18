@@ -41,6 +41,8 @@ public slots:
 
 private slots:
     void fromLanguageSelected(int identifierFromIndex);
+    void grammarTestToggled(bool state);
+
 private:
     KEduVocDocument* m_doc;
 };

@@ -406,6 +406,8 @@ void KVocTrainApp::newDocumentWizard()
 
     m_tableModel->reset(); // clear old entries otherwise we get crashes
 
+    initializeDefaultGrammar();
+
     // Set the language headers of the table.
     for (int i=0; i<m_doc->identifierCount(); i++){
         m_tableModel->setHeaderData(i+KV_COL_TRANS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);

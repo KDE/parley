@@ -177,14 +177,6 @@ public:
     void printStatistics();
 
 private:
-    bool validateWithSettings(KEduVocExpression *expr);
-    bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
-    bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
-    bool compareDate(int type, const QDateTime &qd);
-    bool compareQuery(int type, int qgrade, int limit);
-    bool compareBad(int type, int bcount, int limit);
-    bool compareGrade(int type, grade_t qgrade, grade_t limit);
-    bool compareType(int type, const QString & exprtype, const QString & limit);
 
     /**
      * Check if @p expr is valid for the current query settings.
@@ -192,6 +184,20 @@ private:
      * @return
      */
     bool validate(KEduVocExpression *expr);
+    bool validateWithSettings(KEduVocExpression *expr);
+    bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
+    bool compareExpiring(int grade, const QDateTime &limit, bool use_it);
+    bool compareDate(int type, const QDateTime &qd);
+    bool compareQuery(int type, int qgrade, int limit);
+    bool compareBad(int type, int bcount, int limit);
+    bool compareGrade(int type, grade_t qgrade, grade_t limit);
+
+    /**
+     * Test if an entry has the right word type to be included in the query.
+     * @param entry
+     * @return
+     */
+    bool checkType(KEduVocExpression* entry);
 
     KEduVocDocument *m_doc;
     int m_fromTranslation;

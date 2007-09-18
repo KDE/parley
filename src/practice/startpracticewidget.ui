@@ -5,16 +5,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>490</width>
-    <height>423</height>
+    <width>633</width>
+    <height>350</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" >
-   <item>
-    <widget class="QGroupBox" name="groupBox" >
+  <layout class="QGridLayout" >
+   <item row="0" column="0" >
+    <widget class="QGroupBox" name="testTypeGroupBox" >
      <property name="title" >
       <string>Type of Test</string>
      </property>
@@ -30,14 +30,7 @@
        </widget>
       </item>
       <item row="0" column="1" >
-       <widget class="QRadioButton" name="ConjugationsRadio" >
-        <property name="text" >
-         <string>Conjugations</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="2" >
-       <widget class="QRadioButton" name="SynonymsRadio" >
+       <widget class="QRadioButton" name="SynonymRadio" >
         <property name="text" >
          <string>Synonym</string>
         </property>
@@ -51,66 +44,105 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="QRadioButton" name="ArticlesRadio" >
-        <property name="text" >
-         <string>Articles</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="2" >
-       <widget class="QRadioButton" name="AntonymsRadio" >
+       <widget class="QRadioButton" name="AntonymRadio" >
         <property name="text" >
          <string>Antonym</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
-       <widget class="QRadioButton" name="ComparisonsRadio" >
+      <item row="2" column="0" >
+       <widget class="QRadioButton" name="GrammarRadio" >
         <property name="text" >
-         <string>Comparison Forms</string>
+         <string>Grammar</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="2" >
+      <item row="2" column="1" >
        <widget class="QRadioButton" name="ParaphraseRadio" >
         <property name="text" >
          <string>Paraphrase</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
-       <widget class="QRadioButton" name="ExamplesRadio" >
+      <item row="3" column="0" colspan="2" >
+       <widget class="QRadioButton" name="ExampleRadio" >
         <property name="text" >
-         <string>Examples</string>
+         <string>Example Sentences</string>
         </property>
        </widget>
       </item>
      </layout>
     </widget>
    </item>
-   <item>
-    <layout class="QGridLayout" >
-     <item row="0" column="0" >
-      <widget class="QLabel" name="label" >
-       <property name="text" >
-        <string>From:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="0" column="1" >
-      <widget class="QLabel" name="label_2" >
-       <property name="text" >
-        <string>To:</string>
-       </property>
-      </widget>
-     </item>
-     <item row="1" column="0" >
-      <widget class="QListWidget" name="LanguageFromList" />
-     </item>
-     <item row="1" column="1" >
-      <widget class="QListWidget" name="LanguageToList" />
-     </item>
-    </layout>
+   <item row="0" column="1" >
+    <widget class="QGroupBox" name="GrammarGroupBox" >
+     <property name="title" >
+      <string>Grammar</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QCheckBox" name="ConjugationCheckBox" >
+        <property name="text" >
+         <string>Conjugation of Verbs</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ComparisonAdjectiveCheckBox" >
+        <property name="text" >
+         <string>Comparison of Adjectives</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ComparisonAdverbCheckBox" >
+        <property name="text" >
+         <string>Comparison of Adverbs</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="ArticleCheckBox" >
+        <property name="text" >
+         <string>Articles of Nouns</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item row="1" column="0" colspan="2" >
+    <widget class="QGroupBox" name="languageGroupBox" >
+     <property name="title" >
+      <string>Languages:</string>
+     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>From:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QLabel" name="label_2" >
+          <property name="text" >
+           <string>To:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QListWidget" name="LanguageFromList" />
+        </item>
+        <item row="1" column="1" >
+         <widget class="QListWidget" name="LanguageToList" />
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
    </item>
   </layout>
  </widget>

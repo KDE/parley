@@ -202,16 +202,29 @@
         <choices>
             <choice name="WrittenTest"/>
             <choice name="MultipleChoiceTest"/>
-            <choice name="ArticleTest"/>
-            <choice name="ConjugationTest"/>
-            <choice name="ComparisonAdjectiveTest"/>
-            <choice name="ComparisonAdverbTest"/>
+            <choice name="GrammarTest"/>
             <choice name="SynonymTest"/>
             <choice name="AntonymTest"/>
             <choice name="ExampleTest"/>
             <choice name="ParaphraseTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
+    </entry>
+    <entry name="GrammarArticleTest" type="Bool">
+      <label>In a grammar test, whether article practice will be enabled.</label>
+      <default>true</default>
+    </entry>
+    <entry name="GrammarConjugationTest" type="Bool">
+      <label>In a grammar test, whether conjugations will be enabled.</label>
+      <default>true</default>
+    </entry>
+    <entry name="GrammarComparisonAdjectiveTest" type="Bool">
+      <label>In a grammar test, whether comparisons of adjectives will be enabled.</label>
+      <default>true</default>
+    </entry>
+    <entry name="GrammarComparisonAdverbTest" type="Bool">
+      <label>In a grammar test, whether comparisons of adverbs will be enabled.</label>
+      <default>true</default>
     </entry>
     <entry name="CompType$(Type)" type="Enum" key="CompType$(Type)">
       <parameter name="Type" type="Enum">
@@ -267,7 +280,7 @@
       <default>0</default>
     </entry>
     <entry name="TypeItem" type="String">
-      <label></label>
+      <label>Word type selection for the practice.</label>
       <default code="true">QString()</default>
     </entry>
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">

@@ -71,6 +71,8 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
+    ///@todo set adjective/adverb hint!
+
     comp = entry->exp->translation(Prefs::toIdentifier()).comparison();
 
     mw->timebar->setEnabled(Prefs::showCounter());

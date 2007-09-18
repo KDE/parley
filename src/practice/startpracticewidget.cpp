@@ -43,6 +43,7 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
         LanguageFromList->addItem( m_doc->identifier(i).name() );
     }
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
+    connect(GrammarRadio, SIGNAL(toggled(bool)), this, SLOT(grammarTestToggled(bool)));
 
     ///@todo get this from config
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
@@ -55,28 +56,33 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     case Prefs::EnumTestType::MultipleChoiceTest:
         MultipleChoiceRadio->setChecked(true);
         break;
-    case Prefs::EnumTestType::ArticleTest:
-        ArticlesRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::ConjugationTest:
-        ConjugationsRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::ComparisonAdjectiveTest:
-        ComparisonsRadio->setChecked(true);
-        break;
     case Prefs::EnumTestType::SynonymTest:
-        SynonymsRadio->setChecked(true);
+        SynonymRadio->setChecked(true);
         break;
     case Prefs::EnumTestType::AntonymTest:
-        AntonymsRadio->setChecked(true);
+        AntonymRadio->setChecked(true);
         break;
     case Prefs::EnumTestType::ExampleTest:
-        ExamplesRadio->setChecked(true);
+        ExampleRadio->setChecked(true);
         break;
     case Prefs::EnumTestType::ParaphraseTest:
         ParaphraseRadio->setChecked(true);
         break;
+    case Prefs::EnumTestType::GrammarTest:
+        GrammarRadio->setChecked(true);
+        ConjugationCheckBox->setChecked(Prefs::grammarConjugationTest());
+        ComparisonAdjectiveCheckBox->setChecked(Prefs::grammarComparisonAdjectiveTest());
+        ComparisonAdverbCheckBox->setChecked(Prefs::grammarComparisonAdverbTest());
+        ArticleCheckBox->setChecked(Prefs::grammarArticleTest());
+        break;
     }
+
+    ArticleCheckBox->setChecked(Prefs::grammarArticleTest());
+    ComparisonAdjectiveCheckBox->setChecked(Prefs::grammarComparisonAdjectiveTest());
+    ComparisonAdverbCheckBox->setChecked(Prefs::grammarComparisonAdverbTest());
+    ConjugationCheckBox->setChecked(Prefs::grammarConjugationTest());
+
+    GrammarGroupBox->setEnabled( Prefs::testType() == Prefs::EnumTestType::GrammarTest );
 }
 
 
@@ -88,27 +94,26 @@ void StartPracticeWidget::commitData()
     if ( MultipleChoiceRadio->isChecked() ) {
         Prefs::setTestType(Prefs::EnumTestType::MultipleChoiceTest);
     }
-    if ( ArticlesRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::ArticleTest);
-    }
-    if ( ConjugationsRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::ConjugationTest);
-    }
-    if ( ComparisonsRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::ComparisonAdjectiveTest);
-    }
-    if ( SynonymsRadio->isChecked() ) {
+    if ( SynonymRadio->isChecked() ) {
         Prefs::setTestType(Prefs::EnumTestType::SynonymTest);
     }
-    if ( AntonymsRadio->isChecked() ) {
+    if ( AntonymRadio->isChecked() ) {
         Prefs::setTestType(Prefs::EnumTestType::AntonymTest);
     }
-    if ( ExamplesRadio->isChecked() ) {
+    if ( ExampleRadio->isChecked() ) {
         Prefs::setTestType(Prefs::EnumTestType::ExampleTest);
     }
     if ( ParaphraseRadio->isChecked() ) {
         Prefs::setTestType(Prefs::EnumTestType::ParaphraseTest);
     }
+    if ( GrammarRadio->isChecked() ) {
+        Prefs::setTestType(Prefs::EnumTestType::GrammarTest);
+    }
+
+    Prefs::setGrammarArticleTest(ArticleCheckBox->isChecked());
+    Prefs::setGrammarComparisonAdjectiveTest(ComparisonAdjectiveCheckBox->isChecked());
+    Prefs::setGrammarComparisonAdverbTest(ComparisonAdverbCheckBox->isChecked());
+    Prefs::setGrammarConjugationTest(ConjugationCheckBox->isChecked());
 
     Prefs::setFromIdentifier(LanguageFromList->currentRow());
     Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
@@ -129,6 +134,11 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
     if ( LanguageToList->currentRow() < 0 ) {
         LanguageToList->setCurrentRow(0);
     }
+}
+
+void StartPracticeWidget::grammarTestToggled(bool state)
+{
+    GrammarGroupBox->setEnabled(state);
 }
 
 

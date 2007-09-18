@@ -89,6 +89,9 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
     m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
+    kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
+        << " to: " << m_doc->identifier(m_toTranslation).name();
+
     m_randomSequence = new KRandomSequence( QDateTime().toTime_t() );
 
     // append lesson entries
@@ -112,8 +115,14 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
         }
     }
 
-
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
+
+    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+        if ( !checkType(m_allTestEntries.value(i)->exp) ) {
+            delete m_allTestEntries.takeAt(i);
+        }
+    }
+    kDebug() << "Found " << m_allTestEntries.count() << " entries with valid word type.";
 
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
@@ -274,74 +283,8 @@ bool TestEntryManager::compareGrade(int type, grade_t qgrade, grade_t limit)
 }
 
 
-bool TestEntryManager::compareType(int type, const QString & exprtype, const QString & wordtype)
-{
-    bool erg = true;
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        erg = true;
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        erg = (exprtype == wordtype);
-        break;     // type is same
-    case Prefs::EnumCompType::NotEqual:
-        erg = (exprtype != wordtype);
-        break;     // other type
-    default:
-        break;
-    }
-    return erg;
-}
-
-
-// QuerySelection TestEntryManager::queryEntries()
-// {
-//     if (m_doc == 0) {
-//         kError() << "TestEntryManager::queryEntries(): Cannot create query without source document set." << endl;
-//     }
-//
-//     // initialize vector with (m_doc->lessonCount() + 1) elements
-//     QuerySelection random(m_doc->lessonCount() + 1);
-//
-//     // choose entries that we like by using isActive and validate
-//     //Note that Leitner style learning (altlearn) normally only uses 20
-//     //entries, we just ignore that here
-//     for (int i = 0; i < m_doc->entryCount(); i++) {
-//         KEduVocExpression *expr = m_doc->entry(i);
-//         if (expr->isActive()) {
-//             if (validate(expr)) {
-//                 int lessonNumber;
-//                 if (Prefs::altLearn()) {
-//                     lessonNumber = 0; //We only use a single array in Leitner style
-//                 } else {
-//                     lessonNumber = expr->lesson();
-//                 }
-//                 random[lessonNumber].append(QueryEntry(expr, i));
-//
-//                 kDebug() << " Add to query: lesson: " << expr->lesson() << " from translation: " << expr->translation(m_fromTranslation).text() << " grade: " << expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade() << " grade (reversed): " << expr->translation(m_fromTranslation).gradeFrom(m_toTranslation).grade();
-//             }
-//         }
-//     }
-//
-//     // remove empty lesson elements - backwards to not interfere with smaller indexes...
-//     for (int i = (int) random.size()-1; i >= 0; i--)
-//         if (random[i].size() == 0)
-//             random.erase(random.begin() + i);
-//
-//     // vector of list (lessons) of entries
-//     return random;
-// }
-
-
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    // check type in both directions
-    if ( !
-        (compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_toTranslation).type(), Prefs::typeItem())
-        ||
-        compareType(Prefs::compType(Prefs::EnumType::WordType), expr->translation(m_fromTranslation).type(), Prefs::typeItem()) )) {
-        return false;
-    }
     if(expr->translation(m_fromTranslation).text().simplified().isEmpty()) {
         return false;
     }
@@ -394,29 +337,9 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
         return !expr->translation(m_fromTranslation).example().simplified().isEmpty();
         break;
 
-    case Prefs::EnumTestType::ArticleTest:
-        if ( !(expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeNoun()) ) {
-            return false;
-        }
-        return
-            expr->translation(m_fromTranslation).subType() ==
-            m_doc->wordTypes()->specialTypeNounMale() ||
-            expr->translation(m_fromTranslation).subType() ==
-            m_doc->wordTypes()->specialTypeNounFemale() ||
-            expr->translation(m_fromTranslation).subType() ==
-            m_doc->wordTypes()->specialTypeNounNeutral();
-        break;
-    case Prefs::EnumTestType::ComparisonAdjectiveTest:
-        return  expr->translation(m_fromTranslation).type() ==  m_doc->wordTypes()->specialTypeAdjective() && !expr->translation(m_fromTranslation).comparison().isEmpty();
-        break;
-    case Prefs::EnumTestType::ComparisonAdverbTest:
-        return  expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeAdverb() && !expr->translation(m_fromTranslation).comparison().isEmpty();
-        break;
-    case Prefs::EnumTestType::ConjugationTest:
-        return (expr->translation(m_fromTranslation).type() == m_doc->wordTypes()->specialTypeVerb())
-                && expr->translation(m_fromTranslation).conjugations().count() > 0;
-        break;
-        return false;
+    case Prefs::EnumTestType::GrammarTest:
+    // already in checkType
+        return true;
         break;
 
     case Prefs::EnumTestType::WrittenTest: // Random and MC use the full settings:
@@ -735,4 +658,62 @@ int TestEntryManager::activeEntryCount()
 int TestEntry::answeredCorrectInSequence()
 {
     return m_answeredCorrectInSequence;
+}
+
+bool TestEntryManager::checkType(KEduVocExpression * entry)
+{
+    QString wordType = entry->translation(m_toTranslation).type();
+    QString specialWordType = m_doc->wordTypes()->specialType(wordType);
+    QString specialSubType = m_doc->wordTypes()->specialSubType(wordType,
+        entry->translation(m_toTranslation).subType());
+
+kDebug() << " doc noun:" <<m_doc->wordTypes()->specialTypeNoun()
+    << " doc male:" << m_doc->wordTypes()->specialTypeNounMale()
+    << " type:" << wordType
+    << " stype:" <<specialWordType
+    << " sstype:" << specialSubType;
+
+    // if we do a grammar test, check only if the grammar type is valid
+    if ( Prefs::testType() == Prefs::EnumTestType::GrammarTest ) {
+        if ( Prefs::grammarArticleTest() ) {
+            if ( specialWordType == m_doc->wordTypes()->specialTypeNoun() ) {
+                return
+                    specialSubType ==
+                    m_doc->wordTypes()->specialTypeNounMale() ||
+                    specialSubType ==
+                    m_doc->wordTypes()->specialTypeNounFemale() ||
+                    specialSubType ==
+                    m_doc->wordTypes()->specialTypeNounNeutral();
+            }
+        }
+        if ( Prefs::grammarComparisonAdjectiveTest() ) {
+            if ( specialWordType == m_doc->wordTypes()->specialTypeAdjective() ) {
+                return !entry->translation(m_toTranslation).comparison().isEmpty();
+            }
+        }
+        if ( Prefs::grammarComparisonAdverbTest() ) {
+            if ( specialWordType == m_doc->wordTypes()->specialTypeAdverb() ) {
+                return !entry->translation(m_toTranslation).comparison().isEmpty();
+            }
+        }
+        if ( Prefs::grammarConjugationTest() ) {
+            if ( specialWordType == m_doc->wordTypes()->specialTypeVerb() ) {
+                return entry->translation(m_fromTranslation).conjugations().count() > 0;
+            }
+        }
+        return false;
+    }
+
+    switch (Prefs::compType(Prefs::EnumType::WordType)) {
+    case Prefs::EnumCompType::DontCare:
+        return true;
+        break;
+    case Prefs::EnumCompType::EqualTo:
+        return (wordType == Prefs::typeItem());
+        break;     // type is same
+    case Prefs::EnumCompType::NotEqual:
+        return (wordType != Prefs::typeItem());
+        break;     // other type
+    }
+    return false;
 }
