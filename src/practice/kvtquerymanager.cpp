@@ -88,67 +88,14 @@ void QueryManager::startPractice()
     m_app->removeEntryDlg();
     num_queryTimeout = 0;
 
-    TestEntry * entry = m_entryManager->nextEntry();
-    if ( entry == 0 ) {
+    m_entry = m_entryManager->nextEntry();
+    if ( m_entry == 0 ) {
         kDebug() << "entry == 0";
         return;
     }
 
     m_app->hide();
-
-    QString specialWordType;
-
-    switch ( m_testType ) {
-    case Prefs::EnumTestType::WrittenTest:
-        m_testDialog = new RandomQueryDlg(m_doc, m_app);
-        break;
-    case Prefs::EnumTestType::MultipleChoiceTest:
-        m_testDialog = new MCQueryDlg(m_doc, m_app);
-        break;
-
-    // tests using the simple dialog
-    case Prefs::EnumTestType::SynonymTest:
-    case Prefs::EnumTestType::AntonymTest:
-    case Prefs::EnumTestType::ExampleTest:
-    case Prefs::EnumTestType::ParaphraseTest:
-        m_testDialog = new SimpleQueryDlg(m_doc, m_app);
-        break;
-
-    case Prefs::EnumTestType::GrammarTest:
-        specialWordType = m_doc->wordTypes()->specialType(
-            entry->exp->translation(Prefs::toIdentifier()).type());
-        if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeNoun() ) {
-            m_testDialog = new ArtQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeAdjective() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeAdverb() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeVerb() ) {
-            m_testDialog = new VerbQueryDlg(m_doc, m_app);
-        }
-        break;
-    default:
-        kError() << "QueryManager::startQuery: unknown type\n";
-        stopPractice();
-        return;
-    }
-
-    if ( !m_testDialog ) {
-        kError() << "Test dialog was not created!";
-        return;
-    }
-
-    m_testDialog->setEntry( entry );
-    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-    connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
-    m_testDialog->show();
+    createDialog();
 }
 
 
@@ -201,8 +148,8 @@ kDebug() << "result: " << res;
     }
 
     // get a new entry
-    TestEntry* entry = m_entryManager->nextEntry();
-    if ( entry == 0 ) {
+    m_entry = m_entryManager->nextEntry();
+    if ( m_entry == 0 ) {
         stopPractice();
         return;
     }
@@ -212,29 +159,16 @@ kDebug() << "result: " << res;
         stopPractice();
         return;
     }
+
     if ( m_testType == Prefs::EnumTestType::GrammarTest ) {
+        m_testDialog->accept();
         m_testDialog->deleteLater();
-
-        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
-                m_doc->wordTypes()->specialTypeNoun() ) {
-            m_testDialog = new ArtQueryDlg(m_doc, m_app);
-        }
-        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
-                m_doc->wordTypes()->specialTypeAdjective() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
-                m_doc->wordTypes()->specialTypeAdverb() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( entry->exp->translation(Prefs::toIdentifier()).type() ==
-                m_doc->wordTypes()->specialTypeVerb() ) {
-            m_testDialog = new VerbQueryDlg(m_doc, m_app);
-        }
+        kDebug() << "Creating new grammar dialog...";
+        createDialog();
+    } else {
+        m_testDialog->setEntry(m_entry);
+        m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     }
-
-    m_testDialog->setEntry(entry);
-    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
 }
 
 
@@ -251,6 +185,63 @@ kDebug() << "stopPractice";
 
     m_app->show();
     deleteLater();
+}
+
+void QueryManager::createDialog()
+{
+    QString specialWordType;
+
+    switch ( m_testType ) {
+    case Prefs::EnumTestType::WrittenTest:
+        m_testDialog = new RandomQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::MultipleChoiceTest:
+        m_testDialog = new MCQueryDlg(m_doc, m_app);
+        break;
+
+    // tests using the simple dialog
+    case Prefs::EnumTestType::SynonymTest:
+    case Prefs::EnumTestType::AntonymTest:
+    case Prefs::EnumTestType::ExampleTest:
+    case Prefs::EnumTestType::ParaphraseTest:
+        m_testDialog = new SimpleQueryDlg(m_doc, m_app);
+        break;
+
+    case Prefs::EnumTestType::GrammarTest:
+        specialWordType = m_doc->wordTypes()->specialType(
+            m_entry->exp->translation(Prefs::toIdentifier()).type());
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeNoun() ) {
+            m_testDialog = new ArtQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeAdjective() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeAdverb() ) {
+            m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        }
+        if ( specialWordType ==
+                m_doc->wordTypes()->specialTypeVerb() ) {
+            m_testDialog = new VerbQueryDlg(m_doc, m_app);
+        }
+        break;
+    default:
+        kError() << "QueryManager::startQuery: unknown type\n";
+        stopPractice();
+        return;
+    }
+
+    if ( !m_testDialog ) {
+        kError() << "Test dialog was not created!";
+        return;
+    }
+
+    m_testDialog->setEntry( m_entry );
+    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+    connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
+    m_testDialog->show();
 }
 
 

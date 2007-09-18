@@ -31,6 +31,7 @@
 class KVocTrainApp;
 class KEduVocDocument;
 class PracticeDialog;
+class TestEntry;
 
 class QueryManager :public QObject
 {
@@ -44,6 +45,7 @@ public slots:
     void slotResult(PracticeDialog::Result res);
 
 private:
+    void createDialog();
     bool queryIsEmpty();
 
     /** exit query mode */
@@ -58,6 +60,8 @@ private:
 
     int                  num_queryTimeout;
     int                  m_testType;
+
+    TestEntry* m_entry;
 };
 
 #endif
