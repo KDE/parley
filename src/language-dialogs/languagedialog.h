@@ -38,6 +38,7 @@ public:
     ~LanguageDialog();
 
     void accept();
+    void reject();
 
 signals:
     void signalCommitData();
@@ -53,6 +54,7 @@ private:
 
     KEduVocDocument* m_doc;
     QList<KPageWidgetItem*> m_pages;
+    QList<int> m_appendList;
     QList<int> m_deleteList;
 };
 

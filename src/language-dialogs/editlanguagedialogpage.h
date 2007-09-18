@@ -51,6 +51,7 @@ signals:
 private slots:
     void iconChanged(int iconIndex);
     void localeChanged(const QString&);
+    void languageNameChanged(const QString&);
 
 private:
     void initialize();

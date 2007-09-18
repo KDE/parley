@@ -26,6 +26,7 @@
 
 #include <keduvocdocument.h>
 
+#include <KMessageBox>
 #include <QLabel>
 #include <KLocale>
 
@@ -67,8 +68,11 @@ void LanguageDialog::accept()
     qSort(m_deleteList.begin(), m_deleteList.end());
     for ( int identifierIndex = m_deleteList.count() - 1; identifierIndex >= 0; identifierIndex-- ) {
         kDebug() << "Delete Language: " << m_deleteList.value(identifierIndex);
-        m_doc->removeIdentifier(m_deleteList.value(identifierIndex));
+        if ( KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", m_doc->identifier(identifierIndex).name()), i18n("Remove Language")) == KMessageBox::Yes ) {
+            m_doc->removeIdentifier(m_deleteList.value(identifierIndex));
+        }
     }
+    m_doc->setModified();
     QDialog::accept();
 }
 
@@ -76,10 +80,13 @@ void LanguageDialog::slotAppendIdentifier()
 {
     kDebug() << "Append identifier";
 
+    // we cheat here. we directly append the identifier and remove it again, if cancel is selected.
     int i = m_doc->appendIdentifier();
 
     KPageWidgetItem* newPage = createPage( i );
     setCurrentPage( newPage );
+
+    m_appendList.append(i);
 }
 
 void LanguageDialog::slotDeleteIdentifier()
@@ -123,6 +130,14 @@ KPageWidgetItem*  LanguageDialog::createPage(int i)
     connect(editPageWidget, SIGNAL(iconSelected(const QString&)), this, SLOT(pageIconChanged(const QString&)));
 
     return editPage;
+}
+
+void LanguageDialog::reject()
+{
+    foreach(int identifierIndex, m_appendList) {
+        m_doc->removeIdentifier(identifierIndex);
+    }
+    QDialog::reject();
 }
 
 
