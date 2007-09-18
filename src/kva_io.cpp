@@ -256,7 +256,10 @@ void KVocTrainApp::slotFileSave()
 
     prepareProgressBar();
     m_doc->setCsvDelimiter(Prefs::separator());
-    if (!m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley")) {
+
+    int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley");
+    if ( result != 0 ) {
+        KMessageBox::error(this, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
         slotFileSaveAs();
         return;
     }
@@ -294,9 +297,18 @@ void KVocTrainApp::slotFileSaveAs()
 
                 prepareProgressBar();
                 m_doc->setCsvDelimiter(Prefs::separator());
-                m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
-                fileOpenRecent->addUrl(m_doc->url());
-                removeProgressBar();
+
+                if ( !url.fileName().contains('.') ) {
+                    url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
+                }
+
+                int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
+                if (result != 0) {
+                    KMessageBox::error(this, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
+                } else {
+                    fileOpenRecent->addUrl(m_doc->url());
+                    removeProgressBar();
+                }
             }
     }
     slotStatusMsg(IDS_DEFAULT);
