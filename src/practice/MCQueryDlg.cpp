@@ -259,6 +259,9 @@ void MCQueryDlg::verifyClicked()
     } else {
         mw->dont_know->setDefault(true);
         m_answeredWrong = true;
+        mw->status->setText(
+                getNOKComment((int)(((double)mw->countbar->value())
+                    /mw->countbar->maximum() * 100.0)));
     }
 }
 
