@@ -90,6 +90,9 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("Jeremy Whiting"),
                         ki18n("Rewriting the kvtml library for KDE4"));
 
+    aboutData.addCredit(ki18n("Markus Büchele"),
+                        ki18n("Bug reports and testing on the way to KDE4"));
+
     aboutData.addCredit(ki18n("Ramona Knapp"),
                         ki18n("Suggested Parley as new name"));
 
