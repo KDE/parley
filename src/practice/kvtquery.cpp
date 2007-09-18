@@ -126,7 +126,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( !validateWithSettings(m_allTestEntries.value(i)->exp) ) {
+        if ( !validate(m_allTestEntries.value(i)->exp) ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
@@ -325,16 +325,16 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
     // This could be improved, but there are no open bugs concerning this atm.
     // So this is rather low priority.
     case Prefs::EnumTestType::SynonymTest:
-        return !expr->translation(m_fromTranslation).synonym().simplified().isEmpty();
+        return !expr->translation(m_toTranslation).synonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::AntonymTest:
-        return !expr->translation(m_fromTranslation).antonym().simplified().isEmpty();
+        return !expr->translation(m_toTranslation).antonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ParaphraseTest:
-        return !expr->translation(m_fromTranslation).paraphrase().simplified().isEmpty();
+        return !expr->translation(m_toTranslation).paraphrase().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ExampleTest:
-        return !expr->translation(m_fromTranslation).example().simplified().isEmpty();
+        return !expr->translation(m_toTranslation).example().simplified().isEmpty();
         break;
 
     case Prefs::EnumTestType::GrammarTest:
