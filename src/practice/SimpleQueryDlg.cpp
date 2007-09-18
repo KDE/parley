@@ -131,7 +131,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
         ;
     }
 
-    mw->show_all->setDefault(true);
+    mw->verify->setDefault(true);
     s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
 
@@ -167,22 +167,24 @@ void SimpleQueryDlg::showSolution()
 
 void SimpleQueryDlg::verifyClicked()
 {
-    if (verifyField(mw->answerField, answerstring))
-        knowItClicked();
-    else
+    if (verifyField(mw->answerField, answerstring)) {
+        resultCorrect();
+    } else {
+        ///@todo better do something sensible here...
         mw->dont_know->setDefault(true);
+    }
 }
 
 
 void SimpleQueryDlg::knowItClicked()
 {
-    emit sigQueryChoice(SkipKnown);
+    skipKnown();
 }
 
 
 void SimpleQueryDlg::dontKnowClicked()
 {
-    emit sigQueryChoice(SkipUnknown);
+    skipUnknown();
 }
 
 
