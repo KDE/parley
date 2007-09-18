@@ -142,7 +142,10 @@ void MCQueryDlg::setEntry( TestEntry* entry)
         int count = MAX_MULTIPLE_CHOICE;
         // gather random expressions for the choice
         while (count > 0) {
-            int nr = randomSequence.getLong(m_doc->entryCount());
+            int nr;
+            do {
+                nr = randomSequence.getLong(m_doc->entryCount());
+            } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
             // append if new expr found
             bool newex = true;
             for (int i = 0; newex && i < exprlist.count(); i++) {
