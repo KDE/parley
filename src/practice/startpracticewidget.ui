@@ -114,7 +114,7 @@
    <item row="1" column="0" colspan="2" >
     <widget class="QGroupBox" name="languageGroupBox" >
      <property name="title" >
-      <string>Languages:</string>
+      <string>Languages</string>
      </property>
      <layout class="QVBoxLayout" >
       <item>
@@ -122,14 +122,14 @@
         <item row="0" column="0" >
          <widget class="QLabel" name="label" >
           <property name="text" >
-           <string>From:</string>
+           <string>From</string>
           </property>
          </widget>
         </item>
         <item row="0" column="1" >
          <widget class="QLabel" name="label_2" >
           <property name="text" >
-           <string>To:</string>
+           <string>To</string>
           </property>
          </widget>
         </item>
