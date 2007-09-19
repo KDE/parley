@@ -380,7 +380,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>I &amp;Know It</string>
+          <string>Skip (I &amp;Know It)</string>
          </property>
         </widget>
        </item>
@@ -406,7 +406,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>Show &amp;All</string>
+          <string>Show &amp;Solution</string>
          </property>
         </widget>
        </item>
@@ -419,7 +419,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>&amp;Do Not Know</string>
+          <string>Skip (Do &amp;Not Know)</string>
          </property>
         </widget>
        </item>

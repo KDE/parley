@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>346</width>
+    <width>433</width>
     <height>319</height>
    </rect>
   </property>
@@ -244,7 +244,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>I &amp;Know It</string>
+          <string>Skip (I &amp;Know It)</string>
          </property>
         </widget>
        </item>
@@ -257,7 +257,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>Show &amp;All</string>
+          <string>Show &amp;Solution</string>
          </property>
         </widget>
        </item>
@@ -270,7 +270,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>&amp;Do Not Know</string>
+          <string>Skip (Do &amp;Not Know)</string>
          </property>
         </widget>
        </item>
