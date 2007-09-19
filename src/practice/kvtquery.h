@@ -26,121 +26,17 @@
 #ifndef kvtquery_included
 #define kvtquery_included
 
-#include <QVector>
+#include "testentry.h"
+#include "prefs.h"
 
 #include <keduvocgrade.h>
 #include <keduvocexpression.h>
-
-#include "prefs.h"
+#include <QVector>
 
 class KEduVocDocument;
-class KEduVocExpression;
 class Prefs;
 class EnumCompType;
 class KRandomSequence;
-
-// // internal types, indented are subtypes
-//
-// #define QM_VERB           "v"    // go
-// #define   QM_VERB_IRR     "ir"
-// #define   QM_VERB_REG     "re"
-// #define QM_NOUN           "n"    // table, coffee
-// #define   QM_NOUN_F       "f"
-// #define   QM_NOUN_M       "m"
-// #define   QM_NOUN_S       "s"
-// #define QM_NAME           "nm"
-// #define QM_ART            "ar"   // article
-// #define   QM_ART_DEF      "def"  // definite    a/an
-// #define   QM_ART_IND      "ind"  // indefinite  the
-// #define QM_ADJ            "aj"   // adjective   expensive, good
-// #define QM_ADV            "av"   // adverb      today, strongly
-// #define QM_PRON           "pr"   // pronoun     you, she
-// #define   QM_PRON_POS     "pos"  // possessive  my, your
-// #define   QM_PRON_PER     "per"  // personal
-// #define QM_PHRASE         "ph"
-// #define QM_NUM            "num"  // numeral
-// #define   QM_NUM_ORD      "ord"  // ordinal     first, second
-// #define   QM_NUM_CARD     "crd"  // cardinal    one, two
-// #define QM_INFORMAL       "ifm"
-// #define QM_FIG            "fig"
-// #define QM_CON            "con"  // conjuncton  and, but
-// #define QM_PREP           "pre"  // preposition behind, between
-// #define QM_QUEST          "qu"   // question    who, what
-//
-// // type delimiters
-//
-// #define QM_USER_TYPE  "#"   // designates number of user type
-// #define QM_TYPE_DIV   ":"   // divide main from subtype
-
-// class TypeRelation
-// {
-// public:
-//     TypeRelation(const QString & _short, const QString & _long) : shortId(_short), longId(_long)
-//     {}
-//
-//     QString shortStr() const
-//     {
-//         return shortId;
-//     }
-//     QString longStr()  const
-//     {
-//         return longId;
-//     }
-//
-// protected:
-//     QString  shortId;
-//     QString longId;
-// };
-
-
-class TestEntry
-{
-public:
-    TestEntry(KEduVocExpression *_exp, int _nr) : exp(_exp), m_index(_nr)
-    {
-        m_answeredCorrectInSequence = 0;
-        m_statisticCount = 0;
-        m_statisticGoodCount = 0;
-        m_statisticBadCount = 0;
-        m_statisticTimeout = 0;
-        m_statisticSkipUnknown = 0;
-        m_statisticSkipKnown = 0;
-        m_canSwitchDirection = false;
-    }
-
-    void incGoodCount();
-    void incBadCount();
-    void incTimeout();
-    void incSkipUnknown();
-    void incSkipKnown();
-
-    int answeredCorrectInSequence();
-    int statisticCount();
-    int statisticGoodCount();
-    int statisticBadCount();
-    int statisticSkipKnown();
-    int statisticSkipUnknown();
-    int statisticTimeout();
-
-    int totalEntries();
-
-    ///@todo make these two members private
-    KEduVocExpression *exp;
-    int m_index;
-private:
-    void update();
-
-    // these are for the CURRENT query only, so we can display statistics.
-    int m_statisticCount;
-    int m_statisticGoodCount;
-    int m_statisticBadCount;
-    int m_statisticTimeout;
-    int m_statisticSkipUnknown;
-    int m_statisticSkipKnown;
-    int m_answeredCorrectInSequence;
-    bool m_canSwitchDirection;
-};
-
 
 class TestEntryManager
 {

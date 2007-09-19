@@ -25,6 +25,8 @@
 
 #include "kvtquery.h"
 
+#include "testentry.h"
+
 // for the enum
 #include "practicedialog.h"
 
@@ -33,6 +35,7 @@
 #include <kconfig.h>
 
 #include <keduvoclesson.h>
+#include <keduvocexpression.h>
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
 #include <KRandomSequence>
@@ -89,10 +92,21 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
     m_toTranslation = Prefs::toIdentifier();
     m_testType = Prefs::testType();
 
+    TestEntry::setGradeTo(m_toTranslation);
+
+    // write grades of mono lingual tests into translation(i).gradeFrom(i)
+    if ( m_testType == Prefs::EnumTestType::WrittenTest ||
+        m_testType == Prefs::EnumTestType::MultipleChoiceTest) {
+        TestEntry::setGradeFrom(m_fromTranslation);
+    } else {
+        TestEntry::setGradeFrom(m_toTranslation);
+    }
+
+
     kDebug() << "Test from: " << m_doc->identifier(m_fromTranslation).name()
         << " to: " << m_doc->identifier(m_toTranslation).name();
 
-    m_randomSequence = new KRandomSequence( QDateTime().toTime_t() );
+    m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 
     // append lesson entries
     foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
@@ -313,7 +327,6 @@ bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
     if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::block())) {
         return false;
     }
-kDebug() << "Adding expression to query: " << expr->translation(m_toTranslation).text();
     return true;
 }
 
@@ -365,22 +378,20 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
 TestEntry * TestEntryManager::nextEntry()
 {
     // refill current entries
-    if ( m_currentEntries.count() < Prefs::testNumberOfEntries() ) {
-        if ( m_notAskedTestEntries.count() > 0 ) {
-            m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
-        }
+    while ( m_currentEntries.count() < Prefs::testNumberOfEntries() &&
+            m_notAskedTestEntries.count() > 0 ) {
+        m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
     }
 
     // return one of the current entries
     if ( m_currentEntries.count() > 0 ) {
         // one of the current words (by random)
         m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
-        kDebug() << "nextEntry: " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
+        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
         return m_currentEntries.value( m_currentEntry );
     }
     return 0;
 }
-
 
 
 void TestEntryManager::result(int result)
@@ -438,169 +449,8 @@ kDebug() << "Result: " << result;
 
     default :
         kError() << "Unknown result from QueryDlg\n";
-        return;
     }
-
-
-
-    /*
-        num_queryTimeout = 0;
-        if (Prefs::altLearn()) {
-            //we always store the current question in the random_expr
-            //array, so delete it from there.
-            random_expr1.erase(random_expr1.begin() + random_query_nr);
-
-            //The user guessed right (or she actually knew the
-            //answer). Move the exp up to next level.
-            switch (query_cycle) {
-            case 1:
-                correct_1_times.append(queryEntry);
-                break;
-            case 2:
-                correct_2_times.append(queryEntry);
-                break;
-            case 3:
-                correct_3_times.append(queryEntry);
-                break;
-            case 4:
-                //The user has answered correctly four times in a row. She is good!
-                correct_4_times.append(queryEntry);
-
-                query_num--;
-                exp->translation(tindex).gradeFrom(oindex).incGrade();
-
-                break;
-            default:
-                kError() << "You should not be able to answer correctly more than 4 times\n";
-                stopQuery();
-                return;
-            }
-
-            if (random_expr1.count() == 0 && correct_1_times.count() == 0 && correct_2_times.count() == 0 && correct_3_times.count() == 0) {
-                stopQuery();
-                return;
-            }
-
-        } else { //not Prefs::altLearn()
-            query_num--;
-            if (query_cycle <= 1) {
-                exp->translation(tindex).gradeFrom(oindex).incGrade(); // incr grade only in first cycle
-            } else {
-                exp->translation(tindex).gradeFrom(oindex).setGrade(KV_LEV1_GRADE); // reset grade
-            }
-            random_expr1.erase(random_expr1.begin() + random_query_nr);
-            if (!(random_expr1.count() != 0 || random_expr2.count() != 0 || queryList.count() != 0)) {
-                stopQuery();
-                return;
-            }
-        }
-        break;*/
-
-
-
-
-
-
-
-
-
-
-//         //When you get it wrong Leisner style, it ends up in the back of the line
-//         if (Prefs::altLearn())
-//             random_expr1.append(queryEntry);
-//         else
-//             random_expr2.append(queryEntry);
-//
-
-
-
-
-
-
-
-
-
-//     if (Prefs::altLearn()) {
-//
-//         if (correct_3_times.count() > 7 || (correct_3_times.count() > 0 && correct_2_times.count() == 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
-//             QueryEntry t_qer = correct_3_times[0];
-//             correct_3_times.erase(correct_3_times.begin());
-//             random_query_nr = random_expr1.count();
-//             random_expr1.append(t_qer);
-//             query_cycle = 4;
-//         } else if (correct_2_times.count() > 5 || (correct_2_times.count() > 0 && correct_1_times.count() == 0 && random_expr1.count() == 0)) {
-//             QueryEntry t_qer = correct_2_times[0];
-//             correct_2_times.erase(correct_2_times.begin());
-//             random_query_nr = random_expr1.count();
-//             random_expr1.append(t_qer);
-//             query_cycle = 3;
-//         } else if (correct_1_times.count() > 5 || (correct_1_times.count() > 0  && random_expr1.count() == 0)) {
-//             QueryEntry t_qer = correct_1_times[0];
-//             correct_1_times.erase(correct_1_times.begin());
-//             random_query_nr = random_expr1.count();
-//             random_expr1.append(t_qer);
-//             query_cycle = 2;
-//         } else {
-//             //else we just pick from random_expr1 then
-//             if (random_expr1.count() == 0) {
-//                 stopQuery();
-//                 return;
-//             }
-//             query_cycle = 1;
-//
-//             random_query_nr = m_randomSequence.getLong(random_expr1.count());
-//         }
-
-    // not Prefs::altLearn()
-
 }
-
-void TestEntry::incGoodCount()
-{
-    update();
-    m_statisticGoodCount++;
-    m_answeredCorrectInSequence++;
-}
-
-void TestEntry::incSkipKnown()
-{
-    update();
-    m_statisticSkipKnown++;
-    m_answeredCorrectInSequence++;
-}
-
-void TestEntry::incBadCount()
-{
-    update();
-    m_statisticBadCount++;
-    m_answeredCorrectInSequence = 0;
-    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
-}
-
-void TestEntry::incTimeout()
-{
-    update();
-    m_statisticTimeout++;
-    m_answeredCorrectInSequence = 0;
-    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
-}
-
-void TestEntry::incSkipUnknown()
-{
-    update();
-    m_statisticSkipUnknown++;
-    m_answeredCorrectInSequence = 0;
-    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incBadCount();
-}
-
-
-void TestEntry::update()
-{
-    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).incQueryCount();
-    m_statisticCount++;
-    exp->translation(Prefs::toIdentifier()).gradeFrom(Prefs::fromIdentifier()).setQueryDate( QDateTime::currentDateTime() );
-}
-
 
 void TestEntryManager::printStatistics()
 {
@@ -615,36 +465,6 @@ void TestEntryManager::printStatistics()
     }
 }
 
-int TestEntry::statisticCount()
-{
-    return m_statisticCount;
-}
-
-int TestEntry::statisticBadCount()
-{
-    return m_statisticBadCount;
-}
-
-int TestEntry::statisticSkipKnown()
-{
-    return m_statisticSkipKnown;
-}
-
-int TestEntry::statisticSkipUnknown()
-{
-    return m_statisticSkipUnknown;
-}
-
-int TestEntry::statisticTimeout()
-{
-    return m_statisticTimeout;
-}
-
-int TestEntry::statisticGoodCount()
-{
-    return m_statisticGoodCount;
-}
-
 int TestEntryManager::totalEntryCount()
 {
     return m_allTestEntries.count();
@@ -655,23 +475,12 @@ int TestEntryManager::activeEntryCount()
     return m_allTestEntries.count() - (m_notAskedTestEntries.count() + m_currentEntries.count());
 }
 
-int TestEntry::answeredCorrectInSequence()
-{
-    return m_answeredCorrectInSequence;
-}
-
 bool TestEntryManager::checkType(KEduVocExpression * entry)
 {
     QString wordType = entry->translation(m_toTranslation).type();
     QString specialWordType = m_doc->wordTypes()->specialType(wordType);
     QString specialSubType = m_doc->wordTypes()->specialSubType(wordType,
         entry->translation(m_toTranslation).subType());
-
-kDebug() << " doc noun:" <<m_doc->wordTypes()->specialTypeNoun()
-    << " doc male:" << m_doc->wordTypes()->specialTypeNounMale()
-    << " type:" << wordType
-    << " stype:" <<specialWordType
-    << " sstype:" << specialSubType;
 
     // if we do a grammar test, check only if the grammar type is valid
     if ( Prefs::testType() == Prefs::EnumTestType::GrammarTest ) {
@@ -717,3 +526,4 @@ kDebug() << " doc noun:" <<m_doc->wordTypes()->specialTypeNoun()
     }
     return false;
 }
+
