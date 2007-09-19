@@ -120,7 +120,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
-                s.insert(pos, "<b>...</b>");
+                s.insert(pos, "<font color=\"#FF0000\"><b>...</b></font>");
             }
             mw->queryField->setText(s);
             setQueryFieldWordwrap();
