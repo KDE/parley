@@ -40,20 +40,16 @@ public:
     void setEntry(TestEntry* entry);
     void setProgressCounter(int current, int total);
 
-protected slots:
-    void showMoreClicked();
+private slots:
     void showSolution();
-    void knowItClicked();
-    void dontKnowClicked();
     void verifyClicked();
 
-protected:
+private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
     KEduVocArticle   articles;
 
-private:
     Ui::ArtQueryDlgForm * mw;
 };
 

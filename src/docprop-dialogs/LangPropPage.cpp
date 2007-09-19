@@ -93,7 +93,7 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
     def_female->setText(def);
     indef_female->setText(indef);
 
-    articles.getNatural(&def, &indef);
+    articles.getNeutral(&def, &indef);
     def_natural->setText(def);
     indef_natural->setText(indef);
 }
@@ -217,16 +217,16 @@ void LangPropPage::indefMaleChanged(const QString& s)
 void LangPropPage::defNaturalChanged(const QString& s)
 {
     QString def, indef;
-    articles.getNatural(&def, &indef);
-    articles.setNatural(s, indef);
+    articles.getNeutral(&def, &indef);
+    articles.setNeutral(s, indef);
 }
 
 
 void LangPropPage::indefNaturalChanged(const QString& s)
 {
     QString def, indef;
-    articles.getNatural(&def, &indef);
-    articles.setNatural(def, s);
+    articles.getNeutral(&def, &indef);
+    articles.setNeutral(def, s);
 }
 
 #include "LangPropPage.moc"

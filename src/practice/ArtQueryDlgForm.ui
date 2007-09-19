@@ -7,22 +7,32 @@
     <x>0</x>
     <y>0</y>
     <width>346</width>
-    <height>297</height>
+    <height>319</height>
    </rect>
   </property>
   <property name="sizePolicy" >
-   <sizepolicy>
-    <hsizetype>3</hsizetype>
-    <vsizetype>1</vsizetype>
+   <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
     <horstretch>0</horstretch>
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
   <layout class="QGridLayout" >
-   <property name="margin" >
+   <property name="leftMargin" >
     <number>0</number>
    </property>
-   <property name="spacing" >
+   <property name="topMargin" >
+    <number>0</number>
+   </property>
+   <property name="rightMargin" >
+    <number>0</number>
+   </property>
+   <property name="bottomMargin" >
+    <number>0</number>
+   </property>
+   <property name="horizontalSpacing" >
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing" >
     <number>6</number>
    </property>
    <item row="2" column="0" >
@@ -31,28 +41,37 @@
       <string/>
      </property>
      <layout class="QVBoxLayout" >
-      <property name="margin" >
-       <number>8</number>
-      </property>
       <property name="spacing" >
        <number>6</number>
       </property>
+      <property name="leftMargin" >
+       <number>8</number>
+      </property>
+      <property name="topMargin" >
+       <number>8</number>
+      </property>
+      <property name="rightMargin" >
+       <number>8</number>
+      </property>
+      <property name="bottomMargin" >
+       <number>8</number>
+      </property>
       <item>
-       <widget class="QRadioButton" name="male" >
+       <widget class="QRadioButton" name="maleRadio" >
         <property name="text" >
          <string>&amp;male</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="rb_fem" >
+       <widget class="QRadioButton" name="femaleRadio" >
         <property name="text" >
          <string>&amp;female</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QRadioButton" name="natural" >
+       <widget class="QRadioButton" name="neutralRadio" >
         <property name="text" >
          <string>&amp;neutral</string>
         </property>
@@ -63,18 +82,28 @@
    </item>
    <item row="3" column="0" >
     <layout class="QGridLayout" >
-     <property name="margin" >
+     <property name="leftMargin" >
       <number>0</number>
      </property>
-     <property name="spacing" >
+     <property name="topMargin" >
+      <number>0</number>
+     </property>
+     <property name="rightMargin" >
+      <number>0</number>
+     </property>
+     <property name="bottomMargin" >
+      <number>0</number>
+     </property>
+     <property name="horizontalSpacing" >
+      <number>6</number>
+     </property>
+     <property name="verticalSpacing" >
       <number>6</number>
      </property>
      <item rowspan="2" row="0" column="1" >
       <widget class="QGroupBox" name="progressgroup" >
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>1</hsizetype>
-         <vsizetype>1</vsizetype>
+        <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -83,10 +112,22 @@
         <string>Progress</string>
        </property>
        <layout class="QGridLayout" >
-        <property name="margin" >
+        <property name="leftMargin" >
          <number>11</number>
         </property>
-        <property name="spacing" >
+        <property name="topMargin" >
+         <number>11</number>
+        </property>
+        <property name="rightMargin" >
+         <number>11</number>
+        </property>
+        <property name="bottomMargin" >
+         <number>11</number>
+        </property>
+        <property name="horizontalSpacing" >
+         <number>6</number>
+        </property>
+        <property name="verticalSpacing" >
          <number>6</number>
         </property>
         <item row="0" column="1" >
@@ -106,9 +147,7 @@
         <item row="0" column="0" >
          <widget class="QLabel" name="countlabel" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>5</vsizetype>
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -121,9 +160,7 @@
         <item row="1" column="0" >
          <widget class="QLabel" name="timelabel" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>5</vsizetype>
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -136,9 +173,7 @@
         <item row="2" column="0" >
          <widget class="QLabel" name="Cyclelabel" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>5</vsizetype>
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -154,9 +189,7 @@
         <item row="2" column="1" >
          <widget class="QLabel" name="progCount" >
           <property name="sizePolicy" >
-           <sizepolicy>
-            <hsizetype>5</hsizetype>
-            <vsizetype>1</vsizetype>
+           <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -168,10 +201,22 @@
      </item>
      <item row="0" column="0" >
       <layout class="QGridLayout" >
-       <property name="margin" >
+       <property name="leftMargin" >
         <number>0</number>
        </property>
-       <property name="spacing" >
+       <property name="topMargin" >
+        <number>0</number>
+       </property>
+       <property name="rightMargin" >
+        <number>0</number>
+       </property>
+       <property name="bottomMargin" >
+        <number>0</number>
+       </property>
+       <property name="horizontalSpacing" >
+        <number>6</number>
+       </property>
+       <property name="verticalSpacing" >
         <number>6</number>
        </property>
        <item row="1" column="0" >
@@ -180,9 +225,7 @@
           <bool>false</bool>
          </property>
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>1</hsizetype>
-           <vsizetype>1</vsizetype>
+          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -195,9 +238,7 @@
        <item row="0" column="1" >
         <widget class="QPushButton" name="know_it" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>1</hsizetype>
-           <vsizetype>1</vsizetype>
+          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -210,9 +251,7 @@
        <item row="0" column="0" >
         <widget class="QPushButton" name="show_all" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>1</hsizetype>
-           <vsizetype>1</vsizetype>
+          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -225,9 +264,7 @@
        <item row="1" column="1" >
         <widget class="QPushButton" name="dont_know" >
          <property name="sizePolicy" >
-          <sizepolicy>
-           <hsizetype>1</hsizetype>
-           <vsizetype>1</vsizetype>
+          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
            <horstretch>0</horstretch>
            <verstretch>0</verstretch>
           </sizepolicy>
@@ -242,9 +279,7 @@
      <item row="1" column="0" >
       <widget class="QLabel" name="status" >
        <property name="sizePolicy" >
-        <sizepolicy>
-         <hsizetype>7</hsizetype>
-         <vsizetype>1</vsizetype>
+        <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -262,9 +297,7 @@
    <item row="1" column="0" >
     <widget class="QLabel" name="orgField" >
      <property name="sizePolicy" >
-      <sizepolicy>
-       <hsizetype>7</hsizetype>
-       <vsizetype>1</vsizetype>
+      <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
        <horstretch>0</horstretch>
        <verstretch>0</verstretch>
       </sizepolicy>
@@ -302,9 +335,9 @@
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <tabstops>
-  <tabstop>male</tabstop>
-  <tabstop>rb_fem</tabstop>
-  <tabstop>natural</tabstop>
+  <tabstop>maleRadio</tabstop>
+  <tabstop>femaleRadio</tabstop>
+  <tabstop>neutralRadio</tabstop>
   <tabstop>show_all</tabstop>
   <tabstop>verify</tabstop>
   <tabstop>know_it</tabstop>

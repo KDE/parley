@@ -38,14 +38,16 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
-    connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
+    articles = m_doc->identifier(Prefs::toIdentifier()).article();
+
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()()));
+    connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
-    connect(mw->natural, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->male, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->rb_fem, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->maleRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->femaleRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
+    connect(mw->neutralRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
@@ -81,8 +83,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     bool removed = false;
 
     articles.getFemale(&def, &indef);
-    mw->rb_fem->setText(i18nc("@label the gender of the word: female", "&female:\t")+def+" / "+indef);
-    mw->rb_fem->setEnabled(!QString(def+indef).isEmpty());
+    mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female:\t")+def+" / "+indef);
+    mw->femaleRadio->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
         removed = true;
@@ -93,8 +95,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     }
 
     articles.getMale(&def, &indef);
-    mw->male->setText(i18nc("@label the gender of the word: male", "&male:\t")+def+" / "+indef);
-    mw->male->setEnabled(!QString(def+indef).isEmpty());
+    mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male:\t")+def+" / "+indef);
+    mw->maleRadio->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
         removed = true;
@@ -104,9 +106,9 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         removed = true;
     }
 
-    articles.getNatural(&def, &indef);
-    mw->natural->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t")+def+" / "+indef);
-    mw->natural->setEnabled(!QString(def+indef).isEmpty());
+    articles.getNeutral(&def, &indef);
+    mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t")+def+" / "+indef);
+    mw->neutralRadio->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {
         s.remove(0, def.length()+1);
         removed = true;
@@ -120,75 +122,72 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
 
-    mw->rb_fem->setFocus();
+    resetQueryWidget(mw->maleRadio);
+    resetQueryWidget(mw->femaleRadio);
+    resetQueryWidget(mw->neutralRadio);
+
+    // As long as the buttons are AutoExclusive we cannot uncheck all.
+    mw->maleRadio->setChecked(true);
+    mw->maleRadio->setAutoExclusive ( false );
+    mw->maleRadio->setChecked(false);
+    mw->maleRadio->setAutoExclusive ( true );
+
+    mw->dont_know->setFocus();
 }
 
 
 void ArtQueryDlg::showSolution()
 {
-    resetQueryWidget(mw->male);
-    resetQueryWidget(mw->rb_fem);
-    resetQueryWidget(mw->natural);
+    resetQueryWidget(mw->maleRadio);
+    resetQueryWidget(mw->femaleRadio);
+    resetQueryWidget(mw->neutralRadio);
 
-    if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounMale()) {
-        mw->male->setChecked(true);
-        verifyButton(mw->male, true);
-    } else if (m_entry->exp->translation(Prefs::toIdentifier()).type() == m_doc->wordTypes()->specialTypeNounFemale()) {
-        mw->rb_fem->setChecked(true);
-        verifyButton(mw->rb_fem, true);
-    } else if (m_entry->exp->translation(Prefs::toIdentifier()).type() == m_doc->wordTypes()->specialTypeNounNeutral()) {
-        mw->natural->setChecked(true);
-        verifyButton(mw->natural, true);
+    QString specialSubType = m_doc->wordTypes()->specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
+
+    if (specialSubType == m_doc->wordTypes()->specialTypeNounMale()) {
+        mw->maleRadio->setChecked(true);
+        verifyButton(mw->maleRadio, true);
+    } else if (specialSubType == m_doc->wordTypes()->specialTypeNounFemale()) {
+        mw->femaleRadio->setChecked(true);
+        verifyButton(mw->femaleRadio, true);
+    } else if (specialSubType == m_doc->wordTypes()->specialTypeNounNeutral()) {
+        mw->neutralRadio->setChecked(true);
+        verifyButton(mw->neutralRadio, true);
     }
     mw->dont_know->setDefault(true);
 }
 
 
-void ArtQueryDlg::showMoreClicked()
-{}
-
-
 void ArtQueryDlg::verifyClicked()
 {
-    bool known = false;
-    if (m_entry->exp->translation(Prefs::toIdentifier()).subType() ==  m_doc->wordTypes()->specialTypeNounMale())
-        known = mw->male->isChecked();
-    else if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounFemale())
-        known = mw->rb_fem->isChecked();
-    else if (m_entry->exp->translation(Prefs::toIdentifier()).subType() == m_doc->wordTypes()->specialTypeNounNeutral())
-        known = mw->natural->isChecked();
+    QString specialSubType = m_doc->wordTypes()->specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
 
-    if (mw->rb_fem->isChecked()) {
-        verifyButton(mw->rb_fem, known);
-        resetQueryWidget(mw->male);
-        resetQueryWidget(mw->natural);
-    } else if (mw->male->isChecked()) {
-        verifyButton(mw->male, known);
-        resetQueryWidget(mw->rb_fem);
-        resetQueryWidget(mw->natural);
-    } else if (mw->natural->isChecked()) {
-        verifyButton(mw->natural, known);
-        resetQueryWidget(mw->male);
-        resetQueryWidget(mw->rb_fem);
+    bool known = false;
+    if (specialSubType ==  m_doc->wordTypes()->specialTypeNounMale())
+        known = mw->maleRadio->isChecked();
+    else if (specialSubType == m_doc->wordTypes()->specialTypeNounFemale())
+        known = mw->femaleRadio->isChecked();
+    else if (specialSubType == m_doc->wordTypes()->specialTypeNounNeutral())
+        known = mw->neutralRadio->isChecked();
+
+    if (mw->femaleRadio->isChecked()) {
+        verifyButton(mw->femaleRadio, known);
+        resetQueryWidget(mw->maleRadio);
+        resetQueryWidget(mw->neutralRadio);
+    } else if (mw->maleRadio->isChecked()) {
+        verifyButton(mw->maleRadio, known);
+        resetQueryWidget(mw->femaleRadio);
+        resetQueryWidget(mw->neutralRadio);
+    } else if (mw->neutralRadio->isChecked()) {
+        verifyButton(mw->neutralRadio, known);
+        resetQueryWidget(mw->maleRadio);
+        resetQueryWidget(mw->femaleRadio);
     }
 
     if (known)
-//    know_it->setDefault(true);
-        knowItClicked();
+        resultCorrect();
     else
         mw->dont_know->setDefault(true);
-}
-
-
-void ArtQueryDlg::knowItClicked()
-{
-    emit sigQueryChoice(SkipKnown);
-}
-
-
-void ArtQueryDlg::dontKnowClicked()
-{
-    emit sigQueryChoice(SkipUnknown);
 }
 
 
