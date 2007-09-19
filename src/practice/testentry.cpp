@@ -116,6 +116,16 @@ void TestEntry::update()
     exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).setQueryDate( QDateTime::currentDateTime() );
 }
 
+int TestEntry::gradeFrom()
+{
+    return m_gradeFrom;
+}
+
+int TestEntry::gradeTo()
+{
+    return m_gradeTo;
+}
+
 
 
 

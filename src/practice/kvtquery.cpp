@@ -140,6 +140,16 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+        if ( m_allTestEntries.value(i)->exp->translation(TestEntry::gradeFrom()).text().isEmpty() ||
+                m_allTestEntries.value(i)->exp->translation(TestEntry::gradeTo()).text().isEmpty() ) {
+            delete m_allTestEntries.takeAt(i);
+        }
+    }
+
+    kDebug() << "Found " << m_allTestEntries.count() << " entries that are not empty.";
+
+    // use the old validate methods for now
+    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( !validate(m_allTestEntries.value(i)->exp) ) {
             delete m_allTestEntries.takeAt(i);
         }
@@ -299,13 +309,6 @@ bool TestEntryManager::compareGrade(int type, grade_t qgrade, grade_t limit)
 
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    if(expr->translation(m_fromTranslation).text().simplified().isEmpty()) {
-        return false;
-    }
-    if(expr->translation(m_toTranslation).text().simplified().isEmpty()) {
-        return false;
-    }
-
     // if expired, always take it
     if( compareExpiring(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::expire() ) ) {
         return true;
@@ -332,11 +335,7 @@ bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 
 bool TestEntryManager::validate(KEduVocExpression *expr)
 {
-    switch (m_testType)
-    {
-    // The type queries so far do not consider any settings except lesson. So they return true as long as the type is right or there is data available.
-    // This could be improved, but there are no open bugs concerning this atm.
-    // So this is rather low priority.
+    switch (m_testType) {
     case Prefs::EnumTestType::SynonymTest:
         return !expr->translation(m_toTranslation).synonym().simplified().isEmpty();
         break;
@@ -355,7 +354,8 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
         return true;
         break;
 
-    case Prefs::EnumTestType::WrittenTest: // Random and MC use the full settings:
+    // Random and MC use the full settings:
+    case Prefs::EnumTestType::WrittenTest:
     case Prefs::EnumTestType::MultipleChoiceTest:
         if ( validateWithSettings(expr) ) {
             return true;

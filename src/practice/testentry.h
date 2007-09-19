@@ -57,6 +57,8 @@ public:
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
+    static int gradeFrom();
+    static int gradeTo();
 
 private:
     void update();
