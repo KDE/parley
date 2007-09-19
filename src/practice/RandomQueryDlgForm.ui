@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>452</width>
-    <height>351</height>
+    <width>538</width>
+    <height>369</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -125,7 +125,7 @@
       <item row="2" column="0" >
        <widget class="QCheckBox" name="c_remark" >
         <property name="text" >
-         <string>&amp;Remark:</string>
+         <string>&amp;Comment:</string>
         </property>
        </widget>
       </item>
@@ -291,7 +291,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>Show &amp;All</string>
+          <string>Show &amp;Solution</string>
          </property>
         </widget>
        </item>
@@ -304,7 +304,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>&amp;Do Not Know</string>
+          <string>Skip (&amp;Do Not Know)</string>
          </property>
         </widget>
        </item>
@@ -317,7 +317,7 @@
           </sizepolicy>
          </property>
          <property name="text" >
-          <string>I &amp;Know It</string>
+          <string>Skip (I &amp;Know It)</string>
          </property>
         </widget>
        </item>
