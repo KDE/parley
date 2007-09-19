@@ -120,7 +120,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) > 0) {
                 s.remove(pos, answerstring.length());
-                s.insert(pos, "..");
+                s.insert(pos, "<b>...</b>");
             }
             mw->queryField->setText(s);
             setQueryFieldWordwrap();
