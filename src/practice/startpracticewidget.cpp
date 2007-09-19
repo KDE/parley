@@ -39,9 +39,15 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     m_doc = doc;
     setupUi(this);
 
+
+
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
-        LanguageFromList->addItem( m_doc->identifier(i).name() );
+        LanguageSettings currentSettings(m_doc->identifier(i).locale());
+        currentSettings.readConfig();
+        QString icon = currentSettings.icon();
+        LanguageFromList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
     }
+
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
     connect(GrammarRadio, SIGNAL(toggled(bool)), this, SLOT(grammarTestToggled(bool)));
 
@@ -124,7 +130,12 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
     LanguageToList->clear();
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
         if ( i != identifierFromIndex ) {
-            LanguageToList->addItem( m_doc->identifier(i).name() );
+
+            LanguageSettings currentSettings(m_doc->identifier(i).locale());
+            currentSettings.readConfig();
+            QString icon = currentSettings.icon();
+            LanguageToList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
+
             LanguageToList->item(LanguageToList->count()-1)->setData(Qt::UserRole, i);
             if ( i == Prefs::toIdentifier() ) {
                 LanguageToList->setCurrentRow(i);
