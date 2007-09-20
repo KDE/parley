@@ -54,7 +54,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent) : KPageD
         QString s;
         s = doc->identifier(i).name();
 
-        lpp = new LangPropPage(doc, doc->identifier(i).locale(), doc->identifier(i).personalPronouns(), doc->identifier(i).article(), 0);
+        lpp = new LangPropPage(doc, doc->identifier(i).personalPronouns(), doc->identifier(i).article(), 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, s);
         pageItem->setHeader(s);
 

@@ -33,7 +33,7 @@
 
 #include <keduvocdocument.h>
 
-LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget(parent)
+LangPropPage::LangPropPage(KEduVocDocument *_doc, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 
@@ -62,7 +62,6 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const QString &curr_lang, cons
 
     articles = art;
 
-    l_langcode->setText(curr_lang);
     first_plural->setText(conjugations.pers1Plural());
     first_singular->setText(conjugations.pers1Singular());
     second_singular->setText(conjugations.pers2Singular());

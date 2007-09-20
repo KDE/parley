@@ -40,7 +40,7 @@ class LangPropPage : public QWidget, public Ui::LangPropPageForm
 {
     Q_OBJECT
 public:
-    LangPropPage(KEduVocDocument *doc, const QString &curr_lang, const KEduVocConjugation &conjugations,
+    LangPropPage(KEduVocDocument *doc, const KEduVocConjugation &conjugations,
                  const KEduVocArticle &article, QWidget *parent = 0);
 
     KEduVocConjugation getConjugation();
