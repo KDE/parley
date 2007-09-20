@@ -442,7 +442,7 @@ void KVocTrainApp::newDocumentWizard()
 
 void KVocTrainApp::initializeDefaultGrammar()
 {
-    m_doc->wordTypes()->createDefaultWordTypes();
+    m_doc->wordTypes().createDefaultWordTypes();
 
     // Preset some usages
     m_doc->addUsage( i18n("abbreviation") );

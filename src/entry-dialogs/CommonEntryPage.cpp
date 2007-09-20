@@ -201,7 +201,7 @@ void CommonEntryPage::slotUsageChanged()
 void CommonEntryPage::slotTypeBoxChanged(const QString &mainType)
 {
     subtype_box->clear();
-    subtype_box->addItems( m_wordTypes->subTypeNameList(mainType) );
+    subtype_box->addItems( m_wordTypes.subTypeNameList(mainType) );
 kDebug() << "fill subType box" << mainType;
     subtype_box->setCurrentIndex(-1);
 
@@ -351,7 +351,7 @@ void CommonEntryPage::slotDataChanged(const QString& )
 void CommonEntryPage::updateMainTypeBoxContents()
 {
     type_box->clear();
-    type_box->addItems( m_wordTypes->typeNameList() );
+    type_box->addItems( m_wordTypes.typeNameList() );
 }
 
 

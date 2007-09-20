@@ -140,7 +140,7 @@ void ThresholdOptions::fillWidgets()
         gradelist->addItem(TestEntryManager::gradeStr(i));
 
     typelist->clear();
-    typelist->addItems(m_doc->wordTypes()->typeNameList());
+    typelist->addItems(m_doc->wordTypes().typeNameList());
 
     badlist->clear();
     querylist->clear();

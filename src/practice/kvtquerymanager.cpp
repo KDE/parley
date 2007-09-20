@@ -163,7 +163,7 @@ kDebug() << "result: " << res;
 
     // check if we need a different grammar dialog
     if ( m_testType == Prefs::EnumTestType::GrammarTest &&
-        m_doc->wordTypes()->specialType(
+        m_doc->wordTypes().specialType(
             m_entry->exp->translation(Prefs::toIdentifier()).type()) != m_lastTestType ) {
         m_testDialog->accept();
         m_testDialog->deleteLater();
@@ -212,22 +212,22 @@ void QueryManager::createDialog()
         break;
 
     case Prefs::EnumTestType::GrammarTest:
-        specialWordType = m_doc->wordTypes()->specialType(
+        specialWordType = m_doc->wordTypes().specialType(
             m_entry->exp->translation(Prefs::toIdentifier()).type());
         if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeNoun() ) {
+                m_doc->wordTypes().specialTypeNoun() ) {
             m_testDialog = new ArtQueryDlg(m_doc, m_app);
         }
         if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeAdjective() ) {
+                m_doc->wordTypes().specialTypeAdjective() ) {
             m_testDialog = new AdjQueryDlg(m_doc, m_app);
         }
         if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeAdverb() ) {
+                m_doc->wordTypes().specialTypeAdverb() ) {
             m_testDialog = new AdjQueryDlg(m_doc, m_app);
         }
         if ( specialWordType ==
-                m_doc->wordTypes()->specialTypeVerb() ) {
+                m_doc->wordTypes().specialTypeVerb() ) {
             m_testDialog = new VerbQueryDlg(m_doc, m_app);
         }
         m_lastTestType = specialWordType;

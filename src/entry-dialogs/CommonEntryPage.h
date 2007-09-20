@@ -88,6 +88,6 @@ private:
     /// Selection in the doc - if more than one row is selected behavior is different
     QList<int>        m_entries;
     bool m_usageIsModified;
-    KEduVocWordType*  m_wordTypes;
+    KEduVocWordType   m_wordTypes;
 };
 #endif // CommonEntryPage_included

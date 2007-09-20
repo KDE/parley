@@ -142,15 +142,15 @@ void ArtQueryDlg::showSolution()
     resetQueryWidget(mw->femaleRadio);
     resetQueryWidget(mw->neutralRadio);
 
-    QString specialSubType = m_doc->wordTypes()->specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
 
-    if (specialSubType == m_doc->wordTypes()->specialTypeNounMale()) {
+    if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
         mw->maleRadio->setChecked(true);
         verifyButton(mw->maleRadio, true);
-    } else if (specialSubType == m_doc->wordTypes()->specialTypeNounFemale()) {
+    } else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
         mw->femaleRadio->setChecked(true);
         verifyButton(mw->femaleRadio, true);
-    } else if (specialSubType == m_doc->wordTypes()->specialTypeNounNeutral()) {
+    } else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
         mw->neutralRadio->setChecked(true);
         verifyButton(mw->neutralRadio, true);
     }
@@ -160,14 +160,14 @@ void ArtQueryDlg::showSolution()
 
 void ArtQueryDlg::verifyClicked()
 {
-    QString specialSubType = m_doc->wordTypes()->specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
 
     bool known = false;
-    if (specialSubType ==  m_doc->wordTypes()->specialTypeNounMale())
+    if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale())
         known = mw->maleRadio->isChecked();
-    else if (specialSubType == m_doc->wordTypes()->specialTypeNounFemale())
+    else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale())
         known = mw->femaleRadio->isChecked();
-    else if (specialSubType == m_doc->wordTypes()->specialTypeNounNeutral())
+    else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral())
         known = mw->neutralRadio->isChecked();
 
     if (mw->femaleRadio->isChecked()) {

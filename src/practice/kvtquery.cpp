@@ -478,35 +478,35 @@ int TestEntryManager::activeEntryCount()
 bool TestEntryManager::checkType(KEduVocExpression * entry)
 {
     QString wordType = entry->translation(m_toTranslation).type();
-    QString specialWordType = m_doc->wordTypes()->specialType(wordType);
-    QString specialSubType = m_doc->wordTypes()->specialSubType(wordType,
+    QString specialWordType = m_doc->wordTypes().specialType(wordType);
+    QString specialSubType = m_doc->wordTypes().specialSubType(wordType,
         entry->translation(m_toTranslation).subType());
 
     // if we do a grammar test, check only if the grammar type is valid
     if ( Prefs::testType() == Prefs::EnumTestType::GrammarTest ) {
         if ( Prefs::grammarArticleTest() ) {
-            if ( specialWordType == m_doc->wordTypes()->specialTypeNoun() ) {
+            if ( specialWordType == m_doc->wordTypes().specialTypeNoun() ) {
                 return
                     specialSubType ==
-                    m_doc->wordTypes()->specialTypeNounMale() ||
+                    m_doc->wordTypes().specialTypeNounMale() ||
                     specialSubType ==
-                    m_doc->wordTypes()->specialTypeNounFemale() ||
+                    m_doc->wordTypes().specialTypeNounFemale() ||
                     specialSubType ==
-                    m_doc->wordTypes()->specialTypeNounNeutral();
+                    m_doc->wordTypes().specialTypeNounNeutral();
             }
         }
         if ( Prefs::grammarComparisonAdjectiveTest() ) {
-            if ( specialWordType == m_doc->wordTypes()->specialTypeAdjective() ) {
+            if ( specialWordType == m_doc->wordTypes().specialTypeAdjective() ) {
                 return !entry->translation(m_toTranslation).comparison().isEmpty();
             }
         }
         if ( Prefs::grammarComparisonAdverbTest() ) {
-            if ( specialWordType == m_doc->wordTypes()->specialTypeAdverb() ) {
+            if ( specialWordType == m_doc->wordTypes().specialTypeAdverb() ) {
                 return !entry->translation(m_toTranslation).comparison().isEmpty();
             }
         }
         if ( Prefs::grammarConjugationTest() ) {
-            if ( specialWordType == m_doc->wordTypes()->specialTypeVerb() ) {
+            if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
                 return entry->translation(m_fromTranslation).conjugations().count() > 0;
             }
         }
