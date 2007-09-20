@@ -38,15 +38,18 @@ WordTypeOptionPage::WordTypeOptionPage(KEduVocDocument *doc, QWidget *parent) : 
 
     m_doc = doc;
 
-    m_wordTypes = m_doc->wordTypes();
+    // ref
+    m_originalWordTypes = m_doc->wordTypes();
+    // copy
+    m_newWordTypes = m_originalWordTypes;
 
     m_wordTypeModel = new QStandardItemModel();
     m_wordTypeModel->setHorizontalHeaderLabels( QStringList() << i18n("Word type") );
 
-    foreach ( QString typeString, m_wordTypes.typeNameList() ) {
+    foreach ( QString typeString, m_newWordTypes.typeNameList() ) {
         QStandardItem *item = new QStandardItem(typeString);
         m_wordTypeModel->appendRow(item);
-        foreach ( QString subTypeString, m_wordTypes.subTypeNameList( typeString ) ) {
+        foreach ( QString subTypeString, m_newWordTypes.subTypeNameList( typeString ) ) {
             QStandardItem *subItem = new QStandardItem(subTypeString);
             item->appendRow(subItem);
         }
@@ -70,16 +73,16 @@ void WordTypeOptionPage::itemChanged(QStandardItem * item)
 
     if ( item->index().parent() == QModelIndex() ) {
         // get the old name, rename
-        m_wordTypes.renameType( m_wordTypes.typeNameList().value(item->index().row()), item->text() );
-        oldType = m_wordTypes.typeNameList().value(item->index().row());
+        m_newWordTypes.renameType( m_newWordTypes.typeNameList().value(item->index().row()), item->text() );
+        oldType = m_newWordTypes.typeNameList().value(item->index().row());
 
     } else {
         QString mainType = item->parent()->text();
-kDebug() << "Parent is: " << mainType << " with children: " << m_wordTypes.subTypeNameList( mainType ).count();
-        oldType = m_wordTypes.subTypeNameList( mainType )[item->index().row()];
+kDebug() << "Parent is: " << mainType << " with children: " << m_newWordTypes.subTypeNameList( mainType ).count();
+        oldType = m_newWordTypes.subTypeNameList( mainType )[item->index().row()];
 
-        QString subType = m_wordTypes.subTypeNameList(mainType)[item->index().row()];
-        m_wordTypes.renameSubType( mainType, subType, item->text() );
+        QString subType = m_newWordTypes.subTypeNameList(mainType)[item->index().row()];
+        m_newWordTypes.renameSubType( mainType, subType, item->text() );
 
         oldType = subType;
     }
@@ -91,7 +94,7 @@ kDebug() << "Parent is: " << mainType << " with children: " << m_wordTypes.subTy
 void WordTypeOptionPage::slotNewWordType()
 {
     QString newTypeName = i18n("New type");
-    m_wordTypes.addType(newTypeName);
+    m_newWordTypes.addType(newTypeName);
     QStandardItem *item = new QStandardItem(newTypeName);
     m_wordTypeModel->appendRow(item);
     wordTypeTreeView->setCurrentIndex(item->index());
@@ -111,7 +114,7 @@ void WordTypeOptionPage::slotNewSubWordType()
         currentItem = currentItem->parent();
     }
     QString parentName = currentItem->text();
-    m_wordTypes.addSubType( parentName, newTypeName );
+    m_newWordTypes.addSubType( parentName, newTypeName );
     QStandardItem *item = new QStandardItem(newTypeName);
     currentItem->appendRow(item);
     wordTypeTreeView->setCurrentIndex(item->index());
@@ -135,24 +138,29 @@ void WordTypeOptionPage::slotDelete()
 
     if ( item->index().parent() == QModelIndex() ) {
         // get the old name, rename
-        if(!m_wordTypes.removeType( item->text() )){
+        if(!m_newWordTypes.removeType( item->text() )){
             KMessageBox::information(this, i18n("The type you selected could not be deleted since it is a special type used for practicing."), i18n("Delete type"));
             return; // special types cannot be deleted.
         }
     } else {
-        if(!m_wordTypes.removeSubType( item->parent()->text(), item->text() )){
+        if(!m_newWordTypes.removeSubType( item->parent()->text(), item->text() )){
             KMessageBox::information(this, i18n("The type you selected could not be deleted since it is a special type used for practicing."), i18n("Delete subtype"));
             return; // special types cannot be deleted.
         }
     }
 
     m_wordTypeModel->removeRow(item->index().row(), item->index().parent());
-    m_wordTypes.printDebugWordTypes();
+    m_newWordTypes.printDebugWordTypes();
 }
 
 void WordTypeOptionPage::slotActivated(QModelIndex * modelIndex)
 {
     kDebug() << "activated";
+}
+
+void WordTypeOptionPage::commitData()
+{
+    m_doc->wordTypes() = m_newWordTypes;
 }
 
 #include "TypeOptPage.moc"

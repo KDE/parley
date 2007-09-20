@@ -40,6 +40,7 @@ class WordTypeOptionPage : public QWidget, public Ui::WordTypeEditForm
 
 public:
     WordTypeOptionPage(KEduVocDocument *doc, QWidget *parent);
+    void commitData();
 
 private slots:
     void itemChanged( QStandardItem * item );
@@ -52,7 +53,8 @@ private slots:
 
 private:
     KEduVocDocument    *m_doc;
-    KEduVocWordType     m_wordTypes;
+    KEduVocWordType     m_originalWordTypes;
+    KEduVocWordType     m_newWordTypes;
     QStandardItemModel *m_wordTypeModel;
 };
 
