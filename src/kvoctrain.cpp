@@ -509,17 +509,26 @@ void KVocTrainApp::slotEditPaste()
 
     QString num;
 
+    QModelIndexList selectedRows = m_tableView->selectionModel()->selectedRows();
+    int lastSelectedRow;
+    if(!selectedRows.isEmpty())
+        lastSelectedRow = m_sortFilterModel->mapToSource(selectedRows.back()).row() + 1;
+    else
+        lastSelectedRow = m_tableModel->rowCount(QModelIndex());
+
+    int count = 0;
     while (!ts.atEnd()) {
         s = ts.readLine();
         if (!s.isEmpty()) {
-            m_tableModel->insertRows(m_tableModel->rowCount(QModelIndex()), 1);
+            m_tableModel->insertRows(lastSelectedRow + count, 1);
             QStringList sl = s.split('\t', QString::KeepEmptyParts);
 
             for (int i = 0; i < sl.count(); ++i) {
-                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_TRANS), sl[i], Qt::EditRole);
-                m_tableModel->setData(m_tableModel->index(m_tableModel->rowCount(QModelIndex()) - 1, i + KV_COL_TRANS), m_doc->currentLesson(), KVTTableModel::LessonRole);
+                m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), sl[i], Qt::EditRole);
+                m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_doc->currentLesson(), KVTTableModel::LessonRole);
             }
         }
+        count++;
     }
 
     QApplication::restoreOverrideCursor();
@@ -573,6 +582,11 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
     }
 }
 
+
+void KVocTrainApp::slotCurrentLessonChanged()
+{
+    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+}
 
 void KVocTrainApp::slotConfigShowSearch()
 {

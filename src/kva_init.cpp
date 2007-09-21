@@ -475,6 +475,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 
     /// New lesson selected
     connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), m_sortFilterModel, SLOT(slotCurrentLessonChanged(int)));
+    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged()));
     /** this is a little general, but at least we get notified of the changes */
     connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
 

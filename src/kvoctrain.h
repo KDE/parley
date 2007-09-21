@@ -200,6 +200,11 @@ private slots:
      */
     void slotSelectionChanged(const QItemSelection &, const QItemSelection &);
 
+    /**
+     * To update e.g. context menu entries when the table view changed
+     */
+    void slotCurrentLessonChanged();
+
     /** edit an entry */
     void slotEditEntry();
 

@@ -268,6 +268,27 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
 }
 
 
+bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)
+{
+    Q_UNUSED(parent);
+    if (count < 1 || row < 0) {
+        return false;
+    }
+
+    int bottomRow = row + count -1;
+    beginInsertRows(QModelIndex(), row, bottomRow);
+
+    for (int i = bottomRow; i >= row; i--) {
+        KEduVocExpression* entry = new KEduVocExpression(QString(), m_doc->currentLesson() );
+        m_doc->insertEntry(entry, i);
+    }
+
+    endInsertRows();
+    m_doc->setModified(true);
+    return true;
+}
+
+
 bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
 {
     Q_UNUSED(parent);
@@ -275,8 +296,8 @@ bool KVTTableModel::removeRows(int row, int count, const QModelIndex & parent)
         return false;
     }
 
-    int bottomRow = row + count -1;
-    beginRemoveRows(QModelIndex(), row, row + count - 1);
+    int bottomRow = row + count - 1;
+    beginRemoveRows(QModelIndex(), row, bottomRow);
 
     for (int i = bottomRow; i >= row; i--)
         m_doc->removeEntry(i);
