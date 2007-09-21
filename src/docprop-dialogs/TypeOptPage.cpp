@@ -153,11 +153,6 @@ void WordTypeOptionPage::slotDelete()
     m_newWordTypes.printDebugWordTypes();
 }
 
-void WordTypeOptionPage::slotActivated(QModelIndex * modelIndex)
-{
-    kDebug() << "activated";
-}
-
 void WordTypeOptionPage::commitData()
 {
     m_doc->wordTypes() = m_newWordTypes;

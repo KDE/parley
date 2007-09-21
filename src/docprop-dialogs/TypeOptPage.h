@@ -44,7 +44,6 @@ public:
 
 private slots:
     void itemChanged( QStandardItem * item );
-    void slotActivated( QModelIndex * modelIndex );
 
     void slotNewWordType();
     void slotNewSubWordType();
