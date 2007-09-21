@@ -263,7 +263,7 @@ void PracticeDialog::resultWrong()
 
 void PracticeDialog::audioPlayFromIdentifier()
 {
-    QString file = KUrl( m_doc->url(), m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl()).toLocalFile();
+    QString file = m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl().url();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -271,7 +271,7 @@ void PracticeDialog::audioPlayFromIdentifier()
 
 void PracticeDialog::audioPlayToIdentifier()
 {
-    QString file = KUrl( m_doc->url(), m_entry->exp->translation(Prefs::toIdentifier()).soundUrl()).toLocalFile();
+    QString file = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl().url();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }

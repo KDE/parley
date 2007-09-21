@@ -95,19 +95,15 @@ void AdditionalEditPage::setData(int row, int col)
     // create the audio url relative to the document
     // this would set the doc itself as url, so check, if sound url is empty.
     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).soundUrl().isEmpty() ) {
-        audioUrlRequester->setUrl(
-            KUrl( m_doc->url(),
-                m_doc->entry(
-                    m_currentRow)->translation(m_currentTranslation).soundUrl()) );
+        audioUrlRequester->setUrl( m_doc->entry(
+                    m_currentRow)->translation(m_currentTranslation).soundUrl() );
     } else {
         audioUrlRequester->clear();
     }
 
     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
-        imageUrlRequester->setUrl(
-            KUrl( m_doc->url(),
-                m_doc->entry(
-                    m_currentRow)->translation(m_currentTranslation).imageUrl()) );
+        imageUrlRequester->setUrl( m_doc->entry(
+                    m_currentRow)->translation(m_currentTranslation).imageUrl() );
     } else {
         imageUrlRequester->clear();
     }
@@ -123,10 +119,9 @@ void AdditionalEditPage::commitData()
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(paraphraseLineEdit->text());
 
     // sound and image
-    // try to save as relative url
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( KUrl::relativeUrl( m_doc->url() , audioUrlRequester->url().url()) );
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( audioUrlRequester->url() );
 
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( KUrl::relativeUrl( m_doc->url() , imageUrlRequester->url().url()) );
+    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( imageUrlRequester->url() );
 }
 
 
