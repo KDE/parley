@@ -83,18 +83,16 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const KEduVocConjugation &conj
     thirdN_plural->setEnabled(!common);
     thirdM_plural->setEnabled(!common);
 
-    QString def, indef;
-    articles.getMale(&def, &indef);
-    def_male->setText(def);
-    indef_male->setText(indef);
 
-    articles.getFemale(&def, &indef);
-    def_female->setText(def);
-    indef_female->setText(indef);
+    def_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine ));
+    indef_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine ));
 
-    articles.getNeutral(&def, &indef);
-    def_natural->setText(def);
-    indef_natural->setText(indef);
+    def_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine ));
+    indef_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine ));
+
+    def_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter ));
+    indef_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neuter ));
+
 }
 
 
@@ -183,49 +181,37 @@ void LangPropPage::slotThirdPCommonToggled(bool common)
 
 void LangPropPage::defFemaleChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getFemale(&def, &indef);
-    articles.setFemale(s, indef);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
 }
 
 
 void LangPropPage::indefFemaleChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getFemale(&def, &indef);
-    articles.setFemale(def, s);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine );
 }
 
 
 void LangPropPage::defMaleChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getMale(&def, &indef);
-    articles.setMale(s, indef);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
 }
 
 
 void LangPropPage::indefMaleChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getMale(&def, &indef);
-    articles.setMale(def, s);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine );
 }
 
 
 void LangPropPage::defNaturalChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getNeutral(&def, &indef);
-    articles.setNeutral(s, indef);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter );
 }
 
 
 void LangPropPage::indefNaturalChanged(const QString& s)
 {
-    QString def, indef;
-    articles.getNeutral(&def, &indef);
-    articles.setNeutral(def, s);
+    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neuter );
 }
 
 #include "LangPropPage.moc"
