@@ -239,7 +239,7 @@ int KVTLessonModel::addLesson(const QString &lessonName)
 
 bool KVTLessonModel::deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode)
 {
-    bool couldDelete = m_doc->deleteLesson(lessonIndex, mode);
+    bool couldDelete = m_doc->removeLesson(lessonIndex, mode);
     if (couldDelete) {
         beginRemoveRows(QModelIndex(), lessonIndex, lessonIndex);
         endRemoveRows();
