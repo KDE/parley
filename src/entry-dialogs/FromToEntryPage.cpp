@@ -53,8 +53,11 @@ FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidge
     connect(totalCountEdit, SIGNAL(valueChanged(int)), this, SLOT(totalCountChanged(int)));
     connect(badCountEdit, SIGNAL(valueChanged(int)), this, SLOT(badCountChanged(int)));
 
-    for (int i = 0; i <= KV_MAX_GRADE; i++)
+    connect(resetGradesButton, SIGNAL(clicked()), SLOT(slotResetGrades()));
+
+    for (int i = 0; i <= KV_MAX_GRADE; i++) {
         gradebox->addItem(TestEntryManager::gradeStr(i));
+    }
 
 }
 
@@ -68,6 +71,7 @@ void FromToEntryPage::slotFalseFriendChanged(const QString& s)
 
 void FromToEntryPage::slotGradeSelected(int g)
 {
+    m_gradeChanged=true;
     Q_UNUSED(g)
     emit sigModified();
 }
@@ -75,6 +79,7 @@ void FromToEntryPage::slotGradeSelected(int g)
 
 void FromToEntryPage::slotToday()
 {
+    m_practiceDateChanged=true;
     queryDateEdit->setDateTime(QDateTime::currentDateTime());
     emit sigModified();
 }
@@ -82,6 +87,7 @@ void FromToEntryPage::slotToday()
 
 void FromToEntryPage::slotNever()
 {
+    m_practiceDateChanged=true;
     queryDateEdit->setDate(queryDateEdit->minimumDate());
     queryDateEdit->setTime(queryDateEdit->minimumTime());
     emit sigModified();
@@ -96,61 +102,37 @@ bool FromToEntryPage::isModified()
 
     KEduVocExpression *entry = m_doc->entry(m_entries.value(0));
 
-    kDebug() << "FromToEntryPage::isModified(): entry: " << m_entries.value(0) << " from " << m_translationFrom << " to: " << m_translationTo;
-
     if ( m_entries.count() == 1 ) {
         if( fauxami_line->text() != entry->translation( m_translationTo ).falseFriend( m_translationFrom ) ) {
             return true;
         }
     }
 
-    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).grade()
-            != gradebox->currentIndex() ) {
-        return true;
-    }
-
-    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount()
-            != totalCountEdit->value() ) {
-        return true;
-    }
-
-    if ( entry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount()
-            != badCountEdit->value() ) {
+    if ( m_gradeChanged || m_totalCountChanged || m_wrongCountChanged || m_practiceDateChanged ) {
         return true;
     }
 
     return false;
-/// @todo check other fields!!!
-
-
-//queryDateEdit->dateTime();
-    /*
-if ( time.toTime_t() != 0 ) {
-            valid_date = true;
-            queryDateEdit->setDateTime(time);
-        }
-    queryDateEdit->setDateTime(QDateTime());
-    QDateTime time = m_doc->entry(m_entries.value(0))
-        ->translation(m_translationTo).gradeFrom(m_translationFrom).queryDate();
-
-*/
 }
 
 
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
+    m_practiceDateChanged=true;
     Q_UNUSED(d)
     emit sigModified();
 }
 
 void FromToEntryPage::totalCountChanged(int count)
 {
+    m_totalCountChanged=true;
     Q_UNUSED(count)
     emit sigModified();
 }
 
 void FromToEntryPage::badCountChanged(int count)
 {
+    m_wrongCountChanged=true;
     Q_UNUSED(count)
     emit sigModified();
 }
@@ -166,25 +148,65 @@ void FromToEntryPage::setData(const QList<int>& entries, int toTrans, int fromTr
     QString label = QString(i18n("Grades"));
     direc_label->setTitle(label);
 
-    KEduVocExpression *entry = m_doc->entry(m_entries.value(0));
+    KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
 
     queryDateEdit->setDateTime(
-        m_doc->entry(m_entries.value(0))->translation(m_translationTo)
+        firstEntry->translation(m_translationTo)
         .gradeFrom(m_translationFrom).queryDate() );
 
+    gradebox->setCurrentIndex(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
+
+    totalCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
+
+    badCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
+
     if ( m_entries.count() > 1 ) {
+        // fill enabled fields if equal for all edited entries, otherwise empty.
+        foreach ( int entry, m_entries) {
+            // grade
+            KEduVocExpression *currentEntry = m_doc->entry(entry);
+            if ( firstEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).grade()
+                    != currentEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).grade() ) {
+                gradebox->setCurrentIndex(-1);
+            }
+            // date
+            if ( firstEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).queryDate()
+                    != currentEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).queryDate() ) {
+                queryDateEdit->setDateTime(QDateTime());
+            }
+
+            // total count
+            if ( firstEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).queryCount()
+                    != currentEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).queryCount() ) {
+                totalCountEdit->clear();
+            }
+
+            // wrong count
+            if ( firstEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).badCount()
+                    != currentEntry->translation(m_translationTo)
+                    .gradeFrom(m_translationFrom).badCount() ) {
+                badCountEdit->clear();
+            }
+
+        }
         fauxami_line->setEnabled(false);
         fauxami_line->setText(QString());
     } else {
         fauxami_line->setEnabled(true);
-        fauxami_line->setText(entry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
+        fauxami_line->setText(firstEntry->translation( m_translationTo ).falseFriend( m_translationFrom ) );
     }
 
-    gradebox->setCurrentIndex(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
-
-    totalCountEdit->setValue(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
-
-    badCountEdit->setValue(m_doc->entry(m_entries.value(0))->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
+    m_gradeChanged=false;
+    m_practiceDateChanged=false;
+    m_totalCountChanged=false;
+    m_wrongCountChanged=false;
 
 }
 
@@ -194,56 +216,42 @@ void FromToEntryPage::commitData()
         kDebug() << "FromToEntryPage::commitData() invalid data to commit: " << m_entries.value(0) << ", " << m_translationFrom << ", " << m_translationTo;
     }
 
-/// @todo enable writing of data for multiple selection
-    KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
+    if ( m_entries.count() == 1 ) {
+    // these things are only changed when editing a single entry
+        KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);
+        trans->setFalseFriend(m_translationFrom, fauxami_line->text());
+    }
 
-    trans->setFalseFriend(m_translationFrom, fauxami_line->text());
-    trans->gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
-    trans->gradeFrom(m_translationFrom).setQueryCount( totalCountEdit->value() );
-    trans->gradeFrom(m_translationFrom).setBadCount( badCountEdit->value() );
-    trans->gradeFrom(m_translationFrom).setQueryDate( queryDateEdit->dateTime() );
-
-/*
-    Q_UNUSED(d);
-    m_dateIsModified = true;
-    setModified(true);
-    if (!valid_date)
-        slotToday();
-
-    validate();
-*/
-
-// } else {
-//         foreach(QModelIndex selIndex, m_entries) {
-//             //QModelIndex index = m_sortFilterModel->mapToSource(selIndex);
-//             KEduVocExpression *expr = m_doc->entry(m_entries.value(0));
-//
-//             if (m_currentTranslation >= 0) {
-//                 // only updated "common" props in multimode
-//                 // is the modified necessary? maybe because it can be different and will only be saved if the user changes it. otherwise it should stay different probably. so maybe leave the modified stuff in here.
-//                 if (fromPage->gradeIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setGrade(fromPage->getGrade());
-//                 if (toPage->gradeIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setGrade(toPage->getGrade());
-//                 if (fromPage->queryCountIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(fromPage->getQCount());
-//                 if (toPage->queryCountIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryCount(toPage->getQCount());
-//                 if (fromPage->badCountIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(fromPage->getBCount());
-//                 if (toPage->badCountIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setBadCount(toPage->getBCount());
-//                 if (fromPage->dateIsModified())
-//                     expr->translation(m_currentTranslation).gradeFrom(0).setQueryDate(fromPage->getDate());
-//                 if (toPage->dateIsModified())
-//                     expr->translation(0).gradeFrom(m_currentTranslation).setQueryDate( toPage->getDate());
-//             }
-//         }
-
+    // things that are changed for multiple or single entries
+    foreach(int entry, m_entries) {
+        if ( m_gradeChanged ) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
+        }
+        if ( m_totalCountChanged ) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setQueryCount( totalCountEdit->value() );
+        }
+        if ( m_wrongCountChanged ) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setBadCount( badCountEdit->value() );
+        }
+        if ( m_practiceDateChanged ) {
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setQueryDate( queryDateEdit->dateTime() );
+        }
+    }
 }
 
-void FromToEntryPage::clear()
+void FromToEntryPage::slotResetGrades()
 {
+    queryDateEdit->setDate(queryDateEdit->minimumDate());
+    queryDateEdit->setTime(queryDateEdit->minimumTime());
+
+    gradebox->setCurrentIndex(KV_MIN_GRADE);
+    totalCountEdit->setValue(0);
+    badCountEdit->setValue(0);
+
+    m_gradeChanged=true;
+    m_practiceDateChanged=true;
+    m_totalCountChanged=true;
+    m_wrongCountChanged=true;
 }
 
 
