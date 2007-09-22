@@ -265,8 +265,10 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 
 void KVocTrainApp::slotCutEntry()
 {
+    // there's no need to reinvent the wheel ;)
     slotEditCopy();
 
+    // but we won't ask the user whether to delete or not.. we'll just cut
     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
         int currentRow = m_tableView->currentIndex().row();
         int currentColumn = m_tableView->currentIndex().column();
@@ -557,6 +559,8 @@ void KVocTrainApp::slotEditPaste()
 
     QApplication::restoreOverrideCursor();
     slotStatusMsg(IDS_DEFAULT);
+
+    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 
