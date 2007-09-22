@@ -167,6 +167,9 @@ public slots:
     /** Create a new entry */
     void slotNewEntry();
 
+    /** Cut an entry */
+    void slotCutEntry();
+
     /** Delete an entry */
     void slotDeleteEntry();
 

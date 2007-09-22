@@ -167,6 +167,11 @@ void KVocTrainApp::initActions()
     editCopy->setToolTip(editCopy->whatsThis());
     editCopy->setStatusTip(editCopy->whatsThis());
 
+    KAction* editCut = KStandardAction::cut(this, SLOT(slotCutEntry()), actionCollection());
+    editCut->setWhatsThis(i18n("Copy"));
+    editCut->setToolTip(editCut->whatsThis());
+    editCut->setStatusTip(editCut->whatsThis());
+
     KAction* editPaste = KStandardAction::paste(this, SLOT(slotEditPaste()), actionCollection());
     editPaste->setWhatsThis(i18n("Paste"));
     editPaste->setToolTip(editPaste->whatsThis());

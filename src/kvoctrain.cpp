@@ -263,6 +263,30 @@ void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
 }
 
 
+void KVocTrainApp::slotCutEntry()
+{
+    slotEditCopy();
+
+    if (m_tableView->selectionModel()->selectedRows().count() == 1) {
+        int currentRow = m_tableView->currentIndex().row();
+        int currentColumn = m_tableView->currentIndex().column();
+        m_sortFilterModel->removeRows(m_tableView->currentIndex().row(), 1, QModelIndex());
+        m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    } else {
+        int currentRow = m_tableView->currentIndex().row();
+        int currentColumn = m_tableView->currentIndex().column();
+        int rowCount = m_sortFilterModel->rowCount(QModelIndex());
+        // Must count backwards otherwise entry-numbering goes wrong when
+        // deleting.
+        for (int i = rowCount - 1; i >= 0; i--)
+            if (m_tableView->selectionModel()->isRowSelected(i, QModelIndex()))
+                m_sortFilterModel->removeRows(i, 1, QModelIndex());
+        m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+    }
+    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+}
+
+
 void KVocTrainApp::slotDeleteEntry()
 {
     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
