@@ -157,7 +157,13 @@ protected:
      * Called by setQuery, so don't wory about it. Cann be called to restart the timer.
      */
     void startTimer();
+
+private slots:
+    void emitCorrect();
 private:
+    void audioPlayCorrect();
+
+
     QTimer    *m_timer;
     int        m_timerCount;
 

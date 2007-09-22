@@ -252,8 +252,8 @@ void PracticeDialog::skipUnknown()
 
 void PracticeDialog::resultCorrect()
 {
-//     audioPlayToIdentifier();
-    emit sigQueryChoice(Correct);
+    audioPlayCorrect();
+//     emit sigQueryChoice(Correct);
 }
 
 void PracticeDialog::resultWrong()
@@ -290,6 +290,34 @@ void PracticeDialog::audioPlayFile(const QString & soundFile)
 //         m_player->enqueue(soundFile);
     }
     m_player->play();
+}
+
+
+void PracticeDialog::audioPlayCorrect()
+{
+    KUrl soundFile = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl();
+    if ( !soundFile.isEmpty() ) {
+        if (!m_player)
+        {
+            kDebug() << "Creating Phonon player...";
+            m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
+            m_player->setParent(this);
+        } else {
+            m_player->setCurrentSource(soundFile);
+        }
+        connect(m_player, SIGNAL(finished()), this, SLOT(emitCorrect()));
+        m_player->play();
+        kDebug() << "Play sound: " << soundFile;
+    } else {
+//         QTimer::singleShot(2000, this, SLOT(emitCorrect()));
+        emitCorrect();
+    }
+}
+
+void PracticeDialog::emitCorrect()
+{
+kDebug() << "Correct";
+    emit sigQueryChoice(Correct);
 }
 
 

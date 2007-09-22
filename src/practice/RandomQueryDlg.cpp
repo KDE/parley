@@ -304,7 +304,7 @@ void RandomQueryDlg::verifyClicked()
         if (trans.count() == 0) {
             int percent = ((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0));
             mw->status->setText(getOKComment(percent));
-            knowItClicked();
+            resultCorrect();
         } else {
             for (i = 0; i < combos.count(); i ++)
                 verifyField(combos.at(i)->lineEdit(), "a\na");  // always fail
@@ -328,7 +328,7 @@ void RandomQueryDlg::verifyClicked()
 
         if (trans.count() == 0) {
             mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-            knowItClicked();
+            resultCorrect();
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);
