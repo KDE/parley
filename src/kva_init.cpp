@@ -368,11 +368,6 @@ void KVocTrainApp::initActions()
     configApp->setToolTip(configApp->whatsThis());
     configApp->setStatusTip(configApp->whatsThis());
 
-    if (!initialGeometrySet()) {
-        resize(QSize(550, 400).expandedTo(minimumSizeHint()));
-    }
-    setupGUI(ToolBar | Keys | StatusBar | Create);
-    setAutoSaveSettings();
 
     KAction* configToolbar = new KAction(this);
     actionCollection()->addAction("options_configure_toolbars", configToolbar);
@@ -385,6 +380,13 @@ void KVocTrainApp::initActions()
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
+
+
+    if (!initialGeometrySet()) {
+        resize(QSize(550, 400).expandedTo(minimumSizeHint()));
+    }
+    setupGUI(ToolBar | Keys | StatusBar | Create);
+    setAutoSaveSettings();
 }
 
 
