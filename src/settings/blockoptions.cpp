@@ -172,8 +172,6 @@ void BlockOptions::updateWidgets()
     expire5->setEnabled(expire);
     expire6->setEnabled(expire);
     expire7->setEnabled(expire);
-
-    emit blockExpireChanged(block, expire);
 }
 
 void BlockOptions::fillComboBox(QComboBox * cb)
@@ -209,7 +207,6 @@ void BlockOptions::slotBlockToggled(bool state)
     block5->setEnabled(state);
     block6->setEnabled(state);
     block7->setEnabled(state);
-    emit blockExpireChanged(state, kcfg_Expire->isChecked());
 }
 
 void BlockOptions::slotExpireToggled(bool state)
@@ -221,7 +218,6 @@ void BlockOptions::slotExpireToggled(bool state)
     expire5->setEnabled(state);
     expire6->setEnabled(state);
     expire7->setEnabled(state);
-    emit blockExpireChanged(kcfg_Block->isChecked(), state);
 }
 
 void BlockOptions::slotComboBoxActivated(int)

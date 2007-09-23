@@ -80,7 +80,6 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
     m_blockOptions = new BlockOptions(0);
     addPage(m_blockOptions, i18n("Blocking"), "configure", i18n("Blocking Settings"), true);
     connect(m_blockOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
-    connect(m_blockOptions, SIGNAL(blockExpireChanged(bool, bool)), m_thresholdOptions, SLOT(slotBlockExpire(bool, bool)));
 
     setButtonGuiItem(KDialog::User1, KGuiItem(i18n("&Profiles...")));
     setButtonToolTip(KDialog::User1, i18n("Save/load specific practice settings in/from a profile"));

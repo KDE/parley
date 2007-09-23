@@ -52,7 +52,6 @@ protected slots:
     void slotSetQueryComp(int);
     void slotSetTypeComp(int);
     void slotSetDateComp(int);
-    void slotBlockExpire(bool block, bool expire);
 
 private:
     static QString compStr(Prefs::EnumCompType::type type);

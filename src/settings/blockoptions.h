@@ -43,7 +43,6 @@ public:
 
 signals:
     void widgetModified();
-    void blockExpireChanged(bool block, bool expire);
 
 protected slots:
     void slotBlockToggled(bool);

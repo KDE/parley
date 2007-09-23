@@ -138,16 +138,6 @@
      </property>
     </spacer>
    </item>
-   <item row="8" column="0" colspan="2" >
-    <widget class="QLabel" name="labelInfoBlockingExpiring" >
-     <property name="text" >
-      <string>Grade and query count options can only be set, if neither blocking nor expiring on the next page is selected.</string>
-     </property>
-     <property name="wordWrap" >
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />

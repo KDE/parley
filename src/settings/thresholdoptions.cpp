@@ -291,26 +291,6 @@ void ThresholdOptions::slotSetDateComp(int i)
     emit widgetModified();
 }
 
-void ThresholdOptions::slotBlockExpire(bool block, bool expire)
-{
-    bool enable = !(block | expire);
-
-    gradecomp->setEnabled(enable);
-    gradelist->setEnabled(enable && gradecomp->currentIndex() != 0);
-    label_grade->setEnabled(enable);
-
-    datecomp->setEnabled(enable);
-    datelist->setEnabled(enable && datecomp->currentIndex() != 0);
-    label_qdate->setEnabled(enable);
-
-    querycomp->setEnabled(enable);
-    querylist->setEnabled(enable && querycomp->currentIndex() != 0);
-    label_qcount->setEnabled(enable);
-
-    badcomp->setEnabled(enable);
-    badlist->setEnabled(enable && badcomp->currentIndex() != 0);
-    label_bcount->setEnabled(enable);
-}
 
 bool ThresholdOptions::isDefault()
 {
