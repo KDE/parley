@@ -122,8 +122,7 @@ void FromToEntryPage::setData(const QList<int>& entries)
     m_entries = entries;
 
     // only set Grades as title for now:
-    QString label = QString(i18n("Grades"));
-    direc_label->setTitle(label);
+    direc_label->setTitle(QString(i18n("Grades from %1 to %2", m_doc->identifier(m_translationFrom).name(), m_doc->identifier(m_translationTo).name())));
 
     KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
 
@@ -153,7 +152,8 @@ void FromToEntryPage::setData(const QList<int>& entries)
                     .gradeFrom(m_translationFrom).queryDate()
                     != currentEntry->translation(m_translationTo)
                     .gradeFrom(m_translationFrom).queryDate() ) {
-                queryDateEdit->setDateTime(QDateTime());
+                queryDateEdit->setDate(queryDateEdit->minimumDate());
+                queryDateEdit->setTime(queryDateEdit->minimumTime());
             }
 
             // total count
