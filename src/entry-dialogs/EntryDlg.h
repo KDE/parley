@@ -61,6 +61,16 @@ public:
     void commitData(bool force);
 
 signals:
+    /**
+     * To notify the child pages of a new selection.
+     * @param
+     * @param
+     */
+    void signalSetData( const QList<int>& entries, int currentTranslation);
+    /**
+     * Tell the child pages to save their data.
+     */
+    void signalCommitData();
     void closeEntryDialog();
 
 private slots:
@@ -81,8 +91,6 @@ private:
 
     /// The dialog pages
     CommonEntryPage  *commonPage;
-    FromToEntryPage  *fromPage;
-    FromToEntryPage  *toPage;
     AdditionalEditPage *additionalPage;
     TenseEntryPage   *conjugationPage;
     AdjEntryPage     *comparisonPage;
@@ -94,8 +102,6 @@ private:
     KPageWidgetItem  *multipleChoicePageWidget;
     KPageWidgetItem  *comparisonPageWidget;
     KPageWidgetItem  *conjugationPageWidget;
-    KPageWidgetItem  *fromPageWidget;
-    KPageWidgetItem  *toPageWidget;
 
     KXmlGuiWindow      *mainwin;
     QSize             oldMainSize;

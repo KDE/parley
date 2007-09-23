@@ -35,11 +35,12 @@
 #include "practice/kvtquery.h"
 #include "EntryDlg.h"
 
-FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
+FromToEntryPage::FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent) : QWidget(parent)
 {
     m_doc = doc;
-    m_translationFrom = -1;
-    m_translationTo = -1;
+
+    m_translationFrom = fromIdentifier;
+    m_translationTo = toIdentifier;
 
     setupUi(this);
 
@@ -94,28 +95,6 @@ void FromToEntryPage::slotNever()
 }
 
 
-bool FromToEntryPage::isModified()
-{
-    if ( m_entries.value(0) < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
-        return false;
-    }
-
-    KEduVocExpression *entry = m_doc->entry(m_entries.value(0));
-
-    if ( m_entries.count() == 1 ) {
-        if( fauxami_line->text() != entry->translation( m_translationTo ).falseFriend( m_translationFrom ) ) {
-            return true;
-        }
-    }
-
-    if ( m_gradeChanged || m_totalCountChanged || m_wrongCountChanged || m_practiceDateChanged ) {
-        return true;
-    }
-
-    return false;
-}
-
-
 void FromToEntryPage::slotDateChanged(const QDate & d)
 {
     m_practiceDateChanged=true;
@@ -138,10 +117,8 @@ void FromToEntryPage::badCountChanged(int count)
 }
 
 
-void FromToEntryPage::setData(const QList<int>& entries, int toTrans, int fromTrans)
+void FromToEntryPage::setData(const QList<int>& entries)
 {
-    m_translationFrom = fromTrans;
-    m_translationTo = toTrans;
     m_entries = entries;
 
     // only set Grades as title for now:
@@ -212,10 +189,7 @@ void FromToEntryPage::setData(const QList<int>& entries, int toTrans, int fromTr
 
 void FromToEntryPage::commitData()
 {
-    if ( m_entries.value(0) < 0 || m_translationFrom < 0 || m_translationTo < 0 ) {
-        kDebug() << "FromToEntryPage::commitData() invalid data to commit: " << m_entries.value(0) << ", " << m_translationFrom << ", " << m_translationTo;
-    }
-
+kDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
     if ( m_entries.count() == 1 ) {
     // these things are only changed when editing a single entry
         KEduVocTranslation * trans = &m_doc->entry(m_entries.value(0))->translation(m_translationTo);

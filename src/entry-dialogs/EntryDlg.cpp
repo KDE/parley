@@ -81,18 +81,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     comparisonPageWidget->setIcon( KIcon( "arrow-up" ) );
     addPage(comparisonPageWidget);
 
-    fromPage = new FromToEntryPage(m_doc, this);
-    fromPageWidget = new KPageWidgetItem( fromPage,  i18n("From Original") );
-    fromPageWidget->setHeader( i18n( "Grades when asked to type in this language" ) );
-    fromPageWidget->setIcon( KIcon( "statistics" ) );
-    addPage(fromPageWidget);
-
-    toPage = new FromToEntryPage(m_doc, this);
-    toPageWidget = new KPageWidgetItem( toPage, i18n( "To Original" ) );
-    toPageWidget->setHeader( i18n( "Grades when asked to enter the original language" ) );
-    toPageWidget->setIcon( KIcon( "statistics" ) );
-    addPage(toPageWidget);
-
     connect(commonPage, SIGNAL(signalTypeSelected(const QString&)), this,  SLOT(slotTypeChanged(const QString&)));
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
@@ -106,11 +94,36 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     connect(mc_page, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(conjugationPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
 
-    connect(fromPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
-    connect(toPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
-
     commonPage->expr_line->setFocus();
     setModified(false);
+
+
+
+
+    for ( int identifier1 = 0; identifier1 < m_doc->identifierCount(); identifier1++ ) {
+        for ( int identifier2 = identifier1 + 1; identifier2 < m_doc->identifierCount(); identifier2++ ) {
+            FromToEntryPage* gradePage = new FromToEntryPage(m_doc, identifier1, identifier2, this);
+            QString title = i18n("Grades from \n%1 to %2", m_doc->identifier(identifier1).name(), m_doc->identifier(identifier2).name());
+            KPageWidgetItem* gradePageWidget = new KPageWidgetItem( gradePage, title );
+            gradePageWidget->setHeader( title );
+//             gradePageWidget->setIcon( KIcon( "statistics" ) );
+            addPage(gradePageWidget);
+            connect(gradePage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
+            connect(this, SIGNAL(signalSetData(const QList<int>&, int)), gradePage, SLOT(setData(const QList<int>&)));
+            connect(this, SIGNAL(signalCommitData()), gradePage, SLOT(commitData()));
+
+            gradePage = new FromToEntryPage(m_doc, identifier2, identifier1, this);
+            title = i18n("Grades from \n%1 to %2", m_doc->identifier(identifier2).name(), m_doc->identifier(identifier1).name());
+
+            gradePageWidget = new KPageWidgetItem( gradePage, title );
+            gradePageWidget->setHeader( title );
+//             gradePageWidget->setIcon( KIcon( "statistics" ) );
+            addPage(gradePageWidget);
+            connect(gradePage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
+            connect(this, SIGNAL(signalSetData(const QList<int>&, int)), gradePage, SLOT(setData(const QList<int>&)));
+            connect(this, SIGNAL(signalCommitData()), gradePage, SLOT(commitData()));
+        }
+    }
 }
 
 
@@ -278,12 +291,8 @@ void EntryDlg::updatePages()
         mc_page->setData( m_entries.value(0), m_currentTranslation );
     }
 
-// for now use the old grading system only to/from original
-// these are only valid if we edit a translation > 0. Otherwise they are disabled
-    if ( m_currentTranslation > 0 ) {
-        fromPage->setData( m_entries, m_currentTranslation, 0);
-        toPage->setData( m_entries, 0, m_currentTranslation);
-    }
+    // for the grades pages
+    emit signalSetData( m_entries, m_currentTranslation);
 
     // we always have the common page enabled
 
@@ -295,18 +304,7 @@ void EntryDlg::updatePages()
         multipleChoicePageWidget->setEnabled(false);
         conjugationPageWidget->setEnabled(false);
         comparisonPageWidget->setEnabled(false);
-        fromPageWidget->setEnabled(false);
-        toPageWidget->setEnabled(false);
     } else {
-
-        if ( m_currentTranslation > 0 ) {
-            fromPageWidget->setEnabled(true);
-            toPageWidget->setEnabled(true);
-        } else {
-            fromPageWidget->setEnabled(false);
-            toPageWidget->setEnabled(false);
-        }
-
         // multiple selection: have only common and grading pages
         if ( m_entries.count() > 1 ) {
             kDebug() << "EntryDlg::updatePages() count > 1";
@@ -350,12 +348,6 @@ void EntryDlg::commitData(bool force)
     if( commonPage->isEnabled() ) {
         commonPage->commitData();
     }
-    if( fromPage->isEnabled() ) {
-        fromPage->commitData();
-    }
-    if( toPage->isEnabled() ) {
-        toPage->commitData();
-    }
     if( additionalPage->isEnabled() ) {
         additionalPage->commitData();
     }
@@ -369,6 +361,7 @@ void EntryDlg::commitData(bool force)
         mc_page->commitData();
     }
 
+    emit signalCommitData();
 
 //m_tableModel->setData(m_tableModel->index(m_currentRow, 0), getLesson(), Qt::EditRole);            //m_tableModel->setData(m_tableModel->index(m_currentRow, m_currentTranslation), getExpr(), Qt::EditRole);
 

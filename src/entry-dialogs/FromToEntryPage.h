@@ -38,12 +38,11 @@ class FromToEntryPage : public QWidget, public Ui::FromToEntryPageForm
     Q_OBJECT
 
 public:
-    explicit FromToEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit FromToEntryPage(KEduVocDocument *doc, int fromIdentifier, int toIdentifier, QWidget *parent = 0);
 
-    void setData(const QList<int>& entries, int toTrans, int fromTrans);
+public slots:
+    void setData(const QList<int>& entries);
     void commitData();
-
-    bool isModified();
 
 signals:
     void sigModified();
@@ -61,7 +60,6 @@ private slots:
     void badCountChanged(int);
 
 private:
-
     KEduVocDocument     *m_doc;
     int m_translationFrom;
     int m_translationTo;
