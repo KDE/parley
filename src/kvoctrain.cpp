@@ -35,7 +35,7 @@
 #include "docprop-dialogs/DocPropDlg.h"
 #include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistics-dialogs/StatisticsDialog.h"
-#include "common-dialogs/kvoctrainprefs.h"
+#include "settings/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
 #include "docprop-dialogs/TitlePage.h"
 #include "practice/startpracticedialog.h"

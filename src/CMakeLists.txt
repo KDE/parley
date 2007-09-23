@@ -1,5 +1,5 @@
 
-add_subdirectory( common-dialogs )
+add_subdirectory( settings )
 add_subdirectory( examples )
 add_subdirectory( pics )
 
@@ -8,29 +8,29 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
-    common-dialogs/languagesettings.kcfgc
-    common-dialogs/presettings.kcfgc
-    common-dialogs/prefs.kcfgc
+    settings/languagesettings.kcfgc
+    settings/presettings.kcfgc
+    settings/prefs.kcfgc
 )
 
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
-    common-dialogs/kvoctrainprefs.cpp
-    common-dialogs/generaloptions.cpp
-    common-dialogs/viewoptions.cpp
-    common-dialogs/blockoptions.cpp
-    common-dialogs/groupoptions.cpp
-    common-dialogs/queryoptions.cpp
-    common-dialogs/thresholdoptions.cpp
-    common-dialogs/profilesdialog.cpp
+    settings/kvoctrainprefs.cpp
+    settings/generaloptions.cpp
+    settings/viewoptions.cpp
+    settings/blockoptions.cpp
+    settings/groupoptions.cpp
+    settings/queryoptions.cpp
+    settings/thresholdoptions.cpp
+    settings/profilesdialog.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
-    common-dialogs/blockoptionsbase.ui
-    common-dialogs/groupoptionsbase.ui
-    common-dialogs/queryoptionsbase.ui
-    common-dialogs/thresholdoptionsbase.ui
-    common-dialogs/viewoptionsbase.ui
-    common-dialogs/generaloptionsbase.ui
+    settings/blockoptionsbase.ui
+    settings/groupoptionsbase.ui
+    settings/queryoptionsbase.ui
+    settings/thresholdoptionsbase.ui
+    settings/viewoptionsbase.ui
+    settings/generaloptionsbase.ui
 )
 
 set(practice_SRCS
