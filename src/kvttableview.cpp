@@ -97,6 +97,7 @@ void KVTTableView::slotShowLessonColumn(bool show)
 {
     Prefs::setTableLessonColumnVisible(show);
     setColumnHidden(KV_COL_LESS, !show);
+    resizeEvent(0);
 }
 
 void KVTTableView::print(KPrinter * pPrinter)
@@ -215,8 +216,9 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
 {
     QWidget::resizeEvent(event);
 
-    if (event == 0)
-        return;
+//     if (event == 0) {
+//         return;
+//     }
 
     QHeaderView * header = horizontalHeader();
     int colCount =  model()->columnCount(QModelIndex());
@@ -234,8 +236,12 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
             // lesson is only half as wide as a original/translation
             // exclude fixed size of "mark"-column
             int x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 1) * 2 - 1);
-            header->resizeSection(KV_COL_LESS, x);
-            remainder -= x;
+
+            if ( Prefs::tableLessonColumnVisible() ) {
+                header->resizeSection(KV_COL_LESS, x);
+                remainder -= x;
+            }
+
             header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
             remainder -= KV_COLWIDTH_MARK;
             for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
