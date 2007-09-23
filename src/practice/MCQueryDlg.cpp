@@ -140,12 +140,27 @@ void MCQueryDlg::setEntry( TestEntry* entry)
         QList<KEduVocExpression*> exprlist;
 
         int count = MAX_MULTIPLE_CHOICE;
+        int numNonEmptyEntries = 0;
+
+        // find out if we got enough non-empty entries to fill all the options
+        for(int i = 0; i < m_doc->entryCount(); i++) {
+            if(!m_doc->entry(i)->translation(Prefs::toIdentifier()).text().isEmpty())
+                numNonEmptyEntries++;
+            if(numNonEmptyEntries >= MAX_MULTIPLE_CHOICE)
+                break;
+        }
+
         // gather random expressions for the choice
         while (count > 0) {
             int nr;
-            do {
+            // if there are enough non-empty fields, fill the options only with those
+            if(numNonEmptyEntries >= MAX_MULTIPLE_CHOICE) {
+                do {
+                    nr = randomSequence.getLong(m_doc->entryCount());
+                } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
+            } else {
                 nr = randomSequence.getLong(m_doc->entryCount());
-            } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
+            }
             // append if new expr found
             bool newex = true;
             for (int i = 0; newex && i < exprlist.count(); i++) {
