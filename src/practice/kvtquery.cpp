@@ -400,7 +400,6 @@ kDebug() << "Result: " << result;
     // handle the result
 
     if ( result == PracticeDialog::StopIt ) {
-        kDebug() << "Query stopped. Should not reach this function! TestEntryManager::result";
         return;
     }
 

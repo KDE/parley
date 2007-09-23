@@ -13,6 +13,8 @@
 
 #include "testentry.h"
 
+#include "prefs.h"
+
 #include <keduvocgrade.h>
 #include <keduvocexpression.h>
 
@@ -74,6 +76,15 @@ void TestEntry::incGoodCount()
     update();
     m_statisticGoodCount++;
     m_answeredCorrectInSequence++;
+    // increase grade, if first time:
+    if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
+        exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+    } else {
+        // alt learn: 3 times right
+        if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
+            exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+        }
+    }
 }
 
 void TestEntry::incSkipKnown()
@@ -81,6 +92,15 @@ void TestEntry::incSkipKnown()
     update();
     m_statisticSkipKnown++;
     m_answeredCorrectInSequence++;
+    // increase grade, if first time:
+    if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
+        exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+    } else {
+        // alt learn: 3 times right
+        if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
+            exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+        }
+    }
 }
 
 void TestEntry::incBadCount()
@@ -88,7 +108,7 @@ void TestEntry::incBadCount()
     update();
     m_statisticBadCount++;
     m_answeredCorrectInSequence = 0;
-
+    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).decGrade();
     exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incBadCount();
 }
 
@@ -97,6 +117,7 @@ void TestEntry::incTimeout()
     update();
     m_statisticTimeout++;
     m_answeredCorrectInSequence = 0;
+    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).decGrade();
     exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incBadCount();
 }
 
@@ -105,6 +126,7 @@ void TestEntry::incSkipUnknown()
     update();
     m_statisticSkipUnknown++;
     m_answeredCorrectInSequence = 0;
+    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).decGrade();
     exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incBadCount();
 }
 
