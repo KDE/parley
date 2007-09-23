@@ -127,7 +127,6 @@ public slots:
     /** overloaded for Message box on last window exit */
     bool queryExit();
     /** set up options */
-    void slotGeneralOptionsPage(int index);
     void slotGeneralOptions();
     void slotApplyPreferences();
     void slotLanguageProperties();

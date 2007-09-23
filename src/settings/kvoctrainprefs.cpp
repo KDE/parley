@@ -61,7 +61,6 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
 
     m_doc = doc;
 
-    m_languagePage = 0;
     m_config = config;
 
     m_generalOptions = new GeneralOptions(0);
@@ -87,12 +86,6 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
     setButtonToolTip(KDialog::User1, i18n("Save/load specific practice settings in/from a profile"));
     setButtonWhatsThis(KDialog::User1, i18n("A Profile is a set of settings (settings related to practices) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
     connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
-}
-
-void KVocTrainPrefs::selectLanguagePage()
-{
-    if (m_languagePage)
-        setCurrentPage(m_languagePage);
 }
 
 bool KVocTrainPrefs::hasChanged()

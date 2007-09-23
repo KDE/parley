@@ -437,16 +437,8 @@ void KVocTrainApp::slotCleanVocabulary()
 
 void KVocTrainApp::slotGeneralOptions()
 {
-    slotGeneralOptionsPage(-1);
-}
-
-
-void KVocTrainApp::slotGeneralOptionsPage(int index)
-{
     KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
-    if (index >= 0)
-        dialog->selectLanguagePage();
     dialog->show();
 }
 

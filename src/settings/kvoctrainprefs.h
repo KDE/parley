@@ -46,11 +46,6 @@ public:
      */
     KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-    /**
-     * Displays the dialog with the language page selected.
-     */
-    void selectLanguagePage();
-
 protected slots:
     /**
      * Called when the user clicks Apply or OK.
@@ -91,7 +86,6 @@ private:
     KConfigSkeleton *m_config;
     KEduVocDocument *m_doc;
     KComboBox       *m_lessons;
-    KPageWidgetItem *m_languagePage;
 };
 
 #endif
