@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvtquerymanager.h"
+#include "practicemanager.h"
 
 #include "kvoctrain.h"
 
@@ -67,7 +67,7 @@ static const char not_contain[] = I18N_NOOP(
 
 
 
-QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
+PracticeManager::PracticeManager(KVocTrainApp *app, KEduVocDocument *doc)
 {
     m_app = app;
     m_doc = doc;
@@ -78,7 +78,7 @@ QueryManager::QueryManager(KVocTrainApp *app, KEduVocDocument *doc)
 }
 
 
-void QueryManager::startPractice()
+void PracticeManager::startPractice()
 {
     m_lastTestType = QString();
     m_testType = Prefs::testType();
@@ -101,7 +101,7 @@ void QueryManager::startPractice()
 
 
 
-bool QueryManager::queryIsEmpty()
+bool PracticeManager::queryIsEmpty()
 {
     int i;
     for ( i = 0; i < m_doc->lessonCount(); i++ ) {
@@ -125,7 +125,7 @@ bool QueryManager::queryIsEmpty()
 }
 
 
-void QueryManager::slotResult(PracticeDialog::Result res)
+void PracticeManager::slotResult(PracticeDialog::Result res)
 {
 kDebug() << "result: " << res;
     m_doc->setModified();
@@ -176,7 +176,7 @@ kDebug() << "result: " << res;
 }
 
 
-void QueryManager::stopPractice()
+void PracticeManager::stopPractice()
 {
 kDebug() << "stopPractice";
     if (m_testDialog != 0) {
@@ -191,7 +191,7 @@ kDebug() << "stopPractice";
     deleteLater();
 }
 
-void QueryManager::createDialog()
+void PracticeManager::createDialog()
 {
     QString specialWordType;
 
@@ -233,7 +233,7 @@ void QueryManager::createDialog()
         m_lastTestType = specialWordType;
         break;
     default:
-        kError() << "QueryManager::startQuery: unknown type\n";
+        kError() << "PracticeManager::startQuery: unknown type\n";
         stopPractice();
         return;
     }
@@ -250,5 +250,5 @@ void QueryManager::createDialog()
 }
 
 
-#include "kvtquerymanager.moc"
+#include "practicemanager.moc"
 

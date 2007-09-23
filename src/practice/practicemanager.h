@@ -22,8 +22,8 @@
  ***************************************************************************/
 
 
-#ifndef KVTQUERYMANAGER_H
-#define KVTQUERYMANAGER_H
+#ifndef PRACTICEMANAGER_H
+#define PRACTICEMANAGER_H
 
 #include "kvtquery.h"
 #include "practicedialog.h"
@@ -33,12 +33,12 @@ class KEduVocDocument;
 class PracticeDialog;
 class TestEntry;
 
-class QueryManager :public QObject
+class PracticeManager :public QObject
 {
 Q_OBJECT
 
 public:
-    QueryManager(KVocTrainApp *app, KEduVocDocument *doc);
+    PracticeManager(KVocTrainApp *app, KEduVocDocument *doc);
     void startPractice();
 
 public slots:
