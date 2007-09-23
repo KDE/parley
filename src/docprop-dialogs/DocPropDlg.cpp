@@ -35,7 +35,7 @@ DocPropsDlg::DocPropsDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(pa
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
     setModal(true);
-//     setFaceType(KPageDialog::Tabbed);
+
     setFaceType(KPageDialog::List);
 
     typeOptPage = new WordTypeOptionPage(doc, 0);
