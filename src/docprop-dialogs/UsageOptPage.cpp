@@ -32,7 +32,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "practice/kvtquery.h"
+#include "practice/testentrymanager.h"
 
 #define USAGE_TAG ". "
 

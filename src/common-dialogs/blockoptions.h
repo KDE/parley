@@ -27,7 +27,7 @@
 #include <QList>
 
 #include "ui_blockoptionsbase.h"
-#include "practice/kvtquery.h"
+#include "practice/testentrymanager.h"
 
 class QComboBox;
 

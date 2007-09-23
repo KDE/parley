@@ -31,7 +31,7 @@
 #include <kmessagebox.h>
 #include <klocale.h>
 
-#include "practice/kvtquery.h"
+#include "practice/testentrymanager.h"
 #include <keduvocdocument.h>
 
 #define TENSE_TAG ". "

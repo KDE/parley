@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef kvtquery_included
-#define kvtquery_included
+#ifndef TESTENTRYMANAGER_H
+#define TESTENTRYMANAGER_H
 
 #include "testentry.h"
 #include "prefs.h"

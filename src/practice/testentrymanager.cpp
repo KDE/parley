@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvtquery.h"
+#include "testentrymanager.h"
 
 #include "testentry.h"
 

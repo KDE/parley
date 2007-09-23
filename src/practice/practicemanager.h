@@ -25,7 +25,7 @@
 #ifndef PRACTICEMANAGER_H
 #define PRACTICEMANAGER_H
 
-#include "kvtquery.h"
+#include "testentrymanager.h"
 #include "practicedialog.h"
 
 class KVocTrainApp;

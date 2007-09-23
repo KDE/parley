@@ -37,7 +37,7 @@
 #include <kicon.h>
 #include <kdialog.h>
 
-#include "practice/kvtquery.h"
+#include "practice/testentrymanager.h"
 #include "docprop-dialogs/DocPropDlg.h"
 #include "PhoneticEntryPage.h"
 #include "EntryDlg.h"

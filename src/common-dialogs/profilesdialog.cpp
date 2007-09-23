@@ -30,7 +30,7 @@
 #include "groupoptions.h"
 #include "presettings.h"
 #include "prefs.h"
-#include "practice/kvtquery.h" // for grading constants - would be nice to get rid of this...
+#include "practice/testentrymanager.h" // for grading constants - would be nice to get rid of this...
 
 SettingsProfile::SettingsProfile()
 {}

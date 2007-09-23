@@ -29,7 +29,7 @@
 #include <QProgressBar>
 #include <KDialog>
 
-#include "kvtquery.h"
+#include "testentrymanager.h"
 #include <keduvocgrammar.h>
 #include "prefs.h"
 

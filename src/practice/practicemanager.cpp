@@ -34,7 +34,7 @@
 #include "ArtQueryDlg.h"
 #include "SimpleQueryDlg.h"
 
-#include "kvtquery.h"
+#include "testentrymanager.h"
 #include "prefs.h"
 
 #include <keduvocwordtype.h>
