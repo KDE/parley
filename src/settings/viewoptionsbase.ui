@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>391</width>
-    <height>444</height>
+    <width>585</width>
+    <height>472</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -418,7 +418,7 @@
          </sizepolicy>
         </property>
         <property name="text" >
-         <string>Not &amp;queried:</string>
+         <string>Not &amp;practiced:</string>
         </property>
         <property name="buddy" >
          <cstring>kcfg_GradeCol0</cstring>
