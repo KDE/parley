@@ -24,7 +24,7 @@
 
 #include "kvoctrain.h"
 
-#include "practice/kvtquerymanager.h"
+#include "practice/practicemanager.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
@@ -658,8 +658,8 @@ void KVocTrainApp::configurePractice()
 
 void KVocTrainApp::startPractice()
 {
-    m_queryManager = new QueryManager(this, m_doc);
-    m_queryManager->startPractice();
+    m_practiceManager = new PracticeManager(this, m_doc);
+    m_practiceManager->startPractice();
 }
 
 

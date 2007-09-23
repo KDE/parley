@@ -38,7 +38,7 @@ class KVTSortFilterModel;
 class KVTTableView;
 class KVTLessonModel;
 class KVTLessonView;
-class QueryManager;
+class PracticeManager;
 class EntryDlg;
 class KVTNewStuff;
 
@@ -261,8 +261,7 @@ private:
 
     KLineEdit           *m_searchLine;
 
-    QueryManager        *m_queryManager;
-//     bool                 controlActive;
+    PracticeManager        *m_practiceManager;
 
     EntryDlg            *entryDlg;
 
