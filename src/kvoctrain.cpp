@@ -630,7 +630,7 @@ void KVocTrainApp::slotDocumentProperties()
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );
-
+    titleAuthorDialog->setCaption(i18nc("@title:dialg document properties", "Properties for %1", m_doc->url().url()));
     if ( titleAuthorDialog->exec() == QDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }
