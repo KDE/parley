@@ -40,8 +40,7 @@ TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(
 
     setupUi(this);
 
-    ///@todo hide dual conjugations for now
-    dualGroupBox->setVisible(false);
+
 
     ///@todo enable connect
 //     connect(b_next, SIGNAL(clicked()), SLOT(slotNextConj()));
@@ -93,6 +92,8 @@ void TenseEntryPage::setData(int row, int col)
     tensebox->clear();
     tensebox->addItems(m_doc->tenseDescriptions());
 
+    ///@todo hide dual conjugations for now
+    dualGroupBox->setVisible( m_doc->identifier(m_currentTranslation).personalPronouns().dualExists() );
 
     bool maleFemaleDifferent = m_doc->identifier(m_currentTranslation).personalPronouns().maleFemaleDifferent();
 

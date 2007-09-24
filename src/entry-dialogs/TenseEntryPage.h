@@ -53,7 +53,6 @@ private slots:
 private:
     void setModified(bool mod);
     QMap <QString, KEduVocConjugation> m_conjugations;
-//     QString            selection;
     bool               m_modified;
     KEduVocDocument     *m_doc;
     int m_currentRow;
