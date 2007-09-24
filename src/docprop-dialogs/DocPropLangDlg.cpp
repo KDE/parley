@@ -54,7 +54,7 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent) : KPageD
         QString s;
         s = doc->identifier(i).name();
 
-        lpp = new LangPropPage(doc, doc->identifier(i).personalPronouns(), doc->identifier(i).article(), 0);
+        lpp = new LangPropPage(doc, i, 0);
         KPageWidgetItem *pageItem = new KPageWidgetItem(lpp, s);
         pageItem->setHeader(s);
 
@@ -79,22 +79,12 @@ DocPropsLangDlg::~DocPropsLangDlg()
     KDialog::saveDialogSize(cg);
 }
 
-
-KEduVocConjugation DocPropsLangDlg::getConjugation(int idx) const
+void DocPropsLangDlg::accept()
 {
-    if (idx < langPages.count())
-        return langPages[idx]->getConjugation();
-    else
-        return KEduVocConjugation();
-}
-
-
-KEduVocArticle DocPropsLangDlg::getArticle(int idx) const
-{
-    if (idx < langPages.count())
-        return langPages[idx]->getArticle();
-    else
-        return KEduVocArticle();
+    QDialog::accept();
+    foreach ( LangPropPage* langPage, langPages ) {
+        langPage->accept();
+    }
 }
 
 

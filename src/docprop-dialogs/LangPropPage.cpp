@@ -33,56 +33,15 @@
 
 #include <keduvocdocument.h>
 
-LangPropPage::LangPropPage(KEduVocDocument *_doc, const KEduVocConjugation &conjug, const KEduVocArticle &art, QWidget *parent) : QWidget(parent)
+LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent) : QWidget(parent)
 {
+    m_doc = doc;
+    m_identifierIndex = identifierIndex;
+
     setupUi(this);
 
-    connect(def_male,        SIGNAL(textChanged(const QString&)), this, SLOT(defMaleChanged(const QString&)));
-    connect(indef_male,      SIGNAL(textChanged(const QString&)), this, SLOT(indefMaleChanged(const QString&)));
-    connect(indef_female,    SIGNAL(textChanged(const QString&)), this, SLOT(indefFemaleChanged(const QString&)));
-    connect(def_female,      SIGNAL(textChanged(const QString&)), this, SLOT(defFemaleChanged(const QString&)));
-    connect(def_natural,     SIGNAL(textChanged(const QString&)), this, SLOT(defNaturalChanged(const QString&)));
-    connect(indef_natural,   SIGNAL(textChanged(const QString&)), this, SLOT(indefNaturalChanged(const QString&)));
-    connect(first_singular,  SIGNAL(textChanged(const QString&)), this, SLOT(firstSingularChanged(const QString&)));
-    connect(first_plural,    SIGNAL(textChanged(const QString&)), this, SLOT(firstPluralChanged(const QString&)));
-    connect(second_singular, SIGNAL(textChanged(const QString&)), this, SLOT(secondSingularChanged(const QString&)));
-    connect(second_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(secondPluralChanged(const QString&)));
-    connect(thirdF_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdFSingularChanged(const QString&)));
-    connect(thirdF_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdFPluralChanged(const QString&)));
-    connect(thirdM_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdMSingularChanged(const QString&)));
-    connect(thirdM_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdMPluralChanged(const QString&)));
-    connect(thirdN_singular, SIGNAL(textChanged(const QString&)), this, SLOT(thirdNSingularChanged(const QString&)));
-    connect(thirdN_plural,   SIGNAL(textChanged(const QString&)), this, SLOT(thirdNPluralChanged(const QString&)));
-    connect(thirdS_common,   SIGNAL(toggled(bool)),               this, SLOT(slotThirdSCommonToggled(bool)));
-    connect(thirdP_common,   SIGNAL(toggled(bool)),               this, SLOT(slotThirdPCommonToggled(bool)));
-
-    doc = _doc;
-    conjugations = conjug;
-
-
-    articles = art;
-
-    first_plural->setText(conjugations.pers1Plural());
-    first_singular->setText(conjugations.pers1Singular());
-    second_singular->setText(conjugations.pers2Singular());
-    second_plural->setText(conjugations.pers2Plural());
-    thirdM_plural->setText(conjugations.pers3MalePlural());
-    thirdM_singular->setText(conjugations.pers3MaleSingular());
-    thirdF_plural->setText(conjugations.pers3FemalePlural());
-    thirdF_singular->setText(conjugations.pers3FemaleSingular());
-    thirdN_plural->setText(conjugations.pers3NaturalPlural());
-    thirdN_singular->setText(conjugations.pers3NaturalSingular());
-
-    bool common = conjugations.pers3SingularCommon();
-    thirdS_common->setChecked(common);
-    thirdM_singular->setEnabled(!common);
-    thirdN_singular->setEnabled(!common);
-
-    common = conjugations.pers3PluralCommon();
-    thirdP_common->setChecked(common);
-    thirdN_plural->setEnabled(!common);
-    thirdM_plural->setEnabled(!common);
-
+    // articles
+    KEduVocArticle articles = m_doc->identifier(m_identifierIndex).article();
 
     def_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine ));
     indef_male->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine ));
@@ -93,125 +52,100 @@ LangPropPage::LangPropPage(KEduVocDocument *_doc, const KEduVocConjugation &conj
     def_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter ));
     indef_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neuter ));
 
+    // personal pronouns
+    const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
+    const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
+
+    KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
+
+    first_singular->setText(pronoun.personalPronoun(KEduVocConjugation::First, numS));
+    second_singular->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numS));
+    thirdM_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numS));
+    thirdF_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numS));
+    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numP));
+    first_plural->setText(pronoun.personalPronoun(KEduVocConjugation::First, numP));
+    second_plural->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numP));
+    thirdM_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numP));
+    thirdF_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numP));
+    thirdN_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numP));
+
+    neuterExists( pronoun.neuterExists() );
+    maleFemaleDiffer( pronoun.maleFemaleDifferent() );
+    maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
+    neuterCheckBox->setChecked(pronoun.neuterExists());
+    connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(maleFemaleDiffer(bool)));
+    connect(neuterCheckBox, SIGNAL(toggled(bool)), SLOT(neuterExists(bool)));
 }
 
 
-KEduVocConjugation LangPropPage::getConjugation()
+void LangPropPage::accept()
 {
-//     conjugations.cleanUp();
-    return conjugations;
+    // articles
+    const KEduVocArticle::ArticleNumber artSing = KEduVocArticle::Singular;
+    const KEduVocArticle::ArticleNumber artDual = KEduVocArticle::Dual;
+    const KEduVocArticle::ArticleNumber artPlur = KEduVocArticle::Plural;
+
+    const KEduVocArticle::ArticleDefiniteness artDef = KEduVocArticle::Definite;
+    const KEduVocArticle::ArticleDefiniteness artIndef = KEduVocArticle::Indefinite;
+
+    KEduVocArticle article;
+
+    article.setArticle( def_male->text(),  artSing, artDef, KEduVocArticle::Masculine );
+    article.setArticle( indef_male->text(),  artSing, artIndef, KEduVocArticle::Masculine );
+    article.setArticle( def_female->text(),  artSing, artDef, KEduVocArticle::Feminine );
+    article.setArticle( indef_female->text(),  artSing, artIndef, KEduVocArticle::Feminine );
+    article.setArticle( def_natural->text(),  artSing, artDef, KEduVocArticle::Neuter );
+    article.setArticle( indef_natural->text(),  artSing, artIndef, KEduVocArticle::Neuter );
+
+    m_doc->identifier(m_identifierIndex).setArticle( article );
+
+    // personal pronouns
+    KEduVocPersonalPronoun pronoun;
+    const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
+    const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
+
+    pronoun.setPersonalPronoun(first_singular->text(),  KEduVocConjugation::First, numS);
+    pronoun.setPersonalPronoun(second_singular->text(), KEduVocConjugation::Second, numS);
+    pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocConjugation::ThirdMale, numS);
+    pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocConjugation::ThirdFemale, numS);
+    pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeuterCommon, numS);
+    pronoun.setPersonalPronoun(first_plural->text(), KEduVocConjugation::First, numP);
+    pronoun.setPersonalPronoun(second_plural->text(), KEduVocConjugation::Second, numP);
+    pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocConjugation::ThirdMale, numP);
+    pronoun.setPersonalPronoun(thirdF_plural->text(), KEduVocConjugation::ThirdFemale, numP);
+    pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocConjugation::ThirdNeuterCommon, numP);
+
+    pronoun.setMaleFemaleDifferent(maleFemaleDifferCheckBox->isChecked());
+    pronoun.setNeuterExists(neuterCheckBox->isChecked());
+    m_doc->identifier(m_identifierIndex).setPersonalPronouns( pronoun );
 }
 
-
-void LangPropPage::firstPluralChanged(const QString& s)
+void LangPropPage::maleFemaleDiffer(bool diff)
 {
-    conjugations.setPers1Plural(s);
+    neuterCheckBox->setVisible(diff);
+    male_c_label->setVisible(diff);
+    female_c_label->setVisible(diff);
+    thirdM_singular->setVisible(diff);
+    thirdF_singular->setVisible(diff);
+    thirdM_plural->setVisible(diff);
+    thirdF_plural->setVisible(diff);
+
+    if ( !diff ) {
+        natural_c_label->setVisible(true);
+        thirdN_singular->setVisible(true);
+        thirdN_plural->setVisible(true);
+    } else {
+        natural_c_label->setVisible(neuterCheckBox->isChecked());
+        thirdN_singular->setVisible(neuterCheckBox->isChecked());
+        thirdN_plural->setVisible(neuterCheckBox->isChecked());
+    }
 }
 
-
-void LangPropPage::firstSingularChanged(const QString& s)
+void LangPropPage::neuterExists(bool exists)
 {
-    conjugations.setPers1Singular(s);
-}
-
-
-void LangPropPage::secondSingularChanged(const QString& s)
-{
-    conjugations.setPers2Singular(s);
-}
-
-
-void LangPropPage::secondPluralChanged(const QString& s)
-{
-    conjugations.setPers2Plural(s);
-}
-
-
-void LangPropPage::thirdFPluralChanged(const QString& s)
-{
-    conjugations.setPers3FemalePlural(s);
-}
-
-
-void LangPropPage::thirdFSingularChanged(const QString& s)
-{
-    conjugations.setPers3FemaleSingular(s);
-}
-
-
-void LangPropPage::thirdMSingularChanged(const QString& s)
-{
-    conjugations.setPers3MaleSingular(s);
-}
-
-
-void LangPropPage::thirdNSingularChanged(const QString& s)
-{
-    conjugations.setPers3NaturalSingular(s);
-}
-
-
-void LangPropPage::thirdNPluralChanged(const QString& s)
-{
-    conjugations.setPers3NaturalPlural(s);
-}
-
-
-void LangPropPage::thirdMPluralChanged(const QString& s)
-{
-    conjugations.setPers3MalePlural(s);
-}
-
-
-void LangPropPage::slotThirdSCommonToggled(bool common)
-{
-    conjugations.setPers3SingularCommon(common);
-    thirdN_singular->setEnabled(!common);
-    thirdM_singular->setEnabled(!common);
-}
-
-
-void LangPropPage::slotThirdPCommonToggled(bool common)
-{
-    conjugations.setPers3PluralCommon(common);
-    thirdN_plural->setEnabled(!common);
-    thirdM_plural->setEnabled(!common);
-}
-
-
-void LangPropPage::defFemaleChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
-}
-
-
-void LangPropPage::indefFemaleChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine );
-}
-
-
-void LangPropPage::defMaleChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
-}
-
-
-void LangPropPage::indefMaleChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Masculine );
-}
-
-
-void LangPropPage::defNaturalChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter );
-}
-
-
-void LangPropPage::indefNaturalChanged(const QString& s)
-{
-    articles.setArticle(s,  KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neuter );
+    natural_c_label->setVisible(exists);
+    thirdN_singular->setVisible(exists);
+    thirdN_plural->setVisible(exists);
 }
 
 #include "LangPropPage.moc"

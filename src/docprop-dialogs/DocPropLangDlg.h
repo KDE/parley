@@ -44,7 +44,7 @@ public:
 
     ~DocPropsLangDlg();
 
-    KEduVocConjugation getConjugation(int idx) const;
+    void accept();
     KEduVocArticle     getArticle(int idx) const;
 
 private:

@@ -46,26 +46,14 @@ signals:
     void sigModified();
 
 private slots:
-    void secondPluralChanged(const QString&);
-    void secondSingularChanged(const QString&);
-    void thirdNSingularChanged(const QString&);
-    void thirdFPluralChanged(const QString&);
-    void thirdMSingularChanged(const QString&);
-    void thirdFSingularChanged(const QString&);
+    void textChanged(const QString&);
     void slotTenseSelected(int);
-    void thirdMPluralChanged(const QString&);
-    void thirdNPluralChanged(const QString&);
-    void firstSingularChanged(const QString&);
-    void firstPluralChanged(const QString&);
-    void slotThirdSCommonToggled(bool);
-    void slotThirdPCommonToggled(bool);
     void slotNextConj();
 
 private:
     void setModified(bool mod);
-    KEduVocConjugation prefix;
     QMap <QString, KEduVocConjugation> m_conjugations;
-    QString            selection;
+//     QString            selection;
     bool               m_modified;
     KEduVocDocument     *m_doc;
     int m_currentRow;

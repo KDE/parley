@@ -33,47 +33,20 @@
 #include <keduvocconjugation.h>
 
 class KEduVocDocument;
-class KEduVocConjugation;
-class KEduVocArticle;
 
 class LangPropPage : public QWidget, public Ui::LangPropPageForm
 {
     Q_OBJECT
 public:
-    LangPropPage(KEduVocDocument *doc, const KEduVocConjugation &conjugations,
-                 const KEduVocArticle &article, QWidget *parent = 0);
+    LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *parent = 0);
+    void accept();
 
-    KEduVocConjugation getConjugation();
-    KEduVocArticle getArticle() const
-    {
-        return articles;
-    }
-
-protected slots:
-    void secondPluralChanged(const QString&);
-    void secondSingularChanged(const QString&);
-    void thirdNSingularChanged(const QString&);
-    void thirdFPluralChanged(const QString&);
-    void thirdMSingularChanged(const QString&);
-    void thirdFSingularChanged(const QString&);
-    void thirdMPluralChanged(const QString&);
-    void thirdNPluralChanged(const QString&);
-    void firstPluralChanged(const QString&);
-    void firstSingularChanged(const QString&);
-    void slotThirdSCommonToggled(bool);
-    void slotThirdPCommonToggled(bool);
-
-    void defNaturalChanged(const QString&);
-    void indefMaleChanged(const QString&);
-    void indefNaturalChanged(const QString&);
-    void defFemaleChanged(const QString&);
-    void indefFemaleChanged(const QString&);
-    void defMaleChanged(const QString&);
-
+private slots:
+    void maleFemaleDiffer(bool diff);
+    void neuterExists(bool exists);
 private:
-    KEduVocDocument    *doc;
-    KEduVocConjugation  conjugations;
-    KEduVocArticle      articles;
+    KEduVocDocument    *m_doc;
+    int m_identifierIndex;
 };
 
 #endif // LangPropPage_included

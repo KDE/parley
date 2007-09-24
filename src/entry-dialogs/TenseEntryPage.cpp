@@ -40,38 +40,24 @@ TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(
 
     setupUi(this);
 
-    connect(third_p_common, SIGNAL(toggled(bool)), SLOT(slotThirdPCommonToggled(bool)));
-    connect(third_s_common, SIGNAL(toggled(bool)), SLOT(slotThirdSCommonToggled(bool)));
-    connect(b_next, SIGNAL(clicked()), SLOT(slotNextConj()));
-    connect(tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+    ///@todo hide dual conjugations for now
+    dualGroupBox->setVisible(false);
 
-    connect(thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)));
-    connect(thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)));
-    connect(thirdM_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdMPluralChanged(const QString&)));
-    connect(thirdM_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdMSingularChanged(const QString&)));
-    connect(thirdF_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdFPluralChanged(const QString&)));
-    connect(thirdF_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdFSingularChanged(const QString&)));
-    connect(second_plural, SIGNAL(textChanged(const QString&)), SLOT(secondPluralChanged(const QString&)));
-    connect(second_singular, SIGNAL(textChanged(const QString&)), SLOT(secondSingularChanged(const QString&)));
-    connect(first_plural, SIGNAL(textChanged(const QString&)), SLOT(firstPluralChanged(const QString&)));
-    connect(first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)));
+    ///@todo enable connect
+//     connect(b_next, SIGNAL(clicked()), SLOT(slotNextConj()));
+//     connect(tensebox, SIGNAL(activated(int)), SLOT(slotTenseSelected(int)));
+//
+//     connect(thirdN_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdNPluralChanged(const QString&)));
+//     connect(thirdN_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdNSingularChanged(const QString&)));
+//     connect(thirdM_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdMPluralChanged(const QString&)));
+//     connect(thirdM_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdMSingularChanged(const QString&)));
+//     connect(thirdF_plural, SIGNAL(textChanged(const QString&)), SLOT(thirdFPluralChanged(const QString&)));
+//     connect(thirdF_singular, SIGNAL(textChanged(const QString&)), SLOT(thirdFSingularChanged(const QString&)));
+//     connect(second_plural, SIGNAL(textChanged(const QString&)), SLOT(secondPluralChanged(const QString&)));
+//     connect(second_singular, SIGNAL(textChanged(const QString&)), SLOT(secondSingularChanged(const QString&)));
+//     connect(first_plural, SIGNAL(textChanged(const QString&)), SLOT(firstPluralChanged(const QString&)));
+//     connect(first_singular, SIGNAL(textChanged(const QString&)), SLOT(firstSingularChanged(const QString&)));
 
-    selection = "";
-
-    /*
-      // FIXME: fill labels with prefixes ?
-
-      label_first_plural->setText (con_prefix.pers1Plural (CONJ_PREFIX));
-      label_first_singular->setText (con_prefix.pers1Singular (CONJ_PREFIX));
-      label_second_singular->setText (con_prefix.pers2Singular (CONJ_PREFIX));
-      label_second_plural->setText (con_prefix.pers2Plural (CONJ_PREFIX));
-      label_thirdM_singular->setText (con_prefix.pers3MaleSingular (CONJ_PREFIX));
-      label_thirdM_plural->setText (con_prefix.pers3MalePlural (CONJ_PREFIX));
-      label_thirdF_singular->setText (con_prefix.pers3FemaleSingular (CONJ_PREFIX));
-      label_thirdF_plural->setText (con_prefix.pers3FemalePlural (CONJ_PREFIX));
-      label_thirdN_singular->setText (con_prefix.pers3NaturalSingular (CONJ_PREFIX));
-      label_thirdN_plural->setText (con_prefix.pers3NaturalPlural (CONJ_PREFIX));
-    */
 }
 
 void TenseEntryPage::setData(int row, int col)
@@ -80,14 +66,58 @@ void TenseEntryPage::setData(int row, int col)
     m_currentTranslation = col;
 
     if ( m_currentTranslation < 0 ) {
-        kDebug() << "Invalid tense for TenseEntryPage";
+        kDebug() << "Invalid identifier for TenseEntryPage" << m_currentTranslation;
         return;
     }
 
-    prefix = m_doc->identifier(m_currentTranslation).personalPronouns();
+    KEduVocPersonalPronoun pron = m_doc->identifier(m_currentTranslation).personalPronouns();
+
+    singularFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Singular ));
+    singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Singular ));
+    singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular ));
+    singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular ));
+    singularThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular ));
+
+    dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Dual ));
+    dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Dual ));
+    dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual ));
+    dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual ));
+    dualThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual ));
+
+    pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Plural ));
+    pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Plural ));
+    pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural ));
+    pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
+    pluralThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural ));
 
     tensebox->clear();
     tensebox->addItems(m_doc->tenseDescriptions());
+
+
+    bool maleFemaleDifferent = m_doc->identifier(m_currentTranslation).personalPronouns().maleFemaleDifferent();
+
+    singularThirdMalePersonLabel->setVisible(maleFemaleDifferent);
+    singularThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
+    singularThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
+    singularThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
+
+    pluralThirdMalePersonLabel->setVisible(maleFemaleDifferent);
+    pluralThirdMalePersonLineEdit->setVisible(maleFemaleDifferent);
+    pluralThirdFemalePersonLabel->setVisible(maleFemaleDifferent);
+    pluralThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
+
+    if ( !maleFemaleDifferent ) {
+        singularThirdNeuterPersonLabel->setVisible(true);
+        singularThirdNeuterPersonLineEdit->setVisible(true);
+        pluralThirdNeuterPersonLabel->setVisible(true);
+        pluralThirdNeuterPersonLineEdit->setVisible(true);
+    } else {
+        bool neuterExists = m_doc->identifier(m_currentTranslation).personalPronouns().neuterExists();
+        singularThirdNeuterPersonLabel->setVisible(neuterExists);
+        singularThirdNeuterPersonLineEdit->setVisible(neuterExists);
+        pluralThirdNeuterPersonLabel->setVisible(neuterExists);
+        pluralThirdNeuterPersonLineEdit->setVisible(neuterExists);
+    }
 
     m_conjugations = m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugations();
     slotTenseSelected(0);
@@ -96,117 +126,40 @@ void TenseEntryPage::setData(int row, int col)
 }
 
 
-void TenseEntryPage::firstPluralChanged(const QString& s)
+void TenseEntryPage::textChanged(const QString& s)
 {
-    m_conjugations[selection].setPers1Plural(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::firstSingularChanged(const QString& s)
-{
-    m_conjugations[selection].setPers1Singular(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::secondSingularChanged(const QString& s)
-{
-    m_conjugations[selection].setPers2Singular(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::secondPluralChanged(const QString& s)
-{
-    m_conjugations[selection].setPers2Plural(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdFPluralChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3FemalePlural(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdFSingularChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3FemaleSingular(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdMSingularChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3MaleSingular(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdNSingularChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3NaturalSingular(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdNPluralChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3NaturalPlural(s);
-    setModified(true);
-}
-
-
-void TenseEntryPage::thirdMPluralChanged(const QString& s)
-{
-    m_conjugations[selection].setPers3MalePlural(s);
     setModified(true);
 }
 
 
 void TenseEntryPage::slotTenseSelected(int sel)
 {
-    selection = m_doc->tenseDescriptions().value(sel);
-    first_plural->setText(m_conjugations[selection].pers1Plural());
-    first_singular->setText(m_conjugations[selection].pers1Singular());
-    second_plural->setText(m_conjugations[selection].pers2Plural());
-    second_singular->setText(m_conjugations[selection].pers2Singular());
-    thirdM_plural->setText(m_conjugations[selection].pers3MalePlural());
-    thirdM_singular->setText(m_conjugations[selection].pers3MaleSingular());
-    thirdF_plural->setText(m_conjugations[selection].pers3FemalePlural());
-    thirdF_singular->setText(m_conjugations[selection].pers3FemaleSingular());
-    thirdN_plural->setText(m_conjugations[selection].pers3NaturalPlural());
-    thirdN_singular->setText(m_conjugations[selection].pers3NaturalSingular());
-
-    bool common = m_conjugations[selection].pers3SingularCommon();
-    third_s_common->setChecked(common);
-    thirdM_singular->setEnabled(!common);
-    thirdN_singular->setEnabled(!common);
-
-    common = m_conjugations[selection].pers3PluralCommon();
-    third_p_common->setChecked(common);
-    thirdN_plural->setEnabled(!common);
-    thirdM_plural->setEnabled(!common);
-}
+    ///@todo save entries in m_conjugations!
 
 
-void TenseEntryPage::slotThirdSCommonToggled(bool common)
-{
-    m_conjugations[selection].setPers3SingularCommon(common);
-    thirdM_singular->setEnabled(!common);
-    thirdN_singular->setEnabled(!common);
-    setModified(true);
-}
+    QString selection = m_doc->tenseDescriptions().value(sel);
 
+    KEduVocConjugation::ConjugationNumber num = KEduVocConjugation::Singular;
+    singularFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    singularSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    singularThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    singularThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    singularThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
 
-void TenseEntryPage::slotThirdPCommonToggled(bool common)
-{
-    m_conjugations[selection].setPers3PluralCommon(common);
-    thirdN_plural->setEnabled(!common);
-    thirdM_plural->setEnabled(!common);
-    setModified(true);
+    num = KEduVocConjugation::Dual;
+    dualFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    dualSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    dualThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    dualThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    dualThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
+
+    num = KEduVocConjugation::Plural;
+    pluralFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
+    pluralSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
+    pluralThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
+    pluralThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
+    pluralThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
+
 }
 
 
