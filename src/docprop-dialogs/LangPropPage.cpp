@@ -69,10 +69,11 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     thirdF_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numP));
     thirdN_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numP));
 
-    neuterExists( pronoun.neuterExists() );
-    maleFemaleDiffer( pronoun.maleFemaleDifferent() );
     maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
     neuterCheckBox->setChecked(pronoun.neuterExists());
+    neuterExists( pronoun.neuterExists() );
+    maleFemaleDiffer( pronoun.maleFemaleDifferent() );
+
     connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(maleFemaleDiffer(bool)));
     connect(neuterCheckBox, SIGNAL(toggled(bool)), SLOT(neuterExists(bool)));
 }
