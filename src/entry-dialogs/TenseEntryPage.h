@@ -51,9 +51,19 @@ private slots:
     void slotNextConj();
 
 private:
+    /**
+     * remember the current entries in m_conjugations to allow another tense to be selected. (stupid name)
+     */
+    void saveCurrentTense();
+    /**
+     * Fill the line edits
+     */
+    void updateEntries();
+
     void setModified(bool mod);
     QMap <QString, KEduVocConjugation> m_conjugations;
-    bool               m_modified;
+    bool m_modified;
+    QString m_lastSelection;
     KEduVocDocument     *m_doc;
     int m_currentRow;
     int m_currentTranslation;
