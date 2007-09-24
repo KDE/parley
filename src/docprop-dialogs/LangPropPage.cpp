@@ -62,7 +62,7 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     second_singular->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numS));
     thirdM_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numS));
     thirdF_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numS));
-    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numP));
+    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numS));
     first_plural->setText(pronoun.personalPronoun(KEduVocConjugation::First, numP));
     second_plural->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numP));
     thirdM_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numP));
@@ -109,6 +109,7 @@ void LangPropPage::accept()
     pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocConjugation::ThirdMale, numS);
     pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocConjugation::ThirdFemale, numS);
     pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeuterCommon, numS);
+
     pronoun.setPersonalPronoun(first_plural->text(), KEduVocConjugation::First, numP);
     pronoun.setPersonalPronoun(second_plural->text(), KEduVocConjugation::Second, numP);
     pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocConjugation::ThirdMale, numP);
