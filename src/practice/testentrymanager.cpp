@@ -183,20 +183,16 @@ void TestEntryManager::expireEntries()
             int timeExp = Prefs::expireItem(grade);
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
-//             if (Prefs::expireItem(grade) == 0) // don't care || all off
 
-            if ( date < expireDate ) {
-    kDebug() << "grade: " << m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+            if ( date < expireDate && grade > 0) {
+                // decrease the grade
                 m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
-                kDebug() << m_allTestEntries.value(i)->exp->translation(m_toTranslation).text() << "is expired and will drop to grade " << m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+
+                // prevent from endless dropping
+                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).setQueryDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
-
-
-
-
-
         kDebug() << "Expired words dropped their grade: " << counter;
     }
 }
