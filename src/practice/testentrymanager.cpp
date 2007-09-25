@@ -129,6 +129,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
         }
     }
 
+    expireEntries();
+
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
 
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
@@ -169,21 +171,44 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 }
 
 
+void TestEntryManager::expireEntries()
+{
+    if ( Prefs::expire() ) {
+        int counter = 0;
+        for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+            int grade = m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+
+            const QDateTime &date =  m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate();
+
+            int timeExp = Prefs::expireItem(grade);
+
+            const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
+//             if (Prefs::expireItem(grade) == 0) // don't care || all off
+
+            if ( date < expireDate ) {
+    kDebug() << "grade: " << m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
+                kDebug() << m_allTestEntries.value(i)->exp->translation(m_toTranslation).text() << "is expired and will drop to grade " << m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+                counter++;
+            }
+        }
+
+
+
+
+
+        kDebug() << "Expired words dropped their grade: " << counter;
+    }
+}
+
+
+
 bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool use_it)
 {
     if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) // don't care || all off
         return true;
     else
         return date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime();
-}
-
-
-bool TestEntryManager::compareExpiring(int grade, const QDateTime &date, bool use_it)
-{
-    if (grade == KV_NORM_GRADE || Prefs::expireItem(grade) == 0 || !use_it) // don't care || all off
-        return false;
-    else
-        return date.addSecs(Prefs::expireItem(grade)) < QDateTime::currentDateTime();
 }
 
 
@@ -309,11 +334,6 @@ bool TestEntryManager::compareGrade(int type, grade_t qgrade, grade_t limit)
 
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    // if expired, always take it
-    if( compareExpiring(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::expire() ) ) {
-        return true;
-    }
-
     if ( !compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), Prefs::gradeItem()) ) {
         return false;
     }
