@@ -54,6 +54,7 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
 
     // personal pronouns
     const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
+    const KEduVocConjugation::ConjugationNumber numD = KEduVocConjugation::Dual;
     const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
 
     KEduVocPersonalPronoun pronoun = m_doc->identifier(identifierIndex).personalPronouns();
@@ -63,6 +64,13 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     thirdM_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numS));
     thirdF_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numS));
     thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numS));
+
+    dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::First, numD));
+    dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numD));
+    dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numD));
+    dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numD));
+    dualThirdNeuterLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numD));
+
     first_plural->setText(pronoun.personalPronoun(KEduVocConjugation::First, numP));
     second_plural->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numP));
     thirdM_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numP));
@@ -71,11 +79,13 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
 
     maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
     neuterCheckBox->setChecked(pronoun.neuterExists());
-    neuterExists( pronoun.neuterExists() );
-    maleFemaleDiffer( pronoun.maleFemaleDifferent() );
+    dualCheckBox->setChecked(pronoun.dualExists());
+    // update shown labels etc...
+    updateCheckBoxes();
 
-    connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(maleFemaleDiffer(bool)));
-    connect(neuterCheckBox, SIGNAL(toggled(bool)), SLOT(neuterExists(bool)));
+    connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
+    connect(neuterCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
+    connect(dualCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
 }
 
 
@@ -103,6 +113,7 @@ void LangPropPage::accept()
     // personal pronouns
     KEduVocPersonalPronoun pronoun;
     const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
+    const KEduVocConjugation::ConjugationNumber numD = KEduVocConjugation::Dual;
     const KEduVocConjugation::ConjugationNumber numP = KEduVocConjugation::Plural;
 
     pronoun.setPersonalPronoun(first_singular->text(),  KEduVocConjugation::First, numS);
@@ -110,6 +121,12 @@ void LangPropPage::accept()
     pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocConjugation::ThirdMale, numS);
     pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocConjugation::ThirdFemale, numS);
     pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeuterCommon, numS);
+
+    pronoun.setPersonalPronoun(dualFirstLineEdit->text(), KEduVocConjugation::First, numD);
+    pronoun.setPersonalPronoun(dualSecondLineEdit->text(), KEduVocConjugation::Second, numD);
+    pronoun.setPersonalPronoun(dualThirdMaleLineEdit->text(), KEduVocConjugation::ThirdMale, numD);
+    pronoun.setPersonalPronoun(dualThirdFemaleLineEdit->text(), KEduVocConjugation::ThirdFemale, numD);
+    pronoun.setPersonalPronoun(dualThirdNeuterLineEdit->text(), KEduVocConjugation::ThirdNeuterCommon, numD);
 
     pronoun.setPersonalPronoun(first_plural->text(), KEduVocConjugation::First, numP);
     pronoun.setPersonalPronoun(second_plural->text(), KEduVocConjugation::Second, numP);
@@ -119,35 +136,49 @@ void LangPropPage::accept()
 
     pronoun.setMaleFemaleDifferent(maleFemaleDifferCheckBox->isChecked());
     pronoun.setNeuterExists(neuterCheckBox->isChecked());
+    pronoun.setDualExists(dualCheckBox->isChecked());
+
     m_doc->identifier(m_identifierIndex).setPersonalPronouns( pronoun );
 }
 
-void LangPropPage::maleFemaleDiffer(bool diff)
-{
-    neuterCheckBox->setVisible(diff);
-    male_c_label->setVisible(diff);
-    female_c_label->setVisible(diff);
-    thirdM_singular->setVisible(diff);
-    thirdF_singular->setVisible(diff);
-    thirdM_plural->setVisible(diff);
-    thirdF_plural->setVisible(diff);
 
-    if ( !diff ) {
+void LangPropPage::updateCheckBoxes()
+{
+    bool maleFemale = maleFemaleDifferCheckBox->isChecked();
+    bool neuter = neuterCheckBox->isChecked();
+    bool dual = dualCheckBox->isChecked();
+
+    neuterCheckBox->setVisible(maleFemale);
+    male_c_label->setVisible(maleFemale);
+    female_c_label->setVisible(maleFemale);
+    thirdM_singular->setVisible(maleFemale);
+    thirdF_singular->setVisible(maleFemale);
+    thirdM_plural->setVisible(maleFemale);
+    thirdF_plural->setVisible(maleFemale);
+
+    dualLabel->setVisible(dual);
+    dualFirstLineEdit->setVisible(dual);
+    dualSecondLineEdit->setVisible(dual);
+
+    dualThirdMaleLineEdit->setVisible(dual && maleFemale);
+    dualThirdFemaleLineEdit->setVisible(dual && maleFemale);
+
+    if ( !maleFemale ) {
         natural_c_label->setVisible(true);
         thirdN_singular->setVisible(true);
         thirdN_plural->setVisible(true);
+        dualThirdNeuterLineEdit->setVisible(dual);
     } else {
-        natural_c_label->setVisible(neuterCheckBox->isChecked());
-        thirdN_singular->setVisible(neuterCheckBox->isChecked());
-        thirdN_plural->setVisible(neuterCheckBox->isChecked());
+        natural_c_label->setVisible(neuter);
+        thirdN_singular->setVisible(neuter);
+        thirdN_plural->setVisible(neuter);
+        dualThirdNeuterLineEdit->setVisible(dual && neuter);
     }
+
+
+
 }
 
-void LangPropPage::neuterExists(bool exists)
-{
-    natural_c_label->setVisible(exists);
-    thirdN_singular->setVisible(exists);
-    thirdN_plural->setVisible(exists);
-}
+
 
 #include "LangPropPage.moc"

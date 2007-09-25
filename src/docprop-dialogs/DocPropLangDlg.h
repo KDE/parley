@@ -41,15 +41,11 @@ class DocPropsLangDlg : public KPageDialog
     Q_OBJECT
 public:
     DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent);
-
     ~DocPropsLangDlg();
 
     void accept();
-    KEduVocArticle     getArticle(int idx) const;
-
 private:
-    typedef QList<LangPropPage *> LangPagesList;
-    LangPagesList langPages;
+    QList<LangPropPage *> langPages;
 };
 
 #endif // DocPropsLangDlg_included

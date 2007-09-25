@@ -42,8 +42,7 @@ public:
     void accept();
 
 private slots:
-    void maleFemaleDiffer(bool diff);
-    void neuterExists(bool exists);
+    void updateCheckBoxes();
 private:
     KEduVocDocument    *m_doc;
     int m_identifierIndex;
