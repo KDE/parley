@@ -117,9 +117,6 @@ protected:
     void resultCorrect();
     void resultWrong();
 
-
-    /// @todo make a base query widget so these are no longer needed, let all other query widgets add their specific elements to that base.
-
     virtual void setStatusText(const QString &status) = 0;
     virtual QProgressBar* timebar() = 0;
 

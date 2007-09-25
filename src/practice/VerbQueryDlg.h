@@ -40,6 +40,11 @@ public:
     void setEntry(TestEntry* entry);
     void setProgressCounter(int current, int total);
 
+
+private slots:
+    void showSolution();
+    void verifyClicked();
+
 private:
     bool next();
     void resetAllFields();
@@ -47,24 +52,7 @@ private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
-private slots:
-    void slotP3pfChanged(const QString&);
-    void slotP3snChanged(const QString&);
-    void showSolution();
-    void slotP3smChanged(const QString&);
-    void knowItClicked();
-    void dontKnowClicked();
-    void slotP3pnChanged(const QString&);
-    void slotP3sfChanged(const QString&);
-    void slotP1sChanged(const QString&);
-    void slotP2sChanged(const QString&);
-    void slotP3pmChanged(const QString&);
-    void slotP1pChanged(const QString&);
-    void slotP2pChanged(const QString&);
-    void verifyClicked();
-
-private:
-    int current;
+    int m_currentTense;
     bool all_known;
 
     Ui::VerbQueryDlgForm * mw;
