@@ -259,9 +259,8 @@ void RandomQueryDlg::setEntry( TestEntry* entry )
     mw->orgField->setFont(Prefs::tableFont());
     mw->orgField->setText(entry->exp->translation( Prefs::fromIdentifier() ).text());
     mw->show_all->setDefault(true);
-    QString s;
-    s.setNum(entry->statisticCount());
-    mw->progCount->setText(s);
+
+    mw->progCount->setText( QString::number(entry->statisticCount()) );
 
     mw->remark->hide();
     mw->falseFriend->hide();

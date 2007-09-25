@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>764</width>
-    <height>664</height>
+    <width>892</width>
+    <height>694</height>
    </rect>
   </property>
-  <layout class="QGridLayout" >
-   <item row="0" column="0" >
+  <layout class="QVBoxLayout" >
+   <item>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
       <number>6</number>
@@ -53,7 +53,7 @@
      </item>
     </layout>
    </item>
-   <item row="1" column="0" >
+   <item>
     <layout class="QHBoxLayout" >
      <property name="spacing" >
       <number>6</number>
@@ -114,7 +114,7 @@
      </item>
     </layout>
    </item>
-   <item row="2" column="0" >
+   <item>
     <layout class="QHBoxLayout" >
      <item>
       <layout class="QVBoxLayout" >
@@ -358,174 +358,182 @@
         </widget>
        </item>
        <item>
-        <layout class="QVBoxLayout" >
+        <layout class="QHBoxLayout" >
          <item>
-          <widget class="QPushButton" name="show_all" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
+          <spacer>
+           <property name="orientation" >
+            <enum>Qt::Horizontal</enum>
            </property>
-           <property name="text" >
-            <string>Show &amp;Solution</string>
+           <property name="sizeType" >
+            <enum>QSizePolicy::Fixed</enum>
            </property>
-          </widget>
+           <property name="sizeHint" >
+            <size>
+             <width>20</width>
+             <height>351</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="know_it" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>Skip (I &amp;Know It)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="dont_know" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>Skip (Do &amp;Not Know)</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QPushButton" name="verify" >
-           <property name="sizePolicy" >
-            <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-             <horstretch>0</horstretch>
-             <verstretch>0</verstretch>
-            </sizepolicy>
-           </property>
-           <property name="text" >
-            <string>&amp;Verify</string>
-           </property>
-          </widget>
+          <layout class="QVBoxLayout" >
+           <item>
+            <layout class="QVBoxLayout" >
+             <item>
+              <widget class="QPushButton" name="show_all" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Show &amp;Solution</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="know_it" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Skip (I &amp;Know It)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="dont_know" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>Skip (Do &amp;Not Know)</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="verify" >
+               <property name="sizePolicy" >
+                <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="text" >
+                <string>&amp;Verify</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QGroupBox" name="progressgroup" >
+             <property name="sizePolicy" >
+              <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="title" >
+              <string>Progress</string>
+             </property>
+             <layout class="QGridLayout" >
+              <property name="leftMargin" >
+               <number>11</number>
+              </property>
+              <property name="topMargin" >
+               <number>11</number>
+              </property>
+              <property name="rightMargin" >
+               <number>11</number>
+              </property>
+              <property name="bottomMargin" >
+               <number>11</number>
+              </property>
+              <property name="horizontalSpacing" >
+               <number>6</number>
+              </property>
+              <property name="verticalSpacing" >
+               <number>6</number>
+              </property>
+              <item row="0" column="1" >
+               <widget class="QProgressBar" name="countbar" />
+              </item>
+              <item row="1" column="1" >
+               <widget class="QProgressBar" name="timebar" />
+              </item>
+              <item row="0" column="0" >
+               <widget class="QLabel" name="countlabel" >
+                <property name="sizePolicy" >
+                 <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text" >
+                 <string>Count:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="1" column="0" >
+               <widget class="QLabel" name="timelabel" >
+                <property name="sizePolicy" >
+                 <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+                <property name="text" >
+                 <string>Time:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="0" >
+               <widget class="QLabel" name="Cyclelabel" >
+                <property name="frameShape" >
+                 <enum>QFrame::NoFrame</enum>
+                </property>
+                <property name="text" >
+                 <string>Cycle:</string>
+                </property>
+               </widget>
+              </item>
+              <item row="2" column="1" >
+               <widget class="QLabel" name="progCount" >
+                <property name="sizePolicy" >
+                 <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
+           </item>
+           <item>
+            <spacer>
+             <property name="orientation" >
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeHint" >
+              <size>
+               <width>291</width>
+               <height>105</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
          </item>
         </layout>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="progressgroup" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title" >
-          <string>Progress</string>
-         </property>
-         <layout class="QGridLayout" >
-          <property name="leftMargin" >
-           <number>11</number>
-          </property>
-          <property name="topMargin" >
-           <number>11</number>
-          </property>
-          <property name="rightMargin" >
-           <number>11</number>
-          </property>
-          <property name="bottomMargin" >
-           <number>11</number>
-          </property>
-          <property name="horizontalSpacing" >
-           <number>6</number>
-          </property>
-          <property name="verticalSpacing" >
-           <number>6</number>
-          </property>
-          <item row="0" column="1" >
-           <widget class="QProgressBar" name="countbar" />
-          </item>
-          <item row="1" column="1" >
-           <widget class="QProgressBar" name="timebar" />
-          </item>
-          <item row="0" column="0" >
-           <widget class="QLabel" name="countlabel" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text" >
-             <string>Count:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="timelabel" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text" >
-             <string>Time:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="Cyclelabel" >
-            <property name="frameShape" >
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="text" >
-             <string>Cycle:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" >
-           <widget class="QLabel" name="progCount" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QLabel" name="status" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="frameShadow" >
-          <enum>QFrame::Plain</enum>
-         </property>
-         <property name="text" >
-          <string>Status label</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
        </item>
       </layout>
      </item>

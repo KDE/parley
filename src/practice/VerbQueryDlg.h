@@ -49,7 +49,7 @@ private:
     bool nextTense();
     void resetAllFields();
 
-    void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
+    void setStatusText(const QString &statusText) {}
     QProgressBar* timebar() { return mw->timebar; }
 
     int m_currentTense;

@@ -45,6 +45,7 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
+    mw->know_it->setEnabled(Prefs::iKnow());
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
@@ -65,6 +66,8 @@ VerbQueryDlg::~VerbQueryDlg()
 void VerbQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
+
+    mw->progCount->setText( QString::number(entry->statisticCount()) );
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
@@ -370,10 +373,10 @@ void VerbQueryDlg::resetAllFields()
 }
 
 
-void VerbQueryDlg::setProgressCounter(int m_currentTense, int total)
+void VerbQueryDlg::setProgressCounter(int current, int total)
 {
     mw->countbar->setMaximum(total);
-    mw->countbar->setValue(m_currentTense);
+    mw->countbar->setValue(current);
 }
 
 #include "VerbQueryDlg.moc"
