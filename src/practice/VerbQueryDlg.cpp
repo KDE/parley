@@ -38,8 +38,8 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
-    connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
+    connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
@@ -72,8 +72,6 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 
     mw->dualGroupBox->setVisible( m_doc->identifier(Prefs::toIdentifier()).personalPronouns().dualExists());
 
-
-
     mw->singularFirstPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Singular));
     mw->singularSecondPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Singular));
     mw->singularThirdMalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular));
@@ -91,14 +89,6 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     mw->pluralThirdMalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
     mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
     mw->pluralThirdNeuterPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural));
-
-
-
-
-
-
-
-
 
     all_known = true;
     m_currentTense = -1;

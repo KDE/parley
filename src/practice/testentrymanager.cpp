@@ -506,7 +506,7 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         }
         if ( Prefs::grammarConjugationTest() ) {
             if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
-                return entry->translation(m_fromTranslation).conjugations().count() > 0;
+                return entry->translation(m_toTranslation).conjugations().count() > 0;
             }
         }
         return false;
