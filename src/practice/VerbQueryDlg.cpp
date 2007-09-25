@@ -68,7 +68,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 
     mw->timebar->setEnabled(Prefs::showCounter());
     mw->timelabel->setEnabled(Prefs::showCounter());
-    mw->show_all->setDefault(true);
+    mw->verify->setDefault(true);
 
     mw->dualGroupBox->setVisible( m_doc->identifier(Prefs::toIdentifier()).personalPronouns().dualExists());
 
@@ -92,20 +92,18 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 
     all_known = true;
     m_currentTense = -1;
-    next();
+    nextTense();
 
     mw->singularFirstPersonLineEdit->setFocus();
 }
 
 
-bool VerbQueryDlg::next()
+bool VerbQueryDlg::nextTense()
 {
     resetAllFields();
     QString tense;
 
-    QString s;
-    s = m_entry->exp->translation(Prefs::toIdentifier()).text();
-    mw->verbNameLabel->setText(s);
+    mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
 
     if (m_currentTense < m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1) {
         m_currentTense++;
@@ -226,97 +224,14 @@ bool VerbQueryDlg::next()
     mw->pluralThirdNeuterPersonLineEdit->setVisible(!empty);
     mw->pluralThirdNeuterPersonLineEdit->setText("");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    mw->singularSecondPersonLineEdit->setText("");
-    mw->singularSecondPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Singular).isEmpty());
-
-    mw->singularThirdMalePersonLineEdit->setText("");
-    mw->singularThirdMalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular).isEmpty());
-
-    mw->singularThirdFemalePersonLineEdit->setText("");
-    mw->singularThirdFemalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular).isEmpty());
-
-    mw->singularThirdNeuterPersonLineEdit->setText("");
-    mw->singularThirdNeuterPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular).isEmpty());
-
-
-
-mw->dualFirstPersonLineEdit->setText("");
-    mw->dualFirstPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Dual).isEmpty());
-
-    mw->dualSecondPersonLineEdit->setText("");
-    mw->dualSecondPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Dual).isEmpty());
-
-    mw->dualThirdMalePersonLineEdit->setText("");
-    mw->dualThirdMalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual).isEmpty());
-
-    mw->dualThirdFemalePersonLineEdit->setText("");
-    mw->dualThirdFemalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual).isEmpty());
-
-    mw->dualThirdNeuterPersonLineEdit->setText("");
-    mw->dualThirdNeuterPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual).isEmpty());
-
-
-    mw->pluralFirstPersonLineEdit->setText("");
-    mw->pluralFirstPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural).isEmpty());
-
-    mw->pluralSecondPersonLineEdit->setText("");
-    mw->pluralSecondPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural).isEmpty());
-
-    mw->pluralThirdMalePersonLineEdit->setText("");
-    mw->pluralThirdMalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural).isEmpty());
-
-    mw->pluralThirdFemalePersonLineEdit->setText("");
-    mw->pluralThirdFemalePersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural).isEmpty());
-
-    mw->pluralThirdNeuterPersonLineEdit->setText("");
-    mw->pluralThirdNeuterPersonLineEdit->setEnabled(!m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural).isEmpty());
-
-//     bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular);
-//     if (common) {
-//         mw->singularThirdMalePersonLineEdit->setEnabled(false);
-//         mw->singularThirdNeuterPersonLineEdit->setEnabled(false);
-//     }
-//
-//     common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural);
-//     if (common) {
-//         mw->pluralThirdMalePersonLineEdit->setEnabled(false);
-//         mw->pluralThirdNeuterPersonLineEdit->setEnabled(false);
-//     }
-
     return false;
 }
 
 
 void VerbQueryDlg::showSolution()
 {
+    all_known = false;
+
     resetAllFields();
     mw->dont_know->setDefault(true);
 
@@ -328,31 +243,38 @@ void VerbQueryDlg::showSolution()
     mw->singularThirdFemalePersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular));
     mw->singularThirdNeuterPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular));
 
+    mw->dualFirstPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Dual));
+    mw->dualSecondPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Dual));
+    mw->dualThirdMalePersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual));
+    mw->dualThirdFemalePersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual));
+    mw->dualThirdNeuterPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual));
+
     mw->pluralFirstPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural));
     mw->pluralSecondPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural));
     mw->pluralThirdMalePersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
     mw->pluralThirdFemalePersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
     mw->pluralThirdNeuterPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural));
 
+    // verify singular
     verifyField(mw->singularFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Singular));
     verifyField(mw->singularSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Singular));
+    verifyField(mw->singularThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular));
     verifyField(mw->singularThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular));
+    verifyField(mw->singularThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular));
 
-//     bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular);
-//     if (!common) {
-//         verifyField(mw->singularThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular));
-//         verifyField(mw->singularThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular));
-//     }
-//
-//     verifyField(mw->pluralFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural));
-//     verifyField(mw->pluralSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural));
-//     verifyField(mw->pluralThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
-//
-//     common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural);
-//     if (!common) {
-//         verifyField(mw->pluralThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
-//         verifyField(mw->pluralThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural));
-//     }
+    // verify dual
+    verifyField(mw->dualFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Dual));
+    verifyField(mw->dualSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Dual));
+    verifyField(mw->dualThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual));
+    verifyField(mw->dualThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual));
+    verifyField(mw->dualThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual));
+
+    // verify plural
+    verifyField(mw->pluralFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural));
+    verifyField(mw->pluralSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural));
+    verifyField(mw->pluralThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
+    verifyField(mw->pluralThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
+    verifyField(mw->pluralThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural));
 
 }
 
@@ -361,76 +283,69 @@ void VerbQueryDlg::verifyClicked()
 {
     QString tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(m_currentTense);
 
+    const KEduVocConjugation conj = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense];
+
     bool known = true;
 
-    if (!verifyField(mw->singularFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Singular)))
+    // singular
+    if (!verifyField(mw->singularFirstPersonLineEdit, conj.conjugation(KEduVocConjugation::First, KEduVocConjugation::Singular))) {
         known = false;
-
-    if (!verifyField(mw->singularSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Singular)))
+    }
+    if (!verifyField(mw->singularSecondPersonLineEdit, conj.conjugation(KEduVocConjugation::Second, KEduVocConjugation::Singular))) {
         known = false;
-
-    if (!verifyField(mw->singularThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular)))
+    }
+    if (!verifyField(mw->singularThirdMalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular))) {
         known = false;
+    }
+    if (!verifyField(mw->singularThirdFemalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular))) {
+        known = false;
+    }
+    if (!verifyField(mw->singularThirdNeuterPersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular))) {
+        known = false;
+    }
 
-// //     bool common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular);
-// //     if (!common) {
-// //         if (!verifyField(mw->singularThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular)))
-// //             known = false;
-// //
-// //         if (!verifyField(mw->singularThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular)))
-// //             known = false;
-// //     }
-//
-//     if (!verifyField(mw->pluralFirstPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural)))
-//         known = false;
-//
-//     if (!verifyField(mw->pluralSecondPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural)))
-//         known = false;
-//
-//     if (!verifyField(mw->pluralThirdFemalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural)))
-//         known = false;
-//
-//     common = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural);
-//     if (!common) {
-//         if (!verifyField(mw->pluralThirdMalePersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural)))
-//             known = false;
-//
-//         if (!verifyField(mw->pluralThirdNeuterPersonLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural)))
-//             known = false;
-//     }
+    // dual
+    if (!verifyField(mw->dualFirstPersonLineEdit, conj.conjugation(KEduVocConjugation::First, KEduVocConjugation::Dual))) {
+        known = false;
+    }
+    if (!verifyField(mw->dualSecondPersonLineEdit, conj.conjugation(KEduVocConjugation::Second, KEduVocConjugation::Dual))) {
+        known = false;
+    }
+    if (!verifyField(mw->dualThirdMalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual))) {
+        known = false;
+    }
+    if (!verifyField(mw->dualThirdFemalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual))) {
+        known = false;
+    }
+    if (!verifyField(mw->dualThirdNeuterPersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual))) {
+        known = false;
+    }
 
-    if (known)
-//         knowItClicked();
+    // plural
+    if (!verifyField(mw->pluralFirstPersonLineEdit, conj.conjugation(KEduVocConjugation::First, KEduVocConjugation::Plural))) {
+        known = false;
+    }
+    if (!verifyField(mw->pluralSecondPersonLineEdit, conj.conjugation(KEduVocConjugation::Second, KEduVocConjugation::Plural))) {
+        known = false;
+    }
+    if (!verifyField(mw->pluralThirdMalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural))) {
+        known = false;
+    }
+    if (!verifyField(mw->pluralThirdFemalePersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural))) {
+        known = false;
+    }
+    if (!verifyField(mw->pluralThirdNeuterPersonLineEdit, conj.conjugation(KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural))) {
+        known = false;
+    }
+
+    if (known) {
+        kDebug() << "correct!";
         resultCorrect();
-    else {
+    } else {
         all_known = false;
         mw->dont_know->setDefault(true);
     }
 }
-/*
-void VerbQueryDlg::knowItClicked()
-{
-    resetAllFields();
-    if (m_currentTense >= m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1) {
-        if (all_known)
-            emit sigQueryChoice(SkipKnown);
-        else
-            emit sigQueryChoice(SkipUnknown);
-    } else
-        next();
-}
-
-
-void VerbQueryDlg::dontKnowClicked()
-{
-    all_known = false;
-    if (m_currentTense >= m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1)
-        emit sigQueryChoice(SkipUnknown);
-    else {
-        startTimer();
-        next();
-    }
-}*/
 
 
 void VerbQueryDlg::resetAllFields()

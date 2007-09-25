@@ -46,7 +46,7 @@ private slots:
     void verifyClicked();
 
 private:
-    bool next();
+    bool nextTense();
     void resetAllFields();
 
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }

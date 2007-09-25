@@ -174,9 +174,6 @@ void LangPropPage::updateCheckBoxes()
         thirdN_plural->setVisible(neuter);
         dualThirdNeuterLineEdit->setVisible(dual && neuter);
     }
-
-
-
 }
 
 
