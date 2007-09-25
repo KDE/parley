@@ -63,13 +63,25 @@ public:
      */
     void result(int result);
 
+    /**
+     * The number of entries in the practice
+     * @return
+     */
     int totalEntryCount();
+
+    /**
+     * The number of entries that are still to be practiced
+     * @return
+     */
     int activeEntryCount();
 
 
     /// grade int to string (?)
     static QString gradeStr(int i);
 
+    /**
+     * Puts some grades on the shell
+     */
     void printStatistics();
 
 private:
