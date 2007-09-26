@@ -25,13 +25,13 @@
 #ifndef THRESHOLDOPTIONS_H
 #define THRESHOLDOPTIONS_H
 
-#include "ui_thresholdoptionsbase.h"
+#include "ui_thresholdoptions.h"
 #include "prefs.h"
 
 class KEduVocDocument;
 
 
-class ThresholdOptions : public QWidget, public Ui::ThresholdOptionsBase
+class ThresholdOptions : public QWidget, public Ui::ThresholdOptions
 {
     Q_OBJECT
 public:
