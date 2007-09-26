@@ -64,7 +64,7 @@
   <Separator/>
   <Action name="edit_selected_area" />
   <Separator/>
-  <!--Action name="practice_configure"/-->
+  <Action name="practice_configure"/>
   <Action name="practice_start" />
  </ToolBar>
 </gui>
