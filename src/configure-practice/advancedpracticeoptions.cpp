@@ -26,7 +26,7 @@
 
 #include "prefs.h"
 
-QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
+AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
     // wether to split up translations
@@ -59,7 +59,7 @@ QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
     label_split_max_fields->setEnabled(kcfg_Split->isChecked());
 }
 
-void QueryOptions::updateWidgets()
+void AdvancedPracticeOptions::updateWidgets()
 {
     //This is required for loading profiles properly
     switch (Prefs::queryTimeout()) {

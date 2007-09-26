@@ -22,7 +22,7 @@
 #include <KConfigDialog>
 
 class ConfigurePracticeWidget;
-class QueryOptions;
+class AdvancedPracticeOptions;
 class ThresholdOptions;
 class BlockOptions;
 
@@ -67,7 +67,7 @@ private:
     bool isDefault();
 
     ConfigurePracticeWidget* m_configurePracticeWidget;
-    QueryOptions* m_queryOptions;
+    AdvancedPracticeOptions* m_advancedPracticeOptions;
     ThresholdOptions* m_thresholdOptions;
     BlockOptions* m_blockOptions;
 

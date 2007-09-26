@@ -1,34 +1,16 @@
 <ui version="4.0" >
- <class>QueryOptionsBase</class>
- <widget class="QWidget" name="QueryOptionsBase" >
+ <class>AdvancedPracticeOptions</class>
+ <widget class="QWidget" name="AdvancedPracticeOptions" >
   <property name="geometry" >
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>564</width>
-    <height>525</height>
+    <width>582</width>
+    <height>636</height>
    </rect>
   </property>
-  <layout class="QGridLayout" >
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>0</number>
-   </property>
-   <property name="horizontalSpacing" >
-    <number>6</number>
-   </property>
-   <property name="verticalSpacing" >
-    <number>6</number>
-   </property>
-   <item row="0" column="0" >
+  <layout class="QVBoxLayout" >
+   <item>
     <widget class="QGroupBox" name="QueryTimeout" >
      <property name="toolTip" >
       <string>If a time limit is set, an answer has to be given in the set time, when practicing.</string>
@@ -196,36 +178,86 @@
      </layout>
     </widget>
    </item>
-   <item row="5" column="0" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
+   <item>
+    <widget class="QGroupBox" name="groupBox" >
+     <property name="title" >
+      <string/>
      </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>290</width>
-       <height>20</height>
-      </size>
-     </property>
-    </spacer>
-   </item>
-   <item row="2" column="0" >
-    <widget class="QCheckBox" name="kcfg_AltLearn" >
-     <property name="toolTip" >
-      <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
-     </property>
-     <property name="whatsThis" >
-      <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
-     </property>
-     <property name="text" >
-      <string>Require 3 consecutive correct answers to count as right</string>
-     </property>
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QCheckBox" name="kcfg_AltLearn" >
+        <property name="toolTip" >
+         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
+        </property>
+        <property name="whatsThis" >
+         <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
+        </property>
+        <property name="text" >
+         <string>Require 3 consecutive correct answers to count as right</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_SwapDirection" >
+        <property name="enabled" >
+         <bool>false</bool>
+        </property>
+        <property name="text" >
+         <string>S&amp;wap direction randomly</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
+        <property name="toolTip" >
+         <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
+        </property>
+        <property name="text" >
+         <string>Practice in lesson order</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" >
+        <item>
+         <widget class="QLabel" name="label" >
+          <property name="text" >
+           <string>Active entries during practice:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="KIntSpinBox" name="kcfg_TestNumberOfEntries" >
+          <property name="suffix" >
+           <string/>
+          </property>
+          <property name="prefix" >
+           <string/>
+          </property>
+          <property name="minimum" >
+           <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
     </widget>
    </item>
-   <item row="3" column="0" >
+   <item>
     <widget class="QGroupBox" name="unnamed" >
      <property name="title" >
       <string>Options for Written Tests</string>
@@ -475,15 +507,21 @@
      </layout>
     </widget>
    </item>
-   <item row="1" column="0" >
-    <widget class="QCheckBox" name="kcfg_SwapDirection" >
-     <property name="enabled" >
-      <bool>false</bool>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
      </property>
-     <property name="text" >
-      <string>S&amp;wap direction randomly</string>
+     <property name="sizeType" >
+      <enum>QSizePolicy::Expanding</enum>
      </property>
-    </widget>
+     <property name="sizeHint" >
+      <size>
+       <width>290</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>
@@ -501,6 +539,11 @@
    <extends>QWidget</extends>
    <header>knuminput.h</header>
    <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
   </customwidget>
  </customwidgets>
  <tabstops>

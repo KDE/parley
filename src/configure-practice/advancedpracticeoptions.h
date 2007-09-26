@@ -22,16 +22,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef QUERYOPTIONS_H
-#define QUERYOPTIONS_H
+#ifndef ADVANCEDPRACTICEOPTIONS_H
+#define ADVANCEDPRACTICEOPTIONS_H
 
-#include "ui_queryoptionsbase.h"
+#include "ui_advancedpracticeoptions.h"
 
-class QueryOptions : public QWidget, public Ui::QueryOptionsBase
+class AdvancedPracticeOptions : public QWidget, public Ui::AdvancedPracticeOptions
 {
     Q_OBJECT
 public:
-    QueryOptions(QWidget* parent = 0);
+    AdvancedPracticeOptions(QWidget* parent = 0);
 
     void updateWidgets();
 };

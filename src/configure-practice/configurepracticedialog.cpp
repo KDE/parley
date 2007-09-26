@@ -37,8 +37,8 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
     addPage(m_configurePracticeWidget, i18n("Practice"), "run_query", i18n("Practice options"), true);
 
-    m_queryOptions = new QueryOptions(this);
-    addPage(m_queryOptions, i18nc("Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
+    m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
+    addPage(m_advancedPracticeOptions, i18nc("Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
 
     m_blockOptions = new BlockOptions(this);
     addPage(m_blockOptions, i18n("Blocking"), "configure", i18n("Blocking Settings"), true);
@@ -82,7 +82,7 @@ void ConfigurePracticeDialog::updateSettings()
 void ConfigurePracticeDialog::updateWidgets()
 {
     m_configurePracticeWidget->updateWidgets();
-    m_queryOptions->updateWidgets();
+    m_advancedPracticeOptions->updateWidgets();
     m_thresholdOptions->updateWidgets();
     m_blockOptions->updateWidgets();
 }
