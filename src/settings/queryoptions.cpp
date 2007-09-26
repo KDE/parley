@@ -47,15 +47,15 @@ QueryOptions::QueryOptions(QWidget* parent) : QWidget(parent)
     connect(kcfg_Split, SIGNAL(toggled(bool)), label_split_max_fields, SLOT(setEnabled(bool)));
 
     // time limit
-    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
-    connect(r_no_limit, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
-    connect(r_no_limit, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
 
 
     //disable timeout widgets if No Limit
-    kcfg_MaxTimePer->setDisabled(r_no_limit->isChecked());
-    kcfg_ShowCounter->setDisabled(r_no_limit->isChecked());
-    label_mqtime->setDisabled(r_no_limit->isChecked());
+    kcfg_MaxTimePer->setDisabled(NoTimeoutRadio->isChecked());
+    kcfg_ShowCounter->setDisabled(NoTimeoutRadio->isChecked());
+    label_mqtime->setDisabled(NoTimeoutRadio->isChecked());
 
     kcfg_Periods->setEnabled(kcfg_Split->isChecked());
     kcfg_Colons->setEnabled(kcfg_Split->isChecked());
@@ -71,19 +71,19 @@ void QueryOptions::updateWidgets()
     //This is required for loading profiles properly
     switch (Prefs::queryTimeout()) {
     case Prefs::EnumQueryTimeout::NoTimeout:
-        r_no_limit->setChecked(true);
+        NoTimeoutRadio->setChecked(true);
         break;
 
     case Prefs::EnumQueryTimeout::Show:
-        r_show_to->setChecked(true);
+        ShowSolutionRadio->setChecked(true);
         break;
 
     case Prefs::EnumQueryTimeout::Continue:
-        r_cont_to->setChecked(true);
+        ContinueRadio->setChecked(true);
         break;
 
     default:
-        r_no_limit->setChecked(true);
+        NoTimeoutRadio->setChecked(true);
     }
     kcfg_MaxTimePer->setValue(Prefs::maxTimePer());
     kcfg_ShowCounter->setChecked(Prefs::showCounter());
