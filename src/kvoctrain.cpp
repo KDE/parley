@@ -635,10 +635,9 @@ void KVocTrainApp::slotDocumentProperties()
 void KVocTrainApp::configurePractice()
 {
     StartPracticeDialog* startPracticeDialog;
-    startPracticeDialog = new StartPracticeDialog(m_doc, this);
+    startPracticeDialog = new StartPracticeDialog(m_doc, this, "practice settings",  Prefs::self());
 
-    startPracticeDialog->exec();
-    startPracticeDialog->deleteLater();
+    startPracticeDialog->show();
 }
 
 void KVocTrainApp::startPractice()

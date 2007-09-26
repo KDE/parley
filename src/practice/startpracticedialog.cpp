@@ -19,18 +19,21 @@
 #include "startpracticewidget.h"
 #include <KLocale>
 
-StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
+
+StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
+    :KConfigDialog(parent, name, config)
 {
     setCaption(i18nc("@title:window", "Configure Practice"));
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
     setFaceType(List);
 
+
     m_startPracticeWidget= new StartPracticeWidget(doc, this);
-    m_startPracticePage = new KPageWidgetItem(m_startPracticeWidget, i18n("Test") );
-    m_startPracticePage->setHeader( i18n("Test options") );
-    m_startPracticePage->setIcon( KIcon( "run_query" ) );
-    addPage(m_startPracticePage);
+//     m_startPracticePage = new KPageWidgetItem(m_startPracticeWidget,  );
+//     m_startPracticePage->setHeader( i18n("Test options") );
+//     m_startPracticePage->setIcon( KIcon(  ) );
+    addPage(m_startPracticeWidget, i18n("Practice"), "run_query", i18n("Practice options"), true);
 
 
 //     typeOptPage = new WordTypeOptionPage(doc, 0);

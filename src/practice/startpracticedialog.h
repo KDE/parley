@@ -19,18 +19,19 @@
 #define STARTPRACTICEDIALOG_H
 
 #include <keduvocdocument.h>
-#include <KPageDialog>
+#include <KConfigDialog>
 
 class StartPracticeWidget;
 
 /**
   *
   */
-class StartPracticeDialog : public KPageDialog
+class StartPracticeDialog : public KConfigDialog
 {
     Q_OBJECT
 public:
-    StartPracticeDialog(KEduVocDocument *doc, QWidget *parent);
+    StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
+
     ~StartPracticeDialog();
 
     void commitData();
@@ -39,7 +40,6 @@ public slots:
     void accept();
 
 private:
-    KPageWidgetItem* m_startPracticePage;
     StartPracticeWidget* m_startPracticeWidget;
 };
 
