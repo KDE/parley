@@ -51,6 +51,13 @@ private slots:
     void commitAndCloseEditor();
 
 private:
+    /**
+     * This should become a class of its own. It currently guesses the word type noun based on the articles.
+     * @param entry
+     * @param language
+     * @return
+     */
+//     QPair< QString, QString > guessWordType(const QString & entry, int language) const;
     QModelIndex m_currentIndex;
 };
 

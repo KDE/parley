@@ -22,19 +22,16 @@
 
 #include "kvttablemodel.h"
 
-#include <QSize>
-#include <KIcon>
-
-#include <KLocale>
-#include <KDebug>
-
-#include <keduvoclesson.h>
-#include <keduvocexpression.h>
-#include <keduvocgrade.h>
-
 #include "prefs.h"
 #include "languagesettings.h"
 
+#include <KIcon>
+#include <KLocale>
+#include <KDebug>
+#include <keduvoclesson.h>
+#include <keduvocexpression.h>
+#include <keduvocgrade.h>
+#include <QSize>
 
 KVTTableModel::KVTTableModel(QObject *parent) : QAbstractTableModel(parent)
 {

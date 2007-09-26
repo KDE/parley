@@ -20,9 +20,13 @@
  ***************************************************************************/
 
 #include "kvttabledelegate.h"
+#include "kvttablemodel.h"
+#include "prefs.h"
 
-#include <QPainter>
+#include <keduvocexpression.h>
+#include <keduvocgrade.h>
 
+#include <KPassivePopup>
 #include <KComboBox>
 #include <KDebug>
 #include <KGlobalSettings>
@@ -30,13 +34,7 @@
 #include <KLocale>
 #include <KIconLoader>
 #include <KIcon>
-
-#include "kvttablemodel.h"
-#include "prefs.h"
-
-#include <keduvocexpression.h>
-#include <keduvocgrade.h>
-
+#include <QPainter>
 #define KV_NORM_COLOR      Qt::black
 
 KVTTableDelegate::KVTTableDelegate(QObject *parent) : QItemDelegate(parent)
@@ -126,28 +124,39 @@ void KVTTableDelegate::setEditorData(QWidget * editor, const QModelIndex & index
 
 void KVTTableDelegate::setModelData(QWidget * editor, QAbstractItemModel * model, const QModelIndex & index) const
 {
-    if (!index.isValid())
+    if (!index.isValid()) {
         return;
+    }
 
     switch (index.column()) {
     case 0: {
         KComboBox *lessonbox = static_cast<KComboBox*>(editor);
         int value = lessonbox->currentIndex();
         model->setData(index, value);
+        break;
     }
-    break;
 
     case 1: {
         KComboBox *statebox = static_cast<KComboBox*>(editor);
         int value = statebox->currentIndex();
         model->setData(index, value);
+        break;
     }
-    break;
 
     default: {
         KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
         QString value = lineEdit->text();
         model->setData(index, value);
+        /*
+        QPair<QString, QString> type;
+        type = guessWordType( value, index.column() - KV_COL_TRANS );
+        if ( !type.first.isEmpty() ) {
+            KPassivePopup* pop = new KPassivePopup(lineEdit);
+            pop->setTimeout(2000);
+            pop->setView(i18nc("@popupmessage the word has been guessed to be %1 with subtype %2", "Setting word type to %1 (%2).", type.first, type.second), i18nc("@title of a popup", "Noun Detected"));
+            pop->show();
+        }
+        */
     }
     }
 }
@@ -312,5 +321,20 @@ void KVTTableDelegate::setCurrentIndex(const QModelIndex & index)
 {
     m_currentIndex = index;
 }
+/*
+QPair< QString, QString > KVTTableDelegate::guessWordType(const QString & entry, int language) const
+{
+    kDebug() << "guessing word type for: " << entry;
 
+    QString article = entry.section(" ", 0, 0);
+    if ( article.length() < entry.length() ) {
+        if ( article == ->identifier(language).articles().article(KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine) ) {
+            kDebug() << "Noun male";
+            return qMakePair(m_doc->wordTypes().specialTypeNoun(), m_doc->wordTypes().specialTypeNounMale());
+        }
+
+    }
+    return qMakePair(QString(), QString());
+}
+*/
 #include "kvttabledelegate.moc"
