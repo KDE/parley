@@ -31,12 +31,18 @@
 
 KVTSortFilterModel::KVTSortFilterModel(QObject *parent) : QSortFilterProxyModel(parent)
 {
-    m_sourceModel = 0;
+    // do not use capitalization for searches
     setSortCaseSensitivity(Qt::CaseInsensitive);
+    // sort locale aware: at least puts umlauts and accents in the right position. Not sure about languages that are more different. Also depends on the current locale.
+    setSortLocaleAware ( true );
+
+    m_sourceModel = 0;
     m_searchFilter = QRegExp();
     m_wordType = QRegExp();
     m_restoreNativeOrder = false;
     m_lessonSelection = Prefs::lessonEditingSelection();
+
+
 }
 
 void KVTSortFilterModel::setSourceModel(KVTTableModel * sourceModel)
