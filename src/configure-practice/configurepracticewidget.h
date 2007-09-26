@@ -17,11 +17,10 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef STARTPRACTICEWIDGET_H
-#define STARTPRACTICEWIDGET_H
+#ifndef CONFIGUREPRACTICEWIDGET_H
+#define CONFIGUREPRACTICEWIDGET_H
 
-#include "ui_startpracticewidget.h"
-#include <QWidget>
+#include "ui_configurepracticewidget.h"
 
 class KEduVocDocument;
 class KConfigSkeleton;
@@ -30,12 +29,12 @@ class KConfigSkeleton;
  *
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 */
-class StartPracticeWidget
-    : public QWidget, public Ui::StartPracticeWidget
+class ConfigurePracticeWidget
+    : public QWidget, public Ui::ConfigurePracticeWidget
 {
 Q_OBJECT
 public:
-    StartPracticeWidget(KEduVocDocument* doc, QWidget *parent);
+    ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *parent);
 
     /**
      * Called when the user clicks Apply or OK.

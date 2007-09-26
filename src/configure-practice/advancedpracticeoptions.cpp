@@ -22,14 +22,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "queryoptions.h"
-
-#include <QGroupBox>
-#include <QCheckBox>
-#include <QRadioButton>
-#include <QLabel>
-
-#include <knuminput.h>
+#include "advancedpracticeoptions.h"
 
 #include "prefs.h"
 
@@ -101,4 +94,4 @@ void QueryOptions::updateWidgets()
     kcfg_IKnow->setChecked(Prefs::iKnow());
 }
 
-#include "queryoptions.moc"
+#include "advancedpracticeoptions.moc"

@@ -38,7 +38,7 @@
 #include "settings/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
 #include "docprop-dialogs/TitlePage.h"
-#include "practice/startpracticedialog.h"
+#include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
 #include <keduvoclesson.h>
@@ -634,10 +634,10 @@ void KVocTrainApp::slotDocumentProperties()
 
 void KVocTrainApp::configurePractice()
 {
-    StartPracticeDialog* startPracticeDialog;
-    startPracticeDialog = new StartPracticeDialog(m_doc, this, "practice settings",  Prefs::self());
+    ConfigurePracticeDialog* configurePracticeDialog;
+    configurePracticeDialog = new ConfigurePracticeDialog(m_doc, this, "practice settings",  Prefs::self());
 
-    startPracticeDialog->show();
+    configurePracticeDialog->show();
 }
 
 void KVocTrainApp::startPractice()

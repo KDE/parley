@@ -17,18 +17,12 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/kvoctrainprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
-    settings/blockoptions.cpp
     settings/groupoptions.cpp
-    settings/queryoptions.cpp
-    settings/thresholdoptions.cpp
     settings/profilesdialog.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
-    settings/blockoptionsbase.ui
     settings/groupoptionsbase.ui
-    settings/queryoptionsbase.ui
-    settings/thresholdoptionsbase.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
 )
@@ -44,8 +38,6 @@ set(practice_SRCS
     practice/RandomQueryDlg.cpp
     practice/SimpleQueryDlg.cpp
     practice/VerbQueryDlg.cpp
-    practice/startpracticedialog.cpp
-    practice/startpracticewidget.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -55,7 +47,21 @@ kde4_add_ui_files(practice_SRCS
     practice/RandomQueryDlgForm.ui
     practice/SimpleQueryDlgForm.ui
     practice/VerbQueryDlgForm.ui
-    practice/startpracticewidget.ui
+)
+
+set(configure-practice_SRCS
+    configure-practice/configurepracticedialog.cpp
+    configure-practice/configurepracticewidget.cpp
+    configure-practice/advancedpracticeoptions.cpp
+    configure-practice/blockoptions.cpp
+    configure-practice/thresholdoptions.cpp
+)
+
+kde4_add_ui_files(configure-practice_SRCS
+    configure-practice/thresholdoptions.ui
+    configure-practice/advancedpracticeoptions.ui
+    configure-practice/blockoptions.ui
+    configure-practice/configurepracticewidget.ui
 )
 
 set(docprop_SRCS
@@ -128,8 +134,10 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
-set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS} ${docprop_SRCS}
-${entrydialogs_SRCS} ${statisticsdialogs_SRCS} ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
+set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
+    ${configure-practice_SRCS} ${docprop_SRCS}
+    ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
+    ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
     kva_io.cpp
     kvoctrain.cpp
     main.cpp

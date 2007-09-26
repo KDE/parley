@@ -15,15 +15,16 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "startpracticedialog.h"
-#include "startpracticewidget.h"
-#include "settings/queryoptions.h"
-#include "settings/thresholdoptions.h"
-#include "settings/blockoptions.h"
+#include "configurepracticedialog.h"
+
+#include "configurepracticewidget.h"
+#include "advancedpracticeoptions.h"
+#include "thresholdoptions.h"
+#include "blockoptions.h"
+
 #include <KLocale>
 
-
-StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
+ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
     :KConfigDialog(parent, name, config)
 {
     m_config = config;
@@ -33,8 +34,8 @@ StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, 
     setDefaultButton(Ok);
 
 
-    m_startPracticeWidget= new StartPracticeWidget(doc, this);
-    addPage(m_startPracticeWidget, i18n("Practice"), "run_query", i18n("Practice options"), true);
+    m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
+    addPage(m_configurePracticeWidget, i18n("Practice"), "run_query", i18n("Practice options"), true);
 
     m_queryOptions = new QueryOptions(this);
     addPage(m_queryOptions, i18nc("Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
@@ -49,44 +50,44 @@ StartPracticeDialog::StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, 
     connect(m_blockOptions, SIGNAL(widgetModified()), SLOT(updateButtons()));
 }
 
-StartPracticeDialog::~StartPracticeDialog()
+ConfigurePracticeDialog::~ConfigurePracticeDialog()
 {
 //     KConfigGroup cg(KGlobal::config(), "DocumentPropertiesDialog");
 //     KDialog::saveDialogSize(cg);
 }
 
 
-bool StartPracticeDialog::hasChanged()
+bool ConfigurePracticeDialog::hasChanged()
 {
-    return  m_startPracticeWidget->hasChanged() ||
+    return  m_configurePracticeWidget->hasChanged() ||
             m_thresholdOptions->hasChanged() ||
             m_blockOptions->hasChanged();
 }
 
-bool StartPracticeDialog::isDefault()
+bool ConfigurePracticeDialog::isDefault()
 {
-    return m_startPracticeWidget->isDefault() &&
+    return m_configurePracticeWidget->isDefault() &&
            m_thresholdOptions->isDefault() &&
            m_blockOptions->isDefault();
 }
 
-void StartPracticeDialog::updateSettings()
+void ConfigurePracticeDialog::updateSettings()
 {
-    m_startPracticeWidget->updateSettings();
+    m_configurePracticeWidget->updateSettings();
 //     m_queryOptions->updateSettings();
     m_thresholdOptions->updateSettings();
     m_blockOptions->updateSettings();
 }
 
-void StartPracticeDialog::updateWidgets()
+void ConfigurePracticeDialog::updateWidgets()
 {
-    m_startPracticeWidget->updateWidgets();
+    m_configurePracticeWidget->updateWidgets();
     m_queryOptions->updateWidgets();
     m_thresholdOptions->updateWidgets();
     m_blockOptions->updateWidgets();
 }
 
-void StartPracticeDialog::updateWidgetsDefault()
+void ConfigurePracticeDialog::updateWidgetsDefault()
 {
     m_config->useDefaults(true);
     updateWidgets();
@@ -94,4 +95,4 @@ void StartPracticeDialog::updateWidgetsDefault()
 }
 
 
-#include "startpracticedialog.moc"
+#include "configurepracticedialog.moc"

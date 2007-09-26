@@ -15,13 +15,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef STARTPRACTICEDIALOG_H
-#define STARTPRACTICEDIALOG_H
+#ifndef CONFIGUREPRACTICEDIALOG_H
+#define CONFIGUREPRACTICEDIALOG_H
 
 #include <keduvocdocument.h>
 #include <KConfigDialog>
 
-class StartPracticeWidget;
+class ConfigurePracticeWidget;
 class QueryOptions;
 class ThresholdOptions;
 class BlockOptions;
@@ -29,13 +29,13 @@ class BlockOptions;
 /**
   *
   */
-class StartPracticeDialog : public KConfigDialog
+class ConfigurePracticeDialog : public KConfigDialog
 {
     Q_OBJECT
 public:
-    StartPracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
+    ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
-    ~StartPracticeDialog();
+    ~ConfigurePracticeDialog();
 
     void commitData();
 
@@ -66,7 +66,7 @@ private:
      */
     bool isDefault();
 
-    StartPracticeWidget* m_startPracticeWidget;
+    ConfigurePracticeWidget* m_configurePracticeWidget;
     QueryOptions* m_queryOptions;
     ThresholdOptions* m_thresholdOptions;
     BlockOptions* m_blockOptions;
@@ -74,5 +74,5 @@ private:
     KConfigSkeleton* m_config;
 };
 
-#endif // StartPracticeDialog_included
+#endif // ConfigurePracticeDialog_included
 

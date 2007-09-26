@@ -17,7 +17,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "startpracticewidget.h"
+#include "configurepracticewidget.h"
 
 #include "languagesettings.h"
 #include "prefs.h"
@@ -33,7 +33,7 @@
  *
  * @param parent
  */
-StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
+ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget * parent)
     : QWidget(parent)
 {
     m_doc = doc;
@@ -57,13 +57,13 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
 }
 
 
-void StartPracticeWidget::updateSettings()
+void ConfigurePracticeWidget::updateSettings()
 {
     Prefs::setFromIdentifier(LanguageFromList->currentRow());
     Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 }
 
-void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
+void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
 {
     LanguageToList->clear();
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
@@ -85,20 +85,20 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
     }
 }
 
-void StartPracticeWidget::grammarTestToggled(bool state)
+void ConfigurePracticeWidget::grammarTestToggled(bool state)
 {
     GrammarGroupBox->setEnabled(state);
 }
 
 
-void StartPracticeWidget::updateWidgets()
+void ConfigurePracticeWidget::updateWidgets()
 {
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
 }
 
-bool StartPracticeWidget::hasChanged()
+bool ConfigurePracticeWidget::hasChanged()
 {
-    kDebug()<< "StartPracticeWidget::hasChanged()";
+    kDebug()<< "ConfigurePracticeWidget::hasChanged()";
     int toRow = LanguageToList->currentRow();
     if ( toRow <= LanguageFromList->currentRow() ) {
         toRow++;
@@ -109,7 +109,7 @@ bool StartPracticeWidget::hasChanged()
         //    toRow == Prefs::toIdentifier();
 }
 
-bool StartPracticeWidget::isDefault()
+bool ConfigurePracticeWidget::isDefault()
 {
     ///@todo language selection
     return true;
@@ -118,4 +118,4 @@ bool StartPracticeWidget::isDefault()
 }
 
 
-#include "startpracticewidget.moc"
+#include "configurepracticewidget.moc"
