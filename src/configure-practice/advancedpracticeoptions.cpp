@@ -29,6 +29,12 @@
 AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
+
+    // time limit
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
+    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
+
     // wether to split up translations
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Periods, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Colons, SLOT(setEnabled(bool)));
@@ -38,60 +44,7 @@ AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(pare
 
     connect(kcfg_Split, SIGNAL(toggled(bool)), label_at, SLOT(setEnabled(bool)));
     connect(kcfg_Split, SIGNAL(toggled(bool)), label_split_max_fields, SLOT(setEnabled(bool)));
-
-    // time limit
-    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
-    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
-    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
-
-
-    //disable timeout widgets if No Limit
-    kcfg_MaxTimePer->setDisabled(NoTimeoutRadio->isChecked());
-    kcfg_ShowCounter->setDisabled(NoTimeoutRadio->isChecked());
-    label_mqtime->setDisabled(NoTimeoutRadio->isChecked());
-
-    kcfg_Periods->setEnabled(kcfg_Split->isChecked());
-    kcfg_Colons->setEnabled(kcfg_Split->isChecked());
-    kcfg_Semicolons->setEnabled(kcfg_Split->isChecked());
-    kcfg_Commas->setEnabled(kcfg_Split->isChecked());
-    kcfg_Fields->setEnabled(kcfg_Split->isChecked());
-    label_at->setEnabled(kcfg_Split->isChecked());
-    label_split_max_fields->setEnabled(kcfg_Split->isChecked());
 }
 
-void AdvancedPracticeOptions::updateWidgets()
-{
-    //This is required for loading profiles properly
-    switch (Prefs::queryTimeout()) {
-    case Prefs::EnumQueryTimeout::NoTimeout:
-        NoTimeoutRadio->setChecked(true);
-        break;
-
-    case Prefs::EnumQueryTimeout::Show:
-        ShowSolutionRadio->setChecked(true);
-        break;
-
-    case Prefs::EnumQueryTimeout::Continue:
-        ContinueRadio->setChecked(true);
-        break;
-
-    default:
-        NoTimeoutRadio->setChecked(true);
-    }
-    kcfg_MaxTimePer->setValue(Prefs::maxTimePer());
-    kcfg_ShowCounter->setChecked(Prefs::showCounter());
-    kcfg_SwapDirection->setChecked(Prefs::swapDirection());
-
-    kcfg_AltLearn->setChecked(Prefs::altLearn());
-    kcfg_Suggestions->setChecked(Prefs::suggestions());
-    kcfg_Split->setChecked(Prefs::split());
-    kcfg_Periods->setChecked(Prefs::periods());
-    kcfg_Colons->setChecked(Prefs::colons());
-    kcfg_Semicolons->setChecked(Prefs::semicolons());
-    kcfg_Commas->setChecked(Prefs::commas());
-    kcfg_Fields->setValue(Prefs::fields());
-    kcfg_ShowMore->setChecked(Prefs::showMore());
-    kcfg_IKnow->setChecked(Prefs::iKnow());
-}
 
 #include "advancedpracticeoptions.moc"

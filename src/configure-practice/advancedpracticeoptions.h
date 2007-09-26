@@ -32,8 +32,6 @@ class AdvancedPracticeOptions : public QWidget, public Ui::AdvancedPracticeOptio
     Q_OBJECT
 public:
     AdvancedPracticeOptions(QWidget* parent = 0);
-
-    void updateWidgets();
 };
 
 #endif

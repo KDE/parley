@@ -82,7 +82,6 @@ void ConfigurePracticeDialog::updateSettings()
 void ConfigurePracticeDialog::updateWidgets()
 {
     m_configurePracticeWidget->updateWidgets();
-    m_advancedPracticeOptions->updateWidgets();
     m_thresholdOptions->updateWidgets();
     m_blockOptions->updateWidgets();
 }

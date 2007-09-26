@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>582</width>
-    <height>636</height>
+    <width>587</width>
+    <height>609</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -18,26 +18,8 @@
      <property name="title" >
       <string>Time Limit in Tests</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="leftMargin" >
-       <number>10</number>
-      </property>
-      <property name="topMargin" >
-       <number>10</number>
-      </property>
-      <property name="rightMargin" >
-       <number>10</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>10</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
-       <number>6</number>
-      </property>
-      <item rowspan="2" row="0" column="0" >
+     <layout class="QHBoxLayout" >
+      <item>
        <widget class="KButtonGroup" name="kcfg_QueryTimeout" >
         <property name="styleSheet" >
          <string>QGroupBox { border-width: 0; border-style: none; }</string>
@@ -76,104 +58,107 @@
         </layout>
        </widget>
       </item>
-      <item row="0" column="1" >
-       <layout class="QGridLayout" >
-        <property name="leftMargin" >
-         <number>0</number>
-        </property>
-        <property name="topMargin" >
-         <number>0</number>
-        </property>
-        <property name="rightMargin" >
-         <number>0</number>
-        </property>
-        <property name="bottomMargin" >
-         <number>0</number>
-        </property>
-        <property name="horizontalSpacing" >
-         <number>6</number>
-        </property>
-        <property name="verticalSpacing" >
-         <number>6</number>
-        </property>
-        <item row="0" column="0" >
-         <widget class="QLabel" name="label_mqtime" >
-          <property name="text" >
-           <string>Ma&amp;x. time (s):</string>
-          </property>
-          <property name="buddy" >
-           <cstring>kcfg_MaxTimePer</cstring>
-          </property>
-         </widget>
+      <item>
+       <layout class="QVBoxLayout" >
+        <item>
+         <layout class="QGridLayout" >
+          <item row="0" column="0" >
+           <widget class="QLabel" name="label_mqtime" >
+            <property name="text" >
+             <string>Ma&amp;x. time (s):</string>
+            </property>
+            <property name="buddy" >
+             <cstring>kcfg_MaxTimePer</cstring>
+            </property>
+           </widget>
+          </item>
+          <item row="0" column="1" >
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="KIntSpinBox" name="kcfg_MaxTimePer" >
+              <property name="toolTip" >
+               <string>Set the maximum time allowed per answer.</string>
+              </property>
+              <property name="whatsThis" >
+               <string>Set here the maximum time you want to allow per answer.</string>
+              </property>
+              <property name="minimum" >
+               <number>1</number>
+              </property>
+              <property name="maximum" >
+               <number>6000</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+          <item row="1" column="0" >
+           <spacer>
+            <property name="orientation" >
+             <enum>Qt::Horizontal</enum>
+            </property>
+            <property name="sizeType" >
+             <enum>QSizePolicy::Minimum</enum>
+            </property>
+            <property name="sizeHint" >
+             <size>
+              <width>109</width>
+              <height>26</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item row="1" column="1" >
+           <widget class="QCheckBox" name="kcfg_ShowCounter" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="toolTip" >
+             <string>If checked, activate a progress bar to show the remaining time.</string>
+            </property>
+            <property name="whatsThis" >
+             <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
+            </property>
+            <property name="text" >
+             <string>S&amp;how remaining time</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="1" column="1" >
-         <widget class="QCheckBox" name="kcfg_ShowCounter" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="toolTip" >
-           <string>If checked, activate a progress bar to show the remaining time.</string>
-          </property>
-          <property name="whatsThis" >
-           <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
-          </property>
-          <property name="text" >
-           <string>S&amp;how remaining time</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
+        <item>
          <spacer>
           <property name="orientation" >
-           <enum>Qt::Horizontal</enum>
+           <enum>Qt::Vertical</enum>
           </property>
           <property name="sizeType" >
-           <enum>QSizePolicy::Minimum</enum>
+           <enum>QSizePolicy::Expanding</enum>
           </property>
           <property name="sizeHint" >
            <size>
-            <width>83</width>
-            <height>20</height>
+            <width>200</width>
+            <height>16</height>
            </size>
           </property>
          </spacer>
         </item>
-        <item row="0" column="1" >
-         <widget class="KIntNumInput" name="kcfg_MaxTimePer" >
-          <property name="toolTip" >
-           <string>Set the maximum time allowed per answer.</string>
-          </property>
-          <property name="whatsThis" >
-           <string>Set here the maximum time you want to allow per answer.</string>
-          </property>
-          <property name="minimum" >
-           <number>0</number>
-          </property>
-          <property name="maximum" >
-           <number>604800</number>
-          </property>
-         </widget>
-        </item>
        </layout>
-      </item>
-      <item row="1" column="1" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeType" >
-         <enum>QSizePolicy::Expanding</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>200</width>
-          <height>16</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
@@ -193,7 +178,7 @@
          <string>By checking this, you will use the Leitner method of learning which requires you to answer correctly to each question 3 times in a row. </string>
         </property>
         <property name="text" >
-         <string>Require 3 consecutive correct answers to count as right</string>
+         <string>&amp;Require 3 consecutive correct answers to count as right</string>
         </property>
        </widget>
       </item>
@@ -213,7 +198,7 @@
          <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
         </property>
         <property name="text" >
-         <string>Practice in lesson order</string>
+         <string>&amp;Practice in lesson order</string>
         </property>
        </widget>
       </item>
@@ -222,7 +207,10 @@
         <item>
          <widget class="QLabel" name="label" >
           <property name="text" >
-           <string>Active entries during practice:</string>
+           <string>&amp;Active entries during practice:</string>
+          </property>
+          <property name="buddy" >
+           <cstring>kcfg_TestNumberOfEntries</cstring>
           </property>
          </widget>
         </item>
@@ -236,6 +224,9 @@
           </property>
           <property name="minimum" >
            <number>2</number>
+          </property>
+          <property name="maximum" >
+           <number>10000</number>
           </property>
          </widget>
         </item>
@@ -262,26 +253,8 @@
      <property name="title" >
       <string>Options for Written Tests</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="leftMargin" >
-       <number>10</number>
-      </property>
-      <property name="topMargin" >
-       <number>10</number>
-      </property>
-      <property name="rightMargin" >
-       <number>10</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>10</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
-       <number>6</number>
-      </property>
-      <item row="0" column="0" colspan="7" >
+     <layout class="QVBoxLayout" >
+      <item>
        <widget class="QCheckBox" name="kcfg_Suggestions" >
         <property name="enabled" >
          <bool>true</bool>
@@ -297,7 +270,7 @@
         </property>
        </widget>
       </item>
-      <item row="1" column="0" colspan="7" >
+      <item>
        <widget class="QCheckBox" name="kcfg_Split" >
         <property name="enabled" >
          <bool>true</bool>
@@ -313,122 +286,179 @@
         </property>
        </widget>
       </item>
-      <item row="3" column="1" colspan="3" >
-       <widget class="QLabel" name="label_split_max_fields" >
-        <property name="toolTip" >
-         <string>Maximum number of fields to split translations into</string>
-        </property>
-        <property name="whatsThis" >
-         <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
-        </property>
-        <property name="text" >
-         <string>Maximum number of &amp;fields:</string>
-        </property>
-        <property name="buddy" >
-         <cstring>kcfg_Fields</cstring>
-        </property>
-       </widget>
+      <item>
+       <layout class="QHBoxLayout" >
+        <item>
+         <spacer>
+          <property name="orientation" >
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeType" >
+           <enum>QSizePolicy::Minimum</enum>
+          </property>
+          <property name="sizeHint" >
+           <size>
+            <width>16</width>
+            <height>48</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <layout class="QVBoxLayout" >
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="label_at" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy" >
+               <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="text" >
+               <string>at</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="kcfg_Periods" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Split translations at periods</string>
+              </property>
+              <property name="whatsThis" >
+               <string>When this options is enabled, translations will be split at periods if they have any (except any trailing periods that will be removed).</string>
+              </property>
+              <property name="text" >
+               <string>pe&amp;riods</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="kcfg_Colons" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Split translations at colons</string>
+              </property>
+              <property name="whatsThis" >
+               <string>When this options is enabled, translations that have not been split at periods will be split at colons if they have any.</string>
+              </property>
+              <property name="text" >
+               <string>co&amp;lons</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="kcfg_Semicolons" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Split translations at semicolons</string>
+              </property>
+              <property name="whatsThis" >
+               <string>When this options is enabled, translations that have not been split at periods or colons will be split at semicolons if they have any.</string>
+              </property>
+              <property name="text" >
+               <string>sem&amp;icolons</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QCheckBox" name="kcfg_Commas" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="sizePolicy" >
+               <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
+              <property name="toolTip" >
+               <string>Split translations at commas</string>
+              </property>
+              <property name="whatsThis" >
+               <string>When this options is enabled, translations that have not been split at periods, colons or semicolons will be split at commas if they have any.</string>
+              </property>
+              <property name="text" >
+               <string>co&amp;mmas</string>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </item>
+          <item>
+           <layout class="QHBoxLayout" >
+            <item>
+             <widget class="QLabel" name="label_split_max_fields" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Maximum number of fields to split translations into</string>
+              </property>
+              <property name="whatsThis" >
+               <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
+              </property>
+              <property name="text" >
+               <string>Maximum number of &amp;fields:</string>
+              </property>
+              <property name="buddy" >
+               <cstring>kcfg_Fields</cstring>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="KIntSpinBox" name="kcfg_Fields" >
+              <property name="enabled" >
+               <bool>false</bool>
+              </property>
+              <property name="toolTip" >
+               <string>Maximum number of fields to split translations into</string>
+              </property>
+              <property name="whatsThis" >
+               <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
+              </property>
+              <property name="minimum" >
+               <number>2</number>
+              </property>
+              <property name="maximum" >
+               <number>10</number>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <spacer>
+              <property name="orientation" >
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeType" >
+               <enum>QSizePolicy::Expanding</enum>
+              </property>
+              <property name="sizeHint" >
+               <size>
+                <width>101</width>
+                <height>33</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </item>
+       </layout>
       </item>
-      <item row="5" column="0" colspan="7" >
-       <widget class="QCheckBox" name="kcfg_IKnow" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Enable the I Know It button on the Random Query screen</string>
-        </property>
-        <property name="whatsThis" >
-         <string>If this is checked, the I Know button will be available. It allows you to tell the query that you know the result without writing it or having it checked. This is available by default. If you uncheck this, the I Know button will not be available.</string>
-        </property>
-        <property name="text" >
-         <string>Enable I Know &amp;button</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" >
-       <widget class="QLabel" name="label_at" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text" >
-         <string>at</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="2" >
-       <widget class="QCheckBox" name="kcfg_Periods" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at periods</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations will be split at periods if they have any (except any trailing periods that will be removed).</string>
-        </property>
-        <property name="text" >
-         <string>pe&amp;riods</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="4" >
-       <widget class="QCheckBox" name="kcfg_Semicolons" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at semicolons</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods or colons will be split at semicolons if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>sem&amp;icolons</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="5" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_Commas" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at commas</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods, colons or semicolons will be split at commas if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>co&amp;mmas</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="3" >
-       <widget class="QCheckBox" name="kcfg_Colons" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at colons</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods will be split at colons if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>co&amp;lons</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="7" >
+      <item>
        <widget class="QCheckBox" name="kcfg_ShowMore" >
         <property name="enabled" >
          <bool>true</bool>
@@ -444,65 +474,21 @@
         </property>
        </widget>
       </item>
-      <item rowspan="2" row="2" column="0" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType" >
-         <enum>QSizePolicy::Minimum</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>16</width>
-          <height>48</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="3" column="4" colspan="2" >
-       <widget class="KIntNumInput" name="kcfg_Fields" >
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="Minimum" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="maximumSize" >
-         <size>
-          <width>32767</width>
-          <height>32767</height>
-         </size>
+      <item>
+       <widget class="QCheckBox" name="kcfg_IKnow" >
+        <property name="enabled" >
+         <bool>true</bool>
         </property>
         <property name="toolTip" >
-         <string>Maximum number of fields to split translations into</string>
+         <string>Enable the I Know It button on the Random Query screen</string>
         </property>
         <property name="whatsThis" >
-         <string>Enter the maximum number of answer fields you want to have. When splitting translations, the program will only split into this many parts, and the last part will contain the rest of the translation.</string>
+         <string>If this is checked, the I Know button will be available. It allows you to tell the query that you know the result without writing it or having it checked. This is available by default. If you uncheck this, the I Know button will not be available.</string>
         </property>
-        <property name="minimum" >
-         <number>2</number>
-        </property>
-        <property name="maximum" >
-         <number>10</number>
+        <property name="text" >
+         <string>Enable I Know &amp;button</string>
         </property>
        </widget>
-      </item>
-      <item row="3" column="6" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Horizontal</enum>
-        </property>
-        <property name="sizeType" >
-         <enum>QSizePolicy::Expanding</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>111</width>
-          <height>20</height>
-         </size>
-        </property>
-       </spacer>
       </item>
      </layout>
     </widget>
@@ -532,12 +518,6 @@
    <class>KButtonGroup</class>
    <extends>QGroupBox</extends>
    <header>kbuttongroup.h</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>KIntNumInput</class>
-   <extends>QWidget</extends>
-   <header>knuminput.h</header>
    <container>1</container>
   </customwidget>
   <customwidget>
