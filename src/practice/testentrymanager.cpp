@@ -399,10 +399,18 @@ TestEntry * TestEntryManager::nextEntry()
         m_currentEntries.append( m_notAskedTestEntries.takeAt(0) );
     }
 
+    int lastEntry = m_currentEntry;
     // return one of the current entries
     if ( m_currentEntries.count() > 0 ) {
         // one of the current words (by random)
         m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+        // do not allow to ask the same entry twice in a row
+        if ( m_currentEntries.count() > 1 ) {
+            while ( m_currentEntry == lastEntry ) {
+                m_currentEntry = m_randomSequence->getLong(m_currentEntries.count());
+            }
+        }
+
         kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
         return m_currentEntries.value( m_currentEntry );
     }
