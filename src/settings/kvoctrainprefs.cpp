@@ -55,7 +55,8 @@ static const char unapplied[] = I18N_NOOP(
 KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
   : KConfigDialog(parent, name, config)
 {
-    setButtons(Default|Ok|Apply|Cancel|Help|User1);
+//     setButtons(Default|Ok|Apply|Cancel|Help|User1);
+    setButtons(Default|Ok|Apply|Cancel|Help);
     setDefaultButton(Ok);
     setModal(true);
 
@@ -81,10 +82,10 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
     addPage(m_blockOptions, i18n("Blocking"), "configure", i18n("Blocking Settings"), true);
     connect(m_blockOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
-    setButtonGuiItem(KDialog::User1, KGuiItem(i18n("&Profiles...")));
-    setButtonToolTip(KDialog::User1, i18n("Save/load specific practice settings in/from a profile"));
-    setButtonWhatsThis(KDialog::User1, i18n("A Profile is a set of settings (settings related to practices) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
-    connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
+//     setButtonGuiItem(KDialog::User1, KGuiItem(i18n("&Profiles...")));
+//     setButtonToolTip(KDialog::User1, i18n("Save/load specific practice settings in/from a profile"));
+//     setButtonWhatsThis(KDialog::User1, i18n("A Profile is a set of settings (settings related to practices) which you can save/load in order to use again later. This button allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile."));
+//     connect(this,SIGNAL(user1Clicked()),this,SLOT(slotUser1()));
 }
 
 bool KVocTrainPrefs::hasChanged()
