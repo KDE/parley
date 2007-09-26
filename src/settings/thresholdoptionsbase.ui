@@ -109,7 +109,7 @@
    <item row="4" column="0" >
     <widget class="QLabel" name="label_qdate" >
      <property name="text" >
-      <string>Last q&amp;uery:</string>
+      <string>Last &amp;practice:</string>
      </property>
      <property name="buddy" >
       <cstring>datecomp</cstring>
