@@ -51,76 +51,14 @@ StartPracticeWidget::StartPracticeWidget(KEduVocDocument* doc, QWidget * parent)
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
     connect(GrammarRadio, SIGNAL(toggled(bool)), this, SLOT(grammarTestToggled(bool)));
 
-    ///@todo get this from config
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
-//     LanguageToList
-
-    switch ( Prefs::testType() ) {
-    case Prefs::EnumTestType::WrittenTest:
-        WrittenRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::MultipleChoiceTest:
-        MultipleChoiceRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::SynonymTest:
-        SynonymRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::AntonymTest:
-        AntonymRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::ExampleTest:
-        ExampleRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::ParaphraseTest:
-        ParaphraseRadio->setChecked(true);
-        break;
-    case Prefs::EnumTestType::GrammarTest:
-        GrammarRadio->setChecked(true);
-        ConjugationCheckBox->setChecked(Prefs::grammarConjugationTest());
-        ComparisonAdjectiveCheckBox->setChecked(Prefs::grammarComparisonAdjectiveTest());
-        ComparisonAdverbCheckBox->setChecked(Prefs::grammarComparisonAdverbTest());
-        ArticleCheckBox->setChecked(Prefs::grammarArticleTest());
-        break;
-    }
-
-    ArticleCheckBox->setChecked(Prefs::grammarArticleTest());
-    ComparisonAdjectiveCheckBox->setChecked(Prefs::grammarComparisonAdjectiveTest());
-    ComparisonAdverbCheckBox->setChecked(Prefs::grammarComparisonAdverbTest());
-    ConjugationCheckBox->setChecked(Prefs::grammarConjugationTest());
 
     GrammarGroupBox->setEnabled( Prefs::testType() == Prefs::EnumTestType::GrammarTest );
 }
 
 
-void StartPracticeWidget::commitData()
+void StartPracticeWidget::updateSettings()
 {
-    if ( WrittenRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::WrittenTest);
-    }
-    if ( MultipleChoiceRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::MultipleChoiceTest);
-    }
-    if ( SynonymRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::SynonymTest);
-    }
-    if ( AntonymRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::AntonymTest);
-    }
-    if ( ExampleRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::ExampleTest);
-    }
-    if ( ParaphraseRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::ParaphraseTest);
-    }
-    if ( GrammarRadio->isChecked() ) {
-        Prefs::setTestType(Prefs::EnumTestType::GrammarTest);
-    }
-
-    Prefs::setGrammarArticleTest(ArticleCheckBox->isChecked());
-    Prefs::setGrammarComparisonAdjectiveTest(ComparisonAdjectiveCheckBox->isChecked());
-    Prefs::setGrammarComparisonAdverbTest(ComparisonAdverbCheckBox->isChecked());
-    Prefs::setGrammarConjugationTest(ConjugationCheckBox->isChecked());
-
     Prefs::setFromIdentifier(LanguageFromList->currentRow());
     Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 }
@@ -150,6 +88,33 @@ void StartPracticeWidget::fromLanguageSelected(int identifierFromIndex)
 void StartPracticeWidget::grammarTestToggled(bool state)
 {
     GrammarGroupBox->setEnabled(state);
+}
+
+
+void StartPracticeWidget::updateWidgets()
+{
+    LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
+}
+
+bool StartPracticeWidget::hasChanged()
+{
+    kDebug()<< "StartPracticeWidget::hasChanged()";
+    int toRow = LanguageToList->currentRow();
+    if ( toRow <= LanguageFromList->currentRow() ) {
+        toRow++;
+    }
+    ///@todo implement so that the current settings are respected
+    return false;
+        //LanguageFromList->currentRow() == Prefs::fromIdentifier() &&
+        //    toRow == Prefs::toIdentifier();
+}
+
+bool StartPracticeWidget::isDefault()
+{
+    ///@todo language selection
+    return true;
+//         LanguageFromList->currentRow() == 0 &&
+//         LanguageToList->currentRow() == 1;
 }
 
 

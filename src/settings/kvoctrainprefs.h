@@ -28,9 +28,6 @@
 class GeneralOptions;
 class ViewOptions;
 class PasteOptions;
-class QueryOptions;
-class ThresholdOptions;
-class BlockOptions;
 
 class KEduVocDocument;
 class KVTQuery;
@@ -60,10 +57,6 @@ protected slots:
      * Called when the user clicks Default
      */
     void updateWidgetsDefault();
-    /**
-     * Called when the user clicks Profiles...
-     */
-    void slotUser1();
 
 protected:
     /**
@@ -79,9 +72,6 @@ private:
     GeneralOptions * m_generalOptions;
     ViewOptions * m_viewOptions;
     PasteOptions * m_pasteOptions;
-    QueryOptions * m_queryOptions;
-    ThresholdOptions * m_thresholdOptions;
-    BlockOptions * m_blockOptions;
 
     KConfigSkeleton *m_config;
     KEduVocDocument *m_doc;

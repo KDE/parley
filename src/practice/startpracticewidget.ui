@@ -5,13 +5,13 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>633</width>
-    <height>350</height>
+    <width>693</width>
+    <height>387</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
    <item row="0" column="0" >
-    <widget class="QGroupBox" name="testTypeGroupBox" >
+    <widget class="KButtonGroup" name="kcfg_TestType" >
      <property name="title" >
       <string>Type of Test</string>
      </property>
@@ -26,42 +26,42 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="1" >
+      <item rowspan="2" row="0" column="1" >
        <widget class="QRadioButton" name="SynonymRadio" >
         <property name="text" >
          <string>Synonym</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
+      <item rowspan="2" row="1" column="0" >
        <widget class="QRadioButton" name="MultipleChoiceRadio" >
         <property name="text" >
          <string>Multiple Choice</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="1" >
+      <item row="2" column="1" >
        <widget class="QRadioButton" name="AntonymRadio" >
         <property name="text" >
          <string>Antonym</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="0" >
+      <item row="3" column="0" >
        <widget class="QRadioButton" name="GrammarRadio" >
         <property name="text" >
          <string>Grammar</string>
         </property>
        </widget>
       </item>
-      <item row="2" column="1" >
+      <item row="3" column="1" >
        <widget class="QRadioButton" name="ParaphraseRadio" >
         <property name="text" >
          <string>Paraphrase</string>
         </property>
        </widget>
       </item>
-      <item row="3" column="0" colspan="2" >
+      <item row="4" column="0" colspan="2" >
        <widget class="QRadioButton" name="ExampleRadio" >
         <property name="text" >
          <string>Example Sentences</string>
@@ -78,28 +78,28 @@
      </property>
      <layout class="QVBoxLayout" >
       <item>
-       <widget class="QCheckBox" name="ConjugationCheckBox" >
+       <widget class="QCheckBox" name="kcfg_GrammarConjugationTest" >
         <property name="text" >
          <string>Conjugation of Verbs</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="ComparisonAdjectiveCheckBox" >
+       <widget class="QCheckBox" name="kcfg_GrammarComparisonAdjectiveTest" >
         <property name="text" >
          <string>Comparison of Adjectives</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="ComparisonAdverbCheckBox" >
+       <widget class="QCheckBox" name="kcfg_GrammarComparisonAdverbTest" >
         <property name="text" >
          <string>Comparison of Adverbs</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="ArticleCheckBox" >
+       <widget class="QCheckBox" name="kcfg_GrammarArticleTest" >
         <property name="text" >
          <string>Articles of Nouns</string>
         </property>
@@ -143,6 +143,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>KButtonGroup</class>
+   <extends>QGroupBox</extends>
+   <header>kbuttongroup.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

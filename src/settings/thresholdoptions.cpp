@@ -329,14 +329,6 @@ void ThresholdOptions::updateSettings()
 
 bool ThresholdOptions::hasChanged()
 {
-    if (gradecomp->currentIndex() < 0 ||
-            querycomp->currentIndex() < 0 ||
-            badcomp->currentIndex()   < 0 ||
-            datecomp->currentIndex()  < 0 ||
-            typelist->currentIndex()  < 0 ||
-            datelist->currentIndex()  < 0)
-        return true;
-
     return type_complist[typecomp->currentIndex()]            != Prefs::compType(Prefs::EnumType::WordType) ||
            grade_complist[gradecomp->currentIndex()]          != Prefs::compType(Prefs::EnumType::Grade)    ||
            query_complist[querycomp->currentIndex()]          != Prefs::compType(Prefs::EnumType::Query)    ||

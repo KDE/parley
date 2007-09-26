@@ -201,12 +201,12 @@
     <entry name="TestType" type="Enum">
         <choices>
             <choice name="WrittenTest"/>
-            <choice name="MultipleChoiceTest"/>
-            <choice name="GrammarTest"/>
             <choice name="SynonymTest"/>
+            <choice name="MultipleChoiceTest"/>
             <choice name="AntonymTest"/>
-            <choice name="ExampleTest"/>
+            <choice name="GrammarTest"/>
             <choice name="ParaphraseTest"/>
+            <choice name="ExampleTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
     </entry>

@@ -24,6 +24,7 @@
 #include <QWidget>
 
 class KEduVocDocument;
+class KConfigSkeleton;
 
 /**
  *
@@ -36,8 +37,17 @@ Q_OBJECT
 public:
     StartPracticeWidget(KEduVocDocument* doc, QWidget *parent);
 
-public slots:
-    void commitData();
+    /**
+     * Called when the user clicks Apply or OK.
+     */
+    void updateSettings();
+    /**
+     * Updates dialog widgets.
+     */
+    void updateWidgets();
+
+    bool hasChanged();
+    bool isDefault();
 
 private slots:
     void fromLanguageSelected(int identifierFromIndex);
