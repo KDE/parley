@@ -73,17 +73,22 @@ void WordTypeOptionPage::itemChanged(QStandardItem * item)
 
     if ( item->index().parent() == QModelIndex() ) {
         // get the old name, rename
-        m_newWordTypes.renameType( m_newWordTypes.typeNameList().value(item->index().row()), item->text() );
         oldType = m_newWordTypes.typeNameList().value(item->index().row());
-
+        if ( !item->text().isEmpty() ) {
+            m_newWordTypes.renameType( m_newWordTypes.typeNameList().value(item->index().row()), item->text() );
+        } else {
+            item->setText(oldType);
+        }
     } else {
         QString mainType = item->parent()->text();
 kDebug() << "Parent is: " << mainType << " with children: " << m_newWordTypes.subTypeNameList( mainType ).count();
-        oldType = m_newWordTypes.subTypeNameList( mainType )[item->index().row()];
 
         QString subType = m_newWordTypes.subTypeNameList(mainType)[item->index().row()];
-        m_newWordTypes.renameSubType( mainType, subType, item->text() );
-
+        if ( !item->text().isEmpty() ) {
+            m_newWordTypes.renameSubType( mainType, subType, item->text() );
+        } else {
+            item->setText(subType);
+        }
         oldType = subType;
     }
 
