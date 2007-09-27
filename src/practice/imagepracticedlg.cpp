@@ -13,16 +13,16 @@
 
 #include "imagepracticedlg.h"
 
+#include <kvttablemodel.h>
+#include <keduvocdocument.h>
+
+#include <KLocale>
+#include <QGraphicsItem>
 #include <QTimer>
 #include <QTextEdit>
 #include <QLabel>
 #include <QPushButton>
 #include <QWidget>
-
-#include <KLocale>
-
-#include <kvttablemodel.h>
-#include <keduvocdocument.h>
 
 ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
     :PracticeDialog(i18n("Image Practice"), doc, parent), Ui::ImagePracticeDlg()
@@ -73,12 +73,20 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     resetQueryWidget(answerLineEdit);
     answerLineEdit->setFocus();
 
-    if ( !m_entry->exp->translation(identifier).imageUrl().isEmpty() ) {
-kDebug() << "image found:" << m_entry->exp->translation(identifier).imageUrl().url();
-//         m_scene->addPixmap(QPixmap(m_entry->exp->translation(identifier).imageUrl().url()));
-        QString url = m_entry->exp->translation(identifier).imageUrl().toLocalFile();
+
+    foreach ( QGraphicsItem* item, m_scene->items() ) {
+        m_scene->removeItem(item);
+        delete item;
+    }
+
+    QString url;
+    url = m_entry->exp->translation(identifier).imageUrl().toLocalFile();
+    if ( url.isEmpty() ) {
+        url = m_entry->exp->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
+    }
+    if ( !url.isEmpty() ) {
+        kDebug() << "image found:" << url;
         m_scene->addPixmap(QPixmap(url));
-kDebug() << "pixmap is null: " << QPixmap(url).isNull();
     } else {
         m_scene->addText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
     }
