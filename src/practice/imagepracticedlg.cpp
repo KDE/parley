@@ -80,7 +80,7 @@ kDebug() << "image found:" << m_entry->exp->translation(identifier).imageUrl().u
         m_scene->addPixmap(QPixmap(url));
 kDebug() << "pixmap is null: " << QPixmap(url).isNull();
     } else {
-        m_scene->addText("Hello, world!");
+        m_scene->addText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
     }
     m_scene->invalidate();
 }

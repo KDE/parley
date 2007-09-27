@@ -49,6 +49,7 @@ AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : 
     connect(antonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
     connect(synonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
     connect(audioUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
 
     connect(audioPlayButton, SIGNAL(clicked()), this, SLOT(playAudio()) );
 }
@@ -92,8 +93,6 @@ void AdditionalEditPage::setData(int row, int col)
     commentLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
     paraphraseLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
 
-    // create the audio url relative to the document
-    // this would set the doc itself as url, so check, if sound url is empty.
     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).soundUrl().isEmpty() ) {
         audioUrlRequester->setUrl( m_doc->entry(
                     m_currentRow)->translation(m_currentTranslation).soundUrl() );
