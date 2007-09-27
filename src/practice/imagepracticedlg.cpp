@@ -30,6 +30,7 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
     setupUi(mainWidget());
 
     m_scene = new QGraphicsScene();
+    m_scene->setSceneRect( 0.0, 0.0, 1.0, 1.0 );
     imageGraphicsView->setScene(m_scene);
 
     connect(verifySolutionButton, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -86,11 +87,18 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     }
     if ( !url.isEmpty() ) {
         kDebug() << "image found:" << url;
-        m_scene->addPixmap(QPixmap(url));
+        QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(QPixmap(url));
+
+        qreal scale = qMin(imageGraphicsView->width()/pixmapItem->boundingRect().width(), imageGraphicsView->height()/pixmapItem->boundingRect().height());
+
+        pixmapItem->scale( scale, scale );
+
+        pixmapItem->translate( -pixmapItem->boundingRect().width()/2.0, -pixmapItem->boundingRect().height()/2.0 );
+
+        m_scene->addItem(pixmapItem);
     } else {
         m_scene->addText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
     }
-    m_scene->invalidate();
 }
 
 
@@ -114,6 +122,7 @@ void ImagePracticeDlg::verifyClicked()
         resultCorrect();
     } else {
         ///@todo better do something sensible here...
+
         resultWrong();
     }
 }

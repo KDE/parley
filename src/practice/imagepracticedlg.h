@@ -34,13 +34,10 @@ public slots:
     void slotAnswerChanged();
     void verifyClicked();
 
-protected:
+private:
     void setStatusText(const QString &statusText) {}
     QProgressBar* timebar();
 
-    QString answerstring;
-
-private:
     void setQueryFieldWordwrap();
     QGraphicsScene* m_scene;
 };
