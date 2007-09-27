@@ -33,6 +33,7 @@
 #include "VerbQueryDlg.h"
 #include "ArtQueryDlg.h"
 #include "SimpleQueryDlg.h"
+#include "imagepracticedlg.h"
 
 #include "testentrymanager.h"
 #include "prefs.h"
@@ -201,6 +202,9 @@ void PracticeManager::createDialog()
         break;
     case Prefs::EnumTestType::MultipleChoiceTest:
         m_testDialog = new MCQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::ImageTest:
+        m_testDialog = new ImagePracticeDlg(m_doc, m_app);
         break;
 
     // tests using the simple dialog

@@ -370,23 +370,18 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
         return true;
         break;
 
-    // Random and MC use the full settings:
-    case Prefs::EnumTestType::WrittenTest:
-    case Prefs::EnumTestType::MultipleChoiceTest:
+    default:
         if ( validateWithSettings(expr) ) {
             return true;
         }
         ///@todo not sure about swap dir stuff...
-        if (Prefs::swapDirection()) {
-            int temp = m_fromTranslation;
-            m_fromTranslation = m_toTranslation;
-            m_toTranslation = temp;
-            return validateWithSettings(expr);
-        } // swapDirection
-        break;
-
-    default:
-        kError() << "Trying to validate with unknown query type!" << endl;
+//         if (Prefs::swapDirection()) {
+//             int temp = m_fromTranslation;
+//             m_fromTranslation = m_toTranslation;
+//             m_toTranslation = temp;
+//             return validateWithSettings(expr);
+//         } // swapDirection
+//         break;
     }
     return false;
 }

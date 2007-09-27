@@ -38,6 +38,7 @@ set(practice_SRCS
     practice/RandomQueryDlg.cpp
     practice/SimpleQueryDlg.cpp
     practice/VerbQueryDlg.cpp
+    practice/imagepracticedlg.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -47,6 +48,7 @@ kde4_add_ui_files(practice_SRCS
     practice/RandomQueryDlgForm.ui
     practice/SimpleQueryDlgForm.ui
     practice/VerbQueryDlgForm.ui
+    practice/imagepracticedlg.ui
 )
 
 set(configure-practice_SRCS

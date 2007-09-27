@@ -207,6 +207,7 @@
             <choice name="GrammarTest"/>
             <choice name="ParaphraseTest"/>
             <choice name="ExampleTest"/>
+            <choice name="ImageTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
     </entry>
