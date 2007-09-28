@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>466</width>
-    <height>486</height>
+    <width>511</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -44,7 +44,7 @@
      <item>
       <widget class="QGroupBox" name="groupBox" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
+        <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
@@ -102,80 +102,97 @@
      <item>
       <widget class="QGroupBox" name="progressgroup" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
+        <sizepolicy vsizetype="Minimum" hsizetype="Preferred" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
+       <property name="maximumSize" >
+        <size>
+         <width>200</width>
+         <height>16777215</height>
+        </size>
+       </property>
        <property name="title" >
         <string>Progress</string>
        </property>
-       <layout class="QGridLayout" >
-        <item row="0" column="0" >
-         <widget class="QLabel" name="countlabel" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text" >
-           <string>Count:</string>
-          </property>
-         </widget>
+       <layout class="QHBoxLayout" >
+        <item>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QLabel" name="countlabel" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>Count:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="timelabel" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>Time:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="Cyclelabel" >
+            <property name="frameShape" >
+             <enum>QFrame::NoFrame</enum>
+            </property>
+            <property name="text" >
+             <string>Cycle:</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
-        <item row="0" column="1" >
-         <widget class="QProgressBar" name="countbar" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="0" >
-         <widget class="QLabel" name="timelabel" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text" >
-           <string>Time:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="1" column="1" >
-         <widget class="QProgressBar" name="timeProgressBar" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="0" >
-         <widget class="QLabel" name="Cyclelabel" >
-          <property name="frameShape" >
-           <enum>QFrame::NoFrame</enum>
-          </property>
-          <property name="text" >
-           <string>Cycle:</string>
-          </property>
-         </widget>
-        </item>
-        <item row="2" column="1" >
-         <widget class="QLabel" name="progCount" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-         </widget>
+        <item>
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QProgressBar" name="countbar" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="value" >
+             <number>0</number>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QProgressBar" name="timeProgressBar" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="progCount" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Minimum" hsizetype="MinimumExpanding" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+           </widget>
+          </item>
+         </layout>
         </item>
        </layout>
       </widget>
