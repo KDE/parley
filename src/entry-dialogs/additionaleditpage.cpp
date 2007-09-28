@@ -34,14 +34,6 @@ AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : 
     m_player = 0;
 
     setupUi(this);
-    QFontMetrics fm(synonymLineEdit->font());
-    int sz = fm.lineSpacing();
-
-    synonymLineEdit->setMaximumHeight(sz*3);
-    antonymLineEdit->setMaximumHeight(sz*3);
-    paraphraseLineEdit->setMaximumHeight(sz*3);
-    commentLineEdit->setMaximumHeight(sz*3);
-    exampleLineEdit->setMaximumHeight(sz*3);
 
     connect(paraphraseLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
     connect(commentLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
@@ -49,7 +41,7 @@ AdditionalEditPage::AdditionalEditPage(KEduVocDocument *doc, QWidget *parent) : 
     connect(antonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
     connect(synonymLineEdit, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
     connect(audioUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
-    connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged()));
+    connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotImageChanged(const QString&)));
 
     connect(audioPlayButton, SIGNAL(clicked()), this, SLOT(playAudio()) );
 }
@@ -99,6 +91,8 @@ void AdditionalEditPage::setData(int row, int col)
     } else {
         audioUrlRequester->clear();
     }
+
+    imagePreviewLabel->setText(i18nc("@label:image image preview is empty", "No Image"));
 
     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
         imageUrlRequester->setUrl( m_doc->entry(
@@ -152,6 +146,12 @@ void AdditionalEditPage::playAudio()
         m_player->setCurrentSource(soundFile);
     }
     m_player->play();
+}
+
+void AdditionalEditPage::slotImageChanged(const QString & url)
+{
+    imagePreviewLabel->setPixmap(QPixmap(url).scaled(imagePreviewLabel->size(), Qt::KeepAspectRatio));
+    slotDataChanged();
 }
 
 

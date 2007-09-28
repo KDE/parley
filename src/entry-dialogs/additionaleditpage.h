@@ -53,6 +53,7 @@ signals:
 
 private slots:
     void slotDataChanged();
+    void slotImageChanged(const QString& url);
     void playAudio();
 
 private:
