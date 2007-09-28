@@ -98,7 +98,9 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
         m_scene->addItem(pixmapItem);
     } else {
-        m_scene->addText( m_entry->exp->translation(identifier).text() );
+        QGraphicsTextItem* textItem = new QGraphicsTextItem( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
+        textItem->translate(-textItem->boundingRect().width()/2.0, -textItem->boundingRect().height()/2.0 );
+        m_scene->addItem( textItem );
     }
 }
 
