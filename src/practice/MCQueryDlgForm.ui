@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>433</width>
+    <width>462</width>
     <height>385</height>
    </rect>
   </property>
@@ -239,7 +239,7 @@
          </property>
         </widget>
        </item>
-       <item row="0" column="0" >
+       <item rowspan="2" row="0" column="0" >
         <widget class="QPushButton" name="show_all" >
          <property name="sizePolicy" >
           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
@@ -262,25 +262,6 @@
          </property>
          <property name="text" >
           <string>Skip (I &amp;Know It)</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="0" >
-        <widget class="QPushButton" name="verify" >
-         <property name="enabled" >
-          <bool>false</bool>
-         </property>
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="focusPolicy" >
-          <enum>Qt::NoFocus</enum>
-         </property>
-         <property name="text" >
-          <string>&amp;Verify</string>
          </property>
         </widget>
        </item>
