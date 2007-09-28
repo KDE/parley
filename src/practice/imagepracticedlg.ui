@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>466</width>
-    <height>459</height>
+    <height>486</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -30,6 +30,16 @@
     </widget>
    </item>
    <item>
+    <widget class="QLabel" name="originalLabel" >
+     <property name="text" >
+      <string/>
+     </property>
+     <property name="alignment" >
+      <set>Qt::AlignCenter</set>
+     </property>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" >
      <item>
       <widget class="QGroupBox" name="groupBox" >
@@ -42,7 +52,7 @@
        <property name="title" >
         <string>What do you see?</string>
        </property>
-       <layout class="QHBoxLayout" >
+       <layout class="QVBoxLayout" >
         <item>
          <widget class="KLineEdit" name="answerLineEdit" >
           <property name="sizePolicy" >
@@ -54,7 +64,7 @@
          </widget>
         </item>
         <item>
-         <layout class="QVBoxLayout" >
+         <layout class="QHBoxLayout" >
           <item>
            <widget class="QPushButton" name="showSolutionButton" >
             <property name="sizePolicy" >
@@ -80,7 +90,7 @@
              <string>Verify</string>
             </property>
             <property name="icon" >
-             <iconset>../../../../../../kde/share/icons/oxygen/48x48/actions/dialog-apply.png</iconset>
+             <iconset/>
             </property>
            </widget>
           </item>

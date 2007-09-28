@@ -40,6 +40,9 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
     countbar->setFormat("%v/%m");
     timeProgressBar->setFormat("%v");
 
+//     showSolutionButton->setIcon( KIcon("no") );
+    verifySolutionButton->setIcon( KIcon("ok") );
+
     KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
     restoreDialogSize(cg);
 }
@@ -72,12 +75,12 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     resetQueryWidget(answerLineEdit);
     answerLineEdit->setFocus();
 
-
     foreach ( QGraphicsItem* item, m_scene->items() ) {
         m_scene->removeItem(item);
         delete item;
     }
 
+    originalLabel->setText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
     QString url;
     url = m_entry->exp->translation(identifier).imageUrl().toLocalFile();
     if ( url.isEmpty() ) {
