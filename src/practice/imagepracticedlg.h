@@ -40,6 +40,7 @@ private:
 
     void setQueryFieldWordwrap();
     QGraphicsScene* m_scene;
+    bool m_wrongAnswer;
 };
 
 #endif

@@ -5,14 +5,14 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>709</width>
-    <height>518</height>
+    <width>466</width>
+    <height>459</height>
    </rect>
   </property>
   <property name="windowTitle" >
    <string>Form</string>
   </property>
-  <layout class="QHBoxLayout" >
+  <layout class="QVBoxLayout" >
    <item>
     <widget class="QGraphicsView" name="imageGraphicsView" >
      <property name="sizePolicy" >
@@ -23,187 +23,30 @@
      </property>
      <property name="minimumSize" >
       <size>
-       <width>500</width>
-       <height>500</height>
+       <width>300</width>
+       <height>300</height>
       </size>
      </property>
     </widget>
    </item>
    <item>
-    <layout class="QVBoxLayout" >
-     <item>
-      <layout class="QHBoxLayout" >
-       <item>
-        <spacer>
-         <property name="orientation" >
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeType" >
-          <enum>QSizePolicy::Maximum</enum>
-         </property>
-         <property name="sizeHint" >
-          <size>
-           <width>40</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="progressgroup" >
-         <property name="sizePolicy" >
-          <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
-           <horstretch>0</horstretch>
-           <verstretch>0</verstretch>
-          </sizepolicy>
-         </property>
-         <property name="title" >
-          <string>Progress</string>
-         </property>
-         <layout class="QGridLayout" >
-          <item row="0" column="0" >
-           <widget class="QLabel" name="countlabel" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text" >
-             <string>Count:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="0" column="1" >
-           <widget class="QProgressBar" name="countbar" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="0" >
-           <widget class="QLabel" name="timelabel" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="text" >
-             <string>Time:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="1" column="1" >
-           <widget class="QProgressBar" name="timeProgressBar" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="0" >
-           <widget class="QLabel" name="Cyclelabel" >
-            <property name="frameShape" >
-             <enum>QFrame::NoFrame</enum>
-            </property>
-            <property name="text" >
-             <string>Cycle:</string>
-            </property>
-           </widget>
-          </item>
-          <item row="2" column="1" >
-           <widget class="QLabel" name="progCount" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </item>
-     <item>
-      <spacer>
-       <property name="orientation" >
-        <enum>Qt::Vertical</enum>
-       </property>
-       <property name="sizeHint" >
-        <size>
-         <width>153</width>
-         <height>71</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
+    <layout class="QHBoxLayout" >
      <item>
       <widget class="QGroupBox" name="groupBox" >
        <property name="sizePolicy" >
-        <sizepolicy vsizetype="Preferred" hsizetype="Fixed" >
+        <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
          <horstretch>0</horstretch>
          <verstretch>0</verstretch>
         </sizepolicy>
        </property>
        <property name="title" >
-        <string>Practice</string>
+        <string>What do you see?</string>
        </property>
-       <layout class="QVBoxLayout" >
-        <item>
-         <widget class="QPushButton" name="playSoundButton" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="text" >
-           <string>Play</string>
-          </property>
-          <property name="icon" >
-           <iconset>../../../../../../kde/share/icons/oxygen/48x48/actions/media-playback-start.png</iconset>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="questionLabel" >
-          <property name="text" >
-           <string>The Question:</string>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLineEdit" name="questionLineEdit" >
-          <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
-            <horstretch>0</horstretch>
-            <verstretch>0</verstretch>
-           </sizepolicy>
-          </property>
-          <property name="readOnly" >
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QLabel" name="label" >
-          <property name="text" >
-           <string>The Answer:</string>
-          </property>
-         </widget>
-        </item>
+       <layout class="QHBoxLayout" >
         <item>
          <widget class="KLineEdit" name="answerLineEdit" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+           <sizepolicy vsizetype="Preferred" hsizetype="MinimumExpanding" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -211,31 +54,116 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="showSolutionButton" >
+         <layout class="QVBoxLayout" >
+          <item>
+           <widget class="QPushButton" name="showSolutionButton" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>Show &amp;Solution</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="verifySolutionButton" >
+            <property name="sizePolicy" >
+             <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="text" >
+             <string>Verify</string>
+            </property>
+            <property name="icon" >
+             <iconset>../../../../../../kde/share/icons/oxygen/48x48/actions/dialog-apply.png</iconset>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="progressgroup" >
+       <property name="sizePolicy" >
+        <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+       <property name="title" >
+        <string>Progress</string>
+       </property>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QLabel" name="countlabel" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Minimum" hsizetype="Minimum" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="text" >
-           <string>Show &amp;Solution</string>
+           <string>Count:</string>
           </property>
          </widget>
         </item>
-        <item>
-         <widget class="QPushButton" name="verifySolutionButton" >
+        <item row="0" column="1" >
+         <widget class="QProgressBar" name="countbar" >
           <property name="sizePolicy" >
-           <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QLabel" name="timelabel" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Preferred" hsizetype="Preferred" >
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
           <property name="text" >
-           <string>Verify</string>
+           <string>Time:</string>
           </property>
-          <property name="icon" >
-           <iconset>../../../../../../kde/share/icons/oxygen/48x48/actions/dialog-apply.png</iconset>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QProgressBar" name="timeProgressBar" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Fixed" hsizetype="Fixed" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QLabel" name="Cyclelabel" >
+          <property name="frameShape" >
+           <enum>QFrame::NoFrame</enum>
+          </property>
+          <property name="text" >
+           <string>Cycle:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="QLabel" name="progCount" >
+          <property name="sizePolicy" >
+           <sizepolicy vsizetype="Minimum" hsizetype="Fixed" >
+            <horstretch>0</horstretch>
+            <verstretch>0</verstretch>
+           </sizepolicy>
           </property>
          </widget>
         </item>

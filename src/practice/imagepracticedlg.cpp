@@ -55,17 +55,15 @@ ImagePracticeDlg::~ImagePracticeDlg()
 
 void ImagePracticeDlg::setEntry(TestEntry* entry)
 {
+    m_wrongAnswer = false;
     PracticeDialog::setEntry(entry);
 
     timeProgressBar->setEnabled(Prefs::showCounter());
     timelabel->setEnabled(Prefs::showCounter());
-    questionLineEdit->setFont(Prefs::tableFont());
     answerLineEdit->setFont(Prefs::tableFont());
     answerLineEdit->setText("");
 
     int identifier = Prefs::toIdentifier();
-
-    questionLineEdit->setText( m_entry->exp->translation(identifier).text() );
 
     verifySolutionButton->setDefault(true);
 
@@ -97,15 +95,15 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
         m_scene->addItem(pixmapItem);
     } else {
-        m_scene->addText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
+        m_scene->addText( m_entry->exp->translation(identifier).text() );
     }
 }
 
 
 void ImagePracticeDlg::slotAnswerChanged()
 {
-    verifySolutionButton->setDefault(true);
     resetQueryWidget(answerLineEdit);
+    verifySolutionButton->setDefault(true);
 }
 
 
@@ -113,17 +111,19 @@ void ImagePracticeDlg::showSolution()
 {
     answerLineEdit->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
     verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text());
+    verifySolutionButton->setFocus();
 }
 
 
 void ImagePracticeDlg::verifyClicked()
 {
     if (verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text())) {
+        if ( m_wrongAnswer ) {
+            resultWrong();
+        }
         resultCorrect();
     } else {
-        ///@todo better do something sensible here...
-
-        resultWrong();
+        m_wrongAnswer = true;
     }
 }
 
