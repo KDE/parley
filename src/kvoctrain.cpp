@@ -32,11 +32,10 @@
 #include "kvtlessonview.h"
 
 #include "entry-dialogs/EntryDlg.h"
-#include "docprop-dialogs/DocPropDlg.h"
-#include "docprop-dialogs/DocPropLangDlg.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
+#include "language-dialogs/languagepropertiesdialog.h"
 #include "docprop-dialogs/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
@@ -218,23 +217,9 @@ void KVocTrainApp::removeEntryDlg()
 
 void KVocTrainApp::slotLanguageProperties()
 {
-    DocPropsDlg ddlg(m_doc, this);
+    LanguagePropertiesDialog ddlg(m_doc, this);
 
     if (ddlg.exec() == QDialog::Accepted) {
-        m_doc->setModified();
-        m_tableModel->reset();
-        setCaption(m_doc->title(), m_doc->isModified());
-
-        slotStatusMsg(IDS_DEFAULT);
-    }
-}
-
-
-void KVocTrainApp::slotDocPropsLang()
-{
-    DocPropsLangDlg ldlg(m_doc, this);
-
-    if (ldlg.exec() == QDialog::Accepted) {
         m_doc->setModified();
         m_tableModel->reset();
         setCaption(m_doc->title(), m_doc->isModified());

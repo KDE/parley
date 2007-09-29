@@ -1,17 +1,5 @@
 /***************************************************************************
-
-                   document language dialog class
-
-    -----------------------------------------------------------------------
-
-    begin         : Sat Jun 2 20:50:53 MET 1999
-
-    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
-
+    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************
 
  ***************************************************************************
@@ -23,29 +11,35 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef DOCPROPLANGDLG_H
-#define DOCPROPLANGDLG_H
+#ifndef LANGUAGEPROPERITIESDLG_H
+#define LANGUAGEPROPERITIESDLG_H
 
+#include <KPageDialog>
 #include <QList>
-
-#include <kpagedialog.h>
-
-#include <keduvocgrammar.h>
-#include <keduvocconjugation.h>
 
 class KEduVocDocument;
 class LangPropPage;
+class UsageOptPage;
+class WordTypeOptionPage;
+class TenseOptPage;
 
-class DocPropsLangDlg : public KPageDialog
+/**
+  * This is the KPageDialog for all the language option pages.
+  * It contains the pages for Types, Tenses, Usage and Articles/Personal Pronouns.
+  */
+class LanguagePropertiesDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent);
-    ~DocPropsLangDlg();
-
+    LanguagePropertiesDialog(KEduVocDocument *doc, QWidget *parent);
+    ~LanguagePropertiesDialog();
     void accept();
+
 private:
+    UsageOptPage          *useOptPage;
+    WordTypeOptionPage    *typeOptPage;
+    TenseOptPage          *tenseOptPage;
     QList<LangPropPage *> langPages;
 };
 
-#endif // DocPropsLangDlg_included
+#endif

@@ -131,7 +131,6 @@ public slots:
     void slotApplyPreferences();
     void slotLanguageProperties();
     void slotDocumentProperties();
-    void slotDocPropsLang();
     void slotShowStatistics();
 
     void startPractice();

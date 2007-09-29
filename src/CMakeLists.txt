@@ -67,8 +67,8 @@ kde4_add_ui_files(configure-practice_SRCS
 )
 
 set(docprop_SRCS
-    docprop-dialogs/DocPropDlg.cpp
-    docprop-dialogs/DocPropLangDlg.cpp
+    #docprop-dialogs/DocPropDlg.cpp
+    #docprop-dialogs/DocPropLangDlg.cpp
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
@@ -130,6 +130,7 @@ kde4_add_ui_files(newdocument-wizard_SRCS
 set(languagedialogs_SRCS
     language-dialogs/languagedialog.cpp
     language-dialogs/editlanguagedialogpage.cpp
+    language-dialogs/languagepropertiesdialog.cpp
 )
 
 kde4_add_ui_files(languagedialogs_SRCS

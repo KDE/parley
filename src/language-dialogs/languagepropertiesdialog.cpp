@@ -1,17 +1,5 @@
 /***************************************************************************
-
-                   document language dialog class
-
-    -----------------------------------------------------------------------
-
-    begin         : Sat Jun 2 20:50:53 MET 1999
-
-    copyright     : (C) 1999-2001 Ewald Arnold <kvoctrain@ewald-arnold.de>
-                    (C) 2005-2007 Peter Hedlund <peter.hedlund@kdemail.net>
-                    (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
-
+    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  ***************************************************************************
 
  ***************************************************************************
@@ -23,9 +11,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "DocPropLangDlg.h"
+#include "languagepropertiesdialog.h"
 
-#include "LangPropPage.h"
+#include "docprop-dialogs/UsageOptPage.h"
+#include "docprop-dialogs/TypeOptPage.h"
+#include "docprop-dialogs/TypeOptPage.h"
+#include "docprop-dialogs/TenseOptPage.h"
+#include "docprop-dialogs/LangPropPage.h"
 #include "languagesettings.h"
 #include <keduvocdocument.h>
 
@@ -39,17 +31,26 @@
 #include <QPixmap>
 
 
-DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
+LanguagePropertiesDialog::LanguagePropertiesDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
-    setCaption(i18n("Language Properties"));
+    setCaption(i18n("Grammar Properties"));
     setButtons(Ok|Cancel);
     setDefaultButton(Ok);
     setModal(true);
 
     setFaceType(KPageDialog::List);
 
-    LangPropPage *lpp;
+    typeOptPage = new WordTypeOptionPage(doc, 0);
+    addPage(typeOptPage, i18nc("word types","Types"));
 
+    tenseOptPage = new TenseOptPage(doc, 0);
+    addPage(tenseOptPage, i18n("Tenses"));
+
+    useOptPage = new UsageOptPage(doc, 0);
+    addPage(useOptPage, i18nc("usage (area) of an expression", "Usage"));
+
+    // add the language specific pages
+    LangPropPage *lpp;
     for (int i = 0; i < doc->identifierCount(); i++) {
         QString s;
         s = doc->identifier(i).name();
@@ -72,20 +73,24 @@ DocPropsLangDlg::DocPropsLangDlg(KEduVocDocument *doc, QWidget *parent) : KPageD
     restoreDialogSize(cg);
 }
 
-
-DocPropsLangDlg::~DocPropsLangDlg()
+LanguagePropertiesDialog::~LanguagePropertiesDialog()
 {
     KConfigGroup cg(KGlobal::config(), "LanguagePropertiesDialog");
     KDialog::saveDialogSize(cg);
 }
 
-void DocPropsLangDlg::accept()
+
+void LanguagePropertiesDialog::accept()
 {
-    QDialog::accept();
+    useOptPage->accept();
+    typeOptPage->accept();
+    tenseOptPage->accept();
+
     foreach ( LangPropPage* langPage, langPages ) {
         langPage->accept();
     }
+
+    QDialog::accept();
 }
 
-
-#include "DocPropLangDlg.moc"
+#include "languagepropertiesdialog.moc"

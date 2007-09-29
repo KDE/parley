@@ -25,7 +25,6 @@
       <Action name="vocab_edit_languages" />
       <Separator/>
       <Action name="vocab_grammar_properties" />
-      <Action name="vocab_language_properties" />
   </Menu>
   <Menu name="lesson" >
    <text>&amp;Lesson</text>

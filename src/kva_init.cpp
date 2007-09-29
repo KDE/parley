@@ -311,26 +311,6 @@ void KVocTrainApp::initActions()
     languageProperties->setStatusTip(languageProperties->whatsThis());
     connect(languageProperties, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
 
-    KAction* vocabLanguageProperties = new KAction(this);
-    actionCollection()->addAction("vocab_language_properties", vocabLanguageProperties);
-    vocabLanguageProperties->setText(i18n("Articles and Personal Pronouns..."));
-    connect(vocabLanguageProperties, SIGNAL(triggered(bool)), this, SLOT(slotDocPropsLang()));
-    vocabLanguageProperties->setWhatsThis(i18n("Edit language properties in current document"));
-    vocabLanguageProperties->setToolTip(vocabLanguageProperties->whatsThis());
-    vocabLanguageProperties->setStatusTip(vocabLanguageProperties->whatsThis());
-
-    vocabShowSearchBar = actionCollection()->add<KToggleAction>("config_show_search");
-    vocabShowSearchBar->setText(i18n("Show Se&arch"));
-    connect(vocabShowSearchBar, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
-    vocabShowSearchBar->setWhatsThis(i18n("Toggle display of the search bar"));
-    vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
-    vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
-
-    KAction *actionShowLessonColumn = new KAction(this);
-    actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
-    actionShowLessonColumn->setText(i18n("Show Lesson Column"));
-    actionShowLessonColumn->setCheckable((true));
-    actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
 
 // -- PRACTICE --------------------------------------------------
 
@@ -368,12 +348,24 @@ void KVocTrainApp::initActions()
     configApp->setToolTip(configApp->whatsThis());
     configApp->setStatusTip(configApp->whatsThis());
 
-
     KAction* configToolbar = new KAction(this);
     actionCollection()->addAction("options_configure_toolbars", configToolbar);
     configToolbar->setWhatsThis(i18n("Toggle display of the toolbars"));
     configToolbar->setToolTip(configToolbar->whatsThis());
     configToolbar->setStatusTip(configToolbar->whatsThis());
+
+    vocabShowSearchBar = actionCollection()->add<KToggleAction>("config_show_search");
+    vocabShowSearchBar->setText(i18n("Show Se&arch"));
+    connect(vocabShowSearchBar, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
+    vocabShowSearchBar->setWhatsThis(i18n("Toggle display of the search bar"));
+    vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
+    vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
+
+    KAction *actionShowLessonColumn = new KAction(this);
+    actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
+    actionShowLessonColumn->setText(i18n("Show Lesson Column"));
+    actionShowLessonColumn->setCheckable((true));
+    actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
 
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
