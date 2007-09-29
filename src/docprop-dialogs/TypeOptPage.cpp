@@ -154,7 +154,7 @@ void WordTypeOptionPage::slotDelete()
     m_wordTypeModel->removeRow(item->index().row(), item->index().parent());
 }
 
-void WordTypeOptionPage::commitData()
+void WordTypeOptionPage::accept()
 {
     m_doc->wordTypes() = m_newWordTypes;
 }

@@ -221,15 +221,7 @@ void KVocTrainApp::slotLanguageProperties()
     DocPropsDlg ddlg(m_doc, this);
 
     if (ddlg.exec() == QDialog::Accepted) {
-        QList<int> tenseIndex;
-        QStringList new_tenseStr;
-
-        ddlg.getTenseNames(new_tenseStr, tenseIndex);
-        ddlg.commitData();
-
-        m_doc->setTenseDescriptions(new_tenseStr);
         m_doc->setModified();
-
         m_tableModel->reset();
         setCaption(m_doc->title(), m_doc->isModified());
 

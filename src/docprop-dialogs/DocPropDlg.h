@@ -45,12 +45,7 @@ public:
 
     ~DocPropsDlg();
 
-    inline void getTenseNames(QStringList &tenses, QList<int>& ret_index) const
-    {
-        tenseOptPage->getTenseNames(tenses, ret_index);
-    }
-
-    void commitData();
+    void accept();
 
 private:
     UsageOptPage   *useOptPage;

@@ -127,7 +127,7 @@ void UsageOptPage::slotDeleteUsage()
 }
 
 
-void UsageOptPage::commitData()
+void UsageOptPage::accept()
 {
     foreach ( QString newUsage, m_newUsages ) {
         m_doc->addUsage(newUsage);

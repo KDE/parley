@@ -39,7 +39,7 @@ public:
 
     static void cleanUnused(KEduVocDocument *doc, const QList<int> &lessonIndex, int old_lessons);
 
-    void commitData();
+    void accept();
 
 private slots:
     void slotDeleteUsage();

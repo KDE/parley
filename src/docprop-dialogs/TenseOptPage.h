@@ -36,23 +36,18 @@ class TenseOptPage : public QWidget, public Ui::OptionListForm
 
 public:
     TenseOptPage(KEduVocDocument * doc, QWidget *parent);
+    void accept();
 
-    void getTenseNames(QStringList &ret_types, QList<int> &ret_Index);
-
-    static void cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses);
-
-protected:
-    void updateListBox(int start);
-
-protected slots:
+private slots:
     void slotDeleteTense();
     void slotNewTense();
     void slotTenseChosen(int);
     void slotModifyTense();
-    void slotCleanup();
 
 private:
-    KEduVocDocument  *doc;
+    void updateListBox(int start);
+
+    KEduVocDocument  *m_doc;
     int               m_currentTense;
     QList<int>        tenseIndex; // contains indices of tenses on exec()
     // negative values are new tenses

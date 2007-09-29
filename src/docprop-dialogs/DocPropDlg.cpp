@@ -58,10 +58,13 @@ DocPropsDlg::~DocPropsDlg()
 }
 
 
-void DocPropsDlg::commitData()
+void DocPropsDlg::accept()
 {
-    useOptPage->commitData();
-    typeOptPage->commitData();
+    useOptPage->accept();
+    typeOptPage->accept();
+    tenseOptPage->accept();
+
+    QDialog::accept();
 }
 
 

@@ -36,7 +36,7 @@
 
 #define TENSE_TAG ". "
 
-TenseOptPage::TenseOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(parent)
+TenseOptPage::TenseOptPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
     titleGroupBox->setTitle(i18n("Tense Descriptions"));
@@ -47,10 +47,10 @@ TenseOptPage::TenseOptPage(KEduVocDocument *_doc, QWidget *parent) : QWidget(par
     connect(modifyButton,  SIGNAL(clicked()),              this, SLOT(slotModifyTense()));
     connect(newButton,     SIGNAL(clicked()),              this, SLOT(slotNewTense()));
 
-    doc = _doc;
+    m_doc = doc;
 
     int i = 1;
-    foreach(const QString &tenseName, doc->tenseDescriptions()) {
+    foreach(const QString &tenseName, m_doc->tenseDescriptions()) {
         optionsList->addItem(QString("%1").arg(i++, 2).append(TENSE_TAG).append(tenseName));
         tenseIndex.append(i);
     }
@@ -126,9 +126,9 @@ void TenseOptPage::slotDeleteTense()
 
         QString t = optionsList->item(act)->text();
 
-        for (int ent = 0; ent < doc->entryCount(); ent++) {
-            KEduVocExpression *exp = doc->entry(ent);
-            for (int lang = 0; lang < doc->identifierCount(); lang++) {
+        for (int ent = 0; ent < m_doc->entryCount(); ent++) {
+            KEduVocExpression *exp = m_doc->entry(ent);
+            for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
                 if ( exp->translation(lang).conjugationTenses().contains(t)) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
                         return;
@@ -152,107 +152,32 @@ void TenseOptPage::slotDeleteTense()
 }
 
 
-void TenseOptPage::slotCleanup()
+// void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
+// {
+//     ret_tense.clear();
+//
+//     QString str;
+//     for (int i = 0; i < (int) optionsList->count(); i++) {
+//         str = optionsList->item(i)->text();
+//         ret_tense.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
+//     }
+//     ret_Index = tenseIndex;
+// }
+
+void TenseOptPage::accept()
 {
-///@todo reimplement me, if I am still needed
-/*    QVector<bool> used_tense;
-    for (int i = 0; i <= (int) optionsList->count(); i++)
-        used_tense.append(false);
-
-    for (int col = 0; col < doc->identifierCount(); col++)
-        for (int i = 0; i < (int) doc->entryCount(); i++) {
-            KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
-            for (int ci = 0; ci < conj.entryCount(); ci++) {
-                QString t = conj.tenses().value(ci);
-                ///@todo the following lines make no sense
-                // since the conjugations will change more, do it later
-                if (t.left(QString('#').length()) == "#") {
-                    t.remove(0, QString('#').length());
-                    int idx = t.toInt();
-                    if ((int) used_tense.count() < idx)
-                        used_tense.resize(idx);
-                    if (idx > 0)
-                        used_tense[idx - 1] = true;
-                }
-            }
-        }
-
-    for (int i = used_tense.count() - 1; i >= 0; i--)
-        if (!used_tense[i]) {
-            for (int u = 0; u < (int) tenseIndex.count() ; u++) {
-                if (tenseIndex[u] == i || tenseIndex[u] < 0) {
-                    m_currentTense = i;
-                    slotDeleteTense();
-                    break;
-                }
-            }
-        }
-
-    m_currentTense = 0;
-    optionsList->setCurrentRow(m_currentTense);*/
-}
-
-
-void TenseOptPage::getTenseNames(QStringList &ret_tense, QList<int> &ret_Index)
-{
-    ret_tense.clear();
+    QList<int> tenseIndex;
+    QStringList new_tenseStr;
 
     QString str;
     for (int i = 0; i < (int) optionsList->count(); i++) {
         str = optionsList->item(i)->text();
-        ret_tense.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
+        new_tenseStr.append(str.mid(str.indexOf(TENSE_TAG) + QString(TENSE_TAG).length()));
     }
-    ret_Index = tenseIndex;
+
+    m_doc->setTenseDescriptions(new_tenseStr);
 }
 
-
-void TenseOptPage::cleanUnused(KEduVocDocument *doc, const QList<int> &tenseIndex, int old_tenses)
-{
-///@todo tenses
-/*
-    QList<int> translate_index;
-    QStringList new_tenseStr;
-
-    /////////////////////////////////////////////////////
-    // translate_index contains new index number for each
-    // old index
-    for (int i = 0; i <= qMax(old_tenses, (int) tenseIndex.count()); i++)
-        translate_index.append(0);
-
-    // now adjust tense descriptions to new index
-    for (int i = 0; i < (int) tenseIndex.count(); i++) {
-        if (tenseIndex[i] >= 0)
-            translate_index[tenseIndex[i] + 1] = i + 1;
-    }
-
-    // only keep remaining tense indices
-
-    // set tense index to 0 when not needed any more
-    // and translate to new index
-    for (int col = 0; col < doc->identifierCount(); col++) {
-        for (int i = 0; i < doc->entryCount(); i++) {
-            KEduVocConjugation conj = doc->entry(i)->translation(col).conjugation();
-            bool dirty = false;
-            for (int ci = 0; ci < conj.entryCount(); ci++) {
-                QString old = conj.getType(ci);
-                if (!old.isEmpty() && old.left(QString(QM_USER_TYPE).length()) == QM_USER_TYPE) {
-                    old.remove(0, QString(QM_USER_TYPE).length());
-                    int o = old.toInt();
-
-                    dirty = true;
-                    QString newtense;
-                    if (translate_index[o] > 0) {
-                        newtense.setNum(translate_index[o]).prepend(QM_USER_TYPE);
-                        conj.setType(ci, newtense);
-                    } else
-                        conj.setType(ci, "");
-                }
-            }
-            if (dirty)
-                doc->entry(i)->translation(col).setConjugation(conj);
-        }
-    }
-*/
-}
 
 #include "TenseOptPage.moc"
+
