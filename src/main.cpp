@@ -31,7 +31,6 @@
 
 int main(int argc, char* argv[])
 {
-
     static const char description[] = I18N_NOOP("Vocabulary Trainer");
     static const char version[]     = PARLEY_VERSION_STRING;
 
@@ -125,6 +124,8 @@ int main(int argc, char* argv[])
         }
         kva->show();
     }
+    // for i18n of the lib strings
+    KGlobal::locale()->insertCatalog("libkdeedu");
     return app.exec();
 }
 
