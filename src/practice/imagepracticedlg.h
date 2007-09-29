@@ -36,10 +36,9 @@ public slots:
 
 private:
     void setStatusText(const QString &statusText) {}
+
     QProgressBar* timebar();
 
-    void setQueryFieldWordwrap();
-    QGraphicsScene* m_scene;
     bool m_wrongAnswer;
 };
 

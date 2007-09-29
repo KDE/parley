@@ -39,6 +39,7 @@ class KEduVocDocument;
 class QLineEdit;
 class QTextEdit;
 class QRadioButton;
+class QGraphicsView;
 
 namespace Phonon
 {
@@ -123,6 +124,8 @@ protected:
     void audioPlayFromIdentifier();
     void audioPlayToIdentifier();
     void audioPlayFile(const QString& soundFile);
+
+    void imageShowFile(QGraphicsView* view, const QString& url);
 
     /** compare two strings with simplified applied first */
     bool smartCompare(const QString&, const QString&) const;

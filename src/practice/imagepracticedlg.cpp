@@ -34,10 +34,6 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 
     connect(stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
 
-    m_scene = new QGraphicsScene();
-    m_scene->setSceneRect( 0.0, 0.0, 1.0, 1.0 );
-    imageGraphicsView->setScene(m_scene);
-
     connect(verifySolutionButton, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(showSolutionButton, SIGNAL(clicked()), SLOT(showSolution()));
     connect(answerLineEdit, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
@@ -45,7 +41,6 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
     countbar->setFormat("%v/%m");
     timeProgressBar->setFormat("%v");
 
-//     showSolutionButton->setIcon( KIcon("no") );
     verifySolutionButton->setIcon( KIcon("ok") );
 
     KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
@@ -55,7 +50,6 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 
 ImagePracticeDlg::~ImagePracticeDlg()
 {
-    m_scene->deleteLater();
     KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
     KDialog::saveDialogSize(cg);
 }
@@ -80,11 +74,6 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     resetQueryWidget(answerLineEdit);
     answerLineEdit->setFocus();
 
-    foreach ( QGraphicsItem* item, m_scene->items() ) {
-        m_scene->removeItem(item);
-        delete item;
-    }
-
     originalLabel->setText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
     QString url;
     url = m_entry->exp->translation(identifier).imageUrl().toLocalFile();
@@ -92,20 +81,19 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
         url = m_entry->exp->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
     }
     if ( !url.isEmpty() ) {
-        kDebug() << "image found:" << url;
-        QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(QPixmap(url));
-
-        qreal scale = qMin(imageGraphicsView->width()/pixmapItem->boundingRect().width(), imageGraphicsView->height()/pixmapItem->boundingRect().height());
-
-        pixmapItem->scale( scale, scale );
-
-        pixmapItem->translate( -pixmapItem->boundingRect().width()/2.0, -pixmapItem->boundingRect().height()/2.0 );
-
-        m_scene->addItem(pixmapItem);
+        imageShowFile(imageGraphicsView, url);
     } else {
+        if ( !imageGraphicsView->scene() ) {
+            imageGraphicsView->setScene(new QGraphicsScene());
+        }
+
+        foreach ( QGraphicsItem* item, imageGraphicsView->scene()->items() ) {
+            imageGraphicsView->scene()->removeItem(item);
+            delete item;
+        }
         QGraphicsTextItem* textItem = new QGraphicsTextItem( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
         textItem->translate(-textItem->boundingRect().width()/2.0, -textItem->boundingRect().height()/2.0 );
-        m_scene->addItem( textItem );
+        imageGraphicsView->scene()->addItem( textItem );
     }
 }
 
@@ -147,7 +135,6 @@ QProgressBar * ImagePracticeDlg::timebar()
 {
     return timeProgressBar;
 }
-
 
 #include "imagepracticedlg.moc"
 

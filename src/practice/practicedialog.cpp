@@ -31,6 +31,8 @@
 #include <QRadioButton>
 #include <QCloseEvent>
 #include <QTimer>
+#include <QGraphicsView>
+#include <QGraphicsItem>
 
 PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
@@ -316,6 +318,29 @@ void PracticeDialog::emitCorrect()
 {
 kDebug() << "Correct";
     emit sigQueryChoice(Correct);
+}
+
+void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
+{
+    kDebug() << "show image:" << url;
+    if ( !view->scene() ) {
+        view->setScene(new QGraphicsScene());
+    }
+
+    QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(QPixmap(url));
+
+    qreal scale = qMin(view->width()/pixmapItem->boundingRect().width(), view->height()/pixmapItem->boundingRect().height());
+
+    pixmapItem->scale( scale, scale );
+
+    pixmapItem->translate( -pixmapItem->boundingRect().width()/2.0, -pixmapItem->boundingRect().height()/2.0 );
+
+    foreach ( QGraphicsItem* item, view->scene()->items() ) {
+        view->scene()->removeItem(item);
+        delete item;
+    }
+    view->scene()->setSceneRect( 0.0, 0.0, 1.0, 1.0 );
+    view->scene()->addItem(pixmapItem);
 }
 
 
