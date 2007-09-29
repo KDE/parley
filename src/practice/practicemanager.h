@@ -28,7 +28,7 @@
 #include "testentrymanager.h"
 #include "practicedialog.h"
 
-class KVocTrainApp;
+class ParleyApp;
 class KEduVocDocument;
 class PracticeDialog;
 class TestEntry;
@@ -38,7 +38,7 @@ class PracticeManager :public QObject
 Q_OBJECT
 
 public:
-    PracticeManager(KVocTrainApp *app, KEduVocDocument *doc);
+    PracticeManager(ParleyApp *app, KEduVocDocument *doc);
     void startPractice();
 
 public slots:
@@ -53,7 +53,7 @@ private:
 
     TestEntryManager    *m_entryManager;
     KEduVocDocument     *m_doc;
-    KVocTrainApp        *m_app;
+    ParleyApp           *m_app;
 
     /// The dialog
     PracticeDialog      *m_testDialog;

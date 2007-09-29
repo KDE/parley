@@ -22,7 +22,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrain.h"
+#include "parley.h"
 
 #include "practice/practicemanager.h"
 #include "kvttablemodel.h"
@@ -67,11 +67,11 @@
 #include <QProgressBar>
 #include <QSplitter>
 
-#define MAX_LESSON       25
-#define THRESH_LESSON    KV_MIN_GRADE
+// #define MAX_LESSON       25
+// #define THRESH_LESSON    KV_MIN_GRADE
 
 
-void KVocTrainApp::saveOptions()
+void ParleyApp::saveOptions()
 {
     fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
 
@@ -92,7 +92,7 @@ void KVocTrainApp::saveOptions()
 }
 
 
-void KVocTrainApp::saveProperties(KConfigGroup &config)
+void ParleyApp::saveProperties(KConfigGroup &config)
 {
     saveOptions();
     if (m_doc) {
@@ -107,7 +107,7 @@ void KVocTrainApp::saveProperties(KConfigGroup &config)
 }
 
 
-void KVocTrainApp::readProperties(const KConfigGroup &config)
+void ParleyApp::readProperties(const KConfigGroup &config)
 {
     QString filename = config.readEntry("Filename");
     QString title = config.readEntry("Title");
@@ -137,20 +137,20 @@ void KVocTrainApp::readProperties(const KConfigGroup &config)
 }
 
 
-KVocTrainApp::~KVocTrainApp()
+ParleyApp::~ParleyApp()
 {
     removeEntryDlg();
     delete m_doc;
 }
 
 
-void KVocTrainApp::slotCancelSelection()
+void ParleyApp::slotCancelSelection()
 {
     m_tableView->clearSelection();
 }
 
 
-void KVocTrainApp::slotSelectAll()
+void ParleyApp::slotSelectAll()
 {
     m_tableView->selectAll();
 }
@@ -160,7 +160,7 @@ void KVocTrainApp::slotSelectAll()
  * This slotEditEntry() is called by the button in the toolbar.
  * Uses the current selection.
  */
-void KVocTrainApp::slotEditEntry()
+void ParleyApp::slotEditEntry()
 {
     // prepare the entry dialog
     if (entryDlg == 0) {
@@ -175,7 +175,7 @@ void KVocTrainApp::slotEditEntry()
     entryDlg->show();
 
     if (entryDlg == 0) {
-        kError() << "KVocTrainApp::setDataEntryDlg: entryDlg == 0\n";
+        kError() << "ParleyApp::setDataEntryDlg: entryDlg == 0\n";
         return;
     }
 
@@ -204,7 +204,7 @@ void KVocTrainApp::slotEditEntry()
 }
 
 
-void KVocTrainApp::removeEntryDlg()
+void ParleyApp::removeEntryDlg()
 {
     if (entryDlg != 0) {
         entryDlg->deleteLater();
@@ -215,7 +215,7 @@ void KVocTrainApp::removeEntryDlg()
 }
 
 
-void KVocTrainApp::slotLanguageProperties()
+void ParleyApp::slotLanguageProperties()
 {
     LanguagePropertiesDialog ddlg(m_doc, this);
 
@@ -228,14 +228,14 @@ void KVocTrainApp::slotLanguageProperties()
 }
 
 
-void KVocTrainApp::slotModifiedDoc(bool /*mod*/)
+void ParleyApp::slotModifiedDoc(bool /*mod*/)
 {
     setCaption(m_doc->title(), m_doc->isModified());
     slotStatusMsg(IDS_DEFAULT);
 }
 
 
-void KVocTrainApp::slotCutEntry()
+void ParleyApp::slotCutEntry()
 {
     // there's no need to reinvent the wheel ;)
     slotEditCopy();
@@ -261,7 +261,7 @@ void KVocTrainApp::slotCutEntry()
 }
 
 
-void KVocTrainApp::slotDeleteEntry()
+void ParleyApp::slotDeleteEntry()
 {
     if (m_tableView->selectionModel()->selectedRows().count() == 1) {
         if (KMessageBox::Continue == KMessageBox::warningContinueCancel(this, i18n("Do you really want to delete the selected entry?"), "", KStandardGuiItem::del())) {
@@ -287,7 +287,7 @@ void KVocTrainApp::slotDeleteEntry()
 }
 
 
-void KVocTrainApp::slotNewEntry()
+void ParleyApp::slotNewEntry()
 {
     m_tableModel->appendEntry();
 
@@ -303,7 +303,7 @@ void KVocTrainApp::slotNewEntry()
 }
 
 
-void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
+void ParleyApp::makeLessonVisibleInTable(int lessonIndex)
 {
     switch (m_lessonSelectionCombo->currentIndex()) {
     case Prefs::EnumLessonEditingSelection::CurrentLesson:
@@ -322,7 +322,7 @@ void KVocTrainApp::makeLessonVisibleInTable(int lessonIndex)
     }
 }
 
-void KVocTrainApp::keyPressEvent(QKeyEvent *e)
+void ParleyApp::keyPressEvent(QKeyEvent *e)
 {
     bool controlActive = (e->modifiers() & Qt::ControlModifier) !=0;
 
@@ -380,14 +380,14 @@ void KVocTrainApp::keyPressEvent(QKeyEvent *e)
 }
 
 
-void KVocTrainApp::slotShowStatistics()
+void ParleyApp::slotShowStatistics()
 {
     KVTStatisticsDialog sdlg(m_tableModel, this);
     sdlg.exec();
 }
 
 
-void KVocTrainApp::slotCleanVocabulary()
+void ParleyApp::slotCleanVocabulary()
 {
     prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
@@ -407,7 +407,7 @@ void KVocTrainApp::slotCleanVocabulary()
 }
 
 
-void KVocTrainApp::slotGeneralOptions()
+void ParleyApp::slotGeneralOptions()
 {
     KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
@@ -415,7 +415,7 @@ void KVocTrainApp::slotGeneralOptions()
 }
 
 
-void KVocTrainApp::slotApplyPreferences()
+void ParleyApp::slotApplyPreferences()
 {
     if (Prefs::autoBackup())
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
@@ -430,7 +430,7 @@ void KVocTrainApp::slotApplyPreferences()
 }
 
 
-void KVocTrainApp::slotStatusHelpMsg(const QString &text)
+void ParleyApp::slotStatusHelpMsg(const QString &text)
 {
     ///////////////////////////////////////////////////////////////////
     // change status message of whole statusbar temporary (text, msec)
@@ -438,7 +438,7 @@ void KVocTrainApp::slotStatusHelpMsg(const QString &text)
         statusBar()->showMessage(text, 3000);
 }
 
-void KVocTrainApp::slotFilePrint()
+void ParleyApp::slotFilePrint()
 {
     slotStatusMsg(i18n("Printing..."));
     KPrinter printer;
@@ -449,11 +449,11 @@ void KVocTrainApp::slotFilePrint()
 }
 
 
-void KVocTrainApp::slotStatusMsg(const QString &/*text*/)
+void ParleyApp::slotStatusMsg(const QString &/*text*/)
 {}
 
 
-void KVocTrainApp::slotEditCopy()
+void ParleyApp::slotEditCopy()
 {
     slotStatusMsg(i18n("Copying selection to clipboard..."));
 
@@ -485,7 +485,7 @@ void KVocTrainApp::slotEditCopy()
 }
 
 
-void KVocTrainApp::slotEditPaste()
+void ParleyApp::slotEditPaste()
 {
     /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
     slotStatusMsg(i18n("Inserting clipboard contents..."));
@@ -528,7 +528,7 @@ void KVocTrainApp::slotEditPaste()
 }
 
 
-void KVocTrainApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
+void ParleyApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
 {
     // update the entry dialog if it is there
     if (entryDlg != 0) {
@@ -537,7 +537,7 @@ void KVocTrainApp::slotSelectionChanged(const QItemSelection &, const QItemSelec
 }
 
 
-void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
     // update the status bar
     Q_UNUSED(previous);
@@ -575,12 +575,12 @@ void KVocTrainApp::slotCurrentChanged(const QModelIndex & current, const QModelI
 }
 
 
-void KVocTrainApp::slotCurrentLessonChanged()
+void ParleyApp::slotCurrentLessonChanged()
 {
     editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
-void KVocTrainApp::slotConfigShowSearch()
+void ParleyApp::slotConfigShowSearch()
 {
     if (m_searchWidget) {
         m_searchWidget->setVisible(m_searchWidget->isHidden());
@@ -588,7 +588,7 @@ void KVocTrainApp::slotConfigShowSearch()
     }
 }
 
-void KVocTrainApp::slotEditLanguages()
+void ParleyApp::slotEditLanguages()
 {
     LanguageDialog* languageDialog = new LanguageDialog(m_doc, this);
     if ( languageDialog->exec() == QDialog::Accepted ) {
@@ -596,7 +596,7 @@ void KVocTrainApp::slotEditLanguages()
     }
 }
 
-void KVocTrainApp::slotDocumentProperties()
+void ParleyApp::slotDocumentProperties()
 {
     TitlePage* titleAuthorWidget = new TitlePage(m_doc, this);
     KDialog* titleAuthorDialog;
@@ -609,7 +609,7 @@ void KVocTrainApp::slotDocumentProperties()
     delete titleAuthorDialog;
 }
 
-void KVocTrainApp::configurePractice()
+void ParleyApp::configurePractice()
 {
     ConfigurePracticeDialog* configurePracticeDialog;
     configurePracticeDialog = new ConfigurePracticeDialog(m_doc, this, "practice settings",  Prefs::self());
@@ -617,11 +617,11 @@ void KVocTrainApp::configurePractice()
     configurePracticeDialog->show();
 }
 
-void KVocTrainApp::startPractice()
+void ParleyApp::startPractice()
 {
     m_practiceManager = new PracticeManager(this, m_doc);
     m_practiceManager->startPractice();
 }
 
 
-#include "kvoctrain.moc"
+#include "parley.moc"

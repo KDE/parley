@@ -93,7 +93,7 @@ private:
     QPixmap m_pixInactive;
     QPixmap m_pixInQuery;
 
-    friend class KVocTrainApp;
+    friend class ParleyApp;
     friend class KVTStatisticsDialog;
 };
 

@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrain.h"
+#include "parley.h"
 #include "prefs.h"
 
 #include "kvttablemodel.h"
@@ -52,7 +52,7 @@
 #include <QAbstractItemModel>
 #include <QVBoxLayout>
 
-KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
+ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
 {
     m_doc = 0;
     m_tableView = 0;
@@ -90,7 +90,7 @@ KVocTrainApp::KVocTrainApp(QWidget *parent) : KXmlGuiWindow(parent)
 }
 
 
-void KVocTrainApp::initActions()
+void ParleyApp::initActions()
 {
 // -- FILE --------------------------------------------------
     KAction* fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
@@ -382,7 +382,7 @@ void KVocTrainApp::initActions()
 }
 
 
-void KVocTrainApp::initStatusBar()
+void ParleyApp::initStatusBar()
 {
     m_typeStatusBarLabel = new QLabel(statusBar());
     m_typeStatusBarLabel->setFrameStyle(QFrame::NoFrame);
@@ -399,7 +399,7 @@ void KVocTrainApp::initStatusBar()
 }
 
 
-void KVocTrainApp::initDoc()
+void ParleyApp::initDoc()
 {
     if (fileOpenRecent->actions().count() > 0
         && fileOpenRecent->action(
@@ -430,7 +430,7 @@ void KVocTrainApp::initDoc()
     }
 }
 
-void KVocTrainApp::initModel()
+void ParleyApp::initModel()
 {
     m_lessonModel = new KVTLessonModel(this);
     m_tableModel = new KVTTableModel(this);
@@ -441,7 +441,7 @@ void KVocTrainApp::initModel()
 /**
   * Initialize the lesson list.
   */
-QWidget* KVocTrainApp::initLessonList(QWidget *parent)
+QWidget* ParleyApp::initLessonList(QWidget *parent)
 {
     // Widget to get a boxLayout
     QWidget *left = new QWidget(parent);
@@ -507,7 +507,7 @@ QWidget* KVocTrainApp::initLessonList(QWidget *parent)
 /**
  * This initializes the main widgets, splitter and table.
  */
-void KVocTrainApp::initView()
+void ParleyApp::initView()
 {
     /// Parent of all
     QWidget * mainWidget = new QWidget(this);

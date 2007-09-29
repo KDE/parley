@@ -25,7 +25,7 @@
 
 #include "practicemanager.h"
 
-#include "kvoctrain.h"
+#include "parley.h"
 
 #include "RandomQueryDlg.h"
 #include "MCQueryDlg.h"
@@ -68,7 +68,7 @@ static const char not_contain[] = I18N_NOOP(
 
 
 
-PracticeManager::PracticeManager(KVocTrainApp *app, KEduVocDocument *doc)
+PracticeManager::PracticeManager(ParleyApp *app, KEduVocDocument *doc)
 {
     m_app = app;
     m_doc = doc;

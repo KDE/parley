@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrain.h"
+#include "parley.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"
@@ -48,7 +48,7 @@
 #include <QApplication>
 #include <QProgressBar>
 
-void KVocTrainApp::slotTimeOutBackup()
+void ParleyApp::slotTimeOutBackup()
 {
     if (Prefs::autoBackup() && m_doc && m_doc->isModified()) {
         slotStatusMsg(i18n("Autobackup in progress"));
@@ -61,7 +61,7 @@ void KVocTrainApp::slotTimeOutBackup()
 }
 
 
-bool KVocTrainApp::queryClose()
+bool ParleyApp::queryClose()
 {
     bool erg = queryExit();
     if (erg)
@@ -70,7 +70,7 @@ bool KVocTrainApp::queryClose()
 }
 
 
-bool KVocTrainApp::queryExit()
+bool ParleyApp::queryExit()
 {
     saveOptions();
     if (!m_doc || !m_doc->isModified())
@@ -102,13 +102,13 @@ bool KVocTrainApp::queryExit()
 }
 
 
-void KVocTrainApp::slotFileQuit()
+void ParleyApp::slotFileQuit()
 {
     close();
 }
 
 
-void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
+void ParleyApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 {
     Q_UNUSED(curr_doc);
     if (pbar != 0)
@@ -116,7 +116,7 @@ void KVocTrainApp::slotProgress(KEduVocDocument *curr_doc, int percent)
     qApp->processEvents();
 }
 
-void KVocTrainApp::slotFileNew()
+void ParleyApp::slotFileNew()
 {
     slotStatusMsg(i18n("Creating new file..."));
     if (queryExit()) {
@@ -125,7 +125,7 @@ void KVocTrainApp::slotFileNew()
     slotStatusMsg(IDS_DEFAULT);
 }
 
-void KVocTrainApp::slotFileOpen()
+void ParleyApp::slotFileOpen()
 {
     slotStatusMsg(i18n("Opening file..."));
 
@@ -137,7 +137,7 @@ void KVocTrainApp::slotFileOpen()
     slotStatusMsg(IDS_DEFAULT);
 }
 
-void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
+void ParleyApp::slotFileOpenRecent(const KUrl& url)
 {
     slotStatusMsg(i18n("Opening file..."));
     if (queryExit()) {
@@ -147,7 +147,7 @@ void KVocTrainApp::slotFileOpenRecent(const KUrl& url)
 }
 
 
-void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
+void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
 {
     if (!url.path().isEmpty()) {
         delete m_doc;
@@ -177,7 +177,7 @@ void KVocTrainApp::loadFileFromPath(const KUrl & url, bool addRecent)
 }
 
 
-void KVocTrainApp::slotFileOpenExample()
+void ParleyApp::slotFileOpenExample()
 {
     slotStatusMsg(i18n("Opening example file..."));
 
@@ -194,7 +194,7 @@ void KVocTrainApp::slotFileOpenExample()
 }
 
 
-void KVocTrainApp::slotGHNS()
+void ParleyApp::slotGHNS()
 {
   ///Make sure the installation directory exists
   KConfig conf("parley.knsrc");
@@ -206,7 +206,7 @@ void KVocTrainApp::slotGHNS()
 }
 
 
-void KVocTrainApp::slotFileMerge()
+void ParleyApp::slotFileMerge()
 {
 //     slotStatusMsg(i18n("Merging file..."));
 //
@@ -236,7 +236,7 @@ void KVocTrainApp::slotFileMerge()
 }
 
 
-void KVocTrainApp::slotFileSave()
+void ParleyApp::slotFileSave()
 {
     if (entryDlg != 0) {
         entryDlg->commitData(false);
@@ -270,7 +270,7 @@ void KVocTrainApp::slotFileSave()
 }
 
 
-void KVocTrainApp::slotFileSaveAs()
+void ParleyApp::slotFileSaveAs()
 {
     slotStatusMsg(i18n("Saving file under new filename..."));
 
@@ -315,7 +315,7 @@ void KVocTrainApp::slotFileSaveAs()
 }
 
 
-void KVocTrainApp::slotSaveSelection()
+void ParleyApp::slotSaveSelection()
 {
 ///@todo I doubt this words. If it's not checked, better not enable it.
 
@@ -368,7 +368,7 @@ void KVocTrainApp::slotSaveSelection()
 }
 
 
-void KVocTrainApp::prepareProgressBar()
+void ParleyApp::prepareProgressBar()
 {
     statusBar()->clearMessage();
     pbar = new QProgressBar(statusBar());
@@ -377,7 +377,7 @@ void KVocTrainApp::prepareProgressBar()
 }
 
 
-void KVocTrainApp::removeProgressBar()
+void ParleyApp::removeProgressBar()
 {
     statusBar()->clearMessage();
     statusBar()->removeWidget(pbar);
@@ -386,7 +386,7 @@ void KVocTrainApp::removeProgressBar()
 }
 
 
-void KVocTrainApp::newDocumentWizard()
+void ParleyApp::newDocumentWizard()
 {
     KVTNewDocumentWizard *wizard;
     KEduVocDocument* newDoc = new KEduVocDocument(this);
@@ -440,7 +440,7 @@ void KVocTrainApp::newDocumentWizard()
 }
 
 
-void KVocTrainApp::initializeDefaultGrammar()
+void ParleyApp::initializeDefaultGrammar()
 {
     m_doc->wordTypes().createDefaultWordTypes();
 
@@ -465,7 +465,7 @@ void KVocTrainApp::initializeDefaultGrammar()
 }
 
 
-void KVocTrainApp::createExampleEntries()
+void ParleyApp::createExampleEntries()
 {
     m_tableModel->reset(); // clear old entries otherwise we get crashes
 

@@ -23,8 +23,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef KVOCTRAIN_H
-#define KVOCTRAIN_H
+#ifndef PARLEY_H
+#define PARLEY_H
 
 #include <KXmlGuiWindow>
 #include <KUrl>
@@ -58,15 +58,15 @@ class QLabel;
   * and statusbar. For the main view, an instance of class kvoctrainView is
   * created which creates your view.
   */
-class KVocTrainApp : public KXmlGuiWindow
+class ParleyApp : public KXmlGuiWindow
 {
     Q_OBJECT
 
 public:
     /** construtor */
-    KVocTrainApp(QWidget *parent = 0);
+    ParleyApp(QWidget *parent = 0);
     /** destructor */
-    ~KVocTrainApp();
+    ~ParleyApp();
     void initActions();
 
     /** setup the statusbar */
@@ -259,7 +259,7 @@ private:
 
     KLineEdit           *m_searchLine;
 
-    PracticeManager        *m_practiceManager;
+    PracticeManager     *m_practiceManager;
 
     EntryDlg            *entryDlg;
 
@@ -270,5 +270,5 @@ private:
     KVTNewStuff         *m_newStuff;
 };
 
-#endif // KVOCTRAIN_H
+#endif // PARLEY_H
 

@@ -26,7 +26,7 @@
 #include <klocale.h>
 #include <kapplication.h>
 
-#include "kvoctrain.h"
+#include "parley.h"
 #include "version.h"
 
 int main(int argc, char* argv[])
@@ -105,24 +105,24 @@ int main(int argc, char* argv[])
     KCmdLineArgs::addCmdLineOptions(options);
     KApplication app;
 
-    KVocTrainApp *kva = 0;
+    ParleyApp *parleyApp = 0;
     if (app.isSessionRestored()) {
         int n = 1;
         while (KXmlGuiWindow::canBeRestored(n)) {
-            kva = new KVocTrainApp;
-            kva->restore(n);
-            kva->show();
+            parleyApp = new ParleyApp;
+            parleyApp->restore(n);
+            parleyApp->show();
             n++;
         }
     } else {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        kva = new KVocTrainApp;
+        parleyApp = new ParleyApp;
         if (args && args->count() == 1) {
-            kva->loadFileFromPath(args->url(0), true);
+            parleyApp->loadFileFromPath(args->url(0), true);
             args->clear();
         }
-        kva->show();
+        parleyApp->show();
     }
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
