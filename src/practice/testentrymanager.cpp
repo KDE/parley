@@ -39,6 +39,7 @@
 #include <keduvocdocument.h>
 #include <keduvocwordtype.h>
 #include <KRandomSequence>
+#include <KMessageBox>
 #include <QDateTime>
 
 
@@ -129,15 +130,42 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
         }
     }
 
-    expireEntries();
+    if ( m_allTestEntries.count() == 0 ) {
+        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no vocabulary.</p><p>Hint: To select a lesson set a checkmark next to it in the lesson column on the left.</p><p>Would you like to include all lessons?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::Yes ) {
+            kDebug() << "Adding all lessons.";
+            ///@todo reuse the above - make it a function?
+            foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
+                int lessonLimit = m_allTestEntries.count();
+                foreach ( int entryIndex, lesson.entries() ) {
+                    if ( Prefs::testOrderLesson() ) {
+                        // insert after the last entry of the last lesson
+                        m_allTestEntries.insert(
+                            lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
+                            new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                    } else {
+                        // insert at total random position
+                        m_allTestEntries.insert(
+                            m_randomSequence->getLong(m_allTestEntries.count()),
+                            new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+
+                    }
+                }
+            }
+        } else {
+            return;
+        }
+    }
 
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
+
+    expireEntries();
 
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( !checkType(m_allTestEntries.value(i)->exp) ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
+
     kDebug() << "Found " << m_allTestEntries.count() << " entries with valid word type.";
 
     // use the old validate methods for now

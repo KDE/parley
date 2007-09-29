@@ -67,7 +67,6 @@ static const char not_contain[] = I18N_NOOP(
                                       "should the configuration dialog be invoked now?");
 
 
-
 PracticeManager::PracticeManager(ParleyApp *app, KEduVocDocument *doc)
 {
     m_app = app;
@@ -98,31 +97,6 @@ void PracticeManager::startPractice()
 
     m_app->hide();
     createDialog();
-}
-
-
-
-bool PracticeManager::queryIsEmpty()
-{
-    int i;
-    for ( i = 0; i < m_doc->lessonCount(); i++ ) {
-        if ( m_doc->lesson(i).inQuery() ) {
-            break;
-        }
-    }
-
-    if ( i == m_doc->lessonCount() ) {
-        KMessageBox::information(m_app, i18n("You have selected no lessons to be practiced. Please select at least one on the left."), i18n("Starting Test"));
-        return true;
-    }
-
-///@todo handle empty test
-//     if (query_startnum == 0) {
-//         if (KMessageBox::Yes == KMessageBox::questionYesNo(m_app, i18n(not_contain), i18n("Starting Test")))
-//             m_app->slotGeneralOptionsPage(5);
-//         return true;
-//     }
-    return false;
 }
 
 

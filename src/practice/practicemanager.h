@@ -46,7 +46,6 @@ public slots:
 
 private:
     void createDialog();
-    bool queryIsEmpty();
 
     /** exit query mode */
     void stopPractice();
