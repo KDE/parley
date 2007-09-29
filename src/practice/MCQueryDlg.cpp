@@ -232,7 +232,11 @@ void MCQueryDlg::setEntry( TestEntry* entry)
         if ( url.isEmpty() ) {
             url = vocExpression->translation(Prefs::toIdentifier()).imageUrl().toLocalFile();
         }
-        imageShowFile( mw->imageGraphicsView, url );
+        if ( url.isEmpty() ) {
+            mw->imageGraphicsView->setVisible(false);
+        } else {
+            imageShowFile( mw->imageGraphicsView, url );
+        }
     }
 }
 
