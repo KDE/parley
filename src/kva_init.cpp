@@ -317,6 +317,7 @@ void ParleyApp::initActions()
 
     KAction* configurePractice = new KAction(this);
     configurePractice->setText(i18n("Configure Practice..."));
+    configurePractice->setIcon(KIcon("configure"));
     configurePractice->setWhatsThis(i18n("Set up and start a test"));
     configurePractice->setToolTip(configurePractice->whatsThis());
     configurePractice->setStatusTip(configurePractice->whatsThis());
