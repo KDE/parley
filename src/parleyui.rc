@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE kpartgui SYSTEM "kpartgui.dtd">
-<gui name="parley"  version="0.5.01">
+<gui name="parley"  version="0.5.03">
  <MenuBar>
   <Menu name="file" >
    <Action append="open_merge" name="file_open_example" />
@@ -14,17 +14,14 @@
   </Menu>
   <Menu name="edit" >
       <Separator/>
+      <Action name="edit_languages" />
+      <Action name="edit_grammar" />
+      <Separator/>
       <Action name="edit_append" />
       <Action name="edit_remove_selected_area" />
       <Separator/>
       <Action name="edit_edit_selected_area" />
       <Action name="vocab_clean_up" />
-  </Menu>
-  <Menu name="language" >
-      <text>&amp;Language</text>
-      <Action name="vocab_edit_languages" />
-      <Separator/>
-      <Action name="vocab_grammar_properties" />
   </Menu>
   <Menu name="lesson" >
    <text>&amp;Lesson</text>

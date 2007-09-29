@@ -177,6 +177,24 @@ void ParleyApp::initActions()
     editPaste->setToolTip(editPaste->whatsThis());
     editPaste->setStatusTip(editPaste->whatsThis());
 
+
+    KAction* editLanguages =new KAction(this);
+     actionCollection()->addAction("edit_languages", editLanguages);
+    editLanguages->setIcon(KIcon("insert_table_col"));
+    editLanguages->setText(i18n("&Languages..."));
+    connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
+    ///@todo tooltip
+
+    KAction* editGramar = new KAction(this);
+    actionCollection()->addAction("edit_grammar", editGramar);
+    editGramar->setText(i18n("&Grammar..."));
+    editGramar->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
+    editGramar->setToolTip(editGramar->whatsThis());
+    editGramar->setStatusTip(editGramar->whatsThis());
+    connect(editGramar, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
+
+
+
     KAction* editSelectAll = KStandardAction::selectAll(this, SLOT(slotSelectAll()), actionCollection());
     editSelectAll->setWhatsThis(i18n("Select all rows"));
     editSelectAll->setToolTip(editSelectAll->whatsThis());
@@ -294,23 +312,6 @@ void ParleyApp::initActions()
     vocabCleanUp->setWhatsThis(i18n("Remove duplicate entries from the vocabulary"));
     vocabCleanUp->setToolTip(vocabCleanUp->whatsThis());
     vocabCleanUp->setStatusTip(vocabCleanUp->whatsThis());
-
-
-    KAction* vocabEditLanguages =new KAction(this);
-     actionCollection()->addAction("vocab_edit_languages", vocabEditLanguages);
-    vocabEditLanguages->setIcon(KIcon("insert_table_col"));
-    vocabEditLanguages->setText(i18n("&Edit Languages"));
-    connect(vocabEditLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
-    ///@todo tooltip
-
-    KAction* languageProperties = new KAction(this);
-    actionCollection()->addAction("vocab_grammar_properties", languageProperties);
-    languageProperties->setText(i18n("&Grammar Properties..."));
-    languageProperties->setWhatsThis(i18n("Edit language properties (types, tenses and usages)."));
-    languageProperties->setToolTip(languageProperties->whatsThis());
-    languageProperties->setStatusTip(languageProperties->whatsThis());
-    connect(languageProperties, SIGNAL(triggered(bool)), SLOT(slotLanguageProperties()));
-
 
 // -- PRACTICE --------------------------------------------------
 
