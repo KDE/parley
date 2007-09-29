@@ -183,24 +183,42 @@
        </widget>
       </item>
       <item>
-       <widget class="QCheckBox" name="kcfg_SwapDirection" >
-        <property name="enabled" >
-         <bool>false</bool>
-        </property>
-        <property name="text" >
-         <string>S&amp;wap direction randomly</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
-        <property name="toolTip" >
-         <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
-        </property>
-        <property name="text" >
-         <string>&amp;Practice in lesson order</string>
-        </property>
-       </widget>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QCheckBox" name="kcfg_SwapDirection" >
+          <property name="enabled" >
+           <bool>false</bool>
+          </property>
+          <property name="text" >
+           <string>S&amp;wap direction randomly</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QCheckBox" name="kcfg_PracticeSoundEnabled" >
+          <property name="text" >
+           <string>Enable Sound</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
+          <property name="toolTip" >
+           <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
+          </property>
+          <property name="text" >
+           <string>&amp;Practice in lesson order</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QCheckBox" name="kcfg_PracticeImagesEnabled" >
+          <property name="text" >
+           <string>Enable Images</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
       </item>
       <item>
        <layout class="QHBoxLayout" >

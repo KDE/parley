@@ -24,6 +24,7 @@
  ***************************************************************************/
 
 #include "MCQueryDlg.h"
+#include "prefs.h"
 
 #include <QTimer>
 #include <QLabel>
@@ -46,6 +47,8 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
+
+    mw->imageGraphicsView->setVisible(Prefs::practiceImagesEnabled());
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
@@ -223,6 +226,14 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->rb_trans5->setAutoExclusive ( true );
 
     mw->show_all->setFocus();
+
+    if ( Prefs::practiceImagesEnabled() ) {
+        QString url = vocExpression->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
+        if ( url.isEmpty() ) {
+            url = vocExpression->translation(Prefs::toIdentifier()).imageUrl().toLocalFile();
+        }
+        imageShowFile( mw->imageGraphicsView, url );
+    }
 }
 
 
