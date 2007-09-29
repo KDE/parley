@@ -384,19 +384,14 @@ void EntryDlg::slotTypeChanged(const QString & type)
     }
 
     // enable/disable conjugation or comparison pages:
-    QString verbType = m_doc->wordTypes().typeOfSpecialType(m_doc->wordTypes().specialTypeVerb());
-    QString adjectiveType = m_doc->wordTypes().typeOfSpecialType(m_doc->wordTypes().specialTypeAdjective());
-    QString adverbType = m_doc->wordTypes().typeOfSpecialType(m_doc->wordTypes().specialTypeAdverb());
-
-    kDebug() << verbType;
-
-    if (type == verbType) {
+    if (m_doc->wordTypes().specialType(type) == m_doc->wordTypes().specialTypeVerb()) {
         conjugationPageWidget->setEnabled(true);
     } else {
         conjugationPageWidget->setEnabled(false);
     }
 
-    if (type == adjectiveType || type == adverbType) {
+    if (m_doc->wordTypes().specialType(type) == m_doc->wordTypes().specialTypeAdjective()
+        || m_doc->wordTypes().specialType(type) == m_doc->wordTypes().specialTypeAdverb()) {
         comparisonPageWidget->setEnabled(true);
     } else {
         comparisonPageWidget->setEnabled(false);

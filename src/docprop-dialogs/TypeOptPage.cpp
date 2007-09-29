@@ -57,42 +57,42 @@ WordTypeOptionPage::WordTypeOptionPage(KEduVocDocument *doc, QWidget *parent) : 
 
     wordTypeTreeView->setModel(m_wordTypeModel);
 
-    connect(wordTypeTreeView, SIGNAL(activated( QModelIndex * )), this, SLOT(itemSelected( QModelIndex * )));
-    connect(m_wordTypeModel, SIGNAL(itemChanged( QStandardItem * )), this, SLOT(itemChanged( QStandardItem * )));
+    connect(wordTypeTreeView->selectionModel(), SIGNAL(currentChanged( const QModelIndex &, const QModelIndex & )), SLOT(currentChanged(const QModelIndex&)));
 
-    connect(newWordTypeButton, SIGNAL(clicked()), this, SLOT(slotNewWordType()));
-    connect(newSubWordTypeButton, SIGNAL(clicked()), this, SLOT(slotNewSubWordType()));
-    connect(renameButton, SIGNAL(clicked()), this, SLOT(slotRename()));
-    connect(deleteButton, SIGNAL(clicked()), this, SLOT(slotDelete()));
+    connect(m_wordTypeModel, SIGNAL(itemChanged( QStandardItem * )), SLOT(itemChanged( QStandardItem * )));
+
+    connect(newWordTypeButton, SIGNAL(clicked()), SLOT(slotNewWordType()));
+    connect(newSubWordTypeButton, SIGNAL(clicked()), SLOT(slotNewSubWordType()));
+    connect(renameButton, SIGNAL(clicked()), SLOT(slotRename()));
+    connect(deleteButton, SIGNAL(clicked()), SLOT(slotDelete()));
+
+    setupSpecialComboBox(QString(), QString());
+
+    connect(specialTypeComboBox, SIGNAL(activated(int)), SLOT(specialTypeChanged(int)));
 }
 
 void WordTypeOptionPage::itemChanged(QStandardItem * item)
 {
-    kDebug() << "itemChanged() " << item->text();
-    QString oldType; // debug
-
     if ( item->index().parent() == QModelIndex() ) {
-        // get the old name, rename
-        oldType = m_newWordTypes.typeNameList().value(item->index().row());
+        // Top level word type
+        QString oldType = m_newWordTypes.typeNameList().value(item->index().row());
         if ( !item->text().isEmpty() ) {
             m_newWordTypes.renameType( m_newWordTypes.typeNameList().value(item->index().row()), item->text() );
+            setupSpecialComboBox(item->text(), QString());
         } else {
             item->setText(oldType);
         }
     } else {
+        // Subtype
         QString mainType = item->parent()->text();
-kDebug() << "Parent is: " << mainType << " with children: " << m_newWordTypes.subTypeNameList( mainType ).count();
-
         QString subType = m_newWordTypes.subTypeNameList(mainType)[item->index().row()];
         if ( !item->text().isEmpty() ) {
             m_newWordTypes.renameSubType( mainType, subType, item->text() );
+            setupSpecialComboBox(mainType, item->text());
         } else {
             item->setText(subType);
         }
-        oldType = subType;
     }
-
-    kDebug() << "WordTypeOptionPage::itemChanged(): " << oldType << " is now: " << item->text();
 }
 
 
@@ -104,6 +104,8 @@ void WordTypeOptionPage::slotNewWordType()
     m_wordTypeModel->appendRow(item);
     wordTypeTreeView->setCurrentIndex(item->index());
     wordTypeTreeView->edit(item->index());
+
+    setupSpecialComboBox(item->text(), QString());
 }
 
 void WordTypeOptionPage::slotNewSubWordType()
@@ -113,6 +115,10 @@ void WordTypeOptionPage::slotNewSubWordType()
     // get current selection
     QStandardItem * currentItem =
         m_wordTypeModel->itemFromIndex(wordTypeTreeView->currentIndex());
+
+    if ( !currentItem )  {
+        return;
+    }
 
     // if the current item is not a top level one, use its parent.
     if ( currentItem->index().parent().isValid() ) {
@@ -125,7 +131,7 @@ void WordTypeOptionPage::slotNewSubWordType()
     wordTypeTreeView->setCurrentIndex(item->index());
     wordTypeTreeView->edit(item->index());
 
-    // add to doc:
+    setupSpecialComboBox(currentItem->parent()->text(), currentItem->text());
 }
 
 void WordTypeOptionPage::slotRename()
@@ -137,30 +143,117 @@ void WordTypeOptionPage::slotRename()
 
 void WordTypeOptionPage::slotDelete()
 {
-    kDebug() << "slotDelete";
     QStandardItem * item =
         m_wordTypeModel->itemFromIndex(wordTypeTreeView->currentIndex());
 
     if ( item->index().parent() == QModelIndex() ) {
-        // get the old name, rename
-        if(!m_newWordTypes.removeType( item->text() )){
-            KMessageBox::information(this, i18n("The type you selected could not be deleted since it is a special type used for practicing."), i18n("Delete type"));
-            return; // special types cannot be deleted.
-        }
+        m_newWordTypes.removeType( item->text() );
     } else {
-        if(!m_newWordTypes.removeSubType( item->parent()->text(), item->text() )){
-            KMessageBox::information(this, i18n("The type you selected could not be deleted since it is a special type used for practicing."), i18n("Delete subtype"));
-            return; // special types cannot be deleted.
-        }
+        m_newWordTypes.removeSubType( item->parent()->text(), item->text() );
     }
-
     m_wordTypeModel->removeRow(item->index().row(), item->index().parent());
-    m_newWordTypes.printDebugWordTypes();
 }
 
 void WordTypeOptionPage::commitData()
 {
     m_doc->wordTypes() = m_newWordTypes;
+}
+
+
+void WordTypeOptionPage::setupSpecialComboBox(const QString& wordType, const QString& subType)
+{
+
+kDebug() << "Setup special combobox: " << wordType << subType;
+
+    if ( wordType.isEmpty() ) {
+        specialTypeLabel->setText( i18n("Select a type") );
+        specialTypeComboBox->setEnabled( false );
+        return;
+    }
+
+    if ( subType.isEmpty() ) {
+        // set up the special combo box
+        specialTypeComboBox->setEnabled( true );
+        specialTypeLabel->setText( i18n("Special meaning of %1:", wordType ) );
+        specialTypeComboBox->clear();
+        specialTypeComboBox->addItem( i18nc("@item:comobox selection for word types with special meaning in the practice (like noun for article and verb for conjugation) - no special word type","None") );
+        specialTypeComboBox->addItem( m_newWordTypes.specialTypeNoun() );
+        specialTypeComboBox->addItem( m_newWordTypes.specialTypeVerb() );
+        specialTypeComboBox->addItem( m_newWordTypes.specialTypeAdjective() );
+        specialTypeComboBox->addItem( m_newWordTypes.specialTypeAdverb() );
+        if ( m_newWordTypes.specialType(wordType).isEmpty() ) {
+            specialTypeComboBox->setCurrentIndex(0);
+        } else {
+            specialTypeComboBox->setCurrentIndex(
+                specialTypeComboBox->findText(m_newWordTypes.specialType(wordType)));
+        }
+    } else {
+// subtypes - only noun has meaningful subtypes right now
+        if ( !m_newWordTypes.specialType(wordType).isEmpty() ) {
+            if ( m_newWordTypes.specialType(wordType) == m_newWordTypes.specialTypeNoun() ) {
+                specialTypeComboBox->clear();
+                specialTypeComboBox->setEnabled( true );
+                specialTypeLabel->setText( i18n("Special meaning of %1:", subType ) );
+                specialTypeComboBox->addItem( i18nc("@item:comobox selection for word types with special meaning in the practice (like noun for article and verb for conjugation) - no special word type","None") );
+                specialTypeComboBox->addItem( m_newWordTypes.specialTypeNounMale() );
+                specialTypeComboBox->addItem( m_newWordTypes.specialTypeNounFemale() );
+                specialTypeComboBox->addItem( m_newWordTypes.specialTypeNounNeutral() );
+    kDebug() << "find text" << m_newWordTypes.specialSubType(wordType, subType);
+                specialTypeComboBox->setCurrentIndex(
+                    specialTypeComboBox->findText(m_newWordTypes.specialSubType(wordType, subType)));
+            } else {
+                specialTypeLabel->setText( i18n("%1 does not have special subtypes.", wordType) );
+                specialTypeComboBox->setEnabled( false );
+            }
+        } else {
+            // parent is not special? then sub cannot be either
+            specialTypeLabel->setText( i18n("%1 is not a special type.", wordType) );
+            specialTypeComboBox->setEnabled( false );
+        }
+    }
+}
+
+void WordTypeOptionPage::currentChanged(const QModelIndex& index)
+{
+    if ( !index.isValid() ) {
+        setupSpecialComboBox(QString(), QString());
+        return;
+    }
+
+    QStandardItem* item = m_wordTypeModel->itemFromIndex(index);
+    if ( index.parent() == QModelIndex() ) {
+        setupSpecialComboBox( item->text(), QString() );
+    } else {
+        setupSpecialComboBox( item->parent()->text(), item->text() );
+    }
+}
+
+void WordTypeOptionPage::specialTypeChanged(int specialTypeIndex)
+{
+    QString newSpecialType;
+    if ( specialTypeIndex == 0 ) {
+        newSpecialType = QString();
+    } else {
+        newSpecialType = specialTypeComboBox->itemText(specialTypeIndex);
+    }
+
+    QStandardItem * item =
+        m_wordTypeModel->itemFromIndex(wordTypeTreeView->currentIndex());
+
+    if ( !item ) {
+        kDebug() << "No item selected.";
+        return;
+    }
+
+    if ( item->index().parent() == QModelIndex() ) {
+kDebug() << "Change special type: " << item->text() << newSpecialType;
+
+        m_newWordTypes.setSpecialType( item->text(), newSpecialType );
+    } else {
+    kDebug() << "Change special subtype: " ;
+kDebug() << "Change special subtype: " << item->parent()->text() << item->text() << newSpecialType;
+        m_newWordTypes.setSpecialSubType( item->parent()->text(), item->text(), newSpecialType );
+    }
 }
 
 #include "TypeOptPage.moc"

@@ -44,11 +44,16 @@ public:
 
 private slots:
     void itemChanged( QStandardItem * item );
+    void currentChanged( const QModelIndex& index );
 
     void slotNewWordType();
     void slotNewSubWordType();
     void slotRename();
     void slotDelete();
+
+    // handling of special types
+    void setupSpecialComboBox(const QString& wordType, const QString& subType);
+    void specialTypeChanged(int specialTypeIndex);
 
 private:
     KEduVocDocument    *m_doc;
