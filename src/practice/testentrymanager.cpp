@@ -533,7 +533,7 @@ int TestEntryManager::totalEntryCount()
 
 int TestEntryManager::activeEntryCount()
 {
-    return m_allTestEntries.count() - (m_notAskedTestEntries.count() + m_currentEntries.count());
+    return m_notAskedTestEntries.count() + m_currentEntries.count();
 }
 
 bool TestEntryManager::checkType(KEduVocExpression * entry)

@@ -146,7 +146,7 @@ kDebug() << "result: " << res;
         createDialog();
     } else {
         m_testDialog->setEntry(m_entry);
-        m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+        m_testDialog->setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     }
 }
 
@@ -222,7 +222,7 @@ void PracticeManager::createDialog()
     }
 
     m_testDialog->setEntry( m_entry );
-    m_testDialog->setProgressCounter(m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+    m_testDialog->setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
     connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
     m_testDialog->show();
 }

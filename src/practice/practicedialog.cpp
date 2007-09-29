@@ -213,7 +213,6 @@ void PracticeDialog::setEntry(TestEntry * entry)
     m_entry = entry;
     m_testType = Prefs::testType();
     startTimer();
-
 //     audioPlayFromIdentifier();
 }
 

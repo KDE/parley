@@ -45,11 +45,10 @@ public slots:
     void showSolution();
     void verifyClicked();
 
-protected:
+private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
-private:
     QList<QPair<QRadioButton *, QLabel *> > button_ref;
     Ui::MCQueryDlgForm * mw;
 
