@@ -38,12 +38,19 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->verify->setIcon(KIcon("ok"));
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->know_it->setEnabled(Prefs::iKnow());
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));

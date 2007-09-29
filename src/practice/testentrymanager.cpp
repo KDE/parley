@@ -158,21 +158,36 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
 
-    expireEntries();
-
-    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( !checkType(m_allTestEntries.value(i)->exp) ) {
-            delete m_allTestEntries.takeAt(i);
-        }
-    }
-
-    kDebug() << "Found " << m_allTestEntries.count() << " entries with valid word type.";
-
-    // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( m_allTestEntries.value(i)->exp->translation(TestEntry::gradeFrom()).text().isEmpty() ||
                 m_allTestEntries.value(i)->exp->translation(TestEntry::gradeTo()).text().isEmpty() ) {
             delete m_allTestEntries.takeAt(i);
+        }
+    }
+
+    kDebug() << "Found " << m_allTestEntries.count() << " entries that are not empty.";
+
+    // expire (decrease grade after a certain amount of time)
+    expireEntries();
+
+    // word type
+    bool entryWithValidTypeExists = false;
+    for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+        if ( checkType(m_allTestEntries.value(i)->exp) ) {
+            entryWithValidTypeExists = true;
+            break;
+        }
+    }
+    if ( entryWithValidTypeExists ) {
+        for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+            if ( !checkType(m_allTestEntries.value(i)->exp) ) {
+                delete m_allTestEntries.takeAt(i);
+            }
+        }
+        kDebug() << "Found " << m_allTestEntries.count() << " entries with valid word type.";
+    } else {
+        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries with the right word type.</p><p>Hint: To the word type threshold use the \"Configure Practice\" dialog.</p><p>Would you like to include all word types?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::No ) {
+            return;
         }
     }
 

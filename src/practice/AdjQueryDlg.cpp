@@ -39,6 +39,15 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw = new Ui::AdjQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->verify->setIcon(KIcon("ok"));
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -47,8 +56,6 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     connect(mw->lev1Field, SIGNAL(textChanged(const QString&)), SLOT(lev1Changed(const QString&)));
     connect(mw->lev2Field, SIGNAL(textChanged(const QString&)), SLOT(lev2Changed(const QString&)));
     connect(mw->lev3Field, SIGNAL(textChanged(const QString&)), SLOT(lev3Changed(const QString&)));
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 

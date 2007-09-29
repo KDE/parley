@@ -36,10 +36,8 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 {
     setCaption(caption);
     setModal(false);
-    setButtons(Close|User1);
+    setButtons(0);
     setDefaultButton(NoDefault);
-    setButtonText(Close, i18n("&Stop Test"));
-    setButtonGuiItem(User1, KGuiItem(i18n("&Edit Expression...")));
 
     QWidget *main = new QWidget(this);
     setMainWidget(main);

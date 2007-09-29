@@ -38,18 +38,23 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     articles = m_doc->identifier(Prefs::toIdentifier()).article();
 
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
-    connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
     connect(mw->maleRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->femaleRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->neutralRadio, SIGNAL(clicked()), SLOT(verifyClicked()));
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 

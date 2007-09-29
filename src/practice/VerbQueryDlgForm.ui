@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>892</width>
-    <height>694</height>
+    <width>843</width>
+    <height>691</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -536,6 +536,37 @@
         </layout>
        </item>
       </layout>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <spacer>
+       <property name="orientation" >
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" >
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stopPracticeButton" >
+       <property name="text" >
+        <string>&amp;Stop Practice</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="editEntryButton" >
+       <property name="text" >
+        <string>&amp;Edit Entry...</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>

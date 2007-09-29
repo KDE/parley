@@ -29,6 +29,11 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 {
     setupUi(mainWidget());
 
+    stopPracticeButton->setIcon( KIcon("list-remove") );
+    verifySolutionButton->setIcon(KIcon("ok"));
+
+    connect(stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+
     m_scene = new QGraphicsScene();
     m_scene->setSceneRect( 0.0, 0.0, 1.0, 1.0 );
     imageGraphicsView->setScene(m_scene);

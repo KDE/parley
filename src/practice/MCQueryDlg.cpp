@@ -47,6 +47,14 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
@@ -55,8 +63,6 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     connect(mw->rb_trans3, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(verifyClicked()));
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 

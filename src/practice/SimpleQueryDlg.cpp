@@ -40,14 +40,21 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw = new Ui::SimpleQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->verify->setIcon(KIcon("ok"));
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
     connect(mw->answerField, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 

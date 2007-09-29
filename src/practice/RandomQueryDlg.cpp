@@ -122,6 +122,15 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw = new Ui::QueryDlgForm();
     mw->setupUi(mainWidget());
 
+    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
+    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->verify->setIcon(KIcon("ok"));
+    mw->know_it->setIcon(KIcon("go-next"));
+    mw->dont_know->setIcon(KIcon("go-next"));
+
+    connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+    connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
+
     connect(mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()));
     connect(mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()));
     connect(mw->c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()));
@@ -133,8 +142,6 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
 
     mw->show_more->setEnabled(Prefs::showMore());
     mw->know_it->setEnabled(Prefs::iKnow());
-
-    connect(this, SIGNAL(user1Clicked()), this, SLOT(editEntry()));
 
     bool split = Prefs::split();
     fields = Prefs::fields();
