@@ -77,8 +77,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    mw->timebar->setEnabled(Prefs::showCounter());
-    mw->timelabel->setEnabled(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::showCounter());
+    mw->timelabel->setVisible(Prefs::showCounter());
     mw->show_all->setDefault(true);
 
     QString s;

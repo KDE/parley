@@ -236,8 +236,8 @@ void RandomQueryDlg::setEntry( TestEntry* entry )
     else
         translations = QStringList(trans);
 
-    mw->timebar->setEnabled(Prefs::showCounter());
-    mw->timelabel->setEnabled(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::showCounter());
+    mw->timelabel->setVisible(Prefs::showCounter());
     int i;
     int k;
     if (Prefs::suggestions()) {

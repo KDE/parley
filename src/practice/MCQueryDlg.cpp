@@ -88,8 +88,8 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     m_answeredWrong = false;
 
     KEduVocExpression *vocExpression = entry->exp;
-    mw->timebar->setEnabled(Prefs::showCounter());
-    mw->timelabel->setEnabled(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::showCounter());
+    mw->timelabel->setVisible(Prefs::showCounter());
     mw->orgField->setFont(Prefs::tableFont());
     mw->orgField->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
     mw->show_all->setDefault(true);
