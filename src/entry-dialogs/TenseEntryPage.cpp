@@ -47,13 +47,13 @@ TenseEntryPage::TenseEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(
     connect(singularSecondPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(singularThirdMalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(singularThirdFemalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(singularThirdNeuterPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    connect(singularThirdNeutralPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
 
     connect(pluralFirstPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(pluralSecondPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(pluralThirdMalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
     connect(pluralThirdFemalePersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
-    connect(pluralThirdNeuterPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
+    connect(pluralThirdNeutralPersonLineEdit, SIGNAL(textChanged(const QString&)), SLOT(textChanged(const QString&)));
 }
 
 void TenseEntryPage::setData(int row, int col)
@@ -72,19 +72,19 @@ void TenseEntryPage::setData(int row, int col)
     singularSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Singular ));
     singularThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular ));
     singularThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular ));
-    singularThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Singular ));
+    singularThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular ));
 
     dualFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Dual ));
     dualSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Dual ));
     dualThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual ));
     dualThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual ));
-    dualThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Dual ));
+    dualThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual ));
 
     pluralFirstPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::First, KEduVocConjugation::Plural ));
     pluralSecondPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::Second, KEduVocConjugation::Plural ));
     pluralThirdMalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural ));
     pluralThirdFemalePersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural ));
-    pluralThirdNeuterPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeuterCommon, KEduVocConjugation::Plural ));
+    pluralThirdNeutralPersonLabel->setText(pron.personalPronoun( KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural ));
 
     tensebox->clear();
     tensebox->addItems(m_doc->tenseDescriptions());
@@ -104,16 +104,16 @@ void TenseEntryPage::setData(int row, int col)
     pluralThirdFemalePersonLineEdit->setVisible(maleFemaleDifferent);
 
     if ( !maleFemaleDifferent ) {
-        singularThirdNeuterPersonLabel->setVisible(true);
-        singularThirdNeuterPersonLineEdit->setVisible(true);
-        pluralThirdNeuterPersonLabel->setVisible(true);
-        pluralThirdNeuterPersonLineEdit->setVisible(true);
+        singularThirdNeutralPersonLabel->setVisible(true);
+        singularThirdNeutralPersonLineEdit->setVisible(true);
+        pluralThirdNeutralPersonLabel->setVisible(true);
+        pluralThirdNeutralPersonLineEdit->setVisible(true);
     } else {
-        bool neuterExists = m_doc->identifier(m_currentTranslation).personalPronouns().neuterExists();
-        singularThirdNeuterPersonLabel->setVisible(neuterExists);
-        singularThirdNeuterPersonLineEdit->setVisible(neuterExists);
-        pluralThirdNeuterPersonLabel->setVisible(neuterExists);
-        pluralThirdNeuterPersonLineEdit->setVisible(neuterExists);
+        bool neutralExists = m_doc->identifier(m_currentTranslation).personalPronouns().neutralExists();
+        singularThirdNeutralPersonLabel->setVisible(neutralExists);
+        singularThirdNeutralPersonLineEdit->setVisible(neutralExists);
+        pluralThirdNeutralPersonLabel->setVisible(neutralExists);
+        pluralThirdNeutralPersonLineEdit->setVisible(neutralExists);
     }
 
     m_conjugations = m_doc->entry(m_currentRow)->translation(m_currentTranslation).conjugations();
@@ -190,21 +190,21 @@ void TenseEntryPage::saveCurrentTense()
     m_conjugations[selection].setConjugation(singularSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
     m_conjugations[selection].setConjugation(singularThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
     m_conjugations[selection].setConjugation(singularThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(singularThirdNeuterPersonLineEdit->text(),  KEduVocConjugation::ThirdNeuterCommon , num);
+    m_conjugations[selection].setConjugation(singularThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
 
     num = KEduVocConjugation::Dual;
     m_conjugations[selection].setConjugation(dualFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
     m_conjugations[selection].setConjugation(dualSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
     m_conjugations[selection].setConjugation(dualThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
     m_conjugations[selection].setConjugation(dualThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(dualThirdNeuterPersonLineEdit->text(),  KEduVocConjugation::ThirdNeuterCommon , num);
+    m_conjugations[selection].setConjugation(dualThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
 
     num = KEduVocConjugation::Plural;
     m_conjugations[selection].setConjugation(pluralFirstPersonLineEdit->text(),  KEduVocConjugation::First , num);
     m_conjugations[selection].setConjugation(pluralSecondPersonLineEdit->text(),  KEduVocConjugation::Second , num);
     m_conjugations[selection].setConjugation(pluralThirdMalePersonLineEdit->text(),  KEduVocConjugation::ThirdMale , num);
     m_conjugations[selection].setConjugation(pluralThirdFemalePersonLineEdit->text(),  KEduVocConjugation::ThirdFemale , num);
-    m_conjugations[selection].setConjugation(pluralThirdNeuterPersonLineEdit->text(),  KEduVocConjugation::ThirdNeuterCommon , num);
+    m_conjugations[selection].setConjugation(pluralThirdNeutralPersonLineEdit->text(),  KEduVocConjugation::ThirdNeutralCommon , num);
 }
 
 void TenseEntryPage::updateEntries()
@@ -216,21 +216,21 @@ void TenseEntryPage::updateEntries()
     singularSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
     singularThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
     singularThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    singularThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
+    singularThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
 
     num = KEduVocConjugation::Dual;
     dualFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
     dualSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
     dualThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
     dualThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    dualThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
+    dualThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
 
     num = KEduVocConjugation::Plural;
     pluralFirstPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::First , num));
     pluralSecondPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::Second , num));
     pluralThirdMalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdMale , num));
     pluralThirdFemalePersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdFemale , num));
-    pluralThirdNeuterPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeuterCommon , num));
+    pluralThirdNeutralPersonLineEdit->setText(m_conjugations[selection].conjugation( KEduVocConjugation::ThirdNeutralCommon , num));
 }
 
 

@@ -49,8 +49,8 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     def_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine ));
     indef_female->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Feminine ));
 
-    def_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter ));
-    indef_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neuter ));
+    def_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral ));
+    indef_natural->setText(articles.article( KEduVocArticle::Singular, KEduVocArticle::Indefinite, KEduVocArticle::Neutral ));
 
     // personal pronouns
     const KEduVocConjugation::ConjugationNumber numS = KEduVocConjugation::Singular;
@@ -63,28 +63,28 @@ LangPropPage::LangPropPage(KEduVocDocument *doc, int identifierIndex, QWidget *p
     second_singular->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numS));
     thirdM_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numS));
     thirdF_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numS));
-    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numS));
+    thirdN_singular->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numS));
 
     dualFirstLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::First, numD));
     dualSecondLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numD));
     dualThirdMaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numD));
     dualThirdFemaleLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numD));
-    dualThirdNeuterLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numD));
+    dualThirdNeutralLineEdit->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numD));
 
     first_plural->setText(pronoun.personalPronoun(KEduVocConjugation::First, numP));
     second_plural->setText(pronoun.personalPronoun(KEduVocConjugation::Second, numP));
     thirdM_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdMale, numP));
     thirdF_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdFemale, numP));
-    thirdN_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeuterCommon, numP));
+    thirdN_plural->setText(pronoun.personalPronoun(KEduVocConjugation::ThirdNeutralCommon, numP));
 
     maleFemaleDifferCheckBox->setChecked(pronoun.maleFemaleDifferent());
-    neuterCheckBox->setChecked(pronoun.neuterExists());
+    neutralCheckBox->setChecked(pronoun.neutralExists());
     dualCheckBox->setChecked(pronoun.dualExists());
     // update shown labels etc...
     updateCheckBoxes();
 
     connect(maleFemaleDifferCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
-    connect(neuterCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
+    connect(neutralCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
     connect(dualCheckBox, SIGNAL(toggled(bool)), SLOT(updateCheckBoxes()));
 }
 
@@ -105,8 +105,8 @@ void LangPropPage::accept()
     article.setArticle( indef_male->text(),  artSing, artIndef, KEduVocArticle::Masculine );
     article.setArticle( def_female->text(),  artSing, artDef, KEduVocArticle::Feminine );
     article.setArticle( indef_female->text(),  artSing, artIndef, KEduVocArticle::Feminine );
-    article.setArticle( def_natural->text(),  artSing, artDef, KEduVocArticle::Neuter );
-    article.setArticle( indef_natural->text(),  artSing, artIndef, KEduVocArticle::Neuter );
+    article.setArticle( def_natural->text(),  artSing, artDef, KEduVocArticle::Neutral );
+    article.setArticle( indef_natural->text(),  artSing, artIndef, KEduVocArticle::Neutral );
 
     m_doc->identifier(m_identifierIndex).setArticle( article );
 
@@ -120,22 +120,22 @@ void LangPropPage::accept()
     pronoun.setPersonalPronoun(second_singular->text(), KEduVocConjugation::Second, numS);
     pronoun.setPersonalPronoun(thirdM_singular->text(), KEduVocConjugation::ThirdMale, numS);
     pronoun.setPersonalPronoun(thirdF_singular->text(), KEduVocConjugation::ThirdFemale, numS);
-    pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeuterCommon, numS);
+    pronoun.setPersonalPronoun(thirdN_singular->text(), KEduVocConjugation::ThirdNeutralCommon, numS);
 
     pronoun.setPersonalPronoun(dualFirstLineEdit->text(), KEduVocConjugation::First, numD);
     pronoun.setPersonalPronoun(dualSecondLineEdit->text(), KEduVocConjugation::Second, numD);
     pronoun.setPersonalPronoun(dualThirdMaleLineEdit->text(), KEduVocConjugation::ThirdMale, numD);
     pronoun.setPersonalPronoun(dualThirdFemaleLineEdit->text(), KEduVocConjugation::ThirdFemale, numD);
-    pronoun.setPersonalPronoun(dualThirdNeuterLineEdit->text(), KEduVocConjugation::ThirdNeuterCommon, numD);
+    pronoun.setPersonalPronoun(dualThirdNeutralLineEdit->text(), KEduVocConjugation::ThirdNeutralCommon, numD);
 
     pronoun.setPersonalPronoun(first_plural->text(), KEduVocConjugation::First, numP);
     pronoun.setPersonalPronoun(second_plural->text(), KEduVocConjugation::Second, numP);
     pronoun.setPersonalPronoun(thirdM_plural->text(), KEduVocConjugation::ThirdMale, numP);
     pronoun.setPersonalPronoun(thirdF_plural->text(), KEduVocConjugation::ThirdFemale, numP);
-    pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocConjugation::ThirdNeuterCommon, numP);
+    pronoun.setPersonalPronoun(thirdN_plural->text(), KEduVocConjugation::ThirdNeutralCommon, numP);
 
     pronoun.setMaleFemaleDifferent(maleFemaleDifferCheckBox->isChecked());
-    pronoun.setNeuterExists(neuterCheckBox->isChecked());
+    pronoun.setNeutralExists(neutralCheckBox->isChecked());
     pronoun.setDualExists(dualCheckBox->isChecked());
 
     m_doc->identifier(m_identifierIndex).setPersonalPronouns( pronoun );
@@ -145,10 +145,10 @@ void LangPropPage::accept()
 void LangPropPage::updateCheckBoxes()
 {
     bool maleFemale = maleFemaleDifferCheckBox->isChecked();
-    bool neuter = neuterCheckBox->isChecked();
+    bool neutral = neutralCheckBox->isChecked();
     bool dual = dualCheckBox->isChecked();
 
-    neuterCheckBox->setVisible(maleFemale);
+    neutralCheckBox->setVisible(maleFemale);
     male_c_label->setVisible(maleFemale);
     female_c_label->setVisible(maleFemale);
     thirdM_singular->setVisible(maleFemale);
@@ -167,12 +167,12 @@ void LangPropPage::updateCheckBoxes()
         natural_c_label->setVisible(true);
         thirdN_singular->setVisible(true);
         thirdN_plural->setVisible(true);
-        dualThirdNeuterLineEdit->setVisible(dual);
+        dualThirdNeutralLineEdit->setVisible(dual);
     } else {
-        natural_c_label->setVisible(neuter);
-        thirdN_singular->setVisible(neuter);
-        thirdN_plural->setVisible(neuter);
-        dualThirdNeuterLineEdit->setVisible(dual && neuter);
+        natural_c_label->setVisible(neutral);
+        thirdN_singular->setVisible(neutral);
+        thirdN_plural->setVisible(neutral);
+        dualThirdNeutralLineEdit->setVisible(dual && neutral);
     }
 }
 

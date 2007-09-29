@@ -177,17 +177,17 @@
            <widget class="QLineEdit" name="singularThirdFemalePersonLineEdit" />
           </item>
           <item row="4" column="0" >
-           <widget class="QLabel" name="singularThirdNeuterPersonLabel" >
+           <widget class="QLabel" name="singularThirdNeutralPersonLabel" >
             <property name="text" >
-             <string>Third Neuter</string>
+             <string>Third Neutral</string>
             </property>
             <property name="buddy" >
-             <cstring>singularThirdNeuterPersonLineEdit</cstring>
+             <cstring>singularThirdNeutralPersonLineEdit</cstring>
             </property>
            </widget>
           </item>
           <item row="4" column="1" >
-           <widget class="QLineEdit" name="singularThirdNeuterPersonLineEdit" />
+           <widget class="QLineEdit" name="singularThirdNeutralPersonLineEdit" />
           </item>
          </layout>
         </widget>
@@ -251,17 +251,17 @@
            <widget class="QLineEdit" name="pluralThirdFemalePersonLineEdit" />
           </item>
           <item row="4" column="0" >
-           <widget class="QLabel" name="pluralThirdNeuterPersonLabel" >
+           <widget class="QLabel" name="pluralThirdNeutralPersonLabel" >
             <property name="text" >
-             <string>Third Neuter</string>
+             <string>Third Neutral</string>
             </property>
             <property name="buddy" >
-             <cstring>pluralThirdNeuterPersonLineEdit</cstring>
+             <cstring>pluralThirdNeutralPersonLineEdit</cstring>
             </property>
            </widget>
           </item>
           <item row="4" column="1" >
-           <widget class="QLineEdit" name="pluralThirdNeuterPersonLineEdit" />
+           <widget class="QLineEdit" name="pluralThirdNeutralPersonLineEdit" />
           </item>
          </layout>
         </widget>
@@ -342,17 +342,17 @@
            <widget class="QLineEdit" name="dualThirdFemalePersonLineEdit" />
           </item>
           <item row="4" column="0" >
-           <widget class="QLabel" name="dualThirdNeuterPersonLabel" >
+           <widget class="QLabel" name="dualThirdNeutralPersonLabel" >
             <property name="text" >
-             <string>Third Neuter</string>
+             <string>Third Neutral</string>
             </property>
             <property name="buddy" >
-             <cstring>dualThirdNeuterPersonLineEdit</cstring>
+             <cstring>dualThirdNeutralPersonLineEdit</cstring>
             </property>
            </widget>
           </item>
           <item row="4" column="1" >
-           <widget class="QLineEdit" name="dualThirdNeuterPersonLineEdit" />
+           <widget class="QLineEdit" name="dualThirdNeutralPersonLineEdit" />
           </item>
          </layout>
         </widget>

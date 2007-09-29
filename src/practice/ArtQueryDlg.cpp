@@ -108,8 +108,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
         removed = true;
     }
 
-    def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter );
-    indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neuter );
+    def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
+    indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
     mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t")+def+" / "+indef);
     mw->neutralRadio->setEnabled(!QString(def+indef).isEmpty());
     if (!removed && s.indexOf(def+' ') == 0) {

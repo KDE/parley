@@ -167,7 +167,7 @@
          <item row="3" column="0" >
           <widget class="QLabel" name="natural_label" >
            <property name="text" >
-            <string>&amp;Neuter:</string>
+            <string>&amp;Neutral:</string>
            </property>
            <property name="buddy" >
             <cstring>def_natural</cstring>
@@ -386,7 +386,7 @@
           </widget>
          </item>
          <item row="6" column="2" >
-          <widget class="QLineEdit" name="dualThirdNeuterLineEdit" />
+          <widget class="QLineEdit" name="dualThirdNeutralLineEdit" />
          </item>
          <item row="6" column="3" >
           <widget class="QLineEdit" name="thirdN_plural" >
@@ -412,9 +412,9 @@
           </widget>
          </item>
          <item row="8" column="1" colspan="2" >
-          <widget class="QCheckBox" name="neuterCheckBox" >
+          <widget class="QCheckBox" name="neutralCheckBox" >
            <property name="text" >
-            <string>A neuter conjugation form exists</string>
+            <string>A neutral conjugation form exists</string>
            </property>
           </widget>
          </item>
