@@ -59,6 +59,8 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
+    mw->know_it->setVisible(Prefs::iKnow());
+
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 

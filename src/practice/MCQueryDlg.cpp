@@ -70,6 +70,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    mw->know_it->setVisible(Prefs::iKnow());
     mw->imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
