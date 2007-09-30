@@ -44,7 +44,8 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 
     verifySolutionButton->setIcon( KIcon("ok") );
 
-    imageGraphicsView->setScene(new QGraphicsScene());
+    mixedLettersGraphicsView->setScene(new QGraphicsScene());
+    imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
     restoreDialogSize(cg);
@@ -83,8 +84,8 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     QString translation = m_entry->exp->translation(Prefs::toIdentifier()).text();
 
     // remove old items
-    foreach ( QGraphicsItem* item, imageGraphicsView->scene()->items() ) {
-        imageGraphicsView->scene()->removeItem(item);
+    foreach ( QGraphicsItem* item, mixedLettersGraphicsView->scene()->items() ) {
+        mixedLettersGraphicsView->scene()->removeItem(item);
         delete item;
     }
     m_answerTextItems.clear();
@@ -93,10 +94,12 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
     for ( int i = 0; i < translation.length(); i++ ) {
         QGraphicsTextItem* textItem = new QGraphicsTextItem( QString(translation[i]) );
-        textItem->translate( 10 + random.getLong(imageGraphicsView->width() - 30 ), 10 + random.getLong(imageGraphicsView->height() -30 ) );
+        textItem->translate( 10 + random.getLong(mixedLettersGraphicsView->width() - 30 ), 10 + random.getLong(mixedLettersGraphicsView->height() -30 ) );
         m_answerTextItems.append(textItem);
-        imageGraphicsView->scene()->addItem( textItem );
+        mixedLettersGraphicsView->scene()->addItem( textItem );
     }
+
+    imageShowFromEntry(imageGraphicsView, entry);
 }
 
 
