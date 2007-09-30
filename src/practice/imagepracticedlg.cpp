@@ -93,7 +93,7 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
     for ( int i = 0; i < translation.length(); i++ ) {
         QGraphicsTextItem* textItem = new QGraphicsTextItem( QString(translation[i]) );
-        textItem->translate( 10 + random.getLong(imageGraphicsView->width() - 20 ), 10 + random.getLong(imageGraphicsView->height() -20 ) );
+        textItem->translate( 10 + random.getLong(imageGraphicsView->width() - 30 ), 10 + random.getLong(imageGraphicsView->height() -30 ) );
         m_answerTextItems.append(textItem);
         imageGraphicsView->scene()->addItem( textItem );
     }
