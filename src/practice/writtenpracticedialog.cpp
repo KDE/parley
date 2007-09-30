@@ -73,10 +73,13 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     bool split = Prefs::split();
     fields = Prefs::fields();
-    if (! split || fields < 1)
+    if (! split || fields < 1) {
         fields = 1;
-    else if (fields > 10)
-        fields = 10;
+    } else {
+        if (fields > 10) {
+            fields = 10;
+        }
+    }
 
     QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame);
     vb->setMargin(0);
@@ -97,8 +100,8 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
             combo->setInsertPolicy(QComboBox::NoInsert);
             combo->setDuplicatesEnabled(false);
             vb->addWidget(combo);
-            connect(combo, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
-            connect(combo->lineEdit(), SIGNAL(lostFocus()), SLOT(slotTransLostFocus()));
+            connect(combo, SIGNAL(editTextChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
+            connect(combo->lineEdit(), SIGNAL(editingFinished()), SLOT(slotTransLostFocus()));
         }
     } else {
         for (i = 0; i < fields; i ++) {
@@ -121,7 +124,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     int m_queryOriginalColumn = Prefs::fromIdentifier();
     int m_queryTranslationColumn = Prefs::toIdentifier();
 
-
     if (suggestions) {
         for (i = 0; i < m_doc->entryCount(); i ++) {
             KEduVocExpression* expr = m_doc->entry(i);
@@ -141,6 +143,8 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
             if (vocabulary [k - 1] == vocabulary [k])
                 vocabulary.removeAt(k --);
     }
+
+kDebug() << " added " << vocabulary.count() << " suggestions";
 
     mw->imageGraphicsView->setVisible(false);
 
@@ -380,7 +384,6 @@ void WrittenPracticeDialog::showMoreClicked()
                     kDebug() << " length " << length << "text " << field->text();
                     length++;
                 }
-
                 if (length >= translations[i].length()) {
                     field->setText(translations[i]);
                     verifyField(field, translations[i]);
@@ -423,19 +426,27 @@ void WrittenPracticeDialog::slotTransChanged(const QString&)
 {
     mw->verify->setDefault(true);
     bool suggestions = Prefs::suggestions();
-    KComboBox* combo = sender() ? qobject_cast<KComboBox*>(sender()) : 0;
-    KLineEdit* senderedit = sender() ? qobject_cast<KLineEdit*>(sender()) : 0;
+    KComboBox* combo = qobject_cast<KComboBox*>(sender());
+    KLineEdit* senderedit = qobject_cast<KLineEdit*>(sender());
+
     if (suggestions && combo) {
-        KLineEdit* edit = qobject_cast<KLineEdit*>(combo->lineEdit());
+        QLineEdit* edit = qobject_cast<QLineEdit*>(combo->lineEdit());
+        if ( !edit ) {
+            return; // cast failed
+        }
         resetQueryWidget(edit);
         suggestion_hint = ! edit->text().isEmpty() && edit->text().length() <= 10;
         if (suggestion_hint)
             mw->status->setText(i18n("Press F5 for a list of translations starting with '%1'\n"
                                        "Press F6 for a list of translations containing '%1'", edit->text()));
-        else
+        else {
             mw->status->clear();
-    } else if (! suggestions && senderedit)
-        resetQueryWidget(senderedit);
+        }
+    } else {
+        if ( (!suggestions) && senderedit) {
+            resetQueryWidget(senderedit);
+        }
+    }
 }
 
 void WrittenPracticeDialog::slotTransLostFocus()
