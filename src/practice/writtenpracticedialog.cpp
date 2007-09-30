@@ -71,7 +71,12 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->show_more->setVisible(Prefs::showMore());
     mw->know_it->setVisible(Prefs::iKnow());
 
+    mw->countbar->setFormat("%v/%m");
+    mw->timebar->setFormat("%v");
+
     bool split = Prefs::split();
+
+    // rip apart translations into multiple line edits
     fields = Prefs::fields();
     if (! split || fields < 1) {
         fields = 1;
@@ -80,15 +85,15 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
             fields = 10;
         }
     }
-
+    // add the layout to contain the parts
     QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame);
     vb->setMargin(0);
     vb->setSpacing(KDialog::spacingHint());
-
+    // create widgets - I wonder if this crap is used by anyone - holy cow
     bool suggestions = Prefs::suggestions();
-    int i;
     if (suggestions) {
-        for (i = 0; i < fields; i ++) {
+        for (int i = 0; i < fields; i ++) {
+            // create a bunch of comboboxes (to hold the dropdown hints)
             KComboBox * combo = new KComboBox(mw->TranslationFrame);
             transCombos.append(combo);
             combo->setObjectName(QString("transCombo%1").arg(i));
@@ -104,7 +109,8 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
             connect(combo->lineEdit(), SIGNAL(editingFinished()), SLOT(slotTransLostFocus()));
         }
     } else {
-        for (i = 0; i < fields; i ++) {
+        for (int i = 0; i < fields; i ++) {
+            // normal line edits if we don't have suggestions on
             KLineEdit * line = new KLineEdit(mw->TranslationFrame);
             transFields.append(line);
             line->setObjectName(QString("transField%1").arg(i));
@@ -117,31 +123,32 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
         }
     }
 
-    mw->countbar->setFormat("%v/%m");
-    mw->timebar->setFormat("%v");
-
-    ///@todo this is not a member any longer!
-    int m_queryOriginalColumn = Prefs::fromIdentifier();
-    int m_queryTranslationColumn = Prefs::toIdentifier();
-
     if (suggestions) {
-        for (i = 0; i < m_doc->entryCount(); i ++) {
+        // take all entries from the doc and put them in a list (great)
+        for (int i = 0; i < m_doc->entryCount(); i ++) {
             KEduVocExpression* expr = m_doc->entry(i);
-            if (split)
-                vocabulary += extractTranslations( expr->translation(m_queryTranslationColumn).text());
-            else
-                vocabulary.append(expr->translation(m_queryTranslationColumn).text());
+            if (split) {
+                vocabulary += extractTranslations(
+                    expr->translation(Prefs::toIdentifier()).text());
+            } else {
+                vocabulary.append(expr->translation(Prefs::toIdentifier()).text());
+            }
             if (Prefs::swapDirection()) {
-                if (split)
-                    vocabulary += extractTranslations( expr->translation(m_queryOriginalColumn).text() );
-                else
-                    vocabulary.append( expr->translation(m_queryOriginalColumn).text());
+                if (split) {
+                    vocabulary += extractTranslations(
+                        expr->translation(Prefs::fromIdentifier()).text() );
+                } else {
+                    vocabulary.append( expr->translation(Prefs::fromIdentifier()).text());
+                }
             }
         }
         vocabulary.sort();
-        for (int k = 1; k < vocabulary.count(); k ++)
-            if (vocabulary [k - 1] == vocabulary [k])
-                vocabulary.removeAt(k --);
+        // I guess this takes out doubles? great :(
+        for (int k = 1; k < vocabulary.count(); k ++) {
+            if (vocabulary [k - 1] == vocabulary [k]) {
+                vocabulary.removeAt(k--);
+            }
+        }
     }
 
 kDebug() << " added " << vocabulary.count() << " suggestions";
@@ -529,6 +536,7 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
                 combo->clear();
                 combo->addItems(vocabulary.filter(QRegExp(QString("^%1").arg(curText))));
                 combo->setEditText(curText);
+                combo->showPopup();
             }
             break;
         case Qt::Key_F6:
@@ -537,6 +545,7 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
                 combo->clear();
                 combo->addItems(vocabulary.filter(curText, Qt::CaseInsensitive));
                 combo->setEditText(curText);
+                combo->showPopup();
             }
             break;
        case Qt::Key_F4:
