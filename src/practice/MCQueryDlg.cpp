@@ -48,8 +48,6 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    mw->imageGraphicsView->setVisible(Prefs::practiceImagesEnabled());
-
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
     mw->know_it->setIcon(KIcon("go-next"));
@@ -71,6 +69,8 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
+
+    mw->imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
     restoreDialogSize(cg);
@@ -227,17 +227,7 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
     mw->show_all->setFocus();
 
-    if ( Prefs::practiceImagesEnabled() ) {
-        QString url = vocExpression->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
-        if ( url.isEmpty() ) {
-            url = vocExpression->translation(Prefs::toIdentifier()).imageUrl().toLocalFile();
-        }
-        if ( url.isEmpty() ) {
-            mw->imageGraphicsView->setVisible(false);
-        } else {
-            imageShowFile( mw->imageGraphicsView, url );
-        }
-    }
+    imageShowFromEntry( mw->imageGraphicsView, entry );
 }
 
 

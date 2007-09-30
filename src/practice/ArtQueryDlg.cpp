@@ -61,6 +61,8 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    mw->imageGraphicsView->setVisible(false);
+
     KConfigGroup cg(KGlobal::config(), "ArtQueryDlg");
     restoreDialogSize(cg);
 }
@@ -141,6 +143,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->maleRadio->setAutoExclusive ( true );
 
     mw->dont_know->setFocus();
+
+    imageShowFromEntry( mw->imageGraphicsView, entry );
 }
 
 

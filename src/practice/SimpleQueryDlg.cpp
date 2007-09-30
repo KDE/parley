@@ -61,6 +61,8 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    mw->imageGraphicsView->setVisible(false);
+
     KConfigGroup cg(KGlobal::config(), "SimpleQueryDialog");
     restoreDialogSize(cg);
 }
@@ -133,9 +135,6 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             setQueryFieldWordwrap();
         }
         break;
-
-    default:
-        ;
     }
 
     mw->verify->setDefault(true);
@@ -144,6 +143,8 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
 
     resetQueryWidget(mw->answerField);
     mw->answerField->setFocus();
+
+    imageShowFromEntry( mw->imageGraphicsView, entry );
 }
 
 

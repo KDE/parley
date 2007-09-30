@@ -58,6 +58,8 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    mw->imageGraphicsView->setVisible(false);
+
     KConfigGroup cg(KGlobal::config(), "VerbQueryDialog");
     restoreDialogSize(cg);
 }
@@ -105,6 +107,8 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     nextTense();
 
     mw->singularFirstPersonLineEdit->setFocus();
+
+    imageShowFromEntry( mw->imageGraphicsView, entry );
 }
 
 

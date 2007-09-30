@@ -337,6 +337,21 @@ void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
     view->scene()->addItem(pixmapItem);
 }
 
+void PracticeDialog::imageShowFromEntry(QGraphicsView * view, const TestEntry * entry)
+{
+    if ( Prefs::practiceImagesEnabled() ) {
+        QString url = entry->exp->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
+        if ( url.isEmpty() ) {
+            url = entry->exp->translation(Prefs::toIdentifier()).imageUrl().toLocalFile();
+        }
+        if ( url.isEmpty() ) {
+            view->setVisible(false);
+        } else {
+            view->setVisible(true);
+            imageShowFile( view, url );
+        }
+    }
+}
 
 #include "practicedialog.moc"
 

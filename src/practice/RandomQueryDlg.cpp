@@ -45,81 +45,9 @@
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
+RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
 {
-    QString trans = _trans;
-    QRegExp full_stop("^(.*[^\\. ])\\.* *$");
-    //full_stop.setMinimal (true);
-    if (full_stop.indexIn(trans) >= 0)
-        trans = full_stop.cap(1);
-    int i;
-    QStringList translations;
-    if (Prefs::periods())
-        for (i = fields - 1; i > 0; i --) {
-            QString regexp("^ *");
-            for (int j = 0; j < i; j ++)
-                regexp += "([^ ][^.]*)\\.[. ]*";
-            regexp += "([^. ].*)$";
-            QRegExp regex(regexp);
-            if (regex.indexIn(trans) >= 0) {
-                translations = regex.capturedTexts();
-                translations.removeFirst();
-                break;
-            }
-        }
-    if (Prefs::colons() && translations.count() <= 1) {
-        translations.clear();
-        for (i = fields - 1; i > 0; i --) {
-            QString regexp("^ *");
-            for (int j = 0; j < i; j ++)
-                regexp += "([^ ][^:]*):[: ]*";
-            regexp += "([^: ].*)$";
-            QRegExp regex(regexp);
-            if (regex.indexIn(trans) >= 0) {
-                translations = regex.capturedTexts();
-                translations.removeFirst();
-                break;
-            }
-        }
-    }
-    if (Prefs::semicolons() && translations.count() <= 1) {
-        translations.clear();
-        for (i = fields - 1; i > 0; i --) {
-            QString regexp("^ *");
-            for (int j = 0; j < i; j ++)
-                regexp += "([^ ][^;]*);[; ]*";
-            regexp += "([^; ].*)$";
-            QRegExp regex(regexp);
-            if (regex.indexIn(trans) >= 0) {
-                translations = regex.capturedTexts();
-                translations.removeFirst();
-                break;
-            }
-        }
-    }
-    if (Prefs::commas() && translations.count() <= 1) {
-        translations.clear();
-        for (i = fields - 1; i > 0; i --) {
-            QString regexp("^ *");
-            for (int j = 0; j < i; j ++)
-                regexp += "([^ ][^,]*),[, ]*";
-            regexp += "([^, ].*)$";
-            QRegExp regex(regexp);
-            if (regex.indexIn(trans) >= 0) {
-                translations = regex.capturedTexts();
-                translations.removeFirst();
-                break;
-            }
-        }
-    }
-    if (translations.count() <= 1)
-        translations = QStringList(trans);
-    return translations;
-}
-
-RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Random Test"), doc, parent)
-{
-    mw = new Ui::QueryDlgForm();
+    mw = new Ui::WrittenPractice();
     mw->setupUi(mainWidget());
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
@@ -214,6 +142,8 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
                 vocabulary.removeAt(k --);
     }
 
+    mw->imageGraphicsView->setVisible(false);
+
     KConfigGroup cg(KGlobal::config(), "RandomQueryDialog");
     restoreDialogSize(cg);
 }
@@ -287,6 +217,81 @@ void RandomQueryDlg::setEntry( TestEntry* entry )
     else {
         transFields.at(0)->setFocus();
     }
+
+    imageShowFromEntry( mw->imageGraphicsView, entry );
+}
+
+
+QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
+{
+    QString trans = _trans;
+    QRegExp full_stop("^(.*[^\\. ])\\.* *$");
+    //full_stop.setMinimal (true);
+    if (full_stop.indexIn(trans) >= 0)
+        trans = full_stop.cap(1);
+    int i;
+    QStringList translations;
+    if (Prefs::periods())
+        for (i = fields - 1; i > 0; i --) {
+            QString regexp("^ *");
+            for (int j = 0; j < i; j ++)
+                regexp += "([^ ][^.]*)\\.[. ]*";
+            regexp += "([^. ].*)$";
+            QRegExp regex(regexp);
+            if (regex.indexIn(trans) >= 0) {
+                translations = regex.capturedTexts();
+                translations.removeFirst();
+                break;
+            }
+        }
+    if (Prefs::colons() && translations.count() <= 1) {
+        translations.clear();
+        for (i = fields - 1; i > 0; i --) {
+            QString regexp("^ *");
+            for (int j = 0; j < i; j ++)
+                regexp += "([^ ][^:]*):[: ]*";
+            regexp += "([^: ].*)$";
+            QRegExp regex(regexp);
+            if (regex.indexIn(trans) >= 0) {
+                translations = regex.capturedTexts();
+                translations.removeFirst();
+                break;
+            }
+        }
+    }
+    if (Prefs::semicolons() && translations.count() <= 1) {
+        translations.clear();
+        for (i = fields - 1; i > 0; i --) {
+            QString regexp("^ *");
+            for (int j = 0; j < i; j ++)
+                regexp += "([^ ][^;]*);[; ]*";
+            regexp += "([^; ].*)$";
+            QRegExp regex(regexp);
+            if (regex.indexIn(trans) >= 0) {
+                translations = regex.capturedTexts();
+                translations.removeFirst();
+                break;
+            }
+        }
+    }
+    if (Prefs::commas() && translations.count() <= 1) {
+        translations.clear();
+        for (i = fields - 1; i > 0; i --) {
+            QString regexp("^ *");
+            for (int j = 0; j < i; j ++)
+                regexp += "([^ ][^,]*),[, ]*";
+            regexp += "([^, ].*)$";
+            QRegExp regex(regexp);
+            if (regex.indexIn(trans) >= 0) {
+                translations = regex.capturedTexts();
+                translations.removeFirst();
+                break;
+            }
+        }
+    }
+    if (translations.count() <= 1)
+        translations = QStringList(trans);
+    return translations;
 }
 
 

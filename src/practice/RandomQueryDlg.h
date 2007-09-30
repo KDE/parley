@@ -81,7 +81,7 @@ private:
     ///
     int  fields;
 
-    Ui::QueryDlgForm * mw;
+    Ui::WrittenPractice * mw;
 };
 
 #endif

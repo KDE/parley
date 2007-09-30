@@ -62,6 +62,8 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
+    mw->imageGraphicsView->setVisible(false);
+
     KConfigGroup cg(KGlobal::config(), "AdjQueryDlg");
     restoreDialogSize(cg);
 }
@@ -116,6 +118,8 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
     resetAllFields();
 
     mw->lev1Field->setFocus();
+
+    imageShowFromEntry( mw->imageGraphicsView, entry );
 }
 
 
