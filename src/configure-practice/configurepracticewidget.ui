@@ -69,9 +69,9 @@
        </widget>
       </item>
       <item row="5" column="0" colspan="2" >
-       <widget class="QRadioButton" name="ImagePracticeRadio" >
+       <widget class="QRadioButton" name="MixedLettersPracticeRadio" >
         <property name="text" >
-         <string>Image Practice</string>
+         <string>Mixed Letters Practice</string>
         </property>
        </widget>
       </item>

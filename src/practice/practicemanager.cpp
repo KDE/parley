@@ -177,7 +177,7 @@ void PracticeManager::createDialog()
     case Prefs::EnumTestType::MultipleChoiceTest:
         m_testDialog = new MCQueryDlg(m_doc, m_app);
         break;
-    case Prefs::EnumTestType::ImageTest:
+    case Prefs::EnumTestType::MixedLettersTest:
         m_testDialog = new ImagePracticeDlg(m_doc, m_app);
         break;
 

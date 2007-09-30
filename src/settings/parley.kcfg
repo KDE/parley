@@ -215,7 +215,7 @@
             <choice name="GrammarTest"/>
             <choice name="ParaphraseTest"/>
             <choice name="ExampleTest"/>
-            <choice name="ImageTest"/>
+            <choice name="MixedLettersTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
     </entry>

@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>511</width>
-    <height>577</height>
+    <width>388</width>
+    <height>525</height>
    </rect>
   </property>
   <property name="windowTitle" >
@@ -50,7 +50,7 @@
         </sizepolicy>
        </property>
        <property name="title" >
-        <string>What do you see?</string>
+        <string>Can you order the letters?</string>
        </property>
        <layout class="QVBoxLayout" >
         <item>
@@ -90,7 +90,7 @@
              <string>Verify</string>
             </property>
             <property name="icon" >
-             <iconset>../../../../../../.designer/backup</iconset>
+             <iconset>../../../../../../../../../../.designer/backup</iconset>
             </property>
            </widget>
           </item>

@@ -40,6 +40,7 @@ private:
     QProgressBar* timebar();
 
     bool m_wrongAnswer;
+    QList <QGraphicsTextItem*> m_answerTextItems;
 };
 
 #endif

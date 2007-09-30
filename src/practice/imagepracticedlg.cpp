@@ -17,6 +17,7 @@
 #include <keduvocdocument.h>
 
 #include <KLocale>
+#include <KRandomSequence>
 #include <QGraphicsItem>
 #include <QTimer>
 #include <QTextEdit>
@@ -36,12 +37,14 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 
     connect(verifySolutionButton, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(showSolutionButton, SIGNAL(clicked()), SLOT(showSolution()));
-    connect(answerLineEdit, SIGNAL(textChanged()), SLOT(slotAnswerChanged()));
+    connect(answerLineEdit, SIGNAL(textEdited(const QString&)), SLOT(slotAnswerChanged()));
 
     countbar->setFormat("%v/%m");
     timeProgressBar->setFormat("%v");
 
     verifySolutionButton->setIcon( KIcon("ok") );
+
+    imageGraphicsView->setScene(new QGraphicsScene());
 
     KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
     restoreDialogSize(cg);
@@ -74,25 +77,24 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
     resetQueryWidget(answerLineEdit);
     answerLineEdit->setFocus();
 
-    originalLabel->setText( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
-    QString url;
-    url = m_entry->exp->translation(identifier).imageUrl().toLocalFile();
-    if ( url.isEmpty() ) {
-        url = m_entry->exp->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
-    }
-    if ( !url.isEmpty() ) {
-        imageShowFile(imageGraphicsView, url);
-    } else {
-        if ( !imageGraphicsView->scene() ) {
-            imageGraphicsView->setScene(new QGraphicsScene());
-        }
+    QString original = m_entry->exp->translation(Prefs::fromIdentifier()).text();
+    originalLabel->setText( original );
 
-        foreach ( QGraphicsItem* item, imageGraphicsView->scene()->items() ) {
-            imageGraphicsView->scene()->removeItem(item);
-            delete item;
-        }
-        QGraphicsTextItem* textItem = new QGraphicsTextItem( m_entry->exp->translation(Prefs::fromIdentifier()).text() );
-        textItem->translate(-textItem->boundingRect().width()/2.0, -textItem->boundingRect().height()/2.0 );
+    QString translation = m_entry->exp->translation(Prefs::toIdentifier()).text();
+
+    // remove old items
+    foreach ( QGraphicsItem* item, imageGraphicsView->scene()->items() ) {
+        imageGraphicsView->scene()->removeItem(item);
+        delete item;
+    }
+    m_answerTextItems.clear();
+
+    KRandomSequence random = KRandomSequence( QDateTime::currentDateTime().toTime_t() );
+
+    for ( int i = 0; i < translation.length(); i++ ) {
+        QGraphicsTextItem* textItem = new QGraphicsTextItem( QString(translation[i]) );
+        textItem->translate( 10 + random.getLong(imageGraphicsView->width() - 20 ), 10 + random.getLong(imageGraphicsView->height() -20 ) );
+        m_answerTextItems.append(textItem);
         imageGraphicsView->scene()->addItem( textItem );
     }
 }
@@ -100,6 +102,20 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
 void ImagePracticeDlg::slotAnswerChanged()
 {
+    QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
+    for ( int i = 0; i < solution.length(); i++ ) {
+        if ( answerLineEdit->text()[i] == solution[i] ) {
+            m_answerTextItems[i]->setHtml("<b><font color=\"#188C18\">" + solution[i] + "</font></b>");
+        } else {
+//             if ( i >= answerLineEdit->text().length() ) {
+                // no input yet
+            m_answerTextItems[i]->setHtml(QString(solution[i]));
+//             } else {
+                // wrong
+//                 m_answerTextItems[i]->setHtml("<b><font color=\"#FF0000\">" + solution[i] + "</font></b>");
+//             }
+        }
+    }
     resetQueryWidget(answerLineEdit);
     verifySolutionButton->setDefault(true);
 }
