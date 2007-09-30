@@ -68,8 +68,8 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
 
-    mw->show_more->setEnabled(Prefs::showMore());
-    mw->know_it->setEnabled(Prefs::iKnow());
+    mw->show_more->setVisible(Prefs::showMore());
+    mw->know_it->setVisible(Prefs::iKnow());
 
     bool split = Prefs::split();
     fields = Prefs::fields();
@@ -354,7 +354,7 @@ void WrittenPracticeDialog::verifyClicked()
 
 void WrittenPracticeDialog::showMoreClicked()
 {
-    if (Prefs::suggestions())
+    if (Prefs::suggestions()) {
         for (int i = 0; i < translations.count(); i ++) {
             KComboBox* combo = transCombos.at(i);
             if (! smartCompare(combo->currentText(), translations[i])) {
@@ -371,7 +371,7 @@ void WrittenPracticeDialog::showMoreClicked()
                 break;
             }
         }
-    else
+    } else {
         for (int i = 0; i < translations.count(); i ++) {
             KLineEdit* field = transFields.at(i);
             if (! smartCompare(field->text(), translations[i])) {
@@ -388,6 +388,7 @@ void WrittenPracticeDialog::showMoreClicked()
                 break;
             }
         }
+    }
     mw->status->clear();
     suggestion_hint = false;
 }
