@@ -23,7 +23,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "RandomQueryDlg.h"
+#include "writtenpracticedialog.h"
 
 #include <QApplication>
 #include <QCheckBox>
@@ -45,9 +45,9 @@
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
 
-RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
+WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
 {
-    mw = new Ui::WrittenPractice();
+    mw = new Ui::WrittenPracticeDialog();
     mw->setupUi(mainWidget());
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
@@ -149,14 +149,14 @@ RandomQueryDlg::RandomQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
 }
 
 
-RandomQueryDlg::~RandomQueryDlg()
+WrittenPracticeDialog::~WrittenPracticeDialog()
 {
     KConfigGroup cg(KGlobal::config(), "RandomQueryDialog");
     KDialog::saveDialogSize(cg);
 }
 
 
-void RandomQueryDlg::setEntry( TestEntry* entry )
+void WrittenPracticeDialog::setEntry( TestEntry* entry )
 {
     PracticeDialog::setEntry(entry);
 
@@ -222,7 +222,7 @@ void RandomQueryDlg::setEntry( TestEntry* entry )
 }
 
 
-QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
+QStringList WrittenPracticeDialog::extractTranslations(const QString &_trans)
 {
     QString trans = _trans;
     QRegExp full_stop("^(.*[^\\. ])\\.* *$");
@@ -295,7 +295,7 @@ QStringList RandomQueryDlg::extractTranslations(const QString &_trans)
 }
 
 
-void RandomQueryDlg::verifyClicked()
+void WrittenPracticeDialog::verifyClicked()
 {
     QStringList trans(translations);
     int i;
@@ -352,7 +352,7 @@ void RandomQueryDlg::verifyClicked()
 }
 
 
-void RandomQueryDlg::showMoreClicked()
+void WrittenPracticeDialog::showMoreClicked()
 {
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
@@ -393,7 +393,7 @@ void RandomQueryDlg::showMoreClicked()
 }
 
 
-void RandomQueryDlg::showSolution()
+void WrittenPracticeDialog::showSolution()
 {
     if (Prefs::suggestions())
         for (int i = 0; i < translations.count(); i ++) {
@@ -412,7 +412,7 @@ void RandomQueryDlg::showSolution()
 }
 
 
-void RandomQueryDlg::slotTransChanged(const QString&)
+void WrittenPracticeDialog::slotTransChanged(const QString&)
 {
     mw->verify->setDefault(true);
     bool suggestions = Prefs::suggestions();
@@ -431,7 +431,7 @@ void RandomQueryDlg::slotTransChanged(const QString&)
         resetQueryWidget(senderedit);
 }
 
-void RandomQueryDlg::slotTransLostFocus()
+void WrittenPracticeDialog::slotTransLostFocus()
 {
     if (suggestion_hint) {
         mw->status->clear();
@@ -440,7 +440,7 @@ void RandomQueryDlg::slotTransLostFocus()
 }
 
 
-void RandomQueryDlg::knowItClicked()
+void WrittenPracticeDialog::knowItClicked()
 {
     mw->status->clear();
     suggestion_hint = false;
@@ -448,7 +448,7 @@ void RandomQueryDlg::knowItClicked()
 }
 
 
-void RandomQueryDlg::dontKnowClicked()
+void WrittenPracticeDialog::dontKnowClicked()
 {
     mw->status->clear();
     suggestion_hint = false;
@@ -456,7 +456,7 @@ void RandomQueryDlg::dontKnowClicked()
 }
 
 
-void RandomQueryDlg::setHintFields()
+void WrittenPracticeDialog::setHintFields()
 {
     QString s;
     KEduVocExpression* exp = m_entry->exp;
@@ -475,25 +475,25 @@ void RandomQueryDlg::setHintFields()
 }
 
 
-void RandomQueryDlg::slotFFClicked()
+void WrittenPracticeDialog::slotFFClicked()
 {
     mw->falseFriend->setVisible(mw->c_falsefriend->isChecked());
 }
 
 
-void RandomQueryDlg::slotRemClicked()
+void WrittenPracticeDialog::slotRemClicked()
 {
     mw->remark->setVisible(mw->c_remark->isChecked());
 }
 
 
-void RandomQueryDlg::slotTypeClicked()
+void WrittenPracticeDialog::slotTypeClicked()
 {
     mw->type->setVisible(mw->c_type->isChecked());
 }
 
 
-void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
+void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 {
     if (Prefs::suggestions()) {
         KComboBox* combo = 0;
@@ -551,10 +551,10 @@ void RandomQueryDlg::keyPressEvent(QKeyEvent *e)
     }
 }
 
-void RandomQueryDlg::setProgressCounter(int current, int total)
+void WrittenPracticeDialog::setProgressCounter(int current, int total)
 {
     mw->countbar->setMaximum(total);
     mw->countbar->setValue(current);
 }
 
-#include "RandomQueryDlg.moc"
+#include "writtenpracticedialog.moc"

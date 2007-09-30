@@ -1,7 +1,7 @@
 <ui version="4.0" >
  <author>Peter Hedlund &lt;peter.hedlund@kdemail.net></author>
- <class>WrittenPractice</class>
- <widget class="QWidget" name="WrittenPractice" >
+ <class>WrittenPracticeDialog</class>
+ <widget class="QWidget" name="WrittenPracticeDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>

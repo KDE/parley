@@ -23,13 +23,13 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef Query_Dlg_H
-#define Query_Dlg_H
+#ifndef WRITTENPRACTICEDIALOG_H
+#define WRITTENPRACTICEDIALOG_H
 
 #include <QKeyEvent>
 #include <QList>
 
-#include "ui_RandomQueryDlgForm.h"
+#include "ui_writtenpracticedialog.h"
 #include "practicedialog.h"
 
 class KEduVocDocument;
@@ -37,14 +37,14 @@ class KEduVocDocument;
 class KComboBox;
 class KLineEdit;
 
-class RandomQueryDlg : public PracticeDialog
+class WrittenPracticeDialog : public PracticeDialog
 {
     Q_OBJECT
 
 public:
-    RandomQueryDlg(KEduVocDocument *doc, QWidget *parent);
+    WrittenPracticeDialog(KEduVocDocument *doc, QWidget *parent);
 
-    ~RandomQueryDlg();
+    ~WrittenPracticeDialog();
 
     void setEntry( TestEntry* entry );
     void setProgressCounter(int current, int total);
@@ -81,7 +81,7 @@ private:
     ///
     int  fields;
 
-    Ui::WrittenPractice * mw;
+    Ui::WrittenPracticeDialog * mw;
 };
 
 #endif

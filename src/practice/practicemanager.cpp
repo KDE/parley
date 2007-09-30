@@ -27,7 +27,7 @@
 
 #include "parley.h"
 
-#include "RandomQueryDlg.h"
+#include "writtenpracticedialog.h"
 #include "MCQueryDlg.h"
 #include "AdjQueryDlg.h"
 #include "VerbQueryDlg.h"
@@ -172,7 +172,7 @@ void PracticeManager::createDialog()
 
     switch ( m_testType ) {
     case Prefs::EnumTestType::WrittenTest:
-        m_testDialog = new RandomQueryDlg(m_doc, m_app);
+        m_testDialog = new WrittenPracticeDialog(m_doc, m_app);
         break;
     case Prefs::EnumTestType::MultipleChoiceTest:
         m_testDialog = new MCQueryDlg(m_doc, m_app);
