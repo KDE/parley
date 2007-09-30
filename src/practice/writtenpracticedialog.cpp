@@ -59,9 +59,9 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
-    connect(mw->c_type, SIGNAL(clicked()), SLOT(slotTypeClicked()));
-    connect(mw->c_remark, SIGNAL(clicked()), SLOT(slotRemClicked()));
-    connect(mw->c_falsefriend, SIGNAL(clicked()), SLOT(slotFFClicked()));
+    connect(mw->typeCheckBox, SIGNAL(toggled(bool)), SLOT(slotTypeClicked(bool)));
+    connect(mw->commentCheckBox, SIGNAL(toggled(bool)), SLOT(slotRemClicked(bool)));
+    connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFFClicked(bool)));
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -210,13 +210,13 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
 
-    mw->remark->hide();
-    mw->falseFriend->hide();
-    mw->type->hide();
+    mw->commentLabel->hide();
+    mw->falseFriendLabel->hide();
+    mw->typeLabel->hide();
 
-    mw->c_remark->setChecked(false);
-    mw->c_falsefriend->setChecked(false);
-    mw->c_type->setChecked(false);
+    mw->commentCheckBox->setChecked(false);
+    mw->falsefriendCheckBox->setChecked(false);
+    mw->typeCheckBox->setChecked(false);
     setHintFields();
 
     mw->status->clear();
@@ -483,38 +483,49 @@ void WrittenPracticeDialog::dontKnowClicked()
 
 void WrittenPracticeDialog::setHintFields()
 {
-    QString s;
-    KEduVocExpression* exp = m_entry->exp;
+    bool hasComment =
+        !m_entry->exp->translation(Prefs::fromIdentifier()).comment().isEmpty();
+    mw->commentLabel->setVisible(hasComment);
+    mw->commentCheckBox->setVisible(hasComment);
 
-    s = exp->translation(Prefs::fromIdentifier()).comment();
-    mw->remark->setText(s);
-    mw->c_remark->setEnabled(!s.isEmpty());
+    bool hasFalseFriend = !m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()).isEmpty();
+    mw->falseFriendLabel->setVisible(hasFalseFriend);
+    mw->falsefriendCheckBox->setVisible(hasFalseFriend);
 
-    s = exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier());
-    mw->falseFriend->setText(s);
-    mw->c_falsefriend->setEnabled(!s.isEmpty());
+    bool hasType = !m_entry->exp->translation(Prefs::fromIdentifier()).type().isEmpty();
+    mw->typeLabel->setVisible(hasType);
+    mw->typeCheckBox->setVisible(hasType);
 
-    s = exp->translation(Prefs::fromIdentifier()).type();
-    mw->type->setText(s);
-    mw->c_type->setEnabled(!s.isEmpty());
+    // hide an empty hint box
+    mw->hintGroupBox->setVisible((hasComment||hasFalseFriend||hasType));
 }
 
 
-void WrittenPracticeDialog::slotFFClicked()
+void WrittenPracticeDialog::slotFFClicked(bool show)
 {
-    mw->falseFriend->setVisible(mw->c_falsefriend->isChecked());
+    if ( show ) {
+        mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()));
+    } else {
+        mw->falseFriendLabel->setText(QString());
+    }
 }
 
-
-void WrittenPracticeDialog::slotRemClicked()
+void WrittenPracticeDialog::slotRemClicked(bool show)
 {
-    mw->remark->setVisible(mw->c_remark->isChecked());
+    if ( show ) {
+        mw->commentLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).comment());
+    } else {
+        mw->commentLabel->setText(QString());
+    }
 }
 
-
-void WrittenPracticeDialog::slotTypeClicked()
+void WrittenPracticeDialog::slotTypeClicked(bool show)
 {
-    mw->type->setVisible(mw->c_type->isChecked());
+    if ( show ) {
+        mw->typeLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).type());
+    } else {
+        mw->typeLabel->setText(QString());
+    }
 }
 
 

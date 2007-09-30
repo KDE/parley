@@ -57,9 +57,9 @@ public slots:
     void dontKnowClicked();
     void slotTransChanged(const QString&);
     void slotTransLostFocus();
-    void slotFFClicked();
-    void slotTypeClicked();
-    void slotRemClicked();
+    void slotFFClicked(bool show);
+    void slotTypeClicked(bool show);
+    void slotRemClicked(bool show);
 
 private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
