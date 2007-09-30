@@ -35,7 +35,7 @@ set(practice_SRCS
     practice/AdjQueryDlg.cpp
     practice/ArtQueryDlg.cpp
     practice/MCQueryDlg.cpp
-    practice/RandomQueryDlg.cpp
+    practice/writtenpracticedialog.cpp
     practice/SimpleQueryDlg.cpp
     practice/VerbQueryDlg.cpp
     practice/imagepracticedlg.cpp
@@ -45,7 +45,7 @@ kde4_add_ui_files(practice_SRCS
     practice/AdjQueryDlgForm.ui
     practice/ArtQueryDlgForm.ui
     practice/MCQueryDlgForm.ui
-    practice/RandomQueryDlgForm.ui
+    practice/writtenpracticedialog.ui
     practice/SimpleQueryDlgForm.ui
     practice/VerbQueryDlgForm.ui
     practice/imagepracticedlg.ui
