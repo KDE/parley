@@ -375,7 +375,12 @@ void WrittenPracticeDialog::showMoreClicked()
         for (int i = 0; i < translations.count(); i ++) {
             KLineEdit* field = transFields.at(i);
             if (! smartCompare(field->text(), translations[i])) {
-                int length = field->text().length() + 1;
+                int length = 1;
+                while ( field->text().startsWith( translations[i].left(length) ) ) {
+                    kDebug() << " length " << length << "text " << field->text();
+                    length++;
+                }
+
                 if (length >= translations[i].length()) {
                     field->setText(translations[i]);
                     verifyField(field, translations[i]);
@@ -384,6 +389,7 @@ void WrittenPracticeDialog::showMoreClicked()
                     field->setText(translations[i].left(length));
                     resetQueryWidget(field);
                 }
+                mw->dont_know->setFocus();
                 mw->dont_know->setDefault(true);
                 break;
             }
