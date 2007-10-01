@@ -202,18 +202,20 @@ It contains two important areas: The lesson list on the left and the actual voca
 <para>The lesson list is on the left and shows you which lessons you document contains.</para>
 <para>One lesson is the current one, it is indicated by the colored bar over it. In this case it is survival training.</para>
 <para>A checkmark next to a lesson indicates that it is to be included in the practice.</para>
-Above the list you find a combo box which lets you select which vocabulary you want displayed on the right:
+<para>Above the list you find a combo box which lets you select which vocabulary you want displayed on the right:
 <itemizedlist>
 <listitem><para>The current lesson only (survival training in this case).</para></listitem>
 <listitem><para>Lessons in the test (the ones with a checkmark).</para></listitem>
 <listitem><para>All lessons (everything in the document).</para></listitem>
 </itemizedlist>
+</para>
 </sect2>
 
 <sect2>
 <title>The vocabulary list</title>
+<para>
 The vocabulary list is on the right. Depending on your selection which lesson to edit the entries of one or more lessons are displayed here.
-
+</para>
 <para>A green check mark in the second columns means that this
 line is active. A red cross indicates a deactivated entry that will never be practiced. See Editing Entries for more information on active entries.</para>
 
@@ -247,13 +249,14 @@ and <link linkend="smart-search">lookup manually</link>.</para>
 <sect2>
 <title>The status bar</title>
 <para>On the bottom of the main window you also see the status line. It usually contains:</para>
-
+<para>
 <itemizedlist>
-<listitem>The word type (for example: noun/verb/adjective).</listitem>
-<listitem>How to pronounce this expression. You can use <acronym>IPA</acronym> characters from the phonetic alphabet. See more about this in the according
-<link linkend="opt-dlg-ipa">options dialog page</link>.</listitem>
-<listitem>A comment that can be added to an entry.</listitem>
+<listitem><para>The word type (for example: noun/verb/adjective).</para></listitem>
+<listitem><para>How to pronounce this expression. You can use <acronym>IPA</acronym> characters from the phonetic alphabet. See more about this in the according
+<link linkend="opt-dlg-ipa">options dialog page</link>.</para></listitem>
+<listitem><para>A comment that can be added to an entry.</para></listitem>
 </itemizedlist>
+</para>
 </sect2>
 
 
