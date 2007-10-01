@@ -215,7 +215,7 @@ Above the list you find a combo box which lets you select which vocabulary you w
 The vocabulary list is on the right. Depending on your selection which lesson to edit the entries of one or more lessons are displayed here.
 
 <para>A green check mark in the second columns means that this
-line is active. A red cross indicates a deactivated entry that will never be practiced. See <link linkend="edit-entries">Editing Entries</link> for more information on active entries.</para>
+line is active. A red cross indicates a deactivated entry that will never be practiced. See Editing Entries for more information on active entries.</para>
 
 <para>If you mark a range of entries to work with, they
 appear with a different background. Many editing functions work for multiple entries at the same time.</para>
