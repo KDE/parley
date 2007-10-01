@@ -61,8 +61,8 @@
 <date>2007-10-01</date>
 <releaseinfo>0.9.1</releaseinfo>
 
-<abstract><para>&parley; is a &kde; vocabulary program to help you train your vocabulary,
-when you are trying to learn a foreign language for example.</para></abstract>
+<abstract><para>&parley; is a vocabulary application. It helps you to memorize your vocabulary,
+for example when you are trying to learn a foreign language. &parley; is not limited to language lerning but supports a multitude of subjects.</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -80,15 +80,19 @@ when you are trying to learn a foreign language for example.</para></abstract>
 <sect1 id="what-is-it">
 <title>What is it?</title>
 
-<para>&parley; is a &kde; vocabulary program to help you train your vocabulary,
-when you are trying to learn a foreign language for example. You can create your
-own files with the words you need.</para>
+<para>&parley; is a vocabulary application. It helps you to memorize your vocabulary,
+for example when you are trying to learn a foreign language. You can create your
+own files with the words you need or select from a great range of files from the 
+<ulink
+url="http://edu.kde.org/parley">homepage</ulink>.
+There you can find files containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
+</para>
 
-<para>It is intended as a replacement for index (flash) cards.</para>
+<para>&parley; is very flexible and uses the flash card learning approach. It automatically keeps track of your progress and lets you sort your vocabulary as you wish. Unlike with real flash cards you can use different learning methods with &parley;</para>
 
-<para>You probably remember flashcards from school.  The teacher would
-write the original expression on the front side of the card and the
-translation on the back. Then look at the cards one after another. If
+<para>You probably remember flashcards from school.  The card would
+contain the original expression on the front side of the card and the
+translation on the back. Then you look at the cards one after another. If
 you knew the translation, you could put it away. If you failed, you
 put it back to try again.</para>
 
@@ -103,21 +107,21 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &parley;</title>
 
-<para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>parley</command> in the field.</para>
+<!--para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>parley</command> in the field.</para-->
 <screenshot>
 <screeninfo>&parley; main window</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="quick-1.png" format="PNG" /></imageobject>
+<imageobject><imagedata fileref="parley-quick-start-first-start.png" format="PNG" /></imageobject>
 <textobject><phrase>&parley; main window</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>
-You can study a file in the examples by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &parley;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
+You can open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &parley;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
 </para>
 
 <para>
-You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> The <guilabel>Get Hot New Stuff</guilabel> dialog will open with a list of available documents.
+You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
 </para>
 
 <screenshot>
@@ -456,10 +460,7 @@ the only file format that is capable of containing
 <listitem><para>Simple text files with special delimiters between the
 entries which are also used by simple database programs. The
 extension is <literal role="extension">csv</literal> in this
-case. &parley; also detects if those files are encoded in UTF8
-since such files are also available to preserve the correct characters,
-see more about this in the section about <link
-linkend="encodings">encodings and charsets.</link></para>
+case.</para>
 
 <para>There are a lot of files on the Internet which use the
 tabular character or one or two colons to separate the different
@@ -614,74 +615,6 @@ every document can contain user defined types.</para>
 </tgroup></informaltable>
 </sect1>
 
-<sect1 id="encodings">
-<title>About charsets, encodings, unicode and such strange
- things</title>
-
-<para>Every human-readable text file is represented by a sequence of
-<quote>bytes</quote> or <quote>octets</quote>. The actual meaning of
-those bytes can happen in a lot of different ways, depending on the
-system where it is displayed or which language the text is intended
-for.</para>
-
-<para>Since usually a <quote>byte</quote> is the smallest common unit
-for data on computers each <quote>character</quote> you see on a
-screen is represented by exactly one byte. Each byte can stand for a
-value from 0 to 255 and therefore you are able to display up to 256
-different characters within one file.</para>
-
-<para>Usually you have the <quote>ascii</quote> characters, &eg; a
-through z, A through Z, 0 through 9 and additional language dependent
-characters. For example, the German umlauts &auml; or &uuml; or a lot
-of other special symbols from Russian, Greek, Hebrew or even
-Chinese. All this tots up to far more than 256 different
-symbols.</para>
-
-<para>At this point it should be obvious that you have to take care to
-select the correct <quote>charset</quote>, which is needed on a lot of
-computer systems to display
-the bytes in the same way as they are intended.</para>
-
-<para>A better approach is to combine two ore more bytes into a
-representation for a single character on the screen. This is for
-example what <quote>Unicode</quote> does. Unicode is a standard that
-currently uses a range from 0 to 65535 (and even more) to designate a
-given symbol. Almost each symbol
-of almost any language on earth (and even a lot more, &eg; well known
-icons or klingon) is assigned a unique and unambiguous number.</para>
-
-<para>Unfortunately the handling of Unicode is a bit more complicated
-and does not work with most of the current tools. Texts in unicode
-might also be longer. A compromise is to use UTF-8 which uses 7 bits
-(8 bits form one byte) for the most common characters from the ascii
-set and switches to 2, 3 or even 4 or more bytes if needed.</para>
-
-<para>Every vocabulary file for &parley; is basically such a simple
-text file using Unicode.</para>
-
-
-<para>If you want to learn more about this issue you should visit the
-following links:</para>
-
-<itemizedlist>
-<listitem><para>
-<ulink
-url="http://www.hut.fi/u/jkorpela/chars.html">http://www.hut.fi/u/jkorpe
-la/chars.html</ulink>
-</para></listitem>
-<listitem><para>
-<ulink
- url="http://linuxdoc.org/HOWTO/Unicode-HOWTO.html">http://linuxdoc.org/
-HOWTO/Unicode-HOWTO.html</ulink>
-</para></listitem>
-<listitem><para>
-<ulink
- url="http://czyborra.com/charsets/codepages.html">http://czyborra.com/c
-harsets/codepages.html</ulink>
-</para></listitem>
-</itemizedlist>
-              
-</sect1>
 
 <sect1 id="learning">
 <title>And how should I learn?</title>
@@ -922,17 +855,6 @@ first, second and third person each in plural and singular.</para>
 </varlistentry>
 
 </variablelist>
-
-<para>Version 0.7 of &parley; also offered the choice for a special
-<link linkend="encodings">charset.</link>
-In &Qt; version 3 there is no need for this any more.</para>
-<para>
-If you have important files that are rendered wrong in the new version
-you may contact
-<ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink>
-since it might be worth the effort
-to create some conversion tool.
-</para>
 
 </sect1>
 
@@ -2729,13 +2651,17 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 
 <para>&parley; Program copyright 1999-2003 &Ewald.Arnold;
 &Ewald.Arnold.mail;
-2004-2005 Peter Hedlund <email>peter@peterandlinda.com</email>
+2004-2006 Peter Hedlund <email>peter@peterandlinda.com</email>
+2007 &Frederik.Gladhorn;
+&Frederik.Gladhorn.mail;
 </para>
 
 <para>Documentation copyright 1999-2000 &Ewald.Arnold;
 &Ewald.Arnold.mail;
 2005 &Anne-Marie.Mahfouf;
 &Anne-Marie.Mahfouf.mail;
+2007 &Frederik.Gladhorn;
+&Frederik.Gladhorn.mail;
 </para>
 
 <!-- TRANS:CREDIT_FOR_TRANSLATORS -->
@@ -2763,9 +2689,7 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 you need the &kde; libraries as well as the &Qt; C++
 library. All required libraries can be found on &kde-ftp;.</para>
 
-<para>&parley; is tested with &kde; 3.0 and &Qt; 3.0. It should also
-basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
-but I cannot promise.</para>
+<para>&parley; is tested with &kde; 4.0 and &Qt; 4.3.1.</para>
 
 </sect1>
 
