@@ -121,47 +121,57 @@ You can open an example file by using the <menuchoice><guimenu>File</guimenu> <g
 </para>
 
 <para>
-You can also get vocabulary files through the Internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
+You can also download vocabulary files from the internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
 </para>
 
 <screenshot>
 <screeninfo>Get Vocabularies dialog</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="quick-2.png" format="PNG" /></imageobject>
+<imageobject><imagedata fileref="parley-download-new.png" format="PNG" /></imageobject>
 <textobject><phrase>Get Vocabularies dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>Here I choose the Katakana file to learn Japanese and with a click on the <guibutton>Install</guibutton> button in the dialog, the file is installed. Click on the <guibutton>Close</guibutton> button to exit the dialog. The Katakana vocabulary file is opened in the &parley; window.</para>
+<para>Here I choose the first file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home dir ~/Vocabularies.</para>
 
 <screenshot>
-<screeninfo>The Katakana file</screeninfo>
+<screeninfo>The Basic vocabulary German-English file</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="quick-3.png" format="PNG" /></imageobject>
-<textobject><phrase>The Katakana file</phrase></textobject>
+<imageobject><imagedata fileref="parley-download-basic-file.png" format="PNG" /></imageobject>
+<textobject><phrase>The vocabulary file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &parley;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the <guilabel>Thresholds</guilabel> page. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton> to close the dialog.</para>
+<para>On the left of the main window you see a list of lessons. To include a lesson in the practice put a checkmark next to it. After selecting one or more lessons you can already start learning now by clicking <guimenu>Start Practice</guimenu> in the toolbar.</para>
+
+
 
 <screenshot>
-<screeninfo>Configure your lesson</screeninfo>
+<screeninfo>Written Practice Dialog</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="quick-4.png" format="PNG" /></imageobject>
-<textobject><phrase>Configure your lesson</phrase></textobject>
+<imageobject><imagedata fileref="parley-download-basic-file-survival-training-written-practice.png" format="PNG" /></imageobject>
+<textobject><phrase>Written Practice Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
+<para>After starting the practice &parley; asks you to enter a translation and can check your answer.</para>
 
-<para>
-In the <guimenu>Learning</guimenu> menu, choose what you want to learn. For example I choose <guimenuitem>ri</guimenuitem> as I want to learn the Katakana signs associated with Romaji.  I then choose <guimenuitem>Create Multiple Choice</guimenuitem> <guimenuitem>From jp</guimenuitem> and the following dialog appears:
-</para>
+<para>Since these are new words maybe Multiple Choice would be the better way to practice. After stopping the practice and choosing <guimenuitem>Configure Practice</guimenuitem> different practice methods are offered and also the combination of languages can be set.</para>
 
 <screenshot>
-<screeninfo>Lesson 1 - Multiple choice query</screeninfo>
+<screeninfo>Configure Practice Dialog</screeninfo>
 <mediaobject>
-<imageobject><imagedata fileref="quick-5.png" format="PNG" /></imageobject>
-<textobject><phrase>Lesson 1 - Multiple choice query</phrase></textobject>
+<imageobject><imagedata fileref="parley-configure-practice.png" format="PNG" /></imageobject>
+<textobject><phrase>Configure Practice Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
+<para>Choosing <guimenuitem>Multiple Choice Test</guimenuitem> and starting a practice:</para>
+<screenshot>
+<screeninfo>Multiple Choice Practice Dialog</screeninfo>
+<mediaobject>
+<imageobject><imagedata fileref="parley-practice-multiple-choice.png" format="PNG" /></imageobject>
+<textobject><phrase>Multiple Choice Practice Dialog</phrase></textobject>
+</mediaobject>
+</screenshot>
+
 
 <!-- This chapter should tell the user how to quickly start using your app.  It should include screenshots 
 with short explanations in a Step 1, Step 2 way maybe.-->
