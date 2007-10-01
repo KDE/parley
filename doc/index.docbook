@@ -184,35 +184,41 @@ with short explanations in a Step 1, Step 2 way maybe.-->
 <title>Overview</title>
 
 <para>As you can see below, the entries of the vocabulary are arranged
-similar to a spreadsheet. Each column represents an expression or word
-in one language or some other information. The leftmost column contains
-the name of the lesson
-this entry belongs to. The second describes the state of the line and the
-third is always the original word. The
-others to the right of it represent the respective
-translations.</para>
+similar to a spreadsheet. On the left are the lessons containing the vocabulary.
 
 <screenshot>
 <mediaobject>
-<imageobject><imagedata fileref="mainview.png" format="PNG" /></imageobject>
-<textobject><phrase>[main view]</phrase></textobject>
+<imageobject><imagedata fileref="parley-main-water.png" format="PNG"/></imageobject>
+<textobject><phrase>Screenshot</phrase></textobject>
 </mediaobject>
 </screenshot>
 
-<para>In the picture above, you can see that several properties of
-the vocabulary have a visual representation:</para>
+In the picture above, you can see the main window of parley.
+It contains two important areas: The lesson list on the left and the actual vocabulary on the right.
+</para>
 
+<sect2>
+<title>The lesson list</title>
+<para>The lesson list is on the left and shows you which lessons you document contains.</para>
+<para>One lesson is the current one, it is indicated by the colored bar over it. In this case it is survival training.</para>
+<para>A checkmark next to a lesson indicates that it is to be included in the practice.</para>
+Above the list you find a combo box which lets you select which vocabulary you want displayed on the right:
 <itemizedlist>
-
-<listitem><para>Colors show the grade (Level 1 to 7) of your
-knowledge</para></listitem>
-<listitem><para>A green check mark in the second columns means that this
-line is in use for a query (when you did not finish last time) whereas a
-red cross appears when you deactivated the line.</para></listitem>
-
-<listitem><para>If you mark a range of entries to work with, they
-appear with a different background.</para></listitem>
+<listitem><para>The current lesson only (survival training in this case).</para></listitem>
+<listitem><para>Lessons in the test (the ones with a checkmark).</para></listitem>
+<listitem><para>All lessons (everything in the document).</para></listitem>
 </itemizedlist>
+</sect2>
+
+<sect2>
+<title>The vocabulary list</title>
+The vocabulary list is on the right. Depending on your selection which lesson to edit the entries of one or more lessons are displayed here.
+
+<para>A green check mark in the second columns means that this
+line is active. A red cross indicates a deactivated entry that will never be practiced. See <link linkend="edit-entries">Editing Entries</link> for more information on active entries.</para>
+
+<para>If you mark a range of entries to work with, they
+appear with a different background. Many editing functions work for multiple entries at the same time.</para>
 
 <para>The color in the column with the original will vary if you have
 two or more columns with translations. If the cursor is in one of the
@@ -223,34 +229,34 @@ dialog</link> for more on this.</para>
 <para>Of course it is also possible to use it as an ordinary dictionary
 and <link linkend="smart-search">lookup manually</link>.</para>
 
-<para>On the bottom of the main window you also see the status line
-which usually contains the three areas that show important properties of the
-current expression if available:</para>
+</sect2>
 
-<variablelist>
-<varlistentry>
-<term>T:</term>
-<listitem><para>the <link linkend="types">type</link> of this
-word</para></listitem>
-</varlistentry>
+<sect2>
+<title>The search bar</title>
+<para>The search bar is located above the vocabulary table.</para>
+<para>You can use the search bar to filter you vocabulary. Type in a word and see how only entries containing the word are shown.</para>
+<screenshot>
+<mediaobject>
+<imageobject><imagedata fileref="parley-search.png" format="PNG"/></imageobject>
+<textobject><phrase>Screenshot</phrase></textobject>
+</mediaobject>
+</screenshot>
+</sect2>
 
-<varlistentry>
-<term>P:</term>
-<listitem><para>how to pronounce this expression. If you have a
-font installed, that contains <acronym>IPA</acronym> characters you can also use the characters from 
-the phonetic alphabet. See more about this in the according
-<link linkend="opt-dlg-ipa">options dialog page</link>.
-</para></listitem>
-</varlistentry>
 
-<varlistentry><term>R:</term>
-<listitem><para>your personal remarks</para></listitem>
-</varlistentry>
-</variablelist>
+<sect2>
+<title>The status bar</title>
+<para>On the bottom of the main window you also see the status line. It usually contains:</para>
 
-<para>While &parley; is loading, saving a large file or otherwise
-busy doing something time consuming, you will see a progress bar on the right in this
-status line.</para>
+<itemizedlist>
+<listitem>The word type (for example: noun/verb/adjective).</listitem>
+<listitem>How to pronounce this expression. You can use <acronym>IPA</acronym> characters from the phonetic alphabet. See more about this in the according
+<link linkend="opt-dlg-ipa">options dialog page</link>.</listitem>
+<listitem>A comment that can be added to an entry.</listitem>
+</itemizedlist>
+</sect2>
+
+
 
 </sect1>
 
