@@ -103,7 +103,7 @@ of this application.</para>
 <chapter id="quick-start">
 <title>Quick Start to &parley;</title>
 
-<para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
+<para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>parley</command> in the field.</para>
 <screenshot>
 <screeninfo>&parley; main window</screeninfo>
 <mediaobject>
@@ -659,13 +659,6 @@ set and switches to 2, 3 or even 4 or more bytes if needed.</para>
 <para>Every vocabulary file for &parley; is basically such a simple
 text file using Unicode.</para>
 
-<para>To support as many languages as possible &parley; version 0.7
-offered the possibility to choose a special charset for each language.
-If you have saved your files
-in the former <quote>8Bit-Mode</quote> you might see the wrong characters
-when you load with version 0.8 and higher.
-Contact <ulink url="mailto:kvoctrain@ewald-arnold.de">me</ulink> in this case.
-</para>
 
 <para>If you want to learn more about this issue you should visit the
 following links:</para>
@@ -2757,7 +2750,7 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <title>Installation</title>
 
 <sect1 id="obtaining">
-<title>How to obtain kvoctrain</title>
+<title>How to obtain &parley;</title>
 
 &install.intro.documentation;
 
