@@ -1,14 +1,14 @@
 <?xml version="1.0" ?>
 <!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
   <!ENTITY package "kdeedu">
-  <!ENTITY kappname "&kvoctrain;">
+  <!ENTITY kappname "&parley;">
   <!ENTITY % addindex "IGNORE">
   <!ENTITY % English "INCLUDE"> <!-- change language only here -->
 ]>
 
 <book lang="&language;">
 <bookinfo>
-<title>The &kvoctrain; Handbook</title>
+<title>The &parley; Handbook</title>
 
 <authorgroup>
 <author>
@@ -33,6 +33,14 @@
 </address></affiliation>
 </author>
 
+<author>
+<firstname>Frederik</firstname>
+<surname>Gladhorn</surname>
+<affiliation><address>&Frederik.Gladhorn.mail;	
+</address></affiliation>
+</author>
+
+
 <!-- TRANS:ROLES_OF_TRANSLATORS -->
 </authorgroup>
 
@@ -44,17 +52,22 @@
 <year>2005</year>
 <holder>&Anne-Marie.Mahfouf;</holder>
 </copyright>
+<copyright>
+<year>2007</year>
+<holder>&Frederik.Gladhorn;</holder>
+</copyright>
 <legalnotice>&FDLNotice;</legalnotice>
 
-<date>2005-06-06</date>
-<releaseinfo>0.8.3</releaseinfo>
+<date>2007-10-01</date>
+<releaseinfo>0.9.1</releaseinfo>
 
-<abstract><para>&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
+<abstract><para>&parley; is a &kde; vocabulary program to help you train your vocabulary,
 when you are trying to learn a foreign language for example.</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
 <keyword>KVocTrain</keyword>
+<keyword>Parley</keyword>
 <keyword>vocabulary</keyword>
 <keyword>training</keyword>
 <keyword>learning</keyword>
@@ -67,7 +80,7 @@ when you are trying to learn a foreign language for example.</para></abstract>
 <sect1 id="what-is-it">
 <title>What is it?</title>
 
-<para>&kvoctrain; is a &kde; vocabulary program to help you train your vocabulary,
+<para>&parley; is a &kde; vocabulary program to help you train your vocabulary,
 when you are trying to learn a foreign language for example. You can create your
 own files with the words you need.</para>
 
@@ -79,7 +92,7 @@ translation on the back. Then look at the cards one after another. If
 you knew the translation, you could put it away. If you failed, you
 put it back to try again.</para>
 
-<para>&kvoctrain; is not intended to teach you grammar or other
+<para>&parley; is not intended to teach you grammar or other
 sophisticated things. This is, and probably will stay, beyond the scope
 of this application.</para>
 
@@ -88,19 +101,19 @@ of this application.</para>
 </chapter>
 
 <chapter id="quick-start">
-<title>Quick Start to &kvoctrain;</title>
+<title>Quick Start to &parley;</title>
 
-<para>Here is &kvoctrain; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
+<para>Here is &parley; the first time you run it, either from the <menuchoice><guimenu>&kmenu;</guimenu> <guisubmenu>Edutainment</guisubmenu> <guimenuitem>Languages</guimenuitem></menuchoice> or with <keycombo action="simul">&Alt;<keycap>F2</keycap></keycombo> and type <command>kvoctrain</command> in the field.</para>
 <screenshot>
-<screeninfo>&kvoctrain; main window</screeninfo>
+<screeninfo>&parley; main window</screeninfo>
 <mediaobject>
 <imageobject><imagedata fileref="quick-1.png" format="PNG" /></imageobject>
-<textobject><phrase>&kvoctrain; main window</phrase></textobject>
+<textobject><phrase>&parley; main window</phrase></textobject>
 </mediaobject>
 </screenshot>
 
 <para>
-You can study a file in the examples by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &kvoctrain;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
+You can study a file in the examples by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &parley;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
 </para>
 
 <para>
@@ -115,7 +128,7 @@ You can also get vocabulary files through the Internet using <guimenu>File</guim
 </mediaobject>
 </screenshot>
 
-<para>Here I choose the Katakana file to learn Japanese and with a click on the <guibutton>Install</guibutton> button in the dialog, the file is installed. Click on the <guibutton>Close</guibutton> button to exit the dialog. The Katakana vocabulary file is opened in the &kvoctrain; window.</para>
+<para>Here I choose the Katakana file to learn Japanese and with a click on the <guibutton>Install</guibutton> button in the dialog, the file is installed. Click on the <guibutton>Close</guibutton> button to exit the dialog. The Katakana vocabulary file is opened in the &parley; window.</para>
 
 <screenshot>
 <screeninfo>The Katakana file</screeninfo>
@@ -124,7 +137,7 @@ You can also get vocabulary files through the Internet using <guimenu>File</guim
 <textobject><phrase>The Katakana file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &kvoctrain;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the <guilabel>Thresholds</guilabel> page. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton> to close the dialog.</para>
+<para>This file consists in 26 lessons and should allow me to learn Katakana writing for the basics letters and syllables. So lets start with lesson 1. Open  <guimenuitem>Configure &parley;... </guimenuitem> in the <guimenu>Settings</guimenu> menu and go to the <guilabel>Thresholds</guilabel> page. You can set which lessons you want to learn. We highlight Lesson 1 and click on <guibutton>Apply</guibutton> to save the Setting and on <guibutton>OK</guibutton> to close the dialog.</para>
 
 <screenshot>
 <screeninfo>Configure your lesson</screeninfo>
@@ -151,7 +164,7 @@ with short explanations in a Step 1, Step 2 way maybe.-->
 </chapter>
 
 <chapter id="usage">
-<title>Using &kvoctrain;</title>
+<title>Using &parley;</title>
 
 <sect1 id="overview">
 <title>Overview</title>
@@ -221,7 +234,7 @@ the phonetic alphabet. See more about this in the according
 </varlistentry>
 </variablelist>
 
-<para>While &kvoctrain; is loading, saving a large file or otherwise
+<para>While &parley; is loading, saving a large file or otherwise
 busy doing something time consuming, you will see a progress bar on the right in this
 status line.</para>
 
@@ -277,7 +290,7 @@ So all of the important functions are reachable this way.</para>
 <varlistentry>
 <term><keycap>Tab</keycap></term>
 <listitem><para>The cursor is moved to the smart search input field. If
-you start typing an expression in this field, &kvoctrain; will search
+you start typing an expression in this field, &parley; will search
 the next best match after each key. The cursor in the vocabulary is then
 moved to this location.</para>
 
@@ -429,7 +442,7 @@ selection when you confirm the dialog.</para>
 <sect1 id="file-formats">
 <title>Available file formats</title>
 
-<para>&kvoctrain; can read and write the following file formats:</para>
+<para>&parley; can read and write the following file formats:</para>
 
 <itemizedlist>
 <listitem><para>Its native xml-style document type with the extension
@@ -438,12 +451,12 @@ selection when you confirm the dialog.</para>
 <para>If you want to share documents with others use this one as it is
 the only file format that is capable of containing
 <emphasis>all</emphasis> the properties in
-&kvoctrain;.</para></listitem>
+&parley;.</para></listitem>
 
 <listitem><para>Simple text files with special delimiters between the
 entries which are also used by simple database programs. The
 extension is <literal role="extension">csv</literal> in this
-case. &kvoctrain; also detects if those files are encoded in UTF8
+case. &parley; also detects if those files are encoded in UTF8
 since such files are also available to preserve the correct characters,
 see more about this in the section about <link
 linkend="encodings">encodings and charsets.</link></para>
@@ -451,11 +464,11 @@ linkend="encodings">encodings and charsets.</link></para>
 <para>There are a lot of files on the Internet which use the
 tabular character or one or two colons to separate the different
 languages. To select this separator use the tab for setting the <link
-linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &kvoctrain;...</guimenuitem> dialog.</para></listitem>
+linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &parley;...</guimenuitem> dialog.</para></listitem>
 
 </itemizedlist>
 
-<para>&kvoctrain; reads the first few bytes from a file and makes a
+<para>&parley; reads the first few bytes from a file and makes a
 guess about the file format. When none of the special types like
 <literal role="extension">kvtml</literal> or <literal
 role="extension">lex</literal> are recognized, it uses the <literal
@@ -466,7 +479,7 @@ role="extension">csv</literal> format.</para>
 <sect1 id="types">
 <title>Available word types</title>
 
-<para>&kvoctrain; has the following internal word types. Furthermore
+<para>&parley; has the following internal word types. Furthermore
 every document can contain user defined types.</para>
 
 <informaltable><tgroup cols="3">
@@ -643,10 +656,10 @@ might also be longer. A compromise is to use UTF-8 which uses 7 bits
 (8 bits form one byte) for the most common characters from the ascii
 set and switches to 2, 3 or even 4 or more bytes if needed.</para>
 
-<para>Every vocabulary file for &kvoctrain; is basically such a simple
+<para>Every vocabulary file for &parley; is basically such a simple
 text file using Unicode.</para>
 
-<para>To support as many languages as possible &kvoctrain; version 0.7
+<para>To support as many languages as possible &parley; version 0.7
 offered the possibility to choose a special charset for each language.
 If you have saved your files
 in the former <quote>8Bit-Mode</quote> you might see the wrong characters
@@ -680,7 +693,7 @@ harsets/codepages.html</ulink>
 <sect1 id="learning">
 <title>And how should I learn?</title>
 
-<para>The usual way to learn with &kvoctrain; is to use one of its
+<para>The usual way to learn with &parley; is to use one of its
  random 
 query functions.</para>
 
@@ -727,12 +740,12 @@ nouns.</para></listitem>
 <link linkend="profiles">profiles</link> and retained
 under an arbitrarily name.</para>
 
-<para>When querying &kvoctrain; shows the expressions in random order
+<para>When querying &parley; shows the expressions in random order
 until you confirm all as <quote>known</quote>. If you did not select a
 special lesson, all lessons are queried one after the other.</para>
 
 <para>Remaining expressions of a currently running query are
-accordingly stored when you leave &kvoctrain;. After a later restart
+accordingly stored when you leave &parley;. After a later restart
 you can resume the query (currently this does not apply to special queries
 with verbs, articles and comparisons). Those expressions are marked with a
 green check mark in the <link linkend="overview">main view</link>.</para>
@@ -870,7 +883,7 @@ in the header button will then no longer sort the row.</para></listitem>
 
 </variablelist>
 
-<para>Version 0.7 of &kvoctrain; additionally offered the choice to either use
+<para>Version 0.7 of &parley; additionally offered the choice to either use
 <quote>8Bit</quote> or <quote>Unicode</quote> to store the vocabulary files.
 This is no more supported. The files are always stored
 in Unicode to prevent wrong rendering of characters.</para>
@@ -917,7 +930,7 @@ first, second and third person each in plural and singular.</para>
 
 </variablelist>
 
-<para>Version 0.7 of &kvoctrain; also offered the choice for a special
+<para>Version 0.7 of &parley; also offered the choice for a special
 <link linkend="encodings">charset.</link>
 In &Qt; version 3 there is no need for this any more.</para>
 <para>
@@ -934,7 +947,7 @@ to create some conversion tool.
 <title>Settings dialog</title>
 
 <para>Open this dialog with <menuchoice><guimenu>Settings</guimenu> 
-<guimenuitem>Configure &kvoctrain;...</guimenuitem></menuchoice>. 
+<guimenuitem>Configure &parley;...</guimenuitem></menuchoice>. 
 The settings in this dialog are global and affect all vocabularies
 equally.</para>
 
@@ -952,8 +965,8 @@ equally.</para>
 <variablelist>
 <varlistentry>
 <term><guilabel>Save vocabularies automatically on close and quit</guilabel></term>
-<listitem><para>If you check this option, &kvoctrain; will automatically save the document if it
-was modified when you use the close button or when you quit &kvoctrain;.</para>
+<listitem><para>If you check this option, &parley; will automatically save the document if it
+was modified when you use the close button or when you quit &parley;.</para>
 <para>As a side effect it also does not ask for confirmation to save
  when quitting with modified data but saves the vocabulary without
  asking.</para>
@@ -962,7 +975,7 @@ was modified when you use the close button or when you quit &kvoctrain;.</para>
 
 <varlistentry>
 <term><guilabel>Create a backup every 15 minutes</guilabel></term>
-<listitem><para>&kvoctrain; will automatically save the document if it
+<listitem><para>&parley; will automatically save the document if it
 was modified after the period you enter here when the option is
 checked.</para>
 <para>As a side effect it also does not ask for confirmation to save
@@ -988,7 +1001,7 @@ document settings.</para></listitem>
 <varlistentry>
 <term><guilabel>Apply changes without asking</guilabel></term>
 <listitem><para>When checked, all options are save upon termination
-of &kvoctrain;. Otherwise you have to select the appropriate menu
+of &parley;. Otherwise you have to select the appropriate menu
 item.</para></listitem>
 </varlistentry>
 
@@ -1001,7 +1014,7 @@ if the columns resize automatically, too.</para>
   <variablelist>
   <varlistentry>
   <term><guilabel>Automatic</guilabel></term>
-  <listitem><para>&kvoctrain; makes each columns the same width except
+  <listitem><para>&parley; makes each columns the same width except
   the leftmost with the lesson names which has half the size of the
   others. The second column which contains the picture that describes the
   state of the row has a fixed width.</para></listitem>
@@ -1206,7 +1219,7 @@ export data to a database file in <literal role="extension">CSV</literal>
 
 <varlistentry>
 <term><guilabel>Order</guilabel></term>
-<listitem><para>When pasting via the clipboard &kvoctrain; does not know
+<listitem><para>When pasting via the clipboard &parley; does not know
 which languages the different fields belong to and just would insert
 them from left to right.</para>
 <para>To facilitate correct behavior, if you arranged your vocabulary
@@ -1238,12 +1251,12 @@ be in the same language order as the current document.</para></listitem>
 <variablelist>
 <varlistentry>
 <term><guilabel>Time Per Query</guilabel></term>
-<listitem><para>Here you can influence the behavior of &kvoctrain;
+<listitem><para>Here you can influence the behavior of &parley;
 when you do not know the answer in time.
   <itemizedlist>
-  <listitem><para>You may set a time limit &kvoctrain; grants you to
+  <listitem><para>You may set a time limit &parley; grants you to
   remember the correct answer.</para></listitem>
-  <listitem><para>Additionally you can tell &kvoctrain; what to do
+  <listitem><para>Additionally you can tell &parley; what to do
   when this limit is reached. Besides of waiting unlimited time you may
   select to be shown the solution or to continue immediately with the next
   question.</para></listitem>
@@ -1252,7 +1265,7 @@ when you do not know the answer in time.
   </itemizedlist>
 </para>
 <para>If you exceed the time limit several times in series in continuous mode
-&kvoctrain; will assume that there is currently no person in front of the screen
+&parley; will assume that there is currently no person in front of the screen
 and stop the query.</para></listitem>
 </varlistentry>
 
@@ -1284,7 +1297,7 @@ above the bottom one, can only hold a certain number of cards. The top
 row can hold seven cards, the others can hold two cards. (In the
 original game, the bottom row can only hold three card, thus limiting
 the number of cards in the game to 20. This "limitation" is not
-present in &kvoctrain;.)</para>
+present in &parley;.)</para>
 
 <para>In the bottom row are the questions that have yet to be asked
 and the questions that have previously been answered incorrectly. When
@@ -1339,7 +1352,7 @@ instead of storing globally.</para></listitem>
     
 <varlistentry>
 <term><guilabel>Word type</guilabel></term>
-<listitem><para>Select the word type. &kvoctrain; does not pay any
+<listitem><para>Select the word type. &parley; does not pay any
 attention to subtypes.</para></listitem>
 </varlistentry>
     
@@ -1411,7 +1424,7 @@ on the previous dialog page are not taken into account.</para>
 <title><guilabel>Profiles</guilabel></title>
 <para>
 A Profile is a set of settings (settings related to queries) which you can save/load in order to use again later. 
-This <guibutton>Profiles...</guibutton> button at the bottom of the <guilabel>Configure &kvoctrain;</guilabel> 
+This <guibutton>Profiles...</guibutton> button at the bottom of the <guilabel>Configure &parley;</guilabel> 
 dialog allows you to see existing profiles, to load a new profile and to save your current settings in a  new profile.
 </para>
 <para>Clicking on the <guibutton>Profiles...</guibutton> button will display the following dialog.</para>
@@ -1616,7 +1629,7 @@ information.</para></listitem>
 
 <para>If you want to create an efficient multiple choice query it
 is good to offer expressions that are similar to the solution to make
-it more difficult. If you do not offer them, &kvoctrain; has only
+it more difficult. If you do not offer them, &parley; has only
 the possibility
 to create such queries with randomly chosen expressions which are rather
 easy to guess.
@@ -1638,7 +1651,7 @@ when you selected <guilabel>verb</guilabel> as word type.</para>
 </mediaobject>
 </screenshot>
 
-<para>For every tense &kvoctrain; knows you can enter the conjugations
+<para>For every tense &parley; knows you can enter the conjugations
 of the verb for the different persons. The tense can be selected from
  the list. After doing this the entry fields are updated accordingly.</para>
 
@@ -1709,7 +1722,7 @@ last queried. If it was never queried yet you only see
 <para>For convenience reasons there are two buttons to set the current
 date or reset to <quote>never queried</quote>.</para>
 <para>Due to internal reasons, it is not possible to store dates before
-August 12 1999 with every version of &kvoctrain;. Versions 0.8 and later
+August 12 1999 with every version of &parley;. Versions 0.8 and later
 are no more affected.</para></listitem>
 </varlistentry>
 
@@ -1799,13 +1812,13 @@ color of the translation changes to green, otherwise to red</para></listitem>
    
 <varlistentry>
 <term><guibutton>Do Not Know</guibutton></term>
-<listitem><para>Tells &kvoctrain; that you did not know the answer and
+<listitem><para>Tells &parley; that you did not know the answer and
 that the according grade must be lowered.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><guibutton>I Know It</guibutton></term>
-<listitem><para>Click this button to tell &kvoctrain; that you
+<listitem><para>Click this button to tell &parley; that you
 knew the answer correctly. This entry is then removed from the current<quote>bad
 list</quote>.</para></listitem>
 </varlistentry>
@@ -1830,7 +1843,7 @@ the remaining time and the amount of queries to come.</para>
 <para>The query of the current lesson is repeated until all its
 expressions are known. The amount of retries of the current lesson is
 shown below the progress indicator. Once the current lesson is
-finished &kvoctrain; continues with the next (provided that you have set up
+finished &parley; continues with the next (provided that you have set up
 the <link linkend="thresholds">query options</link> accordingly).</para>
 
 <para>I regret to admit, but usually I don`t know the solution. For
@@ -1844,7 +1857,7 @@ is the default button) and makes <guibutton>Do not know</guibutton>
 the default button.</para></listitem>
 
 <listitem><para>Pressing <keycap>Return</keycap> the second time
-will leave this dialog and tell &kvoctrain; that you did not know the
+will leave this dialog and tell &parley; that you did not know the
 answer.</para></listitem>
 </itemizedlist></para>
 
@@ -1951,7 +1964,7 @@ expression look basically the same for all types.</para>
 
 <para>You are prompted the expression and have to enter the according
 property. Querying by <guilabel>example</guilabel> is a bit different
-since &kvoctrain; takes the expression and replaces it by some dots so
+since &parley; takes the expression and replaces it by some dots so
 this is mainly useful when your expression is a single word.</para>
 
 </sect2>
@@ -2010,7 +2023,7 @@ popup a menu which shows the exact numbers.</para>
 <title>Sharing files and downloading dictionaries</title>
 
 <sect1 id="dictionary">
-<title>Contributing your files to &kvoctrain;</title>
+<title>Contributing your files to &parley;</title>
 
 <para>If you have created a kvtml file, please send an email to
 &Anne-Marie.Mahfouf.mail; with the file attached and I will put the file in the <ulink url="http://edu.kde.org/contrib/kvtml.php">contributed kvtml files</ulink> on <ulink url="http://edu.kde.org">the &kde;-Edu website</ulink> so other people will be able to use it.</para>
@@ -2025,7 +2038,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <sect1 id="new-stuff">
 <title>Downloading and installing existing files</title>
 
-<para>&kvoctrain; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
+<para>&parley; is shipped with only two examples files. But you can easily get and install existing files using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Get New Vocabularies...</guimenuitem> </menuchoice> menu, provided you have an Internet connection. The following dialog is then displayed:</para>
 
 <screenshot>
 <screeninfo>Get New Vocabularies... dialog</screeninfo>
@@ -2035,7 +2048,7 @@ problematic! The files must be licensed under a free license, please indicate it
 </mediaobject>
 </screenshot>
 
-<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &kvoctrain; current window.
+<para>Choose the file you want to get. The <guibutton>Details</guibutton> button will give you more details about the content of the highlighted file. Click the <guibutton>Install</guibutton> button. The file is then downloaded from its location on the Internet, saved on your hard disk and opened in &parley; current window.
 </para>
 
 <note><para>The files you download are saved in your home folder in the <filename>Vocabularies</filename> folder.</para></note>
@@ -2048,7 +2061,7 @@ problematic! The files must be licensed under a free license, please indicate it
 <listitem><para>If you are German an want to learn English
 (or vice versa) you can download the monthly vocabulary
 list provided by the German magazine <ulink url="http://www.spotlight-online.de">Spotlight-Online</ulink>.</para>
-<para>The &kvoctrain; distribution contains an executable called
+<para>The &parley; distribution contains an executable called
 <command>spotlight2kvtml</command> to transform those lists
 in kvtml format. The original files come as &Windows; Word DOC-files
 so you have to save them as ANSI-TXT files before starting
@@ -2120,7 +2133,7 @@ to include it here.</para>
 <title>Translator applications</title>
 
 <para>If you do not want to learn but just need quick translations of
-expressions in larger dictionaries you might be unhappy with &kvoctrain;
+expressions in larger dictionaries you might be unhappy with &parley;
 if your computer doesn't have much memory and MHz. A 150000 entry
 file consumes about 60M and takes ages to load if your system is short of memory.</para>
 
@@ -2170,7 +2183,7 @@ url="http://members.tripod.com/~planetphil/svt.html">SVT</ulink>
 <title>Other interesting links</title>
 
 <para>Maybe you are interested in the one or the other links I found
-while working on &kvoctrain;.</para>
+while working on &parley;.</para>
 <itemizedlist>
 <listitem><para><ulink url="http://czyborra.com/unifont/">&GNU; Unifont
 Projekt</ulink></para></listitem>
@@ -2193,7 +2206,7 @@ The International Phonetic Association</ulink></para></listitem>
 <title>Command Reference</title>
 
 <sect1 id="kapp-mainwindow">
-<title>The Main &kvoctrain; Window</title>
+<title>The Main &parley; Window</title>
 
 <sect2 id="file-menu">
 <title>The <guimenu>File</guimenu> Menu</title>
@@ -2235,7 +2248,7 @@ The International Phonetic Association</ulink></para></listitem>
 <menuchoice>
 <guimenu>File</guimenu>
 <guimenuitem>Open Example...</guimenuitem></menuchoice></term>
-<listitem><para><action>Opens an example file</action> shipped with &kvoctrain;
+<listitem><para><action>Opens an example file</action> shipped with &parley;
 </para></listitem>
 </varlistentry>
 
@@ -2261,7 +2274,7 @@ The International Phonetic Association</ulink></para></listitem>
  international
 language code</ulink> as your current one.</para>
 <para>So always use the correct codes. This helps you share vocabularies
-with others. &kvoctrain; supports you in this and offers all codes in the
+with others. &parley; supports you in this and offers all codes in the
 according <link linkend="settings2-dlg">options page</link>
 </para></listitem>
 </varlistentry>
@@ -2306,7 +2319,7 @@ according <link linkend="settings2-dlg">options page</link>
 <term>
 <menuchoice><guimenu>File</guimenu>
 <guimenuitem>Quit</guimenuitem></menuchoice></term>
-<listitem><para><action>Exits</action> &kvoctrain;.</para></listitem>
+<listitem><para><action>Exits</action> &parley;.</para></listitem>
 </varlistentry>
 </variablelist>
 
@@ -2566,9 +2579,9 @@ bottom.</action></para></listitem>
 <varlistentry>
 <term><menuchoice>
 <guimenu>Settings</guimenu>
-<guimenuitem>Configure &kvoctrain;...</guimenuitem>
+<guimenuitem>Configure &parley;...</guimenuitem>
 </menuchoice></term>
-<listitem><para><action>Display</action> the &kvoctrain; settings dialog
+<listitem><para><action>Display</action> the &parley; settings dialog
 </para></listitem>
 </varlistentry>
 
@@ -2689,7 +2702,7 @@ affected.</para></listitem>
 <sect1 id="credits">
 <title>Thanks</title>
 
-<para>&kvoctrain; is my first &GUI; application for &kde;, so I had to
+<para>&parley; is my first &GUI; application for &kde;, so I had to
 borrow a lot of code from other applications. The biggest chunks are
 taken from</para>
 <itemizedlist>
@@ -2700,7 +2713,7 @@ taken from</para>
 </itemizedlist>
 
 <para>I'd like to thank the following people personally for their
-contribution to &kvoctrain;:</para>
+contribution to &parley;:</para>
 <itemizedlist>
 <listitem><para>Andrea Marconi for localization to
  Italian</para></listitem>
@@ -2721,7 +2734,7 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <sect1 id="copyright">
 <title>Copyright</title>
 
-<para>&kvoctrain; Program copyright 1999-2003 &Ewald.Arnold;
+<para>&parley; Program copyright 1999-2003 &Ewald.Arnold;
 &Ewald.Arnold.mail;
 2004-2005 Peter Hedlund <email>peter@peterandlinda.com</email>
 </para>
@@ -2753,11 +2766,11 @@ for their help, constructive criticism, suggestions or bug-reports.</para>
 <sect1 id="requirements">
 <title>Requirements</title>
 
-<para>In order to successfully compile &kvoctrain;,
+<para>In order to successfully compile &parley;,
 you need the &kde; libraries as well as the &Qt; C++
 library. All required libraries can be found on &kde-ftp;.</para>
 
-<para>&kvoctrain; is tested with &kde; 3.0 and &Qt; 3.0. It should also
+<para>&parley; is tested with &kde; 3.0 and &Qt; 3.0. It should also
 basically run under &kde; 2.x and &Qt; 2.x if compiled accordingly
 but I cannot promise.</para>
 
