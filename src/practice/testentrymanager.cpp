@@ -191,8 +191,6 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
         }
     }
 
-    kDebug() << "Found " << m_allTestEntries.count() << " entries that are not empty.";
-
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( !validate(m_allTestEntries.value(i)->exp) ) {
@@ -244,10 +242,11 @@ void TestEntryManager::expireEntries()
 
 bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool use_it)
 {
-    if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) // don't care || all off
+    if (grade == KV_NORM_GRADE || Prefs::blockItem(grade) == 0 || !use_it) { // don't care || all off
         return true;
-    else
+    } else {
         return date.addSecs(Prefs::blockItem(grade)) < QDateTime::currentDateTime();
+    }
 }
 
 

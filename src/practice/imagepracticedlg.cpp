@@ -47,21 +47,20 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
     mixedLettersGraphicsView->setScene(new QGraphicsScene());
     imageGraphicsView->setVisible(false);
 
-    KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
+    KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     restoreDialogSize(cg);
 }
 
 
 ImagePracticeDlg::~ImagePracticeDlg()
 {
-    KConfigGroup cg(KGlobal::config(), "ImagePracticeDlg");
+    KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     KDialog::saveDialogSize(cg);
 }
 
 
 void ImagePracticeDlg::setEntry(TestEntry* entry)
 {
-    m_wrongAnswer = false;
     PracticeDialog::setEntry(entry);
 
     timeProgressBar->setEnabled(Prefs::showCounter());
@@ -135,12 +134,9 @@ void ImagePracticeDlg::showSolution()
 void ImagePracticeDlg::verifyClicked()
 {
     if (verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text())) {
-        if ( m_wrongAnswer ) {
-            resultWrong();
-        }
         resultCorrect();
     } else {
-        m_wrongAnswer = true;
+        setAnswerTainted();
     }
 }
 

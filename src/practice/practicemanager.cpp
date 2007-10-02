@@ -57,16 +57,6 @@ static const char not_answered[] = I18N_NOOP(
                                        "the screen, and for that reason the query is stopped.");
 
 
-static const char not_contain[] = I18N_NOOP(
-                                      "There are currently no suitable expressions for the "
-                                      "test you started.\n"
-                                      "There are several possible reasons for this; maybe you do not have "
-                                      "any expressions for the type of practice you requested.\n"
-                                      "Most likely, you should adjust your settings referring to "
-                                      "thresholds and blocking values in the practice options:\n"
-                                      "should the configuration dialog be invoked now?");
-
-
 PracticeManager::PracticeManager(ParleyApp *app, KEduVocDocument *doc)
 {
     m_app = app;

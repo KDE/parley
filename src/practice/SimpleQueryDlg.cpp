@@ -163,6 +163,7 @@ void SimpleQueryDlg::showMoreClicked()
         mw->dont_know->setDefault(true);
     }
     resetQueryWidget(mw->answerField);
+    setAnswerTainted();
 }
 
 
@@ -179,7 +180,7 @@ void SimpleQueryDlg::verifyClicked()
     if (verifyField(mw->answerField, answerstring)) {
         resultCorrect();
     } else {
-        ///@todo better do something sensible here...
+        setAnswerTainted();
         mw->dont_know->setDefault(true);
     }
 }

@@ -159,14 +159,21 @@ protected:
      */
     void startTimer();
 
+    /**
+     * When @p tainted is set true, a correct answer will be counted as wrong (for example show more button).
+     * @param tainted
+     */
+    void setAnswerTainted(bool tainted = true);
+
 private slots:
     void emitCorrect();
 private:
     void audioPlayCorrect();
-
-
     QTimer    *m_timer;
     int        m_timerCount;
+
+    /// true if the user entered a false answer or received help (show more button). we still let the user give input until the right one is selected.
+    bool m_answerTainted;
 
     Phonon::MediaObject* m_player;
 };

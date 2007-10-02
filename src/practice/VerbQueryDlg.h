@@ -53,7 +53,6 @@ private:
     QProgressBar* timebar() { return mw->timebar; }
 
     int m_currentTense;
-    bool all_known;
 
     Ui::VerbQueryDlgForm * mw;
 };

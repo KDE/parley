@@ -213,6 +213,7 @@ void PracticeDialog::setEntry(TestEntry * entry)
     m_entry = entry;
     m_testType = Prefs::testType();
     startTimer();
+    m_answerTainted = false;
 //     audioPlayFromIdentifier();
 }
 
@@ -246,8 +247,12 @@ void PracticeDialog::skipUnknown()
 
 void PracticeDialog::resultCorrect()
 {
-    audioPlayCorrect();
-//     emit sigQueryChoice(Correct);
+//     audioPlayCorrect();
+    if (!m_answerTainted) {
+        emit sigQueryChoice(Correct);
+    }
+    kDebug() << "Correct answer but with help (counts as wrong).";
+    emit sigQueryChoice(Wrong);
 }
 
 void PracticeDialog::resultWrong()
@@ -351,6 +356,11 @@ void PracticeDialog::imageShowFromEntry(QGraphicsView * view, const TestEntry * 
             imageShowFile( view, url );
         }
     }
+}
+
+void PracticeDialog::setAnswerTainted(bool tainted)
+{
+    m_answerTainted = tainted;
 }
 
 #include "practicedialog.moc"

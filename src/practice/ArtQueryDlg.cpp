@@ -168,6 +168,7 @@ void ArtQueryDlg::showSolution()
         verifyButton(mw->neutralRadio, true);
     }
     mw->dont_know->setDefault(true);
+    setAnswerTainted();
 }
 
 

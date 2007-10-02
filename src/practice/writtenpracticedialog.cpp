@@ -328,10 +328,12 @@ void WrittenPracticeDialog::verifyClicked()
             mw->status->setText(getOKComment(percent));
             resultCorrect();
         } else {
-            for (i = 0; i < combos.count(); i ++)
-                verifyField(combos.at(i)->lineEdit(), "a\na");  // always fail
+            for (i = 0; i < combos.count(); i ++) {
+                verifyField(combos.at(i)->lineEdit(), "a\na");
+            }  // always fail
             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             mw->dont_know->setDefault(true);
+            setAnswerTainted();
         }
     } else {
         QList<KLineEdit*> fields(transFields);
@@ -357,6 +359,7 @@ void WrittenPracticeDialog::verifyClicked()
             }
             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             mw->dont_know->setDefault(true);
+            setAnswerTainted();
         }
     }
     suggestion_hint = false;
@@ -365,6 +368,7 @@ void WrittenPracticeDialog::verifyClicked()
 
 void WrittenPracticeDialog::showMoreClicked()
 {
+    setAnswerTainted();
     if (Prefs::suggestions()) {
         for (int i = 0; i < translations.count(); i ++) {
             KComboBox* combo = transCombos.at(i);

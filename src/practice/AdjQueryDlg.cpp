@@ -137,6 +137,7 @@ void AdjQueryDlg::showSolution()
     verifyField(mw->lev3Field, comp.l3());
 
     mw->dont_know->setDefault(true);
+    setAnswerTainted();
 }
 
 
@@ -155,9 +156,10 @@ void AdjQueryDlg::verifyClicked()
 
     if (all_known)
 //  know_it->setDefault(true);
-        knowItClicked();
+        resultCorrect();
     else
         mw->dont_know->setDefault(true);
+        setAnswerTainted();
 }
 
 

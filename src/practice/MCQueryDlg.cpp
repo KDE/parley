@@ -89,8 +89,6 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    m_answeredWrong = false;
-
     KEduVocExpression *vocExpression = entry->exp;
     mw->timebar->setVisible(Prefs::showCounter());
     mw->timelabel->setVisible(Prefs::showCounter());
@@ -250,7 +248,7 @@ void MCQueryDlg::showSolution()
     verifyButton(button_ref[0].first, true, button_ref[0].second);
     mw->dont_know->setDefault(true);
 
-    m_answeredWrong = true;
+    setAnswerTainted();
 }
 
 
@@ -270,22 +268,16 @@ void MCQueryDlg::verifyClicked()
         verifyButton(button_ref[4].first, known, button_ref[4].second);
     }
 
+    ///@todo move the status bar stuff either in or out of the base class
 
     if (known) {
-        if ( !m_answeredWrong ) {
-            mw->status->setText(
+        resultCorrect();
+        mw->status->setText(
                 getOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));
-            resultCorrect();
-        } else {
-            resultWrong();
-            mw->status->setText(
-                getNOKComment((int)(((double)mw->countbar->value())
-                    /mw->countbar->maximum() * 100.0)));
-        }
     } else {
+        setAnswerTainted();
         mw->dont_know->setDefault(true);
-        m_answeredWrong = true;
         mw->status->setText(
                 getNOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));

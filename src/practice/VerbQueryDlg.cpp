@@ -102,7 +102,6 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
     mw->pluralThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural));
 
-    all_known = true;
     m_currentTense = -1;
     nextTense();
 
@@ -244,7 +243,7 @@ bool VerbQueryDlg::nextTense()
 
 void VerbQueryDlg::showSolution()
 {
-    all_known = false;
+    setAnswerTainted();
 
     resetAllFields();
     mw->dont_know->setDefault(true);
@@ -356,7 +355,7 @@ void VerbQueryDlg::verifyClicked()
         kDebug() << "correct!";
         resultCorrect();
     } else {
-        all_known = false;
+        setAnswerTainted();
         mw->dont_know->setDefault(true);
     }
 }
