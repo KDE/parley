@@ -363,23 +363,23 @@ void VerbQueryDlg::verifyClicked()
 
 void VerbQueryDlg::resetAllFields()
 {
-    resetQueryWidget(mw->singularFirstPersonLineEdit);
-    resetQueryWidget(mw->singularSecondPersonLineEdit);
-    resetQueryWidget(mw->singularThirdFemalePersonLineEdit);
-    resetQueryWidget(mw->singularThirdMalePersonLineEdit);
-    resetQueryWidget(mw->singularThirdNeutralPersonLineEdit);
+    setWidgetStyle(mw->singularFirstPersonLineEdit);
+    setWidgetStyle(mw->singularSecondPersonLineEdit);
+    setWidgetStyle(mw->singularThirdFemalePersonLineEdit);
+    setWidgetStyle(mw->singularThirdMalePersonLineEdit);
+    setWidgetStyle(mw->singularThirdNeutralPersonLineEdit);
 
-    resetQueryWidget(mw->dualFirstPersonLineEdit);
-    resetQueryWidget(mw->dualSecondPersonLineEdit);
-    resetQueryWidget(mw->dualThirdFemalePersonLineEdit);
-    resetQueryWidget(mw->dualThirdMalePersonLineEdit);
-    resetQueryWidget(mw->dualThirdNeutralPersonLineEdit);
+    setWidgetStyle(mw->dualFirstPersonLineEdit);
+    setWidgetStyle(mw->dualSecondPersonLineEdit);
+    setWidgetStyle(mw->dualThirdFemalePersonLineEdit);
+    setWidgetStyle(mw->dualThirdMalePersonLineEdit);
+    setWidgetStyle(mw->dualThirdNeutralPersonLineEdit);
 
-    resetQueryWidget(mw->pluralFirstPersonLineEdit);
-    resetQueryWidget(mw->pluralSecondPersonLineEdit);
-    resetQueryWidget(mw->pluralThirdFemalePersonLineEdit);
-    resetQueryWidget(mw->pluralThirdMalePersonLineEdit);
-    resetQueryWidget(mw->pluralThirdNeutralPersonLineEdit);
+    setWidgetStyle(mw->pluralFirstPersonLineEdit);
+    setWidgetStyle(mw->pluralSecondPersonLineEdit);
+    setWidgetStyle(mw->pluralThirdFemalePersonLineEdit);
+    setWidgetStyle(mw->pluralThirdMalePersonLineEdit);
+    setWidgetStyle(mw->pluralThirdNeutralPersonLineEdit);
 }
 
 

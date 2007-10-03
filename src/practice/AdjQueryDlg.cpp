@@ -165,9 +165,9 @@ void AdjQueryDlg::verifyClicked()
 
 void AdjQueryDlg::resetAllFields()
 {
-    resetQueryWidget(mw->lev1Field);
-    resetQueryWidget(mw->lev2Field);
-    resetQueryWidget(mw->lev3Field);
+    setWidgetStyle(mw->lev1Field, Default);
+    setWidgetStyle(mw->lev2Field, Default);
+    setWidgetStyle(mw->lev3Field, Default);
 }
 
 
@@ -187,21 +187,21 @@ void AdjQueryDlg::dontKnowClicked()
 void AdjQueryDlg::lev1Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetQueryWidget(mw->lev1Field);
+    setWidgetStyle(mw->lev1Field);
 }
 
 
 void AdjQueryDlg::lev2Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetQueryWidget(mw->lev2Field);
+    setWidgetStyle(mw->lev2Field);
 }
 
 
 void AdjQueryDlg::lev3Changed(const QString&)
 {
     mw->verify->setDefault(true);
-    resetQueryWidget(mw->lev3Field);
+    setWidgetStyle(mw->lev3Field);
 }
 
 

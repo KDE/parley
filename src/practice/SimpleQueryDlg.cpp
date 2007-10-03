@@ -142,7 +142,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
     s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
 
-    resetQueryWidget(mw->answerField);
+    setWidgetStyle(mw->answerField, Default);
     mw->answerField->setFocus();
 
     imageShowFromEntry( mw->imageGraphicsView, entry );
@@ -152,7 +152,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
 void SimpleQueryDlg::slotAnswerChanged()
 {
     mw->verify->setDefault(true);
-    resetQueryWidget(mw->answerField);
+    setWidgetStyle(mw->answerField);
 }
 
 
@@ -162,7 +162,7 @@ void SimpleQueryDlg::showMoreClicked()
         mw->answerField->setText(answerstring.left(mw->answerField->text().length()+1));
         mw->dont_know->setDefault(true);
     }
-    resetQueryWidget(mw->answerField);
+    setWidgetStyle(mw->answerField);
     setAnswerTainted();
 }
 
