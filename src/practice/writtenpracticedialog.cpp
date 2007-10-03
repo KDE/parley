@@ -61,7 +61,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     connect(mw->typeCheckBox, SIGNAL(toggled(bool)), SLOT(slotTypeClicked(bool)));
     connect(mw->commentCheckBox, SIGNAL(toggled(bool)), SLOT(slotRemClicked(bool)));
-    connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFFClicked(bool)));
+    connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFalseFriendClicked(bool)));
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -469,22 +469,6 @@ void WrittenPracticeDialog::slotTransLostFocus()
 }
 
 
-void WrittenPracticeDialog::knowItClicked()
-{
-    mw->status->clear();
-    suggestion_hint = false;
-    emit sigQueryChoice(SkipKnown);
-}
-
-
-void WrittenPracticeDialog::dontKnowClicked()
-{
-    mw->status->clear();
-    suggestion_hint = false;
-    emit sigQueryChoice(SkipUnknown);
-}
-
-
 void WrittenPracticeDialog::setHintFields()
 {
     bool hasComment =
@@ -505,7 +489,7 @@ void WrittenPracticeDialog::setHintFields()
 }
 
 
-void WrittenPracticeDialog::slotFFClicked(bool show)
+void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 {
     if ( show ) {
         mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()));
@@ -572,15 +556,15 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 
     switch (e->key()) {
     case Qt::Key_Escape:
-        dontKnowClicked();
+        skipUnknown();
         break;
 
     case Qt::Key_Return:
     case Qt::Key_Enter:
         if (mw->dont_know->isDefault())
-            dontKnowClicked();
+            skipUnknown();
         else if (mw->know_it->isDefault())
-            knowItClicked();
+            skipKnown();
         else if (mw->show_all->isDefault())
             showSolution();
         else if (mw->verify->isDefault())
