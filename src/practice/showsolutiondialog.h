@@ -19,6 +19,11 @@
 
 class TestEntry;
 
+namespace Phonon
+{
+    class MediaObject;
+}
+
 class ShowSolutionDialog : public KDialog, Ui::ShowAnswerWidget
 {
     Q_OBJECT
@@ -27,9 +32,14 @@ public:
     ShowSolutionDialog(TestEntry* entry, QWidget *parent);
     ~ShowSolutionDialog();
 
-public slots:
-    // void playAudioQuestion();
-    // void playAudioAnswer();
+private slots:
+    void audioPlayFromIdentifier();
+    void audioPlayToIdentifier();
+    void audioPlayFile(const QString & soundFile);
+
+private:
+    TestEntry* m_entry;
+    Phonon::MediaObject* m_player;
 };
 
 #endif
