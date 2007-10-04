@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>609</height>
+    <height>576</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -504,7 +504,7 @@
          <string>If this is checked, the I Know button will be available. It allows you to tell the query that you know the result without writing it or having it checked. This is available by default. If you uncheck this, the I Know button will not be available.</string>
         </property>
         <property name="text" >
-         <string>Enable I Know &amp;button</string>
+         <string>Enable Skip (I Know it) &amp;button</string>
         </property>
        </widget>
       </item>
