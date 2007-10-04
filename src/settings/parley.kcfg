@@ -206,6 +206,10 @@
       <label>The language in which the user has to answer.</label>
       <default>1</default>
     </entry>
+    <entry name="ShowSolutionTime" type="Int">
+      <label>The time the solution is shown (seconds).</label>
+      <default>-1</default>
+    </entry>
     <entry name="TestType" type="Enum">
         <choices>
             <choice name="WrittenTest"/>
