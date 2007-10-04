@@ -133,9 +133,9 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     s.setNum(entry->statisticCount());
     mw->progCount->setText(s);
 
-    resetQueryWidget(mw->maleRadio);
-    resetQueryWidget(mw->femaleRadio);
-    resetQueryWidget(mw->neutralRadio);
+    setWidgetStyle(mw->maleRadio);
+    setWidgetStyle(mw->femaleRadio);
+    setWidgetStyle(mw->neutralRadio);
 
     // As long as the buttons are AutoExclusive we cannot uncheck all.
     mw->maleRadio->setChecked(true);
@@ -151,9 +151,9 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 
 void ArtQueryDlg::showSolution()
 {
-    resetQueryWidget(mw->maleRadio);
-    resetQueryWidget(mw->femaleRadio);
-    resetQueryWidget(mw->neutralRadio);
+    setWidgetStyle(mw->maleRadio);
+    setWidgetStyle(mw->femaleRadio);
+    setWidgetStyle(mw->neutralRadio);
 
     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
 
@@ -186,16 +186,16 @@ void ArtQueryDlg::verifyClicked()
 
     if (mw->femaleRadio->isChecked()) {
         verifyButton(mw->femaleRadio, known);
-        resetQueryWidget(mw->maleRadio);
-        resetQueryWidget(mw->neutralRadio);
+        setWidgetStyle(mw->maleRadio);
+        setWidgetStyle(mw->neutralRadio);
     } else if (mw->maleRadio->isChecked()) {
         verifyButton(mw->maleRadio, known);
-        resetQueryWidget(mw->femaleRadio);
-        resetQueryWidget(mw->neutralRadio);
+        setWidgetStyle(mw->femaleRadio);
+        setWidgetStyle(mw->neutralRadio);
     } else if (mw->neutralRadio->isChecked()) {
         verifyButton(mw->neutralRadio, known);
-        resetQueryWidget(mw->maleRadio);
-        resetQueryWidget(mw->femaleRadio);
+        setWidgetStyle(mw->maleRadio);
+        setWidgetStyle(mw->femaleRadio);
     }
 
     if (known)

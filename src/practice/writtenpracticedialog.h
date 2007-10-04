@@ -53,11 +53,9 @@ public slots:
     void verifyClicked();
     void showMoreClicked();
     void showSolution();
-    void knowItClicked();
-    void dontKnowClicked();
     void slotTransChanged(const QString&);
     void slotTransLostFocus();
-    void slotFFClicked(bool show);
+    void slotFalseFriendClicked(bool show);
     void slotTypeClicked(bool show);
     void slotRemClicked(bool show);
 

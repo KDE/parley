@@ -108,16 +108,16 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     button_ref.append(qMakePair(mw->rb_trans4, mw->trans4));
     button_ref.append(qMakePair(mw->rb_trans5, mw->trans5));
     randomSequence.randomize(button_ref);
-    resetQueryWidget(button_ref[0].first);
-    resetQueryWidget(button_ref[1].first);
-    resetQueryWidget(button_ref[2].first);
-    resetQueryWidget(button_ref[3].first);
-    resetQueryWidget(button_ref[4].first);
-    resetQueryWidget(button_ref[0].second);
-    resetQueryWidget(button_ref[1].second);
-    resetQueryWidget(button_ref[2].second);
-    resetQueryWidget(button_ref[3].second);
-    resetQueryWidget(button_ref[4].second);
+    setWidgetStyle(button_ref[0].first);
+    setWidgetStyle(button_ref[1].first);
+    setWidgetStyle(button_ref[2].first);
+    setWidgetStyle(button_ref[3].first);
+    setWidgetStyle(button_ref[4].first);
+    setWidgetStyle(button_ref[0].second);
+    setWidgetStyle(button_ref[1].second);
+    setWidgetStyle(button_ref[2].second);
+    setWidgetStyle(button_ref[3].second);
+    setWidgetStyle(button_ref[4].second);
 
     KEduVocMultipleChoice multipleChoice = vocExpression->translation(Prefs::toIdentifier()).multipleChoice();
     for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
@@ -232,16 +232,16 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
 void MCQueryDlg::showSolution()
 {
-    resetQueryWidget(button_ref[0].first);
-    resetQueryWidget(button_ref[1].first);
-    resetQueryWidget(button_ref[2].first);
-    resetQueryWidget(button_ref[3].first);
-    resetQueryWidget(button_ref[4].first);
-    resetQueryWidget(button_ref[0].second);
-    resetQueryWidget(button_ref[1].second);
-    resetQueryWidget(button_ref[2].second);
-    resetQueryWidget(button_ref[3].second);
-    resetQueryWidget(button_ref[4].second);
+    setWidgetStyle(button_ref[0].first);
+    setWidgetStyle(button_ref[1].first);
+    setWidgetStyle(button_ref[2].first);
+    setWidgetStyle(button_ref[3].first);
+    setWidgetStyle(button_ref[4].first);
+    setWidgetStyle(button_ref[0].second);
+    setWidgetStyle(button_ref[1].second);
+    setWidgetStyle(button_ref[2].second);
+    setWidgetStyle(button_ref[3].second);
+    setWidgetStyle(button_ref[4].second);
 
     button_ref[0].first->setFocus();
     button_ref[0].first->setChecked(true);

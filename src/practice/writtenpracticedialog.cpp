@@ -61,7 +61,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     connect(mw->typeCheckBox, SIGNAL(toggled(bool)), SLOT(slotTypeClicked(bool)));
     connect(mw->commentCheckBox, SIGNAL(toggled(bool)), SLOT(slotRemClicked(bool)));
-    connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFFClicked(bool)));
+    connect(mw->falsefriendCheckBox, SIGNAL(toggled(bool)), SLOT(slotFalseFriendClicked(bool)));
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
@@ -184,7 +184,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     if (Prefs::suggestions()) {
         for (i = 0; i < fields; i ++) {
             transCombos.at(i)->clearEditText();
-            resetQueryWidget(transCombos.at(i)->lineEdit());
+            setWidgetStyle(transCombos.at(i)->lineEdit());
         }
         for (k = 0; k < translations.count(); k ++)
             transCombos.at(k)->show();
@@ -194,7 +194,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
         for (i = 0; i < fields; i ++) {
             transFields.at(i)->clear();
             transFields.at(i)->setFont(Prefs::tableFont());
-            resetQueryWidget(transFields.at(i));
+            setWidgetStyle(transFields.at(i));
         }
 
         for (k = 0; k < translations.count(); k ++) {
@@ -380,7 +380,7 @@ void WrittenPracticeDialog::showMoreClicked()
                     mw->verify->setEnabled(false);
                 } else {
                     combo->setEditText(translations[i].left(length));
-                    resetQueryWidget(combo->lineEdit());
+                    setWidgetStyle(combo->lineEdit());
                 }
                 mw->dont_know->setDefault(true);
                 break;
@@ -401,7 +401,7 @@ void WrittenPracticeDialog::showMoreClicked()
                     mw->verify->setEnabled(false);
                 } else {
                     field->setText(translations[i].left(length));
-                    resetQueryWidget(field);
+                    setWidgetStyle(field);
                 }
                 mw->dont_know->setFocus();
                 mw->dont_know->setDefault(true);
@@ -445,7 +445,7 @@ void WrittenPracticeDialog::slotTransChanged(const QString&)
         if ( !edit ) {
             return; // cast failed
         }
-        resetQueryWidget(edit);
+        setWidgetStyle(edit);
         suggestion_hint = ! edit->text().isEmpty() && edit->text().length() <= 10;
         if (suggestion_hint)
             mw->status->setText(i18n("Press F5 for a list of translations starting with '%1'\n"
@@ -455,7 +455,7 @@ void WrittenPracticeDialog::slotTransChanged(const QString&)
         }
     } else {
         if ( (!suggestions) && senderedit) {
-            resetQueryWidget(senderedit);
+            setWidgetStyle(senderedit);
         }
     }
 }
@@ -466,22 +466,6 @@ void WrittenPracticeDialog::slotTransLostFocus()
         mw->status->clear();
     }
     suggestion_hint = false;
-}
-
-
-void WrittenPracticeDialog::knowItClicked()
-{
-    mw->status->clear();
-    suggestion_hint = false;
-    emit sigQueryChoice(SkipKnown);
-}
-
-
-void WrittenPracticeDialog::dontKnowClicked()
-{
-    mw->status->clear();
-    suggestion_hint = false;
-    emit sigQueryChoice(SkipUnknown);
 }
 
 
@@ -505,7 +489,7 @@ void WrittenPracticeDialog::setHintFields()
 }
 
 
-void WrittenPracticeDialog::slotFFClicked(bool show)
+void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 {
     if ( show ) {
         mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()));
@@ -572,15 +556,15 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 
     switch (e->key()) {
     case Qt::Key_Escape:
-        dontKnowClicked();
+        skipUnknown();
         break;
 
     case Qt::Key_Return:
     case Qt::Key_Enter:
         if (mw->dont_know->isDefault())
-            dontKnowClicked();
+            skipUnknown();
         else if (mw->know_it->isDefault())
-            knowItClicked();
+            skipKnown();
         else if (mw->show_all->isDefault())
             showSolution();
         else if (mw->verify->isDefault())

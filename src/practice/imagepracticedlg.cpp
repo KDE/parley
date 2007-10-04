@@ -74,7 +74,7 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 
     progCount->setText( QString::number(entry->statisticCount()) );
 
-    resetQueryWidget(answerLineEdit);
+    setWidgetStyle(answerLineEdit);
     answerLineEdit->setFocus();
 
     QString original = m_entry->exp->translation(Prefs::fromIdentifier()).text();
@@ -118,7 +118,7 @@ void ImagePracticeDlg::slotAnswerChanged()
 //             }
         }
     }
-    resetQueryWidget(answerLineEdit);
+    setWidgetStyle(answerLineEdit);
     verifySolutionButton->setDefault(true);
 }
 

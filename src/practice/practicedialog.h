@@ -50,7 +50,14 @@ class PracticeDialog : public KDialog
 {
 Q_OBJECT
 public:
+
     enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopIt };
+
+    enum WidgetStyle {
+        Default,        /**< Normal font, normal color (black) */
+        PositiveResult, /**< Green text, bold */
+        NegativeResult  /**< Red text, bold */
+    };
 
     /**
      * Default constructor for a test dialog.
@@ -137,9 +144,12 @@ protected:
     /** the same for QRadioButton */
     void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
 
-    /** set the default color and font */
-    void resetQueryWidget(QWidget *);
-
+    /**
+     * Set the color scheme of a widget to WidgetStyle.
+     * @param widget the widget to be modified
+     * @param style WidgetStyle
+     */
+    void setWidgetStyle(QWidget * widget, WidgetStyle style = Default);
     // Show string after selecting known/unknown
     // depending on progress and randomness
     QString  getOKComment(int percent);
@@ -147,7 +157,7 @@ protected:
     QString  getTimeoutComment(int percent);
 
     virtual void closeEvent(QCloseEvent*e);
-    void setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight);
+
 
     KEduVocDocument   *m_doc;
     TestEntry* m_entry;

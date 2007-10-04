@@ -25,6 +25,7 @@
 #include "practicedialog.h"
 #include "entry-dialogs/EntryDlg.h"
 #include <KLocale>
+#include <KColorScheme>
 #include <Phonon/MediaObject>
 #include <QLineEdit>
 #include <QTextEdit>
@@ -79,26 +80,12 @@ bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
         return true;
 
     if (smartCompare(really, field->text())) {  // answer was right - green text
-        setWidgetTextColorAndFontWeight(field, QColor(0x00, 0x80, 0x00), QFont::Bold);
+        setWidgetStyle(field, PositiveResult);
         return true;
     }
     // wrong - red text
-    setWidgetTextColorAndFontWeight(field, QColor(0xff, 0x00, 0x00), QFont::Bold);
+    setWidgetStyle(field, NegativeResult);
     return false;  // right/wrong
-}
-
-
-/**
- * Set text to black, font not bold.
- * @param widget
- */
-void PracticeDialog::resetQueryWidget(QWidget *w)
-{
-    if (!w->isEnabled()) {
-        return;
-    }
-    // set black text and normal font
-    setWidgetTextColorAndFontWeight(w, QColor(0x00, 0x00, 0x00), QFont::Normal);
 }
 
 
@@ -108,14 +95,14 @@ void PracticeDialog::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widg
         return;
 
     if (is_ok) {
-        setWidgetTextColorAndFontWeight(radio, QColor(0x00, 0x80, 0x00), QFont::Bold);
+        setWidgetStyle(radio, PositiveResult);
         if (widget2 != 0) {
-            setWidgetTextColorAndFontWeight(widget2, QColor(0x00, 0x80, 0x00), QFont::Bold);
+            setWidgetStyle(widget2, PositiveResult);
         }
     } else {
-        setWidgetTextColorAndFontWeight(radio, QColor(0xff, 0x00, 0x00), QFont::Bold);
+        setWidgetStyle(radio, NegativeResult);
         if (widget2 != 0) {
-            setWidgetTextColorAndFontWeight(widget2, QColor(0xff, 0x00, 0x00), QFont::Bold);
+            setWidgetStyle(widget2, NegativeResult);
         }
     }
 }
@@ -143,21 +130,6 @@ void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);
     emit sigQueryChoice(StopIt);
-}
-
-
-void PracticeDialog::setWidgetTextColorAndFontWeight(QWidget *widget, const QColor &color, QFont::Weight QFontWeight)
-{
-    QPalette qp = QPalette(widget->palette());
-    qp.setColor(QPalette::Active, QPalette::Text, color);
-    qp.setColor(QPalette::Inactive, QPalette::Text, color);
-    qp.setColor(QPalette::Active, QPalette::WindowText, color);
-    qp.setColor(QPalette::Inactive, QPalette::WindowText, color);
-    widget->setPalette(qp);
-
-    QFont ft = widget->font();
-    ft.setWeight(QFontWeight);
-    widget->setFont(ft);
 }
 
 
@@ -362,6 +334,36 @@ void PracticeDialog::setAnswerTainted(bool tainted)
 {
     m_answerTainted = tainted;
 }
+
+void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
+{
+    QColor color;
+    QFont ft = widget->font();
+
+    switch (style) {
+    case Default:
+        ft.setWeight(QFont::Normal);
+        color = QColor(0x00, 0x00, 0x00);
+        break;
+    case PositiveResult:
+        ft.setWeight(QFont::Bold);
+        color = QColor(0x00, 0x80, 0x00);
+        break;
+    case NegativeResult:
+        ft.setWeight(QFont::Bold);
+        color = QColor(0x8C, 0x25, 0x25);
+        break;
+    }
+
+    QPalette qp = QPalette(widget->palette());
+    qp.setColor(QPalette::Active, QPalette::Text, color);
+    qp.setColor(QPalette::Inactive, QPalette::Text, color);
+    qp.setColor(QPalette::Active, QPalette::WindowText, color);
+    qp.setColor(QPalette::Inactive, QPalette::WindowText, color);
+    widget->setPalette(qp);
+    widget->setFont(ft);
+}
+
 
 #include "practicedialog.moc"
 
