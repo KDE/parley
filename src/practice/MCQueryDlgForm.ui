@@ -309,6 +309,13 @@
           </widget>
          </item>
          <item row="2" column="0" >
+          <widget class="QPushButton" name="continueButton" >
+           <property name="text" >
+            <string>&amp;Continue</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1" >
           <spacer>
            <property name="orientation" >
             <enum>Qt::Horizontal</enum>
@@ -320,13 +327,6 @@
             </size>
            </property>
           </spacer>
-         </item>
-         <item row="2" column="1" >
-          <widget class="QPushButton" name="continueButton" >
-           <property name="text" >
-            <string>&amp;Continue</string>
-           </property>
-          </widget>
          </item>
         </layout>
        </item>

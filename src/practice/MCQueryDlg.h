@@ -46,6 +46,7 @@ public slots:
     void verifyClicked();
 
 private:
+    void showContinueButton(bool show);
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 

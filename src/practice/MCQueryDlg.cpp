@@ -101,10 +101,8 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->orgField->setFont(Prefs::tableFont());
     mw->orgField->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
     mw->show_all->setDefault(true);
-    mw->know_it->setVisible(true);
-    mw->dont_know->setVisible(true);
-    mw->show_all->setVisible(true);
-    mw->continueButton->setVisible(false);
+
+    showContinueButton(false);
 
     // Query cycle - how often did this show up (?)
     mw->progCount->setText(QString::number(entry->statisticCount()));
@@ -257,12 +255,7 @@ void MCQueryDlg::showSolution()
     button_ref[0].first->setChecked(true);
     verifyButton(button_ref[0].first, true, button_ref[0].second);
 
-    mw->know_it->setVisible(false);
-    mw->dont_know->setVisible(false);
-    mw->show_all->setVisible(false);
-
-    mw->continueButton->setVisible(true);
-    mw->continueButton->setDefault(true);
+    showContinueButton(true);
 
     setAnswerTainted();
 }
@@ -288,7 +281,7 @@ void MCQueryDlg::verifyClicked()
 
     if (known) {
         resultCorrect();
-        emit nextEntry();
+        showContinueButton(true);
         mw->status->setText(
                 getOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));
@@ -306,6 +299,16 @@ void MCQueryDlg::setProgressCounter(int current, int total)
 {
     mw->countbar->setMaximum(total);
     mw->countbar->setValue(current);
+}
+
+void MCQueryDlg::showContinueButton(bool show)
+{
+    mw->know_it->setVisible(!show);
+    mw->dont_know->setVisible(!show);
+    mw->show_all->setVisible(!show);
+
+    mw->continueButton->setVisible(show);
+    mw->continueButton->setDefault(show);
 }
 
 
