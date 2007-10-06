@@ -43,6 +43,7 @@ public:
 
 public slots:
     void slotResult(PracticeDialog::Result res);
+    void nextEntry();
 
 private:
     void createDialog();

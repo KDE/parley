@@ -63,7 +63,6 @@ PracticeManager::PracticeManager(ParleyApp *app, KEduVocDocument *doc)
     m_doc = doc;
 
     m_entryManager = new TestEntryManager(m_doc);
-
     m_testDialog = 0;
 }
 
@@ -112,7 +111,11 @@ kDebug() << "result: " << res;
     } else {
         num_queryTimeout = 0;
     }
+}
 
+
+void PracticeManager::nextEntry()
+{
     // get a new entry
     m_entry = m_entryManager->nextEntry();
     if ( m_entry == 0 ) {
@@ -213,8 +216,10 @@ void PracticeManager::createDialog()
 
     m_testDialog->setEntry( m_entry );
     m_testDialog->setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-    connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), this, SLOT(slotResult(PracticeDialog::Result)));
+    connect(m_testDialog, SIGNAL(sigQueryChoice(PracticeDialog::Result)), SLOT(slotResult(PracticeDialog::Result)));
     m_testDialog->show();
+
+    connect(m_testDialog, SIGNAL(nextEntry()), SLOT(nextEntry()));
 }
 
 

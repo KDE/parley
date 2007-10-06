@@ -48,6 +48,12 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    // only shown when the solution is displayed
+    mw->continueButton->setVisible(false);
+    mw->continueButton->setIcon(KIcon("ok"));
+    // connecting to SIGNAL nextEntry - emits the signal!
+    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
+
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
     mw->know_it->setIcon(KIcon("go-next"));
@@ -95,6 +101,10 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->orgField->setFont(Prefs::tableFont());
     mw->orgField->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
     mw->show_all->setDefault(true);
+    mw->know_it->setVisible(true);
+    mw->dont_know->setVisible(true);
+    mw->show_all->setVisible(true);
+    mw->continueButton->setVisible(false);
 
     // Query cycle - how often did this show up (?)
     mw->progCount->setText(QString::number(entry->statisticCount()));
@@ -232,21 +242,27 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
 void MCQueryDlg::showSolution()
 {
-    setWidgetStyle(button_ref[0].first);
-    setWidgetStyle(button_ref[1].first);
-    setWidgetStyle(button_ref[2].first);
-    setWidgetStyle(button_ref[3].first);
-    setWidgetStyle(button_ref[4].first);
-    setWidgetStyle(button_ref[0].second);
-    setWidgetStyle(button_ref[1].second);
-    setWidgetStyle(button_ref[2].second);
-    setWidgetStyle(button_ref[3].second);
-    setWidgetStyle(button_ref[4].second);
+    setWidgetStyle(button_ref[0].first, Default);
+    setWidgetStyle(button_ref[1].first, Default);
+    setWidgetStyle(button_ref[2].first, Default);
+    setWidgetStyle(button_ref[3].first, Default);
+    setWidgetStyle(button_ref[4].first, Default);
+    setWidgetStyle(button_ref[0].second, Default);
+    setWidgetStyle(button_ref[1].second, Default);
+    setWidgetStyle(button_ref[2].second, Default);
+    setWidgetStyle(button_ref[3].second, Default);
+    setWidgetStyle(button_ref[4].second, Default);
 
     button_ref[0].first->setFocus();
     button_ref[0].first->setChecked(true);
     verifyButton(button_ref[0].first, true, button_ref[0].second);
-    mw->dont_know->setDefault(true);
+
+    mw->know_it->setVisible(false);
+    mw->dont_know->setVisible(false);
+    mw->show_all->setVisible(false);
+
+    mw->continueButton->setVisible(true);
+    mw->continueButton->setDefault(true);
 
     setAnswerTainted();
 }
@@ -272,6 +288,7 @@ void MCQueryDlg::verifyClicked()
 
     if (known) {
         resultCorrect();
+        emit nextEntry();
         mw->status->setText(
                 getOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));

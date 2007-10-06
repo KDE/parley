@@ -510,6 +510,8 @@ kDebug() << "Result: " << result;
     default :
         kError() << "Unknown result from QueryDlg\n";
     }
+
+    printStatistics();
 }
 
 void TestEntryManager::printStatistics()

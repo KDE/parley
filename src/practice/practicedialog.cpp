@@ -147,7 +147,8 @@ void PracticeDialog::timeoutReached()
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showSolution();
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
-            emit sigQueryChoice(Timeout);
+            emit sigQueryChoice(Timeout); ///@todo check if this works - esp with 3x timeout
+            emit nextEntry();
         }
     }
 }
@@ -205,16 +206,19 @@ void PracticeDialog::editEntry()
     // punish with a don't know
     kDebug() << "Edit entry. For now count this attempt as wrong!";
     emit sigQueryChoice(Wrong);
+    emit nextEntry();
 }
 
 void PracticeDialog::skipKnown()
 {
     emit sigQueryChoice(SkipKnown);
+    emit nextEntry();
 }
 
 void PracticeDialog::skipUnknown()
 {
     emit sigQueryChoice(SkipUnknown);
+    emit nextEntry();
 }
 
 void PracticeDialog::resultCorrect()
@@ -222,9 +226,10 @@ void PracticeDialog::resultCorrect()
 //     audioPlayCorrect();
     if (!m_answerTainted) {
         emit sigQueryChoice(Correct);
+    } else {
+        kDebug() << "Correct answer but with help (counts as wrong).";
+        emit sigQueryChoice(Wrong);
     }
-    kDebug() << "Correct answer but with help (counts as wrong).";
-    emit sigQueryChoice(Wrong);
 }
 
 void PracticeDialog::resultWrong()
@@ -276,20 +281,15 @@ void PracticeDialog::audioPlayCorrect()
         } else {
             m_player->setCurrentSource(soundFile);
         }
-        connect(m_player, SIGNAL(finished()), this, SLOT(emitCorrect()));
+        connect(m_player, SIGNAL(finished()), SLOT(resultCorrect()));
         m_player->play();
         kDebug() << "Play sound: " << soundFile;
     } else {
 //         QTimer::singleShot(2000, this, SLOT(emitCorrect()));
-        emitCorrect();
+        resultCorrect();
     }
 }
 
-void PracticeDialog::emitCorrect()
-{
-kDebug() << "Correct";
-    emit sigQueryChoice(Correct);
-}
 
 void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
 {

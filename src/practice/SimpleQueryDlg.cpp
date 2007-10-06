@@ -179,6 +179,7 @@ void SimpleQueryDlg::verifyClicked()
 {
     if (verifyField(mw->answerField, answerstring)) {
         resultCorrect();
+        emit nextEntry();
     } else {
         setAnswerTainted();
         mw->dont_know->setDefault(true);

@@ -105,10 +105,15 @@ public slots:
 
 signals:
     /**
-     * The result to this question.
+     * The result to this question. Does only emit the result to be stored. To move on to the next entry use nextEntry.
      * @param result
      */
     void sigQueryChoice(PracticeDialog::Result);
+
+    /**
+     * Create the next entry dialog or return if all vocabulary have been practiced.
+     */
+    void nextEntry();
 
 protected slots:
     /**
@@ -175,8 +180,6 @@ protected:
      */
     void setAnswerTainted(bool tainted = true);
 
-private slots:
-    void emitCorrect();
 private:
     void audioPlayCorrect();
     QTimer    *m_timer;

@@ -354,6 +354,7 @@ void VerbQueryDlg::verifyClicked()
     if (known) {
         kDebug() << "correct!";
         resultCorrect();
+        emit nextEntry();
     } else {
         setAnswerTainted();
         mw->dont_know->setDefault(true);

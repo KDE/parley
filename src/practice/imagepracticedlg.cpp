@@ -135,6 +135,7 @@ void ImagePracticeDlg::verifyClicked()
 {
     if (verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text())) {
         resultCorrect();
+        emit nextEntry();
     } else {
         setAnswerTainted();
     }

@@ -25,6 +25,13 @@
 
 #include "writtenpracticedialog.h"
 
+#include "kvttablemodel.h"
+#include <keduvocdocument.h>
+
+#include <KComboBox>
+#include <KLineEdit>
+#include <KLocale>
+
 #include <QApplication>
 #include <QCheckBox>
 #include <QGroupBox>
@@ -38,12 +45,6 @@
 #include <QByteArray>
 #include <QList>
 
-#include <KComboBox>
-#include <KLineEdit>
-#include <KLocale>
-
-#include <kvttablemodel.h>
-#include <keduvocdocument.h>
 
 WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
 {
@@ -70,6 +71,12 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     mw->show_more->setVisible(Prefs::showMore());
     mw->know_it->setVisible(Prefs::iKnow());
+
+    // only shown when the solution is displayed
+    mw->continueButton->setVisible(false);
+    mw->continueButton->setIcon(KIcon("ok"));
+    // connecting to SIGNAL nextEntry - emits the signal!
+    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -170,6 +177,7 @@ WrittenPracticeDialog::~WrittenPracticeDialog()
 void WrittenPracticeDialog::setEntry( TestEntry* entry )
 {
     PracticeDialog::setEntry(entry);
+    mw->continueButton->setVisible(false);
 
     QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
     if (Prefs::split())
@@ -327,6 +335,7 @@ void WrittenPracticeDialog::verifyClicked()
             int percent = ((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0));
             mw->status->setText(getOKComment(percent));
             resultCorrect();
+            emit nextEntry();
         } else {
             for (i = 0; i < combos.count(); i ++) {
                 verifyField(combos.at(i)->lineEdit(), "a\na");
@@ -353,6 +362,7 @@ void WrittenPracticeDialog::verifyClicked()
         if (trans.count() == 0) {
             mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             resultCorrect();
+            emit nextEntry();
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);

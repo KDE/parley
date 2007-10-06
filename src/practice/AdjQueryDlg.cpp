@@ -154,12 +154,14 @@ void AdjQueryDlg::verifyClicked()
     if (!verifyField(mw->lev3Field, comp.l3()))
         all_known = false;
 
-    if (all_known)
+    if (all_known) {
 //  know_it->setDefault(true);
         resultCorrect();
-    else
+        emit nextEntry();
+    } else {
         mw->dont_know->setDefault(true);
         setAnswerTainted();
+    }
 }
 
 

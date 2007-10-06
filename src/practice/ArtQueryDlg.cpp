@@ -198,10 +198,12 @@ void ArtQueryDlg::verifyClicked()
         setWidgetStyle(mw->femaleRadio);
     }
 
-    if (known)
+    if (known) {
         resultCorrect();
-    else
+        emit nextEntry();
+    } else {
         mw->dont_know->setDefault(true);
+    }
 }
 
 
