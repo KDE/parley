@@ -159,13 +159,13 @@ void ArtQueryDlg::showSolution()
 
     if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
         mw->maleRadio->setChecked(true);
-        verifyButton(mw->maleRadio, true);
+        setWidgetStyle(mw->maleRadio, PositiveResult);
     } else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
         mw->femaleRadio->setChecked(true);
-        verifyButton(mw->femaleRadio, true);
+        setWidgetStyle(mw->femaleRadio, PositiveResult);
     } else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
         mw->neutralRadio->setChecked(true);
-        verifyButton(mw->neutralRadio, true);
+        setWidgetStyle(mw->neutralRadio, PositiveResult);
     }
     mw->dont_know->setDefault(true);
     setAnswerTainted();
@@ -176,29 +176,34 @@ void ArtQueryDlg::verifyClicked()
 {
     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
 
-    bool known = false;
-    if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale())
-        known = mw->maleRadio->isChecked();
-    else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale())
-        known = mw->femaleRadio->isChecked();
-    else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral())
-        known = mw->neutralRadio->isChecked();
+    bool correct = false;
 
-    if (mw->femaleRadio->isChecked()) {
-        verifyButton(mw->femaleRadio, known);
-        setWidgetStyle(mw->maleRadio);
-        setWidgetStyle(mw->neutralRadio);
-    } else if (mw->maleRadio->isChecked()) {
-        verifyButton(mw->maleRadio, known);
-        setWidgetStyle(mw->femaleRadio);
-        setWidgetStyle(mw->neutralRadio);
-    } else if (mw->neutralRadio->isChecked()) {
-        verifyButton(mw->neutralRadio, known);
-        setWidgetStyle(mw->maleRadio);
-        setWidgetStyle(mw->femaleRadio);
+    if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale()) {
+        if ( mw->maleRadio->isChecked() ) {
+            setWidgetStyle(mw->maleRadio, PositiveResult);
+            correct = true;
+        } else {
+            setWidgetStyle(mw->maleRadio, NegativeResult);
+        }
+    }
+    if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
+        if ( mw->femaleRadio->isChecked() ) {
+            setWidgetStyle(mw->femaleRadio, PositiveResult);
+            correct = true;
+        } else {
+            setWidgetStyle(mw->femaleRadio, NegativeResult);
+        }
+    }
+    if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
+        if ( mw->neutralRadio->isChecked() ) {
+            setWidgetStyle(mw->neutralRadio, PositiveResult);
+            correct = true;
+        } else {
+            setWidgetStyle(mw->neutralRadio, NegativeResult);
+        }
     }
 
-    if (known) {
+    if (correct) {
         resultCorrect();
         emit nextEntry();
     } else {

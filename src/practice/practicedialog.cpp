@@ -75,36 +75,20 @@ bool PracticeDialog::smartCompare(const QString& s1, const QString &s2) const
  */
 bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
 {
-    /** @todo the colors should not be hard coded here. */
-    if (!field->isEnabled())
+    kDebug() << "Compare: " << field->text() << really;
+
+    if (!field->isEnabled()) {
         return true;
+    }
 
     if (smartCompare(really, field->text())) {  // answer was right - green text
         setWidgetStyle(field, PositiveResult);
         return true;
     }
+
     // wrong - red text
     setWidgetStyle(field, NegativeResult);
     return false;  // right/wrong
-}
-
-
-void PracticeDialog::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
-{
-    if (!radio->isEnabled())
-        return;
-
-    if (is_ok) {
-        setWidgetStyle(radio, PositiveResult);
-        if (widget2 != 0) {
-            setWidgetStyle(widget2, PositiveResult);
-        }
-    } else {
-        setWidgetStyle(radio, NegativeResult);
-        if (widget2 != 0) {
-            setWidgetStyle(widget2, NegativeResult);
-        }
-    }
 }
 
 

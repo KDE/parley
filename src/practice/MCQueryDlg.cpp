@@ -48,8 +48,6 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
-    // only shown when the solution is displayed
-    mw->continueButton->setVisible(false);
     mw->continueButton->setIcon(KIcon("ok"));
     // connecting to SIGNAL nextEntry - emits the signal!
     connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
@@ -308,7 +306,39 @@ void MCQueryDlg::showContinueButton(bool show)
     mw->show_all->setVisible(!show);
 
     mw->continueButton->setVisible(show);
-    mw->continueButton->setDefault(show);
+
+    if ( show ) {
+        mw->continueButton->setDefault(true);
+    } else {
+        mw->dont_know->setDefault(true);
+    }
+}
+
+
+/**
+ * Used to paint a radio button in result color.
+ * @todo rename, rewrite...
+ * This doesn't even verify - it needs to be told if the result is correct.
+ * @param radio
+ * @param is_ok
+ * @param widget2
+ */
+void MCQueryDlg::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
+{
+    if (!radio->isEnabled())
+        return;
+
+    if (is_ok) {
+        setWidgetStyle(radio, PositiveResult);
+        if (widget2 != 0) {
+            setWidgetStyle(widget2, PositiveResult);
+        }
+    } else {
+        setWidgetStyle(radio, NegativeResult);
+        if (widget2 != 0) {
+            setWidgetStyle(widget2, NegativeResult);
+        }
+    }
 }
 
 

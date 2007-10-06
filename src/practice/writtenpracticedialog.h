@@ -68,6 +68,8 @@ private:
     void setHintFields();
     QStringList extractTranslations(const QString &);
 
+    void showContinueButton(bool show);
+
     QList<KComboBox*> transCombos;
     QList<KLineEdit*> transFields;
 

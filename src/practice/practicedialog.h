@@ -140,14 +140,11 @@ protected:
     void imageShowFile(QGraphicsView* view, const QString& url);
     void imageShowFromEntry(QGraphicsView* view, const TestEntry* entry);
 
-    /** compare two strings with simplified applied first */
+    /** compare two strings with simplified applied first (pretty smart huh?) */
     bool smartCompare(const QString&, const QString&) const;
 
     /** compare lineEdit and string, set lineEdit style */
     bool verifyField(QLineEdit *field, const QString &really);
-
-    /** the same for QRadioButton */
-    void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
 
     /**
      * Set the color scheme of a widget to WidgetStyle.

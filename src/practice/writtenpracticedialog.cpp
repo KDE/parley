@@ -51,6 +51,10 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw = new Ui::WrittenPracticeDialog();
     mw->setupUi(mainWidget());
 
+    mw->continueButton->setIcon(KIcon("ok"));
+    // connecting to SIGNAL nextEntry - emits the signal!
+    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
+
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
     mw->verify->setIcon(KIcon("ok"));
@@ -69,14 +73,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
     connect(mw->show_more, SIGNAL(clicked()), SLOT(showMoreClicked()));
 
-    mw->show_more->setVisible(Prefs::showMore());
-    mw->know_it->setVisible(Prefs::iKnow());
-
-    // only shown when the solution is displayed
-    mw->continueButton->setVisible(false);
-    mw->continueButton->setIcon(KIcon("ok"));
-    // connecting to SIGNAL nextEntry - emits the signal!
-    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
+    showContinueButton(false);
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -177,7 +174,7 @@ WrittenPracticeDialog::~WrittenPracticeDialog()
 void WrittenPracticeDialog::setEntry( TestEntry* entry )
 {
     PracticeDialog::setEntry(entry);
-    mw->continueButton->setVisible(false);
+    showContinueButton(false);
 
     QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
     if (Prefs::split())
@@ -321,21 +318,24 @@ void WrittenPracticeDialog::verifyClicked()
     int j;
     if (Prefs::suggestions()) {
         QList<KComboBox*> combos(transCombos);
-        for (i = combos.count() - 1; i >= translations.count(); i --)
+        for (i = combos.count() - 1; i >= translations.count(); i --) {
             combos.removeAt(i);
-        for (i = 0; i < combos.count(); i ++)
-            for (j = 0; j < trans.count(); j ++)
+        }
+        for (i = 0; i < combos.count(); i ++) {
+            for (j = 0; j < trans.count(); j ++) {
                 if (smartCompare(trans[j], combos.at(i)->currentText())) {
                     verifyField(combos.at(i)->lineEdit(), trans[j]);
                     trans.removeAt(j);
                     combos.removeAt(i --);
                     break;
                 }
+            }
+        }
         if (trans.count() == 0) {
             int percent = ((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0));
             mw->status->setText(getOKComment(percent));
             resultCorrect();
-            emit nextEntry();
+            showContinueButton(true);
         } else {
             for (i = 0; i < combos.count(); i ++) {
                 verifyField(combos.at(i)->lineEdit(), "a\na");
@@ -345,13 +345,15 @@ void WrittenPracticeDialog::verifyClicked()
             setAnswerTainted();
         }
     } else {
+    // suggestions off
         QList<KLineEdit*> fields(transFields);
-        for (i = fields.count() - 1; i >= translations.count(); i --)
+        for (i = fields.count() - 1; i >= translations.count(); i --) {
             fields.removeAt(i);
+        }
         for (i = 0; i < fields.count(); i ++) {
             for (j = 0; j < trans.count(); j ++) {
                 if (smartCompare(trans[j], fields.at(i)->text())) {
-                    verifyField(fields.at(i), "a\na");  // always fail
+                    verifyField(fields.at(i), trans[j]);
                     trans.removeAt(j);
                     fields.removeAt(i --);
                     break;
@@ -362,7 +364,7 @@ void WrittenPracticeDialog::verifyClicked()
         if (trans.count() == 0) {
             mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
             resultCorrect();
-            emit nextEntry();
+            showContinueButton(true);
         } else {
             for (i = 0; i < fields.count(); i ++) {
                 verifyField(fields.at(i), trans[i]);
@@ -408,7 +410,7 @@ void WrittenPracticeDialog::showMoreClicked()
                 if (length >= translations[i].length()) {
                     field->setText(translations[i]);
                     verifyField(field, translations[i]);
-                    mw->verify->setEnabled(false);
+                    showContinueButton(true);
                 } else {
                     field->setText(translations[i].left(length));
                     setWidgetStyle(field);
@@ -436,8 +438,9 @@ void WrittenPracticeDialog::showSolution()
             transFields.at(i)->setText(translations[i]);
             verifyField(transFields.at(i), translations[i]);
         }
-    mw->verify->setEnabled(false);
-    mw->dont_know->setDefault(true);
+
+    showContinueButton(true);
+
     mw->status->clear();
     suggestion_hint = false;
 }
@@ -571,14 +574,17 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 
     case Qt::Key_Return:
     case Qt::Key_Enter:
-        if (mw->dont_know->isDefault())
+        if (mw->dont_know->isDefault()) {
             skipUnknown();
-        else if (mw->know_it->isDefault())
+        } else if (mw->know_it->isDefault()) {
             skipKnown();
-        else if (mw->show_all->isDefault())
+        } else if (mw->show_all->isDefault()) {
             showSolution();
-        else if (mw->verify->isDefault())
+        } else if (mw->verify->isDefault()) {
             verifyClicked();
+        } else if (mw->continueButton->isDefault()) {
+            emit nextEntry();
+        }
         break;
 
     default:
@@ -591,6 +597,24 @@ void WrittenPracticeDialog::setProgressCounter(int current, int total)
 {
     mw->countbar->setMaximum(total);
     mw->countbar->setValue(current);
+}
+
+void WrittenPracticeDialog::showContinueButton(bool show)
+{
+    mw->dont_know->setVisible(!show);
+    mw->know_it->setVisible(!show && Prefs::iKnow());
+    mw->show_more->setVisible(!show && Prefs::showMore());
+    mw->show_all->setVisible(!show);
+    mw->verify->setVisible(!show);
+
+
+    mw->continueButton->setVisible(show);
+
+    if ( show ) {
+        mw->continueButton->setDefault(true);
+    } else {
+        mw->verify->setDefault(true);
+    }
 }
 
 #include "writtenpracticedialog.moc"
