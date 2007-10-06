@@ -48,8 +48,8 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(dontKnowClicked()));
-    connect(mw->know_it, SIGNAL(clicked()), SLOT(knowItClicked()));
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
+    connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
@@ -168,19 +168,6 @@ void AdjQueryDlg::resetAllFields()
     setWidgetStyle(mw->lev1Field, Default);
     setWidgetStyle(mw->lev2Field, Default);
     setWidgetStyle(mw->lev3Field, Default);
-}
-
-
-void AdjQueryDlg::knowItClicked()
-{
-    emit sigQueryChoice(SkipKnown);
-}
-
-
-
-void AdjQueryDlg::dontKnowClicked()
-{
-    emit sigQueryChoice(SkipUnknown);
 }
 
 
