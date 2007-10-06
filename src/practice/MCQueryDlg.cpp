@@ -238,12 +238,13 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
 void MCQueryDlg::showSolution()
 {
-    setWidgetStyle(button_ref[0].first, Default);
+    setWidgetStyle(button_ref[0].first, PositiveResult);
+    setWidgetStyle(button_ref[0].second, PositiveResult);
+
     setWidgetStyle(button_ref[1].first, Default);
     setWidgetStyle(button_ref[2].first, Default);
     setWidgetStyle(button_ref[3].first, Default);
     setWidgetStyle(button_ref[4].first, Default);
-    setWidgetStyle(button_ref[0].second, Default);
     setWidgetStyle(button_ref[1].second, Default);
     setWidgetStyle(button_ref[2].second, Default);
     setWidgetStyle(button_ref[3].second, Default);
@@ -251,7 +252,6 @@ void MCQueryDlg::showSolution()
 
     button_ref[0].first->setFocus();
     button_ref[0].first->setChecked(true);
-    verifyButton(button_ref[0].first, true, button_ref[0].second);
 
     showContinueButton(true);
 
@@ -264,15 +264,20 @@ void MCQueryDlg::verifyClicked()
     bool known = button_ref[0].first->isChecked();
 
     if (button_ref[0].first->isChecked()) {
-        verifyButton(button_ref[0].first, known, button_ref[0].second);
+        setWidgetStyle(button_ref[0].first, PositiveResult);
+        setWidgetStyle(button_ref[0].second, PositiveResult);
     } else if (button_ref[1].first->isChecked()) {
-        verifyButton(button_ref[1].first, known, button_ref[1].second);
+        setWidgetStyle(button_ref[1].first, NegativeResult);
+        setWidgetStyle(button_ref[1].second, NegativeResult);
     } else if (button_ref[2].first->isChecked()) {
-        verifyButton(button_ref[2].first, known, button_ref[2].second);
+        setWidgetStyle(button_ref[2].first, NegativeResult);
+        setWidgetStyle(button_ref[2].second, NegativeResult);
     } else if (button_ref[3].first->isChecked()) {
-        verifyButton(button_ref[3].first, known, button_ref[3].second);
+        setWidgetStyle(button_ref[3].first, NegativeResult);
+        setWidgetStyle(button_ref[3].second, NegativeResult);
     } else if (button_ref[4].first->isChecked()) {
-        verifyButton(button_ref[4].first, known, button_ref[4].second);
+        setWidgetStyle(button_ref[4].first, NegativeResult);
+        setWidgetStyle(button_ref[4].second, NegativeResult);
     }
 
     ///@todo move the status bar stuff either in or out of the base class
@@ -311,33 +316,6 @@ void MCQueryDlg::showContinueButton(bool show)
         mw->continueButton->setDefault(true);
     } else {
         mw->dont_know->setDefault(true);
-    }
-}
-
-
-/**
- * Used to paint a radio button in result color.
- * @todo rename, rewrite...
- * This doesn't even verify - it needs to be told if the result is correct.
- * @param radio
- * @param is_ok
- * @param widget2
- */
-void MCQueryDlg::verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2)
-{
-    if (!radio->isEnabled())
-        return;
-
-    if (is_ok) {
-        setWidgetStyle(radio, PositiveResult);
-        if (widget2 != 0) {
-            setWidgetStyle(widget2, PositiveResult);
-        }
-    } else {
-        setWidgetStyle(radio, NegativeResult);
-        if (widget2 != 0) {
-            setWidgetStyle(widget2, NegativeResult);
-        }
     }
 }
 

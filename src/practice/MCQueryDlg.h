@@ -46,10 +46,6 @@ public slots:
     void verifyClicked();
 
 private:
-    /** Set style for QRadioButton
-        @todo rewrite, rename */
-    void verifyButton(QRadioButton *radio, bool is_ok, QWidget *widget2 = 0);
-
     void showContinueButton(bool show);
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
