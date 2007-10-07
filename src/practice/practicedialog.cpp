@@ -238,7 +238,7 @@ void PracticeDialog::resultWrong()
 
 void PracticeDialog::audioPlayFromIdentifier()
 {
-    QString file = m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl().url();
+    KUrl file = m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -246,19 +246,25 @@ void PracticeDialog::audioPlayFromIdentifier()
 
 void PracticeDialog::audioPlayToIdentifier()
 {
-    QString file = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl().url();
+    KUrl file = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
 }
 
-void PracticeDialog::audioPlayFile(const QString & soundFile)
+void PracticeDialog::audioPlayFile(const KUrl & soundFile)
 {
     kDebug() << "Attempting to play sound: " << soundFile;
 
-    Phonon::MediaObject* player;
-    player->setCurrentSource(soundFile);
-    player->play();
+    if (!m_player) {
+        m_player = new Phonon::MediaObject(this);
+        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
+        createPath(m_player, audioOutput);
+    } else {
+        m_player->stop();
+    }
+    m_player->setCurrentSource(soundFile);
+    m_player->play();
 }
 
 
@@ -340,16 +346,6 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
     widget->setFont(ft);
 }
 
-
-Phonon::MediaObject* PracticeDialog::audioPlayer()
-{
-    if (!m_player) {
-        m_player = new Phonon::MediaObject(this);
-        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
-        createPath(m_player, audioOutput);
-    }
-    return m_player;
-}
 
 void PracticeDialog::startShowSolutionTimer()
 {

@@ -25,13 +25,14 @@
 #ifndef PRACTICEDIALOG_H
 #define PRACTICEDIALOG_H
 
+#include "testentrymanager.h"
+#include "prefs.h"
+
+#include <keduvocgrammar.h>
+#include <KUrl>
+#include <KDialog>
 #include <QCloseEvent>
 #include <QProgressBar>
-#include <KDialog>
-
-#include "testentrymanager.h"
-#include <keduvocgrammar.h>
-#include "prefs.h"
 
 class KEduVocExpression;
 class KEduVocDocument;
@@ -126,6 +127,16 @@ protected slots:
      */
     void skipUnknown();
 
+    /**
+     * Play the audio file associated with the question.
+     */
+    void audioPlayFromIdentifier();
+
+    /**
+     * Play the soundfile associated with the solution.
+     */
+    void audioPlayToIdentifier();
+
 protected:
     void resultCorrect();
     void resultWrong();
@@ -133,15 +144,7 @@ protected:
     virtual void setStatusText(const QString &status) = 0;
     virtual QProgressBar* timebar() = 0;
 
-    void audioPlayFromIdentifier();
-    void audioPlayToIdentifier();
-    void audioPlayFile(const QString& soundFile);
-
-    /**
-     * Get the player object. Initializes the player if it has not been initialized.
-     * @return
-     */
-    Phonon::MediaObject* audioPlayer();
+    void audioPlayFile(const KUrl& soundFile);
 
     void imageShowFile(QGraphicsView* view, const QString& url);
     void imageShowFromEntry(QGraphicsView* view, const TestEntry* entry);

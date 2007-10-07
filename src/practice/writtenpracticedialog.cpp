@@ -158,6 +158,11 @@ kDebug() << " added " << vocabulary.count() << " suggestions";
 
     mw->imageGraphicsView->setVisible(false);
 
+    mw->audioPlayQuestionButton->setIcon(KIcon("media-playback-start"));
+    mw->audioPlaySolutionButton->setIcon(KIcon("media-playback-start"));
+    connect(mw->audioPlayQuestionButton, SIGNAL(clicked()), SLOT(audioPlayFromIdentifier()));
+    connect(mw->audioPlaySolutionButton, SIGNAL(clicked()), SLOT(audioPlayToIdentifier()));
+
     KConfigGroup cg(KGlobal::config(), "RandomQueryDialog");
     restoreDialogSize(cg);
 }
@@ -232,6 +237,10 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     else {
         transFields.at(0)->setFocus();
     }
+
+    mw->audioPlayQuestionButton->setVisible(!entry->exp->translation( Prefs::fromIdentifier() ).soundUrl().isEmpty());
+
+    mw->audioPlaySolutionButton->setVisible(!entry->exp->translation( Prefs::toIdentifier()).soundUrl().isEmpty());
 
     imageShowFromEntry( mw->imageGraphicsView, entry );
 }
@@ -427,17 +436,18 @@ void WrittenPracticeDialog::showMoreClicked()
 
 void WrittenPracticeDialog::showSolution()
 {
-    if (Prefs::suggestions())
+    if (Prefs::suggestions()) {
         for (int i = 0; i < translations.count(); i ++) {
             transCombos.at(i)->setEditText(translations[i]);
             verifyField(transCombos.at(i)->lineEdit(), translations[i]);
         }
-    else
+    } else {
         for (int i = 0; i < translations.count(); i ++) {
             transFields.at(i)->setText(translations[i]);
             verifyField(transFields.at(i), translations[i]);
         }
-
+    }
+    setAnswerTainted();
     showContinueButton(true);
 
     mw->status->clear();
@@ -630,12 +640,12 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     if ( show ) {
         stopAnswerTimer();
         mw->continueButton->setDefault(true);
-        startShowSolutionTimer();
+        if ( !answerTainted() ) {
+            startShowSolutionTimer();
+        }
     } else {
         mw->verify->setDefault(true);
     }
-
-
 }
 
 #include "writtenpracticedialog.moc"

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>712</width>
-    <height>435</height>
+    <width>746</width>
+    <height>448</height>
    </rect>
   </property>
   <property name="sizePolicy" >
@@ -49,8 +49,8 @@
        <property name="title" >
         <string/>
        </property>
-       <layout class="QVBoxLayout" >
-        <item>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
          <widget class="QLabel" name="orgField" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Minimum" hsizetype="Expanding" >
@@ -69,7 +69,14 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="0" column="1" >
+         <widget class="QPushButton" name="audioPlayQuestionButton" >
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
          <widget class="QLabel" name="TextLabel1" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Fixed" hsizetype="Expanding" >
@@ -99,7 +106,7 @@
           </property>
          </widget>
         </item>
-        <item>
+        <item row="2" column="0" >
          <widget class="QFrame" name="TranslationFrame" >
           <property name="sizePolicy" >
            <sizepolicy vsizetype="Preferred" hsizetype="Expanding" >
@@ -121,6 +128,13 @@
           </property>
          </widget>
         </item>
+        <item row="2" column="1" >
+         <widget class="QPushButton" name="audioPlaySolutionButton" >
+          <property name="text" >
+           <string/>
+          </property>
+         </widget>
+        </item>
        </layout>
       </widget>
      </item>
@@ -131,8 +145,8 @@
        </property>
        <property name="sizeHint" >
         <size>
-         <width>471</width>
-         <height>16</height>
+         <width>520</width>
+         <height>20</height>
         </size>
        </property>
       </spacer>
