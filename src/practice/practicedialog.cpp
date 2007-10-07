@@ -27,6 +27,9 @@
 #include <KLocale>
 #include <KColorScheme>
 #include <Phonon/MediaObject>
+#include <Phonon/Path>
+#include <Phonon/AudioOutput>
+#include <Phonon/Global>
 #include <QLineEdit>
 #include <QTextEdit>
 #include <QRadioButton>
@@ -47,7 +50,7 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 
     m_doc = doc;
     m_entry = 0;
-    m_timer = 0;
+    m_answerTimer = 0;
 
     m_player = 0;
 }
@@ -119,14 +122,14 @@ void PracticeDialog::closeEvent(QCloseEvent *e)
 
 void PracticeDialog::timeoutReached()
 {
-    // update every second, count down m_timerCount
-    if (m_timerCount > 0) {
-        m_timerCount--;
-        timebar()->setValue(m_timerCount);
-        m_timer->start(1000);
+    // update every second, count down m_answerTimerCount
+    if (m_answerTimerCount > 0) {
+        m_answerTimerCount--;
+        timebar()->setValue(m_answerTimerCount);
+        m_answerTimer->start(1000);
     }
 
-    if (m_timerCount <= 0) {
+    if (m_answerTimerCount <= 0) {
         timebar()->setValue(0);
         if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
             showSolution();
@@ -147,17 +150,17 @@ void PracticeDialog::startTimer()
 
     int mqtime = Prefs::maxTimePer();
     if (mqtime > 0) {
-        if (m_timer == 0) {
-            m_timer = new QTimer(this);
-            m_timer->setSingleShot(true);
-            connect(m_timer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
+        if (m_answerTimer == 0) {
+            m_answerTimer = new QTimer(this);
+            m_answerTimer->setSingleShot(true);
+            connect(m_answerTimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
         if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
-            m_timerCount = mqtime;
-            timebar()->setMaximum(m_timerCount);
-            timebar()->setValue(m_timerCount);
-            m_timer->start(1000);
+            m_answerTimerCount = mqtime;
+            timebar()->setMaximum(m_answerTimerCount);
+            timebar()->setValue(m_answerTimerCount);
+            m_answerTimer->start(1000);
         } else
             timebar()->setEnabled(false);
     } else {
@@ -176,8 +179,8 @@ void PracticeDialog::setEntry(TestEntry * entry)
 
 void PracticeDialog::editEntry()
 {
-    if (m_timer != 0) {
-        m_timer->stop();
+    if (m_answerTimer != 0) {
+        m_answerTimer->stop();
     }
 
     EntryDlg* entryDlg = new EntryDlg(0 , m_doc);
@@ -240,38 +243,10 @@ void PracticeDialog::audioPlayToIdentifier()
 void PracticeDialog::audioPlayFile(const QString & soundFile)
 {
     kDebug() << "Attempting to play sound: " << soundFile;
-    if (!m_player)
-    {
-        kDebug() << "Creating Phonon player...";
-        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
-        m_player->setParent(this);
-    } else {
-        m_player->setCurrentSource(soundFile);
-//         m_player->enqueue(soundFile);
-    }
-    m_player->play();
-}
 
-
-void PracticeDialog::audioPlayCorrect()
-{
-    KUrl soundFile = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl();
-    if ( !soundFile.isEmpty() ) {
-        if (!m_player)
-        {
-            kDebug() << "Creating Phonon player...";
-            m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
-            m_player->setParent(this);
-        } else {
-            m_player->setCurrentSource(soundFile);
-        }
-        connect(m_player, SIGNAL(finished()), SLOT(resultCorrect()));
-        m_player->play();
-        kDebug() << "Play sound: " << soundFile;
-    } else {
-//         QTimer::singleShot(2000, this, SLOT(emitCorrect()));
-        resultCorrect();
-    }
+    Phonon::MediaObject* player;
+    player->setCurrentSource(soundFile);
+    player->play();
 }
 
 
@@ -319,6 +294,11 @@ void PracticeDialog::setAnswerTainted(bool tainted)
     m_answerTainted = tainted;
 }
 
+bool PracticeDialog::answerTainted()
+{
+    return m_answerTainted;
+}
+
 void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
 {
     QColor color;
@@ -348,6 +328,16 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
     widget->setFont(ft);
 }
 
+
+Phonon::MediaObject* PracticeDialog::audioPlayer()
+{
+    if (!m_player) {
+        m_player = new Phonon::MediaObject(this);
+        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
+        createPath(m_player, audioOutput);
+    }
+    return m_player;
+}
 
 #include "practicedialog.moc"
 

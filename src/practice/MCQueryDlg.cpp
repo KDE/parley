@@ -26,7 +26,6 @@
 #include "MCQueryDlg.h"
 #include "prefs.h"
 
-#include <QTimer>
 #include <QLabel>
 #include <QRadioButton>
 #include <QButtonGroup>

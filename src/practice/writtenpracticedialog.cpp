@@ -39,11 +39,10 @@
 #include <QLayout>
 #include <QPushButton>
 #include <QRegExp>
-#include <QTimer>
 #include <QVBoxLayout>
 #include <QKeyEvent>
-#include <QByteArray>
 #include <QList>
+#include <QTimer>
 
 
 WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
@@ -341,7 +340,7 @@ void WrittenPracticeDialog::verifyClicked()
                 verifyField(combos.at(i)->lineEdit(), "a\na");
             }  // always fail
             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-            mw->dont_know->setDefault(true);
+            mw->show_all->setDefault(true);
             setAnswerTainted();
         }
     } else {
@@ -370,7 +369,7 @@ void WrittenPracticeDialog::verifyClicked()
                 verifyField(fields.at(i), trans[i]);
             }
             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-            mw->dont_know->setDefault(true);
+            mw->show_all->setDefault(true);
             setAnswerTainted();
         }
     }
@@ -414,9 +413,9 @@ void WrittenPracticeDialog::showMoreClicked()
                 } else {
                     field->setText(translations[i].left(length));
                     setWidgetStyle(field);
+                    mw->verify->setDefault(true);
+                    field->setFocus();
                 }
-                mw->dont_know->setFocus();
-                mw->dont_know->setDefault(true);
                 break;
             }
         }
@@ -607,14 +606,29 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     mw->show_all->setVisible(!show);
     mw->verify->setVisible(!show);
 
-
     mw->continueButton->setVisible(show);
 
     if ( show ) {
         mw->continueButton->setDefault(true);
+
+// this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
+//         // after correct answer auto advance after x seconds...
+//         if(!answerTainted()) {
+//             // don't show the solution
+//             if ( Prefs::showSolutionTime() < 0 ) {
+//                 mw->continueButton->click();
+//             }
+//             // stay for the time set
+//             if ( Prefs::showSolutionTime() > 0 ) {
+//                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
+//             }
+//             // Prefs::showSolutionTime() == 0 stay without timeout
+//         }
     } else {
         mw->verify->setDefault(true);
     }
+
+
 }
 
 #include "writtenpracticedialog.moc"

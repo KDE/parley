@@ -137,6 +137,12 @@ protected:
     void audioPlayToIdentifier();
     void audioPlayFile(const QString& soundFile);
 
+    /**
+     * Get the player object. Initializes the player if it has not been initialized.
+     * @return
+     */
+    Phonon::MediaObject* audioPlayer();
+
     void imageShowFile(QGraphicsView* view, const QString& url);
     void imageShowFromEntry(QGraphicsView* view, const TestEntry* entry);
 
@@ -160,7 +166,6 @@ protected:
 
     virtual void closeEvent(QCloseEvent*e);
 
-
     KEduVocDocument   *m_doc;
     TestEntry* m_entry;
     int m_testType;
@@ -177,14 +182,21 @@ protected:
      */
     void setAnswerTainted(bool tainted = true);
 
+    /**
+     * Returns true if the answer is counted as wrong.
+     * @return
+     */
+    bool answerTainted();
+
+
 private:
-    void audioPlayCorrect();
-    QTimer    *m_timer;
-    int        m_timerCount;
+    QTimer    *m_answerTimer;
+    int        m_answerTimerCount;
 
     /// true if the user entered a false answer or received help (show more button). we still let the user give input until the right one is selected.
     bool m_answerTainted;
 
+    /// The sound player. Has to be initialized before using the first time.
     Phonon::MediaObject* m_player;
 };
 
