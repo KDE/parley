@@ -600,6 +600,25 @@ void WrittenPracticeDialog::setProgressCounter(int current, int total)
 
 void WrittenPracticeDialog::showContinueButton(bool show)
 {
+
+    if ( show ) {
+        // after correct answer auto advance after x seconds...
+        if(!answerTainted()) {
+            // don't show the solution
+            if ( Prefs::showSolutionTime() < 0 ) {
+                mw->continueButton->click();
+                return;
+            }
+            // stay for the time set
+
+// this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
+//             if ( Prefs::showSolutionTime() > 0 ) {
+//                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
+//             }
+            // Prefs::showSolutionTime() == 0 stay without timeout
+        }
+    }
+
     mw->dont_know->setVisible(!show);
     mw->know_it->setVisible(!show && Prefs::iKnow());
     mw->show_more->setVisible(!show && Prefs::showMore());
@@ -612,19 +631,14 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         stopTimer();
         mw->continueButton->setDefault(true);
 
+
+    // after correct answer auto advance after x seconds...
+
 // this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
-//         // after correct answer auto advance after x seconds...
-//         if(!answerTainted()) {
-//             // don't show the solution
-//             if ( Prefs::showSolutionTime() < 0 ) {
-//                 mw->continueButton->click();
-//             }
-//             // stay for the time set
 //             if ( Prefs::showSolutionTime() > 0 ) {
 //                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
 //             }
-//             // Prefs::showSolutionTime() == 0 stay without timeout
-//         }
+            // Prefs::showSolutionTime() == 0 stay without timeout
     } else {
         mw->verify->setDefault(true);
     }

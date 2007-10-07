@@ -312,6 +312,16 @@ void MCQueryDlg::setProgressCounter(int current, int total)
 
 void MCQueryDlg::showContinueButton(bool show)
 {
+    if ( show ) {
+        if(!answerTainted()) {
+            // don't show the solution
+            if ( Prefs::showSolutionTime() < 0 ) {
+                mw->continueButton->click();
+                return;
+            }
+        }
+    }
+
     mw->know_it->setVisible(!show);
     mw->dont_know->setVisible(!show);
     mw->show_all->setVisible(!show);
@@ -321,6 +331,14 @@ void MCQueryDlg::showContinueButton(bool show)
     if ( show ) {
         stopTimer();
         mw->continueButton->setDefault(true);
+
+        // after correct answer auto advance after x seconds...
+            // stay for the time set
+// this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
+//             if ( Prefs::showSolutionTime() > 0 ) {
+//                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
+//             }
+            // Prefs::showSolutionTime() == 0 stay without timeout
     } else {
         mw->dont_know->setDefault(true);
     }
