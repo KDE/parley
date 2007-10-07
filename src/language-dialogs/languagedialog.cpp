@@ -73,7 +73,7 @@ void LanguageDialog::accept()
         }
     }
     m_doc->setModified();
-    QDialog::accept();
+    KDialog::accept();
 }
 
 void LanguageDialog::slotAppendIdentifier()
@@ -137,7 +137,7 @@ void LanguageDialog::reject()
     foreach(int identifierIndex, m_appendList) {
         m_doc->removeIdentifier(identifierIndex);
     }
-    QDialog::reject();
+    KDialog::reject();
 }
 
 

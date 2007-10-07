@@ -28,8 +28,7 @@
 
 #include "ui_typeeditform.h"
 
-#include "keduvocwordtype.h"
-
+#include <keduvocwordtype.h>
 #include <QStandardItemModel>
 
 class KEduVocDocument;

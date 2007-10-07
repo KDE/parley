@@ -33,7 +33,7 @@
 #include <QPushButton>
 #include <QButtonGroup>
 
-ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Article Training"), doc, parent)
+ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18nc("@title:window", "Article Training"), doc, parent)
 {
     mw = new Ui::ArtQueryDlgForm();
     mw->setupUi(mainWidget());

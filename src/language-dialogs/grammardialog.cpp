@@ -89,7 +89,7 @@ void GrammarDialog::accept()
         langPage->accept();
     }
 
-    QDialog::accept();
+    KDialog::accept();
 }
 
 #include "grammardialog.moc"

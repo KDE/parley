@@ -529,7 +529,7 @@ void ParleyApp::initView()
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
-    m_searchLine->setToolTip(i18n("Enter space-seperated search terms to find words.\n\nEnter ^abc to look for words beginning with \"abc\".\nEnter abc$ to look for words ending with \"abc\".\nEnter type:verb to search for verbs."));
+    m_searchLine->setToolTip(i18n("Enter space-separated search terms to find words.\n\nEnter ^abc to look for words beginning with \"abc\".\nEnter abc$ to look for words ending with \"abc\".\nEnter type:verb to search for verbs."));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
     label->setBuddy(m_searchLine);

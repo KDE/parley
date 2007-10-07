@@ -223,7 +223,7 @@ private:
      */
     void createExampleEntries();
 
-    ///@todo these are refered to somewhere. should probably be avoidable.
+    ///@todo these are referred to somewhere. should probably be avoidable.
     // KAction pointers to enable/disable actions
     KRecentFilesAction* fileOpenRecent;
     KAction* editDelete;

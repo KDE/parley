@@ -200,7 +200,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
-///@todo seperate the tests to show better info here. take blocking etc into account for tests other than written/mc.
+///@todo separate the tests to show better info here. take blocking etc into account for tests other than written/mc.
 
     m_notAskedTestEntries = m_allTestEntries;
 
@@ -220,8 +220,6 @@ void TestEntryManager::expireEntries()
             int grade = m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
 
             const QDateTime &date =  m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate();
-
-            int timeExp = Prefs::expireItem(grade);
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 

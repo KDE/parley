@@ -91,7 +91,7 @@ void KVTNewDocumentWizard::accept()
         }
     }
 
-    QDialog::accept();
+    QWizard::accept();
 }
 
 

@@ -247,7 +247,7 @@ void CommonEntryPage::invokeUsageDlg()
     UsageOptPage *usageOptPage = new UsageOptPage(m_doc, this);
     subDialog->setMainWidget(usageOptPage);
 
-    if (subDialog->exec() == QDialog::Accepted) {
+    if (subDialog->exec() == KDialog::Accepted) {
         usageOptPage->accept();
         setUsageSelection( usages );
     }
@@ -267,7 +267,7 @@ void CommonEntryPage::invokeTypeDlg()
     WordTypeOptionPage *typeOptPage = new WordTypeOptionPage(m_doc, this);
     subDialog->setMainWidget(typeOptPage);
 
-    if (subDialog->exec() == QDialog::Accepted) {
+    if (subDialog->exec() == KDialog::Accepted) {
         updateMainTypeBoxContents();
     }
 }

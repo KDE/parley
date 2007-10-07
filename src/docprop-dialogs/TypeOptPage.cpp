@@ -25,7 +25,6 @@
 
 #include "TypeOptPage.h"
 
-#include <keduvocwordtype.h>
 #include <keduvocdocument.h>
 #include <KMessageBox>
 #include <kdebug.h>

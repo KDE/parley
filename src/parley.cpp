@@ -219,7 +219,7 @@ void ParleyApp::slotLanguageProperties()
 {
     GrammarDialog ddlg(m_doc, this);
 
-    if (ddlg.exec() == QDialog::Accepted) {
+    if (ddlg.exec() == KDialog::Accepted) {
         m_doc->setModified();
         m_tableModel->reset();
         setCaption(m_doc->title(), m_doc->isModified());
@@ -443,9 +443,10 @@ void ParleyApp::slotFilePrint()
     slotStatusMsg(i18n("Printing..."));
     KPrinter printer;
     printer.setFullPage(true);
-    if (printer.setup(this))
+    if (printer.setup(this)) {
         m_tableView->print(&printer);
-    slotStatusMsg(i18n("Ready"));
+    }
+    slotStatusMsg(i18nc("@statusbar", "Ready"));
 }
 
 
@@ -591,7 +592,7 @@ void ParleyApp::slotConfigShowSearch()
 void ParleyApp::slotEditLanguages()
 {
     LanguageDialog* languageDialog = new LanguageDialog(m_doc, this);
-    if ( languageDialog->exec() == QDialog::Accepted ) {
+    if ( languageDialog->exec() == KDialog::Accepted ) {
         m_tableModel->reset();
     }
 }
@@ -602,8 +603,8 @@ void ParleyApp::slotDocumentProperties()
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );
-    titleAuthorDialog->setCaption(i18nc("@title:dialg document properties", "Properties for %1", m_doc->url().url()));
-    if ( titleAuthorDialog->exec() == QDialog::Accepted ) {
+    titleAuthorDialog->setCaption(i18nc("@title:dialog document properties", "Properties for %1", m_doc->url().url()));
+    if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }
     delete titleAuthorDialog;

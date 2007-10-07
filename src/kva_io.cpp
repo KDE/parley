@@ -392,7 +392,7 @@ void ParleyApp::newDocumentWizard()
     KEduVocDocument* newDoc = new KEduVocDocument(this);
 
     wizard = new KVTNewDocumentWizard(newDoc, this);
-    if( !wizard->exec() == QDialog::Accepted ){
+    if( !wizard->exec() == KDialog::Accepted ){
             delete wizard;
             return;
     }
