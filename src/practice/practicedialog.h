@@ -174,12 +174,17 @@ protected:
      * When a timeout per question is set in the prefs, this starts the timer.
      * Called by setQuery, so don't wory about it. Cann be called to restart the timer.
      */
-    void startTimer();
+    void startAnswerTimer();
 
     /**
      * When the solution is shown etc there's no point in counting any more...
      */
-    void stopTimer();
+    void stopAnswerTimer();
+
+    /**
+     * Emits nextEntry() when the timeout for showing the solution is reached.
+     */
+    void startShowSolutionTimer();
 
     /**
      * When @p tainted is set true, a correct answer will be counted as wrong (for example show more button).
@@ -197,6 +202,8 @@ protected:
 private:
     QTimer    *m_answerTimer;
     int        m_answerTimerCount;
+
+    QTimer    *m_showSolutionTimer;
 
     /// true if the user entered a false answer or received help (show more button). we still let the user give input until the right one is selected.
     bool m_answerTainted;

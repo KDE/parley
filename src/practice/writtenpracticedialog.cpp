@@ -628,17 +628,9 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     mw->continueButton->setVisible(show);
 
     if ( show ) {
-        stopTimer();
+        stopAnswerTimer();
         mw->continueButton->setDefault(true);
-
-
-    // after correct answer auto advance after x seconds...
-
-// this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
-//             if ( Prefs::showSolutionTime() > 0 ) {
-//                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
-//             }
-            // Prefs::showSolutionTime() == 0 stay without timeout
+        startShowSolutionTimer();
     } else {
         mw->verify->setDefault(true);
     }

@@ -51,6 +51,7 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_doc = doc;
     m_entry = 0;
     m_answerTimer = 0;
+    m_showSolutionTimer = 0;
 
     m_player = 0;
 }
@@ -141,7 +142,7 @@ void PracticeDialog::timeoutReached()
 }
 
 
-void PracticeDialog::startTimer()
+void PracticeDialog::startAnswerTimer()
 {
     if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
         kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!";
@@ -169,7 +170,7 @@ void PracticeDialog::startTimer()
 }
 
 
-void PracticeDialog::stopTimer()
+void PracticeDialog::stopAnswerTimer()
 {
     if ( m_answerTimer ) {
         m_answerTimer->stop();
@@ -178,11 +179,14 @@ void PracticeDialog::stopTimer()
 
 void PracticeDialog::setEntry(TestEntry * entry)
 {
+    if ( m_showSolutionTimer ) {
+        m_showSolutionTimer->stop();
+    }
+
     m_entry = entry;
     m_testType = Prefs::testType();
-    startTimer();
+    startAnswerTimer();
     m_answerTainted = false;
-//     audioPlayFromIdentifier();
 }
 
 void PracticeDialog::editEntry()
@@ -345,6 +349,18 @@ Phonon::MediaObject* PracticeDialog::audioPlayer()
         createPath(m_player, audioOutput);
     }
     return m_player;
+}
+
+void PracticeDialog::startShowSolutionTimer()
+{
+    if ( Prefs::showSolutionTime() > 0 ) {
+        if (m_showSolutionTimer == 0) {
+            m_showSolutionTimer = new QTimer(this);
+        }
+        m_showSolutionTimer->setSingleShot(true);
+        connect(m_showSolutionTimer, SIGNAL(timeout()), SIGNAL(nextEntry()));
+        m_showSolutionTimer->start(Prefs::showSolutionTime() * 1000);
+    }
 }
 
 
