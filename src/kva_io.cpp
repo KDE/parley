@@ -471,7 +471,7 @@ void ParleyApp::createExampleEntries()
 
     // some default values
     KUser user;
-    QString userName = user.fullName();
+    QString userName = user.property(KUser::FullName).toString();
     if ( userName.isEmpty() ) {
         userName = user.loginName();
     }
