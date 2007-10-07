@@ -11,8 +11,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef LANGUAGEPROPERITIESDLG_H
-#define LANGUAGEPROPERITIESDLG_H
+#ifndef GRAMMARDIALOG_H
+#define GRAMMARDIALOG_H
 
 #include <KPageDialog>
 #include <QList>
@@ -27,12 +27,12 @@ class TenseOptPage;
   * This is the KPageDialog for all the language option pages.
   * It contains the pages for Types, Tenses, Usage and Articles/Personal Pronouns.
   */
-class LanguagePropertiesDialog : public KPageDialog
+class GrammarDialog : public KPageDialog
 {
     Q_OBJECT
 public:
-    LanguagePropertiesDialog(KEduVocDocument *doc, QWidget *parent);
-    ~LanguagePropertiesDialog();
+    GrammarDialog(KEduVocDocument *doc, QWidget *parent);
+    ~GrammarDialog();
     void accept();
 
 private:

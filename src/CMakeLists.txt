@@ -132,7 +132,7 @@ kde4_add_ui_files(newdocument-wizard_SRCS
 set(languagedialogs_SRCS
     language-dialogs/languagedialog.cpp
     language-dialogs/editlanguagedialogpage.cpp
-    language-dialogs/languagepropertiesdialog.cpp
+    language-dialogs/grammardialog.cpp
 )
 
 kde4_add_ui_files(languagedialogs_SRCS

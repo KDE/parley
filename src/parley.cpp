@@ -35,7 +35,7 @@
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/kvoctrainprefs.h"
 #include "language-dialogs/languagedialog.h"
-#include "language-dialogs/languagepropertiesdialog.h"
+#include "language-dialogs/grammardialog.h"
 #include "docprop-dialogs/TitlePage.h"
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
@@ -217,7 +217,7 @@ void ParleyApp::removeEntryDlg()
 
 void ParleyApp::slotLanguageProperties()
 {
-    LanguagePropertiesDialog ddlg(m_doc, this);
+    GrammarDialog ddlg(m_doc, this);
 
     if (ddlg.exec() == QDialog::Accepted) {
         m_doc->setModified();

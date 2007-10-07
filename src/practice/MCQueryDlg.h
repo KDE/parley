@@ -50,6 +50,8 @@ private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
+    // rather confusing... get rid of this?
+    // instead: int m_solution;
     QList<QPair<QRadioButton *, QLabel *> > button_ref;
     Ui::MCQueryDlgForm * mw;
 };

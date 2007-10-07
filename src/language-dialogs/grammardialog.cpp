@@ -11,7 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "languagepropertiesdialog.h"
+#include "grammardialog.h"
 
 #include "docprop-dialogs/UsageOptPage.h"
 #include "docprop-dialogs/TypeOptPage.h"
@@ -31,7 +31,7 @@
 #include <QPixmap>
 
 
-LanguagePropertiesDialog::LanguagePropertiesDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
+GrammarDialog::GrammarDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialog(parent)
 {
     setCaption(i18n("Grammar Properties"));
     setButtons(Ok|Cancel);
@@ -69,18 +69,18 @@ LanguagePropertiesDialog::LanguagePropertiesDialog(KEduVocDocument *doc, QWidget
         langPages.append(lpp);
     }
 
-    KConfigGroup cg(KGlobal::config(), "LanguagePropertiesDialog");
+    KConfigGroup cg(KGlobal::config(), "GrammarDialog");
     restoreDialogSize(cg);
 }
 
-LanguagePropertiesDialog::~LanguagePropertiesDialog()
+GrammarDialog::~GrammarDialog()
 {
-    KConfigGroup cg(KGlobal::config(), "LanguagePropertiesDialog");
+    KConfigGroup cg(KGlobal::config(), "GrammarDialog");
     KDialog::saveDialogSize(cg);
 }
 
 
-void LanguagePropertiesDialog::accept()
+void GrammarDialog::accept()
 {
     useOptPage->accept();
     typeOptPage->accept();
@@ -93,4 +93,4 @@ void LanguagePropertiesDialog::accept()
     QDialog::accept();
 }
 
-#include "languagepropertiesdialog.moc"
+#include "grammardialog.moc"
