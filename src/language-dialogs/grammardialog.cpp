@@ -15,7 +15,6 @@
 
 #include "docprop-dialogs/UsageOptPage.h"
 #include "docprop-dialogs/TypeOptPage.h"
-#include "docprop-dialogs/TypeOptPage.h"
 #include "docprop-dialogs/TenseOptPage.h"
 #include "docprop-dialogs/LangPropPage.h"
 #include "languagesettings.h"
