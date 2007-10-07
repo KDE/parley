@@ -45,7 +45,7 @@ KVTStatisticsDialog::KVTStatisticsDialog(KVTTableModel *model, QWidget *parent) 
     StatisticsPage *spage;
 
     GenStatPage *gspage = new GenStatPage(m_model->document(), 0);
-    addPage(gspage, i18n("General"));
+    addPage(gspage, i18nc("general statistics page", "General"));
 
     for (int i = 1; i < (int) m_model->document()->identifierCount(); i++) {
         QString s;

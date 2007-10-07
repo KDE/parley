@@ -92,7 +92,7 @@ void AdditionalEditPage::setData(int row, int col)
         audioUrlRequester->clear();
     }
 
-    imagePreviewLabel->setText(i18nc("@label:image image preview is empty", "No Image"));
+    imagePreviewLabel->setText(i18nc("@label image preview is empty", "No Image"));
 
     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
         imageUrlRequester->setUrl( m_doc->entry(

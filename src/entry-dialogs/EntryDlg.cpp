@@ -52,13 +52,13 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
     m_doc = doc;
 
     commonPage = new CommonEntryPage(m_doc, this);
-    commonPageWidget = new KPageWidgetItem( commonPage, i18n( "Common" ) );
+    commonPageWidget = new KPageWidgetItem( commonPage, i18nc("edit general vocabulary properties that are common to all word types", "Common" ) );
     commonPageWidget->setHeader( i18n( "General properties of the word" ) );
     commonPageWidget->setIcon( KIcon( "edit_table_row" ) );
     addPage(commonPageWidget);
 
     additionalPage = new AdditionalEditPage(m_doc, this);
-    additionalPageWidget = new KPageWidgetItem( additionalPage, i18n( "Additional" ) );
+    additionalPageWidget = new KPageWidgetItem( additionalPage, i18nc( "edit additional properties like image, synonym, etc.", "Additional" ) );
     additionalPageWidget->setHeader( i18n( "Additional properties" ) );
     additionalPageWidget->setIcon( KIcon( "configure" ) );
     addPage(additionalPageWidget);

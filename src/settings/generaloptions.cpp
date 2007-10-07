@@ -58,15 +58,15 @@ GeneralOptions::GeneralOptions(QWidget* parent) : QWidget(parent)
 
 void GeneralOptions::fillWidgets()
 {
-    SeparatorCombo->addItem(i18n(";"));
-    SeparatorCombo->addItem(i18n("#"));
-    SeparatorCombo->addItem(i18n("!"));
-    SeparatorCombo->addItem(i18n("|"));
-    SeparatorCombo->addItem(i18n(","));
-    SeparatorCombo->addItem(i18n("TAB"));
-    SeparatorCombo->addItem(i18n(">= 2 SPACES"));
-    SeparatorCombo->addItem(i18n(" : "));
-    SeparatorCombo->addItem(i18n(" :: "));
+    SeparatorCombo->addItem(i18nc("CSV separator", ";"));
+    SeparatorCombo->addItem(i18nc("CSV separator", "#"));
+    SeparatorCombo->addItem(i18nc("CSV separator", "!"));
+    SeparatorCombo->addItem(i18nc("CSV separator", "|"));
+    SeparatorCombo->addItem(i18nc("CSV separator", ","));
+    SeparatorCombo->addItem(i18nc("CSV separator: tabulator", "TAB"));
+    SeparatorCombo->addItem(i18nc("CSV separator", ">= 2 SPACES"));
+    SeparatorCombo->addItem(i18nc("CSV separator", " : "));
+    SeparatorCombo->addItem(i18nc("CSV separator", " :: "));
 }
 
 void GeneralOptions::updateWidgets()

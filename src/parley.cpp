@@ -223,7 +223,7 @@ void ParleyApp::slotLanguageProperties()
         m_doc->setModified();
         m_tableModel->reset();
         setCaption(m_doc->title(), m_doc->isModified());
-        slotStatusMsg(IDS_DEFAULT);
+//         slotStatusMsg(IDS_DEFAULT);
     }
 }
 
@@ -231,7 +231,7 @@ void ParleyApp::slotLanguageProperties()
 void ParleyApp::slotModifiedDoc(bool /*mod*/)
 {
     setCaption(m_doc->title(), m_doc->isModified());
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -376,7 +376,7 @@ void ParleyApp::keyPressEvent(QKeyEvent *e)
         if (!found)
             e->ignore();
     }
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -395,7 +395,7 @@ void ParleyApp::slotCleanVocabulary()
     QApplication::restoreOverrideCursor();
     removeProgressBar();
 
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 
     if (num != 0) {
         m_tableModel->reset();
@@ -417,11 +417,13 @@ void ParleyApp::slotGeneralOptions()
 
 void ParleyApp::slotApplyPreferences()
 {
-    if (Prefs::autoBackup())
+    if (Prefs::autoBackup()) {
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
+    }
 
-    if (m_pronunciationStatusBarLabel)
+    if (m_pronunciationStatusBarLabel) {
         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
+    }
 
     m_tableView->setFont(Prefs::tableFont());
     m_tableView->reset();
@@ -430,33 +432,28 @@ void ParleyApp::slotApplyPreferences()
 }
 
 
-void ParleyApp::slotStatusHelpMsg(const QString &text)
-{
-    ///////////////////////////////////////////////////////////////////
-    // change status message of whole statusbar temporary (text, msec)
-    if (pbar == 0 || !pbar->isVisible())
-        statusBar()->showMessage(text, 3000);
-}
+// void ParleyApp::slotStatusHelpMsg(const QString &text)
+// {
+//     ///////////////////////////////////////////////////////////////////
+//     // change status message of whole statusbar temporary (text, msec)
+//     if (pbar == 0 || !pbar->isVisible()) {
+//         statusBar()->showMessage(text, 3000);
+//     }
+// }
 
 void ParleyApp::slotFilePrint()
 {
-    slotStatusMsg(i18n("Printing..."));
     KPrinter printer;
     printer.setFullPage(true);
     if (printer.setup(this)) {
         m_tableView->print(&printer);
     }
-    slotStatusMsg(i18nc("@statusbar", "Ready"));
 }
-
-
-void ParleyApp::slotStatusMsg(const QString &/*text*/)
-{}
 
 
 void ParleyApp::slotEditCopy()
 {
-    slotStatusMsg(i18n("Copying selection to clipboard..."));
+//     slotStatusMsg(i18n("Copying selection to clipboard..."));
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -482,14 +479,14 @@ void ParleyApp::slotEditCopy()
         QApplication::clipboard()->setText(textToCopy);
 
     QApplication::restoreOverrideCursor();
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
 void ParleyApp::slotEditPaste()
 {
     /// @todo make the pasted stuff visible by making the corresponding lesson visible, if it is not (?)
-    slotStatusMsg(i18n("Inserting clipboard contents..."));
+//     slotStatusMsg(i18n("Inserting clipboard contents..."));
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
     QString s;
@@ -523,7 +520,7 @@ void ParleyApp::slotEditPaste()
     }
 
     QApplication::restoreOverrideCursor();
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 
     editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
@@ -557,18 +554,19 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
     //KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
     KEduVocExpression * currentExpression = m_doc->entry(index.row());
 
-    if (m_remarkStatusBarLabel != 0)
+    if (m_remarkStatusBarLabel != 0) {
         m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
-    if (m_pronunciationStatusBarLabel != 0)
+    }
+    if (m_pronunciationStatusBarLabel != 0) {
         m_pronunciationStatusBarLabel->setText(i18n("Pronunciation: %1", currentExpression->translation(translationId).pronunciation()));
-
+    }
     QString typeText = currentExpression->translation(translationId).type();
     if ( !currentExpression->translation(translationId).subType().isEmpty() ){
         typeText.append(i18n(" (%1)", currentExpression->translation(translationId).subType()));
     }
-    if (m_typeStatusBarLabel != 0)
+    if (m_typeStatusBarLabel != 0) {
         m_typeStatusBarLabel->setText(i18n("Type: %1", typeText));
-
+    }
     // update the entry dialog if it is there
     if (entryDlg != 0) {
         slotEditEntry();
@@ -603,7 +601,7 @@ void ParleyApp::slotDocumentProperties()
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );
-    titleAuthorDialog->setCaption(i18nc("@title:dialog document properties", "Properties for %1", m_doc->url().url()));
+    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
     if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }

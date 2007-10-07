@@ -40,7 +40,7 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
     m_config = config;
 
     m_generalOptions = new GeneralOptions(0);
-    addPage(m_generalOptions, i18n("General"), "kvoctrain", i18n("General Settings"), true);
+    addPage(m_generalOptions, i18nc("title:window general settings", "General"), "kvoctrain", i18n("General Settings"), true);
     connect(m_generalOptions, SIGNAL(widgetModified()), this, SLOT(updateButtons()));
 
     m_viewOptions = new ViewOptions(0);

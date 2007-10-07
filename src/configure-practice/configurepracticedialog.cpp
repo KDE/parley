@@ -34,16 +34,16 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     setDefaultButton(Ok);
 
     m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
-    addPage(m_configurePracticeWidget, i18n("Practice"), "run_query", i18n("Practice options"), true);
+    addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "run_query", i18n("Practice options"), true);
 
     m_blockOptions = new BlockOptions(this);
-    addPage(m_blockOptions, i18n("Blocking"), "configure", i18n("Blocking Settings"), true);
+    addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "configure", i18n("Blocking Settings"), true);
 
     m_thresholdOptions = new ThresholdOptions(doc, this);
-    addPage(m_thresholdOptions, i18n("Thresholds"), "configure", i18n("Threshold Settings"), true);
+    addPage(m_thresholdOptions, i18nc("@title:group ignore vocabulary based on some properties like word type", "Thresholds"), "configure", i18n("Threshold Settings"), true);
 
     m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
-    addPage(m_advancedPracticeOptions, i18nc("Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
+    addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
 
     connect(m_thresholdOptions, SIGNAL(widgetModified()), SLOT(updateButtons()));
     connect(m_blockOptions, SIGNAL(widgetModified()), SLOT(updateButtons()));

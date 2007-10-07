@@ -176,9 +176,9 @@ public slots:
     void slotEditPaste();
 
     /** change the status message to text */
-    void slotStatusMsg(const QString &text);
+//     void slotStatusMsg(const QString &text);
     /** change the status message of the whole statusbar temporary */
-    void slotStatusHelpMsg(const QString &text);
+//     void slotStatusHelpMsg(const QString &text);
 
     void slotConfigShowSearch();
 

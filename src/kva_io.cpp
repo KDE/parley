@@ -51,13 +51,13 @@
 void ParleyApp::slotTimeOutBackup()
 {
     if (Prefs::autoBackup() && m_doc && m_doc->isModified()) {
-        slotStatusMsg(i18n("Autobackup in progress"));
+//         slotStatusMsg(i18n("Autobackup in progress"));
         slotFileSave();
     }
 
     if (Prefs::autoBackup())
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -118,32 +118,31 @@ void ParleyApp::slotProgress(KEduVocDocument *curr_doc, int percent)
 
 void ParleyApp::slotFileNew()
 {
-    slotStatusMsg(i18n("Creating new file..."));
     if (queryExit()) {
         newDocumentWizard();
     }
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 void ParleyApp::slotFileOpen()
 {
-    slotStatusMsg(i18n("Opening file..."));
+//     slotStatusMsg(i18n("Opening file..."));
 
     if (queryExit()) {
         KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
         loadFileFromPath(url, true);
     }
 
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 void ParleyApp::slotFileOpenRecent(const KUrl& url)
 {
-    slotStatusMsg(i18n("Opening file..."));
+//     slotStatusMsg(i18n("Opening file..."));
     if (queryExit()) {
         loadFileFromPath(url);
     }
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -153,7 +152,7 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
         delete m_doc;
         m_doc = 0;
 
-        slotStatusMsg(i18n("Loading %1", url.path()));
+//         slotStatusMsg(i18n("Loading %1", url.path()));
         //prepareProgressBar();
         m_doc = new KEduVocDocument(this);
         m_doc->setCsvDelimiter(Prefs::separator());
@@ -179,7 +178,7 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
 void ParleyApp::slotFileOpenExample()
 {
-    slotStatusMsg(i18n("Opening example file..."));
+//     slotStatusMsg(i18n("Opening example file..."));
 
     if (queryExit()) {
         QString s = KStandardDirs::locate("data", "parley/examples/");
@@ -190,7 +189,7 @@ void ParleyApp::slotFileOpenExample()
         }
     }
 
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -248,7 +247,7 @@ void ParleyApp::slotFileSave()
     }
 
     QString msg = i18nc("@info:status saving a file", "Saving %1", m_doc->url().path());
-    slotStatusMsg(msg);
+//     slotStatusMsg(msg);
 
     // remove previous backup
     QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
@@ -266,13 +265,13 @@ void ParleyApp::slotFileSave()
     fileOpenRecent->addUrl(m_doc->url());
     removeProgressBar();
 
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
 void ParleyApp::slotFileSaveAs()
 {
-    slotStatusMsg(i18n("Saving file under new filename..."));
+//     slotStatusMsg(i18n("Saving file under new filename..."));
 
     if (entryDlg != 0) {
         entryDlg->commitData(false);
@@ -283,14 +282,14 @@ void ParleyApp::slotFileSaveAs()
     if (!url.isEmpty()) {
         QFileInfo fileinfo(url.path());
         if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<br><b>%1</b><br />already exists. Do you want to overwrite it?</qt>",
+                i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
                      url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
             // do nothing
         } else
 
             if (m_doc) {
                 QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-                slotStatusMsg(msg);
+//                 slotStatusMsg(msg);
 
                 QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
                 ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
@@ -311,7 +310,7 @@ void ParleyApp::slotFileSaveAs()
                 }
             }
     }
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -323,7 +322,7 @@ void ParleyApp::slotSaveSelection()
     if (entryDlg != 0) {
         entryDlg->commitData(false);
     }
-    slotStatusMsg(i18n("Saving selected area under new filename..."));
+//     slotStatusMsg(i18n("Saving selected area under new filename..."));
     QString save_separator = Prefs::separator();
     Prefs::setSeparator("\t");
     KEduVocDocument seldoc(this);
@@ -350,7 +349,7 @@ void ParleyApp::slotSaveSelection()
             // do nothing
         } else {
             QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-            slotStatusMsg(msg);
+//             slotStatusMsg(msg);
 
             QFile::remove(url.path()+'~'); // remove previous backup
             // FIXME: check error
@@ -363,7 +362,7 @@ void ParleyApp::slotSaveSelection()
         }
     }
     Prefs::setSeparator(save_separator);
-    slotStatusMsg(IDS_DEFAULT);
+//     slotStatusMsg(IDS_DEFAULT);
     */
 }
 
@@ -445,23 +444,23 @@ void ParleyApp::initializeDefaultGrammar()
     m_doc->wordTypes().createDefaultWordTypes();
 
     // Preset some usages
-    m_doc->addUsage( i18n("abbreviation") );
-    m_doc->addUsage( i18n("anatomy") );
-    m_doc->addUsage( i18n("biology") );
-    m_doc->addUsage( i18n("figuratively") );
-    m_doc->addUsage( i18n("geology") );
-    m_doc->addUsage( i18n("historical") );
-    m_doc->addUsage( i18n("informal") );
-    m_doc->addUsage( i18n("ironic") );
-    m_doc->addUsage( i18n("literary") );
-    m_doc->addUsage( i18n("mythology") );
-    m_doc->addUsage( i18n("proper name") );
-    m_doc->addUsage( i18n("pharmacy") );
-    m_doc->addUsage( i18n("philosophy") );
-    m_doc->addUsage( i18n("physics") );
-    m_doc->addUsage( i18n("physiology") );
-    m_doc->addUsage( i18n("rhetoric") );
-    m_doc->addUsage( i18n("zoology") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "abbreviation") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "anatomy") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "biology") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "figuratively") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "geology") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "historical") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "informal") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "ironic") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "literary") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "mythology") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "proper name") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "pharmacy") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "philosophy") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physics") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physiology") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "rhetoric") );
+    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "zoology") );
 }
 
 
