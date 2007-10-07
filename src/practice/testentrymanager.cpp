@@ -511,7 +511,7 @@ kDebug() << "Result: " << result;
         kError() << "Unknown result from QueryDlg\n";
     }
 
-    printStatistics();
+//     printStatistics();
 }
 
 void TestEntryManager::printStatistics()
@@ -587,5 +587,60 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         break;     // other type
     }
     return false;
+}
+
+int TestEntryManager::statisticTotalCorrectFirstAttempt()
+{
+    int count = 0;
+    foreach(TestEntry* entry, m_allTestEntries) {
+        if ( entry->statisticCorrectAtFirstAttempt() ) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TestEntryManager::statisticTotalWrong()
+{
+    int count = 0;
+    foreach(TestEntry* entry, m_allTestEntries) {
+        if ( entry->statisticBadCount() ) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TestEntryManager::statisticTotalUnanswered()
+{
+    int count = 0;
+    foreach(TestEntry* entry, m_allTestEntries) {
+        if ( entry->statisticCount() == 0 ) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TestEntryManager::statisticTotalSkipKnown()
+{
+    int count = 0;
+    foreach(TestEntry* entry, m_allTestEntries) {
+        if ( entry->statisticSkipKnown() ) {
+            count++;
+        }
+    }
+    return count;
+}
+
+int TestEntryManager::statisticTotalSkipUnknown()
+{
+    int count = 0;
+    foreach(TestEntry* entry, m_allTestEntries) {
+        if ( entry->statisticSkipUnknown() ) {
+            count++;
+        }
+    }
+    return count;
 }
 

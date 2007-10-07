@@ -34,6 +34,7 @@
 #include "ArtQueryDlg.h"
 #include "SimpleQueryDlg.h"
 #include "imagepracticedlg.h"
+#include "practicesummarydialog.h"
 
 #include "testentrymanager.h"
 #include "prefs.h"
@@ -144,21 +145,6 @@ void PracticeManager::nextEntry()
 }
 
 
-void PracticeManager::stopPractice()
-{
-kDebug() << "stopPractice";
-    if (m_testDialog != 0) {
-        m_testDialog->deleteLater();
-    }
-
-    m_testDialog = 0;
-
-    m_entryManager->printStatistics();
-
-    m_app->show();
-    deleteLater();
-}
-
 void PracticeManager::createDialog()
 {
     QString specialWordType;
@@ -220,6 +206,25 @@ void PracticeManager::createDialog()
     m_testDialog->show();
 
     connect(m_testDialog, SIGNAL(nextEntry()), SLOT(nextEntry()));
+}
+
+
+void PracticeManager::stopPractice()
+{
+kDebug() << "stopPractice";
+    if (m_testDialog != 0) {
+        m_testDialog->deleteLater();
+    }
+
+    m_testDialog = 0;
+
+    m_entryManager->printStatistics();
+
+    PracticeSummaryDialog practiceSummaryDialog(m_entryManager, m_app);
+    practiceSummaryDialog.exec();
+
+    m_app->show();
+    deleteLater();
 }
 
 

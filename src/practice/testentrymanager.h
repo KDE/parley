@@ -84,6 +84,12 @@ public:
      */
     void printStatistics();
 
+    int statisticTotalCorrectFirstAttempt();
+    int statisticTotalWrong();
+    int statisticTotalUnanswered();
+    int statisticTotalSkipKnown();
+    int statisticTotalSkipUnknown();
+
 private:
 
     /**

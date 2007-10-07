@@ -34,8 +34,6 @@ void TestEntry::setGradeFrom(int from)
 }
 
 
-
-
 int TestEntry::answeredCorrectInSequence()
 {
     return m_answeredCorrectInSequence;
@@ -79,10 +77,12 @@ void TestEntry::incGoodCount()
     // increase grade, if first time:
     if ( !Prefs::altLearn() && m_statisticBadCount == 0 ) {
         exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+        m_correctAtFirstAttempt = true;
     } else {
         // alt learn: 3 times right
         if ( answeredCorrectInSequence() == 3  && m_statisticBadCount == 0 ) {
             exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incGrade();
+            m_correctAtFirstAttempt = true;
         }
     }
 }
@@ -146,6 +146,11 @@ int TestEntry::gradeFrom()
 int TestEntry::gradeTo()
 {
     return m_gradeTo;
+}
+
+bool TestEntry::statisticCorrectAtFirstAttempt()
+{
+    return m_correctAtFirstAttempt;
 }
 
 

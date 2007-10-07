@@ -40,6 +40,7 @@ set(practice_SRCS
     practice/VerbQueryDlg.cpp
     practice/imagepracticedlg.cpp
     practice/showsolutiondialog.cpp
+    practice/practicesummarydialog.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
@@ -51,6 +52,7 @@ kde4_add_ui_files(practice_SRCS
     practice/VerbQueryDlgForm.ui
     practice/imagepracticedlg.ui
     practice/showsolutionwidget.ui
+    practice/practicesummarywidget.ui
 )
 
 set(configure-practice_SRCS

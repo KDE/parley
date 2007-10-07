@@ -254,7 +254,10 @@ void MCQueryDlg::showSolution()
 
     showContinueButton(true);
 
-    setAnswerTainted();
+    if ( !answerTainted() ) {
+        setAnswerTainted();
+        resultWrong();
+    }
 }
 
 
@@ -288,7 +291,11 @@ void MCQueryDlg::verifyClicked()
                 getOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));
     } else {
-        setAnswerTainted();
+        if ( !answerTainted() ) {
+            setAnswerTainted();
+            resultWrong();
+        }
+
         mw->dont_know->setDefault(true);
         mw->status->setText(
                 getNOKComment((int)(((double)mw->countbar->value())

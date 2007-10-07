@@ -33,6 +33,7 @@ public:
         m_statisticSkipUnknown = 0;
         m_statisticSkipKnown = 0;
         m_canSwitchDirection = false;
+        m_correctAtFirstAttempt = false;
     }
 
     void incGoodCount();
@@ -48,6 +49,11 @@ public:
     int statisticSkipKnown();
     int statisticSkipUnknown();
     int statisticTimeout();
+    bool statisticCorrectAtFirstAttempt();
+//     statisticWrong
+//     statisticUnanswered
+//     statisticSkipKnown
+//     statisticSkipUnknown
 
     int totalEntries();
 
@@ -72,6 +78,7 @@ private:
     int m_statisticSkipKnown;
     int m_answeredCorrectInSequence;
     bool m_canSwitchDirection;
+    bool m_correctAtFirstAttempt;
 
     static int m_gradeTo;
     static int m_gradeFrom;
