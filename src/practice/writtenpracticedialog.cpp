@@ -609,6 +609,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     mw->continueButton->setVisible(show);
 
     if ( show ) {
+        stopTimer();
         mw->continueButton->setDefault(true);
 
 // this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer

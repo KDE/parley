@@ -319,6 +319,7 @@ void MCQueryDlg::showContinueButton(bool show)
     mw->continueButton->setVisible(show);
 
     if ( show ) {
+        stopTimer();
         mw->continueButton->setDefault(true);
     } else {
         mw->dont_know->setDefault(true);

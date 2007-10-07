@@ -168,6 +168,14 @@ void PracticeDialog::startTimer()
     }
 }
 
+
+void PracticeDialog::stopTimer()
+{
+    if ( m_answerTimer ) {
+        m_answerTimer->stop();
+    }
+}
+
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
@@ -338,6 +346,7 @@ Phonon::MediaObject* PracticeDialog::audioPlayer()
     }
     return m_player;
 }
+
 
 #include "practicedialog.moc"
 

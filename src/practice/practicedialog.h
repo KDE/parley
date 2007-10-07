@@ -177,6 +177,11 @@ protected:
     void startTimer();
 
     /**
+     * When the solution is shown etc there's no point in counting any more...
+     */
+    void stopTimer();
+
+    /**
      * When @p tainted is set true, a correct answer will be counted as wrong (for example show more button).
      * @param tainted
      */
