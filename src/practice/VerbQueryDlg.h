@@ -52,7 +52,7 @@ private:
     void setStatusText(const QString &statusText) {}
     QProgressBar* timebar() { return mw->timebar; }
 
-    int m_currentTense;
+    QStringList m_tenses;
 
     Ui::VerbQueryDlgForm * mw;
 };

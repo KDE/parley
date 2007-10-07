@@ -74,6 +74,8 @@ VerbQueryDlg::~VerbQueryDlg()
 
 void VerbQueryDlg::setEntry(TestEntry* entry)
 {
+    m_tenses.clear();
+
     PracticeDialog::setEntry(entry);
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
@@ -102,7 +104,21 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
     mw->pluralThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural));
 
-    m_currentTense = -1;
+    QStringList tenses = entry->exp->translation(Prefs::toIdentifier()).conjugationTenses();
+    foreach ( QString tense, tenses ) {
+        if ( !entry->exp->translation(Prefs::toIdentifier()).conjugation(tense).isEmpty() ) {
+            m_tenses.append(tense);
+        }
+    }
+
+kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << m_tenses;
+
+    if ( m_tenses.count() == 0 ) {
+        kDebug() << "Warning, no conjugations found.";
+        nextEntry();
+        return;
+    }
+
     nextTense();
 
     mw->singularFirstPersonLineEdit->setFocus();
@@ -118,14 +134,21 @@ bool VerbQueryDlg::nextTense()
 
     mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
 
-    if (m_currentTense < m_entry->exp->translation(Prefs::toIdentifier()).conjugations().count() - 1) {
-        m_currentTense++;
+
+    tense = m_tenses.value(0);
+    QString tenseText = i18n("Current tense is: %1", tense);
+
+    mw->instructionLabel->setText(tenseText);
+
+
+kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << tense << " empty: " << m_entry->exp->translation(Prefs::toIdentifier()).
+        conjugations()[tense].isEmpty();
+
+
+    if (m_entry->exp->translation(Prefs::toIdentifier()).
+        conjugations()[tense].isEmpty() ) {
+        return false;
     }
-
-    tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(m_currentTense);
-    QString msg = i18n("Current tense is: %1.", tense);
-
-    mw->instructionLabel->setText(msg);
 
     bool empty;
 
@@ -248,7 +271,7 @@ void VerbQueryDlg::showSolution()
     resetAllFields();
     mw->dont_know->setDefault(true);
 
-    QString tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(m_currentTense);
+    QString tense = m_tenses.value(0);
 
     mw->singularFirstPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::First, KEduVocConjugation::Singular));
     mw->singularSecondPersonLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(KEduVocConjugation::Second, KEduVocConjugation::Singular));
@@ -294,7 +317,7 @@ void VerbQueryDlg::showSolution()
 
 void VerbQueryDlg::verifyClicked()
 {
-    QString tense = m_entry->exp->translation(Prefs::toIdentifier()).conjugations().keys().value(m_currentTense);
+    QString tense = m_tenses.value(0);
 
     const KEduVocConjugation conj = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense];
 
