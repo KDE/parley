@@ -51,8 +51,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->setupUi(mainWidget());
 
     mw->continueButton->setIcon(KIcon("ok"));
-    // connecting to SIGNAL nextEntry - emits the signal!
-    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
+    connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueButtonClicked()));
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
@@ -238,9 +237,11 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
         transFields.at(0)->setFocus();
     }
 
-    mw->audioPlayQuestionButton->setVisible(!entry->exp->translation( Prefs::fromIdentifier() ).soundUrl().isEmpty());
+    mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled() &&
+        !entry->exp->translation( Prefs::fromIdentifier() ).soundUrl().isEmpty());
 
-    mw->audioPlaySolutionButton->setVisible(!entry->exp->translation( Prefs::toIdentifier()).soundUrl().isEmpty());
+    mw->audioPlaySolutionButton->setVisible( Prefs::practiceSoundEnabled() &&
+        !entry->exp->translation( Prefs::toIdentifier()).soundUrl().isEmpty());
 
     imageShowFromEntry( mw->imageGraphicsView, entry );
 }
@@ -592,7 +593,7 @@ void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
         } else if (mw->verify->isDefault()) {
             verifyClicked();
         } else if (mw->continueButton->isDefault()) {
-            emit nextEntry();
+            continueButtonClicked();
         }
         break;
 
@@ -610,7 +611,6 @@ void WrittenPracticeDialog::setProgressCounter(int current, int total)
 
 void WrittenPracticeDialog::showContinueButton(bool show)
 {
-
     if ( show ) {
         // after correct answer auto advance after x seconds...
         if(!answerTainted()) {
@@ -619,13 +619,6 @@ void WrittenPracticeDialog::showContinueButton(bool show)
                 mw->continueButton->click();
                 return;
             }
-            // stay for the time set
-
-// this is problematic: if pressing enter, the next entry will be skipped etc. so there needs to be a proper timer
-//             if ( Prefs::showSolutionTime() > 0 ) {
-//                 QTimer::singleShot(Prefs::showSolutionTime() * 1000, mw->continueButton, SLOT(click()));
-//             }
-            // Prefs::showSolutionTime() == 0 stay without timeout
         }
     }
 
@@ -640,6 +633,9 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     if ( show ) {
         stopAnswerTimer();
         mw->continueButton->setDefault(true);
+        if ( Prefs::practiceSoundEnabled() ) {
+            audioPlayToIdentifier();
+        }
         if ( !answerTainted() ) {
             startShowSolutionTimer();
         }

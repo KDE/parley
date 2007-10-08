@@ -34,15 +34,22 @@ PracticeSummaryDialog::PracticeSummaryDialog(TestEntryManager* testEntryManager,
     wrongLineEdit->setText(QString::number(testEntryManager->statisticTotalWrong()));
     wrongProgressBar->setValue(testEntryManager->statisticTotalWrong() * 100 / testEntryManager->totalEntryCount());
 
-    skipKnownLineEdit->setText(QString::number(testEntryManager->statisticTotalSkipKnown()));
-    skipKnownProgressBar->setValue(testEntryManager->statisticTotalSkipKnown() * 100 / testEntryManager->totalEntryCount());
+    if ( Prefs::iKnow() ) {
+        skipKnownLineEdit->setText(QString::number(
+            testEntryManager->statisticTotalSkipKnown()));
+        skipKnownProgressBar->setValue(
+            testEntryManager->statisticTotalSkipKnown() * 100
+            / testEntryManager->totalEntryCount());
+    } else {
+        skipKnownLineEdit->setVisible(false);
+        skipKnownProgressBar->setVisible(false);
+    }
 
     skipUnknownLineEdit->setText(QString::number(testEntryManager->statisticTotalSkipUnknown()));
     skipUnknownProgressBar->setValue(testEntryManager->statisticTotalSkipUnknown() * 100 / testEntryManager->totalEntryCount());
 
     notAnsweredLineEdit->setText(QString::number(testEntryManager->statisticTotalUnanswered()));
     notAnsweredProgressBar->setValue(testEntryManager->statisticTotalUnanswered() * 100 / testEntryManager->totalEntryCount());
-
 
     setButtonFocus(KDialog::Ok);
 

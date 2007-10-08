@@ -137,6 +137,11 @@ protected slots:
      */
     void audioPlayToIdentifier();
 
+    /**
+     * The continue button has been clicked - stop m_showSolutionTimer
+     */
+    void continueButtonClicked();
+
 protected:
     void resultCorrect();
     void resultWrong();
@@ -200,7 +205,6 @@ protected:
      * @return
      */
     bool answerTainted();
-
 
 private:
     QTimer    *m_answerTimer;

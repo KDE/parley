@@ -29,13 +29,14 @@
 #include "ui_MCQueryDlgForm.h"
 #include "practicedialog.h"
 
+class KEduVocExpression;
+
 class MCQueryDlg : public PracticeDialog
 {
     Q_OBJECT
 
 public:
     MCQueryDlg(KEduVocDocument *doc, QWidget *parent);
-
     ~MCQueryDlg();
 
     void setEntry(TestEntry* entry);
@@ -50,9 +51,20 @@ private:
     void setStatusText(const QString &statusText) { mw->status->setText(statusText); }
     QProgressBar* timebar() { return mw->timebar; }
 
-    // rather confusing... get rid of this?
-    // instead: int m_solution;
-    QList<QPair<QRadioButton *, QLabel *> > button_ref;
+    QStringList createAdditionalChoices(int numberChoices);
+
+    QLayout* createChoiceWidget(const QString& name, KEduVocExpression* expression);
+
+    /// the correct solution
+    int m_solution;
+
+    /** pointers to the entries belonging to the choices or 0 if only string
+        used for sound
+       (false friend and user supplied default choices do not have a KEduVocExpression for themselves) */
+//     QList< KEduVocExpression* > m_expressions;
+
+    QList<QRadioButton*> m_choiceRadioButtons;
+
     Ui::MCQueryDlgForm * mw;
 };
 

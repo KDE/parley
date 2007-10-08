@@ -136,7 +136,7 @@ void PracticeDialog::timeoutReached()
             showSolution();
         } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
             emit sigQueryChoice(Timeout); ///@todo check if this works - esp with 3x timeout
-            emit nextEntry();
+            continueButtonClicked();
         }
     }
 }
@@ -179,10 +179,6 @@ void PracticeDialog::stopAnswerTimer()
 
 void PracticeDialog::setEntry(TestEntry * entry)
 {
-    if ( m_showSolutionTimer ) {
-        m_showSolutionTimer->stop();
-    }
-
     m_entry = entry;
     m_testType = Prefs::testType();
     startAnswerTimer();
@@ -205,19 +201,19 @@ void PracticeDialog::editEntry()
     // punish with a don't know
     kDebug() << "Edit entry. For now count this attempt as wrong!";
     emit sigQueryChoice(Wrong);
-    emit nextEntry();
+    continueButtonClicked();
 }
 
 void PracticeDialog::skipKnown()
 {
     emit sigQueryChoice(SkipKnown);
-    emit nextEntry();
+    continueButtonClicked();
 }
 
 void PracticeDialog::skipUnknown()
 {
     emit sigQueryChoice(SkipUnknown);
-    emit nextEntry();
+    continueButtonClicked();
 }
 
 void PracticeDialog::resultCorrect()
@@ -354,11 +350,18 @@ void PracticeDialog::startShowSolutionTimer()
             m_showSolutionTimer = new QTimer(this);
         }
         m_showSolutionTimer->setSingleShot(true);
-        connect(m_showSolutionTimer, SIGNAL(timeout()), SIGNAL(nextEntry()));
+        connect(m_showSolutionTimer, SIGNAL(timeout()), SLOT(continueButtonClicked()));
         m_showSolutionTimer->start(Prefs::showSolutionTime() * 1000);
     }
 }
 
 
-#include "practicedialog.moc"
+void PracticeDialog::continueButtonClicked()
+{
+    if ( m_showSolutionTimer ) {
+        m_showSolutionTimer->stop();
+    }
+    emit nextEntry();
+}
 
+#include "practicedialog.moc"

@@ -26,55 +26,75 @@
 #include "MCQueryDlg.h"
 #include "prefs.h"
 
+#include <kvttablemodel.h>
+#include <keduvocdocument.h>
+
+#include <KLocale>
+#include <KDebug>
+#include <KRandomSequence>
+
 #include <QLabel>
 #include <QRadioButton>
 #include <QButtonGroup>
 #include <QPushButton>
 #include <QKeyEvent>
 
-#include <KLocale>
-#include <KDebug>
-#include <KRandomSequence>
-
-#include <kvttablemodel.h>
-
-#include <keduvocdocument.h>
-
-#define MAX_MULTIPLE_CHOICE  5  // select one out of x
-
 MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Multiple Choice"), doc, parent)
 {
     mw = new Ui::MCQueryDlgForm();
     mw->setupUi(mainWidget());
 
+    // continue button
     mw->continueButton->setIcon(KIcon("ok"));
-    // connecting to SIGNAL nextEntry - emits the signal!
-    connect(mw->continueButton, SIGNAL(clicked()), SIGNAL(nextEntry()));
+    connect(mw->continueButton, SIGNAL(clicked()), SLOT(continueButtonClicked()));
 
-    mw->stopPracticeButton->setIcon( KIcon("list-remove") );
-    mw->editEntryButton->setIcon( KIcon("edit") );
-    mw->know_it->setIcon(KIcon("go-next"));
-    mw->dont_know->setIcon(KIcon("go-next"));
-
+    // stop practice
+    mw->stopPracticeButton->setIcon(KIcon("list-remove"));
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
+
+    // edit
+    mw->editEntryButton->setIcon(KIcon("edit"));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
-    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
+    // skip known
+    mw->know_it->setIcon(KIcon("go-next"));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
-    connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
-    connect(mw->rb_trans5, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->rb_trans4, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->rb_trans3, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->rb_trans2, SIGNAL(clicked()), SLOT(verifyClicked()));
-    connect(mw->rb_trans1, SIGNAL(clicked()), SLOT(verifyClicked()));
 
+    // skip unknown
+    mw->dont_know->setIcon(KIcon("go-next"));
+    connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()));
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
+    // show solution
+    connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
+
+    // sound buttons
+    mw->audioPlayQuestionButton->setIcon(KIcon("media-playback-start"));
+    connect(mw->audioPlayQuestionButton, SIGNAL(clicked()), SLOT(audioPlayFromIdentifier()));
+    mw->audioChoiceButton1->setIcon(KIcon("media-playback-start"));
+    mw->audioChoiceButton2->setIcon(KIcon("media-playback-start"));
+    mw->audioChoiceButton3->setIcon(KIcon("media-playback-start"));
+    mw->audioChoiceButton4->setIcon(KIcon("media-playback-start"));
+    mw->audioChoiceButton5->setIcon(KIcon("media-playback-start"));
+
+    // status displays and timer indicator
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
+    mw->timebar->setVisible(Prefs::showCounter());
+    mw->timelabel->setVisible(Prefs::showCounter());
 
     mw->know_it->setVisible(Prefs::iKnow());
     mw->imageGraphicsView->setVisible(false);
+
+    m_choiceRadioButtons << mw->choiceRadioButton1
+        << mw->choiceRadioButton2
+        << mw->choiceRadioButton3
+        << mw->choiceRadioButton4
+        << mw->choiceRadioButton5;
+
+    foreach (QRadioButton* rb, m_choiceRadioButtons) {
+        connect(rb, SIGNAL(clicked()), SLOT(verifyClicked()));
+    }
 
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
     restoreDialogSize(cg);
@@ -92,142 +112,72 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    KEduVocExpression *vocExpression = entry->exp;
-    mw->timebar->setVisible(Prefs::showCounter());
-    mw->timelabel->setVisible(Prefs::showCounter());
-    mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
-    mw->show_all->setDefault(true);
+    // Query cycle - how often did this entry show up
+    mw->progCount->setText(QString::number(m_entry->statisticCount()));
 
+    // general setup
+    mw->show_all->setDefault(true);
     showContinueButton(false);
 
-    // Query cycle - how often did this show up (?)
-    mw->progCount->setText(QString::number(entry->statisticCount()));
+    // question
+    mw->orgField->setFont(Prefs::tableFont());
+    mw->orgField->setText(m_entry->exp->translation(Prefs::fromIdentifier()).text());
 
-    KRandomSequence randomSequence;
+    mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled()
+        && !m_entry->exp->translation(Prefs::fromIdentifier())
+            .soundUrl().isEmpty());
+
+    mw->audioChoiceButton1->setVisible(false);
+    mw->audioChoiceButton2->setVisible(false);
+    mw->audioChoiceButton3->setVisible(false);
+    mw->audioChoiceButton4->setVisible(false);
+    mw->audioChoiceButton5->setVisible(false);
+
+    // answer and choices
+    QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
+
+    // gather some choices...
     QStringList choices;
-    button_ref.clear();
-    button_ref.append(qMakePair(mw->rb_trans1, mw->trans1));
-    button_ref.append(qMakePair(mw->rb_trans2, mw->trans2));
-    button_ref.append(qMakePair(mw->rb_trans3, mw->trans3));
-    button_ref.append(qMakePair(mw->rb_trans4, mw->trans4));
-    button_ref.append(qMakePair(mw->rb_trans5, mw->trans5));
-    randomSequence.randomize(button_ref);
-    setWidgetStyle(button_ref[0].first);
-    setWidgetStyle(button_ref[1].first);
-    setWidgetStyle(button_ref[2].first);
-    setWidgetStyle(button_ref[3].first);
-    setWidgetStyle(button_ref[4].first);
-    setWidgetStyle(button_ref[0].second);
-    setWidgetStyle(button_ref[1].second);
-    setWidgetStyle(button_ref[2].second);
-    setWidgetStyle(button_ref[3].second);
-    setWidgetStyle(button_ref[4].second);
 
-    KEduVocMultipleChoice multipleChoice = vocExpression->translation(Prefs::toIdentifier()).multipleChoice();
-    for (int i = 0; i < qMin(MAX_MULTIPLE_CHOICE, (int) multipleChoice.size()); ++i) {
-        choices.append(multipleChoice.choice(i));
-        kDebug() << "Append choice: " << multipleChoice.choice(i);
-    }
-
-    if (choices.count() > 1)
-        randomSequence.randomize(choices);
+    // the user supplied choices (edit entry -> choices)
+    choices << m_entry->exp->translation(Prefs::toIdentifier()).multipleChoice().choices();
 
     // always include false friend
-    QString ff = vocExpression->translation(Prefs::toIdentifier())
-        .falseFriend(Prefs::fromIdentifier()).simplified();
-
-    if (!ff.isEmpty()) {
-        choices.prepend(ff);
+    QString falseFriend = m_entry->exp->translation(Prefs::toIdentifier())
+        .falseFriend(Prefs::fromIdentifier());
+    if (!falseFriend.isEmpty()) {
+        choices.append(falseFriend);
     }
 
-    if (m_doc->entryCount() <= MAX_MULTIPLE_CHOICE) {
-        for (int i = choices.count(); i < m_doc->entryCount(); ++i) {
-            KEduVocExpression *act = m_doc->entry(i);
+    // create choices for the buttons: -solution -choices we have already
+    choices << createAdditionalChoices(m_choiceRadioButtons.size() - 1 - choices.size());
 
-            if (act != vocExpression) {
-                choices.append(act->translation(Prefs::toIdentifier()).text());
-            }
-        }
-    } else {
-        QList<KEduVocExpression*> exprlist;
+    KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
+    m_solution = randomSequence.getLong(m_choiceRadioButtons.size());
 
-        int count = MAX_MULTIPLE_CHOICE;
-        int numNonEmptyEntries = 0;
-
-        // find out if we got enough non-empty entries to fill all the options
-        for(int i = 0; i < m_doc->entryCount(); i++) {
-            if(!m_doc->entry(i)->translation(Prefs::toIdentifier()).text().isEmpty())
-                numNonEmptyEntries++;
-            if(numNonEmptyEntries >= MAX_MULTIPLE_CHOICE)
-                break;
-        }
-
-        // gather random expressions for the choice
-        while (count > 0) {
-            int nr;
-            // if there are enough non-empty fields, fill the options only with those
-            if(numNonEmptyEntries >= MAX_MULTIPLE_CHOICE) {
-                do {
-                    nr = randomSequence.getLong(m_doc->entryCount());
-                } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
+    for ( int i = 0; i < m_choiceRadioButtons.count(); i++ ) {
+        QString choice;
+        if ( i == m_solution ) {
+            choice = solution;
+        } else {
+            if ( choices.size() > 0 ) {
+                choice = choices.takeAt(randomSequence.getLong(choices.size()));
             } else {
-                nr = randomSequence.getLong(m_doc->entryCount());
-            }
-            // append if new expr found
-            bool newex = true;
-            for (int i = 0; newex && i < exprlist.count(); i++) {
-                if (exprlist[i] == m_doc->entry(nr))
-                    newex = false;
-            }
-            if (newex && vocExpression != m_doc->entry(nr)) {
-                count--;
-                exprlist.append(m_doc->entry(nr));
+                // should not happen...
+                choice = "Parley";
             }
         }
-
-        for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(Prefs::toIdentifier()).text());
-        }
-
+        setWidgetStyle(m_choiceRadioButtons[i], Default);
+        m_choiceRadioButtons[i]->setText(QString::number(i+1) + ": " + choice);
+        m_choiceRadioButtons[i]->setShortcut(QString::number(i+1));
+        m_choiceRadioButtons[i]->setFont(Prefs::tableFont());
     }
-
-    choices.prepend(vocExpression->translation(Prefs::toIdentifier()).text());
-
-    for (int i = choices.count(); i < MAX_MULTIPLE_CHOICE; i++)
-        choices.append("");
-
-    if (choices.count() > MAX_MULTIPLE_CHOICE)
-        choices.erase(choices.begin()+MAX_MULTIPLE_CHOICE, choices.end());
-
-    button_ref[0].first->setEnabled(!choices[0].isEmpty());
-    button_ref[1].first->setEnabled(!choices[1].isEmpty());
-    button_ref[2].first->setEnabled(!choices[2].isEmpty());
-    button_ref[3].first->setEnabled(!choices[3].isEmpty());
-    button_ref[4].first->setEnabled(!choices[4].isEmpty());
-
-    button_ref[0].second->setEnabled(!choices[0].isEmpty());
-    button_ref[1].second->setEnabled(!choices[1].isEmpty());
-    button_ref[2].second->setEnabled(!choices[2].isEmpty());
-    button_ref[3].second->setEnabled(!choices[3].isEmpty());
-    button_ref[4].second->setEnabled(!choices[4].isEmpty());
-
-    button_ref[0].second->setText(choices[0]);
-    button_ref[0].second->setFont(Prefs::tableFont());
-    button_ref[1].second->setText(choices[1]);
-    button_ref[1].second->setFont(Prefs::tableFont());
-    button_ref[2].second->setText(choices[2]);
-    button_ref[2].second->setFont(Prefs::tableFont());
-    button_ref[3].second->setText(choices[3]);
-    button_ref[3].second->setFont(Prefs::tableFont());
-    button_ref[4].second->setText(choices[4]);
-    button_ref[4].second->setFont(Prefs::tableFont());
 
     // As long as the buttons are AutoExclusive we cannot uncheck all.
-    mw->rb_trans5->setChecked(true);
-    mw->rb_trans5->setAutoExclusive ( false );
-    mw->rb_trans5->setChecked(false);
-    mw->rb_trans5->setAutoExclusive ( true );
+    m_choiceRadioButtons[0]->setChecked(true);
+    m_choiceRadioButtons[0]->setAutoExclusive (false);
+    m_choiceRadioButtons[0]->setChecked(false);
+    m_choiceRadioButtons[0]->setAutoExclusive (true);
 
     mw->show_all->setFocus();
 
@@ -237,20 +187,10 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
 void MCQueryDlg::showSolution()
 {
-    setWidgetStyle(button_ref[0].first, PositiveResult);
-    setWidgetStyle(button_ref[0].second, PositiveResult);
+    setWidgetStyle(m_choiceRadioButtons[m_solution], PositiveResult);
 
-    setWidgetStyle(button_ref[1].first, Default);
-    setWidgetStyle(button_ref[2].first, Default);
-    setWidgetStyle(button_ref[3].first, Default);
-    setWidgetStyle(button_ref[4].first, Default);
-    setWidgetStyle(button_ref[1].second, Default);
-    setWidgetStyle(button_ref[2].second, Default);
-    setWidgetStyle(button_ref[3].second, Default);
-    setWidgetStyle(button_ref[4].second, Default);
-
-    button_ref[0].first->setFocus();
-    button_ref[0].first->setChecked(true);
+    m_choiceRadioButtons[m_solution]->setFocus();
+    m_choiceRadioButtons[m_solution]->setChecked(true);
 
     showContinueButton(true);
 
@@ -263,44 +203,31 @@ void MCQueryDlg::showSolution()
 
 void MCQueryDlg::verifyClicked()
 {
-    bool known = button_ref[0].first->isChecked();
-
-    if (button_ref[0].first->isChecked()) {
-        setWidgetStyle(button_ref[0].first, PositiveResult);
-        setWidgetStyle(button_ref[0].second, PositiveResult);
-    } else if (button_ref[1].first->isChecked()) {
-        setWidgetStyle(button_ref[1].first, NegativeResult);
-        setWidgetStyle(button_ref[1].second, NegativeResult);
-    } else if (button_ref[2].first->isChecked()) {
-        setWidgetStyle(button_ref[2].first, NegativeResult);
-        setWidgetStyle(button_ref[2].second, NegativeResult);
-    } else if (button_ref[3].first->isChecked()) {
-        setWidgetStyle(button_ref[3].first, NegativeResult);
-        setWidgetStyle(button_ref[3].second, NegativeResult);
-    } else if (button_ref[4].first->isChecked()) {
-        setWidgetStyle(button_ref[4].first, NegativeResult);
-        setWidgetStyle(button_ref[4].second, NegativeResult);
-    }
-
-    ///@todo move the status bar stuff either in or out of the base class
-
-    if (known) {
+    if ( m_choiceRadioButtons[m_solution]->isChecked() ) {
+        // correct
+        setWidgetStyle(m_choiceRadioButtons[m_solution], PositiveResult);
         resultCorrect();
         showContinueButton(true);
         mw->status->setText(
                 getOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));
     } else {
+        // wrong answer
+        foreach ( QRadioButton* rb, m_choiceRadioButtons ) {
+            if ( rb->isChecked() ) {
+                setWidgetStyle(rb, NegativeResult);
+            }
+        }
         if ( !answerTainted() ) {
             setAnswerTainted();
             resultWrong();
         }
-
         mw->dont_know->setDefault(true);
         mw->status->setText(
                 getNOKComment((int)(((double)mw->countbar->value())
                     /mw->countbar->maximum() * 100.0)));
     }
+    ///@todo move the status bar stuff either in or out of the base class
 }
 
 
@@ -332,11 +259,85 @@ void MCQueryDlg::showContinueButton(bool show)
         stopAnswerTimer();
         mw->continueButton->setDefault(true);
         startShowSolutionTimer();
+
+        // enable the sound for the solution. eventually all entries with sound should get their button enabled.
+        if ( Prefs::practiceSoundEnabled() ) {
+            if ( !m_entry->exp->translation(Prefs::toIdentifier())
+                .soundUrl().isEmpty()) {
+                QList<QPushButton*> audioButtons;
+                audioButtons << mw->audioChoiceButton1
+                    << mw->audioChoiceButton2
+                    << mw->audioChoiceButton3
+                    << mw->audioChoiceButton4
+                    << mw->audioChoiceButton5;
+                audioButtons[m_solution]->setVisible(true);
+                connect(audioButtons[m_solution], SIGNAL(clicked()), SLOT(audioPlayToIdentifier()));
+            }
+        }
     } else {
         mw->dont_know->setDefault(true);
     }
 }
 
+
+QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
+{
+    QStringList choices;
+
+    KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
+
+    if (m_doc->entryCount() <= numberChoices) {
+        for (int i = choices.count(); i < m_doc->entryCount(); ++i) {
+            KEduVocExpression *act = m_doc->entry(i);
+
+            if (act != m_entry->exp) {
+                choices.append(act->translation(Prefs::toIdentifier()).text());
+            }
+        }
+    } else {
+        QList<KEduVocExpression*> exprlist;
+
+        int count = numberChoices;
+        int numNonEmptyEntries = 0;
+
+        // find out if we got enough non-empty entries to fill all the options
+        for(int i = 0; i < m_doc->entryCount(); i++) {
+            if(!m_doc->entry(i)->translation(Prefs::toIdentifier()).text().isEmpty())
+                numNonEmptyEntries++;
+            if(numNonEmptyEntries >= numberChoices)
+                break;
+        }
+
+        // gather random expressions for the choice
+        while (count > 0) {
+            int nr;
+            // if there are enough non-empty fields, fill the options only with those
+            if(numNonEmptyEntries >= numberChoices) {
+                do {
+                    nr = randomSequence.getLong(m_doc->entryCount());
+                } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
+            } else {
+                nr = randomSequence.getLong(m_doc->entryCount());
+            }
+            // append if new expr found
+            bool newex = true;
+            for (int i = 0; newex && i < exprlist.count(); i++) {
+                if (exprlist[i] == m_doc->entry(nr))
+                    newex = false;
+            }
+            if (newex && m_entry->exp != m_doc->entry(nr)) {
+                count--;
+                exprlist.append(m_doc->entry(nr));
+            }
+        }
+
+        for (int i = 0; i < exprlist.count(); i++) {
+            choices.append(exprlist[i]->translation(Prefs::toIdentifier()).text());
+        }
+    }
+
+    return choices;
+}
 
 #include "MCQueryDlg.moc"
 
