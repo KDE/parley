@@ -41,6 +41,7 @@ PracticeSummaryDialog::PracticeSummaryDialog(TestEntryManager* testEntryManager,
             testEntryManager->statisticTotalSkipKnown() * 100
             / testEntryManager->totalEntryCount());
     } else {
+        skipKnownLabel->setVisible(false);
         skipKnownLineEdit->setVisible(false);
         skipKnownProgressBar->setVisible(false);
     }
