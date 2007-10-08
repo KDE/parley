@@ -18,6 +18,9 @@
      <layout class="QGridLayout" >
       <item row="0" column="0" >
        <widget class="QRadioButton" name="WrittenRadio" >
+        <property name="toolTip" >
+         <string/>
+        </property>
         <property name="text" >
          <string>Written</string>
         </property>
@@ -71,7 +74,7 @@
       <item row="5" column="0" colspan="2" >
        <widget class="QRadioButton" name="MixedLettersPracticeRadio" >
         <property name="text" >
-         <string>Mixed Letters Practice</string>
+         <string>Mixed Letters</string>
         </property>
        </widget>
       </item>
