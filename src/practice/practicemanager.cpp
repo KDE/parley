@@ -33,7 +33,7 @@
 #include "VerbQueryDlg.h"
 #include "ArtQueryDlg.h"
 #include "SimpleQueryDlg.h"
-#include "imagepracticedlg.h"
+#include "mixedletterpracticedialog.h"
 #include "practicesummarydialog.h"
 
 #include "testentrymanager.h"
@@ -157,7 +157,7 @@ void PracticeManager::createDialog()
         m_testDialog = new MCQueryDlg(m_doc, m_app);
         break;
     case Prefs::EnumTestType::MixedLettersTest:
-        m_testDialog = new ImagePracticeDlg(m_doc, m_app);
+        m_testDialog = new MixedLetterPracticeDialog(m_doc, m_app);
         break;
 
     // tests using the simple dialog

@@ -11,20 +11,20 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef IMAGEPRACTICE_H
-#define IMAGEPRACTICE_H
+#ifndef MIXEDLETTERPRACTICEDIALOG_H
+#define MIXEDLETTERPRACTICEDIALOG_H
 
-#include "ui_imagepracticedlg.h"
+#include "ui_mixedletterpracticedialog.h"
 #include "practicedialog.h"
 
-class ImagePracticeDlg : public PracticeDialog, Ui::ImagePracticeDlg
+class MixedLetterPracticeDialog : public PracticeDialog, Ui::MixedLetterPracticeDialog
 {
     Q_OBJECT
 
 public:
-    ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent);
+    MixedLetterPracticeDialog(KEduVocDocument *doc, QWidget *parent);
 
-    ~ImagePracticeDlg();
+    ~MixedLetterPracticeDialog();
 
     void setEntry(TestEntry* entry);
     void setProgressCounter(int current, int total);

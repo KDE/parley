@@ -11,7 +11,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "imagepracticedlg.h"
+#include "mixedletterpracticedialog.h"
 
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
@@ -25,8 +25,8 @@
 #include <QPushButton>
 #include <QWidget>
 
-ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
-    :PracticeDialog(i18n("Image Practice"), doc, parent), Ui::ImagePracticeDlg()
+MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidget *parent)
+    :PracticeDialog(i18n("Image Practice"), doc, parent), Ui::MixedLetterPracticeDialog()
 {
     setupUi(mainWidget());
 
@@ -52,14 +52,14 @@ ImagePracticeDlg::ImagePracticeDlg(KEduVocDocument *doc, QWidget *parent)
 }
 
 
-ImagePracticeDlg::~ImagePracticeDlg()
+MixedLetterPracticeDialog::~MixedLetterPracticeDialog()
 {
     KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     KDialog::saveDialogSize(cg);
 }
 
 
-void ImagePracticeDlg::setEntry(TestEntry* entry)
+void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
@@ -102,7 +102,7 @@ void ImagePracticeDlg::setEntry(TestEntry* entry)
 }
 
 
-void ImagePracticeDlg::slotAnswerChanged()
+void MixedLetterPracticeDialog::slotAnswerChanged()
 {
     QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
     for ( int i = 0; i < solution.length(); i++ ) {
@@ -123,7 +123,7 @@ void ImagePracticeDlg::slotAnswerChanged()
 }
 
 
-void ImagePracticeDlg::showSolution()
+void MixedLetterPracticeDialog::showSolution()
 {
     answerLineEdit->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
     verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text());
@@ -131,7 +131,7 @@ void ImagePracticeDlg::showSolution()
 }
 
 
-void ImagePracticeDlg::verifyClicked()
+void MixedLetterPracticeDialog::verifyClicked()
 {
     if (verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text())) {
         resultCorrect();
@@ -141,17 +141,17 @@ void ImagePracticeDlg::verifyClicked()
     }
 }
 
-void ImagePracticeDlg::setProgressCounter(int current, int total)
+void MixedLetterPracticeDialog::setProgressCounter(int current, int total)
 {
     countbar->setMaximum(total);
     countbar->setValue(current);
 }
 
-QProgressBar * ImagePracticeDlg::timebar()
+QProgressBar * MixedLetterPracticeDialog::timebar()
 {
     return timeProgressBar;
 }
 
-#include "imagepracticedlg.moc"
+#include "mixedletterpracticedialog.moc"
 
 

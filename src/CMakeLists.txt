@@ -38,7 +38,7 @@ set(practice_SRCS
     practice/writtenpracticedialog.cpp
     practice/SimpleQueryDlg.cpp
     practice/VerbQueryDlg.cpp
-    practice/imagepracticedlg.cpp
+    practice/mixedletterpracticedialog.cpp
     practice/showsolutiondialog.cpp
     practice/practicesummarydialog.cpp
 )
@@ -50,7 +50,7 @@ kde4_add_ui_files(practice_SRCS
     practice/writtenpracticedialog.ui
     practice/SimpleQueryDlgForm.ui
     practice/VerbQueryDlgForm.ui
-    practice/imagepracticedlg.ui
+    practice/mixedletterpracticedialog.ui
     practice/showsolutionwidget.ui
     practice/practicesummarywidget.ui
 )

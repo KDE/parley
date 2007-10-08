@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>ImagePracticeDlg</class>
- <widget class="QWidget" name="ImagePracticeDlg" >
+ <class>MixedLetterPracticeDialog</class>
+ <widget class="QWidget" name="MixedLetterPracticeDialog" >
   <property name="geometry" >
    <rect>
     <x>0</x>
