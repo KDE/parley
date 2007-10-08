@@ -80,7 +80,7 @@ void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
     QString original = m_entry->exp->translation(Prefs::fromIdentifier()).text();
     originalLabel->setText( original );
 
-    QString translation = m_entry->exp->translation(Prefs::toIdentifier()).text();
+    QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
 
     // remove old items
     foreach ( QGraphicsItem* item, mixedLettersGraphicsView->scene()->items() ) {
@@ -91,9 +91,14 @@ void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
 
     KRandomSequence random = KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 
-    for ( int i = 0; i < translation.length(); i++ ) {
-        QGraphicsTextItem* textItem = new QGraphicsTextItem( QString(translation[i]) );
-        textItem->translate( 10 + random.getLong(mixedLettersGraphicsView->width() - 30 ), 10 + random.getLong(mixedLettersGraphicsView->height() -30 ) );
+    QList<int> positions;
+    for ( int i = 0; i < solution.length(); i++ ) {
+        positions.append( (mixedLettersGraphicsView->width()-20) * i/solution.length()  + 10 );
+    }
+
+    for ( int i = 0; i < solution.length(); i++ ) {
+        QGraphicsTextItem* textItem = new QGraphicsTextItem( QString(solution[i]) );
+        textItem->translate( positions.takeAt( random.getLong(positions.size()) ), mixedLettersGraphicsView->height()/4 - 5 + random.getLong( mixedLettersGraphicsView->height()/2 ) );
         m_answerTextItems.append(textItem);
         mixedLettersGraphicsView->scene()->addItem( textItem );
     }
