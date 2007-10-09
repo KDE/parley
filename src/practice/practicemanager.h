@@ -39,6 +39,8 @@ Q_OBJECT
 
 public:
     PracticeManager(ParleyApp *app, KEduVocDocument *doc);
+    ~PracticeManager();
+
     void startPractice();
 
 public slots:

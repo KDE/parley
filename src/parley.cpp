@@ -139,6 +139,9 @@ void ParleyApp::readProperties(const KConfigGroup &config)
 
 ParleyApp::~ParleyApp()
 {
+    if ( m_practiceManager ) {
+        m_practiceManager->deleteLater();
+    }
     removeEntryDlg();
     delete m_doc;
 }
@@ -618,6 +621,9 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
+    if ( m_practiceManager ) {
+        m_practiceManager->deleteLater();
+    }
     m_practiceManager = new PracticeManager(this, m_doc);
     m_practiceManager->startPractice();
 }

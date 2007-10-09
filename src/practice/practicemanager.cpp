@@ -73,9 +73,6 @@ void PracticeManager::startPractice()
     m_lastTestType = QString();
     m_testType = Prefs::testType();
 
-    m_testDialog->deleteLater();
-    m_testDialog = 0;
-
     m_app->removeEntryDlg();
     num_queryTimeout = 0;
 
@@ -147,6 +144,10 @@ void PracticeManager::nextEntry()
 
 void PracticeManager::createDialog()
 {
+    if ( m_testDialog ) {
+        m_testDialog->deleteLater();
+    }
+
     QString specialWordType;
 
     switch ( m_testType ) {
@@ -212,11 +213,10 @@ void PracticeManager::createDialog()
 void PracticeManager::stopPractice()
 {
 kDebug() << "stopPractice";
-    if (m_testDialog != 0) {
+    if (m_testDialog) {
         m_testDialog->deleteLater();
+        m_testDialog = 0;
     }
-
-    m_testDialog = 0;
 
     m_entryManager->printStatistics();
 
@@ -224,6 +224,13 @@ kDebug() << "stopPractice";
     practiceSummaryDialog.exec();
 
     m_app->show();
+}
+
+PracticeManager::~ PracticeManager()
+{
+    if ( m_testDialog ) {
+        m_testDialog->deleteLater();
+    }
     deleteLater();
 }
 

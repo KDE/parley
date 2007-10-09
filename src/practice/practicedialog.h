@@ -34,6 +34,8 @@
 #include <QCloseEvent>
 #include <QProgressBar>
 
+class AnswerValidator;
+
 class KEduVocExpression;
 class KEduVocDocument;
 
@@ -217,7 +219,10 @@ private:
 
     /// The sound player. Has to be initialized before using the first time.
     Phonon::MediaObject* m_player;
+
+    /// Advanced string evaluation
+//     AnswerValidator* m_validator;
 };
 
 
-#endif // Query_Dlg_Base_H
+#endif

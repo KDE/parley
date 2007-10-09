@@ -23,7 +23,9 @@
  ***************************************************************************/
 
 #include "practicedialog.h"
+#include "answervalidator.h"
 #include "entry-dialogs/EntryDlg.h"
+
 #include <KLocale>
 #include <KColorScheme>
 #include <Phonon/MediaObject>
@@ -54,6 +56,7 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_showSolutionTimer = 0;
 
     m_player = 0;
+//     m_validator = new AnswerValidator(m_doc);
 }
 
 
@@ -62,6 +65,7 @@ PracticeDialog::~PracticeDialog()
     if ( m_player ) {
         m_player->deleteLater();
     }
+//     delete m_validator;
 }
 
 
@@ -80,6 +84,8 @@ bool PracticeDialog::smartCompare(const QString& s1, const QString &s2) const
 bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
 {
     kDebug() << "Compare: " << field->text() << really;
+
+//     kDebug() << "Validator gives grade: " << m_validator->checkUserAnswer(field->text());
 
     if (!field->isEnabled()) {
         return true;
@@ -180,6 +186,7 @@ void PracticeDialog::stopAnswerTimer()
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
+//     m_validator->setSolution(m_entry->exp, Prefs::toIdentifier());
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;
@@ -363,5 +370,6 @@ void PracticeDialog::continueButtonClicked()
     }
     emit nextEntry();
 }
+
 
 #include "practicedialog.moc"
