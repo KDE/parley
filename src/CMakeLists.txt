@@ -41,6 +41,7 @@ set(practice_SRCS
     practice/mixedletterpracticedialog.cpp
     practice/showsolutiondialog.cpp
     practice/practicesummarydialog.cpp
+    practice/answervalidator.cpp
 )
 
 kde4_add_ui_files(practice_SRCS
