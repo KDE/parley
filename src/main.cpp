@@ -92,10 +92,6 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("KDE Team"),
                         ki18n("Many small enhancements"));
 
-    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"),
-                        ki18nc("EMAIL OF TRANSLATORS", "Your emails"));
-
-
     KCmdLineArgs::init(argc, argv, &aboutData);
 
     KCmdLineOptions options;
@@ -124,6 +120,9 @@ int main(int argc, char* argv[])
     }
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
-    return app.exec();
+
+    int ret = app.exec();
+//     delete parleyApp;
+    return  ret;
 }
 
