@@ -14,7 +14,19 @@
   </property>
   <layout class="QHBoxLayout" >
    <item>
-    <widget class="QListWidget" name="tenseSelectionListWidget" />
+    <widget class="QTreeWidget" name="tenseSelectionTreeWidget" >
+     <property name="rootIsDecorated" >
+      <bool>false</bool>
+     </property>
+     <property name="itemsExpandable" >
+      <bool>false</bool>
+     </property>
+     <column>
+      <property name="text" >
+       <string>Tenses</string>
+      </property>
+     </column>
+    </widget>
    </item>
   </layout>
  </widget>

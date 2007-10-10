@@ -25,6 +25,7 @@
 class KEduVocDocument;
 class KConfigSkeleton;
 class QStackedLayout;
+class QTreeWidget;
 
 /**
  *
@@ -57,12 +58,15 @@ private slots:
     void otherRadioToggled(bool checked);
 
 private:
+    void setupTenses();
+
     enum StackedWidgets {
         Empty,
         Conjugation,
         Comparison
     };
     QStackedLayout* m_optionsStackedLayout;
+    QTreeWidget* m_tenseListWidget;
     KEduVocDocument* m_doc;
 };
 

@@ -83,7 +83,8 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     Ui::ConjugationOptionsWidget conjugationUi;
     conjugationUi.setupUi(conjugationContainer);
     m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
-
+    m_tenseListWidget = conjugationUi.tenseSelectionTreeWidget;
+    setupTenses();
 
     // add the comparison ui to the stacked widget
     QWidget* comparisonContainer = new QWidget(OptionsGroupBox);
@@ -168,6 +169,18 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
     if ( checked ) {
         OptionsGroupBox->setEnabled(false);
         m_optionsStackedLayout->setCurrentIndex(Empty);
+    }
+}
+
+void ConfigurePracticeWidget::setupTenses()
+{
+    QTreeWidgetItem* tenseItem;
+    foreach ( QString tenseName, m_doc->tenseDescriptions() ) {
+        tenseItem = new QTreeWidgetItem(m_tenseListWidget);
+        tenseItem->setText(0, tenseName);
+        tenseItem->setCheckState(0, Qt::Unchecked);
+        tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
+        m_tenseListWidget->addTopLevelItem( tenseItem );
     }
 }
 
