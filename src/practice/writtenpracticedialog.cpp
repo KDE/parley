@@ -171,6 +171,7 @@ WrittenPracticeDialog::~WrittenPracticeDialog()
 {
     KConfigGroup cg(KGlobal::config(), "RandomQueryDialog");
     KDialog::saveDialogSize(cg);
+    delete mw;
 }
 
 

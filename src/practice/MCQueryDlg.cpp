@@ -105,6 +105,7 @@ MCQueryDlg::~MCQueryDlg()
 {
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
     KDialog::saveDialogSize(cg);
+    delete mw;
 }
 
 

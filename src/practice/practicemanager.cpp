@@ -228,6 +228,7 @@ kDebug() << "stopPractice";
 
 PracticeManager::~ PracticeManager()
 {
+    delete m_entryManager;
     if ( m_testDialog ) {
         m_testDialog->deleteLater();
     }

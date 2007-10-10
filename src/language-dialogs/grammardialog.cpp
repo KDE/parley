@@ -76,6 +76,9 @@ GrammarDialog::~GrammarDialog()
 {
     KConfigGroup cg(KGlobal::config(), "GrammarDialog");
     KDialog::saveDialogSize(cg);
+    useOptPage->deleteLater();
+    typeOptPage->deleteLater();
+    tenseOptPage->deleteLater();
 }
 
 

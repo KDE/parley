@@ -54,6 +54,9 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
 
 MixedLetterPracticeDialog::~MixedLetterPracticeDialog()
 {
+    mixedLettersGraphicsView->scene()->deleteLater();
+    imageGraphicsView->scene()->deleteLater();
+
     KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     KDialog::saveDialogSize(cg);
 }
