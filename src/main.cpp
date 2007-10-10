@@ -62,15 +62,6 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("Waldo Bastian"),
                         ki18n("Help with port to Qt3/KDE3"));
 
-    aboutData.addCredit(ki18n("Andrea Marconi"),
-                        ki18n("Initial Italian localization"));
-
-    aboutData.addCredit(ki18n("Hans Kottmann"),
-                        ki18n("Initial French localization"));
-
-    aboutData.addCredit(ki18n("Grzegorz Ilczuk"),
-                        ki18n("Initial Polish localization"));
-
     aboutData.addCredit(ki18n("Eric Bischoff"),
                         ki18n("Converting documentation to docbook format"));
 
@@ -92,11 +83,18 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("Markus Büchele"),
                         ki18n("Bug reports and testing on the way to KDE4"));
 
+    aboutData.addCredit(ki18n("Johannes Simon"),
+                        ki18n("Bug fixes and testing on the way to KDE4"));
+
     aboutData.addCredit(ki18n("Ramona Knapp"),
-                        ki18n("Suggested Parley as new name"));
+                        ki18n("Conceived the name Parley"));
 
     aboutData.addCredit(ki18n("KDE Team"),
                         ki18n("Many small enhancements"));
+
+    aboutData.setTranslator(ki18nc("NAME OF TRANSLATORS", "Your names"),
+                        ki18nc("EMAIL OF TRANSLATORS", "Your emails"));
+
 
     KCmdLineArgs::init(argc, argv, &aboutData);
 
