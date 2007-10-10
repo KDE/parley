@@ -127,19 +127,8 @@ void PracticeManager::nextEntry()
         return;
     }
 
-    // check if we need a different grammar dialog
-    if ( m_testType == Prefs::EnumTestType::GrammarTest &&
-        m_doc->wordTypes().specialType(
-            m_entry->exp->translation(Prefs::toIdentifier()).type()) != m_lastTestType ) {
-        m_testDialog->accept();
-        m_testDialog->deleteLater();
-        m_testDialog = 0;
-        kDebug() << "Creating new grammar dialog...";
-        createDialog();
-    } else {
-        m_testDialog->setEntry(m_entry);
-        m_testDialog->setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-    }
+    m_testDialog->setEntry(m_entry);
+    m_testDialog->setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
 }
 
 
@@ -162,7 +151,15 @@ void PracticeManager::createDialog()
     case Prefs::EnumTestType::MixedLettersTest:
         m_testDialog = new MixedLetterPracticeDialog(m_doc, m_app);
         break;
-
+    case Prefs::EnumTestType::ArticleTest:
+        m_testDialog = new ArtQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::ComparisonTest:
+        m_testDialog = new AdjQueryDlg(m_doc, m_app);
+        break;
+    case Prefs::EnumTestType::ConjugationTest:
+        m_testDialog = new VerbQueryDlg(m_doc, m_app);
+        break;
     // tests using the simple dialog
     case Prefs::EnumTestType::SynonymTest:
     case Prefs::EnumTestType::AntonymTest:
@@ -170,27 +167,6 @@ void PracticeManager::createDialog()
     case Prefs::EnumTestType::ParaphraseTest:
         m_testDialog = new SimpleQueryDlg(m_doc, m_app);
         break;
-
-    case Prefs::EnumTestType::GrammarTest:
-        specialWordType = m_doc->wordTypes().specialType(
-            m_entry->exp->translation(Prefs::toIdentifier()).type());
-        if ( specialWordType ==
-                m_doc->wordTypes().specialTypeNoun() ) {
-            m_testDialog = new ArtQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes().specialTypeAdjective() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes().specialTypeAdverb() ) {
-            m_testDialog = new AdjQueryDlg(m_doc, m_app);
-        }
-        if ( specialWordType ==
-                m_doc->wordTypes().specialTypeVerb() ) {
-            m_testDialog = new VerbQueryDlg(m_doc, m_app);
-        }
-        m_lastTestType = specialWordType;
         break;
     default:
         kError() << "PracticeManager::startQuery: unknown type\n";

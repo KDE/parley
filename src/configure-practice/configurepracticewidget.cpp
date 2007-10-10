@@ -19,6 +19,9 @@
 
 #include "configurepracticewidget.h"
 
+#include "ui_comparisonoptionswidget.h"
+#include "ui_conjugationoptionswidget.h"
+
 #include "languagesettings.h"
 #include "prefs.h"
 
@@ -26,6 +29,7 @@
 
 #include <KStandardDirs>
 #include <KLocale>
+#include <QStackedLayout>
 #include <QLabel>
 #include <QtDBus>
 
@@ -39,8 +43,6 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     m_doc = doc;
     setupUi(this);
 
-
-
     for ( int i = 0; i < m_doc->identifierCount(); i++ ) {
         LanguageSettings currentSettings(m_doc->identifier(i).locale());
         currentSettings.readConfig();
@@ -49,11 +51,45 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     }
 
     connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
-    connect(GrammarRadio, SIGNAL(toggled(bool)), this, SLOT(grammarTestToggled(bool)));
+
+    connect(ComparisonRadio, SIGNAL(toggled(bool)), this, SLOT(comparisonRadioToggled(bool)));
+    connect(ConjugationRadio, SIGNAL(toggled(bool)), this, SLOT(conjugationRadioToggled(bool)));
+
+    connect(AntonymRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(ArticleRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(ExampleRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(MixedLettersRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(ParaphraseRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(SynonymRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+    connect(WrittenRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
+
+//     connect(WrittenRadio, )
+
+///@todo connect the Radios to disable the option group
 
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
 
-    GrammarGroupBox->setEnabled( Prefs::testType() == Prefs::EnumTestType::GrammarTest );
+    OptionsGroupBox->setEnabled( false );
+    m_optionsStackedLayout = new QStackedLayout(OptionsGroupBox);
+    OptionsGroupBox->setLayout(m_optionsStackedLayout);
+
+
+    // the widgets have to be inserted in order of the enum because insert appends if the index is too great
+    m_optionsStackedLayout->insertWidget(Empty, new QLabel(i18n("No options"), OptionsGroupBox));
+
+    // add the conjugation ui to the stacked widget
+    QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
+    Ui::ConjugationOptionsWidget conjugationUi;
+    conjugationUi.setupUi(conjugationContainer);
+    m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
+
+
+    // add the comparison ui to the stacked widget
+    QWidget* comparisonContainer = new QWidget(OptionsGroupBox);
+    Ui::ComparisonOptionsWidget comparisonUi;
+    comparisonUi.setupUi(comparisonContainer);
+    m_optionsStackedLayout->insertWidget(Comparison, comparisonContainer);
 }
 
 
@@ -85,12 +121,6 @@ void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
     }
 }
 
-void ConfigurePracticeWidget::grammarTestToggled(bool state)
-{
-    GrammarGroupBox->setEnabled(state);
-}
-
-
 void ConfigurePracticeWidget::updateWidgets()
 {
     LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
@@ -117,5 +147,28 @@ bool ConfigurePracticeWidget::isDefault()
 //         LanguageToList->currentRow() == 1;
 }
 
+void ConfigurePracticeWidget::comparisonRadioToggled(bool checked)
+{
+    if ( checked ) {
+        OptionsGroupBox->setEnabled(true);
+        m_optionsStackedLayout->setCurrentIndex(Comparison);
+    }
+}
+
+void ConfigurePracticeWidget::conjugationRadioToggled(bool checked)
+{
+    if ( checked ) {
+        OptionsGroupBox->setEnabled(true);
+        m_optionsStackedLayout->setCurrentIndex(Conjugation);
+    }
+}
+
+void ConfigurePracticeWidget::otherRadioToggled(bool checked)
+{
+    if ( checked ) {
+        OptionsGroupBox->setEnabled(false);
+        m_optionsStackedLayout->setCurrentIndex(Empty);
+    }
+}
 
 #include "configurepracticewidget.moc"

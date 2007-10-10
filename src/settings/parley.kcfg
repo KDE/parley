@@ -212,31 +212,25 @@
     </entry>
     <entry name="TestType" type="Enum">
         <choices>
-            <choice name="WrittenTest"/>
-            <choice name="SynonymTest"/>
-            <choice name="MultipleChoiceTest"/>
-            <choice name="AntonymTest"/>
-            <choice name="GrammarTest"/>
-            <choice name="ParaphraseTest"/>
-            <choice name="ExampleTest"/>
             <choice name="MixedLettersTest"/>
+            <choice name="ArticleTest"/>
+            <choice name="MultipleChoiceTest"/>
+            <choice name="ComparisonTest"/>
+            <choice name="WrittenTest"/>
+            <choice name="ConjugationTest"/>
+            <choice name="ExampleTest"/>
+            <choice name="SynonymTest"/>
+            <choice name="ParaphraseTest"/>
+            <choice name="AntonymTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
     </entry>
-    <entry name="GrammarArticleTest" type="Bool">
-      <label>In a grammar test, whether article practice will be enabled.</label>
+    <entry name="ComparisonIncludeAdjective" type="Bool">
+      <label>In a comparison forms test, include adjectives.</label>
       <default>true</default>
     </entry>
-    <entry name="GrammarConjugationTest" type="Bool">
-      <label>In a grammar test, whether conjugations will be enabled.</label>
-      <default>true</default>
-    </entry>
-    <entry name="GrammarComparisonAdjectiveTest" type="Bool">
-      <label>In a grammar test, whether comparisons of adjectives will be enabled.</label>
-      <default>true</default>
-    </entry>
-    <entry name="GrammarComparisonAdverbTest" type="Bool">
-      <label>In a grammar test, whether comparisons of adverbs will be enabled.</label>
+    <entry name="ComparisonIncludeAdverb" type="Bool">
+      <label>In a comparison forms test, include adverbs.</label>
       <default>true</default>
     </entry>
     <entry name="CompType$(Type)" type="Enum" key="CompType$(Type)">

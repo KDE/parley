@@ -405,7 +405,9 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
         return !expr->translation(m_toTranslation).example().simplified().isEmpty();
         break;
 
-    case Prefs::EnumTestType::GrammarTest:
+    case Prefs::EnumTestType::ConjugationTest:
+    case Prefs::EnumTestType::ArticleTest:
+    case Prefs::EnumTestType::ComparisonTest:
     // already in checkType
         return true;
         break;
@@ -543,32 +545,36 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         entry->translation(m_toTranslation).subType());
 
     // if we do a grammar test, check only if the grammar type is valid
-    if ( Prefs::testType() == Prefs::EnumTestType::GrammarTest ) {
-        if ( Prefs::grammarArticleTest() ) {
-            if ( specialWordType == m_doc->wordTypes().specialTypeNoun() ) {
-                return
-                    specialSubType ==
-                    m_doc->wordTypes().specialTypeNounMale() ||
-                    specialSubType ==
-                    m_doc->wordTypes().specialTypeNounFemale() ||
-                    specialSubType ==
-                    m_doc->wordTypes().specialTypeNounNeutral();
-            }
+    if ( Prefs::testType() == Prefs::EnumTestType::ArticleTest ) {
+        if ( specialWordType == m_doc->wordTypes().specialTypeNoun() ) {
+            return
+                specialSubType ==
+                m_doc->wordTypes().specialTypeNounMale() ||
+                specialSubType ==
+                m_doc->wordTypes().specialTypeNounFemale() ||
+                specialSubType ==
+                m_doc->wordTypes().specialTypeNounNeutral();
         }
-        if ( Prefs::grammarComparisonAdjectiveTest() ) {
+        return false;
+    }
+
+    if ( Prefs::testType() == Prefs::EnumTestType::ComparisonTest ) {
+        if ( Prefs::comparisonIncludeAdjective() ) {
             if ( specialWordType == m_doc->wordTypes().specialTypeAdjective() ) {
                 return !entry->translation(m_toTranslation).comparison().isEmpty();
             }
         }
-        if ( Prefs::grammarComparisonAdverbTest() ) {
+        if ( Prefs::comparisonIncludeAdverb() ) {
             if ( specialWordType == m_doc->wordTypes().specialTypeAdverb() ) {
                 return !entry->translation(m_toTranslation).comparison().isEmpty();
             }
         }
-        if ( Prefs::grammarConjugationTest() ) {
-            if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
-                return entry->translation(m_toTranslation).conjugations().count() > 0;
-            }
+        return false;
+    }
+
+    if ( Prefs::testType() == Prefs::EnumTestType::ConjugationTest ) {
+        if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
+            return entry->translation(m_toTranslation).conjugations().count() > 0;
         }
         return false;
     }

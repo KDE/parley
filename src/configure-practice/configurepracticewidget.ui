@@ -5,120 +5,108 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>693</width>
-    <height>387</height>
+    <width>617</width>
+    <height>580</height>
    </rect>
   </property>
-  <layout class="QGridLayout" >
-   <item row="0" column="0" >
-    <widget class="KButtonGroup" name="kcfg_TestType" >
-     <property name="title" >
-      <string>Type of Test</string>
-     </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QRadioButton" name="WrittenRadio" >
-        <property name="toolTip" >
-         <string/>
-        </property>
-        <property name="text" >
-         <string>Written</string>
-        </property>
-        <property name="checked" >
-         <bool>true</bool>
-        </property>
-       </widget>
-      </item>
-      <item rowspan="2" row="0" column="1" >
-       <widget class="QRadioButton" name="SynonymRadio" >
-        <property name="text" >
-         <string>Synonym</string>
-        </property>
-       </widget>
-      </item>
-      <item rowspan="2" row="1" column="0" >
-       <widget class="QRadioButton" name="MultipleChoiceRadio" >
-        <property name="text" >
-         <string>Multiple Choice</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" >
-       <widget class="QRadioButton" name="AntonymRadio" >
-        <property name="text" >
-         <string>Antonym</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="0" >
-       <widget class="QRadioButton" name="GrammarRadio" >
-        <property name="text" >
-         <string>Grammar</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" >
-       <widget class="QRadioButton" name="ParaphraseRadio" >
-        <property name="text" >
-         <string>Paraphrase</string>
-        </property>
-       </widget>
-      </item>
-      <item row="4" column="0" colspan="2" >
-       <widget class="QRadioButton" name="ExampleRadio" >
-        <property name="text" >
-         <string>Example Sentences</string>
-        </property>
-       </widget>
-      </item>
-      <item row="5" column="0" colspan="2" >
-       <widget class="QRadioButton" name="MixedLettersPracticeRadio" >
-        <property name="text" >
-         <string>Mixed Letters</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
+  <layout class="QVBoxLayout" >
+   <item>
+    <layout class="QHBoxLayout" >
+     <item>
+      <widget class="KButtonGroup" name="kcfg_TestType" >
+       <property name="title" >
+        <string>Type of Test</string>
+       </property>
+       <layout class="QGridLayout" >
+        <item row="0" column="0" >
+         <widget class="QRadioButton" name="MixedLettersRadio" >
+          <property name="text" >
+           <string>Mixed Letters</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="1" >
+         <widget class="QRadioButton" name="ArticleRadio" >
+          <property name="text" >
+           <string>Article Training</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" >
+         <widget class="QRadioButton" name="MultipleChoiceRadio" >
+          <property name="text" >
+           <string>Multiple Choice</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="1" >
+         <widget class="QRadioButton" name="ComparisonRadio" >
+          <property name="text" >
+           <string>Comparison</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" >
+         <widget class="QRadioButton" name="WrittenRadio" >
+          <property name="toolTip" >
+           <string/>
+          </property>
+          <property name="text" >
+           <string>Written</string>
+          </property>
+          <property name="checked" >
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1" >
+         <widget class="QRadioButton" name="ConjugationRadio" >
+          <property name="text" >
+           <string>Conjugation</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QRadioButton" name="ExampleRadio" >
+          <property name="text" >
+           <string>Example Sentences</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="1" >
+         <widget class="QRadioButton" name="SynonymRadio" >
+          <property name="text" >
+           <string>Synonym</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="0" >
+         <widget class="QRadioButton" name="ParaphraseRadio" >
+          <property name="text" >
+           <string>Paraphrase</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1" >
+         <widget class="QRadioButton" name="AntonymRadio" >
+          <property name="text" >
+           <string>Antonym</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="OptionsGroupBox" >
+       <property name="title" >
+        <string>Options</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
-   <item row="0" column="1" >
-    <widget class="QGroupBox" name="GrammarGroupBox" >
-     <property name="title" >
-      <string>Grammar</string>
-     </property>
-     <layout class="QVBoxLayout" >
-      <item>
-       <widget class="QCheckBox" name="kcfg_GrammarConjugationTest" >
-        <property name="text" >
-         <string>Conjugation of Verbs</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_GrammarComparisonAdjectiveTest" >
-        <property name="text" >
-         <string>Comparison of Adjectives</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_GrammarComparisonAdverbTest" >
-        <property name="text" >
-         <string>Comparison of Adverbs</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QCheckBox" name="kcfg_GrammarArticleTest" >
-        <property name="text" >
-         <string>Articles of Nouns</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </widget>
-   </item>
-   <item row="1" column="0" colspan="2" >
+   <item>
     <widget class="QGroupBox" name="languageGroupBox" >
      <property name="title" >
       <string>Languages</string>
@@ -150,6 +138,19 @@
       </item>
      </layout>
     </widget>
+   </item>
+   <item>
+    <spacer>
+     <property name="orientation" >
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" >
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
    </item>
   </layout>
  </widget>

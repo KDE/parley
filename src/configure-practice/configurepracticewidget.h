@@ -24,6 +24,7 @@
 
 class KEduVocDocument;
 class KConfigSkeleton;
+class QStackedLayout;
 
 /**
  *
@@ -50,9 +51,18 @@ public:
 
 private slots:
     void fromLanguageSelected(int identifierFromIndex);
-    void grammarTestToggled(bool state);
+
+    void comparisonRadioToggled(bool checked);
+    void conjugationRadioToggled(bool checked);
+    void otherRadioToggled(bool checked);
 
 private:
+    enum StackedWidgets {
+        Empty,
+        Conjugation,
+        Comparison
+    };
+    QStackedLayout* m_optionsStackedLayout;
     KEduVocDocument* m_doc;
 };
 
