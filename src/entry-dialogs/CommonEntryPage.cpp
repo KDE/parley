@@ -278,7 +278,7 @@ void CommonEntryPage::slotSubDialogClosed()
     if (subDialog) {
         disconnect(subDialog, SIGNAL(finished()), this, SLOT(slotSubDialogClosed()));
         subDialog->deleteLater();
-        subDialog = 0L;
+        subDialog = 0;
     }
 }
 

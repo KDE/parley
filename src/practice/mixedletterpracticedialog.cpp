@@ -44,7 +44,7 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
 
     verifySolutionButton->setIcon( KIcon("ok") );
 
-    mixedLettersGraphicsView->setScene(new QGraphicsScene());
+    mixedLettersGraphicsView->setScene(new QGraphicsScene(mixedLettersGraphicsView));
     imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
@@ -54,9 +54,6 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
 
 MixedLetterPracticeDialog::~MixedLetterPracticeDialog()
 {
-    mixedLettersGraphicsView->scene()->deleteLater();
-    imageGraphicsView->scene()->deleteLater();
-
     KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     KDialog::saveDialogSize(cg);
 }

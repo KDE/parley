@@ -133,6 +133,7 @@ void PracticeManager::nextEntry()
             m_entry->exp->translation(Prefs::toIdentifier()).type()) != m_lastTestType ) {
         m_testDialog->accept();
         m_testDialog->deleteLater();
+        m_testDialog = 0;
         kDebug() << "Creating new grammar dialog...";
         createDialog();
     } else {
@@ -146,6 +147,7 @@ void PracticeManager::createDialog()
 {
     if ( m_testDialog ) {
         m_testDialog->deleteLater();
+        m_testDialog = 0;
     }
 
     QString specialWordType;
@@ -226,7 +228,7 @@ kDebug() << "stopPractice";
     m_app->show();
 }
 
-PracticeManager::~ PracticeManager()
+PracticeManager::~PracticeManager()
 {
     delete m_entryManager;
     if ( m_testDialog ) {

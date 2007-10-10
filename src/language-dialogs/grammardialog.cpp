@@ -39,7 +39,7 @@ GrammarDialog::GrammarDialog(KEduVocDocument *doc, QWidget *parent) : KPageDialo
 
     setFaceType(KPageDialog::List);
 
-    typeOptPage = new WordTypeOptionPage(doc, 0);
+    typeOptPage = new WordTypeOptionPage(doc, this);
     addPage(typeOptPage, i18nc("word types","Types"));
 
     tenseOptPage = new TenseOptPage(doc, 0);

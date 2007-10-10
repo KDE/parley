@@ -275,7 +275,7 @@ void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
 {
     kDebug() << "show image:" << url;
     if ( !view->scene() ) {
-        view->setScene(new QGraphicsScene());
+        view->setScene(new QGraphicsScene(view));
     }
 
     QGraphicsPixmapItem* pixmapItem = new QGraphicsPixmapItem(QPixmap(url));
