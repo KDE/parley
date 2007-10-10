@@ -12,6 +12,8 @@
  ***************************************************************************/
 #include "answervalidator.h"
 
+#include "prefs.h"
+
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
 #include <keduvocidentifier.h>
@@ -38,21 +40,26 @@ void AnswerValidator::setSolution(KEduVocExpression * expression, int translatio
 {
     m_expression = expression;
     m_translation = translation;
-    if ( !m_speller ) {
-        m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
-    } else {
-        m_speller->setLanguage(m_doc->identifier(translation).locale());
-    }
 
-    if ( !m_speller->isValid() ) {
-        kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
-        kDebug() << "Avaliable dictionaries: " << m_speller->availableLanguages()
-            << "\n names: " << m_speller->availableLanguageNames()
-            << "\n backends: " << m_speller->availableBackends();
-        m_spellerAvailable = false;
-    } else {
-        m_spellerAvailable = true;
-    }
+    m_spellerAvailable = false;
+
+// working but disabled spellchecker initialization.
+// disabled because we don't use it yet.
+//     if ( !m_speller ) {
+//         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
+//     } else {
+//         m_speller->setLanguage(m_doc->identifier(translation).locale());
+//     }
+//
+//     if ( !m_speller->isValid() ) {
+//         kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
+//         kDebug() << "Avaliable dictionaries: " << m_speller->availableLanguages()
+//             << "\n names: " << m_speller->availableLanguageNames()
+//             << "\n backends: " << m_speller->availableBackends();
+//         m_spellerAvailable = false;
+//     } else {
+//         m_spellerAvailable = true;
+//     }
 }
 
 int AnswerValidator::levenshteinDistance(QString s, QString t)
@@ -132,7 +139,7 @@ double AnswerValidator::checkUserAnswer(const QString & userAnswer)
 
 void AnswerValidator::defaultCorrector()
 {
-    ///@todo can solution.length() be zero?
+    ///@todo can solution.length() be zero? *should* be caught by Parley
     QString solution = m_expression->translation(m_translation).text();
     if ( solution == m_userAnswer ) {
         m_errorType = Correct;
@@ -140,15 +147,35 @@ void AnswerValidator::defaultCorrector()
         return;
     }
 
+    // check synonym
+    if ( m_expression->translation(m_translation).synonym() == m_userAnswer ) {
+        m_errorType = Synonym;
+        if ( Prefs::countSynonymsAsCorrect() ) {
+            m_grade = 1.0;
+        } else {
+            m_grade = 0.0; // bit harsh maybe
+        }
+        return;
+    }
+
+
     int levensthein = levenshteinDistance( solution, m_userAnswer );
 
-    if ( m_spellerAvailable ) {
-        spellcheckerMisspelled(m_userAnswer);
-        spellcheckerInSuggestionList(solution, m_userAnswer);
-    }
+//     if ( m_spellerAvailable ) {
+//         spellcheckerMisspelled(m_userAnswer);
+//         spellcheckerInSuggestionList(solution, m_userAnswer);
+//     }
 
     m_grade = 1.0 - ((double)levensthein/ qMax(solution.length(), m_userAnswer.length()));
 
     kDebug() << "defaultCorrector" << m_userAnswer << "-" << solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
+}
+
+
+double AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer)
+{
+    int levensthein = levenshteinDistance( solution, m_userAnswer );
+    m_grade = 1.0 - ((double)levensthein/ qMax(solution.length(), m_userAnswer.length()));
+    return m_grade;
 }
 

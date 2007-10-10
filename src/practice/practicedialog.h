@@ -163,6 +163,22 @@ protected:
     bool verifyField(QLineEdit *field, const QString &really);
 
     /**
+     * Use this to check if the answer is correct.
+     * Use only to check the word itself, does not work on other properties like comparison forms etc.
+     * @param userAnswer
+     * @return a fuzzy answer where 1.0 is the correct solution and 0.0 completely wrong
+     */
+    double verifyAnswer(const QString& userAnswer);
+
+    /**
+     * Like verifyAnswer but for two strings, so the entry is not taken into consideration.
+     * @param solution
+     * @param userAnswer
+     * @return
+     */
+    double verifyAnswer(const QString& solution, const QString& userAnswer);
+
+    /**
      * Set the color scheme of a widget to WidgetStyle.
      * @param widget the widget to be modified
      * @param style WidgetStyle
@@ -221,7 +237,7 @@ private:
     Phonon::MediaObject* m_player;
 
     /// Advanced string evaluation
-//     AnswerValidator* m_validator;
+    AnswerValidator* m_validator;
 };
 
 

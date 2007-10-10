@@ -56,7 +56,7 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_showSolutionTimer = 0;
 
     m_player = 0;
-//     m_validator = new AnswerValidator(m_doc);
+    m_validator = new AnswerValidator(m_doc);
 }
 
 
@@ -65,13 +65,7 @@ PracticeDialog::~PracticeDialog()
     if ( m_player ) {
         m_player->deleteLater();
     }
-//     delete m_validator;
-}
-
-
-bool PracticeDialog::smartCompare(const QString& s1, const QString &s2) const
-{
-    return s1.simplified() == s2.simplified();
+    delete m_validator;
 }
 
 
@@ -85,13 +79,13 @@ bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
 {
     kDebug() << "Compare: " << field->text() << really;
 
-//     kDebug() << "Validator gives grade: " << m_validator->checkUserAnswer(field->text());
+    kDebug() << "Validator gives grade: " << m_validator->checkUserAnswer(field->text());
 
     if (!field->isEnabled()) {
         return true;
     }
 
-    if (smartCompare(really, field->text())) {  // answer was right - green text
+    if ( m_validator->checkUserAnswer(field->text()) == 1.0 ) {  // answer was right - green text
         setWidgetStyle(field, PositiveResult);
         return true;
     }
@@ -100,6 +94,8 @@ bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
     setWidgetStyle(field, NegativeResult);
     return false;  // right/wrong
 }
+
+
 
 
 QString  PracticeDialog::getOKComment(int percent_done)
@@ -186,7 +182,7 @@ void PracticeDialog::stopAnswerTimer()
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
-//     m_validator->setSolution(m_entry->exp, Prefs::toIdentifier());
+    m_validator->setSolution(m_entry->exp, Prefs::toIdentifier());
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;
@@ -369,6 +365,16 @@ void PracticeDialog::continueButtonClicked()
         m_showSolutionTimer->stop();
     }
     emit nextEntry();
+}
+
+double PracticeDialog::verifyAnswer(const QString & userAnswer)
+{
+    return m_validator->checkUserAnswer(userAnswer);
+}
+
+double PracticeDialog::verifyAnswer(const QString & solution, const QString & userAnswer)
+{
+    return m_validator->checkUserAnswer(solution, userAnswer);
 }
 
 

@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>584</height>
+    <height>616</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -94,6 +94,13 @@
           </property>
           <property name="text" >
            <string>S&amp;wap direction randomly</string>
+          </property>
+         </widget>
+        </item>
+        <item row="3" column="0" >
+         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect" >
+          <property name="text" >
+           <string>Accept synonyms as correct</string>
           </property>
          </widget>
         </item>

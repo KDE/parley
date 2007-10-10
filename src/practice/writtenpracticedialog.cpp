@@ -333,7 +333,7 @@ void WrittenPracticeDialog::verifyClicked()
         }
         for (i = 0; i < combos.count(); i ++) {
             for (j = 0; j < trans.count(); j ++) {
-                if (smartCompare(trans[j], combos.at(i)->currentText())) {
+                if ( verifyAnswer(trans[j], combos.at(i)->currentText()) == 1.0 ) {
                     verifyField(combos.at(i)->lineEdit(), trans[j]);
                     trans.removeAt(j);
                     combos.removeAt(i --);
@@ -362,7 +362,7 @@ void WrittenPracticeDialog::verifyClicked()
         }
         for (i = 0; i < fields.count(); i ++) {
             for (j = 0; j < trans.count(); j ++) {
-                if (smartCompare(trans[j], fields.at(i)->text())) {
+                if ( verifyAnswer(trans[j], fields.at(i)->text()) == 1.0 ) {
                     verifyField(fields.at(i), trans[j]);
                     trans.removeAt(j);
                     fields.removeAt(i --);
@@ -394,7 +394,7 @@ void WrittenPracticeDialog::showMoreClicked()
     if (Prefs::suggestions()) {
         for (int i = 0; i < translations.count(); i ++) {
             KComboBox* combo = transCombos.at(i);
-            if (! smartCompare(combo->currentText(), translations[i])) {
+            if ( verifyAnswer(combo->currentText(), translations[i]) != 1.0 ) {
                 int length = combo->currentText().length() + 1;
                 if (length >= translations[i].length()) {
                     combo->setEditText(translations[i]);
@@ -411,7 +411,7 @@ void WrittenPracticeDialog::showMoreClicked()
     } else {
         for (int i = 0; i < translations.count(); i ++) {
             KLineEdit* field = transFields.at(i);
-            if (! smartCompare(field->text(), translations[i])) {
+            if ( verifyAnswer(field->text(), translations[i]) != 1.0 ) {
                 int length = 1;
                 while ( field->text().startsWith( translations[i].left(length) ) ) {
                     kDebug() << " length " << length << "text " << field->text();

@@ -57,6 +57,7 @@ public:
      * @return true if the answer is correct
      */
     double checkUserAnswer(const QString& userAnswer);
+    double checkUserAnswer(const QString& solution, const QString& userAnswer);
 
     /**
      * Returns the type of mistake. Of course this is just an estimation.
