@@ -69,35 +69,6 @@ PracticeDialog::~PracticeDialog()
 }
 
 
-/**
- * Compare the text of a lineedit with a string, set the lineedits colors to red/green if wrong/right.
- * @param field the lineEdit
- * @param really the solution
- * @return solution is right
- */
-bool PracticeDialog::verifyField(QLineEdit *field, const QString &really)
-{
-    kDebug() << "Compare: " << field->text() << really;
-
-    kDebug() << "Validator gives grade: " << m_validator->checkUserAnswer(field->text());
-
-    if (!field->isEnabled()) {
-        return true;
-    }
-
-    if ( m_validator->checkUserAnswer(field->text()) == 1.0 ) {  // answer was right - green text
-        setWidgetStyle(field, PositiveResult);
-        return true;
-    }
-
-    // wrong - red text
-    setWidgetStyle(field, NegativeResult);
-    return false;  // right/wrong
-}
-
-
-
-
 QString  PracticeDialog::getOKComment(int percent_done)
 {
     return i18n("Well done, you knew the correct answer. %1% done.", percent_done);
@@ -322,10 +293,6 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
     QFont ft = widget->font();
 
     switch (style) {
-    case Default:
-        ft.setWeight(QFont::Normal);
-        color = QColor(0x00, 0x00, 0x00);
-        break;
     case PositiveResult:
         ft.setWeight(QFont::Bold);
         color = QColor(0x00, 0x80, 0x00);
@@ -333,6 +300,16 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
     case NegativeResult:
         ft.setWeight(QFont::Bold);
         color = QColor(0x8C, 0x25, 0x25);
+        break;
+    case HintStyle:
+kDebug() << "HINT STYLE";
+        ft.setWeight(QFont::Bold);
+        color = QColor(0x25, 0x25, 0xFF);
+        break;
+    case Default:
+    default:
+        ft.setWeight(QFont::Normal);
+        color = QColor(0x00, 0x00, 0x00);
         break;
     }
 
@@ -375,6 +352,11 @@ double PracticeDialog::verifyAnswer(const QString & userAnswer)
 double PracticeDialog::verifyAnswer(const QString & solution, const QString & userAnswer)
 {
     return m_validator->checkUserAnswer(solution, userAnswer);
+}
+
+QString PracticeDialog::correctedAnswer()
+{
+    return m_validator->correctedAnswerHtml();
 }
 
 

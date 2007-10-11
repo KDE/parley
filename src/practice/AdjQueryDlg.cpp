@@ -132,9 +132,7 @@ void AdjQueryDlg::showSolution()
     mw->lev2Field->setText(comp.l2());
     mw->lev3Field->setText(comp.l3());
 
-    verifyField(mw->lev1Field, comp.l1());
-    verifyField(mw->lev2Field, comp.l2());
-    verifyField(mw->lev3Field, comp.l3());
+
 
     mw->dont_know->setDefault(true);
     setAnswerTainted();
@@ -145,14 +143,29 @@ void AdjQueryDlg::verifyClicked()
 {
     bool all_known = true;
 
-    if (!verifyField(mw->lev1Field, comp.l1()))
+    double result = verifyAnswer(mw->lev1Field->text(), comp.l1());
+    if ( result == 1.0 ) {
+        setWidgetStyle( mw->lev1Field, PositiveResult );
+    } else {
+        setWidgetStyle( mw->lev1Field, NegativeResult );
         all_known = false;
+    }
 
-    if (!verifyField(mw->lev2Field, comp.l2()))
+    result = verifyAnswer(mw->lev2Field->text(), comp.l2());
+    if ( result == 1.0 ) {
+        setWidgetStyle( mw->lev2Field, PositiveResult );
+    } else {
+        setWidgetStyle( mw->lev2Field, NegativeResult );
         all_known = false;
+    }
 
-    if (!verifyField(mw->lev3Field, comp.l3()))
+    result = verifyAnswer(mw->lev3Field->text(), comp.l3());
+    if ( result == 1.0 ) {
+        setWidgetStyle( mw->lev3Field, PositiveResult );
+    } else {
+        setWidgetStyle( mw->lev3Field, NegativeResult );
         all_known = false;
+    }
 
     if (all_known) {
 //  know_it->setDefault(true);

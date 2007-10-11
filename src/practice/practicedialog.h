@@ -59,7 +59,8 @@ public:
     enum WidgetStyle {
         Default,        /**< Normal font, normal color (black) */
         PositiveResult, /**< Green text, bold */
-        NegativeResult  /**< Red text, bold */
+        NegativeResult, /**< Red text, bold */
+        HintStyle       /**< Blue text, bold */
     };
 
     /**
@@ -144,6 +145,8 @@ protected slots:
      */
     void continueButtonClicked();
 
+    QString correctedAnswer();
+
 protected:
     void resultCorrect();
     void resultWrong();
@@ -158,9 +161,6 @@ protected:
 
     /** compare two strings with simplified applied first (pretty smart huh?) */
     bool smartCompare(const QString&, const QString&) const;
-
-    /** compare lineEdit and string, set lineEdit style */
-    bool verifyField(QLineEdit *field, const QString &really);
 
     /**
      * Use this to check if the answer is correct.

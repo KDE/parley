@@ -53,8 +53,9 @@ public slots:
     void verifyClicked();
     void showMoreClicked();
     void showSolution();
-    void slotTransChanged(const QString&);
-    void slotTransLostFocus();
+    void slotAnswerChanged(const QString&);
+//     void slotTransChanged(const QString&);
+//     void slotTransLostFocus();
     void slotFalseFriendClicked(bool show);
     void slotTypeClicked(bool show);
     void slotRemClicked(bool show);
@@ -66,20 +67,24 @@ private:
     void keyPressEvent(QKeyEvent *e);
 
     void setHintFields();
-    QStringList extractTranslations(const QString &);
+//     QStringList extractTranslations(const QString &);
 
     void showContinueButton(bool show);
 
-    QList<KComboBox*> transCombos;
-    QList<KLineEdit*> transFields;
+//     QList<KComboBox*> transCombos;
+//     QList<KLineEdit*> transFields;
 
-    QStringList translations;
-    QStringList vocabulary;
+    // the line edit which awaits the users input
+//     KLineEdit * m_answerLineEdit;
 
-    ///
+//     QStringList translations;
+//     QStringList vocabulary;
+
+    /// who or what am I?
     bool suggestion_hint;
-    ///
-    int  fields;
+
+    // number of solutions (???)
+//     int  fields;
 
     Ui::WrittenPracticeDialog * mw;
 };

@@ -413,4 +413,16 @@ void VerbQueryDlg::setProgressCounter(int current, int total)
     mw->countbar->setValue(current);
 }
 
+bool VerbQueryDlg::verifyField(QLineEdit * lineEdit, const QString & userAnswer)
+{
+    double result = verifyAnswer(lineEdit->text(), userAnswer);
+    if ( result == 1.0 ) {
+        setWidgetStyle(lineEdit, PositiveResult);
+        return true;
+    } else {
+        setWidgetStyle(lineEdit, NegativeResult);
+        return false;
+    }
+}
+
 #include "VerbQueryDlg.moc"

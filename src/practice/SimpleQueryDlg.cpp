@@ -170,17 +170,20 @@ void SimpleQueryDlg::showMoreClicked()
 void SimpleQueryDlg::showSolution()
 {
     mw->answerField->setText(answerstring);
-    verifyField(mw->answerField, answerstring);
+    setWidgetStyle( mw->answerField, NegativeResult );
+    setAnswerTainted();
     mw->dont_know->setDefault(true);
 }
 
 
 void SimpleQueryDlg::verifyClicked()
 {
-    if (verifyField(mw->answerField, answerstring)) {
+    double result = verifyAnswer(mw->answerField->text(), answerstring);
+    if ( result == 1.0 ) {
         resultCorrect();
         emit nextEntry();
     } else {
+        setWidgetStyle( mw->answerField, NegativeResult );
         setAnswerTainted();
         mw->dont_know->setDefault(true);
     }

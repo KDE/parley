@@ -131,17 +131,20 @@ void MixedLetterPracticeDialog::slotAnswerChanged()
 void MixedLetterPracticeDialog::showSolution()
 {
     answerLineEdit->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
-    verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text());
+    setWidgetStyle( answerLineEdit, PositiveResult );
+    setAnswerTainted();
     verifySolutionButton->setFocus();
 }
 
 
 void MixedLetterPracticeDialog::verifyClicked()
 {
-    if (verifyField(answerLineEdit, m_entry->exp->translation(Prefs::toIdentifier()).text())) {
+    double result = verifyAnswer(answerLineEdit->text(), m_entry->exp->translation(Prefs::toIdentifier()).text());
+    if ( result == 1.0 ) {
         resultCorrect();
         emit nextEntry();
     } else {
+        setWidgetStyle( answerLineEdit, NegativeResult );
         setAnswerTainted();
     }
 }

@@ -49,6 +49,8 @@ private:
     bool nextTense();
     void resetAllFields();
 
+    bool verifyField(QLineEdit * lineEdit, const QString& userAnswer);
+
     void setStatusText(const QString &statusText) {}
     QProgressBar* timebar() { return mw->timebar; }
 
