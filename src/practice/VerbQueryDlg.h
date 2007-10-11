@@ -40,7 +40,6 @@ public:
     void setEntry(TestEntry* entry);
     void setProgressCounter(int current, int total);
 
-
 private slots:
     void showSolution();
     void verifyClicked();

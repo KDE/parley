@@ -82,9 +82,27 @@ VerbQueryDlg::~VerbQueryDlg()
 
 void VerbQueryDlg::setEntry(TestEntry* entry)
 {
+    PracticeDialog::setEntry(entry);
+
     m_tenses.clear();
 
-    PracticeDialog::setEntry(entry);
+    QStringList tenses = entry->exp->translation(Prefs::toIdentifier()).conjugationTenses();
+    foreach ( QString tense, tenses ) {
+        if ( !entry->exp->translation(Prefs::toIdentifier()).conjugation(tense).isEmpty() ) {
+            if ( m_activeTenses.contains( tense ) ) {
+                m_tenses.append(tense);
+            }
+        }
+    }
+
+kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << m_tenses;
+
+    if ( m_tenses.count() == 0 ) {
+        kDebug() << "Warning, no conjugations found.";
+        resultCorrect();
+        nextEntry();
+        return;
+    }
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
 
@@ -112,20 +130,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
     mw->pluralThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural));
 
-    QStringList tenses = entry->exp->translation(Prefs::toIdentifier()).conjugationTenses();
-    foreach ( QString tense, tenses ) {
-        if ( !entry->exp->translation(Prefs::toIdentifier()).conjugation(tense).isEmpty() ) {
-            m_tenses.append(tense);
-        }
-    }
 
-kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << m_tenses;
-
-    if ( m_tenses.count() == 0 ) {
-        kDebug() << "Warning, no conjugations found.";
-        nextEntry();
-        return;
-    }
 
     nextTense();
 
