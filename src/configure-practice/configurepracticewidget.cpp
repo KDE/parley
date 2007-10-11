@@ -23,6 +23,7 @@
 #include "ui_conjugationoptionswidget.h"
 
 #include "languagesettings.h"
+#include "documentsettings.h"
 #include "prefs.h"
 
 #include <keduvocdocument.h>
@@ -98,6 +99,20 @@ void ConfigurePracticeWidget::updateSettings()
 {
     Prefs::setFromIdentifier(LanguageFromList->currentRow());
     Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
+
+    QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
+    QStringList activeTenses;
+
+    for ( int i = 0; i < parentItem->childCount(); i++ ) {
+        QTreeWidgetItem* tenseItem = parentItem->child(i);
+        if ( tenseItem->checkState(0) == Qt::Checked ) {
+            activeTenses.append(tenseItem->text(0));
+        }
+    }
+
+    DocumentSettings documentSettings(m_doc->url().url());
+    documentSettings.setConjugationTenses(activeTenses);
+    documentSettings.writeConfig();
 }
 
 void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
@@ -172,13 +187,22 @@ void ConfigurePracticeWidget::otherRadioToggled(bool checked)
     }
 }
 
+
 void ConfigurePracticeWidget::setupTenses()
 {
+    DocumentSettings currentSettings(m_doc->url().url());
+    currentSettings.readConfig();
+    QStringList activeTenses = currentSettings.conjugationTenses();
     QTreeWidgetItem* tenseItem;
+
     foreach ( QString tenseName, m_doc->tenseDescriptions() ) {
         tenseItem = new QTreeWidgetItem(m_tenseListWidget);
         tenseItem->setText(0, tenseName);
-        tenseItem->setCheckState(0, Qt::Unchecked);
+        if ( activeTenses.contains( tenseName ) ) {
+            tenseItem->setCheckState(0, Qt::Checked);
+        } else {
+            tenseItem->setCheckState(0, Qt::Unchecked);
+        }
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         m_tenseListWidget->addTopLevelItem( tenseItem );
     }

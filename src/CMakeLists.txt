@@ -8,9 +8,9 @@ include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
-    settings/languagesettings.kcfgc
-    settings/presettings.kcfgc
     settings/prefs.kcfgc
+    settings/documentsettings.kcfgc
+    settings/languagesettings.kcfgc
 )
 
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
@@ -18,7 +18,6 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/generaloptions.cpp
     settings/viewoptions.cpp
     settings/groupoptions.cpp
-    settings/profilesdialog.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS

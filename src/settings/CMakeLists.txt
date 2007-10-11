@@ -1,2 +1,2 @@
 
-install( FILES parley.kcfg languagesettings.kcfg presettings.kcfg  DESTINATION  ${KCFG_INSTALL_DIR} )
+install( FILES parley.kcfg languagesettings.kcfg documentsettings.kcfg DESTINATION  ${KCFG_INSTALL_DIR} )
