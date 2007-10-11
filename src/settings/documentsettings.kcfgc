@@ -1,0 +1,5 @@
+File=documentsettings.kcfg
+ClassName=DocumentSettings
+Mutators=true
+ItemAccessors=true
+SetUserTexts=true
