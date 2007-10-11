@@ -24,10 +24,6 @@
 #include "viewoptions.h"
 #include <KConfigSkeleton>
 
-static const char unapplied[] = I18N_NOOP(
-                                    "You have made changes that are not yet applied.\n"
-                                    "If you save a profile, those changes will not be included.\n"
-                                    "Do you wish to continue?");
 
 KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
   : KConfigDialog(parent, name, config)

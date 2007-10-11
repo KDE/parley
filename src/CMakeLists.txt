@@ -17,11 +17,9 @@ set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
     settings/kvoctrainprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
-    settings/groupoptions.cpp
 )
 
 kde4_add_ui_files( libcommondlg_SRCS
-    settings/groupoptionsbase.ui
     settings/viewoptionsbase.ui
     settings/generaloptionsbase.ui
 )
