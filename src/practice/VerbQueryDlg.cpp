@@ -24,6 +24,8 @@
 
 #include "VerbQueryDlg.h"
 
+#include "documentsettings.h"
+
 #include <QTimer>
 #include <QPushButton>
 #include <QLabel>
@@ -37,6 +39,12 @@ VerbQueryDlg::VerbQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDial
 {
     mw = new Ui::VerbQueryDlgForm();
     mw->setupUi(mainWidget());
+
+    DocumentSettings currentSettings(m_doc->url().url());
+    currentSettings.readConfig();
+    m_activeTenses = currentSettings.conjugationTenses();
+
+kDebug() << "Practicing tenses: " << m_activeTenses;
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
     mw->editEntryButton->setIcon( KIcon("edit") );
@@ -140,6 +148,8 @@ bool VerbQueryDlg::nextTense()
 
     mw->instructionLabel->setText(tenseText);
 
+    setWidgetStyle(mw->tenseLabel, HintStyle);
+    mw->tenseLabel->setText(tense);
 
 kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << tense << " empty: " << m_entry->exp->translation(Prefs::toIdentifier()).
         conjugations()[tense].isEmpty();

@@ -54,7 +54,11 @@ private:
     void setStatusText(const QString &statusText) {}
     QProgressBar* timebar() { return mw->timebar; }
 
+    /// the tenses of the current entry that have not been asked
     QStringList m_tenses;
+
+    /// all tenses that are to be practiced
+    QStringList m_activeTenses;
 
     Ui::VerbQueryDlgForm * mw;
 };

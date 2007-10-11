@@ -153,11 +153,13 @@ bool ConfigurePracticeWidget::hasChanged()
     return false;
         //LanguageFromList->currentRow() == Prefs::fromIdentifier() &&
         //    toRow == Prefs::toIdentifier();
+
+        /// @todo tenses
 }
 
 bool ConfigurePracticeWidget::isDefault()
 {
-    ///@todo language selection
+    ///@todo language selection and tenses
     return true;
 //         LanguageFromList->currentRow() == 0 &&
 //         LanguageToList->currentRow() == 1;
@@ -206,6 +208,7 @@ void ConfigurePracticeWidget::setupTenses()
         tenseItem->setFlags(Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsUserCheckable);
         m_tenseListWidget->addTopLevelItem( tenseItem );
     }
+    ///@todo emit changed when checkstate changed
 }
 
 #include "configurepracticewidget.moc"

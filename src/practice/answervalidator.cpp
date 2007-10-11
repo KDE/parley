@@ -137,32 +137,33 @@ bool AnswerValidator::spellcheckerInSuggestionList(QString solution, QString use
 void AnswerValidator::simpleCorrector()
 {
     ///@todo can solution.length() be zero? *should* be caught by Parley
-    QString solution = m_expression->translation(m_translation).text();
-    if ( solution == m_userAnswer ) {
+    if ( m_solution == m_userAnswer ) {
         m_errorType = Correct;
         m_grade = 1.0;
         m_htmlCorrection = i18n("Your answer is right!");
         return;
     }
 
-    // check synonym
-    if ( m_expression->translation(m_translation).synonym() == m_userAnswer ) {
-        m_errorType = Synonym;
-        if ( Prefs::countSynonymsAsCorrect() ) {
-            m_grade = 1.0;
-            m_htmlCorrection = i18n("You entered a synonym.");
-        } else {
-            m_grade = 0.0; // bit harsh maybe
-            m_htmlCorrection = i18n("You entered a synonym.");
+    if ( m_expression ) {
+        // check synonym
+        if ( m_expression->translation(m_translation).synonym() == m_userAnswer ) {
+            m_errorType = Synonym;
+            if ( Prefs::countSynonymsAsCorrect() ) {
+                m_grade = 1.0;
+                m_htmlCorrection = i18n("You entered a synonym.");
+            } else {
+                m_grade = 0.0; // bit harsh maybe
+                m_htmlCorrection = i18n("You entered a synonym.");
+            }
+            return;
         }
-        return;
     }
 
-    int levensthein = levenshteinDistance( solution, m_userAnswer );
+    int levensthein = levenshteinDistance( m_solution, m_userAnswer );
 
-    m_grade = 1.0 - ((double)levensthein/ qMax(solution.length(), m_userAnswer.length()));
+    m_grade = 1.0 - ((double)levensthein/ qMax(m_solution.length(), m_userAnswer.length()));
 
-    kDebug() << "defaultCorrector" << m_userAnswer << "-" << solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
+    kDebug() << "defaultCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
 
     m_htmlCorrection = i18n("Your answer was wrong I'm afraight. Estimated %1\% correct.", (int) (m_grade*100));
 }

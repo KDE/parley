@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>671</width>
-    <height>693</height>
+    <width>876</width>
+    <height>664</height>
    </rect>
   </property>
   <layout class="QHBoxLayout" >
@@ -286,7 +286,7 @@
            <property name="sizeHint" >
             <size>
              <width>20</width>
-             <height>40</height>
+             <height>0</height>
             </size>
            </property>
           </spacer>
@@ -370,6 +370,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QLabel" name="tenseLabel" >
+           <property name="text" >
+            <string/>
+           </property>
+          </widget>
+         </item>
+         <item>
           <layout class="QHBoxLayout" >
            <item>
             <spacer>
@@ -382,7 +389,7 @@
              <property name="sizeHint" >
               <size>
                <width>20</width>
-               <height>351</height>
+               <height>30</height>
               </size>
              </property>
             </spacer>
@@ -538,7 +545,7 @@
                <property name="sizeHint" >
                 <size>
                  <width>291</width>
-                 <height>105</height>
+                 <height>0</height>
                 </size>
                </property>
               </spacer>
