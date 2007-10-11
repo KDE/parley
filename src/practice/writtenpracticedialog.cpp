@@ -419,7 +419,7 @@ void WrittenPracticeDialog::verifyClicked()
     } else {
         setWidgetStyle(mw->answerLineEdit, NegativeResult);
         // the percentage is very vague anyway, don't show floats...
-        mw->status->setText(i18n("Ouch, that was wrong. I guess you got it right to about %1\%", (int)(result*100)));
+        mw->status->setText(i18n("Ouch, that was wrong. I guess you got it right to about %1%", (int)(result*100)));
         mw->show_all->setDefault(true);
         setAnswerTainted();
     }
