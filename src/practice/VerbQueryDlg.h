@@ -45,6 +45,8 @@ private slots:
     void verifyClicked();
 
 private:
+    void setupPersonalPronouns();
+
     bool nextTense();
     void resetAllFields();
 
@@ -58,6 +60,8 @@ private:
 
     /// all tenses that are to be practiced
     QStringList m_activeTenses;
+
+    bool m_hasDualConjugations;
 
     Ui::VerbQueryDlgForm * mw;
 };
