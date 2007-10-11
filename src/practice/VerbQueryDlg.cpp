@@ -70,6 +70,7 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
 
     m_hasDualConjugations = m_doc->identifier(Prefs::toIdentifier()).personalPronouns().dualExists();
     setupPersonalPronouns();
+
     setupConjugationLineEditMap();
     foreach ( QLineEdit* line, m_conjugationWidgets.values() ) {
         connect(line, SIGNAL(textChanged()), SLOT(textChanged()));
@@ -139,10 +140,16 @@ void VerbQueryDlg::setupConjugationLineEditMap()
 
 void VerbQueryDlg::clearLineEdits()
 {
-    foreach ( QLineEdit* conjugationLineEdit, m_conjugationWidgets.values() ) {
+    foreach ( int i, m_conjugationWidgets.keys() ) {
+        QLineEdit* conjugationLineEdit = m_conjugationWidgets.value(i);
         conjugationLineEdit->setText(QString());
         setWidgetStyle(conjugationLineEdit, Default);
         conjugationLineEdit->setReadOnly(false);
+
+        if ( m_entry->exp->translation(Prefs::toIdentifier()).
+                conjugation(m_currentTense).conjugation(i).isEmpty() ) {
+            conjugationLineEdit->setVisible(false);
+        }
     }
 }
 
@@ -357,13 +364,19 @@ void VerbQueryDlg::verifyClicked()
             if ( m_conjugationWidgets.value(i)->text() == solution ) {
                 setWidgetStyle(m_conjugationWidgets[i], PositiveResult);
             } else {
-                setWidgetStyle(m_conjugationWidgets[i], NegativeResult);
-                all_correct = false;
+                if ( !m_conjugationWidgets[i]->text().isEmpty() ) {
+                    setWidgetStyle(m_conjugationWidgets[i], NegativeResult);
+                    setAnswerTainted();
+                    all_correct = false;
+                }
             }
             if ( m_conjugationWidgets.value(i)->text().isEmpty() ) {
-                m_conjugationWidgets.value(i)->setText("You missed me!");
-                setWidgetStyle(m_conjugationWidgets.value(i), HintStyle);
-                all_filled = false;
+                // set the focus to the first empty field
+                if ( all_filled ) {
+                    m_conjugationWidgets.value(i)->setFocus();
+                    all_filled = false;
+                }
+                all_correct = false;
             }
         }
     }
@@ -380,37 +393,17 @@ void VerbQueryDlg::verifyClicked()
             setupTense( m_tenses.value(0));
         }
     }
-//     if (known) {
-//         kDebug() << "correct!";
-//         resultCorrect();
-// //         nextTense();
-//     } else {
-//         setAnswerTainted();
-//         mw->dont_know->setDefault(true);
-//     }
-
 }
 
-
-
-
-// bool VerbQueryDlg::verifyField(QLineEdit * lineEdit, const QString & userAnswer)
-// {
-//     double result = verifyAnswer(lineEdit->text(), userAnswer);
-//     if ( result == 1.0 ) {
-//         setWidgetStyle(lineEdit, PositiveResult);
-//         return true;
-//     } else {
-//         setWidgetStyle(lineEdit, NegativeResult);
-//         return false;
-//     }
-// }
 
 void VerbQueryDlg::setupTense(const QString & tense)
 {
     m_currentTense = tense;
+    QString tenseText = i18n("Current tense is: %1", tense);
+    mw->instructionLabel->setText(tenseText);
     mw->tenseLabel->setText(tense);
     clearLineEdits();
+    mw->singularFirstPersonLineEdit->setFocus();
 }
 
 

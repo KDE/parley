@@ -302,7 +302,6 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
         color = QColor(0x8C, 0x25, 0x25);
         break;
     case HintStyle:
-kDebug() << "HINT STYLE";
         ft.setWeight(QFont::Bold);
         color = QColor(0x25, 0x25, 0xFF);
         break;
