@@ -45,15 +45,16 @@ private slots:
     void verifyClicked();
 
 private:
+    void setupConjugationLineEditMap();
     void setupPersonalPronouns();
-
-    bool nextTense();
-    void resetAllFields();
-
-    bool verifyField(QLineEdit * lineEdit, const QString& userAnswer);
+    void clearLineEdits();
+    void setupTense(const QString& tense);
 
     void setStatusText(const QString &statusText) {}
     QProgressBar* timebar() { return mw->timebar; }
+
+    /// the tense that is asked right now
+    QString m_currentTense;
 
     /// the tenses of the current entry that have not been asked
     QStringList m_tenses;
@@ -62,6 +63,8 @@ private:
     QStringList m_activeTenses;
 
     bool m_hasDualConjugations;
+
+    QMap < int, QLineEdit* > m_conjugationWidgets;
 
     Ui::VerbQueryDlgForm * mw;
 };
