@@ -49,17 +49,17 @@ ShowSolutionDialog::ShowSolutionDialog(TestEntry* entry, QWidget* parent)
     questionLabel->setPalette(qp);
     solutionLabel->setPalette(qp);
 
-    questionLabel->setText(entry->exp->translation(Prefs::fromIdentifier()).text());
-    solutionLabel->setText(entry->exp->translation(Prefs::toIdentifier()).text());
+    questionLabel->setText(entry->exp->translation(Prefs::questionLanguage()).text());
+    solutionLabel->setText(entry->exp->translation(Prefs::solutionLanguage()).text());
 
-    if ( !m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl().url().isEmpty()  ) {
+    if ( !m_entry->exp->translation(Prefs::questionLanguage()).soundUrl().url().isEmpty()  ) {
         playQuestionSoundButton->setIcon(KIcon("media-playback-start"));
         connect(playQuestionSoundButton, SIGNAL(clicked()), SLOT(audioPlayFromIdentifier()));
     } else {
         playQuestionSoundButton->setVisible(false);
     }
 
-    if ( !m_entry->exp->translation(Prefs::toIdentifier()).soundUrl().url().isEmpty()  ) {
+    if ( !m_entry->exp->translation(Prefs::solutionLanguage()).soundUrl().url().isEmpty()  ) {
         playSolutionSoundButton->setIcon(KIcon("media-playback-start"));
         connect(playSolutionSoundButton, SIGNAL(clicked()), SLOT(audioPlayToIdentifier()));
     } else {
@@ -82,7 +82,7 @@ ShowSolutionDialog::~ShowSolutionDialog()
 
 void ShowSolutionDialog::audioPlayFromIdentifier()
 {
-    QString file = m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl().url();
+    QString file = m_entry->exp->translation(Prefs::questionLanguage()).soundUrl().url();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -90,7 +90,7 @@ void ShowSolutionDialog::audioPlayFromIdentifier()
 
 void ShowSolutionDialog::audioPlayToIdentifier()
 {
-    QString file = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl().url();
+    QString file = m_entry->exp->translation(Prefs::solutionLanguage()).soundUrl().url();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }

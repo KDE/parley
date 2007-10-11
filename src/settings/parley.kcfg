@@ -50,7 +50,7 @@
     </entry>
   </group>
 
-  <group name="QueryProperties">
+  <group name="PracticeOptions">
     <entry name="Block" type="Bool">
       <label>In Blocking Query Tab Dialog, if checked then the Query is blocked</label>
       <default>false</default>
@@ -79,7 +79,7 @@
       <label>Get a progress bar to show remaining time if true.</label>
       <default>false</default>
     </entry>
-    <entry name="QueryTimeout" type="Enum">
+    <entry name="PracticeTimeout" type="Enum">
       <label>If NoTimeout, there is no time set to answer each query</label>
       <choices>
         <choice name="NoTimeout"/>
@@ -121,11 +121,11 @@
       <default>5</default>
     </entry>
     <entry name="ShowMore" type="Bool">
-      <label>Enable Show More button in Random Query.</label>
+      <label>Enable Show More button to reveal parts of the solution in written practice.</label>
       <default>true</default>
     </entry>
-    <entry name="IKnow" type="Bool">
-      <label>Enable I Know button in Random Query.</label>
+    <entry name="SkipKnownEnabled" type="Bool">
+      <label>Enable Skip (I Know It) button in written practice.</label>
       <default>true</default>
     </entry>
     <entry name="CountSynonymsAsCorrect" type="Bool">
@@ -183,11 +183,11 @@
       <label>Currently selected row</label>
       <default>0</default>
     </entry>
-    <entry name="UseGradeCol" type="Bool">
+    <entry name="UseGradeColors" type="Bool">
       <label>Use your own colors</label>
       <default>true</default>
     </entry>
-    <entry name="GradeCol$(Number)" type="Color" key="GradeCol$(Number)">
+    <entry name="GradeColor$(Number)" type="Color" key="GradeColor$(Number)">
       <parameter name="Number" type="Int" max="7"/>
       <label>Colors used to display different grades</label>
       <default param="0">0, 0, 0</default>
@@ -201,12 +201,12 @@
     </entry>
   </group>
 
-  <group name="QueryManager">
-    <entry name="FromIdentifier" type="Int">
+  <group name="PracticeManager">
+    <entry name="QuestionLanguage" type="Int">
       <label>The language that is displayed in a test.</label>
       <default>0</default>
     </entry>
-    <entry name="ToIdentifier" type="Int">
+    <entry name="SolutionLanguage" type="Int">
       <label>The language in which the user has to answer.</label>
       <default>1</default>
     </entry>
@@ -278,11 +278,11 @@
       <label></label>
       <default>0</default>
     </entry>
-    <entry name="BadItem" type="Int">
-      <label></label>
-      <default>0</default>
-    </entry>
     <entry name="QueryItem" type="Int">
+        <label></label>
+        <default>0</default>
+    </entry>
+    <entry name="BadItem" type="Int">
       <label></label>
       <default>0</default>
     </entry>

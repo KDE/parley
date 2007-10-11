@@ -28,23 +28,23 @@
 ViewOptions::ViewOptions(QWidget* parent) : QWidget(parent)
 {
     setupUi(this);
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol7, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol6, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol5, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol4, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol3, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol2, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol1, SLOT(setEnabled(bool)));
-    connect(kcfg_UseGradeCol, SIGNAL(toggled(bool)), kcfg_GradeCol0, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor7, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor6, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor5, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor4, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor3, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor2, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor1, SLOT(setEnabled(bool)));
+    connect(kcfg_UseGradeColors, SIGNAL(toggled(bool)), kcfg_GradeColor0, SLOT(setEnabled(bool)));
 
-    kcfg_GradeCol0->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol1->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol2->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol3->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol4->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol5->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol6->setEnabled(kcfg_UseGradeCol->isChecked());
-    kcfg_GradeCol7->setEnabled(kcfg_UseGradeCol->isChecked());
+    kcfg_GradeColor0->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor1->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor2->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor3->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor4->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor5->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor6->setEnabled(kcfg_UseGradeColors->isChecked());
+    kcfg_GradeColor7->setEnabled(kcfg_UseGradeColors->isChecked());
 }
 
 #include "viewoptions.moc"

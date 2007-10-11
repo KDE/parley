@@ -83,7 +83,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     mw->timebar->setVisible(Prefs::showCounter());
     mw->timelabel->setVisible(Prefs::showCounter());
 
-    mw->know_it->setVisible(Prefs::iKnow());
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
 
     m_choiceRadioButtons << mw->choiceRadioButton1
@@ -122,10 +122,10 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
     // question
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(m_entry->exp->translation(Prefs::fromIdentifier()).text());
+    mw->orgField->setText(m_entry->exp->translation(Prefs::questionLanguage()).text());
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled()
-        && !m_entry->exp->translation(Prefs::fromIdentifier())
+        && !m_entry->exp->translation(Prefs::questionLanguage())
             .soundUrl().isEmpty());
 
     mw->audioChoiceButton1->setVisible(false);
@@ -135,17 +135,17 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->audioChoiceButton5->setVisible(false);
 
     // answer and choices
-    QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
+    QString solution = m_entry->exp->translation(Prefs::solutionLanguage()).text();
 
     // gather some choices...
     QStringList choices;
 
     // the user supplied choices (edit entry -> choices)
-    choices << m_entry->exp->translation(Prefs::toIdentifier()).multipleChoice().choices();
+    choices << m_entry->exp->translation(Prefs::solutionLanguage()).multipleChoice().choices();
 
     // always include false friend
-    QString falseFriend = m_entry->exp->translation(Prefs::toIdentifier())
-        .falseFriend(Prefs::fromIdentifier());
+    QString falseFriend = m_entry->exp->translation(Prefs::solutionLanguage())
+        .falseFriend(Prefs::questionLanguage());
     if (!falseFriend.isEmpty()) {
         choices.append(falseFriend);
     }
@@ -263,7 +263,7 @@ void MCQueryDlg::showContinueButton(bool show)
 
         // enable the sound for the solution. eventually all entries with sound should get their button enabled.
         if ( Prefs::practiceSoundEnabled() ) {
-            if ( !m_entry->exp->translation(Prefs::toIdentifier())
+            if ( !m_entry->exp->translation(Prefs::solutionLanguage())
                 .soundUrl().isEmpty()) {
                 QList<QPushButton*> audioButtons;
                 audioButtons << mw->audioChoiceButton1
@@ -292,7 +292,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
             KEduVocExpression *act = m_doc->entry(i);
 
             if (act != m_entry->exp) {
-                choices.append(act->translation(Prefs::toIdentifier()).text());
+                choices.append(act->translation(Prefs::solutionLanguage()).text());
             }
         }
     } else {
@@ -303,7 +303,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
 
         // find out if we got enough non-empty entries to fill all the options
         for(int i = 0; i < m_doc->entryCount(); i++) {
-            if(!m_doc->entry(i)->translation(Prefs::toIdentifier()).text().isEmpty())
+            if(!m_doc->entry(i)->translation(Prefs::solutionLanguage()).text().isEmpty())
                 numNonEmptyEntries++;
             if(numNonEmptyEntries >= numberChoices)
                 break;
@@ -316,7 +316,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
             if(numNonEmptyEntries >= numberChoices) {
                 do {
                     nr = randomSequence.getLong(m_doc->entryCount());
-                } while (m_doc->entry(nr)->translation(Prefs::toIdentifier()).text().isEmpty());
+                } while (m_doc->entry(nr)->translation(Prefs::solutionLanguage()).text().isEmpty());
             } else {
                 nr = randomSequence.getLong(m_doc->entryCount());
             }
@@ -333,7 +333,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(Prefs::toIdentifier()).text());
+            choices.append(exprlist[i]->translation(Prefs::solutionLanguage()).text());
         }
     }
 

@@ -59,7 +59,7 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
 
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
-    mw->know_it->setVisible(Prefs::iKnow());
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
 
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
@@ -84,7 +84,7 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
 
     ///@todo set adjective/adverb hint!
 
-    comp = entry->exp->translation(Prefs::toIdentifier()).comparison();
+    comp = entry->exp->translation(Prefs::solutionLanguage()).comparison();
 
     mw->timebar->setVisible(Prefs::showCounter());
     mw->timelabel->setVisible(Prefs::showCounter());

@@ -60,7 +60,7 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
     connect(mw->verify, SIGNAL(clicked()), SLOT(verifyClicked()));
     connect(mw->show_all, SIGNAL(clicked()), SLOT(showSolution()));
 
-    mw->know_it->setVisible(Prefs::iKnow());
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->dont_know->setShortcut(QKeySequence(Qt::Key_Escape));
 
     mw->countbar->setFormat("%v/%m");
@@ -68,7 +68,7 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
 
     mw->imageGraphicsView->setVisible(false);
 
-    m_hasDualConjugations = m_doc->identifier(Prefs::toIdentifier()).personalPronouns().dualExists();
+    m_hasDualConjugations = m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().dualExists();
     setupPersonalPronouns();
 
     setupConjugationLineEditMap();
@@ -91,27 +91,27 @@ VerbQueryDlg::~VerbQueryDlg()
 
 void VerbQueryDlg::setupPersonalPronouns()
 {
-    mw->singularFirstPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Singular));
-    mw->singularSecondPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Singular));
-    mw->singularThirdMalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular));
-    mw->singularThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular));
-    mw->singularThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular));
+    mw->singularFirstPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Singular));
+    mw->singularSecondPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Singular));
+    mw->singularThirdMalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular));
+    mw->singularThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular));
+    mw->singularThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular));
 
 
     mw->dualGroupBox->setVisible(m_hasDualConjugations);
     if ( m_hasDualConjugations ) {
-        mw->dualFirstPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Dual));
-        mw->dualSecondPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Dual));
-        mw->dualThirdMalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual));
-        mw->dualThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual));
-        mw->dualThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual));
+        mw->dualFirstPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Dual));
+        mw->dualSecondPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Dual));
+        mw->dualThirdMalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual));
+        mw->dualThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual));
+        mw->dualThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual));
     }
 
-    mw->pluralFirstPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Plural));
-    mw->pluralSecondPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Plural));
-    mw->pluralThirdMalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
-    mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
-    mw->pluralThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::toIdentifier()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural));
+    mw->pluralFirstPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::First, KEduVocConjugation::Plural));
+    mw->pluralSecondPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::Second, KEduVocConjugation::Plural));
+    mw->pluralThirdMalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural));
+    mw->pluralThirdFemalePersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural));
+    mw->pluralThirdNeutralPersonLabel->setText(m_doc->identifier(Prefs::solutionLanguage()).personalPronouns().personalPronoun(KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural));
 }
 
 
@@ -146,7 +146,7 @@ void VerbQueryDlg::clearLineEdits()
         setWidgetStyle(conjugationLineEdit, Default);
         conjugationLineEdit->setReadOnly(false);
 
-        if ( m_entry->exp->translation(Prefs::toIdentifier()).
+        if ( m_entry->exp->translation(Prefs::solutionLanguage()).
                 conjugation(m_currentTense).conjugation(i).isEmpty() ) {
             conjugationLineEdit->setVisible(false);
         }
@@ -160,16 +160,16 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 
     // setup a list of tenses to practice
     m_tenses.clear();
-    QStringList tenses = entry->exp->translation(Prefs::toIdentifier()).conjugationTenses();
+    QStringList tenses = entry->exp->translation(Prefs::solutionLanguage()).conjugationTenses();
     foreach ( QString tense, tenses ) {
-        if ( !entry->exp->translation(Prefs::toIdentifier()).conjugation(tense).isEmpty() ) {
+        if ( !entry->exp->translation(Prefs::solutionLanguage()).conjugation(tense).isEmpty() ) {
             if ( m_activeTenses.contains( tense ) ) {
                 m_tenses.append(tense);
             }
         }
     }
 
-    kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << m_tenses;
+    kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::solutionLanguage()).text() << m_tenses;
     // skip if none is found
     if ( m_tenses.isEmpty() ) {
         kDebug() << "Warning, no conjugations found.";
@@ -178,7 +178,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
         return;
     }
 
-    mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
+    mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::solutionLanguage()).text() );
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
 
@@ -199,7 +199,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 //     clearLineEdits();
 //     QString tense;
 //
-//     mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::toIdentifier()).text() );
+//     mw->verbNameLabel->setText( m_entry->exp->translation(Prefs::solutionLanguage()).text() );
 //
 //
 //     tense = m_tenses.value(0);
@@ -210,11 +210,11 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 //     setWidgetStyle(mw->tenseLabel, HintStyle);
 //     mw->tenseLabel->setText(tense);
 //
-// kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::toIdentifier()).text() << tense << " empty: " << m_entry->exp->translation(Prefs::toIdentifier()).
+// kDebug() << "Conjugation: " <<  m_entry->exp->translation(Prefs::solutionLanguage()).text() << tense << " empty: " << m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].isEmpty();
 //
 //
-//     if (m_entry->exp->translation(Prefs::toIdentifier()).
+//     if (m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].isEmpty() ) {
 //         return false;
 //     }
@@ -222,35 +222,35 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 //     bool empty;
 //
 //     // singular
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::First, KEduVocConjugation::Singular).isEmpty();
 //     mw->singularFirstPersonLabel->setVisible(!empty);
 //     mw->singularFirstPersonLineEdit->setVisible(!empty);
 //     mw->singularFirstPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::Second, KEduVocConjugation::Singular).isEmpty();
 //     mw->singularSecondPersonLabel->setVisible(!empty);
 //     mw->singularSecondPersonLineEdit->setVisible(!empty);
 //     mw->singularSecondPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdMale, KEduVocConjugation::Singular).isEmpty();
 //     mw->singularThirdMalePersonLabel->setVisible(!empty);
 //     mw->singularThirdMalePersonLineEdit->setVisible(!empty);
 //     mw->singularThirdMalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdFemale, KEduVocConjugation::Singular).isEmpty();
 //     mw->singularThirdFemalePersonLabel->setVisible(!empty);
 //     mw->singularThirdFemalePersonLineEdit->setVisible(!empty);
 //     mw->singularThirdFemalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Singular).isEmpty();
 //     mw->singularThirdNeutralPersonLabel->setVisible(!empty);
@@ -258,35 +258,35 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 //     mw->singularThirdNeutralPersonLineEdit->setText("");
 //
 //     // dual
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::First, KEduVocConjugation::Dual).isEmpty();
 //     mw->dualFirstPersonLabel->setVisible(!empty);
 //     mw->dualFirstPersonLineEdit->setVisible(!empty);
 //     mw->dualFirstPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::Second, KEduVocConjugation::Dual).isEmpty();
 //     mw->dualSecondPersonLabel->setVisible(!empty);
 //     mw->dualSecondPersonLineEdit->setVisible(!empty);
 //     mw->dualSecondPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdMale, KEduVocConjugation::Dual).isEmpty();
 //     mw->dualThirdMalePersonLabel->setVisible(!empty);
 //     mw->dualThirdMalePersonLineEdit->setVisible(!empty);
 //     mw->dualThirdMalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdFemale, KEduVocConjugation::Dual).isEmpty();
 //     mw->dualThirdFemalePersonLabel->setVisible(!empty);
 //     mw->dualThirdFemalePersonLineEdit->setVisible(!empty);
 //     mw->dualThirdFemalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Dual).isEmpty();
 //     mw->dualThirdNeutralPersonLabel->setVisible(!empty);
@@ -294,35 +294,35 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 //     mw->dualThirdNeutralPersonLineEdit->setText("");
 //
 //     // plural
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::First, KEduVocConjugation::Plural).isEmpty();
 //     mw->pluralFirstPersonLabel->setVisible(!empty);
 //     mw->pluralFirstPersonLineEdit->setVisible(!empty);
 //     mw->pluralFirstPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::Second, KEduVocConjugation::Plural).isEmpty();
 //     mw->pluralSecondPersonLabel->setVisible(!empty);
 //     mw->pluralSecondPersonLineEdit->setVisible(!empty);
 //     mw->pluralSecondPersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdMale, KEduVocConjugation::Plural).isEmpty();
 //     mw->pluralThirdMalePersonLabel->setVisible(!empty);
 //     mw->pluralThirdMalePersonLineEdit->setVisible(!empty);
 //     mw->pluralThirdMalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdFemale, KEduVocConjugation::Plural).isEmpty();
 //     mw->pluralThirdFemalePersonLabel->setVisible(!empty);
 //     mw->pluralThirdFemalePersonLineEdit->setVisible(!empty);
 //     mw->pluralThirdFemalePersonLineEdit->setText("");
 //
-//     empty = m_entry->exp->translation(Prefs::toIdentifier()).
+//     empty = m_entry->exp->translation(Prefs::solutionLanguage()).
 //         conjugations()[tense].conjugation(
 //         KEduVocConjugation::ThirdNeutralCommon, KEduVocConjugation::Plural).isEmpty();
 //     mw->pluralThirdNeutralPersonLabel->setVisible(!empty);
@@ -342,7 +342,7 @@ void VerbQueryDlg::showSolution()
     QString tense = m_tenses.value(0);
 
     foreach ( int i, m_conjugationWidgets.keys() ) {
-        m_conjugationWidgets.value(i)->setText(m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense].conjugation(i));
+        m_conjugationWidgets.value(i)->setText(m_entry->exp->translation(Prefs::solutionLanguage()).conjugations()[tense].conjugation(i));
         setWidgetStyle(m_conjugationWidgets.value(i), PositiveResult);
         m_conjugationWidgets.value(i)->setReadOnly(true);
     }
@@ -353,13 +353,13 @@ void VerbQueryDlg::verifyClicked()
 {
     QString tense = m_tenses.value(0);
 
-    const KEduVocConjugation conj = m_entry->exp->translation(Prefs::toIdentifier()).conjugations()[tense];
+    const KEduVocConjugation conj = m_entry->exp->translation(Prefs::solutionLanguage()).conjugations()[tense];
 
     QString solution;
     bool all_correct = true;
     bool all_filled = true;
     foreach ( int i, m_conjugationWidgets.keys() ) {
-        solution = m_entry->exp->translation(Prefs::toIdentifier()).conjugation(m_currentTense).conjugation(i);
+        solution = m_entry->exp->translation(Prefs::solutionLanguage()).conjugation(m_currentTense).conjugation(i);
         if ( !solution.isEmpty() ) {
             if ( m_conjugationWidgets.value(i)->text() == solution ) {
                 setWidgetStyle(m_conjugationWidgets[i], PositiveResult);

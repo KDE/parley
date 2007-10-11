@@ -133,31 +133,31 @@ void StatisticsPage::setupData()
             for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
                 switch (j) {
                 case KV_NORM_GRADE:
-                    color = Prefs::gradeCol(0);
+                    color = Prefs::gradeColor(0);
                     break;
                 case KV_LEV1_GRADE:
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                     break;
                 case KV_LEV2_GRADE:
-                    color = Prefs::gradeCol(2);
+                    color = Prefs::gradeColor(2);
                     break;
                 case KV_LEV3_GRADE:
-                    color = Prefs::gradeCol(3);
+                    color = Prefs::gradeColor(3);
                     break;
                 case KV_LEV4_GRADE:
-                    color = Prefs::gradeCol(4);
+                    color = Prefs::gradeColor(4);
                     break;
                 case KV_LEV5_GRADE:
-                    color = Prefs::gradeCol(5);
+                    color = Prefs::gradeColor(5);
                     break;
                 case KV_LEV6_GRADE:
-                    color = Prefs::gradeCol(6);
+                    color = Prefs::gradeColor(6);
                     break;
                 case KV_LEV7_GRADE:
-                    color = Prefs::gradeCol(7);
+                    color = Prefs::gradeColor(7);
                     break;
                 default           :
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                     break;
                 }
                 if (widths[j] != 0) {
@@ -168,7 +168,7 @@ void StatisticsPage::setupData()
                 }
             }
         } else {
-            p.fillRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeCol(0));
+            p.fillRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeColor(0));
             p.drawRect(PIX_SHIFT, 1, fpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1);
         }
         p.end();
@@ -207,31 +207,31 @@ void StatisticsPage::setupData()
             for (int j = KV_MIN_GRADE; j <= KV_MAX_GRADE; j++) {
                 switch (j) {
                 case KV_NORM_GRADE:
-                    color = Prefs::gradeCol(0);
+                    color = Prefs::gradeColor(0);
                     break;
                 case KV_LEV1_GRADE:
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                     break;
                 case KV_LEV2_GRADE:
-                    color = Prefs::gradeCol(2);
+                    color = Prefs::gradeColor(2);
                     break;
                 case KV_LEV3_GRADE:
-                    color = Prefs::gradeCol(3);
+                    color = Prefs::gradeColor(3);
                     break;
                 case KV_LEV4_GRADE:
-                    color = Prefs::gradeCol(4);
+                    color = Prefs::gradeColor(4);
                     break;
                 case KV_LEV5_GRADE:
-                    color = Prefs::gradeCol(5);
+                    color = Prefs::gradeColor(5);
                     break;
                 case KV_LEV6_GRADE:
-                    color = Prefs::gradeCol(6);
+                    color = Prefs::gradeColor(6);
                     break;
                 case KV_LEV7_GRADE:
-                    color = Prefs::gradeCol(7);
+                    color = Prefs::gradeColor(7);
                     break;
                 default           :
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                     break;
                 }
                 if (widths[j] != 0) {
@@ -242,7 +242,7 @@ void StatisticsPage::setupData()
                 }
             }
         } else {
-            p.fillRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeCol(0));
+            p.fillRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1, Prefs::gradeColor(0));
             p.drawRect(PIX_SHIFT, 1, tpix.width() - PIX_SHIFT, SIZE_HEIGHT - 1);
         }
         p.end();

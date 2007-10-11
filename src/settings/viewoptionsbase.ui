@@ -131,7 +131,7 @@
        <number>6</number>
       </property>
       <item row="8" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol0" >
+       <widget class="KColorButton" name="kcfg_GradeColor0" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -144,7 +144,7 @@
        </widget>
       </item>
       <item row="7" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol1" >
+       <widget class="KColorButton" name="kcfg_GradeColor1" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -166,7 +166,7 @@
        </widget>
       </item>
       <item row="6" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol2" >
+       <widget class="KColorButton" name="kcfg_GradeColor2" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -188,7 +188,7 @@
        </widget>
       </item>
       <item row="5" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol3" >
+       <widget class="KColorButton" name="kcfg_GradeColor3" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -210,7 +210,7 @@
        </widget>
       </item>
       <item row="4" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol4" >
+       <widget class="KColorButton" name="kcfg_GradeColor4" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -232,7 +232,7 @@
        </widget>
       </item>
       <item row="3" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol5" >
+       <widget class="KColorButton" name="kcfg_GradeColor5" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -254,7 +254,7 @@
        </widget>
       </item>
       <item row="2" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol6" >
+       <widget class="KColorButton" name="kcfg_GradeColor6" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -276,7 +276,7 @@
        </widget>
       </item>
       <item row="1" column="1" >
-       <widget class="KColorButton" name="kcfg_GradeCol7" >
+       <widget class="KColorButton" name="kcfg_GradeColor7" >
         <property name="sizePolicy" >
          <sizepolicy vsizetype="Fixed" hsizetype="Preferred" >
           <horstretch>0</horstretch>
@@ -309,7 +309,7 @@
          <string>Level &amp;7:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol7</cstring>
+         <cstring>kcfg_GradeColor7</cstring>
         </property>
        </widget>
       </item>
@@ -325,7 +325,7 @@
          <string>Level &amp;6:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol6</cstring>
+         <cstring>kcfg_GradeColor6</cstring>
         </property>
        </widget>
       </item>
@@ -341,7 +341,7 @@
          <string>Level &amp;5:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol5</cstring>
+         <cstring>kcfg_GradeColor5</cstring>
         </property>
        </widget>
       </item>
@@ -357,7 +357,7 @@
          <string>Level &amp;4:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol4</cstring>
+         <cstring>kcfg_GradeColor4</cstring>
         </property>
        </widget>
       </item>
@@ -373,7 +373,7 @@
          <string>Level &amp;3:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol3</cstring>
+         <cstring>kcfg_GradeColor3</cstring>
         </property>
        </widget>
       </item>
@@ -389,7 +389,7 @@
          <string>Level &amp;2:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol2</cstring>
+         <cstring>kcfg_GradeColor2</cstring>
         </property>
        </widget>
       </item>
@@ -405,7 +405,7 @@
          <string>Level &amp;1:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol1</cstring>
+         <cstring>kcfg_GradeColor1</cstring>
         </property>
        </widget>
       </item>
@@ -421,12 +421,12 @@
          <string>Not &amp;practiced:</string>
         </property>
         <property name="buddy" >
-         <cstring>kcfg_GradeCol0</cstring>
+         <cstring>kcfg_GradeColor0</cstring>
         </property>
        </widget>
       </item>
       <item row="0" column="0" colspan="2" >
-       <widget class="QCheckBox" name="kcfg_UseGradeCol" >
+       <widget class="QCheckBox" name="kcfg_UseGradeColors" >
         <property name="toolTip" >
          <string>If it is unchecked, you will just have black on white for the grades; if it is checked, the colors below will be chosen.</string>
         </property>
@@ -546,15 +546,15 @@
   <tabstop>hb_auto</tabstop>
   <tabstop>hb_percent</tabstop>
   <tabstop>hb_fixed</tabstop>
-  <tabstop>kcfg_UseGradeCol</tabstop>
-  <tabstop>kcfg_GradeCol7</tabstop>
-  <tabstop>kcfg_GradeCol6</tabstop>
-  <tabstop>kcfg_GradeCol5</tabstop>
-  <tabstop>kcfg_GradeCol4</tabstop>
-  <tabstop>kcfg_GradeCol3</tabstop>
-  <tabstop>kcfg_GradeCol2</tabstop>
-  <tabstop>kcfg_GradeCol1</tabstop>
-  <tabstop>kcfg_GradeCol0</tabstop>
+  <tabstop>kcfg_UseGradeColors</tabstop>
+  <tabstop>kcfg_GradeColor7</tabstop>
+  <tabstop>kcfg_GradeColor6</tabstop>
+  <tabstop>kcfg_GradeColor5</tabstop>
+  <tabstop>kcfg_GradeColor4</tabstop>
+  <tabstop>kcfg_GradeColor3</tabstop>
+  <tabstop>kcfg_GradeColor2</tabstop>
+  <tabstop>kcfg_GradeColor1</tabstop>
+  <tabstop>kcfg_GradeColor0</tabstop>
  </tabstops>
  <includes>
   <include location="global" >kcolorbutton.h</include>

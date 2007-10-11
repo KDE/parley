@@ -60,7 +60,7 @@ private:
     /// The dialog
     PracticeDialog      *m_testDialog;
 
-    int                  num_queryTimeout;
+    int                  num_practiceTimeout;
     int                  m_testType;
 
     QString              m_lastTestType;

@@ -240,72 +240,72 @@ QSize KVTTableDelegate::sizeHint(const QStyleOptionViewItem & option, const QMod
 
 void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
-    if (Prefs::useGradeCol()) {
+    if (Prefs::useGradeColors()) {
         QStyleOptionViewItem opt = option;
         QColor color = KV_NORM_COLOR;
 
         if (index.column() > KV_COL_TRANS) {
-            color = Prefs::gradeCol(0);
+            color = Prefs::gradeColor(0);
             switch (index.model()->data(index, KVTTableModel::GradeRole).toInt()) {
             case KV_NORM_GRADE:
-                color = Prefs::gradeCol(0);
+                color = Prefs::gradeColor(0);
                 break;
             case KV_LEV1_GRADE:
-                color = Prefs::gradeCol(1);
+                color = Prefs::gradeColor(1);
                 break;
             case KV_LEV2_GRADE:
-                color = Prefs::gradeCol(2);
+                color = Prefs::gradeColor(2);
                 break;
             case KV_LEV3_GRADE:
-                color = Prefs::gradeCol(3);
+                color = Prefs::gradeColor(3);
                 break;
             case KV_LEV4_GRADE:
-                color = Prefs::gradeCol(4);
+                color = Prefs::gradeColor(4);
                 break;
             case KV_LEV5_GRADE:
-                color = Prefs::gradeCol(5);
+                color = Prefs::gradeColor(5);
                 break;
             case KV_LEV6_GRADE:
-                color = Prefs::gradeCol(6);
+                color = Prefs::gradeColor(6);
                 break;
             case KV_LEV7_GRADE:
-                color = Prefs::gradeCol(7);
+                color = Prefs::gradeColor(7);
                 break;
             default           :
-                color = Prefs::gradeCol(1);
+                color = Prefs::gradeColor(1);
             }
         } else if (index.column() == KV_COL_TRANS) {
-            color = Prefs::gradeCol(0);
+            color = Prefs::gradeColor(0);
             QList<QVariant> result = index.model()->data(index, KVTTableModel::GradeRole).toList();
 
             if (m_currentIndex.column() > 2) {
                 switch (result[m_currentIndex.column() - 3].toInt()) {
                 case KV_NORM_GRADE:
-                    color = Prefs::gradeCol(0);
+                    color = Prefs::gradeColor(0);
                     break;
                 case KV_LEV1_GRADE:
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                     break;
                 case KV_LEV2_GRADE:
-                    color = Prefs::gradeCol(2);
+                    color = Prefs::gradeColor(2);
                     break;
                 case KV_LEV3_GRADE:
-                    color = Prefs::gradeCol(3);
+                    color = Prefs::gradeColor(3);
                     break;
                 case KV_LEV4_GRADE:
-                    color = Prefs::gradeCol(4);
+                    color = Prefs::gradeColor(4);
                     break;
                 case KV_LEV5_GRADE:
-                    color = Prefs::gradeCol(5);
+                    color = Prefs::gradeColor(5);
                     break;
                 case KV_LEV6_GRADE:
-                    color = Prefs::gradeCol(6);
+                    color = Prefs::gradeColor(6);
                     break;
                 case KV_LEV7_GRADE:
-                    color = Prefs::gradeCol(7);
+                    color = Prefs::gradeColor(7);
                     break;
                 default           :
-                    color = Prefs::gradeCol(1);
+                    color = Prefs::gradeColor(1);
                 }
             }
         }

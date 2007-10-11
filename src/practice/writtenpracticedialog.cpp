@@ -141,16 +141,16 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 //             KEduVocExpression* expr = m_doc->entry(i);
 //             if (split) {
 //                 vocabulary += extractTranslations(
-//                     expr->translation(Prefs::toIdentifier()).text());
+//                     expr->translation(Prefs::solutionLanguage()).text());
 //             } else {
-//                 vocabulary.append(expr->translation(Prefs::toIdentifier()).text());
+//                 vocabulary.append(expr->translation(Prefs::solutionLanguage()).text());
 //             }
 //             if (Prefs::swapDirection()) {
 //                 if (split) {
 //                     vocabulary += extractTranslations(
-//                         expr->translation(Prefs::fromIdentifier()).text() );
+//                         expr->translation(Prefs::questionLanguage()).text() );
 //                 } else {
-//                     vocabulary.append( expr->translation(Prefs::fromIdentifier()).text());
+//                     vocabulary.append( expr->translation(Prefs::questionLanguage()).text());
 //                 }
 //             }
 //         }
@@ -190,7 +190,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     PracticeDialog::setEntry(entry);
     showContinueButton(false);
 
-//     QString trans = entry->exp->translation( Prefs::toIdentifier() ).text();
+//     QString trans = entry->exp->translation( Prefs::solutionLanguage() ).text();
 //     if (Prefs::split())
 //         translations = extractTranslations(trans);
 //     else
@@ -229,7 +229,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
     mw->verify->setEnabled(true);
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(entry->exp->translation( Prefs::fromIdentifier() ).text());
+    mw->orgField->setText(entry->exp->translation( Prefs::questionLanguage() ).text());
     mw->show_all->setDefault(true);
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
@@ -255,10 +255,10 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
     mw->answerLineEdit->setFocus();
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled() &&
-        !entry->exp->translation( Prefs::fromIdentifier() ).soundUrl().isEmpty());
+        !entry->exp->translation( Prefs::questionLanguage() ).soundUrl().isEmpty());
 
     mw->audioPlaySolutionButton->setVisible( Prefs::practiceSoundEnabled() &&
-        !entry->exp->translation( Prefs::toIdentifier()).soundUrl().isEmpty());
+        !entry->exp->translation( Prefs::solutionLanguage()).soundUrl().isEmpty());
 
     mw->correctionLabel->setText(QString());
 
@@ -475,7 +475,7 @@ void WrittenPracticeDialog::verifyClicked()
 
 void WrittenPracticeDialog::showMoreClicked()
 {
-    QString solution = m_entry->exp->translation(Prefs::toIdentifier()).text();
+    QString solution = m_entry->exp->translation(Prefs::solutionLanguage()).text();
     double result = verifyAnswer(mw->answerLineEdit->text());
     if ( result == 1.0 ) {
         resultCorrect();
@@ -511,7 +511,7 @@ void WrittenPracticeDialog::showMoreClicked()
 void WrittenPracticeDialog::showSolution()
 {
     setWidgetStyle(mw->answerLineEdit, PositiveResult);
-    mw->answerLineEdit->setText(m_entry->exp->translation(Prefs::toIdentifier()).text());
+    mw->answerLineEdit->setText(m_entry->exp->translation(Prefs::solutionLanguage()).text());
 
     setAnswerTainted();
     showContinueButton(true);
@@ -570,15 +570,15 @@ void WrittenPracticeDialog::slotAnswerChanged(const QString&)
 void WrittenPracticeDialog::setHintFields()
 {
     bool hasComment =
-        !m_entry->exp->translation(Prefs::fromIdentifier()).comment().isEmpty();
+        !m_entry->exp->translation(Prefs::questionLanguage()).comment().isEmpty();
     mw->commentLabel->setVisible(hasComment);
     mw->commentCheckBox->setVisible(hasComment);
 
-    bool hasFalseFriend = !m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()).isEmpty();
+    bool hasFalseFriend = !m_entry->exp->translation(Prefs::questionLanguage()).falseFriend(Prefs::solutionLanguage()).isEmpty();
     mw->falseFriendLabel->setVisible(hasFalseFriend);
     mw->falsefriendCheckBox->setVisible(hasFalseFriend);
 
-    bool hasType = !m_entry->exp->translation(Prefs::fromIdentifier()).type().isEmpty();
+    bool hasType = !m_entry->exp->translation(Prefs::questionLanguage()).type().isEmpty();
     mw->typeLabel->setVisible(hasType);
     mw->typeCheckBox->setVisible(hasType);
 
@@ -590,7 +590,7 @@ void WrittenPracticeDialog::setHintFields()
 void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 {
     if ( show ) {
-        mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).falseFriend(Prefs::toIdentifier()));
+        mw->falseFriendLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).falseFriend(Prefs::solutionLanguage()));
     } else {
         mw->falseFriendLabel->setText(QString());
     }
@@ -599,7 +599,7 @@ void WrittenPracticeDialog::slotFalseFriendClicked(bool show)
 void WrittenPracticeDialog::slotRemClicked(bool show)
 {
     if ( show ) {
-        mw->commentLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).comment());
+        mw->commentLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).comment());
     } else {
         mw->commentLabel->setText(QString());
     }
@@ -608,7 +608,7 @@ void WrittenPracticeDialog::slotRemClicked(bool show)
 void WrittenPracticeDialog::slotTypeClicked(bool show)
 {
     if ( show ) {
-        mw->typeLabel->setText(m_entry->exp->translation(Prefs::fromIdentifier()).type());
+        mw->typeLabel->setText(m_entry->exp->translation(Prefs::questionLanguage()).type());
     } else {
         mw->typeLabel->setText(QString());
     }
@@ -698,7 +698,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
     }
 
     mw->dont_know->setVisible(!show);
-    mw->know_it->setVisible(!show && Prefs::iKnow());
+    mw->know_it->setVisible(!show && Prefs::skipKnownEnabled());
     mw->show_more->setVisible(!show && Prefs::showMore());
     mw->show_all->setVisible(!show);
     mw->verify->setVisible(!show);

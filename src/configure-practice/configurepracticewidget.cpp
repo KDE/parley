@@ -69,7 +69,7 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 
 ///@todo connect the Radios to disable the option group
 
-    LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
+    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
 
     OptionsGroupBox->setEnabled( false );
     m_optionsStackedLayout = new QStackedLayout(OptionsGroupBox);
@@ -97,8 +97,8 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
 
 void ConfigurePracticeWidget::updateSettings()
 {
-    Prefs::setFromIdentifier(LanguageFromList->currentRow());
-    Prefs::setToIdentifier(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
+    Prefs::setQuestionLanguage(LanguageFromList->currentRow());
+    Prefs::setSolutionLanguage(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 
     QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
     QStringList activeTenses;
@@ -127,7 +127,7 @@ void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
             LanguageToList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
 
             LanguageToList->item(LanguageToList->count()-1)->setData(Qt::UserRole, i);
-            if ( i == Prefs::toIdentifier() ) {
+            if ( i == Prefs::solutionLanguage() ) {
                 LanguageToList->setCurrentRow(i);
             }
         }
@@ -139,7 +139,7 @@ void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
 
 void ConfigurePracticeWidget::updateWidgets()
 {
-    LanguageFromList->setCurrentRow(Prefs::fromIdentifier());
+    LanguageFromList->setCurrentRow(Prefs::questionLanguage());
 }
 
 bool ConfigurePracticeWidget::hasChanged()
@@ -151,8 +151,8 @@ bool ConfigurePracticeWidget::hasChanged()
     }
     ///@todo implement so that the current settings are respected
     return false;
-        //LanguageFromList->currentRow() == Prefs::fromIdentifier() &&
-        //    toRow == Prefs::toIdentifier();
+        //LanguageFromList->currentRow() == Prefs::questionLanguage() &&
+        //    toRow == Prefs::solutionLanguage();
 
         /// @todo tenses
 }

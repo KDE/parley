@@ -89,8 +89,8 @@ TestEntryManager::~ TestEntryManager()
 TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 {
     m_doc = doc;
-    m_fromTranslation = Prefs::fromIdentifier();
-    m_toTranslation = Prefs::toIdentifier();
+    m_fromTranslation = Prefs::questionLanguage();
+    m_toTranslation = Prefs::solutionLanguage();
     m_testType = Prefs::testType();
 
     TestEntry::setGradeTo(m_toTranslation);

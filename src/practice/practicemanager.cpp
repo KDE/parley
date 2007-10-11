@@ -74,7 +74,7 @@ void PracticeManager::startPractice()
     m_testType = Prefs::testType();
 
     m_app->removeEntryDlg();
-    num_queryTimeout = 0;
+    num_practiceTimeout = 0;
 
     m_entry = m_entryManager->nextEntry();
     if ( m_entry == 0 ) {
@@ -103,11 +103,11 @@ kDebug() << "result: " << res;
 
     if ( res == PracticeDialog::Timeout ) {
         // too many timeouts in a row will hold the test
-        if (++num_queryTimeout >= MAX_QUERY_TIMEOUT) {
+        if (++num_practiceTimeout >= MAX_QUERY_TIMEOUT) {
             KMessageBox::information(m_app, i18n(not_answered), i18n("Stopping Test"));
         }
     } else {
-        num_queryTimeout = 0;
+        num_practiceTimeout = 0;
     }
 }
 

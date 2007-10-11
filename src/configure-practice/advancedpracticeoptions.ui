@@ -55,7 +55,7 @@
          </widget>
         </item>
         <item row="1" column="0" >
-         <widget class="QCheckBox" name="kcfg_IKnow" >
+         <widget class="QCheckBox" name="kcfg_SkipKnownEnabled" >
           <property name="enabled" >
            <bool>true</bool>
           </property>
@@ -199,7 +199,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QGroupBox" name="QueryTimeout" >
+    <widget class="QGroupBox" name="PracticeTimeout" >
      <property name="toolTip" >
       <string>If a time limit is set, an answer has to be given in the set time, when practicing.</string>
      </property>
@@ -208,7 +208,7 @@
      </property>
      <layout class="QHBoxLayout" >
       <item>
-       <widget class="KButtonGroup" name="kcfg_QueryTimeout" >
+       <widget class="KButtonGroup" name="kcfg_PracticeTimeout" >
         <property name="styleSheet" >
          <string>QGroupBox { border-width: 0; border-style: none; }</string>
         </property>
@@ -620,7 +620,7 @@
   <tabstop>kcfg_Semicolons</tabstop>
   <tabstop>kcfg_Commas</tabstop>
   <tabstop>kcfg_ShowMore</tabstop>
-  <tabstop>kcfg_IKnow</tabstop>
+  <tabstop>kcfg_SkipKnownEnabled</tabstop>
  </tabstops>
  <resources/>
  <connections/>

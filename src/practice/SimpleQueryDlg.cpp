@@ -61,7 +61,7 @@ SimpleQueryDlg::SimpleQueryDlg(KEduVocDocument *doc, QWidget *parent) : Practice
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
-    mw->know_it->setVisible(Prefs::iKnow());
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "SimpleQueryDialog");
@@ -86,7 +86,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
     mw->answerField->setFont(Prefs::tableFont());
     mw->answerField->setText("");
 
-    int column = Prefs::toIdentifier();
+    int column = Prefs::solutionLanguage();
 
     QString s;
     switch (m_testType) {

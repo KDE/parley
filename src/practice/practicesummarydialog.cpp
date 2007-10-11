@@ -34,7 +34,7 @@ PracticeSummaryDialog::PracticeSummaryDialog(TestEntryManager* testEntryManager,
     wrongLineEdit->setText(QString::number(testEntryManager->statisticTotalWrong()));
     wrongProgressBar->setValue(testEntryManager->statisticTotalWrong() * 100 / testEntryManager->totalEntryCount());
 
-    if ( Prefs::iKnow() ) {
+    if ( Prefs::skipKnownEnabled() ) {
         skipKnownLineEdit->setText(QString::number(
             testEntryManager->statisticTotalSkipKnown()));
         skipKnownProgressBar->setValue(

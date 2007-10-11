@@ -105,9 +105,9 @@ void PracticeDialog::timeoutReached()
 
     if (m_answerTimerCount <= 0) {
         timebar()->setValue(0);
-        if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Show) {
+        if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Show) {
             showSolution();
-        } else if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::Continue) {
+        } else if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Continue) {
             emit sigQueryChoice(Timeout); ///@todo check if this works - esp with 3x timeout
             continueButtonClicked();
         }
@@ -117,8 +117,8 @@ void PracticeDialog::timeoutReached()
 
 void PracticeDialog::startAnswerTimer()
 {
-    if (Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout) {
-        kDebug() << "Prefs::queryTimeout() == Prefs::EnumQueryTimeout::NoTimeout ->NO TIMEOUT!";
+    if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::NoTimeout) {
+        kDebug() << "Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::NoTimeout ->NO TIMEOUT!";
         return;
     }
 
@@ -130,7 +130,7 @@ void PracticeDialog::startAnswerTimer()
             connect(m_answerTimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
 
-        if (Prefs::queryTimeout() != Prefs::EnumQueryTimeout::NoTimeout) {
+        if (Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout) {
             m_answerTimerCount = mqtime;
             timebar()->setMaximum(m_answerTimerCount);
             timebar()->setValue(m_answerTimerCount);
@@ -153,7 +153,7 @@ void PracticeDialog::stopAnswerTimer()
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
-    m_validator->setSolution(m_entry->exp, Prefs::toIdentifier());
+    m_validator->setSolution(m_entry->exp, Prefs::solutionLanguage());
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;
@@ -169,7 +169,7 @@ void PracticeDialog::editEntry()
 
     QList<int> entry;
     entry.append(m_entry->m_index);
-    entryDlg->setData(entry, Prefs::toIdentifier());
+    entryDlg->setData(entry, Prefs::solutionLanguage());
     entryDlg->exec();
 
     // punish with a don't know
@@ -208,7 +208,7 @@ void PracticeDialog::resultWrong()
 
 void PracticeDialog::audioPlayFromIdentifier()
 {
-    KUrl file = m_entry->exp->translation(Prefs::fromIdentifier()).soundUrl();
+    KUrl file = m_entry->exp->translation(Prefs::questionLanguage()).soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -216,7 +216,7 @@ void PracticeDialog::audioPlayFromIdentifier()
 
 void PracticeDialog::audioPlayToIdentifier()
 {
-    KUrl file = m_entry->exp->translation(Prefs::toIdentifier()).soundUrl();
+    KUrl file = m_entry->exp->translation(Prefs::solutionLanguage()).soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -264,9 +264,9 @@ void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
 void PracticeDialog::imageShowFromEntry(QGraphicsView * view, const TestEntry * entry)
 {
     if ( Prefs::practiceImagesEnabled() ) {
-        QString url = entry->exp->translation(Prefs::fromIdentifier()).imageUrl().toLocalFile();
+        QString url = entry->exp->translation(Prefs::questionLanguage()).imageUrl().toLocalFile();
         if ( url.isEmpty() ) {
-            url = entry->exp->translation(Prefs::toIdentifier()).imageUrl().toLocalFile();
+            url = entry->exp->translation(Prefs::solutionLanguage()).imageUrl().toLocalFile();
         }
         if ( url.isEmpty() ) {
             view->setVisible(false);

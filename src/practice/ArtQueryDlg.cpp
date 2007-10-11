@@ -46,7 +46,7 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
-    articles = m_doc->identifier(Prefs::toIdentifier()).article();
+    articles = m_doc->identifier(Prefs::solutionLanguage()).article();
 
     connect(mw->dont_know, SIGNAL(clicked()), SLOT(skipUnknown()()));
     connect(mw->know_it, SIGNAL(clicked()), SLOT(skipKnown()));
@@ -61,7 +61,7 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
 
-    mw->know_it->setVisible(Prefs::iKnow());
+    mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
 
     KConfigGroup cg(KGlobal::config(), "ArtQueryDlg");
@@ -85,7 +85,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->show_all->setDefault(true);
 
     QString s;
-    s = m_entry->exp->translation(Prefs::toIdentifier()).text().simplified();
+    s = m_entry->exp->translation(Prefs::solutionLanguage()).text().simplified();
 
     QString def, indef;
     bool removed = false;
@@ -155,7 +155,7 @@ void ArtQueryDlg::showSolution()
     setWidgetStyle(mw->femaleRadio);
     setWidgetStyle(mw->neutralRadio);
 
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::solutionLanguage()).type(), m_entry->exp->translation(Prefs::solutionLanguage()).subType());
 
     if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
         mw->maleRadio->setChecked(true);
@@ -174,7 +174,7 @@ void ArtQueryDlg::showSolution()
 
 void ArtQueryDlg::verifyClicked()
 {
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::toIdentifier()).type(), m_entry->exp->translation(Prefs::toIdentifier()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::solutionLanguage()).type(), m_entry->exp->translation(Prefs::solutionLanguage()).subType());
 
     bool correct = false;
 
