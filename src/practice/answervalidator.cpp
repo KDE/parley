@@ -165,7 +165,7 @@ void AnswerValidator::simpleCorrector()
 
     kDebug() << "defaultCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
 
-    m_htmlCorrection = i18n("Your answer was wrong I'm afraight. Estimated %1% correct.", (int) (m_grade*100));
+    m_htmlCorrection = i18n("Your answer was wrong. Estimated %1% correct.", (int) (m_grade*100));
 }
 
 
