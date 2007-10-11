@@ -33,7 +33,7 @@
 
 #include "entry-dialogs/EntryDlg.h"
 #include "statistics-dialogs/StatisticsDialog.h"
-#include "settings/kvoctrainprefs.h"
+#include "settings/parleyprefs.h"
 #include "language-dialogs/languagedialog.h"
 #include "language-dialogs/grammardialog.h"
 #include "docprop-dialogs/TitlePage.h"
@@ -412,7 +412,7 @@ void ParleyApp::slotCleanVocabulary()
 
 void ParleyApp::slotGeneralOptions()
 {
-    KVocTrainPrefs* dialog = new KVocTrainPrefs(m_doc, this, "settings",  Prefs::self());
+    ParleyPrefs* dialog = new ParleyPrefs(m_doc, this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     dialog->show();
 }

@@ -14,7 +14,7 @@ kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
 )
 
 set(libcommondlg_SRCS ${libcommondlg_SKEL_SRCS}
-    settings/kvoctrainprefs.cpp
+    settings/parleyprefs.cpp
     settings/generaloptions.cpp
     settings/viewoptions.cpp
 )

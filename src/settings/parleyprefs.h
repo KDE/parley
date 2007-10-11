@@ -33,7 +33,7 @@ class KEduVocDocument;
 class KVTQuery;
 class KComboBox;
 
-class KVocTrainPrefs : public KConfigDialog
+class ParleyPrefs : public KConfigDialog
 {
     Q_OBJECT
 
@@ -41,7 +41,7 @@ public:
     /**
      * Creates a configuration dialog.
      */
-    KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
+    ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
 protected slots:
     /**

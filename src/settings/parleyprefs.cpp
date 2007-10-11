@@ -1,5 +1,5 @@
 /***************************************************************************
-             kvoctrainprefs.cpp  -  Parley configuration dialog
+             parleyprefs.cpp  -  Parley configuration dialog
 
                              -------------------
     begin         : Fri Mar 25 2005
@@ -18,14 +18,14 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "kvoctrainprefs.h"
+#include "parleyprefs.h"
 
 #include "generaloptions.h"
 #include "viewoptions.h"
 #include <KConfigSkeleton>
 
 
-KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
+ParleyPrefs::ParleyPrefs(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config)
   : KConfigDialog(parent, name, config)
 {
     setButtons(Default|Ok|Apply|Cancel|Help);
@@ -43,32 +43,32 @@ KVocTrainPrefs::KVocTrainPrefs(KEduVocDocument *doc, QWidget *parent, const QStr
     addPage(m_viewOptions, i18n("View"), "view-choose", i18n("View Settings"), true);
 }
 
-bool KVocTrainPrefs::hasChanged()
+bool ParleyPrefs::hasChanged()
 {
     return m_generalOptions->hasChanged();
 }
 
-bool KVocTrainPrefs::isDefault()
+bool ParleyPrefs::isDefault()
 {
     return m_generalOptions->isDefault();
 }
 
-void KVocTrainPrefs::updateSettings()
+void ParleyPrefs::updateSettings()
 {
     m_generalOptions->updateSettings();
     emit settingsChanged("");
 }
 
-void KVocTrainPrefs::updateWidgetsDefault()
+void ParleyPrefs::updateWidgetsDefault()
 {
     m_config->useDefaults(true);
     m_generalOptions->updateWidgets();
     m_config->useDefaults(false);
 }
 
-void KVocTrainPrefs::updateWidgets()
+void ParleyPrefs::updateWidgets()
 {
     m_generalOptions->updateWidgets();
 }
 
-#include "kvoctrainprefs.moc"
+#include "parleyprefs.moc"
