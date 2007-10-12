@@ -155,39 +155,58 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
             return;
         }
     }
-
     kDebug() << "Found " << m_allTestEntries.count() << " entries in selected lessons.";
 
+    // remove empty entries
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         if ( m_allTestEntries.value(i)->exp->translation(TestEntry::gradeFrom()).text().isEmpty() ||
                 m_allTestEntries.value(i)->exp->translation(TestEntry::gradeTo()).text().isEmpty() ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
-
     kDebug() << "Found " << m_allTestEntries.count() << " entries that are not empty.";
 
     // expire (decrease grade after a certain amount of time)
     expireEntries();
 
+
+    QList <TestEntry *> removeTestEntryList;
     // word type
-    bool entryWithValidTypeExists = false;
+    int validWordType = 0;
+    int validWrongCount = 0;
+    int validPracticeCount = 0;
+    int validGrade = 0;
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
+        bool remove = false;
+        const KEduVocGrade& grade =
+            m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation);
         if ( checkType(m_allTestEntries.value(i)->exp) ) {
-            entryWithValidTypeExists = true;
-            break;
+            validWordType++;
+        } else { remove = true; }
+        if ( grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount() ) {
+            validWrongCount++;
+        } else { remove = true; }
+        if ( grade.queryCount() >= Prefs::practiceMinimumTimesAsked() && grade.queryCount() <= Prefs::practiceMaximumTimesAsked() ) {
+            validPracticeCount++;
+        } else { remove = true; }
+        if ( grade.grade() >= Prefs::practiceMinimumGrade() && grade.grade() <= Prefs::practiceMaximumGrade() ) {
+            validGrade++;
+        } else { remove = true; }
+        if ( remove ) {
+            removeTestEntryList.append(m_allTestEntries.value(i));
         }
     }
-    if ( entryWithValidTypeExists ) {
-        for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-            if ( !checkType(m_allTestEntries.value(i)->exp) ) {
-                delete m_allTestEntries.takeAt(i);
-            }
-        }
-        kDebug() << "Found " << m_allTestEntries.count() << " entries with valid word type.";
-    } else {
-        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries with the right word type.</p><p>Hint: To the word type threshold use the \"Configure Practice\" dialog.</p><p>Would you like to include all word types?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::No ) {
+    kDebug() << "Valid Type: " << validWordType << " Valid Grade: " << validGrade
+        << " Valid Wrong Count: " << validWrongCount << " Valid Practice Count: " << validPracticeCount;
+    kDebug() << "Found " << removeTestEntryList.count() << " entries with invalid threshold.";
+
+    if ( removeTestEntryList.count() == m_allTestEntries.count() ) {
+        if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
             return;
+        }
+    } else {
+        foreach ( TestEntry* entry, removeTestEntryList ) {
+            delete m_allTestEntries.takeAt(m_allTestEntries.indexOf(entry));
         }
     }
 
@@ -248,141 +267,9 @@ bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool us
 }
 
 
-bool TestEntryManager::compareDate(int type, const QDateTime &qd)
-{
-    QDateTime now = QDateTime::currentDateTime();
-    bool erg = true;
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        erg = true;
-        break;
-    case Prefs::EnumCompType::Before:
-        erg = qd.toTime_t() == 0 || qd < now.addSecs(-Prefs::dateItem());
-        break; // never queried or older date
-    case Prefs::EnumCompType::Within:
-        erg = qd >= now.addSecs(-Prefs::dateItem());
-        break; // newer date
-    case Prefs::EnumCompType::NotQueried:
-        erg = qd.toTime_t() == 0;
-        break;
-    default:
-        ;
-    }
-    return erg;
-}
-
-
-bool TestEntryManager::compareQuery(int type, int qgrade, int limit)
-{
-    bool erg = true;
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        erg = true;
-        break;
-    case Prefs::EnumCompType::MoreThan:
-        erg = qgrade > limit;
-        break; // sel has higher query count
-    case Prefs::EnumCompType::MoreEqThan:
-        erg = qgrade >= limit;
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        erg = qgrade == limit;
-        break;
-    case Prefs::EnumCompType::NotEqual:
-        erg = qgrade != limit;
-        break;
-    case Prefs::EnumCompType::LessEqThan:
-        erg = qgrade <= limit;
-        break; // sel has less count
-    case Prefs::EnumCompType::LessThan:
-        erg = qgrade < limit;
-        break;
-    default:
-        ;
-    }
-    return erg;
-}
-
-
-bool TestEntryManager::compareBad(int type, int bcount, int limit)
-{
-    bool erg = true;
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        erg = true;
-        break;
-    case Prefs::EnumCompType::MoreThan:
-        erg = bcount > limit;
-        break;   // sel has higher bad count
-    case Prefs::EnumCompType::MoreEqThan:
-        erg = bcount >= limit;
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        erg = bcount == limit;
-        break;
-    case Prefs::EnumCompType::NotEqual:
-        erg = bcount != limit;
-        break;
-    case Prefs::EnumCompType::LessEqThan:
-        erg = bcount <= limit;
-        break;  // sel has less count
-    case Prefs::EnumCompType::LessThan:
-        erg = bcount < limit;
-        break;
-    default:
-        ;
-    }
-    return erg;
-}
-
-
-bool TestEntryManager::compareGrade(int type, grade_t qgrade, grade_t limit)
-{
-    bool erg = true;
-    switch (type) {
-    case Prefs::EnumCompType::DontCare:
-        erg = true;
-        break;
-    case Prefs::EnumCompType::WorseThan:
-        erg = qgrade < limit;
-        break; // sel has worse grade
-    case Prefs::EnumCompType::WorseEqThan:
-        erg = qgrade <= limit;
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        erg = qgrade == limit;
-        break;
-    case Prefs::EnumCompType::NotEqual:
-        erg = qgrade != limit;
-        break;
-    case Prefs::EnumCompType::BetterEqThan:
-        erg = qgrade >= limit;
-        break; // sel has better grade
-    case Prefs::EnumCompType::BetterThan:
-        erg = qgrade > limit;
-        break;
-    default:
-        ;
-    }
-    return erg;
-}
-
 
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    if ( !compareGrade(Prefs::compType(Prefs::EnumType::Grade), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), Prefs::gradeItem()) ) {
-        return false;
-    }
-
-    if ( !compareQuery(Prefs::compType(Prefs::EnumType::Query), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryCount(), Prefs::queryItem())) {
-        return false;
-    }
-    if ( !compareBad(Prefs::compType(Prefs::EnumType::Bad), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).badCount(), Prefs::badItem())) {
-        return false;
-    }
-    if ( !compareDate(Prefs::compType(Prefs::EnumType::Date), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate())) {
-        return false;
-    }
     if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::block())) {
         return false;
     }
@@ -391,6 +278,9 @@ bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 
 bool TestEntryManager::validate(KEduVocExpression *expr)
 {
+
+    ///@todo word type, min/max asked/wrong/grade
+
     switch (m_testType) {
     case Prefs::EnumTestType::SynonymTest:
         return !expr->translation(m_toTranslation).synonym().simplified().isEmpty();
@@ -579,18 +469,9 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         return false;
     }
 
-    switch (Prefs::compType(Prefs::EnumType::WordType)) {
-    case Prefs::EnumCompType::DontCare:
-        return true;
-        break;
-    case Prefs::EnumCompType::EqualTo:
-        return (wordType == Prefs::typeItem());
-        break;     // type is same
-    case Prefs::EnumCompType::NotEqual:
-        return (wordType != Prefs::typeItem());
-        break;     // other type
-    }
-    return false;
+    ///@todo respect real type selection!
+
+    return true;
 }
 
 int TestEntryManager::statisticTotalCorrectFirstAttempt()

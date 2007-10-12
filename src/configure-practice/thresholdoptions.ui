@@ -5,155 +5,121 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>590</width>
-    <height>317</height>
+    <width>631</width>
+    <height>475</height>
    </rect>
   </property>
-  <layout class="QGridLayout" >
-   <property name="leftMargin" >
-    <number>0</number>
-   </property>
-   <property name="topMargin" >
-    <number>0</number>
-   </property>
-   <property name="rightMargin" >
-    <number>0</number>
-   </property>
-   <property name="bottomMargin" >
-    <number>0</number>
-   </property>
-   <property name="horizontalSpacing" >
-    <number>6</number>
-   </property>
-   <property name="verticalSpacing" >
-    <number>6</number>
-   </property>
-   <item row="0" column="0" >
-    <widget class="QLabel" name="label_type" >
-     <property name="text" >
-      <string>Word t&amp;ype:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>typecomp</cstring>
-     </property>
+  <layout class="QVBoxLayout" >
+   <item>
+    <layout class="QGridLayout" >
+     <item row="0" column="1" >
+      <widget class="QLabel" name="label_2" >
+       <property name="text" >
+        <string>At least</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="2" >
+      <widget class="QLabel" name="label_3" >
+       <property name="text" >
+        <string>At most</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0" >
+      <widget class="QLabel" name="label" >
+       <property name="text" >
+        <string>Grade</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumGrade" >
+       <property name="maximum" >
+        <number>7</number>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="2" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumGrade" >
+       <property name="maximum" >
+        <number>7</number>
+       </property>
+       <property name="value" >
+        <number>7</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0" >
+      <widget class="QLabel" name="label_4" >
+       <property name="text" >
+        <string>Times practiced</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumTimesAsked" >
+       <property name="maximum" >
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="2" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumTimesAsked" >
+       <property name="maximum" >
+        <number>1000</number>
+       </property>
+       <property name="value" >
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0" >
+      <widget class="QLabel" name="label_6" >
+       <property name="text" >
+        <string>Answered wrong</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMinimumWrongCount" >
+       <property name="maximum" >
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="2" >
+      <widget class="KIntSpinBox" name="kcfg_PracticeMaximumWrongCount" >
+       <property name="maximum" >
+        <number>1000</number>
+       </property>
+       <property name="value" >
+        <number>1000</number>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTreeWidget" name="PracticeWordTypesTreeWidget" >
+     <column>
+      <property name="text" >
+       <string>Word Types</string>
+      </property>
+     </column>
     </widget>
-   </item>
-   <item row="0" column="1" >
-    <widget class="QComboBox" name="typecomp" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="0" column="2" >
-    <widget class="QComboBox" name="typelist" >
-     <property name="sizePolicy" >
-      <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-       <horstretch>0</horstretch>
-       <verstretch>0</verstretch>
-      </sizepolicy>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0" >
-    <widget class="QLabel" name="label_grade" >
-     <property name="text" >
-      <string>G&amp;rade:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>gradecomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="1" >
-    <widget class="QComboBox" name="gradecomp" />
-   </item>
-   <item row="1" column="2" >
-    <widget class="QComboBox" name="gradelist" />
-   </item>
-   <item row="2" column="0" >
-    <widget class="QLabel" name="label_qcount" >
-     <property name="text" >
-      <string>Query c&amp;ount:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>querycomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" >
-    <widget class="QComboBox" name="querycomp" />
-   </item>
-   <item row="2" column="2" >
-    <widget class="QComboBox" name="querylist" />
-   </item>
-   <item row="3" column="0" >
-    <widget class="QLabel" name="label_bcount" >
-     <property name="text" >
-      <string>&amp;Bad count:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>badcomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="1" >
-    <widget class="QComboBox" name="badcomp" />
-   </item>
-   <item row="3" column="2" >
-    <widget class="QComboBox" name="badlist" />
-   </item>
-   <item row="4" column="0" >
-    <widget class="QLabel" name="label_qdate" >
-     <property name="text" >
-      <string>Last &amp;practice:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>datecomp</cstring>
-     </property>
-    </widget>
-   </item>
-   <item row="4" column="1" >
-    <widget class="QComboBox" name="datecomp" />
-   </item>
-   <item row="4" column="2" >
-    <widget class="QComboBox" name="datelist" />
-   </item>
-   <item row="7" column="0" colspan="3" >
-    <spacer>
-     <property name="orientation" >
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeType" >
-      <enum>QSizePolicy::Expanding</enum>
-     </property>
-     <property name="sizeHint" >
-      <size>
-       <width>290</width>
-       <height>16</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
  <layoutdefault spacing="6" margin="11" />
  <pixmapfunction>qPixmapFromMimeSource</pixmapfunction>
- <tabstops>
-  <tabstop>typecomp</tabstop>
-  <tabstop>typelist</tabstop>
-  <tabstop>gradecomp</tabstop>
-  <tabstop>gradelist</tabstop>
-  <tabstop>querycomp</tabstop>
-  <tabstop>querylist</tabstop>
-  <tabstop>badcomp</tabstop>
-  <tabstop>badlist</tabstop>
-  <tabstop>datecomp</tabstop>
-  <tabstop>datelist</tabstop>
- </tabstops>
+ <customwidgets>
+  <customwidget>
+   <class>KIntSpinBox</class>
+   <extends>QSpinBox</extends>
+   <header>knuminput.h</header>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>

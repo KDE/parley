@@ -201,6 +201,45 @@
     </entry>
   </group>
 
+
+  <group name="Thresholds">
+    <entry name="PracticeMinimumTimesAsked" type="Int">
+      <label>The entry has been asked at least this often to be included in the practice.</label>
+      <default>0</default>
+    </entry>
+    <entry name="PracticeMaximumTimesAsked" type="Int">
+      <label>The entry has been asked at most this often to be included in the practice.</label>
+      <default>1000</default>
+    </entry>
+
+    <entry name="PracticeMinimumWrongCount" type="Int">
+      <label>The entry was answered wrong at least this often to be included in the practice.</label>
+      <default>0</default>
+    </entry>
+    <entry name="PracticeMaximumWrongCount" type="Int">
+      <label>The entry was answered wrong at most this often to be included in the practice.</label>
+      <default>1000</default>
+    </entry>
+
+    <entry name="PracticeMinimumGrade" type="Int">
+      <label>The entry has at least this grade to be included in the practice (0..7).</label>
+      <default>0</default>
+    </entry>
+    <entry name="PracticeMaximumGrade" type="Int">
+      <label>The entry has at most this grade to be included in the practice (0..7).</label>
+      <default>7</default>
+    </entry>
+
+    <entry name="WordTypesInPractice" type="StringList">
+      <label>Selected word types for practices.</label>
+      <whatsthis>Selected word types for practices.</whatsthis>
+    </entry>
+    <entry name="SubWordTypesInPractice" type="StringList">
+      <label>Selected sub word types for practices.</label>
+      <whatsthis>Selected sub word types for practices.</whatsthis>
+    </entry>
+  </group>
+
   <group name="PracticeManager">
     <entry name="QuestionLanguage" type="Int">
       <label>The language that is displayed in a test.</label>
@@ -211,7 +250,7 @@
       <default>1</default>
     </entry>
     <entry name="ShowSolutionTime" type="Int">
-      <label>The time the solution is shown (seconds).</label>
+      <label>The time the solution is shown (seconds). -1 is off, 0 is for ever.</label>
       <default>-1</default>
     </entry>
     <entry name="TestType" type="Enum">
@@ -237,63 +276,8 @@
       <label>In a comparison forms test, include adverbs.</label>
       <default>true</default>
     </entry>
-    <entry name="CompType$(Type)" type="Enum" key="CompType$(Type)">
-      <parameter name="Type" type="Enum">
-        <values>
-          <value>Date</value>
-          <value>Lesson</value>
-          <value>Query</value>
-          <value>Bad</value>
-          <value>WordType</value>
-          <value>Grade</value>
-        </values>
-      </parameter>
-      <label>Types of comparisons</label>
-      <choices>
-        <choice name="DontCare"/>
-        <choice name="MoreEqThan"/>
-        <choice name="MoreThan"/>
-        <choice name="Before"/>
-        <choice name="Within"/>
-        <choice name="WorseThan"/>
-        <choice name="WorseEqThan"/>
-        <choice name="EqualTo"/>
-        <choice name="NotEqual"/>
-        <choice name="LessEqThan"/>
-        <choice name="LessThan"/>
-        <choice name="BetterThan"/>
-        <choice name="BetterEqThan"/>
-        <choice name="Current"/>
-        <choice name="NotAssigned"/>
-        <choice name="NotQueried"/>
-        <choice name="Auto_Time"/>
-        <choice name="Auto_Count"/>
-        <choice name="OneOf"/>
-        <choice name="NotOneOf"/>
-      </choices>
-      <default>DontCare</default>
-      <default param="Lesson">Current</default>
-    </entry>
-    <entry name="DateItem" type="Int">
-      <label></label>
-      <default>0</default>
-    </entry>
-    <entry name="QueryItem" type="Int">
-        <label></label>
-        <default>0</default>
-    </entry>
-    <entry name="BadItem" type="Int">
-      <label></label>
-      <default>0</default>
-    </entry>
-    <entry name="GradeItem" type="Int">
-      <label></label>
-      <default>0</default>
-    </entry>
-    <entry name="TypeItem" type="String">
-      <label>Word type selection for the practice.</label>
-      <default code="true">QString()</default>
-    </entry>
+
+
     <entry name="BlockItem$(Grade)" type="Int" key="BlockItem$(Grade)">
       <parameter name="Grade" type="Int" max="7"/>
       <label>Amount of time different grades should be blocked</label>

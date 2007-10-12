@@ -42,22 +42,9 @@ public:
     bool isDefault();
     void updateSettings();
 
-signals:
-    void widgetModified();
-
 protected slots:
-    void slotComboActivated(int);
-    void slotSetGradeComp(int);
-    void slotSetBadComp(int);
-    void slotSetQueryComp(int);
-    void slotSetTypeComp(int);
-    void slotSetDateComp(int);
 
 private:
-    static QString compStr(Prefs::EnumCompType::type type);
-
-    void fillWidgets();
-
     KEduVocDocument *m_doc;
 };
 

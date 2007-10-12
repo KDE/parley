@@ -100,10 +100,7 @@ private:
     bool validate(KEduVocExpression *expr);
     bool validateWithSettings(KEduVocExpression *expr);
     bool compareBlocking(int grade, const QDateTime &limit, bool use_it);
-    bool compareDate(int type, const QDateTime &qd);
-    bool compareQuery(int type, int qgrade, int limit);
-    bool compareBad(int type, int bcount, int limit);
-    bool compareGrade(int type, grade_t qgrade, grade_t limit);
+
 
     /**
      * Called when starting a practice. Looks if the time is up, if the work has been praced too long ago, it will drop in grade. Only if expiring is activated in prefs.
