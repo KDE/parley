@@ -46,6 +46,7 @@ protected slots:
 
 private:
     KEduVocDocument *m_doc;
+    KConfigSkeleton* m_config;
 };
 
 #endif
