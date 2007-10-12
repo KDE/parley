@@ -101,6 +101,13 @@
     </layout>
    </item>
    <item>
+    <widget class="QCheckBox" name="kcfg_WordTypesInPracticeEnabled" >
+     <property name="text" >
+      <string>Enable word type selection</string>
+     </property>
+    </widget>
+   </item>
+   <item>
     <widget class="QTreeWidget" name="PracticeWordTypesTreeWidget" >
      <column>
       <property name="text" >

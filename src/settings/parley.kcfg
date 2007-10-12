@@ -229,7 +229,10 @@
       <label>The entry has at most this grade to be included in the practice (0..7).</label>
       <default>7</default>
     </entry>
-
+    <entry name="WordTypesInPracticeEnabled" type="Bool">
+      <label>Only selected word types will be included in practice.</label>
+      <default>false</default>
+    </entry>
     <entry name="WordTypesInPractice" type="StringList">
       <label>Selected word types for practices.</label>
       <whatsthis>Selected word types for practices.</whatsthis>

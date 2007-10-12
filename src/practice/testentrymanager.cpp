@@ -430,9 +430,10 @@ int TestEntryManager::activeEntryCount()
 bool TestEntryManager::checkType(KEduVocExpression * entry)
 {
     QString wordType = entry->translation(m_toTranslation).type();
+    QString subWordType = entry->translation(m_toTranslation).subType();
     QString specialWordType = m_doc->wordTypes().specialType(wordType);
     QString specialSubType = m_doc->wordTypes().specialSubType(wordType,
-        entry->translation(m_toTranslation).subType());
+        subWordType);
 
     // if we do a grammar test, check only if the grammar type is valid
     if ( Prefs::testType() == Prefs::EnumTestType::ArticleTest ) {
@@ -468,9 +469,18 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
         }
         return false;
     }
+    ///@todo respect subtypes for special practices above
 
-    ///@todo respect real type selection!
-
+    if ( Prefs::wordTypesInPracticeEnabled() ) {
+        QStringList activeWordTypes = Prefs::wordTypesInPractice();
+        QStringList activeSubWordTypes = Prefs::subWordTypesInPractice();
+        if ( activeWordTypes.contains( wordType ) ) {
+            if ( subWordType.isEmpty() || activeSubWordTypes.contains( subWordType ) ) {
+                return true;
+            }
+        }
+        return false;
+    }
     return true;
 }
 

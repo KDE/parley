@@ -35,6 +35,10 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
     setupUi(this);
     m_doc = doc;
 
+    connect(kcfg_WordTypesInPracticeEnabled, SIGNAL(toggled(bool)), PracticeWordTypesTreeWidget, SLOT(setEnabled(bool)));
+
+    PracticeWordTypesTreeWidget->setEnabled(Prefs::wordTypesInPracticeEnabled());
+
     /// @todo the checking should move into updateWidgets() !
     QStringList activeWordTypes = Prefs::wordTypesInPractice();
     QStringList activeSubWordTypes = Prefs::subWordTypesInPractice();
@@ -78,18 +82,17 @@ bool ThresholdOptions::isDefault()
     ///@todo
 }
 
+
 void ThresholdOptions::updateSettings()
 {
     QStringList activeWordTypes;
     QStringList activeSubWordTypes;
-
     QTreeWidgetItem* parentItem = PracticeWordTypesTreeWidget->invisibleRootItem();
-
     for ( int i = 0; i < parentItem->childCount(); i++ ) {
         QTreeWidgetItem* typeItem = parentItem->child(i);
         if ( typeItem->checkState(0) == Qt::Checked ) {
             activeWordTypes.append(typeItem->text(0));
-
+            // subtypes
             for ( int j = 0; j < typeItem->childCount(); j++ ) {
                 QTreeWidgetItem* subTypeItem = typeItem->child(j);
                 if ( subTypeItem->checkState(0) == Qt::Checked ) {
@@ -98,7 +101,6 @@ void ThresholdOptions::updateSettings()
             }
         }
     }
-
     Prefs::setWordTypesInPractice(activeWordTypes);
     Prefs::setSubWordTypesInPractice(activeSubWordTypes);
 }
