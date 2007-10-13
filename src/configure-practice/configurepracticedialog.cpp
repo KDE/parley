@@ -44,9 +44,6 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
 
     m_advancedPracticeOptions = new AdvancedPracticeOptions(this);
     addPage(m_advancedPracticeOptions, i18nc("@title:group Configure advanced settings for practicing vocabulary, short title in config dialog.", "Advanced"), "configure", i18nc("Configure advanced settings for practicing vocabulary.", "Advanced Practice Settings"), true);
-
-    connect(m_thresholdOptions, SIGNAL(widgetModified()), SLOT(updateButtons()));
-    connect(m_blockOptions, SIGNAL(widgetModified()), SLOT(updateButtons()));
 }
 
 ConfigurePracticeDialog::~ConfigurePracticeDialog()
@@ -73,7 +70,6 @@ bool ConfigurePracticeDialog::isDefault()
 void ConfigurePracticeDialog::updateSettings()
 {
     m_configurePracticeWidget->updateSettings();
-//     m_queryOptions->updateSettings();
     m_thresholdOptions->updateSettings();
     m_blockOptions->updateSettings();
 }

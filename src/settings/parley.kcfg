@@ -80,7 +80,7 @@
       <default>false</default>
     </entry>
     <entry name="PracticeTimeout" type="Enum">
-      <label>If NoTimeout, there is no time set to answer each query</label>
+      <label>If NoTimeout, there is no time set to answer each question</label>
       <choices>
         <choice name="NoTimeout"/>
         <choice name="Show"/>
@@ -89,15 +89,15 @@
       <default>NoTimeout</default>
     </entry>
     <entry name="MaxTimePer" type="Int">
-      <label>Maximum time allowed per query</label>
+      <label>Maximum time allowed per question</label>
       <default>20</default>
     </entry>
     <entry name="Suggestions" type="Bool">
-      <label>Enable suggestion lists in Random Query.</label>
+      <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
     </entry>
-    <entry name="Split" type="Bool">
-      <label>Split translations in Random Query.</label>
+    <entry name="SplitTranslations" type="Bool">
+      <label>Split translations in written practice.</label>
       <default>false</default>
     </entry>
     <entry name="Periods" type="Bool">
@@ -116,10 +116,7 @@
       <label>Split translations at commas.</label>
       <default>false</default>
     </entry>
-    <entry name="Fields" type="Int">
-      <label>Maximum number of fields to split translations into.</label>
-      <default>5</default>
-    </entry>
+
     <entry name="ShowMore" type="Bool">
       <label>Enable Show More button to reveal parts of the solution in written practice.</label>
       <default>true</default>
@@ -270,6 +267,7 @@
             <choice name="AntonymTest"/>
         </choices>
         <label>The test type that is currently selected.</label>
+        <default>WrittenTest</default>
     </entry>
     <entry name="ComparisonIncludeAdjective" type="Bool">
       <label>In a comparison forms test, include adjectives.</label>

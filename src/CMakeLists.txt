@@ -68,6 +68,7 @@ kde4_add_ui_files(configure-practice_SRCS
     configure-practice/configurepracticewidget.ui
     configure-practice/comparisonoptionswidget.ui
     configure-practice/conjugationoptionswidget.ui
+    configure-practice/writtenpracticeoptionswidget.ui
 )
 
 set(docprop_SRCS

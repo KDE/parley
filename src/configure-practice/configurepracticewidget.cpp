@@ -21,6 +21,7 @@
 
 #include "ui_comparisonoptionswidget.h"
 #include "ui_conjugationoptionswidget.h"
+#include "ui_writtenpracticeoptionswidget.h"
 
 #include "languagesettings.h"
 #include "documentsettings.h"
@@ -51,33 +52,21 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
         LanguageFromList->addItem( new QListWidgetItem( KIcon(icon), m_doc->identifier(i).name() ) );
     }
 
-    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), this, SLOT(fromLanguageSelected(int)));
-
-    connect(ComparisonRadio, SIGNAL(toggled(bool)), this, SLOT(comparisonRadioToggled(bool)));
-    connect(ConjugationRadio, SIGNAL(toggled(bool)), this, SLOT(conjugationRadioToggled(bool)));
-
-    connect(AntonymRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(ArticleRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(ExampleRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(MixedLettersRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(ParaphraseRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(SynonymRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-    connect(WrittenRadio, SIGNAL(toggled(bool)), this, SLOT(otherRadioToggled(bool)));
-
-//     connect(WrittenRadio, )
-
-///@todo connect the Radios to disable the option group
-
+    connect(LanguageFromList, SIGNAL(currentRowChanged(int)), SLOT(fromLanguageSelected(int)));
     LanguageFromList->setCurrentRow(Prefs::questionLanguage());
 
     OptionsGroupBox->setEnabled( false );
     m_optionsStackedLayout = new QStackedLayout(OptionsGroupBox);
     OptionsGroupBox->setLayout(m_optionsStackedLayout);
 
-
     // the widgets have to be inserted in order of the enum because insert appends if the index is too great
     m_optionsStackedLayout->insertWidget(Empty, new QLabel(i18n("No options"), OptionsGroupBox));
+
+    // add the written practice ui to the stacked widget
+    QWidget* writtenContainer = new QWidget(OptionsGroupBox);
+    Ui::WrittenPracticeOptionsWidget writtenPracticeUi;
+    writtenPracticeUi.setupUi(writtenContainer);
+    m_optionsStackedLayout->insertWidget(WrittenPractice, writtenContainer);
 
     // add the conjugation ui to the stacked widget
     QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
@@ -92,6 +81,24 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     Ui::ComparisonOptionsWidget comparisonUi;
     comparisonUi.setupUi(comparisonContainer);
     m_optionsStackedLayout->insertWidget(Comparison, comparisonContainer);
+
+    // this is preset in the ui. thus the button is not toggled when setting up
+    if ( WrittenRadio->isChecked() ) {
+        writtenRadioToggled(true);
+    }
+
+    connect(AntonymRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(ArticleRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(ExampleRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(MixedLettersRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(MultipleChoiceRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(ParaphraseRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+    connect(SynonymRadio, SIGNAL(toggled(bool)), SLOT(otherRadioToggled(bool)));
+
+    connect(WrittenRadio, SIGNAL(toggled(bool)), SLOT(writtenRadioToggled(bool)));
+    connect(ComparisonRadio, SIGNAL(toggled(bool)), SLOT(comparisonRadioToggled(bool)));
+    connect(ConjugationRadio, SIGNAL(toggled(bool)), SLOT(conjugationRadioToggled(bool)));
+
 }
 
 
@@ -163,6 +170,14 @@ bool ConfigurePracticeWidget::isDefault()
     return true;
 //         LanguageFromList->currentRow() == 0 &&
 //         LanguageToList->currentRow() == 1;
+}
+
+void ConfigurePracticeWidget::writtenRadioToggled(bool checked)
+{
+    if ( checked ) {
+        OptionsGroupBox->setEnabled(true);
+        m_optionsStackedLayout->setCurrentIndex(WrittenPractice);
+    }
 }
 
 void ConfigurePracticeWidget::comparisonRadioToggled(bool checked)

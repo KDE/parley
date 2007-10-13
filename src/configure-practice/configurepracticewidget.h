@@ -55,6 +55,7 @@ private slots:
 
     void comparisonRadioToggled(bool checked);
     void conjugationRadioToggled(bool checked);
+    void writtenRadioToggled(bool checked);
     void otherRadioToggled(bool checked);
 
 private:
@@ -62,6 +63,7 @@ private:
 
     enum StackedWidgets {
         Empty,
+        WrittenPractice,
         Conjugation,
         Comparison
     };

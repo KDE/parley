@@ -34,16 +34,6 @@ AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(pare
     connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
     connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
     connect(NoTimeoutRadio, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
-
-    // wether to split up translations
-    connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Periods, SLOT(setEnabled(bool)));
-    connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Colons, SLOT(setEnabled(bool)));
-    connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Semicolons, SLOT(setEnabled(bool)));
-    connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Commas, SLOT(setEnabled(bool)));
-    connect(kcfg_Split, SIGNAL(toggled(bool)), kcfg_Fields, SLOT(setEnabled(bool)));
-
-    connect(kcfg_Split, SIGNAL(toggled(bool)), label_at, SLOT(setEnabled(bool)));
-    connect(kcfg_Split, SIGNAL(toggled(bool)), label_split_max_fields, SLOT(setEnabled(bool)));
 }
 
 
