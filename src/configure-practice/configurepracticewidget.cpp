@@ -69,12 +69,21 @@ ConfigurePracticeWidget::ConfigurePracticeWidget(KEduVocDocument* doc, QWidget *
     m_optionsStackedLayout->insertWidget(WrittenPractice, writtenContainer);
 
     // add the conjugation ui to the stacked widget
-    QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
-    Ui::ConjugationOptionsWidget conjugationUi;
-    conjugationUi.setupUi(conjugationContainer);
-    m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
-    m_tenseListWidget = conjugationUi.tenseSelectionTreeWidget;
-    setupTenses();
+    if ( !m_doc->tenseDescriptions().isEmpty() ) {
+        QWidget* conjugationContainer = new QWidget(OptionsGroupBox);
+        Ui::ConjugationOptionsWidget conjugationUi;
+        conjugationUi.setupUi(conjugationContainer);
+        m_optionsStackedLayout->insertWidget(Conjugation, conjugationContainer);
+        m_tenseListWidget = conjugationUi.tenseSelectionTreeWidget;
+        setupTenses();
+    } else {
+        m_tenseListWidget = 0;
+        QLabel* tenseHint = new QLabel(OptionsGroupBox);
+        tenseHint->setText(i18n("To practice conjugations set up tenses in the \"Edit\" -> \"Grammar\" options and add the conjugation forms to your vocabulary."));
+        tenseHint->setWordWrap(true);
+        m_optionsStackedLayout->insertWidget(Conjugation, tenseHint);
+    }
+
 
     // add the comparison ui to the stacked widget
     QWidget* comparisonContainer = new QWidget(OptionsGroupBox);
@@ -107,19 +116,20 @@ void ConfigurePracticeWidget::updateSettings()
     Prefs::setQuestionLanguage(LanguageFromList->currentRow());
     Prefs::setSolutionLanguage(LanguageToList->currentItem()->data(Qt::UserRole).toInt());
 
-    QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
-    QStringList activeTenses;
-
-    for ( int i = 0; i < parentItem->childCount(); i++ ) {
-        QTreeWidgetItem* tenseItem = parentItem->child(i);
-        if ( tenseItem->checkState(0) == Qt::Checked ) {
-            activeTenses.append(tenseItem->text(0));
+    if ( m_tenseListWidget ) {
+        QTreeWidgetItem* parentItem = m_tenseListWidget->invisibleRootItem();
+        QStringList activeTenses;
+        for ( int i = 0; i < parentItem->childCount(); i++ ) {
+            QTreeWidgetItem* tenseItem = parentItem->child(i);
+            if ( tenseItem->checkState(0) == Qt::Checked ) {
+                activeTenses.append(tenseItem->text(0));
+            }
         }
-    }
 
-    DocumentSettings documentSettings(m_doc->url().url());
-    documentSettings.setConjugationTenses(activeTenses);
-    documentSettings.writeConfig();
+        DocumentSettings documentSettings(m_doc->url().url());
+        documentSettings.setConjugationTenses(activeTenses);
+        documentSettings.writeConfig();
+    }
 }
 
 void ConfigurePracticeWidget::fromLanguageSelected(int identifierFromIndex)
