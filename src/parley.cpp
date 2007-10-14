@@ -51,7 +51,6 @@
 #include <klocale.h>
 #include <kdebug.h>
 #include <kiconloader.h>
-#include <kprinter.h>
 #include <krecentfilesaction.h>
 #include <kinputdialog.h>
 #include <kapplication.h>
@@ -66,6 +65,8 @@
 #include <QClipboard>
 #include <QProgressBar>
 #include <QSplitter>
+#include <QtGui/QPrinter>
+#include <QtGui/QPrintDialog>
 
 // #define MAX_LESSON       25
 // #define THRESH_LESSON    KV_MIN_GRADE
@@ -446,9 +447,11 @@ void ParleyApp::slotApplyPreferences()
 
 void ParleyApp::slotFilePrint()
 {
-    KPrinter printer;
+    QPrinter printer;
     printer.setFullPage(true);
-    if (printer.setup(this)) {
+    QPrintDialog printDialog(&printer, this);
+
+    if (printDialog.exec()) {
         m_tableView->print(&printer);
     }
 }

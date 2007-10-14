@@ -161,7 +161,7 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
 
 kde4_add_executable(parley ${parley_SRCS})
 
-target_link_libraries(parley  keduvocdocument ${KDE4_KDEPRINT_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
+target_link_libraries(parley  keduvocdocument ${KDE4_KIO_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
 
 install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 

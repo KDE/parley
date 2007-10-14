@@ -23,8 +23,7 @@
 #define KVTTABLEVIEW_H
 
 #include <QTableView>
-
-#include <KPrinter>
+#include <QtGui/QPrinter>
 
 #include <kvtsortfiltermodel.h>
 #include <kvttabledelegate.h>
@@ -39,7 +38,7 @@ public:
     KVTTableView(QWidget *parent = 0);
 
     void setModel(KVTSortFilterModel * model);
-    void print(KPrinter *pPrinter);
+    void print(QPrinter *pPrinter);
     void adjustContent();
 
 public slots:

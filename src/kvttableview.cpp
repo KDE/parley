@@ -100,7 +100,7 @@ void KVTTableView::slotShowLessonColumn(bool show)
     resizeEvent(0);
 }
 
-void KVTTableView::print(KPrinter * pPrinter)
+void KVTTableView::print(QPrinter * pPrinter)
 {
     ///@todo revisit and check before release
     QPainter painter;
