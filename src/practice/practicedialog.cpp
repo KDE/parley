@@ -65,8 +65,6 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 
     // entries
     m_entryManager = new TestEntryManager(m_doc);
-
-    connect(this, SIGNAL(sigQueryChoice(PracticeDialog::Result)), SLOT(slotResult(PracticeDialog::Result)));
 }
 
 
@@ -100,7 +98,7 @@ QString  PracticeDialog::getNOKComment(int percent_done)
 void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);
-    emit sigQueryChoice(StopIt);
+    slotResult(StopIt);
 }
 
 
@@ -118,7 +116,7 @@ void PracticeDialog::timeoutReached()
         if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Show) {
             showSolution();
         } else if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Continue) {
-            emit sigQueryChoice(Timeout); ///@todo check if this works - esp with 3x timeout
+            slotResult(Timeout); ///@todo check if this works - esp with 3x timeout
             continueButtonClicked();
         }
     }
@@ -183,19 +181,19 @@ void PracticeDialog::editEntry()
 
     // punish with a don't know
     kDebug() << "Edit entry. For now count this attempt as wrong!";
-    emit sigQueryChoice(Wrong);
+    slotResult(Wrong);
     continueButtonClicked();
 }
 
 void PracticeDialog::skipKnown()
 {
-    emit sigQueryChoice(SkipKnown);
+    slotResult(SkipKnown);
     continueButtonClicked();
 }
 
 void PracticeDialog::skipUnknown()
 {
-    emit sigQueryChoice(SkipUnknown);
+    slotResult(SkipUnknown);
     continueButtonClicked();
 }
 
@@ -203,16 +201,16 @@ void PracticeDialog::resultCorrect()
 {
 //     audioPlayCorrect();
     if (!m_answerTainted) {
-        emit sigQueryChoice(Correct);
+        slotResult(Correct);
     } else {
         kDebug() << "Correct answer but with help (counts as wrong).";
-        emit sigQueryChoice(Wrong);
+        slotResult(Wrong);
     }
 }
 
 void PracticeDialog::resultWrong()
 {
-    emit sigQueryChoice(Wrong);
+    slotResult(Wrong);
 }
 
 void PracticeDialog::audioPlayFromIdentifier()

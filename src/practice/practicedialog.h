@@ -107,18 +107,6 @@ public slots:
      */
     void editEntry();
 
-
-public slots:
-    void slotResult(PracticeDialog::Result res);
-    ///@todo no need for public, do we need slots at all?
-
-signals:
-    /**
-     * The result to this question. Does only emit the result to be stored. To move on to the next entry use nextEntry.
-     * @param result
-     */
-    void sigQueryChoice(PracticeDialog::Result);
-
 protected slots:
     /**
      * Call this when the user decided to skip this entry as KNOWN.
@@ -152,6 +140,12 @@ protected:
      * Set the next entry from m_entryManager or return if all vocabulary have been practiced.
      */
     void nextEntry();
+
+    /**
+     *
+     * @param res
+     */
+    void slotResult(PracticeDialog::Result res);
 
     void resultCorrect();
     void resultWrong();
