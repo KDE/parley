@@ -39,29 +39,15 @@ Q_OBJECT
 
 public:
     PracticeManager(ParleyApp *app, KEduVocDocument *doc);
-    ~PracticeManager();
-
-    void startPractice();
-
-public slots:
-    /** exit query mode */
-    void stopPractice();
 
 private:
     void createDialog();
-
 
     KEduVocDocument     *m_doc;
     ParleyApp           *m_app;
 
     /// The dialog
     PracticeDialog      *m_testDialog;
-
-    int                  m_testType;
-
-    QString              m_lastTestType;
-
-    TestEntry* m_entry;
 };
 
 #endif

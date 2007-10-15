@@ -50,33 +50,18 @@ PracticeManager::PracticeManager(ParleyApp *app, KEduVocDocument *doc)
     m_app = app;
     m_doc = doc;
 
-    m_testDialog = 0;
-}
-
-
-void PracticeManager::startPractice()
-{
-    m_lastTestType = QString();
-    m_testType = Prefs::testType();
-
     m_app->removeEntryDlg();
 
     m_app->hide();
     createDialog();
-    connect(m_testDialog, SIGNAL(accepted()), SLOT(stopPractice()));
 }
 
 
 void PracticeManager::createDialog()
 {
-    if ( m_testDialog ) {
-        m_testDialog->deleteLater();
-        m_testDialog = 0;
-    }
-
     QString specialWordType;
 
-    switch ( m_testType ) {
+    switch ( Prefs::testType() ) {
     case Prefs::EnumTestType::WrittenTest:
         m_testDialog = new WrittenPracticeDialog(m_doc, m_app);
         break;
@@ -105,7 +90,6 @@ void PracticeManager::createDialog()
         break;
     default:
         kError() << "PracticeManager::startQuery: unknown type\n";
-        stopPractice();
         return;
     }
 
@@ -113,29 +97,12 @@ void PracticeManager::createDialog()
         kError() << "Test dialog was not created!";
         return;
     }
-    m_testDialog->show();
-}
+    m_testDialog->exec();
 
-
-void PracticeManager::stopPractice()
-{
-kDebug() << "stopPractice";
-    if (m_testDialog) {
-        m_testDialog->deleteLater();
-        m_testDialog = 0;
-    }
+    m_testDialog->deleteLater();
 
     m_app->show();
 }
-
-PracticeManager::~PracticeManager()
-{
-    if ( m_testDialog ) {
-        m_testDialog->deleteLater();
-    }
-    deleteLater();
-}
-
 
 #include "practicemanager.moc"
 
