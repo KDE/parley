@@ -13,7 +13,6 @@
 #include "answervalidator.h"
 
 #include "prefs.h"
-#include "testentry.h"
 
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
@@ -34,7 +33,7 @@ AnswerValidator::AnswerValidator(KEduVocDocument* doc)
 {
     m_doc = doc;
     m_speller = 0;
-    m_errorType = UnknownMistake;
+    m_errorTypes = TestEntry::UnknownMistake;
     m_grade = 0.0;
     m_spellerAvailable = false;
 }
@@ -139,7 +138,7 @@ void AnswerValidator::simpleCorrector()
 {
     ///@todo can solution.length() be zero? *should* be caught by Parley
     if ( m_solution == m_userAnswer ) {
-        m_errorType = Correct;
+        m_errorTypes = TestEntry::Correct;
         m_grade = 1.0;
         m_htmlCorrection = i18n("Your answer is right!");
         return;
@@ -148,7 +147,7 @@ void AnswerValidator::simpleCorrector()
     if ( m_entry->exp ) {
         // check synonym
         if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
-            m_errorType = Synonym;
+            m_errorTypes = TestEntry::Synonym;
             if ( Prefs::countSynonymsAsCorrect() ) {
                 m_grade = 1.0;
                 m_htmlCorrection = i18n("You entered a synonym.");
@@ -177,13 +176,13 @@ void AnswerValidator::defaultCorrector()
 
     ///@todo can solution.length() be zero? *should* be caught by Parley
     if ( m_solution == m_userAnswer ) {
-        m_errorType = Correct;
+        m_errorTypes = TestEntry::Correct;
         m_grade = 1.0;
         return;
     }
 
     if ( m_userAnswer.isEmpty() ) {
-        m_errorType = Empty;
+        m_errorTypes = TestEntry::Empty;
         m_grade = 0.0;
         return;
     }
@@ -191,7 +190,7 @@ void AnswerValidator::defaultCorrector()
     if ( m_entry->exp ) {
         // check synonym
         if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
-            m_errorType = Synonym;
+            m_errorTypes = TestEntry::Synonym;
             if ( Prefs::countSynonymsAsCorrect() ) {
                 // synonym, good for you
                 m_grade = 1.0;
@@ -239,7 +238,7 @@ void AnswerValidator::defaultCorrector()
         scentenceAnalysis();
     } else {
         // put the grade in m_grade and get the error type
-        ErrorType error = wordCompare(m_solution, m_userAnswer, m_grade, m_htmlCorrection);
+        TestEntry::ErrorTypes error = wordCompare(m_solution, m_userAnswer, m_grade, m_htmlCorrection);
     }
 
 
@@ -276,18 +275,18 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is prefere
 }
 
 
-AnswerValidator::ErrorType AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection)
+TestEntry::ErrorTypes AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection)
 {
     // nothing to be done here if it's right
     if ( solution == userWord ) {
         grade = 1.0;
         htmlCorrection = QString::fromLatin1("<font color=\"#188C18\">You are right!</font> ");
-        return Correct;
+        return TestEntry::Correct;
     }
     if ( solution.toLower() == userWord.toLower() ) {
         grade = CAPITALIZATION_MISTAKE_PUNISHMENT;
         htmlCorrection = QString::fromLatin1("<font color=\"#8C4040\">Watch your capitalization!</font> ");
-        return CapitalizationMistake;
+        return TestEntry::CapitalizationMistake;
     }
 
     int levenshtein = levenshteinDistance(solution, userWord);
@@ -302,45 +301,45 @@ AnswerValidator::ErrorType AnswerValidator::wordCompare(const QString & solution
         if ( isMisspelled && inSuggestions ) {
             grade = 1.0 - qMax (levenshtein * SPELLING_MISTAKE_PER_LETTER_PUNISHMENT, 1.0);
             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\"> Oops, I think you misspelled about ") + QString::number(levenshtein) + QString::fromLatin1(" letters. But the word is right.</font> ");
-            return SpellingMistake;
+            return TestEntry::SpellingMistake;
         }
         // this is a different word but sounds similiar!
         if ( !isMisspelled && inSuggestions ) {
             grade = FALSE_FRIEND_GRADE;
             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
-            return FalseFriend;
+            return TestEntry::FalseFriend;
         }
         // unrelated word
         if ( !isMisspelled && !inSuggestions ) {
             grade = UNRELATED_WORD_GRADE;
             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
-            return UnrelatedWord;
+            return TestEntry::UnrelatedWord;
         }
         // complete nonsense, unless levenshtein comes to the rescue
         if ( isMisspelled && !inSuggestions ) {
             if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
-                return SpellingMistake;
+                return TestEntry::SpellingMistake;
             } else {
                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similiar to the solution.</font> ");
-                return UnknownMistake;
+                return TestEntry::UnknownMistake;
             }
         }
     } else {
         if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
             grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
-            return SpellingMistake;
+            return TestEntry::SpellingMistake;
         } else {
             grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
-            return UnknownMistake;
+            return TestEntry::UnknownMistake;
         }
     }
 
     // cannot get here
     htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
-    return UnknownMistake;
+    return TestEntry::UnknownMistake;
 }
 
 

@@ -13,10 +13,11 @@
 #ifndef ANSWERVALIDATOR_H
 #define ANSWERVALIDATOR_H
 
+#include "testentry.h"
+
 #include <QtCore/QString>
 #include <QtCore/QPair>
 
-class TestEntry;
 class KEduVocDocument;
 namespace Sonnet {
     class Speller;
@@ -29,19 +30,6 @@ Provides different comparison methods to determine the quality of the answer.
 */
 class AnswerValidator{
 public:
-    enum ErrorType {
-        Correct,                /** < no error, solution was right */
-        SpellingMistake,        /** < misspelled */
-        CapitalizationMistake,  /** < capitalization error (whAt) */
-        AccentMistake,          /** < an accent is missing or wrong (é) */
-        WrongArticle,  /** < solution is correct with the article interchanged */
-        FalseFriend,            /** < a false friend */
-        Synonym,                /** < a synonym (may be correct) */
-        Empty,                  /** < empty answer string */
-        UnrelatedWord, /** < a valid word but no connection to the solution */
-        UnknownMistake          /** < no idea */
-    };
-
     AnswerValidator(KEduVocDocument* doc);
 
     ~AnswerValidator();
@@ -70,7 +58,7 @@ public:
      * Returns the type of mistake. Of course this is just an estimation.
      * @return
      */
-    ErrorType typeOfMistake();
+    TestEntry::ErrorType typeOfMistake();
 
 
 private:
@@ -107,7 +95,7 @@ private:
      * @param word2
      * @param errorType
      */
-    ErrorType wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection);
+    TestEntry::ErrorTypes wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection);
 
     /**
      * Split up a scentence and try to work magic with it...
@@ -136,7 +124,7 @@ private:
     QString m_userAnswer;
 
     /// last type of mistake @see ErrorType
-    ErrorType m_errorType;
+    TestEntry::ErrorTypes m_errorTypes;
 
     /// the last grade (0.0 .. 1.0)
     double m_grade;

@@ -15,12 +15,29 @@
 #ifndef TESTENTRY_H
 #define TESTENTRY_H
 
-class KEduVocExpression;
+#include <QFlags>
 
+class KEduVocExpression;
 
 class TestEntry
 {
 public:
+    enum ErrorType {
+        UnknownMistake        =   0x0, /** < no idea */
+        SpellingMistake       =   0x1, /** < misspelled */
+        CapitalizationMistake =   0x2, /** < capitalization error (whAt) */
+        AccentMistake         =   0x4, /** < an accent is missing or wrong (é) */
+        WrongArticle          =   0x8, /** < solution is correct with the article interchanged */
+        FalseFriend           =  0x10, /** < a false friend */
+        Synonym               =  0x20, /** < a synonym (may be correct) */
+        Empty                 =  0x40, /** < empty answer string */
+        UnrelatedWord         =  0x80, /** < a valid word but no connection to the solution */
+        Correct               = 0x100  /** < no error, solution was right */
+    };
+
+    Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
+
+
     TestEntry(KEduVocExpression *_exp, int _nr)
     {
         exp = _exp;
@@ -34,6 +51,7 @@ public:
         m_statisticSkipKnown = 0;
         m_canSwitchDirection = false;
         m_correctAtFirstAttempt = false;
+        m_lastError = UnknownMistake;
     }
 
     void incGoodCount();
@@ -50,10 +68,9 @@ public:
     int statisticSkipUnknown();
     int statisticTimeout();
     bool statisticCorrectAtFirstAttempt();
-//     statisticWrong
-//     statisticUnanswered
-//     statisticSkipKnown
-//     statisticSkipUnknown
+
+    ErrorTypes lastErrors();
+
 
     int totalEntries();
 
@@ -80,9 +97,12 @@ private:
     bool m_canSwitchDirection;
     bool m_correctAtFirstAttempt;
 
+    int m_lastError;
+
     static int m_gradeTo;
     static int m_gradeFrom;
 };
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)
 
 #endif
