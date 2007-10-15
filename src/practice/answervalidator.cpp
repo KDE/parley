@@ -13,6 +13,7 @@
 #include "answervalidator.h"
 
 #include "prefs.h"
+#include "testentry.h"
 
 #include <keduvocexpression.h>
 #include <keduvocdocument.h>
@@ -43,11 +44,11 @@ AnswerValidator::~AnswerValidator()
     delete m_speller;
 }
 
-void AnswerValidator::setSolution(KEduVocExpression * expression, int translation)
+void AnswerValidator::setTestEntry(TestEntry * entry, int translation)
 {
-    m_expression = expression;
+    m_entry = entry;
     m_translation = translation;
-    m_solution = m_expression->translation(m_translation).text();
+    m_solution = m_entry->exp->translation(m_translation).text();
 
     if ( !m_speller ) {
         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
@@ -144,9 +145,9 @@ void AnswerValidator::simpleCorrector()
         return;
     }
 
-    if ( m_expression ) {
+    if ( m_entry->exp ) {
         // check synonym
-        if ( m_expression->translation(m_translation).synonym() == m_userAnswer ) {
+        if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
             m_errorType = Synonym;
             if ( Prefs::countSynonymsAsCorrect() ) {
                 m_grade = 1.0;
@@ -187,9 +188,9 @@ void AnswerValidator::defaultCorrector()
         return;
     }
 
-    if ( m_expression ) {
+    if ( m_entry->exp ) {
         // check synonym
-        if ( m_expression->translation(m_translation).synonym() == m_userAnswer ) {
+        if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
             m_errorType = Synonym;
             if ( Prefs::countSynonymsAsCorrect() ) {
                 // synonym, good for you
@@ -268,7 +269,7 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is prefere
         m_spellerAvailable = false;
     }
 
-    m_expression = 0;
+    m_entry->exp = 0;
     m_solution = solution;
 
     return checkUserAnswer(userAnswer);

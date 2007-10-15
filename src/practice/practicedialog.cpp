@@ -160,7 +160,7 @@ void PracticeDialog::stopAnswerTimer()
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
-    m_validator->setSolution(m_entry->exp, Prefs::solutionLanguage());
+    m_validator->setTestEntry(m_entry, Prefs::solutionLanguage());
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;

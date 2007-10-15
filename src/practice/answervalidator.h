@@ -16,7 +16,7 @@
 #include <QtCore/QString>
 #include <QtCore/QPair>
 
-class KEduVocExpression;
+class TestEntry;
 class KEduVocDocument;
 namespace Sonnet {
     class Speller;
@@ -49,10 +49,10 @@ public:
     bool spellcheckerAvailable();
 
     /**
-     * Sets the right solution.
+     * Sets the current entry.
      * @param expression
      */
-    void setSolution(KEduVocExpression* expression, int translation);
+    void setTestEntry(TestEntry* entry, int translation);
 
     /**
      * Checks the user answer. If the answer was correct, 1.0 is returned,
@@ -126,7 +126,7 @@ private:
     KEduVocDocument* m_doc;
 
     /// the entry to be checked, this provides meta info like word type etc
-    KEduVocExpression* m_expression;
+    TestEntry* m_entry;
     int m_translation;
 
     /// the solution - usually text of the translation
