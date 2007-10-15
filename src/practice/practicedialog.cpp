@@ -25,8 +25,10 @@
 #include "practicedialog.h"
 #include "answervalidator.h"
 #include "entry-dialogs/EntryDlg.h"
+#include "practicesummarydialog.h"
 
 #include <KLocale>
+#include <KMessageBox>
 #include <KColorScheme>
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
@@ -40,8 +42,11 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 
+#define MAX_QUERY_TIMEOUT 3
+
 PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
+    // dialog without buttons
     setCaption(caption);
     setModal(false);
     setButtons(0);
@@ -51,12 +56,17 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     setMainWidget(main);
 
     m_doc = doc;
-    m_entry = 0;
     m_answerTimer = 0;
     m_showSolutionTimer = 0;
+    num_practiceTimeout = 0;
 
     m_player = 0;
     m_validator = new AnswerValidator(m_doc);
+
+    // entries
+    m_entryManager = new TestEntryManager(m_doc);
+
+    connect(this, SIGNAL(sigQueryChoice(PracticeDialog::Result)), SLOT(slotResult(PracticeDialog::Result)));
 }
 
 
@@ -141,7 +151,6 @@ void PracticeDialog::startAnswerTimer()
         timebar()->setEnabled(false);
     }
 }
-
 
 void PracticeDialog::stopAnswerTimer()
 {
@@ -340,7 +349,7 @@ void PracticeDialog::continueButtonClicked()
     if ( m_showSolutionTimer ) {
         m_showSolutionTimer->stop();
     }
-    emit nextEntry();
+    nextEntry();
 }
 
 double PracticeDialog::verifyAnswer(const QString & userAnswer)
@@ -358,5 +367,62 @@ QString PracticeDialog::correctedAnswer()
     return m_validator->correctedAnswerHtml();
 }
 
+
+
+void PracticeDialog::nextEntry()
+{
+    // get a new entry
+    m_entry = m_entryManager->nextEntry();
+    if ( m_entry == 0 ) {
+        accept();
+        return;
+    }
+
+    setEntry(m_entry);
+    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+}
+
+
+void PracticeDialog::accept()
+{
+    QDialog::accept();
+
+    m_entryManager->printStatistics();
+
+    PracticeSummaryDialog practiceSummaryDialog(m_entryManager, this);
+    practiceSummaryDialog.exec();
+
+    delete m_entryManager;
+}
+
+
+void PracticeDialog::slotResult(PracticeDialog::Result res)
+{
+kDebug() << "result: " << res;
+    m_doc->setModified();
+
+    // handle the result (upgrade grades etc)
+    m_entryManager->result(res);
+
+    // check if stop was requested
+    if ( res == PracticeDialog::StopIt ) {
+        accept();
+        return;
+    }
+
+    if ( res == PracticeDialog::Timeout ) {
+        // too many timeouts in a row will hold the test
+        if (++num_practiceTimeout >= MAX_QUERY_TIMEOUT) {
+            const QString not_answered = i18n(
+                "The test dialog was not answered several times in a row.\n"
+                "It is assumed that there is currently nobody in front of "
+                "the screen, and for that reason the query is stopped.");
+
+            KMessageBox::information(this, not_answered, i18n("Stopping Test"));
+        }
+    } else {
+        num_practiceTimeout = 0;
+    }
+}
 
 #include "practicedialog.moc"

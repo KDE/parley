@@ -107,17 +107,17 @@ public slots:
      */
     void editEntry();
 
+
+public slots:
+    void slotResult(PracticeDialog::Result res);
+    ///@todo no need for public, do we need slots at all?
+
 signals:
     /**
      * The result to this question. Does only emit the result to be stored. To move on to the next entry use nextEntry.
      * @param result
      */
     void sigQueryChoice(PracticeDialog::Result);
-
-    /**
-     * Create the next entry dialog or return if all vocabulary have been practiced.
-     */
-    void nextEntry();
 
 protected slots:
     /**
@@ -148,6 +148,11 @@ protected slots:
     QString correctedAnswer();
 
 protected:
+    /**
+     * Set the next entry from m_entryManager or return if all vocabulary have been practiced.
+     */
+    void nextEntry();
+
     void resultCorrect();
     void resultWrong();
 
@@ -224,7 +229,16 @@ protected:
      */
     bool answerTainted();
 
+    /**
+     * finish practice
+     */
+    void accept();
+
+    /// The vocabulary will come from here
+    TestEntryManager    *m_entryManager;
+
 private:
+
     QTimer    *m_answerTimer;
     int        m_answerTimerCount;
 
@@ -238,6 +252,10 @@ private:
 
     /// Advanced string evaluation
     AnswerValidator* m_validator;
+
+    /// after x timeouts we pause the whole show
+    int num_practiceTimeout;
+
 };
 
 

@@ -44,23 +44,19 @@ public:
     void startPractice();
 
 public slots:
-    void slotResult(PracticeDialog::Result res);
-    void nextEntry();
+    /** exit query mode */
+    void stopPractice();
 
 private:
     void createDialog();
 
-    /** exit query mode */
-    void stopPractice();
 
-    TestEntryManager    *m_entryManager;
     KEduVocDocument     *m_doc;
     ParleyApp           *m_app;
 
     /// The dialog
     PracticeDialog      *m_testDialog;
 
-    int                  num_practiceTimeout;
     int                  m_testType;
 
     QString              m_lastTestType;

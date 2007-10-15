@@ -96,6 +96,9 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
         connect(rb, SIGNAL(clicked()), SLOT(verifyClicked()));
     }
 
+    setEntry(m_entryManager->nextEntry());
+    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+
     KConfigGroup cg(KGlobal::config(), "MCQueryDlg");
     restoreDialogSize(cg);
 }

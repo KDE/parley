@@ -66,6 +66,9 @@ AdjQueryDlg::AdjQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
 
     mw->imageGraphicsView->setVisible(false);
 
+    setEntry(m_entryManager->nextEntry());
+    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
+
     KConfigGroup cg(KGlobal::config(), "AdjQueryDlg");
     restoreDialogSize(cg);
 }
