@@ -133,8 +133,6 @@ protected slots:
      */
     void continueButtonClicked();
 
-    QString correctedAnswer();
-
 protected:
     /**
      * Set the next entry from m_entryManager or return if all vocabulary have been practiced.

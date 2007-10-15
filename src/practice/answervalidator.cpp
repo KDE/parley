@@ -32,9 +32,8 @@ const double AnswerValidator::WRONG_ARTICLE_PUNISHMENT = 0.1;
 AnswerValidator::AnswerValidator(KEduVocDocument* doc)
 {
     m_doc = doc;
+    m_entry = 0;
     m_speller = 0;
-    m_errorTypes = TestEntry::UnknownMistake;
-    m_grade = 0.0;
     m_spellerAvailable = false;
 }
 
@@ -48,6 +47,8 @@ void AnswerValidator::setTestEntry(TestEntry * entry, int translation)
     m_entry = entry;
     m_translation = translation;
     m_solution = m_entry->exp->translation(m_translation).text();
+
+kDebug() << "set default solution:" << m_solution;
 
     if ( !m_speller ) {
         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
@@ -136,24 +137,33 @@ bool AnswerValidator::spellcheckerInSuggestionList(QString solution, QString use
 
 void AnswerValidator::simpleCorrector()
 {
-    ///@todo can solution.length() be zero? *should* be caught by Parley
-    if ( m_solution == m_userAnswer ) {
-        m_errorTypes = TestEntry::Correct;
-        m_grade = 1.0;
-        m_htmlCorrection = i18n("Your answer is right!");
+kDebug() << "simpleCorrector";
+    if ( m_entry == 0 ) {
+        kError() << "No entry set, cannot verify answer.";
         return;
     }
 
-    if ( m_entry->exp ) {
+    ///@todo can solution.length() be zero? *should* be caught by Parley
+    if ( m_solution == m_userAnswer ) {
+        m_entry->setLastErrors(TestEntry::Correct);
+        m_entry->setLastPercentage(1.0);
+//         m_htmlCorrection = i18n("Your answer is right!");
+kDebug() << "right";
+        return;
+    }
+
+    TestEntry::ErrorTypes errorTypes = TestEntry::UnknownMistake;
+
+    if ( m_entry ) {
         // check synonym
         if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
-            m_errorTypes = TestEntry::Synonym;
+            m_entry->setLastErrors(TestEntry::Synonym);
             if ( Prefs::countSynonymsAsCorrect() ) {
-                m_grade = 1.0;
-                m_htmlCorrection = i18n("You entered a synonym.");
+                m_entry->setLastPercentage(1.0);
+//                 m_htmlCorrection = i18n("You entered a synonym.");
             } else {
-                m_grade = 0.0; // bit harsh maybe
-                m_htmlCorrection = i18n("You entered a synonym.");
+                m_entry->setLastPercentage(0.0); // bit harsh maybe
+//                 m_htmlCorrection = i18n("You entered a synonym.");
             }
             return;
         }
@@ -161,72 +171,79 @@ void AnswerValidator::simpleCorrector()
 
     int levensthein = levenshteinDistance( m_solution, m_userAnswer );
 
-    m_grade = 1.0 - ((double)levensthein/ qMax(m_solution.length(), m_userAnswer.length()));
+    m_entry->setLastPercentage(1.0 - ((double)levensthein/ qMax(m_solution.length(), m_userAnswer.length())));
 
-    kDebug() << "defaultCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
-
-    m_htmlCorrection = i18n("Your answer was wrong. Estimated %1% correct.", (int) (m_grade*100));
+    kDebug() << "simpleCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_entry->lastPercentage();
 }
 
 
 void AnswerValidator::defaultCorrector()
 {
-
-///@todo lacks i18n and does not work completely yet.
-
+    ///@todo does not work completely yet.
     ///@todo can solution.length() be zero? *should* be caught by Parley
     if ( m_solution == m_userAnswer ) {
-        m_errorTypes = TestEntry::Correct;
-        m_grade = 1.0;
+        m_entry->setLastErrors(TestEntry::Correct);
+        m_entry->setLastPercentage(1.0);
         return;
     }
 
     if ( m_userAnswer.isEmpty() ) {
-        m_errorTypes = TestEntry::Empty;
-        m_grade = 0.0;
+        m_entry->setLastErrors(TestEntry::Empty);
+        m_entry->setLastPercentage(0.0);
         return;
     }
 
-    if ( m_entry->exp ) {
-        // check synonym
-        if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
-            m_errorTypes = TestEntry::Synonym;
-            if ( Prefs::countSynonymsAsCorrect() ) {
-                // synonym, good for you
-                m_grade = 1.0;
-            } else {
-                // it is the synonym but we don't accept it
-                m_grade = 0.0; // bit harsh maybe
-            }
-            return;
+    // check synonym
+    if ( m_entry->exp->translation(m_translation).synonym() == m_userAnswer ) {
+        m_entry->setLastErrors(TestEntry::Synonym);
+        if ( Prefs::countSynonymsAsCorrect() ) {
+            // synonym, good for you
+            m_entry->setLastPercentage(1.0);
+        } else {
+            // it is the synonym but we don't accept it
+            m_entry->setLastPercentage(0.0); // bit harsh maybe
         }
+        return;
     }
 
     int numberSolutionWords = m_solution.simplified().split(" ").count();
     int numberAnswerWords = m_userAnswer.simplified().split(" ").count();
 
+    if ( numberSolutionWords == 1 ) {
+        double grade;
+        TestEntry::ErrorTypes errors;
+        wordCompare(m_solution, m_userAnswer, grade, errors);
+        m_entry->setLastPercentage(grade);
+        m_entry->setLastErrors(errors);
+        return;
+    }
+
     if ( numberSolutionWords == 2 ) {
         // could be noun + article
-        kDebug() << "IMPLEMENT ME: TWO WORDS TO CHECK - IS IT AN ARTICLE?";
         QStringList solutionWords = m_solution.simplified().split(" ");
 
         if ( m_translation >= 0 ) {
             if (m_doc->identifier(m_translation).article().isArticle(solutionWords.value(0)) ) {
                 // yes, the answer is an article + noun
                 if ( numberAnswerWords == 1 ) {
-                    wordCompare(solutionWords.value(1), m_userAnswer.simplified(), m_grade, m_htmlCorrection);
-                    m_htmlCorrection.append(" And the article is missing!");
-                    m_grade = qMin(m_grade-WRONG_ARTICLE_PUNISHMENT, 0.0);
+                    double percent;
+                    TestEntry::ErrorTypes errors;
+                    wordCompare(solutionWords.value(1), m_userAnswer.simplified(), percent, errors);
+                    m_entry->setLastPercentage(qMin(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
+                    m_entry->setLastErrors(errors|TestEntry::WrongArticle);
                     return;
                 }
                 if ( numberAnswerWords == 2 ) {
-                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(" ").value(1), m_grade, m_htmlCorrection);
+                    double percent;
+                    TestEntry::ErrorTypes errors;
+                    wordCompare(solutionWords.value(1), m_userAnswer.simplified().split(" ").value(1), percent, errors);
 
                     if ( m_userAnswer.simplified().split(" ").value(0) == solutionWords.value(0) ) {
-                        m_htmlCorrection.append(" Well, at least you guessed the article right.");
+                        m_entry->setLastErrors(errors);
                     } else {
-                        m_htmlCorrection.append(" And the article is wrong!");
-                        m_grade = qMin(m_grade-WRONG_ARTICLE_PUNISHMENT, 0.0);
+                        m_entry->setLastPercentage(qMin(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
+kDebug() << "wrong article" << errors << " and " << TestEntry::WrongArticle;
+                        m_entry->setLastErrors(errors|TestEntry::WrongArticle);
                     }
                     return;
                 }
@@ -234,32 +251,27 @@ void AnswerValidator::defaultCorrector()
         }
     }
 
-    if ( m_solution.simplified().split(" ").count() > 1 ) {
-        scentenceAnalysis();
-    } else {
-        // put the grade in m_grade and get the error type
-        TestEntry::ErrorTypes error = wordCompare(m_solution, m_userAnswer, m_grade, m_htmlCorrection);
+    // ok, more than one word (or one+article)
+    sentenceAnalysis();
+}
+
+
+void AnswerValidator::checkUserAnswer(const QString & userAnswer)
+{
+    if ( m_entry == 0 ) {
+        kError() << "Error: no entry set for validator.";
+        return;
     }
 
-
-//     int levensthein = levenshteinDistance( m_solution, m_userAnswer );
-
-//     m_grade = 1.0 - ((double)levensthein/ qMax(m_solution.length(), m_userAnswer.length()));
-
-//     kDebug() << "defaultCorrector" << m_userAnswer << "-" << m_solution << "has levensthein distance: " << levensthein << " grade: " << m_grade;
-}
-
-
-double AnswerValidator::checkUserAnswer(const QString & userAnswer)
-{
-    m_htmlCorrection.clear();
     m_userAnswer = userAnswer;
-    simpleCorrector();
-/// @todo enable me: defaultCorrector();
-    return m_grade;
+
+kDebug() << "simpleCorrector with " << m_solution << m_userAnswer;
+
+//     simpleCorrector();
+    defaultCorrector();
 }
 
-double AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
+void AnswerValidator::checkUserAnswer(const QString & solution, const QString & userAnswer, const QString& language)
 {
 kDebug() << "CheckUserAnswer with two strings. The one string version is prefered.";
     if ( !language.isEmpty() ) {
@@ -268,25 +280,26 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is prefere
         m_spellerAvailable = false;
     }
 
-    m_entry->exp = 0;
     m_solution = solution;
 
-    return checkUserAnswer(userAnswer);
+    checkUserAnswer(userAnswer);
 }
 
 
-TestEntry::ErrorTypes AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection)
+void AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, TestEntry::ErrorTypes& errorTypes)
 {
+    ///@todo add to other errors... ?
+
     // nothing to be done here if it's right
     if ( solution == userWord ) {
         grade = 1.0;
-        htmlCorrection = QString::fromLatin1("<font color=\"#188C18\">You are right!</font> ");
-        return TestEntry::Correct;
+        errorTypes = TestEntry::Correct;
+        return;
     }
     if ( solution.toLower() == userWord.toLower() ) {
         grade = CAPITALIZATION_MISTAKE_PUNISHMENT;
-        htmlCorrection = QString::fromLatin1("<font color=\"#8C4040\">Watch your capitalization!</font> ");
-        return TestEntry::CapitalizationMistake;
+        errorTypes = TestEntry::CapitalizationMistake;
+        return ;
     }
 
     int levenshtein = levenshteinDistance(solution, userWord);
@@ -300,50 +313,57 @@ TestEntry::ErrorTypes AnswerValidator::wordCompare(const QString & solution, con
         // probably misspelled
         if ( isMisspelled && inSuggestions ) {
             grade = 1.0 - qMax (levenshtein * SPELLING_MISTAKE_PER_LETTER_PUNISHMENT, 1.0);
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\"> Oops, I think you misspelled about ") + QString::number(levenshtein) + QString::fromLatin1(" letters. But the word is right.</font> ");
-            return TestEntry::SpellingMistake;
+            errorTypes = TestEntry::SpellingMistake;
+            return;
         }
         // this is a different word but sounds similiar!
         if ( !isMisspelled && inSuggestions ) {
             grade = FALSE_FRIEND_GRADE;
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
-            return TestEntry::FalseFriend;
+//             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">NOOOO! That was a false friend!</font> ");
+            errorTypes = errorTypes = TestEntry::FalseFriend;
+            return ;
         }
         // unrelated word
         if ( !isMisspelled && !inSuggestions ) {
             grade = UNRELATED_WORD_GRADE;
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
-            return TestEntry::UnrelatedWord;
+//             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Do you have any idea what you are talking about? (Wrong word, you spelled it correct I guess.)</font> ");
+            errorTypes = TestEntry::UnrelatedWord;
+            return;
         }
         // complete nonsense, unless levenshtein comes to the rescue
         if ( isMisspelled && !inSuggestions ) {
             if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
-                htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
-                return TestEntry::SpellingMistake;
+//                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">Seems like you got the spellig wrong.</font> ");
+                errorTypes = TestEntry::SpellingMistake;
+                return;
             } else {
-                htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similiar to the solution.</font> ");
-                return TestEntry::UnknownMistake;
+//                 htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">I don't know that word and it is not similiar to the solution.</font> ");
+                errorTypes = TestEntry::UnknownMistake;
+                return;
             }
         }
     } else {
         if ( ((double)levenshtein/ qMax(solution.length(), userWord.length())) < LEVENSHTEIN_THRESHOLD ) {
             grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
-            return TestEntry::SpellingMistake;
+//             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No spellchecker, but seems like a spelling error.</font> ");
+            errorTypes = TestEntry::SpellingMistake;
+            return;
         } else {
             grade = 1.0 - ((double)levenshtein/ qMax(solution.length(), userWord.length()));
-            htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
-            return TestEntry::UnknownMistake;
+//             htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
+            errorTypes = TestEntry::UnknownMistake;
+            return;
         }
     }
 
     // cannot get here
-    htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
-    return TestEntry::UnknownMistake;
+//     htmlCorrection = QString::fromLatin1("<font color=\"#8C1818\">No dictionary and no clue.</font> ");
+    errorTypes = TestEntry::UnknownMistake;
+    return;
 }
 
 
-void AnswerValidator::scentenceAnalysis()
+void AnswerValidator::sentenceAnalysis()
 {
     QStringList solutionWords;
     QStringList userAnswerWords;
@@ -394,15 +414,7 @@ void AnswerValidator::scentenceAnalysis()
 
 kDebug() << correction;
 kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
-m_grade = 1.0 - ((double)levenshtein/ qMax(m_solution.length(), m_userAnswer.length()));
-
-
-    m_htmlCorrection = correction;
-}
-
-QString AnswerValidator::correctedAnswerHtml()
-{
-    return m_htmlCorrection;
+m_entry->setLastPercentage(1.0 - ((double)levenshtein/ qMax(m_solution.length(), m_userAnswer.length())));
 }
 
 QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )

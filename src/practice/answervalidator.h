@@ -37,29 +37,19 @@ public:
     bool spellcheckerAvailable();
 
     /**
-     * Sets the current entry.
+     * Sets the current entry. This has to be set before trying to validate! It will store the results.
      * @param expression
      */
     void setTestEntry(TestEntry* entry, int translation);
 
     /**
-     * Checks the user answer. If the answer was correct, 1.0 is returned,
+     * Checks the user answer. If the answer was correct, 1.0 is set as lastPercentage for the TestEntry,
      * 0.0 means no relation between answer and solution whatsoever.
-     * check for type of mistake using typeOfMistake afterwards.
+     * The type of mistake is also set in the TestEntry.
      * @param userAnswer
-     * @return true if the answer is correct
      */
-    double checkUserAnswer(const QString& userAnswer);
-    double checkUserAnswer(const QString& solution, const QString& userAnswer, const QString& language = QString());
-
-    QString correctedAnswerHtml();
-
-    /**
-     * Returns the type of mistake. Of course this is just an estimation.
-     * @return
-     */
-    TestEntry::ErrorType typeOfMistake();
-
+    void checkUserAnswer(const QString& userAnswer);
+    void checkUserAnswer(const QString& solution, const QString& userAnswer, const QString& language = QString());
 
 private:
     /**
@@ -95,12 +85,12 @@ private:
      * @param word2
      * @param errorType
      */
-    TestEntry::ErrorTypes wordCompare(const QString & solution, const QString & userWord, double& grade, QString& htmlCorrection);
+    void wordCompare(const QString& solution, const QString& userWord, double& grade, TestEntry::ErrorTypes& errorTypes);
 
     /**
-     * Split up a scentence and try to work magic with it...
+     * Split up a sentence and try to work magic with it...
      */
-    void scentenceAnalysis();
+    void sentenceAnalysis();
 
     /**
      * Try to make words into pairs that are most likely to match
@@ -122,14 +112,6 @@ private:
 
     /// the answer provided by the user
     QString m_userAnswer;
-
-    /// last type of mistake @see ErrorType
-    TestEntry::ErrorTypes m_errorTypes;
-
-    /// the last grade (0.0 .. 1.0)
-    double m_grade;
-
-    QString m_htmlCorrection;
 
     /// field used by the LevenshteinDistance to store temp data
     QByteArray m_d;

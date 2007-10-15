@@ -350,21 +350,19 @@ void PracticeDialog::continueButtonClicked()
     nextEntry();
 }
 
+
 double PracticeDialog::verifyAnswer(const QString & userAnswer)
 {
-    return m_validator->checkUserAnswer(userAnswer);
+    m_validator->checkUserAnswer(userAnswer);
+    return m_entry->lastPercentage();
 }
+
 
 double PracticeDialog::verifyAnswer(const QString & solution, const QString & userAnswer)
 {
-    return m_validator->checkUserAnswer(solution, userAnswer);
+    m_validator->checkUserAnswer(solution, userAnswer);
+    return m_entry->lastPercentage();
 }
-
-QString PracticeDialog::correctedAnswer()
-{
-    return m_validator->correctedAnswerHtml();
-}
-
 
 
 void PracticeDialog::nextEntry()
@@ -384,8 +382,7 @@ void PracticeDialog::nextEntry()
 void PracticeDialog::accept()
 {
     QDialog::accept();
-
-    m_entryManager->printStatistics();
+//     m_entryManager->printStatistics();
 
     PracticeSummaryDialog practiceSummaryDialog(m_entryManager, this);
     practiceSummaryDialog.exec();

@@ -412,7 +412,48 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 void WrittenPracticeDialog::verifyClicked()
 {
     double result = verifyAnswer(mw->answerLineEdit->text());
-    mw->correctionLabel->setText(correctedAnswer());
+    TestEntry::ErrorTypes errors = m_entry->lastErrors();
+
+    kDebug() << "verifying grade: " << result << " errors: " << errors;
+
+    QString errorText;
+
+    if ( m_entry->lastErrors() & TestEntry::Correct ) {
+        errorText.append(i18n("<font color=\"#188C18\">You are right!</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::CapitalizationMistake ) {
+        errorText.append(i18n("<font color=\"#8C4040\">Watch your capitalization!</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::SpellingMistake ) {
+        errorText.append(i18n("<font color=\"#8C1818\">I think you made a spelling mistake. But the word is right.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::UnknownMistake ) {
+        errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::AccentMistake ) {
+        errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::WrongArticle ) {
+        errorText.append(i18n("<font color=\"#8C1818\">The article is wrong.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::FalseFriend ) {
+        errorText.append(i18n("<font color=\"#8C1818\">Watch out! This is a false friend!</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::Synonym ) {
+        errorText.append(i18n("<font color=\"#8C1818\">Great, you entered a synonym.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::Empty ) {
+        errorText.append(i18n("<font color=\"#8C8C18\">Please enter something for me to check.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::UnrelatedWord ) {
+        errorText.append(i18n("<font color=\"#8C1818\">I know that word, but are you sure it's the right one here?</font>") + "\n");
+    }
+
+    if ( errorText.isEmpty() ) {
+        errorText.append(i18n("There is a mistake.") + " " + QString::number(m_entry->lastErrors()));
+    }
+
+    mw->correctionLabel->setText(errorText);
 
     if ( result == 1.0 ) {
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
@@ -505,7 +546,7 @@ void WrittenPracticeDialog::showMoreClicked()
 
     // get the hint up to date
     verifyAnswer(mw->answerLineEdit->text());
-    mw->correctionLabel->setText(correctedAnswer());
+    mw->correctionLabel->setText("no text here"); ///@todo
 
     mw->status->clear();
     suggestion_hint = false;

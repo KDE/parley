@@ -154,5 +154,22 @@ bool TestEntry::statisticCorrectAtFirstAttempt()
 }
 
 
+void TestEntry::setLastErrors(ErrorTypes errorTypes)
+{
+    m_lastError = errorTypes;
+}
 
+TestEntry::ErrorTypes TestEntry::lastErrors()
+{
+    return m_lastError;
+}
 
+void TestEntry::setLastPercentage(double percent)
+{
+    m_lastPercentage = percent;
+}
+
+double TestEntry::lastPercentage()
+{
+    return m_lastPercentage;
+}
