@@ -259,8 +259,6 @@ private:
 
     KLineEdit           *m_searchLine;
 
-    PracticeManager     *m_practiceManager;
-
     EntryDlg            *entryDlg;
 
     QProgressBar        *pbar;

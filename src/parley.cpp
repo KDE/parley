@@ -24,7 +24,13 @@
 
 #include "parley.h"
 
-#include "practice/practicemanager.h"
+#include "practice/writtenpracticedialog.h"
+#include "practice/MCQueryDlg.h"
+#include "practice/AdjQueryDlg.h"
+#include "practice/VerbQueryDlg.h"
+#include "practice/ArtQueryDlg.h"
+#include "practice/SimpleQueryDlg.h"
+#include "practice/mixedletterpracticedialog.h"
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
@@ -140,9 +146,6 @@ void ParleyApp::readProperties(const KConfigGroup &config)
 
 ParleyApp::~ParleyApp()
 {
-    if ( m_practiceManager ) {
-        m_practiceManager->deleteLater();
-    }
     removeEntryDlg();
     delete m_doc;
 }
@@ -624,7 +627,45 @@ void ParleyApp::configurePractice()
 
 void ParleyApp::startPractice()
 {
-    PracticeManager pm(this, m_doc);
+    removeEntryDlg();
+    hide();
+
+    PracticeDialog* practiceDialog;
+
+    switch ( Prefs::testType() ) {
+    case Prefs::EnumTestType::WrittenTest:
+        practiceDialog = new WrittenPracticeDialog(m_doc, this);
+        break;
+    case Prefs::EnumTestType::MultipleChoiceTest:
+        practiceDialog = new MCQueryDlg(m_doc, this);
+        break;
+    case Prefs::EnumTestType::MixedLettersTest:
+        practiceDialog = new MixedLetterPracticeDialog(m_doc, this);
+        break;
+    case Prefs::EnumTestType::ArticleTest:
+        practiceDialog = new ArtQueryDlg(m_doc, this);
+        break;
+    case Prefs::EnumTestType::ComparisonTest:
+        practiceDialog = new AdjQueryDlg(m_doc, this);
+        break;
+    case Prefs::EnumTestType::ConjugationTest:
+        practiceDialog = new VerbQueryDlg(m_doc, this);
+        break;
+    // tests using the simple dialog
+    case Prefs::EnumTestType::SynonymTest:
+    case Prefs::EnumTestType::AntonymTest:
+    case Prefs::EnumTestType::ExampleTest:
+    case Prefs::EnumTestType::ParaphraseTest:
+        practiceDialog = new SimpleQueryDlg(m_doc, this);
+        break;
+    default:
+        kError() << "PracticeManager::startQuery: unknown type\n";
+    }
+
+    practiceDialog->exec();
+    practiceDialog->deleteLater();
+
+    show();
 }
 
 

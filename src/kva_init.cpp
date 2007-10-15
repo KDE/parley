@@ -68,7 +68,6 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_pronunciationStatusBarLabel = 0;
     m_remarkStatusBarLabel = 0;
     m_typeStatusBarLabel = 0;
-    m_practiceManager = 0;
 
     pbar = 0;
 

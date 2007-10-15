@@ -26,7 +26,6 @@ kde4_add_ui_files( libcommondlg_SRCS
 
 set(practice_SRCS
     practice/testentry.cpp
-    practice/practicemanager.cpp
     practice/testentrymanager.cpp
     practice/practicedialog.cpp
     practice/AdjQueryDlg.cpp
