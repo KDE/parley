@@ -75,10 +75,6 @@
       <label>Swap direction randomly</label>
       <default>false</default>
     </entry>
-    <entry name="ShowCounter" type="Bool">
-      <label>Get a progress bar to show remaining time if true.</label>
-      <default>false</default>
-    </entry>
     <entry name="PracticeTimeout" type="Enum">
       <label>If NoTimeout, there is no time set to answer each question</label>
       <choices>

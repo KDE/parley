@@ -83,8 +83,8 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    mw->timebar->setVisible(Prefs::showCounter());
-    mw->timelabel->setVisible(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
     mw->show_all->setDefault(true);
 
     QString s;

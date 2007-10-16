@@ -32,7 +32,6 @@ AdvancedPracticeOptions::AdvancedPracticeOptions(QWidget* parent) : QWidget(pare
 
     // time limit
     connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_MaxTimePer, SLOT(setDisabled(bool)));
-    connect(NoTimeoutRadio, SIGNAL(toggled(bool)), kcfg_ShowCounter, SLOT(setDisabled(bool)));
     connect(NoTimeoutRadio, SIGNAL(toggled(bool)), label_mqtime, SLOT(setDisabled(bool)));
 }
 

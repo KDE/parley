@@ -83,8 +83,8 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    mw->timebar->setEnabled(Prefs::showCounter());
-    mw->timelabel->setEnabled(Prefs::showCounter());
+    mw->timebar->setEnabled(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timelabel->setEnabled(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
     mw->queryField->setFont(Prefs::tableFont());
     mw->answerField->setFont(Prefs::tableFont());
     mw->answerField->setText("");

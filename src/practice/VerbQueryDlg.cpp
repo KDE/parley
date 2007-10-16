@@ -185,8 +185,8 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
 
     mw->progCount->setText( QString::number(entry->statisticCount()) );
 
-    mw->timebar->setVisible(Prefs::showCounter());
-    mw->timelabel->setVisible(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
     mw->verify->setDefault(true);
 
     mw->singularFirstPersonLineEdit->setFocus();

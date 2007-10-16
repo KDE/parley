@@ -305,41 +305,6 @@
             </item>
            </layout>
           </item>
-          <item row="1" column="0" >
-           <spacer>
-            <property name="orientation" >
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeType" >
-             <enum>QSizePolicy::Minimum</enum>
-            </property>
-            <property name="sizeHint" >
-             <size>
-              <width>109</width>
-              <height>26</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item row="1" column="1" >
-           <widget class="QCheckBox" name="kcfg_ShowCounter" >
-            <property name="sizePolicy" >
-             <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="toolTip" >
-             <string>If checked, activate a progress bar to show the remaining time.</string>
-            </property>
-            <property name="whatsThis" >
-             <string>Check this button if you want to activate a progress bar to show the remaining time for each query.</string>
-            </property>
-            <property name="text" >
-             <string>S&amp;how remaining time</string>
-            </property>
-           </widget>
-          </item>
          </layout>
         </item>
         <item>
@@ -397,7 +362,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>kcfg_ShowCounter</tabstop>
   <tabstop>kcfg_SwapDirection</tabstop>
   <tabstop>kcfg_AltLearn</tabstop>
   <tabstop>kcfg_ShowMore</tabstop>

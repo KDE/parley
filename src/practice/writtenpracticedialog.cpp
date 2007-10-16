@@ -199,8 +199,8 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 //     else
 //         translations = QStringList(trans);
 
-    mw->timebar->setVisible(Prefs::showCounter());
-    mw->timelabel->setVisible(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
 //     int i;
 //     int k;
 //     if (Prefs::suggestions()) {

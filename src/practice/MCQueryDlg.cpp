@@ -80,8 +80,8 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     // status displays and timer indicator
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
-    mw->timebar->setVisible(Prefs::showCounter());
-    mw->timelabel->setVisible(Prefs::showCounter());
+    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
 
     mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
