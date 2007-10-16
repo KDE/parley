@@ -546,7 +546,7 @@ void WrittenPracticeDialog::showMoreClicked()
 
     // get the hint up to date
     verifyAnswer(mw->answerLineEdit->text());
-    mw->correctionLabel->setText("no text here"); ///@todo
+    mw->correctionLabel->setText(""); ///@todo
 
     mw->status->clear();
     suggestion_hint = false;
