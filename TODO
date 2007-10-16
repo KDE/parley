@@ -1,87 +1,21 @@
--------------------
- DO IT:
--------------------
+Things to improve in parley
+---------------------------
 
-Pressing delete after selecting a lesson wants to delete vocabs, not the lesson.
+Gui
+ * shortcut keys are badly assigned, they do not respect the focus
 
-Statistics:
-Statistics still show <no lesson>. And they are ugly.
+General
+ * declination support
+   - a class is there
+   - reader and writer
+   - gui
 
---------------------
- NOT SO FAR FUTURE:
---------------------
+ * articles are only singular so far
+   - reader and writer
+   - gui has to be extended
 
-Lesson list:
--count of entries in the lesson could be nice
--When renaming a lesson, the main table is not updated. It should emit a dataChanged though. Strange. Even changing the focus updates the table.
-
-m_tableView and friends: make columns visible/hide as user wishes. Additional columns for word type and all that seems sensible(?).
-
-kvttablemodel: make columns hideable, add support for more columns like word type. By default only show original + translations. Are the numbers of the entries significant to the user? maybe better hide them?
-
-Enable drag and drop for lessons and vocab (drag into lesson, change order of lessons).
-
-Icons and artwork seems rather old... maybe ask those oxygen guys? annma said she'll ask for a new icon.
-
-Just noticed: we have what's this - need to add hints!!
-
-Configure->View Settings: IPA font could be changed into something meaningfull. (What does it stand for???)
-<peter>IPA = International Phonetic Association or International Phonetic Alphabet. This allows you to specify a special font for phonetic display of pronunciation. I have added some tooltips/whatsthis
-Why does this use if ((e->state() & (Qt::ControlModifier | Qt::AltModifier)) == 0) ? Why do we need the keyPressEvent at all?
-Is there no standard way to get strange characters?
-
-In query: make an option to show current lesson, when questioning.
-A limit to first n vocab would be cool. Create query, but only with 30 words...
-
-
-------------------
- LONG TERM STUFF:
-------------------
-
-Combobox: make it editable with regexp or better space as seperator to search-select lessons
-
-Tabs or buttons to switch from normal view to query option page (all on one page - this has to be possible. maybe still some special advanced options in the menu, but one page with sane defaults. Maybe a button on it to allow adjusting timeouts for threshholds.) From this page it should be possible to directly start a query.
-
-More test possibilities? Like plugins?
--Letter mixup like on www.ponsline.de ->vocab trainer
-
-Make the query/test look better!?! Colorfull? Nice?
-
-Statistics/after test screen? Number of words with status xyz? "Hey, you got 33,33 % right the first time, cool!"?
-Also maybe (if desired) a list of words that are especially bad... As to say, hey - these are your problems.
-
-maybe some article handling? I find that I often have the word right but with wrong article. Then it says false and sometimes I change my word, which was right. So a hint like, "great, but wrong article" would sometimes be cool.
-
-Synonyms how??????
-
-One thing, I always wondered about, is how the rating is done/changed. Maybe this could be documented? Even configured? Is it different if I get a word right in multiple choice or type it?
-In query there is this percentage bar...?
-
-Ok, we have the lessons - that's sort of a natural hierachy. Why not use it? In the end, much stuff might be easier, if lessons actually had a list of their entries. Also parsing the xml should almost do this... But because of the way it's defined it doesn't. Would be better do have something like 
-<lesson "My lesson">
-	<"entries here">
-</lesson>
-Can we redefine the xml? Maybe write a little conversion tool, to make the old stuff work? This way maybe lessons don't need a number any more... I have too many +1 in there because everything starts counting at 0, but I need to start lesson names at 1 because 0 is reserved for no lesson, which does not exist any more.
-Makes me wonder if it would be ok to return -1 as index, if no lesson is set and simply use the 0 to make everything more consistent???
-Also attributes are a little abused. Maybe we could reduce them a little? What do other apps find crappy about the format? Does anyone use it this intensive?
-I want kvtml version 2 !?!
-
-<peter>So do I, but maybe for slightly different reasons.
-
-I also don't think the original-trans1-trans2 thing is great. Original should not need a special treatment. (Why should it). So either to make it politically correct call them identifier 1..n or language 1..n, because language is easier to remember.
-
-<peter>See https://bugs.kde.org/show_bug.cgi?id=93446 for why this might not be such a good idea.
-Frederik: I see. Well, when thinking about a new xml structure, this could be taken into account. I'd still like to do it somehow. This has to be done careful anyway.
-Statistics: well, that's not much data anyway. Maybe we could offer some "Delete statistics from doc" button. I'd keep them in there, that makes taking the vocab to another computer simpler. Well, create the statistics also with from-to ids. No matter. And so if my vocab file actually grows to one MB? I have that much space, I guess.
-
-
-Sublessons. One day ;) (no problem doing <lesson "Top"><lesson "Sub 1"> <entries> </lesson></lesson>
-
-get new vocabulary online skripts? for example from leo.org? (I enter abc, a list of translations appears?)
-
-kiten would like to use kvoctrain for it's practice. Kiruwa told me he'd also like a "lookup in kiten" field. Maybe this could be considered in the new kvtml version. Each vocab could have a "link to external application" - easy as optional xml tag and to be displayed for example in a column of its own, next to the vocab. - Frederik
-
-Have a tray icon that pops up with vocab questions from time to time or a calender/planer... dream on. 
-
-
+Pronunciation
+ * research how entering that could be made easier
+ * option to display it along in the practice dialogs
+ * is a pronunciation practice desireable? maybe together with sound (write after listening)
 
