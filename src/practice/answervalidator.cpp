@@ -229,8 +229,8 @@ void AnswerValidator::defaultCorrector()
                     double percent;
                     TestEntry::ErrorTypes errors;
                     wordCompare(solutionWords.value(1), m_userAnswer.simplified(), percent, errors);
-                    m_entry->setLastPercentage(qMin(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
-                    m_entry->setLastErrors(errors|TestEntry::WrongArticle);
+                    m_entry->setLastPercentage(qMax(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
+                    m_entry->setLastErrors(errors|TestEntry::ArticleMissing);
                     return;
                 }
                 if ( numberAnswerWords == 2 ) {
@@ -241,9 +241,8 @@ void AnswerValidator::defaultCorrector()
                     if ( m_userAnswer.simplified().split(" ").value(0) == solutionWords.value(0) ) {
                         m_entry->setLastErrors(errors);
                     } else {
-                        m_entry->setLastPercentage(qMin(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
-kDebug() << "wrong article" << errors << " and " << TestEntry::WrongArticle;
-                        m_entry->setLastErrors(errors|TestEntry::WrongArticle);
+                        m_entry->setLastPercentage(qMax(percent-WRONG_ARTICLE_PUNISHMENT, 0.0));
+                        m_entry->setLastErrors(errors|TestEntry::ArticleWrong);
                     }
                     return;
                 }

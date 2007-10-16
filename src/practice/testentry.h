@@ -23,16 +23,17 @@ class TestEntry
 {
 public:
     enum ErrorType {
-        UnknownMistake        =   0x0, /** < no idea */
         SpellingMistake       =   0x1, /** < misspelled */
         CapitalizationMistake =   0x2, /** < capitalization error (whAt) */
         AccentMistake         =   0x4, /** < an accent is missing or wrong (é) */
-        WrongArticle          =   0x8, /** < solution is correct with the article interchanged */
-        FalseFriend           =  0x10, /** < a false friend */
-        Synonym               =  0x20, /** < a synonym (may be correct) */
-        Empty                 =  0x40, /** < empty answer string */
-        UnrelatedWord         =  0x80, /** < a valid word but no connection to the solution */
-        Correct               = 0x100  /** < no error, solution was right */
+        ArticleWrong          =   0x8, /** < solution is correct with the article interchanged */
+        ArticleMissing        =   0x10, /** < solution is correct with the article missing*/
+        FalseFriend           =  0x20, /** < a false friend */
+        Synonym               =  0x40, /** < a synonym (may be correct) */
+        Empty                 =  0x80, /** < empty answer string */
+        UnrelatedWord         = 0x100, /** < a valid word but no connection to the solution */
+        Correct               = 0x200, /** < no error, solution was right */
+        UnknownMistake        = 0x400  /** < no idea */
     };
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)

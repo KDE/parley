@@ -433,8 +433,11 @@ void WrittenPracticeDialog::verifyClicked()
     if ( m_entry->lastErrors() & TestEntry::AccentMistake ) {
         errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
     }
-    if ( m_entry->lastErrors() & TestEntry::WrongArticle ) {
+    if ( m_entry->lastErrors() & TestEntry::ArticleWrong ) {
         errorText.append(i18n("<font color=\"#8C1818\">The article is wrong.</font>") + "\n");
+    }
+    if ( m_entry->lastErrors() & TestEntry::ArticleMissing ) {
+        errorText.append(i18n("<font color=\"#8C1818\">The article is missing.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::FalseFriend ) {
         errorText.append(i18n("<font color=\"#8C1818\">Watch out! This is a false friend!</font>") + "\n");
