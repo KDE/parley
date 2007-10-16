@@ -46,7 +46,9 @@ void AnswerValidator::setTestEntry(TestEntry * entry, int translation)
 {
     m_entry = entry;
     m_translation = translation;
-    m_solution = m_entry->exp->translation(m_translation).text();
+    if (m_entry) {
+        m_solution = m_entry->exp->translation(m_translation).text();
+    }
 
 kDebug() << "set default solution:" << m_solution;
 
@@ -287,6 +289,33 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is prefere
 
 void AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, TestEntry::ErrorTypes& errorTypes)
 {
+
+
+
+
+kDebug() << "Decompositions: "
+    << QChar::fromLatin1('a').decomposition()
+    << QChar::fromLatin1('ä').decomposition()
+    << QChar::fromLatin1('A').decomposition()
+    << QChar::fromLatin1('e').decomposition()
+    << QChar::fromLatin1('é').decomposition();
+
+
+QChar a = 'a';
+QChar a_big = 'A';
+QChar ae = 'ä';
+QChar a_ring = 'å';
+kDebug() << "Decompositions: "
+    << a << a.decomposition() << a.decompositionTag()
+    << ae << ae.decomposition() << ae.decompositionTag() << ae.combiningClass()
+    << a_big << a_big.decomposition() << a_big.combiningClass()
+    << a_ring << a_ring.decomposition() << a_ring.combiningClass();
+
+
+
+
+
+
     ///@todo add to other errors... ?
 
     // nothing to be done here if it's right

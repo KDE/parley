@@ -77,9 +77,6 @@ kDebug() << "Practicing tenses: " << m_activeTenses;
         ///@todo update upon change
     }
 
-    setEntry(m_entryManager->nextEntry());
-    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-
     KConfigGroup cg(KGlobal::config(), "VerbQueryDialog");
     restoreDialogSize(cg);
 }

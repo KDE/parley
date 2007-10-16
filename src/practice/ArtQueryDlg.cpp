@@ -64,9 +64,6 @@ ArtQueryDlg::ArtQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog
     mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
 
-    setEntry(m_entryManager->nextEntry());
-    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-
     KConfigGroup cg(KGlobal::config(), "ArtQueryDlg");
     restoreDialogSize(cg);
 }

@@ -25,7 +25,6 @@
 #include "practicedialog.h"
 #include "answervalidator.h"
 #include "entry-dialogs/EntryDlg.h"
-#include "practicesummarydialog.h"
 
 #include <KLocale>
 #include <KMessageBox>
@@ -62,9 +61,6 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 
     m_player = 0;
     m_validator = new AnswerValidator(m_doc);
-
-    // entries
-    m_entryManager = new TestEntryManager(m_doc);
 }
 
 
@@ -379,18 +375,6 @@ void PracticeDialog::nextEntry()
 }
 
 
-void PracticeDialog::accept()
-{
-    QDialog::accept();
-//     m_entryManager->printStatistics();
-
-    PracticeSummaryDialog practiceSummaryDialog(m_entryManager, this);
-    practiceSummaryDialog.exec();
-
-    delete m_entryManager;
-}
-
-
 void PracticeDialog::slotResult(PracticeDialog::Result res)
 {
 kDebug() << "result: " << res;
@@ -418,6 +402,17 @@ kDebug() << "result: " << res;
     } else {
         num_practiceTimeout = 0;
     }
+}
+
+int PracticeDialog::exec()
+{
+    nextEntry();
+    return KDialog::exec();
+}
+
+void PracticeDialog::setTestEntryManager(TestEntryManager * testEntryManager)
+{
+    m_entryManager = testEntryManager;
 }
 
 #include "practicedialog.moc"

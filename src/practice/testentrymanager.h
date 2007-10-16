@@ -37,6 +37,7 @@ class KEduVocDocument;
 class Prefs;
 class EnumCompType;
 class KRandomSequence;
+class PracticeDialog;
 
 class TestEntryManager
 {
@@ -91,6 +92,8 @@ public:
     int statisticTotalSkipUnknown();
 
 private:
+    void createPracticeDialog();
+
 
     /**
      * Check if @p expr is valid for the current query settings.
@@ -128,6 +131,8 @@ private:
     int m_currentEntry;
 
     KRandomSequence* m_randomSequence;
+
+    PracticeDialog* m_practiceDialog;
 };
 
 #endif // kvtquery_included

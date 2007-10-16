@@ -47,9 +47,6 @@ MixedLetterPracticeDialog::MixedLetterPracticeDialog(KEduVocDocument *doc, QWidg
     mixedLettersGraphicsView->setScene(new QGraphicsScene(mixedLettersGraphicsView));
     imageGraphicsView->setVisible(false);
 
-    setEntry(m_entryManager->nextEntry());
-    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-
     KConfigGroup cg(KGlobal::config(), "MixedLetterPracticeDlg");
     restoreDialogSize(cg);
 }

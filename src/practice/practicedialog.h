@@ -71,6 +71,8 @@ public:
      */
     PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent);
 
+    void setTestEntryManager(TestEntryManager* testEntryManager);
+
     /**
      * Default dtor
      */
@@ -106,6 +108,8 @@ public slots:
      A practice dialog can call this to allow editing an entry.
      */
     void editEntry();
+
+    int exec();
 
 protected slots:
     /**
@@ -220,11 +224,6 @@ protected:
      * @return
      */
     bool answerTainted();
-
-    /**
-     * finish practice
-     */
-    void accept();
 
     /// The vocabulary will come from here
     TestEntryManager    *m_entryManager;

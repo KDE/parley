@@ -172,9 +172,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->audioPlayQuestionButton, SIGNAL(clicked()), SLOT(audioPlayFromIdentifier()));
     connect(mw->audioPlaySolutionButton, SIGNAL(clicked()), SLOT(audioPlayToIdentifier()));
 
-    setEntry(m_entryManager->nextEntry());
-    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-
     KConfigGroup cg(KGlobal::config(), "RandomQueryDialog");
     restoreDialogSize(cg);
 }

@@ -26,6 +26,15 @@
 #include "testentrymanager.h"
 
 #include "testentry.h"
+#include "writtenpracticedialog.h"
+#include "MCQueryDlg.h"
+#include "AdjQueryDlg.h"
+#include "VerbQueryDlg.h"
+#include "ArtQueryDlg.h"
+#include "SimpleQueryDlg.h"
+#include "mixedletterpracticedialog.h"
+
+#include "practicesummarydialog.h"
 
 // for the enum
 #include "practicedialog.h"
@@ -41,11 +50,6 @@
 #include <KRandomSequence>
 #include <KMessageBox>
 #include <QDateTime>
-
-
-///@todo rename this file and the .h
-
-
 
 // this has nothing really to do with the rest. stays here until it has a better home.
 QString TestEntryManager::gradeStr(int i)
@@ -81,10 +85,6 @@ QString TestEntryManager::gradeStr(int i)
     }
 }
 
-TestEntryManager::~ TestEntryManager()
-{
-    delete m_randomSequence;
-}
 
 TestEntryManager::TestEntryManager(KEduVocDocument* doc)
 {
@@ -228,6 +228,22 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc)
     }
 
     m_currentEntry = 0;
+
+    if ( m_currentEntries.count() > 0 ) {
+        createPracticeDialog();
+        m_practiceDialog->setTestEntryManager(this);
+        m_practiceDialog->exec();
+        m_practiceDialog->deleteLater();
+
+        PracticeSummaryDialog practiceSummaryDialog(this, 0);
+        practiceSummaryDialog.exec();
+    }
+}
+
+
+TestEntryManager::~ TestEntryManager()
+{
+    delete m_randomSequence;
 }
 
 
@@ -537,5 +553,38 @@ int TestEntryManager::statisticTotalSkipUnknown()
         }
     }
     return count;
+}
+
+void TestEntryManager::createPracticeDialog()
+{
+    switch ( Prefs::testType() ) {
+    case Prefs::EnumTestType::WrittenTest:
+        m_practiceDialog = new WrittenPracticeDialog(m_doc, 0);
+        break;
+    case Prefs::EnumTestType::MultipleChoiceTest:
+        m_practiceDialog = new MCQueryDlg(m_doc, 0);
+        break;
+    case Prefs::EnumTestType::MixedLettersTest:
+        m_practiceDialog = new MixedLetterPracticeDialog(m_doc, 0);
+        break;
+    case Prefs::EnumTestType::ArticleTest:
+        m_practiceDialog = new ArtQueryDlg(m_doc, 0);
+        break;
+    case Prefs::EnumTestType::ComparisonTest:
+        m_practiceDialog = new AdjQueryDlg(m_doc, 0);
+        break;
+    case Prefs::EnumTestType::ConjugationTest:
+        m_practiceDialog = new VerbQueryDlg(m_doc, 0);
+        break;
+    // tests using the simple dialog
+    case Prefs::EnumTestType::SynonymTest:
+    case Prefs::EnumTestType::AntonymTest:
+    case Prefs::EnumTestType::ExampleTest:
+    case Prefs::EnumTestType::ParaphraseTest:
+        m_practiceDialog = new SimpleQueryDlg(m_doc, 0);
+        break;
+    default:
+        kError() << "unknown test type";
+    }
 }
 
