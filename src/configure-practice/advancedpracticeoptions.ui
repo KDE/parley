@@ -6,7 +6,7 @@
     <x>0</x>
     <y>0</y>
     <width>587</width>
-    <height>431</height>
+    <height>467</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -78,12 +78,9 @@
          </widget>
         </item>
         <item row="2" column="0" >
-         <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
-          <property name="toolTip" >
-           <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
-          </property>
+         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect" >
           <property name="text" >
-           <string>&amp;Practice in lesson order</string>
+           <string>Accept synonyms as correct</string>
           </property>
          </widget>
         </item>
@@ -98,9 +95,12 @@
          </widget>
         </item>
         <item row="3" column="0" >
-         <widget class="QCheckBox" name="kcfg_CountSynonymsAsCorrect" >
+         <widget class="QCheckBox" name="kcfg_TestOrderLesson" >
+          <property name="toolTip" >
+           <string>When practicing new words will be chosen loosely in lesson order if this is selected, otherwise at total random.</string>
+          </property>
           <property name="text" >
-           <string>Accept synonyms as correct</string>
+           <string>&amp;Practice in lesson order</string>
           </property>
          </widget>
         </item>
@@ -110,6 +110,9 @@
        <layout class="QHBoxLayout" >
         <item>
          <widget class="QLabel" name="label" >
+          <property name="toolTip" >
+           <string>The number of vocabulary that will show up repeatedly until it is answered correctly.</string>
+          </property>
           <property name="text" >
            <string>&amp;Active entries during practice:</string>
           </property>
@@ -120,6 +123,9 @@
         </item>
         <item>
          <widget class="KIntSpinBox" name="kcfg_TestNumberOfEntries" >
+          <property name="toolTip" >
+           <string>The number of vocabulary that will show up repeatedly until it is answered correctly.</string>
+          </property>
           <property name="suffix" >
            <string/>
           </property>
@@ -153,6 +159,9 @@
        <layout class="QHBoxLayout" >
         <item>
          <widget class="QLabel" name="label_2" >
+          <property name="toolTip" >
+           <string>After the answer was given the solution will be shown for this long</string>
+          </property>
           <property name="text" >
            <string>&amp;Show solution after answering (seconds):</string>
           </property>
@@ -163,6 +172,9 @@
         </item>
         <item>
          <widget class="KIntSpinBox" name="kcfg_ShowSolutionTime" >
+          <property name="toolTip" >
+           <string>After the answer was given the solution will be shown for this long</string>
+          </property>
           <property name="specialValueText" >
            <string>Off</string>
           </property>
