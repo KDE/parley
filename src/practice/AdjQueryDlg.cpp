@@ -86,8 +86,8 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
 
     comp = entry->exp->translation(Prefs::solutionLanguage()).comparison();
 
-    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
-    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timebar->setVisible(Prefs::practiceTimeout());
+    mw->timelabel->setVisible(Prefs::practiceTimeout());
     mw->show_all->setDefault(true);
     QString s;
 //     s.setNum(q_cycle);

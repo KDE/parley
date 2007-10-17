@@ -196,8 +196,8 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 //     else
 //         translations = QStringList(trans);
 
-    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
-    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timebar->setVisible(Prefs::practiceTimeout());
+    mw->timelabel->setVisible(Prefs::practiceTimeout());
 //     int i;
 //     int k;
 //     if (Prefs::suggestions()) {
@@ -744,7 +744,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         // after correct answer auto advance after x seconds...
         if(!answerTainted()) {
             // don't show the solution
-            if ( Prefs::showSolutionTime() < 0 ) {
+            if ( !Prefs::showSolutionAfterAnswer() ) {
                 mw->continueButton->click();
                 return;
             }

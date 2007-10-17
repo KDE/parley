@@ -31,8 +31,8 @@ ShowSolutionDialog::ShowSolutionDialog(TestEntry* entry, QWidget* parent)
     setupUi(mainWidget());
     setButtons(KDialog::Ok);
 
-    if ( Prefs::showSolutionTime() > 0 ) {
-        QTimer::singleShot(Prefs::showSolutionTime() * 1000, this, SLOT(accept()));
+    if ( Prefs::showSolutionAfterAnswer() ) {
+        QTimer::singleShot(Prefs::showSolutionAfterAnswerTime() * 1000, this, SLOT(accept()));
     }
 
     QFont font = questionLabel->font();

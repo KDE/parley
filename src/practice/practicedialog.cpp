@@ -105,9 +105,9 @@ void PracticeDialog::timeoutReached()
 
     if (m_answerTimerCount <= 0) {
         timebar()->setValue(0);
-        if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Show) {
+        if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Show) {
             showSolution();
-        } else if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Continue) {
+        } else if (Prefs::practiceTimeoutMode() == Prefs::EnumPracticeTimeoutMode::Continue) {
             signalResult(TestEntryManager::Timeout); ///@todo check if this works - esp with 3x timeout
             continueButtonClicked();
         }
@@ -117,28 +117,21 @@ void PracticeDialog::timeoutReached()
 
 void PracticeDialog::startAnswerTimer()
 {
-    if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::NoTimeout) {
-        kDebug() << "Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::NoTimeout ->NO TIMEOUT!";
+    if (!Prefs::practiceTimeout()) {
         return;
     }
 
-    int mqtime = Prefs::maxTimePer();
+    int mqtime = Prefs::practiceTimeoutTimePerAnswer();
     if (mqtime > 0) {
         if (m_answerTimer == 0) {
             m_answerTimer = new QTimer(this);
             m_answerTimer->setSingleShot(true);
             connect(m_answerTimer, SIGNAL(timeout()), this, SLOT(timeoutReached()));
         }
-
-        if (Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout) {
-            m_answerTimerCount = mqtime;
-            timebar()->setMaximum(m_answerTimerCount);
-            timebar()->setValue(m_answerTimerCount);
-            m_answerTimer->start(1000);
-        } else
-            timebar()->setEnabled(false);
-    } else {
-        timebar()->setEnabled(false);
+        m_answerTimerCount = mqtime;
+        timebar()->setMaximum(m_answerTimerCount);
+        timebar()->setValue(m_answerTimerCount);
+        m_answerTimer->start(1000);
     }
 }
 
@@ -323,13 +316,13 @@ void PracticeDialog::setWidgetStyle(QWidget * widget, WidgetStyle style)
 
 void PracticeDialog::startShowSolutionTimer()
 {
-    if ( Prefs::showSolutionTime() > 0 ) {
+    if ( Prefs::showSolutionAfterAnswer() ) {
         if (m_showSolutionTimer == 0) {
             m_showSolutionTimer = new QTimer(this);
         }
         m_showSolutionTimer->setSingleShot(true);
         connect(m_showSolutionTimer, SIGNAL(timeout()), SLOT(continueButtonClicked()));
-        m_showSolutionTimer->start(Prefs::showSolutionTime() * 1000);
+        m_showSolutionTimer->start(Prefs::showSolutionAfterAnswerTime() * 1000);
     }
 }
 

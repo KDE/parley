@@ -75,19 +75,24 @@
       <label>Swap direction randomly</label>
       <default>false</default>
     </entry>
-    <entry name="PracticeTimeout" type="Enum">
-      <label>If NoTimeout, there is no time set to answer each question</label>
+
+    <entry name="PracticeTimeout" type="Bool">
+      <label>Limit the time for the user to answer in a test.</label>
+      <default>false</default>
+    </entry>
+    <entry name="PracticeTimeoutMode" type="Enum">
+      <label>Show - show the solution after the given time, Continue goes to the next question after the timeout.</label>
       <choices>
-        <choice name="NoTimeout"/>
         <choice name="Show"/>
         <choice name="Continue"/>
       </choices>
-      <default>NoTimeout</default>
+      <default>Show</default>
     </entry>
-    <entry name="MaxTimePer" type="Int">
-      <label>Maximum time allowed per question</label>
+    <entry name="PracticeTimeoutTimePerAnswer" type="Int">
+      <label>Maximum time allowed to answer.</label>
       <default>20</default>
     </entry>
+
     <entry name="Suggestions" type="Bool">
       <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
@@ -255,10 +260,16 @@
       <label>The language in which the user has to answer.</label>
       <default>1</default>
     </entry>
-    <entry name="ShowSolutionTime" type="Int">
-      <label>The time the solution is shown (seconds). -1 is off, 0 is for ever.</label>
-      <default>-1</default>
+
+    <entry name="ShowSolutionAfterAnswer" type="Bool">
+      <label>Show the solution after an answer was given.</label>
+      <default>true</default>
     </entry>
+    <entry name="ShowSolutionAfterAnswerTime" type="Int">
+      <label>The time the solution is shown (seconds). 0 is unlimited.</label>
+      <default>0</default>
+    </entry>
+
     <entry name="TestType" type="Enum">
         <choices>
             <choice name="MixedLettersTest"/>

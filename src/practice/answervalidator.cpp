@@ -31,7 +31,6 @@ namespace ParleyStringHandler {
         for (int i = 0; i < decomposed.length(); ++i) {
             if ( decomposed[i].category() != 1 ) {
                 noAccents.append(decomposed[i]);
-    kDebug() << "Letter: " << decomposed[i] << " category: " << decomposed[i].category();
             }
         return noAccents;
         }

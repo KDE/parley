@@ -80,8 +80,8 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     // status displays and timer indicator
     mw->countbar->setFormat("%v/%m");
     mw->timebar->setFormat("%v");
-    mw->timebar->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
-    mw->timelabel->setVisible(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    mw->timebar->setVisible(Prefs::practiceTimeout());
+    mw->timelabel->setVisible(Prefs::practiceTimeout());
 
     mw->know_it->setVisible(Prefs::skipKnownEnabled());
     mw->imageGraphicsView->setVisible(false);
@@ -243,7 +243,7 @@ void MCQueryDlg::showContinueButton(bool show)
     if ( show ) {
         if(!answerTainted()) {
             // don't show the solution
-            if ( Prefs::showSolutionTime() < 0 ) {
+            if ( !Prefs::showSolutionAfterAnswer() ) {
                 mw->continueButton->click();
                 return;
             }

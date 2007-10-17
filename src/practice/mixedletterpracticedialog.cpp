@@ -63,8 +63,8 @@ void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
 {
     PracticeDialog::setEntry(entry);
 
-    timeProgressBar->setEnabled(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
-    timelabel->setEnabled(Prefs::practiceTimeout() != Prefs::EnumPracticeTimeout::NoTimeout);
+    timeProgressBar->setEnabled(Prefs::practiceTimeout());
+    timelabel->setEnabled(Prefs::practiceTimeout());
     answerLineEdit->setFont(Prefs::tableFont());
     answerLineEdit->setText("");
 
