@@ -92,6 +92,16 @@
       <label>Enable suggestion lists in written practice.</label>
       <default>false</default>
     </entry>
+
+    <entry name="IgnoreAccentMistakes" type="Bool">
+      <label>Count answers as right when only the accentuation is wrong.</label>
+      <default>false</default>
+    </entry>
+    <entry name="IgnoreCapitalizationMistakes" type="Bool">
+      <label>Count answers as right when only the capitalization is wrong.</label>
+      <default>false</default>
+    </entry>
+
     <entry name="SplitTranslations" type="Bool">
       <label>Split translations in written practice.</label>
       <default>false</default>

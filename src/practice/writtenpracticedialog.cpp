@@ -408,7 +408,8 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
 void WrittenPracticeDialog::verifyClicked()
 {
-    double result = verifyAnswer(mw->answerLineEdit->text());
+    QString userAnswer = mw->answerLineEdit->text();
+    double result = verifyAnswer(userAnswer);
     TestEntry::ErrorTypes errors = m_entry->lastErrors();
 
     kDebug() << "verifying grade: " << result << " errors: " << errors;
@@ -419,7 +420,7 @@ void WrittenPracticeDialog::verifyClicked()
         errorText.append(i18n("<font color=\"#188C18\">You are right!</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::CapitalizationMistake ) {
-        errorText.append(i18n("<font color=\"#8C4040\">Watch your capitalization!</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">Watch your capitalization!</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::SpellingMistake ) {
         errorText.append(i18n("<font color=\"#8C1818\">I think you made a spelling mistake. But the word is right.</font>") + "\n");
@@ -428,13 +429,13 @@ void WrittenPracticeDialog::verifyClicked()
         errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::AccentMistake ) {
-        errorText.append(i18n("<font color=\"#8C1818\">You made an accent mistake.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">Your accentuation was wrong.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::ArticleWrong ) {
-        errorText.append(i18n("<font color=\"#8C1818\">The article is wrong.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">The article is wrong.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::ArticleMissing ) {
-        errorText.append(i18n("<font color=\"#8C1818\">The article is missing.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#222978\">The article is missing.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::FalseFriend ) {
         errorText.append(i18n("<font color=\"#8C1818\">Watch out! This is a false friend!</font>") + "\n");
@@ -453,20 +454,32 @@ void WrittenPracticeDialog::verifyClicked()
         errorText.append(i18n("There is a mistake.") + " " + QString::number(m_entry->lastErrors()));
     }
 
-    mw->correctionLabel->setText(errorText);
+    if ( Prefs::ignoreCapitalizationMistakes() ) {
+        if (m_entry->lastErrors() == TestEntry::CapitalizationMistake) {
+            result = 1.0;
+            errorText.append(" (" + userAnswer + ")");
+        }
+    }
+
+    if ( Prefs::ignoreAccentMistakes() ) {
+        if (m_entry->lastErrors() == TestEntry::AccentMistake) {
+            result = 1.0;
+            errorText.append(" (" + userAnswer + ")");
+        }
+    }
 
     if ( result == 1.0 ) {
-        setWidgetStyle(mw->answerLineEdit, PositiveResult);
-        mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
         resultCorrect();
         showContinueButton(true);
     } else {
+        errorText.append(" (" + userAnswer + ")");
         setWidgetStyle(mw->answerLineEdit, NegativeResult);
         // the percentage is very vague anyway, don't show floats...
         mw->status->setText(i18n("Ouch, that was wrong. I guess you got it right to about %1%", (int)(result*100)));
         mw->show_all->setDefault(true);
         setAnswerTainted();
     }
+    mw->correctionLabel->setText(errorText);
 }
 
 
@@ -554,9 +567,6 @@ void WrittenPracticeDialog::showMoreClicked()
 
 void WrittenPracticeDialog::showSolution()
 {
-    setWidgetStyle(mw->answerLineEdit, PositiveResult);
-    mw->answerLineEdit->setText(m_entry->exp->translation(Prefs::solutionLanguage()).text());
-
     setAnswerTainted();
     showContinueButton(true);
 
@@ -751,9 +761,13 @@ void WrittenPracticeDialog::showContinueButton(bool show)
 
     if ( show ) {
         stopAnswerTimer();
+        mw->answerLineEdit->setText(m_entry->exp->translation(Prefs::solutionLanguage()).text());
         mw->continueButton->setDefault(true);
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
         mw->answerLineEdit->setReadOnly(true);
+
+        mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
+
         if ( Prefs::practiceSoundEnabled() ) {
             audioPlayToIdentifier();
         }
