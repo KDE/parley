@@ -76,8 +76,6 @@ private:
 
     bool spellcheckerInSuggestionList(QString solution, QString userAnswer);
 
-    bool articleWrong();
-
     /**
      * Evaluate the closeness of two words. This is probably the most common case.
      * Should be used for single words. Will not work good for more complex cases.
@@ -124,6 +122,7 @@ private:
     static const double UNRELATED_WORD_GRADE;
     static const double FALSE_FRIEND_GRADE;
     static const double SPELLING_MISTAKE_PER_LETTER_PUNISHMENT;
+    static const double ACCENT_MISTAKE_PUNISHMENT;
     static const double CAPITALIZATION_MISTAKE_PUNISHMENT;
     static const double WRONG_ARTICLE_PUNISHMENT;
 };

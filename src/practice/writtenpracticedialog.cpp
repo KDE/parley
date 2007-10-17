@@ -428,7 +428,7 @@ void WrittenPracticeDialog::verifyClicked()
         errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::AccentMistake ) {
-        errorText.append(i18n("<font color=\"#8C1818\">You made a mistake.</font>") + "\n");
+        errorText.append(i18n("<font color=\"#8C1818\">You made an accent mistake.</font>") + "\n");
     }
     if ( m_entry->lastErrors() & TestEntry::ArticleWrong ) {
         errorText.append(i18n("<font color=\"#8C1818\">The article is wrong.</font>") + "\n");

@@ -22,11 +22,29 @@
 #include <sonnet/speller.h>
 #include <kdebug.h>
 
+/// temporary namespace for string manipulation fuctions
+/// could move into KStringHandler eventually
+namespace ParleyStringHandler {
+    QString stripAccents(const QString& original){
+        QString noAccents;
+        QString decomposed = original.normalized(QString::NormalizationForm_D);
+        for (int i = 0; i < decomposed.length(); ++i) {
+            if ( decomposed[i].category() != 1 ) {
+                noAccents.append(decomposed[i]);
+    kDebug() << "Letter: " << decomposed[i] << " category: " << decomposed[i].category();
+            }
+        return noAccents;
+        }
+    }
+}
+
+
 const double AnswerValidator::LEVENSHTEIN_THRESHOLD = 0.2;
 const double AnswerValidator::UNRELATED_WORD_GRADE = 0.0;
 const double AnswerValidator::FALSE_FRIEND_GRADE = 0.0;
 const double AnswerValidator::SPELLING_MISTAKE_PER_LETTER_PUNISHMENT = 0.2;
 const double AnswerValidator::CAPITALIZATION_MISTAKE_PUNISHMENT = 0.1;
+const double AnswerValidator::ACCENT_MISTAKE_PUNISHMENT = 0.1;
 const double AnswerValidator::WRONG_ARTICLE_PUNISHMENT = 0.1;
 
 AnswerValidator::AnswerValidator(KEduVocDocument* doc)
@@ -257,6 +275,8 @@ void AnswerValidator::defaultCorrector()
 }
 
 
+
+
 void AnswerValidator::checkUserAnswer(const QString & userAnswer)
 {
     if ( m_entry == 0 ) {
@@ -265,8 +285,6 @@ void AnswerValidator::checkUserAnswer(const QString & userAnswer)
     }
 
     m_userAnswer = userAnswer;
-
-kDebug() << "simpleCorrector with " << m_solution << m_userAnswer;
 
 //     simpleCorrector();
     defaultCorrector();
@@ -289,33 +307,6 @@ kDebug() << "CheckUserAnswer with two strings. The one string version is prefere
 
 void AnswerValidator::wordCompare(const QString & solution, const QString & userWord, double& grade, TestEntry::ErrorTypes& errorTypes)
 {
-
-
-
-
-kDebug() << "Decompositions: "
-    << QChar::fromLatin1('a').decomposition()
-    << QChar::fromLatin1('ä').decomposition()
-    << QChar::fromLatin1('A').decomposition()
-    << QChar::fromLatin1('e').decomposition()
-    << QChar::fromLatin1('é').decomposition();
-
-
-QChar a = 'a';
-QChar a_big = 'A';
-QChar ae = 'ä';
-QChar a_ring = 'å';
-kDebug() << "Decompositions: "
-    << a << a.decomposition() << a.decompositionTag()
-    << ae << ae.decomposition() << ae.decompositionTag() << ae.combiningClass()
-    << a_big << a_big.decomposition() << a_big.combiningClass()
-    << a_ring << a_ring.decomposition() << a_ring.combiningClass();
-
-
-
-
-
-
     ///@todo add to other errors... ?
 
     // nothing to be done here if it's right
@@ -325,8 +316,14 @@ kDebug() << "Decompositions: "
         return;
     }
     if ( solution.toLower() == userWord.toLower() ) {
-        grade = CAPITALIZATION_MISTAKE_PUNISHMENT;
+        grade = 1.0 - CAPITALIZATION_MISTAKE_PUNISHMENT;
         errorTypes = TestEntry::CapitalizationMistake;
+        return ;
+    }
+
+    if ( ParleyStringHandler::stripAccents(solution) == ParleyStringHandler::stripAccents(userWord) ) {
+        grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
+        errorTypes = TestEntry::AccentMistake;
         return ;
     }
 
