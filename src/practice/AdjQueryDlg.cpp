@@ -170,7 +170,7 @@ void AdjQueryDlg::verifyClicked()
     if (all_known) {
 //  know_it->setDefault(true);
         resultCorrect();
-        emit nextEntry();
+        emit showSolutionFinished();
     } else {
         mw->dont_know->setDefault(true);
         setAnswerTainted();

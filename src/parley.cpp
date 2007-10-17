@@ -624,7 +624,8 @@ void ParleyApp::startPractice()
     removeEntryDlg();
     hide();
 
-    TestEntryManager testManager(m_doc);
+    TestEntryManager testManager(m_doc, this);
+    testManager.startPractice();
 
     show();
 }

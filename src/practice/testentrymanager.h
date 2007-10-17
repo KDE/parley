@@ -40,29 +40,24 @@ class KRandomSequence;
 class PracticeDialog;
 
 class TestEntryManager
+    :public QObject
 {
+Q_OBJECT
 public:
+    // should go...
+    enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopPractice };
+
     /**
      * Create a collection of entries to be practiced.
      * @param doc
      */
-    TestEntryManager(KEduVocDocument *doc);
+    TestEntryManager(KEduVocDocument *doc, QObject * parent = 0);
     /**
      * Default ctor
      */
     ~TestEntryManager();
 
-    /**
-     * This is called to get the next entry to show to the user.
-     * @return
-     */
-    TestEntry* nextEntry();
-
-    /**
-     * The user has answered with this result, internal update.
-     * @param result the result (PracticeDialog)
-     */
-    void result(int result);
+    void startPractice();
 
     /**
      * The number of entries in the practice
@@ -91,9 +86,22 @@ public:
     int statisticTotalSkipKnown();
     int statisticTotalSkipUnknown();
 
+///@todo can this be private? we only connect from within
+private slots:
+    /**
+     * The user has answered with this result, internal update.
+     * @param result the result (PracticeDialog)
+     */
+    void slotResult(TestEntryManager::Result res);
+
+    /**
+     * This is called to get the next entry to show to the user.
+     * @return
+     */
+    void setNextEntry();
+
 private:
     void createPracticeDialog();
-
 
     /**
      * Check if @p expr is valid for the current query settings.
@@ -121,6 +129,10 @@ private:
     int m_fromTranslation;
     int m_toTranslation;
     int m_testType;
+
+    /// after x timeouts we pause the whole show
+    int m_practiceTimeoutCounter;
+
 
     /// All entries in the test.
     QList<TestEntry*> m_allTestEntries;

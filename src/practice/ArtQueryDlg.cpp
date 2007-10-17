@@ -205,7 +205,7 @@ void ArtQueryDlg::verifyClicked()
 
     if (correct) {
         resultCorrect();
-        emit nextEntry();
+        emit showSolutionFinished();
     } else {
         mw->dont_know->setDefault(true);
     }

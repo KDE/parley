@@ -181,7 +181,7 @@ void SimpleQueryDlg::verifyClicked()
     double result = verifyAnswer(mw->answerField->text(), answerstring);
     if ( result == 1.0 ) {
         resultCorrect();
-        emit nextEntry();
+        emit showSolutionFinished();
     } else {
         setWidgetStyle( mw->answerField, NegativeResult );
         setAnswerTainted();

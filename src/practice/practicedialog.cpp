@@ -27,7 +27,6 @@
 #include "entry-dialogs/EntryDlg.h"
 
 #include <KLocale>
-#include <KMessageBox>
 #include <KColorScheme>
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
@@ -40,8 +39,6 @@
 #include <QTimer>
 #include <QGraphicsView>
 #include <QGraphicsItem>
-
-#define MAX_QUERY_TIMEOUT 3
 
 PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
@@ -57,7 +54,6 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
     m_doc = doc;
     m_answerTimer = 0;
     m_showSolutionTimer = 0;
-    num_practiceTimeout = 0;
 
     m_player = 0;
     m_validator = new AnswerValidator(m_doc);
@@ -94,7 +90,7 @@ QString  PracticeDialog::getNOKComment(int percent_done)
 void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);
-    slotResult(StopIt);
+    signalResult(TestEntryManager::StopPractice);
 }
 
 
@@ -112,7 +108,7 @@ void PracticeDialog::timeoutReached()
         if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Show) {
             showSolution();
         } else if (Prefs::practiceTimeout() == Prefs::EnumPracticeTimeout::Continue) {
-            slotResult(Timeout); ///@todo check if this works - esp with 3x timeout
+            signalResult(TestEntryManager::Timeout); ///@todo check if this works - esp with 3x timeout
             continueButtonClicked();
         }
     }
@@ -177,19 +173,19 @@ void PracticeDialog::editEntry()
 
     // punish with a don't know
     kDebug() << "Edit entry. For now count this attempt as wrong!";
-    slotResult(Wrong);
+    signalResult(TestEntryManager::Wrong);
     continueButtonClicked();
 }
 
 void PracticeDialog::skipKnown()
 {
-    slotResult(SkipKnown);
+    signalResult(TestEntryManager::SkipKnown);
     continueButtonClicked();
 }
 
 void PracticeDialog::skipUnknown()
 {
-    slotResult(SkipUnknown);
+    signalResult(TestEntryManager::SkipUnknown);
     continueButtonClicked();
 }
 
@@ -197,16 +193,16 @@ void PracticeDialog::resultCorrect()
 {
 //     audioPlayCorrect();
     if (!m_answerTainted) {
-        slotResult(Correct);
+        signalResult(TestEntryManager::Correct);
     } else {
         kDebug() << "Correct answer but with help (counts as wrong).";
-        slotResult(Wrong);
+        signalResult(TestEntryManager::Wrong);
     }
 }
 
 void PracticeDialog::resultWrong()
 {
-    slotResult(Wrong);
+    signalResult(TestEntryManager::Wrong);
 }
 
 void PracticeDialog::audioPlayFromIdentifier()
@@ -343,7 +339,7 @@ void PracticeDialog::continueButtonClicked()
     if ( m_showSolutionTimer ) {
         m_showSolutionTimer->stop();
     }
-    nextEntry();
+    emit showSolutionFinished();
 }
 
 
@@ -360,59 +356,5 @@ double PracticeDialog::verifyAnswer(const QString & solution, const QString & us
     return m_entry->lastPercentage();
 }
 
-
-void PracticeDialog::nextEntry()
-{
-    // get a new entry
-    m_entry = m_entryManager->nextEntry();
-    if ( m_entry == 0 ) {
-        accept();
-        return;
-    }
-
-    setEntry(m_entry);
-    setProgressCounter(m_entryManager->totalEntryCount()-m_entryManager->activeEntryCount(), m_entryManager->totalEntryCount());
-}
-
-
-void PracticeDialog::slotResult(PracticeDialog::Result res)
-{
-kDebug() << "result: " << res;
-    m_doc->setModified();
-
-    // handle the result (upgrade grades etc)
-    m_entryManager->result(res);
-
-    // check if stop was requested
-    if ( res == PracticeDialog::StopIt ) {
-        accept();
-        return;
-    }
-
-    if ( res == PracticeDialog::Timeout ) {
-        // too many timeouts in a row will hold the test
-        if (++num_practiceTimeout >= MAX_QUERY_TIMEOUT) {
-            const QString not_answered = i18n(
-                "The test dialog was not answered several times in a row.\n"
-                "It is assumed that there is currently nobody in front of "
-                "the screen, and for that reason the query is stopped.");
-
-            KMessageBox::information(this, not_answered, i18n("Stopping Test"));
-        }
-    } else {
-        num_practiceTimeout = 0;
-    }
-}
-
-int PracticeDialog::exec()
-{
-    nextEntry();
-    return KDialog::exec();
-}
-
-void PracticeDialog::setTestEntryManager(TestEntryManager * testEntryManager)
-{
-    m_entryManager = testEntryManager;
-}
 
 #include "practicedialog.moc"

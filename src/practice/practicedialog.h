@@ -53,9 +53,6 @@ class PracticeDialog : public KDialog
 {
 Q_OBJECT
 public:
-
-    enum Result { Correct, SkipKnown, SkipUnknown, Wrong, Timeout, StopIt };
-
     enum WidgetStyle {
         Default,        /**< Normal font, normal color (black) */
         PositiveResult, /**< Green text, bold */
@@ -92,6 +89,10 @@ public:
      */
     virtual void setProgressCounter(int current, int total) = 0;
 
+signals:
+    void signalResult(TestEntryManager::Result);
+    void showSolutionFinished();
+
 public slots:
     /**
      * Let the dialog show the solution.
@@ -108,8 +109,6 @@ public slots:
      A practice dialog can call this to allow editing an entry.
      */
     void editEntry();
-
-    int exec();
 
 protected slots:
     /**
@@ -138,17 +137,6 @@ protected slots:
     void continueButtonClicked();
 
 protected:
-    /**
-     * Set the next entry from m_entryManager or return if all vocabulary have been practiced.
-     */
-    void nextEntry();
-
-    /**
-     *
-     * @param res
-     */
-    void slotResult(PracticeDialog::Result res);
-
     void resultCorrect();
     void resultWrong();
 
@@ -226,7 +214,7 @@ protected:
     bool answerTainted();
 
     /// The vocabulary will come from here
-    TestEntryManager    *m_entryManager;
+//     TestEntryManager    *m_entryManager;
 
 private:
 
@@ -243,10 +231,6 @@ private:
 
     /// Advanced string evaluation
     AnswerValidator* m_validator;
-
-    /// after x timeouts we pause the whole show
-    int num_practiceTimeout;
-
 };
 
 

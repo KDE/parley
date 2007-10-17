@@ -174,7 +174,7 @@ void VerbQueryDlg::setEntry(TestEntry* entry)
     if ( m_tenses.isEmpty() ) {
         kDebug() << "Warning, no conjugations found.";
         resultCorrect(); // don't ask this again
-        emit nextEntry();
+        emit showSolutionFinished();
         return;
     }
 
@@ -388,7 +388,7 @@ void VerbQueryDlg::verifyClicked()
         m_tenses.removeAt(m_tenses.indexOf(m_currentTense));
         if ( m_tenses.isEmpty() ) {
             resultCorrect();
-            emit nextEntry();
+            emit showSolutionFinished();
         } else {
             setupTense( m_tenses.value(0));
         }
