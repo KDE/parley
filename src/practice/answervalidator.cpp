@@ -32,8 +32,9 @@ namespace ParleyStringHandler {
             if ( decomposed[i].category() != 1 ) {
                 noAccents.append(decomposed[i]);
             }
-        return noAccents;
         }
+kDebug() << original << " without accents: " << noAccents;
+        return noAccents;
     }
 }
 
@@ -319,7 +320,6 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         errorTypes = TestEntry::CapitalizationMistake;
         return ;
     }
-
     if ( ParleyStringHandler::stripAccents(solution) == ParleyStringHandler::stripAccents(userWord) ) {
         grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
         errorTypes = TestEntry::AccentMistake;
@@ -420,7 +420,6 @@ void AnswerValidator::sentenceAnalysis()
     for ( int i = 0; i < pairs.count(); i++ ) {
         kDebug() << "Possible pair: " << pairs.value(i).first << " and " << pairs.value(i).second;
     }
-
 
 
     QString correction;
