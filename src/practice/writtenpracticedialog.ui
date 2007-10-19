@@ -22,9 +22,6 @@
     <height>0</height>
    </size>
   </property>
-  <property name="windowTitle" >
-   <string/>
-  </property>
   <layout class="QHBoxLayout" >
    <item>
     <widget class="QGraphicsView" name="imageGraphicsView" >
