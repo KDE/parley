@@ -63,9 +63,10 @@ LanguageDialog::~LanguageDialog()
 void LanguageDialog::accept()
 {
     emit signalCommitData();
-//     emit deletePages();
 
+    // sort
     qSort(m_deleteList.begin(), m_deleteList.end());
+    // begin deletion at the end to preserve indices
     for ( int listIndex = m_deleteList.count() - 1; listIndex >= 0; listIndex-- ) {
         kDebug() << "Delete Language: " << m_deleteList.value(listIndex);
         if ( KMessageBox::warningYesNo(this, i18n("Really delete language: %1?", m_doc->identifier(m_deleteList.value(listIndex)).name()), i18n("Remove Language")) == KMessageBox::Yes ) {
