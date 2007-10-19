@@ -170,19 +170,8 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             }
         }
         if (role == Qt::DecorationRole) {
-            switch (section) {
-            case 0:
-                return QVariant();
-                break;
-            case 1:
-                return QVariant();
-                break;
-            default:
-                LanguageSettings currentSettings(m_doc->identifier(section - KV_COL_TRANS).locale());
-                currentSettings.readConfig();
-                QString icon = currentSettings.icon();
-                return QPixmap(icon);
-                break;
+            if ( m_headerPixmaps.contains(section) ) {
+                return m_headerPixmaps.value(section);
             }
         }
         if (role == Qt::SizeHintRole) {
@@ -236,17 +225,6 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
 bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
 {
     if (orientation == Qt::Horizontal) {
-        if (role == Qt::EditRole) {
-            /// @todo handle?
-            /*if (section == 0)
-              /// @todo handle
-            else if (section == 1)
-              /// @todo handle
-            else*/
-            if (section >= 2) {
-                m_doc->identifier(section - 2).setName(value.toString());
-            }
-        }
         if (role == Qt::SizeHintRole) {
             switch (section) {
             case 0:
@@ -257,7 +235,6 @@ bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, cons
                 m_doc->setSizeHint(section - KV_COL_TRANS, qvariant_cast<QSize>(value).width());
             }
         }
-
         emit headerDataChanged(orientation, section, section);
         return true;
     }
@@ -348,4 +325,20 @@ void KVTTableModel::appendEntry()
     endInsertRows();
 }
 
+void KVTTableModel::loadLanguageSettings()
+{
+    reset();
+    // Set the language headers of the table.
+    for (int i=0; i<m_doc->identifierCount(); i++){
+        LanguageSettings currentSettings(m_doc->identifier(i).locale());
+        currentSettings.readConfig();
+        QString icon = currentSettings.icon();
+        m_headerPixmaps[i + KV_COL_TRANS] = QPixmap(icon);
+
+        emit headerDataChanged(Qt::Horizontal, i + KV_COL_TRANS, i + KV_COL_TRANS);
+    }
+}
+
 #include "kvttablemodel.moc"
+
+

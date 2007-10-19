@@ -320,7 +320,7 @@ void AnswerValidator::wordCompare(const QString & solution, const QString & user
         errorTypes = TestEntry::CapitalizationMistake;
         return ;
     }
-    if ( ParleyStringHandler::stripAccents(solution) == ParleyStringHandler::stripAccents(userWord) ) {
+    if ( ParleyStringHandler::stripAccents(solution) ==    ParleyStringHandler::stripAccents(userWord) ) {
         grade = 1.0 - ACCENT_MISTAKE_PUNISHMENT;
         errorTypes = TestEntry::AccentMistake;
         return ;

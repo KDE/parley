@@ -88,10 +88,13 @@ public slots:
     void dataChangedFromOutside(const QModelIndex& topLeft, const QModelIndex& bottomRight);
     void appendEntry();
 
+    void loadLanguageSettings();
+
 private:
     KEduVocDocument * m_doc;
     QPixmap m_pixInactive;
     QPixmap m_pixInQuery;
+    QMap<int, QPixmap> m_headerPixmaps;
 
     friend class ParleyApp;
     friend class KVTStatisticsDialog;

@@ -427,8 +427,6 @@ void ParleyApp::initDoc()
         createExampleEntries();
 
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-
-        m_tableModel->setDocument(m_doc);
     }
 }
 

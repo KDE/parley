@@ -160,6 +160,7 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
 
         m_tableModel->setDocument(m_doc);
         m_tableModel->reset();
+        m_tableModel->loadLanguageSettings();
 
         removeProgressBar();
         if (addRecent) { // open sample does not go into recent
@@ -419,10 +420,7 @@ void ParleyApp::newDocumentWizard()
 
     initializeDefaultGrammar();
 
-    // Set the language headers of the table.
-    for (int i=0; i<m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_COL_TRANS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
-    }
+    m_tableModel->loadLanguageSettings();
 
     int lessonIndex = m_lessonModel->addLesson();
 
@@ -489,9 +487,7 @@ void ParleyApp::createExampleEntries()
     m_doc->identifier(1).setLocale( locale );
 
     // Set the language headers of the table.
-    for (int i=0; i < m_doc->identifierCount(); i++){
-        m_tableModel->setHeaderData(i+KV_COL_TRANS, Qt::Horizontal, m_doc->identifier(i).name(), Qt::EditRole);
-    }
+    m_tableModel->loadLanguageSettings();
 
     int lessonIndex = m_lessonModel->addLesson();
 

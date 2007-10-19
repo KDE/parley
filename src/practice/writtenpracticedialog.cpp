@@ -44,7 +44,6 @@
 #include <QList>
 #include <QTimer>
 
-
 WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i18n("Written Practice"), doc, parent)
 {
     mw = new Ui::WrittenPracticeDialog();
@@ -409,6 +408,7 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 void WrittenPracticeDialog::verifyClicked()
 {
     QString userAnswer = mw->answerLineEdit->text();
+
     double result = verifyAnswer(userAnswer);
     TestEntry::ErrorTypes errors = m_entry->lastErrors();
 
