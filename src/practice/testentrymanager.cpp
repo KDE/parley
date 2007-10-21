@@ -191,7 +191,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         if ( grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount() ) {
             validWrongCount++;
         } else { remove = true; }
-        if ( grade.queryCount() >= Prefs::practiceMinimumTimesAsked() && grade.queryCount() <= Prefs::practiceMaximumTimesAsked() ) {
+        if ( grade.practiceCount() >= Prefs::practiceMinimumTimesAsked() && grade.practiceCount() <= Prefs::practiceMaximumTimesAsked() ) {
             validPracticeCount++;
         } else { remove = true; }
         if ( grade.grade() >= Prefs::practiceMinimumGrade() && grade.grade() <= Prefs::practiceMaximumGrade() ) {
@@ -298,7 +298,7 @@ void TestEntryManager::expireEntries()
         for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
             int grade = m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
 
-            const QDateTime &date =  m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate();
+            const QDateTime &date =  m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate();
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
@@ -307,7 +307,7 @@ void TestEntryManager::expireEntries()
                 m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
 
                 // prevent from endless dropping
-                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).setQueryDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
+                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -330,7 +330,7 @@ bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool us
 
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).queryDate(), Prefs::block())) {
+    if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
         return false;
     }
     return true;
@@ -537,7 +537,7 @@ kDebug() << "result: " << res;
             const QString not_answered = i18n(
                 "The test dialog was not answered several times in a row.\n"
                 "It is assumed that there is currently nobody in front of "
-                "the screen, and for that reason the query is stopped.");
+                "the screen, and for that reason the practice is stopped.");
 
             KMessageBox::information(m_practiceDialog, not_answered, i18n("Stopping Test"));
         }
@@ -545,7 +545,7 @@ kDebug() << "result: " << res;
         m_practiceTimeoutCounter = 0;
     }
 
-    // update general stuff (count, date), unless the query has been stopped.
+    // update general stuff (count, date), unless the practice has been stopped.
     m_doc->setModified();
 
     // change statistics, remove entry from test, if aplicable

@@ -133,9 +133,9 @@ void TestEntry::incSkipUnknown()
 
 void TestEntry::update()
 {
-    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incQueryCount();
+    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).incPracticeCount();
     m_statisticCount++;
-    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).setQueryDate( QDateTime::currentDateTime() );
+    exp->translation(m_gradeTo).gradeFrom(m_gradeFrom).setPracticeDate( QDateTime::currentDateTime() );
 }
 
 int TestEntry::gradeFrom()

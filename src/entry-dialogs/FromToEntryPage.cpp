@@ -128,11 +128,11 @@ void FromToEntryPage::setData(const QList<int>& entries)
 
     queryDateEdit->setDateTime(
         firstEntry->translation(m_translationTo)
-        .gradeFrom(m_translationFrom).queryDate() );
+        .gradeFrom(m_translationFrom).practiceDate() );
 
     gradebox->setCurrentIndex(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).grade());
 
-    totalCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).queryCount());
+    totalCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).practiceCount());
 
     badCountEdit->setValue(firstEntry->translation(m_translationTo).gradeFrom(m_translationFrom).badCount());
 
@@ -149,18 +149,18 @@ void FromToEntryPage::setData(const QList<int>& entries)
             }
             // date
             if ( firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).queryDate()
+                    .gradeFrom(m_translationFrom).practiceDate()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).queryDate() ) {
+                    .gradeFrom(m_translationFrom).practiceDate() ) {
                 queryDateEdit->setDate(queryDateEdit->minimumDate());
                 queryDateEdit->setTime(queryDateEdit->minimumTime());
             }
 
             // total count
             if ( firstEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).queryCount()
+                    .gradeFrom(m_translationFrom).practiceCount()
                     != currentEntry->translation(m_translationTo)
-                    .gradeFrom(m_translationFrom).queryCount() ) {
+                    .gradeFrom(m_translationFrom).practiceCount() ) {
                 totalCountEdit->clear();
             }
 
@@ -202,13 +202,13 @@ kDebug() << "Grade page commit data: " << m_translationFrom << m_translationTo;
             m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setGrade( gradebox->currentIndex() );
         }
         if ( m_totalCountChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setQueryCount( totalCountEdit->value() );
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeCount( totalCountEdit->value() );
         }
         if ( m_wrongCountChanged ) {
             m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setBadCount( badCountEdit->value() );
         }
         if ( m_practiceDateChanged ) {
-            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setQueryDate( queryDateEdit->dateTime() );
+            m_doc->entry(entry)->translation(m_translationTo).gradeFrom(m_translationFrom).setPracticeDate( queryDateEdit->dateTime() );
         }
     }
 }

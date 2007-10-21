@@ -98,7 +98,7 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             } else if (index.column() == 2) { // original
                 QList<QVariant> result;
                 for (int i = 1; i < m_doc->identifierCount(); ++i) {
-                    if (m_doc->entry(index.row())->translation(0).gradeFrom(i).queryCount() != 0)
+                    if (m_doc->entry(index.row())->translation(0).gradeFrom(i).practiceCount() != 0)
                         result.append(QVariant(m_doc->entry(index.row())->translation(0).gradeFrom(i).grade()));
                     else
                         result.append(QVariant(KV_NORM_GRADE));
@@ -188,8 +188,9 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
             }
         }
         return QVariant();
-    } else
+    } else {
         return QAbstractTableModel::headerData(section, orientation, role);
+    }
 }
 
 
