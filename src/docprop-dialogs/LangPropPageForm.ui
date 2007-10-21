@@ -464,15 +464,22 @@
   <tabstop>indef_natural</tabstop>
   <tabstop>first_singular</tabstop>
   <tabstop>second_singular</tabstop>
-  <tabstop>maleFemaleDifferCheckBox</tabstop>
   <tabstop>thirdM_singular</tabstop>
   <tabstop>thirdF_singular</tabstop>
   <tabstop>thirdN_singular</tabstop>
+  <tabstop>dualFirstLineEdit</tabstop>
+  <tabstop>dualSecondLineEdit</tabstop>
+  <tabstop>dualThirdMaleLineEdit</tabstop>
+  <tabstop>dualThirdFemaleLineEdit</tabstop>
+  <tabstop>dualThirdNeutralLineEdit</tabstop>
   <tabstop>first_plural</tabstop>
   <tabstop>second_plural</tabstop>
   <tabstop>thirdM_plural</tabstop>
   <tabstop>thirdF_plural</tabstop>
   <tabstop>thirdN_plural</tabstop>
+  <tabstop>maleFemaleDifferCheckBox</tabstop>
+  <tabstop>neutralCheckBox</tabstop>
+  <tabstop>dualCheckBox</tabstop>
  </tabstops>
  <resources/>
  <connections/>
