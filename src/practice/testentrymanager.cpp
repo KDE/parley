@@ -116,7 +116,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
     // append lesson entries
     foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
-        if ( lesson.inQuery() ) {
+        if ( lesson.inPractice() ) {
             int lessonLimit = m_allTestEntries.count();
             foreach ( int entryIndex, lesson.entries() ) {
                 if ( Prefs::testOrderLesson() ) {

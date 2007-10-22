@@ -160,7 +160,7 @@ QVariant KVTLessonModel::data(const QModelIndex &index, int role) const
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (m_doc->lesson(index.row()).inQuery())
+        if (m_doc->lesson(index.row()).inPractice())
             return Qt::Checked;
         else
             return Qt::Unchecked;
@@ -185,10 +185,10 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 
     /** checkboxes */
     if (role == Qt::CheckStateRole) {
-        if (!m_doc->lesson(index.row()).inQuery())
-            m_doc->lesson(index.row()).setInQuery(true);
+        if (!m_doc->lesson(index.row()).inPractice())
+            m_doc->lesson(index.row()).setInPractice(true);
         else
-            m_doc->lesson(index.row()).setInQuery(false);
+            m_doc->lesson(index.row()).setInPractice(false);
         m_doc->setModified();
         emit dataChanged(index, index);
         return true;
@@ -197,27 +197,27 @@ bool KVTLessonModel::setData(const QModelIndex &index, const QVariant &value, in
 }
 
 
-void KVTLessonModel::setAllLessonsInQuery()
+void KVTLessonModel::setAllLessonsInPractice()
 {
     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
-        m_doc->lesson(lesson).setInQuery(true);
+        m_doc->lesson(lesson).setInPractice(true);
     }
 
     // this is not too great - say all data has changed
     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
-    //emit signalLessonsInQueryChanged(intLessons);
+    //emit signalLessonsInPracticeChanged(intLessons);
 }
 
 
-void KVTLessonModel::setNoLessonsInQuery()
+void KVTLessonModel::setNoLessonsInPractice()
 {
     for (int lesson = 0; lesson < m_doc->lessonCount(); lesson++) {
-        m_doc->lesson(lesson).setInQuery(false);
+        m_doc->lesson(lesson).setInPractice(false);
     }
 
     // this is not too great - say all data has changed
     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
-    //emit signalLessonsInQueryChanged(intLessons);
+    //emit signalLessonsInPracticeChanged(intLessons);
 }
 
 int KVTLessonModel::addLesson(const QString &lessonName)

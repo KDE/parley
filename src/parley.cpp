@@ -313,7 +313,7 @@ void ParleyApp::makeLessonVisibleInTable(int lessonIndex)
         break;
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
         m_doc->setCurrentLesson(lessonIndex);
-        if ( !m_doc->lesson(lessonIndex).inQuery() ) {
+        if ( !m_doc->lesson(lessonIndex).inPractice() ) {
             m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
         }
         m_sortFilterModel->clear();

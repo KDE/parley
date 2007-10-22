@@ -94,9 +94,9 @@ public:
     }
 
     /** Make all lessons checked for query */
-    void setAllLessonsInQuery();
+    void setAllLessonsInPractice();
     /** Make all lessons UNchecked for query */
-    void setNoLessonsInQuery();
+    void setNoLessonsInPractice();
 
     // add a lesson - returns lesson index
     int addLesson(const QString &lessonName = QString());
@@ -118,7 +118,7 @@ public:
      */
     void splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order);
 //signals:
-    //void signalLessonsInQueryChanged(QList<int> intLessons);
+    //void signalLessonsInPracticeChanged(QList<int> intLessons);
 private:
     /** The data file */
     KEduVocDocument *m_doc;

@@ -68,12 +68,12 @@ void KVTLessonView::initializeSelection()
 
 void KVTLessonView::slotCheckAllLessons()
 {
-    m_model->setAllLessonsInQuery();
+    m_model->setAllLessonsInPractice();
 }
 
 void KVTLessonView::slotCheckNoLessons()
 {
-    m_model->setNoLessonsInQuery();
+    m_model->setNoLessonsInPractice();
 }
 
 void KVTLessonView::slotCreateNewLesson()

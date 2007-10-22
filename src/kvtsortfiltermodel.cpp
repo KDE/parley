@@ -81,7 +81,7 @@ bool KVTSortFilterModel::checkLesson(int sourceRow) const
     case Prefs::EnumLessonEditingSelection::LessonsInQuery:
         return m_sourceModel->document()->lesson(
             m_sourceModel->document()->entry(sourceRow)->lesson()
-            ).inQuery();
+            ).inPractice();
         break;
     case Prefs::EnumLessonEditingSelection::AllLessons:
         return true;
