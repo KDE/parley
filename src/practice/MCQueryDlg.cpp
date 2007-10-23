@@ -259,8 +259,9 @@ void MCQueryDlg::showContinueButton(bool show)
     if ( show ) {
         stopAnswerTimer();
         mw->continueButton->setDefault(true);
-        startShowSolutionTimer();
-
+        if ( Prefs::showSolutionAfterAnswerTime() > 0 ) {
+            startShowSolutionTimer();
+        }
         // enable the sound for the solution. eventually all entries with sound should get their button enabled.
         if ( Prefs::practiceSoundEnabled() ) {
             if ( !m_entry->exp->translation(Prefs::solutionLanguage())
