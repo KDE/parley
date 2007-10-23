@@ -89,7 +89,7 @@ void EditLanguageDialogPage::initialize()
     foreach(QString code, countrylist) {
         QString country = KGlobal::dirs()->findResource("locale",
                 QString("l10n/%1/entry.desktop").arg(code));
-        KConfig entry(country, KConfig::OnlyLocal);
+        KConfig entry(country, KConfig::SimpleConfig);
         KConfigGroup group = entry.group("KCM Locale");
         QString name = group.readEntry("Name", i18n("without name"));
 
