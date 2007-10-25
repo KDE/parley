@@ -128,7 +128,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             s = m_entry->exp->translation(column).example();
             answerstring = m_entry->exp->translation(column).text().simplified();
             int pos = -1;
-            while ((pos = s.indexOf(answerstring)) > 0) {
+            while ((pos = s.indexOf(answerstring)) >= 0) {
                 s.remove(pos, answerstring.length());
                 s.insert(pos, "<font color=\"#FF0000\"><b>...</b></font>");
             }
