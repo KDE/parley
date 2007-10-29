@@ -60,30 +60,40 @@ AnswerValidator::~AnswerValidator()
     delete m_speller;
 }
 
-void AnswerValidator::setTestEntry(TestEntry * entry, int translation)
+
+void AnswerValidator::setLanguage(int translation)
 {
-    m_entry = entry;
     m_translation = translation;
-    if (m_entry) {
-        m_solution = m_entry->exp->translation(m_translation).text();
-    }
 
-kDebug() << "set default solution:" << m_solution;
-
+    // default: try locale
     if ( !m_speller ) {
         m_speller = new Sonnet::Speller(m_doc->identifier(translation).locale());
     } else {
         m_speller->setLanguage(m_doc->identifier(translation).locale());
     }
 
+    // we might succeed with language name instead.
+    if ( !m_speller->isValid() ) {
+        m_speller->setLanguage(m_doc->identifier(translation).name());
+    }
+
     if ( !m_speller->isValid() ) {
         kDebug() << "No spellchecker for current language found: " << m_doc->identifier(m_translation).locale();
         kDebug() << "Avaliable dictionaries: " << m_speller->availableLanguages()
-            << "\n names: " << m_speller->availableLanguageNames()
-            << "\n backends: " << m_speller->availableBackends();
+                << "\n names: " << m_speller->availableLanguageNames()
+                << "\n backends: " << m_speller->availableBackends();
         m_spellerAvailable = false;
     } else {
         m_spellerAvailable = true;
+    }
+}
+
+
+void AnswerValidator::setTestEntry(TestEntry * entry)
+{
+    m_entry = entry;
+    if (m_entry) {
+        m_solution = m_entry->exp->translation(m_translation).text();
     }
 }
 
@@ -484,4 +494,10 @@ QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringLis
     } while ( min < MAX_LEVENSHTEIN );
 
     return pairList;
+}
+
+
+bool AnswerValidator::spellcheckerAvailable()
+{
+        return m_spellerAvailable;
 }

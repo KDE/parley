@@ -40,7 +40,13 @@ public:
      * Sets the current entry. This has to be set before trying to validate! It will store the results.
      * @param expression
      */
-    void setTestEntry(TestEntry* entry, int translation);
+    void setTestEntry(TestEntry* entry);
+
+    /**
+     * Set the language for the spell checker. (Identifierindex)
+     * @param translation 
+     */
+    void setLanguage(int translation);
 
     /**
      * Checks the user answer. If the answer was correct, 1.0 is set as lastPercentage for the TestEntry,
