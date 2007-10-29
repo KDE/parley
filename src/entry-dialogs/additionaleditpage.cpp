@@ -115,6 +115,11 @@ void AdditionalEditPage::commitData()
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( audioUrlRequester->url() );
 
     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( imageUrlRequester->url() );
+    foreach (int j, m_doc->entry(m_currentRow)->translationIndices()) {
+        if ( m_doc->entry(m_currentRow)->translation(j).imageUrl().isEmpty() ) {
+            m_doc->entry(m_currentRow)->translation(j).setImageUrl( imageUrlRequester->url() );
+        }
+    }
 }
 
 
