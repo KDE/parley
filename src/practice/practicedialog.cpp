@@ -27,7 +27,7 @@
 #include "entry-dialogs/EntryDlg.h"
 
 #include <KLocale>
-#include <KColorScheme>
+#include <KPassivePopup>
 #include <Phonon/MediaObject>
 #include <Phonon/Path>
 #include <Phonon/AudioOutput>
@@ -57,6 +57,17 @@ PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QW
 
     m_player = 0;
     m_validator = new AnswerValidator(m_doc);
+    m_validator->setLanguage(Prefs::solutionLanguage());
+
+    /// @todo: uncomment as soon as new strings may be added
+    /*
+    if ( !m_validator->spellcheckerAvailable() ) {
+        KPassivePopup* pop = new KPassivePopup(this);
+        pop->setTimeout(10000);
+        pop->setView(i18nc("@popupmessage", "Either the language set up is incorrect or no spellchecker was installed for %1 (%2).", m_doc->identifier(Prefs::solutionLanguage()).name(), m_doc->identifier(Prefs::solutionLanguage()).locale()), i18nc("@title of a popup", "No Spell Checker Available"));
+        pop->show();
+    }
+    */
 }
 
 
@@ -145,7 +156,7 @@ void PracticeDialog::stopAnswerTimer()
 void PracticeDialog::setEntry(TestEntry * entry)
 {
     m_entry = entry;
-    m_validator->setTestEntry(m_entry, Prefs::solutionLanguage());
+    m_validator->setTestEntry(m_entry);
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;
