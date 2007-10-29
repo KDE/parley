@@ -435,9 +435,10 @@ void AnswerValidator::sentenceAnalysis()
 
     int levenshtein = levenshteinDistance(m_solution, m_userAnswer);
 
-kDebug() << correction;
-kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
-m_entry->setLastPercentage(1.0 - ((double)levenshtein/ qMax(m_solution.length(), m_userAnswer.length())));
+    kDebug() << correction;
+    kDebug() << "IMPLEMENT ME TO ACTUALLY EVALUATE THE ABOVE AND GENERATE A GRADE!";
+    m_entry->setLastPercentage(1.0 - ((double)levenshtein/ qMax(m_solution.length(), m_userAnswer.length())));
+    m_entry->setLastErrors(TestEntry::UnknownMistake);
 }
 
 QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )
