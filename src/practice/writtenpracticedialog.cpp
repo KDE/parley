@@ -772,7 +772,9 @@ void WrittenPracticeDialog::showContinueButton(bool show)
             audioPlayToIdentifier();
         }
         if ( !answerTainted() ) {
-            startShowSolutionTimer();
+            if ( Prefs::showSolutionAfterAnswerTime() > 0 ) {
+                startShowSolutionTimer();
+            }
         }
     } else {
         mw->verify->setDefault(true);
