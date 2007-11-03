@@ -298,9 +298,13 @@ void ParleyApp::slotNewEntry()
     // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
     editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 
+    QModelIndex currentIndex = m_sortFilterModel->index(
+            m_sortFilterModel->rowCount(QModelIndex()) - 1, KV_COL_TRANS);
+
     m_tableView->selectionModel()->setCurrentIndex(
-        m_sortFilterModel->mapFromSource(m_tableModel->index( m_sortFilterModel->rowCount( QModelIndex() ) - 1, KV_COL_TRANS)),
-       QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+        currentIndex, QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
+
+    m_tableView->edit(currentIndex);
 }
 
 
