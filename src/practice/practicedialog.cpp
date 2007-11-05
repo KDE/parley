@@ -80,24 +80,6 @@ PracticeDialog::~PracticeDialog()
 }
 
 
-QString  PracticeDialog::getOKComment(int percent_done)
-{
-    return i18n("Well done, you knew the correct answer. %1% done.", percent_done);
-}
-
-
-QString  PracticeDialog::getTimeoutComment(int percent_done)
-{
-    return i18n("You waited too long to enter the correct answer. %1% done.", percent_done);
-}
-
-
-QString  PracticeDialog::getNOKComment(int percent_done)
-{
-    return i18n("Your answer was wrong. %1% done.", percent_done);
-}
-
-
 void PracticeDialog::closeEvent(QCloseEvent *e)
 {
     Q_UNUSED(e);

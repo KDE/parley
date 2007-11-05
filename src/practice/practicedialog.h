@@ -173,11 +173,6 @@ protected:
      * @param style WidgetStyle
      */
     void setWidgetStyle(QWidget * widget, WidgetStyle style = Default);
-    // Show string after selecting known/unknown
-    // depending on progress and randomness
-    QString  getOKComment(int percent);
-    QString  getNOKComment(int percent);
-    QString  getTimeoutComment(int percent);
 
     virtual void closeEvent(QCloseEvent*e);
 

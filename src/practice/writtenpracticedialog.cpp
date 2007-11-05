@@ -412,7 +412,7 @@ void WrittenPracticeDialog::verifyClicked()
     double result = verifyAnswer(userAnswer);
     TestEntry::ErrorTypes errors = m_entry->lastErrors();
 
-    kDebug() << "verifying grade: " << result << " errors: " << errors;
+//     kDebug() << "verifying grade: " << result << " errors: " << errors;
 
     QString errorText;
 
@@ -475,7 +475,8 @@ void WrittenPracticeDialog::verifyClicked()
         errorText.append(" (" + userAnswer + ")");
         setWidgetStyle(mw->answerLineEdit, NegativeResult);
         // the percentage is very vague anyway, don't show floats...
-        mw->status->setText(i18n("Ouch, that was wrong. I guess you got it right to about %1%", (int)(result*100)));
+//         mw->status->setText(i18n("That was wrong. (%1%)", (int)(result*100)));
+        mw->status->setText(i18n("The answer was wrong."));
         mw->show_all->setDefault(true);
         setAnswerTainted();
     }
@@ -766,7 +767,7 @@ void WrittenPracticeDialog::showContinueButton(bool show)
         setWidgetStyle(mw->answerLineEdit, PositiveResult);
         mw->answerLineEdit->setReadOnly(true);
 
-        mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
+        mw->status->setText(i18n("Well done, you knew the correct answer."));
 
         if ( Prefs::practiceSoundEnabled() ) {
             audioPlayToIdentifier();
