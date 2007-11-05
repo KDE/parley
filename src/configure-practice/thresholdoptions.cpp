@@ -68,6 +68,7 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
             typeItem->addChild(subTypeItem);
         }
     }
+    connect(PracticeWordTypesTreeWidget, SIGNAL(  itemChanged ( QTreeWidgetItem *, int)), SLOT( wordTypeItemChanged ( QTreeWidgetItem *, int )));
 }
 
 
@@ -108,6 +109,16 @@ void ThresholdOptions::updateSettings()
 bool ThresholdOptions::hasChanged()
 {
     return false;
+}
+
+void ThresholdOptions::wordTypeItemChanged ( QTreeWidgetItem * item, int column )
+{
+    // if it's a parent item, also change the check state of the children
+    if ( item->parent() == 0 ) {
+        for(int i = 0; i<item->childCount(); i++) {
+            item->child(i)->setCheckState(0, item->checkState(0));
+        }
+    }
 }
 
 
