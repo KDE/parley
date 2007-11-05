@@ -61,8 +61,8 @@
 <date>2007-10-01</date>
 <releaseinfo>0.9.1</releaseinfo>
 
-<abstract><para>&parley; is a vocabulary application. It helps you to memorize your vocabulary,
-for example when you are trying to learn a foreign language. &parley; is not limited to language lerning but supports a multitude of subjects.</para></abstract>
+<abstract><para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
+for example when you are trying to learn a foreign language. &parley; is not limited to language learning but supports a multitude of subjects.</para></abstract>
 
 <keywordset>
 <keyword>KDE</keyword>
@@ -80,25 +80,19 @@ for example when you are trying to learn a foreign language. &parley; is not lim
 <sect1 id="what-is-it">
 <title>What is it?</title>
 
-<para>&parley; is a vocabulary application. It helps you to memorize your vocabulary,
+<para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
 for example when you are trying to learn a foreign language. You can create your
-own files with the words you need or select from a great range of files from the 
+own files with the words you need or select from a great variety of files on its 
 <ulink
 url="http://edu.kde.org/parley">homepage</ulink>.
 There you can find files containing language vocabulary and also anatomy, music, geography, chemistry or exam preparation.
 </para>
 
-<para>&parley; is very flexible and uses the flash card learning approach. It automatically keeps track of your progress and lets you sort your vocabulary as you wish. Unlike with real flash cards you can use different learning methods with &parley;</para>
+<para>&parley; is very flexible and uses the flash card learning approach. It automatically keeps track of your progress and lets you sort your vocabulary as you wish. But unlike real flash cards you can use different learning methods with &parley;</para>
 
-<para>You probably remember flashcards from school.  The card would
-contain the original expression on the front side of the card and the
-translation on the back. Then you look at the cards one after another. If
-you knew the translation, you could put it away. If you failed, you
-put it back to try again.</para>
+<para>Flashcards contain expressions on the front side and their translation on the back. You start with a pile of cards. If you know the translation on a card, you can put it into a second pile of cards. If you fail, you keep it in the first one to try again later.</para>
 
-<para>&parley; is not intended to teach you grammar or other
-sophisticated things. This is, and probably will stay, beyond the scope
-of this application.</para>
+<para>&parley;s main focus is not to teach you grammar or other sophisticated things. However, there are some exercise forms which may help you in this matter.</para>
 
 </sect1>
 
@@ -117,11 +111,11 @@ of this application.</para>
 </screenshot>
 
 <para>
-You can open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files here for you to learn how to use &parley;. The file <filename>sample-en.kvtml</filename> shows you some vocabulary words in English, German and French.
+For a start you could open an example file by using the <menuchoice><guimenu>File</guimenu> <guimenuitem>Open Example...</guimenuitem></menuchoice> menu. There are 2 files which you may use in order to get to know all the functions of &parley;. The file <filename>sample-en.kvtml</filename> e.g. shows you some vocabulary words in English, German and French.
 </para>
 
 <para>
-You can also download vocabulary files from the internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
+You can also download vocabulary files directly from the internet using <guimenu>File</guimenu> <guimenuitem>Download New Vocabularies...</guimenuitem>.
 </para>
 
 <screenshot>
@@ -132,7 +126,7 @@ You can also download vocabulary files from the internet using <guimenu>File</gu
 </mediaobject>
 </screenshot>
 
-<para>Here I choose the first file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home dir ~/Vocabularies.</para>
+<para>Here, for example, I choose the file "Basic vocabulary German-English" with a click on the <guibutton>Install</guibutton> button in the dialog, the file is saved in your home dir ~/Vocabularies.</para>
 
 <screenshot>
 <screeninfo>The Basic vocabulary German-English file</screeninfo>
@@ -141,7 +135,7 @@ You can also download vocabulary files from the internet using <guimenu>File</gu
 <textobject><phrase>The vocabulary file</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>On the left of the main window you see a list of lessons. To include a lesson in the practice put a checkmark next to it. After selecting one or more lessons you can already start learning now by clicking <guimenu>Start Practice</guimenu> in the toolbar.</para>
+<para>On the left of the main window you see a list of lessons. To select a lesson for training tick the box in front of it. After selecting one or more lessons let's start learning by clicking <guimenu>Start Practice</guimenu> in the toolbar.</para>
 
 
 
@@ -152,9 +146,15 @@ You can also download vocabulary files from the internet using <guimenu>File</gu
 <textobject><phrase>Written Practice Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>After starting the practice &parley; asks you to enter a translation and can check your answer.</para>
+<para>After starting the practice &parley; asks you to enter a translation. Let's assume that you are not too sure about it. Just click once on <guibutton>Show More</guibutton> and the first letter of the word appears in the entry box. Click again and the second letter shows up. If you prefer to see the word completely, click on the <guibutton>Show Solution</guibutton> button.
 
-<para>Since these are new words maybe Multiple Choice would be the better way to practice. After stopping the practice and choosing <guimenuitem>Configure Practice</guimenuitem> different practice methods are offered and also the combination of languages can be set.</para>
+If you want to check your answer click on <guibutton>Verify</guibutton>.
+
+To ignore words or to mark them as known without entering them, click on the <guibutton>Skip (Do Not Know)</guibutton> or <guibutton>Skip (I know It)</guibutton> buttons respectively.
+
+In the progress box you the number of words you have answered correctly and the seconds remaining for your answer. You can configure this option in the <guibutton>configure practice</guibutton> <guimenuitem>Advanced</guimenuitem> settings.</para>
+
+<para>In case you find writing the words too hard, why not try a multiple choice test? After stopping the practice click on <guimenuitem>Configure Practice</guimenuitem> and choose a different practice method. You can also change the order of languages.</para>
 
 <screenshot>
 <screeninfo>Configure Practice Dialog</screeninfo>
@@ -163,7 +163,7 @@ You can also download vocabulary files from the internet using <guimenu>File</gu
 <textobject><phrase>Configure Practice Dialog</phrase></textobject>
 </mediaobject>
 </screenshot>
-<para>Choosing <guimenuitem>Multiple Choice Test</guimenuitem> and starting a practice:</para>
+<para>This is how a <guimenuitem>Multiple Choice Test</guimenuitem> looks like:</para>
 <screenshot>
 <screeninfo>Multiple Choice Practice Dialog</screeninfo>
 <mediaobject>
@@ -183,8 +183,8 @@ with short explanations in a Step 1, Step 2 way maybe.-->
 <sect1 id="overview">
 <title>Overview</title>
 
-<para>As you can see below, the entries of the vocabulary are arranged
-similar to a spreadsheet. On the left are the lessons containing the vocabulary.
+<para>
+This is the main window of &parley;. It consists of two areas: the lesson list in the left third of the window and the current vocabulary list in the other two thirds.
 
 <screenshot>
 <mediaobject>
@@ -192,21 +192,17 @@ similar to a spreadsheet. On the left are the lessons containing the vocabulary.
 <textobject><phrase>Screenshot</phrase></textobject>
 </mediaobject>
 </screenshot>
-
-In the picture above, you can see the main window of parley.
-It contains two important areas: The lesson list on the left and the actual vocabulary on the right.
 </para>
 
 <sect2>
 <title>The lesson list</title>
-<para>The lesson list is on the left and shows you which lessons you document contains.</para>
-<para>One lesson is the current one, it is indicated by the colored bar over it. In this case it is survival training.</para>
-<para>A checkmark next to a lesson indicates that it is to be included in the practice.</para>
-<para>Above the list you find a combo box which lets you select which vocabulary you want displayed on the right:
+<para>The lesson list on the left shows all lessons in your vocabulary file. If you mark a lesson, is will become the current one. In this case it is survival training.</para>
+<para>The ticked box left of the name of each lesson indicates that it is to be included in the practice. You may choose as many lessons for a test as you like.</para>
+<para>On top of the list there is a combo box which allows you to select which vocabulary selection you want displayed on the right:
 <itemizedlist>
 <listitem><para>The current lesson only (survival training in this case).</para></listitem>
 <listitem><para>Lessons in the test (the ones with a checkmark).</para></listitem>
-<listitem><para>All lessons (everything in the document).</para></listitem>
+<listitem><para>All lessons (everything in the vocabulary file).</para></listitem>
 </itemizedlist>
 </para>
 </sect2>
@@ -214,29 +210,26 @@ It contains two important areas: The lesson list on the left and the actual voca
 <sect2>
 <title>The vocabulary list</title>
 <para>
-The vocabulary list is on the right. Depending on your selection which lesson to edit the entries of one or more lessons are displayed here.
+Depending on your selection, one or more lessons are displayed on the right side of the screen.
 </para>
-<para>A green check mark in the second columns means that this
-line is active. A red cross indicates a deactivated entry that will never be practiced. See Editing Entries for more information on active entries.</para>
+<para>A green check mark in the second column means that this entry is active. A red and white "X" indicates a deactivated entry that will not be practiced. See Editing Entries for more information on active entries.</para>
 
-<para>If you mark a range of entries to work with, they
-appear with a different background. Many editing functions work for multiple entries at the same time.</para>
+<para>If you mark a range of entries to work with, their background colour changes. Many editing functions work for multiple entries simultaneously.</para>
 
-<para>The color in the column with the original will vary if you have
+<para>The colour in the column with the original will vary if you have
 two or more columns with translations. If the cursor is in one of the
-translations the color represents its grade <quote>to the
+translations the colour represents its grade <quote>to the
 original</quote>. See section <link linkend="entry6-dlg">entry
 dialog</link> for more on this.</para>
 
-<para>Of course it is also possible to use it as an ordinary dictionary
-and <link linkend="smart-search">lookup manually</link>.</para>
-
+<para>Of course it is also possible to use the vocabulary list as an ordinary dictionary
+and <link linkend="smart-search"> to look up manually</link>.</para>
 </sect2>
 
 <sect2>
 <title>The search bar</title>
 <para>The search bar is located above the vocabulary table.</para>
-<para>You can use the search bar to filter you vocabulary. Type in a word and see how only entries containing the word are shown.</para>
+<para>You can use the search bar to filter your vocabulary. If you type in a string, you will only see entries with this string in the vocabulary table.</para>
 <screenshot>
 <mediaobject>
 <imageobject><imagedata fileref="parley-search.png" format="PNG"/></imageobject>
@@ -245,16 +238,15 @@ and <link linkend="smart-search">lookup manually</link>.</para>
 </screenshot>
 </sect2>
 
-
 <sect2>
 <title>The status bar</title>
-<para>On the bottom of the main window you also see the status line. It usually contains:</para>
+<para>The status bar is located at the bottom of the main window. It contains:</para>
 <para>
 <itemizedlist>
-<listitem><para>The word type (for example: noun/verb/adjective).</para></listitem>
-<listitem><para>How to pronounce this expression. You can use <acronym>IPA</acronym> characters from the phonetic alphabet. See more about this in the according
+<listitem><para>word type (for example: noun/verb/adjective)</para></listitem>
+<listitem><para>pronunciation. You can use <acronym>IPA</acronym> characters from the phonetic alphabet. See more about this in the according
 <link linkend="opt-dlg-ipa">options dialog page</link>.</para></listitem>
-<listitem><para>A comment that can be added to an entry.</para></listitem>
+<listitem><para>an additional comment.</para></listitem>
 </itemizedlist>
 </para>
 </sect2>
@@ -306,8 +298,7 @@ or double click on it.
 <sect1 id="keyboard">
 <title>Using the keyboard</title>
 
-<para>I tried to optimize the work flow for the use with the keyboard.
-So all of the important functions are reachable this way.</para>
+<para>You can access &parley;s full functionality with the keyboard.</para>
 
 <variablelist id="smart-search">
 <varlistentry>
@@ -330,78 +321,40 @@ to the vocabulary.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Left Arrow</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one column
-to the left. If it has reached the leftmost column, nothing
-happens.</para></listitem>
+<term><keycap>Right Arrow</keycap>, <keycap>Left Arrow</keycap>, <keycap>Up Arrow</keycap>, <keycap>Down Arrow</keycap></term>
+<listitem><para>The cursor moves inside the vocabulary table one column or line accordingly. If it reaches the edge of the vocabulary table, it will not move.</para></listitem>
 </varlistentry>
 
 <varlistentry>
-<term><keycap>Right Arrow</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one column
-to the right. If it has reached the rightmost column, nothing
-happens.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><keycap>Up Arrow</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one row upwards.
- If
-it has reached the topmost row, nothing happens.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><keycap>Down Arrow</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one row
-downwards. If it has reached the bottommost row, nothing
-happens.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><keycap>Page Up</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one page (the
-amount of visible lines -1) upwards. If the cursor would exceed the
-first possible row, nothing happens.</para></listitem>
-</varlistentry>
-
-<varlistentry>
-<term><keycap>Page Down</keycap></term>
-<listitem><para>The cursor in the vocabulary is moved one page
-downwards. If the cursor would exceed the last possible row, nothing
-happens.</para></listitem>
+<term><keycap>Page Up</keycap>, <keycap>Page Down</keycap></term>
+<listitem><para>The cursor in the vocabulary is moved up or down one page (the
+amount of visible lines -1). If it has to jump beyond the edge of the vocabulary table, it will not move.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-enter">
 <term><keycombo action="simul">&Ctrl;<keycap>Return</keycap></keycombo></term>
-<listitem><para>Invoke the <guilabel>Edit Properties</guilabel> dialog for modification of this
-entry.</para></listitem>
+<listitem><para>Invokes the <guilabel>Edit Properties</guilabel> dialogue for this entry.</para></listitem>
 </varlistentry>
 
 <varlistentry id="key-insert">
 <term><keycap>Ins</keycap></term>
 <listitem><para>Appends a new row at the end of the vocabulary.
-The cursor is moved to the entry in the <guilabel>Original</guilabel> row. Edit the items 
-in place or invoke the <guilabel>Edit Properties</guilabel> dialog for modification of this
-entry. </para>
-<para>If you have selected smart appending you are prompted to enter
-originals and their translations until you stop by pressing the ESC
+The cursor jumps into the <guilabel>Original</guilabel> row. You may type your entry right away or invoke the <guilabel>Edit Properties</guilabel> dialogue for modification of this
+entry.</para>
+<para>If you have selected smart appending you will be prompted to enter expressions in the
+original language and their translations until you stop by pressing the ESC
 key.</para></listitem>
 </varlistentry>
     
 <varlistentry id="key-delete">
 <term><keycap>Del</keycap></term>
-<listitem><para>After confirmation of a safety dialog,
-the currently selected row or selection is removed from the
-vocabulary.</para></listitem>
+<listitem><para>After confirmation in a safety dialogue, the current row or selection is removed from the vocabulary.</para></listitem>
 </varlistentry>
 
 <varlistentry>
 <term><keycombo action="simul">&Ctrl;<keycap>+</keycap></keycombo> or <keycombo action="simul">&Ctrl;<keycap>-</keycap></keycombo></term>
-<listitem><para>By pressing &Ctrl; and one of the two number pad
-keys, <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
-previous or next item in the combo box determining the current
-lesson. If you do not have a number pad you may also use the normal
-<keycap>+</keycap> or <keycap>-</keycap> keys.</para></listitem> 
+<listitem><para>By pressing &Ctrl; and <keycap>+</keycap> or <keycap>-</keycap>, you can choose the
+previous or next item in the combo box determining the current lesson.</para></listitem> 
 </varlistentry>
 
 </variablelist>
@@ -419,47 +372,28 @@ linkend="header-menu">header menu</link> will pop up.</para>
 <sect1 id="mouse">
 <title>Using the mouse</title>
 
-<para>Double clicking an expression in the table lets you edit this items 
-in place.</para>
+<para>Double clicking in a field in the table lets you edit this field.</para>
 
-<para><mousebutton>Left</mousebutton> mouse click in of the header
-buttons will sort this column in ascending order. The next click will
-sort in descending order. When the column is sorted you can see a triangle
-in the button that shows the direction.</para>
+<para><mousebutton>Left</mousebutton> mouse click on one of the header
+buttons will sort this column in ascending order. Another click will
+sort it in descending order. In case the column is displayed in alphabetical order, you can see a triangle at the end of the button showing the sorting direction.</para>
 
-<para>Keeping pressed the <mousebutton>left</mousebutton> mouse button
-for about 1 second in on of the table header buttons will pop up its
+<para>Keeping the <mousebutton>left</mousebutton> mouse button pressed 
+for about 1 second on one of the table header buttons will pop up its
 <link linkend="header-menu">header menu</link>.</para>
-
 </sect1>
 
 <sect1 id="selections">
 <title>Working on selections</title>
 <!-- FIXME this seems to be outdates lueck 01.07.2006-->
-<para>It is possible to mark a range of expressions. You can then modify one
-or more properties from the selection or save them as a new
-file.</para>
+<para>If you mark several expressions, you can modify their properties together or save the selection as a new file.</para>
 
-<para>If you click on an entry, the whole row is marked for further processing.</para>
+<para>If you click on an entry, its row will be marked. Keeping the &Ctrl; key pressed while clicking on another entry, will add its row to your selection. By pressing the &Shift; key and clicking on a row further away from your selection will add all rows in between to your selection.</para>
 
-<para>If you keep the &Ctrl; key pressed while clicking on an entry,
-the whole row is added to yoor selection. </para>
+<para>The edit dialog has a different appearance for selections. Some properties are disabled as it doesn't make sense to edit the expressions themselves or remarks of a whole range simultaneously.</para>
 
-<para>When you additionally press a &Shift; key when clicking on an
-entry, the selection will be extended from the current entry to the
-previously selected entry.</para>
-
-<para>You invoke the edit dialog to modify the selection by pressing
-<keycombo action="simul">&Ctrl;<keycap>Return</keycap></keycombo>. In this case the dialog
-appears differently. Some properties are disabled. For example it does
-not make sense to edit the expression itself or the remark of a
-whole range.</para>
-
-<para>All selectable fields are empty at the beginning to represent
-the unmodified state. Once you have modified a property there will be
-contents in its field and only those properties are altered in your
-selection when you confirm the dialog.</para>
-
+<para>All fields which may be modified are empty at the beginning to represent
+their unmodified state. Modifications of properties will only be saved if you confirm them by clicking on the <guibutton>Apply</guibutton> button.</para>
 </sect1>
 
 <sect1 id="file-formats">
@@ -468,31 +402,28 @@ selection when you confirm the dialog.</para>
 <para>&parley; can read and write the following file formats:</para>
 
 <itemizedlist>
-<listitem><para>Its native xml-style document type with the extension
+<listitem><para>its native xml-style document type with the extension
 <literal role="extension">.kvtml</literal>.</para>
 
-<para>If you want to share documents with others use this one as it is
-the only file format that is capable of containing
-<emphasis>all</emphasis> the properties in
+<para>If you want to share documents with others, use this format as it is
+the only file format that is capable of storing
+<emphasis>all</emphasis> properties in
 &parley;.</para></listitem>
 
-<listitem><para>Simple text files with special delimiters between the
+<listitem><para>simple text files with special delimiters between the
 entries which are also used by simple database programs. The
-extension is <literal role="extension">csv</literal> in this
+extension is <literal role="extension">.csv</literal> in this
 case.</para>
 
 <para>There are a lot of files on the Internet which use the
-tabular character or one or two colons to separate the different
-languages. To select this separator use the tab for setting the <link
-linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &parley;...</guimenuitem> dialog.</para></listitem>
+tab stops or one or two colons to separate the languages. To select this separator use the tab for setting the <link linkend="options4-dlg"><guilabel> Copy &amp; Paste</guilabel> options</link> in the <guimenu>Settings</guimenu> <guimenuitem>Configure &parley;...</guimenuitem> dialog.</para></listitem>
 
 </itemizedlist>
 
-<para>&parley; reads the first few bytes from a file and makes a
-guess about the file format. When none of the special types like
-<literal role="extension">kvtml</literal> or <literal
-role="extension">lex</literal> are recognized, it uses the <literal
-role="extension">csv</literal> format.</para>
+<para>&parley; reads the first few bytes of a file and guesses its file format. If none of the special types like 
+<literal role="extension">.kvtml</literal> or <literal
+role="extension">.lex</literal> are recognized, it will try the <literal
+role="extension">.csv</literal> format.</para>
 
 </sect1>
 
@@ -547,7 +478,7 @@ every document can contain user defined types.</para>
 <row>
 <entry><para>Proper Noun</para></entry>
 <!-- This was name - does this need changing in the app too? -->
-<entry><para>name of a person, a creature, sometimes a
+<entry><para>names of a person, a creature, sometimes a
  thing</para></entry>
 <entry><para>Big Ben, Tom</para></entry>
 </row>
@@ -559,9 +490,8 @@ every document can contain user defined types.</para>
      <listitem><para>female</para></listitem>
      <listitem><para>neutral</para></listitem>
   </itemizedlist></para></entry>
-<entry><para>naming of things, feelings</para></entry>
-<entry><para>table, coffee (English does not distinguish
- here)</para></entry>
+<entry><para>names of things, feelings</para></entry>
+<entry><para>table, coffee (there is no distiction of genders in English)</para></entry>
 </row>
 
 <row>
@@ -638,67 +568,49 @@ every document can contain user defined types.</para>
 <sect1 id="learning">
 <title>And how should I learn?</title>
 
-<para>The usual way to learn with &parley; is to use one of its
- random 
-query functions.</para>
+<para>The usual way to learn with &parley; is to use one of its random query functions.</para>
 
 <para>It keeps track of your knowledge of the expressions by assigning
-them one of seven grades ranging from <quote>Level 1</quote> to
+them to one of seven levels ranging from <quote>Level 1</quote> to
 <quote>Level 7</quote>.</para>
 
-<para>Several possibilities are implemented which can be configured in
-the dialog for the query options.</para>
+<para>Several options are implemented which can be configured in
+the dialogue for the query options.</para>
 
 <itemizedlist>
-<listitem><para>To keep the amount of expressions reasonable, restrict
-the query to a lesson and/or a word type. I personally prefer about 50
-words per cycle and subdivide the lessons accordingly.</para></listitem>
+<listitem><para>To keep the amount of expressions in a query in a reasonable range, you may restrict
+it to one lesson and/or a certain word type. Research in psychology of learning suggests that the number of entries in one lesson should not exceed about 30.</para></listitem>
 
-<listitem><para>Furthermore, the range for the query can depend on the
-current grade, the number of queries and the last query
-date.</para></listitem>
+<listitem><para>The range of a query can depend on the current grade, the number of queries and the last query date.</para></listitem>
 
-<listitem><para>Learning is efficient, if you do not repeat the words
-for a certain length of time, depending on the current
-grade.</para>
+<listitem><para>Learning is efficient if you repeat new vocabulary in growing intervals. There is a blocking and expiring mechanism for that case, so that you are not obliged to modify the settings after each cycle. Correctly answered expressions are blocked at least for the given time and
+will only be shown after the period of time defined as expiration time.</para></listitem>
 
-<para>There is a blocking and expiring mechanism for that
-case, so you are not obliged to modify the settings after each
-cycle. The known expression is blocked at least for the given time and
-will be shown after the expiration time.</para></listitem>
-
-<listitem><para>The direction of the learning can be changed randomly
-to avoid one way learning.</para></listitem>
+<listitem><para>The direction of the learning can be switched randomly
+to avoid one way learning only.</para></listitem>
 
 <listitem><para>For your personal taste or just for becoming
-acquainted with a new word, you can choose a query that shows the
-solution together with several other randomly chosen words (called
-multiple choice).</para></listitem>
+acquainted with a new word, you may choose a query that shows the
+solution together with several other randomly chosen words. This is called
+multiple choice query.</para></listitem>
 
-<listitem><para>Special word types need special queries.</para>
-<para>For this reason there are queries for the conjugation of verbs,
-comparison form of adjectives and the articles of
-nouns.</para></listitem>
+<listitem><para>Special word types need special queries. For this reason there are queries for the conjugation of verbs, comparison form of adjectives and the articles of nouns.</para></listitem>
 </itemizedlist>
 
 <para>All these settings can be summarized into
 <link linkend="profiles">profiles</link> and retained
-under an arbitrarily name.</para>
+under an arbitrary name.</para>
 
-<para>When querying &parley; shows the expressions in random order
+<para>When querying, &parley; shows the expressions in random order
 until you confirm all as <quote>known</quote>. If you did not select a
 special lesson, all lessons are queried one after the other.</para>
 
-<para>Remaining expressions of a currently running query are
-accordingly stored when you leave &parley;. After a later restart
-you can resume the query (currently this does not apply to special queries
-with verbs, articles and comparisons). Those expressions are marked with a
+<para>When you leave &parley;, expressions left in a running query are stored accordingly. At a later restart you can resume the query (this does not apply to special queries
+with verbs, articles and comparisons at the moment). Those expressions are marked with a
 green check mark in the <link linkend="overview">main view</link>.</para>
 
 </sect1>
 </chapter>
-
-
 
 <chapter id="dialogs">
 <title>Dialogs</title>
