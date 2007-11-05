@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>585</width>
-    <height>472</height>
+    <width>490</width>
+    <height>531</height>
    </rect>
   </property>
   <layout class="QGridLayout" >
@@ -446,52 +446,21 @@
      <property name="title" >
       <string>Column Resizing</string>
      </property>
-     <layout class="QGridLayout" >
-      <property name="leftMargin" >
-       <number>9</number>
-      </property>
-      <property name="topMargin" >
-       <number>9</number>
-      </property>
-      <property name="rightMargin" >
-       <number>9</number>
-      </property>
-      <property name="bottomMargin" >
-       <number>9</number>
-      </property>
-      <property name="horizontalSpacing" >
-       <number>6</number>
-      </property>
-      <property name="verticalSpacing" >
-       <number>6</number>
-      </property>
-      <item row="3" column="0" >
-       <spacer>
-        <property name="orientation" >
-         <enum>Qt::Vertical</enum>
-        </property>
-        <property name="sizeHint" >
-         <size>
-          <width>20</width>
-          <height>40</height>
-         </size>
-        </property>
-       </spacer>
-      </item>
-      <item row="2" column="0" >
-       <widget class="QRadioButton" name="hb_fixed" >
+     <layout class="QVBoxLayout" >
+      <item>
+       <widget class="QRadioButton" name="hb_auto" >
         <property name="toolTip" >
-         <string>There is no resizing of the columns</string>
+         <string>Automatically resize the columns</string>
         </property>
         <property name="whatsThis" >
-         <string>When checked, the columns are not resized</string>
+         <string>Parley makes each column the same width except the leftmost with the lesson names, which is half the size of the others. The second column, which contains the picture that describes the state of the row, has a fixed width.</string>
         </property>
         <property name="text" >
-         <string>&amp;Fixed</string>
+         <string>A&amp;utomatic</string>
         </property>
        </widget>
       </item>
-      <item row="1" column="0" >
+      <item>
        <widget class="QRadioButton" name="hb_percent" >
         <property name="toolTip" >
          <string>The columns resize using the same factor that the window is resized to.</string>
@@ -504,18 +473,31 @@
         </property>
        </widget>
       </item>
-      <item row="0" column="0" >
-       <widget class="QRadioButton" name="hb_auto" >
+      <item>
+       <widget class="QRadioButton" name="hb_fixed" >
         <property name="toolTip" >
-         <string>Automatically resize the columns</string>
+         <string>There is no resizing of the columns</string>
         </property>
         <property name="whatsThis" >
-         <string>Parley makes each column the same width except the leftmost with the lesson names, which is half the size of the others. The second column, which contains the picture that describes the state of the row, has a fixed width.</string>
+         <string>When checked, the columns are not resized</string>
         </property>
         <property name="text" >
-         <string>A&amp;utomatic</string>
+         <string>&amp;Fixed</string>
         </property>
        </widget>
+      </item>
+      <item>
+       <spacer>
+        <property name="orientation" >
+         <enum>Qt::Vertical</enum>
+        </property>
+        <property name="sizeHint" >
+         <size>
+          <width>20</width>
+          <height>40</height>
+         </size>
+        </property>
+       </spacer>
       </item>
      </layout>
     </widget>
@@ -543,9 +525,6 @@
   </customwidget>
  </customwidgets>
  <tabstops>
-  <tabstop>hb_auto</tabstop>
-  <tabstop>hb_percent</tabstop>
-  <tabstop>hb_fixed</tabstop>
   <tabstop>kcfg_UseGradeColors</tabstop>
   <tabstop>kcfg_GradeColor7</tabstop>
   <tabstop>kcfg_GradeColor6</tabstop>

@@ -235,31 +235,29 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
         oldWidth += header->sectionSize(i);
 
     int newWidth = viewport()->width();
-    int remainder = newWidth;
-
 
     switch (Prefs::headerResizeMode()) {
     case Prefs::EnumHeaderResizeMode::Automatic: {
             // lesson is only half as wide as a original/translation
             // exclude fixed size of "mark"-column
-            int x; // lesson column width, 1/2 entry column
+            int activeColumnVisible = 0;
+            if ( Prefs::tableActiveColumnVisible() ) {
+                newWidth -= KV_COLWIDTH_MARK;
+                header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
+            }
 
+            int columnsHalfWidth;
             if ( Prefs::tableLessonColumnVisible() ) {
-                x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 1) * 2 - 1);
-                header->resizeSection(KV_COL_LESS, x);
-                remainder -= x;
+                // total width / ((total number of columns - active column) * 2 -1 lesson only half) 
+                columnsHalfWidth = newWidth / ((colCount - 1) * 2 -1);
+                header->resizeSection(KV_COL_LESS, columnsHalfWidth);
             } else {
-                x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 2) * 2);
-                remainder -= x;
+                columnsHalfWidth = newWidth / ((colCount - 2) * 2);
             }
 
-            header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
-            remainder -= KV_COLWIDTH_MARK;
-            for (int i = KV_COL_TRANS; i < colCount - 1; i++) {
-                remainder -= 2 * x;
-                header->resizeSection(i, 2 * x);
+            for (int currentColumn = KV_COL_TRANS; currentColumn < colCount; currentColumn++) {
+                header->resizeSection(currentColumn, 2 * columnsHalfWidth);
             }
-            header->resizeSection(colCount - 1, remainder);
         }
         break;
 

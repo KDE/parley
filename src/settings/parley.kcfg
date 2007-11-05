@@ -43,8 +43,8 @@
       <label>How the columns should be resized.</label>
       <choices>
         <choice name="Automatic"/>
-        <choice name="Fixed"/>
         <choice name="Percent"/>
+        <choice name="Fixed"/>
       </choices>
       <default>Automatic</default>
     </entry>
