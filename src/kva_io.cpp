@@ -414,6 +414,7 @@ void ParleyApp::newDocumentWizard()
     if (m_tableView) {
         m_tableView->adjustContent();
         m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+        m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
     }
 
     m_tableModel->reset(); // clear old entries otherwise we get crashes

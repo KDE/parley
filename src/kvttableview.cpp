@@ -100,6 +100,13 @@ void KVTTableView::slotShowLessonColumn(bool show)
     resizeEvent(0);
 }
 
+void KVTTableView::slotShowActiveColumn(bool show)
+{
+    Prefs::setTableActiveColumnVisible(show);
+    setColumnHidden(KV_COL_MARK, !show);
+    resizeEvent(0);
+}
+
 void KVTTableView::print(QPrinter * pPrinter)
 {
     ///@todo revisit and check before release
@@ -235,10 +242,14 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
     case Prefs::EnumHeaderResizeMode::Automatic: {
             // lesson is only half as wide as a original/translation
             // exclude fixed size of "mark"-column
-            int x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 1) * 2 - 1);
+            int x; // lesson column width, 1/2 entry column
 
             if ( Prefs::tableLessonColumnVisible() ) {
+                x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 1) * 2 - 1);
                 header->resizeSection(KV_COL_LESS, x);
+                remainder -= x;
+            } else {
+                x = (remainder - KV_COLWIDTH_MARK) / ((colCount - 2) * 2);
                 remainder -= x;
             }
 
@@ -271,7 +282,7 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
         break;
 
     case Prefs::EnumHeaderResizeMode::Fixed:
-        // nix
+        // do nothing
         break;
     }
 }
@@ -291,6 +302,7 @@ void KVTTableView::adjustContent()
 
 void KVTTableView::keyPressEvent(QKeyEvent * e)
 {
+    /// @todo: behave more like other apps
     if (e->key() == Qt::Key_Return || e->key() == Qt::Key_Enter) {
         e->accept();
         // Should we be in the last row, will we autoappend a new entry?

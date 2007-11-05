@@ -369,6 +369,12 @@ void ParleyApp::initActions()
     actionShowLessonColumn->setCheckable((true));
     actionShowLessonColumn->setChecked(Prefs::tableLessonColumnVisible());
 
+    KAction *actionShowActiveColumn = new KAction(this);
+    actionCollection()->addAction("config_show_active_column", actionShowActiveColumn);
+    actionShowActiveColumn->setText(i18n("Show Active Entry Column"));
+    actionShowActiveColumn->setCheckable((true));
+    actionShowActiveColumn->setChecked(Prefs::tableActiveColumnVisible());
+
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     KAction *actionRestoreNativeOrder = new KAction(this);
@@ -420,6 +426,7 @@ void ParleyApp::initDoc()
         if (m_tableView) {
             m_tableView->adjustContent();
             m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+            m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
         }
 
         m_tableModel->setDocument(m_doc);
@@ -590,9 +597,15 @@ void ParleyApp::initView()
 
 
     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
+
     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
     m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
     connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
+
+    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
+    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
+    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
 
     QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);

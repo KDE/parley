@@ -161,6 +161,11 @@
       <default>false</default>
     </entry>
 
+    <entry name="TableActiveColumnVisible" type="Bool">
+      <label>Show/hide the active column.</label>
+      <default>false</default>
+    </entry>
+
     <entry name="LessonEditingSelection" type="Enum">
       <label>Select which lessons are displayed for editing</label>
       <choices>

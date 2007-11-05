@@ -55,6 +55,7 @@ private slots:
      * @param show if @c true the lesson column is shown
      */
     void slotShowLessonColumn(bool show);
+    void slotShowActiveColumn(bool show);
 
 protected:
     /** resizes table when frame is resized */

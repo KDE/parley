@@ -43,6 +43,7 @@
   </Menu>
   <Menu name="settings" >
     <Action name="config_show_search" />
+    <Action name="config_show_active_column" />
     <Action name="config_show_lesson_column" />
   </Menu>
  </MenuBar>
