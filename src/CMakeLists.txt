@@ -161,13 +161,13 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
 # adding icon to parley:
 # please uncomment the following lines if parley has a new icon - please make up an .ico containing in 16,32,48,64,128 pixel size and put it where the current one is
 ##############################
-#if(MSVC)
-#  set(parley_SRCS ${parley_SRCS} parley.rc)
-#endif(MSVC)
-#
-#if(MINGW)
-#   KDE_ADD_RESOURCES2(parley_SRCS parley.rc)
-#endif(MINGW)
+if(MSVC)
+  set(parley_SRCS ${parley_SRCS} parley.rc)
+endif(MSVC)
+
+if(MINGW)
+   KDE_ADD_RESOURCES2(parley_SRCS parley.rc)
+endif(MINGW)
 
 kde4_add_executable(parley ${parley_SRCS})
 
