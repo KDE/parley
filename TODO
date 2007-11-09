@@ -3,6 +3,13 @@ Things to improve in parley
 
 Gui
  * shortcut keys are badly assigned, they do not respect the focus
+ * Image file open dialog: filter and preview. Maybe restrict to image files?
+ * Sound file open dialog: filter and preview
+ * Editing of vocabulary should be made easier
+
+Validator/correction of user answers
+ * Seperators need to be implemented with the new corrector class. Possibly giving the user the chance to add more words when entering right answers but not all of them.
+ * Analysis of sentences could be improved a lot
 
 General
  * declination support
