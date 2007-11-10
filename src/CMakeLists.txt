@@ -161,13 +161,22 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
 # adding icon to parley:
 # please uncomment the following lines if parley has a new icon - please make up an .ico containing in 16,32,48,64,128 pixel size and put it where the current one is
 ##############################
-if(MSVC)
-  set(parley_SRCS ${parley_SRCS} parley.rc)
-endif(MSVC)
-
-if(MINGW)
-   KDE_ADD_RESOURCES2(parley_SRCS parley.rc)
-endif(MINGW)
+#uncomment this if oxygen icons for parley are available
+#set(parley_icons
+#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/16x16/apps/parley.png
+#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/32x32/apps/parley.png
+#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/48x48/apps/parley.png
+#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/64x64/apps/parley.png
+#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/128x128/apps/parley.png
+#)
+set(parley_icons
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi16-app-kvoctrain.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi32-app-kvoctrain.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi48-app-kvoctrain.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi64-app-kvoctrain.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi128-app-kvoctrain.png
+)
+kde4_add_win32_app_icon(parley parley_SRCS ${parley_icons})
 
 kde4_add_executable(parley ${parley_SRCS})
 
