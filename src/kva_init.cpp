@@ -180,7 +180,7 @@ void ParleyApp::initActions()
 
     KAction* editLanguages =new KAction(this);
      actionCollection()->addAction("edit_languages", editLanguages);
-    editLanguages->setIcon(KIcon("insert_table_col"));
+    editLanguages->setIcon(KIcon("set_language"));
     editLanguages->setText(i18n("&Languages..."));
     connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
     ///@todo tooltip

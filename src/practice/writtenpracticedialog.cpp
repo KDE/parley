@@ -58,6 +58,9 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
 
+    mw->show_more->setIcon(KIcon("games-hint"));
+    mw->show_all->setIcon(KIcon("games-solve"));
+
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
