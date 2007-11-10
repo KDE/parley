@@ -3,8 +3,8 @@ add_subdirectory( settings )
 add_subdirectory( examples )
 add_subdirectory( pics )
 
-include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
+include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
@@ -71,8 +71,6 @@ kde4_add_ui_files(configure-practice_SRCS
 )
 
 set(docprop_SRCS
-    #docprop-dialogs/DocPropDlg.cpp
-    #docprop-dialogs/DocPropLangDlg.cpp
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
@@ -157,6 +155,7 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     kvtsortfiltermodel.cpp
 )
 
+
 ##############################
 # adding icon to parley:
 # please uncomment the following lines if parley has a new icon - please make up an .ico containing in 16,32,48,64,128 pixel size and put it where the current one is
@@ -170,15 +169,12 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
 #    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/128x128/apps/parley.png
 #)
 set(parley_icons
-    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi16-app-kvoctrain.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi32-app-kvoctrain.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi48-app-kvoctrain.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi64-app-kvoctrain.png
-    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/hi128-app-kvoctrain.png
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox128-app-parley.png 
 )
 kde4_add_win32_app_icon(parley parley_SRCS ${parley_icons})
 
 kde4_add_executable(parley ${parley_SRCS})
+kde4_install_icons( ${ICON_INSTALL_DIR} )
 
 target_link_libraries(parley  keduvocdocument ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
 
