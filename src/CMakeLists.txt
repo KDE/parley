@@ -1,6 +1,5 @@
 
 add_subdirectory( settings )
-add_subdirectory( examples )
 add_subdirectory( pics )
 
 
