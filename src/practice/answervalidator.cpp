@@ -451,6 +451,7 @@ void AnswerValidator::sentenceAnalysis()
     m_entry->setLastErrors(TestEntry::UnknownMistake);
 }
 
+
 QList< QPair < QString , QString > > AnswerValidator::bestPairs(const QStringList& solutionWords , const QStringList& userAnswerWords )
 {
     int nSol = solutionWords.count();

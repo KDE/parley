@@ -32,8 +32,9 @@ public:
         Synonym               =  0x40, /** < a synonym (may be correct) */
         Empty                 =  0x80, /** < empty answer string */
         UnrelatedWord         = 0x100, /** < a valid word but no connection to the solution */
-        Correct               = 0x200, /** < no error, solution was right */
-        UnknownMistake        = 0x400  /** < no idea */
+        Incomplete            = 0x200, /** < the part that was entered is right, but not complete */
+        Correct               = 0x400, /** < no error, solution was right */
+        UnknownMistake        = 0x800  /** < no idea */
     };
 
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
