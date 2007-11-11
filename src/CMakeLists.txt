@@ -152,20 +152,11 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     kvtsortfiltermodel.cpp
 )
 
-
-##############################
-# adding icon to parley:
-# please uncomment the following lines if parley has a new icon - please make up an .ico containing in 16,32,48,64,128 pixel size and put it where the current one is
-##############################
-#uncomment this if oxygen icons for parley are available
-#set(parley_icons
-#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/16x16/apps/parley.png
-#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/32x32/apps/parley.png
-#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/48x48/apps/parley.png
-#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/64x64/apps/parley.png
-#    ${CMAKE_INSTALL_PREFIX}/share/icons/oxygen/128x128/apps/parley.png
-#)
 set(parley_icons
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox16-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox32-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox48-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox64-app-parley.png 
     ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox128-app-parley.png 
 )
 kde4_add_win32_app_icon(parley parley_SRCS ${parley_icons})
