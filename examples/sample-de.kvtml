@@ -1,0 +1,1004 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE kvtml PUBLIC "kvtml2.dtd" "http://edu.kde.org/kanagram/kvtml2.dtd">
+<kvtml version="2.0" >
+  <information>
+    <generator>Parley</generator>
+    <title>Beispieldatei: Deutsch - Englisch/Franzsisch</title>
+    <author>Ewald Arnold</author>
+    <license>GPLv2 (GNU General Public License version 2)</license>
+    <comment>This is an example vocabulary file. It was originally created for KVocTrain.</comment>
+    <category>Languages</category>
+  </information>
+  <identifiers>
+    <identifier id="0" >
+      <name>German</name>
+      <locale>de</locale>
+      <article>
+        <singular>
+          <definite>
+            <male>der</male>
+            <female>die</female>
+            <neutral>das</neutral>
+          </definite>
+          <indefinite>
+            <male>einer</male>
+            <female>eine</female>
+            <neutral>ein</neutral>
+          </indefinite>
+        </singular>
+      </article>
+      <personalpronouns>
+        <malefemaledifferent/>
+        <singular>
+          <firstperson>ich</firstperson>
+          <secondperson>du</secondperson>
+          <thirdpersonmale>er</thirdpersonmale>
+          <thirdpersonfemale>sie</thirdpersonfemale>
+          <thirdpersonneutralcommon>es</thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </singular>
+        <plural>
+          <firstperson>wir</firstperson>
+          <secondperson>ihr</secondperson>
+          <thirdpersonmale></thirdpersonmale>
+          <thirdpersonfemale></thirdpersonfemale>
+          <thirdpersonneutralcommon>sie</thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </plural>
+      </personalpronouns>
+    </identifier>
+    <identifier id="1" >
+      <name>English</name>
+      <locale>en</locale>
+      <article>
+        <singular>
+          <definite>
+            <male>md en</male>
+            <female>fd en</female>
+            <neutral>nd en</neutral>
+          </definite>
+          <indefinite>
+            <male>mi en</male>
+            <female>fi en</female>
+            <neutral>ni en</neutral>
+          </indefinite>
+        </singular>
+      </article>
+      <personalpronouns>
+        <malefemaledifferent/>
+        <singular>
+          <firstperson>I</firstperson>
+          <secondperson>you</secondperson>
+          <thirdpersonmale>she</thirdpersonmale>
+          <thirdpersonfemale>he</thirdpersonfemale>
+          <thirdpersonneutralcommon>it</thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </singular>
+        <plural>
+          <firstperson>we</firstperson>
+          <secondperson>you</secondperson>
+          <thirdpersonmale></thirdpersonmale>
+          <thirdpersonfemale></thirdpersonfemale>
+          <thirdpersonneutralcommon>they</thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </plural>
+      </personalpronouns>
+    </identifier>
+    <identifier id="2" >
+      <name>French</name>
+      <locale>fr</locale>
+      <article>
+        <singular>
+          <definite>
+            <male>le</male>
+            <female>la</female>
+          </definite>
+          <indefinite>
+            <male>un</male>
+            <female>une</female>
+          </indefinite>
+        </singular>
+      </article>
+      <personalpronouns>
+        <malefemaledifferent/>
+        <singular>
+          <firstperson>je</firstperson>
+          <secondperson>tu</secondperson>
+          <thirdpersonmale>il</thirdpersonmale>
+          <thirdpersonfemale>elle</thirdpersonfemale>
+          <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </singular>
+        <plural>
+          <firstperson>nous</firstperson>
+          <secondperson>vous</secondperson>
+          <thirdpersonmale>ils</thirdpersonmale>
+          <thirdpersonfemale>elles</thirdpersonfemale>
+          <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          <malefemaledifferent/>
+        </plural>
+      </personalpronouns>
+    </identifier>
+  </identifiers>
+  <wordtypedefinitions>
+    <wordtypedefinition>
+      <typename>Noun</typename>
+      <specialwordtype>noun</specialwordtype>
+      <subwordtypedefinition>
+        <subtypename>Male</subtypename>
+        <specialwordtype>male</specialwordtype>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Female</subtypename>
+        <specialwordtype>female</specialwordtype>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Neutral</subtypename>
+        <specialwordtype>neutral</specialwordtype>
+      </subwordtypedefinition>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Verb</typename>
+      <specialwordtype>verb</specialwordtype>
+      <subwordtypedefinition>
+        <subtypename>Regular</subtypename>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Irregular</subtypename>
+      </subwordtypedefinition>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Adjective</typename>
+      <specialwordtype>adjective</specialwordtype>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Adverb</typename>
+      <specialwordtype>adverb</specialwordtype>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Question</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Name</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Article</typename>
+      <subwordtypedefinition>
+        <subtypename>Definite</subtypename>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Indefinite</subtypename>
+      </subwordtypedefinition>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Pronoun</typename>
+      <subwordtypedefinition>
+        <subtypename>Possessive</subtypename>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Personal</subtypename>
+      </subwordtypedefinition>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Phrase</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Numeral</typename>
+      <subwordtypedefinition>
+        <subtypename>Ordinal</subtypename>
+      </subwordtypedefinition>
+      <subwordtypedefinition>
+        <subtypename>Cardinal</subtypename>
+      </subwordtypedefinition>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Conjunction</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Preposition</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Mein Typ 1</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Mein Typ 2</typename>
+    </wordtypedefinition>
+    <wordtypedefinition>
+      <typename>Mein Typ 3</typename>
+    </wordtypedefinition>
+  </wordtypedefinitions>
+  <tenses>
+    <tense>Simple Past</tense>
+    <tense>Past Participle</tense>
+    <tense>Simple Present</tense>
+  </tenses>
+  <entries>
+    <entry id="0" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>gehen</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <synonym>-</synonym>
+        <conjugation>
+          <tense>Simple Past</tense>
+          <singular>
+            <firstperson>schwamm</firstperson>
+            <secondperson>schwammst</secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>schwimme</firstperson>
+            <secondperson>du schwimmst</secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>schwimmen</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+      </translation>
+      <translation id="1" >
+        <text>go</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <usage>Americanism</usage>
+        <usage>contemptuously</usage>
+        <usage>biology</usage>
+        <usage>anatomy</usage>
+        <conjugation>
+          <tense>Past Participle</tense>
+          <singular>
+            <firstperson>have gone</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+        <conjugation>
+          <tense>Simple Past</tense>
+          <singular>
+            <firstperson>went</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>go</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+      </translation>
+      <translation id="2" >
+        <text>aller</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <usage>Americanism</usage>
+        <usage>contemptuously</usage>
+        <usage>biology</usage>
+        <usage>anatomy</usage>
+      </translation>
+    </entry>
+    <entry id="1" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Klotz</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <synonym>-</synonym>
+        <grade fromid="2" >
+          <currentgrade>1</currentgrade>
+          <count>11</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>chunk</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <pronunciation>tschank</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>bloc</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="2" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>gut</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+        <comparison>
+          <absolute>gut</absolute>
+          <comparative>besser</comparative>
+          <superlative>am besten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1" >
+        <text>good</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+        <comparison>
+          <absolute>good</absolute>
+          <comparative>better</comparative>
+          <superlative>best</superlative>
+        </comparison>
+      </translation>
+      <translation id="2" >
+        <text>bon</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+        <comparison>
+          <absolute>bon</absolute>
+          <comparative>meilleur</comparative>
+          <superlative>le meilleur</superlative>
+        </comparison>
+      </translation>
+    </entry>
+    <entry id="3" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Knöchel</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>knuckles</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <pronunciation>nackls</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>cheville</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="4" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>mild</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+        <comparison>
+          <absolute>mild</absolute>
+          <comparative>milder</comparative>
+          <superlative>am mildesten</superlative>
+        </comparison>
+      </translation>
+      <translation id="1" >
+        <text>balmy</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+      </translation>
+      <translation id="2" >
+        <text>doux</text>
+        <wordtype>
+          <typename>Adjective</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="5" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Unheil, Schaden</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>mischief</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <pronunciation>mistschif</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>détriment</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="6" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>starrsinnig</text>
+        <wordtype>
+          <typename>#1</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>opinionated</text>
+        <wordtype>
+          <typename>#1</typename>
+        </wordtype>
+      </translation>
+      <translation id="2" >
+        <text>entêté</text>
+        <wordtype>
+          <typename>#1</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="7" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Gunst, Gefallen</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <synonym>-</synonym>
+        <grade fromid="2" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>favour</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <synonym>-</synonym>
+      </translation>
+      <translation id="2" >
+        <text>faveur</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="8" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Kniebeugen</text>
+        <wordtype>
+          <typename>Article</typename>
+        </wordtype>
+        <synonym>-</synonym>
+        <grade fromid="2" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>genuflect</text>
+        <wordtype>
+          <typename>Article</typename>
+        </wordtype>
+        <usage>proper name</usage>
+      </translation>
+      <translation id="2" >
+        <text>flexion de genoux</text>
+        <wordtype>
+          <typename>Article</typename>
+        </wordtype>
+        <usage>proper name</usage>
+        <grade fromid="0" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="9" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>behindern</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>encumber</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>encumber</firstperson>
+            <secondperson>encumber</secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+          <plural>
+            <firstperson>encumber</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </plural>
+        </conjugation>
+      </translation>
+      <translation id="2" >
+        <text>gêner</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="10" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>stattlich</text>
+        <grade fromid="2" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>handsome</text>
+      </translation>
+      <translation id="2" >
+        <text>imposant</text>
+        <grade fromid="0" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="11" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Saft</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>sap</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+      </translation>
+      <translation id="2" >
+        <text>jus</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="12" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>schwerfällig, mühsam</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>laboured</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <pronunciation>leibrd</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>lourd</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="13" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>niedlich, ordentlich</text>
+        <grade fromid="2" >
+          <currentgrade>2</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>neat</text>
+        <pronunciation>niit</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>mignon</text>
+        <grade fromid="0" >
+          <currentgrade>3</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="14" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Erbse</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Female</subtypename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>pea</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <pronunciation>pi</pronunciation>
+      </translation>
+      <translation id="2" >
+        <text>pois</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="15" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Talg</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>3</currentgrade>
+          <count>3</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>tallow</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+      </translation>
+      <translation id="2" >
+        <text>suif</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>2</currentgrade>
+          <count>2</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="16" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>gänzlich</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <synonym>-</synonym>
+        <grade fromid="2" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>utterly</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <synonym>-</synonym>
+      </translation>
+      <translation id="2" >
+        <text>tout à fait</text>
+        <wordtype>
+          <typename>#2</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="17" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>bezwingen</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>quell</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <conjugation>
+          <tense>Simple Present</tense>
+          <singular>
+            <firstperson>quell</firstperson>
+            <secondperson></secondperson>
+            <thirdpersonmale></thirdpersonmale>
+            <thirdpersonfemale></thirdpersonfemale>
+            <thirdpersonneutralcommon></thirdpersonneutralcommon>
+          </singular>
+        </conjugation>
+      </translation>
+      <translation id="2" >
+        <text>vaincre</text>
+        <wordtype>
+          <typename>Verb</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="18" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>verblüfft</text>
+      </translation>
+      <translation id="1" >
+        <text>taken aback</text>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2002-01-04T17:50:35</date>
+        </grade>
+      </translation>
+      <translation id="2" >
+        <text>ébahi</text>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+    <entry id="19" >
+      <inactive>false</inactive>
+      <translation id="0" >
+        <text>Verfall</text>
+        <wordtype>
+          <typename>Noun</typename>
+          <subtypename>Male</subtypename>
+        </wordtype>
+        <grade fromid="2" >
+          <currentgrade>4</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+      <translation id="1" >
+        <text>decline</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>0</errorcount>
+          <date>2002-01-04T18:31:36</date>
+        </grade>
+      </translation>
+      <translation id="2" >
+        <text>échéance</text>
+        <wordtype>
+          <typename>Noun</typename>
+        </wordtype>
+        <grade fromid="0" >
+          <currentgrade>1</currentgrade>
+          <count>1</count>
+          <errorcount>1</errorcount>
+          <date>1970-01-01T01:00:00</date>
+        </grade>
+      </translation>
+    </entry>
+  </entries>
+  <lessons>
+    <lesson>
+      <name>Lektion eins</name>
+      <query>true</query>
+      <current>true</current>
+      <entryid>4</entryid>
+      <entryid>5</entryid>
+      <entryid>9</entryid>
+      <entryid>18</entryid>
+      <entryid>19</entryid>
+    </lesson>
+    <lesson>
+      <name>Lektion zwei</name>
+      <query>true</query>
+      <entryid>3</entryid>
+      <entryid>7</entryid>
+      <entryid>8</entryid>
+      <entryid>12</entryid>
+    </lesson>
+    <lesson>
+      <name>Lektion drei</name>
+      <entryid>0</entryid>
+      <entryid>6</entryid>
+      <entryid>13</entryid>
+      <entryid>14</entryid>
+    </lesson>
+    <lesson>
+      <name>Lektion vier</name>
+      <entryid>1</entryid>
+      <entryid>2</entryid>
+      <entryid>10</entryid>
+      <entryid>11</entryid>
+      <entryid>15</entryid>
+      <entryid>16</entryid>
+      <entryid>17</entryid>
+    </lesson>
+  </lessons>
+</kvtml>

@@ -89,6 +89,9 @@ int main(int argc, char* argv[])
     aboutData.addCredit(ki18n("Ramona Knapp"),
                         ki18n("Conceived the name Parley"));
 
+    aboutData.addCredit(ki18n("Lee Olson"),
+                        ki18n("Oxygen icons"));
+
     aboutData.addCredit(ki18n("KDE Team"),
                         ki18n("Many small enhancements"));
 

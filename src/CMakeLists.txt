@@ -1,10 +1,7 @@
 
 add_subdirectory( settings )
-add_subdirectory( examples )
-add_subdirectory( pics )
 
 include_directories( ${CMAKE_SOURCE_DIR}/libkdeedu/keduvocdocument/)
-
 
 ########### next target ###############
 kde4_add_kcfg_files( libcommondlg_SKEL_SRCS
@@ -71,8 +68,6 @@ kde4_add_ui_files(configure-practice_SRCS
 )
 
 set(docprop_SRCS
-    #docprop-dialogs/DocPropDlg.cpp
-    #docprop-dialogs/DocPropLangDlg.cpp
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
@@ -157,10 +152,19 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     kvtsortfiltermodel.cpp
 )
 
+set(parley_icons
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox16-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox32-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox48-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox64-app-parley.png 
+    ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox128-app-parley.png 
+)
+kde4_add_win32_app_icon(parley parley_SRCS ${parley_icons})
 
 kde4_add_executable(parley ${parley_SRCS})
+kde4_install_icons( ${ICON_INSTALL_DIR} )
 
-target_link_libraries(parley  keduvocdocument ${KDE4_KIO_LIBS} ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
+target_link_libraries(parley  keduvocdocument ${KDE4_KNEWSTUFF2_LIBS}  ${KDE4_PHONON_LIBS})
 
 install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 

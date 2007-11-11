@@ -278,7 +278,8 @@ void KVTTableDelegate::paint(QPainter * painter, const QStyleOptionViewItem & op
             color = Prefs::gradeColor(0);
             QList<QVariant> result = index.model()->data(index, KVTTableModel::GradeRole).toList();
 
-            if (m_currentIndex.column() > 2) {
+            if (m_currentIndex.column() > 2 && 
+                    (result.size() > (m_currentIndex.column() - 3)) ) {
                 switch (result[m_currentIndex.column() - 3].toInt()) {
                 case KV_NORM_GRADE:
                     color = Prefs::gradeColor(0);

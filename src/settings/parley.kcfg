@@ -43,8 +43,8 @@
       <label>How the columns should be resized.</label>
       <choices>
         <choice name="Automatic"/>
-        <choice name="Fixed"/>
         <choice name="Percent"/>
+        <choice name="Fixed"/>
       </choices>
       <default>Automatic</default>
     </entry>
@@ -158,6 +158,11 @@
 
     <entry name="TableLessonColumnVisible" type="Bool">
       <label>Show/hide the lesson column.</label>
+      <default>false</default>
+    </entry>
+
+    <entry name="TableActiveColumnVisible" type="Bool">
+      <label>Show/hide the active column.</label>
       <default>false</default>
     </entry>
 

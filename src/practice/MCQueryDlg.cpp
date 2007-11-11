@@ -183,6 +183,7 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->show_all->setFocus();
 
     imageShowFromEntry( mw->imageGraphicsView, entry );
+    mw->status->clear();
 }
 
 
@@ -209,9 +210,7 @@ void MCQueryDlg::verifyClicked()
         setWidgetStyle(m_choiceRadioButtons[m_solution], PositiveResult);
         resultCorrect();
         showContinueButton(true);
-        mw->status->setText(
-                getOKComment((int)(((double)mw->countbar->value())
-                    /mw->countbar->maximum() * 100.0)));
+        mw->status->setText(i18n("Well done, you knew the correct answer."));
     } else {
         // wrong answer
         foreach ( QRadioButton* rb, m_choiceRadioButtons ) {
@@ -224,9 +223,7 @@ void MCQueryDlg::verifyClicked()
             resultWrong();
         }
         mw->dont_know->setDefault(true);
-        mw->status->setText(
-                getNOKComment((int)(((double)mw->countbar->value())
-                    /mw->countbar->maximum() * 100.0)));
+        mw->status->setText(i18n("Your answer was wrong."));
     }
     ///@todo move the status bar stuff either in or out of the base class
 }

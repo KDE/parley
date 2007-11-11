@@ -42,7 +42,8 @@ public:
     bool isDefault();
     void updateSettings();
 
-protected slots:
+private slots:
+    void wordTypeItemChanged ( QTreeWidgetItem * item, int column );
 
 private:
     KEduVocDocument *m_doc;
