@@ -51,6 +51,7 @@
 #include <QTreeView>
 #include <QAbstractItemModel>
 #include <QVBoxLayout>
+#include <QDockWidget>
 
 ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
 {
@@ -62,7 +63,6 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_sortFilterModel = 0;
     m_lessonSelectionCombo = 0;
     m_searchLine = 0;
-    m_mainSplitter = 0;
     m_searchWidget = 0;
     m_newStuff = 0;
     m_pronunciationStatusBarLabel = 0;
@@ -515,17 +515,20 @@ QWidget* ParleyApp::initLessonList(QWidget *parent)
  */
 void ParleyApp::initView()
 {
-    /// Parent of all
+    // Parent of all
     QWidget * mainWidget = new QWidget(this);
     setCentralWidget(mainWidget);
     QVBoxLayout *topLayout = new QVBoxLayout(mainWidget);
     topLayout->setMargin(KDialog::marginHint());
     topLayout->setSpacing(KDialog::spacingHint());
-    /// Splitter to divide lessons and table.
-    m_mainSplitter = new QSplitter(centralWidget());
-    topLayout->addWidget(m_mainSplitter);
-    /// List of lessons
-    m_mainSplitter->addWidget(initLessonList(centralWidget()));
+
+    // Lesson dock
+    QDockWidget *dock = new QDockWidget(i18n("Lessons"), this);
+//     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
+    dock->setWidget(initLessonList(dock));
+    addDockWidget(Qt::LeftDockWidgetArea, dock);
+    ///@todo make a show/hide lesson dock option
+//     viewMenu->addAction(dock->toggleViewAction());
 
     m_searchLine = new KLineEdit(this);
     m_searchLine->show();
@@ -546,8 +549,8 @@ void ParleyApp::initView()
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
-    QWidget * rightWidget = new QWidget(this);
-    QVBoxLayout * rightLayout = new QVBoxLayout(rightWidget);
+//     QWidget * rightWidget = new QWidget(centralWidget());
+    QVBoxLayout * rightLayout = new QVBoxLayout(centralWidget());
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
@@ -560,9 +563,9 @@ void ParleyApp::initView()
     m_tableView->setAlternatingRowColors(true);
     rightLayout->addWidget(m_tableView, 1, 0);
 
-    m_mainSplitter->addWidget(rightWidget);
-    /// Filter proxy
+    topLayout->addLayout(rightLayout);
 
+    /// Filter proxy
     m_tableView->setModel(m_sortFilterModel);
     m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
@@ -587,7 +590,6 @@ void ParleyApp::initView()
     connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
             this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
-
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
     m_tableView->addAction(actionCollection()->action("edit_append"));
@@ -610,20 +612,8 @@ void ParleyApp::initView()
     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
 
-//     /* Begin tabs... */
-//     KTabWidget *tabWidget = new KTabWidget(centralWidget());
-//     tabWidget->addTab(rightWidget, "Edit vocabulary");
-//
-//     QPushButton *button = new QPushButton("Resume query");
-//     connect(button, SIGNAL(clicked()), this, SLOT(slotResumeQuery()));
-//     tabWidget->addTab(button, "Query");
-//
-//     m_mainSplitter->addWidget(tabWidget);
-//     /* End tabs - comment out these lines to get the nomal behavior. */
-
     m_sortFilterModel->clear();
 
-    m_mainSplitter->setSizes(Prefs::mainWindowSplitter());
     m_doc->setModified(false);
     m_sortFilterModel->restoreNativeOrder();
 }

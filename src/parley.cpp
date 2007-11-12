@@ -86,9 +86,6 @@ void ParleyApp::saveOptions()
     if (m_lessonSelectionCombo)
         Prefs::setLessonEditingSelection(m_lessonSelectionCombo->currentIndex());
 
-    if (m_mainSplitter)
-        Prefs::setMainWindowSplitter(m_mainSplitter->sizes());
-
     Prefs::self()->writeConfig();
 }
 

@@ -240,9 +240,6 @@ private:
     /** m_lessonView is the lesson list at the left side. */
     KVTLessonView *m_lessonView;
 
-    /** Divides the main window to have the lessons and the table. */
-    QSplitter *m_mainSplitter;
-
     QWidget *m_searchWidget;
 
     /** m_doc represents your vocabulary document. It keeps
@@ -266,6 +263,7 @@ private:
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;
     KVTNewStuff         *m_newStuff;
+
 };
 
 #endif // PARLEY_H
