@@ -159,7 +159,7 @@ set(parley_icons
     ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox64-app-parley.png 
     ${CMAKE_CURRENT_SOURCE_DIR}/parley/src/ox128-app-parley.png 
 )
-kde4_add_win32_app_icon(parley parley_SRCS ${parley_icons})
+kde4_add_win32_app_icon(parley_SRCS ${parley_icons})
 
 kde4_add_executable(parley ${parley_SRCS})
 kde4_install_icons( ${ICON_INSTALL_DIR} )
