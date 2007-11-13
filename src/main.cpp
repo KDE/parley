@@ -100,32 +100,26 @@ int main(int argc, char* argv[])
     KCmdLineOptions options;
     options.add(I18N_NOOP("+[file]"), ki18n("Document file to open"));
     KCmdLineArgs::addCmdLineOptions(options);
+
     KApplication app;
 
-    ParleyApp *parleyApp = 0;
+    // for i18n of the lib strings
+    KGlobal::locale()->insertCatalog("libkdeedu");
+
     if (app.isSessionRestored()) {
-        int n = 1;
-        while (KXmlGuiWindow::canBeRestored(n)) {
-            parleyApp = new ParleyApp;
-            parleyApp->restore(n);
-            parleyApp->show();
-            n++;
-        }
+        kRestoreMainWindows< ParleyApp >();
+        return app.exec();
     } else {
+        ParleyApp *parleyApp = new ParleyApp;
+
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        parleyApp = new ParleyApp;
         if (args && args->count() == 1) {
             parleyApp->loadFileFromPath(args->url(0), true);
             args->clear();
         }
         parleyApp->show();
+        return app.exec();
     }
-    // for i18n of the lib strings
-    KGlobal::locale()->insertCatalog("libkdeedu");
-
-    int ret = app.exec();
-//     delete parleyApp;
-    return  ret;
 }
 

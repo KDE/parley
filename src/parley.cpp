@@ -68,10 +68,6 @@
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
-// #define MAX_LESSON       25
-// #define THRESH_LESSON    KV_MIN_GRADE
-
-
 void ParleyApp::saveOptions()
 {
     fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
