@@ -108,14 +108,6 @@ void ParleyApp::slotFileQuit()
 }
 
 
-void ParleyApp::slotProgress(KEduVocDocument *curr_doc, int percent)
-{
-    Q_UNUSED(curr_doc);
-    if (pbar != 0)
-        pbar->setValue(percent);
-    qApp->processEvents();
-}
-
 void ParleyApp::slotFileNew()
 {
     if (queryExit()) {
@@ -162,9 +154,8 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
         m_tableModel->reset();
         m_tableModel->loadLanguageSettings();
 
-        removeProgressBar();
         if (addRecent) { // open sample does not go into recent
-            fileOpenRecent->addUrl(url);
+            m_recentFilesAction->addUrl(url);
         }
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
         m_doc->setModified(false);
@@ -226,7 +217,7 @@ void ParleyApp::slotFileMerge()
 //         KVTUsage::setUsageNames(m_doc->usageDescriptions());
 //
 //         delete(new_doc);
-//         fileOpenRecent->addUrl(url);
+//         m_recentFilesAction->addUrl(url);
 //         m_tableModel->reset();
 //         m_lessonModel->setDocument(m_doc);
 //         m_tableView->adjustContent();
@@ -238,8 +229,8 @@ void ParleyApp::slotFileMerge()
 
 void ParleyApp::slotFileSave()
 {
-    if (entryDlg != 0) {
-        entryDlg->commitData(false);
+    if (m_entryDlg != 0) {
+        m_entryDlg->commitData(false);
     }
 
     if (m_doc->url().fileName() == i18n("Untitled")) {
@@ -254,7 +245,6 @@ void ParleyApp::slotFileSave()
     QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
     ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
 
-    prepareProgressBar();
     m_doc->setCsvDelimiter(Prefs::separator());
 
     int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley");
@@ -263,8 +253,7 @@ void ParleyApp::slotFileSave()
         slotFileSaveAs();
         return;
     }
-    fileOpenRecent->addUrl(m_doc->url());
-    removeProgressBar();
+    m_recentFilesAction->addUrl(m_doc->url());
 
 //     slotStatusMsg(IDS_DEFAULT);
 }
@@ -274,8 +263,8 @@ void ParleyApp::slotFileSaveAs()
 {
 //     slotStatusMsg(i18n("Saving file under new filename..."));
 
-    if (entryDlg != 0) {
-        entryDlg->commitData(false);
+    if (m_entryDlg != 0) {
+        m_entryDlg->commitData(false);
     }
 
     KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
@@ -295,7 +284,6 @@ void ParleyApp::slotFileSaveAs()
                 QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
                 ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
 
-                prepareProgressBar();
                 m_doc->setCsvDelimiter(Prefs::separator());
 
                 if ( !url.fileName().contains('.') ) {
@@ -306,8 +294,7 @@ void ParleyApp::slotFileSaveAs()
                 if (result != 0) {
                     KMessageBox::error(this, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
                 } else {
-                    fileOpenRecent->addUrl(m_doc->url());
-                    removeProgressBar();
+                    m_recentFilesAction->addUrl(m_doc->url());
                 }
             }
     }
@@ -320,8 +307,8 @@ void ParleyApp::slotSaveSelection()
 ///@todo I doubt this words. If it's not checked, better not enable it.
 
     /*
-    if (entryDlg != 0) {
-        entryDlg->commitData(false);
+    if (m_entryDlg != 0) {
+        m_entryDlg->commitData(false);
     }
 //     slotStatusMsg(i18n("Saving selected area under new filename..."));
     QString save_separator = Prefs::separator();
@@ -365,24 +352,6 @@ void ParleyApp::slotSaveSelection()
     Prefs::setSeparator(save_separator);
 //     slotStatusMsg(IDS_DEFAULT);
     */
-}
-
-
-void ParleyApp::prepareProgressBar()
-{
-    statusBar()->clearMessage();
-    pbar = new QProgressBar(statusBar());
-    statusBar()->addPermanentWidget(pbar, 150);
-    pbar->show();
-}
-
-
-void ParleyApp::removeProgressBar()
-{
-    statusBar()->clearMessage();
-    statusBar()->removeWidget(pbar);
-    delete pbar;
-    pbar = 0;
 }
 
 

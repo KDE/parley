@@ -69,20 +69,18 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_remarkStatusBarLabel = 0;
     m_typeStatusBarLabel = 0;
 
-    pbar = 0;
-
-    entryDlg = 0;
+    m_entryDlg = 0;
 
     initStatusBar();
     initActions();
 
-    fileOpenRecent->loadEntries(KGlobal::config()->group("Recent Files"));
+    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
     initModel();
     initDoc();
     initView();
 
-    editDelete->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
     if (Prefs::autoBackup()) {
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
@@ -118,7 +116,7 @@ void ParleyApp::initActions()
     fileGHNS->setToolTip(fileGHNS->whatsThis());
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
-    fileOpenRecent = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
     KAction* fileMerge = new KAction(this);
     actionCollection()->addAction("file_merge", fileMerge);
@@ -214,15 +212,15 @@ void ParleyApp::initActions()
     editAppend->setToolTip(editAppend->whatsThis());
     editAppend->setStatusTip(editAppend->whatsThis());
 
-    editDelete = new KAction(this);
-    actionCollection()->addAction("edit_remove_selected_area", editDelete);
-    editDelete->setIcon(KIcon("remove-card"));
-    editDelete->setText(i18n("&Delete Entry"));
-    connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
-    editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
-    editDelete->setWhatsThis(i18n("Delete the selected rows"));
-    editDelete->setToolTip(editDelete->whatsThis());
-    editDelete->setStatusTip(editDelete->whatsThis());
+    m_deleteEntriesAction = new KAction(this);
+    actionCollection()->addAction("edit_remove_selected_area", m_deleteEntriesAction);
+    m_deleteEntriesAction->setIcon(KIcon("remove-card"));
+    m_deleteEntriesAction->setText(i18n("&Delete Entry"));
+    connect(m_deleteEntriesAction, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
+    m_deleteEntriesAction->setShortcut(QKeySequence(Qt::Key_Delete));
+    m_deleteEntriesAction->setWhatsThis(i18n("Delete the selected rows"));
+    m_deleteEntriesAction->setToolTip(m_deleteEntriesAction->whatsThis());
+    m_deleteEntriesAction->setStatusTip(m_deleteEntriesAction->whatsThis());
 
     KAction* editEditEntry = new KAction(this);
      actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
@@ -355,12 +353,12 @@ void ParleyApp::initActions()
     configToolbar->setToolTip(configToolbar->whatsThis());
     configToolbar->setStatusTip(configToolbar->whatsThis());
 
-    vocabShowSearchBar = actionCollection()->add<KToggleAction>("config_show_search");
-    vocabShowSearchBar->setText(i18n("Show Se&arch"));
-    connect(vocabShowSearchBar, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
-    vocabShowSearchBar->setWhatsThis(i18n("Toggle display of the search bar"));
-    vocabShowSearchBar->setToolTip(vocabShowSearchBar->whatsThis());
-    vocabShowSearchBar->setStatusTip(vocabShowSearchBar->whatsThis());
+    m_vocabShowSearchBarAction = actionCollection()->add<KToggleAction>("config_show_search");
+    m_vocabShowSearchBarAction->setText(i18n("Show Se&arch"));
+    connect(m_vocabShowSearchBarAction, SIGNAL(triggered(bool)), this, SLOT(slotConfigShowSearch()));
+    m_vocabShowSearchBarAction->setWhatsThis(i18n("Toggle display of the search bar"));
+    m_vocabShowSearchBarAction->setToolTip(m_vocabShowSearchBarAction->whatsThis());
+    m_vocabShowSearchBarAction->setStatusTip(m_vocabShowSearchBarAction->whatsThis());
 
     KAction *actionShowLessonColumn = new KAction(this);
     actionCollection()->addAction("config_show_lesson_column", actionShowLessonColumn);
@@ -408,11 +406,11 @@ void ParleyApp::initStatusBar()
 
 void ParleyApp::initDoc()
 {
-    if (fileOpenRecent->actions().count() > 0
-        && fileOpenRecent->action(
-            fileOpenRecent->actions().count()-1)->isEnabled() )
+    if (m_recentFilesAction->actions().count() > 0
+        && m_recentFilesAction->action(
+            m_recentFilesAction->actions().count()-1)->isEnabled() )
     {
-        fileOpenRecent->action(fileOpenRecent->actions().count()-1)->trigger();
+        m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
     } else {
         // this is probably the first time we start.
         m_doc = new KEduVocDocument();
@@ -555,7 +553,7 @@ void ParleyApp::initView()
     rightLayout->setMargin(0);
     rightLayout->addWidget(m_searchWidget);
     m_searchWidget->setVisible(Prefs::showSearch());
-    vocabShowSearchBar->setChecked(Prefs::showSearch());
+    m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
     /// Table view
     m_tableView = new KVTTableView(centralWidget());

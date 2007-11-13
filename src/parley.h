@@ -116,7 +116,6 @@ public slots:
     void slotSaveSelection();
     void slotCancelSelection();
     void slotSelectAll();
-    void slotProgress(KEduVocDocument*,int);
 
     void slotCleanVocabulary();
 
@@ -225,9 +224,9 @@ private:
 
     ///@todo these are referred to somewhere. should probably be avoidable.
     // KAction pointers to enable/disable actions
-    KRecentFilesAction* fileOpenRecent;
-    KAction* editDelete;
-    KAction* vocabShowSearchBar;
+    KRecentFilesAction* m_recentFilesAction;
+    KAction* m_deleteEntriesAction;
+    KAction* m_vocabShowSearchBarAction;
 
     QString lastPixName;
 
@@ -256,9 +255,8 @@ private:
 
     KLineEdit           *m_searchLine;
 
-    EntryDlg            *entryDlg;
+    EntryDlg            *m_entryDlg;
 
-    QProgressBar        *pbar;
     QLabel              *m_pronunciationStatusBarLabel;
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;

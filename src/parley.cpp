@@ -70,7 +70,7 @@
 
 void ParleyApp::saveOptions()
 {
-    fileOpenRecent->saveEntries(KGlobal::config()->group("Recent Files"));
+    m_recentFilesAction->saveEntries(KGlobal::config()->group("Recent Files"));
 
     if (m_tableView) {
         // map to original entry numbers:
@@ -113,7 +113,6 @@ void ParleyApp::readProperties(const KConfigGroup &config)
         if (b_canRecover) {
             m_doc = new KEduVocDocument(this);
             m_doc->setUrl(KUrl(tempname));
-            removeProgressBar();
             m_doc->setModified();
             m_doc->setTitle(title);
             m_doc->setUrl(KUrl(filename));
@@ -123,7 +122,6 @@ void ParleyApp::readProperties(const KConfigGroup &config)
     } else if (!filename.isEmpty()) {
         m_doc = new KEduVocDocument(this);
         m_doc->setUrl(KUrl(filename));
-        removeProgressBar();
         setCaption(m_doc->title(), m_doc->isModified());
     }
 
@@ -157,19 +155,19 @@ void ParleyApp::slotSelectAll()
 void ParleyApp::slotEditEntry()
 {
     // prepare the entry dialog
-    if (entryDlg == 0) {
-        entryDlg = new EntryDlg(this, m_doc);
-        connect(entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
-        connect(entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
+    if (m_entryDlg == 0) {
+        m_entryDlg = new EntryDlg(this, m_doc);
+        connect(m_entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
+        connect(m_entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
     }
 
-    if (entryDlg != 0) {
-        entryDlg->commitData(false);
+    if (m_entryDlg != 0) {
+        m_entryDlg->commitData(false);
     }
-    entryDlg->show();
+    m_entryDlg->show();
 
-    if (entryDlg == 0) {
-        kError() << "ParleyApp::setDataEntryDlg: entryDlg == 0\n";
+    if (m_entryDlg == 0) {
+        kError() << "ParleyApp::setDataEntryDlg: m_entryDlg == 0\n";
         return;
     }
 
@@ -193,16 +191,16 @@ void ParleyApp::slotEditEntry()
         entryList.append( currentIndex.row() );
     }
 
-    entryDlg->setData(entryList, currentIndex.column() - KV_COL_TRANS);
+    m_entryDlg->setData(entryList, currentIndex.column() - KV_COL_TRANS);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
 
 void ParleyApp::removeEntryDlg()
 {
-    if (entryDlg != 0) {
-        entryDlg->deleteLater();
-        entryDlg = 0;
+    if (m_entryDlg != 0) {
+        m_entryDlg->deleteLater();
+        m_entryDlg = 0;
     }
 
     m_tableView->setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
@@ -251,7 +249,7 @@ void ParleyApp::slotCutEntry()
                 m_sortFilterModel->removeRows(i, 1, QModelIndex());
         m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
     }
-    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -277,7 +275,7 @@ void ParleyApp::slotDeleteEntry()
             m_tableView->selectionModel()->setCurrentIndex(m_sortFilterModel->index(currentRow, currentColumn), QItemSelectionModel::ClearAndSelect | QItemSelectionModel::Rows);
         }
     }
-    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 
@@ -289,7 +287,7 @@ void ParleyApp::slotNewEntry()
     makeLessonVisibleInTable(m_doc->currentLesson());
 
     // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
-    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 
     QModelIndex currentIndex = m_sortFilterModel->index(
             m_sortFilterModel->rowCount(QModelIndex()) - 1, KV_COL_TRANS);
@@ -387,13 +385,9 @@ void ParleyApp::slotShowStatistics()
 
 void ParleyApp::slotCleanVocabulary()
 {
-    prepareProgressBar();
     QApplication::setOverrideCursor(Qt::WaitCursor);
     int num = m_doc->cleanUp();
     QApplication::restoreOverrideCursor();
-    removeProgressBar();
-
-//     slotStatusMsg(IDS_DEFAULT);
 
     if (num != 0) {
         m_tableModel->reset();
@@ -522,14 +516,14 @@ void ParleyApp::slotEditPaste()
     QApplication::restoreOverrideCursor();
 //     slotStatusMsg(IDS_DEFAULT);
 
-    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 
 void ParleyApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
 {
     // update the entry dialog if it is there
-    if (entryDlg != 0) {
+    if (m_entryDlg != 0) {
         slotEditEntry();
     }
 }
@@ -568,7 +562,7 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
         m_typeStatusBarLabel->setText(i18n("Type: %1", typeText));
     }
     // update the entry dialog if it is there
-    if (entryDlg != 0) {
+    if (m_entryDlg != 0) {
         slotEditEntry();
     }
 }
@@ -576,7 +570,7 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
 
 void ParleyApp::slotCurrentLessonChanged()
 {
-    editDelete->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
+    m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 
 void ParleyApp::slotConfigShowSearch()
