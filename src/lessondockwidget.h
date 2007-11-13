@@ -56,7 +56,7 @@ private:
     /** m_editCombo selects which lessons to display in m_tableView (the main table) */
     KComboBox *m_lessonSelectionCombo;
 
-    KEduVocDocument *m_doc;
+    ParleyApp *m_parleyApp;
 };
 
 #endif

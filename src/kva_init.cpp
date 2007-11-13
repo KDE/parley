@@ -456,15 +456,6 @@ void ParleyApp::initModel()
     setCaption(m_doc->url().fileName(), false);
 
 
-    // selection changes (the entry dialog needs these)
-    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
-    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
-
 //     m_sortFilterModel->restoreNativeOrder();
 
 
@@ -476,6 +467,15 @@ void ParleyApp::initModel()
 
     m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
     m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
+
+    // selection changes (the entry dialog needs these)
+    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
+            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
+
+    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
     m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);

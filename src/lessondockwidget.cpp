@@ -36,6 +36,7 @@
 LessonDockWidget::LessonDockWidget(ParleyApp *parent)
  : QDockWidget(i18n("Lessons"), parent)
 {
+    m_parleyApp = parent;
     m_lessonModel = 0;
 
     // Widget to get a boxLayout
@@ -68,13 +69,6 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
 
     /// New lesson selected
     connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), parent, SLOT(slotCurrentLessonChanged(int)));
-
-    /** this is a little general, but at least we get notified of the changes */
-    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), parent->m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
-
-    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), parent->m_sortFilterModel, SLOT(setLessonSelection(int)));
-
-    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
 
     connect(parent->actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
     connect(parent->actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
@@ -110,6 +104,11 @@ void LessonDockWidget::setDocument(KEduVocDocument * doc)
     m_lessonView->setModel(m_lessonModel);
 //     m_lessonView->initializeSelection();
     connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
+
+    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_parleyApp->m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
+
+    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
+    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_parleyApp->m_sortFilterModel, SLOT(setLessonSelection(int)));
 }
 
 int LessonDockWidget::addLesson()
@@ -134,8 +133,8 @@ void LessonDockWidget::makeLessonVisibleInTable(int lessonIndex)
             m_lessonView->slotSelectLesson(lessonIndex);
             break;
         case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-            m_doc->setCurrentLesson(lessonIndex);
-            if ( !m_doc->lesson(lessonIndex).inPractice() ) {
+            m_parleyApp->m_doc->setCurrentLesson(lessonIndex);
+            if ( !m_parleyApp->m_doc->lesson(lessonIndex).inPractice() ) {
                 m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
             }
             ///@todo m_sortFilterModel->clear();
