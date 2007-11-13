@@ -31,8 +31,7 @@
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include "lessondockwidget.h"
 
 #include <KFileDialog>
 #include <KStatusBar>
@@ -163,7 +162,7 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
         if (m_tableView) {
             m_tableView->adjustContent();
         }
-        m_lessonModel->setDocument(m_doc);
+        m_lessonDockWidget->setDocument(m_doc);
     }
 }
 
@@ -374,11 +373,7 @@ void ParleyApp::newDocumentWizard()
     m_tableModel->setDocument(m_doc);
     connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
 
-    m_lessonModel->setDocument(m_doc);
-    if (m_lessonView) {
-        m_lessonView->setModel(m_lessonModel);
-        m_lessonView->initializeSelection();
-    }
+    m_lessonDockWidget->setDocument(m_doc);
 
     if (m_tableView) {
         m_tableView->adjustContent();
@@ -392,11 +387,9 @@ void ParleyApp::newDocumentWizard()
 
     m_tableModel->loadLanguageSettings();
 
-    int lessonIndex = m_lessonModel->addLesson();
+    int lessonIndex = m_lessonDockWidget->addLesson();
 
-    if (m_lessonView) {
-        m_lessonView->slotSelectLesson(lessonIndex);
-    }
+    m_lessonDockWidget->selectLesson(lessonIndex);
 
     // add some entries
     for ( int i = 0; i < 15 ; i++ ) {
@@ -459,11 +452,8 @@ void ParleyApp::createExampleEntries()
     // Set the language headers of the table.
     m_tableModel->loadLanguageSettings();
 
-    int lessonIndex = m_lessonModel->addLesson();
-
-    if (m_lessonView) {
-        m_lessonView->slotSelectLesson(lessonIndex);
-    }
+    int lessonIndex = m_lessonDockWidget->addLesson();
+    m_lessonDockWidget->selectLesson(lessonIndex);
 
     // add some entries
     for ( int i = 0; i < 15 ; i++ ) {

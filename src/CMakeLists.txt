@@ -150,6 +150,7 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     kvtlessonmodel.cpp
     kvtlessonview.cpp
     kvtsortfiltermodel.cpp
+    lessondockwidget.cpp
 )
 
 set(parley_icons

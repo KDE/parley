@@ -36,11 +36,10 @@
 class KVTTableModel;
 class KVTSortFilterModel;
 class KVTTableView;
-class KVTLessonModel;
-class KVTLessonView;
 class PracticeManager;
 class EntryDlg;
 class KVTNewStuff;
+class LessonDockWidget;
 
 class KEduVocDocument;
 class KLineEdit;
@@ -84,11 +83,6 @@ public:
 
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
-    /** Make sure, the lesson is visible - if combo is set to
-      1. all, no problem
-      2. in query -> if current not in query change combo?
-      3. current -> make the lesson current */
-    void makeLessonVisibleInTable(int lessonIndex);
 
     /** saves the window properties for each open window during session end to the session config file, including saving the currently
     * opened file by a temporary filename provided by KApplication.
@@ -197,7 +191,7 @@ private slots:
     /**
      * To update e.g. context menu entries when the table view changed
      */
-    void slotCurrentLessonChanged();
+    void slotCurrentLessonChanged(int newLesson);
 
     /** edit an entry */
     void slotEditEntry();
@@ -224,14 +218,8 @@ private:
 
     QString lastPixName;
 
-    /** m_editCombo selects which lessons to display in m_tableView (the main table) */
-    KComboBox *m_lessonSelectionCombo;
-
     /** m_tableView is the main widget which is the table that represents your working area. */
     KVTTableView *m_tableView;
-
-    /** m_lessonView is the lesson list at the left side. */
-    KVTLessonView *m_lessonView;
 
     QWidget *m_searchWidget;
 
@@ -240,9 +228,10 @@ private:
       */
     KEduVocDocument *m_doc;
 
+    LessonDockWidget *m_lessonDockWidget;
+
     /** The models to represent the data of m_doc */
     KVTTableModel       *m_tableModel;
-    KVTLessonModel      *m_lessonModel;
     KVTSortFilterModel  *m_sortFilterModel;
 
     QString              m_textToFind;
@@ -256,6 +245,7 @@ private:
     QLabel              *m_typeStatusBarLabel;
     KVTNewStuff         *m_newStuff;
 
+    friend class LessonDockWidget;
 };
 
 #endif // PARLEY_H

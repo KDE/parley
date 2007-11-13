@@ -28,8 +28,7 @@
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include "lessondockwidget.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "statistics-dialogs/StatisticsDialog.h"
@@ -79,8 +78,7 @@ void ParleyApp::saveOptions()
         Prefs::setCurrentCol(sourceIndex.column());
     }
 
-    if (m_lessonSelectionCombo)
-        Prefs::setLessonEditingSelection(m_lessonSelectionCombo->currentIndex());
+    m_lessonDockWidget->saveOptions();
 
     Prefs::self()->writeConfig();
 }
@@ -284,7 +282,7 @@ void ParleyApp::slotNewEntry()
     m_tableModel->appendEntry();
 
     // show the new entry
-    makeLessonVisibleInTable(m_doc->currentLesson());
+    m_lessonDockWidget->makeLessonVisibleInTable(m_doc->currentLesson());
 
     // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
@@ -298,25 +296,6 @@ void ParleyApp::slotNewEntry()
     m_tableView->edit(currentIndex);
 }
 
-
-void ParleyApp::makeLessonVisibleInTable(int lessonIndex)
-{
-    switch (m_lessonSelectionCombo->currentIndex()) {
-    case Prefs::EnumLessonEditingSelection::CurrentLesson:
-        m_doc->setCurrentLesson(lessonIndex);
-        m_sortFilterModel->clear();
-        break;
-    case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-        m_doc->setCurrentLesson(lessonIndex);
-        if ( !m_doc->lesson(lessonIndex).inPractice() ) {
-            m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
-        }
-        m_sortFilterModel->clear();
-        break;
-    case Prefs::EnumLessonEditingSelection::AllLessons:
-        break;
-    }
-}
 
 void ParleyApp::keyPressEvent(QKeyEvent *e)
 {
@@ -568,8 +547,9 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
 }
 
 
-void ParleyApp::slotCurrentLessonChanged()
+void ParleyApp::slotCurrentLessonChanged(int newLesson)
 {
+    m_sortFilterModel->slotCurrentLessonChanged(newLesson);
     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
 }
 

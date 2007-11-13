@@ -29,8 +29,7 @@
 #include "kvttablemodel.h"
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include "lessondockwidget.h"
 
 #include <KTabWidget>
 #include <KActionCollection>
@@ -58,10 +57,7 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
     m_doc = 0;
     m_tableView = 0;
     m_tableModel = 0;
-    m_lessonModel = 0;
-    m_lessonView = 0;
     m_sortFilterModel = 0;
-    m_lessonSelectionCombo = 0;
     m_searchLine = 0;
     m_searchWidget = 0;
     m_newStuff = 0;
@@ -76,9 +72,13 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
 
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
-    initModel();
-    initDoc();
+    kDebug() << "INIT VIEW";
     initView();
+    kDebug() << "INIT MODEL";
+    initModel();
+    kDebug() << "INIT DOC";
+    initDoc();
+    kDebug() << "INIT DONE";
 
     m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
@@ -409,110 +409,98 @@ void ParleyApp::initStatusBar()
 
 void ParleyApp::initDoc()
 {
+
+}
+
+
+
+void ParleyApp::initModel()
+{
+    m_tableModel = new KVTTableModel(this);
+    m_sortFilterModel= new KVTSortFilterModel(this);
+    m_sortFilterModel->setSourceModel(m_tableModel);
+
+
+    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+
     if (m_recentFilesAction->actions().count() > 0
         && m_recentFilesAction->action(
-            m_recentFilesAction->actions().count()-1)->isEnabled() )
+                                       m_recentFilesAction->actions().count()-1)->isEnabled() )
     {
         m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
     } else {
         // this is probably the first time we start.
         m_doc = new KEduVocDocument();
 
-        m_lessonModel->setDocument(m_doc);
-        if (m_lessonView) {
-            m_lessonView->setModel(m_lessonModel);
-            m_lessonView->initializeSelection();
-        }
-        if (m_tableView) {
-            m_tableView->adjustContent();
-            m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-            m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-        }
+        m_lessonDockWidget->setDocument(m_doc);
+
+        m_tableView->adjustContent();
+        m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+        m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
 
         m_tableModel->setDocument(m_doc);
         initializeDefaultGrammar();
         createExampleEntries();
 
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+   }
+
+    int currentColumn = Prefs::currentCol();
+    int currentRow = Prefs::currentRow();
+    if (currentColumn <= KV_COL_LESS) {
+        currentColumn = KV_COL_TRANS;
     }
-}
+    // always operate from m_sortFilterModel
+    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
 
-void ParleyApp::initModel()
-{
-    m_lessonModel = new KVTLessonModel(this);
-    m_tableModel = new KVTTableModel(this);
-    m_sortFilterModel= new KVTSortFilterModel(this);
-    m_sortFilterModel->setSourceModel(m_tableModel);
-}
-
-/**
-  * Initialize the lesson list.
-  */
-QWidget* ParleyApp::initLessonList(QWidget *parent)
-{
-    // Widget to get a boxLayout
-    QWidget *left = new QWidget(parent);
-    // box layout for the left side
-    QVBoxLayout *boxLayout = new QVBoxLayout(left);
-    boxLayout->setMargin(0);
-    boxLayout->setSpacing(KDialog::spacingHint());
-
-    // This contains the lessons for now
-    m_lessonView = new KVTLessonView(left);
-    // To make the treeview appear like a listview
-    m_lessonView->setRootIsDecorated(false);
-    // Get the lessons form vocab document
-    m_lessonModel->setDocument(m_doc);
-    // I need to initialize the lessons with the model as well...
-    m_lessonView->setModel(m_lessonModel);
-    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
-                                  "With the checkboxes you can select which lessons you want to practice. \n"
-                                  "Only checked lessons [x] will be asked in the tests!"));
-
-    // Here the user selects whether he wants all lessons in the table, or the current one or the ones in query
-    m_lessonSelectionCombo = new KComboBox();
-    m_lessonSelectionCombo->addItem(i18n("Edit current lesson"));
-    m_lessonSelectionCombo->addItem(i18n("Edit lessons in test"));
-    m_lessonSelectionCombo->addItem(i18n("Edit all lessons"));
-    m_lessonSelectionCombo->setToolTip(i18n("Select which lessons should be displayed for editing to the right."));
-
-    boxLayout->addWidget(m_lessonSelectionCombo);
-    boxLayout->addWidget(m_lessonView);
-
-    /// New lesson selected
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), m_sortFilterModel, SLOT(slotCurrentLessonChanged(int)));
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), this, SLOT(slotCurrentLessonChanged()));
-    /** this is a little general, but at least we get notified of the changes */
-    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
-
-    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_sortFilterModel, SLOT(setLessonSelection(int)));
-    connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
-
-    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
+    setCaption(m_doc->url().fileName(), false);
 
 
-    m_lessonView->initializeSelection();
+    // selection changes (the entry dialog needs these)
+    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
+            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
 
-    connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
-    connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
-    connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));
-    connect(actionCollection()->action("check_all_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckAllLessons()));
-    connect(actionCollection()->action("check_no_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckNoLessons()));
-    connect(actionCollection()->action("split_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotSplitLesson()));
+    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
-    m_lessonView->addAction(actionCollection()->action("new_lesson"));
-    m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
-    /// @todo add a separator here
-    m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
-    /// @todo add a separator here
-    m_lessonView->addAction(actionCollection()->action("split_lesson"));
+    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
-    return left;
+//     m_sortFilterModel->restoreNativeOrder();
+
+
+    m_tableView->addAction(actionCollection()->action("edit_append"));
+    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
+    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
+
+    m_tableView->setModel(m_sortFilterModel);
+
+    m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
+
+    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
+    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
+    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
+
+    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
+    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
+    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
+
+    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
+    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
+    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
+
+        /// Filter proxy
+    m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
+
 }
 
 
 /**
- * This initializes the main widgets, splitter and table.
+ * This initializes the main widgets and table.
  */
 void ParleyApp::initView()
 {
@@ -524,17 +512,16 @@ void ParleyApp::initView()
     topLayout->setSpacing(KDialog::spacingHint());
 
     // Lesson dock
-    QDockWidget *lessonDock = new QDockWidget(i18n("Lessons"), this);
-    lessonDock->setWidget(initLessonList(lessonDock));
-    lessonDock->setObjectName("LessonDock");
-    addDockWidget(Qt::LeftDockWidgetArea, lessonDock);
+    m_lessonDockWidget = new LessonDockWidget(this);
+    m_lessonDockWidget->setObjectName("LessonDock");
+    addDockWidget(Qt::LeftDockWidgetArea, m_lessonDockWidget);
 
     m_searchLine = new KLineEdit(this);
     m_searchLine->show();
     m_searchLine->setFocusPolicy(Qt::ClickFocus);
     m_searchLine->setClearButtonShown(true);
     m_searchLine->setClickMessage(i18n("Enter search terms here"));
-    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+
     m_searchLine->setToolTip(i18n("Enter space-separated search terms to find words.\n\nEnter ^abc to look for words beginning with \"abc\".\nEnter abc$ to look for words ending with \"abc\".\nEnter type:verb to search for verbs."));
 
     QLabel *label = new QLabel(i18n("S&earch:"), this);
@@ -563,56 +550,8 @@ void ParleyApp::initView()
 
     topLayout->addLayout(rightLayout);
 
-    /// Filter proxy
-    m_tableView->setModel(m_sortFilterModel);
-    m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
-    int currentColumn = Prefs::currentCol();
-    int currentRow = Prefs::currentRow();
-    if (currentColumn <= KV_COL_LESS) {
-        currentColumn = KV_COL_TRANS;
-    }
-
-    // always operate from m_sortFilterModel
-    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
-
-    setCaption(m_doc->url().fileName(), false);
-
-    // selection changes (the entry dialog needs these)
-    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
-    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
-
-    m_tableView->addAction(actionCollection()->action("edit_append"));
-    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
-    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
 
 
-    m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
 
-    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
-    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
-    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
-
-    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
-    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
-    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
-
-    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
-    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
-    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
-    m_sortFilterModel->clear();
-
-    m_doc->setModified(false);
-    m_sortFilterModel->restoreNativeOrder();
 }
 

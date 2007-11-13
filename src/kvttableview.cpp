@@ -227,6 +227,10 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
 //         return;
 //     }
 
+    if ( !model() ) {
+        return;
+    }
+
     QHeaderView * header = horizontalHeader();
     int colCount =  model()->columnCount(QModelIndex());
     int oldWidth = 0;
