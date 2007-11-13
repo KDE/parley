@@ -85,6 +85,9 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
     if (Prefs::autoBackup()) {
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
     }
+
+    // save position of dock windows etc
+    setAutoSaveSettings();
 }
 
 
@@ -521,12 +524,10 @@ void ParleyApp::initView()
     topLayout->setSpacing(KDialog::spacingHint());
 
     // Lesson dock
-    QDockWidget *dock = new QDockWidget(i18n("Lessons"), this);
-//     dock->setAllowedAreas(Qt::LeftDockWidgetArea | Qt::RightDockWidgetArea);
-    dock->setWidget(initLessonList(dock));
-    addDockWidget(Qt::LeftDockWidgetArea, dock);
-    ///@todo make a show/hide lesson dock option
-//     viewMenu->addAction(dock->toggleViewAction());
+    QDockWidget *lessonDock = new QDockWidget(i18n("Lessons"), this);
+    lessonDock->setWidget(initLessonList(lessonDock));
+    lessonDock->setObjectName("LessonDock");
+    addDockWidget(Qt::LeftDockWidgetArea, lessonDock);
 
     m_searchLine = new KLineEdit(this);
     m_searchLine->show();
@@ -547,7 +548,6 @@ void ParleyApp::initView()
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
-//     QWidget * rightWidget = new QWidget(centralWidget());
     QVBoxLayout * rightLayout = new QVBoxLayout(centralWidget());
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
