@@ -70,8 +70,6 @@ public:
 
     /** setup the statusbar */
     void initStatusBar();
-    /** setup the main document*/
-    void initDoc();
     /** setup the main model*/
     void initModel();
     /** setup the lesson list and its buttons */

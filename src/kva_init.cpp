@@ -31,7 +31,6 @@
 #include "kvttableview.h"
 #include "lessondockwidget.h"
 
-#include <KTabWidget>
 #include <KActionCollection>
 #include <KLineEdit>
 #include <KComboBox>
@@ -47,8 +46,6 @@
 #include <QLabel>
 #include <QHeaderView>
 #include <QSplitter>
-#include <QTreeView>
-#include <QAbstractItemModel>
 #include <QVBoxLayout>
 #include <QDockWidget>
 
@@ -72,13 +69,8 @@ ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
 
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
-    kDebug() << "INIT VIEW";
     initView();
-    kDebug() << "INIT MODEL";
     initModel();
-    kDebug() << "INIT DOC";
-    initDoc();
-    kDebug() << "INIT DONE";
 
     m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
 
@@ -407,19 +399,11 @@ void ParleyApp::initStatusBar()
 }
 
 
-void ParleyApp::initDoc()
-{
-
-}
-
-
-
 void ParleyApp::initModel()
 {
     m_tableModel = new KVTTableModel(this);
     m_sortFilterModel= new KVTSortFilterModel(this);
     m_sortFilterModel->setSourceModel(m_tableModel);
-
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
 
@@ -443,7 +427,7 @@ void ParleyApp::initModel()
         createExampleEntries();
 
         connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-   }
+    }
 
     int currentColumn = Prefs::currentCol();
     int currentRow = Prefs::currentRow();
@@ -454,10 +438,6 @@ void ParleyApp::initModel()
     m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
 
     setCaption(m_doc->url().fileName(), false);
-
-
-//     m_sortFilterModel->restoreNativeOrder();
-
 
     m_tableView->addAction(actionCollection()->action("edit_append"));
     m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
@@ -489,13 +469,12 @@ void ParleyApp::initModel()
     m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
     connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
 
-        /// Filter proxy
+    // Filter proxy
     m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
-
 }
 
 
@@ -549,9 +528,5 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_tableView, 1, 0);
 
     topLayout->addLayout(rightLayout);
-
-
-
-
 }
 
