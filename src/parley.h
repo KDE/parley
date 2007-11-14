@@ -26,6 +26,8 @@
 #ifndef PARLEY_H
 #define PARLEY_H
 
+#include "parleydocument.h"
+
 #include <KXmlGuiWindow>
 #include <KUrl>
 #include <QItemSelection>
@@ -38,7 +40,6 @@ class KVTSortFilterModel;
 class KVTTableView;
 class PracticeManager;
 class EntryDlg;
-class KVTNewStuff;
 class LessonDockWidget;
 
 class KEduVocDocument;
@@ -62,8 +63,11 @@ class ParleyApp : public KXmlGuiWindow
     Q_OBJECT
 
 public:
+    /** construtor with filename to open */
+    ParleyApp(const KUrl &filename = KUrl());
     /** construtor */
-    ParleyApp(QWidget *parent = 0);
+//     ParleyApp();
+
     /** destructor */
     ~ParleyApp();
     void initActions();
@@ -82,24 +86,13 @@ public:
     /** This will look at the lesson list and also the combo box to determine what should be displayed in the table. */
     void updateTableFilter();
 
-    /** saves the window properties for each open window during session end to the session config file, including saving the currently
-    * opened file by a temporary filename provided by KApplication.
-    * @see KXmlGuiWindow#saveProperties
-    */
-    virtual void saveProperties(KConfigGroup &);
-    /** reads the session config file and restores the application's state including the last opened files and documents by reading the
-    * temporary files saved by saveProperties()
-    * @see KXmlGuiWindow#readProperties
-    */
-    virtual void readProperties(const KConfigGroup &);
 
 public slots:
     void keyPressEvent(QKeyEvent *e);
 //  void keyReleaseEvent( QKeyEvent *e );
-    void slotModifiedDoc(bool mod);
+    void slotUpdateWindowCaption();
 
     /** select an entry */
-    void slotSaveSelection();
     void slotCancelSelection();
     void slotSelectAll();
 
@@ -123,24 +116,6 @@ public slots:
 
     void slotTimeOutBackup();
 
-    /** open a new application window */
-    void slotFileNew();
-    /** open a document */
-    void slotFileOpen();
-    /** opens a file from the recent files menu */
-    void slotFileOpenRecent(const KUrl& url);
-    /** open a sample document */
-    void slotFileOpenExample();
-    /** download new vocabularies */
-    void slotGHNS();
-    void loadFileFromPath(const KUrl &, bool addRecent = true);
-    /** merge a document */
-    void slotFileMerge();
-    /** save a document */
-    void slotFileSave();
-    /** save a document under a different filename*/
-    void slotFileSaveAs();
-    void slotFilePrint();
     void slotFileQuit();
 
 
@@ -195,20 +170,13 @@ private slots:
     void slotEditEntry();
 
 private:
-    /**
-     * Start the wizard to help set up the doc.
-     */
-    void newDocumentWizard();
-    /**
-     * Add some pre defined types and usages.
-     */
-    void initializeDefaultGrammar();
-    /**
-     * When starting the first time, create some entries to get started.
-     */
-    void createExampleEntries();
 
-    ///@todo these are referred to somewhere. should probably be avoidable.
+    /**
+     * Set the current doc (after creating a new one or opening a file)
+     * @param doc
+     */
+    void setDocument(KEduVocDocument *doc);
+
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
     KAction* m_deleteEntriesAction;
@@ -221,18 +189,14 @@ private:
 
     QWidget *m_searchWidget;
 
-    /** m_doc represents your vocabulary document. It keeps
-      * information such as filename and does the serialization of your files.
-      */
-    KEduVocDocument *m_doc;
+    /** m_document is the current vocabulary document. */
+    ParleyDocument   *m_document;
 
     LessonDockWidget *m_lessonDockWidget;
 
     /** The models to represent the data of m_doc */
     KVTTableModel       *m_tableModel;
     KVTSortFilterModel  *m_sortFilterModel;
-
-    QString              m_textToFind;
 
     KLineEdit           *m_searchLine;
 
@@ -241,9 +205,9 @@ private:
     QLabel              *m_pronunciationStatusBarLabel;
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;
-    KVTNewStuff         *m_newStuff;
 
     friend class LessonDockWidget;
+    friend class ParleyDocument;
 };
 
 #endif // PARLEY_H

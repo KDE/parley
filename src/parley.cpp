@@ -64,8 +64,79 @@
 #include <QClipboard>
 #include <QProgressBar>
 #include <QSplitter>
+#include <QHeaderView>
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
+
+
+
+ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
+{
+    m_document = new ParleyDocument(this, filename);
+
+    m_tableView = 0;
+    m_tableModel = 0;
+    m_sortFilterModel = 0;
+    m_searchLine = 0;
+    m_searchWidget = 0;
+    m_pronunciationStatusBarLabel = 0;
+    m_remarkStatusBarLabel = 0;
+    m_typeStatusBarLabel = 0;
+
+    m_entryDlg = 0;
+
+    initStatusBar();
+    initActions();
+
+    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
+
+    initView();
+    initModel();
+
+    // these connects need the model to exist
+
+    // selection changes (the entry dialog needs these)
+    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
+            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
+            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
+
+    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
+    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
+    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
+
+//     QDockWidget *editMultipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
+//     editMultipleChoiceDock->setObjectName("editMultipleChoiceDock");
+//     addDockWidget(Qt::BottomDockWidgetArea, editMultipleChoiceDock);
+//     editMultipleChoiceDock->setWidget(new MCEntryPage(m_document->document(), editMultipleChoiceDock));
+
+
+//     QDockWidget *editEntryDock = new QDockWidget(i18n("General Properties"), this);
+//     editEntryDock->setObjectName("EditEntryDock");
+//     addDockWidget(Qt::RightDockWidgetArea, editEntryDock);
+//     editEntryDock->setWidget(new CommonEntryPage(m_document->document(), editEntryDock));
+
+    m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
+
+    if ( !filename.url().isEmpty() ) {
+        m_document->open(filename);
+    }
+
+    if (Prefs::autoBackup()) {
+        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
+    }
+
+    // save position of dock windows etc
+    setAutoSaveSettings();
+}
+
+
+ParleyApp::~ParleyApp()
+{
+    removeEntryDlg();
+}
+
 
 void ParleyApp::saveOptions()
 {
@@ -81,56 +152,6 @@ void ParleyApp::saveOptions()
     m_lessonDockWidget->saveOptions();
 
     Prefs::self()->writeConfig();
-}
-
-
-void ParleyApp::saveProperties(KConfigGroup &config)
-{
-    saveOptions();
-    if (m_doc) {
-        config.writeEntry("Filename", m_doc->url().path());
-        config.writeEntry("Title", m_doc->title());
-        config.writeEntry("Modified", m_doc->isModified());
-
-        QString filename=m_doc->url().path();
-        QString tempname = kapp->tempSaveName(filename);
-        m_doc->saveAs(KUrl(tempname), KEduVocDocument::Automatic, "Parley");
-    }
-}
-
-
-void ParleyApp::readProperties(const KConfigGroup &config)
-{
-    QString filename = config.readEntry("Filename");
-    QString title = config.readEntry("Title");
-    bool modified = config.readEntry("Modified", false);
-    if (modified) {
-        bool b_canRecover;
-        QString tempname = kapp->checkRecoverFile(filename,b_canRecover);
-
-        if (b_canRecover) {
-            m_doc = new KEduVocDocument(this);
-            m_doc->setUrl(KUrl(tempname));
-            m_doc->setModified();
-            m_doc->setTitle(title);
-            m_doc->setUrl(KUrl(filename));
-            setCaption(m_doc->title(), m_doc->isModified());
-            QFile::remove(tempname);
-        }
-    } else if (!filename.isEmpty()) {
-        m_doc = new KEduVocDocument(this);
-        m_doc->setUrl(KUrl(filename));
-        setCaption(m_doc->title(), m_doc->isModified());
-    }
-
-    show();
-}
-
-
-ParleyApp::~ParleyApp()
-{
-    removeEntryDlg();
-    delete m_doc;
 }
 
 
@@ -154,7 +175,7 @@ void ParleyApp::slotEditEntry()
 {
     // prepare the entry dialog
     if (m_entryDlg == 0) {
-        m_entryDlg = new EntryDlg(this, m_doc);
+        m_entryDlg = new EntryDlg(this, m_document->document());
         connect(m_entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
         connect(m_entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
     }
@@ -207,20 +228,20 @@ void ParleyApp::removeEntryDlg()
 
 void ParleyApp::slotLanguageProperties()
 {
-    GrammarDialog ddlg(m_doc, this);
+    GrammarDialog ddlg(m_document->document(), this);
 
     if (ddlg.exec() == KDialog::Accepted) {
-        m_doc->setModified();
+        m_document->document()->setModified();
         m_tableModel->reset();
-        setCaption(m_doc->title(), m_doc->isModified());
+        slotUpdateWindowCaption();
 //         slotStatusMsg(IDS_DEFAULT);
     }
 }
 
 
-void ParleyApp::slotModifiedDoc(bool /*mod*/)
+void ParleyApp::slotUpdateWindowCaption()
 {
-    setCaption(m_doc->title(), m_doc->isModified());
+    setCaption(m_document->document()->title(), m_document->document()->isModified());
 //     slotStatusMsg(IDS_DEFAULT);
 }
 
@@ -282,7 +303,7 @@ void ParleyApp::slotNewEntry()
     m_tableModel->appendEntry();
 
     // show the new entry
-    m_lessonDockWidget->makeLessonVisibleInTable(m_doc->currentLesson());
+    m_lessonDockWidget->makeLessonVisibleInTable(m_document->document()->currentLesson());
 
     // the delete action should be enabled if we have >0 entries in the big table (should be the case now)
     m_deleteEntriesAction->setEnabled(m_sortFilterModel->rowCount(QModelIndex()) > 0);
@@ -365,7 +386,7 @@ void ParleyApp::slotShowStatistics()
 void ParleyApp::slotCleanVocabulary()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    int num = m_doc->cleanUp();
+    int num = m_document->document()->cleanUp();
     QApplication::restoreOverrideCursor();
 
     if (num != 0) {
@@ -380,7 +401,7 @@ void ParleyApp::slotCleanVocabulary()
 
 void ParleyApp::slotGeneralOptions()
 {
-    ParleyPrefs* dialog = new ParleyPrefs(m_doc, this, "settings",  Prefs::self());
+    ParleyPrefs* dialog = new ParleyPrefs(m_document->document(), this, "settings",  Prefs::self());
     connect(dialog, SIGNAL(settingsChanged(const QString &)), this, SLOT(slotApplyPreferences()));
     dialog->show();
 }
@@ -412,16 +433,6 @@ void ParleyApp::slotApplyPreferences()
 //     }
 // }
 
-void ParleyApp::slotFilePrint()
-{
-    QPrinter printer;
-    printer.setFullPage(true);
-    QPrintDialog printDialog(&printer, this);
-
-    if (printDialog.exec()) {
-        m_tableView->print(&printer);
-    }
-}
 
 
 void ParleyApp::slotEditCopy()
@@ -486,7 +497,7 @@ void ParleyApp::slotEditPaste()
 
             for (int i = 0; i < sl.count(); ++i) {
                 m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), sl[i], Qt::EditRole);
-                m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_doc->currentLesson(), KVTTableModel::LessonRole);
+                m_tableModel->setData(m_tableModel->index(lastSelectedRow + count, i + KV_COL_TRANS), m_document->document()->currentLesson(), KVTTableModel::LessonRole);
             }
         }
         count++;
@@ -525,7 +536,7 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
     index = m_sortFilterModel->mapToSource(current);
 
     //KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
-    KEduVocExpression * currentExpression = m_doc->entry(index.row());
+    KEduVocExpression * currentExpression = m_document->document()->entry(index.row());
 
     if (m_remarkStatusBarLabel != 0) {
         m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
@@ -563,7 +574,7 @@ void ParleyApp::slotConfigShowSearch()
 
 void ParleyApp::slotEditLanguages()
 {
-    LanguageDialog* languageDialog = new LanguageDialog(m_doc, this);
+    LanguageDialog* languageDialog = new LanguageDialog(m_document->document(), this);
     ///@todo
     // if this becomes a KConfigDialog: connect(languageDialog, SIGNAL(settingsChanged(const QString&)), m_tableModel, SLOT(loadLanguageSettings()));
     if ( languageDialog->exec() == KDialog::Accepted ) {
@@ -573,11 +584,11 @@ void ParleyApp::slotEditLanguages()
 
 void ParleyApp::slotDocumentProperties()
 {
-    TitlePage* titleAuthorWidget = new TitlePage(m_doc, this);
+    TitlePage* titleAuthorWidget = new TitlePage(m_document->document(), this);
     KDialog* titleAuthorDialog;
     titleAuthorDialog = new KDialog(this);
     titleAuthorDialog->setMainWidget( titleAuthorWidget );
-    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_doc->url().url()));
+    titleAuthorDialog->setCaption(i18nc("@title:window document properties", "Properties for %1", m_document->document()->url().url()));
     if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }
@@ -587,7 +598,7 @@ void ParleyApp::slotDocumentProperties()
 void ParleyApp::configurePractice()
 {
     ConfigurePracticeDialog* configurePracticeDialog;
-    configurePracticeDialog = new ConfigurePracticeDialog(m_doc, this, "practice settings",  Prefs::self());
+    configurePracticeDialog = new ConfigurePracticeDialog(m_document->document(), this, "practice settings",  Prefs::self());
 
     configurePracticeDialog->show();
 }
@@ -597,11 +608,14 @@ void ParleyApp::startPractice()
     removeEntryDlg();
     hide();
 
-    TestEntryManager testManager(m_doc, this);
+    TestEntryManager testManager(m_document->document(), this);
     testManager.startPractice();
 
     show();
 }
 
 
+
+
 #include "parley.moc"
+

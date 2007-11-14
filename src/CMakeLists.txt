@@ -91,6 +91,7 @@ set(entrydialogs_SRCS
     entry-dialogs/MCEntryPage.cpp
     entry-dialogs/PhoneticEntryPage.cpp
     entry-dialogs/TenseEntryPage.cpp
+    entry-dialogs/wordtypewidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -100,6 +101,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/FromToEntryPageForm.ui
     entry-dialogs/MCEntryPageForm.ui
     entry-dialogs/TenseEntryPageForm.ui
+    entry-dialogs/wordtypewidget.ui
 )
 
 set(statisticsdialogs_SRCS
@@ -140,6 +142,7 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
+    parleydocument.cpp
     kva_io.cpp
     parley.cpp
     main.cpp

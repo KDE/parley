@@ -110,14 +110,17 @@ int main(int argc, char* argv[])
         kRestoreMainWindows< ParleyApp >();
         return app.exec();
     } else {
-        ParleyApp *parleyApp = new ParleyApp;
+        ParleyApp *parleyApp;
 
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
         if (args && args->count() == 1) {
-            parleyApp->loadFileFromPath(args->url(0), true);
+            parleyApp = new ParleyApp(args->url(0));
             args->clear();
+        } else {
+            parleyApp = new ParleyApp();
         }
+        args->clear();
         parleyApp->show();
         return app.exec();
     }

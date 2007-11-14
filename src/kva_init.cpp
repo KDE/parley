@@ -31,6 +31,9 @@
 #include "kvttableview.h"
 #include "lessondockwidget.h"
 
+#include "entry-dialogs/EntryDlg.h"
+#include "entry-dialogs/wordtypewidget.h"
+
 #include <KActionCollection>
 #include <KLineEdit>
 #include <KComboBox>
@@ -49,49 +52,15 @@
 #include <QVBoxLayout>
 #include <QDockWidget>
 
-ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
-{
-    m_doc = 0;
-    m_tableView = 0;
-    m_tableModel = 0;
-    m_sortFilterModel = 0;
-    m_searchLine = 0;
-    m_searchWidget = 0;
-    m_newStuff = 0;
-    m_pronunciationStatusBarLabel = 0;
-    m_remarkStatusBarLabel = 0;
-    m_typeStatusBarLabel = 0;
-
-    m_entryDlg = 0;
-
-    initStatusBar();
-    initActions();
-
-    m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
-
-    initView();
-    initModel();
-
-    m_deleteEntriesAction->setEnabled(m_tableModel->rowCount(QModelIndex()) > 0);
-
-    if (Prefs::autoBackup()) {
-        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
-    }
-
-    // save position of dock windows etc
-    setAutoSaveSettings();
-}
-
-
 void ParleyApp::initActions()
 {
 // -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(this, SLOT(slotFileNew()), actionCollection());
+    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(newDocument()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());
 
-    KAction* fileOpen = KStandardAction::open(this, SLOT(slotFileOpen()), actionCollection());
+    KAction* fileOpen = KStandardAction::open(m_document, SLOT(slotFileOpen()), actionCollection());
     fileOpen->setWhatsThis(i18n("Opens an existing vocabulary document"));
     fileOpen->setToolTip(fileOpen->whatsThis());
     fileOpen->setStatusTip(fileOpen->whatsThis());
@@ -100,40 +69,40 @@ void ParleyApp::initActions()
     actionCollection()->addAction("file_open_example", fileOpenExample);
     fileOpenExample->setIcon(KIcon("document-open"));
     fileOpenExample->setText(i18n("Open &Example..."));
-    connect(fileOpenExample, SIGNAL(triggered(bool)), this, SLOT(slotFileOpenExample()));
+    connect(fileOpenExample, SIGNAL(triggered(bool)), m_document, SLOT(openExample()));
     fileOpenExample->setWhatsThis(i18n("Open an example vocabulary document"));
     fileOpenExample->setToolTip(fileOpenExample->whatsThis());
     fileOpenExample->setStatusTip(fileOpenExample->whatsThis());
 
-    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), this, SLOT(slotGHNS()), actionCollection(), "file_ghns");
+    KAction* fileGHNS = KNS::standardAction(i18n("Vocabularies..."), m_document, SLOT(slotGHNS()), actionCollection(), "file_ghns");
     fileGHNS->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_G));
     fileGHNS->setWhatsThis(i18n("Downloads new vocabularies"));
     fileGHNS->setToolTip(fileGHNS->whatsThis());
     fileGHNS->setStatusTip(fileGHNS->whatsThis());
 
-    m_recentFilesAction = KStandardAction::openRecent(this, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
+    m_recentFilesAction = KStandardAction::openRecent(m_document, SLOT(slotFileOpenRecent(const KUrl&)), actionCollection());
 
     KAction* fileMerge = new KAction(this);
     actionCollection()->addAction("file_merge", fileMerge);
     fileMerge->setText(i18n("&Merge..."));
-    connect(fileMerge, SIGNAL(triggered(bool)), this, SLOT(slotFileMerge()));
+    connect(fileMerge, SIGNAL(triggered(bool)), m_document, SLOT(slotFileMerge()));
     fileMerge->setWhatsThis(i18n("Merge an existing vocabulary document with the current one"));
     fileMerge->setToolTip(fileMerge->whatsThis());
     fileMerge->setStatusTip(fileMerge->whatsThis());
     fileMerge->setEnabled(false); ///@todo merging files is horribly broken
 
-    KAction* fileSave = KStandardAction::save(this, SLOT(slotFileSave()), actionCollection());
+    KAction* fileSave = KStandardAction::save(m_document, SLOT(save()), actionCollection());
     fileSave->setWhatsThis(i18n("Save the active vocabulary document"));
     fileSave->setToolTip(fileSave->whatsThis());
     fileSave->setStatusTip(fileSave->whatsThis());
 
-    KAction* fileSaveAs = KStandardAction::saveAs(this, SLOT(slotFileSaveAs()), actionCollection());
+    KAction* fileSaveAs = KStandardAction::saveAs(m_document, SLOT(saveAs()), actionCollection());
     fileSaveAs->setShortcut(QKeySequence(Qt::CTRL + Qt::SHIFT + Qt::Key_S));
     fileSaveAs->setWhatsThis(i18n("Save the active vocabulary document with a different name"));
     fileSaveAs->setToolTip(fileSaveAs->whatsThis());
     fileSaveAs->setStatusTip(fileSaveAs->whatsThis());
 
-    KAction* filePrint = KStandardAction::print(this, SLOT(slotFilePrint()), actionCollection());
+    KAction* filePrint = KStandardAction::print(m_document, SLOT(printFile()), actionCollection());
     filePrint->setWhatsThis(i18n("Print the active vocabulary document"));
     filePrint->setToolTip(filePrint->whatsThis());
     filePrint->setStatusTip(filePrint->whatsThis());
@@ -404,6 +373,7 @@ void ParleyApp::initModel()
     m_tableModel = new KVTTableModel(this);
     m_sortFilterModel= new KVTSortFilterModel(this);
     m_sortFilterModel->setSourceModel(m_tableModel);
+    m_tableView->setModel(m_sortFilterModel);
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
 
@@ -414,67 +384,10 @@ void ParleyApp::initModel()
         m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
     } else {
         // this is probably the first time we start.
-        m_doc = new KEduVocDocument();
+        m_document->newDocument();
+        setDocument(m_document->document());
 
-        m_lessonDockWidget->setDocument(m_doc);
-
-        m_tableView->adjustContent();
-        m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-        m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-
-        m_tableModel->setDocument(m_doc);
-        initializeDefaultGrammar();
-        createExampleEntries();
-
-        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
     }
-
-    int currentColumn = Prefs::currentCol();
-    int currentRow = Prefs::currentRow();
-    if (currentColumn <= KV_COL_LESS) {
-        currentColumn = KV_COL_TRANS;
-    }
-    // always operate from m_sortFilterModel
-    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
-
-    setCaption(m_doc->url().fileName(), false);
-
-    m_tableView->addAction(actionCollection()->action("edit_append"));
-    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
-    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
-
-    m_tableView->setModel(m_sortFilterModel);
-
-    m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-
-    // selection changes (the entry dialog needs these)
-    connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
-            this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
-
-    connect(m_tableView->selectionModel(), SIGNAL(selectionChanged(const QItemSelection &, const QItemSelection &)),
-            this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
-
-    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
-
-    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
-    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
-    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
-
-    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
-    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
-    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
-
-    QAction * actionRestoreNativeOrder = actionCollection()->action("restore_native_order");
-    m_tableView->horizontalHeader()->addAction(actionRestoreNativeOrder);
-    connect(actionRestoreNativeOrder, SIGNAL(triggered()), m_sortFilterModel, SLOT(restoreNativeOrder()));
-
-    // Filter proxy
-    m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
-    m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
 }
 
 
@@ -528,5 +441,32 @@ void ParleyApp::initView()
     rightLayout->addWidget(m_tableView, 1, 0);
 
     topLayout->addLayout(rightLayout);
+
+
+    m_tableView->addAction(actionCollection()->action("edit_append"));
+    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
+    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
+
+
+
+
+    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
+    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
+    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
+
+    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
+    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
+    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
+
+
+//     QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
+//     wordTypeDockWidget->setObjectName("WordTypeDock");
+// 
+//     WordTypeWidget *wtw = new WordTypeWidget(this);
+// 
+//     wordTypeDockWidget->setWidget(wtw);
+//     addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
+//     connect(this, SIGNAL(selectionChanged()), wtw, SLOT(selectionChanged()));
+
 }
 

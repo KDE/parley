@@ -128,15 +128,17 @@ void LessonDockWidget::saveOptions()
 
 void LessonDockWidget::makeLessonVisibleInTable(int lessonIndex)
 {
+    ///@todo
     switch (m_lessonSelectionCombo->currentIndex()) {
         case Prefs::EnumLessonEditingSelection::CurrentLesson:
             m_lessonView->slotSelectLesson(lessonIndex);
             break;
         case Prefs::EnumLessonEditingSelection::LessonsInQuery:
-            m_parleyApp->m_doc->setCurrentLesson(lessonIndex);
-            if ( !m_parleyApp->m_doc->lesson(lessonIndex).inPractice() ) {
-                m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
-            }
+            kDebug() << "IMPLEMENT ME - makeLessonVisibleInTable";
+//             m_parleyApp->m_doc->setCurrentLesson(lessonIndex);
+//             if ( !m_parleyApp->m_doc->lesson(lessonIndex).inPractice() ) {
+//                 m_lessonSelectionCombo->setCurrentIndex(Prefs::EnumLessonEditingSelection::CurrentLesson);
+//             }
             ///@todo m_sortFilterModel->clear();
             break;
         case Prefs::EnumLessonEditingSelection::AllLessons:

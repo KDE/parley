@@ -46,12 +46,13 @@
 #include <QWizard>
 #include <QApplication>
 #include <QProgressBar>
+#include <QHeaderView>
 
 void ParleyApp::slotTimeOutBackup()
 {
-    if (Prefs::autoBackup() && m_doc && m_doc->isModified()) {
+    if (Prefs::autoBackup() && m_document->document()->isModified()) {
 //         slotStatusMsg(i18n("Autobackup in progress"));
-        slotFileSave();
+        m_document->save();
     }
 
     if (Prefs::autoBackup())
@@ -64,7 +65,7 @@ bool ParleyApp::queryClose()
 {
     bool erg = queryExit();
     if (erg)
-        m_doc->setModified(false);  // avoid double query on exit via system menu
+        m_document->document()->setModified(false);  // avoid double query on exit via system menu
     return erg;
 }
 
@@ -72,8 +73,9 @@ bool ParleyApp::queryClose()
 bool ParleyApp::queryExit()
 {
     saveOptions();
-    if (!m_doc || !m_doc->isModified())
+    if (!m_document->document()->isModified()) {
         return true;
+    }
 
     bool save = Prefs::autoSave(); //save without asking
 
@@ -90,12 +92,7 @@ bool ParleyApp::queryExit()
     }
 
     if (save) {
-        if (!m_doc->url().isEmpty())
-            slotFileSave();       // save and exit
-        if (m_doc->isModified()) {
-            // Error while saving or no name
-            slotFileSaveAs();
-        }
+        m_document->save();       // save and exit
     }
     return true;
 }
@@ -107,364 +104,42 @@ void ParleyApp::slotFileQuit()
 }
 
 
-void ParleyApp::slotFileNew()
+void ParleyApp::setDocument(KEduVocDocument * doc)
 {
-    if (queryExit()) {
-        newDocumentWizard();
-    }
-//     slotStatusMsg(IDS_DEFAULT);
-}
+    m_lessonDockWidget->setDocument(m_document->document());
 
-void ParleyApp::slotFileOpen()
-{
-//     slotStatusMsg(i18n("Opening file..."));
-
-    if (queryExit()) {
-        KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Vocabulary Document"));
-        loadFileFromPath(url, true);
-    }
-
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-void ParleyApp::slotFileOpenRecent(const KUrl& url)
-{
-//     slotStatusMsg(i18n("Opening file..."));
-    if (queryExit()) {
-        loadFileFromPath(url);
-    }
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
-{
-    if (!url.path().isEmpty()) {
-        delete m_doc;
-        m_doc = 0;
-
-//         slotStatusMsg(i18n("Loading %1", url.path()));
-        //prepareProgressBar();
-        m_doc = new KEduVocDocument(this);
-        m_doc->setCsvDelimiter(Prefs::separator());
-        m_doc->open(url);
-
-        m_tableModel->setDocument(m_doc);
-        m_tableModel->reset();
-        m_tableModel->loadLanguageSettings();
-
-        if (addRecent) { // open sample does not go into recent
-            m_recentFilesAction->addUrl(url);
-        }
-        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-        m_doc->setModified(false);
-        m_sortFilterModel->restoreNativeOrder();
-        if (m_tableView) {
-            m_tableView->adjustContent();
-        }
-        m_lessonDockWidget->setDocument(m_doc);
-    }
-}
-
-
-void ParleyApp::slotFileOpenExample()
-{
-//     slotStatusMsg(i18n("Opening example file..."));
-
-    if (queryExit()) {
-        QString s = KStandardDirs::locate("data", "parley/examples/");
-        KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), this, i18n("Open Example Vocabulary Document"));
-        loadFileFromPath(url, false);
-        if (m_doc) {
-            m_doc->url().setFileName(QString());
-        }
-    }
-
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::slotGHNS()
-{
-  ///Make sure the installation directory exists
-  KConfig conf("parley.knsrc");
-  KConfigGroup confGroup = conf.group("KNewStuff2");
-  QString installDir = confGroup.readEntry("InstallPath", "Vocabularies");
-  KStandardDirs::makeDir(QDir::home().path() + '/' + installDir);
-
-  KNS::Entry::List entries = KNS::Engine::download();
-}
-
-
-void ParleyApp::slotFileMerge()
-{
-//     slotStatusMsg(i18n("Merging file..."));
-//
-//     KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
-//
-//     if (!url.isEmpty()) {
-//         QString msg = i18n("Loading %1", url.path());
-//         slotStatusMsg(msg);
-//
-//         KEduVocDocument *new_doc = new KEduVocDocument(this);
-//         new_doc->setCsvDelimiter(Prefs::separator());
-//         new_doc->open(url);
-//
-//         m_doc->merge(new_doc, true);
-//
-//         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
-//         KVTUsage::setUsageNames(m_doc->usageDescriptions());
-//
-//         delete(new_doc);
-//         m_recentFilesAction->addUrl(url);
-//         m_tableModel->reset();
-//         m_lessonModel->setDocument(m_doc);
-//         m_tableView->adjustContent();
-//     }
-//
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::slotFileSave()
-{
-    if (m_entryDlg != 0) {
-        m_entryDlg->commitData(false);
-    }
-
-    if (m_doc->url().fileName() == i18n("Untitled")) {
-        slotFileSaveAs();
-        return;
-    }
-
-    QString msg = i18nc("@info:status saving a file", "Saving %1", m_doc->url().path());
-//     slotStatusMsg(msg);
-
-    // remove previous backup
-    QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
-    ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
-
-    m_doc->setCsvDelimiter(Prefs::separator());
-
-    int result = m_doc->saveAs(m_doc->url(), KEduVocDocument::Automatic, "Parley");
-    if ( result != 0 ) {
-        KMessageBox::error(this, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
-        slotFileSaveAs();
-        return;
-    }
-    m_recentFilesAction->addUrl(m_doc->url());
-
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::slotFileSaveAs()
-{
-//     slotStatusMsg(i18n("Saving file under new filename..."));
-
-    if (m_entryDlg != 0) {
-        m_entryDlg->commitData(false);
-    }
-
-    KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
-
-    if (!url.isEmpty()) {
-        QFileInfo fileinfo(url.path());
-        if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<p><b>%1</b></p>already exists. Do you want to overwrite it?</qt>",
-                     url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
-            // do nothing
-        } else
-
-            if (m_doc) {
-                QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-//                 slotStatusMsg(msg);
-
-                QFile::remove(QFile::encodeName(url.path()+'~')); // remove previous backup
-                ::rename(QFile::encodeName(url.path()), QFile::encodeName(QString(url.path()+'~')));
-
-                m_doc->setCsvDelimiter(Prefs::separator());
-
-                if ( !url.fileName().contains('.') ) {
-                    url.setFileName(url.fileName() + QString::fromLatin1(".kvtml"));
-                }
-
-                int result = m_doc->saveAs(url, KEduVocDocument::Automatic, "Parley");
-                if (result != 0) {
-                    KMessageBox::error(this, i18n("Writing file \"%1\" resulted in an error: %2", m_doc->url().url(), m_doc->errorDescription(result)), i18n("Save File"));
-                } else {
-                    m_recentFilesAction->addUrl(m_doc->url());
-                }
-            }
-    }
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
-
-void ParleyApp::slotSaveSelection()
-{
-///@todo I doubt this words. If it's not checked, better not enable it.
-
-    /*
-    if (m_entryDlg != 0) {
-        m_entryDlg->commitData(false);
-    }
-//     slotStatusMsg(i18n("Saving selected area under new filename..."));
-    QString save_separator = Prefs::separator();
-    Prefs::setSeparator("\t");
-    KEduVocDocument seldoc(this);
-    // transfer most important parts
-    for (int i = 0; i < m_doc->identifierCount(); i++) {
-        seldoc.appendIdentifier(m_doc->identifier(i));
-    }
-    seldoc.setAuthor(m_doc->author());
-    //seldoc.setLessons(m_doc->lessons());
-    //seldoc.setLessonsInQuery(m_doc->lessonsInQuery());
-    //seldoc.setTypeDescriptions(m_doc->typeDescriptions());
-
-//     for (int i = m_doc->entryCount()-1; i >= 0; i--)
-//         if (m_doc->entry(i)->isInQuery())
-//             seldoc.appendEntry(m_doc->entry(i));
-
-    KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), parentWidget(), i18n("Save Vocabulary As"));
-
-    if (!url.isEmpty()) {
-        QFileInfo fileinfo(url.path());
-        if (fileinfo.exists() && KMessageBox::warningContinueCancel(0,
-                i18n("<qt>The file<br><b>%1</b><br />already exists. Do you want to overwrite it?</qt>",
-                     url.path()),QString(),KStandardGuiItem::overwrite()) == KMessageBox::Cancel) {
-            // do nothing
-        } else {
-            QString msg = i18nc("@info:status saving a file", "Saving %1", url.path());
-//             slotStatusMsg(msg);
-
-            QFile::remove(url.path()+'~'); // remove previous backup
-            // FIXME: check error
-            ::rename(QFile::encodeName(url.path()), QFile::encodeName(url.path()+'~'));
-
-            prepareProgressBar();
-            seldoc.setCsvDelimiter(Prefs::separator());
-            seldoc.saveAs(url, KEduVocDocument::Automatic, "Parley");
-            removeProgressBar();
-        }
-    }
-    Prefs::setSeparator(save_separator);
-//     slotStatusMsg(IDS_DEFAULT);
-    */
-}
-
-
-void ParleyApp::newDocumentWizard()
-{
-    KVTNewDocumentWizard *wizard;
-    KEduVocDocument* newDoc = new KEduVocDocument(this);
-
-    wizard = new KVTNewDocumentWizard(newDoc, this);
-    if( !wizard->exec() == KDialog::Accepted ){
-            delete wizard;
-            return;
-    }
-    delete wizard;
-
-    delete m_doc;
-    m_doc = 0;
-    m_doc = newDoc;
-
-    m_tableModel->setDocument(m_doc);
-    connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
-
-    m_lessonDockWidget->setDocument(m_doc);
-
-    if (m_tableView) {
-        m_tableView->adjustContent();
-        m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
-        m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
-    }
-
-    m_tableModel->reset(); // clear old entries otherwise we get crashes
-
-    initializeDefaultGrammar();
-
+    m_tableModel->setDocument(m_document->document());
+    m_tableModel->reset();
     m_tableModel->loadLanguageSettings();
 
-    int lessonIndex = m_lessonDockWidget->addLesson();
 
-    m_lessonDockWidget->selectLesson(lessonIndex);
+    kDebug() << "setDocument()" << doc->url() << doc->title() << doc->entryCount() << m_tableModel->rowCount(QModelIndex()) << m_tableModel->columnCount(QModelIndex());
 
-    // add some entries
-    for ( int i = 0; i < 15 ; i++ ) {
-        m_tableModel->appendEntry();
+    connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
+
+    int currentColumn = Prefs::currentCol();
+    int currentRow = Prefs::currentRow();
+    if (currentColumn <= KV_COL_LESS) {
+        currentColumn = KV_COL_TRANS;
     }
+    // always operate from m_sortFilterModel
+    m_tableView->setCurrentIndex(m_sortFilterModel->mapFromSource(m_tableModel->index(currentRow, currentColumn)));
 
-    m_doc->setModified(false);
+    setCaption(m_document->document()->url().fileName(), false);
+
+//     m_tableView->adjustContent();
+    m_tableView->setColumnHidden(KV_COL_LESS, !Prefs::tableLessonColumnVisible());
+    m_tableView->setColumnHidden(KV_COL_MARK, !Prefs::tableActiveColumnVisible());
+
+    slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
+
+    // Filter proxy
+    m_tableView->setColumnWidth(0, qvariant_cast<QSize>(m_tableModel->headerData(0, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(1, qvariant_cast<QSize>(m_tableModel->headerData(1, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
+    m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
 }
 
-
-void ParleyApp::initializeDefaultGrammar()
-{
-    m_doc->wordTypes().createDefaultWordTypes();
-
-    // Preset some usages
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "abbreviation") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "anatomy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "biology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "figuratively") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "geology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "historical") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "informal") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "ironic") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "literary") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "mythology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "proper name") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "pharmacy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "philosophy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physics") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physiology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "rhetoric") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "zoology") );
-}
-
-
-void ParleyApp::createExampleEntries()
-{
-    m_tableModel->reset(); // clear old entries otherwise we get crashes
-
-    // some default values
-    KUser user;
-    QString userName = user.property(KUser::FullName).toString();
-    if ( userName.isEmpty() ) {
-        userName = user.loginName();
-    }
-    m_doc->setAuthor( userName );
-    m_doc->setTitle( i18n("Welcome") );
-    m_doc->setLicense( i18n("GPL (GNU General Public License)") );
-    m_doc->setCategory( i18n("Example document") );
-
-    QString locale = KGlobal::locale()->language();
-
-    m_doc->appendIdentifier();
-    m_doc->appendIdentifier();
-    m_doc->identifier(0).setName( KGlobal::locale()->languageCodeToName( locale) );
-    m_doc->identifier(0).setLocale( locale );
-    m_doc->identifier(1).setName( i18n("A Second Language") );
-    m_doc->identifier(1).setLocale( locale );
-
-    // Set the language headers of the table.
-    m_tableModel->loadLanguageSettings();
-
-    int lessonIndex = m_lessonDockWidget->addLesson();
-    m_lessonDockWidget->selectLesson(lessonIndex);
-
-    // add some entries
-    for ( int i = 0; i < 15 ; i++ ) {
-        m_tableModel->appendEntry();
-    }
-
-    // select the empty row
-    Prefs::setCurrentCol(KV_COL_TRANS);
-    Prefs::setCurrentRow(0);
-
-    m_doc->setModified(false);
-}
 
 

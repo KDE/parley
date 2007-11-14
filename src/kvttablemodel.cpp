@@ -49,6 +49,9 @@ void KVTTableModel::setDocument(KEduVocDocument * doc)
 int KVTTableModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
+    if(!m_doc) {
+        return 0;
+    }
     return m_doc->entryCount();
 }
 
@@ -56,6 +59,9 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
 int KVTTableModel::columnCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent);
+    if(!m_doc) {
+        return 0;
+    }
     // languages + lesson column + active/inQuery column
     return 2 + m_doc->identifierCount();
 }
@@ -63,6 +69,10 @@ int KVTTableModel::columnCount(const QModelIndex &parent) const
 
 QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 {
+    if(!m_doc) {
+        return QVariant();
+    }
+
     if (!index.isValid())
         return QVariant();
 

@@ -227,7 +227,7 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
 //         return;
 //     }
 
-    if ( !model() ) {
+    if ( !model() || (model()->columnCount() < 3) ) {
         return;
     }
 
