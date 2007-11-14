@@ -143,7 +143,6 @@ set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}
     parleydocument.cpp
-    kva_io.cpp
     parley.cpp
     main.cpp
     kva_init.cpp
