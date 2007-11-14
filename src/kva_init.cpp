@@ -55,7 +55,7 @@
 void ParleyApp::initActions()
 {
 // -- FILE --------------------------------------------------
-    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(newDocument()), actionCollection());
+    KAction* fileNew = KStandardAction::openNew(m_document, SLOT(slotFileNew()), actionCollection());
     fileNew->setWhatsThis(i18n("Creates a new blank vocabulary document"));
     fileNew->setToolTip(fileNew->whatsThis());
     fileNew->setStatusTip(fileNew->whatsThis());

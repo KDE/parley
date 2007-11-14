@@ -60,7 +60,6 @@ void ParleyDocument::slotFileNew()
     if (m_parleyApp->queryExit()) {
         newDocumentWizard();
     }
-//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
