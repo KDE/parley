@@ -432,7 +432,7 @@ void ParleyApp::initDoc()
         initializeDefaultGrammar();
         createExampleEntries();
 
-        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
     }
 }
 

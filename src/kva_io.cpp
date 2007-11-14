@@ -166,7 +166,7 @@ void ParleyApp::loadFileFromPath(const KUrl & url, bool addRecent)
         if (addRecent) { // open sample does not go into recent
             fileOpenRecent->addUrl(url);
         }
-        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+        connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
         m_doc->setModified(false);
         m_sortFilterModel->restoreNativeOrder();
         if (m_tableView) {
@@ -403,7 +403,7 @@ void ParleyApp::newDocumentWizard()
     m_doc = newDoc;
 
     m_tableModel->setDocument(m_doc);
-    connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotModifiedDoc(bool)));
+    connect(m_doc, SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
 
     m_lessonModel->setDocument(m_doc);
     if (m_lessonView) {

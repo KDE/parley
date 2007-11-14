@@ -110,7 +110,7 @@ signals:
 public slots:
     void keyPressEvent(QKeyEvent *e);
 //  void keyReleaseEvent( QKeyEvent *e );
-    void slotModifiedDoc(bool mod);
+    void slotUpdateWindowCaption();
 
     /** select an entry */
     void slotSaveSelection();

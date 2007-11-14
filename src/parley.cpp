@@ -229,7 +229,7 @@ void ParleyApp::slotLanguageProperties()
 }
 
 
-void ParleyApp::slotModifiedDoc(bool /*mod*/)
+void ParleyApp::slotUpdateWindowCaption()
 {
     setCaption(m_doc->title(), m_doc->isModified());
 //     slotStatusMsg(IDS_DEFAULT);
@@ -614,6 +614,7 @@ void ParleyApp::slotDocumentProperties()
     if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }
+    slotUpdateWindowCaption();
     delete titleAuthorDialog;
 }
 
