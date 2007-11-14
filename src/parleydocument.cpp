@@ -16,73 +16,22 @@
 
 #include "parley.h"
 
-///@todo remove most includes
-#include "practice/testentrymanager.h"
 #include "kvttablemodel.h"
-#include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "lessondockwidget.h"
-
-#include "entry-dialogs/EntryDlg.h"
-#include "statistics-dialogs/StatisticsDialog.h"
-#include "settings/parleyprefs.h"
-#include "language-dialogs/languagedialog.h"
-#include "language-dialogs/grammardialog.h"
-#include "docprop-dialogs/TitlePage.h"
-#include "configure-practice/configurepracticedialog.h"
-#include "prefs.h"
-
-#include <keduvoclesson.h>
-
-#include <kstatusbar.h>
-#include <klineedit.h>
-#include <kcombobox.h>
-#include <kconfig.h>
-#include <kselectaction.h>
-#include <kstandarddirs.h>
-#include <klocale.h>
-#include <kdebug.h>
-#include <kiconloader.h>
-#include <krecentfilesaction.h>
-#include <kinputdialog.h>
-#include <kapplication.h>
-#include <KActionCollection>
-#include <KMessageBox>
-
-#include <QFile>
-#include <QTimer>
-#include <QPixmap>
-#include <QKeyEvent>
-#include <QApplication>
-#include <QClipboard>
-#include <QProgressBar>
-#include <QSplitter>
-#include <QtGui/QPrinter>
-#include <QtGui/QPrintDialog>
-
-
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"
 
-#include "kvttablemodel.h"
-#include "kvtsortfiltermodel.h"
-#include "kvttableview.h"
-#include "lessondockwidget.h"
-
 #include <KFileDialog>
-#include <KStatusBar>
 #include <KRecentFilesAction>
 #include <KStandardDirs>
 #include <knewstuff2/engine.h>
 #include <KUser>
 #include <KMessageBox>
 
-#include <QTimer>
-#include <QFrame>
-#include <QWizard>
-#include <QApplication>
-#include <QProgressBar>
+#include <QtGui/QPrinter>
+#include <QtGui/QPrintDialog>
 
 ParleyDocument::ParleyDocument(ParleyApp *parent, const KUrl& filename)
  : QObject(parent)
@@ -98,6 +47,7 @@ ParleyDocument::ParleyDocument(ParleyApp *parent, const KUrl& filename)
 ParleyDocument::~ParleyDocument()
 {
 }
+
 
 KEduVocDocument * ParleyDocument::document()
 {
@@ -125,14 +75,6 @@ void ParleyDocument::newDocument()
 
     m_parleyApp->setDocument(m_doc);
 
-    int lessonIndex = m_parleyApp->m_lessonDockWidget->addLesson();
-    m_parleyApp->m_lessonDockWidget->selectLesson(lessonIndex);
-
-    // add some entries
-    for ( int i = 0; i < 15 ; i++ ) {
-        m_parleyApp->m_tableModel->appendEntry();
-    }
-
     m_doc->setModified(false);
 }
 
@@ -157,16 +99,13 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 void ParleyDocument::open(const KUrl & url, bool addRecent)
 {
     if (!url.path().isEmpty()) {
-        KEduVocDocument *doc = new KEduVocDocument();
-        doc = new KEduVocDocument(this);
-        doc->setCsvDelimiter(Prefs::separator());
-        doc->open(url);
-
         disconnect(m_doc);
         delete m_doc;
-        m_doc = doc;
+        m_doc = new KEduVocDocument(this);
+        m_doc->setCsvDelimiter(Prefs::separator());
+        m_doc->open(url);
 
-        m_parleyApp->setDocument(doc);
+        m_parleyApp->setDocument(m_doc);
 
         if (addRecent) { // open sample does not go into recent
             m_parleyApp->m_recentFilesAction->addUrl(url);
@@ -175,50 +114,13 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
 }
 
 
-
-
-
-
 void ParleyDocument::openExample()
 {
     if (m_parleyApp->queryExit()) {
         QString s = KStandardDirs::locate("data", "parley/examples/");
         KUrl url = KFileDialog::getOpenUrl(s, KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Example Vocabulary Document"));
         open(url, false);
-        if (m_doc) {
-            m_doc->url().setFileName(QString());
-        }
     }
-}
-
-
-
-
-
-
-void ParleyDocument::slotFileMerge()
-{
-//     KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
-    //
-//     if (!url.isEmpty()) {
-//         QString msg = i18n("Loading %1", url.path());
-//         slotStatusMsg(msg);
-    //
-//         KEduVocDocument *new_doc = new KEduVocDocument(this);
-//         new_doc->setCsvDelimiter(Prefs::separator());
-//         new_doc->open(url);
-    //
-//         m_doc->merge(new_doc, true);
-    //
-//         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
-//         KVTUsage::setUsageNames(m_doc->usageDescriptions());
-    //
-//         delete(new_doc);
-//         m_recentFilesAction->addUrl(url);
-//         m_tableModel->reset();
-//         m_lessonModel->setDocument(m_doc);
-//         m_tableView->adjustContent();
-//     }
 }
 
 
@@ -393,8 +295,6 @@ void ParleyDocument::initializeDefaultGrammar()
 
 void ParleyDocument::createExampleEntries()
 {
-//     m_parleyApp->m_tableModel->reset(); // clear old entries otherwise we get crashes
-
     // some default values
     KUser user;
     QString userName = user.property(KUser::FullName).toString();
@@ -415,9 +315,6 @@ void ParleyDocument::createExampleEntries()
     m_doc->identifier(1).setName( i18n("A Second Language") );
     m_doc->identifier(1).setLocale( locale );
 
-    // Set the language headers of the table.
-    m_parleyApp->m_tableModel->loadLanguageSettings();
-
     int lessonIndex = m_parleyApp->m_lessonDockWidget->addLesson();
     m_parleyApp->m_lessonDockWidget->selectLesson(lessonIndex);
 
@@ -433,9 +330,11 @@ void ParleyDocument::createExampleEntries()
     m_doc->setModified(false);
 }
 
+
 void ParleyDocument::slotGHNS()
 {
-  ///Make sure the installation directory exists
+    ///@todo use the same dir as khangman and kanagram
+    ///@todo open downloaded documents in a new instance?
     KConfig conf("parley.knsrc");
     KConfigGroup confGroup = conf.group("KNewStuff2");
     QString installDir = confGroup.readEntry("InstallPath", "Vocabularies");
@@ -447,6 +346,7 @@ void ParleyDocument::slotGHNS()
 
 void ParleyDocument::printFile()
 {
+    ///@todo use libxslt and transform the document to html - then display it in a browser and let that worry about printing. different styles should be easy to implement - flash cards anyone?
     QPrinter printer;
     printer.setFullPage(true);
     QPrintDialog printDialog(&printer, m_parleyApp);
@@ -454,6 +354,33 @@ void ParleyDocument::printFile()
     if (printDialog.exec()) {
         m_parleyApp->m_tableView->print(&printer);
     }
+}
+
+
+void ParleyDocument::slotFileMerge()
+{
+    ///@todo as soon as some brave soul descends into the lib and implements merging this should be enabled
+//     KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), parentWidget(), i18n("Merge Vocabulary File"));
+    //
+//     if (!url.isEmpty()) {
+//         QString msg = i18n("Loading %1", url.path());
+//         slotStatusMsg(msg);
+    //
+//         KEduVocDocument *new_doc = new KEduVocDocument(this);
+//         new_doc->setCsvDelimiter(Prefs::separator());
+//         new_doc->open(url);
+    //
+//         m_doc->merge(new_doc, true);
+    //
+//         KEduVocConjugation::setTenseNames(m_doc->tenseDescriptions());
+//         KVTUsage::setUsageNames(m_doc->usageDescriptions());
+    //
+//         delete(new_doc);
+//         m_recentFilesAction->addUrl(url);
+//         m_tableModel->reset();
+//         m_lessonModel->setDocument(m_doc);
+//         m_tableView->adjustContent();
+//     }
 }
 
 

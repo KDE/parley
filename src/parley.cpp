@@ -592,6 +592,7 @@ void ParleyApp::slotDocumentProperties()
     if ( titleAuthorDialog->exec() == KDialog::Accepted ) {
         titleAuthorWidget->commitData();
     }
+    slotUpdateWindowCaption();
     delete titleAuthorDialog;
 }
 
