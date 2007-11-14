@@ -58,7 +58,6 @@
 #include <KMessageBox>
 
 #include <QFile>
-#include <QTimer>
 #include <QPixmap>
 #include <QKeyEvent>
 #include <QApplication>
@@ -133,11 +132,6 @@ ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
             m_document->newDocument();
             updateDocument();
         }
-    }
-
-
-    if (Prefs::autoBackup()) {
-        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
     }
 
     // save position of dock windows etc
@@ -422,9 +416,7 @@ void ParleyApp::slotGeneralOptions()
 
 void ParleyApp::slotApplyPreferences()
 {
-    if (Prefs::autoBackup()) {
-        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
-    }
+    m_document->enableAutoBackup(Prefs::autoBackup());
 
     if (m_pronunciationStatusBarLabel) {
         m_pronunciationStatusBarLabel->setFont(Prefs::iPAFont());
@@ -626,19 +618,6 @@ void ParleyApp::startPractice()
     testManager.startPractice();
 
     show();
-}
-
-
-void ParleyApp::slotTimeOutBackup()
-{
-    if (Prefs::autoBackup() && m_document->document()->isModified()) {
-//         slotStatusMsg(i18n("Autobackup in progress"));
-        m_document->save();
-    }
-
-    if (Prefs::autoBackup())
-        QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
-//     slotStatusMsg(IDS_DEFAULT);
 }
 
 

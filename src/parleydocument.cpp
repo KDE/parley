@@ -30,6 +30,7 @@
 #include <KUser>
 #include <KMessageBox>
 
+#include <QTimer>
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
@@ -38,6 +39,9 @@ ParleyDocument::ParleyDocument(ParleyApp *parent)
 {
     m_parleyApp = parent;
     m_doc = new KEduVocDocument(this);
+
+    m_backupTimer = 0;
+    enableAutoBackup(Prefs::autoBackup());
 }
 
 
@@ -75,12 +79,10 @@ void ParleyDocument::newDocument()
 
 void ParleyDocument::slotFileOpen()
 {
-
     if (m_parleyApp->queryExit()) {
         KUrl url = KFileDialog::getOpenUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Reading), m_parleyApp, i18n("Open Vocabulary Document"));
         open(url, true);
     }
-
 }
 
 void ParleyDocument::slotFileOpenRecent(const KUrl& url)
@@ -130,9 +132,6 @@ void ParleyDocument::save()
         return;
     }
 
-    QString msg = i18nc("@info:status saving a file", "Saving %1", m_doc->url().path());
-//     slotStatusMsg(msg);
-
     // remove previous backup
     QFile::remove(QFile::encodeName(m_doc->url().path()+'~'));
     ::rename(QFile::encodeName(m_doc->url().path()), QFile::encodeName(m_doc->url().path()+'~'));
@@ -146,8 +145,6 @@ void ParleyDocument::save()
         return;
     }
     m_parleyApp->m_recentFilesAction->addUrl(m_doc->url());
-
-//     slotStatusMsg(IDS_DEFAULT);
 }
 
 
@@ -376,6 +373,21 @@ void ParleyDocument::slotFileMerge()
 //         m_lessonModel->setDocument(m_doc);
 //         m_tableView->adjustContent();
 //     }
+}
+
+void ParleyDocument::enableAutoBackup(bool enable)
+{
+    if ( !enable ) {
+        if ( m_backupTimer ) {
+            m_backupTimer->stop();
+        }
+    } else {
+        if ( !m_backupTimer ) {
+            m_backupTimer = new QTimer;
+            connect(m_backupTimer, SIGNAL(timeout()), this, SLOT(save()));
+        }
+        m_backupTimer->start(Prefs::backupTime() * 60 * 1000);
+    }
 }
 
 

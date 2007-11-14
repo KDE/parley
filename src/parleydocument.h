@@ -19,6 +19,7 @@
 #include <QObject>
 
 class ParleyApp;
+class QTimer;
 
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -36,6 +37,8 @@ public:
      * @return 
      */
     KEduVocDocument *document();
+
+    void enableAutoBackup(bool enable);
 
 public slots:
     /** open a new application window */
@@ -77,9 +80,9 @@ private:
      */
     void createExampleEntries();
 
+    QTimer *m_backupTimer;
     KEduVocDocument *m_doc;
     ParleyApp *m_parleyApp;
-
 };
 
 #endif
