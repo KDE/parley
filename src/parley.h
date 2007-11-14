@@ -41,6 +41,7 @@ class KVTTableView;
 class PracticeManager;
 class EntryDlg;
 class LessonDockWidget;
+class WordTypeWidget;
 
 class KEduVocDocument;
 class KLineEdit;
@@ -173,9 +174,8 @@ private:
 
     /**
      * Set the current doc (after creating a new one or opening a file)
-     * @param doc
      */
-    void setDocument(KEduVocDocument *doc);
+    void updateDocument();
 
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;
@@ -192,7 +192,9 @@ private:
     /** m_document is the current vocabulary document. */
     ParleyDocument   *m_document;
 
+    /// dock widgets to display lessons, word types, ...
     LessonDockWidget *m_lessonDockWidget;
+    WordTypeWidget   *m_wordTypeWidget;
 
     /** The models to represent the data of m_doc */
     KVTTableModel       *m_tableModel;

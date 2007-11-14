@@ -31,6 +31,7 @@
 #include "lessondockwidget.h"
 
 #include "entry-dialogs/EntryDlg.h"
+#include "entry-dialogs/wordtypewidget.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
 #include "language-dialogs/languagedialog.h"
@@ -72,7 +73,7 @@
 
 ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
 {
-    m_document = new ParleyDocument(this, filename);
+    m_document = new ParleyDocument(this);
 
     m_tableView = 0;
     m_tableModel = 0;
@@ -121,7 +122,19 @@ ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
 
     if ( !filename.url().isEmpty() ) {
         m_document->open(filename);
+    } else {
+        if (m_recentFilesAction->actions().count() > 0
+            && m_recentFilesAction->action(
+                                        m_recentFilesAction->actions().count()-1)->isEnabled() )
+        {
+            m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
+        } else {
+            // this is probably the first time we start.
+            m_document->newDocument();
+            updateDocument();
+        }
     }
+
 
     if (Prefs::autoBackup()) {
         QTimer::singleShot(Prefs::backupTime() * 60 * 1000, this, SLOT(slotTimeOutBackup()));
@@ -672,16 +685,14 @@ void ParleyApp::slotFileQuit()
 }
 
 
-void ParleyApp::setDocument(KEduVocDocument * doc)
+void ParleyApp::updateDocument()
 {
     m_lessonDockWidget->setDocument(m_document->document());
+    m_wordTypeWidget->setDocument(m_document->document());
 
     m_tableModel->setDocument(m_document->document());
     m_tableModel->reset();
     m_tableModel->loadLanguageSettings();
-
-
-    kDebug() << "setDocument()" << doc->url() << doc->title() << doc->entryCount() << m_tableModel->rowCount(QModelIndex()) << m_tableModel->columnCount(QModelIndex());
 
     connect(m_document->document(), SIGNAL(docModified(bool)), this, SLOT(slotUpdateWindowCaption()));
 

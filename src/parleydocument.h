@@ -27,7 +27,7 @@ class ParleyDocument : public QObject
 {
 Q_OBJECT
 public:
-    ParleyDocument(ParleyApp *parent, const KUrl& filename);
+    ParleyDocument(ParleyApp *parent);
 
     ~ParleyDocument();
 

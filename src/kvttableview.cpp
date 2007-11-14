@@ -196,7 +196,6 @@ void KVTTableView::newPage(QPainter & painter, int res, int startCol, int endCol
     QRect w = painter.window();
     painter.resetMatrix();
     painter.setFont(KGlobalSettings::generalFont());
-    /// @todo improve i18n("KVocTrain - %1", m_doc->title())
     painter.drawText(marg, marg - 20, KGlobal::caption());
     painter.translate(marg, marg);
     painter.drawLine(0 , 0, 0, hh);

@@ -376,18 +376,6 @@ void ParleyApp::initModel()
     m_tableView->setModel(m_sortFilterModel);
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
-
-    if (m_recentFilesAction->actions().count() > 0
-        && m_recentFilesAction->action(
-                                       m_recentFilesAction->actions().count()-1)->isEnabled() )
-    {
-        m_recentFilesAction->action(m_recentFilesAction->actions().count()-1)->trigger();
-    } else {
-        // this is probably the first time we start.
-        m_document->newDocument();
-        setDocument(m_document->document());
-
-    }
 }
 
 
@@ -459,14 +447,11 @@ void ParleyApp::initView()
     connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
 
 
-//     QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
-//     wordTypeDockWidget->setObjectName("WordTypeDock");
-// 
-//     WordTypeWidget *wtw = new WordTypeWidget(this);
-// 
-//     wordTypeDockWidget->setWidget(wtw);
-//     addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
-//     connect(this, SIGNAL(selectionChanged()), wtw, SLOT(selectionChanged()));
-
+    QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
+    wordTypeDockWidget->setObjectName("WordTypeDock");
+    m_wordTypeWidget = new WordTypeWidget(this);
+    wordTypeDockWidget->setWidget(m_wordTypeWidget);
+    addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
+    connect(this, SIGNAL(selectionChanged()), m_wordTypeWidget, SLOT(selectionChanged()));
 }
 

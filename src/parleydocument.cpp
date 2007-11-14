@@ -33,14 +33,11 @@
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
-ParleyDocument::ParleyDocument(ParleyApp *parent, const KUrl& filename)
+ParleyDocument::ParleyDocument(ParleyApp *parent)
  : QObject(parent)
 {
     m_parleyApp = parent;
     m_doc = new KEduVocDocument(this);
-    if ( !filename.isEmpty() ) {
-        open(filename);
-    }
 }
 
 
@@ -72,8 +69,7 @@ void ParleyDocument::newDocument()
     initializeDefaultGrammar();
     createExampleEntries();
 
-    m_parleyApp->setDocument(m_doc);
-
+    m_parleyApp->updateDocument();
     m_doc->setModified(false);
 }
 
@@ -104,7 +100,7 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         m_doc->setCsvDelimiter(Prefs::separator());
         m_doc->open(url);
 
-        m_parleyApp->setDocument(m_doc);
+        m_parleyApp->updateDocument();
 
         if (addRecent) { // open sample does not go into recent
             m_parleyApp->m_recentFilesAction->addUrl(url);
