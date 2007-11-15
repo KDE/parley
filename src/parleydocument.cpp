@@ -69,11 +69,11 @@ void ParleyDocument::newDocument()
     disconnect(m_doc);
     delete m_doc;
     m_doc = new KEduVocDocument(this);
+    m_parleyApp->updateDocument();
 
     initializeDefaultGrammar();
     createExampleEntries();
 
-    m_parleyApp->updateDocument();
     m_doc->setModified(false);
 }
 
