@@ -716,7 +716,7 @@ void ParleyApp::initDockWidgets()
     wordTypeDockWidget->setObjectName("WordTypeDock");
     m_wordTypeWidget = new WordTypeWidget(this);
     wordTypeDockWidget->setWidget(m_wordTypeWidget);
-    addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
+    addDockWidget(Qt::BottomDockWidgetArea, wordTypeDockWidget);
     connect(this, SIGNAL(signalSetData(const QList<int>&, int)), m_wordTypeWidget, SLOT(setEntries(const QList<int>&, int)));
 }
 
