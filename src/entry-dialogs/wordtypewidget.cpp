@@ -87,7 +87,13 @@ void WordTypeWidget::setEntries(const QList< int > & entries, int currentTransla
         m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).subType();
 
-    wordTypeComboBox->setCurrentIndex( wordTypeComboBox->findText( mainType ) );
+    int typeIndex = wordTypeComboBox->findText( mainType );
+    if(typeIndex > 0) {
+        wordTypeComboBox->setCurrentIndex(typeIndex);
+    } else {
+        wordTypeComboBox->setCurrentIndex(0);
+    }
+
     updateSubTypeBoxContents( mainType );
     subWordTypeComboBox->setCurrentIndex( subWordTypeComboBox->findText( subType ) );
 
