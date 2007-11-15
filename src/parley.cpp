@@ -90,6 +90,12 @@ ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
 
     m_recentFilesAction->loadEntries(KGlobal::config()->group("Recent Files"));
 
+    setCorner(Qt::TopLeftCorner, Qt::LeftDockWidgetArea);
+    setCorner(Qt::BottomLeftCorner, Qt::LeftDockWidgetArea);
+    setCorner(Qt::TopRightCorner, Qt::RightDockWidgetArea);
+    setCorner(Qt::BottomRightCorner, Qt::RightDockWidgetArea);
+
+
     initView();
     initModel();
 
