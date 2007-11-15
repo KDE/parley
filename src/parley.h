@@ -81,6 +81,9 @@ public:
     QWidget* initLessonList(QWidget *parent);
     /** setup the main view*/
     void initView();
+
+    void initDockWidgets();
+    
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
 
@@ -145,6 +148,9 @@ public slots:
      */
     void removeEntryDlg();
 
+signals:
+    void signalSetData( const QList<int>& entries, int currentTranslation);
+
 private slots:
     /**
      * To update the statusbar and the entry dialog
@@ -173,6 +179,11 @@ private:
      * Set the current doc (after creating a new one or opening a file)
      */
     void updateDocument();
+
+    /**
+     * When the selection changes, the editors need to be notified
+     */
+    void updateEditWidgets();
 
     // KAction pointers to enable/disable actions
     KRecentFilesAction* m_recentFilesAction;

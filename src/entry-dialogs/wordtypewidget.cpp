@@ -41,14 +41,21 @@ WordTypeWidget::WordTypeWidget(QWidget *parent) : QWidget(parent)
 void WordTypeWidget::setDocument(KEduVocDocument * doc)
 {
     m_doc = doc;
-    if ( m_doc = 0 ) {
-        wordTypeComboBox->clear();
-        subWordTypeComboBox->clear();
-    }
+    wordTypeComboBox->clear();
+    subWordTypeComboBox->clear();
+    // fill the boxes
+
+    kDebug() << "WordTypeWidget::setDocument()" << doc->title();
+    updateMainTypeBoxContents();
 }
 
+void WordTypeWidget::updateMainTypeBoxContents()
+{
+    wordTypeComboBox->clear();
+    wordTypeComboBox->addItems( m_doc->wordTypes().typeNameList() );
+}
 
-void WordTypeWidget::setEntries(int currentTranslation, const QList<int>& entries)
+void WordTypeWidget::setEntries(const QList< int > & entries, int currentTranslation)
 {
     m_currentTranslation = currentTranslation;
     m_entries = entries;
@@ -86,7 +93,7 @@ void WordTypeWidget::setEntries(int currentTranslation, const QList<int>& entrie
 void WordTypeWidget::slotTypeBoxChanged(const QString &mainType)
 {
     subWordTypeComboBox->clear();
-    subWordTypeComboBox->addItems( m_wordTypes.subTypeNameList(mainType) );
+    subWordTypeComboBox->addItems( m_doc->wordTypes().subTypeNameList(mainType) );
 kDebug() << "fill subType box" << mainType;
     subWordTypeComboBox->setCurrentIndex(-1);
 
@@ -146,16 +153,9 @@ void WordTypeWidget::commitData()
 }*/
 
 
-void WordTypeWidget::updateMainTypeBoxContents()
-{
-    wordTypeComboBox->clear();
-    wordTypeComboBox->addItems( m_wordTypes.typeNameList() );
-}
-
 void WordTypeWidget::slotSubTypeBoxChanged(const QString & mainType)
 {
 }
-
 
 
 #include "wordtypewidget.moc"

@@ -55,10 +55,12 @@ public:
     ~EntryDlg();
 
     bool isModified();
-    void setData(const QList<int>& entries, int currentTranslation);
 
     /// saves the changes to m_doc
     void commitData(bool force);
+
+public slots:
+    void setData(const QList<int>& entries, int currentTranslation);
 
 signals:
     /**

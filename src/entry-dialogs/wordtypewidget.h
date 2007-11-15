@@ -30,7 +30,7 @@ public:
     void setDocument(KEduVocDocument *doc);
 
 public slots:
-    void setEntries(int currentTranslation, const QList<int>& entries);
+    void setEntries(const QList<int>& entries, int currentTranslation);
 
 signals:
     void signalTypeSelected(const QString &);
@@ -56,6 +56,5 @@ private:
     /// Selection in the doc - if more than one row is selected behavior is different
     QList<int>        m_entries;
     bool m_usageIsModified;
-    KEduVocWordType   m_wordTypes;
 };
 #endif // WordTypeWidget_included

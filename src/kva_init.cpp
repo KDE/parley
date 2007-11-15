@@ -445,13 +445,5 @@ void ParleyApp::initView()
     QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
     m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
     connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
-
-
-    QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
-    wordTypeDockWidget->setObjectName("WordTypeDock");
-    m_wordTypeWidget = new WordTypeWidget(this);
-    wordTypeDockWidget->setWidget(m_wordTypeWidget);
-    addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
-    connect(this, SIGNAL(selectionChanged()), m_wordTypeWidget, SLOT(selectionChanged()));
 }
 

@@ -93,8 +93,9 @@ ParleyApp::ParleyApp(const KUrl & filename) : KXmlGuiWindow(0)
     initView();
     initModel();
 
-    // these connects need the model to exist
+    initDockWidgets();
 
+    // these connects need the model to exist
     // selection changes (the entry dialog needs these)
     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
             this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
@@ -184,7 +185,7 @@ void ParleyApp::slotEditEntry()
     if (m_entryDlg == 0) {
         m_entryDlg = new EntryDlg(this, m_document->document());
         connect(m_entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
-        connect(m_entryDlg, SIGNAL(dataChanged(const QModelIndex& , const QModelIndex&)), m_tableModel, SLOT(dataChangedFromOutside(const QModelIndex& , const QModelIndex&)));
+
     }
 
     if (m_entryDlg != 0) {
@@ -198,26 +199,8 @@ void ParleyApp::slotEditEntry()
     }
 
     // set the data in the dialog
+    updateEditWidgets();
 
-    // to pass on the selection we need to translate from m_sortFilterModel to the real model
-    QModelIndexList modelIndexList;
-    modelIndexList = m_tableView->selectionModel()->selectedRows();
-
-    QList<int> entryList;
-    foreach (QModelIndex modelIndex, modelIndexList) {
-        entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
-    }
-
-    QModelIndex currentIndex = m_tableView->currentIndex();
-    if (currentIndex.isValid()) {
-        currentIndex = m_sortFilterModel->mapToSource(currentIndex);
-    }
-
-    if (entryList.isEmpty() ) {
-        entryList.append( currentIndex.row() );
-    }
-
-    m_entryDlg->setData(entryList, currentIndex.column() - KV_COL_TRANS);
     m_tableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 }
 
@@ -225,6 +208,7 @@ void ParleyApp::slotEditEntry()
 void ParleyApp::removeEntryDlg()
 {
     if (m_entryDlg != 0) {
+        disconnect(m_entryDlg);
         m_entryDlg->deleteLater();
         m_entryDlg = 0;
     }
@@ -517,10 +501,7 @@ void ParleyApp::slotEditPaste()
 
 void ParleyApp::slotSelectionChanged(const QItemSelection &, const QItemSelection &)
 {
-    // update the entry dialog if it is there
-    if (m_entryDlg != 0) {
-        slotEditEntry();
-    }
+    updateEditWidgets();
 }
 
 
@@ -556,10 +537,8 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
     if (m_typeStatusBarLabel != 0) {
         m_typeStatusBarLabel->setText(i18n("Type: %1", typeText));
     }
-    // update the entry dialog if it is there
-    if (m_entryDlg != 0) {
-        slotEditEntry();
-    }
+
+    updateEditWidgets();
 }
 
 
@@ -700,6 +679,40 @@ void ParleyApp::updateDocument()
 }
 
 
+void ParleyApp::updateEditWidgets()
+{
+    // to pass on the selection we need to translate from m_sortFilterModel to the real model
+    QModelIndexList modelIndexList;
+    modelIndexList = m_tableView->selectionModel()->selectedRows();
+
+    QList<int> entryList;
+    foreach (QModelIndex modelIndex, modelIndexList) {
+        entryList.append(m_sortFilterModel->mapToSource(modelIndex).row());
+    }
+
+    QModelIndex currentIndex = m_tableView->currentIndex();
+    if (currentIndex.isValid()) {
+        currentIndex = m_sortFilterModel->mapToSource(currentIndex);
+    }
+
+    if (entryList.isEmpty() ) {
+        entryList.append( currentIndex.row() );
+    }
+
+    emit signalSetData(entryList, currentIndex.column() - KV_COL_TRANS);
+}
+
+
+void ParleyApp::initDockWidgets()
+{
+    // word types dock
+    QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
+    wordTypeDockWidget->setObjectName("WordTypeDock");
+    m_wordTypeWidget = new WordTypeWidget(this);
+    wordTypeDockWidget->setWidget(m_wordTypeWidget);
+    addDockWidget(Qt::RightDockWidgetArea, wordTypeDockWidget);
+    connect(this, SIGNAL(signalSetData(const QList<int>&, int)), m_wordTypeWidget, SLOT(setEntries(const QList<int>&, int)));
+}
 
 
 #include "parley.moc"
