@@ -52,8 +52,24 @@ void WordTypeWidget::setDocument(KEduVocDocument * doc)
 void WordTypeWidget::updateMainTypeBoxContents()
 {
     wordTypeComboBox->clear();
+    wordTypeComboBox->addItem( i18n("No word type set") );
     wordTypeComboBox->addItems( m_doc->wordTypes().typeNameList() );
 }
+
+
+void WordTypeWidget::updateSubTypeBoxContents(const QString & mainType)
+{
+    subWordTypeComboBox->clear();
+    subWordTypeComboBox->addItems( m_doc->wordTypes().subTypeNameList(mainType) );
+    if( subWordTypeComboBox->count() == 0 ) {
+        if( wordTypeComboBox->currentIndex() > 0 ) {
+            subWordTypeComboBox->addItem(i18n("No sub types defined"));
+        }
+    } else {
+        subWordTypeComboBox->insertItem(0, i18n("No secondary word type set"));
+    }
+}
+
 
 void WordTypeWidget::setEntries(const QList< int > & entries, int currentTranslation)
 {
@@ -64,7 +80,6 @@ void WordTypeWidget::setEntries(const QList< int > & entries, int currentTransla
 
     updateMainTypeBoxContents();
 
-
     QString mainType =
         m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).type();
@@ -73,31 +88,52 @@ void WordTypeWidget::setEntries(const QList< int > & entries, int currentTransla
             translation(m_currentTranslation).subType();
 
     wordTypeComboBox->setCurrentIndex( wordTypeComboBox->findText( mainType ) );
-    slotTypeBoxChanged( mainType );
+    updateSubTypeBoxContents( mainType );
     subWordTypeComboBox->setCurrentIndex( subWordTypeComboBox->findText( subType ) );
 
-        // fill enabled fields if equal for all edited entries, otherwise empty.
-        foreach ( int entry, m_entries) {
-            KEduVocExpression *currentEntry = m_doc->entry(entry);
+    // fill enabled fields if equal for all edited entries, otherwise empty.
+    foreach ( int entry, m_entries) {
+        KEduVocExpression *currentEntry = m_doc->entry(entry);
 
-            /// @todo as soon as we have a .subtype() function use that and check for type differences. Now cheating: only set, if type and subtype are equal.
-            if ( firstEntry->translation(m_currentTranslation).type()
-                    != currentEntry->translation(m_currentTranslation).type()) {
-                wordTypeComboBox->setCurrentIndex(-1);
-                subWordTypeComboBox->setCurrentIndex(-1);
-            }
-        } // foreach
+        /// @todo as soon as we have a .subtype() function use that and check for type differences. Now cheating: only set, if type and subtype are equal.
+        if ( firstEntry->translation(m_currentTranslation).type()
+                != currentEntry->translation(m_currentTranslation).type()) {
+            wordTypeComboBox->setCurrentIndex(-1);
+            subWordTypeComboBox->setCurrentIndex(-1);
+        }
+    } // foreach
 }
 
 
 void WordTypeWidget::slotTypeBoxChanged(const QString &mainType)
 {
-    subWordTypeComboBox->clear();
-    subWordTypeComboBox->addItems( m_doc->wordTypes().subTypeNameList(mainType) );
-kDebug() << "fill subType box" << mainType;
     subWordTypeComboBox->setCurrentIndex(-1);
+    // unchanged
+    if ( wordTypeComboBox->currentIndex() == -1 ) {
+        return;
+    }
 
-    emit signalTypeSelected( mainType );
+    QString wordType = wordTypeComboBox->currentText();
+    if (wordTypeComboBox->currentIndex() == 0) {
+        wordType = QString();
+    }
+
+    foreach(int entry, m_entries) {
+        KEduVocExpression *expr = m_doc->entry(entry);
+        if (m_currentTranslation >= 0) {
+            // set the type
+            expr->translation(m_currentTranslation).setType( wordType );
+            expr->translation(m_currentTranslation).setSubType( subWordTypeComboBox->currentText() );
+            // also set the same type for the other translations
+            foreach (int j, expr->translationIndices()) {
+                if (expr->translation(j).type().isEmpty())
+                    expr->translation(j).setType( wordType );
+                    ///@todo reset subtype if new type != old type
+            }
+        }
+    }
+
+    emit wordTypeSelected( mainType );
 }
 
 

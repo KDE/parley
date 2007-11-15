@@ -33,10 +33,15 @@ public slots:
     void setEntries(const QList<int>& entries, int currentTranslation);
 
 signals:
-    void signalTypeSelected(const QString &);
+    /**
+     * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declination appear)
+     * @param  
+     */
+    void wordTypeSelected(const QString&);
 
 private:
     void updateMainTypeBoxContents();
+    void updateSubTypeBoxContents( const QString& mainType );
 
 private slots:
     /// Updates the subtype box
