@@ -52,6 +52,8 @@ class KAction;
 class QProgressBar;
 class QSplitter;
 class QLabel;
+class QTableView;
+class VocabularyModel;
 
 /**
   * This Class is the base class for your application. It sets up the main
@@ -194,6 +196,9 @@ private:
 
     /** m_tableView is the main widget which is the table that represents your working area. */
     KVTTableView *m_tableView;
+
+    VocabularyModel *m_vocabularyModel;
+    QTableView *m_vocabularyView;
 
     QWidget *m_searchWidget;
 

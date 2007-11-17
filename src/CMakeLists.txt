@@ -21,6 +21,10 @@ kde4_add_ui_files( libcommondlg_SRCS
     settings/generaloptionsbase.ui
 )
 
+set(vocabulary_SRCS
+    vocabulary/vocabularymodel.cpp
+)
+
 set(practice_SRCS
     practice/testentry.cpp
     practice/testentrymanager.cpp
@@ -138,7 +142,8 @@ kde4_add_ui_files(languagedialogs_SRCS
     language-dialogs/languagepage.ui
 )
 
-set(parley_SRCS ${libcommondlg_SRCS} ${practice_SRCS}
+set(parley_SRCS
+    ${vocabulary_SRCS} ${libcommondlg_SRCS} ${practice_SRCS}
     ${configure-practice_SRCS} ${docprop_SRCS}
     ${entrydialogs_SRCS} ${statisticsdialogs_SRCS}
     ${languagedialogs_SRCS} ${newdocument-wizard_SRCS}

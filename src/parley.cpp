@@ -29,6 +29,7 @@
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "lessondockwidget.h"
+#include "vocabulary/vocabularymodel.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -192,6 +193,7 @@ void ParleyApp::slotEditEntry()
         m_entryDlg = new EntryDlg(this, m_document->document());
         connect(m_entryDlg, SIGNAL(closeEntryDialog()), this, SLOT(removeEntryDlg()));
 
+        connect(this, SIGNAL(signalSetData(const QList<int>&, int)), m_entryDlg, SLOT(setData(const QList<int>&, int)));
     }
 
     if (m_entryDlg != 0) {
@@ -682,6 +684,15 @@ void ParleyApp::updateDocument()
     m_tableView->setColumnWidth(2, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->setColumnWidth(3, qvariant_cast<QSize>(m_tableModel->headerData(2, Qt::Horizontal, Qt::SizeHintRole)).width());
     m_tableView->horizontalHeader()->setResizeMode(KV_COL_MARK, QHeaderView::Fixed);
+
+
+    for ( int i = 0; i<m_document->document()->identifierCount(); i++) {
+kDebug() << "hide " << (i*VocabularyModel::EntryColumnsMAX)+VocabularyModel::Pronunciation;
+        m_vocabularyView->setColumnHidden((i*VocabularyModel::EntryColumnsMAX)+VocabularyModel::Pronunciation, true);
+        m_vocabularyView->setColumnHidden((i*VocabularyModel::EntryColumnsMAX)+VocabularyModel::SubWordType, true);
+        m_vocabularyView->setColumnHidden((i*VocabularyModel::EntryColumnsMAX)+VocabularyModel::Antonym, true);
+        m_vocabularyView->setColumnHidden((i*VocabularyModel::EntryColumnsMAX)+VocabularyModel::Paraphrase, true);
+    }
 }
 
 

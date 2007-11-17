@@ -75,6 +75,8 @@ void ParleyDocument::newDocument()
     createExampleEntries();
 
     m_doc->setModified(false);
+
+    emit documentChanged(m_doc);
 }
 
 void ParleyDocument::slotFileOpen()
@@ -107,6 +109,7 @@ void ParleyDocument::open(const KUrl & url, bool addRecent)
         if (addRecent) { // open sample does not go into recent
             m_parleyApp->m_recentFilesAction->addUrl(url);
         }
+        emit documentChanged(m_doc);
     }
 }
 

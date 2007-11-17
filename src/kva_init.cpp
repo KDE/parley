@@ -30,6 +30,7 @@
 #include "kvtsortfiltermodel.h"
 #include "kvttableview.h"
 #include "lessondockwidget.h"
+#include "vocabulary/vocabularymodel.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -376,6 +377,11 @@ void ParleyApp::initModel()
     m_tableView->setModel(m_sortFilterModel);
 
     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+
+    m_vocabularyModel = new VocabularyModel(this);
+    m_vocabularyView->setModel(m_vocabularyModel);
+
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 }
 
 
@@ -422,14 +428,24 @@ void ParleyApp::initView()
     m_searchWidget->setVisible(Prefs::showSearch());
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
-    /// Table view
+    // Table view
     m_tableView = new KVTTableView(centralWidget());
     m_tableView->setFrameStyle(QFrame::NoFrame);
     m_tableView->setAlternatingRowColors(true);
     rightLayout->addWidget(m_tableView, 1, 0);
 
-    topLayout->addLayout(rightLayout);
 
+
+    /* the new table */
+    m_vocabularyView = new QTableView(centralWidget());
+    rightLayout->addWidget(m_vocabularyView, 2, 0);
+
+    // move this into the view class
+    m_vocabularyView->horizontalHeader()->setStretchLastSection(true);
+
+    /* end the new table */
+
+    topLayout->addLayout(rightLayout);
 
     m_tableView->addAction(actionCollection()->action("edit_append"));
     m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));

@@ -66,6 +66,9 @@ public slots:
     void slotSaveSelection();
     void printFile();
 
+signals:
+    void documentChanged(KEduVocDocument *newDocument);
+
 private:
     /**
      * Start the wizard to help set up the doc.
@@ -76,6 +79,8 @@ private:
      */
     void initializeDefaultGrammar();
     /**
+     *
+     * 
      * When starting the first time, create some entries to get started.
      */
     void createExampleEntries();
