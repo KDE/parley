@@ -97,27 +97,26 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
     expr_line->setEnabled(editSingleEntry);
     pronounce_line->setEnabled(editSingleEntry);
 
-    KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
+//     KEduVocExpression *firstEntry = m_doc->entry(m_entries.value(0));
     // set these to the first entry, check if that's ok later
-    setLessonBox(firstEntry->lesson());
-    setUsageSelection(firstEntry->translation(m_currentTranslation).usages().values());
+//     setLessonBox(firstEntry->lesson());
 
-    c_active->setChecked(firstEntry->isActive());
+//     c_active->setChecked(firstEntry->isActive());
 
     updateMainTypeBoxContents();
 
-
+/*
     QString mainType =
         m_doc->entry(m_entries.value(0))->
             translation(m_currentTranslation).type();
     QString subType =
         m_doc->entry(m_entries.value(0))->
-            translation(m_currentTranslation).subType();
+            translation(m_currentTranslation).subType();*/
 
-    type_box->setCurrentIndex( type_box->findText( mainType ) );
-    slotTypeBoxChanged( mainType );
-    subtype_box->setCurrentIndex( subtype_box->findText( subType ) );
-
+//     type_box->setCurrentIndex( type_box->findText( mainType ) );
+//     slotTypeBoxChanged( mainType );
+//     subtype_box->setCurrentIndex( subtype_box->findText( subType ) );
+/*
     if (editSingleEntry) {
         c_active->setTristate(false);
         // these can only be edited in single mode
@@ -133,9 +132,6 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
         // fill enabled fields if equal for all edited entries, otherwise empty.
         foreach ( int entry, m_entries) {
             KEduVocExpression *currentEntry = m_doc->entry(entry);
-            if ( firstEntry->lesson() != currentEntry->lesson() ) {
-                lesson_box->setCurrentIndex(-1);
-            }
 
             /// @todo as soon as we have a .subtype() function use that and check for type differences. Now cheating: only set, if type and subtype are equal.
             if ( firstEntry->translation(m_currentTranslation).type()
@@ -153,50 +149,9 @@ void CommonEntryPage::setData(const QList<int>& entries, int currentTranslation)
                 c_active->setCheckState(Qt::PartiallyChecked);
             }
         } // foreach
-    } // edit more than one entry
+    } // edit more than one entry*/
 
     m_usageIsModified = false;
-}
-
-
-void CommonEntryPage::setLessonBox(int lesson)
-{
-    lesson_box->clear();
-    /// @todo get rid of lessonNames (?)
-    lesson_box->addItems(m_doc->lessonNames());
-    lesson_box->setCurrentIndex(lesson);
-}
-
-
-void CommonEntryPage::setUsageSelection(const QStringList& usageList)
-{
-    usage_box->clear();
-    QStringList docUsages = m_doc->usages(); //KVTUsage::getRelation();
-
-    for (int i = 0; i < (int) docUsages.size(); i++) {
-        usage_box->addItem(docUsages.value(i));
-        if ( usageList.contains(docUsages.value(i))) {
-            usage_box->setCurrentRow(i);
-        }
-    }
-    slotUsageChanged();
-}
-
-
-void CommonEntryPage::slotUsageChanged()
-{
-    QString s;
-
-    for (int i = 0; i < usage_box->count(); i++) {
-        if (usage_box->item(i)->isSelected()) {
-            if (!s.isEmpty()) {
-                s.append('\n');
-            }
-            s += usage_box->item(i)->text();
-        }
-    }
-    usage_line->setText(s);
-    m_usageIsModified = true;
 }
 
 
@@ -284,7 +239,7 @@ void CommonEntryPage::slotSubDialogClosed()
 
 void CommonEntryPage::commitData()
 {
-    if ( m_entries.count() == 1 ) {
+/*    if ( m_entries.count() == 1 ) {
     // these things are only changed when editing a single entry
         KEduVocExpression *expr = m_doc->entry(m_entries.value(0));
         if (m_currentTranslation >= 0) {
@@ -302,10 +257,6 @@ void CommonEntryPage::commitData()
         // modified because it can be different for multiple entries and will only be saved if the user changes it. if partially checked no entry will be changed.
         if ( c_active->checkState() != Qt::PartiallyChecked ) {
             expr->setActive( c_active->checkState() == Qt::Checked );
-        }
-        if ( lesson_box->currentIndex() != -1 ) {
-            //m_tableModel->setData(m_tableModel->index(index.m_entries.value(0)(), 0), getLesson(), Qt::EditRole);
-            expr->setLesson( lesson_box->currentIndex() );
         }
 
         if (m_currentTranslation >= 0) {
@@ -332,7 +283,7 @@ void CommonEntryPage::commitData()
             } // type
         }
     }
-    m_usageIsModified = false;
+    m_usageIsModified = false;*/
 }
 
 void CommonEntryPage::slotDataChanged()

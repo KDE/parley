@@ -28,6 +28,7 @@
 
 #include <kvttablemodel.h>
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 
 #include <KLocale>
 #include <KDebug>
@@ -122,10 +123,10 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
     // question
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(m_entry->exp->translation(Prefs::questionLanguage()).text());
+    mw->orgField->setText(m_entry->entry()->translation(Prefs::questionLanguage()).text());
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled()
-        && !m_entry->exp->translation(Prefs::questionLanguage())
+        && !m_entry->entry()->translation(Prefs::questionLanguage())
             .soundUrl().isEmpty());
 
     mw->audioChoiceButton1->setVisible(false);
@@ -135,16 +136,16 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->audioChoiceButton5->setVisible(false);
 
     // answer and choices
-    QString solution = m_entry->exp->translation(Prefs::solutionLanguage()).text();
+    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage()).text();
 
     // gather some choices...
     QStringList choices;
 
     // the user supplied choices (edit entry -> choices)
-    choices << m_entry->exp->translation(Prefs::solutionLanguage()).multipleChoice().choices();
+    choices << m_entry->entry()->translation(Prefs::solutionLanguage()).multipleChoice().choices();
 
     // always include false friend
-    QString falseFriend = m_entry->exp->translation(Prefs::solutionLanguage())
+    QString falseFriend = m_entry->entry()->translation(Prefs::solutionLanguage())
         .falseFriend(Prefs::questionLanguage());
     if (!falseFriend.isEmpty()) {
         choices.append(falseFriend);
@@ -182,7 +183,7 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
     mw->show_all->setFocus();
 
-    imageShowFromEntry( mw->imageGraphicsView, entry );
+    imageShowFromEntry( mw->imageGraphicsView );
     mw->status->clear();
 }
 
@@ -261,7 +262,7 @@ void MCQueryDlg::showContinueButton(bool show)
         }
         // enable the sound for the solution. eventually all entries with sound should get their button enabled.
         if ( Prefs::practiceSoundEnabled() ) {
-            if ( !m_entry->exp->translation(Prefs::solutionLanguage())
+            if ( !m_entry->entry()->translation(Prefs::solutionLanguage())
                 .soundUrl().isEmpty()) {
                 QList<QPushButton*> audioButtons;
                 audioButtons << mw->audioChoiceButton1
@@ -281,15 +282,19 @@ void MCQueryDlg::showContinueButton(bool show)
 
 QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
 {
+    ///@todo this can be made much nicer. esp since we have the list now - allEntries
+
     QStringList choices;
 
     KRandomSequence randomSequence (QDateTime::currentDateTime().toTime_t());
 
-    if (m_doc->entryCount() <= numberChoices) {
-        for (int i = choices.count(); i < m_doc->entryCount(); ++i) {
-            KEduVocExpression *act = m_doc->entry(i);
+    QList<KEduVocExpression*> allEntries = m_doc->lesson()->entriesRecursive();
 
-            if (act != m_entry->exp) {
+    if (allEntries.count() <= numberChoices) {
+        for (int i = choices.count(); i < allEntries.count(); ++i) {
+            KEduVocExpression *act = allEntries.value(i);
+
+            if (act != m_entry->entry()) {
                 choices.append(act->translation(Prefs::solutionLanguage()).text());
             }
         }
@@ -300,8 +305,8 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
         int numNonEmptyEntries = 0;
 
         // find out if we got enough non-empty entries to fill all the options
-        for(int i = 0; i < m_doc->entryCount(); i++) {
-            if(!m_doc->entry(i)->translation(Prefs::solutionLanguage()).text().isEmpty())
+        for(int i = 0; i < allEntries.count(); i++) {
+            if(!allEntries.value(i)->translation(Prefs::solutionLanguage()).text().isEmpty())
                 numNonEmptyEntries++;
             if(numNonEmptyEntries >= numberChoices)
                 break;
@@ -313,20 +318,20 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
             // if there are enough non-empty fields, fill the options only with those
             if(numNonEmptyEntries >= numberChoices) {
                 do {
-                    nr = randomSequence.getLong(m_doc->entryCount());
-                } while (m_doc->entry(nr)->translation(Prefs::solutionLanguage()).text().isEmpty());
+                    nr = randomSequence.getLong(allEntries.count());
+                } while (allEntries.value(nr)->translation(Prefs::solutionLanguage()).text().isEmpty());
             } else {
-                nr = randomSequence.getLong(m_doc->entryCount());
+                nr = randomSequence.getLong(allEntries.count());
             }
             // append if new expr found
             bool newex = true;
             for (int i = 0; newex && i < exprlist.count(); i++) {
-                if (exprlist[i] == m_doc->entry(nr))
+                if (exprlist[i] == allEntries.value(nr))
                     newex = false;
             }
-            if (newex && m_entry->exp != m_doc->entry(nr)) {
+            if (newex && m_entry->entry() != allEntries.value(nr)) {
                 count--;
-                exprlist.append(m_doc->entry(nr));
+                exprlist.append(allEntries.value(nr));
             }
         }
 

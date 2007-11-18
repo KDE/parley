@@ -1,12 +1,6 @@
 /***************************************************************************
 
-                             kvtlessonview
-
-    -----------------------------------------------------------------------
-
-    copyright     : (C) 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
-
-    -----------------------------------------------------------------------
+    Copyright 2007 Frederik Gladhorn <frederik.gladhorn@kdemail.net>
 
  ***************************************************************************/
 
@@ -32,28 +26,25 @@ class KEduVocLesson;
  * Actually a QTreeView because QListView cannot have checkboxes.
  * @author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
  */
-class KVTLessonView : public QTreeView
+class LessonView : public QTreeView
 {
     Q_OBJECT
 public:
     /** Set up the lesson list widget.
      * Also creates the menu to manipulate the lessons.
      * @param parent parent widget */
-    KVTLessonView(QWidget *parent = 0);
-
+    LessonView(QWidget *parent = 0);
     /** Set the model for the view.
      * @param model the model */
     void setModel(LessonModel *model);
-
     /** Select the current lesson from the document.*/
     void initializeSelection();
-
     // /** Append an action to the right click menu.
     // * @param appendAction */
     //void appendAction(QAction *appendAction);
 
     KEduVocLesson * currentLesson();
-
+    
 public slots:
     /** The model was reset, we need to update the selection using initializeSelection. */
     void slotModelReset();

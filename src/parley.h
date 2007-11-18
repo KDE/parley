@@ -35,9 +35,6 @@
 
 #define IDS_DEFAULT I18N_NOOP("Ready.")
 
-class KVTTableModel;
-class KVTSortFilterModel;
-class KVTTableView;
 class PracticeManager;
 class EntryDlg;
 class LessonDockWidget;
@@ -94,7 +91,7 @@ public:
 
 
 public slots:
-    void keyPressEvent(QKeyEvent *e);
+//     void keyPressEvent(QKeyEvent *e);
 //  void keyReleaseEvent( QKeyEvent *e );
     void slotUpdateWindowCaption();
 
@@ -102,7 +99,7 @@ public slots:
     void slotCancelSelection();
     void slotSelectAll();
 
-    void slotCleanVocabulary();
+//     void slotCleanVocabulary();
 
     /** append language to vocabulary - creates a new column */
     void slotEditLanguages();
@@ -194,9 +191,6 @@ private:
 
     QString lastPixName;
 
-    /** m_tableView is the main widget which is the table that represents your working area. */
-    KVTTableView *m_tableView;
-
     VocabularyModel *m_vocabularyModel;
     QTableView *m_vocabularyView;
 
@@ -207,11 +201,11 @@ private:
 
     /// dock widgets to display lessons, word types, ...
     LessonDockWidget *m_lessonDockWidget;
-    WordTypeWidget   *m_wordTypeWidget;
+//     WordTypeWidget   *m_wordTypeWidget;
 
     /** The models to represent the data of m_doc */
-    KVTTableModel       *m_tableModel;
-    KVTSortFilterModel  *m_sortFilterModel;
+//     KVTTableModel       *m_tableModel;
+//     KVTSortFilterModel  *m_sortFilterModel;
 
     KLineEdit           *m_searchLine;
 

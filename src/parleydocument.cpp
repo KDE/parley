@@ -38,8 +38,9 @@ ParleyDocument::ParleyDocument(ParleyApp *parent)
  : QObject(parent)
 {
     m_parleyApp = parent;
+kDebug() << "will new KEduVocDocument";
     m_doc = new KEduVocDocument(this);
-
+kDebug() << "done new KEduVocDocument";
     m_backupTimer = 0;
     enableAutoBackup(Prefs::autoBackup());
 }
@@ -98,6 +99,7 @@ void ParleyDocument::slotFileOpenRecent(const KUrl& url)
 void ParleyDocument::open(const KUrl & url, bool addRecent)
 {
     if (!url.path().isEmpty()) {
+        emit documentChanged(0);
         disconnect(m_doc);
         delete m_doc;
         m_doc = new KEduVocDocument(this);
@@ -126,9 +128,9 @@ void ParleyDocument::openExample()
 
 void ParleyDocument::save()
 {
-    if (m_parleyApp->m_entryDlg != 0) {
-        m_parleyApp->m_entryDlg->commitData(false);
-    }
+//     if (m_parleyApp->m_entryDlg != 0) {
+//         m_parleyApp->m_entryDlg->commitData(false);
+//     }
 
     if (m_doc->url().fileName() == i18n("Untitled")) {
         saveAs();
@@ -153,9 +155,9 @@ void ParleyDocument::save()
 
 void ParleyDocument::saveAs()
 {
-    if (m_parleyApp->m_entryDlg != 0) {
-        m_parleyApp->m_entryDlg->commitData(false);
-    }
+//     if (m_parleyApp->m_entryDlg != 0) {
+//         m_parleyApp->m_entryDlg->commitData(false);
+//     }
 
     KUrl url = KFileDialog::getSaveUrl(QString(), KEduVocDocument::pattern(KEduVocDocument::Writing), m_parleyApp->parentWidget(), i18n("Save Vocabulary As"));
 
@@ -266,25 +268,6 @@ void ParleyDocument::newDocumentWizard()
 void ParleyDocument::initializeDefaultGrammar()
 {
     m_doc->wordTypes().createDefaultWordTypes();
-
-    // Preset some usages
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "abbreviation") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "anatomy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "biology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "figuratively") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "geology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "historical") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "informal") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "ironic") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "literary") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "mythology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "proper name") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "pharmacy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "philosophy") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physics") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "physiology") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "rhetoric") );
-    m_doc->addUsage( i18nc("context in which vocabulary entry is used", "zoology") );
 }
 
 
@@ -310,17 +293,17 @@ void ParleyDocument::createExampleEntries()
     m_doc->identifier(1).setName( i18n("A Second Language") );
     m_doc->identifier(1).setLocale( locale );
 
-    int lessonIndex = m_parleyApp->m_lessonDockWidget->addLesson();
-    m_parleyApp->m_lessonDockWidget->selectLesson(lessonIndex);
+//     int lessonIndex = m_parleyApp->m_lessonDockWidget->addLesson();
+//     m_parleyApp->m_lessonDockWidget->selectLesson(lessonIndex);
 
     // add some entries
-    for ( int i = 0; i < 15 ; i++ ) {
-        m_parleyApp->m_tableModel->appendEntry();
-    }
+//     for ( int i = 0; i < 15 ; i++ ) {
+//         m_parleyApp->m_tableModel->appendEntry();
+//     }
 
     // select the empty row
-    Prefs::setCurrentCol(KV_COL_TRANS);
-    Prefs::setCurrentRow(0);
+//     Prefs::setCurrentCol(KV_COL_TRANS);
+//     Prefs::setCurrentRow(0);
 
     m_doc->setModified(false);
 }
@@ -338,18 +321,6 @@ void ParleyDocument::slotGHNS()
     KNS::Entry::List entries = KNS::Engine::download();
 }
 
-
-void ParleyDocument::printFile()
-{
-    ///@todo use libxslt and transform the document to html - then display it in a browser and let that worry about printing. different styles should be easy to implement - flash cards anyone?
-    QPrinter printer;
-    printer.setFullPage(true);
-    QPrintDialog printDialog(&printer, m_parleyApp);
-
-    if (printDialog.exec()) {
-        m_parleyApp->m_tableView->print(&printer);
-    }
-}
 
 
 void ParleyDocument::slotFileMerge()

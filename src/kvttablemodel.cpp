@@ -52,7 +52,7 @@ int KVTTableModel::rowCount(const QModelIndex &parent) const
     if(!m_doc) {
         return 0;
     }
-    return m_doc->entryCount();
+    return m_doc->lesson()->entriesRecursive().count();
 }
 
 
@@ -80,13 +80,15 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
 
     switch (role) {
     case KVTTableModel::LessonsRole: {
-            QStringList sl = m_doc->lessonNames();
-            return QVariant(sl);
+//             QStringList sl = m_doc->lessonNames();
+//             return QVariant(sl);
+            return QVariant();
             break;
         }
 
     case KVTTableModel::LessonRole: {
-            return QVariant(m_doc->entry(index.row())->lesson());
+//             return QVariant(m_doc->entry(index.row())->lesson());
+            return QVariant();
             break;
         }
 
@@ -127,7 +129,8 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
             QVariant result;
             if (index.column() == 0) {
                 // Lesson is set to zero if none is set, but we don't allow this any more. Entries are rather moved into a default lesson.
-                result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
+//                 result = m_doc->lesson(m_doc->entry(index.row())->lesson()).name();
+                return "lesson";
             } else if (index.column() == 1) {
                 if (m_doc->entry(index.row())->isActive()) {
 //                     return KIcon("ok");
@@ -184,19 +187,19 @@ QVariant KVTTableModel::headerData(int section, Qt::Orientation orientation, int
                 return m_headerPixmaps.value(section);
             }
         }
-        if (role == Qt::SizeHintRole) {
-            switch (section) {
-            case 0:
-                return QSize(m_doc->sizeHint(-1), 25);
-                break;
-            case 1:
-                return QSize(25, 25);
-                break;
-            default:
-                return QSize(m_doc->sizeHint(section - KV_COL_TRANS), 25);
-                break;
-            }
-        }
+//         if (role == Qt::SizeHintRole) {
+//             switch (section) {
+//             case 0:
+//                 return QSize(m_doc->sizeHint(-1), 25);
+//                 break;
+//             case 1:
+//                 return QSize(25, 25);
+//                 break;
+//             default:
+//                 return QSize(m_doc->sizeHint(section - KV_COL_TRANS), 25);
+//                 break;
+//             }
+//         }
         return QVariant();
     } else {
         return QAbstractTableModel::headerData(section, orientation, role);
@@ -216,9 +219,9 @@ Qt::ItemFlags KVTTableModel::flags(const QModelIndex &index) const
 bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (index.isValid() && role == Qt::EditRole) {
-        if (index.column() == 0)
-            m_doc->entry(index.row())->setLesson(value.toInt());
-        else if (index.column() == 1) {
+        if (index.column() == 0) {
+//             m_doc->entry(index.row())->setLesson(value.toInt());
+        } else if (index.column() == 1) {
             m_doc->entry(index.row())->setActive(value.toInt());
         } else {
             m_doc->entry(index.row())->setTranslation(index.column() - 2, value.toString());
@@ -227,30 +230,30 @@ bool KVTTableModel::setData(const QModelIndex &index, const QVariant &value, int
         m_doc->setModified(true);
         return true;
     } else if (index.isValid() && role == KVTTableModel::LessonRole) {
-        m_doc->entry(index.row())->setLesson(value.toInt());
+//         m_doc->entry(index.row())->setLesson(value.toInt());
     }
     return false;
 }
 
 
-bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
-{
-    if (orientation == Qt::Horizontal) {
-        if (role == Qt::SizeHintRole) {
-            switch (section) {
-            case 0:
-                m_doc->setSizeHint(-1, qvariant_cast<QSize>(value).width());
-                ;
-            case 1: //
-            default:
-                m_doc->setSizeHint(section - KV_COL_TRANS, qvariant_cast<QSize>(value).width());
-            }
-        }
-        emit headerDataChanged(orientation, section, section);
-        return true;
-    }
-    return false;
-}
+// bool KVTTableModel::setHeaderData(int section, Qt::Orientation orientation, const QVariant &value, int role)
+// {
+//     if (orientation == Qt::Horizontal) {
+//         if (role == Qt::SizeHintRole) {
+//             switch (section) {
+//             case 0:
+// //                 m_doc->setSizeHint(-1, qvariant_cast<QSize>(value).width());
+//                 ;
+//             case 1: //
+//             default:
+// //                 m_doc->setSizeHint(section - KV_COL_TRANS, qvariant_cast<QSize>(value).width());
+//             }
+//         }
+//         emit headerDataChanged(orientation, section, section);
+//         return true;
+//     }
+//     return false;
+// }
 
 
 bool KVTTableModel::insertRows(int row, int count, const QModelIndex & parent)

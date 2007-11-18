@@ -152,4 +152,11 @@ int KVTLessonView::indexOfCurrentLesson()
     return indexes.at(0).row();
 }
 
+KEduVocLesson * KVTLessonView::currentLesson()
+{
+    return 0;
+}
+
 #include "kvtlessonview.moc"
+
+

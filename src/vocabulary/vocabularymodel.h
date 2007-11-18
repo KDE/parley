@@ -18,7 +18,7 @@
 #include <QAbstractTableModel>
 
 class KEduVocDocument;
-
+class KEduVocLesson;
 
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -57,9 +57,10 @@ public:
 
 public slots:
     void setDocument(KEduVocDocument *doc);
+    void setLesson(KEduVocLesson *lesson);
 
 private:
-
+    KEduVocLesson *m_lesson;
 
     KEduVocDocument *m_document;
 };

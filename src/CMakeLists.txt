@@ -23,6 +23,8 @@ kde4_add_ui_files( libcommondlg_SRCS
 
 set(vocabulary_SRCS
     vocabulary/vocabularymodel.cpp
+    vocabulary/lessonmodel.cpp
+    vocabulary/lessonview.cpp
 )
 
 set(practice_SRCS
@@ -76,7 +78,7 @@ set(docprop_SRCS
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
     docprop-dialogs/TypeOptPage.cpp
-    docprop-dialogs/UsageOptPage.cpp
+   # docprop-dialogs/UsageOptPage.cpp
 )
 
 kde4_add_ui_files(docprop_SRCS
@@ -87,15 +89,15 @@ kde4_add_ui_files(docprop_SRCS
 )
 
 set(entrydialogs_SRCS
-    entry-dialogs/AdjEntryPage.cpp
-    entry-dialogs/additionaleditpage.cpp
-    entry-dialogs/CommonEntryPage.cpp
-    entry-dialogs/EntryDlg.cpp
-    entry-dialogs/FromToEntryPage.cpp
-    entry-dialogs/MCEntryPage.cpp
-    entry-dialogs/PhoneticEntryPage.cpp
-    entry-dialogs/TenseEntryPage.cpp
-    entry-dialogs/wordtypewidget.cpp
+  #  entry-dialogs/AdjEntryPage.cpp
+  #  entry-dialogs/additionaleditpage.cpp
+  #  entry-dialogs/CommonEntryPage.cpp
+  #  entry-dialogs/EntryDlg.cpp
+  #  entry-dialogs/FromToEntryPage.cpp
+  #  entry-dialogs/MCEntryPage.cpp
+  #  entry-dialogs/PhoneticEntryPage.cpp
+  #  entry-dialogs/TenseEntryPage.cpp
+  #  entry-dialogs/wordtypewidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -151,12 +153,12 @@ set(parley_SRCS
     parley.cpp
     main.cpp
     kva_init.cpp
-    kvttabledelegate.cpp
-    kvttablemodel.cpp
-    kvttableview.cpp
-    kvtlessonmodel.cpp
-    kvtlessonview.cpp
-    kvtsortfiltermodel.cpp
+    #kvttabledelegate.cpp
+    #kvttablemodel.cpp
+    #kvttableview.cpp
+    #kvtlessonmodel.cpp
+    #kvtlessonview.cpp
+    #kvtsortfiltermodel.cpp
     lessondockwidget.cpp
 )
 
@@ -181,5 +183,5 @@ install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 
 install( FILES parley.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
-install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
+install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parallEntries.valueley )
 

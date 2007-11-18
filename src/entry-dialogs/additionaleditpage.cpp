@@ -55,71 +55,71 @@ bool AdditionalEditPage::isModified()
 
     bool modified = false;
 
-    if (synonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym()) {
-        modified = true;
-    }
-    if (antonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym()) {
-        modified = true;
-    }
-    if (exampleLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).example()) {
-        modified = true;
-    }
-    if (commentLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment()) {
-        modified = true;
-    }
-    if (paraphraseLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase()) {
-        modified = true;
-    }
+//     if (synonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym()) {
+//         modified = true;
+//     }
+//     if (antonymLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym()) {
+//         modified = true;
+//     }
+//     if (exampleLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).example()) {
+//         modified = true;
+//     }
+//     if (commentLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment()) {
+//         modified = true;
+//     }
+//     if (paraphraseLineEdit->text() != m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase()) {
+//         modified = true;
+//     }
     return modified;
 }
 
 
 void AdditionalEditPage::setData(int row, int col)
 {
-    m_currentRow = row;
-    m_currentTranslation = col;
-
-    synonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym());
-    antonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym());
-    exampleLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).example());
-    commentLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
-    paraphraseLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
-
-    if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).soundUrl().isEmpty() ) {
-        audioUrlRequester->setUrl( m_doc->entry(
-                    m_currentRow)->translation(m_currentTranslation).soundUrl() );
-    } else {
-        audioUrlRequester->clear();
-    }
-
-    imagePreviewLabel->setText(i18nc("@label image preview is empty", "No Image"));
-
-    if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
-        imageUrlRequester->setUrl( m_doc->entry(
-                    m_currentRow)->translation(m_currentTranslation).imageUrl() );
-    } else {
-        imageUrlRequester->clear();
-    }
+//     m_currentRow = row;
+//     m_currentTranslation = col;
+// 
+//     synonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).synonym());
+//     antonymLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).antonym());
+//     exampleLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).example());
+//     commentLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).comment());
+//     paraphraseLineEdit->setText(m_doc->entry(m_currentRow)->translation(m_currentTranslation).paraphrase());
+// 
+//     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).soundUrl().isEmpty() ) {
+//         audioUrlRequester->setUrl( m_doc->entry(
+//                     m_currentRow)->translation(m_currentTranslation).soundUrl() );
+//     } else {
+//         audioUrlRequester->clear();
+//     }
+// 
+//     imagePreviewLabel->setText(i18nc("@label image preview is empty", "No Image"));
+// 
+//     if ( !m_doc->entry(m_currentRow)->translation(m_currentTranslation).imageUrl().isEmpty() ) {
+//         imageUrlRequester->setUrl( m_doc->entry(
+//                     m_currentRow)->translation(m_currentTranslation).imageUrl() );
+//     } else {
+//         imageUrlRequester->clear();
+//     }
 }
 
 
 void AdditionalEditPage::commitData()
 {
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComment(commentLineEdit->text());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSynonym(synonymLineEdit->text());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setAntonym(antonymLineEdit->text());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setExample(exampleLineEdit->text());
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(paraphraseLineEdit->text());
-
-    // sound and image
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( audioUrlRequester->url() );
-
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( imageUrlRequester->url() );
-    foreach (int j, m_doc->entry(m_currentRow)->translationIndices()) {
-        if ( m_doc->entry(m_currentRow)->translation(j).imageUrl().isEmpty() ) {
-            m_doc->entry(m_currentRow)->translation(j).setImageUrl( imageUrlRequester->url() );
-        }
-    }
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setComment(commentLineEdit->text());
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSynonym(synonymLineEdit->text());
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setAntonym(antonymLineEdit->text());
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setExample(exampleLineEdit->text());
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setParaphrase(paraphraseLineEdit->text());
+// 
+//     // sound and image
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setSoundUrl( audioUrlRequester->url() );
+// 
+//     m_doc->entry(m_currentRow)->translation(m_currentTranslation).setImageUrl( imageUrlRequester->url() );
+//     foreach (int j, m_doc->entry(m_currentRow)->translationIndices()) {
+//         if ( m_doc->entry(m_currentRow)->translation(j).imageUrl().isEmpty() ) {
+//             m_doc->entry(m_currentRow)->translation(j).setImageUrl( imageUrlRequester->url() );
+//         }
+//     }
 }
 
 

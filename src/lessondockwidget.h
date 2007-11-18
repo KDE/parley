@@ -18,8 +18,8 @@
 #include <QDockWidget>
 
 class KEduVocDocument;
-class KVTLessonView;
-class KVTLessonModel;
+class LessonView;
+class LessonModel;
 class KComboBox;
 class ParleyApp;
 
@@ -37,7 +37,6 @@ public:
     void setDocument(KEduVocDocument *doc);
 
     int addLesson();
-    void selectLesson(int lessonIndex);
 
     void saveOptions();
 
@@ -50,8 +49,8 @@ public:
 private:
 
     /** m_lessonView is the lesson list at the left side. */
-    KVTLessonView  *m_lessonView;
-    KVTLessonModel *m_lessonModel;
+    LessonView  *m_lessonView;
+    LessonModel *m_lessonModel;
 
     /** m_editCombo selects which lessons to display in m_tableView (the main table) */
     KComboBox *m_lessonSelectionCombo;

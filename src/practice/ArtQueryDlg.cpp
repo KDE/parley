@@ -85,7 +85,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->show_all->setDefault(true);
 
     QString s;
-    s = m_entry->exp->translation(Prefs::solutionLanguage()).text().simplified();
+    s = m_entry->entry()->translation(Prefs::solutionLanguage()).text().simplified();
 
     QString def, indef;
     bool removed = false;
@@ -145,7 +145,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
 
     mw->dont_know->setFocus();
 
-    imageShowFromEntry( mw->imageGraphicsView, entry );
+    imageShowFromEntry( mw->imageGraphicsView );
 }
 
 
@@ -155,7 +155,7 @@ void ArtQueryDlg::showSolution()
     setWidgetStyle(mw->femaleRadio);
     setWidgetStyle(mw->neutralRadio);
 
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::solutionLanguage()).type(), m_entry->exp->translation(Prefs::solutionLanguage()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage()).type(), m_entry->entry()->translation(Prefs::solutionLanguage()).subType());
 
     if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
         mw->maleRadio->setChecked(true);
@@ -174,7 +174,7 @@ void ArtQueryDlg::showSolution()
 
 void ArtQueryDlg::verifyClicked()
 {
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->exp->translation(Prefs::solutionLanguage()).type(), m_entry->exp->translation(Prefs::solutionLanguage()).subType());
+    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage()).type(), m_entry->entry()->translation(Prefs::solutionLanguage()).subType());
 
     bool correct = false;
 

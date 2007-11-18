@@ -15,10 +15,10 @@
 #include "lessondockwidget.h"
 
 #include "parley.h"
-#include "kvtlessonmodel.h"
-#include "kvtlessonview.h"
+#include "vocabulary/lessonmodel.h"
+#include "vocabulary/lessonview.h"
 
-#include "kvtsortfiltermodel.h"
+//#include "kvtsortfiltermodel.h"
 
 #include "prefs.h"
 
@@ -47,9 +47,10 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
     boxLayout->setSpacing(KDialog::spacingHint());
 
     // This contains the lessons for now
-    m_lessonView = new KVTLessonView(left);
+    m_lessonView = new LessonView(left);
     // To make the treeview appear like a listview
-    m_lessonView->setRootIsDecorated(false);
+
+//     m_lessonView->setRootIsDecorated(false);
 
     // I need to initialize the lessons with the model as well...
     m_lessonView->setModel(m_lessonModel);
@@ -99,27 +100,34 @@ void LessonDockWidget::setDocument(KEduVocDocument * doc)
         m_lessonModel->deleteLater();
     }
 
-    m_lessonModel = new KVTLessonModel(this);
+    m_lessonModel = new LessonModel(this);
     m_lessonModel->setDocument(doc);
+    
     m_lessonView->setModel(m_lessonModel);
+
 //     m_lessonView->initializeSelection();
-    connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
+//     connect(m_lessonModel, SIGNAL(modelReset()), m_lessonView, SLOT(slotModelReset()));
 
-    connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_parleyApp->m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
-
-    m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
-    connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_parleyApp->m_sortFilterModel, SLOT(setLessonSelection(int)));
+//     connect(m_lessonModel, SIGNAL(dataChanged(const QModelIndex &, const QModelIndex &)), m_parleyApp->m_sortFilterModel, SLOT(slotLessonsInQueryChanged()));
+// 
+//     m_lessonSelectionCombo->setCurrentIndex(Prefs::lessonEditingSelection());
+//     connect(m_lessonSelectionCombo, SIGNAL(currentIndexChanged(int)), m_parleyApp->m_sortFilterModel, SLOT(setLessonSelection(int)));
 }
 
-int LessonDockWidget::addLesson()
-{
-    return m_lessonModel->addLesson();
-}
 
-void LessonDockWidget::selectLesson(int lessonIndex)
-{
-    m_lessonView->slotSelectLesson(lessonIndex);
-}
+
+
+
+// int LessonDockWidget::addLesson()
+// {
+//     return m_lessonModel->addLesson();
+// }
+
+// void LessonDockWidget::selectLesson(int lessonIndex)
+// {
+//     m_lessonView->slotSelectLesson(lessonIndex);
+// }
+
 
 void LessonDockWidget::saveOptions()
 {

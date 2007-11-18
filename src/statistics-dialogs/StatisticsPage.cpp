@@ -76,24 +76,24 @@ void StatisticsPage::setupData()
     to_pix.clear();
     StatListView->clear();
 
-    QStringList lesson = m_doc->lessonNames();
+    QStringList lesson;// = m_doc->lessonNames();
 
     fsc.resize(lesson.size() + 1);
     tsc.resize(lesson.size() + 1);
 
     // accumulate numbers of grades per lesson
-    for (int i = 0; i < (int) m_doc->entryCount(); i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        int fg = qMin(KV_MAX_GRADE, (int) expr->translation(m_translation).gradeFrom(0).grade());
-        int tg = qMin(KV_MAX_GRADE, (int) expr->translation(0).gradeFrom(m_translation).grade());
-        int l = expr->lesson();
-        if (l >= 0 && l <= (int) lesson.size()) {
-            fsc[l].grade[fg]++;
-            fsc[l].num++;
-            tsc[l].grade[tg]++;
-            tsc[l].num++;
-        }
-    }
+//     for (int i = 0; i < (int) m_doc->entryCount(); i++) {
+//         KEduVocExpression *expr = m_doc->entry(i);
+//         int fg = qMin(KV_MAX_GRADE, (int) expr->translation(m_translation).gradeFrom(0).grade());
+//         int tg = qMin(KV_MAX_GRADE, (int) expr->translation(0).gradeFrom(m_translation).grade());
+//         int l = expr->lesson();
+//         if (l >= 0 && l <= (int) lesson.size()) {
+//             fsc[l].grade[fg]++;
+//             fsc[l].num++;
+//             tsc[l].grade[tg]++;
+//             tsc[l].num++;
+//         }
+//     }
 
     // create pixmaps with bar charts of numbers of grades
     for (int entry = 0; entry < (int) fsc.size(); entry++) {
@@ -250,21 +250,21 @@ void StatisticsPage::setupData()
     }
 
     // setup rows with pixmaps and strings
-    QTreeWidgetItem *listItem = 0;
+//     QTreeWidgetItem *listItem = 0;
 
-    for (int i = 0; i < m_doc->lessonCount(); i++) {
-        listItem = new QTreeWidgetItem(StatListView);
-        listItem->setFlags(listItem->flags() | Qt::ItemIsUserCheckable);
-        listItem->setCheckState(TB_RESET, Qt::Unchecked);
-        listItem->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
-        listItem->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
-        listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
-        listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
-        listItem->setText(TB_COUNT, QString::number(tsc[i].num));
-        listItem->setText(TB_LESSON, m_doc->lesson(i).name());
-        listItem->setData(TB_LESSON, Qt::UserRole, QVariant(i));
-        StatListView->addTopLevelItem(listItem);
-    }
+//     for (int i = 0; i < m_doc->lessonCount(); i++) {
+//         listItem = new QTreeWidgetItem(StatListView);
+//         listItem->setFlags(listItem->flags() | Qt::ItemIsUserCheckable);
+//         listItem->setCheckState(TB_RESET, Qt::Unchecked);
+//         listItem->setData(TB_FGRADE, Qt::DecorationRole, QVariant(from_pix[i]));
+//         listItem->setData(TB_TGRADE, Qt::DecorationRole, QVariant(to_pix[i]));
+//         listItem->setToolTip(TB_FGRADE, gradesToolTip(i, false));
+//         listItem->setToolTip(TB_TGRADE, gradesToolTip(i, true));
+//         listItem->setText(TB_COUNT, QString::number(tsc[i].num));
+//         listItem->setText(TB_LESSON, m_doc->lesson(i).name());
+//         listItem->setData(TB_LESSON, Qt::UserRole, QVariant(i));
+//         StatListView->addTopLevelItem(listItem);
+//     }
 }
 
 
@@ -311,7 +311,7 @@ void StatisticsPage::resetStatistics()
 {
     for (int i = 0; i < StatListView->topLevelItemCount(); i++)
         if (StatListView->topLevelItem(i)->checkState(TB_RESET) == Qt::Checked)
-            m_doc->resetEntry(-1, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
+//             m_doc->resetEntry(-1, StatListView->topLevelItem(i)->data(TB_LESSON, Qt::UserRole).toInt());
 
     setupData();
 }

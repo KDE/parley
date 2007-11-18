@@ -16,6 +16,8 @@
 
 #include "parleydocument.h"
 
+#include <keduvoclesson.h>
+
 #include <keduvocexpression.h>
 #include <KIcon>
 #include <KLocalizedString>
@@ -26,6 +28,7 @@ VocabularyModel::VocabularyModel(QObject *parent)
  : QAbstractTableModel(parent)
 {
     m_document = 0;
+    m_lesson = 0;
 }
 
 
@@ -35,25 +38,46 @@ VocabularyModel::~VocabularyModel()
 
 void VocabularyModel::setDocument(KEduVocDocument * doc)
 {
+    m_document = doc;
+    m_lesson = 0;
+
+    beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) );
+    endRemoveRows();
+
     beginRemoveColumns(QModelIndex(), 0, columnCount(QModelIndex()) );
     endRemoveColumns();
 
-    m_document = doc;
-    beginInsertColumns(QModelIndex(), 0,
-        (m_document->identifierCount()*EntryColumnsMAX) -1);
-    endInsertColumns();
+    if ( m_document != 0 ) {
+        beginInsertColumns(QModelIndex(), 0,
+            (m_document->identifierCount()*EntryColumnsMAX) -1);
+        endInsertColumns();
 
-    beginInsertRows(QModelIndex(), 0, m_document->entryCount() -1);
-    endInsertRows();
-
+        setLesson(m_document->lesson());
+    }
 }
+
+
+
+void VocabularyModel::setLesson(KEduVocLesson * lesson)
+{
+    beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) );
+    endRemoveRows();
+
+    m_lesson = lesson;
+
+    if ( m_document->lesson()->entries().count() > 0 ) {
+        beginInsertRows(QModelIndex(), 0, m_document->lesson()->entries().count() -1);
+        endInsertRows();
+    }
+}
+
 
 int VocabularyModel::rowCount(const QModelIndex &) const
 {
-    if ( !m_document ) {
+    if ( !m_lesson ) {
         return 0;
     }
-    return m_document->entryCount();
+    return m_lesson->entries().count();
 }
 
 int VocabularyModel::columnCount(const QModelIndex &) const
@@ -61,39 +85,40 @@ int VocabularyModel::columnCount(const QModelIndex &) const
     if ( !m_document ) {
         return 0;
     }
+    kDebug() << " col count " << m_document->identifierCount()*EntryColumnsMAX;
     return m_document->identifierCount()*EntryColumnsMAX;
 }
 
 QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 {
-    if ( !m_document ) {
+    if ( !m_document || !m_lesson ) {
         return QVariant();
     }
 
     int translationId = index.column() / EntryColumnsMAX;
     int entryColumn = index.column() % EntryColumnsMAX;
-
+kDebug() << "data:" << index.column() << translationId << entryColumn;
     switch (role) {
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
-            return QVariant(m_document->entry(index.row())->translation(translationId).text());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).text());
         case Pronunciation:
-            return QVariant(m_document->entry(index.row())->translation(translationId).pronunciation());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).pronunciation());
         case WordType:
-            return QVariant(m_document->entry(index.row())->translation(translationId).type());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).type());
         case SubWordType:
-            return QVariant(m_document->entry(index.row())->translation(translationId).subType());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).subType());
         case Synonym:
-            return QVariant(m_document->entry(index.row())->translation(translationId).synonym());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).synonym());
         case Antonym:
-            return QVariant(m_document->entry(index.row())->translation(translationId).antonym());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).antonym());
         case Example:
-            return QVariant(m_document->entry(index.row())->translation(translationId).example());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).example());
         case Comment:
-            return QVariant(m_document->entry(index.row())->translation(translationId).comment());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).comment());
         case Paraphrase:
-            return QVariant(m_document->entry(index.row())->translation(translationId).paraphrase());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId).paraphrase());
         case Audio:
         case Image:
         default:
@@ -103,13 +128,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DecorationRole:
         switch (entryColumn) {
         case Audio:
-            if ( !m_document->entry(index.row())->translation(translationId).soundUrl().isEmpty() ) {
+            if ( !m_lesson->entry(index.row())->translation(translationId).soundUrl().isEmpty() ) {
                 return KIcon("media-playback-start");
             }
             return QVariant();
         case Image:
-            if ( !m_document->entry(index.row())->translation(translationId).imageUrl().isEmpty() ) {
-                return QPixmap(m_document->entry(index.row())->translation(translationId).imageUrl().toLocalFile()).scaled(QSize(30,30));
+            if ( !m_lesson->entry(index.row())->translation(translationId).imageUrl().isEmpty() ) {
+                return QPixmap(m_lesson->entry(index.row())->translation(translationId).imageUrl().toLocalFile()).scaled(QSize(30,30));
             }
             return QVariant();
         default:
@@ -132,6 +157,10 @@ Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
 
 QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
+    if (!m_document) {
+        return QVariant();
+    }
+
     if ( orientation == Qt::Horizontal ) {
         int translationId = section / EntryColumnsMAX;
         int entryColumn = section % EntryColumnsMAX;
@@ -171,4 +200,5 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
     }
     return QVariant();
 }
+
 

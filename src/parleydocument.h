@@ -64,7 +64,6 @@ public slots:
     void newDocument();
 
     void slotSaveSelection();
-    void printFile();
 
 signals:
     void documentChanged(KEduVocDocument *newDocument);

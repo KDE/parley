@@ -115,20 +115,20 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 
     // append lesson entries
-    foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
-        if ( lesson.inPractice() ) {
+    foreach ( KEduVocLesson *lesson, m_doc->lesson()->childLessons() ) {
+        if ( lesson->inPractice() ) {
             int lessonLimit = m_allTestEntries.count();
-            foreach ( int entryIndex, lesson.entries() ) {
+            foreach ( KEduVocExpression *entry, lesson->entries() ) {
                 if ( Prefs::testOrderLesson() ) {
                     // insert after the last entry of the last lesson
                     m_allTestEntries.insert(
                         lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
-                        new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                        new TestEntry(entry) );
                 } else {
                     // insert at total random position
                     m_allTestEntries.insert(
                         m_randomSequence->getLong(m_allTestEntries.count()),
-                        new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                        new TestEntry(entry) );
 
                 }
             }
@@ -139,19 +139,19 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no vocabulary.</p><p>Hint: To select a lesson set a checkmark next to it in the lesson column on the left.</p><p>Would you like to include all lessons?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::Yes ) {
             kDebug() << "Adding all lessons.";
             ///@todo reuse the above - make it a function?
-            foreach ( KEduVocLesson lesson, m_doc->lessons() ) {
+            foreach ( KEduVocLesson *lesson, m_doc->lesson()->childLessons() ) {
                 int lessonLimit = m_allTestEntries.count();
-                foreach ( int entryIndex, lesson.entries() ) {
+                foreach ( KEduVocExpression * entry, lesson->entries() ) {
                     if ( Prefs::testOrderLesson() ) {
                         // insert after the last entry of the last lesson
                         m_allTestEntries.insert(
                             lessonLimit + m_randomSequence->getLong(lessonLimit - m_allTestEntries.count()),
-                            new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                            new TestEntry(entry) );
                     } else {
                         // insert at total random position
                         m_allTestEntries.insert(
                             m_randomSequence->getLong(m_allTestEntries.count()),
-                            new TestEntry(m_doc->entry(entryIndex), entryIndex) );
+                            new TestEntry(entry) );
 
                     }
                 }
@@ -164,8 +164,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
     // remove empty entries
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( m_allTestEntries.value(i)->exp->translation(TestEntry::gradeFrom()).text().isEmpty() ||
-                m_allTestEntries.value(i)->exp->translation(TestEntry::gradeTo()).text().isEmpty() ) {
+        if ( m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeFrom()).text().isEmpty() ||
+                m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeTo()).text().isEmpty() ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
@@ -184,8 +184,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         bool remove = false;
         const KEduVocGrade& grade =
-            m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation);
-        if ( checkType(m_allTestEntries.value(i)->exp) ) {
+            m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation);
+        if ( checkType(m_allTestEntries.value(i)->entry()) ) {
             validWordType++;
         } else { remove = true; }
         if ( grade.badCount() >= Prefs::practiceMinimumWrongCount() && grade.badCount() <= Prefs::practiceMaximumWrongCount() ) {
@@ -217,7 +217,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
     // use the old validate methods for now
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( !validate(m_allTestEntries.value(i)->exp) ) {
+        if ( !validate(m_allTestEntries.value(i)->entry()) ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
@@ -296,18 +296,18 @@ void TestEntryManager::expireEntries()
     if ( Prefs::expire() ) {
         int counter = 0;
         for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-            int grade = m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+            int grade = m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
 
-            const QDateTime &date =  m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate();
+            const QDateTime &date =  m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate();
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
             if ( date < expireDate && grade > 0) {
                 // decrease the grade
-                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
+                m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
 
                 // prevent from endless dropping
-                m_allTestEntries.value(i)->exp->translation(m_toTranslation).gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
+                m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -388,7 +388,7 @@ void TestEntryManager::printStatistics()
             << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
             << " ->+" << entry->statisticSkipKnown() << " ->-" << entry->statisticSkipUnknown()
             << " time:" << entry->statisticTimeout()
-            << "Entry: " << entry->exp->translation(0).text();
+            << "Entry: " << entry->entry()->translation(0).text();
     }
 }
 
@@ -617,7 +617,7 @@ void TestEntryManager::setNextEntry()
             }
         }
 
-        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->exp->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
+        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
 
         m_practiceDialog->setEntry(m_currentEntries.value(m_currentEntry));
         m_practiceDialog->setProgressCounter(

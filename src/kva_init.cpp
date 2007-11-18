@@ -371,12 +371,12 @@ void ParleyApp::initStatusBar()
 
 void ParleyApp::initModel()
 {
-    m_tableModel = new KVTTableModel(this);
-    m_sortFilterModel= new KVTSortFilterModel(this);
-    m_sortFilterModel->setSourceModel(m_tableModel);
-    m_tableView->setModel(m_sortFilterModel);
+//     m_tableModel = new KVTTableModel(this);
+//     m_sortFilterModel= new KVTSortFilterModel(this);
+//     m_sortFilterModel->setSourceModel(m_tableModel);
+//     m_tableView->setModel(m_sortFilterModel);
 
-    connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
+//     connect(m_searchLine, SIGNAL(textChanged(const QString&)), m_sortFilterModel, SLOT(slotSearch(const QString&)));
 
     m_vocabularyModel = new VocabularyModel(this);
     m_vocabularyView->setModel(m_vocabularyModel);
@@ -421,6 +421,7 @@ void ParleyApp::initView()
     layout->addWidget(label);
     layout->addWidget(m_searchLine);
 
+///@todo     centralWidget()-> delete layout
     QVBoxLayout * rightLayout = new QVBoxLayout(centralWidget());
     rightLayout->setSpacing(KDialog::spacingHint());
     rightLayout->setMargin(0);
@@ -429,16 +430,17 @@ void ParleyApp::initView()
     m_vocabShowSearchBarAction->setChecked(Prefs::showSearch());
 
     // Table view
-    m_tableView = new KVTTableView(centralWidget());
-    m_tableView->setFrameStyle(QFrame::NoFrame);
-    m_tableView->setAlternatingRowColors(true);
-    rightLayout->addWidget(m_tableView, 1, 0);
-
+//     m_tableView = new KVTTableView(centralWidget());
+//     m_tableView->setFrameStyle(QFrame::NoFrame);
+//     m_tableView->setAlternatingRowColors(true);
+//     rightLayout->addWidget(m_tableView, 1, 0);
 
 
     /* the new table */
     m_vocabularyView = new QTableView(centralWidget());
-    rightLayout->addWidget(m_vocabularyView, 2, 0);
+    m_vocabularyView->setFrameStyle(QFrame::NoFrame);
+    m_vocabularyView->setAlternatingRowColors(true);
+    rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     // move this into the view class
     m_vocabularyView->horizontalHeader()->setStretchLastSection(true);
@@ -447,19 +449,19 @@ void ParleyApp::initView()
 
     topLayout->addLayout(rightLayout);
 
-    m_tableView->addAction(actionCollection()->action("edit_append"));
-    m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
-    m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
+//     m_tableView->addAction(actionCollection()->action("edit_append"));
+//     m_tableView->addAction(actionCollection()->action("edit_edit_selected_area"));
+//     m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
+// 
 
 
 
-
-    QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
-    m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
-    connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
-
-    QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
-    m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
-    connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
+//     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
+//     m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);
+//     connect(actionShowLessonColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowLessonColumn(bool)));
+// 
+//     QAction *actionShowActiveColumn = actionCollection()->action("config_show_active_column");
+//     m_tableView->horizontalHeader()->addAction(actionShowActiveColumn);
+//     connect(actionShowActiveColumn, SIGNAL(toggled(bool)), m_tableView, SLOT(slotShowActiveColumn(bool)));
 }
 

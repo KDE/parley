@@ -94,9 +94,9 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the synonym:"));
             setWindowTitle(i18n("Synonym Training"));
-            answerstring = m_entry->exp->translation(column).synonym();
+            answerstring = m_entry->entry()->translation(column).synonym();
             mw->queryField->setAlignment(Qt::AlignVCenter);
-            mw->queryField->setText( m_entry->exp->translation(column).text() );
+            mw->queryField->setText( m_entry->entry()->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -105,8 +105,8 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             mw->queryLabel->setText(i18n("Expression"));
             mw->instructionLabel->setText(i18n("Enter the antonym:"));
             setWindowTitle(i18n("Antonym Training"));
-            answerstring = m_entry->exp->translation(column).antonym();
-            mw->queryField->setText( m_entry->exp->translation(column).text() );
+            answerstring = m_entry->entry()->translation(column).antonym();
+            mw->queryField->setText( m_entry->entry()->translation(column).text() );
             setQueryFieldWordwrap();
         }
         break;
@@ -115,8 +115,8 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             mw->queryLabel->setText(i18n("Paraphrase"));
             mw->instructionLabel->setText(i18n("Enter the word:"));
             setWindowTitle(i18n("Paraphrase Training"));
-            mw->queryField->setText(m_entry->exp->translation(column).paraphrase());
-            answerstring = m_entry->exp->translation(column).text();
+            mw->queryField->setText(m_entry->entry()->translation(column).paraphrase());
+            answerstring = m_entry->entry()->translation(column).text();
             setQueryFieldWordwrap();
         }
         break;
@@ -125,8 +125,8 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
             mw->queryLabel->setText(i18n("Example sentence"));
             mw->instructionLabel->setText(i18n("Fill in the missing word:"));
             setWindowTitle(i18n("Example Training"));
-            s = m_entry->exp->translation(column).example();
-            answerstring = m_entry->exp->translation(column).text().simplified();
+            s = m_entry->entry()->translation(column).example();
+            answerstring = m_entry->entry()->translation(column).text().simplified();
             int pos = -1;
             while ((pos = s.indexOf(answerstring)) >= 0) {
                 s.remove(pos, answerstring.length());
@@ -145,7 +145,7 @@ void SimpleQueryDlg::setEntry(TestEntry* entry)
     setWidgetStyle(mw->answerField, Default);
     mw->answerField->setFocus();
 
-    imageShowFromEntry( mw->imageGraphicsView, entry );
+    imageShowFromEntry( mw->imageGraphicsView );
 }
 
 

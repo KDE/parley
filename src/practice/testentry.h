@@ -40,10 +40,9 @@ public:
     Q_DECLARE_FLAGS(ErrorTypes, ErrorType)
 
 
-    TestEntry(KEduVocExpression *_exp, int _nr)
+    TestEntry(KEduVocExpression *entry)
     {
-        exp = _exp;
-        m_index = _nr;
+        m_entry = entry;
         m_answeredCorrectInSequence = 0;
         m_statisticCount = 0;
         m_statisticGoodCount = 0;
@@ -79,14 +78,13 @@ public:
 
     int totalEntries();
 
-    ///@todo make these two members private
-    KEduVocExpression *exp;
-    int m_index;
 
     static void setGradeFrom(int from);
     static void setGradeTo(int to);
     static int gradeFrom();
     static int gradeTo();
+
+    KEduVocExpression *entry();
 
 private:
     void update();
@@ -110,6 +108,9 @@ private:
 
     static int m_gradeTo;
     static int m_gradeFrom;
+
+    /// the entry itself
+    KEduVocExpression *m_entry;
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(TestEntry::ErrorTypes)
