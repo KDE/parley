@@ -107,11 +107,6 @@ int LessonModel::rowCount(const QModelIndex &parent) const
         parentItem = m_rootLesson;
     else
         parentItem = static_cast<KEduVocLesson*>(parent.internalPointer());
-kDebug() << "parentItem->childLessonCount()" << parentItem->name() << parentItem->childLessonCount();
-
-for(int i = 0; i<parentItem->childLessonCount(); i++) {
-    kDebug() << parentItem->childLesson(i)->name();
-}
 
     return parentItem->childLessonCount();
 }
@@ -338,7 +333,6 @@ void LessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLesson
 
 QVariant LessonModel::data(const QModelIndex & index, int role) const
 {
-kDebug() << "data " << index << index.row() << index.column();
     if (!index.isValid()) {
          return QVariant();
     }
@@ -387,9 +381,6 @@ int LessonModel::columnCount(const QModelIndex & parent) const
         return 2;
     }
     return 2;
-/*
-    KEduVocLesson *lesson = static_cast<KEduVocLesson*>(parent.internalPointer());
-    return lesson->childLessonCount();*/
 }
 
 

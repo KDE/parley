@@ -31,6 +31,7 @@
 #include "kvttableview.h"
 #include "lessondockwidget.h"
 #include "vocabulary/vocabularymodel.h"
+#include "vocabulary/lessonview.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -382,6 +383,8 @@ void ParleyApp::initModel()
     m_vocabularyView->setModel(m_vocabularyModel);
 
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
+
+    connect(m_lessonDockWidget->lessonView(), SIGNAL(signalSelectedLessonChanged(KEduVocLesson*)), m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 }
 
 

@@ -51,11 +51,6 @@ void LessonView::setModel(LessonModel *model)
     m_model = model;
 }
 
-void LessonView::slotModelReset()
-{
-    initializeSelection();
-}
-
 void LessonView::initializeSelection()
 {
 //     slotSelectLesson(m_model->currentLesson());
@@ -102,6 +97,16 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 {
     Q_UNUSED(deselected);
 //     slotSelectLesson(selected.indexes().at(0).row());
+    kDebug() << "selection changed";
+
+    KEduVocLesson *lesson = 0;
+
+    if(selected.count() > 0) {
+        QModelIndex index = selected.indexes().value(0);
+        lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+    }
+
+    emit signalSelectedLessonChanged(lesson);
 }
 
 

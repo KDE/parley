@@ -57,16 +57,20 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
 }
 
 
-
 void VocabularyModel::setLesson(KEduVocLesson * lesson)
 {
+kDebug() << "set lesson" << lesson->name() << "current col, row" << columnCount(QModelIndex()) << rowCount(QModelIndex());
+
     beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) );
     endRemoveRows();
 
     m_lesson = lesson;
 
-    if ( m_document->lesson()->entries().count() > 0 ) {
-        beginInsertRows(QModelIndex(), 0, m_document->lesson()->entries().count() -1);
+    if ( m_lesson->entries().count() > 0 ) {
+        beginInsertRows(QModelIndex(), 0, m_lesson->entries().count() -1);
+
+        kDebug() << "Entry 0: " << m_lesson->entries().value(0)->translation(0).text();
+        
         endInsertRows();
     }
 }
@@ -85,7 +89,7 @@ int VocabularyModel::columnCount(const QModelIndex &) const
     if ( !m_document ) {
         return 0;
     }
-    kDebug() << " col count " << m_document->identifierCount()*EntryColumnsMAX;
+//     kDebug() << " col count " << m_document->identifierCount()*EntryColumnsMAX;
     return m_document->identifierCount()*EntryColumnsMAX;
 }
 

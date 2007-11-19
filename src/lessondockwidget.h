@@ -46,6 +46,8 @@ public:
     3. current -> make the lesson current */
     void makeLessonVisibleInTable(int lessonIndex);
 
+    LessonView* lessonView();
+
 private:
 
     /** m_lessonView is the lesson list at the left side. */

@@ -44,10 +44,8 @@ public:
     //void appendAction(QAction *appendAction);
 
     KEduVocLesson * currentLesson();
-    
+
 public slots:
-    /** The model was reset, we need to update the selection using initializeSelection. */
-    void slotModelReset();
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
     void slotCreateNewLesson();
     /** Create an editor to let the user type a new name for the lesson.*/
@@ -74,14 +72,12 @@ public slots:
     void slotSplitLesson();
 signals:
     /** Emitted when a new lesson is selected. Indicates the selected lesson. */
-    void signalCurrentLessonChanged(int currentIndex);
+    void signalSelectedLessonChanged(KEduVocLesson* selected);
+
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInQueryChanged();
 private:
-    /**
-     * Get the name of the current selection.
-     * @returns index of the selection. */
-    int indexOfCurrentLesson();
+
     void dropEvent(QDropEvent * event);
     /** The KVTLessonModel for this view. */
     LessonModel *m_model;

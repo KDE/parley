@@ -68,8 +68,7 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
     boxLayout->addWidget(m_lessonSelectionCombo);
     boxLayout->addWidget(m_lessonView);
 
-    /// New lesson selected
-    connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), parent, SLOT(slotCurrentLessonChanged(int)));
+//     connect(m_lessonView, SIGNAL(signalCurrentLessonChanged(int)), parent, SLOT(slotCurrentLessonChanged(int)));
 
     connect(parent->actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
     connect(parent->actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
@@ -154,5 +153,10 @@ void LessonDockWidget::makeLessonVisibleInTable(int lessonIndex)
     }
 }
 
+LessonView * LessonDockWidget::lessonView()
+{
+    return m_lessonView;
+}
 
 #include "lessondockwidget.moc"
+
