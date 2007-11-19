@@ -57,6 +57,7 @@ public:
 
 public slots:
     void setDocument(KEduVocDocument *doc);
+
     void setLesson(KEduVocLesson *lesson);
 
 private:

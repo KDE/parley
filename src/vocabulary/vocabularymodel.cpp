@@ -59,20 +59,8 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
 
 void VocabularyModel::setLesson(KEduVocLesson * lesson)
 {
-kDebug() << "set lesson" << lesson->name() << "current col, row" << columnCount(QModelIndex()) << rowCount(QModelIndex());
-
-    beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) );
-    endRemoveRows();
-
     m_lesson = lesson;
-
-    if ( m_lesson->entries().count() > 0 ) {
-        beginInsertRows(QModelIndex(), 0, m_lesson->entries().count() -1);
-
-        kDebug() << "Entry 0: " << m_lesson->entries().value(0)->translation(0).text();
-        
-        endInsertRows();
-    }
+    reset();
 }
 
 
@@ -81,7 +69,7 @@ int VocabularyModel::rowCount(const QModelIndex &) const
     if ( !m_lesson ) {
         return 0;
     }
-    return m_lesson->entries().count();
+    return m_lesson->entryCount();
 }
 
 int VocabularyModel::columnCount(const QModelIndex &) const
@@ -101,7 +89,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 
     int translationId = index.column() / EntryColumnsMAX;
     int entryColumn = index.column() % EntryColumnsMAX;
-kDebug() << "data:" << index.column() << translationId << entryColumn;
+
     switch (role) {
     case Qt::DisplayRole:
         switch (entryColumn) {
