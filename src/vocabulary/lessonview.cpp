@@ -35,25 +35,22 @@
 LessonView::LessonView(QWidget *parent) : QTreeView(parent)
 {
     // drag and drop
-    setDragEnabled(true);
+//     setDragEnabled(true);
     //setMovement(QListView::Snap);
-    setAcceptDrops(true);
-    setDropIndicatorShown(true);
+//     setAcceptDrops(true);
+//     setDropIndicatorShown(true);
     // only allow internal moves - so far no interaction with the outside world.
-    setDragDropMode(QAbstractItemView::InternalMove);
+//     setDragDropMode(QAbstractItemView::InternalMove);
     // show the actions added by addAction() as right click menu.
     setContextMenuPolicy(Qt::ActionsContextMenu);
+    setSelectionMode(QAbstractItemView::SingleSelection);
+//     setSelectionBehavior(QAbstractItemView::SelectRows);
 }
 
 void LessonView::setModel(LessonModel *model)
 {
     QTreeView::setModel(model);
     m_model = model;
-}
-
-void LessonView::initializeSelection()
-{
-//     slotSelectLesson(m_model->currentLesson());
 }
 
 void LessonView::slotCheckAllLessons()
@@ -96,8 +93,6 @@ void LessonView::slotDeleteLesson()
 void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
 {
     Q_UNUSED(deselected);
-//     slotSelectLesson(selected.indexes().at(0).row());
-    kDebug() << "selection changed";
 
     KEduVocLesson *lesson = 0;
 
@@ -109,20 +104,6 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
     emit signalSelectedLessonChanged(lesson);
 }
 
-
-void LessonView::slotSelectLesson(int lesson)
-{
-    // if current lesson is not set in the document default to the first one. Because we do -1 this is 1.
-//     if ( (lesson < 0) || (lesson > m_model->document()->lessonCount()) ) {
-//         lesson = 0;
-//     }
-// 
-//     QModelIndex indexOfCurrent = m_model->index(lesson, 0, QModelIndex());
-//     setCurrentIndex(indexOfCurrent);
-// 
-//     m_model->document()->setCurrentLesson(lesson);
-//     emit signalCurrentLessonChanged(lesson);
-}
 
 void LessonView::slotSplitLesson()
 {

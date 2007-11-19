@@ -38,7 +38,6 @@ public:
      * @param model the model */
     void setModel(LessonModel *model);
     /** Select the current lesson from the document.*/
-    void initializeSelection();
     // /** Append an action to the right click menu.
     // * @param appendAction */
     //void appendAction(QAction *appendAction);
@@ -52,9 +51,7 @@ public slots:
     void slotRenameLesson();
     /** Remove a lesson. Ask if it's not empty. */
     void slotDeleteLesson();
-    /** Set the selection to a lesson.
-     * @param lesson the index of the new selection. */
-    void slotSelectLesson(int lesson);
+
     /**
      * Slot from model/view - a new item has been selected.
      * We only extract the newly selected lesson and call slotSelectLesson.

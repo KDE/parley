@@ -41,23 +41,11 @@ LessonModel::LessonModel(QObject * parent) : QAbstractItemModel(parent)
 }
 
 
-
 void LessonModel::setDocument(KEduVocDocument * doc)
 {
-kDebug() << "LessonModel::setDocument()" << doc;
     m_rootLesson = doc->lesson();
-    if(m_rootLesson) {
-        beginInsertColumns(QModelIndex(), 0, 1);
-        endInsertColumns();
-
-        beginInsertRows(QModelIndex(), 0, 1);
-        endInsertRows();
-
-        kDebug() << m_rootLesson->name();
-        kDebug() << m_rootLesson->childLessonCount();
-    }
+    reset();
 }
-
 
 
 QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) const
@@ -78,7 +66,6 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
     else
         return QModelIndex();
 }
-
 
 
 QModelIndex LessonModel::parent(const QModelIndex &index) const
@@ -117,27 +104,6 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 // {
 //     //return Qt::CopyAction | Qt::MoveAction;
 //     return Qt::MoveAction;
-// }
-// 
-// QVariant LessonModel::data(const QModelIndex &index, int role) const
-// {
-//     if (!index.isValid())
-//         return QVariant();
-// 
-//     if (index.row() >= m_doc->lessonCount())
-//         return QVariant();
-// 
-//     if (role == Qt::DisplayRole || role == Qt::EditRole)
-//         return m_doc->lesson(index.row()).name();
-// 
-//     /** checkboxes */
-//     if (role == Qt::CheckStateRole) {
-//         if (m_doc->lesson(index.row()).inPractice())
-//             return Qt::Checked;
-//         else
-//             return Qt::Unchecked;
-//     } else
-//         return QVariant();
 // }
 
 
@@ -338,9 +304,18 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 {
     if (index.isValid()) {
         if ( index.column() == 0 ) {
-            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
+            if(index.parent().isValid()) {
+                return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
+            } else {
+                // root elements
+//                 if(index.row() == 0) {
+                    return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
+//                 } else {
+//                     return (Qt::ItemIsEnabled);
+//                 }
+            }
         }
-        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+        return (Qt::ItemIsEnabled);
     }
     return  Qt::ItemIsEnabled;
 }
@@ -348,25 +323,23 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 
 QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
-    if(role == Qt::DisplayRole) {
-        if (orientation == Qt::Horizontal) {
-            switch (section) {
-            case 0:
-                return "lesson";
-            case 1:
-                return "#";
+    // statically two columns for now
+    if (orientation == Qt::Horizontal) {
+        switch (section) {
+        case 0:
+            if(role == Qt::DisplayRole) {
+                return i18n("Lesson");
+            }
+
+        case 1:
+            if(role == Qt::DisplayRole) {
+                return QVariant();
+            }
+            if(role == Qt::ToolTipRole) {
+                return i18n("Number of entries in this lesson.");
             }
         }
     }
-
-    if(role == Qt::SizeHintRole) {
-        if(orientation == Qt::Horizontal) {
-            if (section == 1){
-                return 20;
-            }
-        }
-    }
-
     return QVariant();
 }
 
@@ -377,9 +350,11 @@ int LessonModel::columnCount(const QModelIndex & parent) const
         return 0;
     }
 
+    // root lesson
     if (!parent.isValid()) {
         return 2;
     }
+    // every other lesson
     return 2;
 }
 
