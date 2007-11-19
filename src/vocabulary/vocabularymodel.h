@@ -51,9 +51,13 @@ public:
     int rowCount(const QModelIndex&) const;
     int columnCount(const QModelIndex&) const;
     QVariant data(const QModelIndex&, int) const;
+    bool setData(const QModelIndex &index, const QVariant &value, int role);
     Qt::ItemFlags flags(const QModelIndex &index) const;
 
     QVariant headerData ( int section, Qt::Orientation orientation, int role = Qt::DisplayRole ) const;
+
+    static int translation(int column);
+    static int columnType(int column);
 
 public slots:
     void setDocument(KEduVocDocument *doc);

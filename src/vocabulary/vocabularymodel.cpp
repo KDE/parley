@@ -87,8 +87,8 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         return QVariant();
     }
 
-    int translationId = index.column() / EntryColumnsMAX;
-    int entryColumn = index.column() % EntryColumnsMAX;
+    int translationId = translation(index.column());
+    int entryColumn = columnType(index.column());
 
     switch (role) {
     case Qt::DisplayRole:
@@ -136,6 +136,53 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     }
 
     return QVariant();
+}
+
+
+bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, int role)
+{
+    if ((!index.isValid()) || (role != Qt::EditRole)) {
+        return false;
+    }
+
+    int translationId = translation(index.column());
+    int column = columnType(index.column());
+
+    switch (column) {
+    case Translation:
+        m_lesson->entry(index.row())->translation(translationId).setText(value.toString());
+        break;
+    case Pronunciation:
+        m_lesson->entry(index.row())->translation(translationId).setPronunciation(value.toString());
+        break;
+    case WordType:
+//             m_lesson->entry(index.row())->translation(translationId).type();
+            break;
+    case SubWordType:
+//             m_lesson->entry(index.row())->translation(translationId).subType();
+        break;
+    case Synonym:
+        m_lesson->entry(index.row())->translation(translationId).setSynonym(value.toString());
+        break;
+    case Antonym:
+        m_lesson->entry(index.row())->translation(translationId).setAntonym(value.toString());
+        break;
+    case Example:
+        m_lesson->entry(index.row())->translation(translationId).setExample(value.toString());
+        break;
+    case Comment:
+        m_lesson->entry(index.row())->translation(translationId).setComment(value.toString());
+        break;
+    case Paraphrase:
+        m_lesson->entry(index.row())->translation(translationId).setParaphrase(value.toString());
+        break;
+    case Audio:
+    case Image:
+    default:
+        return false;
+    }
+
+    return true;
 }
 
 Qt::ItemFlags VocabularyModel::flags(const QModelIndex & index) const
@@ -193,4 +240,14 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
     return QVariant();
 }
 
+int VocabularyModel::translation(int column)
+{
+    return column / EntryColumnsMAX;
+}
 
+int VocabularyModel::columnType(int column)
+{
+    return column % EntryColumnsMAX;
+}
+
+#include "vocabularymodel.moc"

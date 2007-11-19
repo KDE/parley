@@ -32,6 +32,7 @@
 #include "lessondockwidget.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
+#include "vocabulary/vocabularydelegate.h"
 #include "vocabulary/lessonview.h"
 
 #include "entry-dialogs/EntryDlg.h"
@@ -444,6 +445,10 @@ void ParleyApp::initView()
     m_vocabularyView = new VocabularyView(centralWidget());
     m_vocabularyView->setFrameStyle(QFrame::NoFrame);
     m_vocabularyView->setAlternatingRowColors(true);
+
+//     VocabularyDelegate *vocabularyDelegate = new VocabularyDelegate;
+//     m_vocabularyView->setItemDelegate(vocabularyDelegate);
+
     rightLayout->addWidget(m_vocabularyView, 1, 0);
 
     /* end the new table */

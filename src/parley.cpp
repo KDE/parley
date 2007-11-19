@@ -25,9 +25,6 @@
 #include "parley.h"
 
 #include "practice/testentrymanager.h"
-//#include "kvttablemodel.h"
-//#include "kvtsortfiltermodel.h"
-//#include "kvttableview.h"
 #include "lessondockwidget.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularymodel.h"
