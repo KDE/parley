@@ -56,6 +56,12 @@ public slots:
      * @param doc the new file */
     void setDocument(KEduVocDocument *doc);
 
+signals:
+    /**
+     * emitted when the inPractice state or name of a lesson changed.
+     */
+    void documentModified();
+
 private:
     KEduVocLesson * m_rootLesson;
 
@@ -71,7 +77,7 @@ public:
      * @param value new name
      * @param role
      * @return bool @c true it worked */
-//     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 //  bool newData(const QStringList &strings);
 
     // add a lesson - returns lesson index

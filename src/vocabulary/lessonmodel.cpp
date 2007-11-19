@@ -112,15 +112,7 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 }
 
 
-// Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
-// {
-//     if (index.isValid()) {
-//         return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
-//         // | Qt::ItemIsDragEnabled); // | Qt::ItemIsDropEnabled);
-//     }
-//     return  Qt::ItemIsEnabled; // | Qt::ItemIsDropEnabled;
-// }
-// 
+
 // Qt::DropActions LessonModel::supportedDropActions() const
 // {
 //     //return Qt::CopyAction | Qt::MoveAction;
@@ -147,35 +139,8 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 //     } else
 //         return QVariant();
 // }
-// 
-// bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
-// {
-//     if (!index.isValid())
-//         return false;
-// 
-//     if (index.row() >= m_doc->lessonCount())
-//         return false;
-// 
-//     /** rename a lesson */
-//     if (role == Qt::EditRole) {
-//         m_doc->lesson(index.row()).setName(value.toString());
-//         emit dataChanged(index, index);
-//         return true;
-//     }
-// 
-//     /** checkboxes */
-//     if (role == Qt::CheckStateRole) {
-//         if (!m_doc->lesson(index.row()).inPractice())
-//             m_doc->lesson(index.row()).setInPractice(true);
-//         else
-//             m_doc->lesson(index.row()).setInPractice(false);
-//         m_doc->setModified();
-//         emit dataChanged(index, index);
-//         return true;
-//     }
-//     return false;
-// }
-// 
+
+
 // 
 // void LessonModel::setAllLessonsInPractice()
 // {
@@ -316,26 +281,70 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
          return QVariant();
     }
 
-    if (role != Qt::DisplayRole) {
-         return QVariant();
-    }
-
     KEduVocLesson *lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+
     switch (index.column()){
     case 0:
-        return lesson->name();
+        if (role == Qt::DisplayRole || role == Qt::EditRole) {
+            return lesson->name();
+        }
+        // checkboxes
+        if (role == Qt::CheckStateRole) {
+            if (lesson->inPractice())
+                return Qt::Checked;
+            else
+                return Qt::Unchecked;
+        }
     case 1:
-        return lesson->entryCount();
+        if (role == Qt::DisplayRole) {
+            return lesson->entryCount();
+        }
     }
+
+    return QVariant();
 }
 
-Qt::ItemFlags LessonModel::flags(const QModelIndex & index) const
+
+bool LessonModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-      if (!index.isValid())
-         return 0;
+    if (!index.isValid())
+        return false;
 
-     return Qt::ItemIsEnabled | Qt::ItemIsSelectable;
+    if ( index.column() == 0 ) {
+        KEduVocLesson *lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+        // rename a lesson
+        if (role == Qt::EditRole) {
+            lesson->setName(value.toString());
+            emit documentModified();
+            return true;
+        }
+
+        // checkboxes
+        if (role == Qt::CheckStateRole) {
+            if (!lesson->inPractice()) {
+                lesson->setInPractice(true);
+            } else {
+                lesson->setInPractice(false);
+            }
+            emit documentModified();
+            return true;
+        }
+    }
+    return false;
 }
+
+
+Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
+{
+    if (index.isValid()) {
+        if ( index.column() == 0 ) {
+            return (Qt::ItemIsEnabled | Qt::ItemIsSelectable | Qt::ItemIsEditable | Qt::ItemIsUserCheckable);
+        }
+        return (Qt::ItemIsEnabled | Qt::ItemIsSelectable);
+    }
+    return  Qt::ItemIsEnabled;
+}
+
 
 QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
