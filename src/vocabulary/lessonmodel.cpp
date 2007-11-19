@@ -112,29 +112,6 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 }
 
 
-
-
-
-// int LessonModel::rowCount(const QModelIndex &parent) const
-// {
-//     Q_UNUSED(parent);
-//     return m_doc->lessonCount();
-// }
-
-// QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int role) const
-// {
-//     if (role != Qt::DisplayRole)
-//         return QVariant();
-// 
-//     if (orientation == Qt::Horizontal && section == 0)
-//         return QString(i18n("Lesson"));
-// 
-//     if (orientation == Qt::Horizontal)
-//         return QString("Column %1").arg(section);
-//     else
-//         return QString("Row %1").arg(section);
-// }
-// 
 // Qt::ItemFlags LessonModel::flags(const QModelIndex &index) const
 // {
 //     if (index.isValid()) {
@@ -331,6 +308,8 @@ void LessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLesson
 //     return false;
 // }
 
+
+
 QVariant LessonModel::data(const QModelIndex & index, int role) const
 {
     if (!index.isValid()) {
@@ -361,15 +340,27 @@ Qt::ItemFlags LessonModel::flags(const QModelIndex & index) const
 QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int role) const
 {
     if(role == Qt::DisplayRole) {
-        switch (section) {
-        case 0:
-            return "lesson";
-        case 1:
-            return "#";
+        if (orientation == Qt::Horizontal) {
+            switch (section) {
+            case 0:
+                return "lesson";
+            case 1:
+                return "#";
+            }
         }
     }
+
+    if(role == Qt::SizeHintRole) {
+        if(orientation == Qt::Horizontal) {
+            if (section == 1){
+                return 20;
+            }
+        }
+    }
+
     return QVariant();
 }
+
 
 int LessonModel::columnCount(const QModelIndex & parent) const
 {

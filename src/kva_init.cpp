@@ -31,6 +31,7 @@
 #include "kvttableview.h"
 #include "lessondockwidget.h"
 #include "vocabulary/vocabularymodel.h"
+#include "vocabulary/vocabularyview.h"
 #include "vocabulary/lessonview.h"
 
 #include "entry-dialogs/EntryDlg.h"
@@ -440,13 +441,10 @@ void ParleyApp::initView()
 
 
     /* the new table */
-    m_vocabularyView = new QTableView(centralWidget());
+    m_vocabularyView = new VocabularyView(centralWidget());
     m_vocabularyView->setFrameStyle(QFrame::NoFrame);
     m_vocabularyView->setAlternatingRowColors(true);
     rightLayout->addWidget(m_vocabularyView, 1, 0);
-
-    // move this into the view class
-    m_vocabularyView->horizontalHeader()->setStretchLastSection(true);
 
     /* end the new table */
 
