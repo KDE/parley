@@ -41,18 +41,10 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     m_document = doc;
     m_lesson = 0;
 
-    beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()) );
-    endRemoveRows();
-
-    beginRemoveColumns(QModelIndex(), 0, columnCount(QModelIndex()) );
-    endRemoveColumns();
-
-    if ( m_document != 0 ) {
-        beginInsertColumns(QModelIndex(), 0,
-            (m_document->identifierCount()*EntryColumnsMAX) -1);
-        endInsertColumns();
-
+    if ( m_document ) {
         setLesson(m_document->lesson());
+    } else {
+        reset();
     }
 }
 
