@@ -1,6 +1,17 @@
 Things to improve in parley
 ---------------------------
 
+**In this branch: **
+ * Make all dock widget work
+ * Add the docks to the menu bar
+ * Use Lesson class for word types
+   - figure out how to make sure that one translation has only one word type
+   - what about special types that have extra attributes like conjugations etc?
+ * Make columns hideable
+ * Saving crashes right now
+ * Remove KEduVocMultipleChoice and replace it with a QStringList
+ * activate all readers/writers
+
 **BUGS**
  * When sorting columns the entry numbers sometimes are not updated. Either hide the number column (do we need it anyways? or fix that)
 
