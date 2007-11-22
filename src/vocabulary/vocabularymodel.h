@@ -77,7 +77,6 @@ private:
     KEduVocDocument *m_document;
 };
 
-Q_DECLARE_METATYPE(KEduVocTranslation*)
 Q_DECLARE_METATYPE(KEduVocExpression*)
 
 #endif

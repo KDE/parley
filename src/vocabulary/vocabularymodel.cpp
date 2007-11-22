@@ -87,23 +87,23 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DisplayRole:
         switch (entryColumn) {
         case Translation:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).text());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->text());
         case Pronunciation:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).pronunciation());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->pronunciation());
         case WordType:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).type());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->wordType()->name());
         case SubWordType:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).subType());
+            return QVariant("bad idea");
         case Synonym:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).synonym());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->synonym());
         case Antonym:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).antonym());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->antonym());
         case Example:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).example());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->example());
         case Comment:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).comment());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->comment());
         case Paraphrase:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId).paraphrase());
+            return QVariant(m_lesson->entry(index.row())->translation(translationId)->paraphrase());
         case Audio:
         case Image:
         default:
@@ -113,13 +113,13 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
     case Qt::DecorationRole: {
         switch (entryColumn) {
         case Audio:
-            if ( !m_lesson->entry(index.row())->translation(translationId).soundUrl().isEmpty() ) {
+            if ( !m_lesson->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
                 return KIcon("media-playback-start");
             }
             return QVariant();
         case Image:
-            if ( !m_lesson->entry(index.row())->translation(translationId).imageUrl().isEmpty() ) {
-                return QPixmap(m_lesson->entry(index.row())->translation(translationId).imageUrl().toLocalFile()).scaled(QSize(30,30));
+            if ( !m_lesson->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
+                return QPixmap(m_lesson->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
             }
             return QVariant();
         default:
@@ -133,18 +133,8 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
 //         case Image:
 //             return QSize(25, 25);
 //         }
-    case TranslationRole: {
-        kDebug() << "send trans" << &m_lesson->entry(index.row())->translation(translationId) << m_lesson->entry(index.row())->translation(translationId).text();
-        
-//         return &m_lesson->entry(index.row())->translation(translationId);
-        QVariant v;
-        v.setValue(&m_lesson->entry(index.row())->translation(translationId));
-        return v;
-        }
+
     case EntryRole: {
-        kDebug() << "send entry" << &m_lesson->entry(index.row())->translation(translationId) << m_lesson->entry(index.row())->translation(translationId).text();
-        
-//         return &m_lesson->entry(index.row())->translation(translationId);
         QVariant v;
         v.setValue(m_lesson->entry(index.row()));
         return v;
@@ -166,31 +156,31 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
 
     switch (column) {
     case Translation:
-        m_lesson->entry(index.row())->translation(translationId).setText(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setText(value.toString());
         break;
     case Pronunciation:
-        m_lesson->entry(index.row())->translation(translationId).setPronunciation(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setPronunciation(value.toString());
         break;
     case WordType:
-//             m_lesson->entry(index.row())->translation(translationId).type();
+//             m_lesson->entry(index.row())->translation(translationId)->type();
             break;
     case SubWordType:
-//             m_lesson->entry(index.row())->translation(translationId).subType();
+//             m_lesson->entry(index.row())->translation(translationId)->subType();
         break;
     case Synonym:
-        m_lesson->entry(index.row())->translation(translationId).setSynonym(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setSynonym(value.toString());
         break;
     case Antonym:
-        m_lesson->entry(index.row())->translation(translationId).setAntonym(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setAntonym(value.toString());
         break;
     case Example:
-        m_lesson->entry(index.row())->translation(translationId).setExample(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setExample(value.toString());
         break;
     case Comment:
-        m_lesson->entry(index.row())->translation(translationId).setComment(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setComment(value.toString());
         break;
     case Paraphrase:
-        m_lesson->entry(index.row())->translation(translationId).setParaphrase(value.toString());
+        m_lesson->entry(index.row())->translation(translationId)->setParaphrase(value.toString());
         break;
     case Audio:
     case Image:

@@ -49,7 +49,7 @@ void MCEntryPage::slotDataChanged(const QString&)
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry) {
-        multipleChoiceListView->setModel(new QStringListModel(entry->translation(translation).multipleChoice(), this));
+        multipleChoiceListView->setModel(new QStringListModel(entry->translation(translation)->multipleChoice(), this));
     }
 }
 

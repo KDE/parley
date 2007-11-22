@@ -191,7 +191,7 @@ void PracticeDialog::resultWrong()
 
 void PracticeDialog::audioPlayFromIdentifier()
 {
-    KUrl file = m_entry->entry()->translation(Prefs::questionLanguage()).soundUrl();
+    KUrl file = m_entry->entry()->translation(Prefs::questionLanguage())->soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -199,7 +199,7 @@ void PracticeDialog::audioPlayFromIdentifier()
 
 void PracticeDialog::audioPlayToIdentifier()
 {
-    KUrl file = m_entry->entry()->translation(Prefs::solutionLanguage()).soundUrl();
+    KUrl file = m_entry->entry()->translation(Prefs::solutionLanguage())->soundUrl();
     if ( !file.isEmpty() ) {
         audioPlayFile(file);
     }
@@ -247,9 +247,9 @@ void PracticeDialog::imageShowFile(QGraphicsView * view, const QString & url)
 void PracticeDialog::imageShowFromEntry(QGraphicsView * view)
 {
     if ( Prefs::practiceImagesEnabled() ) {
-        QString url = m_entry->entry()->translation(Prefs::questionLanguage()).imageUrl().toLocalFile();
+        QString url = m_entry->entry()->translation(Prefs::questionLanguage())->imageUrl().toLocalFile();
         if ( url.isEmpty() ) {
-            url = m_entry->entry()->translation(Prefs::solutionLanguage()).imageUrl().toLocalFile();
+            url = m_entry->entry()->translation(Prefs::solutionLanguage())->imageUrl().toLocalFile();
         }
         if ( url.isEmpty() ) {
             view->setVisible(false);

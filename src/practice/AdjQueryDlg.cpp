@@ -84,7 +84,7 @@ void AdjQueryDlg::setEntry(TestEntry* entry)
 
     ///@todo set adjective/adverb hint!
 
-    comp = entry->entry()->translation(Prefs::solutionLanguage()).comparison();
+    comp = entry->entry()->translation(Prefs::solutionLanguage())->comparison();
 
     mw->timebar->setVisible(Prefs::practiceTimeout());
     mw->timelabel->setVisible(Prefs::practiceTimeout());

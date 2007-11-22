@@ -123,11 +123,11 @@ void MCQueryDlg::setEntry( TestEntry* entry)
 
     // question
     mw->orgField->setFont(Prefs::tableFont());
-    mw->orgField->setText(m_entry->entry()->translation(Prefs::questionLanguage()).text());
+    mw->orgField->setText(m_entry->entry()->translation(Prefs::questionLanguage())->text());
 
     mw->audioPlayQuestionButton->setVisible( Prefs::practiceSoundEnabled()
         && !m_entry->entry()->translation(Prefs::questionLanguage())
-            .soundUrl().isEmpty());
+            ->soundUrl().isEmpty());
 
     mw->audioChoiceButton1->setVisible(false);
     mw->audioChoiceButton2->setVisible(false);
@@ -136,17 +136,17 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     mw->audioChoiceButton5->setVisible(false);
 
     // answer and choices
-    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage()).text();
+    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
 
     // gather some choices...
     QStringList choices;
 
     // the user supplied choices (edit entry -> choices)
-    choices << m_entry->entry()->translation(Prefs::solutionLanguage()).multipleChoice();
+    choices << m_entry->entry()->translation(Prefs::solutionLanguage())->multipleChoice();
 
     // always include false friend
     QString falseFriend = m_entry->entry()->translation(Prefs::solutionLanguage())
-        .falseFriend(Prefs::questionLanguage());
+        ->falseFriend(Prefs::questionLanguage());
     if (!falseFriend.isEmpty()) {
         choices.append(falseFriend);
     }
@@ -263,7 +263,7 @@ void MCQueryDlg::showContinueButton(bool show)
         // enable the sound for the solution. eventually all entries with sound should get their button enabled.
         if ( Prefs::practiceSoundEnabled() ) {
             if ( !m_entry->entry()->translation(Prefs::solutionLanguage())
-                .soundUrl().isEmpty()) {
+                ->soundUrl().isEmpty()) {
                 QList<QPushButton*> audioButtons;
                 audioButtons << mw->audioChoiceButton1
                     << mw->audioChoiceButton2
@@ -295,7 +295,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
             KEduVocExpression *act = allEntries.value(i);
 
             if (act != m_entry->entry()) {
-                choices.append(act->translation(Prefs::solutionLanguage()).text());
+                choices.append(act->translation(Prefs::solutionLanguage())->text());
             }
         }
     } else {
@@ -306,7 +306,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
 
         // find out if we got enough non-empty entries to fill all the options
         for(int i = 0; i < allEntries.count(); i++) {
-            if(!allEntries.value(i)->translation(Prefs::solutionLanguage()).text().isEmpty())
+            if(!allEntries.value(i)->translation(Prefs::solutionLanguage())->text().isEmpty())
                 numNonEmptyEntries++;
             if(numNonEmptyEntries >= numberChoices)
                 break;
@@ -319,7 +319,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
             if(numNonEmptyEntries >= numberChoices) {
                 do {
                     nr = randomSequence.getLong(allEntries.count());
-                } while (allEntries.value(nr)->translation(Prefs::solutionLanguage()).text().isEmpty());
+                } while (allEntries.value(nr)->translation(Prefs::solutionLanguage())->text().isEmpty());
             } else {
                 nr = randomSequence.getLong(allEntries.count());
             }
@@ -336,7 +336,7 @@ QStringList MCQueryDlg::createAdditionalChoices(int numberChoices)
         }
 
         for (int i = 0; i < exprlist.count(); i++) {
-            choices.append(exprlist[i]->translation(Prefs::solutionLanguage()).text());
+            choices.append(exprlist[i]->translation(Prefs::solutionLanguage())->text());
         }
     }
 

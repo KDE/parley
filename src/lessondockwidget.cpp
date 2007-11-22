@@ -92,8 +92,6 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
 
     parent->actionCollection()->addAction("show_lesson_dock", toggleViewAction());
 
-    parent->m_vocabularyColumnsActionMenu->addAction(new QAction("Test me", parent->m_vocabularyColumnsActionMenu));
-
     setWidget(left);
 }
 

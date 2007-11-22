@@ -75,10 +75,10 @@ void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
     setWidgetStyle(answerLineEdit);
     answerLineEdit->setFocus();
 
-    QString original = m_entry->entry()->translation(Prefs::questionLanguage()).text();
+    QString original = m_entry->entry()->translation(Prefs::questionLanguage())->text();
     originalLabel->setText( original );
 
-    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage()).text();
+    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
 
     // remove old items
     foreach ( QGraphicsItem* item, mixedLettersGraphicsView->scene()->items() ) {
@@ -107,7 +107,7 @@ void MixedLetterPracticeDialog::setEntry(TestEntry* entry)
 
 void MixedLetterPracticeDialog::slotAnswerChanged()
 {
-    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage()).text();
+    QString solution = m_entry->entry()->translation(Prefs::solutionLanguage())->text();
     for ( int i = 0; i < solution.length(); i++ ) {
         if ( answerLineEdit->text()[i] == solution[i] ) {
             m_answerTextItems[i]->setHtml("<b><font color=\"#188C18\">" + solution[i] + "</font></b>");
@@ -128,7 +128,7 @@ void MixedLetterPracticeDialog::slotAnswerChanged()
 
 void MixedLetterPracticeDialog::showSolution()
 {
-    answerLineEdit->setText( m_entry->entry()->translation(Prefs::solutionLanguage()).text() );
+    answerLineEdit->setText( m_entry->entry()->translation(Prefs::solutionLanguage())->text() );
     setWidgetStyle( answerLineEdit, PositiveResult );
     setAnswerTainted();
     verifySolutionButton->setFocus();
@@ -137,7 +137,7 @@ void MixedLetterPracticeDialog::showSolution()
 
 void MixedLetterPracticeDialog::verifyClicked()
 {
-    double result = verifyAnswer(answerLineEdit->text(), m_entry->entry()->translation(Prefs::solutionLanguage()).text());
+    double result = verifyAnswer(answerLineEdit->text(), m_entry->entry()->translation(Prefs::solutionLanguage())->text());
     if ( result == 1.0 ) {
         resultCorrect();
         emit showSolutionFinished();

@@ -93,7 +93,7 @@ void AnswerValidator::setTestEntry(TestEntry * entry)
 {
     m_entry = entry;
     if (m_entry) {
-        m_solution = m_entry->entry()->translation(m_translation).text();
+        m_solution = m_entry->entry()->translation(m_translation)->text();
     }
 }
 
@@ -186,7 +186,7 @@ kDebug() << "right";
 
     if ( m_entry ) {
         // check synonym
-        if ( m_entry->entry()->translation(m_translation).synonym() == m_userAnswer ) {
+        if ( m_entry->entry()->translation(m_translation)->synonym() == m_userAnswer ) {
             m_entry->setLastErrors(TestEntry::Synonym);
             if ( Prefs::countSynonymsAsCorrect() ) {
                 m_entry->setLastPercentage(1.0);
@@ -224,7 +224,7 @@ void AnswerValidator::defaultCorrector()
     }
 
     // check synonym
-    if ( m_entry->entry()->translation(m_translation).synonym() == m_userAnswer ) {
+    if ( m_entry->entry()->translation(m_translation)->synonym() == m_userAnswer ) {
         m_entry->setLastErrors(TestEntry::Synonym);
         if ( Prefs::countSynonymsAsCorrect() ) {
             // synonym, good for you

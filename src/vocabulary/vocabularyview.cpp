@@ -319,18 +319,10 @@ void VocabularyView::setModel(VocabularyModel * model)
 
 void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
 {
-    kDebug() << "Current Changed!";
     Q_UNUSED(previous);
     KEduVocExpression* entry = 0;
     if ( current.isValid() ) {
-        kDebug() << "can convert" << model()->data(current, VocabularyModel::EntryRole).typeName();
-
         entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
-        if ( entry ) {
-            kDebug() << "Current translation" << entry->translation(VocabularyModel::translation(current.column())).text();
-        }else{
-            kDebug() << "Current translation is 0";
-        }
     }
     emit translationChanged(entry, VocabularyModel::translation(current.column()));
 }
@@ -338,12 +330,7 @@ void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QMode
 
 void VocabularyView::columnCountChanged(int oldCount, int newCount)
 {
-kDebug() << "columnCountChanged(int oldCount, int newCount)";
 
-    KAction* toggleColumn = new KAction("Column count: " + QString::number(newCount), this);
-//     m_columnActionMap
-    m_vocabularyColumnsActionMenu->addAction(toggleColumn);
-    
 }
 
 void VocabularyView::reset()

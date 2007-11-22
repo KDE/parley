@@ -129,7 +129,7 @@ void TenseOptPage::slotDeleteTense()
 
         foreach (KEduVocExpression *exp, m_doc->lesson()->entriesRecursive()) {
             for (int lang = 0; lang < m_doc->identifierCount(); lang++) {
-                if ( exp->translation(lang).conjugationTenses().contains(t)) {
+                if ( exp->translation(lang)->conjugationTenses().contains(t)) {
                         KMessageBox::information(this, i18n("The selected user defined tense could not be deleted\nbecause it is in use."),    i18n("Deleting Tense Description"));
                         return;
                 }

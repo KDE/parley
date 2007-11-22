@@ -164,8 +164,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
     // remove empty entries
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-        if ( m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeFrom()).text().isEmpty() ||
-                m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeTo()).text().isEmpty() ) {
+        if ( m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeFrom())->text().isEmpty() ||
+                m_allTestEntries.value(i)->entry()->translation(TestEntry::gradeTo())->text().isEmpty() ) {
             delete m_allTestEntries.takeAt(i);
         }
     }
@@ -184,7 +184,7 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
         bool remove = false;
         const KEduVocGrade& grade =
-            m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation);
+            m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation);
         if ( checkType(m_allTestEntries.value(i)->entry()) ) {
             validWordType++;
         } else { remove = true; }
@@ -296,18 +296,18 @@ void TestEntryManager::expireEntries()
     if ( Prefs::expire() ) {
         int counter = 0;
         for ( int i = m_allTestEntries.count() - 1; i >= 0; i-- ) {
-            int grade = m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade();
+            int grade = m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade();
 
-            const QDateTime &date =  m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate();
+            const QDateTime &date =  m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate();
 
             const QDateTime &expireDate = QDateTime::currentDateTime().addSecs( -Prefs::expireItem(grade) );
 
             if ( date < expireDate && grade > 0) {
                 // decrease the grade
-                m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).decGrade();
+                m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).decGrade();
 
                 // prevent from endless dropping
-                m_allTestEntries.value(i)->entry()->translation(m_toTranslation).gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
+                m_allTestEntries.value(i)->entry()->translation(m_toTranslation)->gradeFrom(m_fromTranslation).setPracticeDate( QDateTime::currentDateTime().addSecs( -Prefs::expireItem( grade - 2) ) );
                 counter++;
             }
         }
@@ -330,7 +330,7 @@ bool TestEntryManager::compareBlocking(int grade, const QDateTime &date, bool us
 
 bool TestEntryManager::validateWithSettings(KEduVocExpression *expr)
 {
-    if ( !compareBlocking(expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation).gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
+    if ( !compareBlocking(expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).grade(), expr->translation(m_toTranslation)->gradeFrom(m_fromTranslation).practiceDate(), Prefs::block())) {
         return false;
     }
     return true;
@@ -343,16 +343,16 @@ bool TestEntryManager::validate(KEduVocExpression *expr)
 
     switch (m_testType) {
     case Prefs::EnumTestType::SynonymTest:
-        return !expr->translation(m_toTranslation).synonym().simplified().isEmpty();
+        return !expr->translation(m_toTranslation)->synonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::AntonymTest:
-        return !expr->translation(m_toTranslation).antonym().simplified().isEmpty();
+        return !expr->translation(m_toTranslation)->antonym().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ParaphraseTest:
-        return !expr->translation(m_toTranslation).paraphrase().simplified().isEmpty();
+        return !expr->translation(m_toTranslation)->paraphrase().simplified().isEmpty();
         break;
     case Prefs::EnumTestType::ExampleTest:
-        return !expr->translation(m_toTranslation).example().simplified().isEmpty();
+        return !expr->translation(m_toTranslation)->example().simplified().isEmpty();
         break;
 
     case Prefs::EnumTestType::ConjugationTest:
@@ -388,7 +388,7 @@ void TestEntryManager::printStatistics()
             << " +" << entry->statisticGoodCount() << " -" << entry->statisticBadCount()
             << " ->+" << entry->statisticSkipKnown() << " ->-" << entry->statisticSkipUnknown()
             << " time:" << entry->statisticTimeout()
-            << "Entry: " << entry->entry()->translation(0).text();
+            << "Entry: " << entry->entry()->translation(0)->text();
     }
 }
 
@@ -404,8 +404,10 @@ int TestEntryManager::activeEntryCount()
 
 bool TestEntryManager::checkType(KEduVocExpression * entry)
 {
-    QString wordType = entry->translation(m_toTranslation).type();
-    QString subWordType = entry->translation(m_toTranslation).subType();
+///@todo for special practices - check for the right types...
+    /*
+    QString wordType = entry->translation(m_toTranslation)->type();
+    QString subWordType = entry->translation(m_toTranslation)->subType();
     QString specialWordType = m_doc->wordTypes().specialType(wordType);
     QString specialSubType = m_doc->wordTypes().specialSubType(wordType,
         subWordType);
@@ -427,12 +429,12 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
     if ( Prefs::testType() == Prefs::EnumTestType::ComparisonTest ) {
         if ( Prefs::comparisonIncludeAdjective() ) {
             if ( specialWordType == m_doc->wordTypes().specialTypeAdjective() ) {
-                return !entry->translation(m_toTranslation).comparison().isEmpty();
+                return !entry->translation(m_toTranslation)->comparison().isEmpty();
             }
         }
         if ( Prefs::comparisonIncludeAdverb() ) {
             if ( specialWordType == m_doc->wordTypes().specialTypeAdverb() ) {
-                return !entry->translation(m_toTranslation).comparison().isEmpty();
+                return !entry->translation(m_toTranslation)->comparison().isEmpty();
             }
         }
         return false;
@@ -440,23 +442,13 @@ bool TestEntryManager::checkType(KEduVocExpression * entry)
 
     if ( Prefs::testType() == Prefs::EnumTestType::ConjugationTest ) {
         if ( specialWordType == m_doc->wordTypes().specialTypeVerb() ) {
-            return entry->translation(m_toTranslation).conjugations().count() > 0;
+            return entry->translation(m_toTranslation)->conjugations().count() > 0;
         }
         return false;
-    }
+    }*/
     ///@todo respect subtypes for special practices above
 
-    if ( Prefs::wordTypesInPracticeEnabled() ) {
-        QStringList activeWordTypes = Prefs::wordTypesInPractice();
-        QStringList activeSubWordTypes = Prefs::subWordTypesInPractice();
-        if ( activeWordTypes.contains( wordType ) ) {
-            if ( subWordType.isEmpty() || activeSubWordTypes.contains( subWordType ) ) {
-                return true;
-            }
-        }
-        return false;
-    }
-    return true;
+    return entry->translation(m_toTranslation)->wordType()->inPractice();
 }
 
 int TestEntryManager::statisticTotalCorrectFirstAttempt()
@@ -617,7 +609,7 @@ void TestEntryManager::setNextEntry()
             }
         }
 
-        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0).text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
+        kDebug() << "nextEntry: " << m_currentEntry << " = " << m_currentEntries.value(m_currentEntry)->entry()->translation(0)->text() << " (" << m_currentEntries.count() + m_notAskedTestEntries.count() << "entries remaining)";
 
         m_practiceDialog->setEntry(m_currentEntries.value(m_currentEntry));
         m_practiceDialog->setProgressCounter(

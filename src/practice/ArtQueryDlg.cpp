@@ -85,7 +85,7 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->show_all->setDefault(true);
 
     QString s;
-    s = m_entry->entry()->translation(Prefs::solutionLanguage()).text().simplified();
+    s = m_entry->entry()->translation(Prefs::solutionLanguage())->text().simplified();
 
     QString def, indef;
     bool removed = false;
@@ -154,61 +154,62 @@ void ArtQueryDlg::showSolution()
     setWidgetStyle(mw->maleRadio);
     setWidgetStyle(mw->femaleRadio);
     setWidgetStyle(mw->neutralRadio);
-
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage()).type(), m_entry->entry()->translation(Prefs::solutionLanguage()).subType());
-
-    if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
-        mw->maleRadio->setChecked(true);
-        setWidgetStyle(mw->maleRadio, PositiveResult);
-    } else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
-        mw->femaleRadio->setChecked(true);
-        setWidgetStyle(mw->femaleRadio, PositiveResult);
-    } else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
-        mw->neutralRadio->setChecked(true);
-        setWidgetStyle(mw->neutralRadio, PositiveResult);
-    }
-    mw->dont_know->setDefault(true);
-    setAnswerTainted();
+///@todo port me!!!
+//     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage())->type(), m_entry->entry()->translation(Prefs::solutionLanguage())->subType());
+// 
+//     if (specialSubType == m_doc->wordTypes().specialTypeNounMale()) {
+//         mw->maleRadio->setChecked(true);
+//         setWidgetStyle(mw->maleRadio, PositiveResult);
+//     } else if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
+//         mw->femaleRadio->setChecked(true);
+//         setWidgetStyle(mw->femaleRadio, PositiveResult);
+//     } else if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
+//         mw->neutralRadio->setChecked(true);
+//         setWidgetStyle(mw->neutralRadio, PositiveResult);
+//     }
+//     mw->dont_know->setDefault(true);
+//     setAnswerTainted();
 }
 
 
 void ArtQueryDlg::verifyClicked()
 {
-    QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage()).type(), m_entry->entry()->translation(Prefs::solutionLanguage()).subType());
-
-    bool correct = false;
-
-    if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale()) {
-        if ( mw->maleRadio->isChecked() ) {
-            setWidgetStyle(mw->maleRadio, PositiveResult);
-            correct = true;
-        } else {
-            setWidgetStyle(mw->maleRadio, NegativeResult);
-        }
-    }
-    if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
-        if ( mw->femaleRadio->isChecked() ) {
-            setWidgetStyle(mw->femaleRadio, PositiveResult);
-            correct = true;
-        } else {
-            setWidgetStyle(mw->femaleRadio, NegativeResult);
-        }
-    }
-    if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
-        if ( mw->neutralRadio->isChecked() ) {
-            setWidgetStyle(mw->neutralRadio, PositiveResult);
-            correct = true;
-        } else {
-            setWidgetStyle(mw->neutralRadio, NegativeResult);
-        }
-    }
-
-    if (correct) {
-        resultCorrect();
-        emit showSolutionFinished();
-    } else {
-        mw->dont_know->setDefault(true);
-    }
+///@todo port
+//     QString specialSubType = m_doc->wordTypes().specialSubType(m_entry->entry()->translation(Prefs::solutionLanguage())->type(), m_entry->entry()->translation(Prefs::solutionLanguage())->subType());
+// 
+//     bool correct = false;
+// 
+//     if (specialSubType ==  m_doc->wordTypes().specialTypeNounMale()) {
+//         if ( mw->maleRadio->isChecked() ) {
+//             setWidgetStyle(mw->maleRadio, PositiveResult);
+//             correct = true;
+//         } else {
+//             setWidgetStyle(mw->maleRadio, NegativeResult);
+//         }
+//     }
+//     if (specialSubType == m_doc->wordTypes().specialTypeNounFemale()) {
+//         if ( mw->femaleRadio->isChecked() ) {
+//             setWidgetStyle(mw->femaleRadio, PositiveResult);
+//             correct = true;
+//         } else {
+//             setWidgetStyle(mw->femaleRadio, NegativeResult);
+//         }
+//     }
+//     if (specialSubType == m_doc->wordTypes().specialTypeNounNeutral()) {
+//         if ( mw->neutralRadio->isChecked() ) {
+//             setWidgetStyle(mw->neutralRadio, PositiveResult);
+//             correct = true;
+//         } else {
+//             setWidgetStyle(mw->neutralRadio, NegativeResult);
+//         }
+//     }
+// 
+//     if (correct) {
+//         resultCorrect();
+//         emit showSolutionFinished();
+//     } else {
+//         mw->dont_know->setDefault(true);
+//     }
 }
 
 
