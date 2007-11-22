@@ -1,6 +1,6 @@
 <ui version="4.0" >
- <class>Form</class>
- <widget class="QWidget" name="Form" >
+ <class>multipleChoiceWidget</class>
+ <widget class="QWidget" name="multipleChoiceWidget" >
   <property name="geometry" >
    <rect>
     <x>0</x>

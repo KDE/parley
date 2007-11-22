@@ -29,17 +29,12 @@
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
 #include <QLineEdit>
-
+#include <QStringListModel>
 
 MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 
-    connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
-    connect(mc2Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
-    connect(mc3Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
-    connect(mc4Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
-    connect(mc5Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
 }
 
 
@@ -54,22 +49,13 @@ void MCEntryPage::slotDataChanged(const QString&)
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
     if (entry) {
-        KEduVocMultipleChoice mc = entry->translation(translation).multipleChoice();
-        mc1Field->setText(mc.choice(0));
-        mc2Field->setText(mc.choice(1));
-        mc3Field->setText(mc.choice(2));
-        mc4Field->setText(mc.choice(3));
-        mc5Field->setText(mc.choice(4));
+        multipleChoiceListView->setModel(new QStringListModel(entry->translation(translation).multipleChoice(), this));
     }
 }
 
 void MCEntryPage::clear()
 {
-    mc1Field->setText(QString());
-    mc2Field->setText(QString());
-    mc3Field->setText(QString());
-    mc4Field->setText(QString());
-    mc5Field->setText(QString());
+
 }
 
 

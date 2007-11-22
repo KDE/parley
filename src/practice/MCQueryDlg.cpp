@@ -142,7 +142,7 @@ void MCQueryDlg::setEntry( TestEntry* entry)
     QStringList choices;
 
     // the user supplied choices (edit entry -> choices)
-    choices << m_entry->entry()->translation(Prefs::solutionLanguage()).multipleChoice().choices();
+    choices << m_entry->entry()->translation(Prefs::solutionLanguage()).multipleChoice();
 
     // always include false friend
     QString falseFriend = m_entry->entry()->translation(Prefs::solutionLanguage())

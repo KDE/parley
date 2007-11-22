@@ -107,9 +107,10 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/additionaleditpage.ui
     entry-dialogs/CommonEntryPageForm.ui
     entry-dialogs/FromToEntryPageForm.ui
-    entry-dialogs/MCEntryPageForm.ui
+#     entry-dialogs/MCEntryPageForm.ui
     entry-dialogs/TenseEntryPageForm.ui
     entry-dialogs/wordtypewidget.ui
+    entry-dialogs/multiplechoicewidget.ui
 )
 
 set(statisticsdialogs_SRCS

@@ -26,11 +26,11 @@
 #ifndef MCEntryPage_included
 #define MCEntryPage_included
 
-#include "ui_MCEntryPageForm.h"
+#include "ui_multiplechoicewidget.h"
 
 class KEduVocExpression;
 
-class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
+class MCEntryPage : public QWidget, public Ui::multipleChoiceWidget
 {
     Q_OBJECT
 
