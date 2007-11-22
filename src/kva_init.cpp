@@ -382,7 +382,7 @@ void ParleyApp::initActions()
 
 
     if (!initialGeometrySet()) {
-        resize(QSize(550, 400).expandedTo(minimumSizeHint()));
+        resize(QSize(800, 500).expandedTo(minimumSizeHint()));
     }
     setupGUI(ToolBar | Keys | StatusBar | Create);
     setAutoSaveSettings();
