@@ -28,6 +28,7 @@
 #include <QObject>
 
 #include <keduvocdocument.h>
+#include <keduvoclesson.h>
 
 /**
   * Model for the tree of lessons.
@@ -37,13 +38,8 @@ class LessonModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    enum EnumContainerModelType{
-        LessonContainer,
-        WordTypeContainer,
-        LeitnerContainer
-    };
 
-    LessonModel(EnumContainerModelType type, QObject *parent = 0);
+    LessonModel(KEduVocLesson::EnumContainerType type, QObject *parent = 0);
 //     ~LessonModel(); no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -104,7 +100,7 @@ public:
 private:
     KEduVocLesson * m_rootLesson;
     KEduVocLesson * m_wordTypeLesson;
-    EnumContainerModelType m_type;
+    KEduVocLesson::EnumContainerType m_type;
 
 };
 

@@ -35,7 +35,7 @@
 
 
 
-LessonModel::LessonModel(EnumContainerModelType type, QObject * parent) : QAbstractItemModel(parent)
+LessonModel::LessonModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {
     m_type = type;
     m_rootLesson = 0;
@@ -45,13 +45,13 @@ LessonModel::LessonModel(EnumContainerModelType type, QObject * parent) : QAbstr
 void LessonModel::setDocument(KEduVocDocument * doc)
 {
     switch(m_type){
-    case LessonContainer:
+    case KEduVocLesson::LessonContainer:
         m_rootLesson = doc->lesson();
         break;
-    case WordTypeContainer:
+    case KEduVocLesson::WordTypeContainer:
         m_rootLesson = doc->wordTypeContainer();
         break;
-    case LeitnerContainer:
+    case KEduVocLesson::LeitnerContainer:
     m_rootLesson = doc->leitnerContainer();
         break;
     default:

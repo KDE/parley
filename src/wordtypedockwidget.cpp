@@ -108,7 +108,7 @@ void WordTypeDockWidget::setDocument(KEduVocDocument * doc)
     m_wordTypeModel->deleteLater();
   }
 
-  m_wordTypeModel = new LessonModel(LessonModel::WordTypeContainer, this);
+  m_wordTypeModel = new LessonModel(KEduVocLesson::WordTypeContainer, this);
   m_wordTypeModel->setDocument(doc);
 
   m_wordTypeView->setModel(m_wordTypeModel);
