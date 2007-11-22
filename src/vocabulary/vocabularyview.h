@@ -22,23 +22,38 @@
 //#include <vocabularysortfiltermodel.h>
 //#include <vocabularydelegate.h>
 
+#include <QMap>
+
 class VocabularyModel;
 class KEduVocExpression;
+
+class KActionMenu;
+class KAction;
+
 
 class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
-    VocabularyView(QWidget *parent = 0);
+    VocabularyView(KActionMenu* vocabularyColumnsActionMenu, QWidget *parent = 0);
 
     void setModel(VocabularyModel * model);
+
 //     void adjustContent();
+
+public slots:
+    void reset();
 
 signals:
     void translationChanged(KEduVocExpression*, int);
 
 private slots:
     void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
+
+    void columnCountChanged ( int oldCount, int newCount );
+
+    void slotToggleColumn(bool show);
+
 // private slots:
 //     void verticalHeaderResized(int, int, int);
 //     void horizontalHeaderResized(int, int, int);
@@ -60,6 +75,10 @@ private slots:
 //     void endOfPage(QPainter &, int, int);
 // 
 //     KVTTableDelegate * m_delegate;
+private:
+    QMap <KAction*, int> m_columnActionMap;
+    KActionMenu * m_vocabularyColumnsActionMenu;
+
 };
 
 #endif

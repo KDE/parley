@@ -127,6 +127,12 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         }
         break;
     }
+//     case Qt::SizeHintRole:
+//         switch (entryColumn) {
+//         case Audio:
+//         case Image:
+//             return QSize(25, 25);
+//         }
     case TranslationRole: {
         kDebug() << "send trans" << &m_lesson->entry(index.row())->translation(translationId) << m_lesson->entry(index.row())->translation(translationId).text();
         
@@ -245,8 +251,15 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
             case Image:
                 return KIcon("view-preview");
             }
-        }
-    }
+
+//         case Qt::SizeHintRole:
+//             switch (entryColumn) {
+//             case Audio:
+//             case Image:
+//                 return QSize(25, 25);
+//             }
+        } // switch role
+    } // if horizontal
     return QVariant();
 }
 

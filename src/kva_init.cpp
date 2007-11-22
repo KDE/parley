@@ -443,7 +443,7 @@ void ParleyApp::initView()
 
 
     /* the new table */
-    m_vocabularyView = new VocabularyView(centralWidget());
+    m_vocabularyView = new VocabularyView(m_vocabularyColumnsActionMenu, centralWidget());
     m_vocabularyView->setFrameStyle(QFrame::NoFrame);
     m_vocabularyView->setAlternatingRowColors(true);
 
@@ -461,7 +461,7 @@ void ParleyApp::initView()
 //     m_tableView->addAction(actionCollection()->action("edit_remove_selected_area"));
 // 
 
-
+    m_vocabularyView->horizontalHeader()->addAction(m_vocabularyColumnsActionMenu);
 
 //     QAction *actionShowLessonColumn = actionCollection()->action("config_show_lesson_column");
 //     m_tableView->horizontalHeader()->addAction(actionShowLessonColumn);

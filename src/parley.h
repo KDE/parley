@@ -77,8 +77,7 @@ public:
     void initStatusBar();
     /** setup the main model*/
     void initModel();
-    /** setup the lesson list and its buttons */
-    QWidget* initLessonList(QWidget *parent);
+
     /** setup the main view*/
     void initView();
 
