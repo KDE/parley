@@ -16,6 +16,11 @@
 
 #include "vocabularyview.h"
 
+#include "vocabularymodel.h"
+
+#include <keduvoctranslation.h>
+#include <keduvocexpression.h>
+
 #include <QHeaderView>
 #include <QPainter>
 #include <QResizeEvent>
@@ -51,15 +56,16 @@ VocabularyView::VocabularyView(QWidget *parent) : QTableView(parent)
 }
 
 
-// void VocabularyView::setModel(KVTSortFilterModel * model)
-// {
-//     QTableView::setModel(model);
+void VocabularyView::setModel(VocabularyModel * model)
+{
+    QTableView::setModel(model);
 //     setCurrentIndex(model->index(0, 0));
 //     scrollTo(currentIndex());
 //     connect(verticalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(verticalHeaderResized(int, int, int)));
 //     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
-//     connect(selectionModel(), SIGNAL(currentColumnChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentColumnChanged(const QModelIndex&, const QModelIndex&)));
-// }
+    connect(selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)), this, SLOT(slotCurrentChanged(const QModelIndex &, const QModelIndex &)));
+
+}
 
 // void VocabularyView::horizontalHeaderResized(int logicalIndex, int oldSize, int newSize)
 // {
@@ -307,5 +313,23 @@ VocabularyView::VocabularyView(QWidget *parent) : QTableView(parent)
 //     }
 //     QTableView::keyPressEvent(e);
 // }
+
+void VocabularyView::slotCurrentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    kDebug() << "Current Changed!";
+    Q_UNUSED(previous);
+    KEduVocExpression* entry = 0;
+    if ( current.isValid() ) {
+        kDebug() << "can convert" << model()->data(current, VocabularyModel::EntryRole).typeName();
+
+        entry =  model()->data(current, VocabularyModel::EntryRole).value<KEduVocExpression*>();
+        if ( entry ) {
+            kDebug() << "Current translation" << entry->translation(VocabularyModel::translation(current.column())).text();
+        }else{
+            kDebug() << "Current translation is 0";
+        }
+    }
+    emit translationChanged(entry, VocabularyModel::translation(current.column()));
+}
 
 #include "vocabularyview.moc"

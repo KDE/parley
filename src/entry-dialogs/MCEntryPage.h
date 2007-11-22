@@ -28,7 +28,7 @@
 
 #include "ui_MCEntryPageForm.h"
 
-class KEduVocTranslation;
+class KEduVocExpression;
 
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
@@ -40,13 +40,13 @@ public:
     void clear();
 
 public slots:
-    void setTranslation(KEduVocTranslation* translation);
+    void setTranslation(KEduVocExpression* entry,int translation);
 
 private slots:
     void slotDataChanged(const QString&);
 
 private:
-    KEduVocTranslation* m_translation;
+//     KEduVocTranslation* m_translation;
 };
 
 #endif // MCEntryPage_included

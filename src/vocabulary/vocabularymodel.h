@@ -15,10 +15,13 @@
 #ifndef VOCABULARYMODEL_H
 #define VOCABULARYMODEL_H
 
+#include <keduvocexpression.h>
+#include <keduvoctranslation.h>
 #include <QAbstractTableModel>
 
 class KEduVocDocument;
 class KEduVocLesson;
+
 
 /**
 	@author Frederik Gladhorn <frederik.gladhorn@kdemail.net>
@@ -27,8 +30,7 @@ class VocabularyModel : public QAbstractTableModel
 {
 Q_OBJECT
 public:
-    enum entryColumns
-    {
+    enum entryColumns {
         Translation,
         Pronunciation,
         WordType,
@@ -41,6 +43,11 @@ public:
         Audio,
         Image,
         EntryColumnsMAX
+    };
+
+    enum roles {
+        TranslationRole = Qt::UserRole,
+        EntryRole
     };
 
     VocabularyModel(QObject *parent = 0);
@@ -69,5 +76,8 @@ private:
 
     KEduVocDocument *m_document;
 };
+
+Q_DECLARE_METATYPE(KEduVocTranslation*)
+Q_DECLARE_METATYPE(KEduVocExpression*)
 
 #endif

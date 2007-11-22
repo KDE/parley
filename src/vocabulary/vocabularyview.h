@@ -22,16 +22,23 @@
 //#include <vocabularysortfiltermodel.h>
 //#include <vocabularydelegate.h>
 
+class VocabularyModel;
+class KEduVocExpression;
+
 class VocabularyView : public QTableView
 {
     Q_OBJECT
 public:
     VocabularyView(QWidget *parent = 0);
 
-//     void setModel(KVTSortFilterModel * model);
+    void setModel(VocabularyModel * model);
 //     void adjustContent();
 
+signals:
+    void translationChanged(KEduVocExpression*, int);
 
+private slots:
+    void slotCurrentChanged(const QModelIndex& current, const QModelIndex& previous);
 // private slots:
 //     void verticalHeaderResized(int, int, int);
 //     void horizontalHeaderResized(int, int, int);

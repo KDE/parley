@@ -50,7 +50,7 @@ class KActionMenu;
 class QProgressBar;
 class QSplitter;
 class QLabel;
-class QTableView;
+class VocabularyView;
 class VocabularyModel;
 
 /**
@@ -194,7 +194,7 @@ private:
     QString lastPixName;
 
     VocabularyModel *m_vocabularyModel;
-    QTableView *m_vocabularyView;
+    VocabularyView *m_vocabularyView;
 
     QWidget *m_searchWidget;
 

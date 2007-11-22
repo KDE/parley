@@ -29,6 +29,8 @@ VocabularyModel::VocabularyModel(QObject *parent)
 {
     m_document = 0;
     m_lesson = 0;
+
+    qRegisterMetaType<KEduVocTranslation*>("KEduVocTranslationStar");
 }
 
 
@@ -108,7 +110,7 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant();
         }
         break;
-    case Qt::DecorationRole:
+    case Qt::DecorationRole: {
         switch (entryColumn) {
         case Audio:
             if ( !m_lesson->entry(index.row())->translation(translationId).soundUrl().isEmpty() ) {
@@ -124,6 +126,23 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant();
         }
         break;
+    }
+    case TranslationRole: {
+        kDebug() << "send trans" << &m_lesson->entry(index.row())->translation(translationId) << m_lesson->entry(index.row())->translation(translationId).text();
+        
+//         return &m_lesson->entry(index.row())->translation(translationId);
+        QVariant v;
+        v.setValue(&m_lesson->entry(index.row())->translation(translationId));
+        return v;
+        }
+    case EntryRole: {
+        kDebug() << "send entry" << &m_lesson->entry(index.row())->translation(translationId) << m_lesson->entry(index.row())->translation(translationId).text();
+        
+//         return &m_lesson->entry(index.row())->translation(translationId);
+        QVariant v;
+        v.setValue(m_lesson->entry(index.row()));
+        return v;
+        }
     }
 
     return QVariant();

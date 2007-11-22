@@ -27,6 +27,7 @@
 
 #include <keduvocmultiplechoice.h>
 #include <keduvoctranslation.h>
+#include <keduvocexpression.h>
 #include <QLineEdit>
 
 
@@ -50,15 +51,16 @@ void MCEntryPage::slotDataChanged(const QString&)
 
 ///@todo the lib now supports an arbitrary number of entries for multiple choice. We should reflect that and have a list rather than five fixed entries.
 // also starting with 0 might be nicer. crashes though.
-void MCEntryPage::setTranslation(KEduVocTranslation* translation)
+void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
-    m_translation = translation;
-    KEduVocMultipleChoice mc = m_translation->multipleChoice();
-    mc1Field->setText(mc.choice(0));
-    mc2Field->setText(mc.choice(1));
-    mc3Field->setText(mc.choice(2));
-    mc4Field->setText(mc.choice(3));
-    mc5Field->setText(mc.choice(4));
+    if (entry) {
+        KEduVocMultipleChoice mc = entry->translation(translation).multipleChoice();
+        mc1Field->setText(mc.choice(0));
+        mc2Field->setText(mc.choice(1));
+        mc3Field->setText(mc.choice(2));
+        mc4Field->setText(mc.choice(3));
+        mc5Field->setText(mc.choice(4));
+    }
 }
 
 void MCEntryPage::clear()
@@ -69,6 +71,7 @@ void MCEntryPage::clear()
     mc4Field->setText(QString());
     mc5Field->setText(QString());
 }
+
 
 
 #include "MCEntryPage.moc"

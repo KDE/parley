@@ -27,7 +27,7 @@
 #include "practice/testentrymanager.h"
 #include "lessondockwidget.h"
 #include "vocabulary/vocabularymodel.h"
-#include "vocabulary/vocabularymodel.h"
+#include "vocabulary/vocabularyview.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -41,6 +41,7 @@
 #include "prefs.h"
 
 #include <keduvoclesson.h>
+#include <keduvocexpression.h>
 
 #include <kstatusbar.h>
 #include <klineedit.h>
@@ -774,7 +775,10 @@ void ParleyApp::initDockWidgets()
     MCEntryPage *multipleChoiceWidget = new MCEntryPage(this);
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_multipleChoiceWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
 
 // Pronunciation symbols???
     QDockWidget *charSelectDock = new QDockWidget(i18n("Pronunciation IPA symbols?"), this);
