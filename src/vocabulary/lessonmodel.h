@@ -55,6 +55,7 @@ public slots:
     /** Set the new source kvtml file
      * @param doc the new file */
     void setDocument(KEduVocDocument *doc);
+    void setWordTypeDocument( KEduVocDocument *doc );
 
 signals:
     /**
@@ -64,6 +65,7 @@ signals:
 
 private:
     KEduVocLesson * m_rootLesson;
+    KEduVocLesson * m_wordTypeLesson;
 
 public:
     /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/

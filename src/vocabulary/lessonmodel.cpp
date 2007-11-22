@@ -38,6 +38,7 @@
 LessonModel::LessonModel(QObject * parent) : QAbstractItemModel(parent)
 {
     m_rootLesson = 0;
+    //m_wordTypeLesson = 0;
 }
 
 
@@ -47,6 +48,11 @@ void LessonModel::setDocument(KEduVocDocument * doc)
     reset();
 }
 
+void LessonModel::setWordTypeDocument(KEduVocDocument * doc)
+{
+    m_rootLesson = doc->wordTypeLesson();
+    reset();
+}
 
 QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) const
 {

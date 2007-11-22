@@ -26,6 +26,7 @@
 
 #include "practice/testentrymanager.h"
 #include "lessondockwidget.h"
+#include "wordtypedockwidget.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 

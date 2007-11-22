@@ -38,7 +38,7 @@
 class PracticeManager;
 class EntryDlg;
 class LessonDockWidget;
-class WordTypeWidget;
+class WordTypeDockWidget;
 
 class KEduVocDocument;
 class KLineEdit;
@@ -202,7 +202,7 @@ private:
 
     /// dock widgets to display lessons, word types, ...
     LessonDockWidget *m_lessonDockWidget;
-//     WordTypeWidget   *m_wordTypeWidget;
+    WordTypeDockWidget *m_wordTypeDockWidget;
 
     /** The models to represent the data of m_doc */
 //     KVTTableModel       *m_tableModel;
@@ -217,6 +217,7 @@ private:
     QLabel              *m_typeStatusBarLabel;
 
     friend class LessonDockWidget;
+    friend class WordTypeDockWidget;
     friend class ParleyDocument;
 };
 

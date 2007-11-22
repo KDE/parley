@@ -163,6 +163,7 @@ set(parley_SRCS
     #kvtlessonview.cpp
     #kvtsortfiltermodel.cpp
     lessondockwidget.cpp
+    wordtypedockwidget.cpp
 )
 
 set(parley_icons
