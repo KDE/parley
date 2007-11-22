@@ -31,6 +31,7 @@
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
+#include "entry-dialogs/MCEntryPage.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
 #include "language-dialogs/languagedialog.h"
@@ -770,7 +771,7 @@ void ParleyApp::initDockWidgets()
 // Multiple choice
     QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
     multipleChoiceDock->setObjectName("MultipleChoiceDock");
-    QLabel *multipleChoiceWidget = new QLabel("Multiple choice placeholder", this);
+    MCEntryPage *multipleChoiceWidget = new MCEntryPage(this);
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_multipleChoiceWidget, SLOT(setTranslation(KEduVocTranslation*)));

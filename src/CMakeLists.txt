@@ -91,12 +91,12 @@ kde4_add_ui_files(docprop_SRCS
 )
 
 set(entrydialogs_SRCS
-  #  entry-dialogs/AdjEntryPage.cpp
+    entry-dialogs/AdjEntryPage.cpp
   #  entry-dialogs/additionaleditpage.cpp
   #  entry-dialogs/CommonEntryPage.cpp
   #  entry-dialogs/EntryDlg.cpp
   #  entry-dialogs/FromToEntryPage.cpp
-  #  entry-dialogs/MCEntryPage.cpp
+    entry-dialogs/MCEntryPage.cpp
   #  entry-dialogs/PhoneticEntryPage.cpp
   #  entry-dialogs/TenseEntryPage.cpp
   #  entry-dialogs/wordtypewidget.cpp

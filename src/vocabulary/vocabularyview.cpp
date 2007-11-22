@@ -30,21 +30,22 @@
 #define HEADER_MINSIZE   25
 #define KV_COLWIDTH_MARK 25
 
+
 VocabularyView::VocabularyView(QWidget *parent) : QTableView(parent)
 {
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
 //     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
 //     setTabKeyNavigation(false);
-//     setSortingEnabled(true);
+    setSortingEnabled(true);
 // 
 //     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
 //     m_delegate = new KVTTableDelegate(this);
 //     setItemDelegate(m_delegate);
 // 
-//     // Enable context menus
-//     setContextMenuPolicy(Qt::ActionsContextMenu);
-//     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
+    // Enable context menus
+     setContextMenuPolicy(Qt::ActionsContextMenu);
+     horizontalHeader()->setContextMenuPolicy(Qt::ActionsContextMenu);
 
     //horizontalHeader()->setStretchLastSection(true);
 }
@@ -66,7 +67,6 @@ VocabularyView::VocabularyView(QWidget *parent) : QTableView(parent)
 //     //kDebug() << "Column resized\n";
 //     model()->setHeaderData(logicalIndex, Qt::Horizontal, QSize(newSize, 25), Qt::SizeHintRole);
 // }
-
 
 
 // void VocabularyView::slotCurrentColumnChanged(const QModelIndex & current, const QModelIndex & previous)

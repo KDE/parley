@@ -341,6 +341,13 @@ void ParleyApp::initActions()
     actionShowActiveColumn->setCheckable((true));
     actionShowActiveColumn->setChecked(Prefs::tableActiveColumnVisible());
 
+    m_vocabularyColumnsActionMenu = new KActionMenu(this);
+    actionCollection()->addAction("show_vocabulary_columns_menu", m_vocabularyColumnsActionMenu);
+    m_vocabularyColumnsActionMenu->setText(i18n("Vocabulary Columns"));
+    m_vocabularyColumnsActionMenu->setWhatsThis(i18n("Toggle display of individual vocabulary columns"));
+    m_vocabularyColumnsActionMenu->setToolTip(m_vocabularyColumnsActionMenu->whatsThis());
+    m_vocabularyColumnsActionMenu->setStatusTip(m_vocabularyColumnsActionMenu->whatsThis());
+
 
 // -- ONLY ON RIGHT CLICK - HEADER SO FAR -------------------------------------
     KAction *actionRestoreNativeOrder = new KAction(this);

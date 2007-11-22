@@ -46,12 +46,8 @@
    <text>Tools</text>
     <Action name="show_lesson_dock"/>
    </Menu>
-   <Menu name="table" >
-   <text>Table</text>
-    <Action name="config_show_search" />
-    <Action name="config_show_active_column" />
-    <Action name="config_show_lesson_column" />
-    </Menu>
+   <Action name="config_show_search" />
+   <Action name="show_vocabulary_columns_menu" />
   </Menu>
  </MenuBar>
 

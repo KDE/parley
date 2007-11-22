@@ -29,6 +29,7 @@
 #include <KComboBox>
 #include <KXmlGuiWindow>
 #include <KActionCollection>
+#include <KActionMenu>
 #include <QAction>
 #include <QVBoxLayout>
 
@@ -90,6 +91,8 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
     m_lessonView->addAction(parent->actionCollection()->action("split_lesson"));
 
     parent->actionCollection()->addAction("show_lesson_dock", toggleViewAction());
+
+    parent->m_vocabularyColumnsActionMenu->addAction(new QAction("Test me", parent->m_vocabularyColumnsActionMenu));
 
     setWidget(left);
 }

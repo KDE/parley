@@ -46,6 +46,7 @@ class KComboBox;
 class KMessageBox;
 class KRecentFilesAction;
 class KAction;
+class KActionMenu;
 class QProgressBar;
 class QSplitter;
 class QLabel;
@@ -82,7 +83,7 @@ public:
     void initView();
 
     void initDockWidgets();
-    
+
     /** save the app-specific options on slotAppExit or by an Options dialog */
     void saveOptions();
 
@@ -188,6 +189,7 @@ private:
     KRecentFilesAction* m_recentFilesAction;
     KAction* m_deleteEntriesAction;
     KAction* m_vocabShowSearchBarAction;
+    KActionMenu* m_vocabularyColumnsActionMenu;
 
     QString lastPixName;
 

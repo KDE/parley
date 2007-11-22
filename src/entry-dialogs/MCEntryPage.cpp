@@ -25,14 +25,13 @@
 
 #include "MCEntryPage.h"
 
+#include <keduvocmultiplechoice.h>
+#include <keduvoctranslation.h>
 #include <QLineEdit>
 
-#include "EntryDlg.h"
 
-MCEntryPage::MCEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent)
+MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 {
-    m_doc = doc;
-
     setupUi(this);
 
     connect(mc1Field, SIGNAL(textChanged(const QString&)), SLOT(slotDataChanged(const QString&)));
@@ -45,62 +44,21 @@ MCEntryPage::MCEntryPage(KEduVocDocument *doc, QWidget *parent) : QWidget(parent
 
 void MCEntryPage::slotDataChanged(const QString&)
 {
-    emit sigModified();
-}
 
-
-bool MCEntryPage::isModified()
-{
-    if ( m_currentRow < 0 || m_currentTranslation < 0 ) {
-        return false;
-    }
-
-    KEduVocMultipleChoice mc = m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice();
-
-    if ( mc.choice(1) != mc1Field->text() ) {
-        return true;
-    }
-    if ( mc.choice(2) != mc2Field->text() ) {
-        return true;
-    }
-    if ( mc.choice(3) != mc3Field->text() ) {
-        return true;
-    }
-    if ( mc.choice(4) != mc4Field->text() ) {
-        return true;
-    }
-    if ( mc.choice(5) != mc5Field->text() ) {
-        return true;
-    }
-    return false;
 }
 
 
 ///@todo the lib now supports an arbitrary number of entries for multiple choice. We should reflect that and have a list rather than five fixed entries.
 // also starting with 0 might be nicer. crashes though.
-void MCEntryPage::setData(int row, int col)
+void MCEntryPage::setTranslation(KEduVocTranslation* translation)
 {
-    m_currentRow = row;
-    m_currentTranslation = col;
-    KEduVocMultipleChoice mc = m_doc->entry(m_currentRow)->translation(m_currentTranslation).multipleChoice();
-
+    m_translation = translation;
+    KEduVocMultipleChoice mc = m_translation->multipleChoice();
     mc1Field->setText(mc.choice(0));
     mc2Field->setText(mc.choice(1));
     mc3Field->setText(mc.choice(2));
     mc4Field->setText(mc.choice(3));
     mc5Field->setText(mc.choice(4));
-}
-
-void MCEntryPage::commitData()
-{
-    KEduVocMultipleChoice mc = KEduVocMultipleChoice();
-    mc.appendChoice(mc1Field->text());
-    mc.appendChoice(mc2Field->text());
-    mc.appendChoice(mc3Field->text());
-    mc.appendChoice(mc4Field->text());
-    mc.appendChoice(mc5Field->text());
-
-    m_doc->entry(m_currentRow)->translation(m_currentTranslation).setMultipleChoice(mc);
 }
 
 void MCEntryPage::clear()

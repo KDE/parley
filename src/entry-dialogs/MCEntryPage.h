@@ -27,32 +27,26 @@
 #define MCEntryPage_included
 
 #include "ui_MCEntryPageForm.h"
-#include <keduvocmultiplechoice.h>
-#include <keduvocdocument.h>
+
+class KEduVocTranslation;
 
 class MCEntryPage : public QWidget, public Ui::MCEntryPageForm
 {
     Q_OBJECT
 
 public:
-    explicit MCEntryPage(KEduVocDocument *doc, QWidget *parent = 0);
+    explicit MCEntryPage(QWidget *parent = 0);
 
-    void setData(int row, int col);
-    void commitData();
     void clear();
 
-    bool isModified();
-
-signals:
-    void sigModified();
+public slots:
+    void setTranslation(KEduVocTranslation* translation);
 
 private slots:
     void slotDataChanged(const QString&);
 
 private:
-    KEduVocDocument     *m_doc;
-    int m_currentRow;
-    int m_currentTranslation;
+    KEduVocTranslation* m_translation;
 };
 
 #endif // MCEntryPage_included
