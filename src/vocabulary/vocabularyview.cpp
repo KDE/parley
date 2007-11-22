@@ -357,13 +357,23 @@ void VocabularyView::reset()
     }
 
     for( int i = 0; i < model()->columnCount(QModelIndex()); i++) {
-        KAction* toggleColumn = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
-        
-//     m_columnActionMap
-        m_vocabularyColumnsActionMenu->addAction(toggleColumn);
-        connect (toggleColumn, SIGNAL(triggered(bool)),
-            this, SLOT(slotToggleColumn(bool)));
-        m_columnActionMap[toggleColumn] = i;
+        KActionMenu* currentTranslationAction;
+        KAction* columnAction;
+
+        if(VocabularyModel::columnType(i) == VocabularyModel::Translation) {
+            currentTranslationAction = new KActionMenu(
+                model()->headerData(i, Qt::Horizontal).toString(), this);
+            columnAction = currentTranslationAction;
+            m_vocabularyColumnsActionMenu->addAction(currentTranslationAction);
+        } else {
+            columnAction = new KToggleAction(model()->headerData(i, Qt::Horizontal).toString(), this);
+            currentTranslationAction->addAction(columnAction);
+            connect (columnAction, SIGNAL(triggered(bool)),
+                this, SLOT(slotToggleColumn(bool)));
+            setColumnHidden(i, true);
+        }
+kDebug() << "add " << i << columnAction->text();
+        m_columnActionMap[columnAction] = i;
     }
 
 //     KAction* toggleColumn = new KAction("Column count: ", this);
@@ -373,7 +383,9 @@ void VocabularyView::reset()
 
 void VocabularyView::slotToggleColumn(bool show)
 {
-    setColumnHidden(m_columnActionMap[(KAction*)sender()], show);
+    kDebug() << m_columnActionMap[(KAction*)sender()] << !show;
+
+    setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
 }
 
 
