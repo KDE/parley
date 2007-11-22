@@ -741,6 +741,71 @@ void ParleyApp::initDockWidgets()
 //     wordTypeDockWidget->setWidget(m_wordTypeWidget);
 //     addDockWidget(Qt::BottomDockWidgetArea, wordTypeDockWidget);
 //     connect(this, SIGNAL(signalSetData(const QList<int>&, int)), m_wordTypeWidget, SLOT(setEntries(const QList<int>&, int)));
+
+// Conjugations
+    QDockWidget *conjugationDock = new QDockWidget(i18n("Conjugation"), this);
+    conjugationDock->setObjectName("ConjugationDock");
+    QLabel *conjugationWidget = new QLabel("Conjugations placeholder", this);
+    conjugationDock->setWidget(conjugationWidget);
+    addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_conjugationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// Declinations
+    QDockWidget *declinationDock = new QDockWidget(i18n("Declination"), this);
+    declinationDock->setObjectName("DeclinationDock");
+    QLabel *declinationWidget = new QLabel("Declinations placeholder", this);
+    declinationDock->setWidget(declinationWidget);
+    addDockWidget(Qt::RightDockWidgetArea, declinationDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// Comparison forms
+    QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
+    comparisonDock->setObjectName("ComparisonDock");
+    QLabel *comparisonWidget = new QLabel("comparisons placeholder", this);
+    comparisonDock->setWidget(comparisonWidget);
+    addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_comparisonWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+
+// Multiple choice
+    QDockWidget *multipleChoiceDock = new QDockWidget(i18n("Multiple Choice"), this);
+    multipleChoiceDock->setObjectName("MultipleChoiceDock");
+    QLabel *multipleChoiceWidget = new QLabel("Multiple choice placeholder", this);
+    multipleChoiceDock->setWidget(multipleChoiceWidget);
+    addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_multipleChoiceWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// Pronunciation symbols???
+    QDockWidget *charSelectDock = new QDockWidget(i18n("Pronunciation IPA symbols?"), this);
+    charSelectDock->setObjectName("IPADock");
+    QLabel *charSelectWidget = new QLabel("IPA placeholder", this);
+    charSelectDock->setWidget(charSelectWidget);
+    addDockWidget(Qt::RightDockWidgetArea, charSelectDock);
+
+
+// Image
+    QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
+    imageDock->setObjectName("ImageDock");
+    QLabel *imageWidget = new QLabel("Image placeholder", this);
+    imageDock->setWidget(imageWidget);
+    addDockWidget(Qt::RightDockWidgetArea, imageDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_imageWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// Sound
+    QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
+    audioDock->setObjectName("AudioDock");
+    QLabel *audioWidget = new QLabel("Sound placeholder", this);
+    audioDock->setWidget(audioWidget);
+    addDockWidget(Qt::RightDockWidgetArea, audioDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// Grades
+    QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
+    gradeDock->setObjectName("gradeDock");
+    QLabel *gradeWidget = new QLabel("grade placeholder", this);
+    gradeDock->setWidget(gradeWidget);
+    addDockWidget(Qt::RightDockWidgetArea, gradeDock);
+//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
 }
 
 
