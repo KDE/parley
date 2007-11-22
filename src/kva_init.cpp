@@ -39,6 +39,7 @@
 #include "entry-dialogs/wordtypewidget.h"
 
 #include <KActionCollection>
+#include <KActionMenu>
 #include <KLineEdit>
 #include <KComboBox>
 #include <KRecentFilesAction>
@@ -345,13 +346,6 @@ void ParleyApp::initActions()
     KAction *actionRestoreNativeOrder = new KAction(this);
     actionCollection()->addAction("restore_native_order", actionRestoreNativeOrder);
     actionRestoreNativeOrder->setText(i18n("Restore Native Order"));
-
-
-    if (!initialGeometrySet()) {
-        resize(QSize(550, 400).expandedTo(minimumSizeHint()));
-    }
-    setupGUI(ToolBar | Keys | StatusBar | Create);
-    setAutoSaveSettings();
 }
 
 

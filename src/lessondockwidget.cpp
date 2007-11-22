@@ -79,10 +79,17 @@ LessonDockWidget::LessonDockWidget(ParleyApp *parent)
 
     m_lessonView->addAction(parent->actionCollection()->action("new_lesson"));
     m_lessonView->addAction(parent->actionCollection()->action("rename_lesson"));  m_lessonView->addAction(parent->actionCollection()->action("delete_lesson"));
-    /// @todo add a separator here
+
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
     m_lessonView->addAction(parent->actionCollection()->action("check_all_lessons")); m_lessonView->addAction(parent->actionCollection()->action("check_no_lessons"));
-    /// @todo add a separator here
+    separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
     m_lessonView->addAction(parent->actionCollection()->action("split_lesson"));
+
+    parent->actionCollection()->addAction("show_lesson_dock", toggleViewAction());
 
     setWidget(left);
 }

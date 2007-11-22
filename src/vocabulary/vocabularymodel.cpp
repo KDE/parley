@@ -69,7 +69,6 @@ int VocabularyModel::columnCount(const QModelIndex &) const
     if ( !m_document ) {
         return 0;
     }
-//     kDebug() << " col count " << m_document->identifierCount()*EntryColumnsMAX;
     return m_document->identifierCount()*EntryColumnsMAX;
 }
 

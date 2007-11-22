@@ -145,6 +145,12 @@ kDebug() << "Parley - will open doc";
         }
     }
 
+
+    if (!initialGeometrySet()) {
+        resize(QSize(800, 600).expandedTo(minimumSizeHint()));
+    }
+    setupGUI(ToolBar | Keys | StatusBar | Create);
+
     // save position of dock windows etc
     setAutoSaveSettings();
 }
