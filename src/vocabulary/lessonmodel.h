@@ -37,7 +37,13 @@ class LessonModel : public QAbstractItemModel
     Q_OBJECT
 
 public:
-    LessonModel(QObject *parent = 0);
+    enum EnumContainerModelType{
+        LessonContainer,
+        WordTypeContainer,
+        LeitnerContainer
+    };
+
+    LessonModel(EnumContainerModelType type, QObject *parent = 0);
 //     ~LessonModel(); no need for cleanup - the doc will do that
 
     QVariant data(const QModelIndex &index, int role) const;
@@ -55,7 +61,6 @@ public slots:
     /** Set the new source kvtml file
      * @param doc the new file */
     void setDocument(KEduVocDocument *doc);
-    void setWordTypeDocument( KEduVocDocument *doc );
 
 signals:
     /**
@@ -63,9 +68,6 @@ signals:
      */
     void documentModified();
 
-private:
-    KEduVocLesson * m_rootLesson;
-    KEduVocLesson * m_wordTypeLesson;
 
 public:
     /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/
@@ -80,7 +82,6 @@ public:
      * @param role
      * @return bool @c true it worked */
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
-//  bool newData(const QStringList &strings);
 
     // add a lesson - returns lesson index
 //     int addLesson(const QString &lessonName = QString());
@@ -99,6 +100,12 @@ public:
      * @param order one of SplitLessonOrder
      */
 //     void splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order);
+
+private:
+    KEduVocLesson * m_rootLesson;
+    KEduVocLesson * m_wordTypeLesson;
+    EnumContainerModelType m_type;
+
 };
 
 #endif

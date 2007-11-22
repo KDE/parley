@@ -669,7 +669,7 @@ void ParleyApp::slotFileQuit()
 void ParleyApp::updateDocument()
 {
     m_lessonDockWidget->setDocument(m_document->document());
-//     m_wordTypeWidget->setDocument(m_document->document());
+    m_wordTypeDockWidget->setDocument(m_document->document());
 
 //     m_tableModel->setDocument(m_document->document());
 //     m_tableModel->reset();

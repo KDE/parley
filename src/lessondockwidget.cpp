@@ -107,7 +107,7 @@ void LessonDockWidget::setDocument(KEduVocDocument * doc)
         m_lessonModel->deleteLater();
     }
 
-    m_lessonModel = new LessonModel(this);
+    m_lessonModel = new LessonModel(LessonModel::LessonContainer, this);
     m_lessonModel->setDocument(doc);
     
     m_lessonView->setModel(m_lessonModel);

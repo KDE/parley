@@ -35,22 +35,28 @@
 
 
 
-LessonModel::LessonModel(QObject * parent) : QAbstractItemModel(parent)
+LessonModel::LessonModel(EnumContainerModelType type, QObject * parent) : QAbstractItemModel(parent)
 {
+    m_type = type;
     m_rootLesson = 0;
-    //m_wordTypeLesson = 0;
 }
 
 
 void LessonModel::setDocument(KEduVocDocument * doc)
 {
-    m_rootLesson = doc->lesson();
-    reset();
-}
-
-void LessonModel::setWordTypeDocument(KEduVocDocument * doc)
-{
-    m_rootLesson = doc->wordTypeLesson();
+    switch(m_type){
+    case LessonContainer:
+        m_rootLesson = doc->lesson();
+        break;
+    case WordTypeContainer:
+        m_rootLesson = doc->wordTypeContainer();
+        break;
+    case LeitnerContainer:
+    m_rootLesson = doc->leitnerContainer();
+        break;
+    default:
+        break;
+    }
     reset();
 }
 
