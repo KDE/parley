@@ -28,6 +28,9 @@ Things to improve in parley
    - Drop images from outside
    - Sound
 
+ * Give containers an image tag and display images in the lesson view
+
+
 **BUGS**
  * When sorting columns the entry numbers sometimes are not updated. Either hide the number column (do we need it anyways? or fix that)
 
@@ -36,7 +39,6 @@ Gui
  * Image file open dialog: filter and preview. Maybe restrict to image files?
  * Sound file open dialog: filter and preview
  * Editing of vocabulary should be made easier
- * Default windows size bigger (eg 800x525)
  * Navigation (editing vocabulary).
    act as usual spreadsheet application. (especially useful if trying to edit more than 2 columns).
      Enter       -> move down.
