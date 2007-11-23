@@ -389,6 +389,8 @@ void ParleyApp::initModel()
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 
     connect(m_lessonDockWidget->lessonView(), SIGNAL(signalSelectedLessonChanged(KEduVocLesson*)), m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
+
+    connect(m_wordTypeDockWidget->wordTypeView(), SIGNAL(signalSelectedLessonChanged(KEduVocLesson*)), m_vocabularyModel, SLOT(setLesson(KEduVocLesson*)));
 }
 
 
