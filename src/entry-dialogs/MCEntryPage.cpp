@@ -25,10 +25,8 @@
 
 #include "MCEntryPage.h"
 
-#include <keduvocmultiplechoice.h>
 #include <keduvoctranslation.h>
 #include <keduvocexpression.h>
-#include <QLineEdit>
 #include <QStringListModel>
 #include <KDebug>
 
@@ -56,7 +54,12 @@ void MCEntryPage::slotDataChanged( const QModelIndex & topLeft, const QModelInde
 // also starting with 0 might be nicer. crashes though.
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
-    m_translation = entry->translation(translation);
+    if (entry) {
+        m_translation = entry->translation(translation);
+    } else {
+        m_translation = 0;
+    }
+
     if (m_translation) {
         m_choicesModel->setStringList(m_translation->multipleChoice());
     } else {
@@ -64,10 +67,6 @@ void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
     }
 }
 
-void MCEntryPage::clear()
-{
-
-}
 
 void MCEntryPage::slotAddChoiceButton()
 {

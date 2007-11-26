@@ -57,6 +57,8 @@ VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidge
 
     //horizontalHeader()->setStretchLastSection(true);
     m_vocabularyColumnsActionMenu = vocabularyColumnsActionMenu;
+
+    setWordWrap(true);
 }
 
 
@@ -366,6 +368,8 @@ kDebug() << "add " << i << columnAction->text();
 //     KAction* toggleColumn = new KAction("Column count: ", this);
 //     m_columnActionMap
 //     m_vocabularyColumnsActionMenu->addAction(toggleColumn);
+
+    resizeColumnsToContents ();
 }
 
 void VocabularyView::slotToggleColumn(bool show)

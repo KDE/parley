@@ -23,33 +23,31 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef MCEntryPage_included
-#define MCEntryPage_included
+#ifndef COMPARISONWIDGET_H
+#define COMPARISONWIDGET_H
 
-#include "ui_multiplechoicewidget.h"
+#include "ui_comparisonwidget.h"
 
-#include <QModelIndex>
 
 class KEduVocExpression;
 class KEduVocTranslation;
-class QStringListModel;
 
-class MCEntryPage : public QWidget, public Ui::multipleChoiceWidget
+class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {
     Q_OBJECT
 
 public:
-    explicit MCEntryPage(QWidget *parent = 0);
+    explicit ComparisonWidget(QWidget *parent = 0);
 
 public slots:
     void setTranslation(KEduVocExpression* entry, int translation);
 
 private slots:
-    void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
-    void slotAddChoiceButton();
+    void slotMakeAdjectiveButton();
+    void slotMakeAdverbButton();
+
 private:
     KEduVocTranslation* m_translation;
-    QStringListModel * m_choicesModel;
 };
 
-#endif // MCEntryPage_included
+#endif // ComparisonWidget_included

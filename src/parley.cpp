@@ -33,6 +33,7 @@
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/MCEntryPage.h"
+#include "entry-dialogs/comparisonwidget.h"
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
 #include "language-dialogs/languagedialog.h"
@@ -764,10 +765,11 @@ void ParleyApp::initDockWidgets()
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
     comparisonDock->setObjectName("ComparisonDock");
-    QLabel *comparisonWidget = new QLabel("comparisons placeholder", this);
+    ComparisonWidget *comparisonWidget = new ComparisonWidget(this);
     comparisonDock->setWidget(comparisonWidget);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_comparisonWidget, SLOT(setTranslation(KEduVocTranslation*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
 // Multiple choice
