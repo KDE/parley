@@ -45,16 +45,24 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
 
     if ( m_document ) {
         setLesson(m_document->lesson());
-    } else {
-        reset();
     }
+    reset();
 }
 
 
 void VocabularyModel::setLesson(KEduVocLesson * lesson)
 {
-    m_lesson = lesson;
-    reset();
+    // use remove and insert rows. using reset resets all table headers too.
+    if (rowCount(QModelIndex())>0) {
+        beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()));
+        m_lesson = 0;
+        endRemoveRows();
+    }
+    if (lesson->entryCount()>0) {
+        beginInsertRows(QModelIndex(), 0, lesson->entryCount()-1);
+        m_lesson = lesson;
+        endInsertRows();
+    }
 }
 
 
@@ -91,7 +99,11 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
         case Pronunciation:
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->pronunciation());
         case WordType:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->wordType()->name());
+            // if no word type is set, we get a null pointer
+            if(m_lesson->entry(index.row())->translation(translationId)->wordType()) {
+                return QVariant(m_lesson->entry(index.row())->translation(translationId)->wordType()->name());
+            }
+            return QVariant();
         case SubWordType:
             return QVariant("bad idea");
         case Synonym:
