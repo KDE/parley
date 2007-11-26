@@ -28,7 +28,11 @@
 
 #include "ui_multiplechoicewidget.h"
 
+#include <QModelIndex>
+
 class KEduVocExpression;
+class KEduVocTranslation;
+class QStringListModel;
 
 class MCEntryPage : public QWidget, public Ui::multipleChoiceWidget
 {
@@ -43,10 +47,11 @@ public slots:
     void setTranslation(KEduVocExpression* entry,int translation);
 
 private slots:
-    void slotDataChanged(const QString&);
-
+    void slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight );
+    void slotAddChoiceButton();
 private:
-//     KEduVocTranslation* m_translation;
+    KEduVocTranslation* m_translation;
+    QStringListModel * m_choicesModel;
 };
 
 #endif // MCEntryPage_included

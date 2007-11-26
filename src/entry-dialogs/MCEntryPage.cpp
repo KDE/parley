@@ -30,17 +30,25 @@
 #include <keduvocexpression.h>
 #include <QLineEdit>
 #include <QStringListModel>
+#include <KDebug>
 
 MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
 {
     setupUi(this);
 
+    connect(addChoiceButton, SIGNAL(clicked()), SLOT(slotAddChoiceButton()));
+    connect(removeChoiceButton, SIGNAL(clicked()), SLOT(slotRemoveChoiceButton()));
+
+    m_choicesModel = new QStringListModel(this);
+    multipleChoiceListView->setModel(m_choicesModel);
+
+    connect(m_choicesModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
 }
 
 
-void MCEntryPage::slotDataChanged(const QString&)
+void MCEntryPage::slotDataChanged( const QModelIndex & topLeft, const QModelIndex & bottomRight )
 {
-
+    m_translation->multipleChoice() = m_choicesModel->stringList();
 }
 
 
@@ -48,8 +56,11 @@ void MCEntryPage::slotDataChanged(const QString&)
 // also starting with 0 might be nicer. crashes though.
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
-    if (entry) {
-        multipleChoiceListView->setModel(new QStringListModel(entry->translation(translation)->multipleChoice(), this));
+    m_translation = entry->translation(translation);
+    if (m_translation) {
+        m_choicesModel->setStringList(m_translation->multipleChoice());
+    } else {
+        ///@todo disable this widget
     }
 }
 
@@ -57,6 +68,17 @@ void MCEntryPage::clear()
 {
 
 }
+
+void MCEntryPage::slotAddChoiceButton()
+{
+    kDebug() << "add choice";
+    if (m_choicesModel) {
+        m_choicesModel->insertRow(multipleChoiceListView->model()->rowCount());
+
+        multipleChoiceListView->edit(m_choicesModel->index(multipleChoiceListView->model()->rowCount()-1));
+    }
+}
+
 
 
 
