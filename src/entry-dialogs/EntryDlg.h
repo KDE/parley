@@ -47,11 +47,7 @@ class EntryDlg : public KPageDialog
     Q_OBJECT
 
 public:
-
-    enum EditResult {EditCancel, EditApply, EditUndo, EditPageUp, EditPageDown, EditUp, EditDown, EditLeft, EditRight};
-
     EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc);
-
     ~EntryDlg();
 
     bool isModified();
@@ -78,8 +74,6 @@ private slots:
     void slotChildPageModified();
     void slotApply();
     void slotUndo();
-    void slotDockHorizontal();
-    void slotDockVertical();
 
 private:
     void closeEvent(QCloseEvent*e);
@@ -109,8 +103,7 @@ private:
     bool              docked;
 
     KEduVocDocument *m_doc;
-//    // The row currently selected in the document - this is the entry number
-//     int               m_currentRow;
+
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int               m_currentTranslation;
 
