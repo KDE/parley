@@ -61,9 +61,8 @@ void ComparisonWidget::setTranslation(KEduVocExpression * entry, int translation
                 comparativeLineEdit->setEnabled(true);
                 superlativeLineEdit->setEnabled(true);
 
-        ///@todo the comparison forms api is ugly
-                comparativeLineEdit->setText(m_translation->comparison().l2());
-                superlativeLineEdit->setText(m_translation->comparison().l3());
+                comparativeLineEdit->setText(m_translation->comparative());
+                superlativeLineEdit->setText(m_translation->superlative());
             }
         }
     } else {
@@ -117,12 +116,12 @@ void ComparisonWidget::setDocument(KEduVocDocument * doc)
 
 void ComparisonWidget::slotComparativeChanged()
 {
-    m_translation->comparison().setL2(comparativeLineEdit->text());
+    m_translation->setComparative(comparativeLineEdit->text());
 }
 
 void ComparisonWidget::slotSuperlativeChanged()
 {
-     m_translation->comparison().setL3(superlativeLineEdit->text());
+     m_translation->setSuperlative(superlativeLineEdit->text());
 }
 
 
