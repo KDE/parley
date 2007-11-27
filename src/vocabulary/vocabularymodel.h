@@ -69,10 +69,10 @@ public:
 public slots:
     void setDocument(KEduVocDocument *doc);
 
-    void setLesson(KEduVocLesson *lesson);
+    void setContainer(KEduVocContainer *container);
 
 private:
-    KEduVocLesson *m_lesson;
+    KEduVocContainer *m_lesson;
 
     KEduVocDocument *m_document;
 };

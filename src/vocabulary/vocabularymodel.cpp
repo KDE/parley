@@ -17,6 +17,7 @@
 #include "parleydocument.h"
 
 #include <keduvoclesson.h>
+#include <keduvocwordtype.h>
 
 #include <keduvocexpression.h>
 #include <KIcon>
@@ -44,13 +45,13 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
     m_lesson = 0;
 
     if ( m_document ) {
-        setLesson(m_document->lesson());
+        setContainer(m_document->lesson());
     }
     reset();
 }
 
 
-void VocabularyModel::setLesson(KEduVocLesson * lesson)
+void VocabularyModel::setContainer(KEduVocContainer * container)
 {
     // use remove and insert rows. using reset resets all table headers too.
     if (rowCount(QModelIndex())>0) {
@@ -58,9 +59,9 @@ void VocabularyModel::setLesson(KEduVocLesson * lesson)
         m_lesson = 0;
         endRemoveRows();
     }
-    if (lesson->entryCount()>0) {
-        beginInsertRows(QModelIndex(), 0, lesson->entryCount()-1);
-        m_lesson = lesson;
+    if (container->entryCount()>0) {
+        beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
+        m_lesson = container;
         endInsertRows();
     }
 }

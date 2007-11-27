@@ -31,23 +31,39 @@
 
 class KEduVocExpression;
 class KEduVocTranslation;
+class KEduVocDocument;
+class KEduVocWordType;
 
 class ComparisonWidget : public QWidget, public Ui::comparisonWidget
 {
     Q_OBJECT
 
 public:
-    explicit ComparisonWidget(QWidget *parent = 0);
+    ComparisonWidget(QWidget *parent = 0);
 
 public slots:
+    /**
+     * To know about word types that are currently defined.
+     * @param doc 
+     */
+    void setDocument(KEduVocDocument* doc);
+    /**
+     * Update the word
+     * @param entry 
+     * @param translation 
+     */
     void setTranslation(KEduVocExpression* entry, int translation);
 
 private slots:
     void slotMakeAdjectiveButton();
     void slotMakeAdverbButton();
 
+    void slotComparativeChanged();
+    void slotSuperlativeChanged();
+
 private:
     KEduVocTranslation* m_translation;
+    KEduVocDocument* m_doc;
 };
 
 #endif // ComparisonWidget_included

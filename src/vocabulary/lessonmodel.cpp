@@ -23,6 +23,7 @@
 
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
+#include <keduvocwordtype.h>
 #include <keduvocexpression.h>
 #include <krandom.h>
 
@@ -33,12 +34,10 @@
 
 
 
-
-
 LessonModel::LessonModel(KEduVocLesson::EnumContainerType type, QObject * parent) : QAbstractItemModel(parent)
 {
     m_type = type;
-    m_rootLesson = 0;
+    m_vocabularyContainer = 0;
 }
 
 
@@ -46,13 +45,13 @@ void LessonModel::setDocument(KEduVocDocument * doc)
 {
     switch(m_type){
     case KEduVocLesson::LessonContainer:
-        m_rootLesson = doc->lesson();
+        m_vocabularyContainer = doc->lesson();
         break;
     case KEduVocLesson::WordTypeContainer:
-        m_rootLesson = doc->wordTypeContainer();
+        m_vocabularyContainer = doc->wordTypeContainer();
         break;
     case KEduVocLesson::LeitnerContainer:
-    m_rootLesson = doc->leitnerContainer();
+        m_vocabularyContainer = doc->leitnerContainer();
         break;
     default:
         break;
@@ -68,7 +67,7 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
     KEduVocContainer *parentLesson;
 
     if (!parent.isValid()) {
-        parentLesson = m_rootLesson;
+        parentLesson = m_vocabularyContainer;
     } else {
         parentLesson = static_cast<KEduVocContainer*>(parent.internalPointer());
     }
@@ -90,7 +89,7 @@ QModelIndex LessonModel::parent(const QModelIndex &index) const
     KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
     KEduVocContainer *parentItem = childItem->parent();
 
-    if (parentItem == m_rootLesson)
+    if (parentItem == m_vocabularyContainer)
         return QModelIndex();
 
     return createIndex(parentItem->row(), 0, parentItem);
@@ -99,15 +98,16 @@ QModelIndex LessonModel::parent(const QModelIndex &index) const
 
 int LessonModel::rowCount(const QModelIndex &parent) const
 {
-    KEduVocLesson *parentItem;
+    KEduVocContainer *parentItem;
     if (parent.column() > 0) {
         return 0;
     }
 
-    if (!parent.isValid())
-        parentItem = m_rootLesson;
-    else
-        parentItem = static_cast<KEduVocLesson*>(parent.internalPointer());
+    if (!parent.isValid()) {
+        parentItem = m_vocabularyContainer;
+    } else {
+        parentItem = static_cast<KEduVocContainer*>(parent.internalPointer());
+    }
 
     return parentItem->childContainerCount();
 }
@@ -360,7 +360,7 @@ QVariant LessonModel::headerData(int section, Qt::Orientation orientation, int r
 
 int LessonModel::columnCount(const QModelIndex & parent) const
 {
-    if(!m_rootLesson) {
+    if(!m_vocabularyContainer) {
         return 0;
     }
 

@@ -56,8 +56,8 @@ private slots:
 
 private:
     KEduVocDocument    *m_doc;
-    KEduVocWordType     m_originalWordTypes;
-    KEduVocWordType     m_newWordTypes;
+//     KEduVocWordType     m_originalWordTypes;
+//     KEduVocWordType     m_newWordTypes;
     QStandardItemModel *m_wordTypeModel;
 };
 

@@ -27,6 +27,7 @@
 
 #include "kvttablemodel.h"
 #include <keduvocdocument.h>
+#include <keduvocwordtype.h>
 
 #include <KComboBox>
 #include <KLineEdit>

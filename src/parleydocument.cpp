@@ -267,7 +267,7 @@ void ParleyDocument::newDocumentWizard()
 
 void ParleyDocument::initializeDefaultGrammar()
 {
-    m_doc->wordTypes().createDefaultWordTypes();
+    ///@todo create word type containers - noun, verb, adjective...
 }
 
 

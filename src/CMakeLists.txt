@@ -79,7 +79,7 @@ set(docprop_SRCS
     docprop-dialogs/LangPropPage.cpp
     docprop-dialogs/TenseOptPage.cpp
     docprop-dialogs/TitlePage.cpp
-    docprop-dialogs/TypeOptPage.cpp
+#     docprop-dialogs/TypeOptPage.cpp
    # docprop-dialogs/UsageOptPage.cpp
 )
 

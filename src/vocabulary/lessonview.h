@@ -19,7 +19,7 @@
 #include <QTreeView>
 
 class LessonModel;
-class KEduVocLesson;
+class KEduVocContainer;
 
 /**
  * View for the lesson list.
@@ -42,7 +42,7 @@ public:
     // * @param appendAction */
     //void appendAction(QAction *appendAction);
 
-    KEduVocLesson * currentLesson();
+    KEduVocContainer * currentContainer();
 
 public slots:
     /** Append a lesson to the model and automatically set an edit up so the user can change "New lesson" into something meaningfull.*/
@@ -69,10 +69,10 @@ public slots:
     void slotSplitLesson();
 signals:
     /** Emitted when a new lesson is selected. Indicates the selected lesson. */
-    void signalSelectedLessonChanged(KEduVocLesson* selected);
+    void signalSelectedContainerChanged(KEduVocContainer* selected);
 
     /** Emitted when any of the checkboxes for the query change. */
-    void lessonsInQueryChanged();
+    void lessonsInPracticeChanged();
 private:
 
     void dropEvent(QDropEvent * event);

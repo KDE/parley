@@ -772,6 +772,7 @@ void ParleyApp::initDockWidgets()
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+    connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
 
 
 // Multiple choice

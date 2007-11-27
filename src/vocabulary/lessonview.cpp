@@ -94,14 +94,14 @@ void LessonView::selectionChanged(const QItemSelection & selected, const QItemSe
 {
     Q_UNUSED(deselected);
 
-    KEduVocLesson *lesson = 0;
+    KEduVocContainer *lesson = 0;
 
     if(selected.count() > 0) {
         QModelIndex index = selected.indexes().value(0);
-        lesson = static_cast<KEduVocLesson*>(index.internalPointer());
+        lesson = static_cast<KEduVocContainer*>(index.internalPointer());
     }
 
-    emit signalSelectedLessonChanged(lesson);
+    emit signalSelectedContainerChanged(lesson);
 }
 
 

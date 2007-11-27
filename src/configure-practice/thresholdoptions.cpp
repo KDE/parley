@@ -35,6 +35,7 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
     setupUi(this);
     m_doc = doc;
 
+/*
     connect(kcfg_WordTypesInPracticeEnabled, SIGNAL(toggled(bool)), PracticeWordTypesTreeWidget, SLOT(setEnabled(bool)));
 
     PracticeWordTypesTreeWidget->setEnabled(Prefs::wordTypesInPracticeEnabled());
@@ -69,6 +70,7 @@ ThresholdOptions::ThresholdOptions(KEduVocDocument* doc, QWidget* parent) : QWid
         }
     }
     connect(PracticeWordTypesTreeWidget, SIGNAL(  itemChanged ( QTreeWidgetItem *, int)), SLOT( wordTypeItemChanged ( QTreeWidgetItem *, int )));
+*/
 }
 
 
@@ -86,6 +88,7 @@ bool ThresholdOptions::isDefault()
 
 void ThresholdOptions::updateSettings()
 {
+/*
     QStringList activeWordTypes;
     QStringList activeSubWordTypes;
     QTreeWidgetItem* parentItem = PracticeWordTypesTreeWidget->invisibleRootItem();
@@ -103,7 +106,7 @@ void ThresholdOptions::updateSettings()
         }
     }
     Prefs::setWordTypesInPractice(activeWordTypes);
-    Prefs::setSubWordTypesInPractice(activeSubWordTypes);
+    Prefs::setSubWordTypesInPractice(activeSubWordTypes);*/
 }
 
 bool ThresholdOptions::hasChanged()
@@ -113,12 +116,12 @@ bool ThresholdOptions::hasChanged()
 
 void ThresholdOptions::wordTypeItemChanged ( QTreeWidgetItem * item, int column )
 {
-    // if it's a parent item, also change the check state of the children
-    if ( item->parent() == 0 ) {
-        for(int i = 0; i<item->childCount(); i++) {
-            item->child(i)->setCheckState(0, item->checkState(0));
-        }
-    }
+//     // if it's a parent item, also change the check state of the children
+//     if ( item->parent() == 0 ) {
+//         for(int i = 0; i<item->childCount(); i++) {
+//             item->child(i)->setCheckState(0, item->checkState(0));
+//         }
+//     }
 }
 
 

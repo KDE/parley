@@ -98,8 +98,7 @@ public:
 //     void splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order);
 
 private:
-    KEduVocLesson * m_rootLesson;
-    KEduVocLesson * m_wordTypeLesson;
+    KEduVocContainer * m_vocabularyContainer;
     KEduVocLesson::EnumContainerType m_type;
 
 };
