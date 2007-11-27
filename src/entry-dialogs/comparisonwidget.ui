@@ -5,7 +5,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>116</width>
+    <width>198</width>
     <height>265</height>
    </rect>
   </property>
@@ -26,9 +26,6 @@
      </property>
      <property name="text" >
       <string>Absolute:</string>
-     </property>
-     <property name="buddy" >
-      <cstring>comparativeLineEdit</cstring>
      </property>
     </widget>
    </item>
