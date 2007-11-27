@@ -38,7 +38,7 @@
 
 EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 {
-    setButtons(User1|Apply|Close);
+    setButtons(User1|Ok|Apply|Close);
     setDefaultButton(Apply);
     setFaceType(KPageDialog::List);
     setModal(false);
@@ -83,8 +83,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
-//     connect(this, SIGNAL(user2Clicked()), this, SLOT(slotDockVertical()));
-//     connect(this, SIGNAL(user3Clicked()), this, SLOT(slotDockHorizontal()));
+    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
 
     connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
@@ -94,9 +93,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     commonPage->expr_line->setFocus();
     setModified(false);
-
-
-
 
     for ( int identifier1 = 0; identifier1 < m_doc->identifierCount(); identifier1++ ) {
         for ( int identifier2 = identifier1 + 1; identifier2 < m_doc->identifierCount(); identifier2++ ) {
@@ -356,6 +352,12 @@ void EntryDlg::slotChildPageModified()
     enableButtonApply(true);
     enableButton(User1, true);
     m_modified = true;
+}
+
+void EntryDlg::slotOk()
+{
+    slotApply();
+    emit closeEntryDialog();
 }
 
 

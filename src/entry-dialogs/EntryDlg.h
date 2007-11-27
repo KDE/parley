@@ -63,6 +63,7 @@ signals:
      * @param
      */
     void signalSetData( const QList<int>& entries, int currentTranslation);
+
     /**
      * Tell the child pages to save their data.
      */
@@ -74,6 +75,7 @@ private slots:
     void slotChildPageModified();
     void slotApply();
     void slotUndo();
+    void slotOk();
 
 private:
     void closeEvent(QCloseEvent*e);
