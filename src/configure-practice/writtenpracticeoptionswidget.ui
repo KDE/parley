@@ -5,8 +5,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>278</width>
-    <height>257</height>
+    <width>276</width>
+    <height>90</height>
    </rect>
   </property>
   <layout class="QVBoxLayout" >
@@ -22,107 +22,6 @@
      <property name="text" >
       <string>Ignore capitalization mistakes</string>
      </property>
-    </widget>
-   </item>
-   <item>
-    <widget class="QGroupBox" name="kcfg_SplitTranslations" >
-     <property name="title" >
-      <string>Split Translations</string>
-     </property>
-     <property name="checkable" >
-      <bool>true</bool>
-     </property>
-     <property name="checked" >
-      <bool>true</bool>
-     </property>
-     <layout class="QGridLayout" >
-      <item row="0" column="0" >
-       <widget class="QLabel" name="label_at" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Preferred" hsizetype="Minimum" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="text" >
-         <string>at</string>
-        </property>
-       </widget>
-      </item>
-      <item row="0" column="1" >
-       <widget class="QCheckBox" name="kcfg_Periods" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at periods</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations will be split at periods if they have any (except any trailing periods that will be removed).</string>
-        </property>
-        <property name="text" >
-         <string>pe&amp;riods</string>
-        </property>
-       </widget>
-      </item>
-      <item row="1" column="1" >
-       <widget class="QCheckBox" name="kcfg_Colons" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at colons</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods will be split at colons if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>co&amp;lons</string>
-        </property>
-       </widget>
-      </item>
-      <item row="2" column="1" >
-       <widget class="QCheckBox" name="kcfg_Semicolons" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at semicolons</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods or colons will be split at semicolons if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>sem&amp;icolons</string>
-        </property>
-       </widget>
-      </item>
-      <item row="3" column="1" >
-       <widget class="QCheckBox" name="kcfg_Commas" >
-        <property name="enabled" >
-         <bool>true</bool>
-        </property>
-        <property name="sizePolicy" >
-         <sizepolicy vsizetype="Fixed" hsizetype="MinimumExpanding" >
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
-        </property>
-        <property name="toolTip" >
-         <string>Split translations at commas</string>
-        </property>
-        <property name="whatsThis" >
-         <string>When this options is enabled, translations that have not been split at periods, colons or semicolons will be split at commas if they have any.</string>
-        </property>
-        <property name="text" >
-         <string>co&amp;mmas</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
     </widget>
    </item>
    <item>
