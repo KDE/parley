@@ -149,6 +149,8 @@ void VerbQueryDlg::clearLineEdits()
         if ( m_entry->exp->translation(Prefs::solutionLanguage()).
                 conjugation(m_currentTense).conjugation(i).isEmpty() ) {
             conjugationLineEdit->setVisible(false);
+        } else {
+            conjugationLineEdit->setVisible(true);
         }
     }
 }
