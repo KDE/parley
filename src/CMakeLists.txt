@@ -189,5 +189,5 @@ install(TARGETS parley  DESTINATION ${BIN_INSTALL_DIR} )
 
 install( FILES parley.desktop  DESTINATION  ${XDG_APPS_INSTALL_DIR} )
 install( FILES parley.knsrc  DESTINATION  ${CONFIG_INSTALL_DIR} )
-install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parallEntries.valueley )
+install( FILES parleyui.rc  DESTINATION  ${DATA_INSTALL_DIR}/parley )
 
