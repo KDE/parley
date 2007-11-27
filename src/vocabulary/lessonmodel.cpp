@@ -65,18 +65,20 @@ QModelIndex LessonModel::index(int row, int column, const QModelIndex &parent) c
     if (!hasIndex(row, column, parent))
         return QModelIndex();
 
-    KEduVocLesson *parentLesson;
+    KEduVocContainer *parentLesson;
 
-    if (!parent.isValid())
+    if (!parent.isValid()) {
         parentLesson = m_rootLesson;
-    else
-        parentLesson = static_cast<KEduVocLesson*>(parent.internalPointer());
+    } else {
+        parentLesson = static_cast<KEduVocContainer*>(parent.internalPointer());
+    }
 
-    KEduVocLesson *childLesson = parentLesson->childLesson(row);
-    if (childLesson)
+    KEduVocContainer *childLesson = parentLesson->childContainer(row);
+    if (childLesson) {
         return createIndex(row, column, childLesson);
-    else
+    } else {
         return QModelIndex();
+    }
 }
 
 
@@ -85,8 +87,8 @@ QModelIndex LessonModel::parent(const QModelIndex &index) const
     if (!index.isValid())
         return QModelIndex();
 
-    KEduVocLesson *childItem = static_cast<KEduVocLesson*>(index.internalPointer());
-    KEduVocLesson *parentItem = childItem->parent();
+    KEduVocContainer *childItem = static_cast<KEduVocContainer*>(index.internalPointer());
+    KEduVocContainer *parentItem = childItem->parent();
 
     if (parentItem == m_rootLesson)
         return QModelIndex();
@@ -107,7 +109,7 @@ int LessonModel::rowCount(const QModelIndex &parent) const
     else
         parentItem = static_cast<KEduVocLesson*>(parent.internalPointer());
 
-    return parentItem->childLessonCount();
+    return parentItem->childContainerCount();
 }
 
 

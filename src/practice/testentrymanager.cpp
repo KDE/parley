@@ -114,11 +114,13 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
 
     m_randomSequence = new KRandomSequence( QDateTime::currentDateTime().toTime_t() );
 
+    ///@todo respect sub lessons and their inPractice state!
     // append lesson entries
-    foreach ( KEduVocLesson *lesson, m_doc->lesson()->childLessons() ) {
+    foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
+        KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
         if ( lesson->inPractice() ) {
             int lessonLimit = m_allTestEntries.count();
-            foreach ( KEduVocExpression *entry, lesson->entries() ) {
+            foreach ( KEduVocExpression *entry, lesson->entriesRecursive() ) {
                 if ( Prefs::testOrderLesson() ) {
                     // insert after the last entry of the last lesson
                     m_allTestEntries.insert(
@@ -139,7 +141,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no vocabulary.</p><p>Hint: To select a lesson set a checkmark next to it in the lesson column on the left.</p><p>Would you like to include all lessons?</p>"), i18n("No Entries in Selected Lessons") ) == KMessageBox::Yes ) {
             kDebug() << "Adding all lessons.";
             ///@todo reuse the above - make it a function?
-            foreach ( KEduVocLesson *lesson, m_doc->lesson()->childLessons() ) {
+            foreach ( KEduVocContainer *container, m_doc->lesson()->childContainers() ) {
+                KEduVocLesson *lesson = static_cast<KEduVocLesson*>(container);
                 int lessonLimit = m_allTestEntries.count();
                 foreach ( KEduVocExpression * entry, lesson->entries() ) {
                     if ( Prefs::testOrderLesson() ) {
