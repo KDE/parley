@@ -29,7 +29,7 @@ Things to improve in parley
    - Sound
 
  * Give containers an image tag and display images in the lesson view
-
+ * Check for mem leaks - I bet I introduced some in the lib.
 
 **BUGS**
  * When sorting columns the entry numbers sometimes are not updated. Either hide the number column (do we need it anyways? or fix that)
