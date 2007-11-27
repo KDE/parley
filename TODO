@@ -31,6 +31,12 @@ Things to improve in parley
  * Give containers an image tag and display images in the lesson view
  * Check for mem leaks - I bet I introduced some in the lib.
 
+**GENERAL**
+ * update the dtd and validate some documents
+ * write more unit tests
+ * add image tag to lesson class
+ * adverbs/adjectives: base form is there already, no need to enter it again!
+
 **BUGS**
  * When sorting columns the entry numbers sometimes are not updated. Either hide the number column (do we need it anyways? or fix that)
 

@@ -33,6 +33,9 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     setButtons(Default|Ok|Apply|Cancel|Help);
     setDefaultButton(Ok);
 
+    setButtonText(Ok, i18n("Start Practice..."));
+    setButtonIcon(Ok, KIcon("start-practice"));
+
     m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
     addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "start-practice", i18n("Practice options"), true);
 
