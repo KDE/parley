@@ -25,6 +25,7 @@
 #include "practicedialog.h"
 #include "answervalidator.h"
 #include "entry-dialogs/EntryDlg.h"
+#include "languagesettings.h"
 
 #include <KLocale>
 #include <KPassivePopup>
@@ -39,6 +40,7 @@
 #include <QTimer>
 #include <QGraphicsView>
 #include <QGraphicsItem>
+#include <QDBusInterface>
 
 PracticeDialog::PracticeDialog(const QString & caption, KEduVocDocument *doc, QWidget *parent) : KDialog(parent)
 {
@@ -142,6 +144,20 @@ void PracticeDialog::setEntry(TestEntry * entry)
     m_testType = Prefs::testType();
     startAnswerTimer();
     m_answerTainted = false;
+
+    QString locale = m_doc->identifier(Prefs::solutionLanguage()).locale();
+
+    if(!locale.isEmpty()) {
+        LanguageSettings settings(locale);
+        settings.readConfig();
+        QString layout = settings.keyboardLayout();
+        if(!layout.isEmpty()) {
+            QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
+            if (kxkb.isValid()) {
+                kxkb.call( "setLayout", layout );
+            }
+        }
+    }
 }
 
 void PracticeDialog::editEntry()

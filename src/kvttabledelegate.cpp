@@ -73,10 +73,8 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
         KLineEdit *editor = new KLineEdit(parent);
         editor->setFrame(false);
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
-        ///@todo activate the keyboard layout switching code
 
         QString locale = index.model()->data(index, KVTTableModel::LocaleRole).toString();
-
 
         if(!locale.isEmpty()) {
             LanguageSettings settings(locale);
@@ -84,8 +82,9 @@ QWidget * KVTTableDelegate::createEditor(QWidget * parent, const QStyleOptionVie
             QString layout = settings.keyboardLayout();
             if(!layout.isEmpty()) {
                 QDBusInterface kxkb( "org.kde.kxkb", "/kxkb", "org.kde.KXKB" );
-                    if (kxkb.isValid())
-                        kxkb.call( "setLayout", layout );
+                if (kxkb.isValid()) {
+                    kxkb.call( "setLayout", layout );
+                }
             }
         }
 
