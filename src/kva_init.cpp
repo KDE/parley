@@ -259,7 +259,7 @@ void ParleyApp::initActions()
     KAction *actionRenameLesson = new KAction(this);
     actionCollection()->addAction("rename_lesson", actionRenameLesson);
     actionRenameLesson->setText(i18n("Rename Lesson"));
-    actionRenameLesson->setIcon(KIcon("edit"));
+    actionRenameLesson->setIcon(KIcon("object-edit"));
     actionRenameLesson->setWhatsThis(i18n("Rename the selected lesson"));
     actionRenameLesson->setToolTip(actionRenameLesson->whatsThis());
     actionRenameLesson->setStatusTip(actionRenameLesson->whatsThis());

@@ -53,7 +53,7 @@ MCQueryDlg::MCQueryDlg(KEduVocDocument *doc, QWidget *parent) : PracticeDialog(i
     connect(mw->stopPracticeButton, SIGNAL(clicked()), SLOT(close()));
 
     // edit
-    mw->editEntryButton->setIcon(KIcon("edit"));
+    mw->editEntryButton->setIcon(KIcon("object-edit"));
     connect(mw->editEntryButton, SIGNAL(clicked()), SLOT(editEntry()));
 
     // skip known

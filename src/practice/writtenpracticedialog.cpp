@@ -53,7 +53,7 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
     connect(mw->continueButton, SIGNAL(clicked()),  SLOT(continueButtonClicked()));
 
     mw->stopPracticeButton->setIcon( KIcon("list-remove") );
-    mw->editEntryButton->setIcon( KIcon("edit") );
+    mw->editEntryButton->setIcon( KIcon("object-edit") );
     mw->verify->setIcon(KIcon("ok"));
     mw->know_it->setIcon(KIcon("go-next"));
     mw->dont_know->setIcon(KIcon("go-next"));
