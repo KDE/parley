@@ -42,7 +42,6 @@ KVTTableView::KVTTableView(QWidget *parent) : QTableView(parent)
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setSelectionBehavior(QAbstractItemView::SelectRows);
     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
-    setTabKeyNavigation(false);
     setSortingEnabled(true);
 
     connect(horizontalHeader(), SIGNAL(sectionResized(int, int, int)), this, SLOT(horizontalHeaderResized(int, int, int)));
