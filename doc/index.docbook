@@ -59,7 +59,7 @@
 <legalnotice>&FDLNotice;</legalnotice>
 
 <date>2007-10-01</date>
-<releaseinfo>0.9.1</releaseinfo>
+<releaseinfo>0.9.0</releaseinfo>
 
 <abstract><para>&parley; is a vocabulary trainer. It helps you to memorize your vocabulary,
 for example when you are trying to learn a foreign language. &parley; is not limited to language learning but supports a multitude of subjects.</para></abstract>
