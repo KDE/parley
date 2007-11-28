@@ -588,6 +588,10 @@ void ParleyApp::initView()
             this, SLOT(slotSelectionChanged(const QItemSelection &, const QItemSelection &)));
 
 
+    connect(m_tableView, SIGNAL(appendEntry()),
+            m_tableModel, SLOT(appendEntry()));
+
+
     slotCurrentChanged(m_tableView->currentIndex(), m_tableView->currentIndex());
 
     m_tableView->addAction(actionCollection()->action("edit_append"));
