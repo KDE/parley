@@ -501,8 +501,8 @@ void ParleyApp::slotCurrentChanged(const QModelIndex & current, const QModelInde
     QModelIndex index = current;
     index = m_sortFilterModel->mapToSource(current);
 
-    //KEduVocExpression * currentExpression = current.data(KVTTableModel::ExpressionRole).value<KEduVocExpression*>();
     KEduVocExpression * currentExpression = m_doc->entry(index.row());
+    statusBar()->clearMessage();
 
     if (m_remarkStatusBarLabel != 0) {
         m_remarkStatusBarLabel->setText(i18n("Comment: %1", currentExpression->translation(translationId).comment()));
