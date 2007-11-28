@@ -47,7 +47,8 @@ public:
         LessonsRole = Qt::UserRole + 1,
         LessonRole,
         StateRole,
-        GradeRole
+        GradeRole,
+        LocaleRole
 //         ExpressionRole
     };
 
