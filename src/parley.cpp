@@ -327,63 +327,6 @@ void ParleyApp::makeLessonVisibleInTable(int lessonIndex)
     }
 }
 
-void ParleyApp::keyPressEvent(QKeyEvent *e)
-{
-    bool controlActive = (e->modifiers() & Qt::ControlModifier) !=0;
-
-    switch (e->key()) {
-        /*
-        case Qt::Key_Plus:
-          if (controlActive) {
-            int less = m_lessonsComboBox->currentIndex();
-            if (less == m_lessonsComboBox->count() - 1)
-              m_lessonsComboBox->setCurrentIndex(0);
-            else
-              m_lessonsComboBox->setCurrentIndex(less+1);
-            slotChooseLesson(m_lessonsComboBox->currentIndex());
-          }
-        break;
-
-        case Qt::Key_Minus:
-          if (controlActive) {
-            int less = m_lessonsComboBox->currentIndex();
-            if (less == 0)
-              m_lessonsComboBox->setCurrentIndex(m_lessonsComboBox->count() - 1);
-            else
-              m_lessonsComboBox->setCurrentIndex(less - 1);
-            slotChooseLesson(m_lessonsComboBox->currentIndex());
-          }
-        break;
-        */
-    case Qt::Key_Control:
-        controlActive = true;
-        break;
-
-    case Qt::Key_Tab:
-        if (m_tableView->hasFocus())  {
-            m_searchLine->setFocus();
-            m_searchLine->selectAll();
-        } else
-            m_tableView->setFocus();
-        break;
-
-    case Qt::Key_Backtab:
-        if (m_searchLine->hasFocus())
-            m_tableView->setFocus();
-        else {
-            m_searchLine->setFocus();
-            m_searchLine->selectAll();
-        }
-        break;
-
-    default:
-        bool found = false;
-        if (!found)
-            e->ignore();
-    }
-//     slotStatusMsg(IDS_DEFAULT);
-}
-
 
 void ParleyApp::slotShowStatistics()
 {

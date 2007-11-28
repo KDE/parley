@@ -108,8 +108,6 @@ signals:
     void progressChanged(KEduVocDocument *, int curr_percent);
 
 public slots:
-    void keyPressEvent(QKeyEvent *e);
-//  void keyReleaseEvent( QKeyEvent *e );
     void slotUpdateWindowCaption();
 
     /** select an entry */
