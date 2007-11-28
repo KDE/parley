@@ -54,14 +54,13 @@ void VocabularyModel::setDocument(KEduVocDocument * doc)
 void VocabularyModel::setContainer(KEduVocContainer * container)
 {
     // use remove and insert rows. using reset resets all table headers too.
-    if (rowCount(QModelIndex())>0) {
-        beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex()));
-        m_lesson = 0;
+    if (rowCount(QModelIndex()) > 0) {
+        beginRemoveRows(QModelIndex(), 0, rowCount(QModelIndex())-1);
         endRemoveRows();
     }
-    if (container->entryCount()>0) {
-        beginInsertRows(QModelIndex(), 0, container->entryCount()-1);
-        m_lesson = container;
+    m_lesson = container;
+    if (container && container->entryCount() > 0) {
+        beginInsertRows(QModelIndex(), 0, m_lesson->entryCount()-1);
         endInsertRows();
     }
 }

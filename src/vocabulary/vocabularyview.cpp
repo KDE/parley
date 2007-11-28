@@ -374,11 +374,9 @@ kDebug() << "add " << i << columnAction->text();
 
 void VocabularyView::slotToggleColumn(bool show)
 {
-    kDebug() << m_columnActionMap[(KAction*)sender()] << !show;
-
     setColumnHidden(m_columnActionMap[(KAction*)sender()], !show);
 }
 
 
-
 #include "vocabularyview.moc"
+

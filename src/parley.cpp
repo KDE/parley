@@ -811,11 +811,11 @@ void ParleyApp::initDockWidgets()
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
 
 // Grades
-    QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
-    gradeDock->setObjectName("gradeDock");
-    QLabel *gradeWidget = new QLabel("grade placeholder", this);
-    gradeDock->setWidget(gradeWidget);
-    addDockWidget(Qt::RightDockWidgetArea, gradeDock);
+//     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);
+//     gradeDock->setObjectName("gradeDock");
+//     QLabel *gradeWidget = new QLabel("grade placeholder", this);
+//     gradeDock->setWidget(gradeWidget);
+//     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
 }
 
