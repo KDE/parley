@@ -83,90 +83,6 @@ WrittenPracticeDialog::WrittenPracticeDialog(KEduVocDocument *doc, QWidget *pare
 
     mw->answerLineEdit->setFont(Prefs::tableFont());
 
-///@todo reactivate the splitting if you're mad enough
-//     bool split = Prefs::split();
-
-//     // rip apart translations into multiple line edits
-//     fields = Prefs::fields();
-//     if (! split || fields < 1) {
-//         fields = 1;
-//     } else {
-//         if (fields > 10) {
-//             fields = 10;
-//         }
-//     }
-//     // add the layout to contain the parts
-//     QVBoxLayout * vb = new QVBoxLayout(mw->TranslationFrame);
-//     vb->setMargin(0);
-//     vb->setSpacing(KDialog::spacingHint());
-//     // create widgets - I wonder if this crap is used by anyone - holy cow
-//     bool suggestions = Prefs::suggestions();
-//     if (suggestions) {
-//         for (int i = 0; i < fields; i ++) {
-//             // create a bunch of comboboxes (to hold the dropdown hints)
-//             KComboBox * combo = new KComboBox(mw->TranslationFrame);
-//             transCombos.append(combo);
-//             combo->setObjectName(QString("transCombo%1").arg(i));
-//             combo->setEditable(false);
-//             QSizePolicy pol(QSizePolicy::Expanding, QSizePolicy::Minimum);
-//             pol.setHeightForWidth(combo->sizePolicy().hasHeightForWidth());
-//             combo->setSizePolicy(pol);
-//             combo->setEditable(true);
-//             combo->setInsertPolicy(QComboBox::NoInsert);
-//             combo->setDuplicatesEnabled(false);
-//             vb->addWidget(combo);
-//             connect(combo, SIGNAL(editTextChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
-//             connect(combo->lineEdit(), SIGNAL(editingFinished()), SLOT(slotTransLostFocus()));
-//         }
-//     } else {
-//         for (int i = 0; i < fields; i ++) {
-//             // normal line edits if we don't have suggestions on
-//             KLineEdit * line = new KLineEdit(mw->TranslationFrame);
-//             transFields.append(line);
-//             line->setObjectName(QString("transField%1").arg(i));
-//             QSizePolicy pol(QSizePolicy::Expanding, QSizePolicy::Minimum);
-//             pol.setHeightForWidth(line->sizePolicy().hasHeightForWidth());
-//             line->setSizePolicy(pol);
-//             vb->addWidget(line);
-//             connect(line, SIGNAL(textChanged(const QString&)), SLOT(slotTransChanged(const QString&)));
-//             connect(line, SIGNAL(lostFocus()), SLOT(slotTransLostFocus()));
-//         }
-//     }
-
-
-
-// suggestions code
-
-//     if (suggestions) {
-//         // take all entries from the doc and put them in a list (great)
-//         for (int i = 0; i < m_doc->entryCount(); i ++) {
-//             KEduVocExpression* expr = m_doc->entry(i);
-//             if (split) {
-//                 vocabulary += extractTranslations(
-//                     expr->translation(Prefs::solutionLanguage()).text());
-//             } else {
-//                 vocabulary.append(expr->translation(Prefs::solutionLanguage()).text());
-//             }
-//             if (Prefs::swapDirection()) {
-//                 if (split) {
-//                     vocabulary += extractTranslations(
-//                         expr->translation(Prefs::questionLanguage()).text() );
-//                 } else {
-//                     vocabulary.append( expr->translation(Prefs::questionLanguage()).text());
-//                 }
-//             }
-//         }
-//         vocabulary.sort();
-//         // I guess this takes out doubles? great :(
-//         for (int k = 1; k < vocabulary.count(); k ++) {
-//             if (vocabulary [k - 1] == vocabulary [k]) {
-//                 vocabulary.removeAt(k--);
-//             }
-//         }
-//     }
-//
-// kDebug() << " added " << vocabulary.count() << " suggestions";
-
     mw->imageGraphicsView->setVisible(false);
 
     mw->audioPlayQuestionButton->setIcon(KIcon("media-playback-start"));
@@ -200,30 +116,6 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
     mw->timebar->setVisible(Prefs::practiceTimeout());
     mw->timelabel->setVisible(Prefs::practiceTimeout());
-//     int i;
-//     int k;
-//     if (Prefs::suggestions()) {
-//         for (i = 0; i < fields; i ++) {
-//             transCombos.at(i)->clearEditText();
-//             setWidgetStyle(transCombos.at(i)->lineEdit());
-//         }
-//         for (k = 0; k < translations.count(); k ++)
-//             transCombos.at(k)->show();
-//         for (i = k; i < fields; i ++)
-//             transCombos.at(i)->hide();
-//     } else {
-//         for (i = 0; i < fields; i ++) {
-//             transFields.at(i)->clear();
-//             transFields.at(i)->setFont(Prefs::tableFont());
-//             setWidgetStyle(transFields.at(i));
-//         }
-//
-//         for (k = 0; k < translations.count(); k ++) {
-//             transFields.at(k)->show();
-//         }
-//         for (i = k; i < fields; i ++)
-//             transFields.at(i)->hide();
-//     }
 
     mw->answerLineEdit->clear();
     mw->answerLineEdit->setFont(Prefs::tableFont());
@@ -266,146 +158,6 @@ void WrittenPracticeDialog::setEntry( TestEntry* entry )
 
     imageShowFromEntry( mw->imageGraphicsView, entry );
 }
-
-
-// QStringList WrittenPracticeDialog::extractTranslations(const QString &_trans)
-// {
-//     QString trans = _trans;
-//     QRegExp full_stop("^(.*[^\\. ])\\.* *$");
-//     //full_stop.setMinimal (true);
-//     if (full_stop.indexIn(trans) >= 0)
-//         trans = full_stop.cap(1);
-//     int i;
-//     QStringList translations;
-//     if (Prefs::periods())
-//         for (i = fields - 1; i > 0; i --) {
-//             QString regexp("^ *");
-//             for (int j = 0; j < i; j ++)
-//                 regexp += "([^ ][^.]*)\\.[. ]*";
-//             regexp += "([^. ].*)$";
-//             QRegExp regex(regexp);
-//             if (regex.indexIn(trans) >= 0) {
-//                 translations = regex.capturedTexts();
-//                 translations.removeFirst();
-//                 break;
-//             }
-//         }
-//     if (Prefs::colons() && translations.count() <= 1) {
-//         translations.clear();
-//         for (i = fields - 1; i > 0; i --) {
-//             QString regexp("^ *");
-//             for (int j = 0; j < i; j ++)
-//                 regexp += "([^ ][^:]*):[: ]*";
-//             regexp += "([^: ].*)$";
-//             QRegExp regex(regexp);
-//             if (regex.indexIn(trans) >= 0) {
-//                 translations = regex.capturedTexts();
-//                 translations.removeFirst();
-//                 break;
-//             }
-//         }
-//     }
-//     if (Prefs::semicolons() && translations.count() <= 1) {
-//         translations.clear();
-//         for (i = fields - 1; i > 0; i --) {
-//             QString regexp("^ *");
-//             for (int j = 0; j < i; j ++)
-//                 regexp += "([^ ][^;]*);[; ]*";
-//             regexp += "([^; ].*)$";
-//             QRegExp regex(regexp);
-//             if (regex.indexIn(trans) >= 0) {
-//                 translations = regex.capturedTexts();
-//                 translations.removeFirst();
-//                 break;
-//             }
-//         }
-//     }
-//     if (Prefs::commas() && translations.count() <= 1) {
-//         translations.clear();
-//         for (i = fields - 1; i > 0; i --) {
-//             QString regexp("^ *");
-//             for (int j = 0; j < i; j ++)
-//                 regexp += "([^ ][^,]*),[, ]*";
-//             regexp += "([^, ].*)$";
-//             QRegExp regex(regexp);
-//             if (regex.indexIn(trans) >= 0) {
-//                 translations = regex.capturedTexts();
-//                 translations.removeFirst();
-//                 break;
-//             }
-//         }
-//     }
-//     if (translations.count() <= 1)
-//         translations = QStringList(trans);
-//     return translations;
-// }
-
-
-// void WrittenPracticeDialog::verifyClicked()
-// {
-//     QStringList trans(translations);
-//     int i;
-//     int j;
-//     if (Prefs::suggestions()) {
-//         QList<KComboBox*> combos(transCombos);
-//         for (i = combos.count() - 1; i >= translations.count(); i --) {
-//             combos.removeAt(i);
-//         }
-//         for (i = 0; i < combos.count(); i ++) {
-//             for (j = 0; j < trans.count(); j ++) {
-//                 if ( verifyAnswer(trans[j], combos.at(i)->currentText()) == 1.0 ) {
-//                     verifyField(combos.at(i)->lineEdit(), trans[j]);
-//                     trans.removeAt(j);
-//                     combos.removeAt(i --);
-//                     break;
-//                 }
-//             }
-//         }
-//         if (trans.count() == 0) {
-//             int percent = ((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0));
-//             mw->status->setText(getOKComment(percent));
-//             resultCorrect();
-//             showContinueButton(true);
-//         } else {
-//             for (i = 0; i < combos.count(); i ++) {
-//                 verifyField(combos.at(i)->lineEdit(), "a\na");
-//             }  // always fail
-//             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-//             mw->show_all->setDefault(true);
-//             setAnswerTainted();
-//         }
-//     } else {
-//     // suggestions off
-//         QList<KLineEdit*> fields(transFields);
-//         for (i = fields.count() - 1; i >= translations.count(); i --) {
-//             fields.removeAt(i);
-//         }
-//         for (i = 0; i < fields.count(); i ++) {
-//             for (j = 0; j < trans.count(); j ++) {
-//                 if ( verifyAnswer(trans[j], fields.at(i)->text()) == 1.0 ) {
-//                     verifyField(fields.at(i), trans[j]);
-//                     trans.removeAt(j);
-//                     fields.removeAt(i --);
-//                     break;
-//                 }
-//             }
-//         }
-//
-//         if (trans.count() == 0) {
-//             mw->status->setText(getOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-//             resultCorrect();
-//             showContinueButton(true);
-//         } else {
-//             for (i = 0; i < fields.count(); i ++) {
-//                 verifyField(fields.at(i), trans[i]);
-//             }
-//             mw->status->setText(getNOKComment((int)((double)mw->countbar->value()/mw->countbar->maximum() * 100.0)));
-//             mw->show_all->setDefault(true);
-//             setAnswerTainted();
-//         }
-//     }
-//     suggestion_hint = false;
-// }
 
 
 void WrittenPracticeDialog::verifyClicked()
@@ -458,14 +210,14 @@ void WrittenPracticeDialog::verifyClicked()
     }
 
     if ( Prefs::ignoreCapitalizationMistakes() ) {
-        if (m_entry->lastErrors() == TestEntry::CapitalizationMistake) {
+        if (m_entry->lastErrors() == TestEntry::CapitalizationMistake && !userAnswer.isEmpty()) {
             result = 1.0;
             errorText.append(" (" + userAnswer + ")");
         }
     }
 
     if ( Prefs::ignoreAccentMistakes() ) {
-        if (m_entry->lastErrors() == TestEntry::AccentMistake) {
+        if (m_entry->lastErrors() == TestEntry::AccentMistake && !userAnswer.isEmpty()) {
             result = 1.0;
             errorText.append(" (" + userAnswer + ")");
         }
@@ -475,7 +227,8 @@ void WrittenPracticeDialog::verifyClicked()
         resultCorrect();
         showContinueButton(true);
     } else {
-        errorText.append(" (" + userAnswer + ")");
+        if(!userAnswer.isEmpty())
+            errorText.append(" (" + userAnswer + ")");
         setWidgetStyle(mw->answerLineEdit, NegativeResult);
         // the percentage is very vague anyway, don't show floats...
 //         mw->status->setText(i18n("That was wrong. (%1%)", (int)(result*100)));
@@ -675,41 +428,6 @@ void WrittenPracticeDialog::slotTypeClicked(bool show)
 
 void WrittenPracticeDialog::keyPressEvent(QKeyEvent *e)
 {
-//     if (Prefs::suggestions()) {
-//         KComboBox* combo = 0;
-//         if (e->key() == Qt::Key_F4 || e->key() == Qt::Key_F5 || e->key() == Qt::Key_F6)
-//             for (int i = 0; i < translations.count(); i ++)
-//                 if (transCombos.at(i)->hasFocus()) {
-//                     combo = transCombos.at(i);
-//                     break;
-//                 }
-//         switch (e->key()) {
-//
-//         case Qt::Key_F5:
-//             if (combo && !combo->currentText().isEmpty()) {
-//                 QString curText = combo->currentText();
-//                 combo->clear();
-//                 combo->addItems(vocabulary.filter(QRegExp(QString("^%1").arg(curText))));
-//                 combo->setEditText(curText);
-//                 combo->showPopup();
-//             }
-//             break;
-//         case Qt::Key_F6:
-//             if (combo && !combo->currentText().isEmpty()) {
-//                 QString curText = combo->currentText();
-//                 combo->clear();
-//                 combo->addItems(vocabulary.filter(curText, Qt::CaseInsensitive));
-//                 combo->setEditText(curText);
-//                 combo->showPopup();
-//             }
-//             break;
-//        case Qt::Key_F4:
-//             if (combo)
-//                 combo->showPopup();
-//             break;
-//         }
-//     }
-
     switch (e->key()) {
     case Qt::Key_Escape:
         skipUnknown();
