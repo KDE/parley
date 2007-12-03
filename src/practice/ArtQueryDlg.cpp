@@ -84,54 +84,78 @@ void ArtQueryDlg::setEntry(TestEntry* entry)
     mw->timelabel->setVisible(Prefs::practiceTimeout());
     mw->show_all->setDefault(true);
 
-    QString s;
-    s = m_entry->exp->translation(Prefs::solutionLanguage()).text().simplified();
-
     QString def, indef;
-    bool removed = false;
 
-    def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
-    indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Feminine );
-    mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female:\t")+def+" / "+indef);
-    mw->femaleRadio->setEnabled(!QString(def+indef).isEmpty());
-    if (!removed && s.indexOf(def+' ') == 0) {
-        s.remove(0, def.length()+1);
-        removed = true;
-    }
-    if (!removed && s.indexOf(indef+' ') == 0) {
-        s.remove(0, indef.length()+1);
-        removed = true;
-    }
+    KEduVocArticle::ArticleNumber singular = KEduVocArticle::Singular;
+    KEduVocArticle::ArticleDefiniteness definite = KEduVocArticle::Definite;
+    KEduVocArticle::ArticleDefiniteness indefinite = KEduVocArticle::Indefinite;
+    KEduVocArticle::ArticleGender male = KEduVocArticle::Masculine;
+    KEduVocArticle::ArticleGender female = KEduVocArticle::Feminine;
+    KEduVocArticle::ArticleGender neutral = KEduVocArticle::Neutral;
 
-    def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
-    indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Masculine );
-    mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male:\t")+def+" / "+indef);
-    mw->maleRadio->setEnabled(!QString(def+indef).isEmpty());
-    if (!removed && s.indexOf(def+' ') == 0) {
-        s.remove(0, def.length()+1);
-        removed = true;
+    // set the word (possibly without the article)
+    QString noun = m_entry->exp->translation(Prefs::solutionLanguage()).text();
+    // strip the article
+    ///@todo
+    int pos;
+    foreach(QString word, noun.split(QRegExp("\\W"), QString::SkipEmptyParts) ) {
+        if (articles.isArticle(word)) {
+            while ((pos = noun.indexOf(word)) >= 0) {
+                noun.remove(pos, word.length());
+            }
+        }
     }
-    if (!removed && s.indexOf(indef+' ') == 0) {
-        s.remove(0, indef.length()+1);
-        removed = true;
-    }
+//     QString firstPart = noun.substring(
+//     if (articles.isArticle(firstPart)){
+        //remove
+//     }
 
-    def = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
-    indef = articles.article( KEduVocArticle::Singular, KEduVocArticle::Definite, KEduVocArticle::Neutral );
-    mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t")+def+" / "+indef);
-    mw->neutralRadio->setEnabled(!QString(def+indef).isEmpty());
-    if (!removed && s.indexOf(def+' ') == 0) {
-        s.remove(0, def.length()+1);
-        removed = true;
-    }
-    if (!removed && s.indexOf(indef+' ') == 0) {
-        s.remove(0, indef.length()+1);
-        removed = true;
-    }
+    mw->orgField->setText(noun);
+    mw->progCount->setText(QString::number(entry->statisticCount()));
 
-    mw->orgField->setText(s);
-    s.setNum(entry->statisticCount());
-    mw->progCount->setText(s);
+
+    // set the choices
+    if(articles.isEmpty()) {
+        mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male"));
+        mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female"));
+        mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral"));
+    } else {
+        def = articles.article( singular, definite, male );
+        indef = articles.article( singular, indefinite, male );
+        bool male = !(def.isEmpty() && indef.isEmpty());
+        QString article;
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        mw->maleRadio->setText(i18nc("@label the gender of the word: male", "&male:\t") + article);
+
+        def = articles.article( singular, definite, female );
+        indef = articles.article( singular, indefinite, female );
+        bool female = !(def.isEmpty() && indef.isEmpty());
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        mw->femaleRadio->setText(i18nc("@label the gender of the word: female", "&female:\t") + article);
+
+        def = articles.article( singular, definite, neutral );
+        indef = articles.article( singular, indefinite, neutral );
+        bool neutral = !(def.isEmpty() && indef.isEmpty());
+        if((!def.isEmpty()) && (!indef.isEmpty())) {
+            article = def + " / " + indef;
+        } else {
+            article = def + indef;
+        }
+        if (!neutral && male && female) {
+            mw->neutralRadio->setVisible(false);
+        } else {
+            mw->neutralRadio->setText(i18nc("@label the gender of the word: neutral", "&neutral:\t") + article);
+            mw->neutralRadio->setVisible(true);
+        }
+    }
 
     setWidgetStyle(mw->maleRadio);
     setWidgetStyle(mw->femaleRadio);
