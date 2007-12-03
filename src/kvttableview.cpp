@@ -245,13 +245,15 @@ void KVTTableView::resizeEvent(QResizeEvent * event)
                 header->resizeSection(KV_COL_MARK, KV_COLWIDTH_MARK);
             }
 
-            int columnsHalfWidth;
+            int columnsHalfWidth = 0;
             if ( Prefs::tableLessonColumnVisible() ) {
                 // total width / ((total number of columns - active column) * 2 -1 lesson only half) 
                 columnsHalfWidth = newWidth / ((colCount - 1) * 2 -1);
                 header->resizeSection(KV_COL_LESS, columnsHalfWidth);
             } else {
-                columnsHalfWidth = newWidth / ((colCount - 2) * 2);
+                if (colCount > 2) {
+                    columnsHalfWidth = newWidth / ((colCount - 2) * 2);
+                }
             }
 
             for (int currentColumn = KV_COL_TRANS; currentColumn < colCount; currentColumn++) {
