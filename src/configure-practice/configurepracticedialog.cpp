@@ -34,13 +34,15 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     setDefaultButton(Ok);
 
     setButtonText(Ok, i18n("Start Practice..."));
-    setButtonIcon(Ok, KIcon("start-practice"));
+    setButtonIcon(Ok, KIcon("practice-start"));
+
+    connect(this, SIGNAL(user1Clicked()), SLOT(slotStartPractice()));
 
     m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
-    addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "start-practice", i18n("Practice options"), true);
+    addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "practice-start", i18n("Practice options"), true);
 
     m_blockOptions = new BlockOptions(this);
-    addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "block-cards", i18n("Blocking Settings"), true);
+    addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "cards-block", i18n("Blocking Settings"), true);
 
     m_thresholdOptions = new ThresholdOptions(doc, this);
     addPage(m_thresholdOptions, i18nc("@title:group ignore vocabulary based on some properties like word type", "Thresholds"), "practice-setup", i18n("Threshold Settings"), true);

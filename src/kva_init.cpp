@@ -179,7 +179,7 @@ void ParleyApp::initActions()
 
 
     KAction* editLanguages =new KAction(this);
-     actionCollection()->addAction("edit_languages", editLanguages);
+    actionCollection()->addAction("edit_languages", editLanguages);
     editLanguages->setIcon(KIcon("preferences-desktop-locale"));
     editLanguages->setText(i18n("&Languages..."));
     connect(editLanguages, SIGNAL(triggered()),  this, SLOT(slotEditLanguages()));
@@ -206,7 +206,7 @@ void ParleyApp::initActions()
 
     KAction* editAppend = new KAction(this);
     actionCollection()->addAction("edit_append", editAppend);
-    editAppend->setIcon(KIcon("list-add"));
+    editAppend->setIcon(KIcon("list-add-card"));
     editAppend->setText(i18n("&Add New Entry"));
     connect(editAppend, SIGNAL(triggered(bool)), this, SLOT(slotNewEntry()));
     editAppend->setShortcut(QKeySequence(Qt::Key_Insert));
@@ -216,7 +216,7 @@ void ParleyApp::initActions()
 
     editDelete = new KAction(this);
     actionCollection()->addAction("edit_remove_selected_area", editDelete);
-    editDelete->setIcon(KIcon("list-remove"));
+    editDelete->setIcon(KIcon("list-remove-card"));
     editDelete->setText(i18n("&Delete Entry"));
     connect(editDelete, SIGNAL(triggered(bool)), this, SLOT(slotDeleteEntry()));
     editDelete->setShortcut(QKeySequence(Qt::Key_Delete));
@@ -225,8 +225,8 @@ void ParleyApp::initActions()
     editDelete->setStatusTip(editDelete->whatsThis());
 
     KAction* editEditEntry = new KAction(this);
-     actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
-    editEditEntry->setIcon(KIcon("document-properties"));
+    actionCollection()->addAction("edit_edit_selected_area", editEditEntry);
+    editEditEntry->setIcon(KIcon("document-properties-card"));
     editEditEntry->setText(i18n("&Edit Entry..."));
     connect(editEditEntry, SIGNAL(triggered(bool)), this, SLOT(slotEditEntry()));
     editEditEntry->setShortcut(QKeySequence(Qt::CTRL + Qt::Key_Return));
@@ -250,7 +250,7 @@ void ParleyApp::initActions()
     KAction *actionNewLesson = new KAction(this);
     actionCollection()->addAction("new_lesson", actionNewLesson);
     actionNewLesson->setText(i18n("New Lesson"));
-    actionNewLesson->setIcon(KIcon("list-add-lesson"));
+    actionNewLesson->setIcon(KIcon("lesson-add"));
     actionNewLesson->setWhatsThis(i18n("Add a new lesson to your document"));
     actionNewLesson->setToolTip(actionNewLesson->whatsThis());
     actionNewLesson->setStatusTip(actionNewLesson->whatsThis());
@@ -268,7 +268,7 @@ void ParleyApp::initActions()
     KAction *actionDeleteLesson = new KAction(this);
     actionCollection()->addAction("delete_lesson", actionDeleteLesson);
     actionDeleteLesson->setText(i18n("Delete Lesson"));
-    actionDeleteLesson->setIcon(KIcon("list-remove-lesson"));
+    actionDeleteLesson->setIcon(KIcon("lesson-remove"));
     actionDeleteLesson->setWhatsThis(i18n("Delete the selected lesson."));
     actionDeleteLesson->setToolTip(actionDeleteLesson->whatsThis());
     actionDeleteLesson->setStatusTip(actionDeleteLesson->whatsThis());
@@ -316,7 +316,7 @@ void ParleyApp::initActions()
 
     KAction* configurePractice = new KAction(this);
     configurePractice->setText(i18n("Configure Practice..."));
-    configurePractice->setIcon(KIcon("preferences-other"));
+    configurePractice->setIcon(KIcon("practice-setup"));
     configurePractice->setWhatsThis(i18n("Set up and start a test"));
     configurePractice->setToolTip(configurePractice->whatsThis());
     configurePractice->setStatusTip(configurePractice->whatsThis());
@@ -325,7 +325,7 @@ void ParleyApp::initActions()
 
     KAction* startPractice = new KAction(this);
     startPractice->setText(i18n("Start Practice..."));
-    startPractice->setIcon(KIcon("media-playback-start-practice"));
+    startPractice->setIcon(KIcon("practice-start"));
     startPractice->setWhatsThis(i18n("Start a test with the last settings"));
     startPractice->setToolTip(startPractice->whatsThis());
     startPractice->setStatusTip(startPractice->whatsThis());
