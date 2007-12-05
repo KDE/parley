@@ -30,11 +30,11 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     m_config = config;
 
     setCaption(i18nc("@title:window", "Configure Practice"));
-    setButtons(Default|Ok|Apply|Cancel|Help);
+    setButtons(Default|User1|Ok|Apply|Cancel|Help);
     setDefaultButton(Ok);
 
-    setButtonText(Ok, i18n("Start Practice..."));
-    setButtonIcon(Ok, KIcon("practice-start"));
+    setButtonText(User1, i18n("Start Practice..."));
+    setButtonIcon(User1, KIcon("practice-start"));
 
     connect(this, SIGNAL(user1Clicked()), SLOT(slotStartPractice()));
 
@@ -91,6 +91,11 @@ void ConfigurePracticeDialog::updateWidgetsDefault()
     m_config->useDefaults(true);
     updateWidgets();
     m_config->useDefaults(false);
+}
+
+void ConfigurePracticeDialog::slotStartPractice()
+{
+    done(ConfigurePracticeDialog::StartPractice);
 }
 
 

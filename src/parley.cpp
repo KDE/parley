@@ -566,7 +566,7 @@ void ParleyApp::configurePractice()
     ConfigurePracticeDialog* configurePracticeDialog;
     configurePracticeDialog = new ConfigurePracticeDialog(m_doc, this, "practice settings",  Prefs::self());
 
-    if ( configurePracticeDialog->exec() == KDialog::Accepted ) {
+    if ( configurePracticeDialog->exec() == ConfigurePracticeDialog::StartPractice ) {
         startPractice();
     }
 }
