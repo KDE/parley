@@ -64,7 +64,7 @@ class ParleyApp : public KXmlGuiWindow
 
 public:
     /** construtor */
-    ParleyApp(QWidget *parent = 0);
+    ParleyApp(const QString& appName, QWidget *parent = 0);
     /** destructor */
     ~ParleyApp();
     void initActions();
@@ -264,6 +264,9 @@ private:
     QLabel              *m_remarkStatusBarLabel;
     QLabel              *m_typeStatusBarLabel;
     KVTNewStuff         *m_newStuff;
+
+    // the name of the executable
+    QString m_appName;
 };
 
 #endif // PARLEY_H

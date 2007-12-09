@@ -106,7 +106,7 @@ int main(int argc, char* argv[])
     if (app.isSessionRestored()) {
         int n = 1;
         while (KXmlGuiWindow::canBeRestored(n)) {
-            parleyApp = new ParleyApp;
+            parleyApp = new ParleyApp(KCmdLineArgs::appName());
             parleyApp->restore(n);
             parleyApp->show();
             n++;
@@ -114,7 +114,7 @@ int main(int argc, char* argv[])
     } else {
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
-        parleyApp = new ParleyApp;
+        parleyApp = new ParleyApp(KCmdLineArgs::appName());
         if (args && args->count() == 1) {
             parleyApp->loadFileFromPath(args->url(0), true);
             args->clear();

@@ -52,8 +52,9 @@
 #include <QAbstractItemModel>
 #include <QVBoxLayout>
 
-ParleyApp::ParleyApp(QWidget *parent) : KXmlGuiWindow(parent)
+ParleyApp::ParleyApp(const QString& appName, QWidget *parent) : KXmlGuiWindow(parent)
 {
+    m_appName = appName;
     m_doc = 0;
     m_tableView = 0;
     m_tableModel = 0;
