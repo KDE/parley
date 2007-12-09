@@ -30,7 +30,7 @@ Gui
  * If the active field stays, it would be easier to use checkboxes
  * Model/view for the main table: include other fields and be more flexible
  * Different icons for Lesson-Select/Add/Deselect/Delete (right click menu)
-
+ * For some languages (with signs like chinese) it would be nice to have different font sizes in the columns
 Validator/correction of user answers
  * Seperators need to be implemented with the new corrector class. Possibly giving the user the chance to add more words when entering right answers but not all of them.
  * Analysis of sentences could be improved a lot
