@@ -40,6 +40,7 @@ General
    application window, and keep "current" document opened?
  * Warn about overwriting kvtml-1 files
 
+Grammar
  * declination support
    - a class is there
    - reader and writer
@@ -49,10 +50,13 @@ General
    - reader and writer
    - gui has to be extended
 
+ * adjectives can have a gender and plural
+
+ * tenses - make it possible to change their order and redo the dialog in general
+
 Pronunciation
  * research how entering that could be made easier
  * option to display it along in the practice dialogs
- * is a pronunciation practice desireable? maybe together with sound (write after listening)
-
+ * is a pronunciation practice desireable? maybe together with sound (write after listening) also very much for chinese I'm told.
 
 
