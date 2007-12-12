@@ -110,8 +110,19 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->synonym());
         case Antonym:
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->antonym());
-        case Example:
-            return QVariant(m_lesson->entry(index.row())->translation(translationId)->example());
+        case Example: {
+            QString example = m_lesson->entry(index.row())->translation(translationId)->example();
+            /*QString word = m_lesson->entry(index.row())->translation(translationId)->text();
+            int pos = 0;
+            QString start = "<font color=\"#FF0000\"><b>";
+            QString end = "</b></font>";
+            while ((pos = example.indexOf(word, pos)) >= 0) {
+                example.insert(pos, start);
+                example.insert(pos+word.length()+start.length(), end);
+                pos += word.length()+start.length()+end.length();
+            }*/
+            return QVariant(example);
+        }
         case Comment:
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->comment());
         case Paraphrase:

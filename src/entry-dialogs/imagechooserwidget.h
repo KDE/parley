@@ -45,6 +45,9 @@ public slots:
 private slots:
     void slotImageChanged(const QString & url);
 
+protected:
+    bool eventFilter(QObject *obj, QEvent *event);
+
 private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
     int               m_currentTranslation;

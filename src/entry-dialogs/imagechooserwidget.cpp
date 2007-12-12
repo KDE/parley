@@ -17,7 +17,9 @@
 
 #include <keduvocexpression.h>
 #include <kdebug.h>
+#include <KMimeType>
 
+#include <QDragEnterEvent>
 
 ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
 {
@@ -25,6 +27,9 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
     m_currentTranslation = -1;
 
     connect(imageUrlRequester, SIGNAL(textChanged(const QString&)), SLOT(slotImageChanged(const QString&)));
+
+    imageLabel->setAcceptDrops(true);
+    imageLabel->installEventFilter(this);
 }
 
 
@@ -50,7 +55,7 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
 {
     kDebug() << "Setting image " << url;
 
-    m_entry->translation(m_currentTranslation)->setImageUrl( KUrl(url) );
+
 
     if ( !url.isEmpty() ) {
         QPixmap pixmap(url);
@@ -59,10 +64,64 @@ void ImageChooserWidget::slotImageChanged(const QString & url)
         imageLabel->setText(i18nc("@label image preview is empty", "No Image"));
     }
 
-    foreach (int j, m_entry->translationIndices()) {
-        if ( m_entry->translation(j)->imageUrl().isEmpty() ) {
-            m_entry->translation(j)->setImageUrl( imageUrlRequester->url() );
+    if (m_entry) {
+        m_entry->translation(m_currentTranslation)->setImageUrl( KUrl(url) );
+        foreach (int j, m_entry->translationIndices()) {
+            if ( m_entry->translation(j)->imageUrl().isEmpty() ) {
+                m_entry->translation(j)->setImageUrl( imageUrlRequester->url() );
+            }
         }
+    }
+}
+
+bool ImageChooserWidget::eventFilter(QObject * obj, QEvent * event)
+{
+    if (obj == imageLabel) {
+//         if (event->type() == QEvent::KeyPress) {
+//              QKeyEvent *keyEvent = static_cast<QKeyEvent *>(event);
+//              kDebug() << "Ate key press " << keyEvent->key();
+//              return true;
+//         }
+        if (event->type() == QEvent::Resize) {
+            QPixmap pixmap(imageUrlRequester->url().toLocalFile());
+            imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
+            return false;
+        }
+
+
+        if (event->type() == QEvent::DragEnter) {
+            if (!m_entry) {
+                return true;
+            }
+            QDragEnterEvent *dragEnterEvent = static_cast<QDragEnterEvent *>(event);
+            kDebug() << "DragEnter mime format: " << dragEnterEvent->format();
+            if (dragEnterEvent->provides("text/uri-list")) {
+                kDebug() << KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name();
+
+                if(KMimeType::findByUrl(dragEnterEvent->mimeData()->urls()[0])->name().startsWith("image")) {
+                    kDebug() << "text/uri-list contains image";
+                    event->accept();
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        if (event->type() == QEvent::DragMove) {
+            event->accept();
+            return true;
+        }
+
+        if (event->type() == QEvent::Drop) {
+            QDropEvent *dropEvent = static_cast<QDropEvent *>(event);
+            kDebug() << "You dropped onto me: " << dropEvent->mimeData()->formats() << dropEvent->mimeData()->urls();
+
+            imageUrlRequester->setUrl(dropEvent->mimeData()->urls()[0]);
+
+            return true;
+        }
+
+        return QObject::eventFilter(obj, event);
     }
 }
 

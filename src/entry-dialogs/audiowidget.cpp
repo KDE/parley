@@ -33,8 +33,6 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
     connect(playButton, SIGNAL(clicked()), SLOT(playAudio()));
     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
-    setEnabled(false);
-
     playButton->setIcon(KIcon("media-playback-start"));
     recordButton->setEnabled(false);
     recordButton->setIcon(KIcon("media-record"));
@@ -47,10 +45,18 @@ void AudioWidget::setTranslation(KEduVocExpression* entry, int translation)
     m_entry = entry;
 
     if (m_entry) {
+        recordButton->setEnabled(true);
+        audioUrlRequester->setEnabled(true);
         audioUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->soundUrl().toLocalFile());
     } else {
-        if (m_player->state() == Phonon::PlayingState) {
-            
+        recordButton->setEnabled(false);
+        audioUrlRequester->setEnabled(false);
+        if (m_player) {
+            if (m_player->state() == Phonon::PlayingState) {
+                playButton->setEnabled(true);
+            } else {
+                playButton->setEnabled(false);
+            }
         }
         audioUrlRequester->clear();
     }
