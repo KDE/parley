@@ -70,20 +70,16 @@ void LessonView::slotCheckNoLessons()
 void LessonView::slotCreateNewLesson()
 {
     QModelIndex selectedIndex = selectionModel()->currentIndex();
-
     QModelIndex modelIndex = m_model->appendLesson(selectedIndex);
 
     scrollTo(modelIndex);
-
     selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
-
     edit(modelIndex);    // let the user type a new name for the lesson
 }
 
 void LessonView::slotRenameLesson()
 {
-//     QModelIndexList indexes = selectionModel()->selectedIndexes();
-//     edit(indexes.at(0));
+    edit(selectionModel()->currentIndex());
 }
 
 void LessonView::slotDeleteLesson()
