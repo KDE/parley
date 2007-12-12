@@ -19,6 +19,7 @@
 #include "lessonmodel.h"
 
 #include <QTreeView>
+#include <QHeaderView>
 #include <QMenu>
 #include <QContextMenuEvent>
 #include <KAction>
@@ -34,6 +35,8 @@
 
 LessonView::LessonView(QWidget *parent) : QTreeView(parent)
 {
+    header()->setResizeMode(QHeaderView::ResizeToContents);
+    setAlternatingRowColors(true);
     // drag and drop
 //     setDragEnabled(true);
     //setMovement(QListView::Snap);

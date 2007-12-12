@@ -41,6 +41,7 @@
 VocabularyView::VocabularyView(KActionMenu * vocabularyColumnsActionMenu, QWidget * parent)
     : QTableView(parent)
 {
+     horizontalHeader()->setResizeMode(QHeaderView::ResizeToContents);
 //     setSelectionMode(QAbstractItemView::ExtendedSelection);
 //     setSelectionBehavior(QAbstractItemView::SelectRows);
 //     setEditTriggers(QAbstractItemView::AnyKeyPressed | QAbstractItemView::EditKeyPressed | QAbstractItemView::DoubleClicked);
