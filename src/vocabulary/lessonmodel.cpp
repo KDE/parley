@@ -115,21 +115,27 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
 {
     kDebug() << " parent ";
-    if (!parent.isValid()) {
-kDebug() << " parent invalid";
 
-        if (m_vocabularyContainer->containerType() == KEduVocContainer::LessonContainer) {
-kDebug() << " lesson container";
-        beginInsertRows(QModelIndex(), m_vocabularyContainer->childContainerCount()  , m_vocabularyContainer->childContainerCount() - 1 );
-            KEduVocLesson* parent = static_cast<KEduVocLesson*>(m_vocabularyContainer);
-            m_vocabularyContainer->appendChildContainer(new KEduVocLesson(lessonName, parent));
+
+    if (m_vocabularyContainer->containerType() == KEduVocContainer::LessonContainer) {
+        KEduVocLesson* parentLesson;
+        if (parent.isValid()) {
+            parentLesson = static_cast<KEduVocLesson*>(parent.internalPointer());
+        } else {
+            parentLesson = static_cast<KEduVocLesson*>(m_vocabularyContainer);
+        }
+
+
+
+kDebug() << " lesson container " << parentLesson->name();
+
+        beginInsertRows(parent, parentLesson->childContainerCount()  , parentLesson->childContainerCount() );
+
+        parentLesson->appendChildContainer(new KEduVocLesson(lessonName, parentLesson));
         endInsertRows();
 
-            return index(m_vocabularyContainer->childContainerCount() - 1, 0, QModelIndex());
-        }
-        
+        return index(parentLesson->childContainerCount() - 1, 0, parent);
     }
-
 
     return QModelIndex();
 }
