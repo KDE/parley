@@ -401,5 +401,15 @@ int LessonModel::columnCount(const QModelIndex & parent) const
     return 2;
 }
 
+void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
+{
+    KEduVocContainer* lesson = static_cast<KEduVocContainer*>(lessonIndex.internalPointer());
+    KEduVocContainer* parent = lesson->parent();
+
+    beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
+    parent->removeChildContainer(lessonIndex.row());
+    endRemoveRows();
+}
+
 
 #include "lessonmodel.moc"

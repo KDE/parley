@@ -85,7 +85,7 @@ public:
     QModelIndex appendLesson(const QModelIndex& parent, const QString & lessonName = QString());
 
     // returns whether it was possible to delete
-//     bool deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode);
+    void deleteLesson(const QModelIndex& lessonIndex);
 
 //     bool removeRows(int row, int count, const QModelIndex &parent);
 //     bool dropMimeData(const QMimeData * data, Qt::DropAction action, int row, int column, const QModelIndex & parent);

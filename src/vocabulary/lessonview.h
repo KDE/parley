@@ -73,9 +73,8 @@ signals:
 
     /** Emitted when any of the checkboxes for the query change. */
     void lessonsInPracticeChanged();
-private:
 
-    void dropEvent(QDropEvent * event);
+private:
     /** The KVTLessonModel for this view. */
     LessonModel *m_model;
     /** The context menu for the lesson list. */

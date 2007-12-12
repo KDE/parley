@@ -31,7 +31,7 @@
 #include <kicon.h>
 #include <kconfig.h>
 #include <keduvocdocument.h>
-
+#include <keduvoclesson.h>
 
 LessonView::LessonView(QWidget *parent) : QTreeView(parent)
 {
@@ -84,6 +84,17 @@ void LessonView::slotRenameLesson()
 
 void LessonView::slotDeleteLesson()
 {
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+
+    KEduVocLesson* lesson = static_cast<KEduVocLesson*>(selectedIndex.internalPointer());
+
+    int count = lesson->entriesRecursive().count();
+
+    if ( count == 0 ||
+         KMessageBox::warningYesNo(this, i18np("There is %1 word left in this lesson. Do you want to delete them?", "There are %1 words left in this lesson. Do you want to delete them?", count)) == KMessageBox::Yes) {
+        m_model->deleteLesson(selectedIndex);
+    }
+
 //     int currentIndex = indexOfCurrentLesson();
 //     // Delete right away, if the lesson is empty, otherwise ask
 //     if (m_model->deleteLesson(currentIndex, KEduVocDocument::DeleteEmptyLesson))
@@ -119,12 +130,6 @@ void LessonView::slotSplitLesson()
 //         return;
 //     Prefs::setEntriesPerLesson(numEntries);
 //     m_model->splitLesson(indexOfCurrentLesson(), numEntries, KVTLessonModel::random);
-}
-
-void LessonView::dropEvent(QDropEvent * event)
-{
-    Q_UNUSED(event);
-    kDebug() << "dropEvent()";
 }
 
 
