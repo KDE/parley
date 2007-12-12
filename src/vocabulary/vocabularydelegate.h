@@ -32,12 +32,9 @@ public:
     void setModelData(QWidget *editor, QAbstractItemModel *model, const QModelIndex &index) const;
     void setCurrentIndex(const QModelIndex &index);
 
-    void updateEditorGeometry(QWidget *editor, const QStyleOptionViewItem &option, const QModelIndex &index) const;
-    QSize sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const;
     void paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const;
 protected:
     void drawDisplay(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect, const QString &text) const;
-    void drawFocus(QPainter *painter, const QStyleOptionViewItem &option, const QRect &rect) const;
 
 private slots:
     void commitAndCloseEditor();

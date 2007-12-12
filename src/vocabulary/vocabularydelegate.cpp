@@ -31,7 +31,6 @@
 #include <KIconLoader>
 #include <KIcon>
 #include <QPainter>
-// #define KV_NORM_COLOR      Qt::black
 
 VocabularyDelegate::VocabularyDelegate(QObject *parent) : QItemDelegate(parent)
 {}
@@ -43,24 +42,14 @@ QWidget * VocabularyDelegate::createEditor(QWidget * parent, const QStyleOptionV
     if (!index.isValid())
         return 0;
 
-    int translation = VocabularyModel::translation(index.column());
-
     switch (index.column()) {
-    case 0:
-    case 1:
-//     {
-//         KComboBox *statebox = new KComboBox(parent);
-//         statebox->setFrame(false);
-//         statebox->setFont(KGlobalSettings::generalFont());
-//         connect(statebox, SIGNAL(returnPressed()), this, SLOT(commitAndCloseEditor()));
-//         return statebox;
-//     }
-//     break;
+
 
     default: {
         KLineEdit *editor = new KLineEdit(parent);
         editor->setFrame(false);
         editor->setFont(index.model()->data(index, Qt::FontRole).value<QFont>());
+        editor->setText(index.model()->data(index, Qt::DisplayRole).toString());
         ///@todo activate the keyboard layout switching code
         /*if (m_doc) {
           QString id = (col == KV_COL_ORG) ? m_doc->originalIdentifier()
@@ -89,8 +78,6 @@ void VocabularyDelegate::setEditorData(QWidget * editor, const QModelIndex & ind
         return;
 
     switch (index.column()) {
-    case 0:
-    case 1:
     default: {
         QString value = index.model()->data(index, Qt::DisplayRole).toString();
 
@@ -110,8 +97,6 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     int columnType = VocabularyModel::columnType(index.column());
 
     switch (columnType) {
-    case 0:
-    case 1:
 
     default: {
         KLineEdit *lineEdit = static_cast<KLineEdit*>(editor);
@@ -131,18 +116,6 @@ void VocabularyDelegate::setModelData(QWidget * editor, QAbstractItemModel * mod
     }
 }
 
-void VocabularyDelegate::updateEditorGeometry(QWidget * editor, const QStyleOptionViewItem & option, const QModelIndex & index) const
-{
-    if (index.column() == 1) {
-        /// @todo a better way to calculate the width of this combobox?
-        //QSize sz = editor->sizeHint();
-        QRect r = option.rect;
-        //sz.setHeight(option.rect.height());
-        r.setWidth(150);
-        editor->setGeometry(r);
-    } else
-        editor->setGeometry(option.rect);
-}
 
 void VocabularyDelegate::commitAndCloseEditor()
 {
@@ -191,22 +164,6 @@ void VocabularyDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewI
     }
 }
 
-void VocabularyDelegate::drawFocus(QPainter * painter, const QStyleOptionViewItem & option, const QRect & rect) const
-{
-    if (option.state & QStyle::State_HasFocus) {
-        painter->save();
-        painter->setPen(Qt::black);
-        painter->setBrush(Qt::NoBrush);
-        painter->drawRect(rect.adjusted(0, 0, -1, -1));
-        painter->drawRect(rect.adjusted(1, 1, -2, -2));
-        painter->restore();
-    }
-}
-
-QSize VocabularyDelegate::sizeHint(const QStyleOptionViewItem & option, const QModelIndex & index) const
-{
-    return QItemDelegate::sizeHint(option, index);
-}
 
 void VocabularyDelegate::paint(QPainter * painter, const QStyleOptionViewItem & option, const QModelIndex & index) const
 {
