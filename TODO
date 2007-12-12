@@ -60,7 +60,7 @@ Gui
  * If the active field stays, it would be easier to use checkboxes
  * Model/view for the main table: include other fields and be more flexible
  * Different icons for Lesson-Select/Add/Deselect/Delete (right click menu)
-
+ * For some languages (with signs like chinese) it would be nice to have different font sizes in the columns
 Validator/correction of user answers
  * Seperators need to be implemented with the new corrector class. Possibly giving the user the chance to add more words when entering right answers but not all of them.
  * Analysis of sentences could be improved a lot
@@ -70,6 +70,7 @@ General
    application window, and keep "current" document opened?
  * Warn about overwriting kvtml-1 files
 
+Grammar
  * declination support
    - a class is there
    - reader and writer
@@ -79,10 +80,13 @@ General
    - reader and writer
    - gui has to be extended
 
+ * adjectives can have a gender and plural
+
+ * tenses - make it possible to change their order and redo the dialog in general
+
 Pronunciation
  * research how entering that could be made easier
  * option to display it along in the practice dialogs
- * is a pronunciation practice desireable? maybe together with sound (write after listening)
-
+ * is a pronunciation practice desireable? maybe together with sound (write after listening) also very much for chinese I'm told.
 
 

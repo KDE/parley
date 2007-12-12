@@ -208,6 +208,25 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
         << " Valid Wrong Count: " << validWrongCount << " Valid Practice Count: " << validPracticeCount;
     kDebug() << "Found " << removeTestEntryList.count() << " entries with invalid threshold.";
 
+    if (validWordType == 0) {
+        if (m_testType == Prefs::EnumTestType::ArticleTest) {
+            KMessageBox::information(0,
+                i18n("You selected to practice the genders of nouns, but no appropriate nouns could be found. Use \"Edit Entry\" and select Noun as word type and the gender."),
+                i18n("No valid word type found"));
+            return;
+        }
+        if (m_testType == Prefs::EnumTestType::ComparisonTest) {
+            KMessageBox::information(0,
+                i18n("You selected to practice comparison forms, but no adjectives or adverbs containing comparison forms could be found. Use \"Edit Entry\" and select Adverb or Adjective as word type and enter the comparison forms."),
+                i18n("No valid word type found"));
+            return;
+        }
+        if (m_testType == Prefs::EnumTestType::ConjugationTest) {
+            KMessageBox::information(0, i18n("You selected to practice conjugations, but no vocabulary containing conjugations in the tenses you selected could be found. Use \"Edit Entry\" and select Verb as word type and enter the conjugation forms."), i18n("No valid word type found"));
+            return;
+        }
+    }
+
     if ( removeTestEntryList.count() == m_allTestEntries.count() ) {
         if ( KMessageBox::questionYesNo(0, i18n("<p>The lessons you selected for the practice contain no entries when the threshold settings are respected.</p><p>Hint: To configure the thresholds use the \"Threshold Page\" in the \"Configure Practice\" dialog.</p><p>Would you like to ignore the threshold setting?</p>"), i18n("No Entries with Current Threshold Settings") ) == KMessageBox::No ) {
             return;
@@ -228,6 +247,8 @@ TestEntryManager::TestEntryManager(KEduVocDocument* doc, QObject * parent)
     kDebug() << "Found " << m_allTestEntries.count() << " entries after filtering.";
 
 ///@todo separate the tests to show better info here. take blocking etc into account for tests other than written/mc.
+
+    
 
     m_notAskedTestEntries = m_allTestEntries;
 

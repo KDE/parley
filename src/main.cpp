@@ -106,8 +106,15 @@ int main(int argc, char* argv[])
     // for i18n of the lib strings
     KGlobal::locale()->insertCatalog("libkdeedu");
 
+    ParleyApp *parleyApp = 0;
+
     if (app.isSessionRestored()) {
-        kRestoreMainWindows< ParleyApp >();
+//         kRestoreMainWindows< ParleyApp >();
+        int n = 1;
+        while (KMainWindow::canBeRestored(n)){
+            (new ParleyApp(KCmdLineArgs::appName()))->restore(n);
+            n++;
+        }
         return app.exec();
     } else {
         ParleyApp *parleyApp;
@@ -115,10 +122,10 @@ int main(int argc, char* argv[])
         KCmdLineArgs *args = KCmdLineArgs::parsedArgs();
 
         if (args && args->count() == 1) {
-            parleyApp = new ParleyApp(args->url(0));
+            parleyApp = new ParleyApp(KCmdLineArgs::appName(), args->url(0));
             args->clear();
         } else {
-            parleyApp = new ParleyApp();
+            parleyApp = new ParleyApp(KCmdLineArgs::appName());
         }
         args->clear();
         parleyApp->show();

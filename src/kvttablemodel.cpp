@@ -142,7 +142,9 @@ QVariant KVTTableModel::data(const QModelIndex &index, int role) const
                 result = m_doc->entry(index.row())->translation(index.column() - KV_COL_TRANS).text();
             }
             return result;
-            break;
+        }
+        case KVTTableModel::LocaleRole: {
+            return m_doc->identifier(index.column() - KV_COL_TRANS).locale();
         }
 //     case KVTTableModel::ExpressionRole: {
 //             QVariant v;

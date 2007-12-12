@@ -30,17 +30,19 @@ ConfigurePracticeDialog::ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *
     m_config = config;
 
     setCaption(i18nc("@title:window", "Configure Practice"));
-    setButtons(Default|Ok|Apply|Cancel|Help);
+    setButtons(Default|User1|Ok|Apply|Cancel|Help);
     setDefaultButton(Ok);
 
-    setButtonText(Ok, i18n("Start Practice..."));
-    setButtonIcon(Ok, KIcon("start-practice"));
+    setButtonText(User1, i18n("Start Practice..."));
+    setButtonIcon(User1, KIcon("practice-start"));
+
+    connect(this, SIGNAL(user1Clicked()), SLOT(slotStartPractice()));
 
     m_configurePracticeWidget= new ConfigurePracticeWidget(doc, this);
-    addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "start-practice", i18n("Practice options"), true);
+    addPage(m_configurePracticeWidget, i18nc("@title:group", "Practice"), "practice-start", i18n("Practice options"), true);
 
     m_blockOptions = new BlockOptions(this);
-    addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "block-cards", i18n("Blocking Settings"), true);
+    addPage(m_blockOptions, i18nc("@title:group vocabulary can be set to be blocked for a certain amount of time", "Blocking"), "cards-block", i18n("Blocking Settings"), true);
 
     m_thresholdOptions = new ThresholdOptions(doc, this);
     addPage(m_thresholdOptions, i18nc("@title:group ignore vocabulary based on some properties like word type", "Thresholds"), "practice-setup", i18n("Threshold Settings"), true);
@@ -89,6 +91,11 @@ void ConfigurePracticeDialog::updateWidgetsDefault()
     m_config->useDefaults(true);
     updateWidgets();
     m_config->useDefaults(false);
+}
+
+void ConfigurePracticeDialog::slotStartPractice()
+{
+    done(ConfigurePracticeDialog::StartPractice);
 }
 
 

@@ -33,6 +33,10 @@ class ConfigurePracticeDialog : public KConfigDialog
 {
     Q_OBJECT
 public:
+    enum Result {
+        StartPractice = 10
+    };
+
     ConfigurePracticeDialog(KEduVocDocument *doc, QWidget *parent, const QString &name, KConfigSkeleton *config);
 
     ~ConfigurePracticeDialog();
@@ -58,6 +62,8 @@ private slots:
      * Returns true if the current state of the dialog is different from the saved settings
      */
     bool hasChanged();
+
+    void slotStartPractice();
 
 private:
 

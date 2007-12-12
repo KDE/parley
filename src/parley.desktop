@@ -1,4 +1,14 @@
 [Desktop Entry]
+Name=Parley
+Name[sl]=Parely
+Name[x-test]=xxParleyxx
+MimeType=application/x-kvtml;
+Exec=parley
+Icon=parley
+X-DocPath=parley/index.html
+Type=Application
+Terminal=false
+Categories=Qt;KDE;Education;Languages;
 GenericName=Vocabulary Trainer
 GenericName[af]=Woordeskat-afrigter
 GenericName[be]=Пашырэнне слоўнікавага запасу
@@ -9,6 +19,7 @@ GenericName[cy]=Hyfforddwr Geirfa
 GenericName[da]=Ordforrådsøvelser
 GenericName[de]=Vokabeltrainer
 GenericName[el]=Εκπαιδευτής λεξιλογίου
+GenericName[eo]=Vortoproviza ekzercilo
 GenericName[es]=Entrenador de vocabulario
 GenericName[et]=Sõnavara treening
 GenericName[eu]=Hiztegi entrenatzailea
@@ -52,12 +63,4 @@ GenericName[x-test]=xxVocabulary Trainerxx
 GenericName[xh]=Uqeqeshi Wonobumba ababekwe ngokulandelelana
 GenericName[zh_CN]=单词练习
 GenericName[zh_TW]=字彙訓練師
-Name=Parley
-Name[x-test]=xxParleyxx
-MimeType=application/x-parley;text/x-kvtml;
-Exec=parley
-Icon=parley
-X-DocPath=parley/index.html
-Type=Application
-Terminal=false
-Categories=Qt;KDE;Education;Languages;
+

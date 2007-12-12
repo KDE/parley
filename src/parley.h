@@ -64,10 +64,8 @@ class ParleyApp : public KXmlGuiWindow
     Q_OBJECT
 
 public:
-    /** construtor with filename to open */
-    ParleyApp(const KUrl &filename = KUrl());
-    /** construtor */
-//     ParleyApp();
+    /** construtor with appName (executable name) and filename to open */
+    ParleyApp(const QString& appName, const KUrl &filename = KUrl());
 
     /** destructor */
     ~ParleyApp();
@@ -91,8 +89,6 @@ public:
 
 
 public slots:
-//     void keyPressEvent(QKeyEvent *e);
-//  void keyReleaseEvent( QKeyEvent *e );
     void slotUpdateWindowCaption();
 
     /** select an entry */
@@ -219,6 +215,9 @@ private:
     friend class LessonDockWidget;
     friend class WordTypeDockWidget;
     friend class ParleyDocument;
+
+    // the name of the executable
+    QString m_appName;
 };
 
 #endif // PARLEY_H

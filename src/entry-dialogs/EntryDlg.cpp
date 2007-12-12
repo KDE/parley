@@ -38,13 +38,11 @@
 
 EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 {
-    setButtons(User1|User2|User3|Apply|Close);
+    setButtons(User1|Ok|Apply|Close);
     setDefaultButton(Apply);
     setFaceType(KPageDialog::List);
     setModal(false);
     setButtonGuiItem(User1, KGuiItem(i18n("&Reset")));
-    setButtonGuiItem(User2, KGuiItem(QString(), "view-left-right"));
-    setButtonGuiItem(User3, KGuiItem(QString(), "view-top-bottom"));
 
     mainwin = main;
     docked = false;
@@ -85,8 +83,7 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     connect(this, SIGNAL(user1Clicked()), this, SLOT(slotUndo()));
     connect(this, SIGNAL(applyClicked()), this, SLOT(slotApply()));
-    connect(this, SIGNAL(user2Clicked()), this, SLOT(slotDockVertical()));
-    connect(this, SIGNAL(user3Clicked()), this, SLOT(slotDockHorizontal()));
+    connect(this, SIGNAL(okClicked()), this, SLOT(slotOk()));
 
     connect(commonPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
     connect(additionalPage, SIGNAL(sigModified()), this, SLOT(slotChildPageModified()));
@@ -96,9 +93,6 @@ EntryDlg::EntryDlg(KXmlGuiWindow *main, KEduVocDocument *doc) : KPageDialog()
 
     commonPage->expr_line->setFocus();
     setModified(false);
-
-
-
 
     for ( int identifier1 = 0; identifier1 < m_doc->identifierCount(); identifier1++ ) {
         for ( int identifier2 = identifier1 + 1; identifier2 < m_doc->identifierCount(); identifier2++ ) {
@@ -183,52 +177,6 @@ void EntryDlg::slotUndo()
 bool EntryDlg::isModified()
 {
     return m_modified;
-}
-
-
-void EntryDlg::slotDockVertical()
-{
-// FIXME: should this be handled in KWinModule?
-#ifdef Q_WS_X11
-    if (!docked) {
-        oldMainPos = mainwin->pos();
-        oldMainSize = mainwin->size();
-        docked = true;
-    }
-
-    QRect rect = KWindowSystem::workArea();
-
-    int diff_x = frameGeometry().width()-width();
-    int diff_y = frameGeometry().height()-height();
-    resize(minimumWidth(), rect.height()-diff_y);
-    mainwin->resize(rect.width()-frameGeometry().width()-diff_x,
-                    rect.height()-diff_y);
-    move(0, 0);
-    mainwin->move(frameGeometry().width(), 0);
-#endif
-}
-
-
-void EntryDlg::slotDockHorizontal()
-{
-#ifdef Q_WS_X11
-    if (!docked) {
-        oldMainPos = mainwin->pos();
-        oldMainSize = mainwin->size();
-        docked = true;
-    }
-
-    QRect rect = KWindowSystem::workArea();
-
-    int diff_x = frameGeometry().width()-width();
-    int diff_y = frameGeometry().height()-height();
-
-    resize(rect.width()-diff_x, minimumHeight());
-    mainwin->resize(rect.width()-diff_x,
-                    rect.height()-frameGeometry().height()-diff_y);
-    move(0, 0);
-    mainwin->move(0, frameGeometry().height());
-#endif
 }
 
 
@@ -404,6 +352,12 @@ void EntryDlg::slotChildPageModified()
     enableButtonApply(true);
     enableButton(User1, true);
     m_modified = true;
+}
+
+void EntryDlg::slotOk()
+{
+    slotApply();
+    emit closeEntryDialog();
 }
 
 
