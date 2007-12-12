@@ -41,6 +41,8 @@ MCEntryPage::MCEntryPage(QWidget *parent) : QWidget(parent)
     multipleChoiceListView->setModel(m_choicesModel);
 
     connect(m_choicesModel, SIGNAL(dataChanged ( const QModelIndex &, const QModelIndex & )), SLOT(slotDataChanged( const QModelIndex &, const QModelIndex & )));
+
+    setEnabled(false);
 }
 
 
@@ -50,7 +52,6 @@ void MCEntryPage::slotDataChanged( const QModelIndex & topLeft, const QModelInde
 }
 
 
-///@todo the lib now supports an arbitrary number of entries for multiple choice. We should reflect that and have a list rather than five fixed entries.
 // also starting with 0 might be nicer. crashes though.
 void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
 {
@@ -61,9 +62,10 @@ void MCEntryPage::setTranslation(KEduVocExpression * entry, int translation)
     }
 
     if (m_translation) {
+        setEnabled(true);
         m_choicesModel->setStringList(m_translation->multipleChoice());
     } else {
-        ///@todo disable this widget
+        setEnabled(false);
     }
 }
 
