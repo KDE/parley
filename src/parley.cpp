@@ -29,6 +29,8 @@
 #include "wordtypedockwidget.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
+#include "vocabulary/lessonview.h"
+#include "vocabulary/lessonmodel.h"
 
 #include "entry-dialogs/EntryDlg.h"
 #include "entry-dialogs/wordtypewidget.h"
@@ -109,6 +111,7 @@ ParleyApp::ParleyApp(const QString& appName, const KUrl & filename) : KXmlGuiWin
 
     initDockWidgets();
 
+
     // these connects need the model to exist
     // selection changes (the entry dialog needs these)
 //     connect(m_tableView->selectionModel(), SIGNAL(currentChanged(const QModelIndex &, const QModelIndex &)),
@@ -182,9 +185,6 @@ void ParleyApp::saveOptions()
 //         Prefs::setCurrentRow(sourceIndex.row());
 //         Prefs::setCurrentCol(sourceIndex.column());
 //     }
-
-    m_lessonDockWidget->saveOptions();
-
     Prefs::self()->writeConfig();
 }
 
@@ -618,8 +618,9 @@ void ParleyApp::slotFileQuit()
 
 void ParleyApp::updateDocument()
 {
-    m_lessonDockWidget->setDocument(m_document->document());
-    m_wordTypeDockWidget->setDocument(m_document->document());
+///@todo we can use connect here
+    m_lessonModel->setDocument(m_document->document());
+    m_wordTypeModel->setDocument(m_document->document());
 
 //     m_tableModel->setDocument(m_document->document());
 //     m_tableModel->reset();
@@ -687,6 +688,57 @@ void ParleyApp::updateEditWidgets()
 
 void ParleyApp::initDockWidgets()
 {
+// Lesson dock
+    QDockWidget *lessonDockWidget = new QDockWidget(i18n("Lessons"), this);
+    lessonDockWidget->setObjectName("LessonDock");
+    m_lessonView = new LessonView(this);
+    lessonDockWidget->setWidget(m_lessonView);
+    addDockWidget(Qt::LeftDockWidgetArea, lessonDockWidget);
+    actionCollection()->addAction("show_lesson_dock", lessonDockWidget->toggleViewAction());
+
+    m_lessonModel = new LessonModel(KEduVocLesson::LessonContainer, this);
+
+    m_lessonView->setModel(m_lessonModel);
+    m_lessonView->setToolTip(i18n("Right click to add, delete, or rename lessons. \n"
+            "With the checkboxes you can select which lessons you want to practice. \n"
+            "Only checked lessons [x] will be asked in the tests!"));
+
+
+///   @todo make these actions members
+    connect(actionCollection()->action("new_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotCreateNewLesson()));
+    connect(actionCollection()->action("rename_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotRenameLesson()));
+    connect(actionCollection()->action("delete_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotDeleteLesson()));
+    connect(actionCollection()->action("check_all_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckAllLessons()));
+    connect(actionCollection()->action("check_no_lessons"), SIGNAL(triggered()), m_lessonView, SLOT(slotCheckNoLessons()));
+    connect(actionCollection()->action("split_lesson"), SIGNAL(triggered()), m_lessonView, SLOT(slotSplitLesson()));
+
+    m_lessonView->addAction(actionCollection()->action("new_lesson"));
+    m_lessonView->addAction(actionCollection()->action("rename_lesson"));  m_lessonView->addAction(actionCollection()->action("delete_lesson"));
+
+    QAction* separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    m_lessonView->addAction(actionCollection()->action("check_all_lessons")); m_lessonView->addAction(actionCollection()->action("check_no_lessons"));
+    separator = new QAction(this);
+    separator->setSeparator(true);
+    m_lessonView->addAction(separator);
+    m_lessonView->addAction(actionCollection()->action("split_lesson"));
+
+    connect(m_lessonView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+
+
+// Word types dock
+    QDockWidget* wordTypeDockWidget = new QDockWidget(i18n("Word Types"), this);
+    wordTypeDockWidget->setObjectName( "WordTypeDock" );
+    m_wordTypeView = new LessonView(this);
+    wordTypeDockWidget->setWidget(m_wordTypeView);
+    addDockWidget( Qt::LeftDockWidgetArea, wordTypeDockWidget );
+
+    m_wordTypeModel = new LessonModel(KEduVocContainer::WordTypeContainer, this);
+    m_wordTypeView->setModel(m_wordTypeModel);
+
+//     connect(m_wordTypeDockWidget->wordTypeView(), SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+
     // word types dock
 //     QDockWidget *wordTypeDockWidget = new QDockWidget(i18n("Word Type"), this);
 //     wordTypeDockWidget->setObjectName("WordTypeDock");

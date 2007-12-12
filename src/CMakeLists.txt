@@ -168,7 +168,7 @@ set(parley_SRCS
     #kvtlessonmodel.cpp
     #kvtlessonview.cpp
     #kvtsortfiltermodel.cpp
-    lessondockwidget.cpp
+    #lessondockwidget.cpp
     wordtypedockwidget.cpp
 )
 

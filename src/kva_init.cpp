@@ -388,9 +388,7 @@ void ParleyApp::initModel()
 
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), m_vocabularyModel, SLOT(setDocument(KEduVocDocument*)));
 
-    connect(m_lessonDockWidget->lessonView(), SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
 
-    connect(m_wordTypeDockWidget->wordTypeView(), SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
 }
 
 
@@ -406,16 +404,6 @@ void ParleyApp::initView()
     topLayout->setMargin(KDialog::marginHint());
     topLayout->setSpacing(KDialog::spacingHint());
 
-    // Lesson dock
-    m_lessonDockWidget = new LessonDockWidget(this);
-    m_lessonDockWidget->setObjectName("LessonDock");
-    addDockWidget(Qt::LeftDockWidgetArea, m_lessonDockWidget);
-    
-    // Word types dock
-    m_wordTypeDockWidget = new WordTypeDockWidget(this);
-    m_wordTypeDockWidget->setObjectName( "WordTypeDock" );
-    addDockWidget( Qt::LeftDockWidgetArea, m_wordTypeDockWidget );
-     
     m_searchLine = new KLineEdit(this);
     m_searchLine->show();
     m_searchLine->setFocusPolicy(Qt::ClickFocus);

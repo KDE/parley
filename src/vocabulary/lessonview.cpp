@@ -36,6 +36,7 @@
 LessonView::LessonView(QWidget *parent) : QTreeView(parent)
 {
     header()->setResizeMode(QHeaderView::ResizeToContents);
+    header()->setVisible(false);
     setAlternatingRowColors(true);
     // drag and drop
 //     setDragEnabled(true);

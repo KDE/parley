@@ -36,8 +36,6 @@ public:
 
     void setDocument(KEduVocDocument *doc);
 
-    int addLesson();
-
     void saveOptions();
 
     /** Make sure, the lesson is visible - if combo is set to
@@ -54,8 +52,6 @@ private:
     LessonView  *m_lessonView;
     LessonModel *m_lessonModel;
 
-    /** m_editCombo selects which lessons to display in m_tableView (the main table) */
-    KComboBox *m_lessonSelectionCombo;
 
     ParleyApp *m_parleyApp;
 };

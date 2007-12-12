@@ -81,6 +81,4 @@ void MCEntryPage::slotAddChoiceButton()
 }
 
 
-
-
 #include "MCEntryPage.moc"
