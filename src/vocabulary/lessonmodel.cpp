@@ -218,7 +218,7 @@ void LessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLesson
 {
     // list of entries in the lesson
     QList<KEduVocExpression*> entryList;
-    for (int i = 0; i < m_doc->entryCount(); i++) {
+    for (int i = 0; i < m_doc->entryCountRecursive(); i++) {
         KEduVocExpression *expr = m_doc->entry(i);
         if (expr->lesson() == lessonIndex)
             entryList.append(expr);
@@ -306,7 +306,7 @@ QVariant LessonModel::data(const QModelIndex & index, int role) const
         }
     case 1:
         if (role == Qt::DisplayRole) {
-            return lesson->entryCount();
+            return lesson->entriesRecursive().count();
         }
     }
 
@@ -407,7 +407,7 @@ void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
     KEduVocContainer* parent = lesson->parent();
 
     beginRemoveRows(lessonIndex.parent(), lessonIndex.row(), lessonIndex.row());
-    parent->removeChildContainer(lessonIndex.row());
+    parent->removeChildContainer(lesson->row());
     endRemoveRows();
 }
 
