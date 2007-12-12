@@ -40,8 +40,8 @@ public:
         Example,
         Comment,
         Paraphrase,
-        Audio,
-        Image,
+//         Audio,
+//         Image,
         EntryColumnsMAX
     };
 

@@ -127,29 +127,29 @@ QVariant VocabularyModel::data(const QModelIndex & index, int role) const
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->comment());
         case Paraphrase:
             return QVariant(m_lesson->entry(index.row())->translation(translationId)->paraphrase());
-        case Audio:
-        case Image:
+//         case Audio:
+//         case Image:
         default:
             return QVariant();
         }
         break;
-    case Qt::DecorationRole: {
-        switch (entryColumn) {
-        case Audio:
-            if ( !m_lesson->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
-                return KIcon("media-playback-start");
-            }
-            return QVariant();
-        case Image:
-            if ( !m_lesson->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
-                return QPixmap(m_lesson->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
-            }
-            return QVariant();
-        default:
-            return QVariant();
-        }
-        break;
-    }
+//     case Qt::DecorationRole: {
+//         switch (entryColumn) {
+//         case Audio:
+//             if ( !m_lesson->entry(index.row())->translation(translationId)->soundUrl().isEmpty() ) {
+//                 return KIcon("media-playback-start");
+//             }
+//             return QVariant();
+//         case Image:
+//             if ( !m_lesson->entry(index.row())->translation(translationId)->imageUrl().isEmpty() ) {
+//                 return QPixmap(m_lesson->entry(index.row())->translation(translationId)->imageUrl().toLocalFile()).scaled(QSize(30,30));
+//             }
+//             return QVariant();
+//         default:
+//             return QVariant();
+//         }
+//         break;
+//     }
 //     case Qt::SizeHintRole:
 //         switch (entryColumn) {
 //         case Audio:
@@ -205,8 +205,8 @@ bool VocabularyModel::setData(const QModelIndex &index, const QVariant &value, i
     case Paraphrase:
         m_lesson->entry(index.row())->translation(translationId)->setParaphrase(value.toString());
         break;
-    case Audio:
-    case Image:
+//     case Audio:
+//     case Image:
     default:
         return false;
     }
@@ -257,13 +257,13 @@ QVariant VocabularyModel::headerData(int section, Qt::Orientation orientation, i
                 return i18n("Paraphrase");
             }
             break;
-        case Qt::DecorationRole:
-            switch(entryColumn){
-            case Audio:
-                return KIcon("speaker");
-            case Image:
-                return KIcon("view-preview");
-            }
+//         case Qt::DecorationRole:
+//             switch(entryColumn){
+//             case Audio:
+//                 return KIcon("speaker");
+//             case Image:
+//                 return KIcon("view-preview");
+//             }
 
 //         case Qt::SizeHintRole:
 //             switch (entryColumn) {
