@@ -45,6 +45,15 @@
    <Menu name="tools" >
    <text>Tools</text>
     <Action name="show_lesson_dock"/>
+    <Action name="show_wordtype_dock"/>
+    <Action name="show_image_dock"/>
+    <Action name="show_audio_dock"/>
+    <Action name="show_comparison_dock"/>
+    <Action name="show_conjugation_dock"/>
+    <Action name="show_declination_dock"/>
+    <Action name="show_pronunciation_dock"/>
+    <Action name="show_leitner_dock"/>
+    <Action name="show_multiplechoice_dock"/>
    </Menu>
    <Action name="config_show_search" />
    <Action name="show_vocabulary_columns_menu" />

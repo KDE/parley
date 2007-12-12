@@ -45,6 +45,8 @@
 #include "configure-practice/configurepracticedialog.h"
 #include "prefs.h"
 
+// #include "marble/MarbleWidget.h"
+
 #include <keduvoclesson.h>
 #include <keduvocexpression.h>
 
@@ -699,7 +701,9 @@ void ParleyApp::initDockWidgets()
     QLabel *conjugationWidget = new QLabel("Conjugations placeholder", this);
     conjugationDock->setWidget(conjugationWidget);
     addDockWidget(Qt::RightDockWidgetArea, conjugationDock);
+    actionCollection()->addAction("show_conjugation_dock", conjugationDock->toggleViewAction());
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_conjugationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
 
 // Declinations
     QDockWidget *declinationDock = new QDockWidget(i18n("Declination"), this);
@@ -707,7 +711,9 @@ void ParleyApp::initDockWidgets()
     QLabel *declinationWidget = new QLabel("Declinations placeholder", this);
     declinationDock->setWidget(declinationWidget);
     addDockWidget(Qt::RightDockWidgetArea, declinationDock);
+    actionCollection()->addAction("show_declination_dock", declinationDock->toggleViewAction());
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
 
 // Comparison forms
     QDockWidget *comparisonDock = new QDockWidget(i18n("Comparison forms"), this);
@@ -715,9 +721,12 @@ void ParleyApp::initDockWidgets()
     ComparisonWidget *comparisonWidget = new ComparisonWidget(this);
     comparisonDock->setWidget(comparisonWidget);
     addDockWidget(Qt::RightDockWidgetArea, comparisonDock);
+    actionCollection()->addAction("show_comparison_dock", comparisonDock->toggleViewAction());
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         comparisonWidget, SLOT(setTranslation(KEduVocExpression*, int)));
     connect(m_document, SIGNAL(documentChanged(KEduVocDocument*)), comparisonWidget, SLOT(setDocument(KEduVocDocument*)));
+
+
 
 
 // Multiple choice
@@ -726,7 +735,7 @@ void ParleyApp::initDockWidgets()
     MCEntryPage *multipleChoiceWidget = new MCEntryPage(this);
     multipleChoiceDock->setWidget(multipleChoiceWidget);
     addDockWidget(Qt::RightDockWidgetArea, multipleChoiceDock);
-
+    actionCollection()->addAction("show_multiplechoice_dock", multipleChoiceDock->toggleViewAction());
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         multipleChoiceWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -737,6 +746,7 @@ void ParleyApp::initDockWidgets()
     QLabel *charSelectWidget = new QLabel("IPA placeholder", this);
     charSelectDock->setWidget(charSelectWidget);
     addDockWidget(Qt::RightDockWidgetArea, charSelectDock);
+    actionCollection()->addAction("show_pronunciation_dock", charSelectDock->toggleViewAction());
 
 
 // Image
@@ -745,6 +755,7 @@ void ParleyApp::initDockWidgets()
     ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
     imageDock->setWidget(imageChooserWidget);
     addDockWidget(Qt::RightDockWidgetArea, imageDock);
+    actionCollection()->addAction("show_image_dock", imageDock->toggleViewAction());
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
@@ -754,8 +765,17 @@ void ParleyApp::initDockWidgets()
     AudioWidget *audioWidget = new AudioWidget(this);
     audioDock->setWidget(audioWidget);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
+    actionCollection()->addAction("show_audio_dock", audioDock->toggleViewAction());
     connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
         audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
+
+// Marble
+//     QDockWidget *marbleDock = new QDockWidget(i18n("Marble"), this);
+//     marbleDock->setObjectName("MarbleDock");
+//     MarbleWidget *marbleWidget = new MarbleWidget(this);
+//     marbleDock->setWidget(marbleWidget);
+//     addDockWidget(Qt::RightDockWidgetArea, marbleDock);
 
 
 // Grades
@@ -765,6 +785,8 @@ void ParleyApp::initDockWidgets()
 //     gradeDock->setWidget(gradeWidget);
 //     addDockWidget(Qt::RightDockWidgetArea, gradeDock);
 //     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+
+// actionCollection()->addAction("show_leitner_dock", ->toggleViewAction());
 }
 
 

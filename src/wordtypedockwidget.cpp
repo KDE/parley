@@ -91,7 +91,7 @@ WordTypeDockWidget::WordTypeDockWidget(ParleyApp *parent)
   m_wordTypeView->addAction(separator);
   m_wordTypeView->addAction(parent->actionCollection()->action("split_lesson"));
 
-  parent->actionCollection()->addAction("show_lesson_dock", toggleViewAction());
+  parent->actionCollection()->addAction("show_wordtype_dock", toggleViewAction());
 
   setWidget(left);
 }
