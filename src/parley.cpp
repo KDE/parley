@@ -34,6 +34,8 @@
 #include "entry-dialogs/wordtypewidget.h"
 #include "entry-dialogs/MCEntryPage.h"
 #include "entry-dialogs/comparisonwidget.h"
+#include "entry-dialogs/imagechooserwidget.h"
+
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
 #include "language-dialogs/languagedialog.h"
@@ -739,10 +741,11 @@ void ParleyApp::initDockWidgets()
 // Image
     QDockWidget *imageDock = new QDockWidget(i18n("Image"), this);
     imageDock->setObjectName("ImageDock");
-    QLabel *imageWidget = new QLabel("Image placeholder", this);
-    imageDock->setWidget(imageWidget);
+    ImageChooserWidget *imageChooserWidget = new ImageChooserWidget(this);
+    imageDock->setWidget(imageChooserWidget);
     addDockWidget(Qt::RightDockWidgetArea, imageDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_imageWidget, SLOT(setTranslation(KEduVocTranslation*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        imageChooserWidget, SLOT(setTranslation(KEduVocExpression*, int)));
 
 // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
