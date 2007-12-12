@@ -69,11 +69,9 @@ void LessonView::slotCheckNoLessons()
 
 void LessonView::slotCreateNewLesson()
 {
-/*    int newLessonIndex = m_model->addLesson();
-    slotSelectLesson(newLessonIndex);
-
-    QModelIndex modelIndex = m_model->index(newLessonIndex, 0, QModelIndex());
-    edit(modelIndex);    // let the user type a new name for the lesson*/
+    QModelIndex modelIndex = m_model->appendLesson(QModelIndex());
+    selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
+    edit(modelIndex);    // let the user type a new name for the lesson
 }
 
 void LessonView::slotRenameLesson()

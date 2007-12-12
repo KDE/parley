@@ -112,7 +112,27 @@ int LessonModel::rowCount(const QModelIndex &parent) const
     return parentItem->childContainerCount();
 }
 
+QModelIndex LessonModel::appendLesson(const QModelIndex& parent, const QString & lessonName)
+{
+    kDebug() << " parent ";
+    if (!parent.isValid()) {
+kDebug() << " parent invalid";
 
+        if (m_vocabularyContainer->containerType() == KEduVocContainer::LessonContainer) {
+kDebug() << " lesson container";
+        beginInsertRows(QModelIndex(), m_vocabularyContainer->childContainerCount()  , m_vocabularyContainer->childContainerCount() - 1 );
+            KEduVocLesson* parent = static_cast<KEduVocLesson*>(m_vocabularyContainer);
+            m_vocabularyContainer->appendChildContainer(new KEduVocLesson(lessonName, parent));
+        endInsertRows();
+
+            return index(m_vocabularyContainer->childContainerCount() - 1, 0, QModelIndex());
+        }
+        
+    }
+
+
+    return QModelIndex();
+}
 
 // Qt::DropActions LessonModel::supportedDropActions() const
 // {
@@ -144,7 +164,10 @@ int LessonModel::rowCount(const QModelIndex &parent) const
 //     emit dataChanged(index(0, 0, QModelIndex()), index(rowCount(), 0, QModelIndex()));
 //     //emit signalLessonsInPracticeChanged(intLessons);
 // }
-// 
+
+
+
+
 // int LessonModel::addLesson(const QString &lessonName)
 // {
 //     beginInsertRows(QModelIndex(), m_doc->lessonCount(), m_doc->lessonCount());

@@ -80,7 +80,10 @@ public:
     bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole);
 
     // add a lesson - returns lesson index
-//     int addLesson(const QString &lessonName = QString());
+//     QModelIndex addLesson(const QString &lessonName = QString());
+
+    QModelIndex appendLesson(const QModelIndex& parent, const QString & lessonName = QString());
+
     // returns whether it was possible to delete
 //     bool deleteLesson(int lessonIndex, KEduVocDocument::LessonDeletion mode);
 

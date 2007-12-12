@@ -143,12 +143,6 @@ void VocabularyDelegate::drawDisplay(QPainter * painter, const QStyleOptionViewI
         painter->setPen(option.palette.color(cg, QPalette::Text));
         painter->drawRect(rect.adjusted(0, 0, -1, -1));
         painter->restore();
-    }
-
-    if (text == "@inactive@") {
-        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("no"));
-    } else if (text == "@active@") {
-        painter->drawPixmap((rect.width() / 2) + rect.left() - 8, (rect.height() / 2) + rect.top() - 8, 16, 16, SmallIcon("ok"));
     } else {
         QFont font = painter->font();
         painter->setFont(option.font);
