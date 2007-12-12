@@ -33,14 +33,14 @@
     </widget>
    </item>
    <item>
-    <widget class="KUrlComboRequester" name="imageUrlRequester" />
+    <widget class="KUrlRequester" name="imageUrlRequester" />
    </item>
   </layout>
  </widget>
  <customwidgets>
   <customwidget>
-   <class>KUrlComboRequester</class>
-   <extends>KUrlRequester</extends>
+   <class>KUrlRequester</class>
+   <extends>QFrame</extends>
    <header>kurlrequester.h</header>
   </customwidget>
  </customwidgets>

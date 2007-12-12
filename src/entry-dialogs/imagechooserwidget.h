@@ -35,15 +35,15 @@ public slots:
      */
     void setTranslation(KEduVocExpression* entry, int translation);
 
-signals:
-    /**
-     * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declination appear)
-     * @param  
-     */
-    void imageChanged(const QString&);
+// signals:
+//     /**
+//      * Important to let other widgets know that a certain word type is edited (might make conjugations/comparison/declination appear)
+//      * @param  
+//      */
+//     void imageChanged(const QString&);
 
 private slots:
-
+    void slotImageChanged(const QString & url);
 
 private:
     /// Column in the document - corresponds to the language (-KV_COL_TRANS)
