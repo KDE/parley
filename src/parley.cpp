@@ -35,6 +35,7 @@
 #include "entry-dialogs/MCEntryPage.h"
 #include "entry-dialogs/comparisonwidget.h"
 #include "entry-dialogs/imagechooserwidget.h"
+#include "entry-dialogs/audiowidget.h"
 
 #include "statistics-dialogs/StatisticsDialog.h"
 #include "settings/parleyprefs.h"
@@ -750,10 +751,12 @@ void ParleyApp::initDockWidgets()
 // Sound
     QDockWidget *audioDock = new QDockWidget(i18n("Sound"), this);
     audioDock->setObjectName("AudioDock");
-    QLabel *audioWidget = new QLabel("Sound placeholder", this);
+    AudioWidget *audioWidget = new AudioWidget(this);
     audioDock->setWidget(audioWidget);
     addDockWidget(Qt::RightDockWidgetArea, audioDock);
-//     connect(this, SIGNAL(signalSetData(KEduVocTranslation*)), m_declinationWidget, SLOT(setTranslation(KEduVocTranslation*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        audioWidget, SLOT(setTranslation(KEduVocExpression*, int)));
+
 
 // Grades
 //     QDockWidget *gradeDock = new QDockWidget(i18n("Grade"), this);

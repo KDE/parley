@@ -102,6 +102,7 @@ set(entrydialogs_SRCS
   #  entry-dialogs/wordtypewidget.cpp
     entry-dialogs/comparisonwidget.cpp
     entry-dialogs/imagechooserwidget.cpp
+    entry-dialogs/audiowidget.cpp
 )
 
 kde4_add_ui_files(entrydialogs_SRCS
@@ -115,6 +116,7 @@ kde4_add_ui_files(entrydialogs_SRCS
     entry-dialogs/multiplechoicewidget.ui
     entry-dialogs/comparisonwidget.ui
     entry-dialogs/imagechooserwidget.ui
+    entry-dialogs/audiowidget.ui
 )
 
 set(statisticsdialogs_SRCS
