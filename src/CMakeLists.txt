@@ -162,14 +162,6 @@ set(parley_SRCS
     parley.cpp
     main.cpp
     kva_init.cpp
-    #kvttabledelegate.cpp
-    #kvttablemodel.cpp
-    #kvttableview.cpp
-    #kvtlessonmodel.cpp
-    #kvtlessonview.cpp
-    #kvtsortfiltermodel.cpp
-    #lessondockwidget.cpp
-    wordtypedockwidget.cpp
 )
 
 set(parley_icons

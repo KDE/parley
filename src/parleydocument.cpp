@@ -18,7 +18,6 @@
 
 #include "kvttablemodel.h"
 #include "kvttableview.h"
-#include "lessondockwidget.h"
 #include "newdocument-wizard/kvtnewdocumentwizard.h"
 #include "entry-dialogs/EntryDlg.h"
 #include "prefs.h"

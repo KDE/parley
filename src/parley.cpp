@@ -25,8 +25,6 @@
 #include "parley.h"
 
 #include "practice/testentrymanager.h"
-#include "lessondockwidget.h"
-#include "wordtypedockwidget.h"
 #include "vocabulary/vocabularymodel.h"
 #include "vocabulary/vocabularyview.h"
 #include "vocabulary/lessonview.h"
@@ -75,6 +73,7 @@
 #include <QProgressBar>
 #include <QSplitter>
 #include <QHeaderView>
+#include <QtGui/QDockWidget>
 #include <QtGui/QPrinter>
 #include <QtGui/QPrintDialog>
 
