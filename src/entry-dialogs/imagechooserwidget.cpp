@@ -30,6 +30,7 @@ ImageChooserWidget::ImageChooserWidget(QWidget *parent) : QWidget(parent)
 
     imageLabel->setAcceptDrops(true);
     imageLabel->installEventFilter(this);
+    setEnabled(false);
 }
 
 

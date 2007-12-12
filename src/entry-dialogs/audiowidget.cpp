@@ -33,9 +33,11 @@ AudioWidget::AudioWidget(QWidget *parent) : QWidget(parent)
     connect(playButton, SIGNAL(clicked()), SLOT(playAudio()));
     connect(recordButton, SIGNAL(clicked()), SLOT(recordAudio()));
 
+    playButton->setEnabled(false);
     playButton->setIcon(KIcon("media-playback-start"));
     recordButton->setEnabled(false);
     recordButton->setIcon(KIcon("media-record"));
+    audioUrlRequester->setEnabled(false);
 }
 
 
