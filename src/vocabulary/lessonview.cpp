@@ -32,23 +32,20 @@
 #include <kconfig.h>
 #include <keduvocdocument.h>
 #include <keduvoclesson.h>
+#include <keduvocwordtype.h>
+#include <keduvocexpression.h>
 
 LessonView::LessonView(QWidget *parent) : QTreeView(parent)
 {
     header()->setResizeMode(QHeaderView::ResizeToContents);
     header()->setVisible(false);
     setAlternatingRowColors(true);
-    // drag and drop
-//     setDragEnabled(true);
-    //setMovement(QListView::Snap);
-//     setAcceptDrops(true);
-//     setDropIndicatorShown(true);
-    // only allow internal moves - so far no interaction with the outside world.
-//     setDragDropMode(QAbstractItemView::InternalMove);
+
     // show the actions added by addAction() as right click menu.
     setContextMenuPolicy(Qt::ActionsContextMenu);
     setSelectionMode(QAbstractItemView::SingleSelection);
-//     setSelectionBehavior(QAbstractItemView::SelectRows);
+    // setSelectionBehavior(QAbstractItemView::SelectRows);
+
 }
 
 void LessonView::setModel(LessonModel *model)
@@ -105,20 +102,6 @@ void LessonView::slotDeleteLesson()
 //     }
 }
 
-void LessonView::selectionChanged(const QItemSelection & selected, const QItemSelection & deselected)
-{
-    Q_UNUSED(deselected);
-
-    KEduVocContainer *lesson = 0;
-
-    if(selected.count() > 0) {
-        QModelIndex index = selected.indexes().value(0);
-        lesson = static_cast<KEduVocContainer*>(index.internalPointer());
-    }
-
-    emit signalSelectedContainerChanged(lesson);
-}
-
 
 void LessonView::slotSplitLesson()
 {
@@ -130,6 +113,64 @@ void LessonView::slotSplitLesson()
 //         return;
 //     Prefs::setEntriesPerLesson(numEntries);
 //     m_model->splitLesson(indexOfCurrentLesson(), numEntries, KVTLessonModel::random);
+}
+
+void LessonView::setTranslation(KEduVocExpression * entry, int translation)
+{
+    if (entry == 0) {
+        return;
+    }
+
+    QModelIndex selectedIndex = selectionModel()->currentIndex();
+    KEduVocContainer* container;
+
+    // if it's the right container selected anyway, we don't worry
+    if (selectedIndex.isValid()) {
+        container = static_cast<KEduVocContainer*>(selectedIndex.internalPointer());
+        if (container->entries().contains(entry)) {
+            return;
+        }
+    }
+
+    // attempt to find the container to select
+    QModelIndex modelIndex;
+
+    // who am I
+    if(m_model->containerType() == KEduVocContainer::LessonContainer) {
+            modelIndex = m_model->index(entry->lessons().value(0));
+    }
+
+    // if it's not one of the others, it has to be some sort of word type container.
+    if(m_model->containerType() != KEduVocContainer::Container
+        && m_model->containerType() != KEduVocContainer::LessonContainer
+        && m_model->containerType() != KEduVocContainer::LeitnerContainer ) {
+
+        modelIndex = m_model->index(entry->translation(translation)->wordType());
+    }
+// leitner as well?
+
+    if(!modelIndex.isValid()) {
+        scrollTo(QModelIndex());
+        selectionModel()->clearSelection();
+        return;
+    }
+
+    scrollTo(modelIndex);
+    selectionModel()->select(modelIndex, QItemSelectionModel::ClearAndSelect);
+
+}
+
+void LessonView::currentChanged(const QModelIndex & current, const QModelIndex & previous)
+{
+    kDebug()<< "current changed";
+
+    Q_UNUSED(previous);
+
+    KEduVocContainer *lesson = 0;
+    lesson = static_cast<KEduVocContainer*>(current.internalPointer());
+    emit signalSelectedContainerChanged(lesson);
+
+    QTreeView::currentChanged(current, previous);
 }
 
 

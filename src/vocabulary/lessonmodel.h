@@ -48,9 +48,14 @@ public:
                         int role = Qt::DisplayRole) const;
     QModelIndex index(int row, int column,
                     const QModelIndex &parent = QModelIndex()) const;
+
+    QModelIndex index(KEduVocContainer* container) const;
+
     QModelIndex parent(const QModelIndex &index) const;
     int rowCount(const QModelIndex &parent = QModelIndex()) const;
     int columnCount(const QModelIndex &parent = QModelIndex()) const;
+
+    KEduVocContainer::EnumContainerType containerType();
 
 
 public slots:
@@ -103,7 +108,6 @@ public:
 private:
     KEduVocContainer * m_vocabularyContainer;
     KEduVocLesson::EnumContainerType m_type;
-
 };
 
 #endif

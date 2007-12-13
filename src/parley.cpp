@@ -723,7 +723,10 @@ void ParleyApp::initDockWidgets()
     m_lessonView->addAction(separator);
     m_lessonView->addAction(actionCollection()->action("split_lesson"));
 
-    connect(m_lessonView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+    connect(m_lessonView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)),
+        m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        m_lessonView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 
 // Word types dock
@@ -735,6 +738,9 @@ void ParleyApp::initDockWidgets()
 
     m_wordTypeModel = new LessonModel(KEduVocContainer::WordTypeContainer, this);
     m_wordTypeView->setModel(m_wordTypeModel);
+    connect(m_wordTypeView, SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
+    connect(m_vocabularyView, SIGNAL(translationChanged(KEduVocExpression*, int)),
+        m_wordTypeView, SLOT(setTranslation(KEduVocExpression*, int)));
 
 //     connect(m_wordTypeDockWidget->wordTypeView(), SIGNAL(signalSelectedContainerChanged(KEduVocContainer*)), m_vocabularyModel, SLOT(setContainer(KEduVocContainer*)));
 

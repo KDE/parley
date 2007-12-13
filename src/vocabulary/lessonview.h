@@ -20,7 +20,7 @@
 
 class LessonModel;
 class KEduVocContainer;
-
+class KEduVocExpression;
 /**
  * View for the lesson list.
  * Actually a QTreeView because QListView cannot have checkboxes.
@@ -52,13 +52,10 @@ public slots:
     /** Remove a lesson. Ask if it's not empty. */
     void slotDeleteLesson();
 
-    /**
-     * Slot from model/view - a new item has been selected.
-     * We only extract the newly selected lesson and call slotSelectLesson.
-     * @param selected is the new selection
-     * @param deselected was selected before
-     */
-    void selectionChanged(const QItemSelection & selected, const QItemSelection & deselected);
+    void setTranslation(KEduVocExpression*, int);
+
+    void currentChanged( const QModelIndex & current, const QModelIndex & previous );
+
     /** Add all lessons to query. Activated from menu, passes to m_model. */
     void slotCheckAllLessons();
     /** Remove all lessons from query. Activated from menu, passes to m_model. */

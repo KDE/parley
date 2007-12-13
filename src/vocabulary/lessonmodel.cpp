@@ -412,4 +412,29 @@ void LessonModel::deleteLesson(const QModelIndex & lessonIndex)
 }
 
 
+QModelIndex LessonModel::index(KEduVocContainer * container) const
+{
+    if(!container) {
+        return QModelIndex();
+    }
+
+    if(container == m_vocabularyContainer) {
+        return QModelIndex();
+    }
+
+    QModelIndex currentIndex = index(container->row(), 0, index(container->parent()));
+    return currentIndex;
+}
+
+
+KEduVocContainer::EnumContainerType LessonModel::containerType()
+{
+    if (m_vocabularyContainer) {
+        return m_vocabularyContainer->containerType();
+    }
+    return KEduVocContainer::Container;
+}
+
+
 #include "lessonmodel.moc"
+
