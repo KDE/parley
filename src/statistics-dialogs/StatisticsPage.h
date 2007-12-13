@@ -45,6 +45,7 @@ public:
 private slots:
     void slotCurrentItemChanged(QTreeWidgetItem *, QTreeWidgetItem *);
 
+
 private:
     void setupData();
     QString gradesToolTip(int level, bool reverse);
