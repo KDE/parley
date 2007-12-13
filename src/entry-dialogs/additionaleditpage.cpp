@@ -145,7 +145,7 @@ void AdditionalEditPage::playAudio()
 
     if (!m_player)
     {
-        m_player = Phonon::createPlayer(Phonon::NotificationCategory, soundFile);
+        m_player = Phonon::createPlayer(Phonon::NoCategory, soundFile);
         m_player->setParent(this);
     } else {
         m_player->setCurrentSource(soundFile);

@@ -103,7 +103,7 @@ void ShowSolutionDialog::audioPlayFile(const QString & soundFile)
     {
         kDebug() << "Creating Phonon player...";
         m_player = new Phonon::MediaObject(this);
-        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NotificationCategory, this);
+        Phonon::AudioOutput *audioOutput = new Phonon::AudioOutput(Phonon::NoCategory, this);
         createPath(m_player, audioOutput);
     }
     m_player->stop();
