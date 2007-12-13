@@ -73,8 +73,8 @@ signals:
 public:
     /** When splitting a lesson into smaller ones - how to sort the entries into lessons.*/
     enum SplitLessonOrder {
-        sorted,    /**< The order of the entries in the document */
-        random /**< Randomized */
+        Sorted,    /**< The order of the entries in the document */
+        Random /**< Randomized */
     };
 
     /** Change the name or checkbox of a lesson.
@@ -103,7 +103,7 @@ public:
      * @param entriesPerLesson number of entries in each new lesson
      * @param order one of SplitLessonOrder
      */
-//     void splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order);
+    void splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order);
 
 private:
     KEduVocContainer * m_vocabularyContainer;

@@ -105,14 +105,20 @@ void LessonView::slotDeleteLesson()
 
 void LessonView::slotSplitLesson()
 {
+    if (!selectionModel()->currentIndex().isValid()) {
+        return;
+    }
+
     /** @todo A nicer dialog would be great.
      * Maybe with radio buttons to ask, if the entries should be in random order or as they come. */
-//     bool ok = false;
-//     int numEntries = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("The lesson will be split into smaller lessons. The order will be randomized.\nHow many entries in each lesson do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
-//     if (!ok)
-//         return;
-//     Prefs::setEntriesPerLesson(numEntries);
-//     m_model->splitLesson(indexOfCurrentLesson(), numEntries, KVTLessonModel::random);
+    bool ok = false;
+    int numEntries = KInputDialog::getInteger(i18n("Entries per Lesson"), i18n("The lesson will be split into smaller lessons. How many entries in each lesson do you want?"), Prefs::entriesPerLesson(), 1, 1000, 1, &ok, this);
+    if (!ok) {
+        return;
+    }
+    Prefs::setEntriesPerLesson(numEntries);
+    m_model->splitLesson(selectionModel()->currentIndex(), numEntries, LessonModel::Random);
+    setExpanded(selectionModel()->currentIndex(), true);
 }
 
 void LessonView::setTranslation(KEduVocExpression * entry, int translation)

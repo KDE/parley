@@ -213,52 +213,45 @@ kDebug() << " lesson container " << parentLesson->name();
 //     return true;
 // }
 
-/*
-void LessonModel::splitLesson(int lessonIndex, int entriesPerLesson, SplitLessonOrder order)
+
+void LessonModel::splitLesson(const QModelIndex& containerIndex, int entriesPerLesson, SplitLessonOrder order)
 {
-    // list of entries in the lesson
-    QList<KEduVocExpression*> entryList;
-    for (int i = 0; i < m_doc->entryCountRecursive(); i++) {
-        KEduVocExpression *expr = m_doc->entry(i);
-        if (expr->lesson() == lessonIndex)
-            entryList.append(expr);
+    if (!containerIndex.isValid()) {
+        return;
     }
 
-    QString originalLessonName = m_doc->lesson(lessonIndex).name();
-    int numNewLessons = entryList.count()/entriesPerLesson;
-    if (entryList.count()%entriesPerLesson) // modulo - fraction lesson if not 0 we need one more
+    if (!static_cast<KEduVocContainer*>(containerIndex.internalPointer())->containerType() == KEduVocContainer::LessonContainer) {
+        return;
+    }
+
+    KEduVocLesson* parentLesson = static_cast<KEduVocLesson*>(containerIndex.internalPointer());
+
+    int numNewLessons = parentLesson->entryCount() / entriesPerLesson;
+    // modulo - fraction lesson if not 0 we need one more
+    if (parentLesson->entryCount()%entriesPerLesson) { 
         numNewLessons++;
-
-    // create the empty lessons
-    int first = addLesson(originalLessonName + QString(" %1").arg(1));
-    int last;
-    for (int i=1; i<numNewLessons; i++) {
-        last = addLesson(originalLessonName + QString(" %1").arg(i+1));
     }
 
-    int lessonToFill=first; /// lesson which receives the entries until full
-    int entries = 0; /// number entries in the lesson that is being filled
-    int nextEntry=0; /// next entry to be assigned to one of the new lessons
-    while (!entryList.empty()) {
-        if (entries == entriesPerLesson) {
-            lessonToFill++;
-            entries=0;
+    while (parentLesson->entryCount() > 0) {
+        beginInsertRows(containerIndex, parentLesson->entryCount(), parentLesson->entryCount() );
+        KEduVocLesson* child = new KEduVocLesson(parentLesson->name()
+            + QString(" %1").arg(parentLesson->childContainerCount() + 1), parentLesson);
+        parentLesson->appendChildContainer(child);
+        endInsertRows();
+
+        // number entries in the lesson that is being filled
+        int entries = 0;
+        while (parentLesson->entryCount() > 0 && child->entryCount() < entriesPerLesson) {
+            // next entry to be assigned to one of the new lessons
+            int nextEntry=0;
+            if (order == Random) {
+                nextEntry = KRandom::random() % parentLesson->entryCount();
+                child->addEntry(parentLesson->entry(nextEntry));
+                parentLesson->removeEntry(parentLesson->entry(nextEntry));
+            }
         }
-
-        if (order == random)
-            nextEntry = KRandom::random() % entryList.count(); /// @todo random from 0 to entryList.count() -1;
-        entryList.at(nextEntry)->setLesson(lessonToFill);
-        entryList.removeAt(nextEntry);
-        entries++;
     }
-
-    if (!deleteLesson(lessonIndex, KEduVocDocument::DeleteEmptyLesson))
-        kDebug() << "Warning - could not delete old lesson!";
-
-    m_doc->setModified(true);
-
-    ///@todo check the entire function
-}*/
+}
 
 
 
