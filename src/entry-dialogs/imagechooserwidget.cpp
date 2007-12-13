@@ -41,7 +41,6 @@ void ImageChooserWidget::setTranslation(KEduVocExpression* entry, int translatio
 
     if (m_entry) {
         setEnabled(true);
-kDebug() << "setting url" << m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile();
         imageUrlRequester->setUrl(m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile());
 //         slotImageChanged( m_entry->translation(m_currentTranslation)->imageUrl().toLocalFile() );
     } else {
@@ -54,10 +53,6 @@ kDebug() << "setting url" << m_entry->translation(m_currentTranslation)->imageUr
 
 void ImageChooserWidget::slotImageChanged(const QString & url)
 {
-    kDebug() << "Setting image " << url;
-
-
-
     if ( !url.isEmpty() ) {
         QPixmap pixmap(url);
         imageLabel->setPixmap(pixmap.scaled(imageLabel->size(), Qt::KeepAspectRatio));
